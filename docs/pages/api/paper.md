@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Paper/Paper.js
 <p class="description">The API documentation of the Paper React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Paper from '@material-ui/core/Paper';
+import { Paper } from '@material-ui/core';
 ```
 
 
@@ -30,46 +30,46 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiPaper`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiPaper-root</span> | Styles applied to the root element.
+| <span class="prop-name">rounded</span> | <span class="prop-name">MuiPaper-rounded</span> | Styles applied to the root element if `square={false}`.
+| <span class="prop-name">elevation0</span> | <span class="prop-name">MuiPaper-elevation0</span> | 
+| <span class="prop-name">elevation1</span> | <span class="prop-name">MuiPaper-elevation1</span> | 
+| <span class="prop-name">elevation2</span> | <span class="prop-name">MuiPaper-elevation2</span> | 
+| <span class="prop-name">elevation3</span> | <span class="prop-name">MuiPaper-elevation3</span> | 
+| <span class="prop-name">elevation4</span> | <span class="prop-name">MuiPaper-elevation4</span> | 
+| <span class="prop-name">elevation5</span> | <span class="prop-name">MuiPaper-elevation5</span> | 
+| <span class="prop-name">elevation6</span> | <span class="prop-name">MuiPaper-elevation6</span> | 
+| <span class="prop-name">elevation7</span> | <span class="prop-name">MuiPaper-elevation7</span> | 
+| <span class="prop-name">elevation8</span> | <span class="prop-name">MuiPaper-elevation8</span> | 
+| <span class="prop-name">elevation9</span> | <span class="prop-name">MuiPaper-elevation9</span> | 
+| <span class="prop-name">elevation10</span> | <span class="prop-name">MuiPaper-elevation10</span> | 
+| <span class="prop-name">elevation11</span> | <span class="prop-name">MuiPaper-elevation11</span> | 
+| <span class="prop-name">elevation12</span> | <span class="prop-name">MuiPaper-elevation12</span> | 
+| <span class="prop-name">elevation13</span> | <span class="prop-name">MuiPaper-elevation13</span> | 
+| <span class="prop-name">elevation14</span> | <span class="prop-name">MuiPaper-elevation14</span> | 
+| <span class="prop-name">elevation15</span> | <span class="prop-name">MuiPaper-elevation15</span> | 
+| <span class="prop-name">elevation16</span> | <span class="prop-name">MuiPaper-elevation16</span> | 
+| <span class="prop-name">elevation17</span> | <span class="prop-name">MuiPaper-elevation17</span> | 
+| <span class="prop-name">elevation18</span> | <span class="prop-name">MuiPaper-elevation18</span> | 
+| <span class="prop-name">elevation19</span> | <span class="prop-name">MuiPaper-elevation19</span> | 
+| <span class="prop-name">elevation20</span> | <span class="prop-name">MuiPaper-elevation20</span> | 
+| <span class="prop-name">elevation21</span> | <span class="prop-name">MuiPaper-elevation21</span> | 
+| <span class="prop-name">elevation22</span> | <span class="prop-name">MuiPaper-elevation22</span> | 
+| <span class="prop-name">elevation23</span> | <span class="prop-name">MuiPaper-elevation23</span> | 
+| <span class="prop-name">elevation24</span> | <span class="prop-name">MuiPaper-elevation24</span> | 
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">rounded</span> | Styles applied to the root element if `square={false}`.
-| <span class="prop-name">elevation0</span> | 
-| <span class="prop-name">elevation1</span> | 
-| <span class="prop-name">elevation2</span> | 
-| <span class="prop-name">elevation3</span> | 
-| <span class="prop-name">elevation4</span> | 
-| <span class="prop-name">elevation5</span> | 
-| <span class="prop-name">elevation6</span> | 
-| <span class="prop-name">elevation7</span> | 
-| <span class="prop-name">elevation8</span> | 
-| <span class="prop-name">elevation9</span> | 
-| <span class="prop-name">elevation10</span> | 
-| <span class="prop-name">elevation11</span> | 
-| <span class="prop-name">elevation12</span> | 
-| <span class="prop-name">elevation13</span> | 
-| <span class="prop-name">elevation14</span> | 
-| <span class="prop-name">elevation15</span> | 
-| <span class="prop-name">elevation16</span> | 
-| <span class="prop-name">elevation17</span> | 
-| <span class="prop-name">elevation18</span> | 
-| <span class="prop-name">elevation19</span> | 
-| <span class="prop-name">elevation20</span> | 
-| <span class="prop-name">elevation21</span> | 
-| <span class="prop-name">elevation22</span> | 
-| <span class="prop-name">elevation23</span> | 
-| <span class="prop-name">elevation24</span> | 
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Paper/Paper.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiPaper`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Paper/Paper.js) for more detail.
 
 ## Notes
 

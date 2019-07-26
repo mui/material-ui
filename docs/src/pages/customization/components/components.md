@@ -31,8 +31,9 @@ of the `<head />` to ensure the components always render correctly.
 ### Overriding styles with classes
 
 When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` object property to customize all the CSS injected by Material-UI for a given component.
+
 The list of  classes for each
-component is documented in the **Component API** section.
+component is documented in the component API page, you should refer to the **CSS section** and **rule name column**.
 For instance, you can have a look at the [Button CSS API](/api/button/#css).
 Alternatively, you can use the [browser dev tools](#using-the-dev-tools).
 
@@ -44,6 +45,10 @@ you wish to add or override.
 Notice that in addition to the button styling, the button label's capitalization has been changed:
 
 {{"demo": "pages/customization/components/ClassesNesting.js"}}
+
+### Overriding styles with global class names
+
+[Follow this section](/styles/advanced/#with-material-ui-core).
 
 ### Using the dev tools
 

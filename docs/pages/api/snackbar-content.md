@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/SnackbarContent/SnackbarContent.js
 <p class="description">The API documentation of the SnackbarContent React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import SnackbarContent from '@material-ui/core/SnackbarContent';
+import { SnackbarContent } from '@material-ui/core';
 ```
 
 
@@ -28,22 +28,22 @@ Any other properties supplied will be provided to the root element ([Paper](/api
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiSnackbarContent`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiSnackbarContent-root</span> | Styles applied to the root element.
+| <span class="prop-name">message</span> | <span class="prop-name">MuiSnackbarContent-message</span> | Styles applied to the message wrapper element.
+| <span class="prop-name">action</span> | <span class="prop-name">MuiSnackbarContent-action</span> | Styles applied to the action wrapper element if `action` is provided.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">message</span> | Styles applied to the message wrapper element.
-| <span class="prop-name">action</span> | Styles applied to the action wrapper element if `action` is provided.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/SnackbarContent/SnackbarContent.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiSnackbarContent`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/SnackbarContent/SnackbarContent.js) for more detail.
 
 ## Inheritance
 

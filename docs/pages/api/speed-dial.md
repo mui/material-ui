@@ -9,7 +9,7 @@ filename: /packages/material-ui-lab/src/SpeedDial/SpeedDial.js
 <p class="description">The API documentation of the SpeedDial React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import SpeedDial from '@material-ui/lab/SpeedDial';
+import { SpeedDial } from '@material-ui/lab';
 ```
 
 
@@ -38,27 +38,27 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiSpeedDial`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiSpeedDial-root</span> | Styles applied to the root element.
+| <span class="prop-name">fab</span> | <span class="prop-name">MuiSpeedDial-fab</span> | Styles applied to the Button component.
+| <span class="prop-name">directionUp</span> | <span class="prop-name">MuiSpeedDial-directionUp</span> | Styles applied to the root and action container elements when direction="up"
+| <span class="prop-name">directionDown</span> | <span class="prop-name">MuiSpeedDial-directionDown</span> | Styles applied to the root and action container elements when direction="down"
+| <span class="prop-name">directionLeft</span> | <span class="prop-name">MuiSpeedDial-directionLeft</span> | Styles applied to the root and action container elements when direction="left"
+| <span class="prop-name">directionRight</span> | <span class="prop-name">MuiSpeedDial-directionRight</span> | Styles applied to the root and action container elements when direction="right"
+| <span class="prop-name">actions</span> | <span class="prop-name">MuiSpeedDial-actions</span> | Styles applied to the actions (`children` wrapper) element.
+| <span class="prop-name">actionsClosed</span> | <span class="prop-name">MuiSpeedDial-actionsClosed</span> | Styles applied to the actions (`children` wrapper) element if `open={false}`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">fab</span> | Styles applied to the Button component.
-| <span class="prop-name">directionUp</span> | Styles applied to the root and action container elements when direction="up"
-| <span class="prop-name">directionDown</span> | Styles applied to the root and action container elements when direction="down"
-| <span class="prop-name">directionLeft</span> | Styles applied to the root and action container elements when direction="left"
-| <span class="prop-name">directionRight</span> | Styles applied to the root and action container elements when direction="right"
-| <span class="prop-name">actions</span> | Styles applied to the actions (`children` wrapper) element.
-| <span class="prop-name">actionsClosed</span> | Styles applied to the actions (`children` wrapper) element if `open={false}`.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/SpeedDial/SpeedDial.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiSpeedDial`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/SpeedDial/SpeedDial.js) for more detail.
 
 ## Notes
 

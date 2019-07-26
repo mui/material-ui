@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Radio/Radio.js
 <p class="description">The API documentation of the Radio React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Radio from '@material-ui/core/Radio';
+import { Radio } from '@material-ui/core';
 ```
 
 
@@ -39,24 +39,24 @@ Any other properties supplied will be provided to the root element ([IconButton]
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiRadio`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiRadio-root</span> | Styles applied to the root element.
+| <span class="prop-name">checked</span> | <span class="prop-name">Mui-checked</span> | Pseudo-class applied to the root element if `checked={true}`.
+| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiRadio-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiRadio-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">checked</span> | Pseudo-class applied to the root element if `checked={true}`.
-| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Radio/Radio.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiRadio`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Radio/Radio.js) for more detail.
 
 ## Inheritance
 

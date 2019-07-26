@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/CssBaseline/CssBaseline.js
 <p class="description">The API documentation of the CssBaseline React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { CssBaseline } from '@material-ui/core';
 ```
 
 Kickstart an elegant, consistent, and simple baseline to build upon.

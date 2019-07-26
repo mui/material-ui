@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/ButtonBase/TouchRipple.js
 <p class="description">The API documentation of the TouchRipple React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
+import { TouchRipple } from '@material-ui/core/ButtonBase/TouchRipple.js';
 ```
 
 
@@ -27,26 +27,26 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiTouchRipple`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiTouchRipple-root</span> | Styles applied to the root element.
+| <span class="prop-name">ripple</span> | <span class="prop-name">MuiTouchRipple-ripple</span> | Styles applied to the internal `Ripple` components `ripple` class.
+| <span class="prop-name">rippleVisible</span> | <span class="prop-name">MuiTouchRipple-rippleVisible</span> | Styles applied to the internal `Ripple` components `rippleVisible` class.
+| <span class="prop-name">ripplePulsate</span> | <span class="prop-name">MuiTouchRipple-ripplePulsate</span> | Styles applied to the internal `Ripple` components `ripplePulsate` class.
+| <span class="prop-name">child</span> | <span class="prop-name">MuiTouchRipple-child</span> | Styles applied to the internal `Ripple` components `child` class.
+| <span class="prop-name">childLeaving</span> | <span class="prop-name">MuiTouchRipple-childLeaving</span> | Styles applied to the internal `Ripple` components `childLeaving` class.
+| <span class="prop-name">childPulsate</span> | <span class="prop-name">MuiTouchRipple-childPulsate</span> | Styles applied to the internal `Ripple` components `childPulsate` class.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">ripple</span> | Styles applied to the internal `Ripple` components `ripple` class.
-| <span class="prop-name">rippleVisible</span> | Styles applied to the internal `Ripple` components `rippleVisible` class.
-| <span class="prop-name">ripplePulsate</span> | Styles applied to the internal `Ripple` components `ripplePulsate` class.
-| <span class="prop-name">child</span> | Styles applied to the internal `Ripple` components `child` class.
-| <span class="prop-name">childLeaving</span> | Styles applied to the internal `Ripple` components `childLeaving` class.
-| <span class="prop-name">childPulsate</span> | Styles applied to the internal `Ripple` components `childPulsate` class.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ButtonBase/TouchRipple.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiTouchRipple`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ButtonBase/TouchRipple.js) for more detail.
 
 ## Notes
 

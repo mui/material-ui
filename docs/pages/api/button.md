@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Button/Button.js
 <p class="description">The API documentation of the Button React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Button from '@material-ui/core/Button';
+import { Button } from '@material-ui/core';
 ```
 
 
@@ -36,36 +36,36 @@ Any other properties supplied will be provided to the root element ([ButtonBase]
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiButton`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiButton-root</span> | Styles applied to the root element.
+| <span class="prop-name">label</span> | <span class="prop-name">MuiButton-label</span> | Styles applied to the span element that wraps the children.
+| <span class="prop-name">text</span> | <span class="prop-name">MuiButton-text</span> | Styles applied to the root element if `variant="text"`.
+| <span class="prop-name">textPrimary</span> | <span class="prop-name">MuiButton-textPrimary</span> | Styles applied to the root element if `variant="text"` and `color="primary"`.
+| <span class="prop-name">textSecondary</span> | <span class="prop-name">MuiButton-textSecondary</span> | Styles applied to the root element if `variant="text"` and `color="secondary"`.
+| <span class="prop-name">outlined</span> | <span class="prop-name">MuiButton-outlined</span> | Styles applied to the root element if `variant="outlined"`.
+| <span class="prop-name">outlinedPrimary</span> | <span class="prop-name">MuiButton-outlinedPrimary</span> | Styles applied to the root element if `variant="outlined"` and `color="primary"`.
+| <span class="prop-name">outlinedSecondary</span> | <span class="prop-name">MuiButton-outlinedSecondary</span> | Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
+| <span class="prop-name">contained</span> | <span class="prop-name">MuiButton-contained</span> | Styles applied to the root element if `variant="contained"`.
+| <span class="prop-name">containedPrimary</span> | <span class="prop-name">MuiButton-containedPrimary</span> | Styles applied to the root element if `variant="contained"` and `color="primary"`.
+| <span class="prop-name">containedSecondary</span> | <span class="prop-name">MuiButton-containedSecondary</span> | Styles applied to the root element if `variant="contained"` and `color="secondary"`.
+| <span class="prop-name">focusVisible</span> | <span class="prop-name">Mui-focusVisible</span> | Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
+| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span class="prop-name">colorInherit</span> | <span class="prop-name">MuiButton-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
+| <span class="prop-name">sizeSmall</span> | <span class="prop-name">MuiButton-sizeSmall</span> | Styles applied to the root element if `size="small"`.
+| <span class="prop-name">sizeLarge</span> | <span class="prop-name">MuiButton-sizeLarge</span> | Styles applied to the root element if `size="large"`.
+| <span class="prop-name">fullWidth</span> | <span class="prop-name">MuiButton-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">label</span> | Styles applied to the span element that wraps the children.
-| <span class="prop-name">text</span> | Styles applied to the root element if `variant="text"`.
-| <span class="prop-name">textPrimary</span> | Styles applied to the root element if `variant="text"` and `color="primary"`.
-| <span class="prop-name">textSecondary</span> | Styles applied to the root element if `variant="text"` and `color="secondary"`.
-| <span class="prop-name">outlined</span> | Styles applied to the root element if `variant="outlined"`.
-| <span class="prop-name">outlinedPrimary</span> | Styles applied to the root element if `variant="outlined"` and `color="primary"`.
-| <span class="prop-name">outlinedSecondary</span> | Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
-| <span class="prop-name">contained</span> | Styles applied to the root element if `variant="contained"`.
-| <span class="prop-name">containedPrimary</span> | Styles applied to the root element if `variant="contained"` and `color="primary"`.
-| <span class="prop-name">containedSecondary</span> | Styles applied to the root element if `variant="contained"` and `color="secondary"`.
-| <span class="prop-name">focusVisible</span> | Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
-| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">colorInherit</span> | Styles applied to the root element if `color="inherit"`.
-| <span class="prop-name">sizeSmall</span> | Styles applied to the root element if `size="small"`.
-| <span class="prop-name">sizeLarge</span> | Styles applied to the root element if `size="large"`.
-| <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiButton`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js) for more detail.
 
 ## Inheritance
 

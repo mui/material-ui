@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/FormControlLabel/FormControlLabel.js
 <p class="description">The API documentation of the FormControlLabel React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { FormControlLabel } from '@material-ui/core';
 ```
 
 Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.
@@ -36,25 +36,25 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiFormControlLabel`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiFormControlLabel-root</span> | Styles applied to the root element.
+| <span class="prop-name">labelPlacementStart</span> | <span class="prop-name">MuiFormControlLabel-labelPlacementStart</span> | Styles applied to the root element if `labelPlacement="start"`.
+| <span class="prop-name">labelPlacementTop</span> | <span class="prop-name">MuiFormControlLabel-labelPlacementTop</span> | Styles applied to the root element if `labelPlacement="top"`.
+| <span class="prop-name">labelPlacementBottom</span> | <span class="prop-name">MuiFormControlLabel-labelPlacementBottom</span> | Styles applied to the root element if `labelPlacement="bottom"`.
+| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span class="prop-name">label</span> | <span class="prop-name">MuiFormControlLabel-label</span> | Styles applied to the label's Typography component.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">labelPlacementStart</span> | Styles applied to the root element if `labelPlacement="start"`.
-| <span class="prop-name">labelPlacementTop</span> | Styles applied to the root element if `labelPlacement="top"`.
-| <span class="prop-name">labelPlacementBottom</span> | Styles applied to the root element if `labelPlacement="bottom"`.
-| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">label</span> | Styles applied to the label's Typography component.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/FormControlLabel/FormControlLabel.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiFormControlLabel`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/FormControlLabel/FormControlLabel.js) for more detail.
 
 ## Notes
 

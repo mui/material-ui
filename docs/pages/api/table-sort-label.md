@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/TableSortLabel/TableSortLabel.js
 <p class="description">The API documentation of the TableSortLabel React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import TableSortLabel from '@material-ui/core/TableSortLabel';
+import { TableSortLabel } from '@material-ui/core';
 ```
 
 A button based label for placing inside `TableCell` for column sorting.
@@ -31,24 +31,24 @@ Any other properties supplied will be provided to the root element ([ButtonBase]
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiTableSortLabel`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiTableSortLabel-root</span> | Styles applied to the root element.
+| <span class="prop-name">active</span> | <span class="prop-name">MuiTableSortLabel-active</span> | Pseudo-class applied to the root element if `active={true}`.
+| <span class="prop-name">icon</span> | <span class="prop-name">MuiTableSortLabel-icon</span> | Styles applied to the icon component.
+| <span class="prop-name">iconDirectionDesc</span> | <span class="prop-name">MuiTableSortLabel-iconDirectionDesc</span> | Styles applied to the icon component if `direction="desc"`.
+| <span class="prop-name">iconDirectionAsc</span> | <span class="prop-name">MuiTableSortLabel-iconDirectionAsc</span> | Styles applied to the icon component if `direction="asc"`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">active</span> | Pseudo-class applied to the root element if `active={true}`.
-| <span class="prop-name">icon</span> | Styles applied to the icon component.
-| <span class="prop-name">iconDirectionDesc</span> | Styles applied to the icon component if `direction="desc"`.
-| <span class="prop-name">iconDirectionAsc</span> | Styles applied to the icon component if `direction="asc"`.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TableSortLabel/TableSortLabel.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiTableSortLabel`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TableSortLabel/TableSortLabel.js) for more detail.
 
 ## Inheritance
 

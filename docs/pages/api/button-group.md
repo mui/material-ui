@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/ButtonGroup/ButtonGroup.js
 <p class="description">The API documentation of the ButtonGroup React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { ButtonGroup } from '@material-ui/core';
 ```
 
 
@@ -35,29 +35,29 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiButtonGroup`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiButtonGroup-root</span> | Styles applied to the root element.
+| <span class="prop-name">contained</span> | <span class="prop-name">MuiButtonGroup-contained</span> | Styles applied to the root element if variant="contained".
+| <span class="prop-name">fullWidth</span> | <span class="prop-name">MuiButtonGroup-fullWidth</span> | Styles applied to the root element if fullWidth={true}.
+| <span class="prop-name">grouped</span> | <span class="prop-name">MuiButtonGroup-grouped</span> | Styles applied to the children.
+| <span class="prop-name">groupedOutlined</span> | <span class="prop-name">MuiButtonGroup-groupedOutlined</span> | Styles applied to the children if variant="outlined".
+| <span class="prop-name">groupedOutlinedPrimary</span> | <span class="prop-name">MuiButtonGroup-groupedOutlinedPrimary</span> | Styles applied to the children if variant="outlined" & color="primary".
+| <span class="prop-name">groupedOutlinedSecondary</span> | <span class="prop-name">MuiButtonGroup-groupedOutlinedSecondary</span> | Styles applied to the children if variant="outlined" & color="secondary".
+| <span class="prop-name">groupedContained</span> | <span class="prop-name">MuiButtonGroup-groupedContained</span> | Styles applied to the children if variant="contained".
+| <span class="prop-name">groupedContainedPrimary</span> | <span class="prop-name">MuiButtonGroup-groupedContainedPrimary</span> | Styles applied to the children if variant="contained" & color="primary".
+| <span class="prop-name">groupedContainedSecondary</span> | <span class="prop-name">MuiButtonGroup-groupedContainedSecondary</span> | Styles applied to the children if variant="contained" & color="secondary".
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">contained</span> | Styles applied to the root element if variant="contained".
-| <span class="prop-name">fullWidth</span> | Styles applied to the root element if fullWidth={true}.
-| <span class="prop-name">grouped</span> | Styles applied to the children.
-| <span class="prop-name">groupedOutlined</span> | Styles applied to the children if variant="outlined".
-| <span class="prop-name">groupedOutlinedPrimary</span> | Styles applied to the children if variant="outlined" & color="primary".
-| <span class="prop-name">groupedOutlinedSecondary</span> | Styles applied to the children if variant="outlined" & color="secondary".
-| <span class="prop-name">groupedContained</span> | Styles applied to the children if variant="contained".
-| <span class="prop-name">groupedContainedPrimary</span> | Styles applied to the children if variant="contained" & color="primary".
-| <span class="prop-name">groupedContainedSecondary</span> | Styles applied to the children if variant="contained" & color="secondary".
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ButtonGroup/ButtonGroup.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiButtonGroup`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/ButtonGroup/ButtonGroup.js) for more detail.
 
 ## Notes
 

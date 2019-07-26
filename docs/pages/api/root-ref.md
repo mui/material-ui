@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/RootRef/RootRef.js
 <p class="description">The API documentation of the RootRef React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import RootRef from '@material-ui/core/RootRef';
+import { RootRef } from '@material-ui/core';
 ```
 
 ⚠️⚠️⚠️

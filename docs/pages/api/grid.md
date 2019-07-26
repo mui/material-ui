@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Grid/Grid.js
 <p class="description">The API documentation of the Grid React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Grid from '@material-ui/core/Grid';
+import { Grid } from '@material-ui/core';
 ```
 
 
@@ -42,66 +42,66 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiGrid`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiGrid-root</span> | Styles applied to the root element
+| <span class="prop-name">container</span> | <span class="prop-name">MuiGrid-container</span> | Styles applied to the root element if `container={true}`.
+| <span class="prop-name">item</span> | <span class="prop-name">MuiGrid-item</span> | Styles applied to the root element if `item={true}`.
+| <span class="prop-name">zeroMinWidth</span> | <span class="prop-name">MuiGrid-zeroMinWidth</span> | Styles applied to the root element if `zeroMinWidth={true}`.
+| <span class="prop-name">direction-xs-column</span> | <span class="prop-name">MuiGrid-direction-xs-column</span> | 
+| <span class="prop-name">direction-xs-column-reverse</span> | <span class="prop-name">MuiGrid-direction-xs-column-reverse</span> | 
+| <span class="prop-name">direction-xs-row-reverse</span> | <span class="prop-name">MuiGrid-direction-xs-row-reverse</span> | 
+| <span class="prop-name">wrap-xs-nowrap</span> | <span class="prop-name">MuiGrid-wrap-xs-nowrap</span> | 
+| <span class="prop-name">wrap-xs-wrap-reverse</span> | <span class="prop-name">MuiGrid-wrap-xs-wrap-reverse</span> | 
+| <span class="prop-name">align-items-xs-center</span> | <span class="prop-name">MuiGrid-align-items-xs-center</span> | 
+| <span class="prop-name">align-items-xs-flex-start</span> | <span class="prop-name">MuiGrid-align-items-xs-flex-start</span> | 
+| <span class="prop-name">align-items-xs-flex-end</span> | <span class="prop-name">MuiGrid-align-items-xs-flex-end</span> | 
+| <span class="prop-name">align-items-xs-baseline</span> | <span class="prop-name">MuiGrid-align-items-xs-baseline</span> | 
+| <span class="prop-name">align-content-xs-center</span> | <span class="prop-name">MuiGrid-align-content-xs-center</span> | 
+| <span class="prop-name">align-content-xs-flex-start</span> | <span class="prop-name">MuiGrid-align-content-xs-flex-start</span> | 
+| <span class="prop-name">align-content-xs-flex-end</span> | <span class="prop-name">MuiGrid-align-content-xs-flex-end</span> | 
+| <span class="prop-name">align-content-xs-space-between</span> | <span class="prop-name">MuiGrid-align-content-xs-space-between</span> | 
+| <span class="prop-name">align-content-xs-space-around</span> | <span class="prop-name">MuiGrid-align-content-xs-space-around</span> | 
+| <span class="prop-name">justify-xs-center</span> | <span class="prop-name">MuiGrid-justify-xs-center</span> | 
+| <span class="prop-name">justify-xs-flex-end</span> | <span class="prop-name">MuiGrid-justify-xs-flex-end</span> | 
+| <span class="prop-name">justify-xs-space-between</span> | <span class="prop-name">MuiGrid-justify-xs-space-between</span> | 
+| <span class="prop-name">justify-xs-space-around</span> | <span class="prop-name">MuiGrid-justify-xs-space-around</span> | 
+| <span class="prop-name">justify-xs-space-evenly</span> | <span class="prop-name">MuiGrid-justify-xs-space-evenly</span> | 
+| <span class="prop-name">spacing-xs-1</span> | <span class="prop-name">MuiGrid-spacing-xs-1</span> | 
+| <span class="prop-name">spacing-xs-2</span> | <span class="prop-name">MuiGrid-spacing-xs-2</span> | 
+| <span class="prop-name">spacing-xs-3</span> | <span class="prop-name">MuiGrid-spacing-xs-3</span> | 
+| <span class="prop-name">spacing-xs-4</span> | <span class="prop-name">MuiGrid-spacing-xs-4</span> | 
+| <span class="prop-name">spacing-xs-5</span> | <span class="prop-name">MuiGrid-spacing-xs-5</span> | 
+| <span class="prop-name">spacing-xs-6</span> | <span class="prop-name">MuiGrid-spacing-xs-6</span> | 
+| <span class="prop-name">spacing-xs-7</span> | <span class="prop-name">MuiGrid-spacing-xs-7</span> | 
+| <span class="prop-name">spacing-xs-8</span> | <span class="prop-name">MuiGrid-spacing-xs-8</span> | 
+| <span class="prop-name">spacing-xs-9</span> | <span class="prop-name">MuiGrid-spacing-xs-9</span> | 
+| <span class="prop-name">spacing-xs-10</span> | <span class="prop-name">MuiGrid-spacing-xs-10</span> | 
+| <span class="prop-name">grid-xs-auto</span> | <span class="prop-name">MuiGrid-grid-xs-auto</span> | 
+| <span class="prop-name">grid-xs-true</span> | <span class="prop-name">MuiGrid-grid-xs-true</span> | 
+| <span class="prop-name">grid-xs-1</span> | <span class="prop-name">MuiGrid-grid-xs-1</span> | 
+| <span class="prop-name">grid-xs-2</span> | <span class="prop-name">MuiGrid-grid-xs-2</span> | 
+| <span class="prop-name">grid-xs-3</span> | <span class="prop-name">MuiGrid-grid-xs-3</span> | 
+| <span class="prop-name">grid-xs-4</span> | <span class="prop-name">MuiGrid-grid-xs-4</span> | 
+| <span class="prop-name">grid-xs-5</span> | <span class="prop-name">MuiGrid-grid-xs-5</span> | 
+| <span class="prop-name">grid-xs-6</span> | <span class="prop-name">MuiGrid-grid-xs-6</span> | 
+| <span class="prop-name">grid-xs-7</span> | <span class="prop-name">MuiGrid-grid-xs-7</span> | 
+| <span class="prop-name">grid-xs-8</span> | <span class="prop-name">MuiGrid-grid-xs-8</span> | 
+| <span class="prop-name">grid-xs-9</span> | <span class="prop-name">MuiGrid-grid-xs-9</span> | 
+| <span class="prop-name">grid-xs-10</span> | <span class="prop-name">MuiGrid-grid-xs-10</span> | 
+| <span class="prop-name">grid-xs-11</span> | <span class="prop-name">MuiGrid-grid-xs-11</span> | 
+| <span class="prop-name">grid-xs-12</span> | <span class="prop-name">MuiGrid-grid-xs-12</span> | 
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element
-| <span class="prop-name">container</span> | Styles applied to the root element if `container={true}`.
-| <span class="prop-name">item</span> | Styles applied to the root element if `item={true}`.
-| <span class="prop-name">zeroMinWidth</span> | Styles applied to the root element if `zeroMinWidth={true}`.
-| <span class="prop-name">direction-xs-column</span> | 
-| <span class="prop-name">direction-xs-column-reverse</span> | 
-| <span class="prop-name">direction-xs-row-reverse</span> | 
-| <span class="prop-name">wrap-xs-nowrap</span> | 
-| <span class="prop-name">wrap-xs-wrap-reverse</span> | 
-| <span class="prop-name">align-items-xs-center</span> | 
-| <span class="prop-name">align-items-xs-flex-start</span> | 
-| <span class="prop-name">align-items-xs-flex-end</span> | 
-| <span class="prop-name">align-items-xs-baseline</span> | 
-| <span class="prop-name">align-content-xs-center</span> | 
-| <span class="prop-name">align-content-xs-flex-start</span> | 
-| <span class="prop-name">align-content-xs-flex-end</span> | 
-| <span class="prop-name">align-content-xs-space-between</span> | 
-| <span class="prop-name">align-content-xs-space-around</span> | 
-| <span class="prop-name">justify-xs-center</span> | 
-| <span class="prop-name">justify-xs-flex-end</span> | 
-| <span class="prop-name">justify-xs-space-between</span> | 
-| <span class="prop-name">justify-xs-space-around</span> | 
-| <span class="prop-name">justify-xs-space-evenly</span> | 
-| <span class="prop-name">spacing-xs-1</span> | 
-| <span class="prop-name">spacing-xs-2</span> | 
-| <span class="prop-name">spacing-xs-3</span> | 
-| <span class="prop-name">spacing-xs-4</span> | 
-| <span class="prop-name">spacing-xs-5</span> | 
-| <span class="prop-name">spacing-xs-6</span> | 
-| <span class="prop-name">spacing-xs-7</span> | 
-| <span class="prop-name">spacing-xs-8</span> | 
-| <span class="prop-name">spacing-xs-9</span> | 
-| <span class="prop-name">spacing-xs-10</span> | 
-| <span class="prop-name">grid-xs-auto</span> | 
-| <span class="prop-name">grid-xs-true</span> | 
-| <span class="prop-name">grid-xs-1</span> | 
-| <span class="prop-name">grid-xs-2</span> | 
-| <span class="prop-name">grid-xs-3</span> | 
-| <span class="prop-name">grid-xs-4</span> | 
-| <span class="prop-name">grid-xs-5</span> | 
-| <span class="prop-name">grid-xs-6</span> | 
-| <span class="prop-name">grid-xs-7</span> | 
-| <span class="prop-name">grid-xs-8</span> | 
-| <span class="prop-name">grid-xs-9</span> | 
-| <span class="prop-name">grid-xs-10</span> | 
-| <span class="prop-name">grid-xs-11</span> | 
-| <span class="prop-name">grid-xs-12</span> | 
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Grid/Grid.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiGrid`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Grid/Grid.js) for more detail.
 
 ## Notes
 

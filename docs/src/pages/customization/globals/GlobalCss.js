@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 
 const theme = createMuiTheme({
   overrides: {
-    // Name of the component ⚛️ / style sheet
+    // Style sheet name ⚛️
     MuiButton: {
       // Name of the rule
       text: {

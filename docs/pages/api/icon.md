@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Icon/Icon.js
 <p class="description">The API documentation of the Icon React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Icon from '@material-ui/core/Icon';
+import { Icon } from '@material-ui/core';
 ```
 
 
@@ -30,28 +30,28 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiIcon`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiIcon-root</span> | Styles applied to the root element.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiIcon-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiIcon-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">colorAction</span> | <span class="prop-name">MuiIcon-colorAction</span> | Styles applied to the root element if `color="action"`.
+| <span class="prop-name">colorError</span> | <span class="prop-name">MuiIcon-colorError</span> | Styles applied to the root element if `color="error"`.
+| <span class="prop-name">colorDisabled</span> | <span class="prop-name">MuiIcon-colorDisabled</span> | Styles applied to the root element if `color="disabled"`.
+| <span class="prop-name">fontSizeInherit</span> | <span class="prop-name">MuiIcon-fontSizeInherit</span> | 
+| <span class="prop-name">fontSizeSmall</span> | <span class="prop-name">MuiIcon-fontSizeSmall</span> | Styles applied to the root element if `fontSize="small"`.
+| <span class="prop-name">fontSizeLarge</span> | <span class="prop-name">MuiIcon-fontSizeLarge</span> | Styles applied to the root element if `fontSize="large"`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
-| <span class="prop-name">colorAction</span> | Styles applied to the root element if `color="action"`.
-| <span class="prop-name">colorError</span> | Styles applied to the root element if `color="error"`.
-| <span class="prop-name">colorDisabled</span> | Styles applied to the root element if `color="disabled"`.
-| <span class="prop-name">fontSizeInherit</span> | 
-| <span class="prop-name">fontSizeSmall</span> | Styles applied to the root element if `fontSize="small"`.
-| <span class="prop-name">fontSizeLarge</span> | Styles applied to the root element if `fontSize="large"`.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Icon/Icon.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiIcon`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Icon/Icon.js) for more detail.
 
 ## Notes
 

@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/BottomNavigationAction/BottomNavigationActio
 <p class="description">The API documentation of the BottomNavigationAction React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import { BottomNavigationAction } from '@material-ui/core';
 ```
 
 
@@ -31,24 +31,24 @@ Any other properties supplied will be provided to the root element ([ButtonBase]
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiBottomNavigationAction`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiBottomNavigationAction-root</span> | Styles applied to the root element.
+| <span class="prop-name">selected</span> | <span class="prop-name">Mui-selected</span> | Pseudo-class applied to the root element if selected.
+| <span class="prop-name">iconOnly</span> | <span class="prop-name">MuiBottomNavigationAction-iconOnly</span> | Pseudo-class applied to the root element if `showLabel={false}` and not selected.
+| <span class="prop-name">wrapper</span> | <span class="prop-name">MuiBottomNavigationAction-wrapper</span> | Styles applied to the span element that wraps the icon and label.
+| <span class="prop-name">label</span> | <span class="prop-name">MuiBottomNavigationAction-label</span> | Styles applied to the label's span element.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">selected</span> | Pseudo-class applied to the root element if selected.
-| <span class="prop-name">iconOnly</span> | Pseudo-class applied to the root element if `showLabel={false}` and not selected.
-| <span class="prop-name">wrapper</span> | Styles applied to the span element that wraps the icon and label.
-| <span class="prop-name">label</span> | Styles applied to the label's span element.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/BottomNavigationAction/BottomNavigationAction.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiBottomNavigationAction`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/BottomNavigationAction/BottomNavigationAction.js) for more detail.
 
 ## Inheritance
 

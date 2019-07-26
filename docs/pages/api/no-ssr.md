@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/NoSsr/NoSsr.js
 <p class="description">The API documentation of the NoSsr React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import NoSsr from '@material-ui/core/NoSsr';
+import { NoSsr } from '@material-ui/core';
 ```
 
 NoSsr purposely removes components from the subject of Server Side Rendering (SSR).

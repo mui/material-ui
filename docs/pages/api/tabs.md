@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Tabs/Tabs.js
 <p class="description">The API documentation of the Tabs React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Tabs from '@material-ui/core/Tabs';
+import { Tabs } from '@material-ui/core';
 ```
 
 
@@ -39,30 +39,30 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiTabs`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiTabs-root</span> | Styles applied to the root element.
+| <span class="prop-name">vertical</span> | <span class="prop-name">MuiTabs-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
+| <span class="prop-name">flexContainer</span> | <span class="prop-name">MuiTabs-flexContainer</span> | Styles applied to the flex container element.
+| <span class="prop-name">flexContainerVertical</span> | <span class="prop-name">MuiTabs-flexContainerVertical</span> | Styles applied to the flex container element if `orientation="vertical"`.
+| <span class="prop-name">centered</span> | <span class="prop-name">MuiTabs-centered</span> | Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`.
+| <span class="prop-name">scroller</span> | <span class="prop-name">MuiTabs-scroller</span> | Styles applied to the tablist element.
+| <span class="prop-name">fixed</span> | <span class="prop-name">MuiTabs-fixed</span> | Styles applied to the tablist element if `!variant="scrollable"`.
+| <span class="prop-name">scrollable</span> | <span class="prop-name">MuiTabs-scrollable</span> | Styles applied to the tablist element if `variant="scrollable"`.
+| <span class="prop-name">scrollButtons</span> | <span class="prop-name">MuiTabs-scrollButtons</span> | Styles applied to the `ScrollButtonComponent` component.
+| <span class="prop-name">scrollButtonsDesktop</span> | <span class="prop-name">MuiTabs-scrollButtonsDesktop</span> | Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"` or scrollButtons="desktop"`.
+| <span class="prop-name">indicator</span> | <span class="prop-name">MuiTabs-indicator</span> | Styles applied to the `TabIndicator` component.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">vertical</span> | Styles applied to the root element if `orientation="vertical"`.
-| <span class="prop-name">flexContainer</span> | Styles applied to the flex container element.
-| <span class="prop-name">flexContainerVertical</span> | Styles applied to the flex container element if `orientation="vertical"`.
-| <span class="prop-name">centered</span> | Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`.
-| <span class="prop-name">scroller</span> | Styles applied to the tablist element.
-| <span class="prop-name">fixed</span> | Styles applied to the tablist element if `!variant="scrollable"`.
-| <span class="prop-name">scrollable</span> | Styles applied to the tablist element if `variant="scrollable"`.
-| <span class="prop-name">scrollButtons</span> | Styles applied to the `ScrollButtonComponent` component.
-| <span class="prop-name">scrollButtonsDesktop</span> | Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"` or scrollButtons="desktop"`.
-| <span class="prop-name">indicator</span> | Styles applied to the `TabIndicator` component.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Tabs/Tabs.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiTabs`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Tabs/Tabs.js) for more detail.
 
 ## Notes
 

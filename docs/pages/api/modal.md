@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Modal/Modal.js
 <p class="description">The API documentation of the Modal React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Modal from '@material-ui/core/Modal';
+import { Modal } from '@material-ui/core';
 ```
 
 Modal is a lower-level construct that is leveraged by the following components:

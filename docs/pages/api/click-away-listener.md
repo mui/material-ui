@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/ClickAwayListener/ClickAwayListener.js
 <p class="description">The API documentation of the ClickAwayListener React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import { ClickAwayListener } from '@material-ui/core';
 ```
 
 Listen for click events that occur somewhere in the document, outside of the element itself.

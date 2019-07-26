@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/CircularProgress/CircularProgress.js
 <p class="description">The API documentation of the CircularProgress React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { CircularProgress } from '@material-ui/core';
 ```
 
 ## ARIA
@@ -36,29 +36,29 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiCircularProgress`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiCircularProgress-root</span> | Styles applied to the root element.
+| <span class="prop-name">static</span> | <span class="prop-name">MuiCircularProgress-static</span> | Styles applied to the root element if `variant="static"`.
+| <span class="prop-name">indeterminate</span> | <span class="prop-name">MuiCircularProgress-indeterminate</span> | Styles applied to the root element if `variant="indeterminate"`.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiCircularProgress-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiCircularProgress-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">svg</span> | <span class="prop-name">MuiCircularProgress-svg</span> | Styles applied to the `svg` element.
+| <span class="prop-name">circle</span> | <span class="prop-name">MuiCircularProgress-circle</span> | Styles applied to the `circle` svg path.
+| <span class="prop-name">circleStatic</span> | <span class="prop-name">MuiCircularProgress-circleStatic</span> | Styles applied to the `circle` svg path if `variant="static"`.
+| <span class="prop-name">circleIndeterminate</span> | <span class="prop-name">MuiCircularProgress-circleIndeterminate</span> | Styles applied to the `circle` svg path if `variant="indeterminate"`.
+| <span class="prop-name">circleDisableShrink</span> | <span class="prop-name">MuiCircularProgress-circleDisableShrink</span> | Styles applied to the `circle` svg path if `disableShrink={true}`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">static</span> | Styles applied to the root element if `variant="static"`.
-| <span class="prop-name">indeterminate</span> | Styles applied to the root element if `variant="indeterminate"`.
-| <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
-| <span class="prop-name">svg</span> | Styles applied to the `svg` element.
-| <span class="prop-name">circle</span> | Styles applied to the `circle` svg path.
-| <span class="prop-name">circleStatic</span> | Styles applied to the `circle` svg path if `variant="static"`.
-| <span class="prop-name">circleIndeterminate</span> | Styles applied to the `circle` svg path if `variant="indeterminate"`.
-| <span class="prop-name">circleDisableShrink</span> | Styles applied to the `circle` svg path if `disableShrink={true}`.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/CircularProgress/CircularProgress.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiCircularProgress`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/CircularProgress/CircularProgress.js) for more detail.
 
 ## Notes
 

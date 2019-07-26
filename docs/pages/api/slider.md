@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Slider/Slider.js
 <p class="description">The API documentation of the Slider React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Slider from '@material-ui/core/Slider';
+import { Slider } from '@material-ui/core';
 ```
 
 
@@ -46,33 +46,33 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiSlider`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiSlider-root</span> | Styles applied to the root element.
+| <span class="prop-name">marked</span> | <span class="prop-name">MuiSlider-marked</span> | Styles applied to the root element if `marks` is provided with at least one label.
+| <span class="prop-name">vertical</span> | <span class="prop-name">MuiSlider-vertical</span> | Pseudo-class applied to the root element if `orientation="vertical"`.
+| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span class="prop-name">rail</span> | <span class="prop-name">MuiSlider-rail</span> | Styles applied to the rail element.
+| <span class="prop-name">track</span> | <span class="prop-name">MuiSlider-track</span> | Styles applied to the track element.
+| <span class="prop-name">thumb</span> | <span class="prop-name">MuiSlider-thumb</span> | Styles applied to the thumb element.
+| <span class="prop-name">active</span> | <span class="prop-name">MuiSlider-active</span> | Pseudo-class applied to the thumb element if it's active.
+| <span class="prop-name">focusVisible</span> | <span class="prop-name">Mui-focusVisible</span> | Pseudo-class applied to the thumb element if keyboard focused.
+| <span class="prop-name">valueLabel</span> | <span class="prop-name">MuiSlider-valueLabel</span> | Styles applied to the thumb label element.
+| <span class="prop-name">mark</span> | <span class="prop-name">MuiSlider-mark</span> | Styles applied to the mark element.
+| <span class="prop-name">markActive</span> | <span class="prop-name">MuiSlider-markActive</span> | Styles applied to the mark element if active (depending on the value).
+| <span class="prop-name">markLabel</span> | <span class="prop-name">MuiSlider-markLabel</span> | Styles applied to the mark label element.
+| <span class="prop-name">markLabelActive</span> | <span class="prop-name">MuiSlider-markLabelActive</span> | Styles applied to the mark label element if active (depending on the value).
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">marked</span> | Styles applied to the root element if `marks` is provided with at least one label.
-| <span class="prop-name">vertical</span> | Pseudo-class applied to the root element if `orientation="vertical"`.
-| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">rail</span> | Styles applied to the rail element.
-| <span class="prop-name">track</span> | Styles applied to the track element.
-| <span class="prop-name">thumb</span> | Styles applied to the thumb element.
-| <span class="prop-name">active</span> | Pseudo-class applied to the thumb element if it's active.
-| <span class="prop-name">focusVisible</span> | Pseudo-class applied to the thumb element if keyboard focused.
-| <span class="prop-name">valueLabel</span> | Styles applied to the thumb label element.
-| <span class="prop-name">mark</span> | Styles applied to the mark element.
-| <span class="prop-name">markActive</span> | Styles applied to the mark element if active (depending on the value).
-| <span class="prop-name">markLabel</span> | Styles applied to the mark label element.
-| <span class="prop-name">markLabelActive</span> | Styles applied to the mark label element if active (depending on the value).
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Slider/Slider.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiSlider`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Slider/Slider.js) for more detail.
 
 ## Notes
 
