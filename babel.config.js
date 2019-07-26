@@ -78,16 +78,16 @@ module.exports = {
       ],
     },
     esm: {
-      plugins: productionPlugins,
+      plugins: [...productionPlugins, ['@babel/plugin-transform-runtime', { useESModules: true }]],
     },
     es: {
-      plugins: productionPlugins,
+      plugins: [...productionPlugins, ['@babel/plugin-transform-runtime', { useESModules: true }]],
     },
     production: {
-      plugins: productionPlugins,
+      plugins: [...productionPlugins, ['@babel/plugin-transform-runtime', { useESModules: true }]],
     },
     'production-umd': {
-      plugins: productionPlugins,
+      plugins: [...productionPlugins, ['@babel/plugin-transform-runtime', { useESModules: true }]],
     },
     test: {
       sourceMaps: 'both',
