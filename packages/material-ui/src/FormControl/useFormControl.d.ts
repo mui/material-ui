@@ -6,7 +6,7 @@ export {};
 
 type ContextFromPropsKey = 'disabled' | 'error' | 'hiddenLabel' | 'margin' | 'required' | 'variant';
 
-export interface FormControl extends Pick<FormControlProps, ContextFromPropsKey> {
+export interface FormControlState extends Pick<FormControlProps, ContextFromPropsKey> {
   adornedStart: boolean;
   filled: boolean;
   focused: boolean;
@@ -16,4 +16,4 @@ export interface FormControl extends Pick<FormControlProps, ContextFromPropsKey>
   onFocus: () => void;
 }
 
-export default function useFormControl(): FormControl;
+export default function useFormControl(): FormControlState;
