@@ -1,12 +1,15 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect, assert } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { createShallow, createMount } from '@material-ui/core/test-utils';
+import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import Menu from '../Menu';
 import MenuItem from '../MenuItem';
 import SelectInput from './SelectInput';
 
 describe('<SelectInput />', () => {
+  const render = createClientRender({ strict: true });
+
   let shallow;
   let mount;
   const defaultProps = {
@@ -37,6 +40,7 @@ describe('<SelectInput />', () => {
 
   after(() => {
     mount.cleanUp();
+    cleanup();
   });
 
   it('should render a correct top element', () => {
@@ -140,9 +144,14 @@ describe('<SelectInput />', () => {
     });
   });
 
+  it('should render a placeholder if there is no value to display', () => {
+    const { getByRole } = render(<SelectInput {...defaultProps} renderValue={() => '   '} />);
+    expect(getByRole('button').querySelector('span')).to.be.ok;
+  });
+
   describe('prop: displayEmpty', () => {
     it('should display the selected item even if its value is empty', () => {
-      const wrapper = shallow(
+      const wrapper = mount(
         <SelectInput {...defaultProps} value="" displayEmpty>
           <MenuItem value="">Ten</MenuItem>
           <MenuItem value={20}>Twenty</MenuItem>
@@ -156,7 +165,7 @@ describe('<SelectInput />', () => {
   describe('prop: renderValue', () => {
     it('should use the prop to render the value', () => {
       const renderValue = x => String(-x);
-      const wrapper = shallow(<SelectInput {...defaultProps} renderValue={renderValue} />);
+      const wrapper = mount(<SelectInput {...defaultProps} renderValue={renderValue} />);
       assert.strictEqual(wrapper.find(`.${defaultProps.classes.select}`).text(), '-10');
     });
   });
@@ -453,12 +462,12 @@ describe('<SelectInput />', () => {
 
   describe('prop: name', () => {
     it('should have no id when name is not provided', () => {
-      const wrapper = shallow(<SelectInput {...defaultProps} />);
+      const wrapper = mount(<SelectInput {...defaultProps} />);
       assert.strictEqual(wrapper.find('.select').props().id, undefined);
     });
 
     it('should have select-`name` id when name is provided', () => {
-      const wrapper = shallow(<SelectInput {...defaultProps} name="foo" />);
+      const wrapper = mount(<SelectInput {...defaultProps} name="foo" />);
       assert.strictEqual(wrapper.find('.select').props().id, 'select-foo');
     });
   });
