@@ -5,7 +5,7 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 
 const req = require.context('docs/src/pages/components/tree-view', false, /\.(md|js|tsx)$/);
 const reqSource = require.context(
-  '!raw-loader!../../docs/src/pages/components/tree-view',
+  '!raw-loader!../../src/pages/components/tree-view',
   false,
   /\.(js|tsx)$/,
 );
