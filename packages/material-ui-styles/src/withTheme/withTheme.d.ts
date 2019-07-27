@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { ConsistentWith, Omit, PropInjector } from '@material-ui/types';
+import { DefaultTheme } from '../defaultTheme';
 
-export interface WithThemeCreatorOption<Theme> {
+export interface WithThemeCreatorOption<Theme = DefaultTheme> {
   defaultTheme?: Theme;
 }
 
-export function withThemeCreator<Theme>(
+export function withThemeCreator<Theme = DefaultTheme>(
   option?: WithThemeCreatorOption<Theme>,
 ): PropInjector<WithTheme<Theme>, Partial<WithTheme<Theme>>>;
 
-export interface WithTheme<Theme> {
+export interface WithTheme<Theme = DefaultTheme> {
   theme: Theme;
   innerRef?: React.Ref<any>;
 }

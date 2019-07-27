@@ -11,3 +11,4 @@ export { default as ThemeProvider } from './ThemeProvider';
 export { default as useTheme } from '@material-ui/styles/useTheme';
 export { default as withStyles, CSSProperties, StyleRules, WithStyles } from './withStyles';
 export { default as withTheme, WithTheme, withThemeCreator } from './withTheme';
+export { DefaultTheme } from './defaultTheme';

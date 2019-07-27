@@ -6,6 +6,7 @@ import {
   WithStylesOptions,
 } from '@material-ui/styles/withStyles';
 import { Omit, IsAny, Or, IsEmptyInterface } from '@material-ui/types';
+import { DefaultTheme } from '../defaultTheme';
 
 /**
  * @internal
@@ -37,7 +38,7 @@ export type StylesHook<S extends Styles<any, any>> = StylesRequireProps<S> exten
   : (props: PropsOfStyles<S>) => ClassNameMap<ClassKeyOfStyles<S>>;
 
 export default function makeStyles<
-  Theme = unknown,
+  Theme = DefaultTheme,
   Props extends {} = {},
   ClassKey extends string = string
 >(
