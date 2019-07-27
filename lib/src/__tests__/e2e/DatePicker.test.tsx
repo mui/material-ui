@@ -223,6 +223,7 @@ test('Custom toolbar component', () => {
   const component = mount(
     <DatePicker
       open
+      inputProps={{}}
       value={new Date()}
       onChange={jest.fn()}
       ToolbarComponent={() => <div id="custom-toolbar" />}

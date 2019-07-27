@@ -9,6 +9,7 @@ export interface PureDateInputProps
   /** Override input component */
   TextFieldComponent?: React.ComponentType<TextFieldProps>;
   InputProps?: TextFieldProps['InputProps'];
+  inputProps?: TextFieldProps['inputProps'];
   inputValue: string;
   validationError?: React.ReactNode;
 }
