@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-const styles = {
+const useStyles = makeStyles({
   button: {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
     borderRadius: 3,
@@ -20,10 +19,10 @@ const styles = {
     background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
     boxShadow: '0 3px 5px 2px rgba(33, 203, 243, .3)',
   },
-};
+});
 
-function DynamicClassName(props) {
-  const { classes } = props;
+function DynamicClassName() {
+  const classes = useStyles();
   const [color, setColor] = React.useState('default');
 
   const handleChange = event => {
@@ -54,8 +53,4 @@ function DynamicClassName(props) {
   );
 }
 
-DynamicClassName.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(DynamicClassName);
+export default DynamicClassName;
