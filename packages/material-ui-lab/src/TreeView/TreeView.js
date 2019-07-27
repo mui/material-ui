@@ -308,7 +308,7 @@ TreeView.propTypes = {
   defaultCollapseIcon: PropTypes.node,
   /**
    * The default icon displayed next to a end node. This is applied to all
-   * tree nodes and can be overridden by the TreeNode `icon` prop.
+   * tree nodes and can be overridden by the TreeItem `icon` prop.
    */
   defaultEndIcon: PropTypes.node,
   /**
@@ -321,11 +321,11 @@ TreeView.propTypes = {
   defaultExpandIcon: PropTypes.node,
   /**
    * The default icon displayed next to a parent node. This is applied to all
-   * parent nodes and can be overridden by the TreeNode `icon` prop.
+   * parent nodes and can be overridden by the TreeItem `icon` prop.
    */
   defaultParentIcon: PropTypes.node,
   /**
-   * Callback fired when a `TreeNode` is expanded/collapsed.
+   * Callback fired when a `TreeItem` is expanded/collapsed.
    *
    * @param {string} nodeId The id of the toggled node.
    * @param {boolean} expanded The node status - If `true` the node was expanded. If `false` the node was collapsed.

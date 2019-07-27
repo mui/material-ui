@@ -46,7 +46,7 @@ const isPrintableCharacter = str => {
   return str && str.length === 1 && str.match(/\S/);
 };
 
-const TreeNode = React.forwardRef(function TreeNode(props, ref) {
+const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const {
     classes,
     className,
@@ -271,7 +271,7 @@ const TreeNode = React.forwardRef(function TreeNode(props, ref) {
   );
 });
 
-TreeNode.propTypes = {
+TreeItem.propTypes = {
   /**
    * The content of the component.
    */
@@ -319,4 +319,4 @@ TreeNode.propTypes = {
   onKeyDown: PropTypes.func,
 };
 
-export default withStyles(styles, { name: 'MuiTreeNode' })(TreeNode);
+export default withStyles(styles, { name: 'MuiTreeItem' })(TreeItem);

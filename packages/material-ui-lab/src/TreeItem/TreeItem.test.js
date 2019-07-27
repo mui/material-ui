@@ -4,20 +4,20 @@ import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
-import TreeNode from './TreeNode';
+import TreeItem from './TreeItem';
 import TreeView from '../TreeView';
 
-describe('<TreeNode />', () => {
+describe('<TreeItem />', () => {
   // StrictModeViolation: uses Collapse
   const render = createClientRender({ strict: false });
   const mount = createMount({ strict: false });
-  const classes = getClasses(<TreeNode nodeId="one" label="one" />);
+  const classes = getClasses(<TreeItem nodeId="one" label="one" />);
 
   afterEach(() => {
     cleanup();
   });
 
-  describeConformance(<TreeNode nodeId="one" label="one" />, () => ({
+  describeConformance(<TreeItem nodeId="one" label="one" />, () => ({
     classes,
     inheritComponent: 'li',
     mount,
@@ -31,7 +31,7 @@ describe('<TreeNode />', () => {
 
     const { getByText } = render(
       <TreeView>
-        <TreeNode nodeId="test" label="test" onClick={handleClick} />
+        <TreeItem nodeId="test" label="test" onClick={handleClick} />
       </TreeView>,
     );
 
@@ -45,9 +45,9 @@ describe('<TreeNode />', () => {
 
     const { getByText } = render(
       <TreeView defaultExpanded={['one']}>
-        <TreeNode nodeId="one" label="one" onClick={handleClick}>
-          <TreeNode nodeId="two" label="two" />
-        </TreeNode>
+        <TreeItem nodeId="one" label="one" onClick={handleClick}>
+          <TreeItem nodeId="two" label="two" />
+        </TreeItem>
       </TreeView>,
     );
 
@@ -61,7 +61,7 @@ describe('<TreeNode />', () => {
 
     const { getByTestId } = render(
       <TreeView>
-        <TreeNode nodeId="test" label="test" data-testid="test" onFocus={handleFocus} />
+        <TreeItem nodeId="test" label="test" data-testid="test" onFocus={handleFocus} />
       </TreeView>,
     );
 
@@ -75,7 +75,7 @@ describe('<TreeNode />', () => {
 
     const { getByTestId } = render(
       <TreeView>
-        <TreeNode nodeId="test" label="test" data-testid="test" onKeyDown={handleKeyDown} />
+        <TreeItem nodeId="test" label="test" data-testid="test" onKeyDown={handleKeyDown} />
       </TreeView>,
     );
 
@@ -92,7 +92,7 @@ describe('<TreeNode />', () => {
     it('should have the role `treeitem`', () => {
       const { getByRole } = render(
         <TreeView>
-          <TreeNode nodeId="test" label="test" />
+          <TreeItem nodeId="test" label="test" />
         </TreeView>,
       );
 
@@ -102,9 +102,9 @@ describe('<TreeNode />', () => {
     it('should add the role `group` to a component containing children', () => {
       const { getByRole, getByText } = render(
         <TreeView>
-          <TreeNode nodeId="test" label="test">
-            <TreeNode nodeId="test2" label="test2" />
-          </TreeNode>
+          <TreeItem nodeId="test" label="test">
+            <TreeItem nodeId="test2" label="test2" />
+          </TreeItem>
         </TreeView>,
       );
 
@@ -114,9 +114,9 @@ describe('<TreeNode />', () => {
     it('should have the attribute `aria-expanded=false` if collapsed', () => {
       const { getByTestId } = render(
         <TreeView>
-          <TreeNode nodeId="test" label="test" data-testid="test">
-            <TreeNode nodeId="test2" label="test2" />
-          </TreeNode>
+          <TreeItem nodeId="test" label="test" data-testid="test">
+            <TreeItem nodeId="test2" label="test2" />
+          </TreeItem>
         </TreeView>,
       );
 
@@ -126,9 +126,9 @@ describe('<TreeNode />', () => {
     it('should have the attribute `aria-expanded=true` if expanded', () => {
       const { container } = render(
         <TreeView defaultExpanded={['test']}>
-          <TreeNode nodeId="test" label="test">
-            <TreeNode nodeId="test2" label="test" />
-          </TreeNode>
+          <TreeItem nodeId="test" label="test">
+            <TreeItem nodeId="test2" label="test" />
+          </TreeItem>
         </TreeView>,
       );
 
@@ -138,7 +138,7 @@ describe('<TreeNode />', () => {
     it('should not have the attribute `aria-expanded` if no children are present', () => {
       const { container } = render(
         <TreeView>
-          <TreeNode nodeId="test" label="test" />
+          <TreeItem nodeId="test" label="test" />
         </TreeView>,
       );
 
@@ -152,9 +152,9 @@ describe('<TreeNode />', () => {
             {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
             <div data-testid="start" tabIndex={0} />
             <TreeView>
-              <TreeNode nodeId="1" label="one" data-testid="one" />
-              <TreeNode nodeId="2" label="two" />
-              <TreeNode nodeId="3" label="three" />
+              <TreeItem nodeId="1" label="one" data-testid="one" />
+              <TreeItem nodeId="2" label="two" />
+              <TreeItem nodeId="3" label="three" />
             </TreeView>
           </React.Fragment>,
         );
@@ -174,9 +174,9 @@ describe('<TreeNode />', () => {
             {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex */}
             <div data-testid="start" tabIndex={0} />
             <TreeView>
-              <TreeNode nodeId="1" label="one" data-testid="one" />
-              <TreeNode nodeId="2" label="two" data-testid="two" />
-              <TreeNode nodeId="3" label="three" />
+              <TreeItem nodeId="1" label="one" data-testid="one" />
+              <TreeItem nodeId="2" label="two" data-testid="two" />
+              <TreeItem nodeId="3" label="three" />
             </TreeView>
           </React.Fragment>,
         );
@@ -198,9 +198,9 @@ describe('<TreeNode />', () => {
       it('should open the node and not move the focus if focus is on a closed node', () => {
         const { getByTestId } = render(
           <TreeView>
-            <TreeNode nodeId="one" label="one" data-testid="one">
-              <TreeNode nodeId="two" label="two" />
-            </TreeNode>
+            <TreeItem nodeId="one" label="one" data-testid="one">
+              <TreeItem nodeId="two" label="two" />
+            </TreeItem>
           </TreeView>,
         );
 
@@ -214,9 +214,9 @@ describe('<TreeNode />', () => {
       it('should move focus to the first child if focus is on an open node', () => {
         const { getByTestId } = render(
           <TreeView defaultExpanded={['one']}>
-            <TreeNode nodeId="one" label="one" data-testid="one">
-              <TreeNode nodeId="two" label="two" data-testid="two" />
-            </TreeNode>
+            <TreeItem nodeId="one" label="one" data-testid="one">
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeItem>
           </TreeView>,
         );
 
@@ -229,9 +229,9 @@ describe('<TreeNode />', () => {
       it('should do nothing if focus is on an end node', () => {
         const { getByTestId, getByText } = render(
           <TreeView defaultExpanded={['one']}>
-            <TreeNode nodeId="one" label="one" data-testid="one">
-              <TreeNode nodeId="two" label="two" data-testid="two" />
-            </TreeNode>
+            <TreeItem nodeId="one" label="one" data-testid="one">
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeItem>
           </TreeView>,
         );
 
@@ -246,9 +246,9 @@ describe('<TreeNode />', () => {
       it('should close the node if focus is on an open node', () => {
         const { getByTestId, getByText } = render(
           <TreeView>
-            <TreeNode nodeId="one" label="one" data-testid="one">
-              <TreeNode nodeId="two" label="two" />
-            </TreeNode>
+            <TreeItem nodeId="one" label="one" data-testid="one">
+              <TreeItem nodeId="two" label="two" />
+            </TreeItem>
           </TreeView>,
         );
 
@@ -263,9 +263,9 @@ describe('<TreeNode />', () => {
       it("should move focus to the node's parent node if focus is on a child node that is an end node", () => {
         const { getByTestId, getByText } = render(
           <TreeView defaultExpanded={['one']}>
-            <TreeNode nodeId="one" label="one" data-testid="one">
-              <TreeNode nodeId="two" label="two" data-testid="two" />
-            </TreeNode>
+            <TreeItem nodeId="one" label="one" data-testid="one">
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeItem>
           </TreeView>,
         );
 
@@ -279,11 +279,11 @@ describe('<TreeNode />', () => {
       it("should move focus to the node's parent node if focus is on a child node that is closed", () => {
         const { getByTestId, getByText } = render(
           <TreeView>
-            <TreeNode nodeId="one" label="one" data-testid="one">
-              <TreeNode nodeId="two" label="two" data-testid="two">
-                <TreeNode nodeId="three" label="three" />
-              </TreeNode>
-            </TreeNode>
+            <TreeItem nodeId="one" label="one" data-testid="one">
+              <TreeItem nodeId="two" label="two" data-testid="two">
+                <TreeItem nodeId="three" label="three" />
+              </TreeItem>
+            </TreeItem>
           </TreeView>,
         );
 
@@ -301,9 +301,9 @@ describe('<TreeNode />', () => {
       it('should do nothing if focus is on a root node that is closed', () => {
         const { getByTestId } = render(
           <TreeView>
-            <TreeNode nodeId="one" label="one" data-testid="one">
-              <TreeNode nodeId="two" label="two" />
-            </TreeNode>
+            <TreeItem nodeId="one" label="one" data-testid="one">
+              <TreeItem nodeId="two" label="two" />
+            </TreeItem>
           </TreeView>,
         );
 
@@ -316,7 +316,7 @@ describe('<TreeNode />', () => {
       it('should do nothing if focus is on a root node that is an end node', () => {
         const { getByTestId } = render(
           <TreeView>
-            <TreeNode nodeId="one" label="one" data-testid="one" />
+            <TreeItem nodeId="one" label="one" data-testid="one" />
           </TreeView>,
         );
 
@@ -330,8 +330,8 @@ describe('<TreeNode />', () => {
       it('moves focus to a non-nested sibling node', () => {
         const { getByTestId } = render(
           <TreeView>
-            <TreeNode nodeId="one" label="one" data-testid="one" />
-            <TreeNode nodeId="two" label="two" data-testid="two" />
+            <TreeItem nodeId="one" label="one" data-testid="one" />
+            <TreeItem nodeId="two" label="two" data-testid="two" />
           </TreeView>,
         );
 
@@ -343,9 +343,9 @@ describe('<TreeNode />', () => {
       it('moves focus to a nested node', () => {
         const { getByTestId } = render(
           <TreeView defaultExpanded={['one']}>
-            <TreeNode nodeId="one" label="one" data-testid="one">
-              <TreeNode nodeId="two" label="two" data-testid="two" />
-            </TreeNode>
+            <TreeItem nodeId="one" label="one" data-testid="one">
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeItem>
           </TreeView>,
         );
 
@@ -358,10 +358,10 @@ describe('<TreeNode />', () => {
       it("moves focus to a parent's sibling", () => {
         const { getByTestId, getByText } = render(
           <TreeView defaultExpanded={['one']}>
-            <TreeNode nodeId="one" label="one" data-testid="one">
-              <TreeNode nodeId="two" label="two" data-testid="two" />
-            </TreeNode>
-            <TreeNode nodeId="three" label="three" data-testid="three" />
+            <TreeItem nodeId="one" label="one" data-testid="one">
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeItem>
+            <TreeItem nodeId="three" label="three" data-testid="three" />
           </TreeView>,
         );
 
@@ -377,8 +377,8 @@ describe('<TreeNode />', () => {
       it('moves focus to a non-nested sibling node', () => {
         const { getByTestId, getByText } = render(
           <TreeView>
-            <TreeNode nodeId="one" label="one" data-testid="one" />
-            <TreeNode nodeId="two" label="two" data-testid="two" />
+            <TreeItem nodeId="one" label="one" data-testid="one" />
+            <TreeItem nodeId="two" label="two" data-testid="two" />
           </TreeView>,
         );
 
@@ -391,9 +391,9 @@ describe('<TreeNode />', () => {
       it('moves focus to a parent', () => {
         const { getByTestId, getByText } = render(
           <TreeView defaultExpanded={['one']}>
-            <TreeNode nodeId="one" label="one" data-testid="one">
-              <TreeNode nodeId="two" label="two" data-testid="two" />
-            </TreeNode>
+            <TreeItem nodeId="one" label="one" data-testid="one">
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeItem>
           </TreeView>,
         );
 
@@ -407,10 +407,10 @@ describe('<TreeNode />', () => {
       it("moves focus to a sibling's child", () => {
         const { getByTestId, getByText } = render(
           <TreeView defaultExpanded={['one']}>
-            <TreeNode nodeId="one" label="one" data-testid="one">
-              <TreeNode nodeId="two" label="two" data-testid="two" />
-            </TreeNode>
-            <TreeNode nodeId="three" label="three" data-testid="three" />
+            <TreeItem nodeId="one" label="one" data-testid="one">
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeItem>
+            <TreeItem nodeId="three" label="three" data-testid="three" />
           </TreeView>,
         );
 
@@ -426,10 +426,10 @@ describe('<TreeNode />', () => {
       it('moves focus to the first node in the tree', () => {
         const { getByTestId, getByText } = render(
           <TreeView>
-            <TreeNode nodeId="one" label="one" data-testid="one" />
-            <TreeNode nodeId="two" label="two" data-testid="two" />
-            <TreeNode nodeId="three" label="three" data-testid="three" />
-            <TreeNode nodeId="four" label="four" data-testid="four" />
+            <TreeItem nodeId="one" label="one" data-testid="one" />
+            <TreeItem nodeId="two" label="two" data-testid="two" />
+            <TreeItem nodeId="three" label="three" data-testid="three" />
+            <TreeItem nodeId="four" label="four" data-testid="four" />
           </TreeView>,
         );
 
@@ -444,10 +444,10 @@ describe('<TreeNode />', () => {
       it('moves focus to the last node in the tree without expanded items', () => {
         const { getByTestId } = render(
           <TreeView>
-            <TreeNode nodeId="one" label="one" data-testid="one" />
-            <TreeNode nodeId="two" label="two" data-testid="two" />
-            <TreeNode nodeId="three" label="three" data-testid="three" />
-            <TreeNode nodeId="four" label="four" data-testid="four" />
+            <TreeItem nodeId="one" label="one" data-testid="one" />
+            <TreeItem nodeId="two" label="two" data-testid="two" />
+            <TreeItem nodeId="three" label="three" data-testid="three" />
+            <TreeItem nodeId="four" label="four" data-testid="four" />
           </TreeView>,
         );
 
@@ -460,14 +460,14 @@ describe('<TreeNode />', () => {
       it('moves focus to the last node in the tree with expanded items', () => {
         const { getByTestId } = render(
           <TreeView defaultExpanded={['four', 'five']}>
-            <TreeNode nodeId="one" label="one" data-testid="one" />
-            <TreeNode nodeId="two" label="two" data-testid="two" />
-            <TreeNode nodeId="three" label="three" data-testid="three" />
-            <TreeNode nodeId="four" label="four" data-testid="four">
-              <TreeNode nodeId="five" label="five" data-testid="five">
-                <TreeNode nodeId="six" label="six" data-testid="six" />
-              </TreeNode>
-            </TreeNode>
+            <TreeItem nodeId="one" label="one" data-testid="one" />
+            <TreeItem nodeId="two" label="two" data-testid="two" />
+            <TreeItem nodeId="three" label="three" data-testid="three" />
+            <TreeItem nodeId="four" label="four" data-testid="four">
+              <TreeItem nodeId="five" label="five" data-testid="five">
+                <TreeItem nodeId="six" label="six" data-testid="six" />
+              </TreeItem>
+            </TreeItem>
           </TreeView>,
         );
 
@@ -482,9 +482,9 @@ describe('<TreeNode />', () => {
       it('expands a node with children', () => {
         const { getByTestId } = render(
           <TreeView>
-            <TreeNode nodeId="one" label="one" data-testid="one">
-              <TreeNode nodeId="two" label="two" data-testid="two" />
-            </TreeNode>
+            <TreeItem nodeId="one" label="one" data-testid="one">
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeItem>
           </TreeView>,
         );
 
@@ -497,9 +497,9 @@ describe('<TreeNode />', () => {
       it('collapses a node with children', () => {
         const { getByTestId, getByText } = render(
           <TreeView>
-            <TreeNode nodeId="one" label="one" data-testid="one">
-              <TreeNode nodeId="two" label="two" data-testid="two" />
-            </TreeNode>
+            <TreeItem nodeId="one" label="one" data-testid="one">
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeItem>
           </TreeView>,
         );
 
@@ -514,10 +514,10 @@ describe('<TreeNode />', () => {
       it('moves focus to the next node with a name that starts with the typed character', () => {
         const { getByTestId } = render(
           <TreeView>
-            <TreeNode nodeId="one" label="one" data-testid="one" />
-            <TreeNode nodeId="two" label="two" data-testid="two" />
-            <TreeNode nodeId="three" label="three" data-testid="three" />
-            <TreeNode nodeId="four" label="four" data-testid="four" />
+            <TreeItem nodeId="one" label="one" data-testid="one" />
+            <TreeItem nodeId="two" label="two" data-testid="two" />
+            <TreeItem nodeId="three" label="three" data-testid="three" />
+            <TreeItem nodeId="four" label="four" data-testid="four" />
           </TreeView>,
         );
 
@@ -536,10 +536,10 @@ describe('<TreeNode />', () => {
       it('moves focus to the next node with the same starting character', () => {
         const { getByTestId } = render(
           <TreeView>
-            <TreeNode nodeId="one" label="one" data-testid="one" />
-            <TreeNode nodeId="two" label="two" data-testid="two" />
-            <TreeNode nodeId="three" label="three" data-testid="three" />
-            <TreeNode nodeId="four" label="four" data-testid="four" />
+            <TreeItem nodeId="one" label="one" data-testid="one" />
+            <TreeItem nodeId="two" label="two" data-testid="two" />
+            <TreeItem nodeId="three" label="three" data-testid="three" />
+            <TreeItem nodeId="four" label="four" data-testid="four" />
           </TreeView>,
         );
 
@@ -560,17 +560,17 @@ describe('<TreeNode />', () => {
       it('expands all siblings that are at the same level as the current node', () => {
         const { getByTestId } = render(
           <TreeView>
-            <TreeNode nodeId="one" label="one" data-testid="one">
-              <TreeNode nodeId="two" label="two" data-testid="two" />
-            </TreeNode>
-            <TreeNode nodeId="three" label="three" data-testid="three">
-              <TreeNode nodeId="four" label="four" data-testid="four" />
-            </TreeNode>
-            <TreeNode nodeId="five" label="five" data-testid="five">
-              <TreeNode nodeId="six" label="six" data-testid="six">
-                <TreeNode nodeId="seven" label="seven" data-testid="seven" />
-              </TreeNode>
-            </TreeNode>
+            <TreeItem nodeId="one" label="one" data-testid="one">
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeItem>
+            <TreeItem nodeId="three" label="three" data-testid="three">
+              <TreeItem nodeId="four" label="four" data-testid="four" />
+            </TreeItem>
+            <TreeItem nodeId="five" label="five" data-testid="five">
+              <TreeItem nodeId="six" label="six" data-testid="six">
+                <TreeItem nodeId="seven" label="seven" data-testid="seven" />
+              </TreeItem>
+            </TreeItem>
           </TreeView>,
         );
 

@@ -5,7 +5,7 @@ import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientR
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import TreeView from './TreeView';
-import TreeNode from '../TreeNode';
+import TreeItem from '../TreeItem';
 
 describe('<TreeView />', () => {
   const render = createClientRender({ strict: false });
@@ -31,9 +31,9 @@ describe('<TreeView />', () => {
 
       const { getByText } = render(
         <TreeView onNodeToggle={handleNodeToggle}>
-          <TreeNode nodeId="1" label="outer">
-            <TreeNode nodeId="2" label="inner" />
-          </TreeNode>
+          <TreeItem nodeId="1" label="outer">
+            <TreeItem nodeId="2" label="inner" />
+          </TreeItem>
         </TreeView>,
       );
 

@@ -1,6 +1,6 @@
 ---
 title: Tree View React component
-components: TreeView, TreeNode
+components: TreeView, TreeItem
 ---
 
 # Tree View
