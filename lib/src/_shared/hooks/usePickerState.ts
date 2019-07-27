@@ -75,16 +75,19 @@ export function usePickerState(props: BasePickerProps, options: StateHookOptions
       onChange: (newDate: MaterialUiPickersDate, isFinish = true) => {
         setPickerDate(newDate);
 
-        if (variant === 'inline' || variant === 'static') {
-          onChange(newDate);
-        }
-
         if (isFinish && autoOk) {
           acceptDate(newDate);
+          return;
+        }
+
+        // simulate autoOk, but do not close the modal
+        if (variant === 'inline' || variant === 'static') {
+          onChange(newDate);
+          onAccept && onAccept(newDate);
         }
       },
     }),
-    [acceptDate, autoOk, onChange, pickerDate, variant]
+    [acceptDate, autoOk, onAccept, onChange, pickerDate, variant]
   );
 
   const validationError = validate(value, utils, props);
