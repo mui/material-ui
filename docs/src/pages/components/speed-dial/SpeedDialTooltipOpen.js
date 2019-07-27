@@ -36,7 +36,7 @@ export default function SpeedDialTooltipOpen() {
 
   const handleVisibility = () => {
     setOpen(false);
-    setHidden(!hidden);
+    setHidden(prevHidden => !prevHidden);
   };
 
   const handleClick = () => {

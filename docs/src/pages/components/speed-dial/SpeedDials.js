@@ -71,7 +71,7 @@ export default function SpeedDials() {
 
   const handleHiddenChange = (event, newHidden) => {
     setHidden(newHidden);
-    setOpen(hidden ? false : open);
+    setOpen(newHidden ? false : open);
   };
 
   const handleClose = () => {

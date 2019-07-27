@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ConsecutiveSnackbars() {
-  const queueRef = useRef([]);
+  const queueRef = React.useRef([]);
   const [open, setOpen] = React.useState(false);
   const [messageInfo, setMessageInfo] = React.useState(undefined);
 

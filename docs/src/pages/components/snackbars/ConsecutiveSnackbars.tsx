@@ -22,7 +22,7 @@ export interface State {
 }
 
 export default function ConsecutiveSnackbars() {
-  const queueRef = useRef<SnackbarMessage[]>([]);
+  const queueRef = React.useRef<SnackbarMessage[]>([]);
   const [open, setOpen] = React.useState(false);
   const [messageInfo, setMessageInfo] = React.useState<SnackbarMessage | undefined>(undefined);
 
