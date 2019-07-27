@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Hidden/Hidden.js
 <p class="description">The API documentation of the Hidden React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Hidden from '@material-ui/core/Hidden';
+import { Hidden } from '@material-ui/core';
 ```
 
 Responsively hides children based on the selected implementation.

@@ -320,38 +320,40 @@ function generateClasses(reactAPI) {
 
   let text = '';
   if (Object.keys(reactAPI.styles.descriptions).length) {
-    text = `
-| Name | Description |
-|:-----|:------------|\n`;
+    text = `| Rule name | Global class | Description |
+|:-----|:-------------|:------------|\n`;
     text += reactAPI.styles.classes
       .map(
-        className =>
-          `| <span class="prop-name">${className}</span> | ${
-            reactAPI.styles.descriptions[className]
-              ? escapeCell(reactAPI.styles.descriptions[className])
+        styleRule =>
+          `| <span class="prop-name">${styleRule}</span> | <span class="prop-name">${
+            reactAPI.styles.globalClasses[styleRule]
+          }</span> | ${
+            reactAPI.styles.descriptions[styleRule]
+              ? escapeCell(reactAPI.styles.descriptions[styleRule])
               : ''
           }`,
       )
       .join('\n');
   } else {
-    text = reactAPI.styles.classes.map(className => `- \`${className}\``).join('\n');
+    text = reactAPI.styles.classes.map(styleRule => `- \`${styleRule}\``).join('\n');
   }
 
   return `## CSS
 
-You can override all the class names injected by Material-UI thanks to the \`classes\` prop.
-This prop accepts the following keys:
+- Style sheet name: \`${reactAPI.styles.name}\`.
+- Style sheet details:
 
 ${text}
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath(
-    reactAPI.filename,
-  )})
-for more detail.
+You can override the style of the component thanks to one of these customizability points:
 
-If using the \`overrides\` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: \`${reactAPI.styles.name}\`.
+- With a rule name of the [\`classes\` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [\`overrides\` property](/customization/globals/#css).
+
+If it's not enough, you can find the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath(
+    reactAPI.filename,
+  )}) for more detail.
 
 `;
 }
@@ -413,12 +415,10 @@ function generateImportStatement(reactAPI) {
       /\/packages\/material-ui(-(.+?))?\/src/,
       (match, dash, pkg) => `@material-ui/${pkg || 'core'}`,
     )
-    // convert things like `Table/Table.js` to `Table`
-    .replace(/([^/]+)\/\1\.js$/, '$1')
-    // strip off trailing `.js` if any
-    .replace(/\.js$/, '');
+    // convert things like `/Table/Table.js` to ``
+    .replace(/\/([^/]+)\/\1\.js$/, '');
   return `\`\`\`js
-import ${reactAPI.name} from '${source}';
+import { ${reactAPI.name} } from '${source}';
 \`\`\``;
 }
 

@@ -9,7 +9,7 @@ filename: /packages/material-ui-lab/src/ToggleButtonGroup/ToggleButtonGroup.js
 <p class="description">The API documentation of the ToggleButtonGroup React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import { ToggleButtonGroup } from '@material-ui/lab';
 ```
 
 
@@ -31,20 +31,20 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiToggleButtonGroup`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiToggleButtonGroup-root</span> | Styles applied to the root element.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/ToggleButtonGroup/ToggleButtonGroup.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiToggleButtonGroup`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/ToggleButtonGroup/ToggleButtonGroup.js) for more detail.
 
 ## Notes
 

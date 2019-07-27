@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/GridListTileBar/GridListTileBar.js
 <p class="description">The API documentation of the GridListTileBar React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+import { GridListTileBar } from '@material-ui/core';
 ```
 
 
@@ -31,30 +31,30 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiGridListTileBar`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiGridListTileBar-root</span> | Styles applied to the root element.
+| <span class="prop-name">titlePositionBottom</span> | <span class="prop-name">MuiGridListTileBar-titlePositionBottom</span> | Styles applied to the root element if `titlePosition="bottom"`.
+| <span class="prop-name">titlePositionTop</span> | <span class="prop-name">MuiGridListTileBar-titlePositionTop</span> | Styles applied to the root element if `titlePosition="top"`.
+| <span class="prop-name">rootSubtitle</span> | <span class="prop-name">MuiGridListTileBar-rootSubtitle</span> | Styles applied to the root element if a `subtitle` is provided.
+| <span class="prop-name">titleWrap</span> | <span class="prop-name">MuiGridListTileBar-titleWrap</span> | Styles applied to the title and subtitle container element.
+| <span class="prop-name">titleWrapActionPosLeft</span> | <span class="prop-name">MuiGridListTileBar-titleWrapActionPosLeft</span> | Styles applied to the container element if `actionPosition="left"`.
+| <span class="prop-name">titleWrapActionPosRight</span> | <span class="prop-name">MuiGridListTileBar-titleWrapActionPosRight</span> | Styles applied to the container element if `actionPosition="right"`.
+| <span class="prop-name">title</span> | <span class="prop-name">MuiGridListTileBar-title</span> | Styles applied to the title container element.
+| <span class="prop-name">subtitle</span> | <span class="prop-name">MuiGridListTileBar-subtitle</span> | Styles applied to the subtitle container element.
+| <span class="prop-name">actionIcon</span> | <span class="prop-name">MuiGridListTileBar-actionIcon</span> | Styles applied to the actionIcon if supplied.
+| <span class="prop-name">actionIconActionPosLeft</span> | <span class="prop-name">MuiGridListTileBar-actionIconActionPosLeft</span> | Styles applied to the actionIcon if `actionPosition="left"`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">titlePositionBottom</span> | Styles applied to the root element if `titlePosition="bottom"`.
-| <span class="prop-name">titlePositionTop</span> | Styles applied to the root element if `titlePosition="top"`.
-| <span class="prop-name">rootSubtitle</span> | Styles applied to the root element if a `subtitle` is provided.
-| <span class="prop-name">titleWrap</span> | Styles applied to the title and subtitle container element.
-| <span class="prop-name">titleWrapActionPosLeft</span> | Styles applied to the container element if `actionPosition="left"`.
-| <span class="prop-name">titleWrapActionPosRight</span> | Styles applied to the container element if `actionPosition="right"`.
-| <span class="prop-name">title</span> | Styles applied to the title container element.
-| <span class="prop-name">subtitle</span> | Styles applied to the subtitle container element.
-| <span class="prop-name">actionIcon</span> | Styles applied to the actionIcon if supplied.
-| <span class="prop-name">actionIconActionPosLeft</span> | Styles applied to the actionIcon if `actionPosition="left"`.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/GridListTileBar/GridListTileBar.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiGridListTileBar`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/GridListTileBar/GridListTileBar.js) for more detail.
 
 ## Notes
 

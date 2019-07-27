@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Popper/Popper.js
 <p class="description">The API documentation of the Popper React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Popper from '@material-ui/core/Popper';
+import { Popper } from '@material-ui/core';
 ```
 
 Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.

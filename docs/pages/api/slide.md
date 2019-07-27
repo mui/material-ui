@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Slide/Slide.js
 <p class="description">The API documentation of the Slide React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Slide from '@material-ui/core/Slide';
+import { Slide } from '@material-ui/core';
 ```
 
 The Slide transition is used by the [Drawer](/components/drawers/) component.

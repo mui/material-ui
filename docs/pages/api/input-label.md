@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/InputLabel/InputLabel.js
 <p class="description">The API documentation of the InputLabel React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import InputLabel from '@material-ui/core/InputLabel';
+import { InputLabel } from '@material-ui/core';
 ```
 
 
@@ -35,31 +35,31 @@ Any other properties supplied will be provided to the root element ([FormLabel](
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiInputLabel`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiInputLabel-root</span> | Styles applied to the root element.
+| <span class="prop-name">focused</span> | <span class="prop-name">Mui-focused</span> | Pseudo-class applied to the root element if `focused={true}`.
+| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span class="prop-name">error</span> | <span class="prop-name">Mui-error</span> | Pseudo-class applied to the root element if `error={true}`.
+| <span class="prop-name">required</span> | <span class="prop-name">Mui-required</span> | Pseudo-class applied to the root element if `required={true}`.
+| <span class="prop-name">asterisk</span> | <span class="prop-name">MuiInputLabel-asterisk</span> | Pseudo-class applied to the asterisk element.
+| <span class="prop-name">formControl</span> | <span class="prop-name">MuiInputLabel-formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
+| <span class="prop-name">marginDense</span> | <span class="prop-name">MuiInputLabel-marginDense</span> | Styles applied to the root element if `margin="dense"`.
+| <span class="prop-name">shrink</span> | <span class="prop-name">MuiInputLabel-shrink</span> | Styles applied to the `input` element if `shrink={true}`.
+| <span class="prop-name">animated</span> | <span class="prop-name">MuiInputLabel-animated</span> | Styles applied to the `input` element if `disableAnimation={false}`.
+| <span class="prop-name">filled</span> | <span class="prop-name">MuiInputLabel-filled</span> | Styles applied to the root element if `variant="filled"`.
+| <span class="prop-name">outlined</span> | <span class="prop-name">MuiInputLabel-outlined</span> | Styles applied to the root element if `variant="outlined"`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">focused</span> | Pseudo-class applied to the root element if `focused={true}`.
-| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">error</span> | Pseudo-class applied to the root element if `error={true}`.
-| <span class="prop-name">required</span> | Pseudo-class applied to the root element if `required={true}`.
-| <span class="prop-name">asterisk</span> | Pseudo-class applied to the asterisk element.
-| <span class="prop-name">formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
-| <span class="prop-name">marginDense</span> | Styles applied to the root element if `margin="dense"`.
-| <span class="prop-name">shrink</span> | Styles applied to the `input` element if `shrink={true}`.
-| <span class="prop-name">animated</span> | Styles applied to the `input` element if `disableAnimation={false}`.
-| <span class="prop-name">filled</span> | Styles applied to the root element if `variant="filled"`.
-| <span class="prop-name">outlined</span> | Styles applied to the root element if `variant="outlined"`.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/InputLabel/InputLabel.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiInputLabel`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/InputLabel/InputLabel.js) for more detail.
 
 ## Inheritance
 

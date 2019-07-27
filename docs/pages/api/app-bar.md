@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/AppBar/AppBar.js
 <p class="description">The API documentation of the AppBar React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import AppBar from '@material-ui/core/AppBar';
+import { AppBar } from '@material-ui/core';
 ```
 
 
@@ -29,28 +29,28 @@ Any other properties supplied will be provided to the root element ([Paper](/api
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiAppBar`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiAppBar-root</span> | Styles applied to the root element.
+| <span class="prop-name">positionFixed</span> | <span class="prop-name">MuiAppBar-positionFixed</span> | Styles applied to the root element if `position="fixed"`.
+| <span class="prop-name">positionAbsolute</span> | <span class="prop-name">MuiAppBar-positionAbsolute</span> | Styles applied to the root element if `position="absolute"`.
+| <span class="prop-name">positionSticky</span> | <span class="prop-name">MuiAppBar-positionSticky</span> | Styles applied to the root element if `position="sticky"`.
+| <span class="prop-name">positionStatic</span> | <span class="prop-name">MuiAppBar-positionStatic</span> | Styles applied to the root element if `position="static"`.
+| <span class="prop-name">positionRelative</span> | <span class="prop-name">MuiAppBar-positionRelative</span> | Styles applied to the root element if `position="relative"`.
+| <span class="prop-name">colorDefault</span> | <span class="prop-name">MuiAppBar-colorDefault</span> | Styles applied to the root element if `color="default"`.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiAppBar-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiAppBar-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">positionFixed</span> | Styles applied to the root element if `position="fixed"`.
-| <span class="prop-name">positionAbsolute</span> | Styles applied to the root element if `position="absolute"`.
-| <span class="prop-name">positionSticky</span> | Styles applied to the root element if `position="sticky"`.
-| <span class="prop-name">positionStatic</span> | Styles applied to the root element if `position="static"`.
-| <span class="prop-name">positionRelative</span> | Styles applied to the root element if `position="relative"`.
-| <span class="prop-name">colorDefault</span> | Styles applied to the root element if `color="default"`.
-| <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/AppBar/AppBar.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiAppBar`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/AppBar/AppBar.js) for more detail.
 
 ## Inheritance
 

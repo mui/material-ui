@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/CardHeader/CardHeader.js
 <p class="description">The API documentation of the CardHeader React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import CardHeader from '@material-ui/core/CardHeader';
+import { CardHeader } from '@material-ui/core';
 ```
 
 
@@ -34,25 +34,25 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiCardHeader`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiCardHeader-root</span> | Styles applied to the root element.
+| <span class="prop-name">avatar</span> | <span class="prop-name">MuiCardHeader-avatar</span> | Styles applied to the avatar element.
+| <span class="prop-name">action</span> | <span class="prop-name">MuiCardHeader-action</span> | Styles applied to the action element.
+| <span class="prop-name">content</span> | <span class="prop-name">MuiCardHeader-content</span> | Styles applied to the content wrapper element.
+| <span class="prop-name">title</span> | <span class="prop-name">MuiCardHeader-title</span> | Styles applied to the title Typography element.
+| <span class="prop-name">subheader</span> | <span class="prop-name">MuiCardHeader-subheader</span> | Styles applied to the subheader Typography element.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">avatar</span> | Styles applied to the avatar element.
-| <span class="prop-name">action</span> | Styles applied to the action element.
-| <span class="prop-name">content</span> | Styles applied to the content wrapper element.
-| <span class="prop-name">title</span> | Styles applied to the title Typography element.
-| <span class="prop-name">subheader</span> | Styles applied to the subheader Typography element.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/CardHeader/CardHeader.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiCardHeader`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/CardHeader/CardHeader.js) for more detail.
 
 ## Notes
 

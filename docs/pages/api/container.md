@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Container/Container.js
 <p class="description">The API documentation of the Container React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Container from '@material-ui/core/Container';
+import { Container } from '@material-ui/core';
 ```
 
 
@@ -30,26 +30,26 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiContainer`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiContainer-root</span> | Styles applied to the root element.
+| <span class="prop-name">fixed</span> | <span class="prop-name">MuiContainer-fixed</span> | Styles applied to the root element if `fixed={true}`.
+| <span class="prop-name">maxWidthXs</span> | <span class="prop-name">MuiContainer-maxWidthXs</span> | Styles applied to the root element if `maxWidth="xs"`.
+| <span class="prop-name">maxWidthSm</span> | <span class="prop-name">MuiContainer-maxWidthSm</span> | Styles applied to the root element if `maxWidth="sm"`.
+| <span class="prop-name">maxWidthMd</span> | <span class="prop-name">MuiContainer-maxWidthMd</span> | Styles applied to the root element if `maxWidth="md"`.
+| <span class="prop-name">maxWidthLg</span> | <span class="prop-name">MuiContainer-maxWidthLg</span> | Styles applied to the root element if `maxWidth="lg"`.
+| <span class="prop-name">maxWidthXl</span> | <span class="prop-name">MuiContainer-maxWidthXl</span> | Styles applied to the root element if `maxWidth="xl"`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">fixed</span> | Styles applied to the root element if `fixed={true}`.
-| <span class="prop-name">maxWidthXs</span> | Styles applied to the root element if `maxWidth="xs"`.
-| <span class="prop-name">maxWidthSm</span> | Styles applied to the root element if `maxWidth="sm"`.
-| <span class="prop-name">maxWidthMd</span> | Styles applied to the root element if `maxWidth="md"`.
-| <span class="prop-name">maxWidthLg</span> | Styles applied to the root element if `maxWidth="lg"`.
-| <span class="prop-name">maxWidthXl</span> | Styles applied to the root element if `maxWidth="xl"`.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Container/Container.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiContainer`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Container/Container.js) for more detail.
 
 ## Notes
 

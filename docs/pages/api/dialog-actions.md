@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/DialogActions/DialogActions.js
 <p class="description">The API documentation of the DialogActions React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import DialogActions from '@material-ui/core/DialogActions';
+import { DialogActions } from '@material-ui/core';
 ```
 
 
@@ -28,21 +28,21 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiDialogActions`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiDialogActions-root</span> | Styles applied to the root element.
+| <span class="prop-name">spacing</span> | <span class="prop-name">MuiDialogActions-spacing</span> | Styles applied to the root element if `disableSpacing={false}`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">spacing</span> | Styles applied to the root element if `disableSpacing={false}`.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/DialogActions/DialogActions.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiDialogActions`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/DialogActions/DialogActions.js) for more detail.
 
 ## Notes
 

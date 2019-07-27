@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/StepLabel/StepLabel.js
 <p class="description">The API documentation of the StepLabel React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import StepLabel from '@material-ui/core/StepLabel';
+import { StepLabel } from '@material-ui/core';
 ```
 
 
@@ -33,30 +33,30 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiStepLabel`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiStepLabel-root</span> | Styles applied to the root element.
+| <span class="prop-name">horizontal</span> | <span class="prop-name">MuiStepLabel-horizontal</span> | Styles applied to the root element if `orientation="horizontal".
+| <span class="prop-name">vertical</span> | <span class="prop-name">MuiStepLabel-vertical</span> | Styles applied to the root element if `orientation="vertical".
+| <span class="prop-name">label</span> | <span class="prop-name">MuiStepLabel-label</span> | Styles applied to the `Typography` component which wraps `children`.
+| <span class="prop-name">active</span> | <span class="prop-name">MuiStepLabel-active</span> | Pseudo-class applied to the `Typography` component if `active={true}`.
+| <span class="prop-name">completed</span> | <span class="prop-name">MuiStepLabel-completed</span> | Pseudo-class applied to the `Typography` component if `completed={true}`.
+| <span class="prop-name">error</span> | <span class="prop-name">Mui-error</span> | Pseudo-class applied to the root element and `Typography` component if `error={true}`.
+| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element and `Typography` component if `disabled={true}`.
+| <span class="prop-name">iconContainer</span> | <span class="prop-name">MuiStepLabel-iconContainer</span> | Styles applied to the `icon` container element.
+| <span class="prop-name">alternativeLabel</span> | <span class="prop-name">MuiStepLabel-alternativeLabel</span> | Pseudo-class applied to the root & icon container and `Typography` if `alternativeLabel={true}`.
+| <span class="prop-name">labelContainer</span> | <span class="prop-name">MuiStepLabel-labelContainer</span> | Styles applied to the container element which wraps `Typography` and `optional`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">horizontal</span> | Styles applied to the root element if `orientation="horizontal".
-| <span class="prop-name">vertical</span> | Styles applied to the root element if `orientation="vertical".
-| <span class="prop-name">label</span> | Styles applied to the `Typography` component which wraps `children`.
-| <span class="prop-name">active</span> | Pseudo-class applied to the `Typography` component if `active={true}`.
-| <span class="prop-name">completed</span> | Pseudo-class applied to the `Typography` component if `completed={true}`.
-| <span class="prop-name">error</span> | Pseudo-class applied to the root element and `Typography` component if `error={true}`.
-| <span class="prop-name">disabled</span> | Pseudo-class applied to the root element and `Typography` component if `disabled={true}`.
-| <span class="prop-name">iconContainer</span> | Styles applied to the `icon` container element.
-| <span class="prop-name">alternativeLabel</span> | Pseudo-class applied to the root & icon container and `Typography` if `alternativeLabel={true}`.
-| <span class="prop-name">labelContainer</span> | Styles applied to the container element which wraps `Typography` and `optional`.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/StepLabel/StepLabel.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiStepLabel`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/StepLabel/StepLabel.js) for more detail.
 
 ## Notes
 

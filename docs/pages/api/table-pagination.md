@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/TablePagination/TablePagination.js
 <p class="description">The API documentation of the TablePagination React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import TablePagination from '@material-ui/core/TablePagination';
+import { TablePagination } from '@material-ui/core';
 ```
 
 A `TableCell` based component for placing inside `TableFooter` for pagination.
@@ -39,29 +39,29 @@ Any other properties supplied will be provided to the root element ([TableCell](
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiTablePagination`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiTablePagination-root</span> | Styles applied to the root element.
+| <span class="prop-name">toolbar</span> | <span class="prop-name">MuiTablePagination-toolbar</span> | Styles applied to the Toolbar component.
+| <span class="prop-name">spacer</span> | <span class="prop-name">MuiTablePagination-spacer</span> | Styles applied to the spacer element.
+| <span class="prop-name">caption</span> | <span class="prop-name">MuiTablePagination-caption</span> | Styles applied to the caption Typography components if `variant="caption"`.
+| <span class="prop-name">selectRoot</span> | <span class="prop-name">MuiTablePagination-selectRoot</span> | Styles applied to the Select component root element.
+| <span class="prop-name">select</span> | <span class="prop-name">MuiTablePagination-select</span> | Styles applied to the Select component `select` class.
+| <span class="prop-name">selectIcon</span> | <span class="prop-name">MuiTablePagination-selectIcon</span> | Styles applied to the Select component `icon` class.
+| <span class="prop-name">input</span> | <span class="prop-name">MuiTablePagination-input</span> | Styles applied to the `InputBase` component.
+| <span class="prop-name">menuItem</span> | <span class="prop-name">MuiTablePagination-menuItem</span> | Styles applied to the MenuItem component.
+| <span class="prop-name">actions</span> | <span class="prop-name">MuiTablePagination-actions</span> | Styles applied to the internal `TablePaginationActions` component.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">toolbar</span> | Styles applied to the Toolbar component.
-| <span class="prop-name">spacer</span> | Styles applied to the spacer element.
-| <span class="prop-name">caption</span> | Styles applied to the caption Typography components if `variant="caption"`.
-| <span class="prop-name">selectRoot</span> | Styles applied to the Select component root element.
-| <span class="prop-name">select</span> | Styles applied to the Select component `select` class.
-| <span class="prop-name">selectIcon</span> | Styles applied to the Select component `icon` class.
-| <span class="prop-name">input</span> | Styles applied to the `InputBase` component.
-| <span class="prop-name">menuItem</span> | Styles applied to the MenuItem component.
-| <span class="prop-name">actions</span> | Styles applied to the internal `TablePaginationActions` component.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TablePagination/TablePagination.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiTablePagination`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TablePagination/TablePagination.js) for more detail.
 
 ## Inheritance
 

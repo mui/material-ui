@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Popover/Popover.js
 <p class="description">The API documentation of the Popover React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Popover from '@material-ui/core/Popover';
+import { Popover } from '@material-ui/core';
 ```
 
 
@@ -50,20 +50,20 @@ Any other properties supplied will be provided to the root element ([Modal](/api
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiPopover`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">paper</span> | <span class="prop-name">MuiPopover-paper</span> | Styles applied to the `Paper` component.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">paper</span> | Styles applied to the `Paper` component.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Popover/Popover.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiPopover`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Popover/Popover.js) for more detail.
 
 ## Inheritance
 

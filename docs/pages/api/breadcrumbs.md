@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Breadcrumbs/Breadcrumbs.js
 <p class="description">The API documentation of the Breadcrumbs React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import { Breadcrumbs } from '@material-ui/core';
 ```
 
 
@@ -32,23 +32,23 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiBreadcrumbs`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiBreadcrumbs-root</span> | Styles applied to the root element.
+| <span class="prop-name">ol</span> | <span class="prop-name">MuiBreadcrumbs-ol</span> | Styles applied to the ol element.
+| <span class="prop-name">li</span> | <span class="prop-name">MuiBreadcrumbs-li</span> | Styles applied to the li element.
+| <span class="prop-name">separator</span> | <span class="prop-name">MuiBreadcrumbs-separator</span> | Styles applied to the separator element.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">ol</span> | Styles applied to the ol element.
-| <span class="prop-name">li</span> | Styles applied to the li element.
-| <span class="prop-name">separator</span> | Styles applied to the separator element.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Breadcrumbs/Breadcrumbs.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiBreadcrumbs`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Breadcrumbs/Breadcrumbs.js) for more detail.
 
 ## Notes
 

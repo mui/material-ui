@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Tooltip/Tooltip.js
 <p class="description">The API documentation of the Tooltip React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Tooltip from '@material-ui/core/Tooltip';
+import { Tooltip } from '@material-ui/core';
 ```
 
 
@@ -44,27 +44,27 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiTooltip`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">popper</span> | <span class="prop-name">MuiTooltip-popper</span> | Styles applied to the Popper component.
+| <span class="prop-name">popperInteractive</span> | <span class="prop-name">MuiTooltip-popperInteractive</span> | Styles applied to the Popper component if `interactive={true}`.
+| <span class="prop-name">tooltip</span> | <span class="prop-name">MuiTooltip-tooltip</span> | Styles applied to the tooltip (label wrapper) element.
+| <span class="prop-name">touch</span> | <span class="prop-name">MuiTooltip-touch</span> | Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch.
+| <span class="prop-name">tooltipPlacementLeft</span> | <span class="prop-name">MuiTooltip-tooltipPlacementLeft</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "left".
+| <span class="prop-name">tooltipPlacementRight</span> | <span class="prop-name">MuiTooltip-tooltipPlacementRight</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "right".
+| <span class="prop-name">tooltipPlacementTop</span> | <span class="prop-name">MuiTooltip-tooltipPlacementTop</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "top".
+| <span class="prop-name">tooltipPlacementBottom</span> | <span class="prop-name">MuiTooltip-tooltipPlacementBottom</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom".
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">popper</span> | Styles applied to the Popper component.
-| <span class="prop-name">popperInteractive</span> | Styles applied to the Popper component if `interactive={true}`.
-| <span class="prop-name">tooltip</span> | Styles applied to the tooltip (label wrapper) element.
-| <span class="prop-name">touch</span> | Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch.
-| <span class="prop-name">tooltipPlacementLeft</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "left".
-| <span class="prop-name">tooltipPlacementRight</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "right".
-| <span class="prop-name">tooltipPlacementTop</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "top".
-| <span class="prop-name">tooltipPlacementBottom</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom".
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Tooltip/Tooltip.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiTooltip`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Tooltip/Tooltip.js) for more detail.
 
 ## Notes
 

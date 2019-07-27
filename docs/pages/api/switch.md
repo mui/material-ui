@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Switch/Switch.js
 <p class="description">The API documentation of the Switch React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Switch from '@material-ui/core/Switch';
+import { Switch } from '@material-ui/core';
 ```
 
 
@@ -40,31 +40,31 @@ Any other properties supplied will be provided to the root element ([IconButton]
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiSwitch`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiSwitch-root</span> | Styles applied to the root element.
+| <span class="prop-name">edgeStart</span> | <span class="prop-name">MuiSwitch-edgeStart</span> | Styles applied to the root element if `edge="start"`.
+| <span class="prop-name">edgeEnd</span> | <span class="prop-name">MuiSwitch-edgeEnd</span> | Styles applied to the root element if `edge="end"`.
+| <span class="prop-name">switchBase</span> | <span class="prop-name">MuiSwitch-switchBase</span> | Styles applied to the internal `SwitchBase` component's `root` class.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiSwitch-colorPrimary</span> | Styles applied to the internal SwitchBase component's root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiSwitch-colorSecondary</span> | Styles applied to the internal SwitchBase component's root element if `color="secondary"`.
+| <span class="prop-name">sizeSmall</span> | <span class="prop-name">MuiSwitch-sizeSmall</span> | Styles applied to the root element if `size="small"`.
+| <span class="prop-name">checked</span> | <span class="prop-name">Mui-checked</span> | Pseudo-class applied to the internal `SwitchBase` component's `checked` class.
+| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the internal SwitchBase component's disabled class.
+| <span class="prop-name">input</span> | <span class="prop-name">MuiSwitch-input</span> | Styles applied to the internal SwitchBase component's input element.
+| <span class="prop-name">thumb</span> | <span class="prop-name">MuiSwitch-thumb</span> | Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop.
+| <span class="prop-name">track</span> | <span class="prop-name">MuiSwitch-track</span> | Styles applied to the track element.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">edgeStart</span> | Styles applied to the root element if `edge="start"`.
-| <span class="prop-name">edgeEnd</span> | Styles applied to the root element if `edge="end"`.
-| <span class="prop-name">switchBase</span> | Styles applied to the internal `SwitchBase` component's `root` class.
-| <span class="prop-name">colorPrimary</span> | Styles applied to the internal SwitchBase component's root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | Styles applied to the internal SwitchBase component's root element if `color="secondary"`.
-| <span class="prop-name">sizeSmall</span> | Styles applied to the root element if `size="small"`.
-| <span class="prop-name">checked</span> | Pseudo-class applied to the internal `SwitchBase` component's `checked` class.
-| <span class="prop-name">disabled</span> | Pseudo-class applied to the internal SwitchBase component's disabled class.
-| <span class="prop-name">input</span> | Styles applied to the internal SwitchBase component's input element.
-| <span class="prop-name">thumb</span> | Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop.
-| <span class="prop-name">track</span> | Styles applied to the track element.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Switch/Switch.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiSwitch`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Switch/Switch.js) for more detail.
 
 ## Inheritance
 

@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Portal/Portal.js
 <p class="description">The API documentation of the Portal React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Portal from '@material-ui/core/Portal';
+import { Portal } from '@material-ui/core';
 ```
 
 Portals provide a first-class way to render children into a DOM node

@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Input/Input.js
 <p class="description">The API documentation of the Input React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Input from '@material-ui/core/Input';
+import { Input } from '@material-ui/core';
 ```
 
 
@@ -51,31 +51,31 @@ Any other properties supplied will be provided to the root element ([InputBase](
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiInput`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiInput-root</span> | Styles applied to the root element.
+| <span class="prop-name">formControl</span> | <span class="prop-name">MuiInput-formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
+| <span class="prop-name">focused</span> | <span class="prop-name">Mui-focused</span> | Styles applied to the root element if the component is focused.
+| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">underline</span> | <span class="prop-name">MuiInput-underline</span> | Styles applied to the root element if `disableUnderline={false}`.
+| <span class="prop-name">error</span> | <span class="prop-name">Mui-error</span> | Styles applied to the root element if `error={true}`.
+| <span class="prop-name">multiline</span> | <span class="prop-name">MuiInput-multiline</span> | Styles applied to the root element if `multiline={true}`.
+| <span class="prop-name">fullWidth</span> | <span class="prop-name">MuiInput-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
+| <span class="prop-name">input</span> | <span class="prop-name">MuiInput-input</span> | Styles applied to the `input` element.
+| <span class="prop-name">inputMarginDense</span> | <span class="prop-name">MuiInput-inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
+| <span class="prop-name">inputMultiline</span> | <span class="prop-name">MuiInput-inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
+| <span class="prop-name">inputTypeSearch</span> | <span class="prop-name">MuiInput-inputTypeSearch</span> | Styles applied to the `input` element if `type="search"`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
-| <span class="prop-name">focused</span> | Styles applied to the root element if the component is focused.
-| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
-| <span class="prop-name">underline</span> | Styles applied to the root element if `disableUnderline={false}`.
-| <span class="prop-name">error</span> | Styles applied to the root element if `error={true}`.
-| <span class="prop-name">multiline</span> | Styles applied to the root element if `multiline={true}`.
-| <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
-| <span class="prop-name">input</span> | Styles applied to the `input` element.
-| <span class="prop-name">inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
-| <span class="prop-name">inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
-| <span class="prop-name">inputTypeSearch</span> | Styles applied to the `input` element if `type="search"`.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Input/Input.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiInput`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Input/Input.js) for more detail.
 
 ## Inheritance
 

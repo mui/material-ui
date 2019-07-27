@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Grow/Grow.js
 <p class="description">The API documentation of the Grow React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import Grow from '@material-ui/core/Grow';
+import { Grow } from '@material-ui/core';
 ```
 
 The Grow transition is used by the [Tooltip](/components/tooltips/) and

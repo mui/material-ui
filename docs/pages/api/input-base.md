@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/InputBase/InputBase.js
 <p class="description">The API documentation of the InputBase React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import InputBase from '@material-ui/core/InputBase';
+import { InputBase } from '@material-ui/core';
 ```
 
 `InputBase` contains as few styles as possible.
@@ -53,37 +53,37 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiInputBase`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiInputBase-root</span> | Styles applied to the root element.
+| <span class="prop-name">formControl</span> | <span class="prop-name">MuiInputBase-formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
+| <span class="prop-name">focused</span> | <span class="prop-name">Mui-focused</span> | Styles applied to the root element if the component is focused.
+| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">adornedStart</span> | <span class="prop-name">MuiInputBase-adornedStart</span> | Styles applied to the root element if `startAdornment` is provided.
+| <span class="prop-name">adornedEnd</span> | <span class="prop-name">MuiInputBase-adornedEnd</span> | Styles applied to the root element if `endAdornment` is provided.
+| <span class="prop-name">error</span> | <span class="prop-name">Mui-error</span> | Styles applied to the root element if `error={true}`.
+| <span class="prop-name">marginDense</span> | <span class="prop-name">MuiInputBase-marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
+| <span class="prop-name">multiline</span> | <span class="prop-name">MuiInputBase-multiline</span> | Styles applied to the root element if `multiline={true}`.
+| <span class="prop-name">fullWidth</span> | <span class="prop-name">MuiInputBase-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
+| <span class="prop-name">input</span> | <span class="prop-name">MuiInputBase-input</span> | Styles applied to the `input` element.
+| <span class="prop-name">inputMarginDense</span> | <span class="prop-name">MuiInputBase-inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
+| <span class="prop-name">inputSelect</span> | <span class="prop-name">MuiInputBase-inputSelect</span> | Styles applied to the `input` element if `select={true}`.
+| <span class="prop-name">inputMultiline</span> | <span class="prop-name">MuiInputBase-inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
+| <span class="prop-name">inputTypeSearch</span> | <span class="prop-name">MuiInputBase-inputTypeSearch</span> | Styles applied to the `input` element if `type="search"`.
+| <span class="prop-name">inputAdornedStart</span> | <span class="prop-name">MuiInputBase-inputAdornedStart</span> | Styles applied to the `input` element if `startAdornment` is provided.
+| <span class="prop-name">inputAdornedEnd</span> | <span class="prop-name">MuiInputBase-inputAdornedEnd</span> | Styles applied to the `input` element if `endAdornment` is provided.
+| <span class="prop-name">inputHiddenLabel</span> | <span class="prop-name">MuiInputBase-inputHiddenLabel</span> | Styles applied to the `input` element if `hiddenLabel={true}`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
-| <span class="prop-name">focused</span> | Styles applied to the root element if the component is focused.
-| <span class="prop-name">disabled</span> | Styles applied to the root element if `disabled={true}`.
-| <span class="prop-name">adornedStart</span> | Styles applied to the root element if `startAdornment` is provided.
-| <span class="prop-name">adornedEnd</span> | Styles applied to the root element if `endAdornment` is provided.
-| <span class="prop-name">error</span> | Styles applied to the root element if `error={true}`.
-| <span class="prop-name">marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
-| <span class="prop-name">multiline</span> | Styles applied to the root element if `multiline={true}`.
-| <span class="prop-name">fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
-| <span class="prop-name">input</span> | Styles applied to the `input` element.
-| <span class="prop-name">inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
-| <span class="prop-name">inputSelect</span> | Styles applied to the `input` element if `select={true}`.
-| <span class="prop-name">inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
-| <span class="prop-name">inputTypeSearch</span> | Styles applied to the `input` element if `type="search"`.
-| <span class="prop-name">inputAdornedStart</span> | Styles applied to the `input` element if `startAdornment` is provided.
-| <span class="prop-name">inputAdornedEnd</span> | Styles applied to the `input` element if `endAdornment` is provided.
-| <span class="prop-name">inputHiddenLabel</span> | Styles applied to the `input` element if `hiddenLabel={true}`.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/InputBase/InputBase.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiInputBase`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/InputBase/InputBase.js) for more detail.
 
 ## Notes
 

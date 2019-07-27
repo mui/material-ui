@@ -12,6 +12,9 @@ import { getHeaders } from '../src/modules/utils/parseMarkdown';
 import parseTest from '../src/modules/utils/parseTest';
 import createMuiTheme from '../../packages/material-ui/src/styles/createMuiTheme';
 import getStylesCreator from '../../packages/material-ui-styles/src/getStylesCreator';
+import createGenerateClassName from '../../packages/material-ui-styles/src/createGenerateClassName';
+
+const generateClassName = createGenerateClassName();
 
 function ensureExists(pat, mask, cb) {
   mkdir(pat, mask, err => {
@@ -111,6 +114,20 @@ async function buildDocs(options) {
       className => !className.match(/^(@media|@keyframes)/),
     );
     styles.name = component.default.options.name;
+    styles.globalClasses = styles.classes.reduce((acc, key) => {
+      acc[key] = generateClassName(
+        {
+          key,
+        },
+        {
+          options: {
+            name: styles.name,
+            theme: {},
+          },
+        },
+      );
+      return acc;
+    }, {});
 
     let styleSrc = src;
     // Exception for Select where the classes are imported from NativeSelect

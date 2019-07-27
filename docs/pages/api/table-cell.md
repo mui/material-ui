@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/TableCell/TableCell.js
 <p class="description">The API documentation of the TableCell React component. Learn more about the properties and the CSS customization points.</p>
 
 ```js
-import TableCell from '@material-ui/core/TableCell';
+import { TableCell } from '@material-ui/core';
 ```
 
 
@@ -34,30 +34,30 @@ Any other properties supplied will be provided to the root element (native eleme
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiTableCell`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiTableCell-root</span> | Styles applied to the root element.
+| <span class="prop-name">head</span> | <span class="prop-name">MuiTableCell-head</span> | Styles applied to the root element if `variant="head"` or `context.table.head`.
+| <span class="prop-name">body</span> | <span class="prop-name">MuiTableCell-body</span> | Styles applied to the root element if `variant="body"` or `context.table.body`.
+| <span class="prop-name">footer</span> | <span class="prop-name">MuiTableCell-footer</span> | Styles applied to the root element if `variant="footer"` or `context.table.footer`.
+| <span class="prop-name">sizeSmall</span> | <span class="prop-name">MuiTableCell-sizeSmall</span> | Styles applied to the root element if `size="small"`.
+| <span class="prop-name">paddingCheckbox</span> | <span class="prop-name">MuiTableCell-paddingCheckbox</span> | Styles applied to the root element if `padding="checkbox"`.
+| <span class="prop-name">paddingNone</span> | <span class="prop-name">MuiTableCell-paddingNone</span> | Styles applied to the root element if `padding="none"`.
+| <span class="prop-name">alignLeft</span> | <span class="prop-name">MuiTableCell-alignLeft</span> | Styles applied to the root element if `align="left"`.
+| <span class="prop-name">alignCenter</span> | <span class="prop-name">MuiTableCell-alignCenter</span> | Styles applied to the root element if `align="center"`.
+| <span class="prop-name">alignRight</span> | <span class="prop-name">MuiTableCell-alignRight</span> | Styles applied to the root element if `align="right"`.
+| <span class="prop-name">alignJustify</span> | <span class="prop-name">MuiTableCell-alignJustify</span> | Styles applied to the root element if `align="justify"`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">head</span> | Styles applied to the root element if `variant="head"` or `context.table.head`.
-| <span class="prop-name">body</span> | Styles applied to the root element if `variant="body"` or `context.table.body`.
-| <span class="prop-name">footer</span> | Styles applied to the root element if `variant="footer"` or `context.table.footer`.
-| <span class="prop-name">sizeSmall</span> | Styles applied to the root element if `size="small"`.
-| <span class="prop-name">paddingCheckbox</span> | Styles applied to the root element if `padding="checkbox"`.
-| <span class="prop-name">paddingNone</span> | Styles applied to the root element if `padding="none"`.
-| <span class="prop-name">alignLeft</span> | Styles applied to the root element if `align="left"`.
-| <span class="prop-name">alignCenter</span> | Styles applied to the root element if `align="center"`.
-| <span class="prop-name">alignRight</span> | Styles applied to the root element if `align="right"`.
-| <span class="prop-name">alignJustify</span> | Styles applied to the root element if `align="justify"`.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TableCell/TableCell.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiTableCell`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TableCell/TableCell.js) for more detail.
 
 ## Notes
 
