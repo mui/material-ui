@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions  */
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -119,11 +120,6 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   }
 
   const handleClick = event => {
-    // only process click events that directly happened on this tree item
-    if (!contentRef.current.contains(event.target)) {
-      return;
-    }
-
     if (!focused) {
       focus(nodeId);
     }
@@ -249,7 +245,6 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     <li
       className={clsx(classes.root, className)}
       role="treeitem"
-      onClick={handleClick}
       onKeyDown={handleKeyDown}
       onFocus={handleFocus}
       aria-expanded={expandable ? expanded : null}
@@ -257,7 +252,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       tabIndex={tabable ? 0 : -1}
       {...other}
     >
-      <div className={classes.content} ref={contentRef}>
+      <div className={classes.content} onClick={handleClick} ref={contentRef}>
         {stateIconsProvided ? <div className={classes.iconContainer}>{stateIcon}</div> : null}
         {startAdornment ? <div className={classes.iconContainer}>{startAdornment}</div> : null}
         <Typography className={classes.label}>{label}</Typography>
