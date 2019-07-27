@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 
-export interface TreeViewProps
-  extends StandardProps<React.HTMLAttributes<HTMLLIElement>, TreeViewClassKey> {
+export interface TreeItemProps
+  extends StandardProps<React.HTMLAttributes<HTMLLIElement>, TreeItemClassKey> {
   collapseIcon?: React.ReactNode;
   expandIcon?: React.ReactNode;
   icon?: React.ReactNode;
@@ -10,8 +10,8 @@ export interface TreeViewProps
   nodeId: string;
 }
 
-export type TreeViewClassKey = 'root' | 'group' | 'content' | 'iconContainer' | 'label';
+export type TreeItemClassKey = 'root' | 'group' | 'content' | 'iconContainer' | 'label';
 
-declare const TreeView: React.ComponentType<TreeViewProps>;
+declare const TreeItem: React.ComponentType<TreeItemProps>;
 
-export default TreeView;
+export default TreeItem;
