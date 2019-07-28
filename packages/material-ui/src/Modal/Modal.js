@@ -208,11 +208,12 @@ const Modal = React.forwardRef(function Modal(props, ref) {
 
   const inlineStyle = styles(theme || { zIndex });
   const childProps = {};
-  if (children.props.role === undefined) {
-    childProps.role = 'document';
+  // FixMe: Always apply document role. Revisit once React Flare is released
+  if (children.role === undefined) {
+    childProps.role = children.role || 'document';
   }
-  if (children.props.tabIndex === undefined) {
-    childProps.tabIndex = '-1';
+  if (children.tabIndex === undefined) {
+    childProps.tabIndex = children.tabIndex || '-1';
   }
 
   // It's a Transition like component
