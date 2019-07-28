@@ -196,21 +196,22 @@ function generatePropType(type) {
 
     case 'union':
     case 'enum': {
-      let values = type.value.map(type2 => {
-        if (type.name === 'enum') {
-          return escapeCell(type2.value);
-        }
+      return (
+        type.value
+          .map(type2 => {
+            if (type.name === 'enum') {
+              return escapeCell(type2.value);
+            }
 
-        return generatePropType(type2);
-      });
+            return generatePropType(type2);
+          })
+          // Display one value per line as it's better for visibility.
+          .join('<br>&#124;&nbsp;')
+      );
+    }
 
-      // Display one value per line as it's better for visibility.
-      if (values.length < 5) {
-        values = values.join('&nbsp;&#124;<br>&nbsp;');
-      } else {
-        values = values.join(', ');
-      }
-      return `${type.name}:&nbsp;${values}<br>`;
+    case 'arrayOf': {
+      return `Array<${generatePropType(type.value)}>`;
     }
     default:
       return type.name;
