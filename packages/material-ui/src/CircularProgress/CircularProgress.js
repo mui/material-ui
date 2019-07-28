@@ -35,10 +35,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `variant="indeterminate"`. */
   indeterminate: {
-    animation: 'mui-progress-circular-rotate 1.4s linear infinite',
-    // Backward compatible logic between JSS v9 and v10.
-    // To remove with the release of Material-UI v4
-    animationName: '$mui-progress-circular-rotate',
+    animation: '$mui-progress-circular-rotate 1.4s linear infinite',
   },
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
@@ -62,10 +59,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the `circle` svg path if `variant="indeterminate"`. */
   circleIndeterminate: {
-    animation: 'mui-progress-circular-dash 1.4s ease-in-out infinite',
-    // Backward compatible logic between JSS v9 and v10.
-    // To remove with the release of Material-UI v4
-    animationName: '$mui-progress-circular-dash',
+    animation: '$mui-progress-circular-dash 1.4s ease-in-out infinite',
     // Some default value that looks fine waiting for the animation to kicks in.
     strokeDasharray: '80px, 200px',
     strokeDashoffset: '0px', // Add the unit to fix a Edge 16 and below bug.
