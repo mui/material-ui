@@ -208,10 +208,10 @@ const Modal = React.forwardRef(function Modal(props, ref) {
 
   const inlineStyle = styles(theme || { zIndex });
   const childProps = {};
-  if (children.role === undefined) {
+  if (children.props.role === undefined) {
     childProps.role = children.role || 'document';
   }
-  if (children.tabIndex === undefined) {
+  if (children.props.tabIndex === undefined) {
     childProps.tabIndex = children.tabIndex || '-1';
   }
 

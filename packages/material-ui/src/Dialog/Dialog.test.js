@@ -127,6 +127,12 @@ describe('<Dialog />', () => {
   });
 
   describe('backdrop', () => {
+    it('has no accessible role', () => {
+      render(<Dialog open>foo</Dialog>);
+
+      expect(findBackdrop(document.body)).to.have.attribute('role', 'none presentation');
+    });
+
     it('should call through to the user specified onBackdropClick callback', () => {
       const onBackdropClick = spy();
       render(
