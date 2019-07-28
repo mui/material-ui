@@ -75,22 +75,37 @@ describe('<Dialog />', () => {
     expect(getAllByTestId('Transition')).to.have.lengthOf(1);
   });
 
-  it('calls onEscapeKeydown when pressing Esc followed by onClose after the specified transitionDuration', () => {
+  it('calls onEscapeKeydown when pressing Esc followed by onClose and removes the content after the specified duration', () => {
     const onEscapeKeyDown = spy();
     const onClose = spy();
-    const { getByRole } = render(
-      <Dialog open transitionDuration={100} onEscapeKeyDown={onEscapeKeyDown} onClose={onClose}>
-        foo
-      </Dialog>,
-    );
+    function TestCase() {
+      const [open, close] = React.useReducer(() => false, true);
+      function handleClose(...args) {
+        close();
+        onClose(...args);
+      }
+
+      return (
+        <Dialog
+          open={open}
+          transitionDuration={100}
+          onEscapeKeyDown={onEscapeKeyDown}
+          onClose={handleClose}
+        >
+          foo
+        </Dialog>
+      );
+    }
+    const { getByRole, queryByRole } = render(<TestCase />);
     expect(getByRole('dialog')).to.be.ok;
 
     getByRole('dialog').click();
     fireEvent.keyDown(document.activeElement, { key: 'Esc' });
     expect(onEscapeKeyDown.calledOnce).to.equal(true);
+    expect(onClose.calledOnce).to.equal(true);
 
     clock.tick(100);
-    expect(onClose.calledOnce).to.equal(true);
+    expect(queryByRole('dialog')).to.equal(null);
   });
 
   it('can ignore backdrop click and Esc keydown', () => {
@@ -133,16 +148,18 @@ describe('<Dialog />', () => {
       expect(findBackdrop(document.body)).to.have.attribute('role', 'none presentation');
     });
 
-    it('should call through to the user specified onBackdropClick callback', () => {
+    it('calls onBackdropClick and onClose when clicked', () => {
       const onBackdropClick = spy();
+      const onClose = spy();
       render(
-        <Dialog onBackdropClick={onBackdropClick} open>
+        <Dialog onBackdropClick={onBackdropClick} onClose={onClose} open>
           foo
         </Dialog>,
       );
 
       clickBackdrop(document);
       expect(onBackdropClick.callCount).to.equal(1);
+      expect(onClose.callCount).to.equal(1);
     });
 
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {
