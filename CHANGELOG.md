@@ -1,5 +1,130 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.3.0
+###### *July 28, 2019*
+
+Big thanks to the 23 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- 🌳 Introduce a new Tree View component in the (#14827) @joshwooding
+
+  This is a first step toward a feature rich tree view component.
+  We will keep iterate on it to add customization demos, filter, drag and drop, and checkboxes.
+  You can find the documentation under [this URL](https://material-ui.com/components/tree-view/).
+- 💄 Support vertical tabs (#16628) @josephpung
+
+  You can learn more about it following [this URL](https://material-ui.com/components/tabs/#vertical-tabs).
+- 📚 Remove the prop-types from TypeScript demos (#16521) @merceyz
+
+  The runtime prop-types are often redundant with the static type checks.
+  We have removed them from the TypeScript demos.
+- ⚛️ Add two codemods to improve the imports (#16192) @jedwards1211
+
+  If you are not familiar with codemods, [check the library out](https://github.com/facebook/codemod). This is a tool tool to assist you with large-scale codebase refactors.
+  We introduce two new codemods in this release:
+
+  - `optimal-imports`: Material-UI supports tree shaking for modules at 1 level depth maximum.
+  You shouldn't import any module at a higher level depth.
+
+  ```diff
+  -import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+  +import { createMuiTheme } from '@material-ui/core/styles';
+  ```
+  - `top-level-imports`: Converts all @material-ui/core submodule imports to the root module.
+
+  ```diff
+  -import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+  +import { createMuiTheme } from '@material-ui/core';
+  ```
+
+- 💄 Support small switch (#16620) @darkowic
+
+  You can learn more about it following [this URL](https://material-ui.com/components/switches/#sizes).
+- And many more 🐛 bug fixes 📚 improvements.
+
+### `@material-ui/core@v4.3.0`
+
+- [FilledInput] Add hiddenLabel prop (#16671) @oliviertassinari
+- [Menu] Use strict mode compatible testing API (#16582) @eps1lon
+- [Modal] Fix focus not being contained (#16585) @eps1lon
+- [Modal] Prevent backdrop to stay open (#16694) @ValentinH
+- [Popper] Fix scroll jump when content contains autofocus input (#16740) (#16751) @alirezamirian
+- [Portal] Prepare deprecation of onRendered (#16597) @oliviertassinari
+- [SelectInput] Fix layout issue with displayEmpty (#16743) @ypresto
+- [Select] Implement WAI-ARIA dropdown without label (#16739) @eps1lon
+- [useMediaQuery] Improve useWidth demo (#16611) @siriwatknp
+- [Step] Add `completed` class key to TypeScript definitions (#16662) @pranshuchittora
+- [Stepper] Add cutomization example (#16769) @oliviertassinari
+- [Switch] Support small size (#16620) @darkowic
+- [Tabs] Improve accessibility (#16384) @mbrookes
+- [Tabs] Support vertical tabs (#16628) @josephpung
+- [TextField] Rename interface FormControl to FormControlState (#16748) @B3zo0
+- [TextareaAutosize] Fix infinite render loop (#16635) @oliviertassinari
+- [TextareaAutosize] Fix infinite render loop (#16708) @mcdougal
+
+### `@material-ui/lab@v4.0.0-alpha.21`
+
+- [TreeView] Add new component (#14827) @joshwooding
+
+### `@material-ui/styles@@4.3.0`
+
+- [styles] Add typings for font-face (#16639) @merceyz
+
+### `@material-ui/codemod@v4.3.0`
+
+- [codemod] Add codemods for optimal tree-shakeable imports (#16192) @jedwards1211
+
+### Docs
+
+- [docs] Add CSS to api for TextField (#16659) @m2mathew
+- [docs] Apply v1 redirection first @oliviertassinari
+- [docs] Batch changes (#16621) @oliviertassinari
+- [docs] Display correct version of Material-UI (#16680) @eps1lon
+- [docs] Document the global class names (#16770) @oliviertassinari
+- [docs] Fix SEO reported by Ahrefs (#16765) @oliviertassinari
+- [docs] Fix Typo in modal.md (#16744) @jeffshek
+- [docs] Fix dependabot badge (#16725) @eps1lon
+- [docs] Fix reset colors crashing app (#16750) @eps1lon
+- [docs] Fix typo in typography.md (#16654) @hexium310
+- [docs] Generate prop-types from TypeScript demos (#16521) @merceyz
+- [docs] Grammar fix for global class names docs (#16778) @joshwooding
+- [docs] Improve SEO (#16724) @oliviertassinari
+- [docs] Improve favicon (#16632) @oliviertassinari
+- [docs] Improve generated markdown (#16771) @merceyz
+- [docs] Link page layouts to premium themes (#16690) @mbrookes
+- [docs] Move dependencies/scripts from root into workspace (#16640) @eps1lon
+- [docs] Prevent password field blur when adornment clicked (#16672) @ee92
+- [docs] Redirects old v1.5.0 url to v1 subdomain (#16658) @m2mathew
+- [docs] Reduce bundle size (#16046) @eps1lon
+- [docs] Remove bbb from showcase (#16687) @mbrookes
+- [docs] Remove unused imports (#16623) @merceyz
+- [docs] Reword unsupported material components notes (#16660) @m2mathew
+- [docs] Solve docs 301 redirections (#16705) @oliviertassinari
+- [docs] Update translations (#16684) @mbrookes
+- [docs] Upgrade next to v9 (#16546) @eps1lon
+- [docs] Revert upgrade to next 9 (#16755) @eps1lon
+- [docs] Workaround to describe aria-sort (#16767) @mbrookes
+- [examples] Remove version next version from the description (#16678) @straxico
+
+## Core
+
+- [test] Fix empty visual rergression screenshots (#16702) @eps1lon
+- [test] Fix failing test_browser in edge (#16688) @eps1lon
+- [core] Batch changes (#16691) @oliviertassinari
+- [core] Batch small changes (#16766) @oliviertassinari
+- [core] Deduplicate packages (#16608) @merceyz
+- [core] Fix type definition for createMuiTheme SpacingOptions (#16624) @dominictwlee
+- [core] Import esm babel helpers (#16701) @TrySound
+- [core] Introduce dependabot (#16679) @eps1lon
+- [core] Remove old JSS v9 animationName property (#16779) @merceyz
+- [core] Upgrade babel-plugin-optimize-clsx (#16636) @merceyz
+- [core] Upgrade dependencies from yarn audit (#16625) @merceyz
+- [core] Upgrade jss (#16668) @TrySound
+- [core] Bump babel dependencies to latest (#16699) @eps1lon
+- [ci] Merge test_browser and test_production (#16731) @eps1lon
+- [ci] Use custom frozen lockfile check (#16677) @eps1lon
+
 ## 4.2.1
 ###### *July 17, 2019*
 
@@ -354,7 +479,7 @@ Here are some highlights ✨:
 
 - [system] Add flex to FlexboxProps type definitions (#16045) @ljvanschie
 - [system] Add fontStyle, letterSpacing, lineHeight props (#16109) @aditya1906
-- [system] Fix breakpoints typescript types (#15720) @Kujawadl
+- [system] Fix breakpoints TypeScript types (#15720) @Kujawadl
 
 ### `@material-ui/styles@v4.1.0`
 
@@ -913,7 +1038,7 @@ You will learn more about v4 in the final release blog post and our plans for th
 - [docs] Add Selected List Item to TypeScript demos (#15417) @lksilva
 - [docs] Add SkipNav (#15409) @mbrookes
 - [docs] Add some Selection-Controls TypeScript demos (#15408) @bh1505
-- [docs] Add switches typescript demo (#15384) @JarkEMones
+- [docs] Add switches TypeScript demo (#15384) @JarkEMones
 - [docs] Add TypeScript demo for hook+props based styling (#15459) @eps1lon
 - [docs] Document Tooltip breaking changes (#15403) @joshwooding
 - [docs] Fix modal demo jumping on cursor move (#15462) @eps1lon
@@ -1688,7 +1813,7 @@ Here are some highlights ✨:
 - [docs] A grammar modification suggestion (#14671) @mataxxx5
 - [docs] Link the mui-tables project in the documentation (#14701) @parkerself22
 - [docs] Generate unique hash (#14703) @oliviertassinari
-- [docs] Add simple list typescript demo (#14485) @eps1lon
+- [docs] Add simple list TypeScript demo (#14485) @eps1lon
 - [docs] Fix wrong source code URLs (#14716) @oliviertassinari
 
 ## Core
@@ -2096,7 +2221,7 @@ Here are some highlights ✨:
 - [CircularProgress] Fix animation jumps on indeterminate variant (#14198) @rfbotto
 - [Textarea] Fix line height visibility issue on SSR (#14197) @rfbotto
 - [Link] Fix type declaration for props (#14193) @lunaryorn
-- [useMediaQuery] Synchronize typescript definition with js one (#14214) @sthenault
+- [useMediaQuery] Synchronize TypeScript definition with js one (#14214) @sthenault
 - [MenuList] Add `home` and `end` key support (#14212) @dallin-christensen
 - [InputAdornment] Automatically inherit the variant (#14023) @joshwooding
 - [Dialog] Add missing PaperComponent property in the definition (#14240) @zharris6
@@ -2364,7 +2489,7 @@ The Tabs `fullWidth` and `scrollable` properties can't be used at the same time.
 
 - [styles] Upgrade JSS to v10-alpha (#14006) @oliviertassinari
 - [styles] Hash the classnames (#14013) @oliviertassinari
-- [styles] Fix typescript throwing in makeStyles with no props required (#14019) @eps1lon
+- [styles] Fix TypeScript throwing in makeStyles with no props required (#14019) @eps1lon
 
 ### Docs
 
@@ -3528,7 +3653,7 @@ We use the same strategy for Chrome.
 - [core] Let's see if the CI catch the issue (#12615) @oliviertassinari
 - [typescript] Use interfaces for typography types (#12616) @pelotom
 - [ci] Consider only files changed on the built branch (#12627) @eps1lon
-- [test] Lint typescript definitions (#12637) @eps1lon
+- [test] Lint TypeScript definitions (#12637) @eps1lon
 - [core] Upgrade dev dependencies (#12658) @oliviertassinari
 
 #### Lab
@@ -3582,7 +3707,7 @@ N/A
 - [docs] Add material-ui-next-pickers (#12547) @chingyawhao
 - [docs] Fix the broken Table sorting logic (#12569) @oliviertassinari
 - [docs] Link a new Menu demo (#12574) @pierrelstan
-- [docs] Improve typescript issue assistance (#12560) @eps1lon
+- [docs] Improve TypeScript issue assistance (#12560) @eps1lon
 - [docs] Add notistack in the related projects (#12578) @oliviertassinari
 
 #### Core
@@ -3852,7 +3977,7 @@ We are going to keep working on adding more themes to the list.
 
 #### Lab
 
-- [Slider] Fix typescript typings (#12173) @eps1lon
+- [Slider] Fix TypeScript typings (#12173) @eps1lon
 - [SpeedDial] Fix SpeedDialAction dark theme (#12230) @mbrookes
 - [lab] Build and export fixes (#12233) @goto-bus-stop
 
@@ -4216,7 +4341,7 @@ N/A
 - [docs] Add a changelog page (#11604) @oliviertassinari
 - [docs] Keep the current version into account (#11595) @oliviertassinari
 - [ROADMAP] Update the roadmap (#11606) @oliviertassinari
-- [example] Fix missing brackets typescript (#11623) @Ilaiwi
+- [example] Fix missing brackets TypeScript (#11623) @Ilaiwi
 - [docs] Update overrides.md (#11630) @risafletcher
 - [docs] Styled API Example (5 lines) (#11620) @mssngr
 - [docs] Mention view port size in SVGIcon documentation (#11639) @JesusCrow
@@ -4230,7 +4355,7 @@ N/A
 - [core] Upgrade dependencies (#11616) @oliviertassinari
 - [typescript] createStyles and improved WithStyles helpers (#11609) @pelotom
 - [core] Add cross-env back (#11638) @lookfirst
-- [typescript] Fix keyof for typescript@2.9 (#11669) @mctep
+- [typescript] Fix keyof for TypeScript@2.9 (#11669) @mctep
 - [core] Some fixes looking into issues (#11676) @oliviertassinari
 - [core] Upgrade dependencies (#11684) @oliviertassinari
 
@@ -4293,7 +4418,7 @@ N/A
 - [docs] Finish incomplete list-item-text.md documentation (#11559) @codeheroics
 - [docs] Add outlined buttons to ButtonSizes demo (#11509) @mbrookes
 - [docs] Add a Troubleshooting section for SSR (#11579) @oliviertassinari
-- [docs] Fix a little typo in typescript docs (#11580) @saculbr
+- [docs] Fix a little typo in TypeScript docs (#11580) @saculbr
 - [docs] Add react-admin to related projects (#11582) @fzaninotto
 - [docs] Update the showcase (#11578) @mbrookes
 
@@ -5719,7 +5844,7 @@ const theme = createMuiTheme({
 - [docs] Add zero click example of Wrapping components (#10041) @oliviertassinari
 - [docs] Reach the AA contrast ratio level (#10053) @oliviertassinari
 - [docs] Misc fixes (#10055) @mbrookes
-- [examples] Add missing typescript dependency (#10031) @QuantumInformation
+- [examples] Add missing TypeScript dependency (#10031) @QuantumInformation
 - [docs] Add Content Security Policy Guide (#10074) @dav-is
 - [docs] Add react-select example (#10070) @oliviertassinari
 
@@ -5935,12 +6060,12 @@ To style the root element in these components, a `className` prop can be passed,
 - [CardContent] Add component property (#9789) @caub
 - [TablePagination] Add an Actions property (#9785) @axlider
 - [SwitchBase] Enable React input warning (#9814) @oliviertassinari
-- [SwitchBase] Remove duplicate typescript definitions inherited (#9816) @rosskevin
+- [SwitchBase] Remove duplicate TypeScript definitions inherited (#9816) @rosskevin
 - [Hidden] Update initialWidth propTypes (#9815) @djeeg
 - [Transition] Extend children propTypes (#9819) @oliviertassinari
 - [TablePagination] Remove dead code (#9831) @leMaik
 - [theme] Polish background scale (#9829) @oliviertassinari
-- [ExpansionPanel] Fix typescript definitions of onChange event (#9832) @Jocaetano
+- [ExpansionPanel] Fix TypeScript definitions of onChange event (#9832) @Jocaetano
 - [GridList] Remove named export (#9836) @remcohaszing
 - [GridList] Export through main index.js (#9833) @remcohaszing
 - [Portal] Document default value (#9841) @oliviertassinari
@@ -6360,7 +6485,7 @@ By consistency with the other components, the color property is no longer apply 
 
 - [Switch] Update missed div to span for valid HTML (#9334) @mikeriley131
 - [Modal] Resolve cordova issues (#9315) @sakulstra
-- [Drawer] Missing ModalProps typescript (#9352) @rosskevin
+- [Drawer] Missing ModalProps TypeScript (#9352) @rosskevin
 - [theme] Fix TypographyOptions type (#9364) @keenondrums
 - [styles] createMuiTheme should accept a deep partial (#9368) @keenondrums
 - [Table] Add missing component props (#9378) @pelotom
@@ -6388,7 +6513,7 @@ By consistency with the other components, the color property is no longer apply 
 
 #### Docs
 
-- [docs] Replace type with interface, document typescript theme customization (#9350) @rosskevin
+- [docs] Replace type with interface, document TypeScript theme customization (#9350) @rosskevin
 - [docs] Fix typo in comparison guide (#9357) @ugomeda
 - [docs] Simplify TypeScript custom theme example (#9376) @pelotom
 - [docs] Add project to showcase (#9346) @samdenty99
@@ -6452,11 +6577,11 @@ It was a breaking change and not needed.
 - [Transition] Fix wrong addEndListener logic (#9142) @oliviertassinari
 - [TablePagination] export LabelDisplayedRowArgs interface and improve label (#8930) @t49tran
 - [Drawer] Hide focus ring (#9147) @rodrigofepy
-- [Drawer] Fix classes in typescript definition (#9145) @johnnynia
+- [Drawer] Fix classes in TypeScript definition (#9145) @johnnynia
 - [CircularProgress] Fix behavior when dir=rtl (#9151) @alitaheri
 - [StepContent] Fix typings (#9150) @alitaheri
 - [Dialog] Fix maxWidth=xs (#9162) @oliviertassinari
-- [Select] Fix typescript typings (#9153) @alitaheri
+- [Select] Fix TypeScript typings (#9153) @alitaheri
 - [Slide] No default direction (#9165) @oliviertassinari
 - [TablePagination] Improve the API docs page (#9181) @oliviertassinari
 - [typescript] Strip keys from GridProps which won't get passed to override component (#9183) @pelotom
@@ -6610,7 +6735,7 @@ The `Input` and `FormLabel` component do no longer inherit the font-size. You mi
 - [SwitchBase] Inherit `disabled` from FormControl (#8917) @nllarson
 - [Popover] Improve the warning message (#8948) @oliviertassinari
 - [Popover] Add max-width (#8992) @oliviertassinari
-- [InputAdornment] Correct typescript export (#8959) @minajevs
+- [InputAdornment] Correct TypeScript export (#8959) @minajevs
 - [utils] Make ClickAwayListener public (#8967) @oliviertassinari
 - [Slider] Add the logic back (#8972) @oliviertassinari
 - [Select] Remove IE11 arrow (#8976) @oliviertassinari
@@ -6755,7 +6880,7 @@ We enforce this behavior now.
 - [RadioGroup] Better keyboard focus logic (#8720) @oliviertassinari
 - [ButtonBase] Fix missing keyboard ripple (#8723) @sakulstra
 - [ButtonBase] Remove Firefox dotted outline #8721) @oliviertassinari
-- [Tooltip] Redefine title from base typescript (#8727) @DaIgeb
+- [Tooltip] Redefine title from base TypeScript (#8727) @DaIgeb
 - [TypeScript] Fix GridListTitle `rows` property (#8740) @fathyb
 - [InputAdornment] New Component (#8504) @eyn
 - [TableRow] Adjust CSS for components other than <tr> (#8750) @chaitan94
@@ -6836,7 +6961,7 @@ For instance, we need to upgrade all our dev dependencies to *react@16* first.
 - [Input] Fix hover style on mobile (#8644) @oliviertassinari
 - [Slide] Fix resize issue (#8672) @oliviertassinari
 - [RadioGroup] Remove the injected styles (#8692) @oliviertassinari
-- [Tooltip] Improve typescript definition (#8698) @oliviertassinari
+- [Tooltip] Improve TypeScript definition (#8698) @oliviertassinari
 - [MuiThemeProvider] Add more constraints for everybody sanity (#8701) @oliviertassinari
 
 #### Docs
@@ -7231,7 +7356,7 @@ Big thanks to the 12 contributors who made this release possible.
 ## 1.0.0-beta.10
 ###### *Sep 14, 2017*
 
-This is an early release as we have been breaking the typescript typings with 1.0.0-beta.9.
+This is an early release as we have been breaking the TypeScript typings with 1.0.0-beta.9.
 Hopefully, we are in a better state now.
 Here are some highlights:
 - Keeping pushing typing fixes @xaviergonz and @sebald
