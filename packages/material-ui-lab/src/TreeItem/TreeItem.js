@@ -56,13 +56,15 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     classes,
     className,
     collapseIcon,
+    endIcon,
     expandIcon,
-    icon,
+    icon: iconProp,
     label,
     nodeId,
     onClick,
     onFocus,
     onKeyDown,
+    TransitionComponent = Collapse,
     ...other
   } = props;
 
@@ -88,7 +90,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const contentRef = React.useRef(null);
   const handleRef = useForkRef(nodeRef, ref);
 
-  let stateIcon = null;
+  let icon = iconProp;
 
   const expandable = Boolean(children);
   const expanded = isExpanded ? isExpanded(nodeId) : false;
@@ -96,31 +98,20 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const tabable = isTabable ? isTabable(nodeId) : false;
   const icons = contextIcons || {};
 
-  if (icons.defaultExpandIcon && expandable && !expanded) {
-    stateIcon = icons.defaultExpandIcon;
-  }
-  if (icons.defaultCollapseIcon && expandable && expanded) {
-    stateIcon = icons.defaultCollapseIcon;
-  }
+  if (!icon) {
+    if (expandable) {
+      if (!expanded) {
+        icon = expandIcon || icons.defaultExpandIcon;
+      } else {
+        icon = collapseIcon || icons.defaultCollapseIcon;
+      }
 
-  if (expandIcon && expandable && !expanded) {
-    stateIcon = expandIcon;
-  }
-
-  if (collapseIcon && expandable && expanded) {
-    stateIcon = collapseIcon;
-  }
-
-  const stateIconsProvided = icons && (icons.defaultCollapseIcon || icons.defaultExpandIcon);
-
-  let startAdornment = null;
-
-  if (expandable) {
-    if (icons.defaultParentIcon || icon) {
-      startAdornment = icon || icons.defaultParentIcon;
+      if (!icon) {
+        icon = icon || icons.defaultParentIcon;
+      }
+    } else {
+      icon = icons.defaultEndIcon;
     }
-  } else if (icons.defaultEndIcon || icon) {
-    startAdornment = icon || icons.defaultEndIcon;
   }
 
   const handleClick = event => {
@@ -257,14 +248,13 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       {...other}
     >
       <div className={classes.content} onClick={handleClick} ref={contentRef}>
-        {stateIconsProvided ? <div className={classes.iconContainer}>{stateIcon}</div> : null}
-        {startAdornment ? <div className={classes.iconContainer}>{startAdornment}</div> : null}
+        {icon ? <div className={classes.iconContainer}>{icon}</div> : null}
         <Typography className={classes.label}>{label}</Typography>
       </div>
       {children && (
-        <Collapse className={classes.group} in={expanded} component="ul" role="group">
+        <TransitionComponent className={classes.group} in={expanded} component="ul" role="group">
           {children}
-        </Collapse>
+        </TransitionComponent>
       )}
     </li>
   );
@@ -288,6 +278,10 @@ TreeItem.propTypes = {
    * The icon used to collapse the node.
    */
   collapseIcon: PropTypes.node,
+  /**
+   * The icon displayed next to a end node.
+   */
+  endIcon: PropTypes.node,
   /**
    * The icon used to expand the node.
    */
@@ -316,6 +310,10 @@ TreeItem.propTypes = {
    * @ignore
    */
   onKeyDown: PropTypes.func,
+  /**
+   * The component used for the transition.
+   */
+  TransitionComponent: PropTypes.elementType,
 };
 
 export default withStyles(styles, { name: 'MuiTreeItem' })(TreeItem);
