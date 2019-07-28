@@ -13,13 +13,6 @@ components: Rating
 
 {{"demo": "pages/components/rating/SimpleRating.js"}}
 
-## Half ratings
-
-The rating can display any float number with the `value` prop.
-Use the `precision` prop to define the minimum increment value change allowed.
-
-{{"demo": "pages/components/rating/HalfRating.js"}}
-
 ## Customized ratings
 
 Here are some examples of customizing the component. You can learn more about this in the
@@ -27,18 +20,25 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/rating/CustomizedRatings.js"}}
 
-## Sizes
-
-Fancy larger or smaller ratings? Use the `size` property.
-
-{{"demo": "pages/components/rating/RatingSize.js"}}
-
 ## Hover feedback
 
 You can display a label on hover to help users pick the correct rating value.
 The first demo uses the `onChangeActive` prop while the last one uses the `IconContainerComponent` prop.
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
+
+## Half ratings
+
+The rating can display any float number with the `value` prop.
+Use the `precision` prop to define the minimum increment value change allowed.
+
+{{"demo": "pages/components/rating/HalfRating.js"}}
+
+## Sizes
+
+Fancy larger or smaller ratings? Use the `size` prop.
+
+{{"demo": "pages/components/rating/RatingSize.js"}}
 
 ## Accessibility
 
