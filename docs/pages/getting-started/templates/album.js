@@ -1,19 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import AppTheme from 'docs/src/modules/components/AppTheme';
 import Album from 'docs/src/pages/getting-started/templates/album/Album';
 
-function Page(props) {
+export default function Page() {
   return (
-    <AppTheme title="Album page layout - Material-UI" description={props.t('albumDescr')}>
+    <AppTheme>
       <Album />
     </AppTheme>
   );
 }
-
-Page.propTypes = {
-  t: PropTypes.func.isRequired,
-};
-
-export default connect(state => ({ t: state.options.t }))(Page);

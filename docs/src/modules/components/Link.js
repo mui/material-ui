@@ -41,7 +41,7 @@ function Link(props) {
     [activeClassName]: router.pathname === props.href && activeClassName,
   });
 
-  if (userLanguage !== 'en' && other.href.indexOf('/') === 0) {
+  if (userLanguage !== 'en' && other.href.indexOf('/') === 0 && other.href.indexOf('/blog') !== 0) {
     other.as = `/${userLanguage}${other.href}`;
   }
 
