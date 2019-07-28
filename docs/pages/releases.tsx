@@ -47,8 +47,8 @@ const Releases: NextFC<ReleasesProps> = ({ tags }) => {
       </Typography>
       <Typography gutterBottom>
         We are using semver strategy for making releases. Here you can find documentation for some
-        of previous material-ui-picker's releases. Please note that our versions is not synced with
-        @material-ui/core versions
+        of previous material-ui-picker's releases. Please note that our versions are not synced with
+        @material-ui/core
       </Typography>
 
       <Paper className={classes.scrollableTable}>
