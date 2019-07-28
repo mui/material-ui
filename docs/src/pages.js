@@ -189,7 +189,7 @@ const pages = [
     linkProps: {
       'data-ga-event-category': 'premium-themes',
       'data-ga-event-action': 'click',
-      'data-ga-event-label': 'home-link',
+      'data-ga-event-label': 'sidenav-link',
     },
   },
   {
