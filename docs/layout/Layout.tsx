@@ -52,7 +52,7 @@ const styles = (theme: Theme) =>
     },
     main: {
       padding: '20px',
-      paddingTop: 55,
+      paddingTop: 75,
       minHeight: 'calc(100vh - 55px)',
       [theme.breakpoints.up('md')]: {
         minHeight: 'calc(100vh - 64px)',
