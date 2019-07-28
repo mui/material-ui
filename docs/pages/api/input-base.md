@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/InputBase/InputBase.js
 
 # InputBase API
 
-<p class="description">The API documentation of the InputBase React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the InputBase React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import { InputBase } from '@material-ui/core';
@@ -49,7 +49,7 @@ It contains a load of style reset and some state logic.
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 

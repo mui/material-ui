@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/SwipeableDrawer/SwipeableDrawer.js
 
 # SwipeableDrawer API
 
-<p class="description">The API documentation of the SwipeableDrawer React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the SwipeableDrawer React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import { SwipeableDrawer } from '@material-ui/core';
@@ -32,11 +32,11 @@ import { SwipeableDrawer } from '@material-ui/core';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element ([Drawer](/api/drawer/)).
+Any other props supplied will be provided to the root element ([Drawer](/api/drawer/)).
 
 ## Inheritance
 
-The properties of the [Drawer](/api/drawer/) component are also available.
+The props of the [Drawer](/api/drawer/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Notes

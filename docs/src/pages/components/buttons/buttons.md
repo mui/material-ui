@@ -131,7 +131,9 @@ However for certain focus polyfills `ButtonBase` requires the DOM node of the pr
 component. This is achieved by attaching a ref to the component and expecting that the
 component forwards this ref to the underlying DOM node.
 Given that a lot of our interactive components rely on `ButtonBase`, you should be
-able to take advantage of it everywhere:
+able to take advantage of it everywhere.
+
+Here is an integration example with react-router:
 
 {{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 

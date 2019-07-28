@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/ButtonBase/ButtonBase.js
 
 # ButtonBase API
 
-<p class="description">The API documentation of the ButtonBase React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the ButtonBase React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import { ButtonBase } from '@material-ui/core';
@@ -37,7 +37,7 @@ It contains a load of style reset and some focus/ripple logic.
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 

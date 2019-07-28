@@ -51,7 +51,7 @@ describe('<Avatar />', () => {
       assert.strictEqual(img.props().src, 'something.jpg');
     });
 
-    it('should be able to add more properties to the image', () => {
+    it('should be able to add more props to the image', () => {
       const onError = () => {};
       const wrapper = shallow(<Avatar src="something.jpg" imgProps={{ onError }} />);
       assert.strictEqual(wrapper.childAt(0).props().onError, onError);

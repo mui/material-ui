@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/RadioGroup/RadioGroup.js
 
 # RadioGroup API
 
-<p class="description">The API documentation of the RadioGroup React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the RadioGroup React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import { RadioGroup } from '@material-ui/core';
@@ -26,11 +26,11 @@ import { RadioGroup } from '@material-ui/core';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element ([FormGroup](/api/form-group/)).
+Any other props supplied will be provided to the root element ([FormGroup](/api/form-group/)).
 
 ## Inheritance
 
-The properties of the [FormGroup](/api/form-group/) component are also available.
+The props of the [FormGroup](/api/form-group/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Notes

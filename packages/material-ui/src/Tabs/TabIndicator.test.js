@@ -6,7 +6,7 @@ import TabIndicator from './TabIndicator';
 describe('<TabIndicator />', () => {
   let shallow;
   let classes;
-  const props = {
+  const defaultProps = {
     direction: 'left',
     orientation: 'horizontal',
     color: 'secondary',
@@ -15,25 +15,25 @@ describe('<TabIndicator />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    classes = getClasses(<TabIndicator {...props} />);
+    classes = getClasses(<TabIndicator {...defaultProps} />);
   });
 
   it('should render with the root class', () => {
-    const wrapper = shallow(<TabIndicator {...props} />);
+    const wrapper = shallow(<TabIndicator {...defaultProps} />);
     assert.strictEqual(wrapper.name(), 'span');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
   describe('prop: style', () => {
     it('should be applied on the root element', () => {
-      const wrapper = shallow(<TabIndicator {...props} style={style} />);
+      const wrapper = shallow(<TabIndicator {...defaultProps} style={style} />);
       assert.strictEqual(wrapper.props().style, style, 'should apply directly the property');
     });
   });
 
   describe('prop: className', () => {
     it('should append the className on the root element', () => {
-      const wrapper = shallow(<TabIndicator {...props} className="foo" />);
+      const wrapper = shallow(<TabIndicator {...defaultProps} className="foo" />);
       assert.strictEqual(wrapper.name(), 'span');
       assert.strictEqual(wrapper.hasClass('foo'), true);
     });

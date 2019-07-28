@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/NoSsr/NoSsr.js
 
 # NoSsr API
 
-<p class="description">The API documentation of the NoSsr React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the NoSsr React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import { NoSsr } from '@material-ui/core';

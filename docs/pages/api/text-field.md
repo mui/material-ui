@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/TextField/TextField.js
 
 # TextField API
 
-<p class="description">The API documentation of the TextField React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the TextField React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import { TextField } from '@material-ui/core';
@@ -27,7 +27,7 @@ on top of the following components:
 - [Input](/api/input/)
 - [FormHelperText](/api/form-helper-text/)
 
-If you wish to alter the properties applied to the `input` element, you can do so as follows:
+If you wish to alter the props applied to the `input` element, you can do so as follows:
 
 ```jsx
 const inputProps = {
@@ -78,7 +78,7 @@ For advanced cases, please look at the source of TextField by clicking on the
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element ([FormControl](/api/form-control/)).
+Any other props supplied will be provided to the root element ([FormControl](/api/form-control/)).
 
 ## CSS
 
@@ -99,7 +99,7 @@ If it's not enough, you can find the [implementation of the component](https://g
 
 ## Inheritance
 
-The properties of the [FormControl](/api/form-control/) component are also available.
+The props of the [FormControl](/api/form-control/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Notes

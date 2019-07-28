@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/ListItemAvatar/ListItemAvatar.js
 
 # ListItemAvatar API
 
-<p class="description">The API documentation of the ListItemAvatar React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the ListItemAvatar React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import { ListItemAvatar } from '@material-ui/core';
@@ -23,7 +23,7 @@ A simple wrapper to apply `List` styles to an `Avatar`.
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 

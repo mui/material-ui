@@ -50,9 +50,7 @@ function HiddenCss(props) {
   warning(
     Object.keys(other).length === 0 ||
       (Object.keys(other).length === 1 && other.hasOwnProperty('ref')),
-    `Material-UI: unsupported properties received ${Object.keys(other).join(
-      ', ',
-    )} by \`<Hidden />\`.`,
+    `Material-UI: unsupported props received ${Object.keys(other).join(', ')} by \`<Hidden />\`.`,
   );
 
   const clsx = [];

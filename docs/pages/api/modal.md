@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/Modal/Modal.js
 
 # Modal API
 
-<p class="description">The API documentation of the Modal React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the Modal React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import { Modal } from '@material-ui/core';
@@ -49,7 +49,7 @@ This component shares many concepts with [react-overlays](https://react-bootstra
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (native element).
 
 ## Notes
 

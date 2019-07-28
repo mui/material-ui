@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/Portal/Portal.js
 
 # Portal API
 
-<p class="description">The API documentation of the Portal React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the Portal React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import { Portal } from '@material-ui/core';

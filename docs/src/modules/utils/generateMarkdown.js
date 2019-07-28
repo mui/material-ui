@@ -298,7 +298,7 @@ function generateProps(reactAPI) {
 
   if (reactAPI.spread) {
     text = `${text}
-Any other properties supplied will be provided to the root element (${
+Any other props supplied will be provided to the root element (${
       reactAPI.inheritance
         ? `[${reactAPI.inheritance.component}](${Router._rewriteUrlForNextExport(
             reactAPI.inheritance.pathname,
@@ -379,7 +379,7 @@ function generateInheritance(reactAPI) {
 
   return `## Inheritance
 
-The properties of the [${inheritance.component}](${Router._rewriteUrlForNextExport(
+The props of the [${inheritance.component}](${Router._rewriteUrlForNextExport(
     inheritance.pathname,
   )}) component${suffix} are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
@@ -446,7 +446,7 @@ export default function generateMarkdown(reactAPI) {
     `# ${reactAPI.name} API`,
     '',
     `<p class="description">The API documentation of the ${reactAPI.name} React component. ` +
-      'Learn more about the properties and the CSS customization points.</p>',
+      'Learn more about the props and the CSS customization points.</p>',
     '',
     generateImportStatement(reactAPI),
     '',

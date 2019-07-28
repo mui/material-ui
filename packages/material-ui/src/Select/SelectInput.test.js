@@ -106,7 +106,7 @@ describe('<SelectInput />', () => {
   });
 
   describe('prop: MenuProps', () => {
-    it('should apply additional properties to the Menu component', () => {
+    it('should apply additional props to the Menu component', () => {
       const wrapper = shallow(
         <SelectInput {...defaultProps} MenuProps={{ transitionDuration: 100 }} />,
       );
@@ -122,7 +122,7 @@ describe('<SelectInput />', () => {
   });
 
   describe('prop: SelectDisplayProps', () => {
-    it('should apply additional properties to the clickable div element', () => {
+    it('should apply additional props to the clickable div element', () => {
       const wrapper = shallow(
         <SelectInput {...defaultProps} SelectDisplayProps={{ 'data-test': 'SelectDisplay' }} />,
       );

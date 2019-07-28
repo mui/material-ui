@@ -100,7 +100,7 @@ describe('styled', () => {
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.args()[0][0],
-        'You can not use the clone and component properties at the same time',
+        'You can not use the clone and component prop at the same time',
       );
     });
   });

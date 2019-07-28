@@ -1,5 +1,3 @@
-import 'docs/src/modules/components/bootstrap';
-// --- Post bootstrap -----
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';

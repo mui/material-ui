@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/FormGroup/FormGroup.js
 
 # FormGroup API
 
-<p class="description">The API documentation of the FormGroup React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the FormGroup React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import { FormGroup } from '@material-ui/core';
@@ -26,7 +26,7 @@ For the `Radio`, you should be using the `RadioGroup` component instead of this 
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 

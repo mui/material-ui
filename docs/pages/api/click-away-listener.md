@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/ClickAwayListener/ClickAwayListener.js
 
 # ClickAwayListener API
 
-<p class="description">The API documentation of the ClickAwayListener React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the ClickAwayListener React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import { ClickAwayListener } from '@material-ui/core';

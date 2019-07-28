@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/LinearProgress/LinearProgress.js
 
 # LinearProgress API
 
-<p class="description">The API documentation of the LinearProgress React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the LinearProgress React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import { LinearProgress } from '@material-ui/core';
@@ -30,7 +30,7 @@ attribute to `true` on that region until it has finished loading.
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 

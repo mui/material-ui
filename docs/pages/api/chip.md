@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/Chip/Chip.js
 
 # Chip API
 
-<p class="description">The API documentation of the Chip React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the Chip React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import { Chip } from '@material-ui/core';
@@ -33,7 +33,7 @@ Chips represent complex entities in small blocks, such as a contact.
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 

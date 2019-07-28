@@ -59,7 +59,7 @@ export default function DiscreteSlider() {
       />
       <div className={classes.margin} />
       <Typography id="discrete-slider-small-steps" gutterBottom>
-        Small Steps
+        Small steps
       </Typography>
       <Slider
         defaultValue={0.00000005}

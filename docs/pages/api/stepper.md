@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/Stepper/Stepper.js
 
 # Stepper API
 
-<p class="description">The API documentation of the Stepper React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the Stepper React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import { Stepper } from '@material-ui/core';
@@ -28,7 +28,7 @@ import { Stepper } from '@material-ui/core';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element ([Paper](/api/paper/)).
+Any other props supplied will be provided to the root element ([Paper](/api/paper/)).
 
 ## CSS
 
@@ -52,7 +52,7 @@ If it's not enough, you can find the [implementation of the component](https://g
 
 ## Inheritance
 
-The properties of the [Paper](/api/paper/) component are also available.
+The props of the [Paper](/api/paper/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
 ## Notes

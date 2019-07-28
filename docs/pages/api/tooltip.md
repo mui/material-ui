@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/Tooltip/Tooltip.js
 
 # Tooltip API
 
-<p class="description">The API documentation of the Tooltip React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the Tooltip React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import { Tooltip } from '@material-ui/core';
@@ -40,7 +40,7 @@ import { Tooltip } from '@material-ui/core';
 
 The component cannot hold a ref.
 
-Any other properties supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 

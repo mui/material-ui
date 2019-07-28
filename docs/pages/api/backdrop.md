@@ -6,7 +6,7 @@ filename: /packages/material-ui/src/Backdrop/Backdrop.js
 
 # Backdrop API
 
-<p class="description">The API documentation of the Backdrop React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the Backdrop React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import { Backdrop } from '@material-ui/core';
@@ -25,7 +25,7 @@ import { Backdrop } from '@material-ui/core';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 

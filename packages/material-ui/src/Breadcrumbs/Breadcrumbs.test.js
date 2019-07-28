@@ -102,7 +102,7 @@ describe('<Breadcrumbs />', () => {
       assert.strictEqual(consoleErrorMock.callCount(), 2);
       assert.include(
         consoleErrorMock.args()[0][0],
-        'you have provided an invalid combination of properties to the',
+        'you have provided an invalid combination of props to the',
       );
     });
   });

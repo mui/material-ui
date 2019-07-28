@@ -6,7 +6,7 @@ filename: /packages/material-ui-lab/src/SpeedDial/SpeedDial.js
 
 # SpeedDial API
 
-<p class="description">The API documentation of the SpeedDial React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the SpeedDial React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
 import { SpeedDial } from '@material-ui/lab';
@@ -34,7 +34,7 @@ import { SpeedDial } from '@material-ui/lab';
 
 The component cannot hold a ref.
 
-Any other properties supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 

@@ -16,7 +16,7 @@ function exactProp(propTypes) {
       const unsupportedProps = Object.keys(props).filter(prop => !propTypes.hasOwnProperty(prop));
       if (unsupportedProps.length > 0) {
         return new Error(
-          `The following properties are not supported: ${unsupportedProps
+          `The following props are not supported: ${unsupportedProps
             .map(prop => `\`${prop}\``)
             .join(', ')}. Please remove them.`,
         );
