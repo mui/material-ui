@@ -209,10 +209,10 @@ const Modal = React.forwardRef(function Modal(props, ref) {
   const inlineStyle = styles(theme || { zIndex });
   const childProps = {};
   if (children.props.role === undefined) {
-    childProps.role = children.role || 'document';
+    childProps.role = 'document';
   }
   if (children.props.tabIndex === undefined) {
-    childProps.tabIndex = children.tabIndex || '-1';
+    childProps.tabIndex = '-1';
   }
 
   // It's a Transition like component
