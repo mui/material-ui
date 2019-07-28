@@ -6,10 +6,10 @@ filename: /packages/material-ui-lab/src/TreeItem/TreeItem.js
 
 # TreeItem API
 
-<p class="description">The API documentation of the TreeItem React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the TreeItem React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import TreeItem from '@material-ui/lab/TreeItem';
+import { TreeItem } from '@material-ui/lab';
 ```
 
 
@@ -28,28 +28,28 @@ import TreeItem from '@material-ui/lab/TreeItem';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiTreeItem`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiTreeItem-root</span> | Styles applied to the root element.
+| <span class="prop-name">group</span> | <span class="prop-name">MuiTreeItem-group</span> | Styles applied to the `role="group"` element.
+| <span class="prop-name">content</span> | <span class="prop-name">MuiTreeItem-content</span> | Styles applied to the tree node content.
+| <span class="prop-name">iconContainer</span> | <span class="prop-name">MuiTreeItem-iconContainer</span> | Styles applied to the tree node icon and collapse/expand icon.
+| <span class="prop-name">label</span> | <span class="prop-name">MuiTreeItem-label</span> | Styles applied to the label element.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">group</span> | Styles applied to the `role="group"` element.
-| <span class="prop-name">content</span> | Styles applied to the tree node content.
-| <span class="prop-name">iconContainer</span> | Styles applied to the tree node icon and collapse/expand icon.
-| <span class="prop-name">label</span> | Styles applied to the label element.
+You can override the style of the component thanks to one of these customizability points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/TreeItem/TreeItem.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiTreeItem`.
+If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/TreeItem/TreeItem.js) for more detail.
 
 ## Notes
 
