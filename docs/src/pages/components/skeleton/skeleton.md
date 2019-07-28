@@ -1,0 +1,29 @@
+---
+title: Skeleton React component
+components: Skeleton
+---
+
+# Skeleton
+
+<p class="description">Display a placeholder preview of your content before the data get loaded. A skeleton can reduce load time frustration.</p>
+
+The data of your components might not be available. You can increase the user’s perceived performance by using skeletons. It feels like things are happening immediately, the information is incrementally displayed on the screen (Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
+
+The component is designed to be used **directly in your components**.
+For instance:
+
+```jsx
+{item ? (
+  <img style={{ width: 210, height: 118 }} alt={item.title} src={item.src} />
+) : (
+  <Skeleton variant="rect" width={210} height={118} />
+)}
+```
+
+## YouTube example
+
+{{"demo": "pages/components/skeleton/YouTube.js"}}
+
+## Facebook example
+
+{{"demo": "pages/components/skeleton/Facebook.js"}}

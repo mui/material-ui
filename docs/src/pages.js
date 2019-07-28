@@ -113,6 +113,7 @@ const pages = [
         children: [
           { pathname: '/components/about-the-lab' },
           { pathname: '/components/rating' },
+          { pathname: '/components/skeleton' },
           { pathname: '/components/speed-dial' },
           { pathname: '/components/toggle-button' },
           { pathname: '/components/tree-view' },
