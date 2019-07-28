@@ -44,13 +44,13 @@ Any other props supplied will be provided to the root element ([Transition](http
 | <span class="prop-name">wrapper</span> | <span class="prop-name">MuiCollapse-wrapper</span> | Styles applied to the outer wrapper element.
 | <span class="prop-name">wrapperInner</span> | <span class="prop-name">MuiCollapse-wrapperInner</span> | Styles applied to the inner wrapper element.
 
-You can override the style of the component thanks to one of these customizability points:
+You can override the style of the component thanks to one of these customization points:
 
 - With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
-If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Collapse/Collapse.js) for more detail.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Collapse/Collapse.js) for more detail.
 
 ## Inheritance
 

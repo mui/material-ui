@@ -39,13 +39,13 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 | <span class="prop-name">vertical</span> | <span class="prop-name">MuiStepButton-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
 | <span class="prop-name">touchRipple</span> | <span class="prop-name">MuiStepButton-touchRipple</span> | Styles applied to the `ButtonBase` touch-ripple.
 
-You can override the style of the component thanks to one of these customizability points:
+You can override the style of the component thanks to one of these customization points:
 
 - With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
-If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/StepButton/StepButton.js) for more detail.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/StepButton/StepButton.js) for more detail.
 
 ## Inheritance
 

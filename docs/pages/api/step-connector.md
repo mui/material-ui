@@ -42,13 +42,13 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">lineHorizontal</span> | <span class="prop-name">MuiStepConnector-lineHorizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
 | <span class="prop-name">lineVertical</span> | <span class="prop-name">MuiStepConnector-lineVertical</span> | Styles applied to the root element if `orientation="vertical"`.
 
-You can override the style of the component thanks to one of these customizability points:
+You can override the style of the component thanks to one of these customization points:
 
 - With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
-If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/StepConnector/StepConnector.js) for more detail.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/StepConnector/StepConnector.js) for more detail.
 
 ## Notes
 

@@ -45,13 +45,13 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">fontSizeSmall</span> | <span class="prop-name">MuiIcon-fontSizeSmall</span> | Styles applied to the root element if `fontSize="small"`.
 | <span class="prop-name">fontSizeLarge</span> | <span class="prop-name">MuiIcon-fontSizeLarge</span> | Styles applied to the root element if `fontSize="large"`.
 
-You can override the style of the component thanks to one of these customizability points:
+You can override the style of the component thanks to one of these customization points:
 
 - With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
-If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Icon/Icon.js) for more detail.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Icon/Icon.js) for more detail.
 
 ## Notes
 

@@ -69,13 +69,13 @@ Any other props supplied will be provided to the root element ([Modal](/api/moda
 | <span class="prop-name">paperFullWidth</span> | <span class="prop-name">MuiDialog-paperFullWidth</span> | Styles applied to the `Paper` component if `fullWidth={true}`.
 | <span class="prop-name">paperFullScreen</span> | <span class="prop-name">MuiDialog-paperFullScreen</span> | Styles applied to the `Paper` component if `fullScreen={true}`.
 
-You can override the style of the component thanks to one of these customizability points:
+You can override the style of the component thanks to one of these customization points:
 
 - With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
-If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Dialog/Dialog.js) for more detail.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Dialog/Dialog.js) for more detail.
 
 ## Inheritance
 

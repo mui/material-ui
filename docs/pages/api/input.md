@@ -69,13 +69,13 @@ Any other props supplied will be provided to the root element ([InputBase](/api/
 | <span class="prop-name">inputMultiline</span> | <span class="prop-name">MuiInput-inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
 | <span class="prop-name">inputTypeSearch</span> | <span class="prop-name">MuiInput-inputTypeSearch</span> | Styles applied to the `input` element if `type="search"`.
 
-You can override the style of the component thanks to one of these customizability points:
+You can override the style of the component thanks to one of these customization points:
 
 - With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
-If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Input/Input.js) for more detail.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Input/Input.js) for more detail.
 
 ## Inheritance
 

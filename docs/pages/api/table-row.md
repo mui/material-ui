@@ -42,13 +42,13 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">head</span> | <span class="prop-name">MuiTableRow-head</span> | Styles applied to the root element if table variant="head".
 | <span class="prop-name">footer</span> | <span class="prop-name">MuiTableRow-footer</span> | Styles applied to the root element if table variant="footer".
 
-You can override the style of the component thanks to one of these customizability points:
+You can override the style of the component thanks to one of these customization points:
 
 - With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
-If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TableRow/TableRow.js) for more detail.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TableRow/TableRow.js) for more detail.
 
 ## Notes
 

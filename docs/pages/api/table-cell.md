@@ -51,13 +51,13 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">alignRight</span> | <span class="prop-name">MuiTableCell-alignRight</span> | Styles applied to the root element if `align="right"`.
 | <span class="prop-name">alignJustify</span> | <span class="prop-name">MuiTableCell-alignJustify</span> | Styles applied to the root element if `align="justify"`.
 
-You can override the style of the component thanks to one of these customizability points:
+You can override the style of the component thanks to one of these customization points:
 
 - With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
-If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TableCell/TableCell.js) for more detail.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TableCell/TableCell.js) for more detail.
 
 ## Notes
 

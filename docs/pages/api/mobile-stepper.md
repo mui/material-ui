@@ -47,13 +47,13 @@ Any other props supplied will be provided to the root element ([Paper](/api/pape
 | <span class="prop-name">dotActive</span> | <span class="prop-name">MuiMobileStepper-dotActive</span> | Styles applied to a dot if `variant="dots"` and this is the active step.
 | <span class="prop-name">progress</span> | <span class="prop-name">MuiMobileStepper-progress</span> | Styles applied to the Linear Progress component if `variant="progress"`.
 
-You can override the style of the component thanks to one of these customizability points:
+You can override the style of the component thanks to one of these customization points:
 
 - With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
 - With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
-If it's not enough, you can find the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/MobileStepper/MobileStepper.js) for more detail.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/MobileStepper/MobileStepper.js) for more detail.
 
 ## Inheritance
 
