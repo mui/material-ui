@@ -1,103 +1,88 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   close: {
     padding: theme.spacing(0.5),
   },
-});
+}));
 
-class ConsecutiveSnackbars extends React.Component {
-  queue = [];
+export default function ConsecutiveSnackbars() {
+  const queueRef = React.useRef([]);
+  const [open, setOpen] = React.useState(false);
+  const [messageInfo, setMessageInfo] = React.useState(undefined);
 
-  state = {
-    open: false,
+  const processQueue = () => {
+    if (queueRef.current.length > 0) {
+      setMessageInfo(queueRef.current.shift());
+      setOpen(true);
+    }
   };
 
-  handleClick = message => () => {
-    this.queue.push({
+  const handleClick = message => () => {
+    queueRef.current.push({
       message,
       key: new Date().getTime(),
     });
 
-    if (this.state.open) {
+    if (open) {
       // immediately begin dismissing current message
       // to start showing new one
-      this.setState({ open: false });
+      setOpen(false);
     } else {
-      this.processQueue();
+      processQueue();
     }
   };
 
-  processQueue = () => {
-    if (this.queue.length > 0) {
-      this.setState({
-        messageInfo: this.queue.shift(),
-        open: true,
-      });
-    }
-  };
-
-  handleClose = (event, reason) => {
+  const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-    this.setState({ open: false });
+    setOpen(false);
   };
 
-  handleExited = () => {
-    this.processQueue();
+  const handleExited = () => {
+    processQueue();
   };
 
-  render() {
-    const { classes } = this.props;
-    const { messageInfo = {} } = this.state;
-
-    return (
-      <div>
-        <Button onClick={this.handleClick('Message A')}>Show message A</Button>
-        <Button onClick={this.handleClick('Message B')}>Show message B</Button>
-        <Snackbar
-          key={messageInfo.key}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          open={this.state.open}
-          autoHideDuration={6000}
-          onClose={this.handleClose}
-          onExited={this.handleExited}
-          ContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={<span id="message-id">{messageInfo.message}</span>}
-          action={[
-            <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
-              UNDO
-            </Button>,
-            <IconButton
-              key="close"
-              aria-label="close"
-              color="inherit"
-              className={classes.close}
-              onClick={this.handleClose}
-            >
-              <CloseIcon />
-            </IconButton>,
-          ]}
-        />
-      </div>
-    );
-  }
+  const classes = useStyles();
+  return (
+    <div>
+      <Button onClick={handleClick('Message A')}>Show message A</Button>
+      <Button onClick={handleClick('Message B')}>Show message B</Button>
+      <Snackbar
+        key={messageInfo ? messageInfo.key : undefined}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        onExited={handleExited}
+        ContentProps={{
+          'aria-describedby': 'message-id',
+        }}
+        message={<span id="message-id">{messageInfo ? messageInfo.message : undefined}</span>}
+        action={[
+          <Button key="undo" color="secondary" size="small" onClick={handleClose}>
+            UNDO
+          </Button>,
+          <IconButton
+            key="close"
+            aria-label="close"
+            color="inherit"
+            className={classes.close}
+            onClick={handleClose}
+          >
+            <CloseIcon />
+          </IconButton>,
+        ]}
+      />
+    </div>
+  );
 }
-
-ConsecutiveSnackbars.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ConsecutiveSnackbars);

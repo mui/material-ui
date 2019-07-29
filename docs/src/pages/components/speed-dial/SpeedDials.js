@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import Radio from '@material-ui/core/Radio';
@@ -17,7 +16,7 @@ import PrintIcon from '@material-ui/icons/Print';
 import ShareIcon from '@material-ui/icons/Share';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
   },
@@ -46,7 +45,7 @@ const styles = theme => ({
   directionRight: {},
   directionDown: {},
   directionLeft: {},
-});
+}));
 
 const actions = [
   { icon: <FileCopyIcon />, name: 'Copy' },
@@ -56,111 +55,84 @@ const actions = [
   { icon: <DeleteIcon />, name: 'Delete' },
 ];
 
-class SpeedDials extends React.Component {
-  state = {
-    direction: 'up',
-    open: false,
-    hidden: false,
+export default function SpeedDials() {
+  const classes = useStyles();
+  const [direction, setDirection] = React.useState('up');
+  const [open, setOpen] = React.useState(false);
+  const [hidden, setHidden] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(prevOpen => !prevOpen);
   };
 
-  handleClick = () => {
-    this.setState(state => ({
-      open: !state.open,
-    }));
+  const handleDirectionChange = (event, value) => {
+    setDirection(value);
   };
 
-  handleDirectionChange = (event, value) => {
-    this.setState({
-      direction: value,
-    });
+  const handleHiddenChange = (event, newHidden) => {
+    setHidden(newHidden);
+    setOpen(newHidden ? false : open);
   };
 
-  handleHiddenChange = (event, hidden) => {
-    this.setState(state => ({
-      hidden,
-      // hidden implies !open
-      open: hidden ? false : state.open,
-    }));
+  const handleClose = () => {
+    setOpen(false);
   };
 
-  handleClose = () => {
-    this.setState({ open: false });
+  const handleOpen = () => {
+    setOpen(true);
   };
 
-  handleOpen = () => {
-    this.setState({ open: true });
-  };
+  const speedDialClassName = clsx(classes.speedDial, classes[`direction${capitalize(direction)}`]);
 
-  render() {
-    const { classes } = this.props;
-    const { direction, hidden, open } = this.state;
-
-    const speedDialClassName = clsx(
-      classes.speedDial,
-      classes[`direction${capitalize(direction)}`],
-    );
-
-    return (
-      <div className={classes.root}>
-        <div className={classes.controls}>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={hidden}
-                onChange={this.handleHiddenChange}
-                value="hidden"
-                color="primary"
-              />
-            }
-            label="Hidden"
-          />
-          <FormLabel component="legend">Direction</FormLabel>
-          <RadioGroup
-            aria-label="direction"
-            name="direction"
-            className={classes.radioGroup}
-            value={direction}
-            onChange={this.handleDirectionChange}
-            row
-          >
-            <FormControlLabel value="up" control={<Radio />} label="Up" />
-            <FormControlLabel value="right" control={<Radio />} label="Right" />
-            <FormControlLabel value="down" control={<Radio />} label="Down" />
-            <FormControlLabel value="left" control={<Radio />} label="Left" />
-          </RadioGroup>
-        </div>
-        <div className={classes.exampleWrapper}>
-          <SpeedDial
-            ariaLabel="SpeedDial example"
-            className={speedDialClassName}
-            hidden={hidden}
-            icon={<SpeedDialIcon />}
-            onBlur={this.handleClose}
-            onClick={this.handleClick}
-            onClose={this.handleClose}
-            onFocus={this.handleOpen}
-            onMouseEnter={this.handleOpen}
-            onMouseLeave={this.handleClose}
-            open={open}
-            direction={direction}
-          >
-            {actions.map(action => (
-              <SpeedDialAction
-                key={action.name}
-                icon={action.icon}
-                tooltipTitle={action.name}
-                onClick={this.handleClick}
-              />
-            ))}
-          </SpeedDial>
-        </div>
+  return (
+    <div className={classes.root}>
+      <div className={classes.controls}>
+        <FormControlLabel
+          control={
+            <Switch checked={hidden} onChange={handleHiddenChange} value="hidden" color="primary" />
+          }
+          label="Hidden"
+        />
+        <FormLabel component="legend">Direction</FormLabel>
+        <RadioGroup
+          aria-label="direction"
+          name="direction"
+          className={classes.radioGroup}
+          value={direction}
+          onChange={handleDirectionChange}
+          row
+        >
+          <FormControlLabel value="up" control={<Radio />} label="Up" />
+          <FormControlLabel value="right" control={<Radio />} label="Right" />
+          <FormControlLabel value="down" control={<Radio />} label="Down" />
+          <FormControlLabel value="left" control={<Radio />} label="Left" />
+        </RadioGroup>
       </div>
-    );
-  }
+      <div className={classes.exampleWrapper}>
+        <SpeedDial
+          ariaLabel="SpeedDial example"
+          className={speedDialClassName}
+          hidden={hidden}
+          icon={<SpeedDialIcon />}
+          onBlur={handleClose}
+          onClick={handleClick}
+          onClose={handleClose}
+          onFocus={handleOpen}
+          onMouseEnter={handleOpen}
+          onMouseLeave={handleClose}
+          open={open}
+          direction={direction}
+        >
+          {actions.map(action => (
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+              onClick={handleClick}
+            />
+          ))}
+        </SpeedDial>
+      </div>
+    </div>
+  );
 }
-
-SpeedDials.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(SpeedDials);

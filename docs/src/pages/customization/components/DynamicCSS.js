@@ -25,33 +25,27 @@ const StyledButton = withStyles({
   },
 })(({ classes, color, ...other }) => <Button className={classes.root} {...other} />);
 
-class DynamicCSS extends React.Component {
-  state = {
-    color: 'default',
+export default function DynamicCSS() {
+  const [color, setColor] = React.useState('default');
+
+  const handleChange = event => {
+    setColor(event.target.checked ? 'blue' : 'default');
   };
 
-  handleChange = event => {
-    this.setState({ color: event.target.checked ? 'blue' : 'default' });
-  };
-
-  render() {
-    return (
-      <React.Fragment>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={this.state.color === 'blue'}
-              onChange={this.handleChange}
-              color="primary"
-              value="dynamic-class-name"
-            />
-          }
-          label="Blue"
-        />
-        <StyledButton color={this.state.color}>Dynamic CSS</StyledButton>
-      </React.Fragment>
-    );
-  }
+  return (
+    <React.Fragment>
+      <FormControlLabel
+        control={
+          <Switch
+            checked={color === 'blue'}
+            onChange={handleChange}
+            color="primary"
+            value="dynamic-class-name"
+          />
+        }
+        label="Blue"
+      />
+      <StyledButton color={color}>Dynamic CSS</StyledButton>
+    </React.Fragment>
+  );
 }
-
-export default DynamicCSS;
