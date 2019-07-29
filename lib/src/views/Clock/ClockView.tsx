@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import Clock from './Clock';
-import ClockType, { ClockViewType } from '../../constants/ClockType';
+import ClockType from '../../constants/ClockType';
 import { useUtils } from '../../_shared/hooks/useUtils';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { getHourNumbers, getMinutesNumbers } from './ClockNumbers';
@@ -11,7 +11,7 @@ export interface TimePickerViewProps {
   /** TimePicker value */
   date: MaterialUiPickersDate;
   /** Clock type */
-  type: ClockViewType;
+  type: 'hours' | 'minutes' | 'seconds';
   /** 12h/24h clock mode */
   ampm?: boolean;
   /** Minutes step */
@@ -24,7 +24,7 @@ export interface TimePickerViewProps {
   onSecondsChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
 }
 
-export const TimePickerView: React.FC<TimePickerViewProps> = ({
+export const ClockView: React.FC<TimePickerViewProps> = ({
   type,
   onHourChange,
   onMinutesChange,
@@ -85,9 +85,9 @@ export const TimePickerView: React.FC<TimePickerViewProps> = ({
   return <Clock type={type} ampm={ampm} minutesStep={minutesStep} {...viewProps} />;
 };
 
-TimePickerView.displayName = 'TimePickerView';
+ClockView.displayName = 'TimePickerView';
 
-TimePickerView.propTypes = {
+ClockView.propTypes = {
   date: PropTypes.object.isRequired,
   onHourChange: PropTypes.func.isRequired,
   onMinutesChange: PropTypes.func.isRequired,
@@ -97,9 +97,9 @@ TimePickerView.propTypes = {
   type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key as any])).isRequired,
 } as any;
 
-TimePickerView.defaultProps = {
+ClockView.defaultProps = {
   ampm: true,
   minutesStep: 1,
 };
 
-export default React.memo(TimePickerView);
+export default React.memo(ClockView);

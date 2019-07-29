@@ -27,7 +27,7 @@ export { default as Calendar } from './views/Calendar/Calendar';
 
 export { default as Day } from './views/Calendar/Day';
 
-export { default as TimePickerView } from './views/Clock/ClockView';
+export { default as TimePickerView, ClockView } from './views/Clock/ClockView';
 
 export { default as Clock } from './views/Clock/Clock';
 
@@ -42,6 +42,8 @@ export { validate } from './_helpers/text-field-helper';
 export { useUtils } from './_shared/hooks/useUtils';
 
 export { usePickerState } from './_shared/hooks/usePickerState';
+
+export { useStaticState } from './_shared/hooks/useStaticState';
 
 export { useKeyboardPickerState } from './_shared/hooks/useKeyboardPickerState';
 

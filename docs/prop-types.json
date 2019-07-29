@@ -3583,5 +3583,394 @@
         "name": "Element"
       }
     }
+  },
+  "Calendar": {
+    "date": {
+      "defaultValue": null,
+      "description": "Calendar Date",
+      "name": "date",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "CalendarProps"
+      },
+      "required": true,
+      "type": {
+        "name": "any"
+      }
+    },
+    "onChange": {
+      "defaultValue": null,
+      "description": "Calendar onChange",
+      "name": "onChange",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "CalendarProps"
+      },
+      "required": true,
+      "type": {
+        "name": "(date: any, isFinish?: boolean) => void"
+      }
+    },
+    "minDate": {
+      "defaultValue": null,
+      "description": "Min date",
+      "name": "minDate",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "CalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "any"
+      }
+    },
+    "maxDate": {
+      "defaultValue": null,
+      "description": "Max date",
+      "name": "maxDate",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "CalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "any"
+      }
+    },
+    "disablePast": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "Disable past dates",
+      "name": "disablePast",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "CalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "disableFuture": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "Disable future dates",
+      "name": "disableFuture",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "CalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "leftArrowIcon": {
+      "defaultValue": null,
+      "description": "Left arrow icon",
+      "name": "leftArrowIcon",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "ReactNode"
+      }
+    },
+    "rightArrowIcon": {
+      "defaultValue": null,
+      "description": "Right arrow icon",
+      "name": "rightArrowIcon",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "ReactNode"
+      }
+    },
+    "renderDay": {
+      "defaultValue": null,
+      "description": "Custom renderer for day",
+      "name": "renderDay",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "(day: any, selectedDate: any, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
+      }
+    },
+    "allowKeyboardControl": {
+      "defaultValue": {
+        "value": "true"
+      },
+      "description": "Enables keyboard listener for moving between days in calendar",
+      "name": "allowKeyboardControl",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "leftArrowButtonProps": {
+      "defaultValue": null,
+      "description": "Props to pass to left arrow button",
+      "name": "leftArrowButtonProps",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Partial<IconButtonProps>"
+      }
+    },
+    "rightArrowButtonProps": {
+      "defaultValue": null,
+      "description": "Props to pass to right arrow button",
+      "name": "rightArrowButtonProps",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Partial<IconButtonProps>"
+      }
+    },
+    "shouldDisableDate": {
+      "defaultValue": null,
+      "description": "Disable specific date",
+      "name": "shouldDisableDate",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "(day: any) => boolean"
+      }
+    },
+    "onMonthChange": {
+      "defaultValue": null,
+      "description": "Callback firing on month change. Return promise to render spinner till it will not be resolved",
+      "name": "onMonthChange",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "(date: any) => void | Promise<void>"
+      }
+    },
+    "loadingIndicator": {
+      "defaultValue": null,
+      "description": "Custom loading indicator",
+      "name": "loadingIndicator",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Calendar/Calendar.tsx",
+        "name": "OutterCalendarProps"
+      },
+      "required": false,
+      "type": {
+        "name": "Element"
+      }
+    }
+  },
+  "TimePickerView": {
+    "date": {
+      "defaultValue": null,
+      "description": "TimePicker value",
+      "name": "date",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "TimePickerViewProps"
+      },
+      "required": true,
+      "type": {
+        "name": "any"
+      }
+    },
+    "type": {
+      "defaultValue": null,
+      "description": "Clock type",
+      "name": "type",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "TimePickerViewProps"
+      },
+      "required": true,
+      "type": {
+        "name": "\"hours\" | \"minutes\" | \"seconds\""
+      }
+    },
+    "ampm": {
+      "defaultValue": null,
+      "description": "12h/24h clock mode",
+      "name": "ampm",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "TimePickerViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "minutesStep": {
+      "defaultValue": null,
+      "description": "Minutes step",
+      "name": "minutesStep",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "TimePickerViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "number"
+      }
+    },
+    "onHourChange": {
+      "defaultValue": null,
+      "description": "On hour change",
+      "name": "onHourChange",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "TimePickerViewProps"
+      },
+      "required": true,
+      "type": {
+        "name": "(date: any, isFinish?: boolean) => void"
+      }
+    },
+    "onMinutesChange": {
+      "defaultValue": null,
+      "description": "On minutes change",
+      "name": "onMinutesChange",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "TimePickerViewProps"
+      },
+      "required": true,
+      "type": {
+        "name": "(date: any, isFinish?: boolean) => void"
+      }
+    },
+    "onSecondsChange": {
+      "defaultValue": null,
+      "description": "On seconds change",
+      "name": "onSecondsChange",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "TimePickerViewProps"
+      },
+      "required": true,
+      "type": {
+        "name": "(date: any, isFinish?: boolean) => void"
+      }
+    }
+  },
+  "ClockView": {
+    "date": {
+      "defaultValue": null,
+      "description": "TimePicker value",
+      "name": "date",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "TimePickerViewProps"
+      },
+      "required": true,
+      "type": {
+        "name": "any"
+      }
+    },
+    "type": {
+      "defaultValue": null,
+      "description": "Clock type",
+      "name": "type",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "TimePickerViewProps"
+      },
+      "required": true,
+      "type": {
+        "name": "\"hours\" | \"minutes\" | \"seconds\""
+      }
+    },
+    "ampm": {
+      "defaultValue": null,
+      "description": "12h/24h clock mode",
+      "name": "ampm",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "TimePickerViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "minutesStep": {
+      "defaultValue": null,
+      "description": "Minutes step",
+      "name": "minutesStep",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "TimePickerViewProps"
+      },
+      "required": false,
+      "type": {
+        "name": "number"
+      }
+    },
+    "onHourChange": {
+      "defaultValue": null,
+      "description": "On hour change",
+      "name": "onHourChange",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "TimePickerViewProps"
+      },
+      "required": true,
+      "type": {
+        "name": "(date: any, isFinish?: boolean) => void"
+      }
+    },
+    "onMinutesChange": {
+      "defaultValue": null,
+      "description": "On minutes change",
+      "name": "onMinutesChange",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "TimePickerViewProps"
+      },
+      "required": true,
+      "type": {
+        "name": "(date: any, isFinish?: boolean) => void"
+      }
+    },
+    "onSecondsChange": {
+      "defaultValue": null,
+      "description": "On seconds change",
+      "name": "onSecondsChange",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/views/Clock/ClockView.tsx",
+        "name": "TimePickerViewProps"
+      },
+      "required": true,
+      "type": {
+        "name": "(date: any, isFinish?: boolean) => void"
+      }
+    }
   }
 }

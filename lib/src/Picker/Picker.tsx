@@ -3,11 +3,11 @@ import clsx from 'clsx';
 import Calendar from '../views/Calendar/Calendar';
 import { useUtils } from '../_shared/hooks/useUtils';
 import { useViews } from '../_shared/hooks/useViews';
+import { ClockView } from '../views/Clock/ClockView';
 import { makeStyles } from '@material-ui/core/styles';
 import { YearSelection } from '../views/Year/YearView';
-import { MaterialUiPickersDate } from '../typings/date';
 import { BasePickerProps } from '../typings/BasePicker';
-import { TimePickerView } from '../views/Clock/ClockView';
+import { MaterialUiPickersDate } from '../typings/date';
 import { MonthSelection } from '../views/Month/MonthView';
 import { BaseTimePickerProps } from '../TimePicker/TimePicker';
 import { BaseDatePickerProps } from '../DatePicker/DatePicker';
@@ -19,9 +19,9 @@ const viewsMap = {
   year: YearSelection,
   month: MonthSelection,
   date: Calendar,
-  hours: TimePickerView,
-  minutes: TimePickerView,
-  seconds: TimePickerView,
+  hours: ClockView,
+  minutes: ClockView,
+  seconds: ClockView,
 };
 
 export type PickerView = keyof typeof viewsMap;
@@ -188,7 +188,7 @@ export const Picker: React.FunctionComponent<PickerProps> = props => {
         )}
 
         {(openView === 'hours' || openView === 'minutes' || openView === 'seconds') && (
-          <TimePickerView
+          <ClockView
             date={date}
             ampm={ampm}
             type={openView}

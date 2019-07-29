@@ -22,8 +22,8 @@ const components = [
   'DateTimePicker/DateTimePicker.tsx',
   'DateTimePicker/KeyboardDateTimePicker.tsx',
   // internal components
-  'DatePicker/components/Calendar.tsx',
-  'TimePicker/components/TimePickerView.tsx',
+  'views/Calendar/Calendar.tsx',
+  'views/Clock/ClockView.tsx',
 ];
 
 const customTypePattern = '\n@type {';

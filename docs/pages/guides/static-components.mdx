@@ -20,11 +20,15 @@ chosen date and submitting state logic.
 
 #### Static components example
 
+You can reuse our logic if you needed some advanced accepting or clearing fuctionality. We are providing special
+`useStaticState` for that. It returns you:
+
 * `inputProps` - props to manage date input state, format and validation.
+* `pickerProps` - props that should be spreaded directly to the component
 * `wrapperProps` - props to manage accept, dismiss, clear and any modal/inline functionality.
 
 <Example source={StaticComponents} />
 
 #### Components API
 
-<LinkedComponents components={['Calendar', 'TimePickerView']} />
+<LinkedComponents components={['Calendar', 'ClockView']} />
