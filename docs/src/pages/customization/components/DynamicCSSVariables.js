@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-function DynamicCSSVariables() {
+export default function DynamicCSSVariables() {
   const classes = useStyles();
   const [color, setColor] = React.useState('default');
 
@@ -58,5 +58,3 @@ function DynamicCSSVariables() {
     </React.Fragment>
   );
 }
-
-export default DynamicCSSVariables;

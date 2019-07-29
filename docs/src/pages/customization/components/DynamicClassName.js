@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   },
 });
 
-function DynamicClassName() {
+export default function DynamicClassName() {
   const classes = useStyles();
   const [color, setColor] = React.useState('default');
 
@@ -52,5 +52,3 @@ function DynamicClassName() {
     </React.Fragment>
   );
 }
-
-export default DynamicClassName;

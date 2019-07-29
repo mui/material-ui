@@ -20,7 +20,7 @@ function TransitionDown(props: TransitionProps) {
   return <Slide {...props} direction="down" />;
 }
 
-function DirectionSnackbar() {
+export default function DirectionSnackbar() {
   const [open, setOpen] = React.useState(false);
   const [transition, setTransition] = React.useState<
     React.ComponentType<TransitionProps> | undefined
@@ -53,5 +53,3 @@ function DirectionSnackbar() {
     </div>
   );
 }
-
-export default DirectionSnackbar;

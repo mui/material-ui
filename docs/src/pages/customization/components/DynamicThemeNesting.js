@@ -8,7 +8,7 @@ import Switch from '@material-ui/core/Switch';
 
 const defaultTheme = createMuiTheme();
 
-function DynamicThemeNesting() {
+export default function DynamicThemeNesting() {
   const [color, setColor] = React.useState('default');
 
   const handleChange = event => {
@@ -51,5 +51,3 @@ function DynamicThemeNesting() {
     </React.Fragment>
   );
 }
-
-export default DynamicThemeNesting;

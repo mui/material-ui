@@ -25,7 +25,7 @@ const StyledButton = withStyles({
   },
 })(({ classes, color, ...other }) => <Button className={classes.root} {...other} />);
 
-function DynamicCSS() {
+export default function DynamicCSS() {
   const [color, setColor] = React.useState('default');
 
   const handleChange = event => {
@@ -49,5 +49,3 @@ function DynamicCSS() {
     </React.Fragment>
   );
 }
-
-export default DynamicCSS;
