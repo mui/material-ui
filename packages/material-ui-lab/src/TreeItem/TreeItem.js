@@ -16,7 +16,6 @@ export const styles = function styles(theme) {
       margin: 0,
       padding: 0,
       outline: 0,
-      cursor: 'pointer',
       '&:focus > $content': {
         outline: 'auto 1px',
       },
@@ -32,6 +31,7 @@ export const styles = function styles(theme) {
       width: '100%',
       display: 'flex',
       alignItems: 'center',
+      cursor: 'pointer',
       '&:hover': {
         backgroundColor: theme.palette.action.hover,
       },
