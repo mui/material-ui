@@ -36,7 +36,7 @@ export const styles = function styles(theme) {
         backgroundColor: theme.palette.grey[200],
       },
       '&:hover': {
-        backgroundColor: theme.palette.grey[200],
+        backgroundColor: theme.palette.action.hover,
       },
     },
     /* Styles applied to the tree node icon and collapse/expand icon. */
