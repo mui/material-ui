@@ -185,7 +185,7 @@ function Tooltip(props) {
     // We don't want to wait for the next render commit.
     // We would risk displaying two tooltips at the same time (native + this one).
     if (childNode) {
-      childNode.setAttribute('title', '');
+      childNode.removeAttribute('title');
     }
 
     clearTimeout(enterTimer.current);
