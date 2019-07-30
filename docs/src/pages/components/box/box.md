@@ -54,8 +54,7 @@ The Box children accepts a render props function. You can pull out the `classNam
 ```
 
 > ⚠️ The CSS specificity relies on the import order.
-If you want the guarantee that the wrapped component's style will be overridden,
-you need to import the Box last.
+If you want the guarantee that the wrapped component's style will be overridden, you need to import the Box last.
 
 ## API
 
