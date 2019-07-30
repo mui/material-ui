@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
 import { withStyles } from '@material-ui/core/styles';
-import { useForkRef, useIsFocusVisible } from '@material-ui/core/utils';
+import { useForkRef } from '@material-ui/core/utils';
+import { useIsFocusVisible } from '../../../material-ui/src/utils/focusVisible';
 import TreeViewContext from '../TreeView/TreeViewContext';
 
 export const styles = function styles(theme) {
@@ -98,7 +99,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
   const nodeRef = React.useRef(null);
   const contentRef = React.useRef(null);
-  const handleRef = useForkRef(focusVisibleRef, useForkRef(nodeRef, ref));
+  const handleRef = useForkRef(focusVisibleRef, nodeRef, ref);
 
   let stateIcon = null;
 
