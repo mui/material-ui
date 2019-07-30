@@ -15,9 +15,12 @@ export const styles = function styles(theme) {
       listStyle: 'none',
       margin: 0,
       padding: 0,
-      outline: 0,
+      '&:focus': {
+        outline: 'none',
+      },
       '&:focus > $content': {
-        outline: 'auto 1px',
+        outline: 'none',
+        backgroundColor: theme.palette.grey[400],
       },
     },
     /* Styles applied to the `role="group"` element. */
