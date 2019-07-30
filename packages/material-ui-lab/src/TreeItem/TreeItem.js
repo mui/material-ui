@@ -6,20 +6,18 @@ import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
 import { withStyles } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
+import { useIsFocusVisible } from '../../../material-ui/src/utils/focusVisible';
 import TreeViewContext from '../TreeView/TreeViewContext';
 
 export const styles = function styles(theme) {
   return {
-  /* Styles applied to the root element. */
+    /* Styles applied to the root element. */
     root: {
       listStyle: 'none',
       margin: 0,
       padding: 0,
       outline: 0,
       cursor: 'pointer',
-      '&:focus > $content': {
-        outline: 'auto 1px',
-      },
     },
     /* Styles applied to the `role="group"` element. */
     group: {
@@ -32,8 +30,14 @@ export const styles = function styles(theme) {
       width: '100%',
       display: 'flex',
       alignItems: 'center',
+      '&:focus': {
+        outline: 'none',
+      },
+      '&$focusVisible': {
+        backgroundColor: theme.palette.grey[200],
+      },
       '&:hover': {
-        backgroundColor: theme.palette.grey[200]
+        backgroundColor: theme.palette.grey[200],
       },
     },
     /* Styles applied to the tree node icon and collapse/expand icon. */
@@ -46,7 +50,9 @@ export const styles = function styles(theme) {
     },
     /* Styles applied to the label element. */
     label: {},
-  }
+    /* Pseudo-class applied to the content element if the link is keyboard focused. */
+    focusVisible: {},
+  };
 };
 
 const isPrintableCharacter = str => {
@@ -63,12 +69,13 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     icon,
     label,
     nodeId,
+    onBlur,
     onClick,
     onFocus,
     onKeyDown,
     ...other
   } = props;
-  
+
   const {
     icons: contextIcons,
     toggle,
@@ -87,9 +94,12 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     handleFirstChars,
   } = React.useContext(TreeViewContext);
 
+  const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
+  const [focusVisible, setFocusVisible] = React.useState(false);
+
   const nodeRef = React.useRef(null);
   const contentRef = React.useRef(null);
-  const handleRef = useForkRef(nodeRef, ref);
+  const handleRef = useForkRef(focusVisibleRef, nodeRef, ref);
 
   let stateIcon = null;
 
@@ -223,9 +233,21 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     if (!focused && tabable) {
       focus(nodeId);
     }
-
+    if (isFocusVisible(event)) {
+      setFocusVisible(true);
+    }
     if (onFocus) {
       onFocus(event);
+    }
+  };
+
+  const handleBlur = event => {
+    if (focusVisible) {
+      onBlurVisible();
+      setFocusVisible(false);
+    }
+    if (onBlur) {
+      onBlur(event);
     }
   };
 
@@ -253,13 +275,20 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       className={clsx(classes.root, className)}
       role="treeitem"
       onKeyDown={handleKeyDown}
+      onBlur={handleBlur}
       onFocus={handleFocus}
       aria-expanded={expandable ? expanded : null}
       ref={handleRef}
       tabIndex={tabable ? 0 : -1}
       {...other}
     >
-      <div className={classes.content} onClick={handleClick} ref={contentRef}>
+      <div
+        className={clsx(classes.content, {
+          [classes.focusVisible]: focusVisible,
+        })}
+        onClick={handleClick}
+        ref={contentRef}
+      >
         {stateIconsProvided ? <div className={classes.iconContainer}>{stateIcon}</div> : null}
         {startAdornment ? <div className={classes.iconContainer}>{startAdornment}</div> : null}
         <Typography className={classes.label}>{label}</Typography>
@@ -307,6 +336,10 @@ TreeItem.propTypes = {
    * The id of the node.
    */
   nodeId: PropTypes.string.isRequired,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
   /**
    * @ignore
    */
