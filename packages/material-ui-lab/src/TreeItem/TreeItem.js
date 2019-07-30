@@ -10,7 +10,7 @@ import TreeViewContext from '../TreeView/TreeViewContext';
 
 export const styles = function styles(theme) {
   return {
-  /* Styles applied to the root element. */
+    /* Styles applied to the root element. */
     root: {
       listStyle: 'none',
       margin: 0,
@@ -49,7 +49,7 @@ export const styles = function styles(theme) {
     },
     /* Styles applied to the label element. */
     label: {},
-  }
+  };
 };
 
 const isPrintableCharacter = str => {
@@ -71,7 +71,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     onKeyDown,
     ...other
   } = props;
-  
+
   const {
     icons: contextIcons,
     toggle,
