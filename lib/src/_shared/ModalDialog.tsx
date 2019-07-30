@@ -64,7 +64,7 @@ export const ModalDialog: React.SFC<ModalDialogProps & WithStyles<typeof styles>
         </Button>
       )}
 
-      {!clearable && showTodayButton && (
+      {showTodayButton && (
         <Button color="primary" onClick={onSetToday}>
           {todayLabel}
         </Button>
