@@ -15,6 +15,7 @@ export const styles = {
     margin: 0,
     padding: 0,
     outline: 0,
+    cursor: 'pointer',
     '&:focus > $content': {
       outline: 'auto 1px',
     },
@@ -62,6 +63,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     onKeyDown,
     ...other
   } = props;
+  
   const {
     icons: contextIcons,
     toggle,
