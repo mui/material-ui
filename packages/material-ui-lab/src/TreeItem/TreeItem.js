@@ -8,40 +8,45 @@ import { withStyles } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
 
-export const styles = {
+export const styles = function styles(theme) {
+  return {
   /* Styles applied to the root element. */
-  root: {
-    listStyle: 'none',
-    margin: 0,
-    padding: 0,
-    outline: 0,
-    cursor: 'pointer',
-    '&:focus > $content': {
-      outline: 'auto 1px',
+    root: {
+      listStyle: 'none',
+      margin: 0,
+      padding: 0,
+      outline: 0,
+      cursor: 'pointer',
+      '&:focus > $content': {
+        outline: 'auto 1px',
+      },
     },
-  },
-  /* Styles applied to the `role="group"` element. */
-  group: {
-    margin: 0,
-    padding: 0,
-    marginLeft: 26,
-  },
-  /* Styles applied to the tree node content. */
-  content: {
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-  },
-  /* Styles applied to the tree node icon and collapse/expand icon. */
-  iconContainer: {
-    marginRight: 2,
-    width: 24,
-    minWidth: 24,
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  /* Styles applied to the label element. */
-  label: {},
+    /* Styles applied to the `role="group"` element. */
+    group: {
+      margin: 0,
+      padding: 0,
+      marginLeft: 26,
+    },
+    /* Styles applied to the tree node content. */
+    content: {
+      width: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      '&:hover': {
+        backgroundColor: theme.palette.grey[200]
+      },
+    },
+    /* Styles applied to the tree node icon and collapse/expand icon. */
+    iconContainer: {
+      marginRight: 2,
+      width: 24,
+      minWidth: 24,
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    /* Styles applied to the label element. */
+    label: {},
+  }
 };
 
 const isPrintableCharacter = str => {
