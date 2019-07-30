@@ -11,11 +11,6 @@ const useStyles = makeStyles({
   },
 });
 
-function handleClick(event) {
-  event.preventDefault();
-  alert('You clicked a leaf node.');
-}
-
 export default function FileSystemNavigator() {
   const classes = useStyles();
 
@@ -26,15 +21,15 @@ export default function FileSystemNavigator() {
       defaultExpandIcon={<ChevronRightIcon />}
     >
       <TreeItem nodeId="1" label="Applications">
-        <TreeItem nodeId="2" label="Calendar" onClick={handleClick} />
-        <TreeItem nodeId="3" label="Chrome" onClick={handleClick} />
-        <TreeItem nodeId="4" label="Webstorm" onClick={handleClick} />
+        <TreeItem nodeId="2" label="Calendar" />
+        <TreeItem nodeId="3" label="Chrome" />
+        <TreeItem nodeId="4" label="Webstorm" />
       </TreeItem>
       <TreeItem nodeId="5" label="Documents">
         <TreeItem nodeId="6" label="Material-UI">
-          <TreeItem nodeId="7" label="src" >
-            <TreeItem nodeId="8" label="index.js" onClick={handleClick} />
-            <TreeItem nodeId="9" label="tree-view.js" onClick={handleClick} />
+          <TreeItem nodeId="7" label="src">
+            <TreeItem nodeId="8" label="index.js" />
+            <TreeItem nodeId="9" label="tree-view.js" />
           </TreeItem>
         </TreeItem>
       </TreeItem>
