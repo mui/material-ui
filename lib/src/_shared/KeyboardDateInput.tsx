@@ -72,9 +72,9 @@ const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
 }) => {
   const inputMask = mask || makeMaskFromFormat(format, maskChar);
   // prettier-ignore
-  const formatter = React.useCallback(
-    maskedDateFormatter(inputMask, maskChar, refuse),
-    [mask, maskChar]
+  const formatter = React.useMemo(
+    () => maskedDateFormatter(inputMask, maskChar, refuse),
+    [inputMask, maskChar, refuse]
   );
 
   const position =
@@ -87,6 +87,7 @@ const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
 
   return (
     <Rifm
+      key={inputMask}
       value={inputValue}
       onChange={handleChange}
       refuse={refuse}
