@@ -153,7 +153,7 @@ Radio.propTypes = {
    */
   onChange: PropTypes.func,
   /**
-   * If `true`, the label is displayed as required and the `input` element` will be required.
+   * If `true`, the `input` element will be required.
    */
   required: PropTypes.bool,
   /**
