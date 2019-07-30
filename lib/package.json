@@ -39,11 +39,11 @@
     "react-dom": "^16.8.4"
   },
   "dependencies": {
+    "@babel/runtime": "^7.2.0",
     "@types/styled-jsx": "^2.2.8",
     "clsx": "^1.0.2",
     "react-transition-group": "^4.0.0",
     "rifm": "^0.7.0",
-    "@babel/runtime": "^7.2.0",
     "tslib": "^1.9.3"
   },
   "size-limit": [

@@ -1,3 +1,4 @@
+import { StylesHook } from '@material-ui/styles/makeStyles';
 import { styles as ClockStyles } from '../views/Clock/Clock';
 import { useStyles as DayStyles } from '../views/Calendar/Day';
 import { styles as ModalDialogStyles } from '../_shared/ModalDialog';
@@ -9,21 +10,23 @@ import { styles as ClockPointerStyles } from '../views/Clock/ClockPointer';
 import { useStyles as PickerToolbarStyles } from '../_shared/PickerToolbar';
 import { useStyles as ClockNumberStyles } from '../views/Clock/ClockNumber';
 import { useStyles as DTTabsStyles } from '../DateTimePicker/DateTimePickerTabs';
-import { useStyles as DatePickerRootStyles } from '../DatePicker/DatePickerToolbar';
 import { useStyles as MuiPickersYearSelectionStyles } from '../views/Year/YearView';
-import { StyleRules, StyleRulesCallback } from '@material-ui/core/styles/withStyles';
+import { useStyles as DatePickerRootStyles } from '../DatePicker/DatePickerToolbar';
 import { useStyles as CalendarHeaderStyles } from '../views/Calendar/CalendarHeader';
 import { useStyles as DTHeaderStyles } from '../DateTimePicker/DateTimePickerToolbar';
 import { useStyles as TimePickerToolbarStyles } from '../TimePicker/TimePickerToolbar';
 import { useStyles as SlideTransitionStyles } from '../views/Calendar/SlideTransition';
 import { useStyles as MuiPickersMonthSelectionStyles } from '../views/Month/MonthView';
+import { StyleRules, StyleRulesCallback, Styles } from '@material-ui/core/styles/withStyles';
 import { useStyles as MuiPickerDTToolbarStyles } from '../DateTimePicker/DateTimePickerToolbar';
 
 type Classes<T> = Partial<
   StyleRules<
     T extends string
       ? T
-      : T extends StyleRulesCallback<infer K>
+      : T extends StylesHook<Styles<any, any, infer C>>
+      ? C
+      : T extends StyleRulesCallback<any, any, infer K>
       ? K
       : T extends StyleRules<infer D>
       ? D
