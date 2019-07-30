@@ -51,7 +51,7 @@ export interface BasePickerProps {
    * @default "portrait"
    */
   orientation?: 'portrait' | 'landscape';
-  /* Component that will replace default toolbar renderer */
+  /** Component that will replace default toolbar renderer */
   ToolbarComponent?: React.ComponentType<ToolbarComponentProps>;
   variant?: WrapperVariant;
 }

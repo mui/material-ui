@@ -368,6 +368,19 @@
         "name": "\"portrait\" | \"landscape\""
       }
     },
+    "ToolbarComponent": {
+      "defaultValue": null,
+      "description": "Component that will replace default toolbar renderer",
+      "name": "ToolbarComponent",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": {
+        "name": "FunctionComponent<ToolbarComponentProps> | ComponentClass<ToolbarComponentProps, any>"
+      }
+    },
     "variant": {
       "defaultValue": {
         "value": "'dialog'"
@@ -961,6 +974,19 @@
       "required": false,
       "type": {
         "name": "\"portrait\" | \"landscape\""
+      }
+    },
+    "ToolbarComponent": {
+      "defaultValue": null,
+      "description": "Component that will replace default toolbar renderer",
+      "name": "ToolbarComponent",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": {
+        "name": "FunctionComponent<ToolbarComponentProps> | ComponentClass<ToolbarComponentProps, any>"
       }
     },
     "PopoverProps": {
@@ -1610,6 +1636,19 @@
         "name": "\"portrait\" | \"landscape\""
       }
     },
+    "ToolbarComponent": {
+      "defaultValue": null,
+      "description": "Component that will replace default toolbar renderer",
+      "name": "ToolbarComponent",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": {
+        "name": "FunctionComponent<ToolbarComponentProps> | ComponentClass<ToolbarComponentProps, any>"
+      }
+    },
     "variant": {
       "defaultValue": {
         "value": "'dialog'"
@@ -2011,6 +2050,19 @@
       "required": false,
       "type": {
         "name": "\"portrait\" | \"landscape\""
+      }
+    },
+    "ToolbarComponent": {
+      "defaultValue": null,
+      "description": "Component that will replace default toolbar renderer",
+      "name": "ToolbarComponent",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": {
+        "name": "FunctionComponent<ToolbarComponentProps> | ComponentClass<ToolbarComponentProps, any>"
       }
     },
     "PopoverProps": {
@@ -2466,6 +2518,19 @@
       "required": false,
       "type": {
         "name": "\"portrait\" | \"landscape\""
+      }
+    },
+    "ToolbarComponent": {
+      "defaultValue": null,
+      "description": "Component that will replace default toolbar renderer",
+      "name": "ToolbarComponent",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": {
+        "name": "FunctionComponent<ToolbarComponentProps> | ComponentClass<ToolbarComponentProps, any>"
       }
     },
     "variant": {
@@ -3130,6 +3195,19 @@
       "required": false,
       "type": {
         "name": "\"portrait\" | \"landscape\""
+      }
+    },
+    "ToolbarComponent": {
+      "defaultValue": null,
+      "description": "Component that will replace default toolbar renderer",
+      "name": "ToolbarComponent",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": {
+        "name": "FunctionComponent<ToolbarComponentProps> | ComponentClass<ToolbarComponentProps, any>"
       }
     },
     "PopoverProps": {
