@@ -66,12 +66,6 @@ render(<App />, document.querySelector('#app'));
 
 Check out the [documentation website](https://material-ui-pickers.dev/)
 
-Old versions documentation:
-
-| Version | Documentation url                                     |
-| ------- | ----------------------------------------------------- |
-| v2      | https://material-ui-pickers-v2.dmtr-kovalenko.now.sh/ |
-
 ### Recently updated?
 
 Changelog available [here](https://github.com/mui-org/material-ui-pickers/releases)
