@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -214,7 +213,6 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
       onClose={onClose}
       open={open}
       ref={ref}
-      role="dialog"
       {...other}
     >
       <TransitionComponent
@@ -227,17 +225,21 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
         onExit={onExit}
         onExiting={onExiting}
         onExited={onExited}
+        role="none presentation"
         {...TransitionProps}
       >
+        {/* roles are applied via cloneElement from TransitionComponent */}
+        {/* roles needs to be applied on the immediate child of Modal or it'll inject one */}
+        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
         <div
           className={clsx(classes.container, classes[`scroll${capitalize(scroll)}`])}
           onClick={handleBackdropClick}
           onMouseDown={handleMouseDown}
-          role="document"
           data-mui-test="FakeBackdrop"
         >
           <PaperComponent
             elevation={24}
+            role="dialog"
             {...PaperProps}
             className={clsx(
               classes.paper,
