@@ -32,7 +32,7 @@ export default function FileSystemNavigator() {
       </TreeItem>
       <TreeItem nodeId="5" label="Documents">
         <TreeItem nodeId="6" label="Material-UI">
-          <TreeItem nodeId="7" label="src">
+          <TreeItem nodeId="7" label="src" >
             <TreeItem nodeId="8" label="index.js" onClick={handleClick} />
             <TreeItem nodeId="9" label="tree-view.js" onClick={handleClick} />
           </TreeItem>
