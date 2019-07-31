@@ -17,7 +17,7 @@ Discrete sliders can be adjusted to a specific value by referencing its value in
 By order of demos:
 
 1. You can generate a mark for each step with `marks={true}`.
-1. You can change de default step increment.
+1. You can change the default step increment.
 1. You can have custom marks by providing a rich array to the `marks` prop.
 1. You can restrict the selectable values to those provided with the `marks` prop with `step={null}`.
 1. You can force the thumb label to be always visible with `valueLabelDisplay="on"`.
