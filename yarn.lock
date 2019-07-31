@@ -5114,9 +5114,9 @@ damerau-levenshtein@^1.0.4:
   integrity sha1-AxkcQyy27qFou3fzpV/9zLiXhRQ=
 
 danger@^9.1.3:
-  version "9.1.3"
-  resolved "https://registry.yarnpkg.com/danger/-/danger-9.1.3.tgz#05b8349ec08350161245cd4098774c9b69f5b47e"
-  integrity sha512-uL18hAWVaLIAsA+7roOs78hRlz+oL5p9DQnTRiw5lJU1VhF1Td+fpsbgoZ3fnQbZs5IGo/upgPaaLyn9HOr4yg==
+  version "9.1.4"
+  resolved "https://registry.yarnpkg.com/danger/-/danger-9.1.4.tgz#ab2749c5761e115343b407f9528ec5f2617735ec"
+  integrity sha512-QErH6re5MoXd/dIYbO493q/L+gKj1yc7WQn9qpyEJfL28FrGw47PR49I8xeCswH74JZn1L9TTug5SsVC4ZWtqw==
   dependencies:
     "@babel/polyfill" "^7.2.5"
     "@octokit/rest" "^16.14.1"
@@ -5125,7 +5125,7 @@ danger@^9.1.3:
     commander "^2.18.0"
     debug "^4.1.1"
     get-stdin "^6.0.0"
-    gitlab "~6.0.0"
+    gitlab "^10.0.1"
     http-proxy-agent "^2.1.0"
     https-proxy-agent "^2.2.1"
     hyperlinker "^1.0.0"
@@ -6982,17 +6982,17 @@ gitconfiglocal@^1.0.0:
   dependencies:
     ini "^1.3.2"
 
-gitlab@~6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/gitlab/-/gitlab-6.0.0.tgz#7bd44bf57dcb6b1231c70a52ea9b83934e6c1539"
-  integrity sha512-/0KE/Un0Hg/CDTtiYfC1Z4lkuHhkSmC3JjkKy4VsCgTb51rTtOfk7NGspyM+wTIgEPd6cE061Pu5m4a5ao01Ow==
+gitlab@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/gitlab/-/gitlab-10.0.1.tgz#f1619e8d2d6c5a707d0ffec47c14219b232af143"
+  integrity sha512-gd4Kok3CRC6AOTBWwtCu95WFyhginVDbNRaLak5soxpBqkC5QiC3f74peaKgSLqlKtIuDnxHXmZ9oNsS2S+iGQ==
   dependencies:
     form-data "^2.3.3"
     humps "^2.0.1"
-    ky "^0.11.0"
+    ky "^0.11.2"
     ky-universal "^0.2.1"
     li "^1.3.0"
-    query-string "^6.5.0"
+    query-string "^6.8.1"
     randomstring "^1.1.5"
     universal-url "^2.0.0"
 
@@ -8848,10 +8848,10 @@ ky-universal@^0.2.1:
     abort-controller "^3.0.0"
     node-fetch "^2.3.0"
 
-ky@^0.11.0:
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/ky/-/ky-0.11.1.tgz#0bdffb441eb92ac910124ac6cd63088db9e66b5f"
-  integrity sha512-ppp6nrKXRTCMVsWP0sDDdLJXXNnH+5defcpQNiNE712/KpdGwG87290ldFAGsx4CAI/F2eVg3Exql0Oo/eGU5A==
+ky@^0.11.2:
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/ky/-/ky-0.11.2.tgz#4ffe6621d9d9ab61bf0f5500542e3a96d1ba0815"
+  integrity sha512-5Aou5BWue5/mkPqIRqzSWW+0Hkl403pr/2AIrCKYw7cVl/Xoe8Xe4KLBO0PRjbz7GnRe1/8wW1KhqQNFFE7/GQ==
 
 last-call-webpack-plugin@^3.0.0:
   version "3.0.0"
@@ -11652,10 +11652,10 @@ qs@6.7.0:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
-query-string@^6.5.0:
-  version "6.8.1"
-  resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.8.1.tgz#62c54a7ef37d01b538c8fd56f95740c81d438a26"
-  integrity sha512-g6y0Lbq10a5pPQpjlFuojfMfV1Pd2Jw9h75ypiYPPia3Gcq2rgkKiIwbkS6JxH7c5f5u/B/sB+d13PU+g1eu4Q==
+query-string@^6.8.1:
+  version "6.8.2"
+  resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.8.2.tgz#36cb7e452ae11a4b5e9efee83375e0954407b2f6"
+  integrity sha512-J3Qi8XZJXh93t2FiKyd/7Ec6GNifsjKXUsVFkSBj/kjLsDylWhnCz4NT1bkPcKotttPW+QbKGqqPH8OoI2pdqw==
   dependencies:
     decode-uri-component "^0.2.0"
     split-on-first "^1.0.0"
