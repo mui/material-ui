@@ -821,7 +821,7 @@ Slider.propTypes = {
    */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
   /**
-   * The value label componnet.
+   * The value label component.
    */
   ValueLabelComponent: PropTypes.elementType,
   /**
