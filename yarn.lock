@@ -1751,11 +1751,12 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@material-ui/pickers@^3.0.0", "@material-ui/pickers@^3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@material-ui/pickers/-/pickers-3.2.0.tgz#1a10be67211b9348b87e8354af041c1f1a56f060"
-  integrity sha512-/bn90Vl6U22/Od2QGirSg1U9fk/YjzLtkHdwmS4crE6HjVzApi5l8kcOC2j+gDHggs3J6zO+4eq3DK5kGYN6Jg==
+"@material-ui/pickers@^3.0.0", "@material-ui/pickers@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@material-ui/pickers/-/pickers-3.2.1.tgz#50a2a74be07db587d039b6da3c279086ae839eb1"
+  integrity sha512-9dl7JLSIZQQx7j4UKU7Hnkxjok6gyz3KQMjza54dJgfJ8ZrMca2opGveerzVtAfqSef/aGzA8WrEw/ql/5r7RQ==
   dependencies:
+    "@babel/runtime" "^7.2.0"
     "@types/styled-jsx" "^2.2.8"
     clsx "^1.0.2"
     react-transition-group "^4.0.0"
