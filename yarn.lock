@@ -9380,9 +9380,9 @@ marked@^0.7.0:
   integrity sha512-c+yYdCZJQrsRjTPhUx7VKkApw9bwDkNbHUKo1ovgcfDjb2kc8rLuRbIFyXL5WOEUwzSSKo3IXpph2K6DqB/KZg==
 
 material-table@^1.40.1:
-  version "1.40.1"
-  resolved "https://registry.yarnpkg.com/material-table/-/material-table-1.40.1.tgz#988418b3996a0d15a7172188c17b0e4687f630f7"
-  integrity sha512-rZuGhNpXFzROlqJUVLH+E5yzt9MxaYVZfDNuHWtM9EWlbUGQJWuGQNcsSmdr0XeTCZkQvVnZYbEkRcUu+71rfQ==
+  version "1.41.0"
+  resolved "https://registry.yarnpkg.com/material-table/-/material-table-1.41.0.tgz#1cb03f0e02837c64d7227b970fecbe62fa5a58bc"
+  integrity sha512-8eLCRvLBqXs/wopRWxVdT4BNJvlB+bShzsWNCYy6ckAxTCYKWEzBQVCyVwmkSgKVuCHzFe1O4TxLXavkb31YNg==
   dependencies:
     "@date-io/date-fns" "^1.1.0"
     "@material-ui/core" "^4.0.1"
