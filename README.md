@@ -23,6 +23,7 @@
 [![DevDependencies](https://david-dm.org/mui-org/material-ui/master/dev-status.svg?path=packages/material-ui)](https://david-dm.org/mui-org/material-ui/master?type=dev)
 [![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/mui-org/material-ui.svg)](https://isitmaintained.com/project/mui-org/material-ui "Average time to resolve an issue")
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/material-ui-docs/localized.svg?cache=v1)](https://translate.material-ui.com/project/material-ui-docs)
+[![chat][chat]][chat-url]
 
 </div>
 
@@ -175,3 +176,6 @@ This project is licensed under the terms of the
 To report a security vulnerability, please use the
 [Tidelift security contact](https://tidelift.com/security).
 Tidelift will coordinate the fix and disclosure.
+
+[chat]: https://img.shields.io/badge/chat-spectrum-brightgreen
+[chat-url]: https://spectrum.chat/material-ui
