@@ -5,7 +5,7 @@ components: Skeleton
 
 # Skeleton
 
-<p class="description">Display a placeholder preview of your content before the data get loaded. A skeleton can reduce load time frustration.</p>
+<p class="description">Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.</p>
 
 The data for your components might not be immediately available. You can increase the perceived performance for users by using skeletons. It feels like things are happening immediately, the information is incrementally displayed on the screen (Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
 
