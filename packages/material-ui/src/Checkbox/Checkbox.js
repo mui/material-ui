@@ -155,6 +155,10 @@ Checkbox.propTypes = {
    */
   onChange: PropTypes.func,
   /**
+   * If `true`, the `input` element will be required.
+   */
+  required: PropTypes.bool,
+  /**
    * The input component prop `type`.
    */
   type: PropTypes.string,

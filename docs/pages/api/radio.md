@@ -30,6 +30,7 @@ import { Radio } from '@material-ui/core';
 | <span class="prop-name">inputRef</span> | <span class="prop-type">func<br>&#124;&nbsp;object</span> |  | This prop can be used to pass a ref callback to the `input` element. |
 | <span class="prop-name">name</span> | <span class="prop-type">string</span> |  | Name attribute of the `input` element. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object, checked: boolean) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value`.<br>*checked:* The `checked` value of the switch |
+| <span class="prop-name">required</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` element will be required. |
 | <span class="prop-name">type</span> | <span class="prop-type">string</span> |  | The input component prop `type`. |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the component. |
 

@@ -246,6 +246,10 @@ Switch.propTypes = {
    */
   onChange: PropTypes.func,
   /**
+   * If `true`, the `input` element will be required.
+   */
+  required: PropTypes.bool,
+  /**
    * The size of the switch.
    * `small` is equivalent to the dense switch styling.
    */
