@@ -61,8 +61,8 @@ const Popper = React.forwardRef(function Popper(props, ref) {
   const ownRef = useForkRef(tooltipRef, ref);
 
   const popperRef = React.useRef(null);
-  const handlePopperRefRef = React.useRef();
   const handlePopperRef = useForkRef(popperRef, popperRefProp);
+  const handlePopperRefRef = React.useRef(handlePopperRef);
   useEnhancedEffect(() => {
     handlePopperRefRef.current = handlePopperRef;
   }, [handlePopperRef]);
