@@ -123,7 +123,7 @@ it simply merges the class names provided with the style sheet.
 const Nested = withStyles({
   root: {}, // a style rule
   label: {}, // a nested style rule
-})({ classes }) => (
+})(({ classes }) => (
   <button className={classes.root}>
     <span className={classes.label}> // 'jss2 my-label'
       Nested
