@@ -142,7 +142,12 @@
     "**/@babel/runtime-corejs2": "^7.4.4",
     "**/@babel/runtime": "^7.4.4",
     "**/hoist-non-react-statics": "^3.2.1",
-    "**/next/terser": "^4.1.2"
+    "**/next/terser": "^4.1.2",
+    "**/react": "0.0.0-db3ae32b8",
+    "**/react-dom": "0.0.0-db3ae32b8",
+    "**/react-is": "0.0.0-db3ae32b8",
+    "**/react-test-renderer": "0.0.0-db3ae32b8",
+    "**/scheduler": "0.0.0-db3ae32b8"
   },
   "nyc": {
     "include": [
