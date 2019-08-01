@@ -75,6 +75,10 @@ Here are some highlights ✨:
 
 - [codemod] Add codemods for optimal tree-shakeable imports (#16192) @jedwards1211
 
+### `@material-ui/system@v4.3.2`
+
+- [core] Import esm babel helpers (#16701) @TrySound
+
 ### Docs
 
 - [docs] Add CSS to api for TextField (#16659) @m2mathew
