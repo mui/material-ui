@@ -112,6 +112,11 @@ const Modal = React.forwardRef(function Modal(props, ref) {
     }
   });
 
+  const isTopModal = React.useCallback(
+    () => manager.isTopModal(getModal(modal, mountNodeRef, modalRef)),
+    [manager],
+  );
+
   const handlePortalRef = useEventCallback(node => {
     mountNodeRef.current = node;
 
@@ -123,7 +128,7 @@ const Modal = React.forwardRef(function Modal(props, ref) {
       onRendered();
     }
 
-    if (open) {
+    if (open && isTopModal()) {
       handleMounted();
     } else {
       ariaHidden(modalRef.current, true);
@@ -147,11 +152,6 @@ const Modal = React.forwardRef(function Modal(props, ref) {
       handleClose();
     }
   }, [open, handleClose, hasTransition, closeAfterTransition, handleOpen]);
-
-  const isTopModal = React.useCallback(
-    () => manager.isTopModal(getModal(modal, mountNodeRef, modalRef)),
-    [manager],
-  );
 
   if (!keepMounted && !open && (!hasTransition || exited)) {
     return null;
