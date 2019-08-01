@@ -8,49 +8,43 @@ import { withStyles } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
 
-export const styles = theme => {
-  return {
-    /* Styles applied to the root element. */
-    root: {
-      listStyle: 'none',
-      margin: 0,
-      padding: 0,
-      '&:focus': {
-        outline: 'none',
-      },
-      '&:focus > $content': {
-        outline: 'none',
-        backgroundColor: theme.palette.grey[400],
-      },
+export const styles = theme => ({
+  /* Styles applied to the root element. */
+  root: {
+    listStyle: 'none',
+    margin: 0,
+    padding: 0,
+    outline: 'none',
+    '&:focus > $content': {
+      backgroundColor: theme.palette.grey[400],
     },
-    /* Styles applied to the `role="group"` element. */
-    group: {
-      margin: 0,
-      padding: 0,
-      marginLeft: 26,
+  },
+  /* Styles applied to the `role="group"` element. */
+  group: {
+    margin: 0,
+    padding: 0,
+    marginLeft: 26,
+  },
+  /* Styles applied to the tree node content. */
+  content: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
     },
-    /* Styles applied to the tree node content. */
-    content: {
-      width: '100%',
-      display: 'flex',
-      alignItems: 'center',
-      cursor: 'pointer',
-      '&:hover': {
-        backgroundColor: theme.palette.action.hover,
-      },
-    },
-    /* Styles applied to the tree node icon and collapse/expand icon. */
-    iconContainer: {
-      marginRight: 2,
-      width: 24,
-      minWidth: 24,
-      display: 'flex',
-      justifyContent: 'center',
-    },
-    /* Styles applied to the label element. */
-    label: {},
-  };
-};
+  },
+  /* Styles applied to the tree node icon and collapse/expand icon. */
+  iconContainer: {
+    marginRight: 2,
+    width: 24,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  /* Styles applied to the label element. */
+  label: {},
+});
 
 const isPrintableCharacter = str => {
   return str && str.length === 1 && str.match(/\S/);
@@ -58,9 +52,9 @@ const isPrintableCharacter = str => {
 
 const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const {
+    children,
     classes,
     className,
-    children,
     collapseIcon,
     expandIcon,
     icon,
@@ -73,21 +67,21 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   } = props;
 
   const {
-    icons: contextIcons,
-    toggle,
-    isExpanded,
-    isTabable,
+    expandAllSiblings,
     focus,
-    focusNextNode,
-    focusPreviousNode,
     focusFirstNode,
     focusLastNode,
-    isFocused,
-    handleLeftArrow,
-    expandAllSiblings,
-    setFocusByFirstCharacter,
-    handleNodeMap,
+    focusNextNode,
+    focusPreviousNode,
     handleFirstChars,
+    handleLeftArrow,
+    handleNodeMap,
+    icons: contextIcons,
+    isExpanded,
+    isFocused,
+    isTabable,
+    setFocusByFirstCharacter,
+    toggle,
   } = React.useContext(TreeViewContext);
 
   const nodeRef = React.useRef(null);
