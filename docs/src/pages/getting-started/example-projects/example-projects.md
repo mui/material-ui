@@ -24,7 +24,16 @@ build instructions.
 
 Looking for a more advanced example project?
 
-If you want to start with a more complete and real world example, you could take a look at our [free themes](https://themes.material-ui.com/) or:
+If you want to start with a more complete and real world example, you could take a look at our or [free templates](/getting-started/templates/) or [premium themes & templates](https://themes.material-ui.com/) or:
+
+- [React Most Wanted](https://github.com/TarikHuber/react-most-wanted), which includes:
+
+  - Created with [Create React App](https://facebook.github.io/create-react-app/)
+  - Custom Create React App script to start a new project with just a single CLI command
+  - Build for Firebase including Authentication using the official Firebase Web Auth UI
+  - Routing with React Router including error handling (404) and lazy loading
+  - All PWA features included (SW, Notifications, deffered installation prompt and more)
+  - Optimized and scalable performance (all ~100 points on Lighthouse)
 
 - [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
 
@@ -39,11 +48,3 @@ If you want to start with a more complete and real world example, you could take
   - React Router included with a navigation example
   - A docker container with an Nginx server for production build
   - Created with [Create React App](https://facebook.github.io/create-react-app/)
-
-- [React Most Wanted](https://github.com/TarikHuber/react-most-wanted), which includes:
-  - Created with [Create React App](https://facebook.github.io/create-react-app/)
-  - Custom Create React App script to start a new project with just a single CLI command
-  - Build for Firebase including Authentication using the official Firebase Web Auth UI
-  - Routing with React Router including error handling (404) and lazy loading
-  - All PWA features included (SW, Notifications, deffered installation prompt and more)
-  - Optimized and scalable performance (all ~100 points on Lighthouse)

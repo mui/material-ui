@@ -673,7 +673,7 @@ const appList = [
     link: 'https://learnseeker.sg/',
     image: 'learnseeker.jpg',
     dateAdded: '2019-03-26',
-  }
+  },
 ];
 
 export default appList;
