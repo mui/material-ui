@@ -992,6 +992,11 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.3.tgz#dfa0c92efe44a1d1a7974fb49ffeb40ef2da5a27"
   integrity sha512-zVgvPwGK7c1aVdUVc9Qv7SqepOGRDrqCw7KZPSZziWGxSlbII3gmvGLPzLX4d0n0BMbamBacUrN22zOMyFFEkQ==
 
+"@eps1lon/babel-plugin-optimize-react@^0.0.4-alpha.4":
+  version "0.0.4-alpha.4"
+  resolved "https://registry.yarnpkg.com/@eps1lon/babel-plugin-optimize-react/-/babel-plugin-optimize-react-0.0.4-alpha.4.tgz#64c004454c17fb1b1a0ee0e078a26df2e9a89713"
+  integrity sha512-GPEFe024E1/ctXuoa8ARKxi3sZioD6HT3i7VAy/Hj68TebMD/f98zMJjooO2UkTDW8N9ZvIcYEoPV+YGoV2ITg==
+
 "@evocateur/libnpmaccess@^3.1.2":
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/@evocateur/libnpmaccess/-/libnpmaccess-3.1.2.tgz#ecf7f6ce6b004e9f942b098d92200be4a4b1c845"
@@ -3314,11 +3319,6 @@ babel-plugin-optimize-clsx@^2.3.0:
     "@babel/types" "^7.5.5"
     lodash "^4.17.14"
     object-hash "^1.3.1"
-
-babel-plugin-optimize-react@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/babel-plugin-optimize-react/-/babel-plugin-optimize-react-0.0.4.tgz#6326ac8f0f77e3fa3e8195b4d998287d47877c65"
-  integrity sha512-I3o7GW66dIpXraND0ZAYXEDQ/wOiuefUQqn1PZZcub2flREANb2NXejL52iTMUWtKM++lu5OasVtZewn+WvkNg==
 
 babel-plugin-preval@^2.0.0:
   version "2.0.1"
