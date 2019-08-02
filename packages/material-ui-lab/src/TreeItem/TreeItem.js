@@ -14,7 +14,7 @@ export const styles = theme => ({
     listStyle: 'none',
     margin: 0,
     padding: 0,
-    outline: 'none',
+    outline: 0,
     '&:focus > $content': {
       backgroundColor: theme.palette.grey[400],
     },

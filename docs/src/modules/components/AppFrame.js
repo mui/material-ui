@@ -140,7 +140,7 @@ const styles = theme => ({
   },
   '@global': {
     '#main-content': {
-      outline: 'none',
+      outline: 0,
     },
   },
 });

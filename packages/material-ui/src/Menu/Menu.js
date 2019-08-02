@@ -31,7 +31,7 @@ export const styles = {
   /* Styles applied to the `List` component via `MenuList`. */
   list: {
     // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 'none',
+    outline: 0,
   },
 };
 
