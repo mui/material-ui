@@ -2,6 +2,17 @@
 
 <p class="description">Learn about the platforms, from modern to old, that are supported by Material-UI.</p>
 
+## React
+
+Material-UI uses the latest features of react, hence there is no backward compatibility i.e. latest version of Material-UI doesn't work with an older version of react.
+
+| Material-UI | React             |
+| ----------- | ----------------- |
+| v4          | ^16.8.0 (hooks)   |
+| v3          | ^16.3.0 (context) |
+| v1          | ^16.3.0 (context) |
+| v0.20       | >= 15.4.0         |
+
 ## Browser
 
 Material-UI supports the latest, stable releases of all major browsers and platforms.
