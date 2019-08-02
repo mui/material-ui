@@ -105,7 +105,7 @@ function Tooltip(props) {
   } = props;
 
   const [openState, setOpenState] = React.useState(false);
-  const [, forceUpdate] = React.useState(0);
+  const [cantHandleMe, forceUpdate] = React.useState(0);
   const [childNode, setChildNode] = React.useState();
   const ignoreNonTouchEvents = React.useRef(false);
   const { current: isControlled } = React.useRef(openProp != null);

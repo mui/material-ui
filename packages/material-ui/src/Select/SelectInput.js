@@ -58,7 +58,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
   const [openState, setOpenState] = React.useState(false);
-  const [, forceUpdate] = React.useState(0);
+  const [cantHandleMeEither, forceUpdate] = React.useState(0);
   const handleRef = useForkRef(ref, inputRefProp);
 
   React.useImperativeHandle(
