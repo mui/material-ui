@@ -12,7 +12,7 @@ Combined with [dangerJS](https://danger.systems/js/) we can inspect
 ## How to reduce the bundle size?
 
 For convenience, Material-UI exposes its full API on the top-level `material-ui` import.
-If you're using ES 6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely
+If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely
 use named imports and expect only a minimal set of Material-UI components in your bundle:
 
 ```js
