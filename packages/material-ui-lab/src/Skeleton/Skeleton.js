@@ -87,7 +87,7 @@ Skeleton.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * Disable the animation effect.
+   * If `true` the animation effect is disabled.
    */
   disableAnimate: PropTypes.bool,
   /**
