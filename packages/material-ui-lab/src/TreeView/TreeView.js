@@ -5,7 +5,7 @@ import TreeViewContext from './TreeViewContext';
 import { withStyles } from '@material-ui/core/styles';
 
 export const styles = {
-  /* Styles applied to the root component. */
+  /* Styles applied to the root element. */
   root: {
     padding: 0,
     margin: 0,
@@ -17,14 +17,14 @@ const defaultExpandedDefault = [];
 
 const TreeView = React.forwardRef(function TreeView(props, ref) {
   const {
+    children,
     classes,
     className,
-    children,
     defaultCollapseIcon,
     defaultEndIcon,
+    defaultExpanded = defaultExpandedDefault,
     defaultExpandIcon,
     defaultParentIcon,
-    defaultExpanded = defaultExpandedDefault,
     onNodeToggle,
     ...other
   } = props;
@@ -264,21 +264,21 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   return (
     <TreeViewContext.Provider
       value={{
-        icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
-        toggle,
-        isExpanded,
-        isTabable,
+        expandAllSiblings,
         focus,
-        focusNextNode,
-        focusPreviousNode,
         focusFirstNode,
         focusLastNode,
-        isFocused,
-        handleLeftArrow,
-        expandAllSiblings,
-        setFocusByFirstCharacter,
-        handleNodeMap,
+        focusNextNode,
+        focusPreviousNode,
         handleFirstChars,
+        handleLeftArrow,
+        handleNodeMap,
+        icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
+        isExpanded,
+        isFocused,
+        isTabable,
+        setFocusByFirstCharacter,
+        toggle,
       }}
     >
       <ul role="tree" className={clsx(classes.root, className)} ref={ref} {...other}>
