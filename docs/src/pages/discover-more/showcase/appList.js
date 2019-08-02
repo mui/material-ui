@@ -674,16 +674,6 @@ const appList = [
     image: 'learnseeker.jpg',
     dateAdded: '2019-03-26',
   },
-  {
-    title: 'React-Most-Wanted',
-    description:
-      'A 100% Material-UI made demo application using Firebase. ' +
-      'Easy to bootstrap using a simple CLI script. ' +
-      'Easy to update all core parts just by updating the dependencies holding the core parts.',
-    link: 'https://www.react-most-wanted.com',
-    image: 'reactmostwanted.png',
-    dateAdded: '2019-08-02',
-  },
 ];
 
 export default appList;
