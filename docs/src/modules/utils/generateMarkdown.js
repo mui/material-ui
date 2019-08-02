@@ -419,7 +419,7 @@ function generateImportStatement(reactAPI) {
     // convert things like `/Table/Table.js` to ``
     .replace(/\/([^/]+)\/\1\.js$/, '');
   return `\`\`\`js
-import { ${reactAPI.name} } from '${source}';
+import ${reactAPI.name} from '${source}/${reactAPI.name}';
 \`\`\``;
 }
 

@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/ListItemIcon/ListItemIcon.js
 <p class="description">The API documentation of the ListItemIcon React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { ListItemIcon } from '@material-ui/core';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 ```
 
 A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.

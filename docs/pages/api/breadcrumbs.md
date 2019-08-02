@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Breadcrumbs/Breadcrumbs.js
 <p class="description">The API documentation of the Breadcrumbs React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Breadcrumbs } from '@material-ui/core';
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 ```
 
 

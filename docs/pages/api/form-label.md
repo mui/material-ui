@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/FormLabel/FormLabel.js
 <p class="description">The API documentation of the FormLabel React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { FormLabel } from '@material-ui/core';
+import FormLabel from '@material-ui/core/FormLabel';
 ```
 
 

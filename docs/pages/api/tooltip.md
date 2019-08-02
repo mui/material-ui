@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Tooltip/Tooltip.js
 <p class="description">The API documentation of the Tooltip React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Tooltip } from '@material-ui/core';
+import Tooltip from '@material-ui/core/Tooltip';
 ```
 
 

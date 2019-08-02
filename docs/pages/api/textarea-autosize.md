@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/TextareaAutosize/TextareaAutosize.js
 <p class="description">The API documentation of the TextareaAutosize React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { TextareaAutosize } from '@material-ui/core';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 ```
 
 

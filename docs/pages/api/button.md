@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Button/Button.js
 <p class="description">The API documentation of the Button React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 ```
 
 

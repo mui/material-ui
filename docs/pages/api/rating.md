@@ -9,7 +9,7 @@ filename: /packages/material-ui-lab/src/Rating/Rating.js
 <p class="description">The API documentation of the Rating React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Rating } from '@material-ui/lab';
+import Rating from '@material-ui/lab/Rating';
 ```
 
 

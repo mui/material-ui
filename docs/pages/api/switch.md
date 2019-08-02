@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Switch/Switch.js
 <p class="description">The API documentation of the Switch React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Switch } from '@material-ui/core';
+import Switch from '@material-ui/core/Switch';
 ```
 
 

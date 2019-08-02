@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/FormControl/FormControl.js
 <p class="description">The API documentation of the FormControl React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { FormControl } from '@material-ui/core';
+import FormControl from '@material-ui/core/FormControl';
 ```
 
 Provides context such as filled/focused/error/required for form inputs.

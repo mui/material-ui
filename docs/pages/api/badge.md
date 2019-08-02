@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Badge/Badge.js
 <p class="description">The API documentation of the Badge React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Badge } from '@material-ui/core';
+import Badge from '@material-ui/core/Badge';
 ```
 
 

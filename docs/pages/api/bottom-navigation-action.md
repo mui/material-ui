@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/BottomNavigationAction/BottomNavigationActio
 <p class="description">The API documentation of the BottomNavigationAction React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { BottomNavigationAction } from '@material-ui/core';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 ```
 
 

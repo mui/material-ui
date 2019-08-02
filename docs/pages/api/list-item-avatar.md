@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/ListItemAvatar/ListItemAvatar.js
 <p class="description">The API documentation of the ListItemAvatar React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { ListItemAvatar } from '@material-ui/core';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 ```
 
 A simple wrapper to apply `List` styles to an `Avatar`.

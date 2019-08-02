@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Chip/Chip.js
 <p class="description">The API documentation of the Chip React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Chip } from '@material-ui/core';
+import Chip from '@material-ui/core/Chip';
 ```
 
 Chips represent complex entities in small blocks, such as a contact.

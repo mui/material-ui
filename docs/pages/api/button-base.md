@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/ButtonBase/ButtonBase.js
 <p class="description">The API documentation of the ButtonBase React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { ButtonBase } from '@material-ui/core';
+import ButtonBase from '@material-ui/core/ButtonBase';
 ```
 
 `ButtonBase` contains as few styles as possible.

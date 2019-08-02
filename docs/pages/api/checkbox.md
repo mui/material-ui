@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Checkbox/Checkbox.js
 <p class="description">The API documentation of the Checkbox React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Checkbox } from '@material-ui/core';
+import Checkbox from '@material-ui/core/Checkbox';
 ```
 
 

@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/CardActionArea/CardActionArea.js
 <p class="description">The API documentation of the CardActionArea React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { CardActionArea } from '@material-ui/core';
+import CardActionArea from '@material-ui/core/CardActionArea';
 ```
 
 
