@@ -30,6 +30,7 @@ export const styles = theme => ({
       '& + &': {
         borderLeft: 0,
         marginLeft: 0,
+        minWidth: 48
       },
     },
     '&$disabled': {
