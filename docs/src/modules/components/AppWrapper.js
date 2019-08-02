@@ -1,9 +1,13 @@
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Router as Router2, useRouter } from 'next/router';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
-import { getCookie } from 'docs/src/modules/utils/helpers';
+import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
+import acceptLanguage from 'accept-language';
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
@@ -21,6 +25,30 @@ function useFirstRender() {
   }, []);
 
   return firstRenderRef.current;
+}
+
+acceptLanguage.languages(['en', 'zh']);
+
+function LanguageNegotiation() {
+  const router = useRouter();
+  const { userLanguage } = useSelector(state => ({
+    userLanguage: state.options.userLanguage,
+  }));
+
+  React.useEffect(() => {
+    const preferedLanguage =
+      getCookie('userLanguage') !== 'noDefault' && userLanguage === 'en'
+        ? acceptLanguage.get(navigator.language)
+        : userLanguage;
+
+    if (preferedLanguage !== userLanguage) {
+      const { canonical } = pathnameToLanguage(Router2._rewriteUrlForNextExport(router.asPath));
+
+      window.location = preferedLanguage === 'en' ? canonical : `/${preferedLanguage}${canonical}`;
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return null;
 }
 
 /**
@@ -72,8 +100,11 @@ function usePersistCodeVariant(initialCodeVariant = CODE_VARIANTS.JS, codeVarian
   return codeVariant;
 }
 
-function Tracking(props) {
-  const { dispatch, options } = props;
+function Tracking() {
+  const dispatch = useDispatch();
+  const { options } = useSelector(state => ({
+    options: state.options,
+  }));
 
   const codeVariant = usePersistCodeVariant(options.codeVariant, nextCodeVariant =>
     dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { codeVariant: nextCodeVariant } }),
@@ -97,10 +128,6 @@ function Tracking(props) {
 
   return null;
 }
-
-const ConnectedTracking = connect(state => ({
-  options: state.options,
-}))(Tracking);
 
 // Inspired by
 // https://developers.google.com/web/tools/workbox/guides/advanced-recipes#offer_a_page_reload_for_users
@@ -167,7 +194,8 @@ function AppWrapper(props) {
   return (
     <StylesProvider jss={jss}>
       <ThemeProvider>{children}</ThemeProvider>
-      <ConnectedTracking />
+      <Tracking />
+      <LanguageNegotiation />
     </StylesProvider>
   );
 }

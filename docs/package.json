@@ -39,6 +39,7 @@
     "@types/react-window": "^1.7.0",
     "@types/styled-components": "4.1.12",
     "@zeit/next-typescript": "^1.1.1",
+    "accept-language": "^3.0.18",
     "address": "^1.0.3",
     "ast-types": "^0.13.2",
     "autoprefixer": "^9.6.1",
