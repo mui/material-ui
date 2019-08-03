@@ -27,7 +27,7 @@ Here are the most significant changes in July:
 
 - ⭐️ We have introduced a new [Rating component](/components/rating/) in the lab.
 
-  ![Tree View](/static/blog/2019-july-update/rating.png)
+  ![Rating](/static/blog/2019-july-update/rating.png)
 
 But this summary is just scratching the surface. We have accepted 146 commits from 54 different contributors. We have changed 2,004 files with 29,022 additions and 25,455 deletions.
 
