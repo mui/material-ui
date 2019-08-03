@@ -29,7 +29,7 @@ describe('ModalManager', () => {
     const modal = {};
     const modalManager2 = new ModalManager();
     const idx = modalManager2.add(modal, container1);
-    modalManager2.mount(modal);
+    modalManager2.mount(modal, {});
     assert.strictEqual(modalManager2.add(modal, container1), idx);
     modalManager2.remove(modal);
   });
@@ -47,7 +47,7 @@ describe('ModalManager', () => {
 
     it('should add modal1', () => {
       const idx = modalManager.add(modal1, container1);
-      modalManager.mount(modal1);
+      modalManager.mount(modal1, {});
       assert.strictEqual(idx, 0, 'should be the first modal');
       assert.strictEqual(modalManager.isTopModal(modal1), true);
     });
@@ -71,7 +71,7 @@ describe('ModalManager', () => {
 
     it('should add modal2 2', () => {
       const idx = modalManager.add(modal2, container1);
-      modalManager.mount(modal2);
+      modalManager.mount(modal2, {});
       assert.strictEqual(idx, 2, 'should be the "third" modal');
       assert.strictEqual(modalManager.isTopModal(modal2), true);
       assert.strictEqual(
@@ -125,7 +125,7 @@ describe('ModalManager', () => {
 
       const modal = {};
       modalManager.add(modal, container1);
-      modalManager.mount(modal);
+      modalManager.mount(modal, {});
       assert.strictEqual(container1.style.overflow, 'hidden');
       assert.strictEqual(container1.style.paddingRight, `${20 + getScrollbarSize()}px`);
       assert.strictEqual(fixedNode.style.paddingRight, `${14 + getScrollbarSize()}px`);
@@ -138,7 +138,7 @@ describe('ModalManager', () => {
     it('should restore styles correctly if none existed before', () => {
       const modal = {};
       modalManager.add(modal, container1);
-      modalManager.mount(modal);
+      modalManager.mount(modal, {});
       assert.strictEqual(container1.style.overflow, 'hidden');
       assert.strictEqual(container1.style.paddingRight, `${20 + getScrollbarSize()}px`);
       assert.strictEqual(fixedNode.style.paddingRight, `${0 + getScrollbarSize()}px`);
@@ -168,11 +168,11 @@ describe('ModalManager', () => {
       const modal1 = {};
       const modal2 = {};
       modalManager.add(modal1, container3);
-      modalManager.mount(modal1);
+      modalManager.mount(modal1, {});
       expect(container3.children[0]).to.be.ariaHidden;
 
       modalManager.add(modal2, container4);
-      modalManager.mount(modal2);
+      modalManager.mount(modal2, {});
       expect(container4.children[0]).to.be.ariaHidden;
 
       modalManager.remove(modal2);
@@ -242,7 +242,7 @@ describe('ModalManager', () => {
       const modal = { modalRef: container2.children[0] };
 
       modalManager.add(modal, container2);
-      modalManager.mount(modal);
+      modalManager.mount(modal, {});
       expect(container2.children[0]).not.to.be.ariaHidden;
       modalManager.remove(modal, container2);
       expect(container2.children[0]).to.be.ariaHidden;
@@ -259,7 +259,7 @@ describe('ModalManager', () => {
       container2.appendChild(sibling2);
 
       modalManager.add(modal, container2);
-      modalManager.mount(modal);
+      modalManager.mount(modal, {});
       expect(container2.children[0]).not.to.be.ariaHidden;
       modalManager.remove(modal, container2);
       expect(container2.children[0]).to.be.ariaHidden;
