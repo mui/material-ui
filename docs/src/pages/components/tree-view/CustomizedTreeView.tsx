@@ -1,11 +1,29 @@
 import React from 'react';
 import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
-import { fade, withStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { fade, makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem, { TreeItemProps } from '@material-ui/lab/TreeItem';
 import Collapse from '@material-ui/core/Collapse';
 import { useSpring, animated } from 'react-spring';
 import { TransitionProps } from '@material-ui/core/transitions/transition';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      height: 262,
+    },
+    iconContainer: {
+      '& .close': {
+        opacity: 0.3,
+      },
+    },
+    group: {
+      marginLeft: 12,
+      paddingLeft: 12,
+      borderLeft: `1px dashed ${fade(theme.palette.text.primary, 0.4)}`,
+    },
+  }),
+);
 
 function MinusSquare(props: SvgIconProps) {
   return (
@@ -47,42 +65,44 @@ function TransitionComponent(props: TransitionProps) {
   );
 }
 
-const StyledTreeItem = withStyles((theme: Theme) =>
-  createStyles({
-    iconContainer: {
-      '& .close': {
-        opacity: 0.3,
-      },
-    },
-    group: {
-      marginLeft: 12,
-      paddingLeft: 12,
-      borderLeft: `1px dashed ${fade(theme.palette.text.primary, 0.4)}`,
-    },
-  }),
-)((props: TreeItemProps) => <TreeItem {...props} TransitionComponent={TransitionComponent} />);
+const StyledTreeItem = (props: TreeItemProps) => {
+  const classes = useStyles();
+  return (
+    <TreeItem
+      {...props}
+      classes={{
+        iconContainer: classes.iconContainer,
+        group: classes.group,
+      }}
+      TransitionComponent={TransitionComponent}
+    />
+  );
+};
 
 export default function CustomizedTreeView() {
+  const classes = useStyles();
+
   return (
     <TreeView
+      className={classes.root}
       defaultExpanded={['1']}
       defaultCollapseIcon={<MinusSquare />}
       defaultExpandIcon={<PlusSquare />}
       defaultEndIcon={<CloseSquare />}
     >
-      <StyledTreeItem nodeId="1" label="main">
-        <StyledTreeItem nodeId="2" label="hello" />
-        <StyledTreeItem nodeId="3" label="subtree with children">
-          <StyledTreeItem nodeId="6" label="hello" />
-          <StyledTreeItem nodeId="7" label="sub-subtree with children">
-            <StyledTreeItem nodeId="9" label="child 1" />
-            <StyledTreeItem nodeId="10" label="child 2" />
-            <StyledTreeItem nodeId="11" label="child 3" />
+      <StyledTreeItem nodeId="1" label="Main">
+        <StyledTreeItem nodeId="2" label="Hello" />
+        <StyledTreeItem nodeId="3" label="Subtree with children">
+          <StyledTreeItem nodeId="6" label="Hello" />
+          <StyledTreeItem nodeId="7" label="Sub-subtree with children">
+            <StyledTreeItem nodeId="9" label="Child 1" />
+            <StyledTreeItem nodeId="10" label="Child 2" />
+            <StyledTreeItem nodeId="11" label="Child 3" />
           </StyledTreeItem>
-          <StyledTreeItem nodeId="8" label="hello" />
+          <StyledTreeItem nodeId="8" label="Hello" />
         </StyledTreeItem>
-        <StyledTreeItem nodeId="4" label="world" />
-        <StyledTreeItem nodeId="5" label="🙀 something something" />
+        <StyledTreeItem nodeId="4" label="World" />
+        <StyledTreeItem nodeId="5" label="Something something" />
       </StyledTreeItem>
     </TreeView>
   );
