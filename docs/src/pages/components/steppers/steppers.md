@@ -13,13 +13,6 @@ Steppers may display a transient feedback message after a step is saved.
 - **Types of Steps**: Editable, Non-editable, Mobile, Optional
 - **Types of Steppers**: Horizontal, Vertical, Linear, Non-linear
 
-## Customized Stepper
-
-Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/components/).
-
-{{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
-
 > **Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
 
 ## Horizontal Stepper
@@ -37,6 +30,13 @@ This example also shows the use of an optional step by placing the `optional` pr
 Labels can be placed below the step icon by setting the `alternativeLabel` prop on the `Stepper` component.
 
 {{"demo": "pages/components/steppers/HorizontalLinearAlternativeLabelStepper.js"}}
+
+### Customized Stepper
+
+Here is an example of customizing the component. You can learn more about this in the
+[overrides documentation page](/customization/components/).
+
+{{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 
 ### Non-linear
 

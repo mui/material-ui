@@ -5,7 +5,7 @@
 ## Bundle size matters
 
 The bundle size of Material-UI is taken very seriously. We take size snapshots
-on every commit for every package and critical parts of those packages ([view latest snapshot](/size-snapshot)).
+on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot)).
 Combined with [dangerJS](https://danger.systems/js/) we can inspect
 [detailed bundle size changes](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) on every Pull Request.
 
@@ -42,7 +42,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 ```
 
-This is the option we document in **all** the demos as the one that requires no configuration. Head to [Option 2](#option-2) for the option we recommend.
+This is the option we document in **all** the demos because it requires no configuration.
+We encourage it for library authors extending our components.
+Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
 
 While importing directly in this manner doesn't use the exports in [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public.
 
@@ -67,7 +69,7 @@ import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
 
 ### Option 2
 
-We **recommend** this option as providing the best DX and UX.
+This option provides the best DX and UX.
 However, you need to apply the following steps correctly.
 
 #### 1. Configure Babel
