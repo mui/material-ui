@@ -80,15 +80,16 @@ function styled(Component) {
       const classes = useStyles(props);
       const className = clsx(classes.root, classNameProp);
 
-      if (clone) {
-        return React.cloneElement(children, {
-          className: clsx(children.props.className, className),
-        });
-      }
-
       let spread = other;
       if (filterProps) {
         spread = omit(spread, filterProps);
+      }
+
+      if (clone) {
+        return React.cloneElement(children, {
+          className: clsx(children.props.className, className),
+          ...spread,
+        });
       }
 
       if (typeof children === 'function') {
