@@ -1,29 +1,11 @@
 import React from 'react';
 import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
-import { fade, makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { fade, makeStyles, withStyles, Theme, createStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem, { TreeItemProps } from '@material-ui/lab/TreeItem';
 import Collapse from '@material-ui/core/Collapse';
 import { useSpring, animated } from 'react-spring';
 import { TransitionProps } from '@material-ui/core/transitions/transition';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      height: 262,
-    },
-    iconContainer: {
-      '& .close': {
-        opacity: 0.3,
-      },
-    },
-    group: {
-      marginLeft: 12,
-      paddingLeft: 12,
-      borderLeft: `1px dashed ${fade(theme.palette.text.primary, 0.4)}`,
-    },
-  }),
-);
 
 function MinusSquare(props: SvgIconProps) {
   return (
@@ -65,19 +47,28 @@ function TransitionComponent(props: TransitionProps) {
   );
 }
 
-const StyledTreeItem = (props: TreeItemProps) => {
-  const classes = useStyles();
-  return (
-    <TreeItem
-      {...props}
-      classes={{
-        iconContainer: classes.iconContainer,
-        group: classes.group,
-      }}
-      TransitionComponent={TransitionComponent}
-    />
-  );
-};
+const StyledTreeItem = withStyles((theme: Theme) =>
+  createStyles({
+    iconContainer: {
+      '& .close': {
+        opacity: 0.3,
+      },
+    },
+    group: {
+      marginLeft: 12,
+      paddingLeft: 12,
+      borderLeft: `1px dashed ${fade(theme.palette.text.primary, 0.4)}`,
+    },
+  }),
+)((props: TreeItemProps) => <TreeItem {...props} TransitionComponent={TransitionComponent} />);
+
+const useStyles = makeStyles(
+  createStyles({
+    root: {
+      height: 264,
+    },
+  }),
+);
 
 export default function CustomizedTreeView() {
   const classes = useStyles();
