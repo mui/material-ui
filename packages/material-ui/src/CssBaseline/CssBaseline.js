@@ -28,12 +28,12 @@ const useStyles = makeStyles(
           // Save printer ink.
           backgroundColor: theme.palette.common.white,
         },
-      },
-      '*:not(dialog)::backdrop': {
-        backgroundColor: theme.palette.background.default,
-      },
-      '*:not(dialog)::-ms-backdrop': {
-        backgroundColor: theme.palette.background.default,
+        '&::backdrop': {
+          backgroundColor: theme.palette.background.default,
+        },
+        '&::-ms-backdrop': {
+          backgroundColor: theme.palette.background.default,
+        },
       },
     },
   }),
