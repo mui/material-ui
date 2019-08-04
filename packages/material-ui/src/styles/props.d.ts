@@ -44,9 +44,9 @@ import { GridProps } from '../Grid';
 import { IconButtonProps } from '../IconButton';
 import { IconProps } from '../Icon';
 import { InputAdornmentProps } from '../InputAdornment';
+import { InputBaseProps } from '../InputBase';
 import { InputLabelProps } from '../InputLabel';
 import { InputProps } from '../Input';
-import { InputBaseProps } from '../InputBase';
 import { LinearProgressProps } from '../LinearProgress';
 import { LinkProps } from '../Link';
 import { ListItemAvatarProps } from '../ListItemAvatar';
@@ -62,6 +62,7 @@ import { MenuProps } from '../Menu';
 import { MobileStepperProps } from '../MobileStepper';
 import { ModalProps } from '../Modal';
 import { NativeSelectProps } from '../NativeSelect';
+import { Options as useMediaQueryOptions } from '../useMediaQuery';
 import { OutlinedInputProps } from '../OutlinedInput';
 import { PaperProps } from '../Paper';
 import { PopoverProps } from '../Popover';
@@ -197,5 +198,6 @@ export interface ComponentsPropsList {
   MuiTooltip: TooltipProps;
   MuiTouchRipple: TouchRippleProps;
   MuiTypography: TypographyProps;
+  MuiUseMediaQuery: useMediaQueryOptions;
   MuiWithWidth: WithWidthOptions;
 }
