@@ -30,6 +30,7 @@ import { ExpansionPanelActionsProps } from '../ExpansionPanelActions';
 import { ExpansionPanelDetailsProps } from '../ExpansionPanelDetails';
 import { ExpansionPanelProps } from '../ExpansionPanel';
 import { ExpansionPanelSummaryProps } from '../ExpansionPanelSummary';
+import { FabProps } from '../Fab';
 import { FilledInputProps } from '../FilledInput';
 import { FormControlLabelProps } from '../FormControlLabel';
 import { FormControlProps } from '../FormControl';
@@ -132,6 +133,7 @@ export interface ComponentsPropsList {
   MuiExpansionPanelActions: ExpansionPanelActionsProps;
   MuiExpansionPanelDetails: ExpansionPanelDetailsProps;
   MuiExpansionPanelSummary: ExpansionPanelSummaryProps;
+  MuiFab: FabProps;
   MuiFilledInput: FilledInputProps;
   MuiFormControl: FormControlProps;
   MuiFormControlLabel: FormControlLabelProps;
