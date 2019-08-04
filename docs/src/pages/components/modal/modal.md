@@ -34,7 +34,7 @@ Modal is a lower-level construct that is leveraged by the following components:
 
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
-Notice that you can disable the blue outline with the `outline: 0` CSS property.
+Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
 
 ## Performance
 
