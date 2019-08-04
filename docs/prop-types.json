@@ -745,7 +745,7 @@
     },
     "onChange": {
       "defaultValue": null,
-      "description": "Keyboard onChange callback @DateIOType",
+      "description": "Keyboard onChange callback",
       "name": "onChange",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
@@ -753,7 +753,7 @@
       },
       "required": true,
       "type": {
-        "name": "(date: any, value?: string | null) => void"
+        "name": "(date: DateIOType, value?: string | null) => void"
       }
     },
     "open": {
@@ -1821,7 +1821,7 @@
     },
     "onChange": {
       "defaultValue": null,
-      "description": "Keyboard onChange callback @DateIOType",
+      "description": "Keyboard onChange callback",
       "name": "onChange",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
@@ -1829,7 +1829,7 @@
       },
       "required": true,
       "type": {
-        "name": "(date: any, value?: string | null) => void"
+        "name": "(date: DateIOType, value?: string | null) => void"
       }
     },
     "open": {
@@ -2966,7 +2966,7 @@
     },
     "onChange": {
       "defaultValue": null,
-      "description": "Keyboard onChange callback @DateIOType",
+      "description": "Keyboard onChange callback",
       "name": "onChange",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/_shared/hooks/useKeyboardPickerState.ts",
@@ -2974,7 +2974,7 @@
       },
       "required": true,
       "type": {
-        "name": "(date: any, value?: string | null) => void"
+        "name": "(date: DateIOType, value?: string | null) => void"
       }
     },
     "open": {
