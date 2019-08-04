@@ -10,7 +10,7 @@ import { StateHookOptions, usePickerState } from './usePickerState';
 export interface BaseKeyboardPickerProps extends Omit<BasePickerProps, 'onChange'> {
   /** String value for controlling value with pure input string. Overrides value prop */
   inputValue?: string;
-  /** Keyboard onChange callback */
+  /** Keyboard onChange callback @DateIOType */
   onChange: (date: MaterialUiPickersDate | null, value?: string | null) => void;
 }
 
