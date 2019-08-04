@@ -29,6 +29,12 @@ const useStyles = makeStyles(
           backgroundColor: theme.palette.common.white,
         },
       },
+      '::backdrop': {
+        backgroundColor: theme.palette.background.default,
+      },
+      '::-ms-backdrop': {
+        backgroundColor: theme.palette.background.default,
+      },
     },
   }),
   { name: 'MuiCssBaseline' },
