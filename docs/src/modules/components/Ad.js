@@ -17,7 +17,7 @@ const styles = theme => ({
     marginBottom: theme.spacing(3),
   },
   paper: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(1.5),
     backgroundColor: theme.palette.background.level2,
     display: 'block',
   },
@@ -34,7 +34,10 @@ function getAdblock(classes, t) {
         {t('likeMui')}
       </Typography>
       <Typography variant="body2" display="block" component="span" gutterBottom>
-        {t('adblock')}{' '}
+        {t('adblock')}
+      </Typography>
+      <Typography variant="body2" display="block" component="span" gutterBottom>
+        {t('thanks')}{' '}
         <span role="img" aria-label={t('emojiLove')}>
           ❤️
         </span>
