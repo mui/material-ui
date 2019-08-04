@@ -9,7 +9,7 @@ filename: /packages/material-ui-lab/src/TreeItem/TreeItem.js
 <p class="description">The API documentation of the TreeItem React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { TreeItem } from '@material-ui/lab';
+import TreeItem from '@material-ui/lab/TreeItem';
 ```
 
 

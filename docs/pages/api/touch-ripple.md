@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/ButtonBase/TouchRipple.js
 <p class="description">The API documentation of the TouchRipple React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { TouchRipple } from '@material-ui/core/ButtonBase/TouchRipple.js';
+import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple.js/TouchRipple';
 ```
 
 

@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Snackbar/Snackbar.js
 <p class="description">The API documentation of the Snackbar React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Snackbar } from '@material-ui/core';
+import Snackbar from '@material-ui/core/Snackbar';
 ```
 
 

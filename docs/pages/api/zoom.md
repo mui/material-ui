@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Zoom/Zoom.js
 <p class="description">The API documentation of the Zoom React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Zoom } from '@material-ui/core';
+import Zoom from '@material-ui/core/Zoom';
 ```
 
 The Zoom transition can be used for the floating variant of the

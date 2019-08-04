@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Typography/Typography.js
 <p class="description">The API documentation of the Typography React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 ```
 
 

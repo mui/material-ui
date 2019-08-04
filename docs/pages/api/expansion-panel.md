@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/ExpansionPanel/ExpansionPanel.js
 <p class="description">The API documentation of the ExpansionPanel React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { ExpansionPanel } from '@material-ui/core';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 ```
 
 

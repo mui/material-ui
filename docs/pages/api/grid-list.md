@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/GridList/GridList.js
 <p class="description">The API documentation of the GridList React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { GridList } from '@material-ui/core';
+import GridList from '@material-ui/core/GridList';
 ```
 
 

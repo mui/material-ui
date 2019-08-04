@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Toolbar/Toolbar.js
 <p class="description">The API documentation of the Toolbar React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Toolbar } from '@material-ui/core';
+import Toolbar from '@material-ui/core/Toolbar';
 ```
 
 

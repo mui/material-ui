@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/AppBar/AppBar.js
 <p class="description">The API documentation of the AppBar React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { AppBar } from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
 ```
 
 

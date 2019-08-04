@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/FormControlLabel/FormControlLabel.js
 <p class="description">The API documentation of the FormControlLabel React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { FormControlLabel } from '@material-ui/core';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 ```
 
 Drop in replacement of the `Radio`, `Switch` and `Checkbox` component.

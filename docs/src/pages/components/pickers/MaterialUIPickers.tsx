@@ -1,7 +1,7 @@
 import 'date-fns';
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
@@ -9,13 +9,11 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 
-const useStyles = makeStyles(
-  createStyles({
-    grid: {
-      width: '60%',
-    },
-  }),
-);
+const useStyles = makeStyles({
+  grid: {
+    width: '60%',
+  },
+});
 
 export default function MaterialUIPickers() {
   // The first commit of Material-UI

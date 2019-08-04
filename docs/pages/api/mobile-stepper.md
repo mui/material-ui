@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/MobileStepper/MobileStepper.js
 <p class="description">The API documentation of the MobileStepper React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { MobileStepper } from '@material-ui/core';
+import MobileStepper from '@material-ui/core/MobileStepper';
 ```
 
 

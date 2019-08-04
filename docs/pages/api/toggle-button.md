@@ -9,7 +9,7 @@ filename: /packages/material-ui-lab/src/ToggleButton/ToggleButton.js
 <p class="description">The API documentation of the ToggleButton React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { ToggleButton } from '@material-ui/lab';
+import ToggleButton from '@material-ui/lab/ToggleButton';
 ```
 
 

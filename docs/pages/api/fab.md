@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Fab/Fab.js
 <p class="description">The API documentation of the Fab React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Fab } from '@material-ui/core';
+import Fab from '@material-ui/core/Fab';
 ```
 
 

@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/FormHelperText/FormHelperText.js
 <p class="description">The API documentation of the FormHelperText React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { FormHelperText } from '@material-ui/core';
+import FormHelperText from '@material-ui/core/FormHelperText';
 ```
 
 

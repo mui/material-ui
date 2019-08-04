@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Paper/Paper.js
 <p class="description">The API documentation of the Paper React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Paper } from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
 ```
 
 

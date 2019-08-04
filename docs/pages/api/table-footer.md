@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/TableFooter/TableFooter.js
 <p class="description">The API documentation of the TableFooter React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { TableFooter } from '@material-ui/core';
+import TableFooter from '@material-ui/core/TableFooter';
 ```
 
 

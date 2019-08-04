@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/DialogActions/DialogActions.js
 <p class="description">The API documentation of the DialogActions React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { DialogActions } from '@material-ui/core';
+import DialogActions from '@material-ui/core/DialogActions';
 ```
 
 
