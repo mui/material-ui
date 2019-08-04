@@ -83,7 +83,7 @@ module.exports = withTypescript({
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
-            include: /node_modules\/(material-table|notistack|@material-ui\/pickers)/,
+            include: /node_modules(\/|\\)(material-table|notistack|@material-ui(\/|\\)pickers)/,
             use: {
               loader: 'babel-loader',
               options: {
