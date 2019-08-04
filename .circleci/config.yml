@@ -99,6 +99,8 @@ jobs:
           background: true
           name: Run docs in background
           command: yarn workspace docs start
+          environment:
+            VISUAL_TESTING: true
       - run: npx wait-on http://localhost:3000
       - run: yarn percy exec -- cypress run --record
 

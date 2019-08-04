@@ -1,8 +1,14 @@
+import sinon from 'sinon';
 import React from 'react';
 import App from 'next/app';
 import cookies from 'next-cookies';
 import getPageContext from '../utils/getPageContext';
 import { PageWithContexts, ThemeType } from '../layout/PageWithContext';
+
+if (process.env.VISUAL_TESTING) {
+  const now = new Date('2019-01-01T09:41:00.000Z');
+  sinon.useFakeTimers(now.getTime());
+}
 
 class MyApp extends App<{ theme: ThemeType }> {
   pageContext = getPageContext();

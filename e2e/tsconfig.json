@@ -7,6 +7,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
+    "jsx": "react",
     "lib": ["es5", "dom"],
     "types": ["cypress", "@percy/cypress"]
   },

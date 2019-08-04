@@ -17,6 +17,7 @@ const StaticTimePicker = () => {
 
       <TimePicker
         autoOk
+        ampm={false}
         variant="static"
         orientation="landscape"
         openTo="minutes"

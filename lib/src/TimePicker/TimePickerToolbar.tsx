@@ -28,7 +28,7 @@ export const useStyles = makeStyles(
       justifyContent: 'flex-end',
       alignItems: 'flex-end',
     },
-    hourMinuteLabelLandscape: {
+    hourMinuteLabelAmpmLandscape: {
       marginTop: 'auto',
     },
     hourMinuteLabelReverse: {
@@ -102,7 +102,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
     >
       <div
         className={clsx(classes.hourMinuteLabel, {
-          [classes.hourMinuteLabelLandscape]: isLandscape,
+          [classes.hourMinuteLabelAmpmLandscape]: ampm && isLandscape,
           [classes.hourMinuteLabelReverse]: theme.direction === 'rtl',
         })}
       >
