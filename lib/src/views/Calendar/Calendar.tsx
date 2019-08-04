@@ -18,7 +18,7 @@ export interface OutterCalendarProps {
   leftArrowIcon?: React.ReactNode;
   /** Right arrow icon */
   rightArrowIcon?: React.ReactNode;
-  /** Custom renderer for day */
+  /** Custom renderer for day @DateIOType */
   renderDay?: (
     day: MaterialUiPickersDate,
     selectedDate: MaterialUiPickersDate,
@@ -40,9 +40,9 @@ export interface OutterCalendarProps {
    * @type {Partial<IconButtonProps>}
    */
   rightArrowButtonProps?: Partial<IconButtonProps>;
-  /** Disable specific date */
+  /** Disable specific date @DateIOType */
   shouldDisableDate?: (day: MaterialUiPickersDate) => boolean;
-  /** Callback firing on month change. Return promise to render spinner till it will not be resolved */
+  /** Callback firing on month change. Return promise to render spinner till it will not be resolved @DateIOType */
   onMonthChange?: (date: MaterialUiPickersDate) => void | Promise<void>;
   /** Custom loading indicator  */
   loadingIndicator?: JSX.Element;
@@ -52,13 +52,13 @@ export interface CalendarProps
   extends OutterCalendarProps,
     WithUtilsProps,
     WithStyles<typeof styles, true> {
-  /** Calendar Date */
+  /** Calendar Date @DateIOType */
   date: MaterialUiPickersDate;
   /** Calendar onChange */
   onChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
-  /** Min date */
+  /** Min date @DateIOType */
   minDate?: MaterialUiPickersDate;
-  /** Max date */
+  /** Max date @DateIOType */
   maxDate?: MaterialUiPickersDate;
   /** Disable past dates */
   disablePast?: boolean;

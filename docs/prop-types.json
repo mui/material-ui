@@ -173,7 +173,7 @@
       },
       "required": true,
       "type": {
-        "name": "(date: any) => void"
+        "name": "(date: DateIOType) => void"
       }
     },
     "autoOk": {
@@ -227,7 +227,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any, invalidLabel: string) => string"
+        "name": "(date: DateIOType, invalidLabel: string) => string"
       }
     },
     "initialFocusedDate": {
@@ -283,7 +283,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any) => void"
+        "name": "(date: DateIOType) => void"
       }
     },
     "onError": {
@@ -296,7 +296,7 @@
       },
       "required": false,
       "type": {
-        "name": "(error: ReactNode, value: any) => void"
+        "name": "(error: ReactNode, value: DateIOType) => void"
       }
     },
     "onOpen": {
@@ -561,7 +561,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any) => void"
+        "name": "(date: DateIOType) => void"
       }
     },
     "leftArrowIcon": {
@@ -600,7 +600,7 @@
       },
       "required": false,
       "type": {
-        "name": "(day: any, selectedDate: any, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
+        "name": "(day: DateIOType, selectedDate: DateIOType, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
       }
     },
     "allowKeyboardControl": {
@@ -654,7 +654,7 @@
       },
       "required": false,
       "type": {
-        "name": "(day: any) => boolean"
+        "name": "(day: DateIOType) => boolean"
       }
     },
     "onMonthChange": {
@@ -667,7 +667,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any) => void | Promise<void>"
+        "name": "(date: DateIOType) => void | Promise<void>"
       }
     },
     "loadingIndicator": {
@@ -779,7 +779,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any) => void"
+        "name": "(date: DateIOType) => void"
       }
     },
     "format": {
@@ -820,7 +820,7 @@
       },
       "required": false,
       "type": {
-        "name": "(error: ReactNode, value: any) => void"
+        "name": "(error: ReactNode, value: DateIOType) => void"
       }
     },
     "value": {
@@ -874,7 +874,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any, invalidLabel: string) => string"
+        "name": "(date: DateIOType, invalidLabel: string) => string"
       }
     },
     "initialFocusedDate": {
@@ -1249,7 +1249,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any) => void"
+        "name": "(date: DateIOType) => void"
       }
     },
     "leftArrowIcon": {
@@ -1288,7 +1288,7 @@
       },
       "required": false,
       "type": {
-        "name": "(day: any, selectedDate: any, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
+        "name": "(day: DateIOType, selectedDate: DateIOType, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
       }
     },
     "allowKeyboardControl": {
@@ -1342,7 +1342,7 @@
       },
       "required": false,
       "type": {
-        "name": "(day: any) => boolean"
+        "name": "(day: DateIOType) => boolean"
       }
     },
     "onMonthChange": {
@@ -1355,7 +1355,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any) => void | Promise<void>"
+        "name": "(date: DateIOType) => void | Promise<void>"
       }
     },
     "loadingIndicator": {
@@ -1441,7 +1441,7 @@
       },
       "required": true,
       "type": {
-        "name": "(date: any) => void"
+        "name": "(date: DateIOType) => void"
       }
     },
     "autoOk": {
@@ -1495,7 +1495,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any, invalidLabel: string) => string"
+        "name": "(date: DateIOType, invalidLabel: string) => string"
       }
     },
     "initialFocusedDate": {
@@ -1551,7 +1551,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any) => void"
+        "name": "(date: DateIOType) => void"
       }
     },
     "onError": {
@@ -1564,7 +1564,7 @@
       },
       "required": false,
       "type": {
-        "name": "(error: ReactNode, value: any) => void"
+        "name": "(error: ReactNode, value: DateIOType) => void"
       }
     },
     "onOpen": {
@@ -1855,7 +1855,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any) => void"
+        "name": "(date: DateIOType) => void"
       }
     },
     "format": {
@@ -1896,7 +1896,7 @@
       },
       "required": false,
       "type": {
-        "name": "(error: ReactNode, value: any) => void"
+        "name": "(error: ReactNode, value: DateIOType) => void"
       }
     },
     "value": {
@@ -1963,7 +1963,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any, invalidLabel: string) => string"
+        "name": "(date: DateIOType, invalidLabel: string) => string"
       }
     },
     "initialFocusedDate": {
@@ -2325,7 +2325,7 @@
       },
       "required": true,
       "type": {
-        "name": "(date: any) => void"
+        "name": "(date: DateIOType) => void"
       }
     },
     "autoOk": {
@@ -2379,7 +2379,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any, invalidLabel: string) => string"
+        "name": "(date: DateIOType, invalidLabel: string) => string"
       }
     },
     "initialFocusedDate": {
@@ -2435,7 +2435,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any) => void"
+        "name": "(date: DateIOType) => void"
       }
     },
     "onError": {
@@ -2448,7 +2448,7 @@
       },
       "required": false,
       "type": {
-        "name": "(error: ReactNode, value: any) => void"
+        "name": "(error: ReactNode, value: DateIOType) => void"
       }
     },
     "onOpen": {
@@ -2782,7 +2782,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any) => void"
+        "name": "(date: DateIOType) => void"
       }
     },
     "leftArrowIcon": {
@@ -2821,7 +2821,7 @@
       },
       "required": false,
       "type": {
-        "name": "(day: any, selectedDate: any, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
+        "name": "(day: DateIOType, selectedDate: DateIOType, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
       }
     },
     "allowKeyboardControl": {
@@ -2875,7 +2875,7 @@
       },
       "required": false,
       "type": {
-        "name": "(day: any) => boolean"
+        "name": "(day: DateIOType) => boolean"
       }
     },
     "onMonthChange": {
@@ -2888,7 +2888,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any) => void | Promise<void>"
+        "name": "(date: DateIOType) => void | Promise<void>"
       }
     },
     "loadingIndicator": {
@@ -3000,7 +3000,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any) => void"
+        "name": "(date: DateIOType) => void"
       }
     },
     "format": {
@@ -3041,7 +3041,7 @@
       },
       "required": false,
       "type": {
-        "name": "(error: ReactNode, value: any) => void"
+        "name": "(error: ReactNode, value: DateIOType) => void"
       }
     },
     "value": {
@@ -3108,7 +3108,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any, invalidLabel: string) => string"
+        "name": "(date: DateIOType, invalidLabel: string) => string"
       }
     },
     "initialFocusedDate": {
@@ -3539,7 +3539,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any) => void"
+        "name": "(date: DateIOType) => void"
       }
     },
     "leftArrowIcon": {
@@ -3578,7 +3578,7 @@
       },
       "required": false,
       "type": {
-        "name": "(day: any, selectedDate: any, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
+        "name": "(day: DateIOType, selectedDate: DateIOType, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
       }
     },
     "allowKeyboardControl": {
@@ -3632,7 +3632,7 @@
       },
       "required": false,
       "type": {
-        "name": "(day: any) => boolean"
+        "name": "(day: DateIOType) => boolean"
       }
     },
     "onMonthChange": {
@@ -3645,7 +3645,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any) => void | Promise<void>"
+        "name": "(date: DateIOType) => void | Promise<void>"
       }
     },
     "loadingIndicator": {
@@ -3673,7 +3673,7 @@
       },
       "required": true,
       "type": {
-        "name": "any"
+        "name": "DateIOType"
       }
     },
     "onChange": {
@@ -3699,7 +3699,7 @@
       },
       "required": false,
       "type": {
-        "name": "any"
+        "name": "DateIOType"
       }
     },
     "maxDate": {
@@ -3712,7 +3712,7 @@
       },
       "required": false,
       "type": {
-        "name": "any"
+        "name": "DateIOType"
       }
     },
     "disablePast": {
@@ -3781,7 +3781,7 @@
       },
       "required": false,
       "type": {
-        "name": "(day: any, selectedDate: any, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
+        "name": "(day: DateIOType, selectedDate: DateIOType, dayInCurrentMonth: boolean, dayComponent: Element) => Element"
       }
     },
     "allowKeyboardControl": {
@@ -3835,7 +3835,7 @@
       },
       "required": false,
       "type": {
-        "name": "(day: any) => boolean"
+        "name": "(day: DateIOType) => boolean"
       }
     },
     "onMonthChange": {
@@ -3848,7 +3848,7 @@
       },
       "required": false,
       "type": {
-        "name": "(date: any) => void | Promise<void>"
+        "name": "(date: DateIOType) => void | Promise<void>"
       }
     },
     "loadingIndicator": {

@@ -6,7 +6,7 @@ import { ToolbarComponentProps } from '../Picker/Picker';
 export interface BasePickerProps {
   /** Picker value */
   value: ParsableDate;
-  /** onChange callback */
+  /** onChange callback @DateIOType */
   onChange: (date: MaterialUiPickersDate) => void;
   /**
    * Auto accept date on selection
@@ -17,7 +17,7 @@ export interface BasePickerProps {
   format?: string;
   /** Disable datepicker and text field */
   disabled?: boolean;
-  /** Dynamic formatter of text field value */
+  /** Dynamic formatter of text field value @DateIOType */
   labelFunc?: (date: MaterialUiPickersDate, invalidLabel: string) => string;
   /** Date that will be initially highlighted if null was passed */
   initialFocusedDate?: ParsableDate;
@@ -31,9 +31,9 @@ export interface BasePickerProps {
    * @default ' '
    */
   emptyLabel?: string;
-  /** Callback fired when date is accepted */
+  /** Callback fired when date is accepted @DateIOType */
   onAccept?: (date: MaterialUiPickersDate) => void;
-  /** Callback fired when new error should be displayed */
+  /** Callback fired when new error should be displayed @DateIOType */
   onError?: (error: React.ReactNode, value: MaterialUiPickersDate | ParsableDate) => void;
   /** On open callback */
   onOpen?: () => void;

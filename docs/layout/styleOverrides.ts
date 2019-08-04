@@ -54,6 +54,15 @@ export const createOverrides = (theme: Theme): StyleRules<any> => ({
     wordWrap: 'normal',
     backgroundColor: theme.palette.background.paper + ' !important',
   },
+  blockquote: {
+    marginLeft: 0,
+    paddingLeft: '1em',
+    borderLeft: `3px solid ${theme.palette.grey[200]}`,
+
+    '& > p': {
+      fontSize: '0.9rem',
+    },
+  },
   'h1, h2, h3, h4, h5': {
     position: 'relative',
     '& a.anchor-link': {

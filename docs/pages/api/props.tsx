@@ -58,6 +58,11 @@ const Docs: React.FC<WithRouterProps> = ({ router }) => {
         component.
       </Typography>
 
+      <Typography gutterBottom>
+        <code>DateIOType</code> — date object type of your linked date-io adapter (Moment, DayJS,
+        etc.)
+      </Typography>
+
       <PropTypesTable src={componentName} />
 
       {!internalComponents.includes(componentName) && (
