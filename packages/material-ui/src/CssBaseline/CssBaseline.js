@@ -29,10 +29,10 @@ const useStyles = makeStyles(
           backgroundColor: theme.palette.common.white,
         },
       },
-      '*:not(dialog):not(video)::backdrop': {
+      '*:not(dialog)::backdrop': {
         backgroundColor: theme.palette.background.default,
       },
-      '*:not(dialog):not(video)::-ms-backdrop': {
+      '*:not(dialog)::-ms-backdrop': {
         backgroundColor: theme.palette.background.default,
       },
     },
