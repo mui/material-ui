@@ -117,6 +117,8 @@ function styled(Component) {
       /**
        * If `true`, the component will recycle it's children DOM element.
        * It's using `React.cloneElement` internally.
+       *
+       * This prop will be deprecated and removed in v5
        */
       clone: chainPropTypes(PropTypes.bool, props => {
         if (props.clone && props.component) {
