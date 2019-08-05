@@ -120,7 +120,7 @@
     "rollup-plugin-commonjs": "^10.0.1",
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-size-snapshot": "^0.9.0",
+    "rollup-plugin-size-snapshot": "^0.10.0",
     "rollup-plugin-terser": "^5.1.1",
     "sinon": "^7.0.0",
     "size-limit": "^0.21.0",
