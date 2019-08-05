@@ -31,9 +31,6 @@ const useStyles = makeStyles(
         '&::backdrop': {
           backgroundColor: theme.palette.background.default,
         },
-        '&::-ms-backdrop': {
-          backgroundColor: theme.palette.background.default,
-        },
       },
     },
   }),
