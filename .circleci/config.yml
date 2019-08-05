@@ -157,7 +157,9 @@ workflows:
       - checkout:
           filters:
             branches:
-              ignore: l10n
+              ignore: 
+                - l10n
+                - /dependabot\//
       - test_unit:
           requires:
             - checkout
