@@ -68,6 +68,7 @@ export type InputBaseClassKey =
   | 'marginDense'
   | 'multiline'
   | 'fullWidth'
+  | 'valueFilled'
   | 'input'
   | 'inputMarginDense'
   | 'inputMultiline'

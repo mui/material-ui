@@ -430,6 +430,28 @@ describe('<InputBase />', () => {
       });
     });
 
+    describe('valueFilled', () => {
+      it('should have the valueFilled class when the value is not empty', () => {
+        const { container } = render(
+          <FormControl>
+            <InputBase value="a" />
+          </FormControl>
+        );
+        const input = container.querySelector('input');
+        expect(input).to.have.class(classes.valueFilled);
+      });
+      
+      it('should not have the valueFilled class when the value is empty', () => {
+        const { container } = render(
+          <FormControl>
+            <InputBase />
+          </FormControl>
+        );
+        const input = container.querySelector('input');
+        expect(input).not.to.have.class(classes.valueFilled);
+      });
+    });
+
     it('propagates filled state when uncontrolled', () => {
       function FilledStateLabel(props) {
         const { filled } = useFormControl();
@@ -541,6 +563,8 @@ describe('<InputBase />', () => {
       );
     });
   });
+
+
 
   describe('prop: inputRef', () => {
     it('should be able to access the native input', () => {

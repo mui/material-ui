@@ -99,6 +99,24 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const ValueBasedTextField = withStyles({
+  root: {
+    '& .Mui-valueFilled.Mui-focused': {
+      '& fieldset': {
+        borderLeftWidth: 6,
+      },
+    },
+    '& .Mui-valueFilled': {
+      '& fieldset': {
+          borderColor: green[400],
+          borderWidth: 1.5,
+          borderLeftWidth: 6,
+          padding: '4px !important',
+      },
+    },
+  }
+})(TextField);
+
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -116,6 +134,13 @@ export default function CustomizedInputs() {
         label="Custom CSS"
         variant="outlined"
         id="custom-css-outlined-input"
+      />
+      <ValueBasedTextField
+        className={classes.margin}
+        label="Custom CSS"
+        variant="outlined"
+        defaultValue="Value-Based"
+        id="custom-css-outlined-value-based-input"
       />
       <ThemeProvider theme={theme}>
         <TextField

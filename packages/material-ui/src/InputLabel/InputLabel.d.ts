@@ -20,6 +20,7 @@ export type InputLabelClassKey =
   | 'error'
   | 'required'
   | 'asterisk'
+  | 'valueFilled'
   | 'formControl'
   | 'marginDense'
   | 'shrink'

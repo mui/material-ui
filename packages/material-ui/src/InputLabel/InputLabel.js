@@ -22,6 +22,8 @@ export const styles = theme => ({
   required: {},
   /* Pseudo-class applied to the asterisk element. */
   asterisk: {},
+  /* Styles applied to the root element if the `value` is not empty. */
+  valueFilled: {},
   /* Styles applied to the root element if the component is a descendant of `FormControl`. */
   formControl: {
     position: 'absolute',
@@ -102,7 +104,7 @@ const InputLabel = React.forwardRef(function InputLabel(props, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['margin', 'variant'],
+    states: ['margin', 'variant', 'filled'],
   });
 
   return (
@@ -117,6 +119,7 @@ const InputLabel = React.forwardRef(function InputLabel(props, ref) {
           [classes.marginDense]: fcs.margin === 'dense',
           [classes.filled]: fcs.variant === 'filled',
           [classes.outlined]: fcs.variant === 'outlined',
+          [classes.valueFilled]: fcs.filled,
         },
         className,
       )}

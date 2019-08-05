@@ -70,6 +70,8 @@ export const styles = theme => {
     fullWidth: {
       width: '100%',
     },
+    /* Styles applied to the root element if the `value` is not empty. */
+    valueFilled: {},
     /* Styles applied to the `input` element. */
     input: {
       font: 'inherit',
@@ -356,6 +358,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           [classes.multiline]: multiline,
           [classes.adornedStart]: startAdornment,
           [classes.adornedEnd]: endAdornment,
+          [classes.valueFilled]: fcs.filled,
         },
         classNameProp,
       )}
@@ -380,6 +383,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
             classes.input,
             {
               [classes.disabled]: fcs.disabled,
+              [classes.valueFilled]: fcs.filled,
               [classes.inputTypeSearch]: type === 'search',
               [classes.inputMultiline]: multiline,
               [classes.inputSelect]: select,
