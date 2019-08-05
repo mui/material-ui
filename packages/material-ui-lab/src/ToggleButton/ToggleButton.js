@@ -13,7 +13,6 @@ export const styles = theme => ({
     ...theme.typography.button,
     boxSizing: 'border-box',
     height: 48,
-    minWidth: 49,
     padding: '0px 11px 0px 12px',
     border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
     color: fade(theme.palette.action.active, 0.38),
@@ -70,13 +69,13 @@ export const styles = theme => ({
   /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
     height: 40,
-    minWidth: 41,
+    padding: '0px 7px 0px 8px',
     fontSize: theme.typography.pxToRem(13),
   },
   /* Styles applied to the root element if `size="large"`. */
   sizeLarge: {
     height: 56,
-    minWidth: 57,
+    padding: '0px 15px 0px 16px',
     fontSize: theme.typography.pxToRem(15),
   },
 });
