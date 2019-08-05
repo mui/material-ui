@@ -9,7 +9,7 @@ filename: /packages/material-ui-lab/src/Skeleton/Skeleton.js
 <p class="description">The API documentation of the Skeleton React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Skeleton } from '@material-ui/lab';
+import Skeleton from '@material-ui/lab/Skeleton';
 ```
 
 
