@@ -1752,9 +1752,9 @@
     write-file-atomic "^2.3.0"
 
 "@material-ui/pickers@^3.0.0", "@material-ui/pickers@^3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@material-ui/pickers/-/pickers-3.2.1.tgz#50a2a74be07db587d039b6da3c279086ae839eb1"
-  integrity sha512-9dl7JLSIZQQx7j4UKU7Hnkxjok6gyz3KQMjza54dJgfJ8ZrMca2opGveerzVtAfqSef/aGzA8WrEw/ql/5r7RQ==
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@material-ui/pickers/-/pickers-3.2.2.tgz#9b7a67f5a8f21f8183853ebc1848e5d8dd680d4c"
+  integrity sha512-on/J1yyKeJ4CkLnItpf/jPDKMZVWvHDklkh5FS7wkZ0s1OPoqTsPubLWfA7eND6xREnVRyLFzVTlE3VlWYdQWw==
   dependencies:
     "@babel/runtime" "^7.2.0"
     "@types/styled-jsx" "^2.2.8"
