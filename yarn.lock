@@ -2018,6 +2018,13 @@
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
   integrity sha512-EaObqwIvayI5a8dCzhFrjKzVwKLxjoG9T6Ppd5CEo07LRKfQ8Yokw54r5+Wq7FaBQ+yXRvQAYPrHwya1/UFt9g==
 
+"@types/fs-extra@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-8.0.0.tgz#d3e2c313ca29f95059f198dd60d1f774642d4b25"
+  integrity sha512-bCtL5v9zdbQW86yexOlXWTEGvLNqWxMFyi7gQA7Gcthbezr2cPSOb8SkESVKA937QD5cIwOFLDFt0MQoXOEr9Q==
+  dependencies:
+    "@types/node" "*"
+
 "@types/glob@*", "@types/glob@^7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.1.1.tgz#aa59a1c6e3fbc421e07ccd31a944c30eba521575"
@@ -2085,6 +2092,11 @@
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/@types/parsimmon/-/parsimmon-1.10.0.tgz#ffb81cb023ff435a41d4710a29ab23c561dc9fdf"
   integrity sha512-bsTIJFVQv7jnvNiC42ld2pQW2KRI+pAG243L+iATvqzy3X6+NH1obz2itRKDZZ8VVhN3wjwYax/VBGCcXzgTqQ==
+
+"@types/prettier@^1.18.0":
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-1.18.0.tgz#d2dbe4d5f76b455138f13a2d881278e2c06a733d"
+  integrity sha512-5N6WK/XXs9PLPpge2KOmOSaIym2vIo32GsrxM5YOFs7uZ8R9L/acg+hQzWsfwoHEpasqQkH0+3LzLTbiF1GFLQ==
 
 "@types/prop-types@*":
   version "15.7.1"
@@ -2843,6 +2855,11 @@ are-we-there-yet@~1.1.2:
   dependencies:
     delegates "^1.0.0"
     readable-stream "^2.0.6"
+
+arg@^4.1.0:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/arg/-/arg-4.1.1.tgz#485f8e7c390ce4c5f78257dbea80d4be11feda4c"
+  integrity sha512-SlmP3fEA88MBv0PypnXZ8ZfJhwmDeIE3SP71j37AiXQBXYosPV0x6uISAaHYSlSVhmHOVkomen0tbGk6Anlebw==
 
 argos-cli@^0.1.1:
   version "0.1.1"
@@ -5463,6 +5480,11 @@ diff@3.5.0, diff@^3.2.0, diff@^3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
   integrity sha512-A46qtFgd+g7pDZinpnwiRJtxbC1hpgf0uzP3iG89scHk0AUC7A1TGxf5OiiOUv/JMZR8GOt8hL900hV0bOy5xA==
+
+diff@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/diff/-/diff-4.0.1.tgz#0c667cb467ebbb5cea7f14f135cc2dba7780a8ff"
+  integrity sha512-s2+XdvhPCOF01LRQBC8hf4vhbVmI2CGS5aZnxLJlT5FtdhPCDFq80q++zK2KlrVorVDdL5BOGZ/VfLrVtYNF+Q==
 
 diffie-hellman@^5.0.0:
   version "5.0.3"
@@ -9318,6 +9340,11 @@ make-dir@^3.0.0:
   integrity sha512-grNJDhb8b1Jm1qeqW5R/O63wUo4UXo2v2HMic6YT9i/HBlF93S8jkMgH7yugvY9ABDShH4VZMn8I+U8+fCNegw==
   dependencies:
     semver "^6.0.0"
+
+make-error@^1.1.1:
+  version "1.3.5"
+  resolved "https://registry.yarnpkg.com/make-error/-/make-error-1.3.5.tgz#efe4e81f6db28cadd605c70f29c831b58ef776c8"
+  integrity sha512-c3sIjNUow0+8swNwVpqoH4YCShKNFkMaw6oH1mNS2haDZQqkeZFlHS3dhoeEbKKmJB4vXpJucU6oH75aDYeE9g==
 
 make-fetch-happen@^5.0.0:
   version "5.0.0"
@@ -13306,7 +13333,7 @@ source-map-resolve@^0.5.0, source-map-resolve@^0.5.2:
     source-map-url "^0.4.0"
     urix "^0.1.0"
 
-source-map-support@^0.5.9, source-map-support@~0.5.12:
+source-map-support@^0.5.6, source-map-support@^0.5.9, source-map-support@~0.5.12:
   version "0.5.12"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.12.tgz#b4f3b10d51857a5af0138d3ce8003b201613d599"
   integrity sha512-4h2Pbvyy15EE02G+JOZpUCmqWJuqrs+sEkzewTm++BPi7Hvn/HwcqLAcNxYAyI0x13CpPPn+kMjl+hplXMHITQ==
@@ -14156,6 +14183,17 @@ ts-essentials@^2.0.8:
   resolved "https://registry.yarnpkg.com/ts-essentials/-/ts-essentials-2.0.12.tgz#c9303f3d74f75fa7528c3d49b80e089ab09d8745"
   integrity sha512-3IVX4nI6B5cc31/GFFE+i8ey/N2eA0CZDbo6n0yrz0zDX8ZJ8djmU1p+XRz7G3is0F3bB3pu2pAroFdAWQKU3w==
 
+ts-node@^8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-8.3.0.tgz#e4059618411371924a1fb5f3b125915f324efb57"
+  integrity sha512-dyNS/RqyVTDcmNM4NIBAeDMpsAdaQ+ojdf0GOLqE6nwJOgzEkdRNzJywhDfwnuvB10oa6NLVG1rUJQCpRN7qoQ==
+  dependencies:
+    arg "^4.1.0"
+    diff "^4.0.1"
+    make-error "^1.1.1"
+    source-map-support "^0.5.6"
+    yn "^3.0.0"
+
 tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
@@ -14241,10 +14279,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript-to-proptypes@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/typescript-to-proptypes/-/typescript-to-proptypes-1.1.0.tgz#31306953bb5fda8d46f679ed6ca99860874226f4"
-  integrity sha512-U57VzFJ9t5wl4d7V48AmD7YPWD0YCilZqvCz12hCRxtE2kd1yKVfs2Eo+9NAEUkzzcDCc5U8MktgfV4FgFNgew==
+typescript-to-proptypes@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/typescript-to-proptypes/-/typescript-to-proptypes-1.2.3.tgz#af3f88c8c3e5b494c645700670ffc6c986d44a29"
+  integrity sha512-7L1+peXa9hUaY3TZvgl0rJT3nUV4xaO5Oo5Bmf7ROgQJ3gcRhk94vOkRUeWMhnzUCEPiVxiEOlzi5L/6G+gXbw==
   dependencies:
     "@babel/core" "^7.5.4"
     "@babel/plugin-syntax-class-properties" "^7.2.0"
@@ -15244,3 +15282,8 @@ yeast@0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/yeast/-/yeast-0.1.2.tgz#008e06d8094320c372dbc2f8ed76a0ca6c8ac419"
   integrity sha1-AI4G2AlDIMNy28L47XagymyKxBk=
+
+yn@^3.0.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/yn/-/yn-3.1.0.tgz#fcbe2db63610361afcc5eb9e0ac91e976d046114"
+  integrity sha512-kKfnnYkbTfrAdd0xICNFw7Atm8nKpLcLv9AZGEt+kczL/WQVai4e2V6ZN8U/O+iI6WrNuJjNNOyu4zfhl9D3Hg==

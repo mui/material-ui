@@ -213,6 +213,14 @@ function generatePropType(type) {
     case 'arrayOf': {
       return `Array<${generatePropType(type.value)}>`;
     }
+
+    case 'instanceOf': {
+      if (type.value.startsWith('typeof')) {
+        return /typeof (.*) ===/.exec(type.value)[1];
+      }
+      return type.value;
+    }
+
     default:
       return type.name;
   }

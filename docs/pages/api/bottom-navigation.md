@@ -18,7 +18,7 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | The content of the component. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: any) => void`<br>*event:* The event source of the callback<br>*value:* We default to the index of the child |

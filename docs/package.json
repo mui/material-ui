@@ -90,7 +90,7 @@
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "styled-components": "^4.3.2",
-    "typescript-to-proptypes": "^1.1.0",
+    "typescript-to-proptypes": "^1.2.3",
     "url-loader": "^2.1.0",
     "webfontloader": "^1.6.28"
   },

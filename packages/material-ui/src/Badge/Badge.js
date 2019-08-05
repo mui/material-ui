@@ -129,12 +129,12 @@ Badge.propTypes = {
   /**
    * The badge will be added relative to this node.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -142,7 +142,7 @@ Badge.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['default', 'primary', 'secondary', 'error']),
+  color: PropTypes.oneOf(['default', 'error', 'primary', 'secondary']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
@@ -163,7 +163,7 @@ Badge.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['standard', 'dot']),
+  variant: PropTypes.oneOf(['dot', 'standard']),
 };
 
 export default withStyles(styles, { name: 'MuiBadge' })(Badge);

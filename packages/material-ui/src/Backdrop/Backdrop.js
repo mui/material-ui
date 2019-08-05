@@ -48,10 +48,14 @@ const Backdrop = React.forwardRef(function Backdrop(props, ref) {
 
 Backdrop.propTypes = {
   /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -71,7 +75,11 @@ Backdrop.propTypes = {
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
   ]),
 };
 
