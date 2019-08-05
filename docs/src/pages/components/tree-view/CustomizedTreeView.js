@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SvgIcon from '@material-ui/core/SvgIcon';
-import { fade, withStyles } from '@material-ui/core/styles';
+import { fade, makeStyles, withStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
 import Collapse from '@material-ui/core/Collapse';
@@ -67,27 +67,36 @@ const StyledTreeItem = withStyles(theme => ({
   },
 }))(props => <TreeItem {...props} TransitionComponent={TransitionComponent} />);
 
+const useStyles = makeStyles({
+  root: {
+    height: 264,
+  },
+});
+
 export default function CustomizedTreeView() {
+  const classes = useStyles();
+
   return (
     <TreeView
+      className={classes.root}
       defaultExpanded={['1']}
       defaultCollapseIcon={<MinusSquare />}
       defaultExpandIcon={<PlusSquare />}
       defaultEndIcon={<CloseSquare />}
     >
-      <StyledTreeItem nodeId="1" label="main">
-        <StyledTreeItem nodeId="2" label="hello" />
-        <StyledTreeItem nodeId="3" label="subtree with children">
-          <StyledTreeItem nodeId="6" label="hello" />
-          <StyledTreeItem nodeId="7" label="sub-subtree with children">
-            <StyledTreeItem nodeId="9" label="child 1" />
-            <StyledTreeItem nodeId="10" label="child 2" />
-            <StyledTreeItem nodeId="11" label="child 3" />
+      <StyledTreeItem nodeId="1" label="Main">
+        <StyledTreeItem nodeId="2" label="Hello" />
+        <StyledTreeItem nodeId="3" label="Subtree with children">
+          <StyledTreeItem nodeId="6" label="Hello" />
+          <StyledTreeItem nodeId="7" label="Sub-subtree with children">
+            <StyledTreeItem nodeId="9" label="Child 1" />
+            <StyledTreeItem nodeId="10" label="Child 2" />
+            <StyledTreeItem nodeId="11" label="Child 3" />
           </StyledTreeItem>
-          <StyledTreeItem nodeId="8" label="hello" />
+          <StyledTreeItem nodeId="8" label="Hello" />
         </StyledTreeItem>
-        <StyledTreeItem nodeId="4" label="world" />
-        <StyledTreeItem nodeId="5" label="🙀 something something" />
+        <StyledTreeItem nodeId="4" label="World" />
+        <StyledTreeItem nodeId="5" label="Something something" />
       </StyledTreeItem>
     </TreeView>
   );
