@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/ListItemText/ListItemText.js
 <p class="description">The API documentation of the ListItemText React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { ListItemText } from '@material-ui/core';
+import ListItemText from '@material-ui/core/ListItemText';
 ```
 
 

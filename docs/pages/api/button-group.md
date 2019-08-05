@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/ButtonGroup/ButtonGroup.js
 <p class="description">The API documentation of the ButtonGroup React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { ButtonGroup } from '@material-ui/core';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 ```
 
 

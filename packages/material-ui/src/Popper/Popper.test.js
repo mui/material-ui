@@ -222,6 +222,32 @@ describe('<Popper />', () => {
     });
   });
 
+  describe('prop: disablePortal', () => {
+    it('should work', () => {
+      const popperRef = React.createRef();
+      const wrapper = mount(<Popper {...defaultProps} disablePortal popperRef={popperRef} />);
+      // renders
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      // correctly sets modifiers
+      assert.strictEqual(
+        popperRef.current.options.modifiers.preventOverflow.boundariesElement,
+        'scrollParent',
+      );
+    });
+
+    it('sets preventOverflow to window when disablePortal is false', () => {
+      const popperRef = React.createRef();
+      const wrapper = mount(<Popper {...defaultProps} popperRef={popperRef} />);
+      // renders
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      // correctly sets modifiers
+      assert.strictEqual(
+        popperRef.current.options.modifiers.preventOverflow.boundariesElement,
+        'window',
+      );
+    });
+  });
+
   describe('warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();

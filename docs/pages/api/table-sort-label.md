@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/TableSortLabel/TableSortLabel.js
 <p class="description">The API documentation of the TableSortLabel React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { TableSortLabel } from '@material-ui/core';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
 ```
 
 A button based label for placing inside `TableCell` for column sorting.

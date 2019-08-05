@@ -113,6 +113,7 @@ const pages = [
         children: [
           { pathname: '/components/about-the-lab' },
           { pathname: '/components/rating' },
+          { pathname: '/components/skeleton' },
           { pathname: '/components/speed-dial' },
           { pathname: '/components/toggle-button' },
           { pathname: '/components/tree-view' },
@@ -211,6 +212,7 @@ const pages = [
   {
     pathname: '/blog',
     children: [
+      { pathname: '/blog/2019-july-update' },
       { pathname: '/blog/june-2019-update' },
       { pathname: '/blog/may-2019-update' },
       {

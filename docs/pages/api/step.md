@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Step/Step.js
 <p class="description">The API documentation of the Step React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Step } from '@material-ui/core';
+import Step from '@material-ui/core/Step';
 ```
 
 

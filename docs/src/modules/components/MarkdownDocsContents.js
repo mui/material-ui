@@ -2,7 +2,7 @@
 
 import React from 'react';
 import kebabCase from 'lodash/kebabCase';
-import { Router } from 'next/router';
+import { Router as Router2 } from 'next/router';
 import PropTypes from 'prop-types';
 import { getHeaders, getContents } from 'docs/src/modules/utils/parseMarkdown';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -36,7 +36,7 @@ ${headers.components
     component =>
       `- [&lt;${component} /&gt;](${
         section === 'lab' ? '/lab/api' : '/api'
-      }/${Router._rewriteUrlForNextExport(kebabCase(component))})`,
+      }/${Router2._rewriteUrlForNextExport(kebabCase(component))})`,
   )
   .join('\n')}
   `);

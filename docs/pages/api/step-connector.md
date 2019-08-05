@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/StepConnector/StepConnector.js
 <p class="description">The API documentation of the StepConnector React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { StepConnector } from '@material-ui/core';
+import StepConnector from '@material-ui/core/StepConnector';
 ```
 
 

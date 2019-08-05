@@ -58,32 +58,30 @@ function findIndexOf(containerInfo, callback) {
   return idx;
 }
 
-function handleNewContainer(containerInfo) {
-  // We are only interested in the actual `style` here because we will override it.
-  const restoreStyle = {
-    overflow: containerInfo.container.style.overflow,
-    'padding-right': containerInfo.container.style.paddingRight,
-  };
-
-  const style = {
-    overflow: 'hidden',
-  };
-
+function handleContainer(containerInfo, props) {
+  const restoreStyle = {};
+  const style = {};
   const restorePaddings = [];
   let fixedNodes;
 
-  if (containerInfo.overflowing) {
-    const scrollbarSize = getScrollbarSize();
+  if (!props.disableScrollLock) {
+    restoreStyle.overflow = containerInfo.container.style.overflow;
+    restoreStyle['padding-right'] = containerInfo.container.style.paddingRight;
+    style.overflow = 'hidden';
 
-    // Use computed style, here to get the real padding to add our scrollbar width.
-    style['padding-right'] = `${getPaddingRight(containerInfo.container) + scrollbarSize}px`;
+    if (isOverflowing(containerInfo.container)) {
+      const scrollbarSize = getScrollbarSize();
 
-    // .mui-fixed is a global helper.
-    fixedNodes = ownerDocument(containerInfo.container).querySelectorAll('.mui-fixed');
-    [].forEach.call(fixedNodes, node => {
-      restorePaddings.push(node.style.paddingRight);
-      node.style.paddingRight = `${getPaddingRight(node) + scrollbarSize}px`;
-    });
+      // Use computed style, here to get the real padding to add our scrollbar width.
+      style['padding-right'] = `${getPaddingRight(containerInfo.container) + scrollbarSize}px`;
+
+      // .mui-fixed is a global helper.
+      fixedNodes = ownerDocument(containerInfo.container).querySelectorAll('.mui-fixed');
+      [].forEach.call(fixedNodes, node => {
+        restorePaddings.push(node.style.paddingRight);
+        node.style.paddingRight = `${getPaddingRight(node) + scrollbarSize}px`;
+      });
+    }
   }
 
   Object.keys(style).forEach(key => {
@@ -137,7 +135,6 @@ export default class ModalManager {
     // this.contaniners[containerIndex] = {
     //   modals: [],
     //   container,
-    //   overflowing,
     //   restore: null,
     // }
     this.contaniners = [];
@@ -169,7 +166,6 @@ export default class ModalManager {
     this.contaniners.push({
       modals: [modal],
       container,
-      overflowing: isOverflowing(container),
       restore: null,
       hiddenSiblingNodes,
     });
@@ -177,12 +173,12 @@ export default class ModalManager {
     return modalIndex;
   }
 
-  mount(modal) {
+  mount(modal, props) {
     const containerIndex = findIndexOf(this.contaniners, item => item.modals.indexOf(modal) !== -1);
     const containerInfo = this.contaniners[containerIndex];
 
     if (!containerInfo.restore) {
-      containerInfo.restore = handleNewContainer(containerInfo);
+      containerInfo.restore = handleContainer(containerInfo, props);
     }
   }
 

@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/InputLabel/InputLabel.js
 <p class="description">The API documentation of the InputLabel React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { InputLabel } from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
 ```
 
 

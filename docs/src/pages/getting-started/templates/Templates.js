@@ -1,9 +1,6 @@
-/* eslint-disable no-underscore-dangle */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { Router } from 'next/router';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -38,7 +35,7 @@ function layouts(t) {
       title: t('dashboardTitle'),
       description: t('dashboardDescr'),
       src: '/static/images/templates/dashboard.png',
-      href: '/getting-started/templates/dashboard',
+      href: '/getting-started/templates/dashboard/',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/dashboard',
     },
@@ -46,7 +43,7 @@ function layouts(t) {
       title: t('signInTitle'),
       description: t('signInDescr'),
       src: '/static/images/templates/sign-in.png',
-      href: '/getting-started/templates/sign-in',
+      href: '/getting-started/templates/sign-in/',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-in',
     },
@@ -54,7 +51,7 @@ function layouts(t) {
       title: t('signInSideTitle'),
       description: t('signInSideDescr'),
       src: '/static/images/templates/sign-in-side.png',
-      href: '/getting-started/templates/sign-in-side',
+      href: '/getting-started/templates/sign-in-side/',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-in-side',
     },
@@ -62,7 +59,7 @@ function layouts(t) {
       title: t('signUpTitle'),
       description: t('signUpDescr'),
       src: '/static/images/templates/sign-up.png',
-      href: '/getting-started/templates/sign-up',
+      href: '/getting-started/templates/sign-up/',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sign-up',
     },
@@ -70,7 +67,7 @@ function layouts(t) {
       title: t('blogTitle'),
       description: t('blogDescr'),
       src: '/static/images/templates/blog.png',
-      href: '/getting-started/templates/blog',
+      href: '/getting-started/templates/blog/',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/blog',
     },
@@ -78,7 +75,7 @@ function layouts(t) {
       title: t('checkoutTitle'),
       description: t('checkoutDescr'),
       src: '/static/images/templates/checkout.png',
-      href: '/getting-started/templates/checkout',
+      href: '/getting-started/templates/checkout/',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/checkout',
     },
@@ -86,7 +83,7 @@ function layouts(t) {
       title: t('albumTitle'),
       description: t('albumDescr'),
       src: '/static/images/templates/album.png',
-      href: '/getting-started/templates/album',
+      href: '/getting-started/templates/album/',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/album',
     },
@@ -94,7 +91,7 @@ function layouts(t) {
       title: t('pricingTitle'),
       description: t('pricingDescr'),
       src: '/static/images/templates/pricing.png',
-      href: '/getting-started/templates/pricing',
+      href: '/getting-started/templates/pricing/',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/pricing',
     },
@@ -102,7 +99,7 @@ function layouts(t) {
       title: t('stickyFooterTitle'),
       description: t('stickyFooterDescr'),
       src: '/static/images/templates/sticky-footer.png',
-      href: '/getting-started/templates/sticky-footer',
+      href: '/getting-started/templates/sticky-footer/',
       source:
         'https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/sticky-footer',
     },
@@ -120,7 +117,7 @@ function Templates(props) {
           <Card className={classes.card}>
             <CardMedia
               component="a"
-              href={Router._rewriteUrlForNextExport(layout.href)}
+              href={layout.href}
               className={classes.cardMedia}
               image={layout.src}
               title={layout.title}

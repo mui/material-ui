@@ -12,7 +12,7 @@ export interface PortalProps {
    * By default, it uses the body of the top-level document object,
    * so it's simply `document.body` most of the time.
    */
-  container?: React.ReactInstance | (() => React.ReactInstance) | null;
+  container?: React.ReactInstance | (() => React.ReactInstance | null) | null;
   /**
    * Disable the portal behavior.
    * The children stay within it's parent DOM hierarchy.

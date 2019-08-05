@@ -8,7 +8,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
 
-export const styles = {
+export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     listStyle: 'none',
@@ -16,7 +16,7 @@ export const styles = {
     padding: 0,
     outline: 0,
     '&:focus > $content': {
-      outline: 'auto 1px',
+      backgroundColor: theme.palette.grey[400],
     },
   },
   /* Styles applied to the `role="group"` element. */
@@ -30,18 +30,21 @@ export const styles = {
     width: '100%',
     display: 'flex',
     alignItems: 'center',
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+    },
   },
   /* Styles applied to the tree node icon and collapse/expand icon. */
   iconContainer: {
     marginRight: 2,
     width: 24,
-    minWidth: 24,
     display: 'flex',
     justifyContent: 'center',
   },
   /* Styles applied to the label element. */
   label: {},
-};
+});
 
 const isPrintableCharacter = str => {
   return str && str.length === 1 && str.match(/\S/);
@@ -49,42 +52,45 @@ const isPrintableCharacter = str => {
 
 const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const {
+    children,
     classes,
     className,
-    children,
     collapseIcon,
+    endIcon,
     expandIcon,
-    icon,
+    icon: iconProp,
     label,
     nodeId,
     onClick,
     onFocus,
     onKeyDown,
+    TransitionComponent = Collapse,
     ...other
   } = props;
+
   const {
-    icons: contextIcons,
-    toggle,
-    isExpanded,
-    isTabable,
+    expandAllSiblings,
     focus,
-    focusNextNode,
-    focusPreviousNode,
     focusFirstNode,
     focusLastNode,
-    isFocused,
-    handleLeftArrow,
-    expandAllSiblings,
-    setFocusByFirstCharacter,
-    handleNodeMap,
+    focusNextNode,
+    focusPreviousNode,
     handleFirstChars,
+    handleLeftArrow,
+    handleNodeMap,
+    icons: contextIcons,
+    isExpanded,
+    isFocused,
+    isTabable,
+    setFocusByFirstCharacter,
+    toggle,
   } = React.useContext(TreeViewContext);
 
   const nodeRef = React.useRef(null);
   const contentRef = React.useRef(null);
   const handleRef = useForkRef(nodeRef, ref);
 
-  let stateIcon = null;
+  let icon = iconProp;
 
   const expandable = Boolean(children);
   const expanded = isExpanded ? isExpanded(nodeId) : false;
@@ -92,31 +98,20 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const tabable = isTabable ? isTabable(nodeId) : false;
   const icons = contextIcons || {};
 
-  if (icons.defaultExpandIcon && expandable && !expanded) {
-    stateIcon = icons.defaultExpandIcon;
-  }
-  if (icons.defaultCollapseIcon && expandable && expanded) {
-    stateIcon = icons.defaultCollapseIcon;
-  }
+  if (!icon) {
+    if (expandable) {
+      if (!expanded) {
+        icon = expandIcon || icons.defaultExpandIcon;
+      } else {
+        icon = collapseIcon || icons.defaultCollapseIcon;
+      }
 
-  if (expandIcon && expandable && !expanded) {
-    stateIcon = expandIcon;
-  }
-
-  if (collapseIcon && expandable && expanded) {
-    stateIcon = collapseIcon;
-  }
-
-  const stateIconsProvided = icons && (icons.defaultCollapseIcon || icons.defaultExpandIcon);
-
-  let startAdornment = null;
-
-  if (expandable) {
-    if (icons.defaultParentIcon || icon) {
-      startAdornment = icon || icons.defaultParentIcon;
+      if (!icon) {
+        icon = icon || icons.defaultParentIcon;
+      }
+    } else {
+      icon = icons.defaultEndIcon;
     }
-  } else if (icons.defaultEndIcon || icon) {
-    startAdornment = icon || icons.defaultEndIcon;
   }
 
   const handleClick = event => {
@@ -253,14 +248,13 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       {...other}
     >
       <div className={classes.content} onClick={handleClick} ref={contentRef}>
-        {stateIconsProvided ? <div className={classes.iconContainer}>{stateIcon}</div> : null}
-        {startAdornment ? <div className={classes.iconContainer}>{startAdornment}</div> : null}
+        {icon ? <div className={classes.iconContainer}>{icon}</div> : null}
         <Typography className={classes.label}>{label}</Typography>
       </div>
       {children && (
-        <Collapse className={classes.group} in={expanded} component="ul" role="group">
+        <TransitionComponent className={classes.group} in={expanded} component="ul" role="group">
           {children}
-        </Collapse>
+        </TransitionComponent>
       )}
     </li>
   );
@@ -284,6 +278,10 @@ TreeItem.propTypes = {
    * The icon used to collapse the node.
    */
   collapseIcon: PropTypes.node,
+  /**
+   * The icon displayed next to a end node.
+   */
+  endIcon: PropTypes.node,
   /**
    * The icon used to expand the node.
    */
@@ -312,6 +310,10 @@ TreeItem.propTypes = {
    * @ignore
    */
   onKeyDown: PropTypes.func,
+  /**
+   * The component used for the transition.
+   */
+  TransitionComponent: PropTypes.elementType,
 };
 
 export default withStyles(styles, { name: 'MuiTreeItem' })(TreeItem);

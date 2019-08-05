@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Grid/Grid.js
 <p class="description">The API documentation of the Grid React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Grid } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 ```
 
 

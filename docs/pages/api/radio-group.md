@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/RadioGroup/RadioGroup.js
 <p class="description">The API documentation of the RadioGroup React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { RadioGroup } from '@material-ui/core';
+import RadioGroup from '@material-ui/core/RadioGroup';
 ```
 
 

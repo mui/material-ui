@@ -9,7 +9,7 @@ filename: /packages/material-ui-lab/src/SpeedDialAction/SpeedDialAction.js
 <p class="description">The API documentation of the SpeedDialAction React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { SpeedDialAction } from '@material-ui/lab';
+import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 ```
 
 

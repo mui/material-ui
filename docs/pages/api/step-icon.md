@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/StepIcon/StepIcon.js
 <p class="description">The API documentation of the StepIcon React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { StepIcon } from '@material-ui/core';
+import StepIcon from '@material-ui/core/StepIcon';
 ```
 
 

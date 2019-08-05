@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Input/Input.js
 <p class="description">The API documentation of the Input React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Input } from '@material-ui/core';
+import Input from '@material-ui/core/Input';
 ```
 
 

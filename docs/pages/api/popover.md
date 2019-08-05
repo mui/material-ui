@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Popover/Popover.js
 <p class="description">The API documentation of the Popover React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Popover } from '@material-ui/core';
+import Popover from '@material-ui/core/Popover';
 ```
 
 

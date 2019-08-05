@@ -30,6 +30,10 @@ const users = [
     logo: 'bethesda.png',
     caption: 'Bethesda',
   },
+  {
+    logo: 'jpmorgan.png',
+    caption: 'J.P. Morgan',
+  },
 ];
 
 const styles = theme => ({

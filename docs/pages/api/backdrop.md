@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Backdrop/Backdrop.js
 <p class="description">The API documentation of the Backdrop React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Backdrop } from '@material-ui/core';
+import Backdrop from '@material-ui/core/Backdrop';
 ```
 
 
