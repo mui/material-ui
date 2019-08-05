@@ -29,7 +29,7 @@
   "homeFooterRelease": "Currently {{versionNumber}}. Released under the {{license}}.",
   "license": "MIT License",
   "likeMui": "Help us keep running",
-  "adblock": "If you don't mind tech related ads (no tracking or remarketing), and want to keep us running, whitelist Material-UI in your blocker.",
+  "adblock": "If you don't mind tech related ads (no tracking or remarketing), and want to keep us running, please whitelist Material-UI in your blocker.",
   "thanks": "Thank you!",
   "editPage": "Edit this page",
   "tableOfContents": "Contents",
