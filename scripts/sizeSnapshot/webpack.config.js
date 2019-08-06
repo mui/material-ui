@@ -136,8 +136,8 @@ module.exports = async function webpackConfig() {
 
   const config = {
     entry,
-    // ideally this would be computed from the bundles peer dependencies
-    externals: /^(react|react-dom)$/,
+    // peer dependencies + all production dependencies of the peers
+    externals: /^(react|react-dom|loose-envify|object-assign|scheduler)$/,
     mode: 'production',
     output: {
       filename: '[name].js',
