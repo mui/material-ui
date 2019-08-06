@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import NoSsr from '@material-ui/core/NoSsr';
 import { createMuiTheme, darken, fade } from '@material-ui/core/styles';
 
-const theme = createMuiTheme();
+const defaultTheme = createMuiTheme();
 
 const StyledButton = styled.button`
   padding: 8px 12px;
@@ -39,7 +39,7 @@ const StyledButton = styled.button`
     box-shadow: 0 0 0 0.2rem ${props => fade(props.theme.palette.primary.main, 0.5)};
   }
   font-size: 18px;
-  ${theme.breakpoints.up('md')} {
+  ${props => props.theme.breakpoints.up('md')} {
     font-size: 16px;
   }
 `;
@@ -47,7 +47,7 @@ const StyledButton = styled.button`
 function StyledComponentsTheme() {
   return (
     <NoSsr>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={defaultTheme}>
         <StyledButton>Styled Components</StyledButton>
       </ThemeProvider>
     </NoSsr>

@@ -58,15 +58,13 @@ function useMediaQuery(queryInput, options = {}) {
     }
 
     const queryList = window.matchMedia(query);
-    setMatch(queryList.matches);
-
-    function handleMatchesChange() {
+    const updateMatch = () => {
       setMatch(queryList.matches);
-    }
-
-    queryList.addListener(handleMatchesChange);
+    };
+    updateMatch();
+    queryList.addListener(updateMatch);
     return () => {
-      queryList.removeListener(handleMatchesChange);
+      queryList.removeListener(updateMatch);
     };
   }, [query, supportMatchMedia]);
 

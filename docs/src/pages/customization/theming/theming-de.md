@@ -1,4 +1,4 @@
-# Themes
+# Theming
 
 <p class="description">Passen Sie die Material-UI an Ihrem Design an. Sie können die Farben, die Typografie und vieles mehr ändern.</p>
 
