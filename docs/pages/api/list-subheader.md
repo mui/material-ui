@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/ListSubheader/ListSubheader.js
 <p class="description">The API documentation of the ListSubheader React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { ListSubheader } from '@material-ui/core';
+import ListSubheader from '@material-ui/core/ListSubheader';
 ```
 
 

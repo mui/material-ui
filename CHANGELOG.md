@@ -1,5 +1,39 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.3.1
+###### *Aug 03, 2019*
+
+Big thanks to the 18 contributors who made this release possible!
+
+### `@material-ui/core@v4.3.1`
+
+- [Container] Add missing class key to overrides interface (#16783) @Und3Rdo9
+- [Dialog] Test with testing-library (#16780) @eps1lon
+- [Grid] Add 'root' to GridClassKey typing (#16799) @hendrikskevin
+- [Modal] Fix Modal default open with disablePortal behavior (#16850) @lmuller18
+- [Popper] Fix handlePopperRefRef.current is not a function (#16807) @darkowic
+- [Radio][Switch][Checkbox] Document the `required` prop (#16809) @pranshuchittora
+- [Slider] Fix small typo (#16825) @ninjaPixel
+- [TextareaAutosize] Add missing export for TextareaAutosize (#16815) @tuxracer
+- [Tooltip] Fix tooltips's demo arrow dimensions (#16838) @fillipe-ramos
+- [Tooltip] Remove the title attribute when open (#16804) @jamesgeorge007
+- [Transition] Change the default behavior, 0ms duration if prop missing (#16839) @jamesgeorge007
+
+### `@material-ui/lab@v4.0.0-alpha.22`
+
+- [TreeView] Iterate on the component (#16814) @mbrookes
+- [TreeView] Add customization demo (#16785) @oliviertassinari
+
+### Docs
+
+- [docs] Add missing `(` to withStyle docs (#16816) @SneakyFish5
+- [docs] Fix typo in description of Slider (#16824) @LorenzHenk
+- [docs] Improve the issue template (#16836) @pranshuchittora
+- [docs] Link react-most-wanted (#16856) @TarikHuber
+- [docs] Migrate all public class component to function components (#16693) @bpas247
+- [docs] Small fix for box.md and migration.md (#16806) @DDDDDanica
+- [docs] Update `@material-ui/pickers` (#16823) @eps1lon
+
 ## 4.3.0
 ###### *July 28, 2019*
 

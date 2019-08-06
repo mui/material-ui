@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/LinearProgress/LinearProgress.js
 <p class="description">The API documentation of the LinearProgress React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { LinearProgress } from '@material-ui/core';
+import LinearProgress from '@material-ui/core/LinearProgress';
 ```
 
 ## ARIA

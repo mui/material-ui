@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/GridListTileBar/GridListTileBar.js
 <p class="description">The API documentation of the GridListTileBar React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { GridListTileBar } from '@material-ui/core';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
 ```
 
 

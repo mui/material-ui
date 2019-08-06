@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Container/Container.js
 <p class="description">The API documentation of the Container React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Container } from '@material-ui/core';
+import Container from '@material-ui/core/Container';
 ```
 
 

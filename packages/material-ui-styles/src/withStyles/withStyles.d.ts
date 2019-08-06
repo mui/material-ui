@@ -99,6 +99,9 @@ export type WithStyles<
 } & PropsOfStyles<StylesType>;
 
 export interface StyledComponentProps<ClassKey extends string = string> {
+  /**
+   * Override or extend the styles applied to the component.
+   */
   classes?: Partial<ClassNameMap<ClassKey>>;
   innerRef?: React.Ref<any> | React.RefObject<any>;
 }

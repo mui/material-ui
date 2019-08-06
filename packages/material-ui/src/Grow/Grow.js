@@ -41,7 +41,8 @@ const Grow = React.forwardRef(function Grow(props, ref) {
         mode: 'enter',
       },
     );
-    let duration = 0;
+
+    let duration;
     if (timeout === 'auto') {
       duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
       autoTimeout.current = duration;
@@ -66,14 +67,14 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   };
 
   const handleExit = node => {
-    let duration = 0;
-
     const { duration: transitionDuration, delay } = getTransitionProps(
       { style, timeout },
       {
         mode: 'exit',
       },
     );
+
+    let duration;
     if (timeout === 'auto') {
       duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
       autoTimeout.current = duration;

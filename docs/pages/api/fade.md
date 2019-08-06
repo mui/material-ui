@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Fade/Fade.js
 <p class="description">The API documentation of the Fade React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Fade } from '@material-ui/core';
+import Fade from '@material-ui/core/Fade';
 ```
 
 The Fade transition is used by the [Modal](/components/modal/) component.

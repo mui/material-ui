@@ -5,7 +5,9 @@ export function getTransitionProps(props, options) {
 
   return {
     duration:
-      style.transitionDuration || typeof timeout === 'number' ? timeout : timeout[options.mode],
+      style.transitionDuration || typeof timeout === 'number'
+        ? timeout
+        : timeout[options.mode] || 0,
     delay: style.transitionDelay,
   };
 }

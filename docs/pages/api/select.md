@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Select/Select.js
 <p class="description">The API documentation of the Select React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Select } from '@material-ui/core';
+import Select from '@material-ui/core/Select';
 ```
 
 

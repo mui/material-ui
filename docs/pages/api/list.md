@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/List/List.js
 <p class="description">The API documentation of the List React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { List } from '@material-ui/core';
+import List from '@material-ui/core/List';
 ```
 
 

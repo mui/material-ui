@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/DialogTitle/DialogTitle.js
 <p class="description">The API documentation of the DialogTitle React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { DialogTitle } from '@material-ui/core';
+import DialogTitle from '@material-ui/core/DialogTitle';
 ```
 
 

@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/TableRow/TableRow.js
 <p class="description">The API documentation of the TableRow React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { TableRow } from '@material-ui/core';
+import TableRow from '@material-ui/core/TableRow';
 ```
 
 Will automatically set dynamic row height

@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Collapse/Collapse.js
 <p class="description">The API documentation of the Collapse React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Collapse } from '@material-ui/core';
+import Collapse from '@material-ui/core/Collapse';
 ```
 
 The Collapse transition is used by the

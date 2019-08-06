@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/ListItemSecondaryAction/ListItemSecondaryAct
 <p class="description">The API documentation of the ListItemSecondaryAction React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { ListItemSecondaryAction } from '@material-ui/core';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 ```
 
 Must be used as the last child of ListItem to function properly.

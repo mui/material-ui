@@ -45,7 +45,7 @@ export const styles = theme => ({
       height: 'auto',
     },
     // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 'none',
+    outline: 0,
   },
   /* Styles applied to the `Paper` component. */
   paper: {

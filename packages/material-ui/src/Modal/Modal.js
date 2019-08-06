@@ -22,14 +22,9 @@ function getHasTransition(props) {
   return props.children ? props.children.props.hasOwnProperty('in') : false;
 }
 
+// A modal manager used to track and manage the state of open Modals.
 // Modals don't open on the server so this won't conflict with concurrent requests.
 const defaultManager = new ModalManager();
-
-function getModal(modal, mountNodeRef, modalRef) {
-  modal.current.modalRef = modalRef.current;
-  modal.current.mountNode = mountNodeRef.current;
-  return modal.current;
-}
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -73,6 +68,7 @@ const Modal = React.forwardRef(function Modal(props, ref) {
     disableEscapeKeyDown = false,
     disablePortal = false,
     disableRestoreFocus = false,
+    disableScrollLock = false,
     hideBackdrop = false,
     keepMounted = false,
     manager = defaultManager,
@@ -93,9 +89,14 @@ const Modal = React.forwardRef(function Modal(props, ref) {
   const hasTransition = getHasTransition(props);
 
   const getDoc = () => ownerDocument(mountNodeRef.current);
+  const getModal = () => {
+    modal.current.modalRef = modalRef.current;
+    modal.current.mountNode = mountNodeRef.current;
+    return modal.current;
+  };
 
   const handleMounted = () => {
-    manager.mount(getModal(modal, mountNodeRef, modalRef));
+    manager.mount(getModal(), { disableScrollLock });
 
     // Fix a bug on Chrome where the scroll isn't initially 0.
     modalRef.current.scrollTop = 0;
@@ -104,13 +105,15 @@ const Modal = React.forwardRef(function Modal(props, ref) {
   const handleOpen = useEventCallback(() => {
     const resolvedContainer = getContainer(container) || getDoc().body;
 
-    manager.add(getModal(modal, mountNodeRef, modalRef), resolvedContainer);
+    manager.add(getModal(), resolvedContainer);
 
     // The element was already mounted.
     if (modalRef.current) {
       handleMounted();
     }
   });
+
+  const isTopModal = React.useCallback(() => manager.isTopModal(getModal()), [manager]);
 
   const handlePortalRef = useEventCallback(node => {
     mountNodeRef.current = node;
@@ -123,7 +126,7 @@ const Modal = React.forwardRef(function Modal(props, ref) {
       onRendered();
     }
 
-    if (open) {
+    if (open && isTopModal()) {
       handleMounted();
     } else {
       ariaHidden(modalRef.current, true);
@@ -131,7 +134,7 @@ const Modal = React.forwardRef(function Modal(props, ref) {
   });
 
   const handleClose = React.useCallback(() => {
-    manager.remove(getModal(modal, mountNodeRef, modalRef));
+    manager.remove(getModal());
   }, [manager]);
 
   React.useEffect(() => {
@@ -147,11 +150,6 @@ const Modal = React.forwardRef(function Modal(props, ref) {
       handleClose();
     }
   }, [open, handleClose, hasTransition, closeAfterTransition, handleOpen]);
-
-  const isTopModal = React.useCallback(
-    () => manager.isTopModal(getModal(modal, mountNodeRef, modalRef)),
-    [manager],
-  );
 
   if (!keepMounted && !open && (!hasTransition || exited)) {
     return null;
@@ -317,6 +315,10 @@ Modal.propTypes = {
    */
   disableRestoreFocus: PropTypes.bool,
   /**
+   * Disable the scroll lock behavior.
+   */
+  disableScrollLock: PropTypes.bool,
+  /**
    * If `true`, the backdrop is not rendered.
    */
   hideBackdrop: PropTypes.bool,
@@ -328,8 +330,6 @@ Modal.propTypes = {
   keepMounted: PropTypes.bool,
   /**
    * @ignore
-   *
-   * A modal manager used to track and manage the state of open Modals.
    */
   manager: PropTypes.object,
   /**

@@ -1,8 +1,10 @@
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import NProgress from 'nprogress';
-import Router from 'next/router';
+import Router, { Router as Router2, useRouter } from 'next/router';
 import { withStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,7 +13,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import NoSsr from '@material-ui/core/NoSsr';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu';
-import LanguageIcon from '@material-ui/icons/Language';
+import LanguageIcon from '@material-ui/icons/Translate';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MuiLink from '@material-ui/core/Link';
@@ -122,6 +124,9 @@ const styles = theme => ({
   appBarHome: {
     boxShadow: 'none',
   },
+  language: {
+    margin: theme.spacing(0, 1, 0, 0.5),
+  },
   appBarShift: {
     [theme.breakpoints.up('lg')]: {
       width: 'calc(100% - 240px)',
@@ -140,7 +145,7 @@ const styles = theme => ({
   },
   '@global': {
     '#main-content': {
-      outline: 'none',
+      outline: 0,
     },
   },
 });
@@ -157,7 +162,10 @@ function AppFrame(props) {
   function handleLanguageIconClick(event) {
     setLanguageMenu(event.currentTarget);
   }
-  function handleLanguageMenuClose() {
+  function handleLanguageMenuClose(event) {
+    if (event.currentTarget.nodeName === 'A') {
+      document.cookie = `userLanguage=noDefault;path=/;max-age=31536000`;
+    }
     setLanguageMenu(null);
   }
 
@@ -179,11 +187,8 @@ function AppFrame(props) {
     changeTheme({ direction: theme.direction === 'ltr' ? 'rtl' : 'ltr' });
   }
 
-  const canonicalRef = React.useRef();
-  React.useEffect(() => {
-    const { canonical } = pathnameToLanguage(window.location.pathname);
-    canonicalRef.current = canonical;
-  }, []);
+  const router = useRouter();
+  const { canonical } = pathnameToLanguage(Router2._rewriteUrlForNextExport(router.asPath));
 
   return (
     <PageTitle t={t}>
@@ -236,6 +241,7 @@ function AppFrame(props) {
                     <LanguageIcon />
                   </IconButton>
                 </Tooltip>
+                <span className={classes.language}>{userLanguage.toUpperCase()}</span>
                 <NoSsr>
                   <Menu
                     id="language-menu"
@@ -250,9 +256,7 @@ function AppFrame(props) {
                           component="a"
                           data-no-link="true"
                           href={
-                            language.code === 'en'
-                              ? canonicalRef.current
-                              : `/${language.code}${canonicalRef.current}`
+                            language.code === 'en' ? canonical : `/${language.code}${canonical}`
                           }
                           key={language.code}
                           selected={userLanguage === language.code}

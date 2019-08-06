@@ -49,7 +49,7 @@ const styles = theme => ({
     },
   },
   demo: {
-    outline: 'none',
+    outline: 0,
     margin: 'auto',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: theme.palette.background.level2,

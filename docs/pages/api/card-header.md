@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/CardHeader/CardHeader.js
 <p class="description">The API documentation of the CardHeader React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { CardHeader } from '@material-ui/core';
+import CardHeader from '@material-ui/core/CardHeader';
 ```
 
 

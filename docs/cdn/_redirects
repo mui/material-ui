@@ -20,7 +20,7 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 # likely /style/typography#migration-to-typography-v2
 /style/typography https://v3.material-ui.com/style/typography/#migration-to-typography-v2 301
 
-# To remove at some point (2020).
+# To remove at some point (2021).
 /demos/selection-controls/ /components/radio-buttons/ 301
 /page-layout-examples/* /getting-started/page-layout-examples/:splat 301
 /getting-started/page-layout-examples/* /getting-started/templates/:splat 301
@@ -39,7 +39,10 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /lab/about/ /components/about-the-lab/ 301
 /lab/* /components/:splat 301
 /css-in-js/* /styles/:splat 301
+
+# To remove at some point (2022).
 /premium-themes* https://themes.material-ui.com/ 301
+/customization/themes/ /customization/theming/ 301
 
 # link shortener
 /r/styles-instance-warning /getting-started/faq/#i-have-several-instances-of-styles-on-the-page 302

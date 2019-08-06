@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/StepLabel/StepLabel.js
 <p class="description">The API documentation of the StepLabel React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { StepLabel } from '@material-ui/core';
+import StepLabel from '@material-ui/core/StepLabel';
 ```
 
 

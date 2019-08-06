@@ -9,7 +9,7 @@ filename: /packages/material-ui-lab/src/TreeView/TreeView.js
 <p class="description">The API documentation of the TreeView React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { TreeView } from '@material-ui/lab';
+import TreeView from '@material-ui/lab/TreeView';
 ```
 
 
@@ -38,7 +38,7 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiTreeView-root</span> | Styles applied to the root component.
+| <span class="prop-name">root</span> | <span class="prop-name">MuiTreeView-root</span> | Styles applied to the root element.
 
 You can override the style of the component thanks to one of these customization points:
 

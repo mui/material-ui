@@ -1,4 +1,4 @@
-# Estilos
+# Theming
 
 <p class="description">Customize Material-UI with your theme. You can change the colors, the typography and much more.</p>
 
@@ -18,12 +18,12 @@ If you wish to customize the theme, you need to use the `ThemeProvider` componen
 
 Changing the theme configuration variables is the most effective way to match Material-UI to your needs. The following sections cover the most important theme variables:
 
-- [Paleta](/customization/palette/)
-- [Tipografía](/customization/typography/)
-- [Espaciado](/customization/spacing/)
-- [Puntos de interrupción](/customization/breakpoints/)
+- [Palette](/customization/palette/)
+- [Typography](/customization/typography/)
+- [Ecartement](/customization/spacing/)
+- [Breakpoints](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
-- [Globales](/customization/globals/)
+- [Variables globales](/customization/globals/)
 
 You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
 
@@ -60,15 +60,15 @@ The performance implications of nesting the `ThemeProvider` component are linked
 
 Generate a theme base on the options received.
 
-#### Argumentos
+#### Paramètres
 
 1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
 
-#### Devuelve
+#### Valeur de retour
 
 `theme` (*Object*): A complete, ready to use theme object.
 
-#### Ejemplos
+#### Exemples
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -90,7 +90,7 @@ const theme = createMuiTheme({
 
 Generate responsive typography settings based on the options received.
 
-#### Argumentos
+#### Paramètres
 
 1. `theme` (*Object*): The theme object to enhance.
 2. `options` (*Object* [optional]):
@@ -100,11 +100,11 @@ Generate responsive typography settings based on the options received.
 - `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must be greater than 1.
 - `variants` (*Array<string>* [optional]): Default to all. The typography variants to handle.
 
-#### Devuelve
+#### Valeur de retour
 
 `theme` (*Object*): The new theme with a responsive typography.
 
-#### Ejemplos
+#### Exemples
 
 ```js
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';

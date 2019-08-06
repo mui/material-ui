@@ -1,14 +1,14 @@
-# Thèmes
+# Theming
 
-<p class="description">Customize Material-UI with your theme. You can change the colors, the typography and much more.</p>
+<p class="description">あなたが作成したテーマでMaterial-UIをカスタマイズしてください。 色や文字のスタイルなどを変更できます。</p>
 
-The theme specifies the color of the components, darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
+テーマはコンポーネントの色、表面の暗さ、影のレベル、インク要素の透明度等を指定します。
 
-Themes let you apply a consistent tone to your app. It allows you to **customize all design aspects** of your project in order to meet the specific needs of your business or brand.
+テーマを使用することで、アプリに一貫したトーンを適用できます。あなたのビジネスやブランドのニーズに合うようにデザインをカスタマイズすることができます。
 
-To promote greater consistency between apps, light and dark theme types are available to choose from. By default, components use the light theme type.
+アプリ間で一貫性を高めるために、ライトテーマとダークテーマを選択できます。 デフォルトでは、ライトテーマを使用する仕様になっています。
 
-## Theme provider
+## テーマプロバイダー
 
 If you wish to customize the theme, you need to use the `ThemeProvider` component in order to inject a theme into your application. However, this is optional; Material-UI components come with a default theme.
 
@@ -18,12 +18,12 @@ If you wish to customize the theme, you need to use the `ThemeProvider` componen
 
 Changing the theme configuration variables is the most effective way to match Material-UI to your needs. The following sections cover the most important theme variables:
 
-- [Palette](/customization/palette/)
-- [Typography](/customization/typography/)
-- [Ecartement](/customization/spacing/)
-- [Breakpoints](/customization/breakpoints/)
+- [パレット](/customization/palette/)
+- [タイポグラフィ](/customization/typography/)
+- [間隔](/customization/spacing/)
+- [ブレイクポイント](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
-- [Variables globales](/customization/globals/)
+- [グローバル](/customization/globals/)
 
 You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
 
@@ -60,15 +60,15 @@ The performance implications of nesting the `ThemeProvider` component are linked
 
 Generate a theme base on the options received.
 
-#### Paramètres
+#### 引数
 
 1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
 
-#### Valeur de retour
+#### 戻り値
 
 `theme` (*Object*): A complete, ready to use theme object.
 
-#### Exemples
+#### 例
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -90,21 +90,21 @@ const theme = createMuiTheme({
 
 Generate responsive typography settings based on the options received.
 
-#### Paramètres
+#### 引数
 
 1. `theme` (*Object*): The theme object to enhance.
-2. `options` (*Object* [optional]):
+2. `オプション` (*オプジェクト* [任意]):
 
 - `breakpoints` (*Array<string>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
 - `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line heights are preserved and align to Material Design's 4px line height grid. This requires a unitless line height in the theme's styles.
 - `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must be greater than 1.
 - `variants` (*Array<string>* [optional]): Default to all. The typography variants to handle.
 
-#### Valeur de retour
+#### 戻り値
 
 `theme` (*Object*): The new theme with a responsive typography.
 
-#### Exemples
+#### 例
 
 ```js
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';

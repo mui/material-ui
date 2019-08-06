@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/ListItem/ListItem.js
 <p class="description">The API documentation of the ListItem React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { ListItem } from '@material-ui/core';
+import ListItem from '@material-ui/core/ListItem';
 ```
 
 Uses an additional container component if `ListItemSecondaryAction` is the last child.
