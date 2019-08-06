@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/TextField/TextField.js
 <p class="description">The API documentation of the TextField React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 ```
 
 The `TextField` is a convenience wrapper for the most common cases (80%).

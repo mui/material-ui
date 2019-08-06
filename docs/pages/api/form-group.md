@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/FormGroup/FormGroup.js
 <p class="description">The API documentation of the FormGroup React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { FormGroup } from '@material-ui/core';
+import FormGroup from '@material-ui/core/FormGroup';
 ```
 
 `FormGroup` wraps controls such as `Checkbox` and `Switch`.

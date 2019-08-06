@@ -65,6 +65,9 @@ function renderInput(inputProps) {
 }
 
 renderInput.propTypes = {
+  /**
+   * Override or extend the styles applied to the component.
+   */
   classes: PropTypes.object.isRequired,
   InputProps: PropTypes.object,
 };

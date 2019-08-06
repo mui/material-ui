@@ -34,7 +34,7 @@ export const styles = theme => {
       // label will inherit this from root, then `clickable` class overrides this for both
       cursor: 'default',
       // We disable the focus ring for mouse, touch and keyboard users.
-      outline: 'none',
+      outline: 0,
       textDecoration: 'none',
       border: 'none', // Remove `button` border
       padding: 0, // Remove `button` padding

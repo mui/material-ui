@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Slider/Slider.js
 <p class="description">The API documentation of the Slider React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Slider } from '@material-ui/core';
+import Slider from '@material-ui/core/Slider';
 ```
 
 

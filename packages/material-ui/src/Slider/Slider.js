@@ -200,7 +200,7 @@ export const styles = theme => ({
     marginTop: -5,
     boxSizing: 'border-box',
     borderRadius: '50%',
-    outline: 'none',
+    outline: 0,
     backgroundColor: 'currentColor',
     display: 'flex',
     alignItems: 'center',

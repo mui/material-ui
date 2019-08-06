@@ -8,14 +8,22 @@ export interface BackdropProps
     React.HTMLAttributes<HTMLDivElement> & Partial<FadeProps>,
     BackdropClassKey
   > {
+  /**
+   * If `true`, the backdrop is invisible.
+   * It can be used when rendering a popover or a custom select component.
+   */
   invisible?: boolean;
-  onClick?: React.ReactEventHandler<{}>;
+  /**
+   * If `true`, the backdrop is open.
+   */
   open: boolean;
+  /**
+   * The duration for the transition, in milliseconds.
+   * You may specify a single timeout for all transitions, or individually with an object.
+   */
   transitionDuration?: TransitionProps['timeout'];
 }
 
 export type BackdropClassKey = 'root' | 'invisible';
 
-declare const Backdrop: React.ComponentType<BackdropProps>;
-
-export default Backdrop;
+export default function Backdrop(props: BackdropProps): JSX.Element;

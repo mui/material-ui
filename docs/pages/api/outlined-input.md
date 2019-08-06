@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/OutlinedInput/OutlinedInput.js
 <p class="description">The API documentation of the OutlinedInput React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { OutlinedInput } from '@material-ui/core';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 ```
 
 

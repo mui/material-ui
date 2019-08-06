@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/DialogContent/DialogContent.js
 <p class="description">The API documentation of the DialogContent React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { DialogContent } from '@material-ui/core';
+import DialogContent from '@material-ui/core/DialogContent';
 ```
 
 

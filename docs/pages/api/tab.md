@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Tab/Tab.js
 <p class="description">The API documentation of the Tab React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Tab } from '@material-ui/core';
+import Tab from '@material-ui/core/Tab';
 ```
 
 

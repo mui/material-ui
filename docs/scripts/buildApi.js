@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 
 import { mkdir, readFileSync, writeFileSync } from 'fs';
-import { EOL } from 'os';
+import { getLineFeed } from './helpers';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
@@ -79,14 +79,6 @@ function getInheritance(testInfo, src) {
     component: inheritedComponentName,
     pathname,
   };
-}
-
-function getLineFeed(source) {
-  const match = source.match(/\r?\n/);
-  if (match === null) {
-    return EOL;
-  }
-  return match[0];
 }
 
 async function buildDocs(options) {

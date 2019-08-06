@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Card/Card.js
 <p class="description">The API documentation of the Card React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Card } from '@material-ui/core';
+import Card from '@material-ui/core/Card';
 ```
 
 

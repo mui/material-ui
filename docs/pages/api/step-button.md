@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/StepButton/StepButton.js
 <p class="description">The API documentation of the StepButton React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { StepButton } from '@material-ui/core';
+import StepButton from '@material-ui/core/StepButton';
 ```
 
 

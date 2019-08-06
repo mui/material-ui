@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/TableHead/TableHead.js
 <p class="description">The API documentation of the TableHead React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { TableHead } from '@material-ui/core';
+import TableHead from '@material-ui/core/TableHead';
 ```
 
 

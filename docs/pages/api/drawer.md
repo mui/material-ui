@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Drawer/Drawer.js
 <p class="description">The API documentation of the Drawer React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Drawer } from '@material-ui/core';
+import Drawer from '@material-ui/core/Drawer';
 ```
 
 The props of the [Modal](/api/modal/) component are available

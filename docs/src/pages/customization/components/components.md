@@ -261,7 +261,7 @@ The demos of this section covers how to the change the button's font size.
 
 ### Theme variables
 
-You can adjusting the [theme configuration variables](/customization/themes/#theme-configuration-variables).
+You can adjust the [theme configuration variables](/customization/themes/#theme-configuration-variables).
 
 ```jsx
 const theme = createMuiTheme({

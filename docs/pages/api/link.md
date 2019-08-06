@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Link/Link.js
 <p class="description">The API documentation of the Link React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Link } from '@material-ui/core';
+import Link from '@material-ui/core/Link';
 ```
 
 

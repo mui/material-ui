@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/InputAdornment/InputAdornment.js
 <p class="description">The API documentation of the InputAdornment React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { InputAdornment } from '@material-ui/core';
+import InputAdornment from '@material-ui/core/InputAdornment';
 ```
 
 

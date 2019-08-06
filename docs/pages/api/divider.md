@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/Divider/Divider.js
 <p class="description">The API documentation of the Divider React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { Divider } from '@material-ui/core';
+import Divider from '@material-ui/core/Divider';
 ```
 
 

@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/IconButton/IconButton.js
 <p class="description">The API documentation of the IconButton React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { IconButton } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
 ```
 
 Refer to the [Icons](/components/icons/) section of the documentation

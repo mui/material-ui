@@ -1,16 +1,14 @@
 import React from 'react';
-import { createMuiTheme, makeStyles, createStyles } from '@material-ui/core/styles';
+import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles(
-  createStyles({
-    root: {
-      display: 'flex',
-    },
-  }),
-);
+const useStyles = makeStyles({
+  root: {
+    display: 'flex',
+  },
+});
 
 const defaultTheme = createMuiTheme();
 const theme = createMuiTheme({

@@ -9,7 +9,7 @@ filename: /packages/material-ui/src/CircularProgress/CircularProgress.js
 <p class="description">The API documentation of the CircularProgress React component. Learn more about the props and the CSS customization points.</p>
 
 ```js
-import { CircularProgress } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 ```
 
 ## ARIA
