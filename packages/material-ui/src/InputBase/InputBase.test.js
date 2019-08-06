@@ -482,17 +482,17 @@ describe('<InputBase />', () => {
         const { container } = render(
           <FormControl>
             <InputBase value="a" />
-          </FormControl>
+          </FormControl>,
         );
         const input = container.querySelector('input');
         expect(input).to.have.class(classes.valueFilled);
       });
-      
+
       it('should not have the valueFilled class when the value is empty', () => {
         const { container } = render(
           <FormControl>
             <InputBase />
-          </FormControl>
+          </FormControl>,
         );
         const input = container.querySelector('input');
         expect(input).not.to.have.class(classes.valueFilled);
@@ -610,8 +610,6 @@ describe('<InputBase />', () => {
       );
     });
   });
-
-
 
   describe('prop: inputRef', () => {
     it('should be able to access the native input', () => {

@@ -108,13 +108,13 @@ const ValueBasedTextField = withStyles({
     },
     '& .Mui-valueFilled': {
       '& fieldset': {
-          borderColor: green[400],
-          borderWidth: 1.5,
-          borderLeftWidth: 6,
-          padding: '4px !important',
+        borderColor: green[400],
+        borderWidth: 1.5,
+        borderLeftWidth: 6,
+        padding: '4px !important',
       },
     },
-  }
+  },
 })(TextField);
 
 const theme = createMuiTheme({

@@ -19,7 +19,7 @@ const pseudoClasses = [
   'required',
   'expanded',
   'selected',
-  'valueFilled'
+  'valueFilled',
 ];
 
 // Returns a function which generates unique class names based on counters.
