@@ -156,7 +156,7 @@ class DemoSandboxed extends React.PureComponent {
         body: `
 <!-- Please make sure you have fullfilled the following items before submitting -->
 <!-- Checked checkbox should look like this: [x] -->
-- [ ] I have [searched for similar issues](https://github.com/mui-org/material-ui/issues?q=${searchQuery}) of this repository and believe that this is not a duplicate.
+- [ ] I have [searched for similar issues](https://github.com/mui-org/material-ui/issues?q=${searchQuery}) in this repository and believe that this is not a duplicate.
 
 ## Steps to Reproduce
 1. Visit ${window.location.href}
@@ -183,10 +183,9 @@ class DemoSandboxed extends React.PureComponent {
             This demo had a runtime error
           </Typography>
           <Typography>
-            We would appreciate it if you report this error directly to our issue tracker. By
-            clicking the <Link href={issueLink}>report issue</Link> link you will be directed to our
-            issue tracker with a prefilled description that includes valuable information about this
-            error.
+            We would appreciate it if you <Link href={issueLink}>report this error</Link> directly
+            in our issue tracker. You will be provided with a prefilled description that includes
+            valuable information about this error.
           </Typography>
         </div>
       );
