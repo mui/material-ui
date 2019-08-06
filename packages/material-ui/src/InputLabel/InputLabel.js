@@ -22,7 +22,7 @@ export const styles = theme => ({
   required: {},
   /* Pseudo-class applied to the asterisk element. */
   asterisk: {},
-  /* Styles applied to the root element if the `value` is not empty. */
+  /* Pseudo-class applied to the root element if the corresponding `input` element's `value` is not empty. */
   valueFilled: {},
   /* Styles applied to the root element if the component is a descendant of `FormControl`. */
   formControl: {

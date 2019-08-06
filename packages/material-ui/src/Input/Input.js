@@ -77,6 +77,8 @@ export const styles = theme => {
     multiline: {},
     /* Styles applied to the root element if `fullWidth={true}`. */
     fullWidth: {},
+    /* Styles applied to the root element if `value` is not empty. */
+    valueFilled: {},
     /* Styles applied to the `input` element. */
     input: {},
     /* Styles applied to the `input` element if `margin="dense"`. */

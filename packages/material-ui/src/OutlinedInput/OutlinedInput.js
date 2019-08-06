@@ -61,6 +61,8 @@ export const styles = theme => {
     notchedOutline: {
       borderColor,
     },
+    /* Styles applied to the root element if `value` is not empty. */
+    valueFilled: {},
     /* Styles applied to the `input` element. */
     input: {
       padding: '18.5px 14px',

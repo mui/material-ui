@@ -70,7 +70,7 @@ export const styles = theme => {
     fullWidth: {
       width: '100%',
     },
-    /* Styles applied to the root element if the `value` is not empty. */
+    /* Styles applied to the root element if `value` is not empty. */
     valueFilled: {},
     /* Styles applied to the `input` element. */
     input: {
@@ -209,6 +209,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const handleInputRef = useForkRef(inputRef, handleInputRefProp);
 
   const [focused, setFocused] = React.useState(false);
+  const [valueFilled, setValueFilled] = React.useState(isFilled(props, true));
   const muiFormControl = useFormControl();
 
   const fcs = formControlState({
@@ -217,6 +218,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     states: ['disabled', 'error', 'hiddenLabel', 'margin', 'required', 'filled'],
   });
   fcs.focused = muiFormControl ? muiFormControl.focused : focused;
+  fcs.filled = muiFormControl ? muiFormControl.filled : valueFilled;
 
   // The blur won't fire when the disabled state is set on a focused input.
   // We need to book keep the focused state manually.
@@ -231,12 +233,15 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 
   const checkDirty = React.useCallback(
     obj => {
-      if (isFilled(obj)) {
-        if (muiFormControl && muiFormControl.onFilled) {
+      const filled = isFilled(obj);
+      if (muiFormControl) {
+        if (filled && muiFormControl.onFilled) {
           muiFormControl.onFilled();
+        } else if (!filled && muiFormControl.onEmpty) {
+          muiFormControl.onEmpty();
         }
-      } else if (muiFormControl && muiFormControl.onEmpty) {
-        muiFormControl.onEmpty();
+      } else {
+        setValueFilled(!!filled);
       }
     },
     [muiFormControl],
