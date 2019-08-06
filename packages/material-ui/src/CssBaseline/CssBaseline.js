@@ -28,6 +28,11 @@ const useStyles = makeStyles(
           // Save printer ink.
           backgroundColor: theme.palette.common.white,
         },
+        // Add support for document.body.requestFullScreen().
+        // Other elements, if background transparent, are not supported.
+        '&::backdrop': {
+          backgroundColor: theme.palette.background.default,
+        },
       },
     },
   }),
