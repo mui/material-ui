@@ -61,8 +61,6 @@ export const styles = theme => {
     notchedOutline: {
       borderColor,
     },
-    /* Styles applied to the root element if `value` is not empty. */
-    valueFilled: {},
     /* Styles applied to the `input` element. */
     input: {
       padding: '18.5px 14px',
@@ -105,7 +103,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
 
   return (
     <InputBase
-      renderPrefix={state => (
+      renderSuffix={state => (
         <NotchedOutline
           className={classes.notchedOutline}
           labelWidth={labelWidth}

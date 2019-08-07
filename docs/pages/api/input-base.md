@@ -68,7 +68,6 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">marginDense</span> | <span class="prop-name">MuiInputBase-marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
 | <span class="prop-name">multiline</span> | <span class="prop-name">MuiInputBase-multiline</span> | Styles applied to the root element if `multiline={true}`.
 | <span class="prop-name">fullWidth</span> | <span class="prop-name">MuiInputBase-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
-| <span class="prop-name">valueFilled</span> | <span class="prop-name">Mui-valueFilled</span> | Styles applied to the root element if `value` is not empty.
 | <span class="prop-name">input</span> | <span class="prop-name">MuiInputBase-input</span> | Styles applied to the `input` element.
 | <span class="prop-name">inputMarginDense</span> | <span class="prop-name">MuiInputBase-inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
 | <span class="prop-name">inputSelect</span> | <span class="prop-name">MuiInputBase-inputSelect</span> | Styles applied to the `input` element if `select={true}`.

@@ -118,41 +118,5 @@ describe('<InputLabel />', () => {
         expect(getByTestId('root')).to.have.class(classes.shrink);
       });
     });
-
-    describe('valueFilled', () => {
-      it('should have the valueFilled when input value is not empty', () => {
-        function Wrapper({ children }) {
-          return (
-            <FormControl>
-              <Input value="a" />
-              {children}
-            </FormControl>
-          );
-        }
-        Wrapper.propTypes = { children: PropTypes.node };
-        const { getByTestId } = render(<InputLabel data-testid="root">name</InputLabel>, {
-          wrapper: Wrapper,
-        });
-
-        expect(getByTestId('root')).to.have.class(classes.valueFilled);
-      });
-
-      it('should not have the valueFilled when input value is empty', () => {
-        function Wrapper({ children }) {
-          return (
-            <FormControl>
-              <Input />
-              {children}
-            </FormControl>
-          );
-        }
-        Wrapper.propTypes = { children: PropTypes.node };
-        const { getByTestId } = render(<InputLabel data-testid="root">name</InputLabel>, {
-          wrapper: Wrapper,
-        });
-
-        expect(getByTestId('root')).not.to.have.class(classes.valueFilled);
-      });
-    });
   });
 });

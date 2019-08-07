@@ -99,20 +99,19 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ValueBasedTextField = withStyles({
+const ValidationTextField = withStyles({
   root: {
-    '& .Mui-valueFilled.Mui-focused': {
-      '& fieldset': {
-        borderLeftWidth: 6,
-      },
+    '& input:valid + fieldset': {
+      borderColor: 'green',
+      borderWidth: 2,
     },
-    '& .Mui-valueFilled': {
-      '& fieldset': {
-        borderColor: green[400],
-        borderWidth: 1.5,
-        borderLeftWidth: 6,
-        padding: '4px !important',
-      },
+    '& input:invalid + fieldset': {
+      borderColor: 'red',
+      borderWidth: 2,
+    },
+    '& input:valid:focus + fieldset': {
+      borderLeftWidth: 6,
+      padding: '4px !important', // override inline-style
     },
   },
 })(TextField);
@@ -127,20 +126,13 @@ export default function CustomizedInputs() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <form className={classes.root} noValidate>
       <CssTextField className={classes.margin} id="custom-css-standard-input" label="Custom CSS" />
       <CssTextField
         className={classes.margin}
         label="Custom CSS"
         variant="outlined"
         id="custom-css-outlined-input"
-      />
-      <ValueBasedTextField
-        className={classes.margin}
-        label="Custom CSS"
-        variant="outlined"
-        defaultValue="Value-Based"
-        id="custom-css-outlined-value-based-input"
       />
       <ThemeProvider theme={theme}>
         <TextField
@@ -173,6 +165,14 @@ export default function CustomizedInputs() {
         defaultValue="Naked input"
         inputProps={{ 'aria-label': 'naked' }}
       />
-    </div>
+      <ValidationTextField
+        className={classes.margin}
+        label="CSS validation style"
+        required
+        variant="outlined"
+        defaultValue="Success"
+        id="validation-outlined-input"
+      />
+    </form>
   );
 }

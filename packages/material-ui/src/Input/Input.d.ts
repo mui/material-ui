@@ -15,7 +15,6 @@ export type InputClassKey =
   | 'error'
   | 'multiline'
   | 'fullWidth'
-  | 'valueFilled'
   | 'input'
   | 'inputMarginDense'
   | 'inputMultiline'

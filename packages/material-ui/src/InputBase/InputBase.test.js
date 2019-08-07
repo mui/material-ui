@@ -60,27 +60,6 @@ describe('<InputBase />', () => {
     });
   });
 
-  describe('valueFilled', () => {
-    it('should have the valueFilled class when the value is not empty', () => {
-      const { container } = render(<InputBase value="a" />);
-      const input = container.querySelector('input');
-      expect(input).to.have.class(classes.valueFilled);
-    });
-
-    it('should not have the valueFilled class when the value is empty', () => {
-      const { container } = render(<InputBase />);
-      const input = container.querySelector('input');
-      expect(input).not.to.have.class(classes.valueFilled);
-    });
-
-    it('uncontrolled: should have the valueFilled class when the value is not empty', () => {
-      const { container } = render(<InputBase />);
-      const input = container.querySelector('input');
-      fireEvent.change(input, { target: { value: 'a' } });
-      expect(input).to.have.class(classes.valueFilled);
-    });
-  });
-
   describe('prop: disabled', () => {
     it('should render a disabled <input />', () => {
       const { container } = render(<InputBase disabled />);
@@ -448,54 +427,6 @@ describe('<InputBase />', () => {
           getByRole('textbox').blur();
         });
         expect(getByTestId('label')).to.have.text('focused: false');
-      });
-    });
-
-    describe('valueFilled', () => {
-      it('prioritizes context filled', () => {
-        const FormController = React.forwardRef((props, ref) => {
-          const { onFilled, onEmpty } = useFormControl();
-
-          React.useImperativeHandle(ref, () => ({ onFilled, onEmpty }), [onFilled, onEmpty]);
-
-          return null;
-        });
-        const controlRef = React.createRef();
-        const { getByRole, getByTestId } = render(
-          <FormControl>
-            <FormController ref={controlRef} />
-            <InputBase data-testid="root" />
-          </FormControl>,
-        );
-
-        fireEvent.change(getByRole('textbox'), { target: { value: 'a' } });
-        expect(getByTestId('root')).to.have.class(classes.valueFilled);
-
-        controlRef.current.onEmpty();
-        expect(getByTestId('root')).not.to.have.class(classes.valueFilled);
-
-        controlRef.current.onFilled();
-        expect(getByTestId('root')).to.have.class(classes.valueFilled);
-      });
-
-      it('should have the valueFilled class when the value is not empty', () => {
-        const { container } = render(
-          <FormControl>
-            <InputBase value="a" />
-          </FormControl>,
-        );
-        const input = container.querySelector('input');
-        expect(input).to.have.class(classes.valueFilled);
-      });
-
-      it('should not have the valueFilled class when the value is empty', () => {
-        const { container } = render(
-          <FormControl>
-            <InputBase />
-          </FormControl>,
-        );
-        const input = container.querySelector('input');
-        expect(input).not.to.have.class(classes.valueFilled);
       });
     });
 

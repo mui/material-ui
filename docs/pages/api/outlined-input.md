@@ -66,7 +66,6 @@ Any other props supplied will be provided to the root element ([InputBase](/api/
 | <span class="prop-name">marginDense</span> | <span class="prop-name">MuiOutlinedInput-marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
 | <span class="prop-name">multiline</span> | <span class="prop-name">MuiOutlinedInput-multiline</span> | Styles applied to the root element if `multiline={true}`.
 | <span class="prop-name">notchedOutline</span> | <span class="prop-name">MuiOutlinedInput-notchedOutline</span> | Styles applied to the `NotchedOutline` element.
-| <span class="prop-name">valueFilled</span> | <span class="prop-name">Mui-valueFilled</span> | Styles applied to the root element if `value` is not empty.
 | <span class="prop-name">input</span> | <span class="prop-name">MuiOutlinedInput-input</span> | Styles applied to the `input` element.
 | <span class="prop-name">inputMarginDense</span> | <span class="prop-name">MuiOutlinedInput-inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
 | <span class="prop-name">inputSelect</span> | <span class="prop-name">MuiOutlinedInput-inputSelect</span> | Styles applied to the `input` element if `select={true}`.

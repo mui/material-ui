@@ -70,8 +70,6 @@ export const styles = theme => {
     fullWidth: {
       width: '100%',
     },
-    /* Styles applied to the root element if `value` is not empty. */
-    valueFilled: {},
     /* Styles applied to the `input` element. */
     input: {
       font: 'inherit',
@@ -181,7 +179,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     onKeyUp,
     placeholder,
     readOnly,
-    renderPrefix,
+    renderSuffix,
     rows,
     rowsMax,
     select = false,
@@ -209,7 +207,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const handleInputRef = useForkRef(inputRef, handleInputRefProp);
 
   const [focused, setFocused] = React.useState(false);
-  const [valueFilled, setValueFilled] = React.useState(isFilled(props, true));
   const muiFormControl = useFormControl();
 
   const fcs = formControlState({
@@ -218,7 +215,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     states: ['disabled', 'error', 'hiddenLabel', 'margin', 'required', 'filled'],
   });
   fcs.focused = muiFormControl ? muiFormControl.focused : focused;
-  fcs.filled = muiFormControl ? muiFormControl.filled : valueFilled;
 
   // The blur won't fire when the disabled state is set on a focused input.
   // We need to book keep the focused state manually.
@@ -233,15 +229,12 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 
   const checkDirty = React.useCallback(
     obj => {
-      const filled = isFilled(obj);
-      if (muiFormControl) {
-        if (filled && muiFormControl.onFilled) {
+      if (isFilled(obj)) {
+        if (muiFormControl && muiFormControl.onFilled) {
           muiFormControl.onFilled();
-        } else if (!filled && muiFormControl.onEmpty) {
-          muiFormControl.onEmpty();
         }
-      } else {
-        setValueFilled(!!filled);
+      } else if (muiFormControl && muiFormControl.onEmpty) {
+        muiFormControl.onEmpty();
       }
     },
     [muiFormControl],
@@ -363,7 +356,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           [classes.multiline]: multiline,
           [classes.adornedStart]: startAdornment,
           [classes.adornedEnd]: endAdornment,
-          [classes.valueFilled]: fcs.filled,
         },
         classNameProp,
       )}
@@ -371,12 +363,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       ref={ref}
       {...other}
     >
-      {renderPrefix
-        ? renderPrefix({
-            ...fcs,
-            startAdornment,
-          })
-        : null}
       {startAdornment}
       <FormControlContext.Provider value={null}>
         <InputComponent
@@ -388,7 +374,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
             classes.input,
             {
               [classes.disabled]: fcs.disabled,
-              [classes.valueFilled]: fcs.filled,
               [classes.inputTypeSearch]: type === 'search',
               [classes.inputMultiline]: multiline,
               [classes.inputSelect]: select,
@@ -417,6 +402,12 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         />
       </FormControlContext.Provider>
       {endAdornment}
+      {renderSuffix
+        ? renderSuffix({
+            ...fcs,
+            startAdornment,
+          })
+        : null}
     </div>
   );
 });
@@ -535,7 +526,7 @@ InputBase.propTypes = {
   /**
    * @ignore
    */
-  renderPrefix: PropTypes.func,
+  renderSuffix: PropTypes.func,
   /**
    * If `true`, the `input` element will be required.
    */

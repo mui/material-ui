@@ -102,8 +102,6 @@ export const styles = theme => {
         paddingBottom: 6,
       },
     },
-    /* Styles applied to the root element if `value` is not empty. */
-    valueFilled: {},
     /* Styles applied to the `input` element. */
     input: {
       padding: '27px 12px 10px',

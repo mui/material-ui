@@ -17,7 +17,6 @@ export type OutlinedInputClassKey =
   | 'marginDense'
   | 'multiline'
   | 'notchedOutline'
-  | 'valueFilled'
   | 'input'
   | 'inputMarginDense'
   | 'inputSelect'
