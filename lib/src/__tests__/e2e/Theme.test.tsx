@@ -1,8 +1,8 @@
 import React from 'react';
 import { mount } from '../test-utils';
 import { DatePicker } from '../../DatePicker';
-import { createMuiTheme } from '@material-ui/core';
 import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { DateTimePicker } from '../../DateTimePicker/DateTimePicker';
 
 const theme = createMuiTheme({

@@ -1,11 +1,10 @@
 import * as React from 'react';
+import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
 import InputAdornment, { InputAdornmentProps } from '@material-ui/core/InputAdornment';
 import TextField, { BaseTextFieldProps, TextFieldProps } from '@material-ui/core/TextField';
 import { Rifm } from 'rifm';
-import { IconButton } from '@material-ui/core';
 import { ExtendMui } from '../typings/extendMui';
 import { KeyboardIcon } from './icons/KeyboardIcon';
-import { IconButtonProps } from '@material-ui/core/IconButton';
 import { makeMaskFromFormat, maskedDateFormatter } from '../_helpers/text-field-helper';
 
 export interface KeyboardDateInputProps
