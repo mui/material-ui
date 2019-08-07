@@ -4,9 +4,13 @@ import PropTypes from 'prop-types';
 import styled from './styled';
 import { SheetsRegistry } from 'jss';
 import { createMount } from '@material-ui/core/test-utils';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { createGenerateClassName } from '@material-ui/styles';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import StylesProvider from '../StylesProvider';
+import ThemeProvider from '../ThemeProvider';
+import { styleFunction } from '@material-ui/core/Box';
+import { indigo } from '@material-ui/core/colors';
 
 describe('styled', () => {
   let mount;
@@ -90,6 +94,69 @@ describe('styled', () => {
     assert.strictEqual(wrapper.find('div').props()['data-test'], 'enzyme');
   });
 
+  it('renders correct css with cache', () => {
+    const sheetsRegistry = new SheetsRegistry();
+    const generateClassName = createGenerateClassName();
+
+    const useStylesCache = new Map();
+    const CachedBox = styled('div')(styleFunction, {
+      name: 'MuiBox',
+      _useStylesCache: useStylesCache,
+    });
+
+    const theme = createMuiTheme({
+      palette: {
+        primary: {
+          main: indigo[400],
+        },
+      },
+      overrides: {
+        MuiBox: {
+          root: {
+            background: 'transparent',
+          },
+        },
+      },
+    });
+
+    const wrapper = mount(
+      <ThemeProvider theme={theme}>
+        <StylesProvider
+          sheetsRegistry={sheetsRegistry}
+          sheetsCache={new Map()}
+          generateClassName={generateClassName}
+        >
+          <CachedBox color="primary.main" fontSize={{ xs: 'h6.fontSize' }} onClick={() => {}} />
+          <CachedBox color="primary.main" fontSize={{ xs: 'h5.fontSize' }} onClick={() => {}} />
+          <CachedBox color="primary.main" fontSize={{ xs: 'h5.fontSize' }} onFocus={() => {}} />
+        </StylesProvider>
+      </ThemeProvider>,
+    );
+    assert.strictEqual(sheetsRegistry.registry.length, 2); // third box should use cached style
+    assert.strictEqual([...useStylesCache.values()].reduce((sum, entry) => sum + entry.size, 0), 2);
+    assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiBox-root-1' });
+    assert.deepEqual(sheetsRegistry.registry[0].rules.map.root.style, {
+      color: indigo[400],
+      background: 'transparent',
+    });
+    assert.deepEqual(
+      sheetsRegistry.registry[0].rules.map['@media (min-width:0px)'].rules.map.root.style,
+      {
+        'font-size': theme.typography.h6.fontSize,
+      },
+    );
+    assert.deepEqual(
+      sheetsRegistry.registry[1].rules.map['@media (min-width:0px)'].rules.map.root.style,
+      {
+        'font-size': theme.typography.h5.fontSize,
+      },
+    );
+
+    wrapper.unmount();
+    assert.strictEqual(sheetsRegistry.registry.length, 0);
+    assert.strictEqual(useStylesCache.size, 0);
+  });
+
   describe('warnings', () => {
     beforeEach(() => {
       consoleErrorMock.spy();
@@ -110,6 +177,21 @@ describe('styled', () => {
       assert.include(
         consoleErrorMock.args()[0][0],
         'You can not use the clone and component prop at the same time',
+      );
+    });
+
+    it('warns when function is specified for style attribute', () => {
+      const CachedBox = styled('div')(styleFunction, { name: 'MuiBox' });
+      mount(
+        <React.Fragment>
+          <CachedBox
+            fontSize={{ xs: 'h6.fontSize', sm: () => 'h4.fontSize', md: () => 'h3.fontSize' }}
+          />
+        </React.Fragment>,
+      );
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'You can not pass a function as style attribute',
       );
     });
   });

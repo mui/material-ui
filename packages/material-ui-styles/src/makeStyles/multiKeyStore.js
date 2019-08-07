@@ -17,7 +17,11 @@ const multiKeyStore = {
   },
   delete: (cache, key1, key2) => {
     const subCache = cache.get(key1);
+    if (!subCache) return;
     subCache.delete(key2);
+    if (subCache.size === 0) {
+      cache.delete(key1);
+    }
   },
 };
 

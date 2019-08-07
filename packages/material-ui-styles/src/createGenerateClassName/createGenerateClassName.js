@@ -39,13 +39,19 @@ export default function createGenerateClassName(options = {}) {
       [
         'Material-UI: you might have a memory leak.',
         'The ruleCounter is not supposed to grow that much.',
-      ].join(''),
+      ].join('\n'),
     );
 
     const name = styleSheet.options.name;
 
     // Is a global static MUI style?
-    if (name && name.indexOf('Mui') === 0 && !styleSheet.options.link && !disableGlobal) {
+    if (
+      name &&
+      name.indexOf('Mui') === 0 &&
+      !styleSheet.options.muiDynamic &&
+      !styleSheet.options.link &&
+      !disableGlobal
+    ) {
       // We can use a shorthand class name, we never use the keys to style the components.
       if (pseudoClasses.indexOf(rule.key) !== -1) {
         return `Mui-${rule.key}`;

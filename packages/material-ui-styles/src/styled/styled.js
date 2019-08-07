@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { chainPropTypes, getDisplayName } from '@material-ui/utils';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import makeStyles from '../makeStyles';
+import createCachedUseStyles from './createCachedUseStyles';
 
 function omit(input, fields) {
   const output = {};
@@ -21,7 +22,7 @@ function omit(input, fields) {
 // Using components as a low-level styling construct can be simpler.
 function styled(Component) {
   const componentCreator = (style, options = {}) => {
-    const { name, ...stylesOptions } = options;
+    const { name, _useStylesCache = new Map(), ...stylesOptions } = options;
 
     if (process.env.NODE_ENV !== 'production' && Component === undefined) {
       throw new Error(
@@ -47,27 +48,25 @@ function styled(Component) {
         ? theme => ({ root: props => style({ theme, ...props }) })
         : { root: style };
 
-    const useStyles = makeStyles(stylesOrCreator, {
+    const makeStylesOptions = {
       Component,
       name: name || Component.displayName,
       classNamePrefix,
       ...stylesOptions,
-    });
+    };
 
-    let filterProps;
-    let propTypes = {};
+    /* eslint-disable-next-line react/forbid-foreign-prop-types */
+    const { filterProps, propTypes = {} } = style;
 
-    if (style.filterProps) {
-      filterProps = style.filterProps;
-      delete style.filterProps;
-    }
-
-    /* eslint-disable react/forbid-foreign-prop-types */
-    if (style.propTypes) {
-      propTypes = style.propTypes;
-      delete style.propTypes;
-    }
-    /* eslint-enable react/forbid-foreign-prop-types */
+    const useStyles =
+      _useStylesCache && filterProps
+        ? createCachedUseStyles({
+            styleFunction: style,
+            filterProps,
+            makeStylesOptions,
+            cacheStore: _useStylesCache,
+          })
+        : makeStyles(stylesOrCreator, makeStylesOptions);
 
     const StyledComponent = React.forwardRef(function StyledComponent(props, ref) {
       const {
