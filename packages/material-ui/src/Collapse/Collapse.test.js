@@ -116,6 +116,11 @@ describe('<Collapse />', () => {
         it('should set element height to 0 initially', () => {
           assert.strictEqual(nodeEnterHeightStyle, '0px');
         });
+
+        it('should call handleEnter', () => {
+          assert.strictEqual(handleEnter.args[0][0], container.instance());
+          assert.strictEqual(handleEnter.args[0][1], false);
+        });
       });
 
       describe('handleEntering()', () => {
@@ -126,6 +131,7 @@ describe('<Collapse />', () => {
         it('should call handleEntering', () => {
           assert.strictEqual(handleEntering.callCount, 1);
           assert.strictEqual(handleEntering.args[0][0], container.instance());
+          assert.strictEqual(handleEntering.args[0][1], false);
         });
       });
 
@@ -133,6 +139,7 @@ describe('<Collapse />', () => {
         it('should set height to auto', () => {
           clock.tick(1000);
           assert.strictEqual(handleEntered.args[0][0].style.height, 'auto');
+          assert.strictEqual(handleEntered.args[0][1], false);
         });
 
         it('should have called onEntered', () => {
