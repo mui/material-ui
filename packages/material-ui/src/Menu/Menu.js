@@ -61,13 +61,13 @@ const Menu = React.forwardRef(function Menu(props, ref) {
 
   const getContentAnchorEl = () => firstSelectedItemRef.current || firstValidItemRef.current;
 
-  const handleEntering = element => {
+  const handleEntering = (element, isAppearing) => {
     if (menuListActionsRef.current) {
       menuListActionsRef.current.adjustStyleForScrollbar(element, theme);
     }
 
     if (onEntering) {
-      onEntering(element);
+      onEntering(element, isAppearing);
     }
   };
 
