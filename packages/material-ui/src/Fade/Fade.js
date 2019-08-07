@@ -37,7 +37,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
   const theme = useTheme();
   const handleRef = useForkRef(children.ref, ref);
 
-  const handleEnter = node => {
+  const handleEnter = (node, isAppearing) => {
     reflow(node); // So the animation always start from the start.
 
     const transitionProps = getTransitionProps(
@@ -50,7 +50,7 @@ const Fade = React.forwardRef(function Fade(props, ref) {
     node.style.transition = theme.transitions.create('opacity', transitionProps);
 
     if (onEnter) {
-      onEnter(node);
+      onEnter(node, isAppearing);
     }
   };
 

@@ -32,7 +32,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   const handleRef = useForkRef(children.ref, ref);
   const theme = useTheme();
 
-  const handleEnter = node => {
+  const handleEnter = (node, isAppearing) => {
     reflow(node); // So the animation always start from the start.
 
     const { duration: transitionDuration, delay } = getTransitionProps(
@@ -62,7 +62,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
     ].join(',');
 
     if (onEnter) {
-      onEnter(node);
+      onEnter(node, isAppearing);
     }
   };
 
