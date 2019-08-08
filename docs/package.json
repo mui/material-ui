@@ -31,6 +31,8 @@
     "@types/autosuggest-highlight": "^3.1.0",
     "@types/react-autosuggest": "^9.3.9",
     "@types/react-dom": "^16.8.5",
+    "@types/react-inspector": "^3.0.0",
+    "@types/react-redux": "^7.1.1",
     "@types/react-router-dom": "^4.3.4",
     "@types/react-select": "^3.0.0",
     "@types/react-swipeable-views": "^0.13.0",
