@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SheetsRegistry } from 'jss';
+import { SheetsRegistry, create } from 'jss';
 import { act } from 'react-dom/test-utils';
 import { createMount } from '@material-ui/core/test-utils';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -11,6 +11,8 @@ import makeStyles from './makeStyles';
 import useTheme from '../useTheme';
 import StylesProvider from '../StylesProvider';
 import ThemeProvider from '../ThemeProvider';
+import jssTemplate from 'jss-plugin-template';
+import { jssPreset } from '@material-ui/styles';
 
 describe('makeStyles', () => {
   let mount;
@@ -242,6 +244,33 @@ describe('makeStyles', () => {
       wrapper.setProps({ theme: createMuiTheme({ foo: 'bar' }) });
       assert.strictEqual(sheetsRegistry.registry.length, 1);
       assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'MuiTextField-root' });
+    });
+
+    it('should apply string styles', () => {
+      const jss = create({
+        plugins: [jssTemplate(), ...jssPreset().plugins],
+      });
+      const useStyles = makeStyles({
+        root: `
+        display: flex;
+        padding: 1em;
+      `,
+      });
+      const StyledComponent = () => {
+        const classes = useStyles();
+        return <div className={classes.root} />;
+      };
+
+      mount(
+        <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()} jss={jss}>
+          <StyledComponent />
+        </StylesProvider>,
+      );
+      assert.strictEqual(sheetsRegistry.registry.length, 1);
+      assert.deepEqual(sheetsRegistry.registry[0].rules.map.root.style, {
+        display: 'flex',
+        padding: '1em',
+      });
     });
 
     describe('overrides', () => {

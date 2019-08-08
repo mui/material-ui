@@ -1,11 +1,11 @@
 import * as React from 'react';
 import {
   createStyles,
+  makeStyles,
+  WithStyles,
   withStyles,
   withTheme,
   WithTheme,
-  WithStyles,
-  makeStyles,
 } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import { Theme } from '@material-ui/core/styles';
@@ -448,6 +448,22 @@ function forwardRefTest() {
   const root = styles.root;
   // $ExpectType string
   const root2 = styles.root2;
+}
+
+{
+  // It works with string styles
+  interface testProps {
+    foo: boolean;
+  }
+
+  const useStyles = makeStyles({
+    root: `
+      display: flex;
+    `,
+  });
+  const styles = useStyles({ foo: true });
+  // $ExpectType string
+  const root = styles.root;
 }
 
 {

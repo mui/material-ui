@@ -41,6 +41,6 @@ export default function makeStyles<
   Props extends {} = {},
   ClassKey extends string = string
 >(
-  styles: Styles<Theme, Props, ClassKey>,
+  styles: Styles<Theme, Props, ClassKey> | Record<ClassKey, string>,
   options?: Omit<WithStylesOptions<Theme>, 'withTheme'>,
 ): StylesHook<Styles<Theme, Props, ClassKey>>;
