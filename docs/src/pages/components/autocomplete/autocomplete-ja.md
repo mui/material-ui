@@ -31,6 +31,6 @@ In the following example, we demonstrate how to use [react-select](https://githu
 
 ![Stars](https://img.shields.io/github/stars/moroshko/react-autosuggest.svg?style=social&label=Stars) ![npmダウンロード](https://img.shields.io/npm/dm/react-autosuggest.svg)
 
-次の例では、 リスト コンポーネントで [react-window](https://github.com/moroshko/react-autosuggest) を使用する方法を示します。 強調表示ロジックに [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight) も使用されています 。
+次の例では、 リスト コンポーネントで [react-autosuggest](https://github.com/moroshko/react-autosuggest) を使用する方法を示します。 強調表示ロジックに [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight) も使用されています 。
 
 {{"demo":"pages/components/autocomplete/IntegrationAutosuggest.js"}}
