@@ -6,6 +6,7 @@ import { jssPreset, StylesProvider } from '@material-ui/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import rtl from 'jss-rtl';
 import Frame from 'react-frame-component';
+import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 
 const styles = theme => ({
   root: {
@@ -90,9 +91,11 @@ function DemoSandboxed(props) {
   const sandboxProps = iframe ? { title: `${name} demo`, ...other } : {};
 
   return (
-    <Sandbox {...sandboxProps}>
-      <Component />
-    </Sandbox>
+    <DemoErrorBoundary>
+      <Sandbox {...sandboxProps}>
+        <Component />
+      </Sandbox>
+    </DemoErrorBoundary>
   );
 }
 
