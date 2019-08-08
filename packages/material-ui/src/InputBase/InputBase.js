@@ -209,6 +209,15 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const [focused, setFocused] = React.useState(false);
   const muiFormControl = useFormControl();
 
+  React.useEffect(() => {
+    if (muiFormControl) {
+      const unregister = muiFormControl.onRegister();
+      return unregister;
+    }
+
+    return undefined;
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const fcs = formControlState({
     props,
     muiFormControl,

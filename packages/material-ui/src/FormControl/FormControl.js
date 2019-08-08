@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import warning from 'warning';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
@@ -141,6 +142,24 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     }
   };
 
+  const registeredInput = React.useRef(false);
+  const handleRegister = () => {
+    if (registeredInput.current && process.env.NODE_ENV !== 'production') {
+      warning(
+        false,
+        'Material-UI: there are multiple InputBase components inside a ' +
+          'FromControl. This is not supported. It might cause infinite ' +
+          'rendering loops. Only use one InputBase.',
+      );
+    }
+
+    registeredInput.current = true;
+
+    return () => {
+      registeredInput.current = false;
+    };
+  };
+
   const childContext = {
     adornedStart,
     disabled,
@@ -153,6 +172,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     onEmpty: handleClean,
     onFilled: handleDirty,
     onFocus: handleFocus,
+    onRegister: handleRegister,
     required,
     variant,
   };
