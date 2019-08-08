@@ -297,9 +297,9 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     [getPositioningStyle],
   );
 
-  const handleEntering = element => {
+  const handleEntering = (element, isAppearing) => {
     if (onEntering) {
-      onEntering(element);
+      onEntering(element, isAppearing);
     }
 
     setPositioningStyles(element);

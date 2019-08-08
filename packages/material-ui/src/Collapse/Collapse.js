@@ -66,15 +66,15 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     };
   }, []);
 
-  const handleEnter = node => {
+  const handleEnter = (node, isAppearing) => {
     node.style.height = collapsedHeight;
 
     if (onEnter) {
-      onEnter(node);
+      onEnter(node, isAppearing);
     }
   };
 
-  const handleEntering = node => {
+  const handleEntering = (node, isAppearing) => {
     const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
 
     const { duration: transitionDuration } = getTransitionProps(
@@ -96,15 +96,15 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     node.style.height = `${wrapperHeight}px`;
 
     if (onEntering) {
-      onEntering(node);
+      onEntering(node, isAppearing);
     }
   };
 
-  const handleEntered = node => {
+  const handleEntered = (node, isAppearing) => {
     node.style.height = 'auto';
 
     if (onEntered) {
-      onEntered(node);
+      onEntered(node, isAppearing);
     }
   };
 

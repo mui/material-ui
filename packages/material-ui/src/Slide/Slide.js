@@ -98,17 +98,17 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   const handleRefIntermediary = useForkRef(children.ref, handleOwnRef);
   const handleRef = useForkRef(handleRefIntermediary, ref);
 
-  const handleEnter = () => {
+  const handleEnter = (_, isAppearing) => {
     const node = childrenRef.current;
     setTranslateValue(direction, node);
     reflow(node);
 
     if (onEnter) {
-      onEnter(node);
+      onEnter(node, isAppearing);
     }
   };
 
-  const handleEntering = () => {
+  const handleEntering = (_, isAppearing) => {
     const node = childrenRef.current;
     const transitionProps = getTransitionProps(
       { timeout, style },
@@ -127,7 +127,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     node.style.webkitTransform = 'none';
     node.style.transform = 'none';
     if (onEntering) {
-      onEntering(node);
+      onEntering(node, isAppearing);
     }
   };
 
