@@ -122,43 +122,27 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     setFocused(false);
   }
 
-  const handleFocus = () => {
-    setFocused(true);
-  };
+  let registerEffect;
+  if (process.env.NODE_ENV !== 'production') {
+    const registeredInput = React.useRef(false);
+    registerEffect = () => {
+      if (registeredInput.current) {
+        warning(
+          false,
+          [
+            'Material-UI: there are multiple InputBase components inside a FromControl.',
+            'This is not supported. It might cause infinite rendering loops.',
+            'Only use one InputBase.',
+          ].join('\n'),
+        );
+      }
 
-  const handleBlur = () => {
-    setFocused(false);
-  };
-
-  const handleDirty = () => {
-    if (!filled) {
-      setFilled(true);
-    }
-  };
-
-  const handleClean = () => {
-    if (filled) {
-      setFilled(false);
-    }
-  };
-
-  const registeredInput = React.useRef(false);
-  const handleRegister = () => {
-    if (registeredInput.current && process.env.NODE_ENV !== 'production') {
-      warning(
-        false,
-        'Material-UI: there are multiple InputBase components inside a ' +
-          'FromControl. This is not supported. It might cause infinite ' +
-          'rendering loops. Only use one InputBase.',
-      );
-    }
-
-    registeredInput.current = true;
-
-    return () => {
-      registeredInput.current = false;
+      registeredInput.current = true;
+      return () => {
+        registeredInput.current = false;
+      };
     };
-  };
+  }
 
   const childContext = {
     adornedStart,
@@ -168,11 +152,23 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     focused,
     hiddenLabel,
     margin,
-    onBlur: handleBlur,
-    onEmpty: handleClean,
-    onFilled: handleDirty,
-    onFocus: handleFocus,
-    onRegister: handleRegister,
+    onBlur: () => {
+      setFocused(false);
+    },
+    onEmpty: () => {
+      if (filled) {
+        setFilled(false);
+      }
+    },
+    onFilled: () => {
+      if (!filled) {
+        setFilled(true);
+      }
+    },
+    onFocus: () => {
+      setFocused(true);
+    },
+    registerEffect,
     required,
     variant,
   };

@@ -502,9 +502,7 @@ describe('<InputBase />', () => {
 
         expect(consoleErrorMock.callCount()).to.eq(1);
         expect(consoleErrorMock.args()[0][0]).to.include(
-          'Material-UI: there are multiple InputBase components inside a ' +
-            'FromControl. This is not supported. It might cause infinite ' +
-            'rendering loops. Only use one InputBase.',
+          'Material-UI: there are multiple InputBase components inside a FromControl.',
         );
       });
 
