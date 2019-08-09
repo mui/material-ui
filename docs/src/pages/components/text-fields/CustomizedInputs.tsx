@@ -118,6 +118,23 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+const ValidationTextField = withStyles({
+  root: {
+    '& input:valid + fieldset': {
+      borderColor: 'green',
+      borderWidth: 2,
+    },
+    '& input:invalid + fieldset': {
+      borderColor: 'red',
+      borderWidth: 2,
+    },
+    '& input:valid:focus + fieldset': {
+      borderLeftWidth: 6,
+      padding: '4px !important', // override inline-style
+    },
+  },
+})(TextField);
+
 const theme = createMuiTheme({
   palette: {
     primary: green,
@@ -128,7 +145,7 @@ export default function CustomizedInputs() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <form className={classes.root} noValidate>
       <CssTextField className={classes.margin} id="custom-css-standard-input" label="Custom CSS" />
       <CssTextField
         className={classes.margin}
@@ -167,6 +184,14 @@ export default function CustomizedInputs() {
         defaultValue="Naked input"
         inputProps={{ 'aria-label': 'naked' }}
       />
-    </div>
+      <ValidationTextField
+        className={classes.margin}
+        label="CSS validation style"
+        required
+        variant="outlined"
+        defaultValue="Success"
+        id="validation-outlined-input"
+      />
+    </form>
   );
 }

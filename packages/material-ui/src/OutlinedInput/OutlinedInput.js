@@ -103,7 +103,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
 
   return (
     <InputBase
-      renderPrefix={state => (
+      renderSuffix={state => (
         <NotchedOutline
           className={classes.notchedOutline}
           labelWidth={labelWidth}

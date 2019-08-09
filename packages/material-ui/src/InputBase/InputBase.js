@@ -179,7 +179,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     onKeyUp,
     placeholder,
     readOnly,
-    renderPrefix,
+    renderSuffix,
     rows,
     rowsMax,
     select = false,
@@ -363,12 +363,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       ref={ref}
       {...other}
     >
-      {renderPrefix
-        ? renderPrefix({
-            ...fcs,
-            startAdornment,
-          })
-        : null}
       {startAdornment}
       <FormControlContext.Provider value={null}>
         <InputComponent
@@ -408,6 +402,12 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         />
       </FormControlContext.Provider>
       {endAdornment}
+      {renderSuffix
+        ? renderSuffix({
+            ...fcs,
+            startAdornment,
+          })
+        : null}
     </div>
   );
 });
@@ -526,7 +526,7 @@ InputBase.propTypes = {
   /**
    * @ignore
    */
-  renderPrefix: PropTypes.func,
+  renderSuffix: PropTypes.func,
   /**
    * If `true`, the `input` element will be required.
    */
