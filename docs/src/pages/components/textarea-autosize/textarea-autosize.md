@@ -7,7 +7,7 @@ components: TextareaAutosize
 
 <p class="description">A textarea component for React which grows with content.</p>
 
-- 📦 [2.3 kB gzipped](/size-snapshot)
+- 📦 [2.1 kB gzipped](/size-snapshot)
 
 ## Empty
 
