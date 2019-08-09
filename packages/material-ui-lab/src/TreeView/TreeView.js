@@ -312,7 +312,7 @@ TreeView.propTypes = {
    */
   defaultEndIcon: PropTypes.node,
   /**
-   *  Expanded node ids.
+   * Expanded node ids.
    */
   defaultExpanded: PropTypes.arrayOf(PropTypes.string),
   /**
