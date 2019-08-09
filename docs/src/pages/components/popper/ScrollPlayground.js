@@ -104,7 +104,7 @@ const useStyles = makeStyles(theme => ({
 export default function ScrollPlayground() {
   const anchorRef = React.useRef(null);
   const [arrowRef, setArrowRef] = React.useState(null);
-  
+
   const [arrow, setArrow] = React.useState(false);
   const [disablePortal, setDisablePortal] = React.useState(false);
   const [flip, setFlip] = React.useState(true);
@@ -254,7 +254,7 @@ export default function ScrollPlayground() {
               <Switch
                 checked={disablePortal}
                 onChange={event => {
-                setDisablePortal(event.target.checked);
+                  setDisablePortal(event.target.checked);
                 }}
                 value="disablePortal"
               />
