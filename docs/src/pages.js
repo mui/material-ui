@@ -85,6 +85,7 @@ const pages = [
           { pathname: '/components/chips' },
           { pathname: '/components/dividers' },
           { pathname: '/components/icons' },
+          { pathname: '/components/material-icons' },
           { pathname: '/components/lists' },
           { pathname: '/components/tables' },
           { pathname: '/components/tooltips' },

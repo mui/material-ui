@@ -60,4 +60,5 @@ The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) c
 ## Demos
 
 - [Icons](/components/icons/)
+- [Material Icons](/components/material-icons/)
 
