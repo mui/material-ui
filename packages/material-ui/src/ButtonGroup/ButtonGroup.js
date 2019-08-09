@@ -135,7 +135,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
           disableRipple,
           fullWidth,
           size: child.props.size || size,
-          variant,
+          variant: child.props.variant || variant,
         });
       })}
     </Component>
