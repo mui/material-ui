@@ -103,7 +103,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function ScrollPlayground() {
   const anchorRef = React.useRef(null);
-  const arrowRef = React.useRef(null);
+  const [arrowRef, setArrowRef] = React.useState(null);
 
   const [arrow, setArrow] = React.useState(false);
   const [disablePortal, setDisablePortal] = React.useState(false);
@@ -195,7 +195,7 @@ export default function ScrollPlayground() {
                 },
               }}
             >
-              {arrow ? <span className={classes.arrow} ref={arrowRef} /> : null}
+              {arrow ? <span className={classes.arrow} ref={setArrowRef} /> : null}
               <Paper className={classes.paper}>
                 <DialogTitle>{"Use Google's location service?"}</DialogTitle>
                 <DialogContent>
@@ -231,7 +231,9 @@ export default function ScrollPlayground() {
                 inputProps: { 'aria-labelledby': 'scroll-playground-placement-label' },
               }}
               value={placement}
-              onChange={setPlacement}
+              onChange={event => {
+                setPlacement(event.target.value);
+              }}
             >
               <option value="top-start">top-start</option>
               <option value="top">top</option>
@@ -249,7 +251,13 @@ export default function ScrollPlayground() {
           </div>
           <FormControlLabel
             control={
-              <Switch checked={disablePortal} onChange={setDisablePortal} value="disablePortal" />
+              <Switch
+                checked={disablePortal}
+                onChange={event => {
+                  setDisablePortal(event.target.checked);
+                }}
+                value="disablePortal"
+              />
             }
             label="Disable portal (the children stay within it's parent DOM hierarchy)"
           />
@@ -270,7 +278,9 @@ export default function ScrollPlayground() {
                 inputProps: { 'aria-labelledby': 'scroll-playground-overflow-label' },
               }}
               value={preventOverflow}
-              onChange={setPreventOverflow}
+              onChange={event => {
+                setPreventOverflow(event.target.checked);
+              }}
             >
               <option value="disabled">disabled</option>
               <option value="scrollParent">scrollParent</option>
@@ -279,14 +289,30 @@ export default function ScrollPlayground() {
             </TextField>
           </div>
           <FormControlLabel
-            control={<Switch checked={flip} onChange={setFlip} value="flip" />}
+            control={
+              <Switch
+                checked={flip}
+                onChange={event => {
+                  setFlip(event.target.checked);
+                }}
+                value="flip"
+              />
+            }
             label={[
               'Flip',
               '(flip the popper’s placement when it starts to overlap its reference element)',
             ].join(' ')}
           />
           <FormControlLabel
-            control={<Switch checked={arrow} onChange={setArrow} value="arrow" />}
+            control={
+              <Switch
+                checked={arrow}
+                onChange={event => {
+                  setArrow(event.target.checked);
+                }}
+                value="arrow"
+              />
+            }
             label="Arrow"
           />
         </Grid>
