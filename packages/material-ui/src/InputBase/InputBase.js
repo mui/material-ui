@@ -209,6 +209,17 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const [focused, setFocused] = React.useState(false);
   const muiFormControl = useFormControl();
 
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (muiFormControl) {
+        return muiFormControl.registerEffect();
+      }
+
+      return undefined;
+    }, [muiFormControl]);
+  }
+
   const fcs = formControlState({
     props,
     muiFormControl,

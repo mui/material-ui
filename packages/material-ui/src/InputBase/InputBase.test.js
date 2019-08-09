@@ -5,6 +5,7 @@ import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import { act, cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import FormControl, { useFormControl } from '../FormControl';
 import InputAdornment from '../InputAdornment';
 import TextareaAutosize from '../TextareaAutosize';
@@ -477,6 +478,70 @@ describe('<InputBase />', () => {
 
       setProps({ value: '' });
       expect(getByTestId('label')).to.have.text('filled: false');
+    });
+
+    describe('registering input', () => {
+      beforeEach(() => {
+        consoleErrorMock.spy();
+      });
+
+      afterEach(() => {
+        consoleErrorMock.reset();
+      });
+
+      it("should warn if more than one input is rendered regarless how it's nested", () => {
+        render(
+          <FormControl>
+            <InputBase />
+            <div>
+              {/* should work regarless how it's nested */}
+              <InputBase />
+            </div>
+          </FormControl>,
+        );
+
+        expect(consoleErrorMock.callCount()).to.eq(1);
+        expect(consoleErrorMock.args()[0][0]).to.include(
+          'Material-UI: there are multiple InputBase components inside a FromControl.',
+        );
+      });
+
+      it('should not warn if only one input is rendered', () => {
+        render(
+          <FormControl>
+            <InputBase />
+          </FormControl>,
+        );
+
+        expect(consoleErrorMock.callCount()).to.eq(0);
+      });
+
+      it('should not warn when toggling between inputs', () => {
+        // this will ensure that unregistering was called during unmount
+        const ToggleFormInputs = () => {
+          const [flag, setFlag] = React.useState(true);
+
+          return (
+            <FormControl>
+              {flag ? (
+                <InputBase />
+              ) : (
+                <Select native>
+                  <option value="" />
+                </Select>
+              )}
+              <button type="button" onClick={() => setFlag(!flag)}>
+                toggle
+              </button>
+            </FormControl>
+          );
+        };
+
+        const { getByText } = render(<ToggleFormInputs />);
+        fireEvent.click(getByText('toggle'));
+
+        expect(consoleErrorMock.callCount()).to.eq(0);
+      });
     });
   });
 
