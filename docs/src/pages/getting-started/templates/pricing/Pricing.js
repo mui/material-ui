@@ -15,14 +15,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 
-function MadeWithLove() {
+function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Built with love by the '}
+      {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Material-UI
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'. Built with '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Material-UI.
       </Link>
-      {' team.'}
     </Typography>
   );
 }
@@ -228,7 +232,7 @@ export default function Pricing() {
           ))}
         </Grid>
         <Box mt={5}>
-          <MadeWithLove />
+          <Copyright />
         </Box>
       </Container>
       {/* End footer */}
