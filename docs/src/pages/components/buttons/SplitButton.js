@@ -45,7 +45,6 @@ export default function SplitButton() {
           <Button onClick={handleClick}>{options[selectedIndex]}</Button>
           <Button
             color="primary"
-            variant="contained"
             size="small"
             aria-owns={open ? 'menu-list-grow' : undefined}
             aria-haspopup="true"
