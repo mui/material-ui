@@ -14,10 +14,10 @@ const useStyles = makeStyles({
 
 export default function ContinuousSlider() {
   const classes = useStyles();
-  const [value, setValue] = React.useState<number | number[]>(30);
+  const [value, setValue] = React.useState<number>(30);
 
   const handleChange = (event: any, newValue: number | number[]) => {
-    setValue(newValue);
+    setValue(newValue as number);
   };
 
   return (
