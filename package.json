@@ -1,5 +1,5 @@
 {
-  "version": "4.3.1",
+  "version": "4.3.2",
   "private": true,
   "scripts": {
     "proptypes": "ts-node --skip-project ./packages/material-ui/scripts/generateProptypes.ts",

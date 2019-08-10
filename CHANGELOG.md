@@ -1,5 +1,61 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.3.2
+###### *Aug 10, 2019*
+
+Big thanks to the 22 contributors who made this release possible!
+
+- 🦴 Introduce a new Skeleton component in the lab (#16786).
+- 📦 Reduce bundle size by -10%,-20% of the small helpers like useMediaQuery, Portal, and TextareaAutosize (#16842) @NMinhNguyen.
+- And many more 🐛 bug fixes 📚 improvements.
+
+### `@material-ui/core@v4.3.2`
+
+- [Box] Forward props into cloned element (#16882) @RostyslavKravchenko
+- [ButtonGroup] Allow override of the variant prop (#16946) @nvwebd
+- [ButtonGroup] Separate button colors (#16876) @CyanoFresh
+- [CssBaseline] Add backdrop base styles (#16880) @yordis
+- [Fab] Accept FabProps in theme.props  (#16877) @aditya1906
+- [FormControl] Warn if rendered mulitple inputs (#16923) @lemes
+- [Popper] Fix ScrollPlayground.js demo (#16948) @pinktig
+- [Slider] Update TypeScript demo to cast types to values (#16957) @allypally
+- [Stepper] Improve the description of the icon prop (#16916) @mbrookes
+- [TextField] How to leverage CSS input validation (#16903) @jonkelling
+- [Textfield] Add left property to prevent scrollbars on IE 11 (#16936) @beaudry
+- [ToggleButton] Fix horizontal shift (#16861) @wereHamster
+- [Transition] Forward isAppearing to onEnter, onEntering, onEntered (#16917) @millerrafi
+
+### `@material-ui/lab@v4.0.0-alpha.23`
+
+- [TreeView] Fix the height of the customization demo (#16874) @mbrookes
+- [Skeleton] New component (#16786) @oliviertassinari
+
+### `@material-ui/system@v4.3.3`
+
+- [system] Avoid `!important` in `borderColor` prop (#16875) @rogerclotet
+
+### Docs
+
+- [blog] July 2019 update (#16872) @oliviertassinari
+- [docs] Add Material-UI with React course in learning (#16869) @deekshasharma
+- [docs] Add error boundary to demos (#16871) @oliviertassinari
+- [docs] Add react compatibility in supported platforms (#16863) @pranshuchittora
+- [docs] Batch small changes (#16951) @oliviertassinari
+- [docs] Fix build on windows (#16870) @merceyz
+- [docs] Fix grammatical error in components docs (#16886) @Dasbachc
+- [docs] Hide header in DefaultTheme demo (#16937) @rogerclotet
+- [docs] Migrate WithTheme demo to Typescript (#16941) @rogerclotet
+- [docs] Batch small changes (#16864) @oliviertassinari
+- [docs] Batch small changes (#16883) @oliviertassinari
+
+### Core
+
+- [benchmark] Fix not running (#16900) @ypresto
+- [ci] Ignore dependabot branches (#16893) @eps1lon
+- [core] Generate PropTypes from type definitions (#16642) @merceyz
+- [core] Optimise destructuring for useState, useReducer (#16842) @NMinhNguyen
+- yarn docs:api @oliviertassinari
+
 ## 4.3.1
 ###### *Aug 03, 2019*
 
