@@ -7,7 +7,7 @@ components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 
 <p class="description">Кнопки позволяют пользователям выполнять действия и делать выбор одним нажатием.</p>
 
-[Кнопки](https://material.io/design/components/buttons.html) сообщают о действиях, которые могут выполнять пользователи. Они обычно размещаются в вашем интерфейсе, например:
+[Buttons](https://material.io/design/components/buttons.html) communicate actions that users can take. They are typically placed throughout your UI, in places like:
 
 - Диалоги
 - Всплывающие окно
@@ -76,7 +76,7 @@ ButtonGroup can also be used to create a split button. The dropdown can change t
 
 ## Размеры
 
-Хотите изменить размеры? Используйте параметр `size`.
+Fancy larger or smaller buttons? Use the `size` property.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
@@ -96,11 +96,11 @@ ButtonGroup can also be used to create a split button. The dropdown can change t
 
 ## Настраиваемые кнопки
 
-Ниже приведены несколько примеров настройки компонента. Более подробно с этой темой можно ознакомиться на [странице документации по переопределению компонентов](/customization/components/).
+Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 
-
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
 
 ## Сложные кнопки
 
@@ -110,7 +110,9 @@ ButtonGroup can also be used to create a split button. The dropdown can change t
 
 ## Сторонняя библиотека маршрутизации
 
-Одним из распространенных вариантов использования кнопки является переход на новую страницу. `ButtonBase` компонент предоставляет свойство для обработки этого варианта использования: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Учитывая, что многие наши интерактивные компоненты используют `ButtonBase`, у вас есть возможность воспользоваться этим:
+Одним из распространенных вариантов использования кнопки является переход на новую страницу. `ButtonBase` компонент предоставляет свойство для обработки этого варианта использования: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Учитывая, что многие наши интерактивные компоненты используют `ButtonBase`, у вас есть возможность воспользоваться этим.
+
+Here is an integration example with react-router:
 
 {{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 

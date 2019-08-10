@@ -36,6 +36,7 @@ Verwenden Sie für eine schnellere, mobilere Entwicklung responsive Anzeigeklass
 | Sichtbar nur bei lg  | `display={{ xs: 'none', lg: 'block', xl: 'none' }}`  |
 | Sichtbar nur bei xl  | `display={{ xs: 'none', xl: 'block' }}`              |
 
+
 ```jsx
 <Box display={{ xs: 'block', md: 'none' }}>
   auf Bildschirmen ausblenden, die breiter als md sind

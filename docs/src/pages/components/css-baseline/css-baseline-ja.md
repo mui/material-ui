@@ -25,7 +25,7 @@ function MyApp() {
 
 ### ページ
 
-`<html>` および `<body>` 要素は、ページ全体のデフォルトが改善されるように更新されています。具体的には：
+The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
 
 - すべてのブラウザの余白が削除されています。
 - デフォルトのマテリアルデザインの背景色が適用されます。 標準のデバイスや、白背景に印刷されたデバイスの為に[`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background) が使われています。

@@ -33,7 +33,7 @@ export default Main() {
 
 ## Collapse（折叠）
 
-从子元素的顶部垂直展开。 而`collapsedHeight` 属性可用于设置未展开时的最小高度。
+Expand vertically from the top of the child element. The `collapsedHeight` property can be used to set the minimum height when not expanded.
 
 {{"demo": "pages/components/transitions/SimpleCollapse.js"}}
 
@@ -53,7 +53,7 @@ export default Main() {
 
 ## Slide（滑动）
 
-从屏幕的边缘滑入。`direction` 属性控制了动画开始时，元素过渡的方向。
+Slide in from the edge of the screen. The `direction` property controls which edge of the screen the transition starts from.
 
 过渡(Transition) 组件的 `mountOnEnter` 属性保证了只有 `in` 是`true`时，子组件才会被渲染。 这可以保证相对上定位好的组件不会从屏幕外面的位置滚动到视图中。 同样的， 在组件从屏幕中过渡完后，`unmountOnExit` 属性将次组件从 DOM 中移除。
 

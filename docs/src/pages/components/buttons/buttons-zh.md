@@ -7,7 +7,7 @@ components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 
 <p class="description">按钮允许用户只需轻按一下即可采取行动并做出选择。</p>
 
-[按钮](https://material.io/design/components/buttons.html)承载了用户可以触发的动作。通常他们被放置在界面中的以下位置：
+[按钮](https://material.io/design/components/buttons.html) 传达用户可以执行的操作。 They are typically placed throughout your UI, in places like:
 
 - Dialogs（对话框）
 - Modal windows（模态窗口）
@@ -44,21 +44,21 @@ components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
-## Grouped Buttons（按钮组）
+## Grouped Buttons（组合按钮）
 
-ButtonGroup组件可用于对描边按钮(默认) 或者实心按钮进行分组。
+ButtonGroup 组件可用于组合描边按钮（默认的）或者实心按钮。
 
 {{"demo": "pages/components/buttons/GroupedButtons.js"}}
 
-## 分割按钮
+## Split Button（分割按钮）
 
-按钮组也可用于构建分割按钮. 在分割按钮中, 下拉框既可以改变主按钮的行为(如本例所示), 又或是立刻触发相应的动作.
+ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be use to immediately trigger a related action.
 
 {{"demo": "pages/components/buttons/SplitButton.js"}}
 
 ## Floating Action Buttons（提升动作按钮）
 
-[提升动作按钮](https://material.io/design/components/buttons-floating-action-button.html) (FAB) 在屏幕上执行主要的或最常用的操作。 它出现在所有屏幕内容的前面, 通常作为圆形形状, 其中心有一个图标。 FAB有两种类型：常规的和扩展的。
+[提升动作按钮](https://material.io/design/components/buttons-floating-action-button.html) (FAB) 在屏幕上执行主要的或最常用的操作。 它出现在所有屏幕内容的前面，通常是一个圆形，中间有一个图标。 FAB有两种类型：常规的和扩展的。
 
 只使用FAB是最适合呈现屏幕主要操作的方法。
 
@@ -76,7 +76,7 @@ ButtonGroup组件可用于对描边按钮(默认) 或者实心按钮进行分组
 
 ## 尺寸
 
-您喜欢更大一点或更小一点的按钮？使用 `size` 属性可以实现大小的控制。
+Fancy larger or smaller buttons? Use the `size` property.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
@@ -94,13 +94,13 @@ ButtonGroup组件可用于对描边按钮(默认) 或者实心按钮进行分组
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## 自定义按钮
+## Customized Buttons（自定义按钮）
 
-以下是自定义组件的一些示例。您可以在[重写文档页面](/customization/components/)中了解有关此内容的更多信息。
+这是一些自定义样式开关的例子 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 
-
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
 
 ## 复杂按钮
 
@@ -110,8 +110,10 @@ ButtonGroup组件可用于对描边按钮(默认) 或者实心按钮进行分组
 
 ## 第三方路由库
 
-一个常见的用例是使用按钮触发导航到新页面。 `ButtonBase` 组件提供了一个处理此用例的属性：`component`。 然而，一些特定 `ButtonBase` 的代码需要所给组件的 DOM 节点。 在组件上附加一个 ref，并且预期此组件能够将这个 ref 传递到下层 DOM 节点，通过这样的方法可以实现。 鉴于我们的许多交互式组件都依赖于 `ButtonBase`，你几乎可以在所有地方用到它的好处：
+一个常见的用例是使用按钮触发导航到新页面。 `ButtonBase` 组件提供了一个处理此用例的属性：`component`。 然而，一些特定 `ButtonBase` 的代码需要所给组件的 DOM 节点。 在组件上附加一个 ref，并且预期此组件能够将这个 ref 传递到下层 DOM 节点，通过这样的方法可以实现。 Given that a lot of our interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
+
+Here is an integration example with react-router:
 
 {{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 
-*请注意：为了防止组件被意外地移除，创建一个 Button 组件是有必要的。您可以在我们的[组件属性指南](/guides/composition/#component-property)中阅读更多相关信息。*
+*Note: Creating the Button components is necessary to prevent unexpected unmounting. 您可以在我们的 [组件属性指南](/guides/composition/#component-property)阅读更多相关信息。*

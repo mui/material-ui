@@ -9,7 +9,25 @@ components: Slider
 
 [Schieberegler](https://material.io/design/components/sliders.html) spiegeln einen Wertebereich entlang einer Leiste wider, aus dem Benutzer einen einzelnen Wert auswählen können. Sie sind ideal zum Anpassen von Einstellungen wie Lautstärke, Helligkeit oder Anwenden von Bildfiltern.
 
-- 
+- 📦 [22 kB gzipped](/size-snapshot) (but only 8 kB without @material-ui/styles).
+
+## Discrete sliders
+
+Discrete sliders can be adjusted to a specific value by referencing its value indicator. By order of demos:
+
+1. You can generate a mark for each step with `marks={true}`.
+2. You can change the default step increment.
+3. You can have custom marks by providing a rich array to the `marks` prop.
+4. You can restrict the selectable values to those provided with the `marks` prop with `step={null}`.
+5. You can force the thumb label to be always visible with `valueLabelDisplay="on"`.
+
+{{"demo": "pages/components/slider/DiscreteSlider.js"}}
+
+## Benutzerdefinierte Auswahl
+
+Hier einige Beispiele zum Anpassen der Komponente. You can learn more about this in the [overrides documentation page](/customization/components/).
+
+{{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
 ## Kontinuierliche Schieberegler
 
@@ -17,26 +35,9 @@ Continuous sliders allow users to select a value along a subjective range.
 
 {{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
-## Discrete sliders
-
-Discrete sliders can be adjusted to a specific value by referencing its value indicator. By order of demos:
-
-1. You can generate a mark for each step with `marks={true}`.
-2. You can have custom marks by providing a rich array to the `marks` prop.
-3. You can restrict the selectable values to those provided with the `marks` prop with `step={null}`.
-4. You can force the thumb label to be always visible with `valueLabelDisplay="on"`.
-
-{{"demo": "pages/components/slider/DiscreteSlider.js"}}
-
 ## Range sliders
 
 {{"demo": "pages/components/slider/RangeSlider.js"}}
-
-## Benutzerdefinierte Auswahl
-
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
-
-{{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
 ## With input field
 

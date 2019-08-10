@@ -36,7 +36,7 @@ const theme = createMuiTheme({
     // Name of the component ⚛️
     MuiButtonBase: {
       // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 
+      disableRipple: true, // No more ripple, on the whole application 💣!
     },
   },
 });
@@ -93,12 +93,7 @@ const theme = createMuiTheme({
 
 ## アプリのスタイルを設定するにはJSSを使用する必要がありますか？
 
-It's recommended:
-
-- ビルトインのため、追加のbundleサイズのオーバーヘッドはありません
-- 速い & メモリ効率が良い
-- 明瞭で一貫性のあるAPI
-- ネイティブでもプラグインでも、多くの高度な機能をサポートします。
+No, it's not required. But this dependenency comes built in, so carries no additional bundle size overhead.
 
 しかし、おそらくすでに別のスタイルライブラリを使用してアプリケーションにいくつかのMaterial-UIコンポーネントを追加している、 またはすでに別のAPIを使用している場合には、新しいものを学びたくはないでしょう？ その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。
 
@@ -294,7 +289,7 @@ function handleRender(req, res) {
 
 ## 私が見ている色とこのサイトで見ている色が違うのはなぜですか？
 
-ドキュメントサイトはカスタムテーマを使用しています。 したがって、カラーパレットがあるMaterial-UIが提供しているデフォルトのテーマは異なります。 テーマのカスタマイズについて学ぶには、この[ページ](/customization/themes/)を参照してください。
+ドキュメントサイトはカスタムテーマを使用しています。 したがって、カラーパレットがあるMaterial-UIが提供しているデフォルトのテーマは異なります。 テーマのカスタマイズについて学ぶには、この[ページ](/customization/theming/)を参照してください。
 
 ## Material-UIは最高です。 プロジェクトを支援するにはどのようにできますか？
 

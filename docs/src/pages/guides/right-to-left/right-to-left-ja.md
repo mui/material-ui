@@ -1,4 +1,4 @@
-# Right-to-left
+# 右から左
 
 <p class="description">To change the direction of Material-UI components you must follow the following steps. UIs for languages that are read from right-to-left (RTL), such as Arabic and Hebrew, should be mirrored.</p>
 
@@ -12,7 +12,7 @@ Make sure the `dir` attribute is set on the body, otherwise native components wi
 <body dir="rtl">
 ```
 
-### 2. Theme
+### 2. テーマ
 
 Set the direction in your custom theme:
 

@@ -5,29 +5,32 @@ components: Drawer, SwipeableDrawer
 
 # Drawer
 
-<p class="description">Navigation drawers provide access to destinations in your app. Side sheets are surfaces containing supplementary content that are anchored to the left or right edge of the screen.</p>
+<p class="description">ナビゲーションドロワー(Drawer) を使用すると、App内の目的地にアクセスできます。サイドシートは、画面の左端または右端にアンカーされた補足コンテンツを含むサーフェスです。</p>
 
-[Navigation drawers](https://material.io/design/components/navigation-drawer.html) (or "sidebars") provide access to destinations and app functionality, such as switching accounts. They can either be permanently on-screen or controlled by a navigation menu icon.
+<a href=「https://material.io/design/components/navigation-drawer.html」>ナビゲーション・ドロワー</a>(または「サイドバー」)は、目的地へのアクセスとアカウントの切り替えなどのアプリケーション機能を提供します。 これらは、画面上で永続的に表示することも、ナビゲーション・メニュー・アイコンで制御することもできます。
 
-[Side sheets](https://material.io/design/components/sheets-side.html) are supplementary surfaces primarily used on tablet and desktop.
+[サイドシート](https://material.io/design/components/sheets-side.html) は、主にタブレットやデスクトップで使用される補助サーフェスです。
 
 ## Temporary drawer
 
-Temporary navigation drawers can toggle open or closed. Closed by default, the drawer opens temporarily above all other content until a section is selected.
+一時的なnavigation drawersは、開閉することができます。 デフォルトでは閉じていますが、セクションが選択されるまで、ドロワーは一時的に他のすべてのコンテンツの上に開きます。
 
-The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It closes when an item is selected, handled by controlling the `open` prop.
+ドロワーをキャンセルするには、オーバーレイをクリックするか、Escキーを押します。 アイテムが選択されると、`open`プロパティを制御して閉じます。
 
 {{"demo": "pages/components/drawers/TemporaryDrawer.js"}}
 
-## Swipeable Temporary drawer
+## スワイプできる　テンポラリードロワー
 
-You can make the drawer swipeable with the `SwipeableDrawer` component.
+`SwipeableDrawer` コンポーネントを使用すると、引き出しをスワイプ可能にできます。
 
-This component comes with a 2 kB gzipped payload overhead. Some low-end mobile devices won't be able to follow the fingers at 60 FPS. You can use the `disableBackdropTransition` property to help.
+このコンポーネントには、2 kBの圧縮ペイロードオーバーヘッドがあります。 一部のローエンドモバイルデバイスは、60FPSで指の動きを追うことができません。 `disableBackdropTransition` プロパティを使用すると便利です。
 
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
-We are using the following set of properties on this documentation website for optimal usability of the component: - iOS is hosted on high-end devices. We can enable the backdrop transition without dropping frames. The performance will be good enough. - iOS has a "swipe to go back" feature that mess with the discovery feature. We have to disable it.
+コンポーネントの使いやすさを最適化するために、このドキュメントWebサイトの次のプロパティセットを使用しています。
+
+- iOSはハイエンドデバイスでホストされています。 フレームを落とさずに背景遷移を有効にすることができます。 性能は十分良いでしょう。
+- iOSには、検出機能に を設定する「戻るスワイプ」機能があります。 無効にする必要があります。
 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -35,48 +38,48 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
 ```
 
-## Responsive drawer
+## レスポンシブなドロワー
 
-The `Hidden` responsive helper component allows showing different types of drawer depending on the screen width. A `temporary` drawer is shown for small screens while a `permanent` drawer is shown for wider screens.
+`Hidden`対応ヘルパーコンポーネントを使用すると、画面の幅に応じてさまざまな種類のドロワーを表示できます。 小さな画面では `temporary` ドロワーが表示され、大きな画面では `permanent` ドロワーが表示されます。
 
 {{"demo": "pages/components/drawers/ResponsiveDrawer.js", "iframe": true}}
 
-## Persistent drawer
+## Persistent（永続的）ドロワー
 
-Persistent navigation drawers can toggle open or closed. The drawer sits on the same surface elevation as the content. It is closed by default and opens by selecting the menu icon, and stays open until closed by the user. The state of the drawer is remembered from action to action and session to session.
+永続的なナビゲーションdrawersは、開閉を切り替えることができます。 この drawerは、コンテンツと同じ表面の高さにあります。 デフォルトでは閉じられており、メニューアイコンを選択すると開き、ユーザーが閉じるまで開いたままになります。 ドロワーの状態は、アクションからアクションへ、セッションからセッションへと記憶されます。
 
-When the drawer is outside of the page grid and opens, the drawer forces other content to change size and adapt to the smaller viewport.
+ページグリッドの外側にあるdrawerを開くと、他のコンテンツのサイズが強制的に変更され、小さい方のビューポートに合わせて調整されます。
 
-Persistent navigation drawers are acceptable for all sizes larger than mobile. They are not recommended for apps with multiple levels of hierarchy that require using an up arrow for navigation.
+永続的なナビゲーションdrawersは、モバイルよりも大きいすべてのサイズに適しています。 ナビゲーションに上矢印を使用する必要がある複数レベルの階層を持つAppにはお勧めしません。
 
 {{"demo": "pages/components/drawers/PersistentDrawerLeft.js", "iframe": true}}
 
 {{"demo": "pages/components/drawers/PersistentDrawerRight.js", "iframe": true}}
 
-## Mini variant drawer
+## Mini variant drawer (ミニバリアントドロワー)
 
-In this variation, the persistent navigation drawer changes its width. Its resting state is as a mini-drawer at the same elevation as the content, clipped by the app bar. When expanded, it appears as the standard persistent navigation drawer.
+このバリエーションでは、固定ナビゲーションドロワーの幅が変更されます。 静止状態はコンテンツと同じ高さのミニドロワーで、アプリバーでクリップされます。 展開すると、標準の永続的なナビゲーション領域として表示されます。
 
-The mini variant is recommended for apps sections that need quick selection access alongside content.
+ミニバリアントは、コンテンツと共にクイック選択アクセスが必要なアプリのセクションに推奨されます。
 
 {{"demo": "pages/components/drawers/MiniDrawer.js", "iframe": true}}
 
-## Permanent drawer
+## Permanent drawer　(固定ドロワー)
 
-Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
+固定ナビゲーションdrawersは常に表示され、コンテンツまたは背景と同じ高さの左端に固定されます。 それらを閉じることはできません。
 
-Permanent navigation drawers are the **recommended default for desktop**.
+パーマネントナビゲーションドロワーは、**デスクトップでデフォルト推奨**です。
 
-### Full-height navigation
+### Full-height navigation（フルハイトナビゲーション）
 
-Apps focused on information consumption that use a left-to-right hierarchy.
+アプリケーションは、左から右への階層を使用する情報消費に重点を置いていました。
 
-{{"demo": "pages/components/drawers/PermanentDrawerLeft.js", "iframe": true}}
+{{"demo": "pages/components/drawers/PersistentDrawerRight.js", "iframe": true}}
 
 {{"demo": "pages/components/drawers/PermanentDrawerRight.js", "iframe": true}}
 
-### Clipped under the app bar
+### アプリケーションバーの下にクリップされている
 
-Apps focused on productivity that require balance across the screen.
+画面全体のバランスを必要とする生産性を重視したアプリ。
 
 {{"demo": "pages/components/drawers/ClippedDrawer.js", "iframe": true}}

@@ -13,9 +13,9 @@ components: Drawer, SwipeableDrawer
 
 ## Скрытая Панель
 
-Скрытая навигационная панель может быть видна либо скрыта. По-умолчанию ее не видно, но ее можно открыть над остальным содержимым и выбрать нужный пункт, после чего панель снова переходит в скрытое состояние.
+Temporary navigation drawers can toggle open or closed. Closed by default, the drawer opens temporarily above all other content until a section is selected.
 
-Также, панель может быть скрыта нажатем на фон или на клавишу Esc. При выборе пункта меню панель закрывается меняя значение свойства `open`.
+The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It closes when an item is selected, handled by controlling the `open` prop.
 
 {{"demo": "pages/components/drawers/TemporaryDrawer.js"}}
 
@@ -27,7 +27,10 @@ components: Drawer, SwipeableDrawer
 
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
-Данный вебсайт использует следующие приемы для улучшения качества взаимодействия с пользователем данного компонента: - iOS является мощным устройством. Поэтому использование backdrop transition не вызывает пропуска кадров. Производительность достаточно хороша. - iOS предоставляет скользящий жест для возврата, который мешает использованию панелей. Данный жест должен быть отключен.
+We are using the following set of properties on this documentation website for optimal usability of the component:
+
+- iOS is hosted on high-end devices. Поэтому использование backdrop transition не вызывает пропуска кадров. Производительность достаточно хороша.
+- iOS предоставляет скользящий жест для возврата, который мешает использованию панелей. Данный жест должен быть отключен.
 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -47,7 +50,7 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 Когда панель находится за границей экрана и открывается, остальное содержимое меянет размеры приспосбаливаясь к уменьшеному месту в окне браузера.
 
-Исползование стойких панелей имеет смысл на разрешениях больше чем на мобильных устройствах. Не рекомендуется их использоватся в приложениях с элементами расположенными на нескольких уровнях, где необходимо перемещатся между ними.
+Persistent navigation drawers are acceptable for all sizes larger than mobile. They are not recommended for apps with multiple levels of hierarchy that require using an up arrow for navigation.
 
 {{"demo": "pages/components/drawers/PersistentDrawerLeft.js", "iframe": true}}
 
@@ -63,7 +66,7 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 ## Вполне видимая панель
 
-Вполне видимые навигационные панели всегда видимы и привязанны к левому краю окна браузера, находятся на том же уровне что и остальное содержимое. Они не могут быть скрыты.
+Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
 
 Рекомендуется использовать вполне видимые навигационные панели на **ПК**.
 

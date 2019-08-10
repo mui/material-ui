@@ -13,7 +13,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## 简单的对话框
 
-简单的对话框可以提供有关一个列表项的额外信息或操作。例如, 它们可以显示头像、图标、解释或交互操作 (如添加帐户)。
+Simple dialogs can provide additional details or actions about a list item. For example, they can display avatars, icons, clarifying subtext, or orthogonal actions (such as adding an account).
 
 触摸操作机制：
 
@@ -26,12 +26,12 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 警告框是一种紧急中断的行为，用以将某一情况通知用户，并需要确认。
 
-大多数警告不需要标题。他们简要地通过以下其中一种方式，用一两句话列出了选项：
+Most alerts don't need titles. They summarize a decision in a sentence or two by either:
 
 - 问一个问题（例如："是否删除此对话？”）
 - 发表一个和动作按钮相关的声明
 
-仅对高风险情况使用带标题栏地警告框，而如此一来可能会导致连接地丢失。用户应该仅根据标题和按钮文本，就能理解所提供的选择项。
+Use title bar alerts only for high-risk situations, such as the potential loss of connectivity. Users should be able to understand the choices based on the title and button text alone.
 
 如果需要加上标题请:
 
@@ -54,7 +54,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## 自定义对话框
 
-以下是自定义组件的一个示例。您可以在[重写文档页面](/customization/components/)中了解有关此内容的更多信息。
+以下是自定义组件的一个示例。 您可以在[样式重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 该对话框加上了一个关闭按钮来辅助可用性。
 
@@ -72,7 +72,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## 响应式全屏
 
-You may make a dialog responsively full screen using [`useMediaQuery`](/components/use-media-query/#usemediaquery).
+您可以使用[`useMediaQuery`](/components/use-media-query/#usemediaquery)来实现一个全屏显示的对话框。
 
 ```jsx
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -95,7 +95,7 @@ function MyComponent() {
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## 可及性
+## 无障碍设计
 
 参考[模态框可及性的部分](/components/modal/#accessibility)。
 

@@ -29,9 +29,9 @@ Der erste Schritt besteht darin, die `InputBase` Komponente zu formatieren. Ansc
 
 ## Mehrfach Auswahl
 
-Die `Auswahl-` Komponente kann mehrere Auswahlmöglichkeiten verarbeiten. Es wird mit der `multiple` Eigenschaft aktiviert.
+The `Select` component can handle multiple selections. It's enabled with the `multiple` property.
 
-Wie bei der Einzelauswahl können Sie den neuen Wert abrufen, indem Sie auf `event.target.value` im `onChange` Callback zugreifen. Es ist immer ein Array.
+Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 

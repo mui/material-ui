@@ -6,7 +6,7 @@
 
 ドキュメンテーションのテーマオブジェクトを調べる。
 
-{{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideEditButton": true}}
+{{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideHeader": true}}
 
 > ヒント：あなたのコンソールでドキュメントのテーマオブジェクトで遊ぶことができます。 すべてのドキュメントページで可変なドキュメントのテーマを公開します。 ドキュメントサイトはカスタムテーマを使用していることに注意してください。
 

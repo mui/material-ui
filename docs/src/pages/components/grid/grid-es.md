@@ -31,7 +31,7 @@ Esta función de transformación de la salida se puede personalizar [usando el t
 
 ## Grids fluidos
 
-Las cuadrículas fluidas usan columnas que escalan y redimensionan el contenido. La disposición de la cuadrícula fluida (el layout) puede usar puntos de interrupción (breakpoints) para determinar si el diseño necesita cambiar drásticamente.
+Fluid grids use columns that scale and resize content. A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
 
 ### Grid básica
 
@@ -53,7 +53,7 @@ Debajo de esta línea hay una demostración interactiva que permite explorar el 
 
 ## Auto-layout
 
-El Auto-layout (disposición del diseño automática) hace que los *items* compartan equitativamente el espacio disponible. Eso significa que también se puede asignar el ancho a un *item* y que el resto cambiarán de tamaño automáticamente alrededor de éste.
+The Auto-layout makes the *items* equitably share the available space. That also means you can set the width of one *item* and the others will automatically resize around it.
 
 {{"demo": "pages/components/grid/AutoGrid.js"}}
 
@@ -65,7 +65,7 @@ El siguiente ejemplo no sigue las directrices de Material Design, pero ilustra c
 
 ## Grid Anidada
 
-Las propiedades `conatiner` e `item` son dos boleanos independientes. Se pueden combinar.
+The `container` and `item` properties are two independent booleans. They can be combined.
 
 > Un **contenedor** de flex es la caja generada por un elemento con la propiedad computada display con el valor de `flex` o `inline-flex`. Los hijos en el flujo de un contenedor flex se denominan flex **items** y se establecen mediante el modelo de layout flex.
 
@@ -77,7 +77,10 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### Margen negativo
 
-Existe una limitación con el margen negativo que utilizamos para implementar el espaciado entre los elementos. Un scroll horizontal aparecerá si un margen negativo va más allá del `<body>`. Hay 3 soluciones disponibles: 1. No usar la función de espaciado e implementarla en el espacio de usuario `spacing={0}` (por defecto). 2. Aplicar padding al padre con al menos la mitad del valor de espaciado aplicado al hijo:
+Existe una limitación con el margen negativo que utilizamos para implementar el espaciado entre los elementos. Un scroll horizontal aparecerá si un margen negativo va más allá del `<body>`. Hay 3 soluciones disponibles:
+
+1. No usar la función de espaciado e implementarla en el espacio de usuario `spacing={0}` (por defecto).
+2. Aplicar padding al padre con al menos la mitad del valor de espaciado aplicado al hijo:
 
 ```jsx
   <body>
@@ -89,18 +92,18 @@ Existe una limitación con el margen negativo que utilizamos para implementar el
   </body>
 ```
 
-1. Añadiendo `overflow-x: hidden;` al padre.
+3. Añadiendo `overflow-x: hidden;` al padre.
 
 ### white-space: nowrap;
 
-La configuración inicial en los objetos flex es `min-width: auto`. Esto causa un conflicto de posicionamiento cuando los hijos usan `white-space: nowrap;`. Se puede presentar este problema con:
+The initial setting on flex items is `min-width: auto`. It's causing a positioning conflict when the children is using `white-space: nowrap;`. You can experience the issue with:
 
 ```jsx
 <Grid item xs>
   <Typography noWrap>
 ```
 
-Para que el elemento permanezca dentro del contenedor, se debe establecer `min-width: 0`. En la práctica, se puede establecer la propiedad `zeroMinWidth`:
+In order for the item to stay within the container you need to set `min-width: 0`. In practice, you can set the `zeroMinWidth` property:
 
 ```jsx
 <Grid item xs zeroMinWidth>

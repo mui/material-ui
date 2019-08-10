@@ -13,29 +13,29 @@ components: Rating
 
 {{"demo": "pages/components/rating/SimpleRating.js"}}
 
-## Half ratings
-
-The rating can display any float number with the `value` prop. Use the `precision` prop to define the minimum increment value change allowed.
-
-{{"demo": "pages/components/rating/HalfRating.js"}}
-
 ## Customized ratings
 
 这是一些自定义样式开关的例子 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/rating/CustomizedRatings.js"}}
 
-## 尺寸
-
-Fancy larger or smaller ratings? Use the `size` property.
-
-{{"demo": "pages/components/rating/RatingSize.js"}}
-
 ## Hover feedback
 
 You can display a label on hover to help users pick the correct rating value. The first demo uses the `onChangeActive` prop while the last one uses the `IconContainerComponent` prop.
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
+
+## Half ratings
+
+The rating can display any float number with the `value` prop. Use the `precision` prop to define the minimum increment value change allowed.
+
+{{"demo": "pages/components/rating/HalfRating.js"}}
+
+## 大小
+
+Fancy larger or smaller ratings? Use the `size` prop.
+
+{{"demo": "pages/components/rating/RatingSize.js"}}
 
 ## 可访问性
 

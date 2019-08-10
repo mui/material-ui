@@ -34,7 +34,7 @@ Material-UI предоставляет два компонента для ото
 - [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) представлена как `@material-ui/icons/Delete`
 - [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) представлена как `@material-ui/icons/DeleteForever`
 
-Для *"тематических"* иконок к названию иконки добавляется имя темы. Например
+For *"themed"* icons, append the theme name to the icon name. For instance with the
 
 - Иконка [`delete`](https://material.io/tools/icons/?icon=delete&style=outline) в теме Outlined представлена как `@material-ui/icons/DeleteOutlined`
 - Иконка [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded) в теме Rounded представлена как `@material-ui/icons/DeleteRounded`
@@ -78,7 +78,7 @@ import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-`Icon` корректно установит имя класса для иконочного шрифта Material. Для прочих шрифтов необходимо предоставить имя класса с помощью свойства `className` компонента Icon.
+`Icon` will set the correct class name for the Material icon font. For other fonts, you must supply the class name using the Icon component's `className` property.
 
 Чтобы использовать иконку, просто оберните её имя (лигатуру шрифта) в компонент `Icon`, например:
 
@@ -100,7 +100,7 @@ import Icon from '@material-ui/core/Icon';
 
 {{"demo": "pages/components/icons/FontAwesome.js", "hideEditButton": true}}
 
-## Шрифт или SVG. Какой подход использовать?
+## Font vs SVG. Which approach to use?
 
 Оба подхода работают нормально, однако есть некоторые тонкие различия, особенно с точки зрения производительности и качества отрисовки. Когда это возможно, использование SVG является более предпочтительным, так как в этом случае есть возможность разделения кода, поддерживается больше иконок, отрисовка происходит лучше и быстрее.
 
@@ -108,11 +108,14 @@ For more details, you can check out [why GitHub migrated from font icons to SVG 
 
 ## Доступность
 
-Иконки могут передавать всевозможную значимую информацию, поэтому важно, чтобы они охватывали максимально возможное количество людей. Существует два варианта использования, которые необходимо учесть: - **Декоративные иконки** используются только для визуального подкрепления или брендинга. Если удалить их со страницы, пользователи всё равно смогут её использовать, им всё будет понятно. - **Семантические иконки** – это те, которые используются для передачи смысла, а не только для украшения. В данную группу входят иконки без текста, используемые в качестве интерактивных элементов управления – кнопки, элементы форм, переключатели, и так далее.
+Иконки могут передавать всевозможную значимую информацию, поэтому важно, чтобы они охватывали максимально возможное количество людей. There are two use cases you’ll want to consider:
+
+- **Decorative Icons** are only being used for visual or branding reinforcement. Если удалить их со страницы, пользователи всё равно смогут её использовать, им всё будет понятно.
+- **Семантические иконки** – это те, которые используются для передачи смысла, а не только для украшения. В данную группу входят иконки без текста, используемые в качестве интерактивных элементов управления – кнопки, элементы форм, переключатели, и так далее.
 
 ### Декоративные SVG-иконки
 
-Если у вас чисто декоративные иконки, почти всё уже готово! Добавим атрибут `aria-hidden=true` для правильной настройки их доступности (невидимость).
+If your icons are purely decorative, you’re already done! We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
 
 ### Семантические SVG-иконки
 
@@ -126,7 +129,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 // ...
 
-<IconButton aria-label="Delete">
+<IconButton aria-label="delete">
   <SvgIcon>
     <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
   </SvgIcon>
@@ -135,7 +138,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 ### Декоративные шрифтовые иконки
 
-Если у вас чисто декоративные иконки, почти всё уже готово! Добавим атрибут `aria-hidden=true` для правильной настройки их доступности (невидимость).
+If your icons are purely decorative, you’re already done! We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
 
 ### Семантические шрифтовые иконки
 

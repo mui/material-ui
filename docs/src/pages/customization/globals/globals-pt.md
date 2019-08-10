@@ -9,9 +9,12 @@ Quando as variáveis de configuração não são poderosas o suficiente, você p
 ```js
 const theme = createMuiTheme({
   overrides: {
-    MuiButton: { // Nome do componente ⚛️ / folha de estilo
-      text: { // Nome da regra
-        color: 'white', // Um pouco de CSS
+    // Nome da folha de estilo ⚛️
+    MuiButton: {
+      // Nome da regra
+      text: {
+        // Algum CSS
+        color: 'white',
       },
     },
   },

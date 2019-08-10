@@ -7,7 +7,7 @@ components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 
 <p class="description">Buttonを使用すると、ユーザーは1回のタップでアクションを実行したり選択したりできます。</p>
 
-[Button](https://material.io/design/components/buttons.html)は、ユーザが取りうるアクションを伝達します。一般的に次のようなUIのなかに配置されます。
+[ボタン](https://material.io/design/components/buttons.html) 、ユーザーが実行できるアクションを伝えます。 これらは通常、UI全体の次のような場所に配置されます。
 
 - Dialogs
 - Modal window
@@ -52,7 +52,7 @@ ButtonGroupコンポーネントは、アウトラインボタン（デフォル
 
 ## Split Button
 
-ButtonGroupを使って分割ボタンを作成することもできます。この例のようにドロップダウンでボタンの動作を変更することも、関連する動作をすぐに起動するために使用することもできます。
+ButtonGroupは分割ボタンの作成にも使用できます。 この例のようにドロップダウンでボタンの動作を変更することも、関連する動作をすぐに起動するために使用することもできます。
 
 {{"demo": "pages/components/buttons/SplitButton.js"}}
 
@@ -76,7 +76,7 @@ FABを使用するのは、それが画面の主なアクションを提示す�
 
 ## サイズ
 
-大きくても小さくてもいいですか？ `size` プロパティで設定してください。
+大きなボタンと小さなボタンがありますか? `size`プロパティを使用します。
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
@@ -96,11 +96,11 @@ FABを使用するのは、それが画面の主なアクションを提示す�
 
 ## カスタムButton
 
-コンポーネントのカスタマイズ例をいくつか示します。あなたはこれについてもっと詳しく知ることができます [上書きドキュメントのページ](/customization/components/)。
+Here are some examples of customizing the component. 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 
-
+👑 インスピレーションを求めているなら, [MUI Treasury's customization examples](https://mui-treasury.com/components/button)を確認できます。
 
 ## 複雑なButton
 
@@ -112,6 +112,8 @@ FABを使用するのは、それが画面の主なアクションを提示す�
 
 一般的な使用例の1つは、ボタンを使用して新しいページへのナビゲーションを開始することです。 `ButtonBase` コンポーネントは、このユースケースを処理するためのプロパティを提供します 。 108/5000 ただし、特定のフォーカスについては` ButtonBase `には提供されているDOMノードが必要です。 これは、refをコンポーネントに添付し、 コンポーネントがこのrefを基になるDOMノードに転送することを期待することによって実現されます。 私たちのインタラクティブなコンポーネントの多くが` ButtonBase `に依存していることを考えると、あなたはどこでもそれを利用することができるはずです。
 
+次に、react-routerとの統合例を示します。
+
 {{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 
-*注意：Buttonコンポーネントの作成は、予期しないマウント解除を防ぐために必要です。 詳しくは[コンポーネントプロパティガイド](/guides/composition/#component-property)をご覧ください。*
+*注意：ボタンコンポーネントの作成は、予期しないアンマウントを防ぐために必要です。 詳細については、<a href=「/guides/composition/#component-property」>コンポーネント・プロパティー・ガイド</a>を参照してください。*

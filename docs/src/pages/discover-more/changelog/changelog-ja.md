@@ -1,4 +1,4 @@
-# Changelog
+# 変更履歴
 
 <p class="description">Material-UI strictly follows Semantic Versioning 2.0.0.</p>
 

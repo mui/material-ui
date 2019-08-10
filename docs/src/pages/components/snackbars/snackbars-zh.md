@@ -9,7 +9,7 @@ components: Snackbar, SnackbarContent
 
 [消息条](https://material.io/design/components/snackbars.html) 将应用程序已执行或即将执行的进程通知用户。 它们会从屏幕底部短暂地出现。 它们不应中断用户体验，也不要求任何用户的操作来关闭。
 
-消息条包含与执行的操作直接相关的单行文本。它们可能包含文本操作，但没有图标。您可以使用它们来显示通知的内容。
+Snackbars contain a single line of text directly related to the operation performed. They may contain a text action, but no icons. You can use them to display notifications.
 
 #### 频率
 
@@ -23,7 +23,7 @@ components: Snackbar, SnackbarContent
 
 ## 自定义的消息条
 
-以下是自定义组件的一些示例。您可以在[重写文档页面](/customization/components/)中了解有关此内容的更多信息。
+这是一些自定义样式开关的例子 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
@@ -55,7 +55,7 @@ components: Snackbar, SnackbarContent
 
 ### 更改过渡动画
 
-[Grow](/components/transitions/#grow)是默认的过渡动画但你可以使用不同的过渡动画。
+[Grow](/components/transitions/#grow) 是默认的过渡动画，但你可以选择使用不同的过渡动画。
 
 {{"demo": "pages/components/snackbars/TransitionsSnackbar.js"}}
 
@@ -71,7 +71,7 @@ components: Snackbar, SnackbarContent
 
 ### notistack
 
-![评星](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/notistack.svg)
+![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
 
 在下面的示例中, 我们演示如何使用 [notistack](https://github.com/iamhosseindhv/notistack)。 notistack 可以很容易地显示消息条（因此您不必处理它们的打开/关闭状态）。 它还使您能够将它们堆叠在彼此之上 (但规范不鼓励这样做)。
 

@@ -202,7 +202,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 
 - [ButtonBase] The component passed to the `component` prop needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
   
-  This also applies to `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` as well as `ListItem` if the `button` prop is true.
+    This also applies to `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` as well as `ListItem` if the `button` prop is true.
 
 ### Card
 
@@ -242,7 +242,6 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   - The `ListItemAvatar` component is required when using an avatar.
   - The `ListItemIcon` component is required when using a left checkbox.
   - The `edge` property should be set on the icon buttons.
-
 - [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
 
 ### Menu
@@ -253,7 +252,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 
 - [Modal] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
   
-  This also applies to `Dialog` and `Popover`.
+    This also applies to `Dialog` and `Popover`.
 
 - [Modal] Remove the classes customization API for the Modal component (-74% bundle size reduction when used standalone).
 
@@ -268,7 +267,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   +<Paper elevation={2} />
   ```
   
-  This affects the `ExpansionPanel` as well.
+    This affects the `ExpansionPanel` as well.
 
 ### Portal
 
@@ -318,7 +317,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 
 - [Tab] Remove the `labelContainer`, `label` and `labelWrapped` class keys for simplicity. This has allowed us to remove 2 intermediary DOM elements. You should be able to move the custom styles to the `root` class key.
   
-  ![Eine einfachere DOM-Struktur für Tabs](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
+    ![Eine einfachere DOM-Struktur für Tabs](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
 - [Tabs] Remove deprecated fullWidth and scrollable props:
   
@@ -365,7 +364,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   box-sizing: border-box;
   ```
   
-  This solves issues with the `fullWidth` prop.
+    This solves issues with the `fullWidth` prop.
 
 - [InputBase] Remove the `inputType` class from `InputBase`.
 
@@ -374,7 +373,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 - [Tooltip] The child needs to be able to hold a ref. The [composition guide](/guides/composition/#caveat-with-refs) explains the migration strategy.
 - [Tooltip] Appears only after focus-visible focus instead of any focus.
 
-### Typografie
+### Typography
 
 - [Typography] Entfernen der veralteten Typografievarianten. Sie können ein Upgrade durchführen, indem Sie die folgenden Ersetzungen vornehmen: 
   - display4 => h1
@@ -396,7 +395,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 
 - [Typography] Ändern der Standardvariante von `body2` auf `body1`. Eine Schriftgröße von 16px ist eine bessere Standardeinstellung als 14px. Bootstrap, material.io undnsogar unsere Dokumentation verwenden 16px als Standardschriftgröße. 14px wie Ant Design es verständlicherweise benutzt, da chinesische Benutzer ein anderes Alphabet haben. Wir empfehlen 12px als Standardschriftgröße für Japanisch.
 - [Typography] Entfernen der Standardfarbe aus den Typografievarianten. Die Farbe sollte die meiste Zeit erben. Dies ist das Standardverhalten des Webs.
-- [Typography] Umbennenung von `color="default"` auf `color="initial ` der Logik von #13028 folgend. The usage of *default* should be avoided, it lacks semantic.
+- [Typography] Rename `color="default"` to `color="initial"` following the logic of [this thread](https://github.com/mui-org/material-ui/issues/13028). The usage of *default* should be avoided, it lacks semantic.
 
 ### Node
 
@@ -408,13 +407,13 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   
   ```diff
   const {
-    Button,
-    TextField,
+  Button,
+  TextField,
   -} = window['material-ui'];
   +} = MaterialUI;
   ```
   
-  Es stimmt mit anderen React-Projekten überein:
+    Es stimmt mit anderen React-Projekten überein:
   
   - material-ui => MaterialUI
   - react-dom => ReactDOM

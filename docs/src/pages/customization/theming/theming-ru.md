@@ -19,7 +19,7 @@ If you wish to customize the theme, you need to use the `ThemeProvider` componen
 Changing the theme configuration variables is the most effective way to match Material-UI to your needs. The following sections cover the most important theme variables:
 
 - [Палитра](/customization/palette/)
-- [Оформление текста](/customization/typography/)
+- [Typography](/customization/typography/)
 - [Интервал](/customization/spacing/)
 - [Точки останова](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
@@ -31,7 +31,7 @@ You can check out the [default theme section](/customization/default-theme/) to 
 
 When using Material-UI's theme with our [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
 
-{{"demo": "pages/customization/themes/CustomStyles.js"}}
+{{"demo": "pages/customization/theming/CustomStyles.js"}}
 
 ## Accessing the theme in a component
 
@@ -41,11 +41,11 @@ You [can access](/styles/advanced/#accessing-the-theme-in-a-component) the theme
 
 [You can nest](/styles/advanced/#theme-nesting) multiple theme providers.
 
-{{"demo": "pages/customization/themes/ThemeNesting.js"}}
+{{"demo": "pages/customization/theming/ThemeNesting.js"}}
 
 The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
 
-{{"demo": "pages/customization/themes/ThemeNestingExtend.js"}}
+{{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
 ### A note on performance
 

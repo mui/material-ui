@@ -9,7 +9,7 @@ components: Badge
 
 ## 簡単なバッジ
 
-Primaryとsecondaryを使用した、テキストを含むバッジの例。バッジは子供に付けられます。
+プライマリー色とセカンダリーを使用した、テキストを含むバッジの例。 バッジが子要素に適用されます。
 
 {{"demo": "pages/components/tables/SimpleTable.js"}}
 
@@ -21,7 +21,7 @@ Primaryとsecondaryを使用した、テキストを含むバッジの例。バ�
 
 ## ドットバッジ
 
-`dot` プロパティはバッジを小さなドットに変更します。これは、数を数えずに何かが変わったという通知として使用できます。
+`dot`プロパティは、バッジを小さなドットに変更します。 これは、何かが変更されたことをカウントせずに通知するために使用できます。
 
 {{"demo": "pages/components/tables/SimpleTable.js"}}
 
@@ -29,12 +29,12 @@ Primaryとsecondaryを使用した、テキストを含むバッジの例。バ�
 
 バッジの表示/非表示は、 `invisible` プロパティを使用して制御できます。
 
-BadgeContentで自動的に非表示になるバッジは0です。これは `showZero` プロパティで上書きできます。
+BadgeContentが0の場合、バッジは自動的に非表示になります。 これは、`showZero`プロパティで上書きできます。
 
 {{"demo": "pages/demos/badges/BadgeVisibility.js"}}
 
 ## カスタマイズバッジ
 
-コンポーネントのカスタマイズ例をいくつか示します。あなたは[上書きドキュメントのページ](/customization/components/)でこれについてもっと詳しく知ることができます。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/tables/CustomizedTables.js"}}

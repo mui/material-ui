@@ -34,7 +34,7 @@ Material-UIは、System iconsをレンダリングするための2つのコン�
 - [` delete `](https://material.io/tools/icons/?icon=delete&style=baseline) は `@material-ui/icons/Delete`として公開されています。
 - [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) は `@material-ui/icons/DeleteForever`として公開されます。
 
-*"themed"* アイコンの場合は、アイコン名にテーマ名を追加します。例えば
+For *"themed"* icons, append the theme name to the icon name. For instance with the
 
 - Outlined [ ` delete ` ](https://material.io/tools/icons/?icon=delete&style=outline)アイコンは`@material-ui/icons/DeleteOutlined`
 - The Rounded [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded)アイコンは`@material-ui/icons/DeleteRounded`
@@ -78,7 +78,7 @@ import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-` Icon ` は、マテリアルアイコンフォントの正しいクラス名を設定します。他のフォントの場合は、Iconコンポーネントの `className` プロパティを使用して クラス名を指定する必要があります。
+`Icon` will set the correct class name for the Material icon font. For other fonts, you must supply the class name using the Icon component's `className` property.
 
 アイコンを使用するには、単純にアイコン名（フォントの合字）を `Icon` コンポーネントでラップします。例えば：
 
@@ -100,7 +100,7 @@ import Icon from '@material-ui/core/Icon';
 
 {{"demo": "pages/components/icons/FontAwesome.js", "hideEditButton": true}}
 
-## Font と SVG のどちらがいいのか？
+## Font vs SVG. Which approach to use?
 
 どちらの方法でも問題なく動作しますが、特にパフォーマンスとレンダリング品質の点で、わずかな違いがいくつかあります。 コード分割を可能にし、より多くのアイコンをサポートし、より速くより良くレンダリングするので、可能な限りSVGが優先されます。
 
@@ -108,11 +108,14 @@ import Icon from '@material-ui/core/Icon';
 
 ## アクセシビリティ
 
-アイコンはあらゆる種類の意味のある情報を伝えることができるので、可能な限り多くの人に届くことが重要です。 2つのユースケースがあります - **Decorative Icons** は、視覚的またはブランド強化のためにのみ使用されています。 それらがページから削除された場合でも、ユーザーはあなたのページを理解して使用することができます。 - **Semantic Icons** は、純粋な装飾ではなく、意味を伝えるために使用しているものです。 これには、ボタン、フォーム要素、トグルなど、インタラクティブコントロールとして使用されるテキストのないアイコンが含まれます。
+アイコンはあらゆる種類の意味のある情報を伝えることができるので、可能な限り多くの人に届くことが重要です。 There are two use cases you’ll want to consider:
+
+- **Decorative Icons** are only being used for visual or branding reinforcement. それらがページから削除された場合でも、ユーザーはあなたのページを理解して使用することができます。
+- **Semantic Icons** are ones that you’re using to convey meaning, rather than just pure decoration. これには、ボタン、フォーム要素、トグルなど、インタラクティブコントロールとして使用されるテキストのないアイコンが含まれます。
 
 ### Decorative SVG Icons
 
-アイコンが純粋に装飾的であれば、すでにあります！ アイコンが適切にアクセスできるようにするために`aria-hidden=true`属性を追加しました。
+If your icons are purely decorative, you’re already done! We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
 
 ### Semantic SVG Icons
 
@@ -126,7 +129,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 // ...
 
-<IconButton aria-label="Delete">
+<IconButton aria-label="delete">
   <SvgIcon>
     <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
   </SvgIcon>
@@ -135,7 +138,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 ### Decorative Font Icons
 
-アイコンが純粋に装飾的であれば、すでにあります！ アイコンが適切にアクセスできるようにするために`aria-hidden=true`属性を追加しました。
+If your icons are purely decorative, you’re already done! We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
 
 ### Semantic Font Icons
 

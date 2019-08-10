@@ -7,7 +7,7 @@ components: TextField, Paper, MenuItem, Popper
 
 <p class="description">El autocompletado es una caja de texto normal mejorada por un panel de opciones sugeridas.</p>
 
-Material-UI no provee ninguna API de alto nivel para resolver este problema. Alentamos a las personas a confiar en las soluciones que la comunidad de React ha construido.
+Material-UI doesn't provide any high-level API for solving this problem. We encourage people relying on the solutions the React community has built.
 
 ## downshift
 

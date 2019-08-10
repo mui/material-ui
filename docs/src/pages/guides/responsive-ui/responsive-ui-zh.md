@@ -1,4 +1,4 @@
-# 响应式 UI
+# 响应式UI
 
 <p class="description">Material Design 布局鼓励通过使用统一的元素和间距来实现跨平台、跨环境、不同屏幕尺寸下的一致性。</p>
 

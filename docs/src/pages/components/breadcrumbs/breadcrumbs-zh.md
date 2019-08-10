@@ -31,7 +31,7 @@ components: Breadcrumbs, Link, Typography
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
-## 可及性
+## 可访问性
 
 请务必在 `面包屑导航`组件上加上`aria-label`的描述。
 

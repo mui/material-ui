@@ -34,7 +34,7 @@ Você pode usar [material.io/tools/icons](https://material.io/tools/icons/?style
 - [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) é exposto como `@material-ui/icons/Delete`
 - [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) é exposto como `@material-ui/icons/DeleteForever`
 
-Para ícones baseados em tema (*"themed"*), acrescente o nome do tema ao nome do ícone. Por exemplo, com o
+Para ícones *"temáticos"*, acrescente o nome do tema ao nome do ícone. Por exemplo, com o
 
 - O ícone [`delete`](https://material.io/tools/icons/?icon=delete&style=outline) delineado é exposto como `@material-ui/icons/DeleteOutlined`
 - O ícone [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded) arredondado é exposto como `@material-ui/icons/DeleteRounded`
@@ -78,7 +78,7 @@ O componente `Icon` exibirá um ícone de qualquer fonte de ícone que suporte l
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-O componente `Icon` definirá o nome correto da classe para a fonte Material icon. Para outras fontes, você deve fornecer o nome da classe usando a propriedade `className` do componente Icon.
+`Icon` definirá o nome correto da classe para a fonte do ícone Material. Para outras fontes, você deve fornecer o nome da classe usando a propriedade `className` do componente ícone.
 
 Para usar um ícone, simplesmente coloque o nome do ícone (font ligature) com o componente `Icon`, por exemplo:
 
@@ -108,11 +108,14 @@ Para maiores detalhes, você pode conferir [porque o GitHub migrou ícones de fo
 
 ## Acessibilidade
 
-Os ícones podem transmitir todos os tipos de informações significativas, por isso é importante que eles alcancem a maior quantidade possível de pessoas. Existem dois casos de uso que você deve considerar: - **Ícones Decorativos** são usados somente para reforço visual ou de marca. Se eles forem removidos da página, os usuários ainda entenderiam e poderiam usar sua página. - **Ícones Semânticos** são aqueles que você usa para transmitir significado, em vez de apenas pura decoração. Isso inclui ícones sem texto ao lado deles utilizados como controles interativos — botões, elementos de forma, toggles, etc.
+Os ícones podem transmitir todos os tipos de informações significativas, por isso é importante que eles alcancem a maior quantidade possível de pessoas. Há dois casos de uso que você deve considerar:
+
+- **Ícones decorativos** estão sendo usados apenas para reforço visual ou de marca. Se eles forem removidos da página, os usuários ainda entenderiam e poderiam usar sua página.
+- **Ícones Semânticos** são aqueles que você usa para transmitir significado, em vez de apenas pura decoração. Isso inclui ícones sem texto ao lado deles utilizados como controles interativos — botões, elementos de forma, toggles, etc.
 
 ### Ícones SVG Decorativos
 
-Se seus ícone são puramente decorativos, você já terminou! Adicionamos o atributo `aria-hidden=true` para que seus ícones sejam devidamente acessíveis (invisíveis).
+Se seus ícones são puramente decorativos, você já terminou! Adicionamos o atributo `aria-hidden=true` para que seus ícones estejam adequadamente acessíveis (invisíveis).
 
 ### Ícones SVG Semânticos
 
@@ -126,7 +129,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 // ...
 
-<IconButton aria-label="Delete">
+<IconButton aria-label="deletar">
   <SvgIcon>
     <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
   </SvgIcon>
@@ -135,7 +138,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 ### Ícones de Fonte Decorativos
 
-Se seus ícone são puramente decorativos, você já terminou! Adicionamos o atributo `aria-hidden=true` para que seus ícones sejam devidamente acessíveis (invisíveis).
+Se seus ícones são puramente decorativos, você já terminou! Adicionamos o atributo `aria-hidden=true` para que seus ícones estejam adequadamente acessíveis (invisíveis).
 
 ### Ícones de Fonte Semânticos
 

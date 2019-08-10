@@ -7,7 +7,7 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 <p class="description">Os menus exibem uma lista de opções em superfícies temporárias.</p>
 
-Um [Menu](https://material.io/design/components/menus.html) exibe uma lista de opções em uma superfície temporária. Elas aparecem quando os usuários interagem com um botão, ou outro controle.
+O [Menu](https://material.io/design/components/menus.html) exibe uma lista de opções em uma superfície temporária. Aparece quando o usuário interage com um botão ou outro controle.
 
 ## Menu simples
 
@@ -36,11 +36,11 @@ A principal responsabilidade do componente `MenuList` é manipular o foco.
 
 ## Menus Customizados
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescrita](/customization/components/).
+Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
-O `MenuItem` é um wrapper em torno do `ListItem` com alguns estilos adicionais. Você pode usar os mesmos recursod de composição de lista com o componente `MenuItem`:
+O `MenuItem` é um encapsulador em torno de `ListItem` com alguns estilos adicionais. Você pode usar os mesmos recursos de composição de lista com o componente `MenuItem`:
 
 ## Altura máxima dos menus
 
@@ -62,7 +62,7 @@ Use uma transição diferente.
 
 ## Projetos Complementares
 
-Para usos mais avançados, você pode tirar vantagem com:
+Para casos de uso mais avançados, você pode tirar proveito de:
 
 ### PopupState helper
 

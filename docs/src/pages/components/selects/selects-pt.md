@@ -21,7 +21,7 @@ Como a experiência do usuário pode ser melhorada em dispositivos móveis usand
 
 ## Seleções Customizados
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescrita](/customization/components/).
+Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 O primeiro passo é modelar o componente `InputBase`. Uma vez estilizado, você pode usá-lo diretamente como um campo de texto ou fornecê-lo à propriedade `input` da seleção para ter um campo `select`.
 
@@ -29,9 +29,9 @@ O primeiro passo é modelar o componente `InputBase`. Uma vez estilizado, você 
 
 ## Seleção Múltipla
 
-O componente `Select` pode lidar com várias seleções. Está ativado com a propriedade `multiple`.
+O componente `Select` pode lidar com várias seleções. É ativado com a propriedade `multiple`.
 
-Como na seleção única, você pode extrair o novo valor acessando `event.target.value` no retorno da chamada `onChange`. É sempre um array.
+Como na seleção única, você pode extrair o novo valor acessando `event.target.value` na chamada `onChange`. É sempre uma matriz.
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 

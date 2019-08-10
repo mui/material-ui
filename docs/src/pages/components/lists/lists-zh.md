@@ -59,7 +59,7 @@ function ListItemLink(props) {
 
 一个选择框既可以是主操作，又可以是辅助操作。
 
-该复选框是列表项的主要操作和状态指示器。 注释按钮是辅助操作和单独的目标。
+The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.
 
 {{"demo": "pages/components/lists/CheckboxList.js"}}
 

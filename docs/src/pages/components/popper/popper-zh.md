@@ -5,15 +5,15 @@ components: Popper
 
 # 弹出提示 (Popper)
 
-<p class="description">Popper 可以用来在其他元素之上显示一些内容。它是 react-popper 的替代品。</p>
+<p class="description">A Popper can be used to display some content on top of another. It's an alternative to react-popper.</p>
 
 `Popper` 组件的一些重要功能：
 
-- 
-- 
-- 
-- 子级元素是使用 [`Portal`](/components/portal/) 组件，以避免在文档中出现问题。 您可以使用 `disablePortal` 禁用此行为。
-- 和 [`Popver`](/components/popover/) 不同，滚动和单击不会被阻止。 Popper组件会随着可视窗口中的可使用区域更新其位置。
+- 🕷 Popper relies on the 3rd party library ([Popper.js](https://github.com/FezVrasta/popper.js)) for perfect positioning.
+- 💄 It's an alternative API to react-popper. It aims for simplicity.
+- 📦 [10 kB gzipped](/size-snapshot) (7 kB from Popper.js).
+- The children is [`Portal`](/components/portal/) to the body of the document to avoid rendering problems. You can disable this behavior with `disablePortal`.
+- The scroll isn't blocked like with the [`Popover`](/components/popover/) component. The placement of the popper updates with the available area in the viewport.
 - Clicking away does not hide the `Popper` component. If you need this behavior, you can use [`ClickAwayListener`](/components/click-away-listener/) - see the example in the [menu documentation section](/components/menus/#menulist-composition).
 - The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
 

@@ -4,17 +4,17 @@ title: Box React component
 
 # Box
 
-<p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
+<p class="description">Boxコンポーネントは、CSSユーティリティーのほとんどのニーズに対応するラッパーコンポーネントとして機能します</p>
 
-The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`. It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/styles`.
+Boxコンポーネントは、`@material-ui/system`で公開される[すべてのスタイル関数](/system/basics/#all-inclusive) をパッケージ化します。 これは`@material-ui/styles`の[`styled()`](/styles/api/#styled-style-function-component) 関数を使用して作成されています。
 
 ## 例
 
-[The palette](/system/palette/) style function.
+[The palette](/system/palette/) style関数。
 
-## Overriding Material-UI components
+## Material-UI componentsのオーバーライド
 
-The Box component wraps your component. It creates a new DOM element, a `<div>` by default that can be changed with the `component` property. Let's say you want to use a `<span>` instead:
+The Box componentは、コンポーネントをラップします。 新しいDOM要素を作成します。この要素はデフォルトで`<div>`であり、`component` プロパティを使用して変更できます。</code> 代わりに `<span>` を使用すると
 
 ```jsx
 <Box component="span" m={1}>
@@ -22,13 +22,13 @@ The Box component wraps your component. It creates a new DOM element, a `<div>` 
 </Box>
 ```
 
-This works great when the changes can be isolated to a new DOM element. For instance, you can change the margin this way.
+これは、新しいDOM要素に分離する変更の場合に非常に有効です。 たとえば、この方法で余白を変更できます。
 
-However, sometimes you have to target the underlying DOM element. For instance, you want to change the text color of the button. The Button component defines its own color. CSS inheritance doesn't help. To workaround the problem, you have two options:
+ただし、場合によっては基礎となるDOM要素をターゲットにする必要があります。 たとえば、ボタンのテキストカラーを変更するとします。 Buttonコンポーネントは、独自のカラーを定義します。 CSS継承は役に立ちません。 この問題を回避するには、次の2つの方法があります。
 
-1. Use [`React.cloneElement()`](https://reactjs.org/docs/react-api.html#cloneelement)
+1. [`React.cloneElement()`](https://reactjs.org/docs/react-api.html#cloneelement)を使う
 
-The Box component has a `clone` property to enable the usage of the clone element method of React.
+ボックスコンポーネントには、Reactのクローン要素メソッドの使用を有効にする`clone` プロパティーがあります。
 
 ```jsx
 <Box color="text.primary" clone>
@@ -36,9 +36,9 @@ The Box component has a `clone` property to enable the usage of the clone elemen
 </Box>
 ```
 
-1. Use render props
+2. Render propsを使う
 
-The Box children accepts a render props function. You can pull out the `className`.
+ボックスの子は、レンダープロップス機能を受け入れます `className`を取り出すことができます。
 
 ```jsx
 <Box color="text.primary">
@@ -46,7 +46,7 @@ The Box children accepts a render props function. You can pull out the `classNam
 </Box>
 ```
 
-> ⚠️ The CSS specificity relies on the import order. If you want the guarantee that the wrapped component's style will be overridden, you need to import the Box last.
+> CSSの仕様は、インポート順序に依存します。 If you want the guarantee that the wrapped component's style will be overridden, you need to import the Box last.
 
 ## API
 
@@ -54,10 +54,11 @@ The Box children accepts a render props function. You can pull out the `classNam
 import Box from '@material-ui/core/Box';
 ```
 
-| Name                                                    | Type                                                                                                              | Default                                 | Description                                                                                           |
-|:------------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:----------------------------------------------------------------------------------------------------- |
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br />&nbsp;func<br /></span>                                 |                                         | Box render function or node.                                                                          |
-| <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | If `true`, the box will recycle its children DOM element. It's using `React.cloneElement` internally. |
-| <span class="prop-name">component</span>                | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br />&nbsp;func&nbsp;&#124;<br />&nbsp;object<br /></span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component.            |
+| Name                                                    | Type                                                                                                              | Default                                 | Description                                                    |
+|:------------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:-------------------------------------------------------------- |
+| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br />&nbsp;func<br /></span>                                 |                                         | ボックスレンダー関数またはノード。                                              |
+| <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | `true`の場合、ボックスはその子DOM要素をリサイクルします。 内部的には`React.cloneElement`です。 |
+| <span class="prop-name">component</span>                | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br />&nbsp;func&nbsp;&#124;<br />&nbsp;object<br /></span> | <span class="prop-default">'div'</span> | ルートノードに使用されるコンポーネント。 DOM要素またはコンポーネントを使用する文字列。                  |
 
-Any other properties supplied will be used by [the style functions](/system/basics/#all-inclusive) or spread to the root element.
+
+指定したその他のプロパティは、 [the style functions](/system/basics/#all-inclusive)で使用されるか、ルート要素に展開されます。

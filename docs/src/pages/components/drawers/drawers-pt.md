@@ -13,9 +13,9 @@ components: Drawer, SwipeableDrawer
 
 ## Drawer temporário
 
-Drawers de navegação temporária podem alternar entre aberto ou fechado. Por padrão fechado, o drawer abre temporariamente acima de todo o conteúdo até que uma seção seja selecionada.
+Drawers de navegação temporária podem alternar entre aberto e fechado. Fechado por padrão, o drawer abre temporariamente acima de todos os outros conteúdos até que uma seção seja selecionada.
 
-O Drawer pode ser cancelado clicando fora de seu conteúdo ou pressionando a tecla Esc. Fecha quando um item é selecionado, ou manipulado pela propriedade `open`.
+O drawer pode ser cancelado clicando na sobreposição ou pressionando a tecla Esc. Fecha quando um item é selecionado, podendo ser manipulado pela propriedade `open`.
 
 {{"demo": "pages/components/drawers/TemporaryDrawer.js"}}
 
@@ -27,7 +27,10 @@ Este componente vem sobrecarregado com 2 kB gzipped de utilidades. Alguns dispos
 
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
-Estamos usando o seguinte conjunto de propriedades nesta documentação para otimizar a usabilidade do componente: - o iOS é hospedado em dispositivos de última geração. Podemos ativar a transição backdrop sem perder quadros. O desempenho será suficientemente bom. - iOS tem um recurso "deslize para voltar" que bagunça com o recurso de descoberta. Tivemos que desativá-lo.
+Estamos usando o seguinte conjunto de propriedades neste site de documentação para otimizar a usabilidade do componente:
+
+- iOS está hospedado em dispositivos de última geração. Podemos ativar a transição backdrop sem perder quadros. O desempenho será suficientemente bom.
+- iOS tem um recurso "deslize para voltar" que bagunça com o recurso de descoberta. Tivemos que desativá-lo.
 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -47,7 +50,7 @@ Drawers de navegação persistente podem alternar entre aberto ou fechado. O dra
 
 Quando o drawer está fora da grade da página e se abre, o drawer força o outro conteúdo a alterar o tamanho e a adaptar-se à janela de visualização (viewport).
 
-Drawers de navegação persistente são aceitáveis para todos os tamanhos maiores que os móveis (mobile). Eles não são recomendados para aplicativos com vários níveis de hierarquia que exigem o uso de uma seta para navegação.
+Drawers de navegação persistentes são aceitáveis para todos os tamanhos maiores que os móveis. Não são recomendadas para aplicativos com vários níveis de hierarquia que requerem usar navegação com uma seta para cima.
 
 {{"demo": "pages/components/drawers/PersistentDrawerLeft.js", "iframe": true}}
 
@@ -63,7 +66,7 @@ A mini variação é recomendada para seções de aplicativos que necessitam ser
 
 ## Drawer permanente
 
-Drawers de navegação permanente são sempre visíveis e fixados na borda esquerda, no mesmo plano de elevação do conteúdo ou plano de fundo. Eles não podem ser fechados.
+Drawers de navegação permanentes são sempre visíveis e fixados na borda esquerda, na mesma elevação do conteúdo ou plano de fundo. Eles não podem ser fechados.
 
 Drawers de navegação permanente são **recomendados por padrão para aplicações desktop**.
 

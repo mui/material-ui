@@ -33,10 +33,10 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   props: {
-    // Name of the component ⚛️
+    // Name der Komponente ⚛️
     MuiButtonBase: {
-      // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 
+      // Die Eigenschaften, die angewandt werden soll
+      disableRipple: true, // Keine Welleneffekte für die ganze App 💣!
     },
   },
 });
@@ -93,12 +93,7 @@ const theme = createMuiTheme({
 
 ## Muss ich JSS verwenden, um meine App zu stylen?
 
-Es wird empfohlen:
-
-- Es wird eingebaut geliefert, so dass keine zusätzlichen Paketgrößen anfallen.
-- Es ist schnell & speichereffizient.
-- Es verfügt über eine saubere, konsistente API.
-- Es unterstützt eine Reihe von erweiterten Funktionen, entweder nativ oder durch Plugins.
+No, it's not required. But this dependenency comes built in, so carries no additional bundle size overhead.
 
 Vielleicht fügen Sie jedoch einer App einige Material-UI-Komponenten hinzu, die bereits eine andere Styling-Lösung verwendet, oder Sie sind bereits mit einer anderen API vertraut und wollen keine neue lernen? In diesem Fall gehen Sie zum [Zusammenführen von Style Libraries](/guides/interoperability/) Abschnitt in dem wir zeigen, wie einfach es ist, Material-UI-Komponenten mit alternativen Stilbibliotheken umzustrukturieren.
 
@@ -294,7 +289,7 @@ function handleRender(req, res) {
 
 ## Warum unterscheiden sich die Farben, die ich sehe, von denen, die ich hier sehe?
 
-Die Dokumentationssite verwendet ein benutzerdefiniertes Theme. Daher unterscheidet sich die Farbpalette vom Standarddesign der Material-UI. Siehe [diese Seite](/customization/themes/), um Informationen zum Anpassen von Motiven zu erhalten.
+Die Dokumentationssite verwendet ein benutzerdefiniertes Theme. Daher unterscheidet sich die Farbpalette vom Standarddesign der Material-UI. Siehe [diese Seite](/customization/theming/), um Informationen zum Anpassen von Motiven zu erhalten.
 
 ## Material-UI ist großartig. Wie kann ich das Projekt unterstützen?
 

@@ -53,7 +53,7 @@ Typography组件使用 `variantMapping` 属性将某一种UI变体与某一种�
 - You can change the underlying element for a one time occasion with the `component` property:
 
 ```jsx
-{/* 在这个页面里，我们已经有了一个h1标签；所以避免重复*/}
+{/* We already have an h1 in the page, let's not duplicate it. */}
 <Typography variant="h1" component="h2">
   h1. Heading
 </Typography>

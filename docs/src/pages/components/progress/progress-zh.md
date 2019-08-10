@@ -83,7 +83,7 @@ function Progress(props) {
 
 ## 自定义进度条
 
-以下是自定义组件的一些示例。您可以在[重写文档页面](/customization/components/)中了解有关此内容的更多信息。
+这是一些自定义样式开关的例子 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/progress/CustomizedProgressBars.js"}}
 
@@ -99,6 +99,6 @@ function Progress(props) {
 
 ![高负载](/static/images/progress/heavy-load.gif)
 
-若这样不可行，您还可以借助 `disableShrink` 属性来缓解这个问题。详情请见[这个问题](https://github.com/mui-org/material-ui/issues/10327)。
+When it's not possible, you can leverage the `disableShrink` property to mitigate the issue. See [this issue](https://github.com/mui-org/material-ui/issues/10327).
 
 {{"demo": "pages/components/progress/CircularUnderLoad.js"}}

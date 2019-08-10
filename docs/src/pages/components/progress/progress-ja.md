@@ -83,7 +83,7 @@ function Progress(props) {
 
 ## Customized progress bars
 
-コンポーネントのカスタマイズ例をいくつか示します。あなたはこれについてもっと詳しく知ることができます [上書きドキュメントのページ](/customization/components/)。
+Here are some examples of customizing the component. 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/progress/CustomizedProgressBars.js"}}
 

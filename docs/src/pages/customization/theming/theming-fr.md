@@ -16,7 +16,7 @@ If you wish to customize the theme, you need to use the `ThemeProvider` componen
 
 ## Theme configuration variables
 
-Changing the theme configuration variables is the most effective way to match Material-UI to your needs. The following sections cover the most important theme variables:
+Changer la configuration du thème est la manière la plus efficace d'accorder Material-UI à vos préférences. Les sections suivantes couvrent les principales variables des thèmes:
 
 - [Palette](/customization/palette/)
 - [Typography](/customization/typography/)
@@ -25,29 +25,29 @@ Changing the theme configuration variables is the most effective way to match Ma
 - [z-index](/customization/z-index/)
 - [Variables globales](/customization/globals/)
 
-You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
+Vous pouvez consulter la section [thème par défaut](/customization/default-theme/) pour afficher le thème par défaut dans son intégralité.
 
-### Custom variables
+### Variables personnalisées
 
-When using Material-UI's theme with our [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
+Lorsque vous utilisez le thème Material-UI avec notre [solution de style](/styles/basics/) ou [n'importe quel autre](/guides/interoperability/#themeprovider). Il peut être pratique d'ajouter des variables supplémentaires au thème afin que vous puissiez les utiliser partout. Par exemple:
 
-{{"demo": "pages/customization/themes/CustomStyles.js"}}
+{{"demo": "pages/customization/theming/CustomStyles.js"}}
 
-## Accessing the theme in a component
+## Accéder au thème dans un composant
 
-You [can access](/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
+Vous [pouvez accéder](/styles/advanced/#accessing-the-theme-in-a-component) aux variables de thème dans vos composants React.
 
-## Nesting the theme
+## Saisir le thème
 
-[You can nest](/styles/advanced/#theme-nesting) multiple theme providers.
+[Vous pouvez imbriquer](/styles/advanced/#theme-nesting) plusieurs fournisseurs de thème.
 
-{{"demo": "pages/customization/themes/ThemeNesting.js"}}
+{{"demo": "pages/customization/theming/ThemeNesting.js"}}
 
-The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
+Le thème intérieur **remplacera** le thème extérieur. Vous pouvez étendre le thème externe en fournissant une fonction :
 
-{{"demo": "pages/customization/themes/ThemeNestingExtend.js"}}
+{{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
-### A note on performance
+### Une note sur les performances
 
 The performance implications of nesting the `ThemeProvider` component are linked to JSS's work behind the scenes. The main point to understand is that the injected CSS is cached with the following tuple `(styles, theme)`.
 

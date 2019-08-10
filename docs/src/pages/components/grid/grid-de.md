@@ -31,7 +31,7 @@ Diese Ausgabetransformationsfunktion kann durch [Verwendung des Themes](/customi
 
 ## Fluides Raster
 
-Im fluiden Rastern werden Säulen verwendet, die den Inhalt skalieren und dessen Größe ändern. Das Layout eines Fluidrasters kann anhand von Rasterpunkte bestimmen, ob sich das Layout drastisch ändern muss.
+Fluid grids use columns that scale and resize content. A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
 
 ### Grundraster
 
@@ -53,7 +53,7 @@ Nachfolgend finden Sie eine interaktive Demo, mit der Sie die visuellen Ergebnis
 
 ## Automatisches Layout
 
-Das Auto-Layout sorgt dafür, dass die *Elemente* den verfügbaren Speicherplatz gleichermaßen teilen. Das bedeutet auch, dass Sie die Breite von *Elementen* einstellen können. Die Größe der anderen Elemente wird automatisch angepasst.
+The Auto-layout makes the *items* equitably share the available space. That also means you can set the width of one *item* and the others will automatically resize around it.
 
 {{"demo": "pages/components/grid/AutoGrid.js"}}
 
@@ -65,7 +65,7 @@ Die folgende Demo folgt nicht der Material Design-Spezifikation, sondern zeigt, 
 
 ## Verschachteltes Raster
 
-Die Eigenschaften von `container` und `item` sind zwei unabhängige Booleans. Sie können kombiniert werden.
+The `container` and `item` properties are two independent booleans. They can be combined.
 
 > Ein Flex **container** ist die Box, die von einem Element mit einer berechneten Anzeige von `flex` oder `Iinline-flex`. In-Flow-Kinder eines Flex-Containers heißen Flex **Elemente** und werden mit dem Flex-Layout-Modell angeordnet.
 
@@ -77,7 +77,10 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### Negative Abstände
 
-Es gibt eine Einschränkung beim negativen Rand, den wir verwenden, um den Abstand zwischen den Elementen zu implementieren. Ein horizontaler Bildlauf wird angezeigt, wenn ein negativer Rand weiter als `<body>` geht. Es gibt 3 verfügbare Problemumgehungen: 1. Nicht die Abstands-Funktion benutzen und den Abstand in Anzeigeraum `spacing={0}` (Standard) setzen. 2. Anwenden von Paddings auf das übergeordnete Element, wobei mindestens der halbe Abstand auf das untergeordnete Element angewendet wird:
+Es gibt eine Einschränkung beim negativen Rand, den wir verwenden, um den Abstand zwischen den Elementen zu implementieren. Ein horizontaler Bildlauf wird angezeigt, wenn ein negativer Rand weiter als `<body>` geht. Es gibt 3 verfügbare Problemumgehungen:
+
+1. Nicht die Abstands-Funktion benutzen und den Abstand in Anzeigeraum `spacing={0}` (Standard) setzen.
+2. Anwenden von Paddings auf das übergeordnete Element, wobei mindestens der halbe Abstand auf das untergeordnete Element angewendet wird:
 
 ```jsx
   <body>
@@ -89,18 +92,18 @@ Es gibt eine Einschränkung beim negativen Rand, den wir verwenden, um den Absta
   </body>
 ```
 
-1. Hinzufügen von `overflow-x: hidden;` zum Elternteil.
+3. Hinzufügen von `overflow-x: hidden;` zum Elternteil.
 
 ### white-space: nowrap;
 
-Die Anfangseinstellung für Flex-Elemente ist `min-width: auto`. Es verursacht einen Positionierungskonflikt, wenn die Kinder `white-space: nowrap;` verwenden. Sie können das Problem erleben mit:
+The initial setting on flex items is `min-width: auto`. It's causing a positioning conflict when the children is using `white-space: nowrap;`. You can experience the issue with:
 
 ```jsx
 <Grid item xs>
   <Typography noWrap>
 ```
 
-Damit der Artikel im Container bleibt, müssen Sie `min-width: 0` setzten. In der Praxis können Sie die Eigenschaft `zeroMinWidth` festlegen:
+In order for the item to stay within the container you need to set `min-width: 0`. In practice, you can set the `zeroMinWidth` property:
 
 ```jsx
 <Grid item xs zeroMinWidth>

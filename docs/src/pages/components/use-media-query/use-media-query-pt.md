@@ -11,7 +11,7 @@ Algumas das principais características:
 - ⚛️ Tem uma API React idiomática.
 - 🚀 Com desempenho, ele observa o documento para detectar quando suas consultas de mídia mudam, em vez de pesquisar os valores periodicamente.
 - 📦 [1 kB gzipped](/size-snapshot).
-- 🤖 It supports server-side rendering.
+- 🤖 Ele suporta a renderização do lado do servidor.
 
 ## Consulta de mídia simples
 
@@ -37,7 +37,7 @@ function MyComponent() {
 
 {{"demo": "pages/components/use-media-query/ThemeHelper.js"}}
 
-Alternatively, you can use a callback function, accepting the theme as a first argument:
+Como alternativa, você pode usar uma função de retorno de chamada, aceitando o tema como um primeiro argumento:
 
 ```jsx
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -49,33 +49,33 @@ function MyComponent() {
 }
 ```
 
-⚠️ There is **no default** theme support, you have to inject it in a parent theme provider.
+⚠️ Não há **nenhum suporte de tema padrão**, você precisa injetá-lo em um provedor de temas.
 
 ## Usando a sintaxe JavaScript
 
-You can use [json2mq](https://github.com/akiran/json2mq) to generate media query string from a JavaScript object.
+Você pode usar [json2mq](https://github.com/akiran/json2mq) para gerar uma string de consulta de mídia a partir de um objeto JavaScript.
 
 {{"demo": "pages/components/use-media-query/JavaScriptMedia.js", "defaultCodeOpen": true}}
 
 ## Renderização no servidor (Server-Side Rendering)
 
-An implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) is required on the server. We recommend using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it.
+Uma implementação de [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) é necessária no servidor. Recomendamos usar [css-mediaquery](https://github.com/ericf/css-mediaquery) para emulá-lo.
 
 {{"demo": "pages/components/use-media-query/ServerSide.js"}}
 
-⚠️ Server-side rendering and client-side media queries are fundamentally at odds. Be aware of the tradeoff. The support can only be partial.
+⚠️ Renderização do lado servidor e consultas de mídia do lado cliente são fundamentalmente conflitantes. Esteja ciente da troca. O suporte só pode ser parcial.
 
-Try relying on client-side CSS media queries first. For instance, you could use:
+Tente confiar em consultas de mídia CSS do lado do cliente primeiro. Por exemplo, você poderia usar:
 
 - [`<Box display>`](/system/display/#hiding-elements)
 - [`<Hidden implementation="css">`](/components/hidden/#css)
-- or [`themes.breakpoints.up(x)`](/customization/breakpoints/#css-media-queries)
+- ou [`themes.breakpoints.up(x)`](/customization/breakpoints/#css-media-queries)
 
 ## Testando
 
-Similar to the server-side case, you need an implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) in your test environment.
+Semelhante ao caso do lado do servidor, você precisa de uma implementação de [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) em seu ambiente de teste.
 
-For instance, [jsdom doesn't support it yet](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html). You should polyfill it. We recommend using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it.
+Por exemplo, [jsdom não suporta ainda](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html). Você deve usar um polyfill para isso. Recomendamos usar [css-mediaquery](https://github.com/ericf/css-mediaquery) para emulá-lo.
 
 ```js
 import mediaQuery from 'css-mediaquery';
@@ -88,7 +88,7 @@ function createMatchMedia(width) {
   });
 }
 
-describe('MyTests', () => {
+describe('MeusTestes', () => {
   beforeAll(() => {
     window.matchMedia = createMatchMedia(window.innerWidth);
   });
@@ -107,11 +107,11 @@ O componente de ordem superior `withWidth()` injeta a largura da tela da página
 
 #### Argumentos
 
-1. `query` (*String* | *Function*): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
+1. `query` (*String* | *Function*): Uma string representando a consulta de mídia a ser manipulada ou uma função de retorno de chamada aceitando o tema (no contexto) que retorna uma string.
 2. `options` (*Object* [opcional]): 
-    - `options.defaultMatches` (*Boolean* [opcional]): Como `window.matchMedia()` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. O valor padrão é `false`.
-    - `options.noSsr` (*Boolean* [opcional]): Padrão é `false`. Para realizar a reconciliação de renderização do lado do servidor, ele precisa renderizar duas vezes. Uma primeira vez sem nada e uma segunda vez com os filhos. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esse sinalizador para `true` se você **não estiver fazendo a renderização do lado do servidor**.
-    - `options.ssrMatchMedia` (*Function* [opcional]) Você pode querer usar uma heurística para aproximar a tela no navegador do cliente. Por exemplo, você poderia estar usando o user-agent ou o client-hint https://caniuse.com/#search=client%20hint. You can provide a global ponyfill using [`custom props`](/customization/globals/#default-props) on the theme. Verifique o exemplo de renderização do lado do servidor [](#server-side-rendering).
+  - `options.defaultMatches` (*Boolean* [opcional]): Como `window.matchMedia()` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. O valor padrão é `false`.
+  - `options.noSsr` (*Boolean* [opcional]): Padrão é `false`. Para realizar a reconciliação de renderização do lado do servidor, ele precisa renderizar duas vezes. Uma primeira vez sem nada e uma segunda vez com os filhos. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esse sinalizador para `true` se você **não estiver fazendo a renderização do lado do servidor**.
+  - `options.ssrMatchMedia` (*Function* [opcional]) Você pode querer usar uma heurística para aproximar a tela no navegador do cliente. Por exemplo, você poderia estar usando o user-agent ou o client-hint https://caniuse.com/#search=client%20hint. Você pode fornecer um global ponyfill usando [`propriedades customizadas`](/customization/globals/#default-props) no tema. Verifique o exemplo de renderização do lado do servidor [](#server-side-rendering).
 
 #### Retornos
 

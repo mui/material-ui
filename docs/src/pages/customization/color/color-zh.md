@@ -14,13 +14,13 @@ Material Design [颜色系统](https://material.io/design/color/) 可用于创�
 
 #### “色彩”和“阴影”
 
-调色板中的单一颜色由色相如 "red" 和阴影如 "500"组成。 "rad 50" 是红色的最浅的阴影 (* 粉红色! *), 而 "red 900" 是最暗的。 此外, 大多数色调都带有强调色调, 以 ` A ` 为前缀。
+调色板中的单一颜色由色相如 "red" 和阴影如 "500"组成。 “red 50”是最浅的红色（*粉红色*），而red 900”是最暗的。 此外, 大多数色调都带有强调色调, 以 ` A ` 为前缀。
 
 ### 例子
 
 Material Design调色板包括主要和强调颜色, 可用于插图或开发您的品牌颜色. 他们被设计成彼此和谐地工作.
 
-例如, 您可以参考互补的主要和强调颜色 (例如 "red 500" & "purple A200"), 如下所示:
+例如，可以参考互补初级和强调色（例如"red 500" & "purple A200”），如下所示：
 
 ```js
 import purple from '@material-ui/core/colors/purple';
@@ -49,7 +49,7 @@ const color = HUE[SHADE];
 
 {{"demo": "pages/customization/color/ColorTool.js", "hideHeader": true}}
 
-颜色样本中显示的输出可以直接粘贴到[` createMuiTheme()`](/customization/themes/#createmuitheme-options-theme)函数中与([` MuiThemeProvider`](/customization/themes/#theme-provider)一起使用);
+颜色样本中显示的输出可以直接粘贴到[` createMuiTheme()`](/customization/theming/#createmuitheme-options-theme)函数中与([` MuiThemeProvider`](/customization/theming/#theme-provider)一起使用);
 
 ```jsx
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -67,7 +67,7 @@ const theme = createMuiTheme({
 
 只需要提供 `main` 阴影（除非您希望进一步自定义 `light` `dark` 或 `contrastText`），因为其他颜色将由 `createMuiTheme()`计算，如 [主题定制中所述](/customization/palette/) 节。
 
-如果你通过提供 color object 的方式 使用默认的主要阴影 和/或 次要阴影，`createMuiTheme()` 将会根据 主、亮和暗 三种 material 颜色选择合适的阴影。
+如果您使用默认的主色调和/或次要色调，则通过提供颜色对象， `createMuiTheme()` 将使用材质颜色中适当的阴影，主色，浅色和深色。
 
 ### 官方色彩工具
 
@@ -77,7 +77,7 @@ Material Design 团队提供了一款令人赞叹的调色板配置工具：[mat
   <img src="/static/images/color/colorTool.png" alt="官方色彩工具" style="width: 574px" />
 </a>
 
-它的输出可以使用在` createMuiTheme() ` 函数：
+它的输出可以使用在`createMuiTheme()` 函数：
 
 ```jsx
 import { createMuiTheme } from '@material-ui/core/styles';

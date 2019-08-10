@@ -3,7 +3,7 @@ title: Componente de React para navegación a pie de página
 components: BottomNavigation, BottomNavigationAction
 ---
 
-# Bottom Navigation (Navegação Inferior)
+# Barra de navegación inferior
 
 <p class="description">Las barras de navegación inferiores permiten movimiento entre destinos primarios en una aplicación.</p>
 

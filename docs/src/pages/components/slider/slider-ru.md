@@ -9,7 +9,25 @@ components: Slider
 
 [Sliders](https://material.io/design/components/sliders.html) reflect a range of values along a bar, from which users may select a single value. They are ideal for adjusting settings such as volume, brightness, or applying image filters.
 
-- 
+- 📦 [22 kB gzipped](/size-snapshot) (but only 8 kB without @material-ui/styles).
+
+## Discrete sliders
+
+Discrete sliders can be adjusted to a specific value by referencing its value indicator. By order of demos:
+
+1. You can generate a mark for each step with `marks={true}`.
+2. You can change the default step increment.
+3. You can have custom marks by providing a rich array to the `marks` prop.
+4. You can restrict the selectable values to those provided with the `marks` prop with `step={null}`.
+5. You can force the thumb label to be always visible with `valueLabelDisplay="on"`.
+
+{{"demo": "pages/components/slider/DiscreteSlider.js"}}
+
+## Customized sliders
+
+Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+
+{{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
 ## Continuous sliders
 
@@ -17,26 +35,9 @@ Continuous sliders allow users to select a value along a subjective range.
 
 {{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
-## Discrete sliders
-
-Discrete sliders can be adjusted to a specific value by referencing its value indicator. By order of demos:
-
-1. You can generate a mark for each step with `marks={true}`.
-2. You can have custom marks by providing a rich array to the `marks` prop.
-3. You can restrict the selectable values to those provided with the `marks` prop with `step={null}`.
-4. You can force the thumb label to be always visible with `valueLabelDisplay="on"`.
-
-{{"demo": "pages/components/slider/DiscreteSlider.js"}}
-
 ## Range sliders
 
 {{"demo": "pages/components/slider/RangeSlider.js"}}
-
-## Customized sliders
-
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
-
-{{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
 ## With input field
 

@@ -83,7 +83,7 @@ function Progress(props) {
 
 ## Barra de progresso customizada
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescrita](/customization/components/).
+Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/progress/CustomizedProgressBars.js"}}
 
@@ -99,6 +99,6 @@ Quando o processamento é particularmente lento, você pode perder a animação 
 
 ![carga pesada](/static/images/progress/heavy-load.gif)
 
-Quando não for possível, você pode aproveitar a propriedade `disableShrink` para atenuar o problema. Veja [este issue](https://github.com/mui-org/material-ui/issues/10327).
+Quando não for possível, você pode utilizar a propriedade `disableShrink` para atenuar o problema. Veja [este problema](https://github.com/mui-org/material-ui/issues/10327).
 
 {{"demo": "pages/components/progress/CircularUnderLoad.js"}}

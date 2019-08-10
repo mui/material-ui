@@ -1,4 +1,4 @@
-# API Design Approach
+# APIの設計アプローチ
 
 <p class="description">Nós aprendemos bastante como o Material-UI é usado e o refatoramento da v1 permitiu-nos repensar completamente o componente de API.</p>
 
@@ -8,7 +8,7 @@
 
 As Sebastian Markbage [pointed out](https://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html), no abstraction is superior to wrong abstractions. We are providing low-level components to maximize composition capabilities.
 
-## Composition
+## 従属関係
 
 You may have noticed some inconsistency in the API regarding composing components. To provide some transparency, we have been using the following rules when designing the API:
 
@@ -101,7 +101,7 @@ There are two options to design the API for the variations of a component: with 
     
     ```tsx
     type Props = {
-    variant: 'text' | 'contained' | 'fab';
+      variant: 'text' | 'contained' | 'fab';
     }
     ```
     

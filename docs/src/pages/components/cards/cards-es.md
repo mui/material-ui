@@ -9,7 +9,7 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 Las [Tarjetas](https://material.io/design/components/cards.html) son superficies que muestran contenido y acciones sobre un tema particular.
 
-Deben ser fáciles de leer y la información que muestran debe ser relevante y accionable. Elementos como texto e imágenes deben ser colocados sobre tarjetas de manera lógica y jerárquica.
+They should be easy to scan for relevant and actionable information. Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy.
 
 ## Tarjeta simple
 

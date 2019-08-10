@@ -8,13 +8,13 @@ As pessoas chegam ao Material-UI de diferentes culturas e com diferentes estilos
 
 A [página de uso](/getting-started/usage/#quick-start) contém um pequeno exemplo de Material-UI com um editor. Mesmo que você ainda não saiba nada sobre o Material-UI, tente alterar o código e veja como isso afeta o resultado.
 
-## Exemplos de Projetos
+## Projetos de exemplo
 
 Nós [hospedamos alguns projetos de exemplo](/getting-started/example-projects/) fornecendo a infraestrutura necessária para desenvolver e implantar sites com React.
 
-## Exemplos de leiaute de página
+## Modelos
 
-Nós temos uma seleção [de leiautes básicos de página](/getting-started/page-layout-examples/) para ajudar você a começar a criar seu aplicativo.
+Temos uma [seleção de modelos básicos](/getting-started/templates/) para ajudar você a começar a criar o seu aplicativo.
 
 ## Recursos recomendados
 
@@ -22,22 +22,27 @@ Ao começar a aprender o Material-UI, você pode encontrar postagens de blogs de
 
 ### Grátis
 
-- **Conheça Material-UI - sua nova biblioteca de interface de usuário favorita**: uma postagem de blog que o guia na construção de um "To Do" MVC enquanto aborda alguns conceitos importantes de Material-UI. 
+- **Meet Material-UI — your new favorite user interface library**: uma postagem de blog que o guia na construção de um Todo MVC enquanto aborda alguns conceitos importantes de Material-UI. 
   - 📝 [A postagem do blog](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
-- **Aprenda React & Material-UI**: uma série de vídeos cobrindo todos os componentes importantes do Material-UI. 
+- **Learn React & Material-UI**: uma série de vídeos cobrindo todos os componentes importantes do Material-UI. 
   - 📹 [Os vídeos](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
-- **Começando com Material-UI para React**: uma postagem de blog que o orienta na criação de uma lista de cartões simples. 
+- **Getting Started With Material-UI For React**: uma postagem de blog que orienta na criação de uma lista de cartões simples. 
   - 📝 [A postagem do blog](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
   - 📹 [O vídeo](https://www.youtube.com/watch?v=PWadEeOuv5o)
-- **Elegant UX in React with Material-UI**: um post de blog que cobre alguns conceitos importantes de Material-UI. 
+- **Elegant UX in React with Material-UI**: uma postagem de blog que cobre alguns conceitos importantes de Material-UI. 
   - 📝 [A postagem do blog](https://alligator.io/react/material-ui/)
 
 ### Pago
 
-- **React Material-UI Cookbook**: Crie aplicativos modernos implementando os princípios do Material Design em aplicativos React usando o Material-UI. 
-  - 📘 [The book](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
+- **Material-UI with React**: Material-UI is an excellent framework to develop beautiful React components faster! This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using Material-UI and React.
+  
+  - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
+  - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
+- **React Material-UI Cookbook**: Construa aplicações modernas implementando os princípios de Material Design em aplicações React usando Material-UI.
+  
+  - 📘 [O livro](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
 
 [![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
 
-- **Builder Book**Aprenda a criar uma aplicação Web completa com JavaScript, a partir do zero, usando uma stack Moderna de JavaScript e Material-UI. 
+- **Builder Book**: Aprenda como criar um aplicativo web totalmente com JavaScript a partir do zero, usando uma stack moderna de JavaScript e Material-UI. 
   - 📘 [O livro](https://builderbook.org/book)

@@ -31,7 +31,7 @@ components: Grid
 
 ## Fluid grids
 
-Fluid grids use columns that scale and resize content. A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
+Fluid gridsでは、コンテンツの尺度とサイズを変更する列を使用します。 A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
 
 ### Basic grid
 
@@ -53,7 +53,7 @@ Fluid grids use columns that scale and resize content. A fluid grid’s layout c
 
 ## 自動レイアウト
 
-自動レイアウトは、 *個の項目* が使用可能なスペースを公平に共有するようにします。 これはまた、 *アイテム* 幅を設定できることを意味し、他のアイテムは自動的にその周囲のサイズを変更します。
+自動レイアウトにより、 *items* が使用可能なスペースを均等に共有します。 That also means you can set the width of one *item* and the others will automatically resize around it.
 
 {{"demo": "pages/components/grid/AutoGrid.js"}}
 
@@ -65,7 +65,7 @@ Fluid grids use columns that scale and resize content. A fluid grid’s layout c
 
 ## Nested Grid
 
-` container ` と ` item ` プロパティは、2つの独立したブール値です。それらは組み合わせることができます。
+`container`プロパティと`item`プロパティは、それぞれ独立したブール値です。 それらは組み合わせることができます。
 
 > Flex ** container ** は、 `flex` または `inline-flex`を持つ要素によって生成されたボックスです。 フレックスコンテナのインフローの子は、flex ** items ** と呼ばれ、flexレイアウトモデルを使用してレイアウトされます。
 
@@ -77,7 +77,10 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### Negative margin
 
-項目間の間隔を実装するために使用する負のマージンには1つ制限があります。 負のマージンが `<body>`を超えると水平スクロールが表示されます。 回避策は3つあります。 1. スペーシング機能を使用し、ユーザ空間でそれを実装していない ` spacing ={0}` （デフォルト）。 2. 子に適用された間隔値の少なくとも半分を使用して、親にパディングを適用します。
+項目間の間隔を実装するために使用する負のマージンには1つ制限があります。 負のマージンが `<body>`を超えると水平スクロールが表示されます。 回避策は3つあります。
+
+1. スペーシング機能を使用し、ユーザ空間でそれを実装していない ` spacing ={0}` （デフォルト）。
+2. 子に適用された間隔値の少なくとも半分を使用して、親にパディングを適用します。
 
 ```jsx
   <body>
@@ -89,11 +92,11 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
   </body>
 ```
 
-1. `overflow-x: hidden;`を親に追加する
+3. `overflow-x: hidden;`を親に追加する
 
 ### white-space: nowrap;
 
-Flex itemsの初期設定は `min-width：auto`です。 子要素が `white-space: nowrap;`を使っている場合、ポジショニングの競合が発生します。 例えば以下の場合に発生します。：
+フレックスアイテムの初期設定は `min-width：auto`です。 子要素が`white-space: nowrap;`を使っているときに、位置のコンフリクトが起きます。 この問題は、次の場合に発生します:
 
 ```jsx
 <Grid item xs>

@@ -24,13 +24,19 @@ In diesem Beispiel wird die [`withStyles()`](/styles/basics/#higher-order-compon
 
 ### Überschreiben des styles mit Klassennamen
 
-Wenn die ` Klassennamen`-Eigenschaft nicht genug ist, und Sie auf tiefere Elemente zugreifen müssen, können Sie die ` classes`-Eigenschaft nutzen, um alle von Material-UI für eine bestimmte Komponente eingefügtes CSS anzupassen. Die Liste der Klassen für jede Komponente ist in der **Komponenten-API** Sektion dokumentiert. Zum Beispiel können Sie sich die [ Button CSS-API](/api/button/#css) anschauen. Alternativ können Sie die [Browser-Entwicklungswerkzeuge](#using-the-dev-tools) verwenden.
+Wenn die ` Klassennamen`-Eigenschaft nicht genug ist, und Sie auf tiefere Elemente zugreifen müssen, können Sie die ` classes`-Eigenschaft nutzen, um alle von Material-UI für eine bestimmte Komponente eingefügtes CSS anzupassen.
+
+The list of classes for each component is documented in the component API page, you should refer to the **CSS section** and **rule name column**. Zum Beispiel können Sie sich die [ Button CSS-API](/api/button/#css) anschauen. Alternativ können Sie die [Browser-Entwicklungswerkzeuge](#using-the-dev-tools) verwenden.
 
 In diesem Beispiel wird auch `withStyles()` verwendet (siehe oben), aber hier verwendet `ClassesNesting` die `Button` `classes` Eigenschaft, welche ein Objekt liefert, das die **Namen der zu überschreibenden Klassen** (Stilregeln) auf die anzuwendenden **CSS-Klassennamen ** (Werte) abbildet. Die vorhandenen Klassen der Komponente werden weiterhin eingefügt. Daher müssen nur die spezifischen Styles gesetzt werden die Sie hinzufügen oder überschreiben möchten.
 
 Beachten Sie, dass zusätzlich zum Buttonstil die Großschreibung der Buttonbeschriftung geändert wurde:
 
 {{"demo": "pages/customization/components/ClassesNesting.js"}}
+
+### Overriding styles with global class names
+
+[Follow this section](/styles/advanced/#with-material-ui-core).
 
 ### Verwenden der Dev-Tools
 
@@ -121,6 +127,7 @@ Instead of providing values to the `classes` prop API, you can rely on [the glob
 | erforderlich | Mui-required         |
 | expanded     | Mui-expanded         |
 | ausgewählt   | Mui-selected         |
+
 
 ```css
 .MenuItem {
@@ -228,7 +235,7 @@ The demos of this section covers how to the change the button's font size.
 
 ### Theme-Variablen
 
-You can adjusting the [theme configuration variables](/customization/themes/#theme-configuration-variables).
+You can adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
 
 ```jsx
 const theme = createMuiTheme({

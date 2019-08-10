@@ -9,7 +9,7 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 [卡片](https://material.io/design/components/cards.html) 是显示单个主题下内容和操作的容器。
 
-他们应该易用于查看相关内容且便于操作。诸如文本和图像的元素，应以能够清晰明确地表示层次结构的方式来展示。
+They should be easy to scan for relevant and actionable information. Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy.
 
 ## 简单的卡片
 
@@ -33,7 +33,7 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 {{"demo": "pages/components/cards/ImgMediaCard.js"}}
 
-> 当 `component="img"` 时，CardMedia依靠 `object-fit` 进行图像居中。而 IE11 不支持此功能。
+> ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE 11.
 
 ## UI 控件
 

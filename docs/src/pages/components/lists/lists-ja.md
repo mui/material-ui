@@ -59,7 +59,7 @@ function ListItemLink(props) {
 
 Checkboxは、主要なアクションまたは補助的なアクションのどちらかになります。
 
-Checkboxは、Listの項目の主要なアクションであり状態を表します。コメントボタンは補助的なアクションであり別のターゲットになります。
+The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.
 
 {{"demo": "pages/components/lists/CheckboxList.js"}}
 

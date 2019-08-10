@@ -1,4 +1,4 @@
-# Abstände
+# Abstände (Spacing)
 
 <p class="description">Eine große Auswahl an reaktionsschnellen Abkürzungs- und Auffüllungswerkzeugklassen zum Ändern der Darstellung eines Elements.</p>
 
@@ -108,6 +108,7 @@ import { spacing } from '@material-ui/system';
 | `spacing`  | `pl`          | `padding-left`                  | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 | `spacing`  | `px`          | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 | `spacing`  | `py`          | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+
 
 *Some people find the prop shorthand confusing, you can use the full version if you prefer:*
 

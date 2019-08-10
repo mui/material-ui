@@ -34,7 +34,7 @@ Vous pouvez utiliser [material.io/tools/icons](https://material.io/tools/icons/?
 - [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) est exposé en tant que `@material-ui/icons/Delete`
 - [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) est exposé en tant que `@material-ui/icons/DeleteForever`
 
-Pour des icônes* "à thème"*, ajoutez le nom du thème au nom de l'icône. Par exemple avec le
+For *"themed"* icons, append the theme name to the icon name. For instance with the
 
 - L'icône avec contour [`Delete`](https://material.io/tools/icons/?icon=delete&style=outline) est exposée comme `@material-ui /icons/DeleteOutlined`
 - L'icône Arrondi [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded) est exposée sous la forme `@ material-ui/icons /DeleteRounded`
@@ -78,7 +78,7 @@ Le composant `Icon` affichera une icône à partir de toute police d’icône pr
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-`Icon` définira le nom de classe correct pour la police de l'icône Material. Pour les autres polices, vous devez fournir le nom de la classe à l'aide de la propriété `className` du composant Icon.
+`Icon` will set the correct class name for the Material icon font. For other fonts, you must supply the class name using the Icon component's `className` property.
 
 Pour utiliser une icône, enveloppez simplement le nom de l'icône (ligature de police) avec le composant `Icon` , par exemple:
 
@@ -100,7 +100,7 @@ Par défaut, une icône héritera de la couleur de texte actuelle. Vous pouvez �
 
 {{"demo": "pages/style/icons/FontAwesome.js", "hideEditButton": true}}
 
-## Police vs SVG. Quelle approche utiliser?
+## Font vs SVG. Which approach to use?
 
 Les deux approches fonctionnent bien, cependant, il existe quelques différences subtiles, notamment en termes de performances et de qualité de rendu. Lorsque cela est possible, Le SVG est préférable car il permet la division de code, prend en charge plus d'icônes, rend les rendus plus rapidement et mieux.
 
@@ -108,11 +108,14 @@ Pour plus de détails, vous pouvez voir [pourquoi GitHub a migré d'icônes de p
 
 ## Accessibilité
 
-Les icônes peuvent transmettre toutes sortes d'informations utiles. Il est donc important qu'elles atteignent le plus grand nombre de personnes possible. Il convient de prendre en compte deux cas d'utilisation: - **Les icônes décoratives** ne sont utilisées que pour le renforcement visuel ou le marquage. S'ils étaient supprimés de la page, les utilisateurs comprendraient toujours et pourraient utiliser votre page. - **Les Icônes sémantiques** sont celles que vous utilisez pour transmettre du sens, plutôt que de simples décorations. Cela inclut les icônes sans texte adjacentes utilisées comme commandes interactives - boutons, éléments de formulaire, bascules, etc.
+Les icônes peuvent transmettre toutes sortes d'informations utiles. Il est donc important qu'elles atteignent le plus grand nombre de personnes possible. There are two use cases you’ll want to consider:
+
+- **Decorative Icons** are only being used for visual or branding reinforcement. S'ils étaient supprimés de la page, les utilisateurs comprendraient toujours et pourraient utiliser votre page.
+- **Les Icônes sémantiques** sont celles que vous utilisez pour transmettre du sens, plutôt que de simples décorations. Cela inclut les icônes sans texte adjacentes utilisées comme commandes interactives - boutons, éléments de formulaire, bascules, etc.
 
 ### Icônes SVG décoratives
 
-Si vos icônes sont purement décoratives, vous avez déjà terminé! Nous ajoutons l'attribut `aria-hidden = true` pour que vos icônes soient correctement accessibles (invisibles).
+If your icons are purely decorative, you’re already done! We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
 
 ### Icônes SVG sémantiques
 
@@ -126,7 +129,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 // ...
 
-<IconButton aria-label="Delete">
+<IconButton aria-label="delete">
   <SvgIcon>
     <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
   </SvgIcon>
@@ -135,7 +138,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 ### Icônes de polices décoratives
 
-Si vos icônes sont purement décoratives, vous avez déjà terminé! Nous ajoutons l'attribut `aria-hidden = true` pour que vos icônes soient correctement accessibles (invisibles).
+If your icons are purely decorative, you’re already done! We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
 
 ### Icônes de polices sémantiques
 

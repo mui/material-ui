@@ -5,9 +5,9 @@ components: ClickAwayListener
 
 # Wegklick Zuhörer
 
-<p class="description">Erkennt, wenn ein Klickereignis außerhalb eines Elements aufgetreten ist. Es wartet auf Klicks, die irgendwo im Dokument auftreten.</p>
+<p class="description">Detect if a click event happened outside of an element. It listens for clicks that occur somewhere in the document.</p>
 
-- 
+- 📦 [1.4 kB gzipped](/size-snapshot).
 
 ## Einfaches Dropdown-Menü
 

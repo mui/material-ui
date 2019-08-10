@@ -109,6 +109,7 @@ import { spacing } from '@material-ui/system';
 | `spacing`          | `px` | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 | `spacing`          | `py` | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
 
+
 *Algumas pessoas acham a propriedade abreviada confusa, você pode usar a versão completa se preferir:*
 
 ```diff

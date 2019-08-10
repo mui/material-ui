@@ -1,17 +1,17 @@
 ---
-title: React 容器组件
-components: Container
+title: React Container（容器）组件
+components: Container（容器）
 ---
 
-# 容器
+# Container（容器）
 
-<p class="description">容器会将其内容水平居中。 这是最基本的布局元素。</p>
+<p class="description">容器组件会让您页面的内容水平居中。 这是最基本的布局元素。</p>
 
-虽然容器可以嵌套，但大多数布局不需要嵌套容器。
+虽然容器可以嵌套，但大多数布局不需要嵌套的容器。
 
-## 流体
+## Fluid（流体布局）
 
-自适应容器的最大宽度可以通过设置 `maxWidth` 属性来限制
+您可以通过 `maxWidth` 属性的值来设置一个 fluid 容器的最大宽度。
 
 ```jsx
 <Container maxWidth="sm">
@@ -21,7 +21,7 @@ components: Container
 
 ## 固定大小
 
-如果您希望设计固定大小而不是尝试完全流体的视口，则可以设置 `fixed` 属性。 最大宽度和当前断点的最小宽度相同。
+通过设置`fixed` 属性，您可以设计固定的大小而不是尝试完全流体布局的视口。 max-width 和当前断点的 min-width 则相同。
 
 ```jsx
 <Container fixed>

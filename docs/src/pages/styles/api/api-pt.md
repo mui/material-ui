@@ -9,9 +9,9 @@ Uma função que retorna [uma função geradora de nome de classe](https://cssin
 #### Argumentos
 
 1. `options` (*Object* [opcional]): 
-    - `options.disableGlobal` (*Boolean* [opcional]): Padrão `false`. Desabilita a geração de nomes de classes determinísticas.
-    - `options.productionPrefix` (*String* [opcional]): Padrão `'jss'`. A string usada para prefixar os nomes de classes em produção.
-    - `options.seed` (*String* [opcional]): Padrão `''`. A string u usada unicamente para identificar o gerador. Ela pode ser usada para evitar colisões de nomes de classes ao usar vários geradores no mesmo documento.
+  - `options.disableGlobal` (*Boolean* [opcional]): Padrão `false`. Desabilita a geração de nomes de classes determinísticas.
+  - `options.productionPrefix` (*String* [opcional]): Padrão `'jss'`. A string usada para prefixar os nomes de classes em produção.
+  - `options.seed` (*String* [opcional]): Padrão `''`. A string u usada unicamente para identificar o gerador. Ela pode ser usada para evitar colisões de nomes de classes ao usar vários geradores no mesmo documento.
 
 #### Retornos
 
@@ -73,10 +73,10 @@ Vincula uma folha de estilo a um componente de função usando o padrão **hook*
 
 1. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ela será vinculada ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como o primeiro argumento.
 2. `options` (*Object* [opcional]): 
-    - `options.defaultTheme` (*Object* [opcional]): O tema padrão a ser usado se um tema não for fornecido por meio de um provedor de temas.
-    - `options.name` (*String* [opcional]): O nome da folha de estilo. Útil para depuração. Se o valor não for fornecido, ele tentará usar o nome do componente.
-    - `options.flip` (*Boolean* [opcional]): Quando definido como `false`, está folha irá cancelar a transformação `rtl`. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
-    - As outras chaves são encaminhadas para o argumento de opções do [jss.createStyleSheet ([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
+  - `options.defaultTheme` (*Object* [opcional]): O tema padrão a ser usado se um tema não for fornecido por meio de um provedor de temas.
+  - `options.name` (*String* [opcional]): O nome da folha de estilo. Útil para depuração. Se o valor não for fornecido, ele tentará usar o nome do componente.
+  - `options.flip` (*Boolean* [opcional]): Quando definido como `false`, está folha irá cancelar a transformação `rtl`. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
+  - As outras chaves são encaminhadas para o argumento de opções do [jss.createStyleSheet ([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 #### Retornos
 
@@ -153,13 +153,13 @@ Vincula uma folha de estilos, com uma função de componente, usando o padrão d
 #### Argumentos
 
 1. `Component`: O componente que será manipulado.
-2. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ela será vinculada ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como propriedade do primeiro argumento.
+2. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ele será vinculado ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como propriedade do primeiro argumento.
 3. `options` (*Object* [opcional]): 
-    - `options.defaultTheme` (*Object* [opcional]): O tema padrão a ser usado se um tema não for fornecido por meio de um provedor de temas.
-    - `options.withTheme` (*Boolean* [opcional]): Padrão `false`. Fornecer o objeto `theme` para o componente como uma propriedade.
-    - `options.name` (*String* [opcional]): O nome da folha de estilo. Útil para depuração. Se o valor não for fornecido, ele tentará usar o nome do componente.
-    - `options.flip` (*Boolean* [opcional]): Quando definido como `false`, está folha irá cancelar a transformação `rtl`. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
-    - As outras chaves são encaminhadas para o argumento de opções do [jss.createStyleSheet ([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
+  - `options.defaultTheme` (*Object* [opcional]): O tema padrão a ser usado se um tema não for fornecido por meio de um provedor de temas.
+  - `options.withTheme` (*Boolean* [opcional]): Padrão `false`. Fornecer o objeto `theme` para o componente como uma propriedade.
+  - `options.name` (*String* [opcional]): O nome da folha de estilo. Útil para depuração. Se o valor não for fornecido, ele tentará usar o nome do componente.
+  - `options.flip` (*Boolean* [opcional]): Quando definido como `false`, está folha irá cancelar a transformação `rtl`. Quando definido para `true`, os estilos são invertidos. Quando definido para `null`, segue `theme.direction`.
+  - As outras chaves são encaminhadas para o argumento de opções do [jss.createStyleSheet ([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 #### Retornos
 
@@ -365,17 +365,17 @@ export default function MyComponent() {
     Alguns detalhes de implementação que podem ser interessantes para estar ciente:
   </p>
   
-  <ul>
-    <li>
+  <ul spaces="0" level="0" marker="-">
+    <li level="0">
       Adiciona uma propriedade <code>classes</code>, assim você pode substituir, a partir do exterior, os nomes de classe previamente injectados.
     </li>
-    <li>
+    <li level="0">
       Ele encaminha refs para o componente interno.
     </li>
-    <li>
+    <li level="0">
       A propriedade <code>innerRef</code> está descontinuada. Em vez disso, use <code>ref</code>.
     </li>
-    <li>
+    <li level="0">
       Ele <strong>não</strong> faz copia sobre estáticos. Por exemplo, pode ser usado para definir um método estático (next.js) <code>getInitialProps()</code>.
     </li>
   </ul>
@@ -384,26 +384,26 @@ export default function MyComponent() {
     Argumentos
   </h4>
   
-  <ol start="1">
-    <li>
+  <ol start="1" spaces="2" level="0">
+    <li level="0">
       <code>styles</code> (<em>Function | Object</em>): Uma função que gera os estilos ou um objeto de estilos. Ele será vinculado ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como o primeiro argumento.
     </li>
     
-    <li>
-      <code>options</code> (<em>Object</em> [optional]): <ul>
-        <li>
+    <li level="0">
+      <code>options</code> (<em>Object</em> [opcional]): <ul spaces="0" level="1" marker="-">
+        <li level="1">
           <code>options.defaultTheme</code> (<em>Object</em> [opcional]): O tema padrão a ser usado se um tema não for fornecido por meio de um provedor de temas.
         </li>
-        <li>
+        <li level="1">
           <code>options.withTheme</code> (<em>Boolean</em> [opcional]): Padrão <code>false</code>. Fornecer o objeto <code>theme</code> para o componente como uma propriedade.
         </li>
-        <li>
+        <li level="1">
           <code>options.name</code> (<em>String</em> [opcional]): O nome da folha de estilo. Útil para depuração. Se o valor não for fornecido, ele tentará usar o nome do componente.
         </li>
-        <li>
+        <li level="1">
           <code>options.flip</code> (<em>Boolean</em> [opcional]): Quando definido como <code>false</code>, está folha irá cancelar a transformação <code>rtl</code>. Quando definido para <code>true</code>, os estilos são invertidos. Quando definido para <code>null</code>, segue <code>theme.direction</code>.
         </li>
-        <li>
+        <li level="1">
           As outras chaves são encaminhadas para o argumento de opções do <a href="https://cssinjs.org/jss-api/#create-style-sheet">jss.createStyleSheet ([styles], [options])</a>.
         </li>
       </ul>
@@ -475,8 +475,8 @@ export default MyComponent
     Argumentos
   </h4>
   
-  <ol start="1">
-    <li>
+  <ol start="1" spaces="0" level="0">
+    <li level="0">
       <code>Component</code>: O componente que será manipulado.
     </li>
   </ol>
