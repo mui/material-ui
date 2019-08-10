@@ -5,14 +5,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 
-function MadeWithLove() {
+function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary">
-      {'Built with love by the '}
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Material-UI
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'. Built with '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Material-UI.
       </Link>
-      {' team.'}
     </Typography>
   );
 }
@@ -53,7 +57,7 @@ export default function StickyFooter() {
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography variant="body1">My sticky footer can be found here.</Typography>
-          <MadeWithLove />
+          <Copyright />
         </Container>
       </footer>
     </div>

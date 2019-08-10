@@ -156,7 +156,7 @@ Link.propTypes = {
    */
   TypographyClasses: PropTypes.object,
   /**
-   *  Controls when the link should have an underline.
+   * Controls when the link should have an underline.
    */
   underline: PropTypes.oneOf(['none', 'hover', 'always']),
   /**

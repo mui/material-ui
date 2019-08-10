@@ -94,7 +94,7 @@ Divider.propTypes = {
    */
   role: PropTypes.string,
   /**
-   *  The variant to use.
+   * The variant to use.
    */
   variant: PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
 };

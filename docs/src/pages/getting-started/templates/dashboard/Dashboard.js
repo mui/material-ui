@@ -22,14 +22,18 @@ import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 
-function MadeWithLove() {
+function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Built with love by the '}
+      {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Material-UI
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'. Built with '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Material-UI.
       </Link>
-      {' team.'}
     </Typography>
   );
 }
@@ -191,7 +195,7 @@ export default function Dashboard() {
             </Grid>
           </Grid>
         </Container>
-        <MadeWithLove />
+        <Copyright />
       </main>
     </div>
   );

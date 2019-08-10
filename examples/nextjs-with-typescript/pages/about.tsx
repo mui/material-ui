@@ -6,14 +6,18 @@ import MuiLink from '@material-ui/core/Link';
 import ProTip from '../src/ProTip';
 import Link from '../src/Link';
 
-function MadeWithLove() {
+function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Built with love by the '}
-      <MuiLink color="inherit" href="https://material-ui.com/">
-        Material-UI
-      </MuiLink>
-      {' team.'}
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'. Built with '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Material-UI.
+      </Link>
     </Typography>
   );
 }
@@ -27,7 +31,7 @@ export default function App() {
         </Typography>
         <Link href="/">Go to the main page</Link>
         <ProTip />
-        <MadeWithLove />
+        <Copyright />
       </Box>
     </Container>
   );

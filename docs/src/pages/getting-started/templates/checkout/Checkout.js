@@ -14,14 +14,18 @@ import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 
-function MadeWithLove() {
+function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Built with love by the '}
+      {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Material-UI
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'. Built with '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Material-UI.
       </Link>
-      {' team.'}
     </Typography>
   );
 }
@@ -145,7 +149,7 @@ export default function Checkout() {
             )}
           </React.Fragment>
         </Paper>
-        <MadeWithLove />
+        <Copyright />
       </main>
     </React.Fragment>
   );

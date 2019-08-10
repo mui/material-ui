@@ -29,11 +29,6 @@ const backers = [
     title: 'Call-Em-All - The easy way to message your group',
   },
   {
-    href: 'https://localizejs.com',
-    alt: 'localize',
-    title: 'Localize — Application translation & localization platform',
-  },
-  {
     href: 'https://blokt.com',
     alt: 'blokt',
     title: 'Leading Cryptocurrency News',

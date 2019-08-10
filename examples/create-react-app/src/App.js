@@ -5,14 +5,18 @@ import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import ProTip from './ProTip';
 
-function MadeWithLove() {
+function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Built with love by the '}
+      {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Material-UI
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'. Built with '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Material-UI.
       </Link>
-      {' team.'}
     </Typography>
   );
 }
@@ -25,7 +29,7 @@ export default function App() {
           Create React App v4-beta example
         </Typography>
         <ProTip />
-        <MadeWithLove />
+        <Copyright />
       </Box>
     </Container>
   );

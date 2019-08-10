@@ -222,6 +222,10 @@ const pages = [
       { pathname: '/blog/april-2019-update' },
       { pathname: '/blog/march-2019-update' },
       { pathname: '/blog/2019-developer-survey-results' },
+      {
+        pathname: '/blog/material-ui-v1-is-out',
+        title: 'Material-UI v1 is out',
+      },
     ],
   },
   { pathname: '/versions', displayNav: false },

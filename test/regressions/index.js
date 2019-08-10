@@ -43,6 +43,7 @@ const blacklistSuite = [
   'docs-customization-default-theme',
 
   // Image load issue
+  'docs-components-skeleton',
   'docs-discover-more-team',
   'docs-getting-started-templates-album',
   'docs-getting-started-templates-blog',
