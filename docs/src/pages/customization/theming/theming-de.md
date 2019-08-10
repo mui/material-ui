@@ -19,7 +19,7 @@ Wenn Sie das Design anpassen möchten, müssen Sie die `ThemeProvider` Komponent
 Das Ändern der Konfigurationsvariablen für das Theme ist der effektivste Weg, um die Material-UI an Ihre Bedürfnisse anzupassen. Die folgenden Abschnitte behandeln die wichtigsten Theme-Variablen:
 
 - [Palette](/customization/palette/)
-- [Typografie](/customization/typography/)
+- [Typography](/customization/typography/)
 - [Abstände](/customization/spacing/)
 - [Haltepunkte](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
@@ -31,7 +31,7 @@ Sie können den [Standard-Themenbereich](/customization/default-theme/) auscheck
 
 Wenn Sie das Material-UI-Theme mit unserer [Styling-Lösung](/styles/basics/) oder einer [beliebige andere](/guides/interoperability/#themeprovider) verwenden, kann praktisch sein, dem Theme weitere Variablen hinzuzufügen, damit Sie sie überall verwenden können. Zum Beispiel:
 
-{{"demo": "pages/customization/themes/CustomStyles.js"}}
+{{"demo": "pages/customization/theming/CustomStyles.js"}}
 
 ## Zugriff auf das Theme in einer Komponente
 
@@ -41,11 +41,11 @@ Sie können auf die Themenvariablen in Ihren React-Komponenten [zugreifen](/styl
 
 Sie können mehrere Themenanbieter [verschachteln](/styles/advanced/#theme-nesting).
 
-{{"demo": "pages/customization/themes/ThemeNesting.js"}}
+{{"demo": "pages/customization/theming/ThemeNesting.js"}}
 
 Das innere Theme ** überschreibt** das äußere Theme. Sie können das äußere Theme erweitern, indem Sie eine Funktion bereitstellen:
 
-{{"demo": "pages/customization/themes/ThemeNestingExtend.js"}}
+{{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
 ### Ein Hinweis zur Leistung
 
@@ -60,7 +60,7 @@ Die Auswirkungen der Verschachtelung der `ThemeProviders` Komponente auf die Per
 
 Generieren Sie eine Themenbasis von den gegebenen Optionen.
 
-#### Argumente
+#### Parameter
 
 1. `options` (*Object*): Nimmt ein unvollständiges Themeobjekt auf und fügt die fehlenden Teile hinzu.
 

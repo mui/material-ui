@@ -11,13 +11,13 @@ components: Divider
 
 ## Liste diviseurs
 
-Le diviseur s'affiche par défaut sous la forme d'un `<hr>` . Vous pouvez économiser le rendu de cet élément DOM à l'aide de la propriété `divider` du composant `ListItem`.
+The divider renders as a `<hr>` by default. You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
 
 {{"demo": "pages/components/dividers/ListDividers.js"}}
 
 ## Spécification HTML5
 
-Nous devons nous assurer que le `Divider` est rendu en tant que `li` pour correspondre à la spécification HTML5. Les exemples ci-dessous montrent deux manières d'y parvenir.
+We need to make sure the `Divider` is rendered as a `li` to match the HTML5 specification. The examples below show two ways of achieving this.
 
 ## Encart De Diviseurs
 

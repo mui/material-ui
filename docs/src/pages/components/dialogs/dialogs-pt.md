@@ -3,7 +3,7 @@ title: Componente React para Diálogos
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
-# Diálogos
+# Caixa de diálogo
 
 <p class="description">As caixas de diálogo informa aos usuários sobre uma tarefa e podem conter informações críticas, exigir decisões ou envolver várias tarefas.</p>
 
@@ -13,7 +13,7 @@ As caixas de diálogo são intencionalmente interruptivas, então elas devem ser
 
 ## Diálogo simples
 
-A caixa de diálogo simples pode providenciar detalhes adicionais ou ações sobre um item de lista. Por exemplo, ele podem mostrar um avatar, ícone, texto esclarecedor ou um ação paralela (como adicionar uma conta).
+Diálogos simples podem fornecer detalhes adicionais ou ações sobre um item da lista. Por exemplo, eles podem exibir avatares, ícones, esclarecer subtexto ou ações ortogonais (como adicionar uma conta).
 
 Mecanismo de Toque:
 
@@ -26,12 +26,12 @@ Mecanismo de Toque:
 
 Alertas são interrupções urgentes, requerendo confirmação que o usuário esta ciente da situação.
 
-Muitos dos alertas não precisam de títulos. Eles resumem uma decisão em uma sentença ou duas, bem como:
+A maioria dos alertas não precisam de títulos. Eles resumem uma decisão em uma sentença ou duas por:
 
 - Fazendo uma pergunta (Exemplo: "Apagar esta conversa?")
 - Fazendo uma declaração relacionada aos botões de ação
 
-Use a barra de título somente para situações de alto risco, como perda de conexão potencial. Os usuários devem ser capazes de entender as escolhas baseando-se apenas no título e texto do botão.
+Use alertas de barra de título apenas para situações de alto risco, como a potencial perda de conectividade. Os usuários devem entender as escolhas com base apenas no título e no texto do botão.
 
 Se um título é necessário:
 
@@ -54,7 +54,7 @@ Os formulários de diálogo permitem que usuários preencham campos dentro de um
 
 ## Diálogos customizados
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescrita](/customization/components/).
+Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 A caixa de diálogo tem um botão de fechar para facilitar a utilização.
 

@@ -7,14 +7,14 @@ components: Modal
 
 <p class="description">O componente modal fornece uma base sólida para criar diálogos, popovers, lightboxes ou qualquer outra coisa.</p>
 
-O componente torna seus nós `children` na frente de um componente de plano de fundo. O `Modal` oferece recursos importantes:
+O componente renderiza o conteúdo de seu `children` sobre um componente backdrop. O `Modal` oferece recursos importantes:
 
-- 
-- 
-- 
+- 💄 Gerencia o empilhamento de chamadas um por vez não é suficiente.
+- 🔐 Cria um backdrop para desabilitar a interação abaixo do modal.
+- 🔐 Quando aberto, desabilita a rolagem da página.
 - ♿️ Gerencia adequadamente o foco; movendo para o conteúdo modal, e mantendo-o lá até que o modal seja fechado.
 - ♿️ Adiciona as funções ARIA apropriadas automaticamente.
-- 
+- 📦 [5 kB gzipped](/size-snapshot).
 
 > **Nota sobre a terminologia**. O termo "modal" algumas vezes é usado com o sentido de "diálogo", mas isto é um equívoco. Uma janela Modal descreve partes de uma UI. Um elemento é considerado modal se [ele bloqueia interações com o resto da aplicação](https://en.wikipedia.org/wiki/Modal_window).
 
@@ -29,11 +29,13 @@ Se você está criando um diálogo Modal, você provavelmente quer usar o compon
 
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
+Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
+
 ## Performance
 
-O conteúdo dos modais são **montados lentamente** dentro do DOM. Isso garante que, mesmo tendo muitos modais fechados em sua árvore React, o carregamento da sua página não será afetado.
+O conteúdo do modal é **montado preguiçosamente** no DOM. Isso garante que ter muitos modais fechados na sua árvore React não atrapalha sua página.
 
-Porém, criar elementos React tem um preço também. Considere o caso a seguir:
+No entanto, a criação de elementos React também tem um custo. Considere o seguinte caso:
 
 ```jsx
 <Modal open={false}>
@@ -60,7 +62,7 @@ Porém, criar elementos React tem um preço também. Considere o caso a seguir:
 </Modal>
 ```
 
-Criamos muitos elementos React que nunca serão montados. É um desperdício 🐢. Você pode ** acelerar ** a renderização movendo o corpo do modal para seu próprio componente. 
+Criamos muitos elementos React que nunca serão montados. É um desperdício 🐢. Você pode **acelerar** a renderização movendo o corpo do modal para seu próprio componente.
 
 ```jsx
 <Modal open={false}>
@@ -76,16 +78,22 @@ Desta forma, você tem a vantagem do [React render laziness evaluation](https://
 
 ```jsx
 <Modal
-  aria-labelledby="simple-modal-title"
-  aria-describedby="simple-modal-description"
+  aria-labelledby="modal-title"
+  aria-describedby="modal-description"
 >
   <h2 id="modal-title">
-    Meu título
+    My Title
   </h2>
-  <p id="simple-modal-description">
-    Minha descrição
+  <p id="modal-description">
+    My Description
   </p>
 </Modal>
 ```
 
 - O [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) pode ajudá-lo a definir o foco inicial no elemento mais relevante, com base no seu conteúdo modal.
+
+## Server-side modal
+
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to make it work, you need to disable this feature with the `disablePortal` prop:
+
+{{"demo": "pages/components/modal/ServerModal.js"}}

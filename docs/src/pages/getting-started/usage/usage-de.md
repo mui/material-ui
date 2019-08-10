@@ -58,5 +58,5 @@ Diese Dokumentation benutzt immer die neueste stabile Version von Material-UI. �
 Nun, da Sie eine Vorstellung von den grundlegenden Schritten haben, ist es an der Zeit, mehr darüber zu erfahren:
 
 - Wie man [die Material Design Schriftart und Typografie](/components/typography/) bereitstellt.
-- Wie man die [theming-Lösung nutzen kann](/customization/themes/).
+- Wie man die [theming-Lösung nutzen kann](/customization/theming/).
 - Wie man das Aussehen und das Verhalten der Komponenten [überschreibt](/customization/components/).

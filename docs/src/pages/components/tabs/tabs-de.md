@@ -17,7 +17,7 @@ Ein einfaches Beispiel ohne Verzierungen.
 
 ### Umwickelte Tabs
 
-Lange Tab-Beschriftungen werden automatisch umgebrochen. Sollte die Beschriftung für den Tab zu lang sein, läuft sie über und der Text ist nicht sichtbar.
+Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow and the text will not be visible.
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
 
@@ -47,7 +47,7 @@ Die Eigenschaft `centered` sollte für kleinere Ansichten verwendet werden.
 
 ### Automatische Scroll-Tasten
 
-Die linken und rechten Bildlauftasten werden automatisch auf dem Desktop angezeigt und auf dem Handy ausgeblendet. (basierend auf der Breite des Ansichtsfensters)
+Left and right scroll buttons will automatically be presented on desktop and hidden on mobile. (based on viewport width)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonAuto.js"}}
 
@@ -59,7 +59,7 @@ Die linken und rechten Bildlauftasten werden unabhängig von der Breite des Ansi
 
 ### Scrolltasten verhindern
 
-Linke und rechte Bildlauftasten werden niemals angezeigt. Der gesamte Bildlauf muss durch Benutzeragenten-Bildlaufmechanismen (z. B. Wischen nach links / rechts, Shift-Mausrad usw.) eingeleitet werden
+Left and right scroll buttons will never be presented. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js"}}
 
@@ -69,11 +69,15 @@ Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf de
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js"}}
 
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/tabs).
 
+## Vertical tabs
+
+{{"demo": "pages/components/tabs/VerticalTabs.js"}}
 
 ## Nav-Tabs
 
-Standardmäßig verwenden Tabs ein `Button` -Element, aber Sie können Ihren eigenen benutzerdefinierten Tag oder eine Komponente zur Verfügung stellen. Hier ein Beispiel für die Implementierung der Tabnavigation:
+By default tabs use a `button` element, but you can provide your own custom tag or component. Here's an example of implementing tabbed navigation:
 
 {{"demo": "pages/components/tabs/NavTabs.js"}}
 

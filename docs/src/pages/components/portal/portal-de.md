@@ -7,7 +7,7 @@ components: Portal
 
 <p class="description">Die Portalkomponente rendert ihre untergeordneten Elemente in eine neue "Unterstruktur" außerhalb der aktuellen Komponentenhierarchie.</p>
 
-- 
+- 📦 [1.3 kB gzipped](/size-snapshot)
 
 Die untergeordneten Elemente der Portalkomponente werden an den angegebenen `Container` angehängt.
 

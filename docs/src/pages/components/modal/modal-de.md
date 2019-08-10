@@ -7,14 +7,14 @@ components: Modal
 
 <p class="description">Die modale Komponente bietet eine solide Grundlage für das Erstellen von Dialogen, Popovers, Leuchtkästen oder anderen Elementen.</p>
 
-Die Komponente rendert den Knoten `children` vor einer Hintergrundkomponente. Der `Modal` bietet wichtige Funktionen:
+Die Komponente rendered seine `Kinder` - Knoten vor einer Hintergrund - Komponente. The `Modal` offers important features:
 
-- 
-- 
-- 
+- 💄 Verwaltet modales Stacking, wenn eins zu einem Zeitpunkt nicht ausreicht.
+- 🔐 Erstellt einen Hintergrund zum Deaktivieren der Interaktion unter dem Modal.
+- 🔐 Es deaktiviert das Blättern des Seiteninhalts, während es geöffnet ist.
 - ♿️ Der Fokus wird richtig verwaltet. Wechseln des Fokus zum modalen Inhalt und diesen halten belassen, bis der Modal geschlossen ist.
 - ♿️ Fügt die entsprechenden ARIA-Rollen automatisch hinzu.
-- 
+- 📦 [5 kB gzipped](/size-snapshot).
 
 > **Terminologieanmerkung**. Der Begriff "modal" bedeutet manchmal "Dialog", aber das ist eine Fehlbezeichnung. Ein modales Fenster beschreibt Teile einer Benutzeroberfläche. Ein Element wird als modal betrachtet, wenn es [die Interaktion mit dem Rest der Anwendung blockiert](https://en.wikipedia.org/wiki/Modal_window).
 
@@ -29,11 +29,13 @@ Wenn Sie ein modales Dialogfeld erstellen, möchten Sie wahrscheinlich die [Dial
 
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
+Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
+
 ## Performance
 
-Der Inhalt des Modals wird **lazily eingehangen** im DOM. Dadurch wird sichergestellt, dass viele geschlossene Modale in Ihrem React-Baum Ihre Seite nicht verlangsamen.
+The content of the modal is **lazily mounted** into the DOM. It ensures that having many closed modals in your React tree won't slow down your page.
 
-Das Erstellen von React-Elementen ist jedoch ebenfalls mit Kosten verbunden. Betrachten Sie den folgenden Fall:
+However, creating React elements has a cost too. Consider the following case:
 
 ```jsx
 <Modal open={false}>
@@ -60,7 +62,7 @@ Das Erstellen von React-Elementen ist jedoch ebenfalls mit Kosten verbunden. Bet
 </Modal>
 ```
 
-We create a lot of React elements that will never be mounted. It's wasteful 
+We create a lot of React elements that will never be mounted. It's wasteful 🐢. You can **speed up** the rendering by moving the modal body into its own component.
 
 ```jsx
 <Modal open={false}>
@@ -76,16 +78,22 @@ Auf diese Weise nutzen Sie [React Rendering Laziness Evaluation](https://overrea
 
 ```jsx
 <Modal
-  aria-labelledby="simple-modal-title"
-  aria-describedby="simple-modal-description"
+  aria-labelledby="modal-title"
+  aria-describedby="modal-description"
 >
   <h2 id="modal-title">
     My Title
   </h2>
-  <p id="simple-modal-description">
+  <p id="modal-description">
     My Description
   </p>
 </Modal>
 ```
 
 - Mit den [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) können Sie den anfänglichen Fokus auf das relevanteste Element setzen, basierend auf Ihrem modalen Inhalt.
+
+## Server-side modal
+
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to make it work, you need to disable this feature with the `disablePortal` prop:
+
+{{"demo": "pages/components/modal/ServerModal.js"}}

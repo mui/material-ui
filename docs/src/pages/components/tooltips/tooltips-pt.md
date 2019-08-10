@@ -15,19 +15,19 @@ Quando ativada, [dicas](https://material.io/design/components/tooltips.html) exi
 
 ## Posicionamento de dicas
 
-A dica (`Tooltip`) tem 12 **locais de posicionamento** para escolha. Elas não têm setas direcionais; em vez disso, elas dependem do movimento sobre a fonte para se exibirem na posição configurada.
+O `Tooltip` tem 12 **posicionamentos** para ser escolhido. Eles não têm setas direcionais; em vez disso, eles dependem do movimento que emana da fonte para transmitir direção.
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
 ## Dicas customizadas
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescrita](/customization/components/).
+Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
 ## Elemento filho customizado
 
-A dica precisa aplicar eventos DOM do tipo "listeners" para seu elemento filho. Se o filho for um elemento React customizado, você precisa garantir que ele estenda suas propriedades para o elemento DOM subjacente.
+A dica precisa aplicar ouvintes de evento DOM ao seu elemento filho. Se o filho for um elemento React personalizado, você precisará garantir que ele estenda suas propriedades para o elemento DOM subjacente.
 
 ```jsx
 function MyComponent (props) {
@@ -64,7 +64,7 @@ A dica (`Tooltip`) quebra o texto longo por padrão para torná-lo legível.
 
 ## Interativa
 
-Uma dia pode ser interativa. Ela não será fechada quando o usuário passar por cima da dica antes que `leaveDelay` expire.
+Uma dica pode ser interativa. Ela não será fechada quando o usuário passar por cima da dica antes que `leaveDelay` expire.
 
 {{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
 
@@ -84,6 +84,6 @@ Use uma transição diferente.
 
 A dica normalmente é mostrada imediatamente quando o mouse do usuário passa sobre o elemento e se oculta imediatamente quando o mouse do usuário sai. Um atraso na exibição ou ocultação da dica pode ser adicionado por meio das propriedades `enterDelay` e `leaveDelay`, conforme mostrado na demonstração de dicas controladas acima.
 
-Em mobile, a dica é exibida quando o usuário pressiona longamente o elemento e oculta após um atraso de 1500 ms. Você pode desativar esse recurso com a propriedade `disableTouchListener`.
+No celular, a dica é exibida quando o usuário pressiona longamente o elemento e oculta após um atraso de 1500 ms. Você pode desativar esse recurso com a propriedade `disableTouchListener`.
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}

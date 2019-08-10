@@ -1,45 +1,45 @@
 ---
-title: Rating React component
+title: Componente React de avaliação
 components: Rating
 ---
 
-# Rating
+# Avaliação
 
-<p class="description">Ratings provide insight regarding others’ opinions and experiences with a product. Users can also rate products they’ve purchased.</p>
+<p class="description">As avaliações fornecem informações sobre opiniões e experiências de outros usuários com um produto. Os usuários também podem avaliar os produtos que compraram.</p>
 
-- 📦 [20 kB gzipped](/size-snapshot) (but only 6 kB without @material-ui/styles).
+- 📦 [20 kB gzipped](/size-snapshot) (mas apenas 6 kB sem @material-ui/styles).
 
-## Simple ratings
+## Avaliações simples
 
 {{"demo": "pages/components/rating/SimpleRating.js"}}
 
-## Half ratings
-
-The rating can display any float number with the `value` prop. Use the `precision` prop to define the minimum increment value change allowed.
-
-{{"demo": "pages/components/rating/HalfRating.js"}}
-
-## Customized ratings
+## Avaliações customizadas
 
 Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/rating/CustomizedRatings.js"}}
 
-## Tamanhos
+## Feedback ao passar mouse
 
-Fancy larger or smaller ratings? Use the `size` property.
-
-{{"demo": "pages/components/rating/RatingSize.js"}}
-
-## Hover feedback
-
-You can display a label on hover to help users pick the correct rating value. The first demo uses the `onChangeActive` prop while the last one uses the `IconContainerComponent` prop.
+Você pode exibir um rótulo ao passar o mouse para ajudar os usuários a escolher o valor de avaliação correto. A primeira demo usa a propriedade `onChangeActive` enquanto o último usa a propriedade `IconContainerComponent`.
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
+
+## Meias avaliações
+
+A avaliação pode exibir qualquer número flutuante com a propriedade `value`. Use a propriedade `precision` para definir a alteração mínima do valor de incremento permitida.
+
+{{"demo": "pages/components/rating/HalfRating.js"}}
+
+## Tamanhos
+
+Gosta de avaliações maiores ou menores? Use a propriedade `size`.
+
+{{"demo": "pages/components/rating/RatingSize.js"}}
 
 ## Acessibilidade
 
 A acessibilidade neste componente conta com:
 
-- A radio group is used with its fields visually hidden. It contains six radio buttons, one for each star and another for 0 stars, which is checked by default. Make sure you are providing a `name` prop that is unique to the parent form.
-- The labels for the radio buttons contain actual text (“1 Star”, “2 Stars”, …), make sure you provide a `getLabelText` prop when the page language is not English.
+- Um grupo de botões de opção é usado com seus campos visualmente ocultos. Ele contém seis botões de opção, um para cada estrela e outro para 0 estrelas, que é marcado por padrão. Certifique-se de que você está fornecendo uma propriedade `name`, que é exclusivo para o formulário principal.
+- Os rótulos dos botões de opção contêm o texto atualmente como ("1 Star", "2 Star", …). Certifique-se de fornecer uma propriedade `getLabelText` quando o idioma da página não for o inglês.

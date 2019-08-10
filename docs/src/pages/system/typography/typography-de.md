@@ -1,4 +1,4 @@
-# Typografie
+# Typography
 
 <p class="description">Dokumentation und Beispiele für allgemeine Textprogramme zur Steuerung von Ausrichtung, Umbruch, Gewicht usw.</p>
 

@@ -7,7 +7,7 @@ components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 
 <p class="description">Botões permitem que os usuários tomem ações e decisões com um simples toque.</p>
 
-[Botões](https://material.io/design/components/buttons.html) comunicam ações que os usuários podem tomar. Eles normalmente são colocados em toda a sua interface do usuário, em lugares como:
+[Botões](https://material.io/design/components/buttons.html) comunicam ações que os usuários podem realizar. Eles são normalmente colocados em toda a interface do usuário, em lugares como:
 
 - Caixa de diálogo
 - Janelas modais
@@ -52,7 +52,7 @@ O componente ButtonGroup pode ser usado para agrupar os botões delineados (o pa
 
 ## Botão Dividido
 
-O ButtonGroup também pode ser usado para criar um botão dividido. A lista suspensa pode alterar a ação do botão (como neste exemplo) ou ser usada para acionar imediatamente a ação relacionada.
+O ButtonGroup também pode ser usado para criar um botão dividido. A lista suspensa pode alterar a ação do botão (como neste exemplo) ou ser usada para acionar imediatamente uma ação relacionada.
 
 {{"demo": "pages/components/buttons/SplitButton.js"}}
 
@@ -76,17 +76,17 @@ A transição de zoom pode ser usada para conseguir isso. Observe que, como as a
 
 ## Tamanhos
 
-Botões extravagantes ou menores? Use a propriedade `size`.
+Gosta de botões maiores ou menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
-## Botões com ícones e rótulo
+## Botões com ícones e "Label"
 
 Às vezes você pode querer ter ícones para determinados botão para melhorar o UX do aplicativo como reconhecemos logotipos mais facilmente do que o texto sem formatação. Por exemplo, se você tem um botão com a açõo de "deletar" você pode rotulá-lo com um ícone do caixote de lixo.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Botões de Ícone
+## Botões de Icone
 
 Botões de ícones são comumente encontrados em barras de aplicativos e barras de ferramentas.
 
@@ -96,11 +96,11 @@ Botões de ícones são comumente encontrados em barras de aplicativos e barras 
 
 ## Botões Customizados
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescrita](/customization/components/).
+Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 
-
+👑 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/components/button).
 
 ## Botões complexos
 
@@ -110,8 +110,10 @@ O botões de texto, botões contidos, botões de ação flutuante e ícone botõ
 
 ## Biblioteca de roteamento de terceiros
 
-Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. O componente `ButtonBase` fornece uma propriedade para lidar com este caso de uso: `componente`. No entanto, para alguns polyfills de foco `ButtonBase` requer o nó DOM do componente fornecido. Isso é obtido anexando-se uma referência ao componente e esperando que o componente envie essa referência para o nó DOM subjacente. Dado que um monte de nossos componentes interativos dependem do `ButtonBase`, você deve estar capaz de tirar vantagem em todos os lugares:
+Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. O componente `ButtonBase` fornece uma propriedade para lidar com este caso de uso: `componente`. No entanto, para alguns polyfills de foco `ButtonBase` requer o nó DOM do componente fornecido. Isso é obtido anexando-se uma referência ao componente e esperando que o componente envie essa referência para o nó DOM subjacente. Dado que um monte de nossos componentes interativos dependem do `ButtonBase`, você deve estar capaz de tirar vantagem em todos os lugares.
+
+Aqui está um exemplo de integração com react-router:
 
 {{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 
-*Nota: A criação do componente Botão é necessária para impedir uma desmontagem inesperada. Você pode ler mais sobre isso em nosso [guia de propriedades de componentes](/guides/composition/#component-property).*
+*Nota: A criação de componentes de botão é necessária para impedir a desmontagem inesperada. Você pode ler mais sobre isso em nosso [ guia de propriedades de componente](/guides/composition/#component-property).*

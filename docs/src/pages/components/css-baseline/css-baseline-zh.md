@@ -28,7 +28,7 @@ export default MyApp;
 
 ### 页面
 
-更新 `<html>` 和 `<body>` 元素以提供更好的页面范围默认值。进一步来说：
+`<html>` 和 `<body>` 元素将更新以提供更好的页面范围的默认设置。 More specifically:
 
 - 删除所有浏览器中的边距。
 - 默认使用Material Design的背景颜色。 它使用 [`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background) 在标准设备上而在打印设备上使用白色背景。

@@ -14,19 +14,19 @@ Dependendo do componente, a densidade é aplicada por meio de espaçamento menor
 
 Os seguintes componentes possuem propriedades que aplicam maior densidade:
 
-- [Button](/api/button)
-- [Fab](/api/fab)
-- [FilledInput](/api/filled-input)
-- [FormControl](/api/form-control)
-- [FormHelperText](/api/form-helper-text)
-- [IconButton](/api/icon-button)
-- [InputBase](/api/input-base)
-- [InputLabel](/api/input-label)
-- [ListItem](/api/list-item)
-- [OutlinedInput](/api/outlined-input)
-- [Table](/api/table)
-- [TextField](/api/text-field)
-- [Toolbar](/api/toolbar)
+- [Botão](/api/button/)
+- [Fab](/api/fab/)
+- [FilledInput](/api/filled-input/)
+- [FormControl](/api/form-control/)
+- [FormHelperText](/api/form-helper-text/)
+- [IconButton](/api/icon-button/)
+- [InputBase](/api/input-base/)
+- [InputLabel](/api/input-label/)
+- [ListItem](/api/list-item/)
+- [OutlinedInput](/api/outlined-input/)
+- [Table](/api/table/)
+- [TextField](/api/text-field/)
+- [Toolbar](/api/toolbar/)
 
 ## Explore a densidade do tema
 

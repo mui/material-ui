@@ -5,21 +5,21 @@ components: CircularProgress, LinearProgress
 
 # Barres de progression
 
-<p class="description">Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process. The animation works with CSS, not JavaScript.</p>
+<p class="description">Les indicateurs de progression, plus connus sous le nom de spinners, expriment un temps d'attente non spécifié ou affichent la durée d'un processus. L'animation fonctionne avec du CSS, pas de JavaScript.</p>
 
-[Progress indicators](https://material.io/design/components/progress-indicators.html) inform users about the status of ongoing processes, such as loading an app, submitting a form, or saving updates. They communicate an app’s state and indicate available actions, such as whether users can navigate away from the current screen.
+Les [Indicateurs de progression](https://material.io/design/components/progress-indicators.html) informent les utilisateurs de l'état des processus en cours, tels que le chargement d'une application, la soumission d'un formulaire ou la progression des mises à jour. Ils communiquent l'état d'une application et indiquent les actions disponibles, par exemple si les utilisateurs peuvent quitter l'écran actuel.
 
-**Determinate** indicators display how long an operation will take.
+Les indicateurs **déterminés** indiquent la durée d'une opération.
 
-**Indeterminate** indicators visualize an unspecified wait time.
+Les indicateurs **indéterminés** indiquent un temps d'attente non spécifié.
 
-#### Progress as a group
+#### Barres de progression groupées
 
-When displaying progress for a sequence of processes, indicate overall progress rather than the progress of each activity.
+Lorsque vous affichez les progrès d'une séquence de processus, indiquez le progrès global plutôt que les progrès de chaque activité.
 
-## Circular
+## Progression circulaire
 
-[Circular progress](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) support both determinate and indeterminate processes.
+Les [progrès circulaires](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) prennent en charge les processus à la fois déterminés et indéterminés.
 
 - **Determinate** circular indicators fill the invisible, circular track with color, as the indicator moves from 0 to 360 degrees.
 - **Indeterminate** circular indicators grow and shrink in size while moving along the invisible track.
@@ -83,7 +83,7 @@ function Progress(props) {
 
 ## Customized progress bars
 
-Voici quelques exemples de personnalisation du composant. Vous pouvez en apprendre plus sur [la page de documentation de personnalisation](/customization/components/).
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/progress/CustomizedProgressBars.js"}}
 

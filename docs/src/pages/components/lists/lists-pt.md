@@ -59,7 +59,7 @@ Você deve alterar o alinhamento do item da lista ao exibir 3 linhas ou mais, al
 
 Uma caixa de seleção pode ser uma ação primária ou uma ação secundária.
 
-A caixa de seleção é a ação primária e o indicador de estado para o item da lista. O botão comentário é uma ação secundária separada.
+A caixa de seleção é a ação principal e o indicador de estado para o item da lista. O botão de comentário é uma ação secundária e um destino separado.
 
 {{"demo": "pages/components/lists/CheckboxList.js"}}
 

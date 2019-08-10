@@ -1,26 +1,26 @@
 ---
-title: React Avatar（头像）组件
+title: React 头像组件
 components: Avatar
 ---
 
-# Avatars（头像）
+# 头像
 
-<p class="description">在整个 material design 中，无论是在表格中还是到对话框菜单中，都可以找到使用头像的身影。</p>
+<p class="description">在整个 Material Design 中都可以使用 Avatars，包括表格到对话框菜单等</p>
 
-## Image avatars（图片头像）
+## 图片头像
 
-为了创建图像头像，您可以传递` src `或` srcSet `这样的标准的` img ` 的属性到组件里。
+可以通过将标准` img ` 的属性` src `或` srcSet `传递到组件中来创建图像头像。
 
 {{"demo": "pages/components/avatars/ImageAvatars.js"}}
 
-## Letter avatars（字母头像）
+## 字母头像
 
-为了创建包含简单字符的头像，您可以把字符串作为`子元素`来传递。
+可以通过将字符串作为` children `传递来创建包含简单字符的头像。
 
 {{"demo": "pages/components/avatars/LetterAvatars.js"}}
 
-## Icon avatars（图标头像）
+## 图标头像
 
-为了创建图标头像， 您可以将图标作为`子元素`来传递。
+通过将图标作为` children `传递来创建图标头像。
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}

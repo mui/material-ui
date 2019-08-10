@@ -7,11 +7,11 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 <p class="description">Les menus affichent une liste de choix sur des surfaces temporaires.</p>
 
-A [Menu](https://material.io/design/components/menus.html) displays a list of choices on a temporary surface. It appears when the user interacts with a button, or other control.
+Un [Menu](https://material.io/design/components/menus.html) affiche une liste de choix sur une surface temporaire. Il apparaît lorsque l'utilisateur interagit avec un bouton ou un autre contrôle.
 
 ## Menu simple
 
-Les menus simples s'ouvrent par défaut sur l'élément d'ancrage (cette option peut être modifiée via les propriétés). When close to a screen edge, simple menus vertically realign to make sure that all menu items are completely visible.
+Les menus simples s'ouvrent par défaut sur l'élément d'ancrage (cette option peut être modifiée via les propriétés). Lorsqu'ils sont près du bord de l'écran, les menus simples se réalignent verticalement afin que tous les éléments du menu soient visibles.
 
 Le choix d'une option doit idéalement être validé immédiatement et fermer le menu.
 
@@ -39,7 +39,7 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
-Le `MenuItem` est un wrapper autour de `ListItem` avec quelques styles supplémentaires. Vous pouvez utiliser les mêmes fonctionnalités de composition de liste avec le composant `MenuItem`:
+The `MenuItem` is a wrapper around `ListItem` with some additional styles. You can use the same list composition features with the `MenuItem` component:
 
 ## Hauteur maximale des menus
 
@@ -53,7 +53,7 @@ There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=3
 
 {{"demo": "pages/components/menus/TypographyMenu.js"}}
 
-## Change transition
+## Changer la transition
 
 Utilisez une transition différente.
 

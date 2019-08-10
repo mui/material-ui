@@ -12,9 +12,9 @@
 
 ReactでWebサイトを開発およびデプロイする為に必要なインフラを提供する[いくつかのサンプルプロジェクト](/getting-started/example-projects/)があります。
 
-## ページレイアウトのサンプル
+## テンプレート
 
-アプリを構築し易くする[基本的なページレイアウトの例](/getting-started/page-layout-examples/)があります。
+We have a [selection of basic templates](/getting-started/templates/) to help you get started building your app.
 
 ## 推奨する資料
 
@@ -22,22 +22,27 @@ Material-UIを初めて学ぶときは、公式のドキュメントよりもサ
 
 ### Gratuit
 
-- **Meet Material-UI — your new favorite user interface library**: Material-UIのいくつかの重要なコンセプトをカバーしながらTodo MVCの構築の手引きとなるブログ記事です。 
+- **Meet Material-UI — your new favorite user interface library**: a blog post that guides you in building a Todo MVC while covering some important concepts of Material-UI. 
   - 📝 [ブログ記事](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
-- **Learn React & Material-UI**この動画シリーズは　Material-UI のすべての重要なコンポーネントをカバーしています。 
+- **Learn React & Material-UI**: Material-UIの重要なコンポーネントの全てをカバーするシリーズの動画です。 
   - 📹 [動画](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
-- **Getting Started With Material-UI For React**: a blog post that guides you in building a simple card list. 
+- **Getting Started With Material-UI For React**: シンプルなカードのリストの構築の手引きとなるブログ記事です。 
   - 📝 [The blog post](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
   - 📹 [The video](https://www.youtube.com/watch?v=PWadEeOuv5o)
-- **Elegant UX in React with Material-UI**: Material-UIの重要なコンセプトをカバーする記事です。 
+- **Elegant UX in React with Material-UI**: a blog post covering some important Material-UI concepts. 
   - 📝 [ブログ記事](https://alligator.io/react/material-ui/)
 
 ### 有料
 
-- **React Material-UI Cookbook**: Build modern day application by implementing Material Design principles in React applications using Material-UI. 
+- **Material-UI with React**: Material-UI is an excellent framework to develop beautiful React components faster! This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using Material-UI and React.
+  
+  - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
+  - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
+- **React Material-UI Cookbook**: Build modern day application by implementing Material Design principles in React applications using Material-UI.
+  
   - 📘 [The book](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
 
 [![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
 
-- **Builder Book**: モダンなjavaScriptとMaterial-UIを用いて、フルスクラッチでJavaScriptによるフルスタックWebアプリケーションの作り方が学べます。 
+- **Builder Book**: Learn how to build a full-stack JavaScript web application from scratch, using a Modern JavaScript stack and Material-UI. 
   - 📘 [書籍](https://builderbook.org/book)

@@ -12,19 +12,19 @@
 
 ## 用户空间
 
-在用户空间编写测试会如何呢？ Material-UI 的样式基础架构使用构建在 [enzyme](https://github.com/airbnb/enzyme) 的一些辅助函数之上来，这样一来整个流程会更简便，而这正是我们正在开源的。 若你愿意，你可以对它们加之利用。 We use almost exclusively full DOM rendering APIs. We encourage you to do the same especially if your components rely on custom themes. Tests using shallow rendering APIs become more brittle with the amount of provider components they require.
+在用户空间编写测试会如何呢？ Material-UI 的样式基础架构使用构建在 [enzyme](https://github.com/airbnb/enzyme) 的一些辅助函数之上来，这样一来整个流程会更简便，而这正是我们正在开源的。 若你愿意，你可以对它们加之利用。 我们几乎只使用完整的 DOM 渲染 API。 尤其若您的组件依赖于自定义主题，我们建议您执行相同的操作。 那些使用浅层渲染 API 的测试会变得更脆弱，因为他们需要一定量的 provider 组件。
 
 ### 完整的 DOM 渲染
 
 当你有组件可能会与 DOM API 产生交互，或者当为了完整测试组件而要求完整的生命周期时，用例会更趋向使用完整的 DOM 渲染（例如，`componentDidMount` 等等。）。
 
-为这种情况提供了 `createMount()` 函数。 除了封装 enzyme 的 API，它还提供了一个 `cleanUp` 函数。
+针对这种情况，我们提供了 `createMount()` 函数。 除了封装 enzyme 的 API，它还提供了一个 `cleanUp` 函数。
 
 ### Shallow rendering（浅层渲染）
 
 当把测试的组件当做一个小的单元时，浅层渲染起到了很好的约束作用。 这样也确保了你的测试不会间接地断言子组件的行为。 浅层渲染的目的是单独测试组件。 也就是说子元素的具体实现，如上下文信息，不会被泄漏。
 
-`createShallow()` 函数可用于此情况。 除了包装酶API，它提供 `dive`untilSelector`直到选择` 选项。
+`createShallow()` 函数可用于此情况。 除了包装酶API，它还提供了 `dive` 和 `untilSelector` 这两个选项。
 
 ### 渲染为字符串
 
@@ -41,8 +41,8 @@
 #### 参数
 
 1. `options` (*Object* [optional]) 
-    - `options.mount` (*Function* [optional])：用 mount 函数来增强，它**默认使用 enzyme **。
-    - 其他的键则被转发到 `enzyme.mount()` 的 options 参数当中。
+  - `options.mount` (*Function* [optional])：用 mount 函数来增强，它**默认使用 enzyme **。
+  - 其他的键则被转发到 `enzyme.mount()` 的 options 参数当中。
 
 #### 返回结果
 
@@ -73,7 +73,7 @@ describe('<MyComponent />', () => {
     mount.cleanUp();
   });
 
-  it('should work', () => {
+  it(”应该成功“, () => {
     const wrapper = mount(<MockedTheme><MySuccessButton /></MockedTheme>);
   });
 });
@@ -81,21 +81,21 @@ describe('<MyComponent />', () => {
 
 ### `createShallow([options]) => shallow`
 
-在特定的情况下，您能够生成一个加强版的浅层函数。 有关 `shallow`函数的更多详细信息, 请参考[enzyme API 文档 ](https://airbnb.io/enzyme/docs/api/shallow.html),
+在特定的情况下，您能够生成一个加强版的浅层函数。 有关 `shallow` 函数的更多详细信息, 请参考 [enzyme API 文档 ](https://airbnb.io/enzyme/docs/api/shallow.html),
 
 #### 参数
 
 1. `options` (*Object* [optional]) 
-    - `options.shallow`(*Function* [optional])：用浅层函数来增强，它**默认使用 enzyme **。
-    - `options.untilSelector`(*String* [optional])：递归地浅层渲染子项，直到找到提供的选择器。 进一步探索 higher-order components（高阶组件）是很有帮助的。
-    - `options.dive` (*Boolean* [optional])：浅层函数能够渲染当前包装器的一个非 DOM 的子节点，并返回一个含有结果的包装器。
-    - 其他的键则被转发到 `enzyme.shallow()` 的 options 参数当中。
+  - `options.shallow`(*Function* [optional])：用浅层函数来增强，它**默认使用 enzyme **。
+  - `options.untilSelector`(*String* [optional])：递归地浅层渲染子项，直到找到提供的选择器。 进一步探索 higher-order components（高阶组件）是很有帮助的。
+  - `options.dive` (*Boolean* [optional])：浅层函数能够渲染当前包装器的一个非 DOM 的子节点，并返回一个含有结果的包装器。
+  - 其他的键则被转发到 `enzyme.shallow()` 的 options 参数当中。
 
 #### 返回结果
 
 `shallow` （*shallow*）：浅函数。
 
-#### 示例
+#### 例子
 
 ```jsx
 mport { createShallow } from '@material-ui/core/test-utils';
@@ -120,14 +120,14 @@ describe('<MyComponent />', () => {
 #### 参数
 
 1. `options` (*Object* [optional]) 
-    - `options.render` (*Function* [optional])：用渲染函数来增强，它**默认使用 enzyme **。
-    - 其他的键则被转发到 `enzyme.render()` 的 options 参数当中。
+  - `options.render` (*Function* [optional])：用渲染函数来增强，它**默认使用 enzyme **。
+  - 其他的键则被转发到 `enzyme.render()` 的 options 参数当中。
 
 #### 返回结果
 
 `render` (*Function*)：渲染到字符串函数。
 
-#### 示例
+#### 例子
 
 ```jsx
 import { createRender } from '@material-ui/core/test-utils';

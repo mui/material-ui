@@ -5,14 +5,14 @@ components: ClickAwayListener
 
 # Click away listener
 
-<p class="description">Detect if a click event happened outside of an element. It listens for clicks that occur somewhere in the document.</p>
+<p class="description">クリックイベントが要素の外部で発生したかどうかを検出します。 ドキュメント内のどこかで発生したクリックを受信します。</p>
 
-- 
+- [1.4 kB gzipped](/size-snapshot).
 
 ## Simple menu dropdown
 
-For instance, if you need to hide a menu dropdown when people click anywhere else on your page:
+たとえば、ユーザーがページの他の場所をクリックしたときにメニューのドロップダウンを非表示にする必要がある場合は、次のようにします。
 
 {{"demo": "pages/components/click-away-listener/ClickAway.js"}}
 
-You can find a more advanced demo on the [menu documentation section](/components/menus/#menulist-composition).
+より高度なデモは、 [menu documentation section](/components/menus/#menulist-composition)にあります。

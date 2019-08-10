@@ -37,7 +37,7 @@ O componente Box tem uma propriedade `clone` para permitir o uso do método de c
 </Box>
 ```
 
-1. Use propriedades de renderização
+2. Use propriedades de renderização
 
 Os elementos filhos de Box aceitam uma função de renderização de propriedades. Você pode então extrair o `className`.
 
@@ -47,7 +47,7 @@ Os elementos filhos de Box aceitam uma função de renderização de propriedade
 </Box>
 ```
 
-> ⚠️ A especificidade do CSS depende da ordem de importação. Se você quer garantir que o estilo do componente encapsulado seja substituído, você precisa importar o Box por ultimo.
+> ⚠️ A especificidade do CSS depende da ordem de importação. If you want the guarantee that the wrapped component's style will be overridden, you need to import the Box last.
 
 ## API
 
@@ -60,5 +60,6 @@ import Box from '@material-ui/core/Box';
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br />&nbsp;func<br /></span>                                 |                                         | Função de renderização do Box ou nó.                                                                 |
 | <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | Se `true`, o box irá recriar seu elemento DOM filho. Ele irá usar `React.cloneElement` internamente. |
 | <span class="prop-name">component</span>                | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br />&nbsp;func&nbsp;&#124;<br />&nbsp;object<br /></span> | <span class="prop-default">'div'</span> | O componente usado como nó raiz. Ou uma string para usar um elemento DOM ou componente.              |
+
 
 Quaisquer outras propriedades fornecidas serão usadas por [funções de estilos](/system/basics/#all-inclusive) ou propagadas para o elemento raiz.

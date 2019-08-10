@@ -59,7 +59,7 @@ Vous devez modifier l'alignement des éléments de la liste lorsque vous affiche
 
 Une case à cocher peut être une action principale ou secondaire.
 
-La case à cocher est l'action principale et l'indicateur d'état pour l'élément de liste. Le bouton de commentaire est une action secondaire et une cible distincte.
+The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.
 
 {{"demo": "pages/components/lists/CheckboxList.js"}}
 

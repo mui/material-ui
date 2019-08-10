@@ -7,7 +7,7 @@ components: AppBar, Toolbar, Menu
 
 <p class="description">A Barra de aplicativos exibe informações e ações relacionadas à tela atual.</p>
 
-O [App Bar superior](https://material.io/design/components/app-bars-top.html) provê conteúdo e ações relacionados à tela atual. Ele é utilizado para a identidade visual, títulos de tela, navegação, e ações.
+A [barra de aplicativos superior](https://material.io/design/components/app-bars-top.html) provê conteúdo e ações relacionados à tela atual. Ela é utilizada para a identidade visual, títulos de tela, navegação, e ações.
 
 Ele pode se transformar em uma barra de ações contextual ou utilizado como uma barra de navegação.
 
@@ -62,10 +62,10 @@ Uma barra de aplicativos que se mantém acima ao rolar.
 #### Argumentos
 
 1. `options` (*Object* [opcional]):
-    
-    - `options.disableHysteresis` (*Boolean* [opcional]): Padrão `false`. Desabilita a histerese. Ignora a direção de rolagem ao determinar o valor `trigger`.
-    - `options.target` (*Node* [opcional]): Padrão `window`.
-    - `options.threshold` (*Number* [opcional]): Padrão `100`. Modifica o valor de `trigger` quando a barra de rolagem vertical ultrapassar este limite.
+
+- `options.disableHysteresis` (*Boolean* [opcional]): Padrão `false`. Desabilita a histerese. Ignora a direção de rolagem ao determinar o valor `trigger`.
+- `options.target` (*Node* [opcional]): Padrão `window`.
+- `options.threshold` (*Number* [opcional]): Padrão `100`. Modifica o valor limite que aciona a `trigger` quando a barra de rolagem vertical cruzar ou chegar a este limite.
 
 #### Retornos
 

@@ -15,19 +15,19 @@ components: Tooltip
 
 ## 文字提示的定位
 
-`文字提示` 有 12 个 **位置** 可供选择。 它们没有方向箭头；相反的，它们依靠从源头发出的运动来传达自己的方向。
+The `Tooltip` has 12 **placements** choice. They don’t have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
 ## Customized tooltips
 
-以下是自定义组件的一些示例。您可以在[重写文档页面](/customization/components/)中了解有关此内容的更多信息。
+这是一些自定义样式开关的例子 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
 ## 自定义子元素
 
-工具提示需要将DOM事件侦听器应用于其子元素。 如果子项是自定义的React元素，则需要确保它将其属性传播到基础DOM元素。
+The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
 
 ```jsx
 function MyComponent(props) {
@@ -64,7 +64,7 @@ function MyComponent(props) {
 
 ## 交互式
 
-文字提示可以是交互式的。当用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时, 它不会关闭。
+A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
 
 {{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
 
@@ -84,6 +84,6 @@ function MyComponent(props) {
 
 当用户的鼠标悬浮在该元素时工具提示会立即显示，并且当用户鼠标离开时立即隐藏。 可以通过` enterDelay `和` leaveDelay `属性来控制显示及隐藏文字提示的延迟，如上面的控制文字提示演示中所示。
 
-在移动设备上，当用户长按元素并在延迟1500ms后，将显示文字提示。 您可以使用`disableTouchListener`属性禁用此功能。
+On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` property.
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}

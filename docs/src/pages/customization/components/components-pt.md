@@ -24,13 +24,19 @@ Este exemplo usa o [`withStyles()`](/styles/basics/#higher-order-component-api) 
 
 ### Sobrescrevendo estilos com classes
 
-Quando a propriedade `className` não é suficiente, e você precisa acessar elementos mais profundos, você pode tirar proveito da propriedade do tipo objeto `classes`, com ela podemos customizar todo o CSS injetado pelo Material-UI para um determinado componente. A lista de classes para cada componente está documentada na seção **API do componente**. Por exemplo, você pode dar uma olhada na [API CSS do botão](/api/button/#css). Como alternativa, você pode usar as [ferramentas de desenvolvimento do navegador](#using-the-dev-tools).
+Quando a propriedade `className` não é suficiente, e você precisa acessar elementos mais profundos, você pode tirar proveito da propriedade do tipo objeto `classes`, com ela podemos customizar todo o CSS injetado pelo Material-UI para um determinado componente.
+
+A lista de classes para cada componente está documentada na página da API do componente, você deve consultar a coluna **seção CSS** e **coluna rule name**. Por exemplo, você pode dar uma olhada na [API CSS do botão](/api/button/#css). Como alternativa, você pode usar as [ferramentas de desenvolvimento do navegador](#using-the-dev-tools).
 
 Este exemplo também usa `withStyles()` (como acima), mas aqui, `ClassesNesting` está usando a propriedade `classes` do `Botão` para fornecer um objeto que mapeia os **nomes das classes para sobrescrever** (regras de estilo) para **os nomes de classes CSS a serem aplicados** (valores). As classes existentes do componente continuarão a ser injetadas, portanto, é necessário apenas fornecer os estilos específicos que você deseja adicionar ou sobrescrever.
 
 Observe que, além do estilo do botão, a capitalização do rótulo do botão foi alterada:
 
 {{"demo": "pages/customization/components/ClassesNesting.js"}}
+
+### Sobrescrevendo estilos por nomes de classes globais
+
+[Siga esta seção](/styles/advanced/#with-material-ui-core).
 
 ### Usando as ferramentas de desenvolvimento
 
@@ -73,7 +79,7 @@ const StyledButton = withStyles({
 
 Os estados especiais dos componentes, como *hover*, *focus*, *disabled* e *selected*, são estilizados com uma especificidade CSS mais alta. [Especificidade é um peso](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) que é aplicado a uma determinada declaração CSS.
 
-Para sobrescrever os estados especiais dos componentes, **você precisa aumentar a especificidade**. Aqui está um exemplo com o estado *disable* e o componente botão usando uma **pseudo-class** (`:disabled`):
+Para sobrescrever os estados especiais dos componentes, **você precisa aumentar a especificidade**. Aqui está um exemplo com o estado *disable* e o componente botão está usando uma **pseudo-class** (`:disabled`):
 
 ```css
 .Button {
@@ -122,6 +128,7 @@ Em vez de fornecer valores para a propriedade `classes` da API, você pode utili
 | expanded      | Mui-expanded          |
 | selected      | Mui-selected          |
 
+
 ```css
 .MenuItem {
   color: black;
@@ -164,8 +171,8 @@ compila para:
 <Button
   disabled
   classes={{
-    root: classes.root, // class name, e.g. `root-x`
-    disabled: classes.disabled, // class name, e.g. `disabled-x`
+    root: classes.root, // nome da classe, p.ex. `root-x`
+    disabled: classes.disabled, // nome da classe, p.ex. `disabled-x`
   }}
 >
 ```
@@ -174,13 +181,13 @@ compila para:
 
 ### Sobrescrevendo com estilos em linha
 
-A segunda maneira de sobrescrever o estilo de um componente é usar a abordagem de estilo **em linha**. Cada componente fornece uma propriedade `style`. Essas propriedades são sempre aplicadas ao elemento raiz.
+A segunda maneira de sobrescrever o estilo de um componente é usar a abordagem de estilo **inline**. Cada componente fornece uma propriedade `style`. Essas propriedades são sempre aplicadas ao elemento raiz.
 
-Você não precisa se preocupar com a especificidade do CSS, pois o estilo em linha tem precedência sobre o CSS regular.
+Você não precisa se preocupar com a especificidade do CSS, pois o estilo inline tem precedência sobre o CSS regular.
 
 {{"demo": "pages/customization/components/InlineStyle.js"}}
 
-[Quando devo usar o estilo em linha vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes)
+[Quando devo usar o estilo inline vs classes?](/getting-started/faq/#when-should-i-use-inline-style-vs-classes)
 
 ## 2. Variação dinâmica para uma situação única
 
@@ -228,7 +235,7 @@ As demonstrações desta seção abordam como alterar o tamanho da fonte do bot�
 
 ### Variáveis de tema
 
-Você pode ajustar [as variáveis de configuração do tema](/customization/themes/#theme-configuration-variables).
+You can adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
 
 ```jsx
 const theme = createMuiTheme({

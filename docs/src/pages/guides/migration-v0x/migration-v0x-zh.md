@@ -13,7 +13,7 @@
 Material-UI 这个项目是从[4年前](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46)开始的。 在此期间，整个个生态系统发展了很多，我们也学到了很多东西。 [@nathanmarks](https://github.com/nathanmarks/) 启动了一项雄心勃勃的任务，将 Material-UI **重新启动**，并利用我们学到的知识，来解决一些长期存在的问题。 譬如这些主要的变化：
 
 - 我们采用 CSS-in-JS 这个新的样式方案（更好的[自定义](/customization/components/)的能力和整体性能）
-- 新的 [主题处理](/customization/themes/) （有嵌套，自主支撑等。）
+- 新的 主题处理 （有嵌套，自主支撑等。）
 - 感谢 [Next.js](https://github.com/zeit/next.js) 超快地创建文档
 - 更容易检测 [测试覆盖率](/guides/testing/) （99％以上，在所有主流浏览器上运行， [视觉回归测试](https://www.argos-ci.com/mui-org/material-ui)）
 - 完全[服务器端渲染](/guides/server-rendering/)支持
@@ -24,44 +24,42 @@ Material-UI 这个项目是从[4年前](https://github.com/mui-org/material-ui/c
 1. 首先，和v0.x版本一起，安装v1.x版本的 Material-UI。
     
     用 yarn：
-    
-    ```sh
-    yarn add material-ui
-    yarn add @material-ui/core
-    ```
-    
-    或者用 npm：
-    
-    ```sh
-    npm install material-ui
-    npm install @material-ui/core
-    ```
-    
-    然后
-    
-    ```js
-    import FlatButton from 'material-ui/FlatButton'; // v0.x
-    import Button from '@material-ui/core/Button'; // v1.x
-    ```
 
-2. 在您的项目上运行 [迁移帮助程序](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod)。
+```sh
+  yarn add material-ui
+  yarn add @material-ui/core
+  ```
 
-3. `MuiThemeProvider` 对于v1.x.版本是可选的，但如果您有自定义主题，则可以同时使用该组件的v0.x和v1.x版本，如下所示：
-    
-    ```jsx
-    import React from 'react';
-    import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
-    import { MuiThemeProvider as V0MuiThemeProvider} from 'material-ui';
-    import getMuiTheme from 'material-ui/styles/getMuiTheme';
-    
-    const theme = createMuiTheme({
-    /* v1.x版本的主题 */
-    });
-    const themeV0 = getMuiTheme({
-    /* v0.x 版本的主题*/
-    });
-    
-    function App() {
+  Or with npm:
+  ```sh
+  npm install material-ui
+  npm install @material-ui/core
+  ```
+
+  then
+
+  ```js
+  import FlatButton from 'material-ui/FlatButton'; // v0.x
+  import Button from '@material-ui/core/Button'; // v1.x
+  ```
+
+2. Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) on your project.
+3。 `MuiThemeProvider` is optional for v1.x., but if you have a custom theme, you are free to use v0.x and v1.x versions of the component at the same time, like this:
+
+  ```jsx
+  import React from 'react';
+  import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
+  import { MuiThemeProvider as V0MuiThemeProvider} from 'material-ui';
+  import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
+  const theme = createMuiTheme({
+    /* theme for v1.x */
+  });
+  const themeV0 = getMuiTheme({
+    /* theme for v0.x */
+  });
+
+  function App() {
     return (
       <MuiThemeProvider theme={theme}>
         <V0MuiThemeProvider muiTheme={themeV0}>
@@ -69,26 +67,27 @@ Material-UI 这个项目是从[4年前](https://github.com/mui-org/material-ui/c
         </V0MuiThemeProvider>
       </MuiThemeProvider>
     );
-    }
-    
-    export default App;
-    ```
+  }
+
+  export default App;
+  ```
 
 4. 之后，您可以自由地一次迁移一个组件实例。
 
-## 组件
+## Components
 
-### Autocomplete（自动补全）
+### Autocomplete
 
-Material-UI 不提供用于解决此问题的高级 API。 我们鼓励您去探索 [React 社区提供的解决方案](/components/autocomplete/) 。
+Material-UI doesn't provide a high-level API for solving this problem.
+You're encouraged you to explore [the solutions the React community has built](/components/autocomplete/).
 
-在未来，我们将研究提供一个简单的组件来解决简单的用例： [＃9997](https://github.com/mui-org/material-ui/issues/9997)。
+In the future, we will look into providing a simple component to solve the simple use cases: [#9997](https://github.com/mui-org/material-ui/issues/9997).
 
-### Svg Icon（Svg图标）
+### Svg Icon
 
-在您的项目上运行 [迁移帮助程序](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod)。
+Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) on your project.
 
-这将应用如下更改：
+This will apply a change such as the following:
 
 ```diff
 -import AddIcon from 'material-ui/svg-icons/Add';
@@ -188,4 +187,4 @@ Material-UI 不提供用于解决此问题的高级 API。 我们鼓励您去探
 
 ### 未完待续...
 
-您是否已成功迁移您的应用，并助社区一臂之力？ 请帮助我们！ 我们有一个未解决的问题，以完成此迁移指南 [＃7195](https://github.com/mui-org/material-ui/issues/7195)。 我们欢迎任何 pull request。
+您是否已成功迁移您的应用，并助社区一臂之力？ 请帮助我们！ 我们有一个未解决的问题，以完成此迁移指南 [＃7195](https://github.com/mui-org/material-ui/issues/7195)。 Any pull request is welcomed 😊.

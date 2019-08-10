@@ -4,17 +4,17 @@
 
 ## Paketgröße zählt
 
-Die Paketgröße von Material-UI wird sehr ernst genommen. Bei jedem Commit werden für jedes Paket und für kritische Teile dieser Pakete Größen-Snapshots erstellt ([siehe letzten Snapshot](/size-snapshot)). Wir können, kombiniert mit [dangerJS](https://danger.systems/js/), [detaillierte Änderungen der Bündelgröße](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) bei jedem Pull Request prüfen.
+Die Paketgröße von Material-UI wird sehr ernst genommen. We take size snapshots on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot)). Wir können, kombiniert mit [dangerJS](https://danger.systems/js/), [detaillierte Änderungen der Bündelgröße](https://github.com/mui-org/material-ui/pull/14638#issuecomment-466658459) bei jedem Pull Request prüfen.
 
 ## Wie kann ich die Paketgröße reduzieren?
 
-Der Einfachheit halber stellt Material-UI seine vollständige API auf der oberste Ebene des `material-ui` Imports zur Verfügung. Wenn Sie ES6 Module und einen Bundler verwenden, der Tree-Shaking unterstützt ([`webpack` >= 2.x ](https://webpack.js.org/guides/tree-shaking/), [ ` parcel` mit zusätzlicher Konfiguration](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)), können Sie sicher benannte Importe verwenden und nur einen minimalen Satz von Material-UI-Komponenten in Ihrem Bundles erwarten:
+Der Einfachheit halber stellt Material-UI seine vollständige API auf der oberste Ebene des `material-ui` Imports zur Verfügung. If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and expect only a minimal set of Material-UI components in your bundle:
 
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-Beachten Sie, dass das Tree-Shacking eine Optimierung darstellt, die normalerweise nicht in der Entwicklungsumgebung angewendet wird. Bundles in der Entwicklungsumgebung werden die gesamte Bibliothek enthalten, was zu langsamen Startzeiten führen kann. Dies macht sich insbesondere dann bemerkbar, wenn Sie aus `@material-ui/icons` importieren. Die Startzeiten können ungefähr 6-mal langsamer sein als ohne benannte Importe von der API der obersten Ebene.
+⚠️ Beachten Sie, dass das Tree-Shacking eine Optimierung darstellt, die normalerweise nicht in der Entwicklungsumgebung angewendet wird. Development bundles will contain the full library which can lead to **slower startup times**. Dies macht sich insbesondere dann bemerkbar, wenn Sie aus `@material-ui/icons` importieren. Die Startzeiten können ungefähr 6-mal langsamer sein als ohne benannte Importe von der API der obersten Ebene.
 
 If this is an issue for you, you have various options:
 
@@ -29,61 +29,97 @@ import { Button, TextField } from '@material-ui/core';
 verwende:
 
 ```js
+// 🚀 Fast
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 ```
+
+This is the option we document in **all** the demos because it requires no configuration. We encourage it for library authors extending our components. Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
 
 Beim direkten Importieren auf diese Weise werden die Exporte in [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js) nicht verwendet. Diese Datei kann trotzdem als praktische Referenz für die öffentlichen Module dienen.
 
 Be aware that we only support first and second level imports. Alles drunter wird als privat betrachtet und kann zu einer Duplizierung des Moduls in Ihrem Bundle führen.
 
 ```js
-// OK
+// ✅ OK
 import { Add as AddIcon } from '@material-ui/icons';
 import { Tabs } from '@material-ui/core';
-//                                 ^^^^ 1. oder Top-Level
+//                                 ^^^^ 1st or top-level
 
-// OK
+// ✅ OK
 import AddIcon from '@material-ui/icons/Add';
 import Tabs from '@material-ui/core/Tabs';
-//                                  ^^^^ 2. Level
+//                                  ^^^^ 2nd level
 
-// NICHT OK
+// ❌ NOT OK
 import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
-//                                               ^^^^^^^^^^^^ 3. Level
+//                                               ^^^^^^^^^^^^ 3rd level
 ```
 
 ### Option 2
 
-**Wichtiger Hinweis**: Dies wird nur für `@material-ui/icons` unterstützt. Wir empfehlen diesen Ansatz, wenn Sie Ihren Entwicklungsbuild häufig neu starten.
+This option provides the best DX and UX. However, you need to apply the following steps correctly.
 
-Eine weitere Option ist benannte Import zu benutzen, aber immer noch kurze Startzeiten zu erhalten, indem Sie `babel` Plugins benutzen.
+#### 1. Configure Babel
 
 Wählen Sie eines der folgenden Plugins:
 
-- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) mit folgender Konfiguration: 
-        js
-        [
-        'babel-plugin-import',
-        {
-          libraryName: '@material-ui/icons',
-          libraryDirectory: 'esm', // order falls dein Bundler keine ES Module unterstützt
-          camel2DashComponentName: false,
-        },
-        ];
+- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) with the following configuration:
 
-- [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-import) hat eine andere Api als `babel-plugin-import` aber macht das gleiche. 
-        js
-        [
-        'transform-imports',
-        {
-          '@material-ui/icons': {
-            transform: '@material-ui/icons/esm/${member}',
-            / Für Bundler, die keine ES-Module unterstützen, verwenden Sie:
-            // transform: '@material-ui/icons/${member}',
-          },
-        },
-        ];
+```js
+  plugins: [
+    [
+      'babel-plugin-import',
+      {
+        libraryName: '@material-ui/core',
+        libraryDirectory: 'esm', // or '' if your bundler does not support ES modules
+        camel2DashComponentName: false,
+      },
+      'core',
+    ],
+    [
+      'babel-plugin-import',
+      {
+        libraryName: '@material-ui/icons',
+        libraryDirectory: 'esm', // or '' if your bundler does not support ES modules
+        camel2DashComponentName: false,
+      },
+      'icons',
+    ],
+  ],
+  ```
+- [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) with the following configuration:
+
+  ```js
+  plugins: [
+    'babel-plugin-transform-imports',
+    {
+      '@material-ui/core': {
+        transform: '@material-ui/core/esm/${member}',
+        // for bundlers not supporting ES modules use:
+        // transform: '@material-ui/core/${member}',
+        preventFullImport: true,
+      },
+      '@material-ui/icons': {
+        transform: '@material-ui/icons/esm/${member}',
+        // for bundlers not supporting ES modules use:
+        // transform: '@material-ui/icons/${member}',
+        preventFullImport: true,
+      },
+    },
+  ],
+  ```
+
+#### 2. Convert all your imports
+
+Finally, you can convert your exisiting codebase to this option with our [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) codemod.
+It will perform the following diffs:
+
+```diff
+-import Button from '@material-ui/core/Button';
+-import TextField from '@material-ui/core/TextField';
++import { Button, TextField } from '@material-ui/core';
+```
 
 ## ECMAScript
 

@@ -31,7 +31,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 ## Адаптивные сетки
 
-Адаптивные сетки используют столбцы, которые масштабируют и изменяют размер содержимого. Макет адаптивной сетки может использовать точки прерывания, чтобы определить, нужно ли кардинально изменить макет.
+Fluid grids use columns that scale and resize content. A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
 
 ### Базовая сетка
 
@@ -53,7 +53,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 ## Авто-разметка
 
-Автоматическая разметка позволяет *элементам* равномерно распределять доступное пространство. Это также означает, что вы можете установить ширину одного *элемента*, а остальные будут автоматически изменять размер вокруг него.
+The Auto-layout makes the *items* equitably share the available space. That also means you can set the width of one *item* and the others will automatically resize around it.
 
 {{"demo": "pages/components/grid/AutoGrid.js"}}
 
@@ -65,7 +65,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 ## Вложенная сетка
 
-Свойства `container` и `item` - это два независимых логических значения. Они могут быть объединены.
+The `container` and `item` properties are two independent booleans. They can be combined.
 
 > Flex **контейнер** представляет собой блок, созданный элементом с вычисляемым свойством display `flex` или `inline-flex`. Дочерние элементы flex контейнера называются flex **элементы** и размещаются используя flex-модель.
 
@@ -77,7 +77,10 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### Отрицательный margin
 
-Есть одно ограничение с отрицательным margin, которое мы используем для добавления расстояния между элементами. Появится горизонтальная прокрутка, если отрицательный margin выходит за пределы `<body>`. Существует 3 обходных пути: 1. Не использовать отступы и не реализовывать их в пространстве пользователя. `spacing={0}` (по умолчанию). 2. Применение внутренних отступов (padding) к родителю с использованием, как минимум, половины значения отступа, имеющегося у дочернего элемента:
+Есть одно ограничение с отрицательным margin, которое мы используем для добавления расстояния между элементами. Появится горизонтальная прокрутка, если отрицательный margin выходит за пределы `<body>`. Существует 3 обходных пути:
+
+1. Не использовать отступы и не реализовывать их в пространстве пользователя. `spacing={0}` (по умолчанию).
+2. Применение внутренних отступов (padding) к родителю с использованием, как минимум, половины значения отступа, имеющегося у дочернего элемента:
 
 ```jsx
   <body>
@@ -89,18 +92,18 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
   </body>
 ```
 
-1. Добавление `overflow-x: hidden;` к родителю.
+3. Добавление `overflow-x: hidden;` к родителю.
 
 ### white-space: nowrap;
 
-Исходное значение для элементов Flex: `min-width: auto`. Это вызывает конфликт позиционирования, когда дети используют `white-space: nowrap;` Вы можете столкнуться со следующей проблемой:
+The initial setting on flex items is `min-width: auto`. It's causing a positioning conflict when the children is using `white-space: nowrap;`. You can experience the issue with:
 
 ```jsx
 <Grid item xs>
   <Typography noWrap>
 ```
 
-Чтобы элемент оставался в контейнере, необходимо установить `min-width: 0`. На практике вы можете использовать свойство `zeroMinWidth`:
+In order for the item to stay within the container you need to set `min-width: 0`. In practice, you can set the `zeroMinWidth` property:
 
 ```jsx
 <Grid item xs zeroMinWidth>

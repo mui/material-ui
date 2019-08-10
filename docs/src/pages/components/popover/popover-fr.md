@@ -30,7 +30,7 @@ We demonstrate how to use the `Popover` component to implement a popover behavio
 
 ## Projets complémentaires
 
-Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti des projects suivants:
+Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti des avantages suivants:
 
 ### Assistant PopupState
 

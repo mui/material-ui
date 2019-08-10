@@ -101,7 +101,7 @@ There are two options to design the API for the variations of a component: with 
     
     ```tsx
     type Props = {
-    variant: 'text' | 'contained' | 'fab';
+      variant: 'text' | 'contained' | 'fab';
     }
     ```
     

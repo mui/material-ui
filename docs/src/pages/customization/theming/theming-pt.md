@@ -1,4 +1,4 @@
-# Theming
+# Temas
 
 <p class="description">Personalize Material-UI com seu tema. Você pode mudar as cores, a tipografia e muito mais.</p>
 
@@ -19,7 +19,7 @@ O `ThemeProvider` depende do recurso de contexto do React para passar o tema par
 Alterar as variáveis de configuração do tema é a maneira mais eficaz de combinar o Material-UI às suas necessidades. As seções a seguir abordam as variáveis mais importantes do tema:
 
 - [Paleta de Cores](/customization/palette/)
-- [Tipografia](/customization/typography/)
+- [Typography](/customization/typography/)
 - [Espaçamento](/customization/spacing/)
 - [Pontos de quebra](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
@@ -31,7 +31,7 @@ Você pode conferir a [seção de tema padrão](/customization/default-theme/) p
 
 Quando usando o tema do Material-UI com nossa [solução de estilo](/styles/basics/) ou [quaisquer outras](/guides/interoperability/#themeprovider), surgem algumas necessidades de customização. Pode ser conveniente adicionar variáveis adicionais ao tema para que você possa usá-las em todos os lugares. Por exemplo:
 
-{{"demo": "pages/customization/themes/CustomStyles.js"}}
+{{"demo": "pages/customization/theming/CustomStyles.js"}}
 
 ## Acessando o tema em um componente
 
@@ -41,11 +41,11 @@ Você [pode acessar](/styles/advanced/#accessing-the-theme-in-a-component) as va
 
 [Você pode aninhar](/styles/advanced/#theme-nesting) vários provedores de tema.
 
-{{"demo": "pages/customization/themes/ThemeNesting.js"}}
+{{"demo": "pages/customization/theming/ThemeNesting.js"}}
 
 O tema interno **sobrescreverá** o tema exterior. Você pode estender o tema externo fornecendo uma função:
 
-{{"demo": "pages/customization/themes/ThemeNestingExtend.js"}}
+{{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
 ### Uma nota sobre desempenho
 

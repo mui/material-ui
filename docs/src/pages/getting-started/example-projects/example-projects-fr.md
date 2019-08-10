@@ -20,17 +20,24 @@ Le code source de ce site de documentation est également disponible sur GitHub.
 
 Vous recherchez un exemple de projet plus avancé ?
 
-If you want to start with a more complete and real world example, you could take a look at our [free themes](https://themes.material-ui.com/) or:
+If you want to start with a more complete and real world example, you could take a look at our [free templates](/getting-started/templates/) or [premium themes & templates](https://themes.material-ui.com/) or:
 
+- [React Most Wanted](https://github.com/TarikHuber/react-most-wanted), which includes:
+    
+  - Created with [Create React App](https://facebook.github.io/create-react-app/)
+  - Custom Create React App script to start a new project with just a single CLI command
+  - Build for Firebase including Authentication using the official Firebase Web Auth UI
+  - Routing with React Router including error handling (404) and lazy loading
+  - All PWA features included (SW, Notifications, deffered installation prompt and more)
+  - Optimized and scalable performance (all ~100 points on Lighthouse)
 - [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
-  
+    
   - Bootstrapped with Create React App, the same tooling works out of the box
   - Built on top of Firebase with authentication working from the start
   - Robust routing with React Router including error handling (404)
   - Extensive mobile support with [react-swipeable-views](https://react-swipeable-views.com) for tabs
-
 - [Material Sense](https://github.com/alexanmtz/material-sense), which includes:
-  
+    
   - Graph using recharts
   - React Router included with a navigation example
   - A docker container with an Nginx server for production build

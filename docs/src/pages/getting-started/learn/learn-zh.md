@@ -12,9 +12,9 @@
 
 我们在 React 上[托管了一些范例项目](/getting-started/example-projects/)，他们都提供了需要开发和部署网站的架构。
 
-## 页面布局示例
+## Templates
 
-我们提供了一个 [可供选择的基本页面布局](/getting-started/page-layout-examples/) 来帮助您开始开发您的应用程序。
+We have a [selection of basic templates](/getting-started/templates/) to help you get started building your app.
 
 ## 推荐资源
 
@@ -22,22 +22,27 @@
 
 ### 免费的资源
 
-- **Meet Material-UI — 您最喜欢的用户界面库**：这是一篇指导您创建Todo MVC，同时涵盖了 Material-UI 的一些重要概念的博文。 
+- **Meet Material-UI — your new favorite user interface library**: a blog post that guides you in building a Todo MVC while covering some important concepts of Material-UI. 
   - 📝 [博文](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
-- **学习 React 与 Material-UI**：涵盖 Material-UI 组成部分的系列视频。 
+- **Learn React & Material-UI**：一系列涵盖所有重要的 Material-UI 组件的视频。 
   - 📹 [视频](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
-- **在React中开始使用 Material-UI**：一篇博客文章，指导您构建一个简单的卡片列表。 
+- **Getting Started With Material-UI For React**：一篇指导您构建简单的卡片列表的博文。 
   - 📝 [博文](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
   - 📹 [视频](https://www.youtube.com/watch?v=PWadEeOuv5o)
-- **Elegant UX in React with Material-UI**：一篇内容涵盖一些重要的 Material-UI 概念的博文。 
+- **Elegant UX in React with Material-UI**: a blog post covering some important Material-UI concepts. 
   - 📝 [博文](https://alligator.io/react/material-ui/)
 
 ### 付费的资源
 
-- **React Material-UI Cookbook**：根据Material设计原则在react项目中使用Material-UI创建现代化应用程序。 
+- **Material-UI with React**: Material-UI is an excellent framework to develop beautiful React components faster! This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using Material-UI and React.
+  
+  - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
+  - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
+- **React Material-UI Cookbook**: Build modern day application by implementing Material Design principles in React applications using Material-UI.
+  
   - 📘 [The book](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
 
 [![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
 
-- **Builder Book**：学习如何使用 Modern JavaScript 堆栈和 Material-UI 来从头开始创建一个全栈 JavaScript Web 应用程序。 
+- **Builder Book**: Learn how to build a full-stack JavaScript web application from scratch, using a Modern JavaScript stack and Material-UI. 
   - 📘 [书](https://builderbook.org/book)

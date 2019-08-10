@@ -33,7 +33,7 @@ export default Main() {
 
 ## Collapse
 
-Klappt senkrecht vom oberen Rand des Kind-Elementes ausgehend auf. Das ` collapsedHeight` Property kann benutzt werden, um die minimale Höhe festzulegen, wenn nicht ausgeklappt.
+Expand vertically from the top of the child element. The `collapsedHeight` property can be used to set the minimum height when not expanded.
 
 {{"demo": "pages/components/transitions/SimpleCollapse.js"}}
 
@@ -53,7 +53,7 @@ Das zweite Beispiel zeigt, wie Sie die `transform-origin` ändern können und be
 
 ## Slide
 
-Gleitet vom Bildschirmrand ein. Die Eigenschaft `direction` steuert, von welchem Bildschirmrand der Übergang beginnt.
+Slide in from the edge of the screen. The `direction` property controls which edge of the screen the transition starts from.
 
 Die `mountOnEnter` -Eigenschaft der Transition-Komponente verhindert, dass die untergeordnete Komponente gezeigt wird, bis `in` gleich `true` ist. Dadurch wird verhindert, dass die relativ positionierte Komponente von der Off-Screen-Position in die Ansicht gescrollt wird. In ähnlicher Weise entfernt die `unmountOnExit` -Eigenschaft die Komponente aus dem DOM, nachdem der Übergang vom Bildschirm beendet wurde.
 

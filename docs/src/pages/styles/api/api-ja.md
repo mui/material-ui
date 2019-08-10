@@ -8,10 +8,10 @@ A function which returns [a class name generator function](https://cssinjs.org/j
 
 #### 引数
 
-1. `options` (*Object* [optional]): 
-    - `options.disableGlobal` (*ブール値* [任意]): デフォルト値 `false`. Disable the generation of deterministic class names.
-    - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
-    - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators in the same document.
+1. `オプション` (*オプジェクト* [任意]): 
+  - `options.disableGlobal` (*ブール値* [任意]): デフォルト値 `false`. Disable the generation of deterministic class names.
+  - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
+  - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators in the same document.
 
 #### 戻り値
 
@@ -72,11 +72,11 @@ Link a style sheet with a function component using the **hook** pattern.
 #### 引数
 
 1. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
-2. `options` (*Object* [optional]): 
-    - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-    - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
-    - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-    - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
+2. `オプション` (*オプジェクト* [任意]): 
+  - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
+  - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+  - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
+  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 #### 戻り値
 
@@ -154,12 +154,12 @@ Link a style sheet with a function component using the **styled components** pat
 
 1. `Component`: The component that will be wrapped.
 2. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as property of the first argument.
-3. `options` (*Object* [optional]): 
-    - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-    - `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. Provide the `theme` object to the component as a property.
-    - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
-    - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
-    - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
+3. `オプション` (*オプジェクト* [任意]): 
+  - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
+  - `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. Provide the `theme` object to the component as a property.
+  - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+  - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
+  - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
 
 #### 戻り値
 
@@ -365,17 +365,17 @@ export default function MyComponent() {
     Some implementation details that might be interesting to being aware of:
   </p>
   
-  <ul>
-    <li>
+  <ul spaces="0" level="0" marker="-">
+    <li level="0">
       It adds a <code>classes</code> property so you can override the injected class names from the outside.
     </li>
-    <li>
+    <li level="0">
       It forwards refs to the inner component.
     </li>
-    <li>
+    <li level="0">
       The <code>innerRef</code> prop is deprecated. Use <code>ref</code> instead.
     </li>
-    <li>
+    <li level="0">
       It does <strong>not</strong> copy over statics. For instance, it can be used to defined a <code>getInitialProps()</code> static method (next.js).
     </li>
   </ul>
@@ -384,26 +384,26 @@ export default function MyComponent() {
     引数
   </h4>
   
-  <ol start="1">
-    <li>
+  <ol start="1" spaces="2" level="0">
+    <li level="0">
       <code>styles</code> (<em>Function | Object</em>): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as the first argument.
     </li>
     
-    <li>
-      <code>options</code> (<em>Object</em> [optional]): <ul>
-        <li>
+    <li level="0">
+      <code>オプション</code> (<em>オプジェクト</em> [任意]): <ul spaces="0" level="1" marker="-">
+        <li level="1">
           <code>options.defaultTheme</code> (<em>Object</em> [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
         </li>
-        <li>
+        <li level="1">
           <code>options.withTheme</code> (<em>ブール値</em> [任意]): デフォルト値 <code>false</code>. Provide the <code>theme</code> object to the component as a property.
         </li>
-        <li>
+        <li level="1">
           <code>options.name</code> (<em>String</em> [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
         </li>
-        <li>
+        <li level="1">
           <code>options.flip</code> (<em>Boolean</em> [optional]): When set to <code>false</code>, this sheet will opt-out the <code>rtl</code> transformation. When set to <code>true</code>, the styles are inversed. When set to <code>null</code>, it follows <code>theme.direction</code>.
         </li>
-        <li>
+        <li level="1">
           The other keys are forwarded to the options argument of <a href="https://cssinjs.org/jss-api/#create-style-sheet">jss.createStyleSheet([styles], [options])</a>.
         </li>
       </ul>
@@ -475,8 +475,8 @@ export default MyComponent
     引数
   </h4>
   
-  <ol start="1">
-    <li>
+  <ol start="1" spaces="0" level="0">
+    <li level="0">
       <code>Component</code>: The component that will be wrapped.
     </li>
   </ol>

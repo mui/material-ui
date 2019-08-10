@@ -23,7 +23,7 @@ A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 
 ## Customized snackbars
 
-コンポーネントのカスタマイズ例をいくつか示します。あなたはこれについてもっと詳しく知ることができます [上書きドキュメントのページ](/customization/components/)。
+Here are some examples of customizing the component. 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
@@ -67,7 +67,7 @@ You can change the direction of the [Slide](/components/transitions/#slide) tran
 
 ## Complementary projects
 
-For more advanced use cases you might be able to take advantage of:
+より高度なユースケースのためにあなたは利用することができるかもしれません：
 
 ### notistack
 

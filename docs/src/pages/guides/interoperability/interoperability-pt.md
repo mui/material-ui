@@ -7,7 +7,7 @@ Este guia tem como objetivo documentar as alternativas mais populares, mas você
 - [CSS puro](#plain-css)
 - [CSS global](#global-css)
 - [Styled Components](#global-css)
-- [Módulos CSS](#styled-components)
+- [CSS Modules](#styled-components)
 - [Emotion](#css-modules)
 - [React JSS](#react-jss)
 - [Glamor](#glamor)
@@ -50,7 +50,7 @@ export default function PlainCssButton() {
 
 **Nota:** O JSS injeta seus estilos na parte inferior do `<head>`. Se você não quiser marcar atributos de estilo com **!important**, você precisa alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração.
 
-## CSS global
+## Global CSS
 
 Fornecer explicitamente os nomes das classes ao componente é um esforço excessivo? [Você pode segmentar os nomes de classe gerados por Material-UI](/styles/advanced/#with-material-ui-core).
 

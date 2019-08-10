@@ -50,7 +50,7 @@ export default function PlainCssButton() {
 
 **请注意：** JSS 在 `<head>` 底部注入其样式表。 如果您不想使用 **!important** 来标记样式属性，您则需要更改 [CSS 的注入顺序](/styles/advanced/#css-injection-order)，如上所示。
 
-## 全局 CSS
+## 全局CSS
 
 明确向提组件提供类名是不是太大费周章了？ [您可以定位到由 Material-UI 生成的类名](/styles/advanced/#with-material-ui-core)。
 
@@ -85,11 +85,11 @@ export default function GlobalCssButton() {
 
 [![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/9yxopv4vmp)
 
-**请注意：** JSS 在 `<head>` 底部注入其样式表。 如果您不想使用 **!important** 来标记样式属性，您则需要更改 [CSS 的注入顺序](/styles/advanced/#css-injection-order)，如上所示。
+**请注意：** JSS 在 `<head>` 底部注入其样式表。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/styles/advanced/#css-injection-order)，如演示中所示。
 
 ## Styled Components
 
-![评星](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
+![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
 
 `styled()` 方法适用于我们所有的组件。
 
@@ -240,7 +240,7 @@ const StyledMenu = styled(({ className, ...props }) => (
 
 ## CSS Modules
 
-![评星](https://img.shields.io/github/stars/css-modules/css-modules.svg?style=social&label=Star)
+![stars](https://img.shields.io/github/stars/css-modules/css-modules.svg?style=social&label=Star)
 
 鉴于它全权依赖于大家使用的打包方案，我们很难得知[此种样式方案](https://github.com/css-modules/css-modules)的市场占有率。
 
@@ -282,7 +282,7 @@ export default function CssModulesButton() {
 
 ## Emotion
 
-![评星](https://img.shields.io/github/stars/emotion-js/emotion.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/emotion.svg?)
+![stars](https://img.shields.io/github/stars/emotion-js/emotion.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/emotion.svg?)
 
 ### `css` 属性
 
@@ -328,7 +328,7 @@ export default function EmotionButton() {
 
 ## React JSS
 
-![评星](https://img.shields.io/github/stars/cssinjs/jss.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/react-jss.svg?)
+![stars](https://img.shields.io/github/stars/cssinjs/jss.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/react-jss.svg?)
 
 Material-UI 的样式方案与 [react-jss](https://github.com/cssinjs/react-jss) 共享了许多代码块。 为了解决我们独特的需求，我们继续开发并且克隆了项目，但是我们仍致力于合并那些从 Material-UI 返回到 react-jss 的变动和修复。
 
@@ -370,7 +370,7 @@ export default injectSheet(styles)(ReactJssButton);
 
 ## Glamor
 
-![评星](https://img.shields.io/github/stars/threepointone/glamor.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/glamor.svg?)
+![stars](https://img.shields.io/github/stars/threepointone/glamor.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/glamor.svg?)
 
 使用 Glamour 应用样式的一个好的办法是利用 **css()** 函数，然后使用 **classnames** 将它们打包为字符串：
 

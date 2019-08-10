@@ -36,7 +36,7 @@ const theme = createMuiTheme({
     // Name of the component ⚛️
     MuiButtonBase: {
       // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 
+      disableRipple: true, // No more ripple, on the whole application 💣!
     },
   },
 });
@@ -93,12 +93,7 @@ const theme = createMuiTheme({
 
 ## 是否必须使用 JSS 给我的 app 添加样式？
 
-It's recommended:
-
-- JSS 是已经内置的插件，所以它不会产生额外的应用包体尺寸。
-- 它速度很快 & 内存占用率更低。
-- 它的 API干净并且前后一致。
-- 它支持大量的进阶功能，可以通过自身和 插件实现。
+No, it's not required. But this dependenency comes built in, so carries no additional bundle size overhead.
 
 然而，您可能已经在你的应用程序上添加了一些使用其他样式的Material-UI组件，或者已经熟悉了一个完全不同的API而不想学习新的？ 在这种情况下，请转到[Style Library Interoperability（样式库互用）](/guides/interoperability/) 部分，在哪里你可以找到我们提供的用其他样式库来替换 Material-UI 组件样式的简单方法。
 
@@ -294,7 +289,7 @@ function handleRender(req, res) {
 
 ## 为什么我的应用程序看到的颜色和文档里的颜色大相径庭？
 
-文档网站使用了一个自定义的主题。 因此，调色板和 Material-UI 传播的默认的主题是截然不同的。 请参考[这页](/customization/themes/) 来了解自定义主题。
+文档网站使用了一个自定义的主题。 因此，调色板和 Material-UI 传播的默认的主题是截然不同的。 请参考[这页](/customization/theming/) 来了解自定义主题。
 
 ## Material-UI 很棒。 我该如何支持该项目？
 

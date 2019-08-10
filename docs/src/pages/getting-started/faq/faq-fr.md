@@ -36,7 +36,7 @@ const theme = createMuiTheme({
     // Name of the component ⚛️
     MuiButtonBase: {
       // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 
+      disableRipple: true, // No more ripple, on the whole application 💣!
     },
   },
 });
@@ -93,12 +93,7 @@ const theme = createMuiTheme({
 
 ## Do I have to use JSS to style my app?
 
-It's recommended:
-
-- It comes built in, so carries no additional bundle size overhead.
-- It's fast & memory efficient.
-- It has a clean, consistent API.
-- It supports a number of advanced features, either natively, or through plugins.
+No, it's not required. But this dependenency comes built in, so carries no additional bundle size overhead.
 
 However perhaps you're adding some Material-UI components to an app that already uses another styling solution, or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the [Style Library Interoperability](/guides/interoperability/) section, where we show how simple it is to restyle Material-UI components with alternative style libraries.
 
@@ -253,7 +248,7 @@ There is a class name mismatch between the client and the server. It might work 
 
 #### Action to Take
 
-The class names value relies on the concept of [class name generator](/styles/advanced/#class-names). The whole page needs to be rendered with **a single generator**. This generator needs to behave identically on the server and on the client. For instance:
+The class names value relies on the concept of [class name generator](/styles/advanced/#class-names). The whole page needs to be rendered with **a single generator**. This generator needs to behave identically on the server and on the client. Par exemple:
 
 - You need to provide a new class name generator for each request. But you shouldn't share a `createGenerateClassName()` between different requests:
 
@@ -294,7 +289,7 @@ function handleRender(req, res) {
 
 ## Why are the colors I am seeing different from what I see here?
 
-The documentation site is using a custom theme. Hence, the color palette is different from the default theme that Material-UI ships. Please refer to [this page](/customization/themes/) to learn about theme customization.
+The documentation site is using a custom theme. Hence, the color palette is different from the default theme that Material-UI ships. Please refer to [this page](/customization/theming/) to learn about theme customization.
 
 ## Material-UI is awesome. How can I support the project?
 

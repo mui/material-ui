@@ -99,8 +99,8 @@ Na demonstração a seguir, alteramos o elemento DOM renderizado (*em*, <u>u</u>
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Match [md, ∞[
-    //       [960px, ∞[
+    // Corresponde [md, ∞[
+    //             [960px, ∞[
     [theme.breakpoints.up('md')]: {
       backgroundColor: 'red',
     },
@@ -124,9 +124,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Match [0, md + 1[
-    //       [0, lg[
-    //       [0, 1280px[
+    // Corresponde [0, md + 1[
+    //             [0, lg[
+    //             [0, 1280px[
     [theme.breakpoints.down('md')]: {
       backgroundColor: 'red',
     },
@@ -150,9 +150,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Match [md, md + 1[
-    //       [md, lg[
-    //       [960px, 1280px[
+    // Corresponde [md, md + 1[
+    //             [md, lg[
+    //             [960px, 1280px[
     [theme.breakpoints.only('md')]: {
       backgroundColor: 'red',
     },
@@ -177,9 +177,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Match [sm, md + 1[
-    //       [sm, lg[
-    //       [600px, 1280px[
+    // Corresponde [sm, md + 1[
+    //             [sm, lg[
+    //             [600px, 1280px[
     [theme.breakpoints.between('sm', 'md')]: {
       backgroundColor: 'red',
     },
@@ -201,10 +201,10 @@ Alguns detalhes de implementação que podem ser interessantes para estar ciente
 
 #### Argumentos
 
-1. `options` (*Object* [optional]): 
-    - `options.withTheme` (*Boolean* [opcional]): Padrão `false`. Fornecer o objeto `theme` para o componente como uma propriedade.
-    - `options.noSSR` (*Boolean* [opcional]): Padrão `false`. Para realizar a reconciliação de renderização do lado do servidor, ele precisa renderizar duas vezes. Uma primeira vez sem nada e uma segunda vez com os filhos. Este ciclo de renderização de dupla passagem tem uma desvantagem. A interface do usuário pode piscar. Você pode definir esse sinalizador para `true` se você não estiver fazendo a renderização do lado do servidor.
-    - `options.initialWidth` (*Breakpoint* [opcional]): Como `window.innerWidth` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. Você pode querer usar uma heurística para aproximar a largura da tela no navegador do cliente. Por exemplo, você poderia estar usando o user-agent ou o client-hint. https://caniuse.com/#search=client%20hint, também podemos definir a largura inicial globalmente usando [`propriedades customizadas`](/customization/globals/#default-props) no tema. Para definir o initialWidth, precisamos passar uma propriedade customizada com esta forma:
+1. `options` (*Object* [opcional]): 
+  - `options.withTheme` (*Boolean* [opcional]): Padrão `false`. Fornecer o objeto `theme` para o componente como uma propriedade.
+  - `options.noSSR` (*Boolean* [opcional]): Padrão `false`. Para realizar a reconciliação de renderização do lado do servidor, ele precisa renderizar duas vezes. Uma primeira vez sem nada e uma segunda vez com os filhos. Este ciclo de renderização de dupla passagem tem uma desvantagem. A interface do usuário pode piscar. Você pode definir esse sinalizador para `true` se você não estiver fazendo a renderização do lado do servidor.
+  - `options.initialWidth` (*Breakpoint* [opcional]): Como `window.innerWidth` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. Você pode querer usar uma heurística para aproximar a largura da tela no navegador do cliente. Por exemplo, você poderia estar usando o user-agent ou o client-hint. https://caniuse.com/#search=client%20hint, também podemos definir a largura inicial globalmente usando [`propriedades customizadas`](/customization/globals/#default-props) no tema. Para definir o initialWidth, precisamos passar uma propriedade customizada com esta forma:
 
 ```js
 const theme = createMuiTheme({

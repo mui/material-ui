@@ -5,15 +5,15 @@ components: Popper
 
 # Popper
 
-<p class="description">O Popper pode ser usado para exibir algum conteúdo em cima do outro. É uma alternativa ao react-popper.</p>
+<p class="description">Um Popper pode ser usado para exibir algum conteúdo em cima do outro. É uma alternativa para react-popper.</p>
 
 Algumas características importantes do componente `Popper`:
 
-- 
-- 
-- 
-- O componente children para o corpo do documento é o [`Portal`](/components/portal/) para evitar problemas de renderização. Você pode desativar esse comportamento com `disablePortal`.
-- A rolagem não é bloqueada como no componente [`Popover`](/components/popover/). O posicionamento do popper é atualizado com a área disponível na janela de visualização (viewport).
+- 🕷 Popper é baseado na biblioteca de terceiros ([Popper.js](https://github.com/FezVrasta/popper.js)) para um posicionamento perfeito.
+- 💄 É uma API alternativa para react-popper. Visa a simplicidade.
+- 📦 [10 kB gzipped](/size-snapshot) (7 kB do Popper.js).
+- O elemento filho [`Portal`](/components/portal/) no corpo do documento, evita problemas de renderização. Você pode desativar esse comportamento com `disablePortal`.
+- O scroll não e bloqueado como ocorre com o componente [`Popover`](/components/popover/). O posicionamento do popper é atualizado com a área disponível no visor.
 - Clicar fora não oculta o componente `Popper`. Se você precisar desse comportamento, você pode usar o componente [`ClickAwayListener`](/components/click-away-listener/) - veja o exemplo na [seção da documentação do menu](/components/menus/#menulist-composition).
 - O `anchorEl` é passado como o objeto de referência para criar uma nova instância `Popper.js`.
 
@@ -49,7 +49,7 @@ Selecione parte do texto para ver o popper:
 
 ## Projetos Complementares
 
-Para usos mais avançados, você pode tirar vantagem com:
+Para casos de uso mais avançados, você pode tirar proveito de:
 
 ### PopupState helper
 

@@ -5,15 +5,15 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 # Expansion Panels
 
-<p class="description">Expansion panels contain creation flows and allow lightweight editing of an element.</p>
+<p class="description">Expansion panels(拡張パネル) には作成フローが含まれ、要素を簡単に編集できます。</p>
 
-[An expansion panel](https://material.io/archive/guidelines/components/expansion-panels.html) is a lightweight container that may either stand alone or be connected to a larger surface, such as a card.
+[拡張パネル](https://material.io/archive/guidelines/components/expansion-panels.html)は 独立した軽量のコンテナであるか、カードなどの大きなサーフェスに接続されています。
 
-> **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
+> **注：** 拡張パネルについては、<a href=「https://material.io/」>Material Design guidelines</a>では説明されていませんが、Material-UIでは引き続きサポートされます。
 
 ## アクセシビリティ
 
-For optimal accessibility we recommend setting `id` and `aria-controls` on the `ExpansionPanelSummary`. The `ExpansionPanel` will derive the necessary `aria-labelledby` and `id` for the content region of the panel.
+最適なアクセシビリティのために、 `ExpansionPanelSummary``id` と `aria-controls` を設定することをお勧めします。 `ExpansionPanel` は、パネルのコンテンツ領域に必要な `aria-labelledby` および `id` を導き出します。
 
 ## Simple Expansion Panel
 
@@ -21,22 +21,22 @@ For optimal accessibility we recommend setting `id` and `aria-controls` on the `
 
 ## Controlled Accordion
 
-Extend the default panel behavior to create an accordion with the `ExpansionPanel` component.
+パネルのデフォルトの動作を拡張し、`ExpansionPanel`コンポーネントを使用してアコーディオンを作成します。
 
 {{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js"}}
 
-## Secondary heading and Columns
+## Secondary heading and Columns (第2の見出しと列)
 
-Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
+複数の列を使用してコンテンツを構成でき、ユーザーを支援するためにヘルパーテキストをパネルに追加できます。
 
 {{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}
 
-## Performance
+## パフォーマンス
 
-The content of ExpansionPanels is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`: `<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />`. As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
+ExpansionPanelsのコンテンツは、パネルが展開されていない場合でもデフォルトでマウントされます。 このデフォルトの動作では、サーバー側のレンダリングとSEOが考慮されています。 パネル内に高価なコンポーネントツリーをレンダリングするか、単に パネルを多数レンダリングする場合は、 `TransitionProps`： `<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />`の `unmountOnExit` 有効にしてこのデフォルトの動作を変更することをお勧めします。 他のパフォーマンス最適化と同様、これは特効薬ではありません。 まずボトルネックを特定してから、これらの最適化戦略を試してください。
 
-## Customized expansion panels
+## カスタマイズされた拡張パネル
 
-コンポーネントのカスタマイズ例をいくつか示します。あなたはこれについてもっと詳しく知ることができます [上書きドキュメントのページ](/customization/components/)。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}

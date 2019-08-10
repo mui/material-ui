@@ -42,4 +42,4 @@ Lorsqu'un label ne peut pas être utilisé, il est nécessaire d'ajouter un attr
 
 ## Conseils
 
-- [Checkboxes vs. Cases d’option](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

@@ -35,7 +35,7 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 ## Customized menus
 
-コンポーネントのカスタマイズ例をいくつか示します。あなたは[上書きドキュメントのページ](/customization/components/)でこれについてもっと詳しく知ることができます。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
@@ -61,7 +61,7 @@ Use a different transition.
 
 ## Complementary projects
 
-For more advanced use cases you might be able to take advantage of:
+より高度なユースケースのためにあなたは利用することができるかもしれません：
 
 ### PopupState helper
 

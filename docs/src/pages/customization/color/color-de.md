@@ -49,7 +49,7 @@ Um ein [ material.io/design/color ](https://material.io/design/color/) Farbschem
 
 {{"demo": "pages/customization/color/ColorTool.js", "hideHeader": true}}
 
-Die im Farbmuster angezeigte Ausgabe kann direkt in eine [`createMuiTheme()`](/customization/themes/#createmuitheme-options-theme) Funktion (zur Verwendung mit [` MuiThemeProvider`](/customization/themes/#theme-provider)) eingefügt werden:
+Die im Farbmuster angezeigte Ausgabe kann direkt in eine [`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) Funktion (zur Verwendung mit [` MuiThemeProvider`](/customization/theming/#theme-provider)) eingefügt werden:
 
 ```jsx
 import { createMuiTheme } from '@material-ui/core/styles';

@@ -46,6 +46,7 @@ Em geral, você pode esperar o seguinte ciclo de lançamento:
 | Maio de 2019 ✅ | `@material-ui/core` v4.0.0 |
 | ? ⏳            | `@material-ui/core` v5.0.0 |
 
+
 Você pode seguir os [ milestones ](https://github.com/mui-org/material-ui/milestones) para uma visão geral mais detalhada.
 
 ## Política de suporte

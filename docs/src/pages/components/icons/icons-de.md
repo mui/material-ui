@@ -34,7 +34,7 @@ Sie können [material.io/tools/icons](https://material.io/tools/icons/?style=bas
 - [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) ist unter `@material-ui/icons/Delete` bereitgestellt
 - [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) ist unter `@material-ui/icons/DeleteForever` bereitgestellt
 
-Hängen Sie bei *"themed"* Symbolen den Themenamen an den Symbolnamen an. Zum Beispiel
+For *"themed"* icons, append the theme name to the icon name. For instance with the
 
 - Das umrahmte [`delete`](https://material.io/tools/icons/?icon=delete&style=outline) Symbol ist unter `@material-ui/icons/DeleteOutlined` bereitgestellt
 - Das runde [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded) Symbol ist unter `@material-ui/icons/DeleteRounded` bereitgestellt
@@ -78,7 +78,7 @@ Die `Symbol-` Komponente zeigt ein Symbol aus einer beliebigen Symbolschriftart 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 ```
 
-`Symbol` legt den korrekten Klassennamen für die Material-Symbolschriftart fest. Bei anderen Schriftarten müssen Sie den Klassennamen mit der Eigenschaft `className` der Icon-Komponente angeben.
+`Icon` will set the correct class name for the Material icon font. For other fonts, you must supply the class name using the Icon component's `className` property.
 
 Um ein Symbol zu verwenden, wickeln Sie einfach das Symbol Namen (Schrift Ligatur) mit der `Icon` Komponente zum Beispiel:
 
@@ -100,7 +100,7 @@ Standardmäßig erbt ein Symbol die aktuelle Textfarbe. Optional können Sie die
 
 {{"demo": "pages/components/icons/FontAwesome.js", "hideEditButton": true}}
 
-## Schriftart vs SVG. Welchen Ansatz verwenden?
+## Font vs SVG. Which approach to use?
 
 Beide Ansätze funktionieren gut, es gibt jedoch einige geringfügige Unterschiede, insbesondere hinsichtlich der Leistung und der Renderqualität. Wann immer möglich, wird SVG bevorzugt, da es die Codeaufteilung ermöglicht, mehr Symbole unterstützt und schneller und besser rendert.
 
@@ -108,11 +108,14 @@ Weitere Informationen finden Sie unter [warum GitHub von Zeichensymbolen zu SVG-
 
 ## Barrierefreiheit
 
-Icons können alle Arten von aussagekräftigen Informationen vermitteln, daher ist es wichtig, dass sie die größtmögliche Anzahl von Personen erreichen. Es gibt zwei Anwendungsfälle, die Sie berücksichtigen sollten: - **Dekorative Symbole** werden nur für die visuelle oder Branding-Verstärkung verwendet. Wenn sie von der Seite entfernt würden, könnten Benutzer Ihre Seite trotzdem verstehen und verwenden. - **Semantische Symbole** sind Symbole, die Sie verwenden, um Bedeutung zu vermitteln, und nicht nur reine Dekoration. Dazu gehören Symbole ohne nebenstehenden Text, die als interaktive Steuerelemente verwendet werden, etc.
+Icons können alle Arten von aussagekräftigen Informationen vermitteln, daher ist es wichtig, dass sie die größtmögliche Anzahl von Personen erreichen. There are two use cases you’ll want to consider:
+
+- **Decorative Icons** are only being used for visual or branding reinforcement. Wenn sie von der Seite entfernt würden, könnten Benutzer Ihre Seite trotzdem verstehen und verwenden.
+- **Semantische Symbole** sind Symbole, die Sie verwenden, um Bedeutung zu vermitteln, und nicht nur reine Dekoration. Dazu gehören Symbole ohne nebenstehenden Text, die als interaktive Steuerelemente verwendet werden, etc.
 
 ### Dekorative SVG-Symbole
 
-Wenn Ihre Icons rein dekorativ sind, sind Sie bereits fertig! Wir fügen das Attribut `aria-hidden=true`, damit Ihre Symbole richtig zugänglich sind (unsichtbar).
+If your icons are purely decorative, you’re already done! We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
 
 ### Semantic SVG Symbole
 
@@ -126,7 +129,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 // ...
 
-<IconButton aria-label="Delete">
+<IconButton aria-label="delete">
   <SvgIcon>
     <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
   </SvgIcon>
@@ -135,7 +138,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 ### Dekorative Schrift-Symbole
 
-Wenn Ihre Icons rein dekorativ sind, sind Sie bereits fertig! Wir fügen das Attribut `aria-hidden=true`, damit Ihre Symbole richtig zugänglich sind (unsichtbar).
+If your icons are purely decorative, you’re already done! We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
 
 ### Semantic Font Symbole
 

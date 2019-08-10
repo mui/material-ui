@@ -30,7 +30,7 @@ We demonstrate how to use the `Popover` component to implement a popover behavio
 
 ## Complementary projects
 
-For more advanced use cases you might be able to take advantage of:
+より高度なユースケースのためにあなたは利用することができるかもしれません：
 
 ### PopupState helper
 

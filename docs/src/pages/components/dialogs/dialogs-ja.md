@@ -13,50 +13,50 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## 単純なダイアログ
 
-単純なダイアログでは、リストアイテムに関する追加の詳細やアクションを提供できます。 たとえば、アバター、アイコン、サブテキストの明確化、または直交アクション（アカウントの追加など）を表示できます。
+単純なダイアログでは、リスト項目に関する詳細情報やアクションを追加できます。 たとえば、アバター、アイコン、明確なサブテキスト、または直交するアクション（アカウントの追加など）を表示できます。
 
-Touch mechanics:
+タッチ機構:
 
 - オプションを選択するとすぐにそのオプションが確定され、メニューが閉じます
 - ダイアログの外側に触れるか、戻るを押すと、操作がキャンセルされてダイアログが閉じます。
 
 {{"demo":"pages/components/dialogs/SimpleDialog.js"}}
 
-## Alerts
+## 通知
 
-Alerts are urgent interruptions, requiring acknowledgement, that inform the user about a situation.
+アラートは緊急の中断であり、確認を必要とし、状況をユーザーに知らせます。
 
-Most alerts don't need titles. They summarize a decision in a sentence or two by either:
+ほとんどのアラートはタイトルを必要としません。 それらは一つか二つの文章で決定を次のように要約する。
 
-- Asking a question (e.g. "Delete this conversation?")
-- Making a statement related to the action buttons
+- 質問する(例「この会話を削除しますか?」)
+- アクションボタンに関連するステートメントを作る
 
-Use title bar alerts only for high-risk situations, such as the potential loss of connectivity. Users should be able to understand the choices based on the title and button text alone.
+タイトルバーの警告は、接続が切断される可能性があるなど、リスクの高い状況でのみ使用してください。 ユーザーは、タイトルとボタンテキストだけに基づいて選択を理解できる必要があります。
 
-If a title is required:
+タイトルは必須入力です。
 
-- Use a clear question or statement with an explanation in the content area, such as "Erase USB storage?".
-- Avoid apologies, ambiguity, or questions, such as “Warning!” or “Are you sure?”
+- 「USBストレージを消去しますか?」など、内容領域に明確な質問や説明を入力します。
+- 「警告」や「よろしいですか」などの謝罪、あいまいさ、または質問を避けます。
 
 {{"demo":"pages/components/dialogs/AlertDialog.js"}}
 
-## Transições
+## Transitions
 
-You can also swap out the transition, the next example uses `Slide`.
+トランジションを入れ替えることもできます。次の例では、`Slide`. を使用します。
 
 {{"demo":"pages/components/dialogs/AlertDialogSlide.js"}}
 
-## Form dialogs
+## フォームダイアログ
 
-Form dialogs allow users to fill out form fields within a dialog. For example, if your site prompts for potential subscribers to fill in their email address, they can fill out the email field and touch 'Submit'.
+フォームダイアログを使用すると、ユーザーはダイアログ内のフォームフィールドに入力できます。 例えば、潜在的な登録者にメールアドレスを入力するように求める場合、登録者はメールアドレスフィールドに入力して 「送信」 をタッチすることができる。
 
 {{"demo": "pages/components/dialogs/FormDialog.js"}}
 
 ## Customized dialogs
 
-コンポーネントのカスタマイズ例をいくつか示します。あなたはこれについてもっと詳しく知ることができます [上書きドキュメントのページ](/customization/components/)。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
-The dialog has a close button added to aide usability.
+ダイアログボックスには、操作性を高めるために閉じるボタンが追加されています。
 
 {{"demo":"pages/components/dialogs/CustomizedDialogs.js"}}
 
@@ -64,15 +64,15 @@ The dialog has a close button added to aide usability.
 
 {{"demo":"pages/components/dialogs/FullScreenDialog.js"}}
 
-## Optional sizes
+## オプションサイズ
 
-You can set a dialog maximum width by using the `maxWidth` enumerable in combination with the `fullWidth` boolean. When the `fullWidth` property is true, the dialog will adapt based on the `maxWidth` value.
+ダイアログの最大幅を設定するには、列挙型の `maxWidth` と `fullWidth` ブール値を組み合わせて使用しします。 `fullWidth` プロパティがtrueの場合、ダイアログは `maxWidth`値に基づいて調整されます。
 
 {{"demo": "pages/components/dialogs/MaxWidthDialog.js"}}
 
-## Responsive full-screen
+## レスポンシブ なfull-screen
 
-You may make a dialog responsively full screen using [`useMediaQuery`](/components/use-media-query/#usemediaquery).
+[`useMediaQuery`](/components/use-media-query/#usemediaquery)を使用して、ダイアログを全画面表示にすることができます。
 
 ```jsx
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -87,35 +87,35 @@ function MyComponent() {
 
 {{"demo":"pages/components/dialogs/ResponsiveDialog.js"}}
 
-## Confirmation dialogs
+## 確認ダイアログ
 
-Confirmation dialogs require users to explicitly confirm their choice before an option is committed. For example, users can listen to multiple ringtones but only make a final selection upon touching “OK”.
+確認ダイアログでは、オプションを確定する前にユーザーが選択内容を明示的に確認する必要があります。 たとえば、ユーザーは複数の着信音を聞くことができますが、「OK」をタッチして最終的な選択を行うだけです。
 
-Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
+確認ダイアログで[キャンセル] をタッチするか[戻る] を押すと、操作がキャンセルされ、変更が破棄されてダイアログが閉じます。
 
 {{"demo":"pages/components/dialogs/ConfirmationDialog.js"}}
 
 ## アクセシビリティ
 
-Follow the [Modal accessibility section](/components/modal/#accessibility).
+[モーダルアクセシビリティのセクション](/components/modal/#accessibility)従ってください。
 
-## Scrolling long content
+## 長いコンテンツをスクロールする
 
-When dialogs become too long for the user’s viewport or device, they scroll.
+ダイアログがユーザのビューポートまたはデバイスに対して長すぎる場合は、スクロールします。
 
-- `scroll=paper` the content of the dialog scrolls within the paper element.
-- `scroll=body` the content of the dialog scrolls within the body element.
+- `scroll=paper`: paper要素内でダイアログボックスの内容がスクロールします。
+- `scroll=body`: ダイアログの内容がbody要素内をスクロールします。
 
-Try the demo below to see what we mean:
+以下のデモを試してみてください。
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
-## Draggable dialog
+## ドラッグ可能なダイアログ
 
-You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable). To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. This will make the entire dialog draggable.
+[react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。
 
 {{"demo":"pages/components/dialogs/DraggableDialog.js"}}
 
-## Performance
+## パフォーマンス
 
 Follow the [Modal performance section](/components/modal/#performance).

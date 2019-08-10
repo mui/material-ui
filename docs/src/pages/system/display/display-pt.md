@@ -36,6 +36,7 @@ Para um desenvolvimento mais rápido para dispositivos móveis, use classes de e
 | Visível em lg   | `display={{ xs: 'none', lg: 'block', xl: 'none' }}`  |
 | Visível em xl   | `display={{ xs: 'none', xl: 'block' }}`              |
 
+
 ```jsx
 <Box display={{ xs: 'block', md: 'none' }}>
   ocultar em telas maiores que md

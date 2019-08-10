@@ -101,13 +101,13 @@ Es gibt zwei Möglichkeiten, die API für die Variationen einer Komponente zu en
     
     ```tsx
     type Props = {
-    variant: 'text' | 'contained' | 'fab';
+      variant: 'text' | 'contained' | 'fab';
     }
     ```
     
     Diese API ist ausführlicher: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
     
-    Es verhindert jedoch, dass eine ungültige Kombination verwendet wird, begrenzt die Anzahl der offengelegten Eigenschaften, und kann neue Werte in Zukunft leicht unterstützen.
+    However it prevents an invalid combination from being used, bounds the number of properties exposed, and can easily support new values in the future.
 
 Die Komponenten der Material-UI verwenden eine Kombination der beiden Ansätze gemäß den folgenden Regeln:
 

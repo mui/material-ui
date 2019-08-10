@@ -37,6 +37,6 @@ The content of ExpansionPanels is mounted by default even if the panel is not ex
 
 ## Customized expansion panels
 
-Voici un exemple de personnalisation du composant. Vous pouvez en apprendre plus à ce sujet sur la [page de documentation de personnalisation](/customization/components/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}

@@ -58,5 +58,5 @@ Material-UIはオプションで[CssBaseline](/components/css-baseline/)コン�
 これで基本的なセットアップがわかったので、次の項目について詳しく学びましょう。
 
 - [Material Designフォントとタイポグラフィ](/components/typography/)を導入する方法
-- [テーマのカスタマイズ](/customization/themes/)を活用する方法
+- [テーマのカスタマイズ](/customization/theming/)を活用する方法
 - コンポーネントの見た目を[上書き](/customization/components/)する方法

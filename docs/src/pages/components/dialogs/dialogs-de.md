@@ -13,7 +13,7 @@ Dialoge sind absichtlich unterbrechend und sollten sparsam eingesetzt werden.
 
 ## Einfache Dialoge
 
-Einfache Dialoge können zusätzliche Details oder Aktionen zu einem Listenelement bereitstellen. Sie können zum Beispiel Avatare, Symbole, Subtexte oder orthogonale Aktionen (z. B. ein Konto hinzufügen) beinhalten.
+Simple dialogs can provide additional details or actions about a list item. For example, they can display avatars, icons, clarifying subtext, or orthogonal actions (such as adding an account).
 
 Berührungsmechanik:
 
@@ -26,12 +26,12 @@ Berührungsmechanik:
 
 Alarme sind dringende Unterbrechungen, die eine Bestätigung erfordern und den Benutzer über eine Situation informieren.
 
-Die meisten Benachrichtigungen benötigen keine Titel. Sie fassen eine Entscheidung in einem oder zwei Sätzen zusammen:
+Most alerts don't need titles. They summarize a decision in a sentence or two by either:
 
 - Eine Frage stellen (zB "Dieses Gespräch löschen?")
 - Eine Aussage zu den Aktionsschaltflächen machen
 
-Verwenden Sie Titelleisten-Alarme nur für Situationen mit hohem Risiko, z. B. den möglichen Verbindungsverlust. Benutzer sollten die Auswahlmöglichkeiten allein anhand des Titels und des Schaltflächentextes verstehen können.
+Use title bar alerts only for high-risk situations, such as the potential loss of connectivity. Users should be able to understand the choices based on the title and button text alone.
 
 Falls ein Titel erforderlich ist:
 

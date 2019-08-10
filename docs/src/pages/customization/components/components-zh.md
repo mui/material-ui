@@ -24,13 +24,19 @@
 
 ### 用类覆盖样式
 
-当` className时`属性不够用，你需要访问更深层的元素，你可以利用`classes` 对象属性，来自定义该组件中所有由Material-UI注入的CSS。 每个组件的classes列表记录在**组件API**部分。 例如，您可以查看[ Button CSS API ](/api/button/#css) 。 或者，您可以使用[浏览器中的 devtools](#using-the-dev-tools) 。
+当` className时`属性不够用，你需要访问更深层的元素，你可以利用`classes` 对象属性，来自定义该组件中所有由Material-UI注入的CSS。
 
-这个例子也使用了 `withStyles()` (见上文)，但在这里， `ClassesNesting` 使用 `Button` 的 `classes` 属性来接收一个对象，该对象将 **要被覆盖的classes** (样式规则) 映射到 **对应的CSS属性名称** (值)。 组件的现有类将继续被注入，因此只需要提供你想要添加或覆盖的特定样式。
+The list of classes for each component is documented in the component API page, you should refer to the **CSS section** and **rule name column**. 例如，您可以查看[ Button CSS API ](/api/button/#css) 。 或者，您可以使用[浏览器中的 devtools](#using-the-dev-tools) 。
+
+这个例子也使用了 `withStyles()` （见上文），但在这里， `ClassesNesting` 使用 `Button` 的 `classes` 属性来接收一个对象，该对象将 **要覆盖的classes子项名** （样式规则）映射到 **对应的CSS属性名称** （值）。 组件的现有类将继续被注入，因此只需要提供你想要添加或覆盖的特定样式。
 
 请注意，除按钮样式外，按钮标签的大小写也已更改：
 
 {{"demo": "pages/customization/components/ClassesNesting.js"}}
+
+### Overriding styles with global class names
+
+[Follow this section](/styles/advanced/#with-material-ui-core).
 
 ### 使用开发工具
 
@@ -46,9 +52,9 @@
 <Button classes={{ label: 'my-class-name' }} />
 ```
 
-### 速记
+### Shorthand
 
-上面的代码示例可以通过使用**相同的CSS API**作为子组件被固定。 在此示例中， `withStyles()` 高阶组件正在注入由 [`Button` 组件](/api/button/#css)所使用的 `classes` 属性。
+上面的代码示例可以通过使用**相同的CSS API**作为子组件被固定。 在此示例中， `withStyles()` 高阶分量正在注入由 [`Button` 组件](/api/button/#css)使用的 `classes` 属性。
 
 ```jsx
 const StyledButton = withStyles({
@@ -71,7 +77,7 @@ const StyledButton = withStyles({
 
 ### 伪类
 
-组件特殊状态，如* hover * ，* focus * ，* disabled *和* selected * ，具有更高的CSS特异性。 [特异性是个锤子](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)这适用于给定的CSS声明。
+组件特殊状态，如* hover * ，* focus * ，* disabled *和* selected * ，具有更高的CSS特异性。 [特异性是一种重量](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)这适用于给定的CSS声明。
 
 为了覆盖组件的特殊状态，**需要提高特异性** 。 下面是一个示例，其中 *disabled* 状态，按钮组件使用 **伪类** （`disabled`）：
 
@@ -121,6 +127,7 @@ const StyledButton = withStyles({
 | required     | Mui-required     |
 | expanded     | Mui-expanded     |
 | selected     | Mui-selected     |
+
 
 ```css
 .MenuItem {
@@ -226,9 +233,9 @@ Material-UI尝试实现所有这些变体。 请参阅[支持的组件](/getting
 
 本节的示例介绍了如何更改按钮的字体大小。
 
-### 主题变量
+### Theme variables
 
-您可以调整[主题配置变量](/customization/themes/#theme-configuration-variables) 。
+You can adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
 
 ```jsx
 const theme = createMuiTheme({

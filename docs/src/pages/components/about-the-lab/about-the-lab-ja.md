@@ -1,10 +1,10 @@
 # About the lab
 
-<p class="description">This package hosts the incubator components that are not yet ready to move to the core.</p>
+<p class="description">このパッケージは、まだコアに移動する準備ができていないインキュベーター・コンポーネントをホストします。</p>
 
 ## インストール
 
-Install the package in your project directory with:
+次を使用して、プロジェクトディレクトリにパッケージをインストールします。
 
 ```sh
 // with npm
@@ -14,7 +14,7 @@ npm install @material-ui/lab
 yarn add @material-ui/lab
 ```
 
-The lab has a peer dependency on the core components. If you are not already using Material-UI in your project, you can install it with:
+このラボには、コアコンポーネントへのピア依存関係があります。 プロジェクトでまだMaterial-UIを使用していない場合は、次のコマンドでインストールできます。
 
 ```sh
 // npmの場合

@@ -6,7 +6,7 @@
 
 Explora la documentación del objeto del tema:
 
-{{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideEditButton": true}}
+{{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideHeader": true}}
 
 > Sugerencia: puedes jugar con la documentación del objeto del tema en **tu consola**. Se expone una variable `theme` en todas las páginas de documentación. Por favor, tenga en cuenta que la documentación está usando un tema personalizado.
 

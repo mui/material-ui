@@ -6,7 +6,7 @@
 
 Erkunden Sie das Dokumentationsdesignobjekt:
 
-{{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideEditButton": true}}
+{{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideHeader": true}}
 
 > Tipp: Sie können mit dem Theme der Dokumentation in ** Ihrer Konsole **spielen. Wir stellen eine ` Theme ` Variable auf allen Dokumentationsseiten zur Verfügung. Bitte beachten Sie, dass die Dokumentationsseite ein benutzerdefiniertes Theme verwendet.
 

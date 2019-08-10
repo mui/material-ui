@@ -5,9 +5,9 @@ components: ClickAwayListener
 
 # Прослушиватель завершающего щелчка
 
-<p class="description">Отлавливает щелчок за пределами элемента. Он прослушивает щелчки, происходящие где-либо в документе.</p>
+<p class="description">Detect if a click event happened outside of an element. It listens for clicks that occur somewhere in the document.</p>
 
-- 
+- 1.4 [1 кБ в сжатом виде](/size-snapshot).
 
 ## Простое выпадающее меню
 

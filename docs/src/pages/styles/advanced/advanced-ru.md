@@ -118,7 +118,7 @@ This is the simplest case. the wrapped component accepts a `classes` prop, it si
 const Nested = withStyles({
   root: {}, // a style rule
   label: {}, // a nested style rule
-})({ classes }) => (
+})(({ classes }) => (
   <button className={classes.root}>
     <span className={classes.label}> // 'jss2 my-label'
       Nested
@@ -440,8 +440,8 @@ const className = `${productionPrefix}-${identifier}`;
 The generated class names of the `@material-ui/core` components behave differently. When the following conditions are met, the class names are **deterministic**:
 
 - Only one theme provider is used (**No theme nesting**)
-- The style sheet has a name that starts with `Mui`. (All Material-UI components)
-- The `disableGlobal` option of the [class name generator](/styles/api/#creategenerateclassname-options-class-name-generator) is `false`. (The default)
+- The style sheet has a name that starts with `Mui` (all Material-UI components).
+- The `disableGlobal` option of the [class name generator](/styles/api/#creategenerateclassname-options-class-name-generator) is `false` (the default).
 
 These conditions are met with the most common use cases of `@material-ui/core`. For instance, this style sheet:
 
@@ -486,7 +486,7 @@ const StyledTextField = styled(TextField)`
   }
   .MuiOutlinedInput-root {
     fieldset {
-      border-color: red; 🔴
+      border-color: red; 💔
     }
     &:hover fieldset {
       border-color: yellow; 💛

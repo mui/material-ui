@@ -31,7 +31,7 @@ Here are some examples of customizing the component. 詳細については、 [�
 
 ## サイズ
 
-Fancy smaller switches? Use the `size` property.
+Fancy smaller switches? `size`プロパティを使用します。
 
 {{"demo": "pages/components/switches/SwitchesSize.js"}}
 

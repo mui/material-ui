@@ -3,11 +3,11 @@ title: Tooltip React component
 components: Tooltip
 ---
 
-# Tooltips
+# Tooltip
 
-<p class="description">Tooltips display informative text when users hover over, focus on, or tap an element.</p>
+<p class="description">ユーザーが要素上にマウスを移動したり、要素をフォーカスしたり、タップしたりすると、ツールチップにわかりやすいテキストが表示されます。</p>
 
-When activated, [Tooltips](https://material.io/design/components/tooltips.html) display a text label identifying an element, such as a description of its function.
+[Tooltips](https://material.io/design/components/tooltips.html)をアクティブにすると、機能の説明など、要素を識別するテキストラベルが表示されます。
 
 ## Simple Tooltips
 
@@ -21,7 +21,7 @@ The `Tooltip` has 12 **placements** choice. They don’t have directional arrows
 
 ## Customized tooltips
 
-コンポーネントのカスタマイズ例をいくつか示します。あなたはこれについてもっと詳しく知ることができます [上書きドキュメントのページ](/customization/components/)。
+Here are some examples of customizing the component. 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
@@ -42,23 +42,23 @@ function MyComponent(props) {
 </Tooltip>
 ```
 
-You can find a similar concept in the [wrapping components](/guides/composition/#wrapping-components) guide.
+同様の概念は、[wrapping components](/guides/composition/#wrapping-components)ガイドにも記載されています。
 
 ## Triggers
 
-You can define the types of events that cause a tooltip to show.
+ツールチップを表示するイベントのタイプを定義できます。
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
 ## Controlled Tooltips
 
-You can use the `open`, `onOpen` and `onClose` properties to control the behavior of the tooltip.
+`open`, `onOpen` and `onClose` の各プロパティを使用して、ツールチップの動作を制御できます。
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
 ## Variable Width
 
-The `Tooltip` wraps long text by default to make it readable.
+既定では、`Tooltip`は長いテキストを折り返して読みやすくします。
 
 {{"demo": "pages/components/tooltips/VariableWidth.js"}}
 

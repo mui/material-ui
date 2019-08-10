@@ -13,9 +13,9 @@ components: Drawer, SwipeableDrawer
 
 ## Cajón temporal
 
-Los cajones de navegación temporales pueden activar o cerrar. Cerrado por defecto, el cajón abre temporalmente sobre todo el contenido hasta que una sección sea seleccionada.
+Temporary navigation drawers can toggle open or closed. Closed by default, the drawer opens temporarily above all other content until a section is selected.
 
-El cajón se puede cancelar haciendo clic en la superposición o presionando la tecla Esc. Se cierra cuando se selecciona un ítem, que se maneja al controlar el prop`open`.
+The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It closes when an item is selected, handled by controlling the `open` prop.
 
 {{"demo": "pages/components/drawers/TemporaryDrawer.js"}}
 
@@ -27,7 +27,10 @@ Este componente viene con una sobrecarga de carga gzipped de 2 kB. Algunos dispo
 
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
-Estamos utilizando el siguiente conjunto de propiedades en este sitio web de documentación para una utilización óptima del componente: iOS está alojado en dispositivos de gama alta. Podemos habilitar la transición de fondo sin dejar caer marcos. El rendimiento será lo suficientemente bueno. - iOS tiene una función de "deslizar para volver" que desordena con la característica de descubrimiento. Tenemos que deshabilitarlo.
+We are using the following set of properties on this documentation website for optimal usability of the component:
+
+- iOS is hosted on high-end devices. Podemos habilitar la transición de fondo sin dejar caer marcos. El rendimiento será lo suficientemente bueno.
+- iOS tiene una función de "deslizar para volver" que desordena con la característica de descubrimiento. Tenemos que deshabilitarlo.
 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -47,7 +50,7 @@ Los cajones de navegación persistente pueden intercambiarse entre abierto o cer
 
 Cuando el cajón está fuera de la grilla de la página y se abre, fuerza al otro contenido a cambiar su tamaño y adaptarse a la vista más pequeña.
 
-Los cajones de navegación persistente son aceptables para todos los tamaños superiores a móvil. No se recomienda para aplicaciones con múltiples niveles de jerarquía que requieren usar una flecha hacia arriba para navegación.
+Persistent navigation drawers are acceptable for all sizes larger than mobile. They are not recommended for apps with multiple levels of hierarchy that require using an up arrow for navigation.
 
 {{"demo": "pages/components/drawers/PersistentDrawerLeft.js", "iframe": true}}
 
@@ -63,7 +66,7 @@ La variante mini está recomendada para secciones de la aplicación que necesite
 
 ## Cajón permanente
 
-Los cajones de navegación permanente están siempre visibles y fijos al borde izquierdo, con la misma elevación que el contenido o fondo. No pueden ser cerrados.
+Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
 
 Los cajones de navegación permanentes son los **recomendados por defecto para escritorio**.
 

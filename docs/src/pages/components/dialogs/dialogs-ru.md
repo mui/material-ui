@@ -13,7 +13,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## Простые диалоги
 
-Простые диалоги могут предоставить дополнительные детали или действия по элементу списка. Например, они могут отображать аватары, значки, уточняющий подтекст или ортогональные действия (например, добавление учетной записи).
+Simple dialogs can provide additional details or actions about a list item. For example, they can display avatars, icons, clarifying subtext, or orthogonal actions (such as adding an account).
 
 Особенности механики касаний:
 
@@ -26,12 +26,12 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 Оповещения - это срочные сообщения, требующие подтверждения, которые информируют пользователя о ситуации.
 
-Большинству оповещений не нужны названия. Они суммируют решение в предложении или два:
+Most alerts don't need titles. They summarize a decision in a sentence or two by either:
 
 - Задать вопрос (например, «Удалить этот разговор?»)
 - Создать заявления, связанное с кнопками действий
 
-Используйте предупреждения в строке заголовка только для ситуаций с высоким риском, таких как потенциальная потеря подключения. Пользователи должны уметь понимать варианты, основываясь только на заголовке и тексте кнопки.
+Use title bar alerts only for high-risk situations, such as the potential loss of connectivity. Users should be able to understand the choices based on the title and button text alone.
 
 Если требуется название:
 

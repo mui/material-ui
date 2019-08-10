@@ -15,9 +15,9 @@ Um exemplo simples sem frescuras.
 
 {{"demo": "pages/components/tabs/SimpleTabs.js"}}
 
-### Etiquetas embrulhadas
+### Rótulos com quebras
 
-Os rótulos longos serão agrupados automaticamente nas guias. Se o marcador for muito longo para a guia, ele será excedido e o texto não ficará visível.
+Os rótulos longos serão quebrados automaticamente nas guias. Se o rótulo for muito longo para a guia, ele irá exceder e o texto não ficará visível.
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
 
@@ -47,7 +47,7 @@ A propriedade `centered` deve ser usada para views maiores.
 
 ### Botões de rolagem automáticos
 
-Botões de rolagem para esquerda e direita serão apresentados automaticamente em dispositivos desktop e ocultados em dispositivos mobile. (baseado na largura de exibição do dispositivo)
+Botões de rolagem para a esquerda e para a direita serão automaticamente apresentados em visualizações desktop e ocultos em móveis. (com base na largura da janela de visualização)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonAuto.js"}}
 
@@ -59,21 +59,25 @@ Botões de rolagem para esquerda e direita serão apresentados independente da l
 
 ### Impedir botões de rolagem
 
-Botões de rolagem para esquerda e direita nunca serão exibidos. Toda e qualquer rolagem será iniciada através dos mecanismos do navegador do dispositivo (exemplo: arrastar para direita ou esquerda, roda do mouse + shipt, etc.)
+Botões de rolagem para a esquerda e para a direita nunca serão apresentados. Toda rolagem deve ser iniciada por meio de mecanismos de rolagem do agente do usuário (por exemplo, deslizar para a esquerda/direita, rolar scroll do mouse, etc.)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js"}}
 
 ## Guias customizadas
 
-Aqui está um exemplo de personalização do componente. Você pode aprender mais sobre isso na [página de documentação de substituições](/customization/components/).
+Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js"}}
 
+👑 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/components/tabs).
 
+## Guias verticais
+
+{{"demo": "pages/components/tabs/VerticalTabs.js"}}
 
 ## Guias de navegação
 
-Por padrão as guias usam um elemento `button`, mas você pode definir sua própria tag ou seu próprio componente. Aqui vai um exemplo de implementação de guia de navegação:
+Por padrão, as guias usam um elemento `button`, mas você pode fornecer sua própria tag personalizada ou componente. Veja um exemplo de implementação da navegação por guias:
 
 {{"demo": "pages/components/tabs/NavTabs.js"}}
 

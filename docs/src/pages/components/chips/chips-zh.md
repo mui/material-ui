@@ -9,7 +9,7 @@ components: Chip
 
 [纸片组件](https://material.io/design/components/chips.html) 允许用户输入信息、进行选择、筛选内容或触发操作。
 
-虽然我们将纸片包含在这里作为独立组件，但更常见的作法是用在表单中作为一种用户输入，因此本篇演示的内容并不会显示具体的上下文关联内容。
+Chips虽然被包含在这里作为独立组件，但更常见的作法是用在上下文中作为一种用户输入，因此本篇演示的内容并不会显示具体的上下文关联内容。
 
 ## 纸片组件
 
@@ -32,18 +32,18 @@ components: Chip
 
 {{"demo": "pages/components/chips/ChipsArray.js"}}
 
-## Small Chip
+## 小型纸片组件
 
-You can use the `size` prop to define a small Chip.
+您可以借助 `size` 属性来定义一个小型纸片组件。
 
-### Default variant
+### 默认的变体
 
 {{"demo": "pages/components/chips/SmallChips.js"}}
 
-### Outlined variant
+### 描边的变体
 
 {{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
 
-## 纸片演练
+## 在线编译纸片组件
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}

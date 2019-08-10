@@ -7,7 +7,7 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 <p class="description">菜单在临时出现的位置上展示一系列的选项列表。</p>
 
-一个[菜单](https://material.io/design/components/menus.html)在临时的界面上列出了一系列的选项。当用户和按钮，或其他控件交互的时候，菜单会再次出现。
+A [Menu](https://material.io/design/components/menus.html) displays a list of choices on a temporary surface. It appears when the user interacts with a button, or other control.
 
 ## 简单菜单
 
@@ -35,11 +35,11 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 ## 自定义菜单
 
-以下是自定义组件的一个示例。您可以在[重写文档页面](/customization/components/)中了解有关此内容的更多信息。
+以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
-`MenuItem` 实际上是在 `ListItem` 之上增加了一些样式的封装。 因此你可以使用和 `MenuItem` 组件相同的列表组合特性：
+The `MenuItem` is a wrapper around `ListItem` with some additional styles. You can use the same list composition features with the `MenuItem` component:
 
 ## 限高菜单
 
