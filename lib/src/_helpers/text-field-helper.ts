@@ -1,5 +1,4 @@
 import { DatePickerProps } from '..';
-import { Omit } from '@material-ui/core';
 import { IUtils } from '@date-io/core/IUtils';
 import { ParsableDate } from '../constants/prop-types';
 import { BasePickerProps } from '../typings/BasePicker';

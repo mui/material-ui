@@ -5,7 +5,7 @@ import DayWrapper from './DayWrapper';
 import CalendarHeader from './CalendarHeader';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import SlideTransition, { SlideDirection } from './SlideTransition';
-import { Theme } from '@material-ui/core';
+import { Theme } from '@material-ui/core/styles';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { runKeyHandler } from '../../_shared/hooks/useKeyDown';
 import { IconButtonProps } from '@material-ui/core/IconButton';
