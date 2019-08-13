@@ -170,28 +170,30 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
 
     if (tabMeta && tabsMeta) {
       if (vertical) {
-        startValue = Math.round(tabMeta.top - tabsMeta.top + tabsMeta.scrollTop);
+        startValue = tabMeta.top - tabsMeta.top + tabsMeta.scrollTop;
       } else {
         const correction = isRtl
           ? tabsMeta.scrollLeftNormalized + tabsMeta.clientWidth - tabsMeta.scrollWidth
           : tabsMeta.scrollLeft;
-        startValue = Math.round(tabMeta.left - tabsMeta.left + correction);
+        startValue = tabMeta.left - tabsMeta.left + correction;
       }
     }
 
     const newIndicatorStyle = {
       [start]: startValue,
       // May be wrong until the font is loaded.
-      [size]: tabMeta ? Math.round(tabMeta[size]) : 0,
+      [size]: tabMeta ? tabMeta[size] : 0,
     };
 
-    if (
-      (newIndicatorStyle[start] !== indicatorStyle[start] ||
-        newIndicatorStyle[size] !== indicatorStyle[size]) &&
-      !isNaN(newIndicatorStyle[start]) &&
-      !isNaN(newIndicatorStyle[size])
-    ) {
+    if (isNaN(indicatorStyle[start]) || isNaN(indicatorStyle[size])) {
       setIndicatorStyle(newIndicatorStyle);
+    } else {
+      const dStart = Math.abs(indicatorStyle[start] - newIndicatorStyle[start]);
+      const dSize = Math.abs(indicatorStyle[size] - newIndicatorStyle[size]);
+
+      if (dStart >= 1 || dSize >= 1) {
+        setIndicatorStyle(newIndicatorStyle);
+      }
     }
   });
 
