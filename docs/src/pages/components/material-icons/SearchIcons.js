@@ -24,6 +24,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from 'docs/src/modules/components/Link';
 import * as mui from '@material-ui/icons';
+
+// Working on the logic? Uncomment these imports.
+// It wil be x10 faste than working with the all the icons.
+//
 // import Menu from '@material-ui/icons/Menu';
 // import MenuOutlined from '@material-ui/icons/MenuOutlined';
 // import ExitToApp from '@material-ui/icons/ExitToApp';
