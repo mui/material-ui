@@ -10,6 +10,9 @@ export const styles = theme => ({
     padding: '8px 24px',
     WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
     overflowY: 'auto',
+    '&:first-child': {	
+      paddingTop: 20,	
+    },
   },
   /* Styles applied to the root element if `dividers={true}`. */
   dividers: {
