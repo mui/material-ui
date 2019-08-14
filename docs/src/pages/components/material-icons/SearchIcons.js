@@ -107,7 +107,6 @@ Icons = React.memo(Icons);
 const useDialogStyles = makeStyles(theme => ({
   markdown: {
     '& pre': {
-      overflow: 'hidden',
       borderRadius: 0,
       margin: 0,
     },
@@ -296,6 +295,9 @@ const useStyles = makeStyles(theme => ({
     fontSize: 12,
     '& p': {
       margin: 0,
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
     },
   },
   iconSvg: {
