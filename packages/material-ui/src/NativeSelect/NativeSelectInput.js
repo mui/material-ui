@@ -25,7 +25,7 @@ const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref
         ref={inputRef || ref}
         {...other}
       />
-      <IconComponent className={classes.icon} />
+      {props.multiple ? null : <IconComponent className={classes.icon} />}
     </React.Fragment>
   );
 });
@@ -58,6 +58,10 @@ NativeSelectInput.propTypes = {
    * @deprecated
    */
   inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  /**
+   * @ignore
+   */
+  multiple: PropTypes.bool,
   /**
    * Name attribute of the `select` or hidden `input` element.
    */
