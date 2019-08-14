@@ -26,7 +26,7 @@ import Link from 'docs/src/modules/components/Link';
 import * as mui from '@material-ui/icons';
 
 // Working on the logic? Uncomment these imports.
-// It wil be x10 faster than working with the all the icons.
+// It will be x10 faster than working with all of the icons.
 
 // import Menu from '@material-ui/icons/Menu';
 // import MenuOutlined from '@material-ui/icons/MenuOutlined';
