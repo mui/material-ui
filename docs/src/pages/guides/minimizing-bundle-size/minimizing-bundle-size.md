@@ -76,6 +76,79 @@ However, you need to apply the following steps correctly.
 
 Pick one of the following plugins:
 
+- [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) with the following configuration:
+
+  `yarn add -D babel-plugin-transform-imports`
+
+  Create a `.babelrc` file in the root directory of your project:
+  
+  ```js
+  {
+    "plugins": [
+      [
+        "transform-imports",
+        {
+          "@material-ui/core": {
+            // for bundlers not supporting ES modules use:
+            // transform: '@material-ui/core/${member}',
+            "transform": "@material-ui/core/esm/${member}",
+            "preventFullImport": true
+          },
+          "@material-ui/icons": {
+            // for bundlers not supporting ES modules use:
+            // transform: '@material-ui/core/${member}',
+            "transform": "@material-ui/icons/esm/${member}",
+            "preventFullImport": true
+          }
+        }
+      ]
+    ]
+  }
+  ```
+  
+  If you are using Create React App, you will need to use a couple projects that let you use a `.babelrc` file, without ejecting. 
+  
+  `yarn add -D react-app-rewired customize-cra`
+  
+  Create a `config-overrides.js` file in the root directory:
+
+  ```js
+  /* config-overrides.js */
+  const { useBabelRc, override } = require('customize-cra')
+
+  module.exports = override(
+    useBabelRc()
+  );  
+  ```
+  
+  Modify your `package.json` start command:
+  
+```diff
+  "scripts": {
+-  "start": "react-scripts start"
++  "start": "react-app-rewired start"
+  }
+```
+  
+  Note: You may run into errors like these:
+
+  ```
+    Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
+    Module not found: Can't resolve '@material-ui/core/createStyles' in '/your/project'
+  ```
+  
+  This is because `@material-ui/styles` is re-exported through `core` and because `preventFullImport` is true, the full import is not allowed.
+
+  You have an import like this in your code:
+
+  `import {makeStyles, createStyles} from '@material-ui/core';`
+
+  The fix is simple, define the import separately:
+  
+  `import {makeStyles, createStyles} from '@material-ui/styles';`
+
+  Enjoy significantly faster start times.
+
 - [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) with the following configuration:
 
   ```js
@@ -100,28 +173,6 @@ Pick one of the following plugins:
     ],
   ],
   ```
-- [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) with the following configuration:
-
-  ```js
-  plugins: [
-    'babel-plugin-transform-imports',
-    {
-      '@material-ui/core': {
-        transform: '@material-ui/core/esm/${member}',
-        // for bundlers not supporting ES modules use:
-        // transform: '@material-ui/core/${member}',
-        preventFullImport: true,
-      },
-      '@material-ui/icons': {
-        transform: '@material-ui/icons/esm/${member}',
-        // for bundlers not supporting ES modules use:
-        // transform: '@material-ui/icons/${member}',
-        preventFullImport: true,
-      },
-    },
-  ],
-  ```
-
 #### 2. Convert all your imports
 
 Finally, you can convert your exisiting codebase to this option with our [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) codemod.
