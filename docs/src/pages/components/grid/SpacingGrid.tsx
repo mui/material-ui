@@ -1,11 +1,21 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+  createMuiTheme,
+  MuiThemeProvider,
+} from '@material-ui/core/styles';
 import Grid, { GridSpacing } from '@material-ui/core/Grid';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Paper from '@material-ui/core/Paper';
+
+const customTheme = createMuiTheme({
+  spacing: factor => `${factor}rem`,
+});
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,41 +41,43 @@ export default function SpacingGrid() {
   }
 
   return (
-    <Grid container className={classes.root} spacing={2}>
-      <Grid item xs={12}>
-        <Grid container justify="center" spacing={spacing}>
-          {[0, 1, 2].map(value => (
-            <Grid key={value} item>
-              <Paper className={classes.paper} />
+    <MuiThemeProvider theme={customTheme}>
+      <Grid container className={classes.root} spacing={2}>
+        <Grid item xs={12}>
+          <Grid container justify="center" spacing={spacing}>
+            {[0, 1, 2].map(value => (
+              <Grid key={value} item>
+                <Paper className={classes.paper} />
+              </Grid>
+            ))}
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <Paper className={classes.control}>
+            <Grid container>
+              <Grid item>
+                <FormLabel>spacing</FormLabel>
+                <RadioGroup
+                  name="spacing"
+                  aria-label="spacing"
+                  value={spacing.toString()}
+                  onChange={handleChange}
+                  row
+                >
+                  {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(value => (
+                    <FormControlLabel
+                      key={value}
+                      value={value.toString()}
+                      control={<Radio />}
+                      label={value.toString()}
+                    />
+                  ))}
+                </RadioGroup>
+              </Grid>
             </Grid>
-          ))}
+          </Paper>
         </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <Paper className={classes.control}>
-          <Grid container>
-            <Grid item>
-              <FormLabel>spacing</FormLabel>
-              <RadioGroup
-                name="spacing"
-                aria-label="spacing"
-                value={spacing.toString()}
-                onChange={handleChange}
-                row
-              >
-                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(value => (
-                  <FormControlLabel
-                    key={value}
-                    value={value.toString()}
-                    control={<Radio />}
-                    label={value.toString()}
-                  />
-                ))}
-              </RadioGroup>
-            </Grid>
-          </Grid>
-        </Paper>
-      </Grid>
-    </Grid>
+    </MuiThemeProvider>
   );
 }
