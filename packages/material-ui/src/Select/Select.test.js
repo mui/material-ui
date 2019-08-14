@@ -98,7 +98,7 @@ describe('<Select />', () => {
     });
   });
 
-  describe('prop: native', () => {
+  describe('SVG icon', () => {
     it('should not present an SVG icon when native and multiple are specified', () => {
       const { container } = render(
         <Select native multiple value={[0, 1]}>
@@ -109,29 +109,10 @@ describe('<Select />', () => {
       );
       expect(container.querySelector('svg')).to.be.null;
     });
-    it('should present an SVG icon when native is not specified but multiple is', () => {
-      const { container } = render(
-        <Select multiple value={[0, 1]}>
-          <option value={0}>Zero</option>
-          <option value={1}>One</option>
-          <option value={2}>Two</option>
-        </Select>,
-      );
-      expect(container.querySelector('svg')).to.be.visible;
-    });
-    it('should present an SVG icon when multiple is not specified but native is', () => {
+
+    it('should present an SVG icon', () => {
       const { container } = render(
         <Select native value={1}>
-          <option value={0}>Zero</option>
-          <option value={1}>One</option>
-          <option value={2}>Two</option>
-        </Select>,
-      );
-      expect(container.querySelector('svg')).to.be.visible;
-    });
-    it('should present an SVG icon when neither multiple nor native are specified', () => {
-      const { container } = render(
-        <Select value={1}>
           <option value={0}>Zero</option>
           <option value={1}>One</option>
           <option value={2}>Two</option>
