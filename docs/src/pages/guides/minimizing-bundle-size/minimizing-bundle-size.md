@@ -137,7 +137,7 @@ Pick one of the following plugins:
   }
   ```
   
-If you are using Create React App, you will need to use a couple projects that let you use `.babelrc` configuration, without ejecting. 
+If you are using Create React App, you will need to use a couple of projects that let you use `.babelrc` configuration, without ejecting. 
   
   `yarn add -D react-app-rewired customize-cra`
   
