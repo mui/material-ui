@@ -76,6 +76,37 @@ However, you need to apply the following steps correctly.
 
 Pick one of the following plugins:
 
+- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) with the following configuration:
+
+  `yarn add -D babel-plugin-import`
+
+  Create a `.babelrc` file in the root directory of your project:
+
+  ```js
+  {
+    "plugins": [
+      [
+        "import",
+        {
+          "libraryName": "@material-ui/core",
+          "libraryDirectory": "esm",
+          "camel2DashComponentName": false
+        },
+        "core"
+      ],
+      [
+        "import",
+        {
+          "libraryName": "@material-ui/icons",
+          "libraryDirectory": "esm",
+          "camel2DashComponentName": false
+        },
+        "icons"
+      ]
+    ]
+  }
+  ```
+
 - [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) with the following configuration:
 
   `yarn add -D babel-plugin-transform-imports`
@@ -106,7 +137,7 @@ Pick one of the following plugins:
   }
   ```
   
-  If you are using Create React App, you will need to use a couple projects that let you use a `.babelrc` file, without ejecting. 
+If you are using Create React App, you will need to use a couple projects that let you use `.babelrc` configuration, without ejecting. 
   
   `yarn add -D react-app-rewired customize-cra`
   
@@ -120,6 +151,8 @@ Pick one of the following plugins:
     useBabelRc()
   );  
   ```
+  
+  If you wish, `babel-plugin-import` can be configured through `config-overrides.js` instead of `.babelrc` by using this [configuration](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options).
   
   Modify your `package.json` start command:
   
@@ -137,7 +170,7 @@ Pick one of the following plugins:
     Module not found: Can't resolve '@material-ui/core/createStyles' in '/your/project'
   ```
   
-  This is because `@material-ui/styles` is re-exported through `core` and because `preventFullImport` is true, the full import is not allowed.
+  This is because `@material-ui/styles` is re-exported through `core`, but the full import is not allowed.
 
   You have an import like this in your code:
 
@@ -145,34 +178,10 @@ Pick one of the following plugins:
 
   The fix is simple, define the import separately:
   
-  `import {makeStyles, createStyles} from '@material-ui/styles';`
+  `import {makeStyles, createStyles} from '@material-ui/core/styles';`
 
   Enjoy significantly faster start times.
 
-- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) with the following configuration:
-
-  ```js
-  plugins: [
-    [
-      'babel-plugin-import',
-      {
-        libraryName: '@material-ui/core',
-        libraryDirectory: 'esm', // or '' if your bundler does not support ES modules
-        camel2DashComponentName: false,
-      },
-      'core',
-    ],
-    [
-      'babel-plugin-import',
-      {
-        libraryName: '@material-ui/icons',
-        libraryDirectory: 'esm', // or '' if your bundler does not support ES modules
-        camel2DashComponentName: false,
-      },
-      'icons',
-    ],
-  ],
-  ```
 #### 2. Convert all your imports
 
 Finally, you can convert your exisiting codebase to this option with our [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) codemod.
