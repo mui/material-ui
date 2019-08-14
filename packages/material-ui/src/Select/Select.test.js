@@ -98,6 +98,30 @@ describe('<Select />', () => {
     });
   });
 
+  describe('SVG icon', () => {
+    it('should not present an SVG icon when native and multiple are specified', () => {
+      const { container } = render(
+        <Select native multiple value={[0, 1]}>
+          <option value={0}>Zero</option>
+          <option value={1}>One</option>
+          <option value={2}>Two</option>
+        </Select>,
+      );
+      expect(container.querySelector('svg')).to.be.null;
+    });
+
+    it('should present an SVG icon', () => {
+      const { container } = render(
+        <Select native value={1}>
+          <option value={0}>Zero</option>
+          <option value={1}>One</option>
+          <option value={2}>Two</option>
+        </Select>,
+      );
+      expect(container.querySelector('svg')).to.be.visible;
+    });
+  });
+
   describe('accessibility', () => {
     it('sets aria-expanded="true" when the listbox is displayed', () => {
       const { getByRole } = render(<Select open value="none" />);
