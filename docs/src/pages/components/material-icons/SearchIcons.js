@@ -9,7 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
 import Grid from '@material-ui/core/Grid';
-import FormGroup from '@material-ui/core/FormGroup';
 import Dialog from '@material-ui/core/Dialog';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -21,17 +20,24 @@ import Button from '@material-ui/core/Button';
 import FlexSearch from 'flexsearch';
 import SearchIcon from '@material-ui/icons/Search';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio from '@material-ui/core/Radio';
 import Link from 'docs/src/modules/components/Link';
 import * as mui from '@material-ui/icons';
 
 // Working on the logic? Uncomment these imports.
-// It wil be x10 faste than working with the all the icons.
-//
+// It wil be x10 faster than working with the all the icons.
+
 // import Menu from '@material-ui/icons/Menu';
 // import MenuOutlined from '@material-ui/icons/MenuOutlined';
+// import MenuRounded from '@material-ui/icons/MenuRounded';
+// import MenuTwoTone from '@material-ui/icons/MenuTwoTone';
+// import MenuSharp from '@material-ui/icons/MenuSharp';
 // import ExitToApp from '@material-ui/icons/ExitToApp';
 // import ExitToAppOutlined from '@material-ui/icons/ExitToAppOutlined';
+// import ExitToAppRounded from '@material-ui/icons/ExitToAppRounded';
+// import ExitToAppTwoTone from '@material-ui/icons/ExitToAppTwoTone';
+// import ExitToAppSharp from '@material-ui/icons/ExitToAppSharp';
 // import Delete from '@material-ui/icons/Delete';
 // import DeleteOutlined from '@material-ui/icons/DeleteOutlined';
 // import DeleteRounded from '@material-ui/icons/DeleteRounded';
@@ -46,8 +52,14 @@ import * as mui from '@material-ui/icons';
 // const mui = {
 //   ExitToApp,
 //   ExitToAppOutlined,
+//   ExitToAppRounded,
+//   ExitToAppTwoTone,
+//   ExitToAppSharp,
 //   Menu,
 //   MenuOutlined,
+//   MenuRounded,
+//   MenuTwoTone,
+//   MenuSharp,
 //   Delete,
 //   DeleteOutlined,
 //   DeleteRounded,
@@ -327,16 +339,24 @@ const searchIndex = FlexSearch.create({
 });
 
 const synonyms = {
-  Menu: 'hamburger',
-  ExitToApp: 'logout sign out',
+  AccessAlarm: 'clock stopwatch',
+  AccessAlarms: 'clock stopwatch',
+  AccessTime: 'clock stopwatch',
   AccountCircle: 'user',
   AccountBox: 'user',
+  ArrowBack: 'left',
+  ArrowBackIos: 'left',
   Assignment: 'clipboard',
   AssignmentInd: 'clipboard',
   AssignmentLate: 'clipboard',
   AssignmentReturn: 'clipboard',
   AssignmentReturned: 'clipboard',
   AssignmentTurnedIn: 'clipboard',
+  Backspace: 'delete',
+  Backup: 'cloud',
+  ExitToApp: 'logout sign out',
+  KeyboardBackspace: 'left',
+  Menu: 'hamburger',
 };
 
 const allIconsMap = {};
@@ -373,7 +393,7 @@ const allIcons = Object.keys(mui)
 
 export default function SearchIcons() {
   const classes = useStyles();
-  const [tags, setTags] = React.useState(['Filled']);
+  const [tag, setTag] = React.useState('Filled');
   const [keys, setKeys] = React.useState(null);
   const [open, setOpen] = React.useState(false);
   const [selectedIcon, setSelectedIcon] = React.useState(null);
@@ -426,40 +446,26 @@ export default function SearchIcons() {
   const icons = React.useMemo(
     () =>
       (keys === null ? allIcons : keys.map(key => allIconsMap[key])).filter(
-        icon => tags.indexOf(icon.tag) !== -1,
+        icon => tag === icon.tag,
       ),
-    [tags, keys],
+    [tag, keys],
   );
 
   return (
     <Grid container>
       <Grid item xs={12} sm={3}>
         <form className={classes.form}>
-          <FormGroup>
+          <RadioGroup>
             {['Filled', 'Outlined', 'Rounded', 'Two tone', 'Sharp'].map(key => {
               return (
                 <FormControlLabel
                   key={key}
-                  control={
-                    <Checkbox
-                      checked={tags.indexOf(key) !== -1}
-                      onChange={() => {
-                        setTags(prevTags => {
-                          if (prevTags.indexOf(key) !== -1) {
-                            return prevTags.filter(tag => tag !== key);
-                          }
-
-                          return [...prevTags, key];
-                        });
-                      }}
-                      value={key}
-                    />
-                  }
+                  control={<Radio checked={tag === key} onChange={() => setTag(key)} value={key} />}
                   label={key}
                 />
               );
             })}
-          </FormGroup>
+          </RadioGroup>
         </form>
       </Grid>
       <Grid item xs={12} sm={9}>
