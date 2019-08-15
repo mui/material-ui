@@ -36,6 +36,7 @@ export const styles = theme => ({
     fontSize: theme.typography.pxToRem(10),
     lineHeight: `${theme.typography.round(14 / 10)}em`,
     maxWidth: 300,
+    wordWrap: 'break-word',
     fontWeight: theme.typography.fontWeightMedium,
   },
   /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
