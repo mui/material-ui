@@ -5,6 +5,7 @@ import * as t from '@babel/types';
 export type MappedImportsType = { [K in string]: Array<{ default: boolean; name: string }> };
 
 export default (indexPath: string): MappedImportsType => {
+  indexPath = indexPath.replace(/\.js$/, '.d.ts');
   const content = fs.readFileSync(indexPath, 'utf8');
 
   const ast = babel.parseSync(content, {
