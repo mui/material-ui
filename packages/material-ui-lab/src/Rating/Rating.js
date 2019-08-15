@@ -14,6 +14,15 @@ function clamp(value, min, max) {
   }
   return value;
 }
+function getDecimalPrecision(num) {
+  const decimalPart = num.toString().split('.')[1];
+  return decimalPart ? decimalPart.length : 0;
+}
+
+function roundValueToPrecision(value, precision) {
+  const nearest = Math.round(value / precision) * precision;
+  return Number(nearest.toFixed(getDecimalPrecision(precision)));
+}
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -143,7 +152,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     focus: -1,
   });
 
-  let value = valueProp;
+  let value = roundValueToPrecision(valueProp, precision);
   if (hover !== -1) {
     value = hover;
   }
@@ -174,7 +183,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       percent = (event.pageX - left - ownerWindow(rootNode).pageXOffset) / (width * max);
     }
 
-    let newHover = Math.ceil((max * percent) / precision) * precision;
+    let newHover = roundValueToPrecision(max * percent, precision);
     newHover = clamp(newHover, precision, max);
     setState(prev =>
       prev.hover === newHover && prev.focus === newHover
@@ -363,7 +372,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
                     filled: itemDeciamlValue <= value,
                     hover: itemDeciamlValue <= hover,
                     focus: itemDeciamlValue <= focus,
-                    checked: itemDeciamlValue === valueProp,
+                    checked: itemValue === valueProp,
                   },
                 );
               })}
