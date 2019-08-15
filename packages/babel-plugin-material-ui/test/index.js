@@ -1,5 +1,6 @@
 import pluginTester from 'babel-plugin-tester';
 import * as path from 'path';
+// eslint-disable-next-line import/no-unresolved
 import materialUI from '../dist';
 
 pluginTester({

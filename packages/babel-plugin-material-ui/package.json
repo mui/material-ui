@@ -17,7 +17,7 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "test": "yarn build && cd ../../ && cross-env NODE_ENV=test mocha 'packages/babel-plugin-material-ui/test/index.test.js'"
+    "test": "yarn build && cd ../../ && cross-env NODE_ENV=test mocha 'packages/babel-plugin-material-ui/test/index.js'"
   },
   "devDependencies": {
     "@types/babel__core": "^7.1.2",
