@@ -85,24 +85,24 @@ Pick one of the following plugins:
   ```js
   const plugins = [
     [
-      "import",
+      'babel-plugin-import',
       {
-        "libraryName": "@material-ui/core",
-        // Use '"libraryDirectory": "",' if your bundler does not support ES modules
-        "libraryDirectory": "esm",
-        "camel2DashComponentName": false
+        'libraryName': '@material-ui/core',
+        // Use "'libraryDirectory': ''," if your bundler does not support ES modules
+        'libraryDirectory': 'esm',
+        'camel2DashComponentName': false
       },
-      "core"
+      'core'
     ],
     [
-      "import",
+      'babel-plugin-import',
       {
-        "libraryName": "@material-ui/icons",
-        // Use '"libraryDirectory": "",' if your bundler does not support ES modules
-        "libraryDirectory": "esm",
-        "camel2DashComponentName": false
+        'libraryName': '@material-ui/icons',
+        // Use "'libraryDirectory': ''," if your bundler does not support ES modules
+        'libraryDirectory': 'esm',
+        'camel2DashComponentName': false
       },
-      "icons"
+      'icons'
     ]
   ];
 
@@ -118,17 +118,17 @@ Pick one of the following plugins:
   ```js
   const plugins = [
     [
-      "transform-imports",
+      'babel-plugin-transform-imports',
       {
-        "@material-ui/core": {
-          // Use 'transform: '@material-ui/core/${member}',' if your bundler does not support ES modules
-          "transform": "@material-ui/core/esm/${member}",
-          "preventFullImport": true
+        '@material-ui/core': {
+          // Use "transform: '@material-ui/core/${member}'," if your bundler does not support ES modules
+          'transform': '@material-ui/core/esm/${member}',
+          'preventFullImport': true
         },
-        "@material-ui/icons": {
-          // Use 'transform: '@material-ui/icons/${member}',' if your bundler does not support ES modules
-          "transform": "@material-ui/icons/esm/${member}",
-          "preventFullImport": true
+        '@material-ui/icons': {
+          // Use "transform: '@material-ui/icons/${member}'," if your bundler does not support ES modules
+          'transform': '@material-ui/icons/esm/${member}',
+          'preventFullImport': true
         }
       }
     ]
