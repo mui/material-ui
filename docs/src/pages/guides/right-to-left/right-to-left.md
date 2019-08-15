@@ -65,3 +65,7 @@ If you want to prevent a specific rule-set from being affected by the `rtl` tran
 *Use the direction toggle button on the top right corner to see the effect.*
 
 {{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}
+
+## Caveats
+
+⚠️ The `rtl` transformation does not affect the `classnames` that are passed as an object to `makeStyles` or `withStyles`, to get it working you have to pass your custom styles as a function which returns the styles object. [relevant issue](https://github.com/mui-org/material-ui/issues/16094)
