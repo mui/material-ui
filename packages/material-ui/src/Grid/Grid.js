@@ -74,14 +74,14 @@ function generateGutter(theme, breakpoint) {
       return;
     }
 
-    const gutter = theme.spacing(spacing / 2);
-    const offset = typeof themeSpacing === 'string' ? themeSpacing : `${themeSpacing}px`;
+    const getOffset = (val, div = 1) =>
+      `${parseFloat(val) / div}${String(val).replace(String(parseFloat(val)), '') || 'px'}`;
 
     styles[`spacing-${breakpoint}-${spacing}`] = {
-      margin: `-${gutter}`,
-      width: `calc(100% + ${offset})`,
+      margin: `-${getOffset(themeSpacing, 2)}`,
+      width: `calc(100% + ${getOffset(themeSpacing)})`,
       '& > $item': {
-        padding: gutter,
+        padding: getOffset(themeSpacing, 2),
       },
     };
   });
