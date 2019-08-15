@@ -8,7 +8,7 @@ let labImports: MappedImportsType;
 function handleImports(
   path: babel.NodePath<t.ImportDeclaration>,
   importMap: { [K in string]: Array<{ default: boolean; name: string }> },
-  rootImport: string,
+  rootPath: string,
 ) {
   const { node } = path;
 
@@ -37,7 +37,7 @@ function handleImports(
 
       if (newSpecifiers.length) {
         path.insertBefore(
-          t.importDeclaration(newSpecifiers, t.stringLiteral(`@material-ui/${rootImport}/${key}`)),
+          t.importDeclaration(newSpecifiers, t.stringLiteral(`${rootPath}/${key}`)),
         );
       }
 
@@ -52,7 +52,7 @@ function handleImports(
   }
 }
 
-function handleIcons(path: babel.NodePath<babel.types.ImportDeclaration>) {
+function handleIcons(path: babel.NodePath<babel.types.ImportDeclaration>, rootPath: string) {
   const { node } = path;
   node.specifiers = node.specifiers.filter(spec => {
     if (!t.isImportSpecifier(spec)) {
@@ -62,7 +62,7 @@ function handleIcons(path: babel.NodePath<babel.types.ImportDeclaration>) {
     path.insertBefore(
       t.importDeclaration(
         [t.importDefaultSpecifier(spec.local)],
-        t.stringLiteral(`@material-ui/icons/${spec.imported.name}`),
+        t.stringLiteral(`${rootPath}/${spec.imported.name}`),
       ),
     );
     return false;
@@ -73,28 +73,42 @@ function handleIcons(path: babel.NodePath<babel.types.ImportDeclaration>) {
   }
 }
 
-export default (): babel.PluginObj => {
+interface Options {
+  useES: boolean;
+  useESM: boolean;
+}
+
+export default (): babel.PluginObj<{ opts: Options }> => {
   return {
     name: '@material-ui/babel-plugin-material-ui',
     visitor: {
-      ImportDeclaration(path) {
+      ImportDeclaration(path, state) {
+        const { opts } = state;
+        if (opts.useES && opts.useESM) {
+          throw new Error(
+            `'useES' and 'useESM' can't both be true.\nSee https://material-ui.com/guides/minimizing-bundle-size/#ecmascript for more information`,
+          );
+        }
+
+        const libraryFolder = opts.useES ? '/es' : opts.useESM ? '/esm' : '';
+
         switch (path.node.source.value) {
           case '@material-ui/core': {
             if (coreImports === undefined) {
               coreImports = resolveImports(require.resolve('@material-ui/core'));
             }
-            handleImports(path, coreImports, 'core');
+            handleImports(path, coreImports, `@material-ui/core${libraryFolder}`);
             break;
           }
           case '@material-ui/lab': {
             if (labImports === undefined) {
               labImports = resolveImports(require.resolve('@material-ui/lab'));
             }
-            handleImports(path, labImports, 'lab');
+            handleImports(path, labImports, `@material-ui/lab${libraryFolder}`);
             break;
           }
           case '@material-ui/icons': {
-            handleIcons(path);
+            handleIcons(path, `@material-ui/icons${libraryFolder}`);
             break;
           }
         }
