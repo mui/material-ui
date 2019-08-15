@@ -82,6 +82,7 @@
     "chai": "^4.1.2",
     "chai-dom": "^1.8.1",
     "compression-webpack-plugin": "^3.0.0",
+    "cpy-cli": "^2.0.0",
     "cross-env": "^5.1.1",
     "danger": "^9.1.3",
     "dtslint": "^0.9.0",
@@ -166,7 +167,5 @@
     "packages/*",
     "docs"
   ],
-  "dependencies": {
-    "cpy-cli": "^2.0.0"
-  }
+  "dependencies": {}
 }
