@@ -56,9 +56,9 @@ function Media(props: MediaProps) {
               <Typography display="block" variant="caption" color="textSecondary">
                 {item.channel}
               </Typography>
-              <Typography variant="caption" color="textSecondary">{`${item.views} • ${
-                item.createdAt
-              }`}</Typography>
+              <Typography variant="caption" color="textSecondary">
+                {`${item.views} • ${item.createdAt}`}
+              </Typography>
             </Box>
           ) : (
             <React.Fragment>
