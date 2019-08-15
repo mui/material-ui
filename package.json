@@ -165,5 +165,8 @@
   "workspaces": [
     "packages/*",
     "docs"
-  ]
+  ],
+  "dependencies": {
+    "cpy-cli": "^2.0.0"
+  }
 }
