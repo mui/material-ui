@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { InputBaseProps } from '../InputBase';
 
-export interface OutlinedInputProps extends StandardProps<InputBaseProps, OutlinedInputClassKey> {
+export interface OutlinedInputProps<V = unknown> extends StandardProps<InputBaseProps<V>, OutlinedInputClassKey> {
   notched?: boolean;
   labelWidth: number;
 }
@@ -24,6 +24,4 @@ export type OutlinedInputClassKey =
   | 'inputAdornedStart'
   | 'inputAdornedEnd';
 
-declare const OutlinedInput: React.ComponentType<OutlinedInputProps>;
-
-export default OutlinedInput;
+export default function OutlinedInput<V>(props: OutlinedInputProps<V>): JSX.Element;

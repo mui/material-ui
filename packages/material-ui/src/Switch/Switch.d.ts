@@ -2,8 +2,8 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { SwitchBaseProps, SwitchBaseClassKey } from '../internal/SwitchBase';
 
-export interface SwitchProps
-  extends StandardProps<SwitchBaseProps, SwitchClassKey, 'checkedIcon' | 'color' | 'icon'> {
+export interface SwitchProps<V = unknown>
+  extends StandardProps<SwitchBaseProps<V>, SwitchClassKey, 'checkedIcon' | 'color' | 'icon'> {
   checkedIcon?: React.ReactNode;
   color?: 'primary' | 'secondary' | 'default';
   icon?: React.ReactNode;
@@ -19,6 +19,4 @@ export type SwitchClassKey =
   | 'thumb'
   | 'track';
 
-declare const Switch: React.ComponentType<SwitchProps>;
-
-export default Switch;
+export default function Switch<V>(props: SwitchProps<V>): JSX.Element;

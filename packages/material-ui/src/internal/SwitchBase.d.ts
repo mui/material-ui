@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { IconButtonProps } from '../IconButton';
 
-export interface SwitchBaseProps
+export interface SwitchBaseProps<V = unknown>
   extends StandardProps<IconButtonProps, SwitchBaseClassKey, 'onChange' | 'value'> {
   autoFocus?: boolean;
   checked?: boolean;
@@ -18,11 +18,9 @@ export interface SwitchBaseProps
   readOnly?: boolean;
   required?: boolean;
   tabIndex?: number;
-  value?: unknown;
+  value?: V;
 }
 
 export type SwitchBaseClassKey = 'root' | 'checked' | 'disabled' | 'input';
 
-declare const SwitchBase: React.ComponentType<SwitchBaseProps>;
-
-export default SwitchBase;
+export default function SwitchBase<V>(props: SwitchBaseProps<V>): JSX.Element;

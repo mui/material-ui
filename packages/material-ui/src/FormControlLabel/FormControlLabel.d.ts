@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface FormControlLabelProps
+export interface FormControlLabelProps<V = unknown>
   extends StandardProps<
     React.LabelHTMLAttributes<HTMLLabelElement>,
     FormControlLabelClassKey,
@@ -15,11 +15,9 @@ export interface FormControlLabelProps
   name?: string;
   onChange?: (event: React.ChangeEvent<{}>, checked: boolean) => void;
   labelPlacement?: 'end' | 'start' | 'top' | 'bottom';
-  value?: unknown;
+  value?: V;
 }
 
 export type FormControlLabelClassKey = 'root' | 'start' | 'disabled' | 'label';
 
-declare const FormControlLabel: React.ComponentType<FormControlLabelProps>;
-
-export default FormControlLabel;
+export default function FormControlLabel<V>(props: FormControlLabelProps<V>): JSX.Element;

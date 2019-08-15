@@ -2,12 +2,10 @@ import * as React from 'react';
 import { StandardProps } from '..';
 import { InputBaseProps, InputBaseClassKey } from '../InputBase';
 
-export interface FilledInputProps extends StandardProps<InputBaseProps, FilledInputClassKey> {
+export interface FilledInputProps<V = unknown> extends StandardProps<InputBaseProps<V>, FilledInputClassKey> {
   disableUnderline?: boolean;
 }
 
 export type FilledInputClassKey = InputBaseClassKey | 'underline';
 
-declare const FilledInput: React.ComponentType<FilledInputProps>;
-
-export default FilledInput;
+export default function FilledInput<V>(props: FilledInputProps<V>): JSX.Element;

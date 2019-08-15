@@ -3,12 +3,12 @@ import { StandardProps } from '..';
 import { InputProps } from '../Input';
 import { NativeSelectInputProps } from './NativeSelectInput';
 
-export interface NativeSelectProps
-  extends StandardProps<InputProps, NativeSelectClassKey, 'value' | 'onChange'>,
-    Pick<NativeSelectInputProps, 'onChange'> {
+export interface NativeSelectProps<V = unknown>
+  extends StandardProps<InputProps<V>, NativeSelectClassKey, 'value' | 'onChange'>,
+    Pick<NativeSelectInputProps<V>, 'onChange'> {
   IconComponent?: React.ElementType;
   input?: React.ReactNode;
-  value?: unknown;
+  value?: V;
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
@@ -21,6 +21,4 @@ export type NativeSelectClassKey =
   | 'filled'
   | 'outlined';
 
-declare const NativeSelect: React.ComponentType<NativeSelectProps>;
-
-export default NativeSelect;
+export default function NativeSelect<V>(props: NativeSelectProps<V>): JSX.Element;

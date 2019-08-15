@@ -8,12 +8,12 @@ import { OutlinedInputProps } from '../OutlinedInput';
 import { InputLabelProps } from '../InputLabel';
 import { SelectProps } from '../Select';
 
-export interface BaseTextFieldProps
+export interface BaseTextFieldProps<V = unknown>
   extends StandardProps<FormControlProps, TextFieldClassKey, 'onChange' | 'defaultValue'> {
   autoComplete?: string;
   autoFocus?: boolean;
   children?: React.ReactNode;
-  defaultValue?: unknown;
+  defaultValue?: V;
   disabled?: boolean;
   error?: boolean;
   FormHelperTextProps?: Partial<FormHelperTextProps>;
@@ -32,33 +32,31 @@ export interface BaseTextFieldProps
   rows?: string | number;
   rowsMax?: string | number;
   select?: boolean;
-  SelectProps?: Partial<SelectProps>;
+  SelectProps?: Partial<SelectProps<V>>;
   type?: string;
-  value?: unknown;
+  value?: V;
 }
 
-export interface StandardTextFieldProps extends BaseTextFieldProps {
+export interface StandardTextFieldProps<V = unknown> extends BaseTextFieldProps<V> {
   variant?: 'standard';
-  InputProps?: Partial<StandardInputProps>;
-  inputProps?: StandardInputProps['inputProps'];
+  InputProps?: Partial<StandardInputProps<V>>;
+  inputProps?: StandardInputProps<V>['inputProps'];
 }
 
-export interface FilledTextFieldProps extends BaseTextFieldProps {
+export interface FilledTextFieldProps<V = unknown> extends BaseTextFieldProps<V> {
   variant: 'filled';
-  InputProps?: Partial<FilledInputProps>;
-  inputProps?: FilledInputProps['inputProps'];
+  InputProps?: Partial<FilledInputProps<V>>;
+  inputProps?: FilledInputProps<V>['inputProps'];
 }
 
-export interface OutlinedTextFieldProps extends BaseTextFieldProps {
+export interface OutlinedTextFieldProps<V = unknown> extends BaseTextFieldProps<V> {
   variant: 'outlined';
-  InputProps?: Partial<OutlinedInputProps>;
-  inputProps?: OutlinedInputProps['inputProps'];
+  InputProps?: Partial<OutlinedInputProps<V>>;
+  inputProps?: OutlinedInputProps<V>['inputProps'];
 }
 
-export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | OutlinedTextFieldProps;
+export type TextFieldProps<V = unknown> = StandardTextFieldProps<V> | FilledTextFieldProps<V> | OutlinedTextFieldProps<V>;
 
 export type TextFieldClassKey = 'root';
 
-declare const TextField: React.ComponentType<TextFieldProps>;
-
-export default TextField;
+export default function TextField<V>(props: TextFieldProps<V>): JSX.Element;

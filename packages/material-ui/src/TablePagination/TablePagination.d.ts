@@ -26,7 +26,7 @@ declare const TablePagination: OverridableComponent<{
     page: number;
     rowsPerPage: number;
     rowsPerPageOptions?: number[];
-    SelectProps?: Partial<SelectProps>;
+    SelectProps?: Partial<SelectProps<number>>;
   };
   defaultComponent: React.ComponentType<TablePaginationBaseProps>;
   classKey: TablePaginationClassKey;

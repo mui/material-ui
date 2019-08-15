@@ -4,9 +4,9 @@ import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
 import { SelectInputProps } from './SelectInput';
 
-export interface SelectProps
-  extends StandardProps<InputProps, SelectClassKey, 'value' | 'onChange'>,
-    Pick<SelectInputProps, 'onChange'> {
+export interface SelectProps<V = unknown>
+  extends StandardProps<InputProps<V>, SelectClassKey, 'value' | 'onChange'>,
+    Pick<SelectInputProps<V>, 'onChange'> {
   autoWidth?: boolean;
   displayEmpty?: boolean;
   IconComponent?: React.ElementType;
@@ -17,9 +17,9 @@ export interface SelectProps
   onClose?: (event: React.ChangeEvent<{}>) => void;
   onOpen?: (event: React.ChangeEvent<{}>) => void;
   open?: boolean;
-  renderValue?: (value: SelectProps['value']) => React.ReactNode;
+  renderValue?: (value: SelectProps<V>['value']) => React.ReactNode;
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
-  value?: unknown;
+  value?: V;
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
@@ -32,6 +32,4 @@ export type SelectClassKey =
   | 'filled'
   | 'outlined';
 
-declare const Select: React.ComponentType<SelectProps>;
-
-export default Select;
+export default function Select<V>(props: SelectProps<V>): JSX.Element;

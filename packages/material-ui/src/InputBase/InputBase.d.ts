@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '..';
 
-export interface InputBaseProps
+export interface InputBaseProps<V = unknown>
   extends StandardProps<
     React.HTMLAttributes<HTMLDivElement>,
     InputBaseClassKey,
@@ -9,7 +9,7 @@ export interface InputBaseProps
   > {
   autoComplete?: string;
   autoFocus?: boolean;
-  defaultValue?: unknown;
+  defaultValue?: V;
   disabled?: boolean;
   endAdornment?: React.ReactNode;
   error?: boolean;
@@ -37,7 +37,7 @@ export interface InputBaseProps
   rowsMax?: string | number;
   startAdornment?: React.ReactNode;
   type?: string;
-  value?: unknown;
+  value?: V;
   /**
    * `onChange`, `onKeyUp` + `onKeyDown` are applied to the inner `InputComponent`,
    * which by default is an input or textarea. Since these handlers differ from the
@@ -76,6 +76,4 @@ export type InputBaseClassKey =
   | 'inputAdornedEnd'
   | 'inputHiddenLabel';
 
-declare const InputBase: React.ComponentType<InputBaseProps>;
-
-export default InputBase;
+export default function InputBase<V>(props: InputBaseProps<V>): JSX.Element;
