@@ -14,6 +14,7 @@ function clamp(value, min, max) {
   }
   return value;
 }
+
 function getDecimalPrecision(num) {
   const decimalPart = num.toString().split('.')[1];
   return decimalPart ? decimalPart.length : 0;
