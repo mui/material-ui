@@ -6,7 +6,8 @@
 /examples/gatsby/public/
 /examples/preact/config
 /examples/preact/scripts
-/packages/babel-plugin-unwrap-createStyles/test/__fixtures__/
+/packages/babel-plugin-unwrap-createstyles/test/__fixtures__/
+/packages/babel-plugin-material-ui/test/__fixtures__/
 /packages/material-ui-codemod/lib
 /packages/material-ui-codemod/src/*/*.test
 /packages/material-ui-codemod/src/*/*.test.js

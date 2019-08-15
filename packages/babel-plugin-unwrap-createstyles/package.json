@@ -14,6 +14,6 @@
     "url": "https://github.com/mui-org/material-ui/issues"
   },
   "scripts": {
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha packages/babel-plugin-unwrap-createStyles/test"
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/babel-plugin-unwrap-createStyles/test/unwrapCreateStyles.test.js'"
   }
 }
