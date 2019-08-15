@@ -9,7 +9,7 @@
     "build-sw": "node ./scripts/buildServiceWorker.js",
     "dev": "rimraf ./node_modules/.cache/babel-loader && cross-env NODE_ENV=development node src/server.js",
     "deploy": "git push material-ui-docs master:latest",
-    "export": "rimraf docs/export && next export -o export && yarn build-sw && cp -r cdn/. export",
+    "export": "rimraf docs/export && next export -o export && yarn build-sw && cpy cdn/. export",
     "icons": "rimraf static/icons/* && node ./scripts/buildIcons.js",
     "start": "next start",
     "typescript": "tslint -p tsconfig.json \"src/pages/**/*.{ts,tsx}\"",
@@ -99,6 +99,7 @@
   "devDependencies": {
     "@babel/preset-typescript": "^7.1.0",
     "babel-plugin-unwrap-createstyles": "^4.1.0",
+    "cpy-cli": "^2.0.0",
     "gm": "^1.23.0"
   }
 }

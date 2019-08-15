@@ -165,5 +165,6 @@
   "workspaces": [
     "packages/*",
     "docs"
-  ]
+  ],
+  "dependencies": {}
 }
