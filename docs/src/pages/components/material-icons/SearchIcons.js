@@ -24,6 +24,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Link from 'docs/src/modules/components/Link';
 import * as mui from '@material-ui/icons';
+import synonyms from './synonyms';
 
 // Working on the logic? Uncomment these imports.
 // It will be x10 faster than working with all of the icons.
@@ -337,27 +338,6 @@ const searchIndex = FlexSearch.create({
   async: true,
   tokenize: 'full',
 });
-
-const synonyms = {
-  AccessAlarm: 'clock stopwatch',
-  AccessAlarms: 'clock stopwatch',
-  AccessTime: 'clock stopwatch',
-  AccountCircle: 'user',
-  AccountBox: 'user',
-  ArrowBack: 'left',
-  ArrowBackIos: 'left',
-  Assignment: 'clipboard',
-  AssignmentInd: 'clipboard',
-  AssignmentLate: 'clipboard',
-  AssignmentReturn: 'clipboard',
-  AssignmentReturned: 'clipboard',
-  AssignmentTurnedIn: 'clipboard',
-  Backspace: 'delete',
-  Backup: 'cloud',
-  ExitToApp: 'logout sign out',
-  KeyboardBackspace: 'left',
-  Menu: 'hamburger',
-};
 
 const allIconsMap = {};
 const allIcons = Object.keys(mui)
