@@ -660,7 +660,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
                 [classes.markActive]: markActive,
               })}
             />
-            <span 
+            <span
               aria-hidden
               style={style}
               className={clsx(classes.markLabel, {
