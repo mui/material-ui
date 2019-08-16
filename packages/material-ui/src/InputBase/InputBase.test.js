@@ -10,6 +10,7 @@ import FormControl, { useFormControl } from '../FormControl';
 import InputAdornment from '../InputAdornment';
 import TextareaAutosize from '../TextareaAutosize';
 import InputBase from './InputBase';
+import InputLabel from '../InputLabel';
 import TextField from '../TextField';
 import Select from '../Select';
 
@@ -156,6 +157,34 @@ describe('<InputBase />', () => {
       expect(input).to.have.property('value', '');
       fireEvent.change(input, { target: { value: 'do not work' } });
       expect(input).to.have.property('value', '');
+    });
+  });
+
+  // Note the initial callback when
+  // uncontrolled only fires for a full mount
+  describe('uncontrolled', () => {
+    it('should fire the onFilled callback when initially provided a value', () => {
+      function TestUncontrolled() {
+        const refs = React.useRef({});
+
+        return (
+          <FormControl>
+            <InputLabel htmlFor="my-input">Email</InputLabel>
+            <InputBase id="my-input" name='test' inputRef={(ref) => {
+              if (ref) {
+                refs.current[ref.name] = ref
+                refs.current[ref.name].value = 'test@gmail.com'
+              }
+              }}/>
+          </FormControl>
+        )
+      }
+      const { container } = render(<TestUncontrolled />);
+      const label = container.querySelector('label');
+
+      expect(label.className.includes('MuiFormLabel-filled')).to.be.true;
+      fireEvent.change(container.querySelector('input'), { target: { value: '' } });
+      expect(label.className.includes('MuiFormLabel-filled')).to.be.false;
     });
   });
 
