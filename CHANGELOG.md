@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.4](https://github.com/merceyz/typescript-to-proptypes/compare/v1.2.3...v1.2.4) (2019-08-16)
+
+### Bug Fixes
+
+- **injector:** use require.resolve ([b9d04ea](https://github.com/merceyz/typescript-to-proptypes/commit/b9d04ea))
+
 ### [1.2.3](https://github.com/merceyz/typescript-to-proptypes/compare/v1.2.2...v1.2.3) (2019-07-24)
 
 ### Bug Fixes
