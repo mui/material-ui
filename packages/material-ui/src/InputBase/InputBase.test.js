@@ -10,7 +10,6 @@ import FormControl, { useFormControl } from '../FormControl';
 import InputAdornment from '../InputAdornment';
 import TextareaAutosize from '../TextareaAutosize';
 import InputBase from './InputBase';
-import InputLabel from '../InputLabel';
 import TextField from '../TextField';
 import Select from '../Select';
 
@@ -164,27 +163,35 @@ describe('<InputBase />', () => {
   // uncontrolled only fires for a full mount
   describe('uncontrolled', () => {
     it('should fire the onFilled callback when initially provided a value', () => {
+      function FilledState(props) {
+        const { filled } = useFormControl();
+        return <span {...props}>filled: {String(filled)}</span>;
+      }
+
       function TestUncontrolled() {
         const refs = React.useRef({});
 
         return (
           <FormControl>
-            <InputLabel htmlFor="my-input">Email</InputLabel>
-            <InputBase id="my-input" name='test' inputRef={(ref) => {
-              if (ref) {
-                refs.current[ref.name] = ref
-                refs.current[ref.name].value = 'test@gmail.com'
-              }
-              }}/>
+            <FilledState data-testid="filled" />
+            <InputBase
+              name="test"
+              inputRef={ref => {
+                if (ref) {
+                  refs.current[ref.name] = ref;
+                  refs.current[ref.name].value = 'test@gmail.com';
+                }
+              }}
+            />
           </FormControl>
-        )
+        );
       }
-      const { container } = render(<TestUncontrolled />);
-      const label = container.querySelector('label');
+      const { container, getByTestId } = render(<TestUncontrolled />);
 
-      expect(label.className.includes('MuiFormLabel-filled')).to.be.true;
+      expect(getByTestId('filled')).to.have.text('filled: true');
+
       fireEvent.change(container.querySelector('input'), { target: { value: '' } });
-      expect(label.className.includes('MuiFormLabel-filled')).to.be.false;
+      expect(getByTestId('filled')).to.have.text('filled: false');
     });
   });
 

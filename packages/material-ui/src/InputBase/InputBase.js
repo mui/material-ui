@@ -257,6 +257,12 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     }
   }, [value, checkDirty, isControlled]);
 
+  useEnhancedEffect(() => {
+    if (!isControlled && inputRef.current) {
+      checkDirty(inputRef.current);
+    }
+  }, [checkDirty, isControlled, inputRef]);
+
   const handleFocus = event => {
     // Fix a bug with IE 11 where the focus/blur events are triggered
     // while the input is disabled.
