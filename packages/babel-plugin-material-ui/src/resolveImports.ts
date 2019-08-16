@@ -11,7 +11,7 @@ export default (indexPath: string): MappedImportsType => {
   const ast = babel.parseSync(content, {
     babelrc: false,
     configFile: false,
-    plugins: ['@babel/plugin-syntax-typescript'],
+    plugins: [require.resolve('@babel/plugin-syntax-typescript')],
   });
 
   if (!ast || !t.isFile(ast)) {

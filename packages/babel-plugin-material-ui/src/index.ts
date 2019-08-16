@@ -7,43 +7,43 @@ let labImports: MappedImportsType;
 
 function handleImports(
   path: babel.NodePath<t.ImportDeclaration>,
-  importMap: { [K in string]: Array<{ default: boolean; name: string }> },
+  importMap: MappedImportsType,
   rootPath: string,
 ) {
   const { node } = path;
 
   for (const key in importMap) {
-    if (importMap.hasOwnProperty(key)) {
-      const elements = importMap[key];
-      const newSpecifiers: Array<t.ImportDefaultSpecifier | t.ImportSpecifier> = [];
+    if (!importMap.hasOwnProperty(key)) {
+      continue;
+    }
 
-      node.specifiers = node.specifiers.filter(spec => {
-        if (!t.isImportSpecifier(spec)) {
-          return true;
-        }
+    const elements = importMap[key];
+    const newSpecifiers: Array<t.ImportDefaultSpecifier | t.ImportSpecifier> = [];
 
-        const mappedImport = elements.find(x => x.name === spec.imported.name);
-        if (!mappedImport) {
-          return true;
-        }
-
-        newSpecifiers.push(
-          mappedImport.default
-            ? t.importDefaultSpecifier(spec.local)
-            : t.importSpecifier(spec.local, spec.imported),
-        );
-        return false;
-      });
-
-      if (newSpecifiers.length) {
-        path.insertBefore(
-          t.importDeclaration(newSpecifiers, t.stringLiteral(`${rootPath}/${key}`)),
-        );
+    node.specifiers = node.specifiers.filter(spec => {
+      if (!t.isImportSpecifier(spec)) {
+        return true;
       }
 
-      if (node.specifiers.length === 0) {
-        break;
+      const mappedImport = elements.find(x => x.name === spec.imported.name);
+      if (!mappedImport) {
+        return true;
       }
+
+      newSpecifiers.push(
+        mappedImport.default
+          ? t.importDefaultSpecifier(spec.local)
+          : t.importSpecifier(spec.local, spec.imported),
+      );
+      return false;
+    });
+
+    if (newSpecifiers.length) {
+      path.insertBefore(t.importDeclaration(newSpecifiers, t.stringLiteral(`${rootPath}/${key}`)));
+    }
+
+    if (node.specifiers.length === 0) {
+      break;
     }
   }
 
@@ -52,7 +52,7 @@ function handleImports(
   }
 }
 
-function handleIcons(path: babel.NodePath<babel.types.ImportDeclaration>, rootPath: string) {
+function handleIcons(path: babel.NodePath<t.ImportDeclaration>, rootPath: string) {
   const { node } = path;
   node.specifiers = node.specifiers.filter(spec => {
     if (!t.isImportSpecifier(spec)) {
@@ -65,6 +65,7 @@ function handleIcons(path: babel.NodePath<babel.types.ImportDeclaration>, rootPa
         t.stringLiteral(`${rootPath}/${spec.imported.name}`),
       ),
     );
+
     return false;
   });
 

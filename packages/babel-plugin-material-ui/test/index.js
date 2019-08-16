@@ -5,7 +5,6 @@ import materialUI from '../dist';
 
 pluginTester({
   plugin: materialUI,
-  pluginName: '@material-ui/babel-plugin-material-ui',
   endOfLine: 'preserve',
   fixtures: path.join(__dirname, '__fixtures__'),
   babelOptions: {
