@@ -1,21 +1,21 @@
 import * as React from 'react';
 import { MenuProps } from '../Menu';
 
-export interface SelectInputProps<V = unknown> {
+export interface SelectInputProps<V = unknown, M = boolean> {
   autoFocus?: boolean;
   autoWidth: boolean;
   disabled?: boolean;
   IconComponent?: React.ElementType;
   inputRef?: (
-    ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps<V>['value'] },
+    ref: HTMLSelectElement | { node: HTMLInputElement; value: SelectInputProps<V, M>['value'] },
   ) => void;
   MenuProps?: Partial<MenuProps>;
-  multiple: boolean;
+  multiple: M;
   name?: string;
   native: boolean;
   onBlur?: React.FocusEventHandler<any>;
   onChange?: (
-    event: React.ChangeEvent<{ name?: string; value: V | undefined }>,
+    event: React.ChangeEvent<{ name?: string; value: M extends true ? V[] : (V | undefined) }>,
     child: React.ReactNode,
   ) => void;
   onClose?: (event: React.ChangeEvent<{}>) => void;
@@ -23,11 +23,15 @@ export interface SelectInputProps<V = unknown> {
   onOpen?: (event: React.ChangeEvent<{}>) => void;
   open?: boolean;
   readOnly?: boolean;
-  renderValue?: (value: SelectInputProps<V>['value']) => React.ReactNode;
+  renderValue?: (value: SelectInputProps<V, M>['value']) => React.ReactNode;
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
   tabIndex?: number;
-  value: V;
+  value: M extends true ? V[] : V;
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
-export default function SelectInput<V>(props: SelectInputProps<V>): JSX.Element;
+/* tslint:disable:unified-signatures */
+declare function SelectInput<V>(props: { multiple: true } & SelectInputProps<V, true>): JSX.Element;
+declare function SelectInput<V>(props: ({ multiple: false } | { multiple?: undefined }) & SelectInputProps<V, false>): JSX.Element;
+
+export default SelectInput;

@@ -4,22 +4,22 @@ import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
 import { SelectInputProps } from './SelectInput';
 
-export interface SelectProps<V = unknown>
+export interface SelectProps<V = unknown, M = boolean>
   extends StandardProps<InputProps<V>, SelectClassKey, 'value' | 'onChange'>,
-    Pick<SelectInputProps<V>, 'onChange'> {
+    Pick<SelectInputProps<V, M>, 'onChange'> {
   autoWidth?: boolean;
   displayEmpty?: boolean;
   IconComponent?: React.ElementType;
   input?: React.ReactNode;
   MenuProps?: Partial<MenuProps>;
-  multiple?: boolean;
+  multiple?: M;
   native?: boolean;
   onClose?: (event: React.ChangeEvent<{}>) => void;
   onOpen?: (event: React.ChangeEvent<{}>) => void;
   open?: boolean;
-  renderValue?: (value: SelectProps<V>['value']) => React.ReactNode;
+  renderValue?: (value: SelectInputProps<V, M>['value']) => React.ReactNode;
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
-  value?: V;
+  value?: SelectInputProps<V, M>['value'];
   variant?: 'standard' | 'outlined' | 'filled';
 }
 
@@ -32,4 +32,8 @@ export type SelectClassKey =
   | 'filled'
   | 'outlined';
 
-export default function Select<V>(props: SelectProps<V>): JSX.Element;
+/* tslint:disable:unified-signatures */
+declare function Select<V>(props: { multiple: true } & SelectProps<V, true>): JSX.Element;
+declare function Select<V>(props: ({ multiple: false } | { multiple?: undefined }) & SelectProps<V, false>): JSX.Element;
+
+export default Select;

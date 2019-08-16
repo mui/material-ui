@@ -949,6 +949,17 @@ const SelectTest = () => (
   </Select>
 );
 
+const MultipleSelectTest = () => (
+  <Select multiple input={<Input />} value={[10]} onChange={e => log(e.currentTarget.value)}>
+    <MenuItem value="">
+      <em>None</em>
+    </MenuItem>
+    <MenuItem value={10}>Ten</MenuItem>
+    <MenuItem value={20}>Twenty</MenuItem>
+    <MenuItem value={30}>Thirty</MenuItem>
+  </Select>
+);
+
 const InputAdornmentTest = () => <InputAdornment position="end" onClick={() => alert('Hello')} />;
 
 const TooltipComponentTest = () => (

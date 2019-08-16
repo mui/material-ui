@@ -72,8 +72,8 @@ export default function MultipleSelect() {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState<string[]>([]);
 
-  function handleChange(event: React.ChangeEvent<{ value: unknown }>) {
-    setPersonName(event.target.value as string[]);
+  function handleChange(event: React.ChangeEvent<{ value: string[] }>) {
+    setPersonName(event.target.value);
   }
 
   function handleChangeMultiple(event: React.ChangeEvent<{ value: unknown }>) {
@@ -112,7 +112,7 @@ export default function MultipleSelect() {
           value={personName}
           onChange={handleChange}
           input={<Input id="select-multiple-checkbox" />}
-          renderValue={selected => (selected as string[]).join(', ')}
+          renderValue={selected => selected.join(', ')}
           MenuProps={MenuProps}
         >
           {names.map(name => (
@@ -132,7 +132,7 @@ export default function MultipleSelect() {
           input={<Input id="select-multiple-chip" />}
           renderValue={selected => (
             <div className={classes.chips}>
-              {(selected as string[]).map(value => (
+              {selected.map(value => (
                 <Chip key={value} label={value} className={classes.chip} />
               ))}
             </div>
@@ -154,11 +154,11 @@ export default function MultipleSelect() {
           onChange={handleChange}
           input={<Input id="select-multiple-placeholder" />}
           renderValue={selected => {
-            if ((selected as string[]).length === 0) {
+            if (selected.length === 0) {
               return <em>Placeholder</em>;
             }
 
-            return (selected as string[]).join(', ');
+            return selected.join(', ');
           }}
           MenuProps={MenuProps}
         >
