@@ -43,8 +43,8 @@ export function inject(
 
   const result = babel.transformSync(target, {
     plugins: [
-      '@babel/plugin-syntax-class-properties',
-      '@babel/plugin-syntax-jsx',
+      require.resolve('@babel/plugin-syntax-class-properties'),
+      require.resolve('@babel/plugin-syntax-jsx'),
       plugin(propTypes, options, propTypesToInject),
     ],
     configFile: false,
