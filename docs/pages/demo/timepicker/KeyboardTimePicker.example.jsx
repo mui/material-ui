@@ -10,7 +10,7 @@ function KeyboardTimePickerExample() {
       placeholder="08:00 AM"
       mask="__:__ _M"
       value={selectedDate}
-      onChange={handleDateChange}
+      onChange={date => handleDateChange(date)}
     />
   );
 }
