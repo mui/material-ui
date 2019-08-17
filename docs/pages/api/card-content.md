@@ -42,10 +42,6 @@ You can override the style of the component thanks to one of these customization
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/CardContent/CardContent.js) for more detail.
 
-## Notes
-
-The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
-
 ## Demos
 
 - [Cards](/components/cards/)

@@ -25,10 +25,6 @@ The `ref` is forwarded to the root element.
 
 Any other props supplied will be provided to the root element (native element).
 
-## Notes
-
-The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
-
 ## Demos
 
 - [Textarea Autosize](/components/textarea-autosize/)

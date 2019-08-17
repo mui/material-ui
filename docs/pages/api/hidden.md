@@ -37,10 +37,6 @@ The component cannot hold a ref.
 
 Any other props supplied will be provided to the root element (native element).
 
-## Notes
-
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
-
 ## Demos
 
 - [Hidden](/components/hidden/)

@@ -59,10 +59,6 @@ If that's not sufficient, you can check the [implementation of the component](ht
 The props of the [Input](/api/input/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
 
-## Notes
-
-The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
-
 ## Demos
 
 - [Selects](/components/selects/)

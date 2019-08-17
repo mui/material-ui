@@ -31,10 +31,6 @@ This component can be useful in a variety of situations:
 The component cannot hold a ref.
 
 
-## Notes
-
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
-
 ## Demos
 
 - [No Ssr](/components/no-ssr/)
