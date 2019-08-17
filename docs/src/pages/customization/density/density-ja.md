@@ -24,9 +24,9 @@ The following components have props applying higher density:
 - [InputLabel](/api/input-label/)
 - [ListItem](/api/list-item/)
 - [OutlinedInput](/api/outlined-input/)
-- [Table](/api/table/)
+- [テーブル](/api/table/)
 - [TextField](/api/text-field/)
-- [Toolbar](/api/toolbar/)
+- [ツールバー](/api/toolbar/)
 
 ## Explore theme density
 

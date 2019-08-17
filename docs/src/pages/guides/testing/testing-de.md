@@ -38,7 +38,7 @@ Die `createRender()` Funktion ist dafür ideal. Dies ist nur ein Alias für die 
 
 Generieren Sie eine erweiterte Mount-Funktion mit dem erforderlichen Kontext. Bitte beachten Sie die [Enzyme API-Dokumentation](https://airbnb.io/enzyme/docs/api/mount.html) für weitere Informationen zur `mount` Funktion.
 
-#### Parameter
+#### Argumente
 
 1. `options` (*Object* [optional]) 
   - `options.mount` (*Function* [optional]): Die Mount-Funktion, die verbessert werden soll, verwendet **standardmäßig Enzym**.

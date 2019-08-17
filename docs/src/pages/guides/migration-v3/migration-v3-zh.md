@@ -195,7 +195,7 @@ function MySelect({ children }) {
 - [CardActions] 移除 CSS类中的 `disableActionSpacing`。
 - [CardActions] 将CSS类 `action` 重命名为 `spacing`。
 
-### ClickAwayListener
+### ClickAwayListener（他处点击监听器）
 
 - [ClickAwayListener] 隐藏 react-event-listener 的属性。
 
@@ -206,7 +206,7 @@ function MySelect({ children }) {
 - [DialogContentText] 不使用文字铸排变体 `subtitle1`，而使用 `body1`。
 - [Dialog] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
-### Divider
+### Dividers（分隔线）
 
 - [Divider] 移除了弃用的 ` inset ` 属性：
   
@@ -229,11 +229,11 @@ function MySelect({ children }) {
   - 您必须要在图标按钮上设置 `edge` 属性。
 - [ListItem] 加强 `disabled` 和 `focusVisible` 样式规则的 CSS 特性。
 
-### Menu
+### Menu（菜单）
 
 - [MenuItem] 删除 MenuItem 的固定高度。 浏览器将会自行根据间距和行高来计算高度。
 
-### Modal
+### Modal（模态框）
 
 - [Modal] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
   
@@ -243,7 +243,7 @@ function MySelect({ children }) {
 
 - [Modal] 现在忽略了 event.defaultPrevented。 即使当向下离开事件调用了 `event.preventDefault()`，新的逻辑也会关闭模态框。 `event.preventDefault()` 旨在禁用一些默认的行为，如单击一个复选框来选中它；点击按钮来提交表单；以及点击左键来移除文本输入框的光标等等。 只有一些特殊的HTML元素才具有这些默认的行为。 若您不想触发模态框的 `onClose` 事件，您需要使用 `event.stopPropagation()`。
 
-### Paper
+### Paper（纸张）
 
 - [Paper] 减小默认的 elevation（阴影高度）。 为了适配卡片组件和扩展面板组件，请更改默认纸张的阴影高度：
   
@@ -254,7 +254,7 @@ function MySelect({ children }) {
   
     这也会影响 `扩展面板`。
 
-### Portal
+### Portal（传送门）
 
 - [Portal] 当使用 `disablePortal`属性的时候，子元素需要能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
@@ -262,7 +262,7 @@ function MySelect({ children }) {
 
 - [Slide] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
-### Slider
+### Slider（滑块）
 
 - [Slider] 从 `@material-ui/lab` 迁移到 `@material-ui/core`。
   
@@ -298,7 +298,7 @@ function MySelect({ children }) {
   +<AddIcon htmlColor="#fff" />
   ```
 
-### 选项卡
+### Tabs（选项卡）
 
 - [Tab] 为了简单起见，删除了` labelContainer `，`label` 和 `labelWrapped` 等类的 key。 这使得我们可以移走两个中间的 DOM 元素。 您应该可以将自定义的样式移到`根元素`的类的键上。
   
@@ -311,7 +311,7 @@ function MySelect({ children }) {
   +<Tabs variant="scrollable" />
   ```
 
-### Table
+### Table（表格）
 
 - [TableCell] 移除了弃用的 `numeric` 属性：
   
@@ -330,7 +330,7 @@ function MySelect({ children }) {
 
 - [TablePagination] 此组件不再修复无效的属性（`page`，`count`，`rowsPerPage`）组合。 相反的，它会给出一个警告。
 
-### TextField
+### TextField（文本框）
 
 - [InputLabel] 凭借 InputLabel 组件的类 API，您应该可以覆盖 FormLabel 组件所有的样式表。 我们移除了 `FormLabelClasses` 属性。
   
@@ -353,12 +353,12 @@ function MySelect({ children }) {
 
 - [InputBase] 从 `InputBase` 中移走了 `inputType` 类。
 
-### Tooltip
+### Tooltip（文字提示）
 
 - [Tooltip] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 - [Tooltip] 相比以前任何聚焦都会出现，现在只会在 focus-visible 聚焦的时候出现。
 
-### Typography
+### Typography（文字铸排）
 
 - [Typography] 移除了各种弃用的铸排变体。 您可以通过执行以下的替换来升级： 
   - display4 => h1

@@ -1,9 +1,9 @@
 ---
-title: Tree View React component
-components: TreeView, TreeItem
+title: Tree View Reactコンポーネント
+components: TreeView、TreeItem
 ---
 
-# Tree View
+# ツリービュー
 
 <p class="description">A tree view widget presents a hierarchical list.</p>
 
@@ -11,6 +11,6 @@ Tree views can be used to represent a file system navigator displaying folders a
 
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}}
 
-## Customized tree view
+## カスタマイズされたツリービュー
 
 {{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}

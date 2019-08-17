@@ -11,6 +11,6 @@ As visualizações em árvore podem ser usadas para representar um navegador do 
 
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}}
 
-## Customized tree view
+## Visualização em árvore customizada
 
 {{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}

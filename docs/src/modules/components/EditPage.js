@@ -1,10 +1,12 @@
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { Router, useRouter } from 'next/router';
 import Button from '@material-ui/core/Button';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
-const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
-const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/edit/master';
 
 export default function EditPage(props) {
@@ -13,16 +15,14 @@ export default function EditPage(props) {
     t: state.options.t,
     userLanguage: state.options.userLanguage,
   }));
-  const crowdInLocale = LOCALES[userLanguage] || userLanguage;
-  const crowdInPath = markdownLocation.substring(0, markdownLocation.lastIndexOf('/'));
+  const router = useRouter();
+  const { canonical } = pathnameToLanguage(Router._rewriteUrlForNextExport(router.asPath));
 
   return (
     <Button
       component="a"
       href={
-        userLanguage === 'en'
-          ? `${SOURCE_CODE_ROOT_URL}${markdownLocation}`
-          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging${crowdInPath}`
+        userLanguage === 'en' ? `${SOURCE_CODE_ROOT_URL}${markdownLocation}` : `/aa${canonical}`
       }
       target="_blank"
       rel="noopener"

@@ -326,7 +326,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   +<Tabs variant="scrollable" />
   ```
 
-### Table
+### テーブル
 
 - [TableCell] Remove the deprecated `numeric` property:
   

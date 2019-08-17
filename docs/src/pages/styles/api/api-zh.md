@@ -17,7 +17,7 @@
 
 `类名生成器`：应该将生成器提供给JSS。
 
-#### 示例
+#### 例子
 
 ```jsx
 import React from 'react';

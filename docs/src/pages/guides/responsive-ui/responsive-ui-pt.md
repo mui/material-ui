@@ -1,4 +1,4 @@
-# UI Responsiva
+# Responsive UI
 
 <p class="description">Os leiautes de Material Design incentivam a consistência entre plataformas, ambientes e tamanhos de tela usando elementos uniformes e espaçamento.</p>
 

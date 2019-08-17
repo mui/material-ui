@@ -9,7 +9,7 @@ components: Skeleton
 
 The data for your components might not be immediately available. You can increase the perceived performance for users by using skeletons. It feels like things are happening immediately, then the information is incrementally displayed on the screen (Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
 
-The component is designed to be used **directly in your components**. Par exemple:
+The component is designed to be used **directly in your components**. For instance:
 
 ```jsx
 {item ? (

@@ -7,7 +7,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 <p class="description">Text fieldを使用すると、ユーザーはテキストを入力および編集できます。</p>
 
-[Text fields](https://material.io/design/components/text-fields.html) allow users to enter text into a UI. They typically appear in forms and dialogs.
+[テキストフィールド](https://material. io/design/components/text-fields. html) 使用すると、ユーザーはUIにテキストを入力できます。 通常、フォームとダイアログに表示されます。
 
 ## TextField
 
@@ -43,7 +43,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ## Customized inputs
 
-Here are some examples of customizing the component. 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -79,11 +79,11 @@ Here are some examples of customizing the component. 詳細については、 [�
 
 ## 制限
 
-### Shrink
+### シュリンク
 
 入力ラベルの「shrink」状態は必ずしも正しくありません。 入力が何かを表示しているとすぐに入力ラベルは縮小するはずです。 状況によっては、「shrink」状態（数値入力、日時入力、ストライプ入力）を判別できません。 重複があるかもしれません。
 
-![shrink](/static/images/text-fields/shrink.png)
+![シュリンク](/static/images/text-fields/shrink.png)
 
 この問題を回避するにはラベルの"shrink"状態を以下のように強制する必要があります。
 
@@ -97,9 +97,9 @@ Here are some examples of customizing the component. 詳細については、 [�
 <InputLabel shrink>Contagem</InputLabel>
 ```
 
-### Floating label
+### フローティングラベル
 
-The floating label is absolutely positioned, it won't impact the layout of the page. You need to make sure that the input is larger than the label to display correctly.
+フローティングラベルは絶対位置に配置され、ページのレイアウトには影響しません。 You need to make sure that the input is larger than the label to display correctly.
 
 ## サードパーティの入力ライブラリとの統合
 

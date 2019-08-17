@@ -326,7 +326,7 @@ Esta alteração é explicada em mais detalhes no nosso guia [TypeScript](/guide
   +<Tabs variant="scrollable" />
   ```
 
-### Tabela
+### Table
 
 - [TableCell] Remova a propriedade descontinuada `numeric`:
   

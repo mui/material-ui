@@ -49,7 +49,7 @@ Highlight part of the text to see the popper:
 
 ## Projets complémentaires
 
-Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti des avantages suivants:
+Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti des projects suivants:
 
 ### Assistant PopupState
 

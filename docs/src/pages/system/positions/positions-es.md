@@ -1,4 +1,4 @@
-# Posiciones
+# Positions
 
 <p class="description">Use these shorthand utilities for quickly configuring the position of an element.</p>
 

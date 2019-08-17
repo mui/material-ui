@@ -85,6 +85,21 @@ class MyDocument extends Document {
           <style id="app-search" />
           <style id="prismjs" />
           <style id="insertion-point-jss" />
+          <script
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: `
+            var _jipt = [];
+            _jipt.push(['project', 'material-ui-docs']);
+            _jipt.push(['escape', function() {
+              window.location.href = "https://material-ui.com";
+            }]);
+            `,
+            }}
+          />
+          {userLanguage === 'aa' ? (
+            <script type="text/javascript" src="//cdn.crowdin.com/jipt/jipt.js" />
+          ) : null}
         </Head>
         <body>
           <Main />
@@ -92,11 +107,12 @@ class MyDocument extends Document {
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-window.ga('create','${GOOGLE_ID}','auto');
+                window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+                window.ga('create','${GOOGLE_ID}','auto');
               `,
             }}
           />
+          {/* <script type="text/javascript" src="//cdn.crowdin.com/jipt/jipt.js"/> */}
           <NextScript />
         </body>
       </html>

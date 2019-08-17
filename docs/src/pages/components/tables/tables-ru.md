@@ -47,7 +47,7 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 ## Customized tables
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js"}}
 

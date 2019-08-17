@@ -15,7 +15,7 @@ Um exemplo simples sem frescuras.
 
 {{"demo": "pages/components/tabs/SimpleTabs.js"}}
 
-### Rótulos com quebras
+### Etiquetas embrulhadas
 
 Os rótulos longos serão quebrados automaticamente nas guias. Se o rótulo for muito longo para a guia, ele irá exceder e o texto não ficará visível.
 
@@ -65,7 +65,7 @@ Botões de rolagem para a esquerda e para a direita nunca serão apresentados. T
 
 ## Guias customizadas
 
-Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js"}}
 

@@ -58,7 +58,7 @@ Use os utilitários de borda para adicionar ou remover as bordas de um elemento.
 import { borders } from '@material-ui/system';
 ```
 
-| Nome da importação | Prop           | Propriedade CSS | Chave do tema                                                    |
+| Nome da importação | Propriedade    | Propriedade CSS | Chave do tema                                                    |
 |:------------------ |:-------------- |:--------------- |:---------------------------------------------------------------- |
 | `border`           | `border`       | `border`        | `borders`                                                        |
 | `borderTop`        | `borderTop`    | `border-top`    | `borders`                                                        |

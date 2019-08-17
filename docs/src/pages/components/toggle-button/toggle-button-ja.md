@@ -3,13 +3,13 @@ title: Toggle Button React component
 components: ToggleButton, ToggleButtonGroup
 ---
 
-# Toggle Buttons
+# トグルボタン
 
-<p class="description">Toggle buttons can be used to group related options.</p>
+<p class="description">トグルボタンを使用して、関連するオプションをグループ化できます。</p>
 
-To emphasize groups of related [Toggle buttons](https://material.io/design/components/buttons.html#toggle-button), a group should share a common container.
+関連する [Toggle buttons](https://material.io/design/components/buttons.html#toggle-button)のグループを強調するには、次の操作を行います。 グループは共通のコンテナーを共用する必要があります。
 
-The `ToggleButtonGroup` will control the selected of its child buttons when given its own `value` prop.
+`ToggleButtonGroup`は、次の場合に子ボタンの選択を制御します。 独自の`value`propが与えられます。
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 
@@ -17,4 +17,4 @@ The `ToggleButtonGroup` will control the selected of its child buttons when give
 
 大きなボタンと小さなボタンがありますか? `size`プロパティを使用します。
 
-{{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
+{{"demo": "pages/components/textarea-autosize/MaxHeightTextarea.js"}}

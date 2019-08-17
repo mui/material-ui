@@ -49,7 +49,7 @@ Para probar un esquema de color [material.io/design/color](https://material.io/d
 
 {{"demo": "pages/customization/color/ColorTool.js", "hideHeader": true}}
 
-La salida conseguida en la muestra de color se puede pegar directamente en la función [`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) (para ser utilizada con [`MuiThemeProvider`](/customization/theming/#theme-provider)):
+The output shown in the color sample can be pasted directly into a [`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) function (to be used with [`MuiThemeProvider`](/customization/theming/#theme-provider)):
 
 ```jsx
 import { createMuiTheme } from '@material-ui/core/styles';

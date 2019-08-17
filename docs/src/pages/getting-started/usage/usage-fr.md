@@ -58,5 +58,5 @@ Cette documentation reflète toujours la dernière version stable de Material-UI
 Maintenant que vous avez une idée de la configuration de base, il est temps d'en apprendre d'avantage sur :
 
 - Comment fournir [la police et la typographie Material Design](/components/typography/) .
-- Comment tirer parti de la [solution de thème](/customization/theming/).
+- How to take advantage of the [theming solution](/customization/theming/).
 - Comment [modifier](/customization/components/), l'apparence des composants.

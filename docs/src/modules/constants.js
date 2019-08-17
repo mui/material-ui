@@ -8,10 +8,10 @@ const ACTION_TYPES = {
 };
 
 // Active
-const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de'];
+const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de', 'ja', 'aa'];
 
 // Work in progress
-const LANGUAGES_IN_PROGRESS = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de', 'ja'];
+const LANGUAGES_IN_PROGRESS = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de', 'ja', 'aa'];
 
 module.exports = {
   CODE_VARIANTS,

@@ -5,50 +5,50 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 # Steppers
 
-<p class="description">Steppers convey progress through numbered steps. It provides a wizard-like workflow.</p>
+<p class="description">ステッパーは、番号の付いたステップを通して進捗を伝えます。 ウィザードのようなワークフローを提供します。</p>
 
-[Steppers](https://material.io/archive/guidelines/components/steppers.html) display progress through a sequence of logical and numbered steps. They may also be used for navigation. Steppers may display a transient feedback message after a step is saved.
+[Steppers](https://material.io/archive/guidelines/components/steppers.html)は、一連の論理ステップと番号付きステップの進行状況を表示します。 ナビゲーションにも使用できます。 ステッパーは、ステップが保存された後に一時的なフィードバックメッセージを表示する場合があります。
 
-- **Types of Steps**: Editable, Non-editable, Mobile, Optional
-- **Types of Steppers**: Horizontal, Vertical, Linear, Non-linear
+- **ステップのタイプ**： Editable, Non-editable, Mobile, Optional
+- **ステッパーのタイプ**：Horizontal, Vertical, Linear, Non-linear
 
-> **Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
+> **注：** ステッパーは [Material Design guidelines](https://material.io/)には文書化されなくなりましたが、Material-UIは引き続きそれらをサポートします。
 
 ## Horizontal Stepper
 
 ### Linear
 
-The `Stepper` can be controlled by passing the current step index (zero-based) as the `activeStep` property. `Stepper` orientation is set using the `orientation` property.
+`Stepper` は、現在のステップインデックス（ゼロベース）を `activeStep` プロパティとして渡すことで制御できます。` <code>Stepper`方向は、 `orientation`プロパティを使用して設定されます。
 
-This example also shows the use of an optional step by placing the `optional` property on the second `Step` component. Note that it's up to you to manage when an optional step is skipped. Once you've determined this for a particular step you must set `completed={false}` to signify that even though the active step index has gone beyond the optional step, it's not actually complete.
+この例では、 `optional`プロパティを第2の`Step`コンポーネントに配置して、オプションの手順を使用する方法も示します。 オプションの手順がスキップされる場合の管理はユーザー次第です。 特定のステップでこれを決定したら、`completed={false}` を設定して、アクティブなステップインデックスがオプションのステップを超えていても、実際には完了していないことを示す必要があります。
 
 {{"demo": "pages/components/steppers/HorizontalLinearStepper.js"}}
 
 ### Linear - Alternative Label
 
-Labels can be placed below the step icon by setting the `alternativeLabel` prop on the `Stepper` component.
+`alternativeLabel`コンポーネントで`alternativeLabel` propを設定すると、ステップアイコンの下にラベルを配置できます。
 
 {{"demo": "pages/components/steppers/HorizontalLinearAlternativeLabelStepper.js"}}
 
 ### Customized Stepper
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 
 ### Non-linear
 
-Non-linear steppers allow users to enter a multi-step flow at any point.
+Non-linearステッパーにより、ユーザーはいつでもマルチステップフローを入力できます。
 
-This example is similar to the regular horizontal stepper, except steps are no longer automatically set to `disabled={true}` based on the `activeStep` property.
+この例は、ステップが `activeStep` プロパティに基づいて `disabled ={true}` 自動的に設定されることを除いて、通常の水平ステッパーに似ています。
 
-We've used the `StepButton` here to demonstrate clickable step labels as well as setting the `completed` flag however because steps can be accessed in a non-linear fashion it's up to your own implementation to determine when all steps are completed (or even if they need to be completed).
+ここでは、</code>StepButton</code>を使用して、クリック可能なステップラベルと、`completed`の設定を示します。 しかし、ステップはノンリニアな方法でアクセスできるので、それはあなた自身の実装次第です。 すべての手順が完了したことを確認します(完成させる必要があっても)。
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js"}}
 
 ### Non Linear - Alternative Label
 
-Labels can be placed below the step icon by setting the `alternativeLabel` prop on the `Stepper` component.
+`Stepper`コンポーネントで`alternativeLabel`propを 設定すると、ステップアイコンの下にラベルを配置できます。
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearAlternativeLabelStepper.js"}}
 
@@ -56,29 +56,29 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prop 
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepperWithError.js"}}
 
-## Vertical Stepper
+## 垂直ステッパー
 
 {{"demo": "pages/components/steppers/VerticalLinearStepper.js"}}
 
-## Mobile Stepper
+## モバイルステッパー
 
-This component implements a compact stepper suitable for a mobile device. See [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) for its inspiration.
+このコンポーネントは、モバイルデバイスに適したコンパクトなステッパーを実装します。 その着想については、[mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)を参照してください。
 
-### Text
+### テキスト
 
-This is essentially a back/next button positioned correctly. You must implement the textual description yourself, however, an example is provided below for reference.
+これは基本的に、正しく配置された戻る/次へボタンです。 テキストの説明は自分で実装する必要がありますが、参考のために例を以下に示します。
 
-{{"demo": "pages/components/steppers/TextMobileStepper.js"}}
+{{"demo": "pages/components/steppers/VerticalLinearStepper.js"}}
 
 ### Text with Carousel effect
 
-This demo is very similar to the previous, the difference is the usage of [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to make the transition of steps.
+このデモは前のデモとよく似ていますが、 [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) ステップの遷移を行います。
 
 {{"demo": "pages/components/steppers/SwipeableTextMobileStepper.js"}}
 
 ### Dots
 
-Use dots when the number of steps isn’t large.
+ステップ数が多くない場合はドットを使用します。
 
 {{"demo": "pages/components/steppers/DotsMobileStepper.js"}}
 

@@ -7,7 +7,7 @@ components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 
 <p class="description">按钮允许用户只需轻按一下即可采取行动并做出选择。</p>
 
-[按钮](https://material.io/design/components/buttons.html) 传达用户可以执行的操作。 They are typically placed throughout your UI, in places like:
+[按钮](https://material.io/design/components/buttons.html) 传达用户可以执行的操作。 他们通常直接放置在用户界面中，例如：
 
 - Dialogs（对话框）
 - Modal windows（模态窗口）
@@ -52,7 +52,7 @@ ButtonGroup 组件可用于组合描边按钮（默认的）或者实心按钮�
 
 ## Split Button（分割按钮）
 
-ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be use to immediately trigger a related action.
+ButtonGroup也可用于创建分割按钮。 下拉列表可以更改按钮操作(如本例所示)，或也可用于立即触发相关操作。
 
 {{"demo": "pages/components/buttons/SplitButton.js"}}
 
@@ -76,7 +76,7 @@ ButtonGroup can also be used to create a split button. The dropdown can change t
 
 ## 尺寸
 
-Fancy larger or smaller buttons? Use the `size` property.
+想要更大或更小的按钮？ 你可以使用 `size` 属性。
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
@@ -86,34 +86,34 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## 图标按钮
+## Icon Buttons（图标按钮）
 
 图标按钮通常位于应用栏和工具栏中。
 
-图标也适用于允许选择单个选项的切换按钮或 取消选择，例如向项目添加或删除星标。
+图标也适用于实现单个选项的选择和或取消选择的切换按钮，例如向一个元素添加或删除星标。
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
 ## Customized Buttons（自定义按钮）
 
-这是一些自定义样式开关的例子 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
+👑如果您还在寻找灵感，可以看看 [MUI Treasury定制的示例](https://mui-treasury.com/components/button)。
 
-## 复杂按钮
+## Complex Buttons（复杂按钮）
 
 文本按钮，包含按钮，浮动操作按钮和图标按钮构建在同一组件之上：`ButtonBase`。 您可以利用此较底层的组件来构建自定义交互。
 
 {{"demo": "pages/components/buttons/ButtonBases.js"}}
 
-## 第三方路由库
+## Third-party routing library（第三方路由库）
 
-一个常见的用例是使用按钮触发导航到新页面。 `ButtonBase` 组件提供了一个处理此用例的属性：`component`。 然而，一些特定 `ButtonBase` 的代码需要所给组件的 DOM 节点。 在组件上附加一个 ref，并且预期此组件能够将这个 ref 传递到下层 DOM 节点，通过这样的方法可以实现。 Given that a lot of our interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
+一个常见的用例是使用按钮触发导航到新页面。 `ButtonBase` 组件提供了一个处理此用例的属性：`component`。 然而，一些特定 `ButtonBase` 的代码需要所给组件的 DOM 节点。 在组件上附加一个 ref，并且预期此组件能够将这个 ref 传递到下层 DOM 节点，通过这样的方法可以实现。 鉴于我们的许多交互式组件都依赖于 `ButtonBase`，你几乎可以在任何地方都能体验到使用它的好处：
 
-Here is an integration example with react-router:
+这里有个使用了react-router的示例：
 
 {{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 
-*Note: Creating the Button components is necessary to prevent unexpected unmounting. 您可以在我们的 [组件属性指南](/guides/composition/#component-property)阅读更多相关信息。*
+*备注：为防止意外的卸载，创建Link组件非常必要。 You can read more about it in our [component property guide](/guides/composition/#component-property).*

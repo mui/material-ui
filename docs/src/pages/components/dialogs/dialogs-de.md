@@ -54,7 +54,7 @@ Formulardialoge ermöglichen Benutzern das Ausfüllen von Formularfeldern innerh
 
 ## Benutzerdefinierter Dialoge
 
-Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 Das Dialogfeld verfügt über eine Schaltfläche zum Schließen, um die Benutzerfreundlichkeit zu verbessern.
 

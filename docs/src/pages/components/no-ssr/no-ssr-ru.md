@@ -5,17 +5,17 @@ components: NoSsr
 
 # No SSR
 
-<p class="description">NoSsr purposely removes components from the subject of Server Side Rendering (SSR).</p>
+<p class="description">NoSsr преднамеренно удаляет компоненты из предмета рендеринга на стороне сервера (SSR).</p>
 
-This component can be useful in a variety of situations:
+Этот компонент может быть полезен в различных ситуациях:
 
 - Escape hatch for broken dependencies not supporting SSR.
 - Improve the time-to-first paint on the client by only rendering above the fold.
-- Reduce the rendering time on the server.
+- Сократить время рендеринга на сервере.
 - Under too heavy server load, you can turn on service degradation.
 - Improve the time-to-interactive by only rendering what's important (with the `defer` property).
 
-## Client side deferring
+## Отсрочка на стороне клиента
 
 {{"demo": "pages/components/no-ssr/SimpleNoSsr.js"}}
 

@@ -36,11 +36,11 @@ Outlined chipsは代替スタイルを提供します。
 
 あなたは小さなチップを定義するために `サイズ` propsを使うことができます。
 
-### Default variant
+### デフォルトのバリアント
 
 {{"demo":"pages/components/chips/SmallChips.js"}}
 
-### Outlined variant
+### アウトライン化されたバリアント
 
 {{"demo":"pages/components/chips/SmallOutlinedChips.js"}}
 

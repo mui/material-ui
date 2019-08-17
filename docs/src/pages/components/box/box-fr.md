@@ -1,8 +1,8 @@
 ---
-title: Box React component
+title: Composant React Box
 ---
 
-# Box (Boite)
+# Zone
 
 <p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
 

@@ -19,7 +19,7 @@ If you wish to customize the theme, you need to use the `ThemeProvider` componen
 Changer la configuration du thème est la manière la plus efficace d'accorder Material-UI à vos préférences. Les sections suivantes couvrent les principales variables des thèmes:
 
 - [Palette](/customization/palette/)
-- [Typography](/customization/typography/)
+- [Typographie](/customization/typography/)
 - [Ecartement](/customization/spacing/)
 - [Breakpoints](/customization/breakpoints/)
 - [z-index](/customization/z-index/)

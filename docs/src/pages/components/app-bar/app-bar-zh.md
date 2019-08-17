@@ -65,13 +65,13 @@ components: AppBar, Toolbar, Menu
 
 - `options.disableHysteresis` (*Boolean* [optional]): 默认值为`false`。 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
 - `options.target` （*Node* [optional]）：默认值时 `window`。
-- `options.threshold` (*Number* [optional]): 默认值是 `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
+- `options.threshold` (*Number* [optional]): 默认值是 `100`. 严格来说，当垂直滚动超过（但不包括）此阈值时，请更改 `trigger` 的值。
 
 #### 返回结果
 
 `trigger` ：滚动位置是否符合标准？
 
-#### 示例
+#### 例子
 
 ```jsx
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';

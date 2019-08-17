@@ -5,20 +5,20 @@ components: Modal
 
 # Modal
 
-<p class="description">The modal component provides a solid foundation for creating dialogs, popovers, lightboxes, or whatever else.</p>
+<p class="description">モーダルコンポーネントは、ダイアログ、ポップオーバー、ライトボックスなどを作成するための強固な基盤を提供します。</p>
 
-The component renders its `children` node in front of a backdrop component. The `Modal` offers important features:
+コンポーネントは、backdropコンポーネントの前にその `children`ノードをレンダリングします。 `Modal` には、次のような重要な機能があります。
 
-- 💄 Manages modal stacking when one-at-a-time just isn't enough.
-- 🔐 Creates a backdrop, for disabling interaction below the modal.
-- 🔐 It disables scrolling of the page content while open.
-- ♿️ It properly manages focus; moving to the modal content, and keeping it there until the modal is closed.
-- ♿️ Adds the appropriate ARIA roles automatically.
-- [5 kB gzipped](/size-snapshot).
+- 💄 一度に1つだけでは不十分な場合に、モーダルスタッキングを管理します。
+- 🔐モーダルの下のインタラクションを無効にするためのバックドロップを作成します。
+- 🔐open開いている間、ページコンテンツのスクロールを無効にします。
+- ♿️フォーカスを適切に管理します。モーダルコンテンツに移動し、 して、モーダルが閉じられるまでそこに保持します。
+- ♿️適切なARIAロールを自動的に追加します。
+- 📦 [5 kB gzipped](/size-snapshot).
 
-> **Terminology note**. The term "modal" is sometimes used to mean "dialog", but this is a misnomer. A Modal window describes parts of a UI. An element is considered modal if [it blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window).
+> **用語の注記**。 「モーダル」という用語は「ダイアログ」を意味するために使用されることがありますが、これは誤った呼び名です。 モーダルウィンドウは、UIの一部を説明します。 要素が[アプリケーションの他の部分との対話をブロックする場合](https://en.wikipedia.org/wiki/Modal_window)、その要素はモーダルであると見なされます。
 
-If you are creating a modal dialog, you probably want to use the [Dialog](/components/dialogs/) component rather than directly using Modal. Modal is a lower-level construct that is leveraged by the following components:
+モーダルダイアログを作成する場合は、モーダルを直接使用するのではなく、 [ダイアログ](/components/dialogs/) コンポーネントを使用することをお勧めします。 モーダルは、次のコンポーネントによって活用される低レベルの構成要素です。
 
 - [Dialog](/components/dialogs/)
 - [Drawer](/components/drawers/)
@@ -29,13 +29,13 @@ If you are creating a modal dialog, you probably want to use the [Dialog](/compo
 
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
-Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
+`アウトライン：0` CSSプロパティでアウトライン（多くの場合、青または金）を無効にできることに注意してください。
 
 ## パフォーマンス
 
-The content of the modal is **lazily mounted** into the DOM. It ensures that having many closed modals in your React tree won't slow down your page.
+モーダルの内容は、DOMに **遅延マウント**されます。 これにより、Reactツリーに多くの閉じたモーダルを追加しても、ページが遅くなることはありません。
 
-However, creating React elements has a cost too. Consider the following case:
+ただし、React要素を作成するにはコストもかかります。 次の例をみてください:
 
 ```jsx
 <Modal open={false}>
@@ -62,7 +62,7 @@ However, creating React elements has a cost too. Consider the following case:
 </Modal>
 ```
 
-We create a lot of React elements that will never be mounted. It's wasteful 🐢. You can **speed up** the rendering by moving the modal body into its own component.
+決してマウントされないReact要素をたくさん作成します。 無駄です🐢。 モーダルボディを独自のコンポーネントに移動することで、レンダリングを**speed up**できます。
 
 ```jsx
 <Modal open={false}>
@@ -70,11 +70,11 @@ We create a lot of React elements that will never be mounted. It's wasteful 🐢
 </Modal>
 ```
 
-This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). The `TableComponent` render method will only be evaluated when opening the modal.
+This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). `TableComponent` レンダリングメソッドは、モーダルを開いたときにのみ評価されます。
 
 ## アクセシビリティ
 
-- Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` property on the `Modal`.
+- モーダルタイトルを参照する `aria-labelledby = "id..."` `モーダル`に追加してください。 さらに、 `モーダル`の `aria-describedby = "id..."` プロパティを使用して、モーダルの説明を指定できます。
 
 ```jsx
 <Modal
@@ -90,10 +90,10 @@ This way, you take advantage of [React render laziness evaluation](https://overr
 </Modal>
 ```
 
-- The [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
+- [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html)は、モーダルなコンテンツに基づいて、最も関連性の高い要素に最初に重点を置く場合に役立ちます。
 
 ## Server-side modal
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to make it work, you need to disable this feature with the `disablePortal` prop:
+React [は、サーバー上の](https://github.com/facebook/react/issues/13097) [`createPortal（）`](https://reactjs.org/docs/portals.html) APIをサポートしません。 これを機能させるには、`disablePortal`でこの機能を無効にする必要があります。
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
