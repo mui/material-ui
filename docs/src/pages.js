@@ -33,7 +33,7 @@ const pages = [
         pathname: '/components',
         subheader: '/components/inputs',
         children: [
-          { pathname: '/components/autocomplete' },
+          { pathname: '/components/integrated-autocomplete' },
           { pathname: '/components/buttons' },
           { pathname: '/components/checkboxes' },
           { pathname: '/components/pickers', title: 'Date / Time' },
@@ -114,6 +114,7 @@ const pages = [
         subheader: '/components/lab',
         children: [
           { pathname: '/components/about-the-lab' },
+          { pathname: '/components/autocomplete' },
           { pathname: '/components/rating' },
           { pathname: '/components/skeleton' },
           { pathname: '/components/speed-dial' },

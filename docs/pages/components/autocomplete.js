@@ -9,6 +9,8 @@ const reqSource = require.context(
 );
 const reqPrefix = 'pages/components/autocomplete';
 
-export default function Page() {
+function Page() {
   return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
+
+export default Page;
