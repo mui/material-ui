@@ -450,7 +450,7 @@
     },
     "openTo": {
       "defaultValue": null,
-      "description": "Open to DatePicker",
+      "description": "First view to show in DatePicker",
       "name": "openTo",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
@@ -1138,7 +1138,7 @@
     },
     "openTo": {
       "defaultValue": null,
-      "description": "Open to DatePicker",
+      "description": "First view to show in DatePicker",
       "name": "openTo",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DatePicker/DatePicker.tsx",
@@ -1718,7 +1718,7 @@
     },
     "openTo": {
       "defaultValue": null,
-      "description": "Open to timepicker",
+      "description": "First view to show in timepicker",
       "name": "openTo",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/TimePicker/TimePicker.tsx",
@@ -2214,7 +2214,7 @@
     },
     "openTo": {
       "defaultValue": null,
-      "description": "Open to timepicker",
+      "description": "First view to show in timepicker",
       "name": "openTo",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/TimePicker/TimePicker.tsx",
@@ -2602,7 +2602,7 @@
     },
     "openTo": {
       "defaultValue": null,
-      "description": "Open to DatePicker",
+      "description": "First view to show in DatePicker",
       "name": "openTo",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",
@@ -3359,7 +3359,7 @@
     },
     "openTo": {
       "defaultValue": null,
-      "description": "Open to DatePicker",
+      "description": "First view to show in DatePicker",
       "name": "openTo",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/DateTimePicker/DateTimePicker.tsx",

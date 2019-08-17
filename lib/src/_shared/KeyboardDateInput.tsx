@@ -50,7 +50,7 @@ export interface KeyboardDateInputProps
   rifmFormatter?: (str: string) => string;
 }
 
-const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
+export const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
   inputValue,
   inputVariant,
   validationError,

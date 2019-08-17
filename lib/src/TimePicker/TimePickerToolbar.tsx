@@ -76,7 +76,7 @@ export function useMeridiemMode(
   return { meridiemMode, handleMeridiemChange };
 }
 
-const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
+export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
   date,
   views,
   ampm,

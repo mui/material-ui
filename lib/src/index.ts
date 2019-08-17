@@ -33,9 +33,7 @@ export { default as Clock } from './views/Clock/Clock';
 
 export { Picker } from './Picker/Picker';
 
-export { makePurePicker } from './Picker/WrappedPurePicker';
-
-export { makeKeyboardPicker } from './Picker/WrappedKeyboardPicker';
+export { makePickerWithState } from './Picker/makePickerWithState';
 
 export { validate } from './_helpers/text-field-helper';
 

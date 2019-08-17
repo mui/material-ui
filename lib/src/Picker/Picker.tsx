@@ -82,37 +82,18 @@ const useStyles = makeStyles(
   { name: 'MuiPickersBasePicker' }
 );
 
-export const Picker: React.FunctionComponent<PickerProps> = props => {
-  const {
-    date,
-    ampm,
-    views,
-    disableToolbar,
-    disablePast,
-    disableFuture,
-    hideTabs,
-    onChange,
-    openTo,
-    minutesStep,
-    dateRangeIcon,
-    timeIcon,
-    minDate: unparsedMinDate,
-    maxDate: unparsedMaxDate,
-    animateYearScrolling,
-    leftArrowIcon,
-    rightArrowIcon,
-    renderDay,
-    shouldDisableDate,
-    allowKeyboardControl,
-    onMonthChange,
-    onYearChange,
-    leftArrowButtonProps,
-    rightArrowButtonProps,
-    ToolbarComponent,
-    loadingIndicator,
-    orientation,
-  } = props;
-
+export const Picker: React.FunctionComponent<PickerProps> = ({
+  date,
+  views,
+  disableToolbar,
+  onChange,
+  openTo,
+  minDate: unparsedMinDate,
+  maxDate: unparsedMaxDate,
+  ToolbarComponent,
+  orientation,
+  ...rest
+}) => {
   const utils = useUtils();
   const classes = useStyles();
   const isLandscape = useIsLandscape(orientation);
@@ -129,70 +110,52 @@ export const Picker: React.FunctionComponent<PickerProps> = props => {
     >
       {!disableToolbar && (
         <ToolbarComponent
+          {...rest}
+          views={views}
+          isLandscape={isLandscape}
           date={date}
           onChange={onChange}
           setOpenView={setOpenView}
           openView={openView}
-          hideTabs={hideTabs}
-          dateRangeIcon={dateRangeIcon}
-          timeIcon={timeIcon}
-          isLandscape={isLandscape}
-          {...props}
         />
       )}
 
       <div className={clsx(classes.pickerView, { [classes.pickerViewLandscape]: isLandscape })}>
         {openView === 'year' && (
           <YearSelection
+            {...rest}
             date={date}
             onChange={handleChangeAndOpenNext}
             minDate={minDate}
             maxDate={maxDate}
-            disablePast={disablePast}
-            disableFuture={disableFuture}
-            onYearChange={onYearChange}
-            animateYearScrolling={animateYearScrolling}
           />
         )}
 
         {openView === 'month' && (
           <MonthSelection
+            {...rest}
             date={date}
             onChange={handleChangeAndOpenNext}
             minDate={minDate}
             maxDate={maxDate}
-            disablePast={disablePast}
-            disableFuture={disableFuture}
-            onMonthChange={onMonthChange}
           />
         )}
 
         {openView === 'date' && (
           <Calendar
+            {...rest}
             date={date}
             onChange={handleChangeAndOpenNext}
-            onMonthChange={onMonthChange}
-            disablePast={disablePast}
-            disableFuture={disableFuture}
             minDate={minDate}
             maxDate={maxDate}
-            leftArrowIcon={leftArrowIcon}
-            leftArrowButtonProps={leftArrowButtonProps}
-            rightArrowIcon={rightArrowIcon}
-            rightArrowButtonProps={rightArrowButtonProps}
-            renderDay={renderDay}
-            shouldDisableDate={shouldDisableDate}
-            allowKeyboardControl={allowKeyboardControl}
-            loadingIndicator={loadingIndicator}
           />
         )}
 
         {(openView === 'hours' || openView === 'minutes' || openView === 'seconds') && (
           <ClockView
+            {...rest}
             date={date}
-            ampm={ampm}
             type={openView}
-            minutesStep={minutesStep}
             onHourChange={handleChangeAndOpenNext}
             onMinutesChange={handleChangeAndOpenNext}
             onSecondsChange={handleChangeAndOpenNext}

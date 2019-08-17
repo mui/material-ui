@@ -1,11 +1,18 @@
 import { useUtils } from '../_shared/hooks/useUtils';
-import { BaseDatePickerProps } from '../DatePicker/DatePicker';
+import { PureDateInput } from '../_shared/PureDateInput';
 import { BaseTimePickerProps } from '../TimePicker/TimePicker';
+import { BaseDatePickerProps } from '../DatePicker/DatePicker';
 import { DateTimePickerToolbar } from './DateTimePickerToolbar';
+import { KeyboardDateInput } from '../_shared/KeyboardDateInput';
+import { usePickerState } from '../_shared/hooks/usePickerState';
 import { pick12hOr24hFormat } from '../_helpers/text-field-helper';
 import { dateTimePickerDefaultProps } from '../constants/prop-types';
-import { WrappedPurePickerProps, makePurePicker } from '../Picker/WrappedPurePicker';
-import { makeKeyboardPicker, WrappedKeyboardPickerProps } from '../Picker/WrappedKeyboardPicker';
+import { useKeyboardPickerState } from '../_shared/hooks/useKeyboardPickerState';
+import {
+  WithKeyboardInputProps,
+  makePickerWithState,
+  WithPureInputProps,
+} from '../Picker/makePickerWithState';
 
 export type DateTimePickerView = 'year' | 'date' | 'month' | 'hours' | 'minutes';
 
@@ -14,7 +21,7 @@ export type BaseDateTimePickerProps = BaseTimePickerProps & BaseDatePickerProps;
 export interface DateTimePickerViewsProps extends BaseDateTimePickerProps {
   /** Array of views to show */
   views?: ('year' | 'date' | 'month' | 'hours' | 'minutes')[];
-  /** Open to DatePicker */
+  /** First view to show in DatePicker */
   openTo?: 'year' | 'date' | 'month' | 'hours' | 'minutes';
   /** To show tabs */
   hideTabs?: boolean;
@@ -24,9 +31,9 @@ export interface DateTimePickerViewsProps extends BaseDateTimePickerProps {
   timeIcon?: React.ReactNode;
 }
 
-export type DateTimePickerProps = WrappedPurePickerProps & DateTimePickerViewsProps;
+export type DateTimePickerProps = WithPureInputProps & DateTimePickerViewsProps;
 
-export type KeyboardDateTimePickerProps = WrappedKeyboardPickerProps & DateTimePickerViewsProps;
+export type KeyboardDateTimePickerProps = WithKeyboardInputProps & DateTimePickerViewsProps;
 
 const defaultProps = {
   ...dateTimePickerDefaultProps,
@@ -52,13 +59,17 @@ function useOptions(props: DateTimePickerProps | KeyboardDateTimePickerProps) {
   };
 }
 
-export const DateTimePicker = makePurePicker<DateTimePickerProps>({
+export const DateTimePicker = makePickerWithState<DateTimePickerProps>({
   useOptions,
+  Input: PureDateInput,
+  useState: usePickerState,
   DefaultToolbarComponent: DateTimePickerToolbar,
 });
 
-export const KeyboardDateTimePicker = makeKeyboardPicker<KeyboardDateTimePickerProps>({
+export const KeyboardDateTimePicker = makePickerWithState<KeyboardDateTimePickerProps>({
   useOptions,
+  Input: KeyboardDateInput,
+  useState: useKeyboardPickerState,
   DefaultToolbarComponent: DateTimePickerToolbar,
   getCustomProps: props => ({
     refuse: props.ampm ? /[^\dap]+/gi : /[^\d]+/gi,

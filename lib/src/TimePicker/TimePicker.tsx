@@ -1,9 +1,16 @@
-import TimePickerToolbar from './TimePickerToolbar';
 import { useUtils } from '../_shared/hooks/useUtils';
+import { TimePickerToolbar } from './TimePickerToolbar';
+import { PureDateInput } from '../_shared/PureDateInput';
+import { KeyboardDateInput } from '../_shared/KeyboardDateInput';
 import { timePickerDefaultProps } from '../constants/prop-types';
+import { usePickerState } from '../_shared/hooks/usePickerState';
 import { pick12hOr24hFormat } from '../_helpers/text-field-helper';
-import { WrappedPurePickerProps, makePurePicker } from '../Picker/WrappedPurePicker';
-import { makeKeyboardPicker, WrappedKeyboardPickerProps } from '../Picker/WrappedKeyboardPicker';
+import { useKeyboardPickerState } from '../_shared/hooks/useKeyboardPickerState';
+import {
+  WithKeyboardInputProps,
+  makePickerWithState,
+  WithPureInputProps,
+} from '../Picker/makePickerWithState';
 
 type TimePickerView = 'hours' | 'minutes' | 'seconds';
 
@@ -23,13 +30,13 @@ export interface BaseTimePickerProps {
 export interface TimePickerViewsProps extends BaseTimePickerProps {
   /** Array of views to show */
   views?: ('hours' | 'minutes' | 'seconds')[];
-  /** Open to timepicker */
+  /** First view to show in timepicker */
   openTo?: 'hours' | 'minutes' | 'seconds';
 }
 
-export type TimePickerProps = WrappedPurePickerProps & TimePickerViewsProps;
+export type TimePickerProps = WithPureInputProps & TimePickerViewsProps;
 
-export type KeyboardTimePickerProps = WrappedKeyboardPickerProps & TimePickerViewsProps;
+export type KeyboardTimePickerProps = WithKeyboardInputProps & TimePickerViewsProps;
 
 const defaultProps = {
   ...timePickerDefaultProps,
@@ -49,13 +56,17 @@ function useOptions(props: TimePickerProps | KeyboardTimePickerProps) {
   };
 }
 
-export const TimePicker = makePurePicker<TimePickerViewsProps>({
+export const TimePicker = makePickerWithState<TimePickerProps>({
   useOptions,
+  Input: PureDateInput,
+  useState: usePickerState,
   DefaultToolbarComponent: TimePickerToolbar,
 });
 
-export const KeyboardTimePicker = makeKeyboardPicker<TimePickerViewsProps>({
+export const KeyboardTimePicker = makePickerWithState<KeyboardTimePickerProps>({
   useOptions,
+  Input: KeyboardDateInput,
+  useState: useKeyboardPickerState,
   DefaultToolbarComponent: TimePickerToolbar,
   getCustomProps: props => ({
     refuse: props.ampm ? /[^\dap]+/gi : /[^\d]+/gi,
