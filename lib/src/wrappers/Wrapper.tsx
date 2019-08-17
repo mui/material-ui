@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Omit } from '@material-ui/core';
 import { StaticWrapper } from './StaticWrapper';
-import { PureDateInputProps } from '../_shared/PureDateInput';
 import { ModalWrapper, ModalWrapperProps } from './ModalWrapper';
 import { InlineWrapper, InlineWrapperProps } from './InlineWrapper';
 import { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
+import { PureDateInputProps, NotOverridableProps } from '../_shared/PureDateInput';
 
 export type WrapperVariant = 'dialog' | 'inline' | 'static';
 
@@ -38,7 +38,7 @@ export type ExtendWrapper<TInput extends PureDateInputProps | KeyboardDateInputP
   variant?: WrapperVariant
 } & ModalRoot
   & InlineRoot
-  & Omit<TInput, 'inputValue' | 'onChange' | 'format' | 'validationError' | 'format' | 'forwardedRef'>
+  & Omit<TInput, NotOverridableProps>
 
 export function getWrapperFromVariant<T>(
   variant?: WrapperVariant

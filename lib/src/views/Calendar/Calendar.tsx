@@ -6,6 +6,7 @@ import CalendarHeader from './CalendarHeader';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import SlideTransition, { SlideDirection } from './SlideTransition';
 import { Theme } from '@material-ui/core/styles';
+import { VariantContext } from '../../wrappers/Wrapper';
 import { MaterialUiPickersDate } from '../../typings/date';
 import { runKeyHandler } from '../../_shared/hooks/useKeyDown';
 import { IconButtonProps } from '@material-ui/core/IconButton';
@@ -85,6 +86,7 @@ const KeyDownListener = ({ onKeyDown }: { onKeyDown: (e: KeyboardEvent) => void 
 };
 
 export class Calendar extends React.Component<CalendarProps, CalendarState> {
+  static contextType = VariantContext;
   static propTypes: any = {
     renderDay: PropTypes.func,
     shouldDisableDate: PropTypes.func,
@@ -306,7 +308,9 @@ export class Calendar extends React.Component<CalendarProps, CalendarState> {
 
     return (
       <React.Fragment>
-        {allowKeyboardControl && <KeyDownListener onKeyDown={this.handleKeyDown} />}
+        {allowKeyboardControl && this.context !== 'static' && (
+          <KeyDownListener onKeyDown={this.handleKeyDown} />
+        )}
 
         <CalendarHeader
           currentMonth={currentMonth!}

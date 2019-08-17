@@ -102,7 +102,7 @@ export function usePickerState(props: BasePickerProps, options: StateHookOptions
     () => ({
       inputValue,
       validationError,
-      onClick: () => !disabled && setIsOpen(true),
+      openPicker: () => !disabled && setIsOpen(true),
     }),
     [disabled, inputValue, setIsOpen, validationError]
   );
