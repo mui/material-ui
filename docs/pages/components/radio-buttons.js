@@ -9,8 +9,6 @@ const reqSource = require.context(
 );
 const reqPrefix = 'pages/components/radio-buttons';
 
-function Page() {
+export default function Page() {
   return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
-
-export default Page;

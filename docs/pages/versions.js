@@ -5,8 +5,6 @@ const req = require.context('docs/src/pages/versions', false, /\.(md|js|tsx)$/);
 const reqSource = require.context('!raw-loader!../src/pages/versions', false, /\.(js|tsx)$/);
 const reqPrefix = 'pages/versions';
 
-function Page() {
+export default function Page() {
   return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
-
-export default Page;
