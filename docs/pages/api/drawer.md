@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/Drawer/Drawer.js
 
 <p class="description">The API documentation of the Drawer React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Drawer from '@material-ui/core/Drawer';
+// or
+import { Drawer } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 The props of the [Modal](/api/modal/) component are available
 when `variant="temporary"` is set.

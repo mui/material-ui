@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/FormControl/FormControl.js
 
 <p class="description">The API documentation of the FormControl React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import FormControl from '@material-ui/core/FormControl';
+// or
+import { FormControl } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 Provides context such as filled/focused/error/required for form inputs.
 Relying on the context provides high flexibility and ensures that the state always stays

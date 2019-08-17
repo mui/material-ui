@@ -426,9 +426,15 @@ function generateImportStatement(reactAPI) {
     )
     // convert things like `/Table/Table.js` to ``
     .replace(/\/([^/]+)\/\1\.js$/, '');
-  return `\`\`\`js
+  return `## Import
+
+\`\`\`js
 import ${reactAPI.name} from '${source}/${reactAPI.name}';
-\`\`\``;
+// or
+import { ${reactAPI.name} } from '${source}';
+\`\`\`
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).`;
 }
 
 export default function generateMarkdown(reactAPI) {

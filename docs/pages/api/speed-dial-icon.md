@@ -8,9 +8,15 @@ filename: /packages/material-ui-lab/src/SpeedDialIcon/SpeedDialIcon.js
 
 <p class="description">The API documentation of the SpeedDialIcon React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
+// or
+import { SpeedDialIcon } from '@material-ui/lab';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

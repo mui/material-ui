@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/GridListTile/GridListTile.js
 
 <p class="description">The API documentation of the GridListTile React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import GridListTile from '@material-ui/core/GridListTile';
+// or
+import { GridListTile } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

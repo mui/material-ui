@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/Table/Table.js
 
 <p class="description">The API documentation of the Table React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Table from '@material-ui/core/Table';
+// or
+import { Table } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

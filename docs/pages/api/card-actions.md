@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/CardActions/CardActions.js
 
 <p class="description">The API documentation of the CardActions React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import CardActions from '@material-ui/core/CardActions';
+// or
+import { CardActions } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

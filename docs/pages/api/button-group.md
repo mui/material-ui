@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/ButtonGroup/ButtonGroup.js
 
 <p class="description">The API documentation of the ButtonGroup React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+// or
+import { ButtonGroup } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

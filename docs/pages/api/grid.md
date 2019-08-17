@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/Grid/Grid.js
 
 <p class="description">The API documentation of the Grid React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Grid from '@material-ui/core/Grid';
+// or
+import { Grid } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

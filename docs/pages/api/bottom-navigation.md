@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/BottomNavigation/BottomNavigation.js
 
 <p class="description">The API documentation of the BottomNavigation React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import BottomNavigation from '@material-ui/core/BottomNavigation';
+// or
+import { BottomNavigation } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

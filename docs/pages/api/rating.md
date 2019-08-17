@@ -8,9 +8,15 @@ filename: /packages/material-ui-lab/src/Rating/Rating.js
 
 <p class="description">The API documentation of the Rating React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Rating from '@material-ui/lab/Rating';
+// or
+import { Rating } from '@material-ui/lab';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

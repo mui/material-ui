@@ -8,9 +8,15 @@ filename: /packages/material-ui-lab/src/TreeView/TreeView.js
 
 <p class="description">The API documentation of the TreeView React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import TreeView from '@material-ui/lab/TreeView';
+// or
+import { TreeView } from '@material-ui/lab';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/ExpansionPanelSummary/ExpansionPanelSummary.
 
 <p class="description">The API documentation of the ExpansionPanelSummary React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+// or
+import { ExpansionPanelSummary } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

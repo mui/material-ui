@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/InputBase/InputBase.js
 
 <p class="description">The API documentation of the InputBase React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import InputBase from '@material-ui/core/InputBase';
+// or
+import { InputBase } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 `InputBase` contains as few styles as possible.
 It aims to be a simple building block for creating an input.

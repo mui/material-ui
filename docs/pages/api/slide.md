@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/Slide/Slide.js
 
 <p class="description">The API documentation of the Slide React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Slide from '@material-ui/core/Slide';
+// or
+import { Slide } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 The Slide transition is used by the [Drawer](/components/drawers/) component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.

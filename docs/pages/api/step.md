@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/Step/Step.js
 
 <p class="description">The API documentation of the Step React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Step from '@material-ui/core/Step';
+// or
+import { Step } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

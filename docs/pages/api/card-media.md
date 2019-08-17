@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/CardMedia/CardMedia.js
 
 <p class="description">The API documentation of the CardMedia React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import CardMedia from '@material-ui/core/CardMedia';
+// or
+import { CardMedia } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

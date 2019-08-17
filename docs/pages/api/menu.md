@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/Menu/Menu.js
 
 <p class="description">The API documentation of the Menu React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Menu from '@material-ui/core/Menu';
+// or
+import { Menu } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

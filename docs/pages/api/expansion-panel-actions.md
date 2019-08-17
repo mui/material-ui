@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/ExpansionPanelActions/ExpansionPanelActions.
 
 <p class="description">The API documentation of the ExpansionPanelActions React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
+// or
+import { ExpansionPanelActions } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

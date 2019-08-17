@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/ClickAwayListener/ClickAwayListener.js
 
 <p class="description">The API documentation of the ClickAwayListener React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+// or
+import { ClickAwayListener } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 Listen for click events that occur somewhere in the document, outside of the element itself.
 For instance, if you need to hide a menu when people click anywhere else on your page.

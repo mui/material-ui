@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/Toolbar/Toolbar.js
 
 <p class="description">The API documentation of the Toolbar React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Toolbar from '@material-ui/core/Toolbar';
+// or
+import { Toolbar } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

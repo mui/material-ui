@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/Paper/Paper.js
 
 <p class="description">The API documentation of the Paper React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Paper from '@material-ui/core/Paper';
+// or
+import { Paper } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

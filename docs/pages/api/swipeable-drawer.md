@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/SwipeableDrawer/SwipeableDrawer.js
 
 <p class="description">The API documentation of the SwipeableDrawer React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+// or
+import { SwipeableDrawer } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

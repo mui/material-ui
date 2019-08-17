@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/TablePagination/TablePagination.js
 
 <p class="description">The API documentation of the TablePagination React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import TablePagination from '@material-ui/core/TablePagination';
+// or
+import { TablePagination } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 A `TableCell` based component for placing inside `TableFooter` for pagination.
 

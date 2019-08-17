@@ -8,9 +8,15 @@ filename: /packages/material-ui-lab/src/TreeItem/TreeItem.js
 
 <p class="description">The API documentation of the TreeItem React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import TreeItem from '@material-ui/lab/TreeItem';
+// or
+import { TreeItem } from '@material-ui/lab';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

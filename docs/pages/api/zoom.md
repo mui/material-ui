@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/Zoom/Zoom.js
 
 <p class="description">The API documentation of the Zoom React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Zoom from '@material-ui/core/Zoom';
+// or
+import { Zoom } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 The Zoom transition can be used for the floating variant of the
 [Button](/components/buttons/#floating-action-buttons) component.

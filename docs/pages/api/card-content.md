@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/CardContent/CardContent.js
 
 <p class="description">The API documentation of the CardContent React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import CardContent from '@material-ui/core/CardContent';
+// or
+import { CardContent } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

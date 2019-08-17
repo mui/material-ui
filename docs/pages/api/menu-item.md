@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/MenuItem/MenuItem.js
 
 <p class="description">The API documentation of the MenuItem React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import MenuItem from '@material-ui/core/MenuItem';
+// or
+import { MenuItem } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 

@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/Dialog/Dialog.js
 
 <p class="description">The API documentation of the Dialog React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Dialog from '@material-ui/core/Dialog';
+// or
+import { Dialog } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 Dialogs are overlaid modal paper based components with a backdrop.
 
