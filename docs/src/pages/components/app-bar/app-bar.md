@@ -11,13 +11,9 @@ The [top App Bar](https://material.io/design/components/app-bars-top.html) provi
 
 It can transform into a contextual action bar or used as a navbar.
 
-## App Bar with buttons
-
-{{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
-
 ## Simple App Bar
 
-{{"demo": "pages/components/app-bar/SimpleAppBar.js"}}
+{{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
 
 ## App Bar with a primary search field
 
@@ -56,6 +52,10 @@ An App Bar that hides on scroll.
 An App Bar that elevates on scroll.
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
+
+### Back to top
+
+{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
 
 ### `useScrollTrigger([options]) => trigger`
 
