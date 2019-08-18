@@ -13,7 +13,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import requirePropFactory from '../utils/requirePropFactory';
 
 const SPACINGS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -193,7 +192,7 @@ export const styles = theme => ({
     justifyContent: 'space-evenly',
   },
   ...generateGutter(theme, 'xs'),
-  ...breakpointKeys.reduce((accumulator, key) => {
+  ...theme.breakpoints.keys.reduce((accumulator, key) => {
     // Use side effect over immutability for better performance.
     generateGrid(accumulator, theme, key);
     return accumulator;

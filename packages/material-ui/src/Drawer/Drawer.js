@@ -8,6 +8,7 @@ import Slide from '../Slide';
 import Paper from '../Paper';
 import { capitalize } from '../utils/helpers';
 import { duration } from '../styles/transitions';
+import useTheme from '../styles/useTheme';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -114,11 +115,11 @@ const Drawer = React.forwardRef(function Drawer(props, ref) {
     open = false,
     PaperProps,
     SlideProps,
-    theme,
     transitionDuration = defaultTransitionDuration,
     variant = 'temporary',
     ...other
   } = props;
+  const theme = useTheme();
 
   // Let's assume that the Drawer will always be rendered on user space.
   // We use this state is order to skip the appear transition during the
@@ -240,10 +241,6 @@ Drawer.propTypes = {
    */
   SlideProps: PropTypes.object,
   /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
-  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    */
@@ -257,4 +254,4 @@ Drawer.propTypes = {
   variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
 };
 
-export default withStyles(styles, { name: 'MuiDrawer', flip: false, withTheme: true })(Drawer);
+export default withStyles(styles, { name: 'MuiDrawer', flip: false })(Drawer);

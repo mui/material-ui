@@ -11,6 +11,7 @@ import Grow from '../Grow';
 import Popper from '../Popper';
 import { useForkRef } from '../utils/reactHelpers';
 import { useIsFocusVisible } from '../utils/focusVisible';
+import useTheme from '../styles/useTheme';
 
 export const styles = theme => ({
   /* Styles applied to the Popper component. */
@@ -98,12 +99,12 @@ function Tooltip(props) {
     open: openProp,
     placement = 'bottom',
     PopperProps,
-    theme,
     title,
     TransitionComponent = Grow,
     TransitionProps,
     ...other
   } = props;
+  const theme = useTheme();
 
   const [openState, setOpenState] = React.useState(false);
   const [, forceUpdate] = React.useState(0);
@@ -491,10 +492,6 @@ Tooltip.propTypes = {
    */
   PopperProps: PropTypes.object,
   /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
-  /**
    * Tooltip title. Zero-length titles string are never displayed.
    */
   title: PropTypes.node.isRequired,
@@ -508,4 +505,4 @@ Tooltip.propTypes = {
   TransitionProps: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTooltip', withTheme: true })(Tooltip);
+export default withStyles(styles, { name: 'MuiTooltip' })(Tooltip);

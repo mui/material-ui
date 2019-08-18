@@ -1,9 +1,8 @@
-/* eslint-disable react/no-danger */
+/* eslint-disable react/no-danger, react-hooks/exhaustive-deps */
 
 import 'isomorphic-fetch';
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import sleep from 'modules/waterfall/sleep';
@@ -32,89 +31,79 @@ async function getMessages() {
   messages = messages || [];
 }
 
-class Notifications extends React.Component {
-  mounted = false;
+export default function Notifications() {
+  const mounted = React.useRef(false);
+  const [open, setOpen] = React.useState(false);
+  const [message, setMessage] = React.useState({});
+  const { t, userLanguage } = useSelector(state => ({
+    t: state.options.t,
+    userLanguage: state.options.userLanguage,
+  }));
 
-  state = {
-    open: false,
-    message: {},
-  };
-
-  async componentDidMount() {
-    this.mounted = true;
-
-    // Prevent search engines from indexing the notification.
-    if (/glebot/.test(navigator.userAgent)) {
-      return;
-    }
-
-    await getMessages();
-    this.handleMessage();
-  }
-
-  componentWillUnmount() {
-    this.mounted = false;
-  }
-
-  handleMessage = () => {
+  const handleMessage = () => {
     const lastSeen = getLastSeenNotification();
-    const unseenMessages = messages.filter(message => {
-      if (message.id <= lastSeen) {
+    const unseenMessages = messages.filter(message2 => {
+      if (message2.id <= lastSeen) {
         return false;
       }
 
       if (
-        message.userLanguage &&
-        message.userLanguage !== this.props.userLanguage &&
-        message.userLanguage !== navigator.language.substring(0, 2)
+        message2.userLanguage &&
+        message2.userLanguage !== userLanguage &&
+        message2.userLanguage !== navigator.language.substring(0, 2)
       ) {
         return false;
       }
 
       return true;
     });
-    if (unseenMessages.length > 0 && this.mounted) {
-      this.setState({ message: unseenMessages[0], open: true });
+
+    if (unseenMessages.length > 0 && mounted.current) {
+      setMessage(unseenMessages[0]);
+      setOpen(true);
     }
   };
 
-  handleClose = () => {
-    this.setState({ open: false });
-    document.cookie = `lastSeenNotification=${this.state.message.id};path=/;max-age=31536000`;
+  const handleClose = () => {
+    setOpen(false);
+    document.cookie = `lastSeenNotification=${message.id};path=/;max-age=31536000`;
   };
 
-  render() {
-    const { message, open } = this.state;
-    const { t } = this.props;
+  React.useEffect(() => {
+    mounted.current = true;
 
-    return (
-      <Snackbar
-        key={message.id}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        ContentProps={{ 'aria-describedby': 'notification-message' }}
-        message={
-          <span id="notification-message" dangerouslySetInnerHTML={{ __html: message.text }} />
-        }
-        action={
-          <Button size="small" color="secondary" onClick={this.handleClose}>
-            {t('close')}
-          </Button>
-        }
-        open={open}
-        autoHideDuration={20e3}
-        onClose={this.handleClose}
-        onExited={this.handleMessage}
-      />
-    );
-  }
+    // Prevent search engines from indexing the notification.
+    if (/glebot/.test(navigator.userAgent)) {
+      return undefined;
+    }
+
+    (async () => {
+      await getMessages();
+      handleMessage();
+    })();
+
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
+
+  return (
+    <Snackbar
+      key={message.id}
+      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      ContentProps={{ 'aria-describedby': 'notification-message' }}
+      message={
+        <span id="notification-message" dangerouslySetInnerHTML={{ __html: message.text }} />
+      }
+      action={
+        <Button size="small" color="secondary" onClick={handleClose}>
+          {t('close')}
+        </Button>
+      }
+      open={open}
+      autoHideDuration={20e3}
+      onClose={handleClose}
+      onExited={handleMessage}
+    />
+  );
 }
-
-Notifications.propTypes = {
-  t: PropTypes.func.isRequired,
-  userLanguage: PropTypes.string.isRequired,
-};
-
-export default connect(state => ({
-  t: state.options.t,
-  userLanguage: state.options.userLanguage,
-}))(Notifications);

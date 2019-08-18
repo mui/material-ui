@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
-import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
+import useTheme from '../styles/useTheme';
 
 const styles = theme => {
   const hidden = {
     display: 'none',
   };
 
-  return breakpointKeys.reduce((acc, key) => {
+  return theme.breakpoints.keys.reduce((acc, key) => {
     acc[`only${capitalize(key)}`] = {
       [theme.breakpoints.only(key)]: hidden,
     };
@@ -46,6 +46,7 @@ function HiddenCss(props) {
     xsUp,
     ...other
   } = props;
+  const theme = useTheme();
 
   warning(
     Object.keys(other).length === 0 ||
@@ -59,8 +60,8 @@ function HiddenCss(props) {
     clsx.push(className);
   }
 
-  for (let i = 0; i < breakpointKeys.length; i += 1) {
-    const breakpoint = breakpointKeys[i];
+  for (let i = 0; i < theme.breakpoints.keys.length; i += 1) {
+    const breakpoint = theme.breakpoints.keys[i];
     const breakpointUp = props[`${breakpoint}Up`];
     const breakpointDown = props[`${breakpoint}Down`];
 

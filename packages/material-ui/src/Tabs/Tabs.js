@@ -13,6 +13,7 @@ import withStyles from '../styles/withStyles';
 import TabIndicator from './TabIndicator';
 import TabScrollButton from './TabScrollButton';
 import useEventCallback from '../utils/useEventCallback';
+import useTheme from '../styles/useTheme';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -86,11 +87,11 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     scrollButtons = 'auto',
     TabIndicatorProps = {},
     textColor = 'inherit',
-    theme,
     value,
     variant = 'standard',
     ...other
   } = props;
+  const theme = useTheme();
   const scrollable = variant === 'scrollable';
   const isRtl = theme.direction === 'rtl';
   const vertical = orientation === 'vertical';
@@ -511,10 +512,6 @@ Tabs.propTypes = {
    */
   textColor: PropTypes.oneOf(['secondary', 'primary', 'inherit']),
   /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
-  /**
    * The value of the currently selected `Tab`.
    * If you don't want any selected `Tab`, you can set this property to `false`.
    */
@@ -531,4 +528,4 @@ Tabs.propTypes = {
   variant: PropTypes.oneOf(['standard', 'scrollable', 'fullWidth']),
 };
 
-export default withStyles(styles, { name: 'MuiTabs', withTheme: true })(Tabs);
+export default withStyles(styles, { name: 'MuiTabs' })(Tabs);

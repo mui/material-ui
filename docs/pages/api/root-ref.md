@@ -34,23 +34,18 @@ For example:
 import React from 'react';
 import RootRef from '@material-ui/core/RootRef';
 
-class MyComponent extends React.Component {
-  constructor() {
-    super();
-    this.domRef = React.createRef();
-  }
+function MyComponent() {
+  const domRef = React.useRef();
 
-  componentDidMount() {
-    console.log(this.domRef.current); // DOM node
-  }
+  React.useEffect(() => {
+    console.log(domRef.current); // DOM node
+  }, []);
 
-  render() {
-    return (
-      <RootRef rootRef={this.domRef}>
-        <SomeChildComponent />
-      </RootRef>
-    );
-  }
+  return (
+    <RootRef rootRef={domRef}>
+      <SomeChildComponent />
+    </RootRef>
+  );
 }
 ```
 

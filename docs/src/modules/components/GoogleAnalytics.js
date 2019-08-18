@@ -33,8 +33,8 @@ function handleClick(event) {
 
 let bound = false;
 
-class GoogleAnalytics extends React.Component {
-  componentDidMount() {
+export default function GoogleAnalytics() {
+  React.useEffect(() => {
     // Wait for the title to be updated.
     setTimeout(() => {
       const { canonical } = pathnameToLanguage(window.location.pathname);
@@ -47,11 +47,7 @@ class GoogleAnalytics extends React.Component {
     }
     bound = true;
     document.addEventListener('click', handleClick);
-  }
+  }, []);
 
-  render() {
-    return null;
-  }
+  return null;
 }
-
-export default GoogleAnalytics;
