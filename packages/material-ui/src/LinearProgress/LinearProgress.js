@@ -209,7 +209,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   const inlineStyles = { bar1: {}, bar2: {} };
 
   warning(
-    maxValue > 100,
+    maxValue > 0,
     'Material-UI: you need to provide a maxValue greater than 0 ' +
       'when using the maxValue of LinearProgress.',
   );
