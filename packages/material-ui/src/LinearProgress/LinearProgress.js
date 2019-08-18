@@ -275,7 +275,7 @@ LinearProgress.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
-   * The max value of the progress indicatior.
+   * The max value of the progress indicator.
    * Default value 100.
    */
   maxValue: PropTypes.number,
