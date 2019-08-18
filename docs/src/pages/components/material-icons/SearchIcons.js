@@ -191,7 +191,9 @@ let DialogDetails = props => {
     >
       {selectedIcon ? (
         <React.Fragment>
-          <DialogTitle id="icon-dialog-title">{selectedIcon.key}</DialogTitle>
+          <DialogTitle id="icon-dialog-title" onClick={handleClick}>
+            {selectedIcon.key}
+          </DialogTitle>
           <MarkdownElement
             className={classes.markdown}
             onClick={handleClick}
