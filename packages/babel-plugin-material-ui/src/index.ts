@@ -4,6 +4,7 @@ import resolveImports, { MappedImportsType } from './resolveImports';
 
 let coreImports: MappedImportsType;
 let labImports: MappedImportsType;
+let stylesImports: MappedImportsType;
 
 function handleImports(
   path: babel.NodePath<t.ImportDeclaration>,
@@ -99,6 +100,13 @@ export default (): babel.PluginObj<{ opts: Options }> => {
               coreImports = resolveImports(require.resolve('@material-ui/core'));
             }
             handleImports(path, coreImports, `@material-ui/core${libraryFolder}`);
+            break;
+          }
+          case '@material-ui/styles': {
+            if (stylesImports === undefined) {
+              stylesImports = resolveImports(require.resolve('@material-ui/styles'));
+            }
+            handleImports(path, stylesImports, `@material-ui/styles${libraryFolder}`);
             break;
           }
           case '@material-ui/lab': {

@@ -30,7 +30,9 @@ export default (indexPath: string): MappedImportsType => {
         return;
       }
 
-      const filePath = node.source!.value.replace(/^\.\//, '');
+      // Remove ./ and @material-ui/styles from the file path
+      // @material-ui/styles exports useTheme using the full path
+      const filePath = node.source!.value.replace(/^(\.\/)|(@material-ui\/styles\/)/, '');
       if (importLookup[filePath] === undefined) {
         importLookup[filePath] = [];
       }
