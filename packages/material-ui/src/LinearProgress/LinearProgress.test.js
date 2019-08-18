@@ -88,7 +88,7 @@ describe('<LinearProgress />', () => {
     assert.strictEqual(wrapper.props()['aria-valuenow'], 77);
   });
 
-  it('should set with of bar1 on determinate variant with a max value', () => {
+  it('should set width of bar1 on determinate variant with a max value', () => {
     const wrapper = shallow(<LinearProgress variant="determinate" value={23} maxValue={50} />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.determinate), true);
