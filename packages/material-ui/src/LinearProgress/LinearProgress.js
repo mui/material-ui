@@ -169,7 +169,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
     theme,
     value,
     valueBuffer,
-    maxValue,
+    maxValue = 100,
     variant = 'indeterminate',
     ...other
   } = props;
@@ -208,13 +208,12 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   const rootProps = {};
   const inlineStyles = { bar1: {}, bar2: {} };
 
-  if (maxValue <= 0) {
-    warning(
-      false,
-      'Material-UI: you need to provide a maxValue greater than 0 ' +
-        'when using the maxValue of LinearProgress.',
-    );
-  }
+  warning(
+    maxValue > 100,
+    'Material-UI: you need to provide a maxValue greater than 0 ' +
+      'when using the maxValue of LinearProgress.',
+  );
+
   if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
       rootProps['aria-valuenow'] = Math.round(value);
@@ -276,7 +275,6 @@ LinearProgress.propTypes = {
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * The max value of the progress indicator.
-   * Default value 100.
    */
   maxValue: PropTypes.number,
   /**
@@ -298,10 +296,6 @@ LinearProgress.propTypes = {
    * Use indeterminate or query when there is no progress value.
    */
   variant: PropTypes.oneOf(['determinate', 'indeterminate', 'buffer', 'query']),
-};
-
-LinearProgress.defaultProps = {
-  maxValue: 100,
 };
 
 export default withStyles(styles, { name: 'MuiLinearProgress', withTheme: true })(LinearProgress);
