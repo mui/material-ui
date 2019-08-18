@@ -169,6 +169,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
     theme,
     value,
     valueBuffer,
+    maxValue,
     variant = 'indeterminate',
     ...other
   } = props;
@@ -207,10 +208,18 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   const rootProps = {};
   const inlineStyles = { bar1: {}, bar2: {} };
 
+  if (maxValue <= 0) {
+    warning(
+      false,
+      'Material-UI: you need to provide a maxValue greater than 0 ' +
+        'when using the maxValue of LinearProgress.',
+    );
+  }
   if (variant === 'determinate' || variant === 'buffer') {
     if (value !== undefined) {
       rootProps['aria-valuenow'] = Math.round(value);
-      let transform = value - 100;
+      const scaledValue = (value * 100) / maxValue;
+      let transform = scaledValue - 100;
       if (theme.direction === 'rtl') {
         transform = -transform;
       }
@@ -225,7 +234,8 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   }
   if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
-      let transform = (valueBuffer || 0) - 100;
+      const scaledValueBuffer = (valueBuffer * 100) / maxValue;
+      let transform = (scaledValueBuffer || 0) - 100;
       if (theme.direction === 'rtl') {
         transform = -transform;
       }
@@ -265,17 +275,22 @@ LinearProgress.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
+   * The max value of the progress indicatior.
+   * Default value 100.
+   */
+  maxValue: PropTypes.number,
+  /**
    * @ignore
    */
   theme: PropTypes.object,
   /**
    * The value of the progress indicator for the determinate and buffer variants.
-   * Value between 0 and 100.
+   * Value between 0 and maxValue.
    */
   value: PropTypes.number,
   /**
    * The value for the buffer variant.
-   * Value between 0 and 100.
+   * Value between 0 and maxValue.
    */
   valueBuffer: PropTypes.number,
   /**
@@ -283,6 +298,10 @@ LinearProgress.propTypes = {
    * Use indeterminate or query when there is no progress value.
    */
   variant: PropTypes.oneOf(['determinate', 'indeterminate', 'buffer', 'query']),
+};
+
+LinearProgress.defaultProps = {
+  maxValue: 100,
 };
 
 export default withStyles(styles, { name: 'MuiLinearProgress', withTheme: true })(LinearProgress);

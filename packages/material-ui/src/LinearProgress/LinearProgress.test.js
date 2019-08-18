@@ -88,6 +88,18 @@ describe('<LinearProgress />', () => {
     assert.strictEqual(wrapper.props()['aria-valuenow'], 77);
   });
 
+  it('should set with of bar1 on determinate variant with a max value', () => {
+    const wrapper = shallow(<LinearProgress variant="determinate" value={23} maxValue={50} />);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.determinate), true);
+    assert.strictEqual(
+      wrapper.childAt(0).props().style.transform,
+      'translateX(-54%)',
+      'should have width set',
+    );
+    assert.strictEqual(wrapper.props()['aria-valuenow'], 23);
+  });
+
   it('should render with buffer classes for the primary color by default', () => {
     const wrapper = shallow(<LinearProgress value={1} valueBuffer={1} variant="buffer" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
@@ -192,6 +204,12 @@ describe('<LinearProgress />', () => {
       assert.match(
         consoleErrorMock.args()[2][0],
         /Warning: Material-UI: you need to provide a valueBuffer prop/,
+      );
+      shallow(<LinearProgress variant="determinate" value={50} maxValue={-10} />);
+      assert.strictEqual(consoleErrorMock.callCount(), 4);
+      assert.match(
+        consoleErrorMock.args()[3][0],
+        /Warning: Material-UI: you need to provide a maxValue greater than 0/,
       );
     });
   });

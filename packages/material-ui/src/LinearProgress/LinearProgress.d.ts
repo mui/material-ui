@@ -6,6 +6,7 @@ export interface LinearProgressProps
   color?: 'primary' | 'secondary';
   value?: number;
   valueBuffer?: number;
+  maxValue?: number;
   variant?: 'determinate' | 'indeterminate' | 'buffer' | 'query';
 }
 
