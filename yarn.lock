@@ -11950,9 +11950,9 @@ react-double-scrollbar@0.0.15:
   integrity sha1-6RWrjLO5WYdwdfSUNt6/2wQoj+Q=
 
 react-draggable@^3.0.5:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-3.3.1.tgz#661b191d2b5be554e774ea68a5b7484568447b8b"
-  integrity sha512-JeKyuO5f1jnVwMHdNkFpmaQoYn/6CyIiCDGSKbTgRisEtekjeUCeKmlNaNTLlpKOEu0SaKcBA1HlypSqWN/8Tw==
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-3.3.2.tgz#966ef1d90f2387af3c2d8bd3516f601ea42ca359"
+  integrity sha512-oaz8a6enjbPtx5qb0oDWxtDNuybOylvto1QLydsXgKmwT7e3GXC2eMVDwEMIUYJIFqVG72XpOv673UuuAq6LhA==
   dependencies:
     classnames "^2.2.5"
     prop-types "^15.6.0"
