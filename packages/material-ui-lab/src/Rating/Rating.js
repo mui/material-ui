@@ -143,17 +143,18 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     precision = 1,
     readOnly = false,
     size = 'medium',
-    value: valueProp = null,
+    value: valueProp2 = null,
     ...other
   } = props;
 
+  const valueProp = roundValueToPrecision(valueProp2, precision);
   const theme = useTheme();
   const [{ hover, focus }, setState] = React.useState({
     hover: -1,
     focus: -1,
   });
 
-  let value = roundValueToPrecision(valueProp, precision);
+  let value = valueProp;
   if (hover !== -1) {
     value = hover;
   }
@@ -351,7 +352,10 @@ const Rating = React.forwardRef(function Rating(props, ref) {
               })}
             >
               {items.map(($, indexDecimal) => {
-                const itemDeciamlValue = itemValue - 1 + (indexDecimal + 1) * precision;
+                const itemDeciamlValue = roundValueToPrecision(
+                  itemValue - 1 + (indexDecimal + 1) * precision,
+                  precision,
+                );
 
                 return item(
                   {
@@ -373,7 +377,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
                     filled: itemDeciamlValue <= value,
                     hover: itemDeciamlValue <= hover,
                     focus: itemDeciamlValue <= focus,
-                    checked: itemValue === valueProp,
+                    checked: itemDeciamlValue === valueProp,
                   },
                 );
               })}
@@ -390,7 +394,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
             filled: itemValue <= value,
             hover: itemValue <= hover,
             focus: itemValue <= focus,
-            checked: itemValue === Math.round(valueProp),
+            checked: itemValue === valueProp,
           },
         );
       })}
