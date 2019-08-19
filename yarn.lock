@@ -14349,9 +14349,9 @@ typedarray@^0.0.6:
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
 typescript-to-proptypes@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/typescript-to-proptypes/-/typescript-to-proptypes-1.2.3.tgz#af3f88c8c3e5b494c645700670ffc6c986d44a29"
-  integrity sha512-7L1+peXa9hUaY3TZvgl0rJT3nUV4xaO5Oo5Bmf7ROgQJ3gcRhk94vOkRUeWMhnzUCEPiVxiEOlzi5L/6G+gXbw==
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/typescript-to-proptypes/-/typescript-to-proptypes-1.2.4.tgz#c2168dd082678850c745bef9356ca62b24253e31"
+  integrity sha512-kHY8FdEassU9ihHu3X+HNBZQkbzFMj1z9o0QKMOcA6RHw49aZ0HYUpG5ipQPj3ehoNMucADkj2HkgB8dJOHkaw==
   dependencies:
     "@babel/core" "^7.5.4"
     "@babel/plugin-syntax-class-properties" "^7.2.0"
