@@ -50,7 +50,9 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     if (children) {
       items = children;
     } else if (onNodeExpanded) {
-      items = onNodeExpanded(undefined).map((node, i) => (<TreeItem nodeId={node.nodeId} label={node.label} key={i}/>));
+      items = onNodeExpanded(undefined).map((node, i) => (
+        <TreeItem nodeId={node.nodeId} label={node.label} key={i} />
+      ));
     }
     setTreeItems(items);
     nodeMap.current = {};
@@ -273,40 +275,42 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     firstCharMap.current[id] = firstChar;
   };
 
-  const isExpandable = (nodeId) => {
+  const isExpandable = nodeId => {
     if (isExpandable) {
       return isNodeExpandable(nodeId);
     }
     return undefined;
-  }
-  
-  const onExpand = (nodeId) => {  
+  };
+
+  const onExpand = nodeId => {
     const itemsChildren = onNodeExpanded(nodeId);
     const childIds = itemsChildren.map(child => child.nodeId);
     handleNodeMap(nodeId, childIds);
-    return itemsChildren.map((node, i) => (<TreeItem nodeId={node.nodeId} label={node.label} key={i}/>));
-  }
+    return itemsChildren.map((node, i) => (
+      <TreeItem nodeId={node.nodeId} label={node.label} key={i} />
+    ));
+  };
 
-  const onCollapse = (nodeId) => {
+  const onCollapse = nodeId => {
     onNodeCollapsed(nodeId);
-  }
+  };
 
   return (
     <TreeViewContext.Provider
-    value={{
+      value={{
         expandAllSiblings,
         focus,
         focusFirstNode,
         focusLastNode,
         focusNextNode,
         focusPreviousNode,
-        onCollapse: onNodeCollapsed?onCollapse:undefined,
-        onExpand: onNodeExpanded?onExpand:undefined,
+        onCollapse: onNodeCollapsed ? onCollapse : undefined,
+        onExpand: onNodeExpanded ? onExpand : undefined,
         handleFirstChars,
         handleLeftArrow,
         handleNodeMap,
         icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
-        isExpandable: isNodeExpandable?isExpandable:undefined,
+        isExpandable: isNodeExpandable ? isExpandable : undefined,
         isExpanded,
         isFocused,
         isTabable,
@@ -367,14 +371,14 @@ TreeView.propTypes = {
   isNodeExpandable: PropTypes.func,
   /**
    * Callback fired when a `TreeItem` is collapsed
-   * 
+   *
    * @param {string} nodeId The id of the node.
    */
   onNodeCollapsed: PropTypes.func,
   /**
    * Callback fired when a `TreeItem` is expanded.
    * This can also be used to load children nodes virtually
-   * 
+   *
    * @param {string} nodeId The id of the node. If nodeId is undefined then the node in question is the root node.
    * @return {PropTypes.object} - the children of the Item. undefined can be returned to use React.Children.
    */

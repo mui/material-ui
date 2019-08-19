@@ -87,7 +87,6 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     onCollapse,
     setFocusByFirstCharacter,
     toggle,
-
   } = React.useContext(TreeViewContext);
 
   const nodeRef = React.useRef(null);
@@ -224,8 +223,8 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   };
 
   React.useEffect(() => {
-    if (children === undefined && isExpandable) {  
-      setExpandable(isExpandable(nodeId));  
+    if (children === undefined && isExpandable) {
+      setExpandable(isExpandable(nodeId));
     }
   }, [children, nodeId]);
 
@@ -236,17 +235,16 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         if (childItems) {
           setChildNodes(childItems);
         }
-      } 
+      }
     }
-  }, [children, expanded, nodeId, expandable ]);
+  }, [children, expanded, nodeId, expandable]);
 
   React.useEffect(() => {
     if (isFirstRun.current) {
       isFirstRun.current = false;
       return;
     }
-    if (expanded === false && onCollapse !== undefined)
-      onCollapse(nodeId);
+    if (expanded === false && onCollapse !== undefined) onCollapse(nodeId);
   }, [expanded, nodeId]);
 
   React.useEffect(() => {
@@ -256,7 +254,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         handleNodeMap(nodeId, childIds);
       }
     }
-  }, [children, handleNodeMap, nodeId ]);
+  }, [children, handleNodeMap, nodeId]);
 
   React.useEffect(() => {
     if (handleFirstChars && label) {
