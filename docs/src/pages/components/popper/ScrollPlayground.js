@@ -81,7 +81,7 @@ const useStyles = makeStyles(theme => ({
       width: '1em',
       '&::before': {
         borderWidth: '1em 0 1em 1em',
-         borderColor: `transparent transparent transparent ${theme.palette.background.paper}`,
+        borderColor: `transparent transparent transparent ${theme.palette.background.paper}`,
       },
     },
   },
