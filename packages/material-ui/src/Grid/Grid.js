@@ -64,6 +64,11 @@ function generateGrid(globalStyles, theme, breakpoint) {
   }
 }
 
+function getOffset(val, div = 1) {
+  const parse = parseFloat(val);
+  return `${parse / div}${String(val).replace(String(parse), '') || 'px'}`;
+}
+
 function generateGutter(theme, breakpoint) {
   const styles = {};
 
@@ -73,9 +78,6 @@ function generateGutter(theme, breakpoint) {
     if (themeSpacing === 0) {
       return;
     }
-
-    const getOffset = (val, div = 1) =>
-      `${parseFloat(val) / div}${String(val).replace(String(parseFloat(val)), '') || 'px'}`;
 
     styles[`spacing-${breakpoint}-${spacing}`] = {
       margin: `-${getOffset(themeSpacing, 2)}`,

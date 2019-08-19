@@ -1,8 +1,9 @@
 import React from 'react';
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createMuiTheme } from '@material-ui/core/styles';
 import describeConformance from '../test-utils/describeConformance';
-import Grid from './Grid';
+import Grid, { styles } from './Grid';
 
 describe('<Grid />', () => {
   let mount;
@@ -91,6 +92,26 @@ describe('<Grid />', () => {
       const handleClick = () => {};
       const wrapper = shallow(<Grid component="span" onClick={handleClick} />);
       assert.strictEqual(wrapper.props().onClick, handleClick);
+    });
+  });
+
+  describe('gutter', () => {
+    it('should generate the right values', () => {
+      const defaultTheme = createMuiTheme();
+      const remTheme = createMuiTheme({
+        spacing: factor => `${0.25 * factor}rem`,
+      });
+
+      expect(styles(remTheme)['spacing-xs-2']).to.deep.equal({
+        margin: '-0.25rem',
+        width: 'calc(100% + 0.5rem)',
+        '& > $item': { padding: '0.25rem' },
+      });
+      expect(styles(defaultTheme)['spacing-xs-2']).to.deep.equal({
+        margin: '-8px',
+        width: 'calc(100% + 16px)',
+        '& > $item': { padding: '8px' },
+      });
     });
   });
 });
