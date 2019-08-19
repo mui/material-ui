@@ -94,9 +94,9 @@ export default function FileSystemNavigator() {
       className={classes.root}
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
-      onItemExpanded={getItems}
-      onItemCollapsed={itemCollapse}
-      isItemExpandable={isExpandable}
+      onNodeExpanded={getItems}
+      onNodeCollapsed={itemCollapse}
+      isNodeExpandable={isExpandable}
     />
   );
 }
