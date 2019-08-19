@@ -51,7 +51,7 @@ Modal has built-in support for [react-transition-group](https://github.com/react
 
 {{"demo": "pages/components/modal/TransitionsModal.js"}}
 
-Alternatively, you can use [react-string](https://github.com/react-spring/react-spring).
+Alternatively, you can use [react-spring](https://github.com/react-spring/react-spring).
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 
