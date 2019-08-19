@@ -95,6 +95,7 @@ function getDependencies(raw, options = {}) {
     '@material-ui/styles': 'latest',
     '@material-ui/system': 'latest',
     '@material-ui/utils': 'latest',
+    '@material-ui/pickers": "latest',
     'date-fns': 'next',
     jss: 'next',
     'jss-plugin-template': 'next',
