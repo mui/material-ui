@@ -226,7 +226,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     if (children === undefined && isExpandable) {
       setExpandable(isExpandable(nodeId));
     }
-  }, [children, nodeId]);
+  }, [children, nodeId, isExpandable]);
 
   React.useEffect(() => {
     if (expandable && onExpand) {
@@ -237,7 +237,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         }
       }
     }
-  }, [children, expanded, nodeId, expandable]);
+  }, [children, expanded, nodeId, expandable, onExpand]);
 
   React.useEffect(() => {
     if (isFirstRun.current) {
@@ -245,7 +245,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       return;
     }
     if (expanded === false && onCollapse !== undefined) onCollapse(nodeId);
-  }, [expanded, nodeId]);
+  }, [expanded, nodeId, onCollapse]);
 
   React.useEffect(() => {
     if (children !== undefined && onExpand === undefined) {
@@ -254,7 +254,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         handleNodeMap(nodeId, childIds);
       }
     }
-  }, [children, handleNodeMap, nodeId]);
+  }, [children, handleNodeMap, nodeId, onExpand]);
 
   React.useEffect(() => {
     if (handleFirstChars && label) {
