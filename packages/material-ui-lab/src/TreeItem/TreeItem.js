@@ -80,10 +80,14 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     handleNodeMap,
     icons: contextIcons,
     isExpanded,
+    isExpandable,
     isFocused,
     isTabable,
+    onExpand,
+    onCollapse,
     setFocusByFirstCharacter,
     toggle,
+
   } = React.useContext(TreeViewContext);
 
   const nodeRef = React.useRef(null);
@@ -92,7 +96,9 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
   let icon = iconProp;
 
-  const expandable = Boolean(children);
+  const isFirstRun = React.useRef(true);
+  const [expandable, setExpandable] = React.useState(Boolean(children));
+  const [childNodes, setChildNodes] = React.useState(children);
   const expanded = isExpanded ? isExpanded(nodeId) : false;
   const focused = isFocused ? isFocused(nodeId) : false;
   const tabable = isTabable ? isTabable(nodeId) : false;
@@ -218,11 +224,39 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   };
 
   React.useEffect(() => {
-    const childIds = React.Children.map(children, child => child.props.nodeId);
-    if (handleNodeMap) {
-      handleNodeMap(nodeId, childIds);
+    if (children === undefined && isExpandable) {  
+      setExpandable(isExpandable(nodeId));  
     }
-  }, [children, nodeId, handleNodeMap]);
+  }, [children, nodeId]);
+
+  React.useEffect(() => {
+    if (expandable && onExpand) {
+      if (expanded) {
+        const childItems = onExpand(nodeId);
+        if (childItems) {
+          setChildNodes(childItems);
+        }
+      } 
+    }
+  }, [children, expanded, nodeId, expandable ]);
+
+  React.useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+    if (expanded === false && onCollapse !== undefined)
+      onCollapse(nodeId);
+  }, [expanded, nodeId]);
+
+  React.useEffect(() => {
+    if (children !== undefined && onExpand === undefined) {
+      const childIds = React.Children.map(children, child => child.props.nodeId);
+      if (handleNodeMap) {
+        handleNodeMap(nodeId, childIds);
+      }
+    }
+  }, [children, handleNodeMap, nodeId ]);
 
   React.useEffect(() => {
     if (handleFirstChars && label) {
@@ -251,9 +285,9 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         {icon ? <div className={classes.iconContainer}>{icon}</div> : null}
         <Typography className={classes.label}>{label}</Typography>
       </div>
-      {children && (
+      {childNodes && (
         <TransitionComponent className={classes.group} in={expanded} component="ul" role="group">
-          {children}
+          {childNodes}
         </TransitionComponent>
       )}
     </li>

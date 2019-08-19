@@ -8,6 +8,9 @@ export interface TreeViewProps
   defaultExpanded?: string[];
   defaultExpandIcon?: React.ReactNode;
   defaultParentIcon?: React.ReactNode;
+  isNodeExpandable?: (nodeId: string) => boolean;
+  onNodeCollapsed?: (nodeId: string) => void;
+  onNodeExpanded?: (nodeId: string) => object;
   onNodeToggle?: (nodeId: string, expanded: boolean) => void;
 }
 
