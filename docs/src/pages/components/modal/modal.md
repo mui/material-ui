@@ -42,7 +42,7 @@ The open/close state of the modal can be animated with a transition component.
 This component should respect the following conditions:
 
 - Be a direct child descendent of the modal.
-- Have an `in` prop. It corresponds to the open/close state.
+- Have an `in` prop. This corresponds to the open / close state.
 - Call the `onEnter` callback prop when the enter transition starts.
 - Call the `onExited` callback prop when the exit transition is completed.
 These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
