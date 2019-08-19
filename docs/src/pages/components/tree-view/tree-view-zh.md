@@ -11,6 +11,10 @@ components: 树视图，树节点
 
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}}
 
+## Virtual tree view
+
+{{"demo": "pages/components/tree-view/VirtualFileSystemNavigator.js"}}
+
 ## Customized tree view
 
 {{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
