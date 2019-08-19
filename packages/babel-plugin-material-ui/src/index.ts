@@ -100,26 +100,33 @@ export default (): babel.PluginObj<{ opts: Options }> => {
               coreImports = resolveImports(require.resolve('@material-ui/core'));
             }
             handleImports(path, coreImports, `@material-ui/core${libraryFolder}`);
-            break;
+            return;
           }
           case '@material-ui/styles': {
             if (stylesImports === undefined) {
               stylesImports = resolveImports(require.resolve('@material-ui/styles'));
             }
             handleImports(path, stylesImports, `@material-ui/styles${libraryFolder}`);
-            break;
+            return;
           }
           case '@material-ui/lab': {
             if (labImports === undefined) {
               labImports = resolveImports(require.resolve('@material-ui/lab'));
             }
             handleImports(path, labImports, `@material-ui/lab${libraryFolder}`);
-            break;
+            return;
           }
           case '@material-ui/icons': {
             handleIcons(path, `@material-ui/icons${libraryFolder}`);
-            break;
+            return;
           }
+        }
+
+        if (libraryFolder) {
+          path.node.source.value = path.node.source.value.replace(
+            /(@material-ui\/(core|lab|icons|styles|utils|system))(?!\/(es|esm)(\/|$))/,
+            `$1/${libraryFolder}`,
+          );
         }
       },
     },
