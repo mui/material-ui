@@ -47,7 +47,7 @@ This component should respect the following conditions:
 - Call the `onExited` callback prop when the exit transition is completed.
 These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
 
-We have a built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
+Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
 
 {{"demo": "pages/components/modal/TransitionsModal.js"}}
 
