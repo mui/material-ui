@@ -688,7 +688,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       <span className={classes.rail} />
       <span className={classes.track} style={trackStyle} />
       <input value={values.join(',')} name={name} type="hidden" />
-      {marks.map((mark) => {
+      {marks.map((mark, index) => {
         const percent = valueToPercent(mark.value, min, max);
         const style = axisProps[axis].offset(percent);
 
@@ -717,6 +717,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             />
             <span
               aria-hidden
+              data-index={index}
               style={style}
               className={clsx(classes.markLabel, {
                 [classes.markLabelActive]: markActive,
