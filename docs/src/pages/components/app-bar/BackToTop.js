@@ -10,10 +10,10 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Fab from '@material-ui/core/Fab';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import Fade from '@material-ui/core/Fade';
+import Zoom from '@material-ui/core/Zoom';
 
 const useStyles = makeStyles({
-  fab: {
+  root: {
     position: 'fixed',
     bottom: 16,
     right: 16,
@@ -29,13 +29,23 @@ function ScrollTop(props) {
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
     disableHysteresis: true,
-    threshold: 200,
+    threshold: 100,
   });
 
+  const handleClick = event => {
+    const anchor = (event.target.ownerDocument || document).querySelector('#back-to-top-anchor');
+
+    if (anchor) {
+      anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
   return (
-    <Fade direction="down" in={trigger} className={classes.fab}>
-      {children}
-    </Fade>
+    <Zoom in={trigger}>
+      <div onClick={handleClick} role="presentation" className={classes.root}>
+        {children}
+      </div>
+    </Zoom>
   );
 }
 
@@ -49,20 +59,15 @@ ScrollTop.propTypes = {
 };
 
 export default function BackToTop(props) {
-  const handleClick = () => {
-    console.log('click', document.querySelector('#back-to-top'));
-    document.querySelector('#back-to-top').scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <React.Fragment>
       <CssBaseline />
       <AppBar>
         <Toolbar>
-          <Typography variant="h6">Scroll to Hide App Bar</Typography>
+          <Typography variant="h6">Scroll to see button</Typography>
         </Toolbar>
       </AppBar>
-      <Toolbar id="back-to-top" />
+      <Toolbar id="back-to-top-anchor" />
       <Container>
         <Box my={2}>
           {[...new Array(12)]
@@ -76,7 +81,7 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
         </Box>
       </Container>
       <ScrollTop {...props}>
-        <Fab color="primary" aria-label="scroll to top" onClick={handleClick}>
+        <Fab color="secondary" size="small" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>
