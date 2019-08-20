@@ -288,11 +288,14 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const onExpand = React.useCallback(
     nodeId => {
       const itemsChildren = onNodeExpanded(nodeId);
-      const childIds = itemsChildren.map(child => child.nodeId);
-      handleNodeMap(nodeId, childIds);
-      return itemsChildren.map((node, i) => (
-        <TreeItem nodeId={node.nodeId} label={node.label} key={i} />
-      ));
+      if (itemsChildren) {
+        const childIds = itemsChildren.map(child => child.nodeId);
+        handleNodeMap(nodeId, childIds);
+        return itemsChildren.map((node, i) => (
+          <TreeItem nodeId={node.nodeId} label={node.label} key={i} />
+        ));
+      }
+      return undefined;
     },
     [onNodeExpanded],
   );
