@@ -440,29 +440,27 @@ Rating.propTypes = {
    */
   max: PropTypes.number,
   /**
-   * Name attribute of the radio `input` elements.
-   * When `readOnly` is false the prop is required
-   * The name value should be unique.
+   * The name attribute of the radio `input` elements.
+   * If `readOnly` is false, the prop is required,
+   * this input name`should be unique within the parent form.
    */
   name: chainPropTypes(PropTypes.string, props => {
     if (!props.readOnly && !props.name) {
       return new Error(
         [
-          'Material-UI: When `readOnly` is false the prop `name` is required.',
-          'Also check if the name value is unique.',
+          'Material-UI: the prop `name` is required (when `readOnly` is false).',
+          'Additionally, the input name should be unique within the parent form.',
         ].join('\n'),
       );
     }
     return null;
   }),
-
-  /** name
+  /**
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback
    * @param {number} value The new value
    */
-
   onChange: PropTypes.func,
   /**
    * Callback function that is fired when the hover state changes.
