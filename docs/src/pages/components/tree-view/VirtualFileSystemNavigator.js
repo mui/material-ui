@@ -63,7 +63,7 @@ const getItems = nodeId => {
   let nodeChildren;
   if (nodeId) {
     const parent = visibleChildren.find(child => child.nodeId === nodeId);
-    if (parent) {
+    if (parent && parent.children) {
       nodeChildren = parent.children.map(child => {
         return { ...child, parent: nodeId };
       });
