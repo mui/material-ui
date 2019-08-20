@@ -123,6 +123,6 @@ Additionally, you may give a description of your modal with the `aria-describedb
 ## Server-side modal
 
 React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server.
-In order to display see the modal, you need to disable the portal feature with the `disablePortal` prop:
+In order to see the modal, you need to disable the portal feature with the `disablePortal` prop:
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
