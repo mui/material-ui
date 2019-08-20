@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import { useTheme, withStyles } from '@material-ui/core/styles';
 import { capitalize, useForkRef, ownerWindow, useIsFocusVisible } from '@material-ui/core/utils';
 import Star from '../internal/svg-icons/Star';
@@ -440,8 +441,20 @@ Rating.propTypes = {
   max: PropTypes.number,
   /**
    * Name attribute of the radio `input` elements.
+   * When `readOnly` is false the prop is required
+   * The name value should be unique.
    */
-  name: PropTypes.string,
+  name: chainPropTypes(PropTypes.string, props => {
+    if (!props.readOnly && !props.name) {
+      return new Error(
+        [
+          'Material-UI: When `readOnly` is false the prop `name` is required.',
+          'Also check if the name value is unique.',
+        ].join('\n'),
+      );
+    }
+    return null;
+  }),
   /**
    * Callback fired when the value changes.
    *
