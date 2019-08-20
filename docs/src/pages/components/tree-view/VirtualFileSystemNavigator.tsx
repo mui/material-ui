@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import TreeView from '@material-ui/lab/TreeView';
+import TreeView, { NodeInfo } from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
@@ -57,13 +57,20 @@ const dataItems = [
   },
 ];
 
-let visibleChildren = [];
+interface Data {
+  nodeId: string;
+  label: string;
+  parent?: string | number;
+  children?: Data[];
+}
 
-const getItems = nodeId => {
+let visibleChildren: Data[] = [];
+
+const getItems = (nodeId: string | number | undefined): NodeInfo[] | undefined => {
   let nodeChildren;
   if (nodeId) {
     const parent = visibleChildren.find(child => child.nodeId === nodeId);
-    if (parent) {
+    if (parent && parent.children) {
       nodeChildren = parent.children.map(child => {
         return { ...child, parent: nodeId };
       });
@@ -75,7 +82,7 @@ const getItems = nodeId => {
   return nodeChildren;
 };
 
-const isExpandable = nodeId => {
+const isExpandable = (nodeId: string | number | undefined) => {
   const parent = visibleChildren.find(child => child.nodeId === nodeId);
   if (parent) {
     return parent.children !== undefined;
@@ -83,7 +90,7 @@ const isExpandable = nodeId => {
   return false;
 };
 
-const itemCollapse = nodeId => {
+const itemCollapse = (nodeId: string | number | undefined) => {
   visibleChildren = visibleChildren.filter(node => node.parent !== nodeId);
 };
 
