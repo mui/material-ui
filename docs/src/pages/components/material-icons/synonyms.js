@@ -141,7 +141,7 @@ const synonyms = {
   Crop54: 'square',
   Crop75: 'square',
   CropDin: 'square',
-  CropFree: 'square',
+  CropFree: 'square barcode',
   CropLandscape: 'square',
   CropOriginal: 'square',
   CropPortrait: 'square',
@@ -672,6 +672,8 @@ const synonyms = {
   WrapText: 'arrow',
   YoutubeSearchedFor: 'arrow',
   ZoomOutMap: 'arrows',
+  ZoomIn: 'magnifier',
+  ZoomOut: 'magnifier',
 };
 
 export default synonyms;

@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/AppBar/AppBar.js
 
 <p class="description">The API documentation of the AppBar React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import AppBar from '@material-ui/core/AppBar';
+// or
+import { AppBar } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 
@@ -56,10 +62,6 @@ If that's not sufficient, you can check the [implementation of the component](ht
 
 The props of the [Paper](/api/paper/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
-
-## Notes
-
-The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
 
 ## Demos
 

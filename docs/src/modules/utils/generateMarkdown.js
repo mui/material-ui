@@ -426,23 +426,15 @@ function generateImportStatement(reactAPI) {
     )
     // convert things like `/Table/Table.js` to ``
     .replace(/\/([^/]+)\/\1\.js$/, '');
-  return `\`\`\`js
+  return `## Import
+
+\`\`\`js
 import ${reactAPI.name} from '${source}/${reactAPI.name}';
-\`\`\``;
-}
+// or
+import { ${reactAPI.name} } from '${source}';
+\`\`\`
 
-function generateNotes(reactAPI) {
-  const { strictModeReady } = reactAPI;
-  const strictModeLinked = '[StrictMode](https://reactjs.org/docs/strict-mode.html)';
-  return `## Notes
-
-The component ${
-    !strictModeReady
-      ? `can cause issues in ${strictModeLinked}`
-      : `is fully ${strictModeLinked} compatible`
-  }.
-
-`;
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).`;
 }
 
 export default function generateMarkdown(reactAPI) {
@@ -462,8 +454,6 @@ export default function generateMarkdown(reactAPI) {
     '',
     generateProps(reactAPI),
     '',
-    `${generateClasses(reactAPI)}${generateInheritance(reactAPI)}${generateNotes(
-      reactAPI,
-    )}${generateDemos(reactAPI)}`,
+    `${generateClasses(reactAPI)}${generateInheritance(reactAPI)}${generateDemos(reactAPI)}`,
   ].join('\n');
 }

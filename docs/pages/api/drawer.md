@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/Drawer/Drawer.js
 
 <p class="description">The API documentation of the Drawer React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Drawer from '@material-ui/core/Drawer';
+// or
+import { Drawer } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 The props of the [Modal](/api/modal/) component are available
 when `variant="temporary"` is set.
@@ -62,10 +68,6 @@ You can override the style of the component thanks to one of these customization
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Drawer/Drawer.js) for more detail.
-
-## Notes
-
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
 
 ## Demos
 

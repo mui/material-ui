@@ -13,8 +13,6 @@ const reqSource = require.context(
 );
 const reqPrefix = 'pages/getting-started/example-projects';
 
-function Page() {
+export default function Page() {
   return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
-
-export default Page;
