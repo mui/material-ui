@@ -275,25 +275,34 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     firstCharMap.current[id] = firstChar;
   };
 
-  const isExpandable = nodeId => {
-    if (isExpandable) {
-      return isNodeExpandable(nodeId);
-    }
-    return undefined;
-  };
+  const isExpandable = React.useCallback(
+    nodeId => {
+      if (isExpandable) {
+        return isNodeExpandable(nodeId);
+      }
+      return undefined;
+    },
+    [isNodeExpandable],
+  );
 
-  const onExpand = nodeId => {
-    const itemsChildren = onNodeExpanded(nodeId);
-    const childIds = itemsChildren.map(child => child.nodeId);
-    handleNodeMap(nodeId, childIds);
-    return itemsChildren.map((node, i) => (
-      <TreeItem nodeId={node.nodeId} label={node.label} key={i} />
-    ));
-  };
+  const onExpand = React.useCallback(
+    nodeId => {
+      const itemsChildren = onNodeExpanded(nodeId);
+      const childIds = itemsChildren.map(child => child.nodeId);
+      handleNodeMap(nodeId, childIds);
+      return itemsChildren.map((node, i) => (
+        <TreeItem nodeId={node.nodeId} label={node.label} key={i} />
+      ));
+    },
+    [onNodeExpanded],
+  );
 
-  const onCollapse = nodeId => {
-    onNodeCollapsed(nodeId);
-  };
+  const onCollapse = React.useCallback(
+    nodeId => {
+      onNodeCollapsed(nodeId);
+    },
+    [onNodeCollapsed],
+  );
 
   return (
     <TreeViewContext.Provider
