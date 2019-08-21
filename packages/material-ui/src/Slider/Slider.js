@@ -313,7 +313,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const valueDerived = isControlled ? valueProp : valueState;
   const range = Array.isArray(valueDerived);
   const instanceRef = React.useRef();
-  let values = range ? valueDerived.sort(asc) : [valueDerived];
+  let values = range ? [...valueDerived].sort(asc) : [valueDerived];
   values = values.map(value => clamp(value, min, max));
   const marks =
     marksProp === true && step !== null
