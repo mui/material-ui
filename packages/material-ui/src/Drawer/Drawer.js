@@ -165,7 +165,7 @@ const Drawer = React.forwardRef(function Drawer(props, ref) {
 
   if (variant === 'persistent') {
     return (
-      <div className={clsx(classes.root, classes.docked, className)} {...other}>
+      <div className={clsx(classes.root, classes.docked, className)} ref={ref} {...other}>
         {slidingDrawer}
       </div>
     );
