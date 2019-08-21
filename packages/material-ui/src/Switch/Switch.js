@@ -42,8 +42,7 @@ export const styles = theme => ({
     }),
     willChange: 'left, transform',
     '&$checked': {
-      left: '100%',
-      transform: 'translateX(-100%)',
+      transform: 'translateX(50%)',
     },
     '&$disabled': {
       color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
