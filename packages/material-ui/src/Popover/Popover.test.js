@@ -874,13 +874,15 @@ describe('<Popover />', () => {
 
   describe('prop: action', () => {
     it('should be able to access updatePosition function', () => {
-      let popoverActions = {};
+      let popoverActions = {}
+      const setAction = (actions) => {
+        popoverActions = actions 
+      }
       mount(
         <Popover
           {...defaultProps}
-          action={actions => {
-            popoverActions = actions;
-          }}
+          open
+          action={setAction}
         >
           <div>content #1</div>
           <div>content #2</div>
