@@ -308,8 +308,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     });
   }, [open, setPositioningStyles]);
 
-  React.useImperativeHandle(action, () =>  (open ? { updatePosition } : null)
-  , [
+  React.useImperativeHandle(action, () => (open ? { updatePosition } : null), [
     open,
     updatePosition,
   ]);
