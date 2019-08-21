@@ -40,7 +40,7 @@ export const styles = theme => ({
     transition: theme.transitions.create(['left', 'transform'], {
       duration: theme.transitions.duration.shortest,
     }),
-    willChange: 'left, transform',
+    willChange: 'transform',
     '&$checked': {
       transform: 'translateX(50%)',
     },
