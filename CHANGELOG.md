@@ -1,9 +1,66 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.3.3
+###### *Aug 21, 2019*
+
+Big thanks to the 22 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- 🔍 Introduce a [material icons search](https://material-ui.com/components/material-icons/) (#16956).
+- And many more 🐛 bug fixes 📚 improvements.
+
+### `@material-ui/core@v4.3.3`
+
+- [AppBar] Add back to top demo (#17062) @oliviertassinari
+- [CardHeader] Remove mention of children from API docs (#17045) @cmeeren
+- [Dialog] Add support for a Dialog without a DialogTitle (#16980) @megos
+- [Divider] Add vertical support (#17063) @oliviertassinari
+- [Grid] Better support custom theme spacing values (#17005) @Workvictor
+- [Modal] Add transition documentation (#17059) @oliviertassinari
+- [Select] Hide SVG icon for native multiple select (#16992) @craigmjackson
+- [Slider] Fix mouse enter edge case for Firefox (#16986) @Astrantia
+- [Slider] Hide mark labels to screen readers (#17024) @Patil2099
+- [Tabs] Fix issue where scrollable tabs auto move to selected tab (#16961) @wereHamster
+- [TextareaAutosize] Export component in barrel index.js (#17003) @Shubhamchinda
+- [TextareaAutosize] Update spelling in props (umber to number) (#16982) @melwyn001
+- [Tooltip] Fix word wrapping (#17020) @pranshuchittora
+- [Tooltip] Improve arrow demo (#17058) @Patil2099
+
+### `@material-ui/lab@v4.0.0-alpha.24`
+
+- [Rating] Improve rendering of arbitrary precision (#17013) @Patil2099
+- [TreeView] Lazy render the tree items (#17046) @Shubhamchinda
+- [Skeleton] Add missing exports from the barrel (#16960) @mejackreed
+
+### `@material-ui/styles@v4.3.3`
+
+- [styles] Better support right-to-left (#17019) @AminZibayi
+
+### Docs
+
+- [docs] Add Typescript example for switch label position (#16959) @nowNick
+- [docs] Adjust React + Material-UI + Firebase for v2.0 (#16988) @Phoqe
+- [docs] Improve instructions for Babel import plugins (#16993) @lookfirst
+- [docs] Make it easier to find material icons (#16956) @oliviertassinari
+- [docs] Add synonyms for Material icons (#17021) @mbrookes
+- [docs] Migration guide to v4: include change to dense Lists (#17074) @zekehernandez
+- [docs] Prefer SVG over font icons in the demos (#17056) @troussos
+- [docs] Small changes (#17060) @oliviertassinari
+- [example] Remove unused MuiLink declaration (#16991) @colemars
+
+### Core
+
+- [core] Classes to hooks (#17061) @oliviertassinari
+- [core] Upgrade the dependencies (#16990) @oliviertassinari
+- [core] yarn docs:export support for Windows (#17009) @vabole
+
 ## 4.3.2
 ###### *Aug 10, 2019*
 
 Big thanks to the 22 contributors who made this release possible!
+
+Here are some highlights ✨:
 
 - 🦴 Introduce a new Skeleton component in the lab (#16786).
 - 📦 Reduce bundle size by -10%,-20% of the small helpers like useMediaQuery, Portal, and TextareaAutosize (#16842) @NMinhNguyen.
@@ -15,7 +72,7 @@ Big thanks to the 22 contributors who made this release possible!
 - [ButtonGroup] Allow override of the variant prop (#16946) @nvwebd
 - [ButtonGroup] Separate button colors (#16876) @CyanoFresh
 - [CssBaseline] Add backdrop base styles (#16880) @yordis
-- [Fab] Accept FabProps in theme.props  (#16877) @aditya1906
+- [Fab] Accept FabProps in theme.props (#16877) @aditya1906
 - [FormControl] Warn if rendered mulitple inputs (#16923) @lemes
 - [Popper] Fix ScrollPlayground.js demo (#16948) @pinktig
 - [Slider] Update TypeScript demo to cast types to values (#16957) @allypally
@@ -5323,7 +5380,7 @@ N/A
 - [docs] Improve the onboarding (#10639) @oliviertassinari
 - [docs] Fix usage of CssBaseline/Reboot in the CDN example (#10655) @SebastianSchmidt
 - [docs] Fix reference to CssBaseline component (#10654) @SebastianSchmidt
-- [themes] Introduce a themes website ⚡️  (#10616) @oliviertassinari
+- [themes] Introduce a themes website ⚡️ (#10616) @oliviertassinari
 - [docs] Fix reference to FAQ (#10660) @SebastianSchmidt
 - [docs] Fix reference to Popover demo (#10661) @SebastianSchmidt
 - [docs] Fix reference to Modal demo (#10662) @SebastianSchmidt
