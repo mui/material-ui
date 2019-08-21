@@ -10,6 +10,7 @@ describe('<Rating />', () => {
   const render = createClientRender({ strict: true });
   let classes;
   const defaultProps = {
+    name: 'rating-test',
     value: 2,
   };
 
@@ -38,5 +39,15 @@ describe('<Rating />', () => {
     const { container } = render(<Rating {...defaultProps} />);
 
     expect(container.firstChild).to.have.class(classes.root);
+  });
+
+  it('should round the value to the provided precision', () => {
+    const { container, getByLabelText } = render(
+      <Rating {...defaultProps} value={3.9} precision={0.2} />,
+    );
+    const input = getByLabelText('4 Stars');
+    const checked = container.querySelector('input[name="rating-test"]:checked');
+    expect(input).to.equal(checked);
+    expect(input.value).to.equal('4');
   });
 });

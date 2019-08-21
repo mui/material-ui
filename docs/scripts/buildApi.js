@@ -169,7 +169,6 @@ async function buildDocs(options) {
   const testInfo = await parseTest(componentObject.filename);
   // no Object.assign to visually check for collisions
   reactAPI.forwardsRefTo = testInfo.forwardsRefTo;
-  reactAPI.strictModeReady = testInfo.strictModeReady;
 
   // if (reactAPI.name !== 'TableCell') {
   //   return;
@@ -203,11 +202,9 @@ async function buildDocs(options) {
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import markdown from './${kebabCase(reactAPI.name)}.md';
 
-function Page() {
+export default function Page() {
   return <MarkdownDocs markdown={markdown} />;
 }
-
-export default Page;
 `.replace(/\r?\n/g, reactAPI.EOL),
     );
 

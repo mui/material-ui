@@ -7,6 +7,7 @@ import MenuList from '../MenuList';
 import warning from 'warning';
 import ReactDOM from 'react-dom';
 import { setRef } from '../utils/reactHelpers';
+import useTheme from '../styles/useTheme';
 
 const RTL_ORIGIN = {
   vertical: 'top',
@@ -47,11 +48,11 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     open,
     PaperProps = {},
     PopoverClasses,
-    theme,
     transitionDuration = 'auto',
     variant = 'selectedMenu',
     ...other
   } = props;
+  const theme = useTheme();
 
   const autoFocus = (autoFocusProp !== undefined ? autoFocusProp : !disableAutoFocusItem) && open;
 
@@ -239,10 +240,6 @@ Menu.propTypes = {
    */
   PopoverClasses: PropTypes.object,
   /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
-  /**
    * The length of the transition in `ms`, or 'auto'
    */
   transitionDuration: PropTypes.oneOfType([
@@ -257,4 +254,4 @@ Menu.propTypes = {
   variant: PropTypes.oneOf(['menu', 'selectedMenu']),
 };
 
-export default withStyles(styles, { name: 'MuiMenu', withTheme: true })(Menu);
+export default withStyles(styles, { name: 'MuiMenu' })(Menu);

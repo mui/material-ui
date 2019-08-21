@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/IconButton/IconButton.js
 
 <p class="description">The API documentation of the IconButton React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import IconButton from '@material-ui/core/IconButton';
+// or
+import { IconButton } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 Refer to the [Icons](/components/icons/) section of the documentation
 regarding the available icon options.
@@ -61,10 +67,6 @@ If that's not sufficient, you can check the [implementation of the component](ht
 
 The props of the [ButtonBase](/api/button-base/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
-
-## Notes
-
-The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
 
 ## Demos
 

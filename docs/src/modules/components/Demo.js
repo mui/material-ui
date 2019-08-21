@@ -6,6 +6,7 @@ import copy from 'clipboard-copy';
 import { useSelector, useDispatch } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Collapse from '@material-ui/core/Collapse';
 import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
@@ -261,6 +262,8 @@ function Demo(props) {
     setSourceHintSeen(setSourceHintSeen(true));
   }
 
+  const match = useMediaQuery(theme => theme.breakpoints.up('sm'));
+
   return (
     <div className={classes.root}>
       <div className={classes.anchorLink} id={`${demoName}.js`} />
@@ -279,7 +282,7 @@ function Demo(props) {
               <Tooltip
                 classes={{ popper: classes.tooltip }}
                 key={showSourceHint}
-                open={showSourceHint ? true : undefined}
+                open={showSourceHint && match ? true : undefined}
                 PopperProps={{ disablePortal: true }}
                 title={codeOpen ? t('hideSource') : t('showSource')}
                 placement="top"

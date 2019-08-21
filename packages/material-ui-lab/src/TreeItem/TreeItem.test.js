@@ -101,7 +101,7 @@ describe('<TreeItem />', () => {
 
     it('should add the role `group` to a component containing children', () => {
       const { getByRole, getByText } = render(
-        <TreeView>
+        <TreeView defaultExpanded={['test']}>
           <TreeItem nodeId="test" label="test">
             <TreeItem nodeId="test2" label="test2" />
           </TreeItem>

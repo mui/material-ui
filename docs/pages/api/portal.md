@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/Portal/Portal.js
 
 <p class="description">The API documentation of the Portal React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Portal from '@material-ui/core/Portal';
+// or
+import { Portal } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 Portals provide a first-class way to render children into a DOM node
 that exists outside the DOM hierarchy of the parent component.
@@ -26,10 +32,6 @@ that exists outside the DOM hierarchy of the parent component.
 
 The component cannot hold a ref.
 
-
-## Notes
-
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
 
 ## Demos
 

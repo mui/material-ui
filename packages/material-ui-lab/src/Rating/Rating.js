@@ -15,6 +15,16 @@ function clamp(value, min, max) {
   return value;
 }
 
+function getDecimalPrecision(num) {
+  const decimalPart = num.toString().split('.')[1];
+  return decimalPart ? decimalPart.length : 0;
+}
+
+function roundValueToPrecision(value, precision) {
+  const nearest = Math.round(value / precision) * precision;
+  return Number(nearest.toFixed(getDecimalPrecision(precision)));
+}
+
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
@@ -133,10 +143,11 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     precision = 1,
     readOnly = false,
     size = 'medium',
-    value: valueProp = null,
+    value: valueProp2 = null,
     ...other
   } = props;
 
+  const valueProp = roundValueToPrecision(valueProp2, precision);
   const theme = useTheme();
   const [{ hover, focus }, setState] = React.useState({
     hover: -1,
@@ -174,7 +185,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       percent = (event.pageX - left - ownerWindow(rootNode).pageXOffset) / (width * max);
     }
 
-    let newHover = Math.ceil((max * percent) / precision) * precision;
+    let newHover = roundValueToPrecision(max * percent, precision);
     newHover = clamp(newHover, precision, max);
     setState(prev =>
       prev.hover === newHover && prev.focus === newHover
@@ -341,7 +352,10 @@ const Rating = React.forwardRef(function Rating(props, ref) {
               })}
             >
               {items.map(($, indexDecimal) => {
-                const itemDeciamlValue = itemValue - 1 + (indexDecimal + 1) * precision;
+                const itemDeciamlValue = roundValueToPrecision(
+                  itemValue - 1 + (indexDecimal + 1) * precision,
+                  precision,
+                );
 
                 return item(
                   {
@@ -380,7 +394,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
             filled: itemValue <= value,
             hover: itemValue <= hover,
             focus: itemValue <= focus,
-            checked: itemValue === Math.round(valueProp),
+            checked: itemValue === valueProp,
           },
         );
       })}

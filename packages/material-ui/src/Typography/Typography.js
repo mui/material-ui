@@ -130,7 +130,6 @@ const Typography = React.forwardRef(function Typography(props, ref) {
     gutterBottom = false,
     noWrap = false,
     paragraph = false,
-    theme,
     variant = 'body1',
     variantMapping = defaultVariantMapping,
     ...other
@@ -215,10 +214,6 @@ Typography.propTypes = {
    */
   paragraph: PropTypes.bool,
   /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
-  /**
    * Applies the theme typography styles.
    */
   variant: PropTypes.oneOf([
@@ -247,4 +242,4 @@ Typography.propTypes = {
   variantMapping: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTypography', withTheme: true })(Typography);
+export default withStyles(styles, { name: 'MuiTypography' })(Typography);
