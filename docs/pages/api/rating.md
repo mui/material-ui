@@ -33,7 +33,7 @@ You can learn more about the difference by [reading our guide](/guides/minimizin
 | <span class="prop-name">max</span> | <span class="prop-type">number</span> | <span class="prop-default">5</span> | Maximum rating. |
 | <span class="prop-name">name</span> | <span class="prop-type">string</span> |  | Name attribute of the radio `input` elements. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: number) => void`<br>*event:* The event source of the callback<br>*value:* The new value |
-| <span class="prop-name">onChangeActive</span> | <span class="prop-type">func</span> |  | Callback function that is fired when the hover state changes.<br><br>**Signature:**<br>`function(event: object, value: any) => void`<br>*event:* The event source of the callback<br>*value:* The new value |
+| <span class="prop-name">onChangeActive</span> | <span class="prop-type">func</span> |  | Callback function that is fired when the hover state changes.<br><br>**Signature:**<br>`function(event: object, value: number) => void`<br>*event:* The event source of the callback<br>*value:* The new value |
 | <span class="prop-name">precision</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | The minimum increment value change allowed. |
 | <span class="prop-name">readOnly</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Removes all hover effects and pointer events. |
 | <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'</span> | <span class="prop-default">'medium'</span> | The size of the rating. |
