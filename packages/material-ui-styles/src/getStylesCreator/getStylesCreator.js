@@ -58,7 +58,6 @@ function getStylesCreator(stylesOrCreator) {
       return stylesWithOverrides;
     },
     options: {},
-    themingEnabled,
   };
 }
 
