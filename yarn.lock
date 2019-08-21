@@ -2108,9 +2108,9 @@
   integrity sha512-bsTIJFVQv7jnvNiC42ld2pQW2KRI+pAG243L+iATvqzy3X6+NH1obz2itRKDZZ8VVhN3wjwYax/VBGCcXzgTqQ==
 
 "@types/prettier@^1.18.0":
-  version "1.18.1"
-  resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-1.18.1.tgz#a71897c3860efe1ed4d36162bc6efa79e6e0b237"
-  integrity sha512-68j7wTrTZUInkpYd6PGJOeKkEtDDkQDIyrX/ynY0gV20gOjSq0xcGpvsUrmdhUn+s4eJgOImNtnNmh5rXkq3Vg==
+  version "1.18.2"
+  resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-1.18.2.tgz#069e7d132024d436fd1f5771f6932426a695f230"
+  integrity sha512-2JBasa5Qaj81Qsp/dxX2Njy+MdKC767WytHUDsRM7TYEfQvKPxsnGpnCBlBS1i2Aiv1YwCpmKSbQ6O6v8TpiKg==
 
 "@types/prop-types@*":
   version "15.7.1"
@@ -3343,9 +3343,9 @@ babel-plugin-module-resolver@^3.0.0:
     resolve "^1.4.0"
 
 babel-plugin-optimize-clsx@^2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-optimize-clsx/-/babel-plugin-optimize-clsx-2.3.0.tgz#2c0e2971451b12cfe6f5884aec2475896726399f"
-  integrity sha512-QvLQODiFBpPZl+1dWMjJoWHKnyJ/hJspeNf8nQ+l5m152/rWlIZrn7MvlsevEp1snuXoD/XiD0wA5r8zk7gqgw==
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-optimize-clsx/-/babel-plugin-optimize-clsx-2.4.1.tgz#d0e0c0accdc3f0bc8d5ce48634a0591623a15c90"
+  integrity sha512-lhZPi+oiHIqsQSGTkBGyyv3ysiDFcn1Md6bfnOKbiDcFlH+Kvev0nPbnNmKgwQtMggd9s9Hq0nY20HJ5Wg9xDQ==
   dependencies:
     "@babel/generator" "^7.5.5"
     "@babel/types" "^7.5.5"
@@ -11950,9 +11950,9 @@ react-double-scrollbar@0.0.15:
   integrity sha1-6RWrjLO5WYdwdfSUNt6/2wQoj+Q=
 
 react-draggable@^3.0.5:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-3.3.1.tgz#661b191d2b5be554e774ea68a5b7484568447b8b"
-  integrity sha512-JeKyuO5f1jnVwMHdNkFpmaQoYn/6CyIiCDGSKbTgRisEtekjeUCeKmlNaNTLlpKOEu0SaKcBA1HlypSqWN/8Tw==
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/react-draggable/-/react-draggable-3.3.2.tgz#966ef1d90f2387af3c2d8bd3516f601ea42ca359"
+  integrity sha512-oaz8a6enjbPtx5qb0oDWxtDNuybOylvto1QLydsXgKmwT7e3GXC2eMVDwEMIUYJIFqVG72XpOv673UuuAq6LhA==
   dependencies:
     classnames "^2.2.5"
     prop-types "^15.6.0"
@@ -14349,9 +14349,9 @@ typedarray@^0.0.6:
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
 typescript-to-proptypes@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/typescript-to-proptypes/-/typescript-to-proptypes-1.2.3.tgz#af3f88c8c3e5b494c645700670ffc6c986d44a29"
-  integrity sha512-7L1+peXa9hUaY3TZvgl0rJT3nUV4xaO5Oo5Bmf7ROgQJ3gcRhk94vOkRUeWMhnzUCEPiVxiEOlzi5L/6G+gXbw==
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/typescript-to-proptypes/-/typescript-to-proptypes-1.2.4.tgz#c2168dd082678850c745bef9356ca62b24253e31"
+  integrity sha512-kHY8FdEassU9ihHu3X+HNBZQkbzFMj1z9o0QKMOcA6RHw49aZ0HYUpG5ipQPj3ehoNMucADkj2HkgB8dJOHkaw==
   dependencies:
     "@babel/core" "^7.5.4"
     "@babel/plugin-syntax-class-properties" "^7.2.0"

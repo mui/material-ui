@@ -2,8 +2,6 @@ import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import markdown from './root-ref.md';
 
-function Page() {
+export default function Page() {
   return <MarkdownDocs markdown={markdown} />;
 }
-
-export default Page;

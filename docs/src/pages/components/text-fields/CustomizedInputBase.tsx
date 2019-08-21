@@ -23,7 +23,6 @@ const useStyles = makeStyles({
     padding: 10,
   },
   divider: {
-    width: 1,
     height: 28,
     margin: 4,
   },
@@ -45,7 +44,7 @@ export default function CustomizedInputBase() {
       <IconButton className={classes.iconButton} aria-label="search">
         <SearchIcon />
       </IconButton>
-      <Divider className={classes.divider} />
+      <Divider className={classes.divider} orientation="vertical" />
       <IconButton color="primary" className={classes.iconButton} aria-label="directions">
         <DirectionsIcon />
       </IconButton>

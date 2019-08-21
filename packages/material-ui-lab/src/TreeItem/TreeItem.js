@@ -284,7 +284,13 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         <Typography className={classes.label}>{label}</Typography>
       </div>
       {childNodes && (
-        <TransitionComponent className={classes.group} in={expanded} component="ul" role="group">
+        <TransitionComponent
+          unmountOnExit
+          className={classes.group}
+          in={expanded}
+          component="ul"
+          role="group"
+        >
           {childNodes}
         </TransitionComponent>
       )}

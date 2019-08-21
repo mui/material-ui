@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/Popover/Popover.js
 
 <p class="description">The API documentation of the Popover React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Popover from '@material-ui/core/Popover';
+// or
+import { Popover } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 
@@ -69,10 +75,6 @@ If that's not sufficient, you can check the [implementation of the component](ht
 
 The props of the [Modal](/api/modal/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
-
-## Notes
-
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
 
 ## Demos
 

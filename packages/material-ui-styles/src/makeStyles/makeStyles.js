@@ -201,10 +201,9 @@ function makeStyles(stylesOrCreator, options = {}) {
     meta: classNamePrefix,
     classNamePrefix,
   };
-  const listenToTheme = stylesCreator.themingEnabled || typeof name === 'string';
 
   return (props = {}) => {
-    const theme = (listenToTheme ? useTheme() : null) || defaultTheme;
+    const theme = useTheme() || defaultTheme;
     const stylesOptions = {
       ...React.useContext(StylesContext),
       ...stylesOptions2,

@@ -64,47 +64,12 @@ const inlineStyles = {
   },
 };
 
-class AnchorPlayground extends React.Component {
-  anchorRef = React.createRef();
+function AnchorPlayground(props) {
+  const { classes } = props;
+  const anchorRef = React.useRef();
 
-  state = {
-    open: false,
-    anchorOriginVertical: 'top',
-    anchorOriginHorizontal: 'left',
-    transformOriginVertical: 'top',
-    transformOriginHorizontal: 'left',
-    positionTop: 200, // Just so the popover can be spotted more easily
-    positionLeft: 400, // Same as above
-    anchorReference: 'anchorEl',
-  };
-
-  handleChange = key => (event, value) => {
-    this.setState({
-      [key]: value,
-    });
-  };
-
-  handleNumberInputChange = key => event => {
-    this.setState({
-      [key]: parseInt(event.target.value, 10),
-    });
-  };
-
-  handleClickButton = () => {
-    this.setState({
-      open: true,
-    });
-  };
-
-  handleClose = () => {
-    this.setState({
-      open: false,
-    });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const {
+  const [
+    {
       open,
       anchorOriginVertical,
       anchorOriginHorizontal,
@@ -113,17 +78,56 @@ class AnchorPlayground extends React.Component {
       positionTop,
       positionLeft,
       anchorReference,
-    } = this.state;
+    },
+    setState,
+  ] = React.useState({
+    open: false,
+    anchorOriginVertical: 'top',
+    anchorOriginHorizontal: 'left',
+    transformOriginVertical: 'top',
+    transformOriginHorizontal: 'left',
+    positionTop: 200, // Just so the popover can be spotted more easily
+    positionLeft: 400, // Same as above
+    anchorReference: 'anchorEl',
+  });
 
-    let mode = '';
+  const handleChange = key => (event, value) => {
+    setState(state => ({
+      ...state,
+      [key]: value,
+    }));
+  };
 
-    if (anchorReference === 'anchorPosition') {
-      mode = `
+  const handleNumberInputChange = key => event => {
+    setState(state => ({
+      ...state,
+      [key]: parseInt(event.target.value, 10),
+    }));
+  };
+
+  const handleClickButton = () => {
+    setState(state => ({
+      ...state,
+      open: true,
+    }));
+  };
+
+  const handleClose = () => {
+    setState(state => ({
+      ...state,
+      open: false,
+    }));
+  };
+
+  let mode = '';
+
+  if (anchorReference === 'anchorPosition') {
+    mode = `
   anchorReference="${anchorReference}"
   anchorPosition={{ top: ${positionTop}, left: ${positionLeft} }}`;
-    }
+  }
 
-    const code = `
+  const code = `
 \`\`\`jsx
 <Popover ${mode}
   anchorOrigin={{
@@ -140,187 +144,170 @@ class AnchorPlayground extends React.Component {
 \`\`\`
 `;
 
-    const radioAnchorClasses = { root: classes.radioAnchor, checked: classes.checked };
+  const radioAnchorClasses = { root: classes.radioAnchor, checked: classes.checked };
 
-    return (
-      <div>
-        <Grid container justify="center">
-          <Grid item className={classes.buttonWrapper}>
-            <Button ref={this.anchorRef} variant="contained" onClick={this.handleClickButton}>
-              Open Popover
-            </Button>
-            {anchorReference === 'anchorEl' && (
-              <div
-                className={classes.anchor}
-                style={{
-                  ...inlineStyles.anchorVertical[anchorOriginVertical],
-                  ...inlineStyles.anchorHorizontal[anchorOriginHorizontal],
-                }}
-              />
-            )}
-          </Grid>
+  return (
+    <div>
+      <Grid container justify="center">
+        <Grid item className={classes.buttonWrapper}>
+          <Button ref={anchorRef} variant="contained" onClick={handleClickButton}>
+            Open Popover
+          </Button>
+          {anchorReference === 'anchorEl' && (
+            <div
+              className={classes.anchor}
+              style={{
+                ...inlineStyles.anchorVertical[anchorOriginVertical],
+                ...inlineStyles.anchorHorizontal[anchorOriginHorizontal],
+              }}
+            />
+          )}
         </Grid>
-        <Popover
-          open={open}
-          anchorEl={this.anchorRef.current}
-          anchorReference={anchorReference}
-          anchorPosition={{ top: positionTop, left: positionLeft }}
-          onClose={this.handleClose}
-          anchorOrigin={{
-            vertical: anchorOriginVertical,
-            horizontal: anchorOriginHorizontal,
-          }}
-          transformOrigin={{
-            vertical: transformOriginVertical,
-            horizontal: transformOriginHorizontal,
-          }}
-        >
-          <Typography className={classes.typography}>The content of the Popover.</Typography>
-        </Popover>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">anchorReference</FormLabel>
-              <RadioGroup
-                row
-                aria-label="anchor reference"
-                name="anchorReference"
-                value={anchorReference}
-                onChange={this.handleChange('anchorReference')}
-              >
-                <FormControlLabel value="anchorEl" control={<Radio />} label="anchorEl" />
-                <FormControlLabel
-                  value="anchorPosition"
-                  control={<Radio />}
-                  label="anchorPosition"
-                />
-              </RadioGroup>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="position-top">anchorPosition.top</InputLabel>
-              <Input
-                id="position-top"
-                type="number"
-                value={positionTop}
-                onChange={this.handleNumberInputChange('positionTop')}
-              />
-            </FormControl>
-            &nbsp;
-            <FormControl className={classes.formControl}>
-              <InputLabel htmlFor="position-left">anchorPosition.left</InputLabel>
-              <Input
-                id="position-left"
-                type="number"
-                value={positionLeft}
-                onChange={this.handleNumberInputChange('positionLeft')}
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">anchorOrigin.vertical</FormLabel>
-              <RadioGroup
-                aria-label="anchor origin vertical"
-                name="anchorOriginVertical"
-                value={anchorOriginVertical}
-                onChange={this.handleChange('anchorOriginVertical')}
-              >
-                <FormControlLabel
-                  value="top"
-                  control={<Radio classes={radioAnchorClasses} />}
-                  label="Top"
-                />
-                <FormControlLabel
-                  value="center"
-                  control={<Radio classes={radioAnchorClasses} />}
-                  label="Center"
-                />
-                <FormControlLabel
-                  value="bottom"
-                  control={<Radio classes={radioAnchorClasses} />}
-                  label="Bottom"
-                />
-              </RadioGroup>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">transformOrigin.vertical</FormLabel>
-              <RadioGroup
-                aria-label="transform origin vertical"
-                name="transformOriginVertical"
-                value={transformOriginVertical}
-                onChange={this.handleChange('transformOriginVertical')}
-              >
-                <FormControlLabel value="top" control={<Radio color="primary" />} label="Top" />
-                <FormControlLabel
-                  value="center"
-                  control={<Radio color="primary" />}
-                  label="Center"
-                />
-                <FormControlLabel
-                  value="bottom"
-                  control={<Radio color="primary" />}
-                  label="Bottom"
-                />
-              </RadioGroup>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">anchorOrigin.horizontal</FormLabel>
-              <RadioGroup
-                row
-                aria-label="anchor origin horizontal"
-                name="anchorOriginHorizontal"
-                value={anchorOriginHorizontal}
-                onChange={this.handleChange('anchorOriginHorizontal')}
-              >
-                <FormControlLabel
-                  value="left"
-                  control={<Radio classes={radioAnchorClasses} />}
-                  label="Left"
-                />
-                <FormControlLabel
-                  value="center"
-                  control={<Radio classes={radioAnchorClasses} />}
-                  label="Center"
-                />
-                <FormControlLabel
-                  value="right"
-                  control={<Radio classes={radioAnchorClasses} />}
-                  label="Right"
-                />
-              </RadioGroup>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">transformOrigin.horizontal</FormLabel>
-              <RadioGroup
-                row
-                aria-label="transform origin horizontal"
-                name="transformOriginHorizontal"
-                value={transformOriginHorizontal}
-                onChange={this.handleChange('transformOriginHorizontal')}
-              >
-                <FormControlLabel value="left" control={<Radio color="primary" />} label="Left" />
-                <FormControlLabel
-                  value="center"
-                  control={<Radio color="primary" />}
-                  label="Center"
-                />
-                <FormControlLabel value="right" control={<Radio color="primary" />} label="Right" />
-              </RadioGroup>
-            </FormControl>
-          </Grid>
+      </Grid>
+      <Popover
+        open={open}
+        anchorEl={anchorRef.current}
+        anchorReference={anchorReference}
+        anchorPosition={{ top: positionTop, left: positionLeft }}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: anchorOriginVertical,
+          horizontal: anchorOriginHorizontal,
+        }}
+        transformOrigin={{
+          vertical: transformOriginVertical,
+          horizontal: transformOriginHorizontal,
+        }}
+      >
+        <Typography className={classes.typography}>The content of the Popover.</Typography>
+      </Popover>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6}>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">anchorReference</FormLabel>
+            <RadioGroup
+              row
+              aria-label="anchor reference"
+              name="anchorReference"
+              value={anchorReference}
+              onChange={handleChange('anchorReference')}
+            >
+              <FormControlLabel value="anchorEl" control={<Radio />} label="anchorEl" />
+              <FormControlLabel value="anchorPosition" control={<Radio />} label="anchorPosition" />
+            </RadioGroup>
+          </FormControl>
         </Grid>
-        <MarkdownElement text={code} />
-      </div>
-    );
-  }
+        <Grid item xs={12} sm={6}>
+          <FormControl className={classes.formControl}>
+            <InputLabel htmlFor="position-top">anchorPosition.top</InputLabel>
+            <Input
+              id="position-top"
+              type="number"
+              value={positionTop}
+              onChange={handleNumberInputChange('positionTop')}
+            />
+          </FormControl>
+          &nbsp;
+          <FormControl className={classes.formControl}>
+            <InputLabel htmlFor="position-left">anchorPosition.left</InputLabel>
+            <Input
+              id="position-left"
+              type="number"
+              value={positionLeft}
+              onChange={handleNumberInputChange('positionLeft')}
+            />
+          </FormControl>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">anchorOrigin.vertical</FormLabel>
+            <RadioGroup
+              aria-label="anchor origin vertical"
+              name="anchorOriginVertical"
+              value={anchorOriginVertical}
+              onChange={handleChange('anchorOriginVertical')}
+            >
+              <FormControlLabel
+                value="top"
+                control={<Radio classes={radioAnchorClasses} />}
+                label="Top"
+              />
+              <FormControlLabel
+                value="center"
+                control={<Radio classes={radioAnchorClasses} />}
+                label="Center"
+              />
+              <FormControlLabel
+                value="bottom"
+                control={<Radio classes={radioAnchorClasses} />}
+                label="Bottom"
+              />
+            </RadioGroup>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">transformOrigin.vertical</FormLabel>
+            <RadioGroup
+              aria-label="transform origin vertical"
+              name="transformOriginVertical"
+              value={transformOriginVertical}
+              onChange={handleChange('transformOriginVertical')}
+            >
+              <FormControlLabel value="top" control={<Radio color="primary" />} label="Top" />
+              <FormControlLabel value="center" control={<Radio color="primary" />} label="Center" />
+              <FormControlLabel value="bottom" control={<Radio color="primary" />} label="Bottom" />
+            </RadioGroup>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">anchorOrigin.horizontal</FormLabel>
+            <RadioGroup
+              row
+              aria-label="anchor origin horizontal"
+              name="anchorOriginHorizontal"
+              value={anchorOriginHorizontal}
+              onChange={handleChange('anchorOriginHorizontal')}
+            >
+              <FormControlLabel
+                value="left"
+                control={<Radio classes={radioAnchorClasses} />}
+                label="Left"
+              />
+              <FormControlLabel
+                value="center"
+                control={<Radio classes={radioAnchorClasses} />}
+                label="Center"
+              />
+              <FormControlLabel
+                value="right"
+                control={<Radio classes={radioAnchorClasses} />}
+                label="Right"
+              />
+            </RadioGroup>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <FormControl component="fieldset">
+            <FormLabel component="legend">transformOrigin.horizontal</FormLabel>
+            <RadioGroup
+              row
+              aria-label="transform origin horizontal"
+              name="transformOriginHorizontal"
+              value={transformOriginHorizontal}
+              onChange={handleChange('transformOriginHorizontal')}
+            >
+              <FormControlLabel value="left" control={<Radio color="primary" />} label="Left" />
+              <FormControlLabel value="center" control={<Radio color="primary" />} label="Center" />
+              <FormControlLabel value="right" control={<Radio color="primary" />} label="Right" />
+            </RadioGroup>
+          </FormControl>
+        </Grid>
+      </Grid>
+      <MarkdownElement text={code} />
+    </div>
+  );
 }
 
 AnchorPlayground.propTypes = {

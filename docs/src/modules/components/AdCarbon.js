@@ -36,8 +36,8 @@ const styles = theme => ({
   },
 });
 
-class AdCarbon extends React.Component {
-  componentDidMount() {
+function AdCarbon() {
+  React.useEffect(() => {
     const scriptSlot = document.querySelector('#carbon-ad');
 
     // Concurrence issues
@@ -50,11 +50,9 @@ class AdCarbon extends React.Component {
       scriptSlot,
     );
     script.id = '_carbonads_js';
-  }
+  }, []);
 
-  render() {
-    return <span id="carbon-ad" />;
-  }
+  return <span id="carbon-ad" />;
 }
 
 export default withStyles(styles)(AdCarbon);

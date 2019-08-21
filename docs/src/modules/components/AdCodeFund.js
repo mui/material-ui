@@ -36,8 +36,8 @@ const styles = theme => ({
   },
 });
 
-class AdCodeFund extends React.Component {
-  componentDidMount() {
+function AdCodeFund() {
+  React.useEffect(() => {
     const scriptSlot = document.querySelector('#code-fund-script-slot');
 
     // Concurrence issues
@@ -46,16 +46,14 @@ class AdCodeFund extends React.Component {
     }
 
     loadScript('https://codefund.io/properties/137/funder.js?theme=unstyled', scriptSlot);
-  }
+  }, []);
 
-  render() {
-    return (
-      <React.Fragment>
-        <span id="code-fund-script-slot" />
-        <span id="codefund" />
-      </React.Fragment>
-    );
-  }
+  return (
+    <React.Fragment>
+      <span id="code-fund-script-slot" />
+      <span id="codefund" />
+    </React.Fragment>
+  );
 }
 
 export default withStyles(styles)(AdCodeFund);

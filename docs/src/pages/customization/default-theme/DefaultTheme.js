@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import url from 'url';
 import Inspector from 'react-inspector';
-import { withStyles, createMuiTheme } from '@material-ui/core/styles';
+import { withStyles, createMuiTheme, useTheme } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
@@ -22,7 +22,8 @@ const styles = theme => ({
 });
 
 function DefaultTheme(props) {
-  const { classes, theme: docsTheme } = props;
+  const { classes } = props;
+  const docsTheme = useTheme();
   const [checked, setChecked] = React.useState(false);
   const [expandPaths, setExpandPaths] = React.useState(null);
   const { t } = useSelector(state => ({ t: state.options.t }));
@@ -78,7 +79,6 @@ function DefaultTheme(props) {
 
 DefaultTheme.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(DefaultTheme);
+export default withStyles(styles)(DefaultTheme);

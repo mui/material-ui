@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
       height: '1em',
       '&::before': {
         borderWidth: '0 1em 1em 1em',
-        borderColor: `transparent transparent ${theme.palette.common.white} transparent`,
+        borderColor: `transparent transparent ${theme.palette.background.paper} transparent`,
       },
     },
     '&[x-placement*="top"] $arrow': {
@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
       height: '1em',
       '&::before': {
         borderWidth: '1em 1em 0 1em',
-        borderColor: `${theme.palette.common.white} transparent transparent transparent`,
+        borderColor: `${theme.palette.background.paper} transparent transparent transparent`,
       },
     },
     '&[x-placement*="right"] $arrow': {
@@ -71,7 +71,7 @@ const useStyles = makeStyles(theme => ({
       width: '1em',
       '&::before': {
         borderWidth: '1em 1em 1em 0',
-        borderColor: `transparent ${theme.palette.common.white} transparent transparent`,
+        borderColor: `transparent ${theme.palette.background.paper} transparent transparent`,
       },
     },
     '&[x-placement*="left"] $arrow': {
@@ -81,7 +81,7 @@ const useStyles = makeStyles(theme => ({
       width: '1em',
       '&::before': {
         borderWidth: '1em 0 1em 1em',
-        borderColor: `transparent transparent transparent ${theme.palette.common.white}`,
+        borderColor: `transparent transparent transparent ${theme.palette.background.paper}`,
       },
     },
   },

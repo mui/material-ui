@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import url from 'url';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { fade, useTheme, makeStyles } from '@material-ui/core/styles';
@@ -156,11 +155,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function AppSearch(props) {
-  const { userLanguage } = props;
+export default function AppSearch() {
   const classes = useStyles();
   const inputRef = React.useRef(null);
   const theme = useTheme();
+
+  const { userLanguage } = useSelector(state => ({
+    userLanguage: state.options.userLanguage,
+  }));
 
   React.useEffect(() => {
     const handleKeyDown = event => {
@@ -214,11 +216,3 @@ function AppSearch(props) {
     </div>
   );
 }
-
-AppSearch.propTypes = {
-  userLanguage: PropTypes.string.isRequired,
-};
-
-export default connect(state => ({
-  userLanguage: state.options.userLanguage,
-}))(AppSearch);

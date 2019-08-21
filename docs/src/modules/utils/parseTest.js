@@ -48,42 +48,6 @@ function findConformanceDescriptor(program) {
 }
 
 /**
- * Finds if `mount` was created with `strict: true`
- * Only supports a single pattern
- * ```js
- * // somewhere in the code, not necessarily the same binding
- * mount = createMount({ strict: true });
- * ```
- *
- * @param {import('@babel/types').Identifier} mountIdentifier
- * @param {import('@babel/types').Program} program
- */
-function isStrictMount(mountIdentifier, program) {
-  // assume the path is above the mountNode in the AST and no variable is shadowed
-  function isSameMountBinding(assignmentPath) {
-    return mountIdentifier.name === assignmentPath.node.left.name;
-  }
-
-  let isStrict = null;
-  babel.traverse(program, {
-    AssignmentExpression(babelPath) {
-      if (isSameMountBinding(babelPath)) {
-        // find `strict: literal` in `mount = someFunction({ })`
-        const options = babelPath.node.right.arguments[0];
-        if (options === undefined) {
-          return;
-        }
-        const strictProperty = options.properties.find(property => property.key.name === 'strict');
-
-        isStrict = strictProperty.value.value;
-      }
-    },
-  });
-
-  return isStrict;
-}
-
-/**
  *
  * @param {import('@babel/core').Node} valueNode
  */
@@ -115,12 +79,6 @@ function getInheritComponentName(valueNode) {
 }
 
 /**
- * @typedef {Object} ParseResult
- * @property {string?} forwardsRefTo
- * @property {boolean?} strictModeReady
- */
-
-/**
  *
  * @param {string} componentFilename
  * @returns {ParseResult}
@@ -133,7 +91,6 @@ export default async function parseTest(componentFilename) {
   const result = {
     forwardsRefTo: undefined,
     inheritComponent: undefined,
-    strictModeReady: undefined,
   };
 
   const { properties = [] } = descriptor;
@@ -146,9 +103,6 @@ export default async function parseTest(componentFilename) {
         break;
       case 'inheritComponent':
         result.inheritComponent = getInheritComponentName(property.value);
-        break;
-      case 'mount':
-        result.strictModeReady = isStrictMount(property.value, babelParseResult.program);
         break;
       default:
         break;

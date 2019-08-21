@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/Hidden/Hidden.js
 
 <p class="description">The API documentation of the Hidden React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Hidden from '@material-ui/core/Hidden';
+// or
+import { Hidden } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 Responsively hides children based on the selected implementation.
 
@@ -36,10 +42,6 @@ Responsively hides children based on the selected implementation.
 The component cannot hold a ref.
 
 Any other props supplied will be provided to the root element (native element).
-
-## Notes
-
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
 
 ## Demos
 

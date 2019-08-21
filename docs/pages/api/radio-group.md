@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/RadioGroup/RadioGroup.js
 
 <p class="description">The API documentation of the RadioGroup React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import RadioGroup from '@material-ui/core/RadioGroup';
+// or
+import { RadioGroup } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 
@@ -32,10 +38,6 @@ Any other props supplied will be provided to the root element ([FormGroup](/api/
 
 The props of the [FormGroup](/api/form-group/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
-
-## Notes
-
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
 
 ## Demos
 
