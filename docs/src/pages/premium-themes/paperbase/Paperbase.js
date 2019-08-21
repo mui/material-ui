@@ -9,13 +9,6 @@ import Content from './Content';
 import Header from './Header';
 
 let theme = createMuiTheme({
-  typography: {
-    h5: {
-      fontWeight: 500,
-      fontSize: 26,
-      letterSpacing: 0.5,
-    },
-  },
   palette: {
     primary: {
       light: '#63ccff',
@@ -23,8 +16,25 @@ let theme = createMuiTheme({
       dark: '#006db3',
     },
   },
+  typography: {
+    h5: {
+      fontWeight: 500,
+      fontSize: 26,
+      letterSpacing: 0.5,
+    },
+  },
   shape: {
     borderRadius: 8,
+  },
+  props: {
+    MuiTab: {
+      disableRipple: true,
+    },
+  },
+  mixins: {
+    toolbar: {
+      minHeight: 48,
+    },
   },
 });
 
@@ -106,17 +116,6 @@ theme = {
       },
     },
   },
-  props: {
-    MuiTab: {
-      disableRipple: true,
-    },
-  },
-  mixins: {
-    ...theme.mixins,
-    toolbar: {
-      minHeight: 48,
-    },
-  },
 };
 
 const drawerWidth = 256;
@@ -144,45 +143,40 @@ const styles = {
   },
 };
 
-class Paperbase extends React.Component {
-  state = {
-    mobileOpen: false,
+function Paperbase(props) {
+  const { classes } = props;
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
   };
 
-  handleDrawerToggle = () => {
-    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
-  };
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <ThemeProvider theme={theme}>
-        <div className={classes.root}>
-          <CssBaseline />
-          <nav className={classes.drawer}>
-            <Hidden smUp implementation="js">
-              <Navigator
-                PaperProps={{ style: { width: drawerWidth } }}
-                variant="temporary"
-                open={this.state.mobileOpen}
-                onClose={this.handleDrawerToggle}
-              />
-            </Hidden>
-            <Hidden xsDown implementation="css">
-              <Navigator PaperProps={{ style: { width: drawerWidth } }} />
-            </Hidden>
-          </nav>
-          <div className={classes.appContent}>
-            <Header onDrawerToggle={this.handleDrawerToggle} />
-            <main className={classes.mainContent}>
-              <Content />
-            </main>
-          </div>
+  return (
+    <ThemeProvider theme={theme}>
+      <div className={classes.root}>
+        <CssBaseline />
+        <nav className={classes.drawer}>
+          <Hidden smUp implementation="js">
+            <Navigator
+              PaperProps={{ style: { width: drawerWidth } }}
+              variant="temporary"
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+            />
+          </Hidden>
+          <Hidden xsDown implementation="css">
+            <Navigator PaperProps={{ style: { width: drawerWidth } }} />
+          </Hidden>
+        </nav>
+        <div className={classes.appContent}>
+          <Header onDrawerToggle={handleDrawerToggle} />
+          <main className={classes.mainContent}>
+            <Content />
+          </main>
         </div>
-      </ThemeProvider>
-    );
-  }
+      </div>
+    </ThemeProvider>
+  );
 }
 
 Paperbase.propTypes = {

@@ -53,18 +53,14 @@ function handleClick(event) {
 
 let bound = false;
 
-class MarkdownLinks extends React.Component {
-  componentDidMount() {
+export default function MarkdownLinks() {
+  React.useEffect(() => {
     if (bound) {
       return;
     }
     bound = true;
     document.addEventListener('click', handleClick);
-  }
+  }, []);
 
-  render() {
-    return null;
-  }
+  return null;
 }
-
-export default MarkdownLinks;

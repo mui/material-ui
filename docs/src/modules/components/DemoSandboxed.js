@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, useTheme } from '@material-ui/core/styles';
 import { jssPreset, StylesProvider } from '@material-ui/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import rtl from 'jss-rtl';
@@ -18,68 +18,68 @@ const styles = theme => ({
   },
 });
 
-class DemoFrame extends React.Component {
-  state = {
+function DemoFrame(props) {
+  const { children, classes, ...other } = props;
+  const theme = useTheme();
+  const [state, setState] = React.useState({
     ready: false,
-  };
+  });
+  const instanceRef = React.useRef();
 
-  handleRef = ref => {
-    this.contentDocument = ref ? ref.node.contentDocument : null;
-    this.contentWindow = ref ? ref.node.contentWindow : null;
-  };
+  const handleRef = React.useCallback(ref => {
+    instanceRef.current = {
+      contentDocument: ref ? ref.node.contentDocument : null,
+      contentWindow: ref ? ref.node.contentWindow : null,
+    };
+  }, []);
 
-  onContentDidMount = () => {
-    this.setState({
+  const onContentDidMount = () => {
+    setState({
       ready: true,
       jss: create({
         plugins: [...jssPreset().plugins, rtl()],
-        insertionPoint: this.contentWindow['demo-frame-jss'],
+        insertionPoint: instanceRef.current.contentWindow['demo-frame-jss'],
       }),
       sheetsManager: new Map(),
-      container: this.contentDocument.body,
-      window: () => this.contentWindow,
+      container: instanceRef.current.contentDocument.body,
+      window: () => instanceRef.current.contentWindow,
     });
   };
 
-  onContentDidUpdate = () => {
-    this.contentDocument.body.dir = this.props.theme.direction;
+  const onContentDidUpdate = () => {
+    instanceRef.current.contentDocument.body.dir = theme.direction;
   };
 
-  render() {
-    const { children, classes, theme, ...other } = this.props;
-
-    // NoSsr fixes a strange concurrency issue with iframe and quick React mount/unmount
-    return (
-      <NoSsr>
-        <Frame
-          ref={this.handleRef}
-          className={classes.root}
-          contentDidMount={this.onContentDidMount}
-          contentDidUpdate={this.onContentDidUpdate}
-          {...other}
-        >
-          <div id="demo-frame-jss" />
-          {this.state.ready ? (
-            <StylesProvider jss={this.state.jss} sheetsManager={this.state.sheetsManager}>
-              {React.cloneElement(children, {
-                container: this.state.container,
-                window: this.state.window,
-              })}
-            </StylesProvider>
-          ) : null}
-        </Frame>
-      </NoSsr>
-    );
-  }
+  // NoSsr fixes a strange concurrency issue with iframe and quick React mount/unmount
+  return (
+    <NoSsr>
+      <Frame
+        ref={handleRef}
+        className={classes.root}
+        contentDidMount={onContentDidMount}
+        contentDidUpdate={onContentDidUpdate}
+        {...other}
+      >
+        <div id="demo-frame-jss" />
+        {state.ready ? (
+          <StylesProvider jss={state.jss} sheetsManager={state.sheetsManager}>
+            {React.cloneElement(children, {
+              container: state.container,
+              window: state.window,
+            })}
+          </StylesProvider>
+        ) : null}
+      </Frame>
+    </NoSsr>
+  );
 }
 
 DemoFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
 };
 
-const StyledFrame = withStyles(styles, { withTheme: true })(DemoFrame);
+const StyledFrame = withStyles(styles)(DemoFrame);
 
 /**
  * Isolates the demo component as best as possible. Additional props are spread
