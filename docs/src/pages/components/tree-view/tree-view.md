@@ -13,6 +13,8 @@ Tree views can be used to represent a file system navigator displaying folders a
 
 ## Customized tree view
 
+### Custom icons, border and animation
+
 {{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
 
 ### Gmail clone
