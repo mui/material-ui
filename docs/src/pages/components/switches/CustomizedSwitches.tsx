@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, Theme } from '@material-ui/core/styles';
 import { purple } from '@material-ui/core/colors';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -29,7 +29,7 @@ const PurpleSwitch = withStyles({
   track: {},
 })(Switch);
 
-const IOSSwitch = withStyles(theme => ({
+const IOSSwitch = withStyles((theme: Theme) => ({
   root: {
     width: 42,
     height: 26,
@@ -53,12 +53,12 @@ const IOSSwitch = withStyles(theme => ({
     },
   },
   thumb: {
-    width: 24,
-    height: 24,
+    width: theme.spacing(3),
+    height: theme.spacing(3),
   },
   track: {
     borderRadius: 26 / 2,
-    border: `1px solid ${theme.palette.grey[400]}`,
+    border: [[1, 'solid', theme.palette.grey[400]]],
     backgroundColor: theme.palette.grey[50],
     opacity: 1,
     transition: theme.transitions.create(['background-color', 'border']),

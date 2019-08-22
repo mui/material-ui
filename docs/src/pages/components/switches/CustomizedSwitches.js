@@ -45,12 +45,12 @@ const IOSSwitch = withStyles(theme => ({
     },
   },
   thumb: {
-    width: 24,
-    height: 24,
+    width: theme.spacing(3),
+    height: theme.spacing(3),
   },
   track: {
     borderRadius: 26 / 2,
-    border: `1px solid ${theme.palette.grey[400]}`,
+    border: [[1, 'solid', theme.palette.grey[400]]],
     backgroundColor: theme.palette.grey[50],
     opacity: 1,
     transition: theme.transitions.create(['background-color', 'border']),
