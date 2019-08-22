@@ -55,20 +55,30 @@ export const styles = theme => ({
     boxShadow: 'none',
     '&:not(:last-child)': {
       borderRight: `1px solid ${theme.palette.grey[400]}`,
+      '&$disabled': {
+        borderRight: `1px solid ${theme.palette.action.disabled}`
+      }
     },
   },
   /* Styles applied to the children if variant="contained" & color="primary". */
   groupedContainedPrimary: {
     '&:not(:last-child)': {
       borderRight: `1px solid ${theme.palette.primary.dark}`,
+      '&$disabled': {
+        borderRight: `1px solid ${theme.palette.action.disabled}`
+      }
     },
   },
   /* Styles applied to the children if variant="contained" & color="secondary". */
   groupedContainedSecondary: {
     '&:not(:last-child)': {
       borderRight: `1px solid ${theme.palette.secondary.dark}`,
+      '&$disabled': {
+        borderRight: `1px solid ${theme.palette.action.disabled}`
+      }
     },
   },
+  disabled: {}
 });
 
 const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
