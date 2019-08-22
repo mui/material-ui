@@ -54,8 +54,8 @@ const IOSSwitch = withStyles((theme: Theme) =>
       },
     },
     thumb: {
-      width: theme.spacing(3),
-      height: theme.spacing(3),
+      width: 24,
+      height: 24,
     },
     track: {
       borderRadius: 26 / 2,
@@ -84,7 +84,7 @@ const IOSSwitch = withStyles((theme: Theme) =>
   );
 });
 
-const AntSwitch = withStyles(theme =>
+const AntSwitch = withStyles((theme: Theme) =>
   createStyles({
     root: {
       width: 28,
