@@ -270,19 +270,21 @@ function AppFrame(props) {
                           {language.text}
                         </MenuItem>
                       ))}
-                        <MenuItem
-                          component="a"
-                          data-no-link="true"
-                          href={
-                            userLanguage === 'en' ? `${CROWDIN_ROOT_URL}` : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
-                          }
-                          rel="noopener nofollow"
-                          target="_blank" 
-                          key={userLanguage}
-                          onClick={handleLanguageMenuClose}
-                        >
-                          {`🌍 ${t('helpToTranslate')}`}
-                        </MenuItem>
+                    <MenuItem
+                      component="a"
+                      data-no-link="true"
+                      href={
+                        userLanguage === 'en'
+                          ? `${CROWDIN_ROOT_URL}`
+                          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
+                      }
+                      rel="noopener nofollow"
+                      target="_blank"
+                      key={userLanguage}
+                      onClick={handleLanguageMenuClose}
+                    >
+                      {`🌍 ${t('helpToTranslate')}`}
+                    </MenuItem>
                   </Menu>
                 </NoSsr>
                 <Tooltip title={t('editWebsiteColors')} enterDelay={300}>
