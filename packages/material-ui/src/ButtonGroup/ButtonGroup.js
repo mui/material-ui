@@ -64,18 +64,12 @@ export const styles = theme => ({
   groupedContainedPrimary: {
     '&:not(:last-child)': {
       borderRight: `1px solid ${theme.palette.primary.dark}`,
-      '&$disabled': {
-        borderRight: `1px solid ${theme.palette.action.disabled}`,
-      },
     },
   },
   /* Styles applied to the children if variant="contained" & color="secondary". */
   groupedContainedSecondary: {
     '&:not(:last-child)': {
       borderRight: `1px solid ${theme.palette.secondary.dark}`,
-      '&$disabled': {
-        borderRight: `1px solid ${theme.palette.action.disabled}`,
-      },
     },
   },
   /* Pseudo-class applied to child elements if `disabled={true}`. */
