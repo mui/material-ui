@@ -36,6 +36,9 @@ import { LANGUAGES } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 
+const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
+const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
+
 Router.onRouteChangeStart = () => {
   NProgress.start();
 };
@@ -80,10 +83,6 @@ export const languages = [
   {
     code: 'ja',
     text: '🇯🇵 日本語',
-  },
-  {
-    code: 'aa',
-    text: '🌍 Translate',
   },
 ];
 
@@ -161,6 +160,8 @@ function AppFrame(props) {
     t: state.options.t,
     userLanguage: state.options.userLanguage,
   }));
+
+  const crowdInLocale = LOCALES[userLanguage] || userLanguage;
 
   const [languageMenu, setLanguageMenu] = React.useState(null);
   function handleLanguageIconClick(event) {
@@ -269,6 +270,19 @@ function AppFrame(props) {
                           {language.text}
                         </MenuItem>
                       ))}
+                        <MenuItem
+                          component="a"
+                          data-no-link="true"
+                          href={
+                            userLanguage === 'en' ? `${CROWDIN_ROOT_URL}` : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
+                          }
+                          rel="noopener nofollow"
+                          target="_blank" 
+                          key={userLanguage}
+                          onClick={handleLanguageMenuClose}
+                        >
+                          {`🌍 ${t('helpToTranslate')}`}
+                        </MenuItem>
                   </Menu>
                 </NoSsr>
                 <Tooltip title={t('editWebsiteColors')} enterDelay={300}>
