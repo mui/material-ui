@@ -20,13 +20,13 @@ interface Props {
   children: React.ReactElement;
 }
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     position: 'fixed',
-    bottom: 16,
-    right: 16,
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
   },
-});
+}));
 
 function ScrollTop(props: Props) {
   const { children, window } = props;
