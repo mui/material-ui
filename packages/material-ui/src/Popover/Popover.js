@@ -302,7 +302,10 @@ const Popover = React.forwardRef(function Popover(props, ref) {
   }, []);
 
   const updatePosition = React.useMemo(() => {
-    if (!open) return undefined;
+    if (!open) {
+      return undefined;
+    }
+
     return debounce(() => {
       setPositioningStyles(paperRef.current);
     });
@@ -314,13 +317,16 @@ const Popover = React.forwardRef(function Popover(props, ref) {
   ]);
 
   React.useEffect(() => {
-    if (!updatePosition) return undefined;
+    if (!updatePosition) {
+      return undefined;
+    }
+
     window.addEventListener('resize', updatePosition);
     return () => {
       window.removeEventListener('resize', updatePosition);
       updatePosition.clear();
     };
-  }, [open, updatePosition]);
+  }, [updatePosition]);
 
   let transitionDuration = transitionDurationProp;
 
