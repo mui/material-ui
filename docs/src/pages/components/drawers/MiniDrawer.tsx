@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'flex-end',
-      padding: theme.spacing(0, 8),
+      padding: theme.spacing(0, 1),
       ...theme.mixins.toolbar,
     },
     content: {
