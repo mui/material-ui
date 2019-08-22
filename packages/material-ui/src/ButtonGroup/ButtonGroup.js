@@ -78,6 +78,7 @@ export const styles = theme => ({
       }
     },
   },
+  /* Pseudo-class applied to child elements if `disabled={true}`. */
   disabled: {}
 });
 
@@ -108,6 +109,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
     [classes.groupedContained]: contained,
     [classes.groupedContainedPrimary]: contained && primary,
     [classes.groupedContainedSecondary]: contained && secondary,
+    [classes.disabled]: disabled
   });
 
   return (
