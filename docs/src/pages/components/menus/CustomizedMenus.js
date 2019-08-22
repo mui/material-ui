@@ -11,7 +11,7 @@ import SendIcon from '@material-ui/icons/Send';
 
 const StyledMenu = withStyles({
   paper: {
-    border: '1px solid #d3d4d5',
+    border: [[1, 'solid', '#d3d4d5']],
   },
 })(props => (
   <Menu
