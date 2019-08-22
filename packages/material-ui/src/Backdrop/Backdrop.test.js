@@ -37,4 +37,13 @@ describe('<Backdrop />', () => {
     assert.strictEqual(wrapper.childAt(0).hasClass('woofBackdrop'), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.root), true);
   });
+
+  it('should render a backdrop div with content of nested children', () => {
+    const wrapper = shallow(
+      <Backdrop open className="woofBackdrop">
+        <h1>Hello World</h1>
+      </Backdrop>,
+    );
+    assert.strictEqual(wrapper.contains(<h1>Hello World</h1>), true);
+  });
 });
