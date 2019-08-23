@@ -130,9 +130,11 @@ const Popover = React.forwardRef(function Popover(props, ref) {
       }
 
       const resolvedAnchorEl = getAnchorEl(anchorEl);
+      const containerWindow = ownerWindow(resolvedAnchorEl);
+
       // If an anchor element wasn't provided, just use the parent body element of this Popover
       const anchorElement =
-        resolvedAnchorEl instanceof Element
+        resolvedAnchorEl instanceof containerWindow.Element
           ? resolvedAnchorEl
           : ownerDocument(paperRef.current).body;
       const anchorRect = anchorElement.getBoundingClientRect();
@@ -393,8 +395,9 @@ Popover.propTypes = {
   anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {
     if (props.open && (!props.anchorReference || props.anchorReference === 'anchorEl')) {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
+      const containerWindow = ownerWindow(resolvedAnchorEl);
 
-      if (resolvedAnchorEl instanceof Element) {
+      if (resolvedAnchorEl instanceof containerWindow.Element) {
         const box = resolvedAnchorEl.getBoundingClientRect();
 
         if (
