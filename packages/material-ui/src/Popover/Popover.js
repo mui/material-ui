@@ -130,7 +130,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
       }
 
       const resolvedAnchorEl = getAnchorEl(anchorEl);
-      const containerWindow = ownerWindow(resolvedAnchorEl); 
+      const containerWindow = ownerWindow(resolvedAnchorEl);
 
       // If an anchor element wasn't provided, just use the parent body element of this Popover
       const anchorElement =

@@ -5,7 +5,7 @@ import { chainPropTypes } from '@material-ui/utils';
 import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
 import { setRef, useForkRef } from '../utils/reactHelpers';
-import ownerWindow  from '../utils/ownerWindow';
+import ownerWindow from '../utils/ownerWindow';
 
 /**
  * Flips placement if in <body dir="rtl" />
