@@ -235,7 +235,7 @@ function AppFrame(props) {
                       component="a"
                       data-no-link="true"
                       href={
-                        userLanguage === 'en'
+                        userLanguage === 'en' || userLanguage === 'aa'
                           ? `${CROWDIN_ROOT_URL}`
                           : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
                       }
