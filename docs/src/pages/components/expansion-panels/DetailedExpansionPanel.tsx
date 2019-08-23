@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexBasis: '33.33%',
     },
     helper: {
-      borderLeft: [[2, 'solid', theme.palette.divider]],
+      borderLeft: `2px solid ${theme.palette.divider}`,
       padding: theme.spacing(1, 2),
     },
     link: {
