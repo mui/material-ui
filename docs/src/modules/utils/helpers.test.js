@@ -31,7 +31,7 @@ const styles = theme => ({
   });
 
   it('should handle * dependencies', () => {
-    const s2 = `
+    const source = `
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as _ from '@unexisting/thing';
@@ -45,7 +45,7 @@ import { withStyles } from '@material-ui/core/styles';
 const suggestions = [
 `;
 
-    assert.deepEqual(getDependencies(s2), {
+    assert.deepEqual(getDependencies(source), {
       '@material-ui/core': 'latest',
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
@@ -67,7 +67,7 @@ const suggestions = [
   });
 
   it('should support direct import', () => {
-    const s3 = `
+    const source = `
 import 'date-fns';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -77,7 +77,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, TimePicker, DatePicker } from '@material-ui/pickers';
 `;
 
-    assert.deepEqual(getDependencies(s3), {
+    assert.deepEqual(getDependencies(source), {
       'date-fns': 'next',
       '@date-io/date-fns': 'latest',
       '@material-ui/pickers': 'latest',
@@ -100,6 +100,25 @@ import { MuiPickersUtilsProvider, TimePicker, DatePicker } from '@material-ui/pi
       '@types/react-dom': 'latest',
       '@types/react': 'latest',
       typescript: 'latest',
+    });
+  });
+
+  it('should handle multilines', () => {
+    const source = `
+import 'date-fns';
+import React from 'react';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+    `;
+
+    assert.deepEqual(getDependencies(source), {
+      'date-fns': 'next',
+      '@material-ui/pickers': 'latest',
+      react: 'latest',
+      'react-dom': 'latest',
     });
   });
 });
