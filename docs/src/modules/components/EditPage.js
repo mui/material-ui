@@ -20,12 +20,16 @@ export default function EditPage(props) {
 
   return (
     <Button
-      component="a"
-      href={
-        userLanguage === 'en' ? `${SOURCE_CODE_ROOT_URL}${markdownLocation}` : `/aa${canonical}`
-      }
+      component={userLanguage === 'en' ? 'a' : 'button'}
+      onClick={() => {
+        if (userLanguage === 'en') {
+          return;
+        }
+        window.location = `/aa${canonical}`;
+      }}
+      href={userLanguage === 'en' ? `${SOURCE_CODE_ROOT_URL}${markdownLocation}` : null}
       target="_blank"
-      rel="noopener"
+      rel="noopener nofollow"
       size="small"
       data-ga-event-category={userLanguage === 'en' ? undefined : 'l10n'}
       data-ga-event-action={userLanguage === 'en' ? undefined : 'edit-button'}

@@ -32,7 +32,7 @@ import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import PageTitle from 'docs/src/modules/components/PageTitle';
-import { LANGUAGES } from 'docs/src/modules/constants';
+import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 
@@ -50,41 +50,6 @@ Router.onRouteChangeComplete = () => {
 Router.onRouteChangeError = () => {
   NProgress.done();
 };
-
-export const languages = [
-  {
-    code: 'en',
-    text: '🇺🇸 English',
-  },
-  {
-    code: 'zh',
-    text: '🇨🇳 中文',
-  },
-  {
-    code: 'ru',
-    text: '🇷🇺 Русский',
-  },
-  {
-    code: 'pt',
-    text: '🇧🇷 Português',
-  },
-  {
-    code: 'fr',
-    text: '🇫🇷 Français',
-  },
-  {
-    code: 'es',
-    text: '🇪🇸 Español',
-  },
-  {
-    code: 'de',
-    text: '🇩🇪 Deutsch',
-  },
-  {
-    code: 'ja',
-    text: '🇯🇵 日本語',
-  },
-];
 
 const styles = theme => ({
   root: {
@@ -254,22 +219,18 @@ function AppFrame(props) {
                     open={Boolean(languageMenu)}
                     onClose={handleLanguageMenuClose}
                   >
-                    {languages
-                      .filter(language => LANGUAGES.indexOf(language.code) !== -1)
-                      .map(language => (
-                        <MenuItem
-                          component="a"
-                          data-no-link="true"
-                          href={
-                            language.code === 'en' ? canonical : `/${language.code}${canonical}`
-                          }
-                          key={language.code}
-                          selected={userLanguage === language.code}
-                          onClick={handleLanguageMenuClose}
-                        >
-                          {language.text}
-                        </MenuItem>
-                      ))}
+                    {LANGUAGES_LABEL.map(language => (
+                      <MenuItem
+                        component="a"
+                        data-no-link="true"
+                        href={language.code === 'en' ? canonical : `/${language.code}${canonical}`}
+                        key={language.code}
+                        selected={userLanguage === language.code}
+                        onClick={handleLanguageMenuClose}
+                      >
+                        {language.text}
+                      </MenuItem>
+                    ))}
                     <MenuItem
                       component="a"
                       data-no-link="true"

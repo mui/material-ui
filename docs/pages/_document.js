@@ -4,7 +4,7 @@ import React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { Router as Router2 } from 'next/router';
-import { LANGUAGES } from 'docs/src/modules/constants';
+import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { themeColor } from 'docs/src/modules/components/ThemeContext';
 
@@ -64,7 +64,7 @@ class MyDocument extends Document {
             href={`https://material-ui.com${Router2._rewriteUrlForNextExport(canonical)}`}
             hrefLang="x-default"
           />
-          {LANGUAGES.map(userLanguage2 => (
+          {LANGUAGES_LABEL.map(({ code: userLanguage2 }) => (
             <link
               key={userLanguage2}
               rel="alternate"
@@ -87,6 +87,7 @@ class MyDocument extends Document {
           <style id="insertion-point-jss" />
           {userLanguage === 'aa' ? (
             <React.Fragment>
+              <meta name="robots" content="noindex,nofollow" />
               <script
                 // eslint-disable-next-line react/no-danger
                 dangerouslySetInnerHTML={{
