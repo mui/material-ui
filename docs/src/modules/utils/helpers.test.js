@@ -105,13 +105,13 @@ import { MuiPickersUtilsProvider, TimePicker, DatePicker } from '@material-ui/pi
 
   it('should handle multilines', () => {
     const source = `
-    import 'date-fns';
-    import React from 'react';
-    import {
-      MuiPickersUtilsProvider,
-      KeyboardTimePicker,
-      KeyboardDatePicker,
-    } from '@material-ui/pickers';
+import 'date-fns';
+import React from 'react';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
     `;
 
     assert.deepEqual(getDependencies(source), {
