@@ -221,7 +221,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     height: '100vh',
-    marginTop: theme.spacing(8),
   },
   bbar: {
     position: 'absolute',
@@ -231,7 +230,7 @@ const useStyles = makeStyles(theme => ({
   tableWrapper: {
     position: 'relative',
     height: '100%',
-    maxHeight: 'calc(100% - 184px)',
+    maxHeight: 'calc(100% - 120px)',
     overflow: 'auto',
   },
   tableBody: {
@@ -260,7 +259,7 @@ const useStyles = makeStyles(theme => ({
 export default function ScrollableTable() {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('column1');
+  const [orderBy, setOrderBy] = React.useState(columns[0].id);
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
