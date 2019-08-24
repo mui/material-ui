@@ -384,7 +384,7 @@ SelectInput.propTypes = {
    * Callback function fired when a menu item is selected.
    *
    * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value`.
+   * You can pull out the new value by accessing `event.target.value` (any).
    * @param {object} [child] The react element that was selected.
    */
   onChange: PropTypes.func,

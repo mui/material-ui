@@ -65,8 +65,8 @@ export default function SpeedDials() {
     setOpen(prevOpen => !prevOpen);
   };
 
-  const handleDirectionChange = (event, value) => {
-    setDirection(value);
+  const handleDirectionChange = event => {
+    setDirection(event.target.value);
   };
 
   const handleHiddenChange = (event, newHidden) => {

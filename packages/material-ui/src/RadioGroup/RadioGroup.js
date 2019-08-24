@@ -97,7 +97,6 @@ RadioGroup.propTypes = {
    *
    * @param {object} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).
-   * @param {string} value The `value` of the selected radio button.
    */
   onChange: PropTypes.func,
   /**

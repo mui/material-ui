@@ -151,7 +151,6 @@ Checkbox.propTypes = {
    *
    * @param {object} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.checked` (boolean).
-   * @param {boolean} checked The `checked` value of the switch.
    */
   onChange: PropTypes.func,
   /**
