@@ -1,65 +1,68 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
+import React, { Fragment } from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableHead from "@material-ui/core/TableHead";
+import TablePagination from "@material-ui/core/TablePagination";
+import TableRow from "@material-ui/core/TableRow";
+import TableSortLabel from "@material-ui/core/TableSortLabel";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Checkbox from "@material-ui/core/Checkbox";
+import IconButton from "@material-ui/core/IconButton";
+import Tooltip from "@material-ui/core/Tooltip";
+import DeleteIcon from "@material-ui/icons/Delete";
+import FilterListIcon from "@material-ui/icons/FilterList";
 
 const columns = [
-  { id: 'name', label: 'Name', minWidth: 200 },
-  { id: 'code', label: 'ISO Code' },
-  { id: 'population', 
-    label: 'Population', 
-    minWidth: 120, 
-    align: 'right', 
-    format: v => v.toLocaleString() 
+  { id: "name", label: "Name", minWidth: 200 },
+  { id: "code", label: "ISO Code" },
+  {
+    id: "population",
+    label: "Population",
+    minWidth: 120,
+    align: "right",
+    format: v => v.toLocaleString()
   },
-  { id: 'size', 
-    label: 'Size (km\u00b2)', 
-    minWidth: 120, 
-    align: 'right', 
-    format: v => v.toLocaleString() 
+  {
+    id: "size",
+    label: "Size (km\u00b2)",
+    minWidth: 120,
+    align: "right",
+    format: v => v.toLocaleString()
   },
-  { id: 'density', 
-    label: 'Density', 
-    minWidth: 120, 
-    align: 'right', 
-    format: v => v.toFixed(2) 
-  },
+  {
+    id: "density",
+    label: "Density",
+    minWidth: 120,
+    align: "right",
+    format: v => v.toFixed(2)
+  }
 ];
 
 const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-  createData('Canada', 'CA', 37602103, 9984670),
-  createData('Australia', 'AU', 25475400, 7692024),
-  createData('Germany', 'DE', 83019200, 357578),
-  createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550),
-  createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767)
+  createData("India", "IN", 1324171354, 3287263),
+  createData("China", "CN", 1403500365, 9596961),
+  createData("Italy", "IT", 60483973, 301340),
+  createData("United States", "US", 327167434, 9833520),
+  createData("Canada", "CA", 37602103, 9984670),
+  createData("Australia", "AU", 25475400, 7692024),
+  createData("Germany", "DE", 83019200, 357578),
+  createData("Ireland", "IE", 4857000, 70273),
+  createData("Mexico", "MX", 126577691, 1972550),
+  createData("Japan", "JP", 126317000, 377973),
+  createData("France", "FR", 67022000, 640679),
+  createData("United Kingdom", "GB", 67545757, 242495),
+  createData("Russia", "RU", 146793744, 17098246),
+  createData("Nigeria", "NG", 200962417, 923768),
+  createData("Brazil", "BR", 210147125, 8515767)
 ];
 
 function createData(name, code, population, size) {
-  const density = (population / size);
+  const density = population / size;
   return { name, code, population, size, density };
 }
 
@@ -84,11 +87,21 @@ function stableSort(array, cmp) {
 }
 
 function getSorting(order, orderBy) {
-  return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
+  return order === "desc"
+    ? (a, b) => desc(a, b, orderBy)
+    : (a, b) => -desc(a, b, orderBy);
 }
 
 function ScrollableTableHead(props) {
-  const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const {
+    classes,
+    onSelectAllClick,
+    order,
+    orderBy,
+    numSelected,
+    rowCount,
+    onRequestSort
+  } = props;
   const createSortHandler = property => event => {
     onRequestSort(event, property);
   };
@@ -102,7 +115,7 @@ function ScrollableTableHead(props) {
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={numSelected === rowCount}
             onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all' }}
+            inputProps={{ "aria-label": "select all" }}
           />
         </TableCell>
         {columns.map(column => (
@@ -110,7 +123,7 @@ function ScrollableTableHead(props) {
             className={classes.headerCell}
             key={column.id}
             align={column.align}
-            style={{ width: column.width, minWidth: column.minWidth}}
+            style={{ width: column.width, minWidth: column.minWidth }}
             sortDirection={orderBy === column.id ? order : false}
           >
             <TableSortLabel
@@ -121,7 +134,7 @@ function ScrollableTableHead(props) {
               {column.label}
               {orderBy === column.id ? (
                 <span className={classes.visuallyHidden}>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                  {order === "desc" ? "sorted descending" : "sorted ascending"}
                 </span>
               ) : null}
             </TableSortLabel>
@@ -137,34 +150,34 @@ ScrollableTableHead.propTypes = {
   numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
   onSelectAllClick: PropTypes.func.isRequired,
-  order: PropTypes.oneOf(['asc', 'desc']).isRequired,
+  order: PropTypes.oneOf(["asc", "desc"]).isRequired,
   orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired,
+  rowCount: PropTypes.number.isRequired
 };
 
 const useToolbarStyles = makeStyles(theme => ({
   root: {
     paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(1),
+    paddingRight: theme.spacing(1)
   },
   spacer: {
-    flex: '1 1 100%',
+    flex: "1 1 100%"
   },
   title: {
-    flex: '0 0 auto',
+    flex: "0 0 auto"
   },
   paper: {
-    flex: '1 1 100%',
-    display: 'flex',
+    flex: "1 1 100%",
+    display: "flex",
     zIndex: 120,
-    position: 'relative',
-    alignItems: 'center',
+    position: "relative",
+    alignItems: "center",
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(1),
     paddingLeft: theme.spacing(3),
     paddingRight: theme.spacing(3),
-    justifyContent: 'space-between',
-  },
+    justifyContent: "space-between"
+  }
 }));
 
 const ScrollableTableToolbar = props => {
@@ -190,9 +203,7 @@ const ScrollableTableToolbar = props => {
           </div>
         </Toolbar>
       ) : (
-        <Paper 
-          className={classes.paper}
-          elevation={1}>
+        <Paper className={classes.paper} elevation={1}>
           <div className={classes.title}>
             <Typography color="inherit" variant="subtitle1">
               {numSelected} selected
@@ -207,67 +218,66 @@ const ScrollableTableToolbar = props => {
             </Tooltip>
           </div>
         </Paper>
-      )
-    }
+      )}
     </Fragment>
   );
-}
+};
 
 ScrollableTableToolbar.propTypes = {
-  numSelected: PropTypes.number.isRequired,
+  numSelected: PropTypes.number.isRequired
 };
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
-    height: '100vh',
-    marginTop: theme.spacing(8),
+    width: "100%",
+    height: "100vh",
+    marginTop: theme.spacing(8)
   },
   bbar: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     right: 0
   },
   tableWrapper: {
-    position: 'relative',
-    height: '100%',
-    maxHeight: 'calc(100% - 184px)',
-    overflow: 'auto',
+    position: "relative",
+    height: "100%",
+    maxHeight: "calc(100% - 184px)",
+    overflow: "auto"
   },
   tableBody: {
-    width: '100%',
+    width: "100%"
   },
   headerCell: {
-    position: 'sticky',
+    position: "sticky",
     top: 0,
     left: 0,
     backgroundColor: theme.palette.background.default,
-    zIndex: 100,
+    zIndex: 100
   },
   visuallyHidden: {
     border: 0,
-    clip: 'rect(0 0 0 0)',
+    clip: "rect(0 0 0 0)",
     height: 1,
     margin: -1,
-    overflow: 'hidden',
+    overflow: "hidden",
     padding: 0,
-    position: 'absolute',
+    position: "absolute",
     top: 20,
-    width: 1,
-  },
+    width: 1
+  }
 }));
 
 export default function ScrollableTable() {
   const classes = useStyles();
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('column1');
+  const [order, setOrder] = React.useState("asc");
+  const [orderBy, setOrderBy] = React.useState("column1");
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   function handleRequestSort(event, property) {
-    const isDesc = orderBy === property && order === 'desc';
-    setOrder(isDesc ? 'asc' : 'desc');
+    const isDesc = orderBy === property && order === "desc";
+    setOrder(isDesc ? "asc" : "desc");
     setOrderBy(property);
   }
 
@@ -293,7 +303,7 @@ export default function ScrollableTable() {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
+        selected.slice(selectedIndex + 1)
       );
     }
 
@@ -311,16 +321,11 @@ export default function ScrollableTable() {
 
   const isSelected = dataIndex => selected.indexOf(dataIndex) !== -1;
 
-
   return (
     <div className={classes.root}>
       <ScrollableTableToolbar numSelected={selected.length} />
       <div className={classes.tableWrapper}>
-        <Table
-          role="grid"
-          aria-labelledby="tableTitle"
-          size="medium"
-        >
+        <Table role="grid" aria-labelledby="tableTitle" size="medium">
           <ScrollableTableHead
             classes={classes}
             numSelected={selected.length}
@@ -333,7 +338,7 @@ export default function ScrollableTable() {
           <TableBody>
             {stableSort(rows, getSorting(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map(row => {
                 const dataIndex = rows.indexOf(row);
                 const isItemSelected = isSelected(dataIndex);
                 const labelId = `scrollable-table-checkbox-${dataIndex}`;
@@ -352,19 +357,14 @@ export default function ScrollableTable() {
                       <Checkbox
                         color="primary"
                         checked={isItemSelected}
-                        inputProps={{ 'aria-labelledby': labelId }}
+                        inputProps={{ "aria-labelledby": labelId }}
                       />
                     </TableCell>
                     {columns.map(column => (
-                      <TableCell 
-                        key={column.id} 
-                        align={column.align}
-                      >
-                        {column.format ? (
-                          column.format(row[column.id])
-                        ) : (
-                          row[column.id]
-                        )}
+                      <TableCell key={column.id} align={column.align}>
+                        {column.format
+                          ? column.format(row[column.id])
+                          : row[column.id]}
                       </TableCell>
                     ))}
                   </TableRow>
@@ -381,10 +381,10 @@ export default function ScrollableTable() {
         rowsPerPage={rowsPerPage}
         page={page}
         backIconButtonProps={{
-          'aria-label': 'previous page',
+          "aria-label": "previous page"
         }}
         nextIconButtonProps={{
-          'aria-label': 'next page',
+          "aria-label": "next page"
         }}
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
