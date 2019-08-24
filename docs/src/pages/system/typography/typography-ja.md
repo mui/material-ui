@@ -24,7 +24,7 @@
 
 {{"demo": "pages/system/typography/FontWeight.js"}}
 
-## Font size
+## フォントサイズ
 
 ```jsx
 <Box fontSize="fontSize">…
@@ -44,7 +44,7 @@
 
 {{"demo": "pages/system/typography/FontStyle.js"}}
 
-## Font family
+## フォントファミリー
 
 ```jsx
 <Box fontFamily="fontFamily">…

@@ -227,7 +227,9 @@ function MySelect({ children }) {
   - 当使用头像时，您必须要使用 `ListItemAvatar` 组件。
   - 当使用左边的复选框时，您必须使用 `ListItemIcon` 组件。
   - 您必须要在图标按钮上设置 `edge` 属性。
-- [ListItem] 加强 `disabled` 和 `focusVisible` 样式规则的 CSS 特性。
+- [List] `dense` no longer reduces the top and bottom padding of the `List` element.
+
+- [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
 
 ### Menu（菜单）
 

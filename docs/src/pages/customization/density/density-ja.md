@@ -1,18 +1,18 @@
-# Density
+# 密度(Density)
 
-<p class="description">How to apply density to Material-UI components.</p>
+<p class="description">Material-UIコンポーネントに密度を適用する方法。</p>
 
-## Applying density
+## 密度を適用する
 
-We won't cover possible use cases, or considerations for using density in your application. The Material design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering these topics in more detail.
+ここでは、使用例や密度をアプリケーションで使用する場合の考慮事項については説明しません。 Material design ガイドラインには、これらのトピックの詳細を説明した[comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) があります。
 
-## Implementing density
+## 実装密度
 
-Higher density can be applied to some components via props. The component pages have at least one example using the respective component with higher density applied.
+一部のコンポーネントには、propsを使用して高密度を適用できます。 コンポーネントページ は、より高い密度が適用されたそれぞれのコンポーネントを使用した少なくとも1つの例があります。
 
-Depending on the component, density is applied either via lower spacing, or simply by reducing the size.
+コンポーネントに応じて、密度は間隔を小さくするか、単純に サイズを縮小します。
 
-The following components have props applying higher density:
+次のコンポーネントには、高密度を適用する propsがあります。
 
 - [Button](/api/button/)
 - [Fab](/api/fab/)
@@ -28,13 +28,13 @@ The following components have props applying higher density:
 - [TextField](/api/text-field/)
 - [ツールバー](/api/toolbar/)
 
-## Explore theme density
+## テーマ密度を調べる
 
-This tool allows you to apply density via spacing and component props. You can browse around and see how this applies to the overall feel of Material-UI components.
+このツールを使用すると、間隔とコンポーネントpropsによって密度を適用できます。 これがMaterial-UIコンポーネントの全体的な感触にどのように適用されるかを参照できます。
 
-If you enable high density a custom theme is applied to the docs. This theme is only for demonstration purposes. You *should not* apply this theme to your whole application as this might negatively impact user experience. The [Material design guidelines](https://material.io/design/layout/applying-density.html#typographic-density) has examples for when not to apply density.
+高密度を有効にすると、カスタムテーマがドキュメントに適用されます。 このテーマは、デモンストレーションの目的でのみ です。 あなたはこのテーマをアプリケーション全体に適用 *すべきではありません* 。ユーザーエクスペリエンスに悪影響を及ぼす可能性があります。 密度を適用しない場合の[Material designガイドライン例](https://material.io/design/layout/applying-density.html#typographic-density) があります。
 
-The theme is configured with the following options:
+テーマは、次のオプションで構成されます。
 
 ```js
 const theme = createMuiTheme({

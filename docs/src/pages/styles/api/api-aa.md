@@ -326,9 +326,9 @@ crwdns97420:0crwdne97420:0
     crwdns97586:0crwdne97586:0
   </h4>
   
-  <pre><code class="jsx">crwdns97588:0{ withStyles }crwdnd97588:0{
+  <pre><code class="jsx">crwdns100460:0{ withStyles }crwdnd100460:0{
     backgroundColor: 'red',
-  }crwdnd97588:0{this.props.classes.root}crwdne97588:0
+  }crwdnd100460:0{props.classes.root}crwdne100460:0
 </code></pre>
   
   <p>

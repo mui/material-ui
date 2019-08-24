@@ -29,7 +29,7 @@ Material-UIは、System iconsをレンダリングするための2つのコン�
 
 #### 使い方
 
-You can use our [internal search](/components/material-icons/) or [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) to find a specific icon. アイコンをインポートするときは、アイコンの名前が `PascalCase`であることに注意してください。
+アイコンを探すのに [内部検索](/components/material-icons/)もしくは[material.io/tools/icons](https://material.io/tools/icons/?style=baseline)ページを利用できます。 アイコンをインポートするときは、アイコンの名前が `PascalCase`であることに注意してください。
 
 - [` delete `](https://material.io/tools/icons/?icon=delete&style=baseline) は `@material-ui/icons/Delete`として公開されています。
 - [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) は `@material-ui/icons/DeleteForever`として公開されます。
@@ -51,21 +51,20 @@ For "themed" icons, append the theme name to the icon name. たとえば
 
 #### Imports
 
-You can import the icons with one of these two options:
+アイコンのインポートは下記の2つの方法で可能です
 
-- Option n°1:
+- オプションn°1:
 
 ```jsx
   import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
   import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
   ```
-- Option n2:
+- オプションn2:
 
   ```jsx
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
-
-The safest option is n°1 but option n°2 can yield the best experience.
+最も安全なのはオプションn°1ですが、オプションn°2も同様に動きます。
 Make sure you follow our [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the approach n°2.
 We encourage the configuration of a Babel plugin.
 

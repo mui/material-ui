@@ -11,51 +11,55 @@ A [barra de aplicativos superior](https://material.io/design/components/app-bars
 
 Ele pode se transformar em uma barra de ações contextual ou utilizado como uma barra de navegação.
 
-## Barra de Aplicativos com botões
+## Simple App Bar
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
 
-## Barra de Aplicativos simples
+## App Bar with a primary search field
 
-{{"demo": "pages/components/app-bar/SimpleAppBar.js"}}
-
-## Barra de Aplicativos com um campo de busca principal
-
-Um campo de busca principal.
+A primary searchbar.
 
 {{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
 
-## Barra de Aplicativos com menu
+## App Bar with menu
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js"}}
 
-## Barra de Aplicativos com campo de busca
+## App Bar with search field
 
-Uma barra de pesquisa na lateral.
+A side searchbar.
 
 {{"demo": "pages/components/app-bar/SearchAppBar.js"}}
 
-## Barra de Aplicativos densa (apenas para desktop)
+## Dense (desktop only)
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js"}}
 
-## Barra de Aplicativos inferior
+## Bottom App Bar
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Rolagem
+## Scrolling
+
+You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
 ### Barra de Aplicativos oculta
 
-Uma barra de aplicativos que se esconde ao rolar.
+The app bar hides on scroll down to leave more space for reading.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### Barra de aplicativos elevada
 
-Uma barra de aplicativos que se mantém acima ao rolar.
+The app bar elevates on scroll to communicate that the user is not at the top of the page.
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
+
+### Back to top
+
+A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+
+{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
 
 ### `useScrollTrigger([options]) => trigger`
 
@@ -69,7 +73,7 @@ Uma barra de aplicativos que se mantém acima ao rolar.
 
 #### Retornos
 
-`trigger`: a posição de rolagem corresponde aos critérios?
+`trigger`: Does the scroll position match the criteria?
 
 #### Exemplos
 

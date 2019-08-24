@@ -1,10 +1,10 @@
 # z-index
 
-<p class="description">z-index is the CSS property that helps control layout by providing a third axis to arrange content.</p>
+<p class="description">z-indexは、コンテンツを配置するための3番目の軸を提供することでレイアウトを制御するのに役立つCSSプロパティです。</p>
 
-Several Material-UI components utilize `z-index`, employing a default z-index scale in Material-UI that has been designed to properly layer drawers, modals, snackbars, tooltips, and more.
+いくつかのMaterial-UIコンポーネントは` z-indexを利用します` 、ドロワー、モーダル、スナックバー、ツールチップなどを適切に階層化するように設計されたMaterial-UI デフォルトのz-indexスケールを採用しています。
 
-[These values](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/zIndex.js) start at an arbitrary number, high and specific enough to ideally avoid conflicts.
+[これらの値](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/zIndex.js)は、競合を理想的に回避するのに十分な高さと固有性を持つ任意の数から始まります。
 
 - mobile stepper: 1000
 - app bar: 1100
@@ -13,4 +13,4 @@ Several Material-UI components utilize `z-index`, employing a default z-index sc
 - snackbar: 1400
 - tooltip: 1500
 
-These values can always be customized. You will find them in the theme under the [`zIndex`](/customization/default-theme/?expend-path=$.zIndex) key of the theme. Customization of individual values is discouraged; should you change one, you likely need to change them all.
+これらの値はいつでもカスタマイズできます。 これらは、テーマの[`zIndex`](/customization/default-theme/?expend-path=$.zIndex)キーの下のテーマにあります。 個々の値をカスタマイズすることはお勧めできません。; 1つを変更した場合は、すべてを変更する必要があります。

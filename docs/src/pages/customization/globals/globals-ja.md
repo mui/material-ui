@@ -1,13 +1,13 @@
 # グローバル
 
-<p class="description">The overrides key enables you to customize the appearance of all instances of a component type, while the props key enables you to change the default value(s) of a component's props.</p>
+<p class="description">オーバーライドキーを使用すると、コンポーネントタイプのすべてのインスタンスの外観をカスタマイズでき、プロップキーを使用すると、コンポーネントのプロップのデフォルト値を変更できます。</p>
 
 ## CSS
 
-When the configuration variables aren't powerful enough, you can take advantage of the `overrides` key of the `theme` to potentially change **every single style** injected by Material-UI into the DOM. That's a really powerful feature.
+設定変数が十分に強力でない場合は、 `theme` の</code>キーを`overrides</0> し、Material-UIによってDOMに注入される<strong>every single style</strong>を変更できるようにします。
+それは本当に強力な機能です。</p>
 
-```js
-const theme = createMuiTheme({
+<pre><code class="js">const theme = createMuiTheme({
   overrides: {
     // Style sheet name ⚛️
     MuiButton: {
@@ -19,15 +19,15 @@ const theme = createMuiTheme({
     },
   },
 });
-```
+`</pre> 
 
 {{"demo": "pages/customization/globals/GlobalCss.js"}}
 
-The list of these customization points for each component is documented under the **Component API** section. For instance, you can have a look at the [Button](/api/button/#css). Alternatively, you can always have a look at the [implementation](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js).
+各コンポーネントのカスタマイズポイントの一覧は、 **Component API**のセクションに記載されています。 たとえば、 [Button](/api/button/#css)はこちらです。 あるいは、いつでも[実装を調べることができます](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Button/Button.js)。
 
 ## Default props
 
-You can change the default props of all the Material-UI components. We expose a `props` key in the `theme` for this use case.
+すべての Material-UI コンポーネントのdefault propsを変更できます。 このユースケースでは、 `theme`で`props`キーを公開します。
 
 ```js
 const theme = createMuiTheme({

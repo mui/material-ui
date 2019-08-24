@@ -99,17 +99,17 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ### フローティングラベル
 
-フローティングラベルは絶対位置に配置され、ページのレイアウトには影響しません。 You need to make sure that the input is larger than the label to display correctly.
+フローティングラベルは絶対位置に配置され、ページのレイアウトには影響しません。 正しく表示するには、入力がラベルよりも大きいことを確認する必要があります。
 
 ## サードパーティの入力ライブラリとの統合
 
 サードパーティのライブラリを使って入力をフォーマットすることができます。 `inputComponent` プロパティを使用して、 `<input>` 要素のカスタム実装を提供する必要があります。
 
-次のデモでは、[react-text-mask](https://github.com/text-mask/text-mask) と[react-number-format](https://github.com/s-yadav/react-number-format)ライブラリを使用します。 The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
+次のデモでは、[react-text-mask](https://github.com/text-mask/text-mask) と[react-number-format](https://github.com/s-yadav/react-number-format)ライブラリを使用します。 同じ概念を [（たとえば、react-stripe-element)に適用することもできます](https://github.com/mui-org/material-ui/issues/16037)。
 
 {{"demo":"pages/components/text-fields/FormattedInputs.js"}}
 
-The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
+指定された入力コンポーネントは、 `inputRef` プロパティを処理する必要があります。 このプロパティは、次のインターフェイスを実装する値で呼び出す必要があります。
 
 ```ts
 interface InputElement {
@@ -145,7 +145,7 @@ function MyInputComponent(props) {
 
 ## アクセシビリティ
 
-In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure.
+テキストフィールドにアクセスできるようにするには **、入力をラベルおよびヘルパーテキストにリンクする必要があります**。 基礎となるDOMノードにはこの構造が必要です。
 
 ```jsx
 <div class="form-control">
@@ -155,8 +155,8 @@ In order for the text field to be accessible, **the input should be linked to th
 </div>
 ```
 
-- If you are using the `TextField` component, you just have to provide a unique `id`.
-- If you are composing the component:
+- `TextField` コンポーネントを使用している場合は、一意の `id`を指定するだけです。
+- コンポーネントを構成している場合は
 
 ```jsx
 <FormControl>
@@ -171,5 +171,5 @@ In order for the text field to be accessible, **the input should be linked to th
 より高度なユースケースのためにあなたは利用することができるかもしれません：
 
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Redux FormでMaterial UIを使用しやすくするラッパーコンポーネントのセット。
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with formik.
-- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) A set of wrapper components to facilitate using Material UI with Final Form.
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui) formikでMaterial-UIを使うためのバインディング。
+- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) Final FormでMaterial UIを使いやすくするためのラッパーコンポーネントのセット。
