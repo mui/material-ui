@@ -4,8 +4,8 @@ import { Picker, ToolbarComponentProps } from './Picker';
 import { ExtendWrapper, Wrapper } from '../wrappers/Wrapper';
 import { PureDateInputProps } from '../_shared/PureDateInput';
 import { DateValidationProps } from '../_helpers/text-field-helper';
+import { KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
 import { StateHookOptions, usePickerState } from '../_shared/hooks/usePickerState';
-import { KeyboardDateInput, KeyboardDateInputProps } from '../_shared/KeyboardDateInput';
 import {
   BaseKeyboardPickerProps,
   useKeyboardPickerState,
@@ -20,7 +20,7 @@ export type WithPureInputProps = DateValidationProps &
   ExtendWrapper<PureDateInputProps>;
 
 export interface MakePickerOptions<T extends any> {
-  Input: KeyboardDateInput | PureDateInputProps;
+  Input: any;
   useState: typeof usePickerState | typeof useKeyboardPickerState;
   useOptions: (props: any) => StateHookOptions;
   getCustomProps?: (props: T) => Partial<T>;

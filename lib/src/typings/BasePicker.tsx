@@ -33,7 +33,9 @@ export interface BasePickerProps {
   emptyLabel?: string;
   /** Callback fired when date is accepted @DateIOType */
   onAccept?: (date: MaterialUiPickersDate) => void;
-  /** Callback fired when new error should be displayed @DateIOType */
+  /** Callback fired when new error should be displayed
+   * (!! This is a side effect. Be careful if you want to rerender the component) @DateIOType
+   */
   onError?: (error: React.ReactNode, value: MaterialUiPickersDate | ParsableDate) => void;
   /** On open callback */
   onOpen?: () => void;

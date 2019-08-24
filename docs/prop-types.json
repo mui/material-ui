@@ -288,7 +288,7 @@
     },
     "onError": {
       "defaultValue": null,
-      "description": "Callback fired when new error should be displayed",
+      "description": "Callback fired when new error should be displayed\n(!! This is a side effect. Be careful if you want to rerender the component)",
       "name": "onError",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -812,7 +812,7 @@
     },
     "onError": {
       "defaultValue": null,
-      "description": "Callback fired when new error should be displayed",
+      "description": "Callback fired when new error should be displayed\n(!! This is a side effect. Be careful if you want to rerender the component)",
       "name": "onError",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -1556,7 +1556,7 @@
     },
     "onError": {
       "defaultValue": null,
-      "description": "Callback fired when new error should be displayed",
+      "description": "Callback fired when new error should be displayed\n(!! This is a side effect. Be careful if you want to rerender the component)",
       "name": "onError",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -1888,7 +1888,7 @@
     },
     "onError": {
       "defaultValue": null,
-      "description": "Callback fired when new error should be displayed",
+      "description": "Callback fired when new error should be displayed\n(!! This is a side effect. Be careful if you want to rerender the component)",
       "name": "onError",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -2440,7 +2440,7 @@
     },
     "onError": {
       "defaultValue": null,
-      "description": "Callback fired when new error should be displayed",
+      "description": "Callback fired when new error should be displayed\n(!! This is a side effect. Be careful if you want to rerender the component)",
       "name": "onError",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -3033,7 +3033,7 @@
     },
     "onError": {
       "defaultValue": null,
-      "description": "Callback fired when new error should be displayed",
+      "description": "Callback fired when new error should be displayed\n(!! This is a side effect. Be careful if you want to rerender the component)",
       "name": "onError",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
