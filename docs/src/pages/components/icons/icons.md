@@ -69,6 +69,7 @@ You can import the icons with one of these two options:
   import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
   import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
   ```
+  
 - Option n2:
 
   ```jsx
