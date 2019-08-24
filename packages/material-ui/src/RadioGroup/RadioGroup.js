@@ -107,7 +107,7 @@ RadioGroup.propTypes = {
   /**
    * Value of the selected radio button.
    */
-  value: PropTypes.string,
+  value: PropTypes.any,
 };
 
 export default RadioGroup;
