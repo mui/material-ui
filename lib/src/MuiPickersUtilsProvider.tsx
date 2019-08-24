@@ -18,7 +18,7 @@ export const MuiPickersUtilsProvider: React.FC<MuiPickersUtilsProviderProps> = (
   locale,
   libInstance,
 }) => {
-  const utils = React.useMemo(() => new Utils({ locale, moment: libInstance }), [
+  const utils = React.useMemo(() => new Utils({ locale, instance: libInstance }), [
     Utils,
     libInstance,
     locale,
