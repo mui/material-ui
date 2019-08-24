@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/RootRef/RootRef.js
 
 <p class="description">The API documentation of the RootRef React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import RootRef from '@material-ui/core/RootRef';
+// or
+import { RootRef } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 ⚠️⚠️⚠️
 If you want the DOM element of a Material-UI component check out
@@ -28,23 +34,18 @@ For example:
 import React from 'react';
 import RootRef from '@material-ui/core/RootRef';
 
-class MyComponent extends React.Component {
-  constructor() {
-    super();
-    this.domRef = React.createRef();
-  }
+function MyComponent() {
+  const domRef = React.useRef();
 
-  componentDidMount() {
-    console.log(this.domRef.current); // DOM node
-  }
+  React.useEffect(() => {
+    console.log(domRef.current); // DOM node
+  }, []);
 
-  render() {
-    return (
-      <RootRef rootRef={this.domRef}>
-        <SomeChildComponent />
-      </RootRef>
-    );
-  }
+  return (
+    <RootRef rootRef={domRef}>
+      <SomeChildComponent />
+    </RootRef>
+  );
 }
 ```
 
@@ -57,8 +58,4 @@ class MyComponent extends React.Component {
 
 The component cannot hold a ref.
 
-
-## Notes
-
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
 

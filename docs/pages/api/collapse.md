@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/Collapse/Collapse.js
 
 <p class="description">The API documentation of the Collapse React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Collapse from '@material-ui/core/Collapse';
+// or
+import { Collapse } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 The Collapse transition is used by the
 [Vertical Stepper](/components/steppers/#vertical-stepper) StepContent component.
@@ -56,10 +62,6 @@ If that's not sufficient, you can check the [implementation of the component](ht
 
 The props of the [Transition](https://reactcommunity.org/react-transition-group/transition/#Transition-props) component, from react-transition-group, are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
-
-## Notes
-
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
 
 ## Demos
 

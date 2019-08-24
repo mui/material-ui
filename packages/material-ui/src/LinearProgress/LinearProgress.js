@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import warning from 'warning';
 import withStyles from '../styles/withStyles';
 import { lighten } from '../styles/colorManipulator';
+import useTheme from '../styles/useTheme';
 
 const TRANSITION_DURATION = 4; // seconds
 
@@ -166,12 +167,12 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
     classes,
     className: classNameProp,
     color = 'primary',
-    theme,
     value,
     valueBuffer,
     variant = 'indeterminate',
     ...other
   } = props;
+  const theme = useTheme();
 
   const className = clsx(
     classes.root,
@@ -265,10 +266,6 @@ LinearProgress.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
   /**
-   * @ignore
-   */
-  theme: PropTypes.object,
-  /**
    * The value of the progress indicator for the determinate and buffer variants.
    * Value between 0 and 100.
    */
@@ -285,4 +282,4 @@ LinearProgress.propTypes = {
   variant: PropTypes.oneOf(['determinate', 'indeterminate', 'buffer', 'query']),
 };
 
-export default withStyles(styles, { name: 'MuiLinearProgress', withTheme: true })(LinearProgress);
+export default withStyles(styles, { name: 'MuiLinearProgress' })(LinearProgress);

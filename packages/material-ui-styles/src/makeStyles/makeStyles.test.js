@@ -211,7 +211,7 @@ describe('makeStyles', () => {
       assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'makeStyles-root-1' });
       wrapper.setProps({ theme: createMuiTheme() });
       assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'makeStyles-root-1' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'makeStyles-root-2' });
 
       wrapper.unmount();
       assert.strictEqual(sheetsRegistry.registry.length, 0);

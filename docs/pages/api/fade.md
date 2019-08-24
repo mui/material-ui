@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/Fade/Fade.js
 
 <p class="description">The API documentation of the Fade React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Fade from '@material-ui/core/Fade';
+// or
+import { Fade } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 The Fade transition is used by the [Modal](/components/modal/) component.
 It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
@@ -31,10 +37,6 @@ Any other props supplied will be provided to the root element ([Transition](http
 
 The props of the [Transition](https://reactcommunity.org/react-transition-group/transition/#Transition-props) component, from react-transition-group, are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
-
-## Notes
-
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
 
 ## Demos
 

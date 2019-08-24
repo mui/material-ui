@@ -150,7 +150,7 @@ describe('withStyles', () => {
       assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Empty-root-1' });
       wrapper.setProps({ theme: createMuiTheme() });
       assert.strictEqual(sheetsRegistry.registry.length, 1);
-      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Empty-root-1' });
+      assert.deepEqual(sheetsRegistry.registry[0].classes, { root: 'Empty-root-2' });
 
       wrapper.unmount();
       assert.strictEqual(sheetsRegistry.registry.length, 0);

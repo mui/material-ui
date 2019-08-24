@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/InputBase/InputBase.js
 
 <p class="description">The API documentation of the InputBase React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import InputBase from '@material-ui/core/InputBase';
+// or
+import { InputBase } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 `InputBase` contains as few styles as possible.
 It aims to be a simple building block for creating an input.
@@ -84,10 +90,6 @@ You can override the style of the component thanks to one of these customization
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/InputBase/InputBase.js) for more detail.
-
-## Notes
-
-The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
 
 ## Demos
 

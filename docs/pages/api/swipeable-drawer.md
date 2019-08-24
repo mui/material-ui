@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/SwipeableDrawer/SwipeableDrawer.js
 
 <p class="description">The API documentation of the SwipeableDrawer React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+// or
+import { SwipeableDrawer } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 
@@ -38,10 +44,6 @@ Any other props supplied will be provided to the root element ([Drawer](/api/dra
 
 The props of the [Drawer](/api/drawer/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
-
-## Notes
-
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
 
 ## Demos
 

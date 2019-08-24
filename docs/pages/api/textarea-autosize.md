@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/TextareaAutosize/TextareaAutosize.js
 
 <p class="description">The API documentation of the TextareaAutosize React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+// or
+import { TextareaAutosize } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 
@@ -24,10 +30,6 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 The `ref` is forwarded to the root element.
 
 Any other props supplied will be provided to the root element (native element).
-
-## Notes
-
-The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
 
 ## Demos
 

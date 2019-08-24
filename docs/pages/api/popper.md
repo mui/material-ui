@@ -8,9 +8,15 @@ filename: /packages/material-ui/src/Popper/Popper.js
 
 <p class="description">The API documentation of the Popper React component. Learn more about the props and the CSS customization points.</p>
 
+## Import
+
 ```js
 import Popper from '@material-ui/core/Popper';
+// or
+import { Popper } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/popper.js) for positioning.
 
@@ -33,10 +39,6 @@ Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/p
 The `ref` is forwarded to the root element.
 
 Any other props supplied will be provided to the root element (native element).
-
-## Notes
-
-The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
 
 ## Demos
 
