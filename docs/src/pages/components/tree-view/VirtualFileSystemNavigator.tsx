@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import TreeView, { NodeInfo } from '@material-ui/lab/TreeView';
+import TreeView, { TreeItemInfo } from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
@@ -66,7 +66,7 @@ interface Data {
 
 let visibleChildren: Data[] = [];
 
-const getItems = (nodeId: string | number | undefined): NodeInfo[] | undefined => {
+const getItems = (nodeId: string | number | undefined): TreeItemInfo[] | undefined => {
   let nodeChildren;
   if (nodeId) {
     const parent = visibleChildren.find(child => child.nodeId === nodeId);

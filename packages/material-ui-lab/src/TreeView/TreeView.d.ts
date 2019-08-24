@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 
-export interface NodeInfo {
+export interface TreeItemInfo {
   nodeId: string;
   label: string;
 }
@@ -15,7 +15,7 @@ export interface TreeViewProps
   defaultParentIcon?: React.ReactNode;
   isNodeExpandable?: (nodeId: string | number | undefined) => boolean;
   onNodeCollapsed?: (nodeId: string | number | undefined) => void;
-  onNodeExpanded?: (nodeId: string | number | undefined) => NodeInfo[] | undefined;
+  onNodeExpanded?: (nodeId: string | number | undefined) => TreeItemInfo[] | undefined;
   onNodeToggle?: (nodeId: string, expanded: boolean) => void;
 }
 
