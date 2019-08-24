@@ -220,7 +220,7 @@ ScrollableTableToolbar.propTypes = {
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    height: '100vh',
+    height: '100%',
   },
   bbar: {
     position: 'absolute',
