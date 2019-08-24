@@ -87,9 +87,7 @@ export default (): babel.PluginObj<{ opts: Options }> => {
       ImportDeclaration(path, state) {
         const { opts } = state;
         if (opts.useES && opts.useESM) {
-          throw new Error(
-            `'useES' and 'useESM' can't both be true.\nSee https://material-ui.com/guides/minimizing-bundle-size/#ecmascript for more information`,
-          );
+          console.error("Material-UI: 'useESM' has no effect when 'useES' is enabled");
         }
 
         const libraryFolder = opts.useES ? '/es' : opts.useESM ? '/esm' : '';
