@@ -15,7 +15,7 @@
   "scripts": {
     "start": "yarn dev",
     "dev": "yarn workspace docs dev",
-    "release": "yarn workspace @material-ui/pickers release || git push && git push --tags",
+    "release": "yarn workspace @material-ui/pickers release && git push && git push --tags",
     "e2e:open": "cypress open",
     "e2e:run": "cypress run",
     "docgen": "node docs/scripts/docgen.js",

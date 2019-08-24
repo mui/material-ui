@@ -65,8 +65,7 @@
     "build:babel": "cross-env BABEL_ENV=esm babel ./src --extensions '.ts,.tsx' --out-dir ./build/esm",
     "build": "npm run build:typescript && npm run build:bundle && npm run build:copy && npm run build:babel",
     "build:analyze": "npm run build",
-    "release": "yarn test && yarn version && yarn build && yarn publish --non-interactive build",
-    "publish": "npm publish build"
+    "release": "yarn test && yarn version && yarn build && yarn publish --non-interactive build"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
