@@ -1,11 +1,10 @@
 const webpack = require('webpack');
-const pkg = require('../package.json');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { findPages } = require('./src/modules/utils/find');
-const withTypescript = require('@zeit/next-typescript');
 const path = require('path');
-
-const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de'];
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const withTypescript = require('@zeit/next-typescript');
+const pkg = require('../package.json');
+const { findPages } = require('./src/modules/utils/find');
+const { LANGUAGES } = require('./src/modules/constants');
 
 const workspaceRoot = path.join(__dirname, '../');
 

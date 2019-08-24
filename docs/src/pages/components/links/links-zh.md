@@ -17,7 +17,7 @@ However, the Link component has different default properties than the Typography
 - 当链接需要突出显示，使用 `color="primary"`
 - `variant="inherit"` as the link will, most of the time, be used as a child of a Typography component.
 
-## 无障碍设计
+## 无障碍功能
 
 - 当提供链接对应的内容时，避免使用泛泛的描述，比如“点击这里”或“跳转”之类的词语 相反的，请使用 [具体详细的描述](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text)说明.
 - For the best user experience, links should stand out from the text on the page.

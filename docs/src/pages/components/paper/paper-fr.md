@@ -3,7 +3,7 @@ title: Composant React Papier
 components: Paper
 ---
 
-# Paper (Papier)
+# Paper
 
 <p class="description">Dans Material Design, les propriétés physiques du papier sont traduites à l'écran. </p>
 

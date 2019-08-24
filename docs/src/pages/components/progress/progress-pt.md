@@ -83,7 +83,7 @@ function Progress(props) {
 
 ## Barra de progresso customizada
 
-Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/progress/CustomizedProgressBars.js"}}
 

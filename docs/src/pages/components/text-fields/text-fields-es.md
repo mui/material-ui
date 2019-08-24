@@ -109,7 +109,7 @@ El siguiente demo utiliza las librerías [react-text-mask](https://github.com/te
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-El componente del campo de texto proporcionado debe manejar el atributo `inputRef`. The property should be called with a value that implements the following interface:
+The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
 
 ```ts
 interface InputElement {
@@ -168,7 +168,7 @@ In order for the text field to be accessible, **the input should be linked to th
 
 ## Proyectos relacionados
 
-Para usos más avanzados tal vez puedas aprovercharte de:
+Para usos más avanzados tal vez puedas sacarle partido a:
 
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Un conjunto de componentes contenedor para facilitar el uso de Material-UI junto a Redux Form.
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Enlaces para utilizar Material-UI con formik.

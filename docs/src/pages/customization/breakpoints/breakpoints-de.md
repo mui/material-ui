@@ -85,7 +85,7 @@ In der folgenden Demo ändern wir das gerenderte DOM-Element (* em*, <u> u</u>, 
 
 ### `theme.breakpoints.up(key) => media query`
 
-#### Parameter
+#### Argumente
 
 1. `key` (*String* | *Number*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.) oder eine Bildschirmbreite in pixel.
 

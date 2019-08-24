@@ -1,4 +1,4 @@
-# 活版印刷
+# 排版
 
 <p class="description">The theme provides a set of type sizes that work well together, and also with the layout grid.</p>
 

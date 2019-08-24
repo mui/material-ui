@@ -19,7 +19,7 @@ If you wish to customize the theme, you need to use the `ThemeProvider` componen
 Changing the theme configuration variables is the most effective way to match Material-UI to your needs. The following sections cover the most important theme variables:
 
 - [Палитра](/customization/palette/)
-- [Typography](/customization/typography/)
+- [Оформление текста](/customization/typography/)
 - [Интервал](/customization/spacing/)
 - [Точки останова](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
@@ -27,7 +27,7 @@ Changing the theme configuration variables is the most effective way to match Ma
 
 You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
 
-### Пользовательские переменные
+### Custom variables
 
 When using Material-UI's theme with our [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
 

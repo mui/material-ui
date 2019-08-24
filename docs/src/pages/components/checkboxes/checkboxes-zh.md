@@ -29,7 +29,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 {{"demo": "pages/components/checkboxes/FormControlLabelPosition.js"}}
 
-## 无障碍设计
+## 可及性
 
 所有表单控件都应该带有标签，而这包括了单选按钮，复选框和开关。 在大多数情况下，这是通过使用一个`<label>`元素（[FormControlLabel](/api/form-control-label/)）实现的。
 

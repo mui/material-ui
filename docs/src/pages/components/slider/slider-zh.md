@@ -3,7 +3,7 @@ title: React 滑块组件
 components: Slider
 ---
 
-# 滑块
+# Slider
 
 <p class="description">用户可以使用滑块组件从某一范围内选取所需数值。</p>
 
@@ -25,7 +25,7 @@ Discrete sliders can be adjusted to a specific value by referencing its value in
 
 ## 自定义滑块
 
-这是一些自定义样式开关的例子 You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 

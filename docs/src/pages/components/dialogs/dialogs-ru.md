@@ -54,7 +54,7 @@ Use title bar alerts only for high-risk situations, such as the potential loss o
 
 ## Customized dialogs
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 The dialog has a close button added to aide usability.
 

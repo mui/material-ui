@@ -93,7 +93,7 @@ export default withWidth()(MyComponent);
 
 `media query` ：准备与JSS一起使用的媒体查询字符串。
 
-#### 示例
+#### 例子
 
 ```js
 const styles = theme => ({
@@ -203,8 +203,8 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 1. `options` (*Object* [optional]): 
   - ` options.withTheme ` (*Boolean* [optional]): 默认值为 `false`。 将 ` theme ` 对象作为属性提供给组件。
-  - `options.noSSR` (*Boolean* [可选的]): 默认值为`false`。 为了执行服务器端呈现协调，它需要呈现两次。 第一次没有任何东西，第二次与孩子们在一起。 这种双遍渲染周期有一个缺点。 用户界面可能会闪烁。 如果不进行服务器端渲染，可以将此标志设置为 `true`。
-  - `options.initialWidth` （*Breakpoint* [可选的]）： 为`window.innerWidth`在服务器上不可用， 我们默认在第一次安装期间呈现空组件。 您可能希望使用启发式来近似 客户端浏览器屏幕宽度的屏幕宽度。 例如，您可以使用用户代理或客户端提示。 https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/globals/#default-props) on the theme. 为了设置initialWidth，我们需要传递一个具有以下形状的自定义属性：
+  - `options.noSSR` (*Boolean* [可选的]): 默认值为`false`。 为了执行服务器端呈现协调，它需要呈现两次。 第一次没有任何东西，第二次与孩子们在一起。 这种双遍渲染周期有一个缺点。 The UI might blink. You can set this flag to `true` if you are not doing server-side rendering.
+  - `options.initialWidth` （*Breakpoint* [可选的]）： 为`window.innerWidth`在服务器上不可用， 我们默认在第一次安装期间呈现空组件。 You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/globals/#default-props) on the theme. In order to set the initialWidth we need to pass a custom property with this shape:
 
 ```js
 const theme = createMuiTheme({
@@ -218,7 +218,7 @@ const theme = createMuiTheme({
 });
 ```
 
-- `options.resizeInterval` (*Number* [optional]): 默认为166，对应于60 Hz的10帧。 响应屏幕调整大小事件之前等待的毫秒数。
+- `options.resizeInterval` (*Number* [optional]): 默认为166，对应于60 Hz的10帧。 Number of milliseconds to wait before responding to a screen resize event.
 
 #### 返回结果
 

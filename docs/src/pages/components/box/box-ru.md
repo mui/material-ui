@@ -24,9 +24,9 @@ Box компонент оборачивает ваш компонент. Соз�
 
 Это работает превосходно когда изменения могут быть изолированы в новый DOM элемент. Для сущности, вы можете изменить margin(внешний отступ) таким образом.
 
-However, sometimes you have to target the underlying DOM element. For instance, you want to change the text color of the button. The Button component defines its own color. CSS inheritance doesn't help. To workaround the problem, you have two options:
+Тем не менее, иногда вам нужно ориентироваться на базовый элемент DOM. Например, вы хотите изменить цвет текста кнопки. Компонент Button определяет свой собственный цвет. Наследование CSS не помогает. Чтобы обойти проблему, у вас есть два варианта:
 
-1. Use [`React.cloneElement()`](https://reactjs.org/docs/react-api.html#cloneelement)
+1. Использовать [`React.cloneElement()`](https://reactjs.org/docs/react-api.html#cloneelement)
 
 The Box component has a `clone` property to enable the usage of the clone element method of React.
 

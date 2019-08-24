@@ -9,9 +9,9 @@ components: Modal
 
 Die Komponente rendered seine `Kinder` - Knoten vor einer Hintergrund - Komponente. The `Modal` offers important features:
 
-- 💄 Verwaltet modales Stacking, wenn eins zu einem Zeitpunkt nicht ausreicht.
-- 🔐 Erstellt einen Hintergrund zum Deaktivieren der Interaktion unter dem Modal.
-- 🔐 Es deaktiviert das Blättern des Seiteninhalts, während es geöffnet ist.
+- 💄 Manages modal stacking when one-at-a-time just isn't enough.
+- 🔐 Creates a backdrop, for disabling interaction below the modal.
+- 🔐 It disables scrolling of the page content while open.
 - ♿️ Der Fokus wird richtig verwaltet. Wechseln des Fokus zum modalen Inhalt und diesen halten belassen, bis der Modal geschlossen ist.
 - ♿️ Fügt die entsprechenden ARIA-Rollen automatisch hinzu.
 - 📦 [5 kB gzipped](/size-snapshot).

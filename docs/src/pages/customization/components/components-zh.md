@@ -209,7 +209,7 @@ const styles = {
 
 {{"demo": "pages/customization/components/DynamicInlineStyle.js"}}
 
-### 主题嵌套
+### Theme nesting
 
 {{"demo": "pages/customization/components/DynamicThemeNesting.js"}}
 

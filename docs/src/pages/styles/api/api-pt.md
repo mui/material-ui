@@ -153,7 +153,7 @@ Vincula uma folha de estilos, com uma função de componente, usando o padrão d
 #### Argumentos
 
 1. `Component`: O componente que será manipulado.
-2. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ele será vinculado ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como propriedade do primeiro argumento.
+2. `styles` (*Function | Object*): Uma função que gera os estilos ou um objeto de estilos. Ela será vinculada ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como propriedade do primeiro argumento.
 3. `options` (*Object* [opcional]): 
   - `options.defaultTheme` (*Object* [opcional]): O tema padrão a ser usado se um tema não for fornecido por meio de um provedor de temas.
   - `options.withTheme` (*Boolean* [opcional]): Padrão `false`. Fornecer o objeto `theme` para o componente como uma propriedade.
@@ -386,7 +386,7 @@ export default function MyComponent() {
   
   <ol start="1" spaces="2" level="0">
     <li level="0">
-      <code>styles</code> (<em>Function | Object</em>): Uma função que gera os estilos ou um objeto de estilos. Ele será vinculado ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como o primeiro argumento.
+      <code>styles</code> (<em>Function | Object</em>): Uma função que gera os estilos ou um objeto de estilos. Ela será vinculada ao componente. Use a assinatura da função se você precisar ter acesso ao tema. É fornecido como o primeiro argumento.
     </li>
     
     <li level="0">

@@ -2,7 +2,7 @@
 components: Typography
 ---
 
-# Tipografia
+# Typography
 
 <p class="description">Use a tipografia para apresentar seu design e conteúdo da forma mais clara e eficiente possível.</p>
 

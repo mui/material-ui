@@ -5,24 +5,24 @@ components: NoSsr
 
 # No SSR
 
-<p class="description">NoSsr purposely removes components from the subject of Server Side Rendering (SSR).</p>
+<p class="description">NoSsrは、サーバーサイドレンダリング（SSR）の対象から意図的にコンポーネントを削除します。</p>
 
-This component can be useful in a variety of situations:
+このコンポーネントは、次のようなさまざまな状況で役立ちます。
 
-- Escape hatch for broken dependencies not supporting SSR.
-- Improve the time-to-first paint on the client by only rendering above the fold.
-- Reduce the rendering time on the server.
-- Under too heavy server load, you can turn on service degradation.
-- Improve the time-to-interactive by only rendering what's important (with the `defer` property).
+- SSRをサポートしていない壊れた依存関係のハッチングをエスケープします。
+- スクロールせずに見える範囲にレンダリングするだけで、クライアントでの最初のペイントまでの時間を改善します。
+- サーバーでのレンダリング時間を短縮します。
+- サーバーの負荷が高すぎる場合、サービスの低下を有効にできます。
+- 重要なものだけをレンダリングすることにより、対話までの時間を改善します（ `defer` プロパティを使用）。
 
-## Client side deferring
+## クライアント側の遅延
 
 {{"demo": "pages/components/no-ssr/SimpleNoSsr.js"}}
 
-## Frame deferring
+## フレーム延期
 
-In it's core, the NoSsr component purpose is to **defer rendering**. As it's illustrated in the previous demo, you can use it to defer the rendering from the server to the client.
+中核となるNoSsrコンポーネントの目的は、レンダリングを **遅延することです**。 前のデモで示したように、これを使用して、サーバーからクライアントへのレンダリングを延期できます。
 
-But you can also use it to defer the rendering within the client itself. You can **wait a screen frame** with the `defer` property to render the children. React does [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of 1.
+ただし、これを使用して、クライアント自体内のレンダリングを延期することもできます。 子をレンダリングするには、 `defer` プロパティでスクリーンフレーム</strong> を **待つことができます。 Reactは1ではなく [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) を行う。</p> 
 
 {{"demo": "pages/components/no-ssr/FrameDeferring.js"}}

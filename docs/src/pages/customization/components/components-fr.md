@@ -10,7 +10,7 @@ As components can be used in different contexts, there are several approaches to
 4. [Variations de Material Design](#4-material-design-variations) comme avec le composant bouton
 5. [Variation globale du thème](#5-global-theme-variation)
 
-## 1. Variation manuelle pour une situation ponctuelle
+## 1. Variation spécifique pour une situation ponctuelle
 
 Vous devrez peut-être modifier le style d'un composant pour un cas particulier. Vous disposez des solutions suivantes :
 

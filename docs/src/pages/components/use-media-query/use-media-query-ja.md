@@ -10,8 +10,8 @@ Some of the key features:
 
 - ⚛️ It has an idiomatic React API.
 - 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
-- 📦 [1 kB gzipped](/size-snapshot).
-- 🤖 It supports server-side rendering.
+- [1 kB gzipped](/size-snapshot).
+- serverサーバー側のレンダリングをサポートします。
 
 ## Simple media query
 
@@ -51,7 +51,7 @@ function MyComponent() {
 
 ⚠️ There is **no default** theme support, you have to inject it in a parent theme provider.
 
-## Using JavaScript syntax
+## JavaScriptシンタックスを使用する
 
 You can use [json2mq](https://github.com/akiran/json2mq) to generate media query string from a JavaScript object.
 

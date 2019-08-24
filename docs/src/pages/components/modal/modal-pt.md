@@ -9,12 +9,12 @@ components: Modal
 
 O componente renderiza o conteúdo de seu `children` sobre um componente backdrop. O `Modal` oferece recursos importantes:
 
-- 💄 Gerencia o empilhamento de chamadas um por vez não é suficiente.
-- 🔐 Cria um backdrop para desabilitar a interação abaixo do modal.
-- 🔐 Quando aberto, desabilita a rolagem da página.
+- 💄 Manages modal stacking when one-at-a-time just isn't enough.
+- 🔐 Creates a backdrop, for disabling interaction below the modal.
+- 🔐 It disables scrolling of the page content while open.
 - ♿️ Gerencia adequadamente o foco; movendo para o conteúdo modal, e mantendo-o lá até que o modal seja fechado.
 - ♿️ Adiciona as funções ARIA apropriadas automaticamente.
-- 📦 [5 kB gzipped](/size-snapshot).
+- 📦 [5 kB gzipado](/size-snapshot).
 
 > **Nota sobre a terminologia**. O termo "modal" algumas vezes é usado com o sentido de "diálogo", mas isto é um equívoco. Uma janela Modal descreve partes de uma UI. Um elemento é considerado modal se [ele bloqueia interações com o resto da aplicação](https://en.wikipedia.org/wiki/Modal_window).
 
@@ -29,13 +29,13 @@ Se você está criando um diálogo Modal, você provavelmente quer usar o compon
 
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
-Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
+Você pode desativar o contorno (muitas vezes azul ou ouro) com a propriedade CSS `outline: 0`.
 
 ## Performance
 
-O conteúdo do modal é **montado preguiçosamente** no DOM. Isso garante que ter muitos modais fechados na sua árvore React não atrapalha sua página.
+The content of the modal is **lazily mounted** into the DOM. It ensures that having many closed modals in your React tree won't slow down your page.
 
-No entanto, a criação de elementos React também tem um custo. Considere o seguinte caso:
+However, creating React elements has a cost too. Considere o seguinte caso:
 
 ```jsx
 <Modal open={false}>
@@ -78,22 +78,22 @@ Desta forma, você tem a vantagem do [React render laziness evaluation](https://
 
 ```jsx
 <Modal
-  aria-labelledby="modal-title"
-  aria-describedby="modal-description"
+  aria-labelledby="modal-titulo"
+  aria-describedby="modal-descricao"
 >
-  <h2 id="modal-title">
-    My Title
+  <h2 id="modal-titulo">
+    Meu Título
   </h2>
-  <p id="modal-description">
-    My Description
+  <p id="modal-descricao">
+    Minha Descrição
   </p>
 </Modal>
 ```
 
 - O [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) pode ajudá-lo a definir o foco inicial no elemento mais relevante, com base no seu conteúdo modal.
 
-## Server-side modal
+## Modal do lado do servidor
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to make it work, you need to disable this feature with the `disablePortal` prop:
+React [não suporta](https://github.com/facebook/react/issues/13097) a API [`createPortal()`](https://reactjs.org/docs/portals.html) no servidor. Para que seu modal funcione, você precisa desabilitar este recurso com a propriedade `disablePortal`:
 
 {{"demo": "pages/components/modal/ServerModal.js"}}

@@ -14,7 +14,7 @@ Dependendo do componente, a densidade é aplicada por meio de espaçamento menor
 
 Os seguintes componentes possuem propriedades que aplicam maior densidade:
 
-- [Botão](/api/button/)
+- [Button](/api/button/)
 - [Fab](/api/fab/)
 - [FilledInput](/api/filled-input/)
 - [FormControl](/api/form-control/)

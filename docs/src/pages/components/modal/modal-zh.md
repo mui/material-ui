@@ -3,11 +3,11 @@ title: 模态框 React 组件
 components: Modal
 ---
 
-# 模态
+# Modal
 
 <p class="description">模态框组件可以用来快速创建对话框、弹出窗口，灯箱等任何你所需的组件。</p>
 
-组件会在背景组件前渲染其`children`节点。 The `Modal` offers important features:
+The component renders its `children` node in front of a backdrop component. The `Modal` offers important features:
 
 - 💄 Manages modal stacking when one-at-a-time just isn't enough.
 - 🔐 Creates a backdrop, for disabling interaction below the modal.
@@ -72,7 +72,7 @@ We create a lot of React elements that will never be mounted. It's wasteful 🐢
 
 上面的代码利用了[React 懒加载](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation)机制. 使得`TabComponent`的`render`方法只在模态框打开的时候才被执行.
 
-## 无障碍设计
+## 无障碍功能
 
 - 记得用 `aria-labelledby="id..."` 属性来指向`Modal` 的标题. 另外, 你还可以使用 `aria-describedby="id..."` 属性来为 `Modal`增加描述.
 
