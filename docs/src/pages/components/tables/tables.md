@@ -65,6 +65,12 @@ A simple example with spanning rows & columns.
 
 {{"demo": "pages/components/tables/SpanningTable.js"}}
 
+## Scrollable Table
+
+An example of scrollable table rows with a fixed header and toolbar.
+
+{{"demo": "pages/components/tables/ScrollableTable.js"}}
+
 ## Virtualized Table
 
 In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component.
