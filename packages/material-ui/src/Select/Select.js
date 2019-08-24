@@ -144,14 +144,14 @@ Select.propTypes = {
    * Callback fired when the component requests to be closed.
    * Use in controlled mode (see open).
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onClose: PropTypes.func,
   /**
    * Callback fired when the component requests to be opened.
    * Use in controlled mode (see open).
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onOpen: PropTypes.func,
   /**

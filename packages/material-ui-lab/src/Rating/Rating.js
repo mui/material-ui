@@ -424,7 +424,7 @@ Rating.propTypes = {
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
    *
-   * @param {number} value The rating label's value to format
+   * @param {number} value The rating label's value to format.
    * @returns {string}
    */
   getLabelText: PropTypes.func,
@@ -459,15 +459,15 @@ Rating.propTypes = {
   /**
    * Callback fired when the value changes.
    *
-   * @param {object} event The event source of the callback
-   * @param {number} value The new value
+   * @param {object} event The event source of the callback.
+   * @param {number} value The new value.
    */
   onChange: PropTypes.func,
   /**
    * Callback function that is fired when the hover state changes.
    *
-   * @param {object} event The event source of the callback
-   * @param {number} value The new value
+   * @param {object} event The event source of the callback.
+   * @param {number} value The new value.
    */
   onChangeActive: PropTypes.func,
   /**

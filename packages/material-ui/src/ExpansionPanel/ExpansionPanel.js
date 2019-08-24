@@ -183,8 +183,8 @@ ExpansionPanel.propTypes = {
   /**
    * Callback fired when the expand/collapse state is changed.
    *
-   * @param {object} event The event source of the callback
-   * @param {boolean} expanded The `expanded` state of the panel
+   * @param {object} event The event source of the callback.
+   * @param {boolean} expanded The `expanded` state of the panel.
    */
   onChange: PropTypes.func,
   /**

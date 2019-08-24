@@ -96,8 +96,8 @@ RadioGroup.propTypes = {
    * Callback fired when a radio button is selected.
    *
    * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value`.
-   * @param {string} value The `value` of the selected radio button
+   * You can pull out the new value by accessing `event.target.value` (string).
+   * @param {string} value The `value` of the selected radio button.
    */
   onChange: PropTypes.func,
   /**
@@ -105,7 +105,7 @@ RadioGroup.propTypes = {
    */
   onKeyDown: PropTypes.func,
   /**
-   * Value of the selected radio button.
+   * Value of the selected radio button. The DOM API casts this to a string.
    */
   value: PropTypes.any,
 };

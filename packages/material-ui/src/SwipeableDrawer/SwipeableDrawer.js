@@ -469,13 +469,13 @@ SwipeableDrawer.propTypes = {
   /**
    * Callback fired when the component requests to be closed.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onClose: PropTypes.func.isRequired,
   /**
    * Callback fired when the component requests to be opened.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onOpen: PropTypes.func.isRequired,
   /**
