@@ -65,9 +65,9 @@ A simple example with spanning rows & columns.
 
 {{"demo": "pages/components/tables/SpanningTable.js"}}
 
-## Scrollable Table
+## Standard Scrollable Table
 
-An example of scrollable table rows with a fixed header and toolbar.
+An example of a table with scrollable rows and fixed sortable column headers using only the standard library. A fixed bottom toolbar can be used for paging very big data sets often found in enterprise applications.
 
 {{"demo": "pages/components/tables/ScrollableTable.js"}}
 
