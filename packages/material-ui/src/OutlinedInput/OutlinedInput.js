@@ -212,7 +212,7 @@ OutlinedInput.propTypes = {
    * Callback fired when the value is changed.
    *
    * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value`.
+   * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
   /**
