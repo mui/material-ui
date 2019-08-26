@@ -74,40 +74,7 @@ However, you need to apply the following steps correctly.
 
 #### 1. Configure Babel
 
-Pick one of the following plugins:
-
-- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) with the following configuration:
-
-  `yarn add -D babel-plugin-import`
-
-  Create a `.babelrc.js` file in the root directory of your project:
-
-  ```js
-  const plugins = [
-    [
-      'babel-plugin-import',
-      {
-        'libraryName': '@material-ui/core',
-        // Use "'libraryDirectory': ''," if your bundler does not support ES modules
-        'libraryDirectory': 'esm',
-        'camel2DashComponentName': false
-      },
-      'core'
-    ],
-    [
-      'babel-plugin-import',
-      {
-        'libraryName': '@material-ui/icons',
-        // Use "'libraryDirectory': ''," if your bundler does not support ES modules
-        'libraryDirectory': 'esm',
-        'camel2DashComponentName': false
-      },
-      'icons'
-    ]
-  ];
-
-  module.exports = {plugins};
-  ```
+You will need to use a babel plugin to rewrite the import path dynamically.
 
 - [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) with the following configuration:
 
@@ -136,30 +103,40 @@ Pick one of the following plugins:
 
   module.exports = {plugins};
   ```
+
+If you are using Create React App, there is no need for a `.babelrc.js` file and the configuration is easy by using [craco](https://github.com/sharegate/craco):
+
+  `yarn add -D @craco/craco babel-plugin-transform-imports`
   
-If you are using Create React App, you will need to use a couple of projects that let you use `.babelrc` configuration, without ejecting. 
-  
-  `yarn add -D react-app-rewired customize-cra`
-  
-  Create a `config-overrides.js` file in the root directory:
+  Create a `craco-config.js` file in the root directory:
 
   ```js
-  /* config-overrides.js */
-  const { useBabelRc, override } = require('customize-cra')
-
-  module.exports = override(
-    useBabelRc()
-  );  
+/* eslint-disable no-template-curly-in-string */
+module.exports = {
+  babel: {
+    plugins: [[
+      "transform-imports",
+      {
+        "@material-ui/core": {
+          "transform": "@material-ui/core/esm/${member}",
+          "preventFullImport": true
+        },
+        "@material-ui/icons": {
+          "transform": "@material-ui/icons/esm/${member}",
+          "preventFullImport": true
+        }
+      }
+    ]]
+  },
+};
   ```
-  
-  If you wish, `babel-plugin-import` can be configured through `config-overrides.js` instead of `.babelrc` by using this [configuration](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options).
-  
+    
   Modify your `package.json` start command:
   
 ```diff
   "scripts": {
 -  "start": "react-scripts start"
-+  "start": "react-app-rewired start"
++  "start": "craco start"
   }
 ```
   
