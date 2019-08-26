@@ -9473,10 +9473,10 @@ marked@^0.7.0:
   resolved "https://registry.yarnpkg.com/marked/-/marked-0.7.0.tgz#b64201f051d271b1edc10a04d1ae9b74bb8e5c0e"
   integrity sha512-c+yYdCZJQrsRjTPhUx7VKkApw9bwDkNbHUKo1ovgcfDjb2kc8rLuRbIFyXL5WOEUwzSSKo3IXpph2K6DqB/KZg==
 
-material-table@^1.40.1:
-  version "1.48.0"
-  resolved "https://registry.yarnpkg.com/material-table/-/material-table-1.48.0.tgz#3a4baffc915ffd700caf26cb3b272e238cc9cfe1"
-  integrity sha512-OXI8gotPGtFtcSLLXkFzrmPMO8DK5irUd24vq+siTwYPp+kInOM1T5Vrb/pqbR6wQOA2bgWTmwxKGe4GZ1xVcw==
+material-table@^1.50.0:
+  version "1.50.0"
+  resolved "https://registry.yarnpkg.com/material-table/-/material-table-1.50.0.tgz#16afabae311f768382b5884d34a230984a687933"
+  integrity sha512-N7JH/YkAUHHddqIP/t3vtRLtbK5zsnyzCvjdwaVO8KbtzKA9kYgjxpuNZ/waHwdL4Fa55rZgP7fYYbMioByi9g==
   dependencies:
     "@date-io/date-fns" "^1.1.0"
     "@material-ui/pickers" "^3.2.2"
