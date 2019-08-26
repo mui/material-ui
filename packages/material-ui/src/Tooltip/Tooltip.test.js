@@ -101,6 +101,8 @@ describe('<Tooltip />', () => {
     children.simulate('mouseOver');
     assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
     children.simulate('mouseLeave');
+    clock.tick(0);
+    wrapper.update();
     assert.strictEqual(wrapper.find(Popper).props().open, false);
     assert.strictEqual(wrapper.find(Popper).props().open, false);
   });
@@ -119,6 +121,7 @@ describe('<Tooltip />', () => {
     assert.strictEqual(handleRequestOpen.callCount, 1);
     assert.strictEqual(handleClose.callCount, 0);
     children.simulate('mouseLeave');
+    clock.tick(0);
     assert.strictEqual(handleRequestOpen.callCount, 1);
     assert.strictEqual(handleClose.callCount, 1);
   });
@@ -142,6 +145,7 @@ describe('<Tooltip />', () => {
       children.simulate('touchEnd');
       children.simulate('blur');
       clock.tick(1500);
+      wrapper.update();
       assert.strictEqual(wrapper.find(Popper).props().open, false);
     });
   });
@@ -299,6 +303,28 @@ describe('<Tooltip />', () => {
       assert.strictEqual(wrapper.find(Popper).props().open, true);
       popper.simulate('mouseOver', { type: 'mouseover' });
       clock.tick(111);
+      assert.strictEqual(wrapper.find(Popper).props().open, true);
+    });
+
+    it('should not animate twice', () => {
+      const wrapper = mount(
+        <Tooltip title="Hello World" interactive enterDelay={500}>
+          <button id="testChild" type="submit">
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+
+      const children = wrapper.find('#testChild');
+      children.simulate('mouseOver', { type: 'mouseOver' });
+      clock.tick(500);
+      wrapper.update();
+      assert.strictEqual(wrapper.find(Popper).props().open, true);
+      const popper = wrapper.find(Popper);
+      children.simulate('mouseLeave', { type: 'mouseleave' });
+      assert.strictEqual(wrapper.find(Popper).props().open, true);
+      popper.simulate('mouseOver', { type: 'mouseover' });
+      clock.tick(0);
       assert.strictEqual(wrapper.find(Popper).props().open, true);
     });
   });

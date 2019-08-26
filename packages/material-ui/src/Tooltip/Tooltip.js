@@ -261,8 +261,8 @@ function Tooltip(props) {
 
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
- event.persist();
-+    leaveTimer.current = setTimeout(() => {
+    event.persist();
+    leaveTimer.current = setTimeout(() => {
       handleClose(event);
     }, leaveDelay);
   };
