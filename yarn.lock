@@ -6602,10 +6602,10 @@ fill-range@^7.0.1:
   dependencies:
     to-regex-range "^5.0.1"
 
-final-form@^4.18.2:
-  version "4.18.4"
-  resolved "https://registry.yarnpkg.com/final-form/-/final-form-4.18.4.tgz#55f6dfb1463045a6e9248d928e573459a8cd97f3"
-  integrity sha512-UUymL6UykjwO2yUN3EhBdw8ajaa448/CczgXvLcyXwbHRjWbA3Yjdxm6WSHQBx4pLv4iEqkvmPRnQ+xmS9GUcA==
+final-form@^4.18.5:
+  version "4.18.5"
+  resolved "https://registry.yarnpkg.com/final-form/-/final-form-4.18.5.tgz#e359cfaf2892ef135d92fcf22e06b475dda3a885"
+  integrity sha512-DH/I2W7fWxU8J8ZsbYJ5jLvUbhbatCvLhIKlsU17MvY6W3QnetPEyuX5mcxXgIGFNFKxfvqsG3pDy/1/VwOiTw==
   dependencies:
     "@babel/runtime" "^7.3.1"
 
