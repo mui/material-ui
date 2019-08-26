@@ -94,15 +94,15 @@ function EnhancedTableHead(props) {
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'default'}
-            sortDirection={orderBy === headCells.id ? order : false}
+            sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
-              active={orderBy === headCells.id}
+              active={orderBy === headCell.id}
               direction={order}
-              onClick={createSortHandler(headCells.id)}
+              onClick={createSortHandler(headCell.id)}
             >
-              {headCells.label}
-              {orderBy === headCells.id ? (
+              {headCell.label}
+              {orderBy === headCell.id ? (
                 <span className={classes.visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                 </span>
