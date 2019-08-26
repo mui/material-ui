@@ -10,11 +10,11 @@ export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     backgroundColor: theme.palette.background.paper,
-    borderRadius: 2,
+    borderRadius: theme.shape.borderRadius,
     display: 'inline-flex',
   },
   /* Styles applied to the children. */
-  groupedChild: {
+  grouped: {
     padding: '0px 11px 0px 12px',
     '&:not(:first-child)': {
       marginLeft: -1,
@@ -28,11 +28,11 @@ export const styles = theme => ({
     },
   },
   /* Styles applied to the children if `size="small"`. */
-  sizeSmallChild: {
+  groupedSizeSmall: {
     padding: '0px 7px 0px 8px',
   },
   /* Styles applied to the children if `size="large"`. */
-  sizeLargeChild: {
+  groupedSizeLarge: {
     padding: '0px 15px 0px 16px',
   },
 });
@@ -40,8 +40,8 @@ export const styles = theme => ({
 const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
   const {
     children,
-    className,
     classes,
+    className,
     exclusive = false,
     onChange,
     size = 'medium',
@@ -96,9 +96,9 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
 
         return React.cloneElement(child, {
           className: clsx(
-            classes.groupedChild,
+            classes.grouped,
             {
-              [classes[`size${capitalize(size)}Child`]]: size !== 'medium',
+              [classes[`groupedSize${capitalize(size)}`]]: size !== 'medium',
             },
             child.props.className,
           ),
