@@ -3385,16 +3385,16 @@ babel-plugin-syntax-jsx@6.18.0, babel-plugin-syntax-jsx@^6.18.0:
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-jsx/-/babel-plugin-syntax-jsx-6.18.0.tgz#0af32a9a6e13ca7a3fd5069e62d7b0f58d0d8946"
   integrity sha1-CvMqmm4Tyno/1QaeYtew9Y0NiUY=
 
-babel-plugin-tester@^6.4.0:
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-tester/-/babel-plugin-tester-6.4.0.tgz#cdbc430794c375bf4c207a0287a00a68346529e9"
-  integrity sha512-Eyr6YmDuKRStZX6Jamv+C0IW40RxiJLJb6ogaf0jNcIwZ+/r9Nq2vaDUTZgWLps+bQBMTmn6rtHD3zJQecF3nA==
+babel-plugin-tester@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-tester/-/babel-plugin-tester-7.0.1.tgz#75730c51f30184ddb5fc4aa79bb514a73769fe82"
+  integrity sha512-+K1d6BGmFDSMVtf9HG4sPhIZEHLVnUIV3BeJGkpR+l7Y5MCaB9Gv98kWFbqtmg/B3DVRFT3UncyAeOdc91HooQ==
   dependencies:
     common-tags "^1.4.0"
     invariant "^2.2.2"
     lodash.mergewith "^4.6.0"
-    path-exists "^3.0.0"
-    strip-indent "^2.0.0"
+    path-exists "^4.0.0"
+    strip-indent "^3.0.0"
 
 babel-plugin-transform-async-to-promises@0.8.9:
   version "0.8.9"
@@ -9719,6 +9719,11 @@ mimic-fn@^2.0.0:
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
 
+min-indent@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/min-indent/-/min-indent-1.0.0.tgz#cfc45c37e9ec0d8f0a0ec3dd4ef7f7c3abe39256"
+  integrity sha1-z8RcN+nsDY8KDsPdTvf3w6vjklY=
+
 mini-create-react-context@^0.3.0:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/mini-create-react-context/-/mini-create-react-context-0.3.2.tgz#79fc598f283dd623da8e088b05db8cddab250189"
@@ -13750,6 +13755,13 @@ strip-indent@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/strip-indent/-/strip-indent-2.0.0.tgz#5ef8db295d01e6ed6cbf7aab96998d7822527b68"
   integrity sha1-XvjbKV0B5u1sv3qrlpmNeCJSe2g=
+
+strip-indent@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/strip-indent/-/strip-indent-3.0.0.tgz#c32e1cee940b6b3432c771bc2c54bcce73cd3001"
+  integrity sha512-laJTa3Jb+VQpaC6DseHhF7dXVqHTfJPCRDaEbid/drOhgitgYku/letMUqOXFoWV0zIIUbjpdH2t+tYj4bQMRQ==
+  dependencies:
+    min-indent "^1.0.0"
 
 strip-json-comments@2.0.1, strip-json-comments@^2.0.1, strip-json-comments@~2.0.1:
   version "2.0.1"
