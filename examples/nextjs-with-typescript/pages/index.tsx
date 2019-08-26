@@ -22,7 +22,7 @@ function Copyright() {
   );
 }
 
-export default function App() {
+export default function Index() {
   return (
     <Container maxWidth="sm">
       <Box my={4}>

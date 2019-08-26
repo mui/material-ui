@@ -35,8 +35,7 @@ type LinkProps = LinkPropsBase & NextComposedProps & Omit<MuiLinkProps, 'ref'>;
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
-function RouterLink(props: LinkProps) {
-  const router = useRouter();
+function Link(props: LinkProps) {
   const {
     activeClassName = 'active',
     className: classNameProps,
@@ -44,6 +43,7 @@ function RouterLink(props: LinkProps) {
     naked,
     ...other
   } = props;
+  const router = useRouter();
 
   const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === props.href && activeClassName,
@@ -57,5 +57,5 @@ function RouterLink(props: LinkProps) {
 }
 
 export default React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => (
-  <RouterLink {...props} innerRef={ref} />
+  <Link {...props} innerRef={ref} />
 ));
