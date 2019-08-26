@@ -129,7 +129,7 @@
     "sinon": "^7.0.0",
     "size-limit": "^0.21.0",
     "ts-node": "^8.3.0",
-    "tslint": "5.14.0",
+    "tslint": "5.19.0",
     "typescript": "3.2.4",
     "vrtest": "^0.2.0",
     "webpack": "^4.28.4",
