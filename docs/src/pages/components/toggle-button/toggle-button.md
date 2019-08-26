@@ -5,11 +5,11 @@ components: ToggleButton, ToggleButtonGroup
 
 # Toggle Buttons
 
-<p class="description">Toggle buttons can be used individually or as a group.</p>
+<p class="description">Toggle buttons can be used standalone or as a group.</p>
 
-## Single Toggle Button
+## Standalone Toggle Button
 
-To implement a single Toggle button:
+To implement a standalone Toggle button:
 
 {{"demo": "pages/components/toggle-button/ToggleButton.js"}}
 

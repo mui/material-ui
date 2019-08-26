@@ -40,7 +40,7 @@ export default function ToggleButtonSizes() {
   return (
     <Grid container spacing={2} direction="column" alignItems="center">
       <Grid item>
-        <Typography gutterBottom>Size a single toggle button:</Typography>
+        <Typography gutterBottom>Size a standalone toggle button:</Typography>
       </Grid>
       <Grid item>
         <ToggleButton size="small" selected={selected} onChange={toggleSelected}>
