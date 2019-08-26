@@ -31,7 +31,7 @@
     "@types/autosuggest-highlight": "^3.1.0",
     "@types/json2mq": "^0.2.0",
     "@types/react-autosuggest": "^9.3.9",
-    "@types/react-dom": "^16.8.5",
+    "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^4.3.4",
     "@types/react-select": "^3.0.4",
     "@types/react-swipeable-views": "^0.13.0",
