@@ -64,7 +64,7 @@ function getSorting(order, orderBy) {
   return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
 }
 
-const headItems = [
+const headCells = [
   { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
   { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
   { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
@@ -89,20 +89,20 @@ function EnhancedTableHead(props) {
             inputProps={{ 'aria-label': 'select all desserts' }}
           />
         </TableCell>
-        {headItems.map(headItem => (
+        {headCells.map(headCell => (
           <TableCell
-            key={headItem.id}
-            align={headItem.numeric ? 'right' : 'left'}
-            padding={headItem.disablePadding ? 'none' : 'default'}
-            sortDirection={orderBy === headItems.id ? order : false}
+            key={headCell.id}
+            align={headCell.numeric ? 'right' : 'left'}
+            padding={headCell.disablePadding ? 'none' : 'default'}
+            sortDirection={orderBy === headCells.id ? order : false}
           >
             <TableSortLabel
-              active={orderBy === headItems.id}
+              active={orderBy === headCells.id}
               direction={order}
-              onClick={createSortHandler(headItems.id)}
+              onClick={createSortHandler(headCells.id)}
             >
-              {headItems.label}
-              {orderBy === headItems.id ? (
+              {headCells.label}
+              {orderBy === headCells.id ? (
                 <span className={classes.visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                 </span>
