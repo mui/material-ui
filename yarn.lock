@@ -3209,10 +3209,10 @@ autosuggest-highlight@^3.1.1:
   dependencies:
     diacritic "0.0.2"
 
-aws-sdk@^2.497.0:
-  version "2.509.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.509.0.tgz#5677043cbcfa3ec52370abb90b13cb0bdb4aa790"
-  integrity sha512-GZYqJYK2SizKe+Ae24IXZdJlB1kdrZ1o1/Lh5P2oMskCkhTNkzL/v6siKnM0WYh1hPVAHbPLyNkGzwJZ5w2SkA==
+aws-sdk@^2.517.0:
+  version "2.517.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.517.0.tgz#415e6732d46c478a4f1867920d25af57651063b1"
+  integrity sha512-CX0b+8StmzAGQOP5eoBYJExpjTdPeVPig3NC4crq71/0LkrIDGcc6ekVEl0Rx23WTyGDzExeDD1be1HvQNwHdA==
   dependencies:
     buffer "4.9.1"
     events "1.1.1"
