@@ -19,7 +19,7 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 
 const columns = [
   { id: 'name', label: 'Name', minWidth: 200 },
-  { id: 'code', label: 'ISO Code' },
+  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
   {
     id: 'population',
     label: 'Population',
@@ -29,7 +29,7 @@ const columns = [
   },
   {
     id: 'size',
-    label: 'Size (km\u00b2)',
+    label: 'Size\u00a0(km\u00b2)',
     minWidth: 120,
     align: 'right',
     format: v => v.toLocaleString(),
@@ -43,7 +43,7 @@ const columns = [
   },
 ];
 
-function createData(name, code, population, size) {
+const createData = (name, code, population, size) => {
   const density = population / size;
   return { name, code, population, size, density };
 }
@@ -66,7 +66,7 @@ const rows = [
   createData('Brazil', 'BR', 210147125, 8515767),
 ];
 
-function desc(a, b, orderBy) {
+const desc => (a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
   }
@@ -76,7 +76,7 @@ function desc(a, b, orderBy) {
   return 0;
 }
 
-function stableSort(array, cmp) {
+const stableSort = (array, cmp) => {
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
     const order = cmp(a[0], b[0]);
@@ -86,11 +86,11 @@ function stableSort(array, cmp) {
   return stabilizedThis.map(el => el[0]);
 }
 
-function getSorting(order, orderBy) {
+const getSorting = (order, orderBy) => {
   return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
 }
 
-function ScrollableTableHead(props) {
+const ScrollableTableHead => (props) {
   const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
   const createSortHandler = property => event => {
     onRequestSort(event, property);
@@ -256,7 +256,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ScrollableTable() {
+export default ScrollableTable = () => {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState(columns[0].id);
@@ -264,13 +264,13 @@ export default function ScrollableTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  function handleRequestSort(event, property) {
+  const handleRequestSort = (event, property) => {
     const isDesc = orderBy === property && order === 'desc';
     setOrder(isDesc ? 'asc' : 'desc');
     setOrderBy(property);
   }
 
-  function handleSelectAllClick(event) {
+  const handleSelectAllClick = (event) => {
     if (event.target.checked) {
       const newSelecteds = rows.map((row, idx) => idx);
       setSelected(newSelecteds);
@@ -279,7 +279,7 @@ export default function ScrollableTable() {
     setSelected([]);
   }
 
-  function handleClick(event, dataIndex) {
+  const handleClick = (event, dataIndex) => {
     const selectedIndex = selected.indexOf(dataIndex);
     let newSelected = [];
 
@@ -299,11 +299,11 @@ export default function ScrollableTable() {
     setSelected(newSelected);
   }
 
-  function handleChangePage(event, newPage) {
+  const handleChangePage = (event, newPage) => {
     setPage(newPage);
   }
 
-  function handleChangeRowsPerPage(event) {
+  const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   }
