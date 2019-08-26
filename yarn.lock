@@ -2097,10 +2097,10 @@
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-5.2.7.tgz#315d570ccb56c53452ff8638738df60726d5b6ea"
   integrity sha512-NYrtPht0wGzhwe9+/idPaBB+TqkY9AhTvOLMkThm0IoEfLaiVQZwBwyJ5puCkO3AUCWrmcoePjp2mbFocKy4SQ==
 
-"@types/node@*", "@types/node@^12.6.9":
-  version "12.7.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.1.tgz#3b5c3a26393c19b400844ac422bd0f631a94d69d"
-  integrity sha512-aK9jxMypeSrhiYofWWBf/T7O+KwaiAHzM4sveCdWPn71lzUSMimRnKzhXDKfKwV1kWoBo2P1aGgaIYGLf9/ljw==
+"@types/node@*", "@types/node@^12.7.2":
+  version "12.7.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.2.tgz#c4e63af5e8823ce9cc3f0b34f7b998c2171f0c44"
+  integrity sha512-dyYO+f6ihZEtNPDcWNR1fkoTDf3zAK3lAABDze3mz6POyIercH0lEUawUFXlG8xaQZmm1yEBON/4TsYv/laDYg==
 
 "@types/parsimmon@^1.3.0":
   version "1.10.0"
@@ -2655,6 +2655,11 @@ acorn@^6.0.1, acorn@^6.0.5, acorn@^6.0.7, acorn@^6.1.1, acorn@^6.2.1:
   version "6.3.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.3.0.tgz#0087509119ffa4fc0a0041d1e93a417e68cb856e"
   integrity sha512-/czfa8BwS88b9gWQVhc8eknunSA2DoJpJyTQkhheIf5E48u1N0R4q/YxxsAeqRrmK9TQ/uYfgLDfZo91UlANIA==
+
+acorn@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-7.0.0.tgz#26b8d1cd9a9b700350b71c0905546f64d1284e7a"
+  integrity sha512-PaF/MduxijYYt7unVGRuds1vBC9bFxbNf+VWqhOClfdgy7RlVkQqt610ig1/yxTgsDIfW1cWDel5EBbOy3jdtQ==
 
 address@^1.0.3:
   version "1.1.2"
@@ -12907,14 +12912,14 @@ rollup-pluginutils@^2.3.1, rollup-pluginutils@^2.6.0, rollup-pluginutils@^2.8.1:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@^1.17.0:
-  version "1.19.4"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.19.4.tgz#0cb4e4d6fa127adab59b11d0be50e8dd1c78123a"
-  integrity sha512-G24w409GNj7i/Yam2cQla6qV2k6Nug8bD2DZg9v63QX/cH/dEdbNJg8H4lUm5M1bRpPKRUC465Rm9H51JTKOfQ==
+rollup@^1.20.2:
+  version "1.20.2"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.20.2.tgz#0e1be13cb5de244c9c463027092f7c93461558b9"
+  integrity sha512-pF4jFzNWMUuudIAeiTgOcSxn8XkBN2Y2/IwPR7iL/IZ8k9RwoLyp2QwNWiYT+HF537zwpmzZHTBYw345H9vq1A==
   dependencies:
     "@types/estree" "0.0.39"
-    "@types/node" "^12.6.9"
-    acorn "^6.2.1"
+    "@types/node" "^12.7.2"
+    acorn "^7.0.0"
 
 rst-selector-parser@^2.2.3:
   version "2.2.3"
