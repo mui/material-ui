@@ -70,7 +70,7 @@ You can import the icons with one of these two options:
   import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
   ```
   
-- Option n2:
+- Option n°2:
 
   ```jsx
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
