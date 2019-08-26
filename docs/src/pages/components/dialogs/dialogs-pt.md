@@ -3,7 +3,7 @@ title: Componente React para Diálogos
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
-# Caixa de diálogo
+# Diálogos
 
 <p class="description">As caixas de diálogo informa aos usuários sobre uma tarefa e podem conter informações críticas, exigir decisões ou envolver várias tarefas.</p>
 
@@ -54,7 +54,7 @@ Os formulários de diálogo permitem que usuários preencham campos dentro de um
 
 ## Diálogos customizados
 
-Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 A caixa de diálogo tem um botão de fechar para facilitar a utilização.
 

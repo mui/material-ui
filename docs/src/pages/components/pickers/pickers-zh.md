@@ -12,7 +12,7 @@ components: TextField
 
 ## @material-ui/pickers
 
-![stars](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
+![stars](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
 
 [@material-ui/pickers](https://material-ui-pickers.dev/) provides date picker and time picker controls.
 
@@ -30,12 +30,12 @@ A native datepicker example with `type="date"`.
 
 ### Date & Time pickers（日期和时间选择器）
 
-一个原生的 `type="datetime-local"` 日期和时间选择器示例。
+这个例子通过 `type="datetime-local"` 实现了原生的日期和时间选择器。
 
 {{"demo": "pages/components/pickers/DateAndTimePickers.js"}}
 
 ### Time pickers（时间选择器）
 
-一个原生的 `type="time"` 时间选择器示例 。
+这个例子通过 `type="time"` 实现了原生的时间选择器。
 
 {{"demo": "pages/components/pickers/TimePickers.js"}}

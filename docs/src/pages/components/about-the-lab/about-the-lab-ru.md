@@ -17,9 +17,9 @@ yarn add @material-ui/lab
 Пакет lab зависит напрямую от пакета основных компонентов. Если Material-UI ещё не использовался вашем проекте, вы можете установить его командой:
 
 ```sh
-// для npm
+// with npm
 npm install @material-ui/core
 
-// для yarn
+// with yarn
 yarn add @material-ui/core
 ```

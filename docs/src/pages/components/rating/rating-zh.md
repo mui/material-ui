@@ -31,7 +31,7 @@ The rating can display any float number with the `value` prop. Use the `precisio
 
 {{"demo": "pages/components/rating/HalfRating.js"}}
 
-## 大小
+## 尺寸
 
 Fancy larger or smaller ratings? Use the `size` prop.
 

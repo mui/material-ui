@@ -3,7 +3,7 @@ title: Slider React component
 components: Slider
 ---
 
-# Slider (curseur)
+# Slider
 
 <p class="description">Les curseurs permettent aux utilisateurs d'effectuer des sélections à partir d'une plage de valeurs.</p>
 

@@ -1,44 +1,44 @@
 # Material-UI Versions
 
-<p class="description">You can come back to this page and switch the version of the docs you're reading at any time.</p>
+<p class="description">このページに戻って、読んでいるドキュメントのバージョンをいつでも切り替えることができます。</p>
 
-## Stable versions
+## 安定バージョン
 
-The most recent version is recommended in production.
+本番環境では最新バージョンをお勧めします。
 
 {{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
 
-## Latest versions
+## 最新バージョン
 
-Here you can find the latest unreleased documentation and code. You can use it to see what changes are coming and provide better feedback to Material-UI contributors.
+ここには、最新の未発表の文書とコードがあります。 これを使用して、変更点を確認し、Material-UIの貢献者により良いフィードバックを提供できます。
 
 {{"demo": "pages/versions/LatestVersions.js", "hideHeader": true}}
 
-## Versioning strategy
+## バージョン管理戦略
 
-We recognize that you need **stability** from the Material-UI library. Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around Material-UI to thrive.
+Materials-UIライブラリから**stability**が必要であることは認識しています。 安定性により、再利用可能なコンポーネントとライブラリ、チュートリアル、ツール、および学習プラクティスが予期せず陳腐化することがなくなります。 Material-UIを取り巻くエコシステムが繁栄するには、安定性が不可欠です。
 
-This document contains **the practices that we follow** to provide you with a leading-edge UI library, balanced with stability. We strive to ensure that future changes are always introduced in a predictable way. We want everyone who depends on Material-UI to know when and how new features are added, and to be well-prepared when obsolete ones are removed.
+訳文 このドキュメントには、安定性とバランスのとれた最先端のUIライブラリを提供するために**従うプラクティス**が含まれています。 将来の変更が常に予測可能な方法で導入されるように努めています。 Material-UIに依存しているすべての人に、いつ、どのように新しい機能が追加されたかを知ってもらい、古い機能が削除されたときに十分な準備をしてもらいます。
 
-Material-UI strictly follows [Semantic Versioning 2.0.0](https://semver.org/). Material-UI version numbers have three parts: `major.minor.patch`. The version number is incremented based on the level of change included in the release.
+訳文 Material-UIは厳密に[Semantic Versioning 2.0. 0](https://semver.org/)に従います。 Material-UIのバージョン番号には3つの部分があります：` major.minor.patch ` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。
 
-- **Major releases** contain significant new features, some but minimal developer assistance is expected during the update. When updating to a new major release, you may need to run update scripts, refactor code, run additional tests, and learn new APIs.
-- **Minor releases** contain important new features. Minor releases are fully backward-compatible; no developer assistance is expected during update, but you can optionally modify your apps and libraries to begin using new APIs, features, and capabilities that were added in the release.
-- **Patch releases** are low risk, contain bug fixes and small new features. No developer assistance is expected during update.
+- **メジャーリリース**　には、重要な新機能が含まれています。一部の機能は含まれていますが、アップデート中の開発者支援は最小限に抑えられます。 新しいメジャーリリースに更新するときは、更新スクリプトの実行、コードのリファクタリング、追加テストの実行、および新しいAPIの学習が必要になる場合があります。
+- **マイナーリリース**　重要な新機能が含まれています。 マイナーリリースは完全に下位互換性がある; アップデート中に開発者の支援は必要ありませんが、必要に応じて、リリースで追加された新しいAPI、機能、および機能を使用するようにアプリケーションとライブラリを変更できます。
+- **パッチリリース**　リスクが低く、バグ修正と小さな新機能が含まれています。 更新中に開発者の支援は必要ありません。
 
-## Release frequency
+## リリース頻度
 
-We work toward a regular schedule of releases, so that you can plan and coordinate your updates with the continuing evolution of Material-UI.
+Material-UIの継続的な進化に合わせて更新を計画および調整できるように、定期的なリリーススケジュールに取り組んでいます。
 
-In general, you can expect the following release cycle:
+一般的に、次のリリースサイクルが期待できます。
 
-- A **major** release every 6-12 months.
-- 1-3 **minor** releases for each major release.
-- A **patch** release every week (anytime for urgent bugfix).
+- **メジャー** 6〜12か月ごとにリリースします。
+- 1-3 **マイナー**各メジャーリリースのリリース。
+- **パッチ**毎週リリース（緊急のバグ修正のためいつでも）。
 
-## Release schedule
+## リリーススケジュール
 
-> Disclaimer: The dates are offered as general guidance and may be adjusted by us when necessary to ensure delivery of a high-quality code.
+> 免責事項：日付は一般的なガイダンスとして提供されており、必要に応じて高品質のコードの配信を確保するために調整される場合があります。
 
 | Date       | Version                    |
 |:---------- |:-------------------------- |
@@ -47,24 +47,24 @@ In general, you can expect the following release cycle:
 | ? ⏳        | `@material-ui/core` v5.0.0 |
 
 
-You can follow [our milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
+詳細な概要については、[マイルストーン](https://github.com/mui-org/material-ui/milestones)を参照してください。
 
-## Support policy
+## サポートポリシー
 
-We only support the latest version of Material-UI. We don't yet have the resources to offer [LTS](https://en.wikipedia.org/wiki/Long-term_support) releases.
+Material-UIの最新バージョンのみをサポートしています。 [ LTSを提供するリソースがまだありません](https://en.wikipedia.org/wiki/Long-term_support)リリース。
 
-## Deprecation practices
+## 廃止予定
 
-Sometimes **"breaking changes"**, such as the removal of support for select APIs and features, are necessary.
+時々**「重大な変更」 ** 、一部のAPIおよび機能のサポートの削除などが必要です。
 
-To make these transitions as easy as possible, we make two commitments to you:
+これらの移行をできるだけ簡単にするために、次の2つのコミットメントを行っています。
 
-- We work hard to minimize the number of breaking changes and to provide migration tools when possible.
-- We follow the deprecation policy described here, so you have time to update your apps to the latest APIs and best practices.
+- 重大な変更の数を最小限に抑え、可能な場合は移行ツールを提供するために努力しています。
+- ここに記載されているサポート終了ポリシーに準拠しているため、アプリを最新のAPIとベストプラクティスに更新する時間があります。
 
-To help ensure that you have sufficient time and a clear path to update, this is our deprecation policy:
+更新するための十分な時間と明確なパスを確保するために、以下のポリシーを非推奨とします。
 
-- We announce deprecated features in the changelog, and when possible, with warnings at runtime.
-- When we announce a deprecation, we also announce a recommended update path.
-- We support existing use of a stable API during the deprecation period, so your code will keep working during that period.
-- We only make peer dependency updates (React) that require changes to your apps in a major release.
+- 非推奨の機能は、変更ログで、可能であれば実行時に警告付きでアナウンスします。
+- 非推奨を発表するとき、推奨される更新パスも発表します。
+- 非推奨期間中の安定したAPIの既存の使用をサポートしているため、その期間中もコードは機能し続けます。
+- 私たちはメジャーリリースであなたのアプリに変更を必要とするピア依存性アップデート(React) のみを行います。

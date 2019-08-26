@@ -34,7 +34,7 @@ Nothing fancy, just plain old CSS. Why reinvent the wheel when it has been worki
 
 ```jsx
 import React from 'react';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 export default function PlainCssButton() {
   return (
@@ -72,7 +72,7 @@ Explicitly providing the class names to the component is too much effort? [You c
 
 ```jsx
 import React from 'react';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 export default function GlobalCssButton() {
   return (
@@ -96,7 +96,7 @@ The `styled()` method works perfectly on all of our components.
 ```jsx
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const StyledButton = styled(Button)`
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
@@ -146,7 +146,7 @@ The following example overrides the `label` style of `Button` in addition to the
 ```jsx
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const StyledButton = styled(({ color, ...other }) => <Button {...other} />)`
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
@@ -178,7 +178,7 @@ The above demo relies on the [default `classes` values](/styles/advanced/#with-m
 ```jsx
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const StyledButton = styled(({ color, ...other }) => (
   <Button classes={{ label: 'label' }} {...other} />
@@ -264,7 +264,7 @@ It's hard to know the market share of [this styling solution](https://github.com
 import React from 'react';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesButton.css';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 export default function CssModulesButton() {
   return (
@@ -291,7 +291,7 @@ Emotion's **css()** method works seamlessly with Material-UI.
 ```jsx
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 // We just assign them the Button's className attribute
 export default function EmotionButton() {
@@ -336,7 +336,7 @@ Material-UI's styling solution shares many building blocks with [react-jss](http
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const styles = {
   button: {
@@ -377,7 +377,7 @@ A good way to apply styles with Glamor is using the **css()** function and then 
 ```jsx
 import React from 'react';
 import { css } from 'glamor';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const buttonStyles = {
   background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",

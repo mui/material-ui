@@ -3,7 +3,7 @@ title: React Hidden（隐藏）组件
 components: Hidden
 ---
 
-# Hidden（隐藏组件）
+# Hidden
 
 <p class="description">您可以使用我们的隐藏组件来实现快速并响应式地控制元素的显隐。</p>
 

@@ -1,5 +1,5 @@
 ---
-title: Badge React component
+title: バッジReactコンポーネント
 components: Badge
 ---
 
@@ -35,6 +35,6 @@ BadgeContentが0の場合、バッジは自動的に非表示になります。 
 
 ## カスタマイズバッジ
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/tables/CustomizedTables.js"}}

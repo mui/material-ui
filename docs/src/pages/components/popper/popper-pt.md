@@ -49,7 +49,7 @@ Selecione parte do texto para ver o popper:
 
 ## Projetos Complementares
 
-Para casos de uso mais avançados, você pode tirar proveito de:
+Para usos mais avançados, você pode tirar vantagem com:
 
 ### PopupState helper
 

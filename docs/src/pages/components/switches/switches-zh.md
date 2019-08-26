@@ -31,7 +31,7 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 ## 尺寸
 
-Fancy smaller switches? Use the `size` property.
+Fancy smaller switches? 你可以使用 `size` 属性。
 
 {{"demo": "pages/components/switches/SwitchesSize.js"}}
 

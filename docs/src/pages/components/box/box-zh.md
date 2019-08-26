@@ -46,7 +46,7 @@ Box 组件有一个 `clone` 的属性，通过它您可以使用 React 克隆元
 </Box>
 ```
 
-> ⚠️CSS 的特异性依赖于导入的顺序。 If you want the guarantee that the wrapped component's style will be overridden, you need to import the Box last.
+> ⚠️CSS 的特异性依赖于导入的顺序。 如果您希望保证能够覆写包装组件的样式，则需要在最后才导入Box。
 
 ## API
 

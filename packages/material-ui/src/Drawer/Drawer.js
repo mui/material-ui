@@ -165,7 +165,7 @@ const Drawer = React.forwardRef(function Drawer(props, ref) {
 
   if (variant === 'persistent') {
     return (
-      <div className={clsx(classes.root, classes.docked, className)} {...other}>
+      <div className={clsx(classes.root, classes.docked, className)} ref={ref} {...other}>
         {slidingDrawer}
       </div>
     );
@@ -225,7 +225,7 @@ Drawer.propTypes = {
   /**
    * Callback fired when the component requests to be closed.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onClose: PropTypes.func,
   /**

@@ -68,7 +68,7 @@ const theme = {
 <Box mx="auto" /> // margin-left: auto; margin-right: auto;
 ```
 
-## Example
+## Exemple
 
 ```jsx
 <Box p={1}>…

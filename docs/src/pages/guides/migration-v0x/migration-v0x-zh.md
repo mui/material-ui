@@ -13,7 +13,7 @@
 Material-UI 这个项目是从[4年前](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46)开始的。 在此期间，整个个生态系统发展了很多，我们也学到了很多东西。 [@nathanmarks](https://github.com/nathanmarks/) 启动了一项雄心勃勃的任务，将 Material-UI **重新启动**，并利用我们学到的知识，来解决一些长期存在的问题。 譬如这些主要的变化：
 
 - 我们采用 CSS-in-JS 这个新的样式方案（更好的[自定义](/customization/components/)的能力和整体性能）
-- 新的 主题处理 （有嵌套，自主支撑等。）
+- New theme handling (nesting, self-supporting, etc.)
 - 感谢 [Next.js](https://github.com/zeit/next.js) 超快地创建文档
 - 更容易检测 [测试覆盖率](/guides/testing/) （99％以上，在所有主流浏览器上运行， [视觉回归测试](https://www.argos-ci.com/mui-org/material-ui)）
 - 完全[服务器端渲染](/guides/server-rendering/)支持

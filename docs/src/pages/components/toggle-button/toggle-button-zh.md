@@ -15,6 +15,6 @@ components: ToggleButton, ToggleButtonGroup
 
 ## 尺寸
 
-Fancy larger or smaller buttons? Use the `size` property.
+想要更大或更小的按钮？ 你可以使用 `size` 属性。
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}

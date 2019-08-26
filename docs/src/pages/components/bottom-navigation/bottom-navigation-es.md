@@ -9,7 +9,7 @@ components: BottomNavigation, BottomNavigationAction
 
 [La barra de Navegación Inferior](https://material.io/design/components/bottom-navigation.html) muestra de tres a cinco destinos en la parte inferior de una pantalla. Cada destino es representado por un icono y una etiqueta de texto opcional. Cuando un icono de navegación inferior es tocado, el usuario es llevado al destino de navegación superior asociado con ese icono.
 
-## Botón de navegación
+## Barra de navegación inferior
 
 Cuando sólo hay **tres** acciones, muestra las dos cosas, iconos y etiquetas de texto en todo momento.
 

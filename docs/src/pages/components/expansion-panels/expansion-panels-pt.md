@@ -25,18 +25,18 @@ Estenda o comportamento padrão do painel para criar um acordeão com o componen
 
 {{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js"}}
 
-## Cabeçalho Secundário e Colunas
-
-Várias colunas podem ser usadas para estruturar o conteúdo, e um texto auxiliar pode ser adicionado ao painel para ajudar o usuário.
-
-{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}
-
-## Performance
-
-O conteúdo dos painéis de expansão é montado por padrão, mesmo que o painel não esteja expandido. Esse comportamento padrão tem em mente a renderização do lado do servidor e o SEO. Se você renderizar grandes árvores de componentes dentro de seu painel ou simplesmente renderizar muitos painéis, pode ser uma boa ideia desabilitar esse comportamento padrão habilitando `unmountOnExit` em `TransitionProps`: `<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />`. Como acontece com qualquer otimização de desempenho, isso não é uma bala de prata. Certifique-se de identificar gargalos primeiro e, em seguida, experimente essas estratégias de otimização.
-
 ## Painéis de Expansão Customizados
 
 Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}
+
+## Performance
+
+O conteúdo dos painéis de expansão é montado por padrão, mesmo que o painel não esteja expandido. Esse comportamento padrão tem em mente a renderização do lado do servidor e o SEO. Se você renderizar grandes árvores de componentes dentro de seu painel ou simplesmente renderizar muitos painéis, pode ser uma boa ideia desabilitar esse comportamento padrão habilitando `unmountOnExit` em `TransitionProps`: `<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />`. Como acontece com qualquer otimização de desempenho, isso não é uma bala de prata. Certifique-se de identificar gargalos primeiro e, em seguida, experimente essas estratégias de otimização.
+
+## Cabeçalho Secundário e Colunas
+
+Várias colunas podem ser usadas para estruturar o conteúdo, e um texto auxiliar pode ser adicionado ao painel para ajudar o usuário.
+
+{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}

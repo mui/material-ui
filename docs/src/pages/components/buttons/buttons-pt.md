@@ -80,13 +80,13 @@ Gosta de botões maiores ou menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
-## Botões com ícones e "Label"
+## Botões com ícones e rótulo
 
 Às vezes você pode querer ter ícones para determinados botão para melhorar o UX do aplicativo como reconhecemos logotipos mais facilmente do que o texto sem formatação. Por exemplo, se você tem um botão com a açõo de "deletar" você pode rotulá-lo com um ícone do caixote de lixo.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Botões de Icone
+## Botões de Ícone
 
 Botões de ícones são comumente encontrados em barras de aplicativos e barras de ferramentas.
 
@@ -96,7 +96,7 @@ Botões de ícones são comumente encontrados em barras de aplicativos e barras 
 
 ## Botões Customizados
 
-Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 
@@ -110,10 +110,10 @@ O botões de texto, botões contidos, botões de ação flutuante e ícone botõ
 
 ## Biblioteca de roteamento de terceiros
 
-Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. O componente `ButtonBase` fornece uma propriedade para lidar com este caso de uso: `componente`. No entanto, para alguns polyfills de foco `ButtonBase` requer o nó DOM do componente fornecido. Isso é obtido anexando-se uma referência ao componente e esperando que o componente envie essa referência para o nó DOM subjacente. Dado que um monte de nossos componentes interativos dependem do `ButtonBase`, você deve estar capaz de tirar vantagem em todos os lugares.
+Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. O componente `ButtonBase` fornece uma propriedade para lidar com este caso de uso: `componente`. No entanto, para alguns polyfills de foco `ButtonBase` requer o nó DOM do componente fornecido. Isso é obtido anexando-se uma referência ao componente e esperando que o componente envie essa referência para o nó DOM subjacente. Dado que muitos dos nossos componentes interativos dependem do `ButtonBase`, você deve ser capaz de aproveitá-lo em todos os lugares.
 
 Aqui está um exemplo de integração com react-router:
 
 {{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 
-*Nota: A criação de componentes de botão é necessária para impedir a desmontagem inesperada. Você pode ler mais sobre isso em nosso [ guia de propriedades de componente](/guides/composition/#component-property).*
+*Nota: A criação de componentes de botão é necessária para impedir a desmontagem inesperada. Você pode ler mais sobre isso em nosso [guia de propriedades de componente](/guides/composition/#component-property).*

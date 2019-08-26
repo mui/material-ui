@@ -85,7 +85,7 @@ In der folgenden Demo ändern wir das gerenderte DOM-Element (* em*, <u> u</u>, 
 
 ### `theme.breakpoints.up(key) => media query`
 
-#### Parameter
+#### Argumente
 
 1. `key` (*String* | *Number*): Ein Haltepunkteschlüssel (`xs`, `sm`, etc.) oder eine Bildschirmbreite in pixel.
 
@@ -229,14 +229,12 @@ const theme = createMuiTheme({
 ```jsx
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
-class MyComponent extends React.Component {
-  render () {
-    if (isWidthUp('sm', this.props.width)) {
-      return <span />
-    }
-
-    return <div />;
+function MyComponent(props) {
+  if (isWidthUp('sm', props.width)) {
+    return <span />
   }
+
+  return <div />;
 }
 
 export default withWidth()(MyComponent);

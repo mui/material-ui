@@ -56,6 +56,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">groupedContained</span> | <span class="prop-name">MuiButtonGroup-groupedContained</span> | Styles applied to the children if variant="contained".
 | <span class="prop-name">groupedContainedPrimary</span> | <span class="prop-name">MuiButtonGroup-groupedContainedPrimary</span> | Styles applied to the children if variant="contained" & color="primary".
 | <span class="prop-name">groupedContainedSecondary</span> | <span class="prop-name">MuiButtonGroup-groupedContainedSecondary</span> | Styles applied to the children if variant="contained" & color="secondary".
+| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to child elements if `disabled={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

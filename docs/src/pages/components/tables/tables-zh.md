@@ -1,5 +1,5 @@
 ---
-title: React 表格组件
+title: React Table（表格）组件
 components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
@@ -47,7 +47,7 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 ## 自定义表格
 
-以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js"}}
 
@@ -75,7 +75,7 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 ### material-table
 
-![stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/material-table.svg)
+![评星](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/material-table.svg)
 
 [material-table](https://github.com/mbrn/material-table) 是一款 React 的简单且强大的数据库。它基于 Material-UI Table 并且添加了一些额外的功能。 它们支持了不同的用户案例（可编辑，筛选，分组，排序，选择，国际化，树形数据等等）。 您应该看一下。
 

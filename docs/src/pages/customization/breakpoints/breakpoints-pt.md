@@ -99,8 +99,8 @@ Na demonstração a seguir, alteramos o elemento DOM renderizado (*em*, <u>u</u>
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Corresponde [md, ∞[
-    //             [960px, ∞[
+    // Match [md, ∞[
+    //       [960px, ∞[
     [theme.breakpoints.up('md')]: {
       backgroundColor: 'red',
     },
@@ -124,9 +124,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Corresponde [0, md + 1[
-    //             [0, lg[
-    //             [0, 1280px[
+    // Match [0, md + 1[
+    //       [0, lg[
+    //       [0, 1280px[
     [theme.breakpoints.down('md')]: {
       backgroundColor: 'red',
     },
@@ -150,9 +150,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Corresponde [md, md + 1[
-    //             [md, lg[
-    //             [960px, 1280px[
+    // Match [md, md + 1[
+    //       [md, lg[
+    //       [960px, 1280px[
     [theme.breakpoints.only('md')]: {
       backgroundColor: 'red',
     },
@@ -177,9 +177,9 @@ const styles = theme => ({
 const styles = theme => ({
   root: {
     backgroundColor: 'blue',
-    // Corresponde [sm, md + 1[
-    //             [sm, lg[
-    //             [600px, 1280px[
+    // Match [sm, md + 1[
+    //       [sm, lg[
+    //       [600px, 1280px[
     [theme.breakpoints.between('sm', 'md')]: {
       backgroundColor: 'red',
     },
@@ -229,14 +229,12 @@ const theme = createMuiTheme({
 ```jsx
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
-class MyComponent extends React.Component {
-  render () {
-    if (isWidthUp('sm', this.props.width)) {
-      return <span />
-    }
-
-    return <div />;
+function MyComponent(props) {
+  if (isWidthUp('sm', props.width)) {
+    return <span />
   }
+
+  return <div />;
 }
 
 export default withWidth()(MyComponent);

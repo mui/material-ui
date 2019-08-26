@@ -14,7 +14,7 @@ Der Einfachheit halber stellt Material-UI seine vollständige API auf der oberst
 import { Button, TextField } from '@material-ui/core';
 ```
 
-⚠️ Beachten Sie, dass das Tree-Shacking eine Optimierung darstellt, die normalerweise nicht in der Entwicklungsumgebung angewendet wird. Development bundles will contain the full library which can lead to **slower startup times**. Dies macht sich insbesondere dann bemerkbar, wenn Sie aus `@material-ui/icons` importieren. Die Startzeiten können ungefähr 6-mal langsamer sein als ohne benannte Importe von der API der obersten Ebene.
+⚠️ Be aware that tree-shaking is an optimization that is usually only applied to production bundles. Development bundles will contain the full library which can lead to **slower startup times**. Dies macht sich insbesondere dann bemerkbar, wenn Sie aus `@material-ui/icons` importieren. Die Startzeiten können ungefähr 6-mal langsamer sein als ohne benannte Importe von der API der obersten Ebene.
 
 If this is an issue for you, you have various options:
 
@@ -65,61 +65,121 @@ This option provides the best DX and UX. However, you need to apply the followin
 Wählen Sie eines der folgenden Plugins:
 
 - [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) with the following configuration:
+    
+    `yarn add -D babel-plugin-import`
+    
+    Create a `.babelrc.js` file in the root directory of your project:
 
 ```js
-  plugins: [
+  const plugins = [
     [
       'babel-plugin-import',
       {
-        libraryName: '@material-ui/core',
-        libraryDirectory: 'esm', // or '' if your bundler does not support ES modules
-        camel2DashComponentName: false,
+        'libraryName': '@material-ui/core',
+        // Use "'libraryDirectory': ''," if your bundler does not support ES modules
+        'libraryDirectory': 'esm',
+        'camel2DashComponentName': false
       },
-      'core',
+      'core'
     ],
     [
       'babel-plugin-import',
       {
-        libraryName: '@material-ui/icons',
-        libraryDirectory: 'esm', // or '' if your bundler does not support ES modules
-        camel2DashComponentName: false,
+        'libraryName': '@material-ui/icons',
+        // Use "'libraryDirectory': ''," if your bundler does not support ES modules
+        'libraryDirectory': 'esm',
+        'camel2DashComponentName': false
       },
-      'icons',
-    ],
-  ],
+      'icons'
+    ]
+  ];
+
+  module.exports = {plugins};
   ```
+
 - [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) with the following configuration:
 
+  `yarn add -D babel-plugin-transform-imports`
+
+  Create a `.babelrc.js` file in the root directory of your project:
+
   ```js
-  plugins: [
-    'babel-plugin-transform-imports',
-    {
-      '@material-ui/core': {
-        transform: '@material-ui/core/esm/${member}',
-        // for bundlers not supporting ES modules use:
-        // transform: '@material-ui/core/${member}',
-        preventFullImport: true,
-      },
-      '@material-ui/icons': {
-        transform: '@material-ui/icons/esm/${member}',
-        // for bundlers not supporting ES modules use:
-        // transform: '@material-ui/icons/${member}',
-        preventFullImport: true,
-      },
-    },
-  ],
+  const plugins = [
+    [
+      'babel-plugin-transform-imports',
+      {
+        '@material-ui/core': {
+          // Use "transform: '@material-ui/core/${member}'," if your bundler does not support ES modules
+          'transform': '@material-ui/core/esm/${member}',
+          'preventFullImport': true
+        },
+        '@material-ui/icons': {
+          // Use "transform: '@material-ui/icons/${member}'," if your bundler does not support ES modules
+          'transform': '@material-ui/icons/esm/${member}',
+          'preventFullImport': true
+        }
+      }
+    ]
+  ];
+
+  module.exports = {plugins};
   ```
 
-#### 2. Convert all your imports
+If you are using Create React App, you will need to use a couple of projects that let you use `.babelrc` configuration, without ejecting. 
 
-Finally, you can convert your exisiting codebase to this option with our [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) codemod.
-It will perform the following diffs:
+  `yarn add -D react-app-rewired customize-cra`
+
+  Create a `config-overrides.js` file in the root directory:
+
+  ```js
+  /* config-overrides.js */
+  const { useBabelRc, override } = require('customize-cra')
+
+  module.exports = override(
+    useBabelRc()
+  );  
+  ```
+
+  If you wish, `babel-plugin-import` can be configured through `config-overrides.js` instead of `.babelrc` by using this [configuration](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options).
+
+  Modify your `package.json` start command:
 
 ```diff
--import Button from '@material-ui/core/Button';
--import TextField from '@material-ui/core/TextField';
-+import { Button, TextField } from '@material-ui/core';
+  "scripts": {
+-  "start": "react-scripts start"
++  "start": "react-app-rewired start"
+  }
 ```
+
+    Note: You may run into errors like these:
+    
+
+        Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
+        Module not found: Can't resolve '@material-ui/core/createStyles' in '/your/project'
+      ```
+    
+      This is because `@material-ui/styles` is re-exported through `core`, but the full import is not allowed.
+    
+      You have an import like this in your code:
+    
+      `import {makeStyles, createStyles} from '@material-ui/core';`
+    
+      The fix is simple, define the import separately:
+    
+      `import {makeStyles, createStyles} from '@material-ui/core/styles';`
+    
+      Enjoy significantly faster start times.
+    
+    #### 2. Convert all your imports
+    
+    Finally, you can convert your exisiting codebase to this option with our [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) codemod.
+    It will perform the following diffs:
+    
+    ```diff
+    -import Button from '@material-ui/core/Button';
+    -import TextField from '@material-ui/core/TextField';
+    +import { Button, TextField } from '@material-ui/core';
+    
 
 ## ECMAScript
 

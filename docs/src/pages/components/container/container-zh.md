@@ -1,6 +1,6 @@
 ---
 title: React Container（容器）组件
-components: Container（容器）
+components: Container
 ---
 
 # Container（容器）

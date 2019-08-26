@@ -8,7 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import DirectionsIcon from '@material-ui/icons/Directions';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     padding: '2px 4px',
     display: 'flex',
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     width: 400,
   },
   input: {
-    marginLeft: 8,
+    marginLeft: theme.spacing(1),
     flex: 1,
   },
   iconButton: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles({
     height: 28,
     margin: 4,
   },
-});
+}));
 
 export default function CustomizedInputBase() {
   const classes = useStyles();

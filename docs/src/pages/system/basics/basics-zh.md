@@ -246,7 +246,7 @@ const Box = styled.div`
 
 `style function`：被创建的样式函数。
 
-#### 示例
+#### 例子
 
 我们可以创建一个支持一些CSS网格属性的组件，比如` grid-gap ` 。 通过提供`spacing`作为` themeKey `我们可以重用逻辑来启用我们在其他间距属性（如`padding`）中看到的行为。
 

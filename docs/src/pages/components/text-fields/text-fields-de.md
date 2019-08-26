@@ -43,7 +43,7 @@ Möglicherweise haben Sie auch festgestellt, dass einige native HTML-Eingabeeige
 
 ## Benutzerdefinierte Eingabe
 
-Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -109,7 +109,7 @@ Die folgende Demo verwendet die Bibliotheken [react-text-mask](https://github.co
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-Die bereitgestellte Eingabekomponente sollte die Eigenschaft `inputRef` haben. The property should be called with a value that implements the following interface:
+The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
 
 ```ts
 interface InputElement {

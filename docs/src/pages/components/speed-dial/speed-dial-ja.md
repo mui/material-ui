@@ -1,27 +1,27 @@
 ---
-title: Speed Dial React component
+title: Speed Dial Reactコンポーネント
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 ---
 
-# 短縮ダイヤル
+# スピードダイヤル
 
-<p class="description">When pressed, a floating action button can display three to six related actions in the form of a speed dial.</p>
+<p class="description">フローティング状態のアクションボタンを押すと、3~6つの関連アクションを短縮ダイヤルの形式で表示できます。</p>
 
 If more than six actions are needed, something other than a FAB should be used to present them.
 
-## Simple Speed Dial
+## シンプルスピードダイヤル
 
 The floating action button can display related actions.
 
 {{"demo": "pages/components/speed-dial/SpeedDials.js"}}
 
-## Custom close icon
+## カスタムcloseアイコン
 
 You can provide an alternate icon for the closed and open states using the `icon` and `openIcon` props of the `SpeedDialIcon` component.
 
 {{"demo": "pages/components/speed-dial/OpenIconSpeedDial.js"}}
 
-## Persistent action tooltips
+## 永続的なアクションのツールチップ
 
 The SpeedDialActions tooltips can be be displayed persistently so that users don't have to long-press in order to see the tooltip on touch devices.
 

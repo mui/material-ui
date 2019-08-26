@@ -17,7 +17,7 @@ Les indicateurs **indéterminés** indiquent un temps d'attente non spécifié.
 
 Lorsque vous affichez les progrès d'une séquence de processus, indiquez le progrès global plutôt que les progrès de chaque activité.
 
-## Progression circulaire
+## Circular
 
 Les [progrès circulaires](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) prennent en charge les processus à la fois déterminés et indéterminés.
 
@@ -83,7 +83,7 @@ function Progress(props) {
 
 ## Customized progress bars
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
 {{"demo": "pages/components/progress/CustomizedProgressBars.js"}}
 

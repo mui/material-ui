@@ -16,7 +16,7 @@
   - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/components/about-the-lab/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
 - **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓** 
-  - Transitions: 
+  - 过渡动画: 
     - **[Speed dial](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions) ~** ([Lab](/components/about-the-lab/))
     - [Menu](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
     - [变形(Morph)](https://material.io/design/components/buttons-floating-action-button.html#types-of-transitions)
@@ -54,9 +54,9 @@
   - **Icon ✓**
   - Thumbnail
   - **Controls ✓** 
-    - **Checkbox ✓**
+    - **复选框 ✓**
     - **Expand/collapse ✓** (又名 Nested)
-    - **Switch ✓**
+    - **开关 ✓**
     - Reorder
 - **[Menus](https://material.io/design/components/menus.html) ✓** 
   - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed) 
@@ -100,7 +100,7 @@
   - [Assistive elements:](https://material.io/design/components/text-fields.html#anatomy) 
     - **Helper text ✓**
     - **Error message ✓**
-    - **Icons ✓**
+    - **图标 ✓**
     - Character counter
 - **[Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓** (旧 Material v1)
 - **[Tooltips](https://material.io/design/components/tooltips.html) ✓** 

@@ -198,14 +198,14 @@ TablePagination.propTypes = {
   /**
    * Callback fired when the page is changed.
    *
-   * @param {object} event The event source of the callback
-   * @param {number} page The page selected
+   * @param {object} event The event source of the callback.
+   * @param {number} page The page selected.
    */
   onChangePage: PropTypes.func.isRequired,
   /**
    * Callback fired when the number of rows per page is changed.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onChangeRowsPerPage: PropTypes.func,
   /**

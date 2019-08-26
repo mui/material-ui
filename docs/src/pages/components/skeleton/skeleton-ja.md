@@ -3,13 +3,13 @@ title: Skeleton React component
 components: Skeleton
 ---
 
-# Skeleton
+# スケルトン
 
-<p class="description">Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.</p>
+<p class="description">データがロードされる前にコンテンツのプレースホルダープレビューを表示して、ロード時のフラストレーションを軽減します。</p>
 
-The data for your components might not be immediately available. You can increase the perceived performance for users by using skeletons. It feels like things are happening immediately, then the information is incrementally displayed on the screen (Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
+コンポーネントのデータがすぐに利用できない場合があります。 スケルトンを使用することにより、ユーザーの知覚パフォーマンスを向上させることができます。 すぐに物事が発生しているように感じ、情報が画面に徐々に表示されます（Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
 
-The component is designed to be used **directly in your components**. For instance:
+このコンポーネントは、**コンポーネント内で直接使用**できるように設計されています。 例えば：
 
 ```jsx
 {item ? (
@@ -19,10 +19,10 @@ The component is designed to be used **directly in your components**. For instan
 )}
 ```
 
-## YouTube example
+## YouTubeの例
 
 {{"demo": "pages/components/skeleton/YouTube.js"}}
 
-## Facebook example
+## Facebookの例
 
 {{"demo": "pages/components/skeleton/Facebook.js"}}

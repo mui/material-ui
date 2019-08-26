@@ -1,58 +1,58 @@
-# Theming
+# Temática
 
-<p class="description">Customize Material-UI with your theme. You can change the colors, the typography and much more.</p>
+<p class="description">Personaliza Material-UI con tu tema. Puedes cambiar los colores, la tipogradía y mucho más.</p>
 
-The theme specifies the color of the components, darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
+El tema especifica el color de los componentes, las obscuridad de las superficies, nivel de la sombra, opacidad apropiada de la tinta de los elementos, etc.
 
-Themes let you apply a consistent tone to your app. It allows you to **customize all design aspects** of your project in order to meet the specific needs of your business or brand.
+Los temas te permiten aplicar un tono consistente a tu aplicación. Le permite ** personalizar todos los aspectos de diseño ** de su proyecto para satisfacer las necesidades específicas de su negocio o marca.
 
-To promote greater consistency between apps, light and dark theme types are available to choose from. By default, components use the light theme type.
+Para promover una mayor coherencia entre las aplicaciones; claro y oscuro son los tipos de temas que están disponibles para elegir. Por defecto, los componentes utilizan el tema de tipo claro.
 
-## Theme provider
+## Proveedor de Tema
 
-If you wish to customize the theme, you need to use the `ThemeProvider` component in order to inject a theme into your application. However, this is optional; Material-UI components come with a default theme.
+Si desea personalizar el tema, deberá de usar el componente ` ThemeProvider ` para inyectar un tema en su aplicación. Sin embargo, esto es opcional; Los componentes de material-UI vienen con un tema predeterminado.
 
-`ThemeProvider` relies on the context feature of React to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize. You can learn more about this in [the API section](/styles/api/#themeprovider).
+`ThemeProvider` se basa en la característica de contexto de React para pasar el tema hacia los componentes que estén por dejabo. así que tendrá que asegurar que `ThemeProvider` sea un componente padre de los componentes que trata de personalizar. Puede aprender más acerca de esto en la [sección API](/styles/api/#themeprovider).
 
-## Theme configuration variables
+## Variables de configuración de Tema
 
-Changing the theme configuration variables is the most effective way to match Material-UI to your needs. The following sections cover the most important theme variables:
+Cambiar las variables de configuración del tema es la forma más efectiva de adaptar Material-UI a sus necesidades. Las siguientes secciones cubren las variables de tema más importantes:
 
 - [Paleta](/customization/palette/)
-- [Typography](/customization/typography/)
+- [Tipografía](/customization/typography/)
 - [Espaciado](/customization/spacing/)
 - [Puntos de interrupción](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
 - [Globales](/customization/globals/)
 
-You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
+Puede consultar la sección de [Tema predeterminado](/customization/default-theme/) para ver el tema completo.
 
-### Custom variables
+### Variables personalizadas
 
-When using Material-UI's theme with our [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
+Al usar el tema de Material-UI con nuestra [solución de estilo](/styles/basics/) o [ cualquier otro ](/guides/interoperability/#themeprovider). Puede ser conveniente agregar variables adicionales al tema para que pueda usarlas en cualquier lugar. Por ejemplo:
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
-## Accessing the theme in a component
+## Accediendo al tema en un componente
 
-You [can access](/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
+Usted [ puede acceder ](/styles/advanced/#accessing-the-theme-in-a-component) a las variables del tema dentro de sus componentes React.
 
-## Nesting the theme
+## Anidando el tema
 
-[You can nest](/styles/advanced/#theme-nesting) multiple theme providers.
+Usted [ puedes anidar ](/styles/advanced/#theme-nesting) multiples proveedores de tema.
 
 {{"demo": "pages/customization/theming/ThemeNesting.js"}}
 
-The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
+El tema interno **sobreescribirá** el tema exterior. Puede ampliar el tema externo proporcionando una función:
 
 {{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
 ### A note on performance
 
-The performance implications of nesting the `ThemeProvider` component are linked to JSS's work behind the scenes. The main point to understand is that the injected CSS is cached with the following tuple `(styles, theme)`.
+Las implicaciones de rendimiento de anidar el componente ` ThemeProvider ` están vinculados al trabajo de JSS detrás de escena. El punto principal a entender es que el CSS inyectado se almacena en caché con la siguiente tupla ` (styles, theme) `.
 
-- `theme`: If you provide a new theme at each render, a new CSS object will be computed and injected. Both for UI consistency and performance, it's better to render a limited number of theme objects.
-- `styles`: The larger the styles object is, the more work is needed.
+- `theme`: Si proporciona un tema nuevo en cada renderizado, un nuevo objeto CSS será calculado e inyectado. Tanto para la consistencia de la interfaz de usuario, como para el rendimiento, es mejor renderizar un número limitado de objetos de tema.
+- ` styles`: Cuanto más grande es el objeto de estilos, más trabajo se necesitará.
 
 ## API
 

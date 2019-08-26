@@ -289,7 +289,7 @@ function handleRender(req, res) {
 
 ## 为什么我的应用程序看到的颜色和文档里的颜色大相径庭？
 
-文档网站使用了一个自定义的主题。 因此，调色板和 Material-UI 传播的默认的主题是截然不同的。 请参考[这页](/customization/theming/) 来了解自定义主题。
+文档网站使用了一个自定义的主题。 因此，调色板和 Material-UI 传播的默认的主题是截然不同的。 Please refer to [this page](/customization/theming/) to learn about theme customization.
 
 ## Material-UI 很棒。 我该如何支持该项目？
 

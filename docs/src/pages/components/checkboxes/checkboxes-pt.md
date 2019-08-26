@@ -44,4 +44,4 @@ Quando um rótulo não pode ser usado, é necessário adicionar um atributo dire
 
 ## Guia
 
-- [Caixas de Seleção vs. Botões de Opção](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Caixas de Seleção vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

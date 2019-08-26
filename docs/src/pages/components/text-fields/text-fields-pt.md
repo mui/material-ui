@@ -43,7 +43,7 @@ Você também pode ter notado que algumas propriedades de entrada nativas do HTM
 
 ## Inputs Costumizados
 
-Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -109,7 +109,7 @@ A seguinte demonstração usa as bibliotecas [react-text-mask](https://github.co
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-O componente de entrada fornecido deve manipular a propriedade `inputRef`. A propriedade deve ser chamada com um valor que implemente a seguinte interface:
+The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
 
 ```ts
 interface InputElement {
@@ -145,7 +145,7 @@ function MeuInputComponente(props) {
 
 ## Acessibilidade
 
-Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao rótulo e ao texto auxiliar**. Os nós DOM subjacentes devem ter essa estrutura.
+In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure.
 
 ```jsx
 <div class="form-control">
@@ -168,7 +168,7 @@ Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao r
 
 ## Projetos Complementares
 
-Para casos de uso mais avançados, você pode tirar proveito de:
+Para os usos mais avançados, você é capaz de aproveita:
 
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Um conjunto de componentes do wrapper para facilitar o uso do Material UI com Redux Form.
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Ligações para usar Mateiral-UI com formik.

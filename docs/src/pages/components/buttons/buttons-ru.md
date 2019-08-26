@@ -96,7 +96,7 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 ## Настраиваемые кнопки
 
-Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 
@@ -110,7 +110,7 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 ## Сторонняя библиотека маршрутизации
 
-Одним из распространенных вариантов использования кнопки является переход на новую страницу. `ButtonBase` компонент предоставляет свойство для обработки этого варианта использования: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Учитывая, что многие наши интерактивные компоненты используют `ButtonBase`, у вас есть возможность воспользоваться этим.
+Одним из распространенных вариантов использования кнопки является переход на новую страницу. `ButtonBase` компонент предоставляет свойство для обработки этого варианта использования: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Given that a lot of our interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
 Here is an integration example with react-router:
 

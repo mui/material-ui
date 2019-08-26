@@ -115,15 +115,6 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     ...other
   } = props;
   const paperRef = React.useRef();
-  const handleResizeRef = React.useRef(() => {});
-
-  React.useImperativeHandle(
-    action,
-    () => ({
-      updatePosition: handleResizeRef.current,
-    }),
-    [],
-  );
 
   // Returns the top/left offset of the position
   // to attach to on the anchor element (or body if none is provided)
@@ -139,9 +130,11 @@ const Popover = React.forwardRef(function Popover(props, ref) {
       }
 
       const resolvedAnchorEl = getAnchorEl(anchorEl);
+      const containerWindow = ownerWindow(resolvedAnchorEl);
+
       // If an anchor element wasn't provided, just use the parent body element of this Popover
       const anchorElement =
-        resolvedAnchorEl instanceof Element
+        resolvedAnchorEl instanceof containerWindow.Element
           ? resolvedAnchorEl
           : ownerDocument(paperRef.current).body;
       const anchorRect = anchorElement.getBoundingClientRect();
@@ -310,22 +303,32 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     paperRef.current = ReactDOM.findDOMNode(instance);
   }, []);
 
-  React.useEffect(() => {
-    handleResizeRef.current = debounce(() => {
-      // Because we debounce the event, the open prop might no longer be true
-      // when the callback resolves.
-      if (!open) {
-        return;
-      }
+  const updatePosition = React.useMemo(() => {
+    if (!open) {
+      return undefined;
+    }
 
+    return debounce(() => {
       setPositioningStyles(paperRef.current);
     });
-    window.addEventListener('resize', handleResizeRef.current);
-    return () => {
-      handleResizeRef.current.clear();
-      window.removeEventListener('resize', handleResizeRef.current);
-    };
   }, [open, setPositioningStyles]);
+
+  React.useImperativeHandle(action, () => (open ? { updatePosition } : null), [
+    open,
+    updatePosition,
+  ]);
+
+  React.useEffect(() => {
+    if (!updatePosition) {
+      return undefined;
+    }
+
+    window.addEventListener('resize', updatePosition);
+    return () => {
+      window.removeEventListener('resize', updatePosition);
+      updatePosition.clear();
+    };
+  }, [updatePosition]);
 
   let transitionDuration = transitionDurationProp;
 
@@ -384,7 +387,7 @@ Popover.propTypes = {
    * @param {object} actions This object contains all possible actions
    * that can be triggered programmatically.
    */
-  action: PropTypes.func,
+  action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   /**
    * This is the DOM element, or a function that returns the DOM element,
    * that may be used to set the position of the popover.
@@ -392,8 +395,9 @@ Popover.propTypes = {
   anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {
     if (props.open && (!props.anchorReference || props.anchorReference === 'anchorEl')) {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
+      const containerWindow = ownerWindow(resolvedAnchorEl);
 
-      if (resolvedAnchorEl instanceof Element) {
+      if (resolvedAnchorEl instanceof containerWindow.Element) {
         const box = resolvedAnchorEl.getBoundingClientRect();
 
         if (

@@ -24,9 +24,9 @@ Cuando comienzas a aprender Material-UI, puedes encontrar publicaciones en blogs
 
 - **Meet Material-UI — your new favorite user interface library**: a blog post that guides you in building a Todo MVC while covering some important concepts of Material-UI. 
   - 📝 [ La publicación en el blog ](https://medium.freecodecamp.org/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c)
-- ** Aprende React y Material-UI **: una serie de videos que cubren todos los componentes importantes de Material-UI. 
+- **Learn React & Material-UI**: a series of videos covering all the important Material-UI components. 
   - 📹 [ Los vídeos ](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
-- ** Comenzando Material-UI para React **: una publicación de blog que te guía en la construcción de una lista de tarjetas simple. 
+- **Getting Started With Material-UI For React**: a blog post that guides you in building a simple card list. 
   - 📝 [ La publicación en el blog ](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
   - 📹 [El vídeo](https://www.youtube.com/watch?v=PWadEeOuv5o)
 - **Elegant UX in React with Material-UI**: a blog post covering some important Material-UI concepts. 
