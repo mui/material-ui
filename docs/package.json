@@ -77,7 +77,7 @@
     "react-frame-component": "^4.1.1",
     "react-inspector": "^3.0.2",
     "react-number-format": "^4.0.8",
-    "react-redux": "^7.0.3",
+    "react-redux": "^7.1.1",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.1",
     "react-select": "^3.0.4",
