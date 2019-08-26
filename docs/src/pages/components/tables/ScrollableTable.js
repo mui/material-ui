@@ -384,4 +384,4 @@ export default function ScrollableTable() {
       </div>
     </Paper>
   );
-};
+}
