@@ -85,22 +85,20 @@ const StyledTab = withStyles((theme: Theme) =>
   }),
 )((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    padding: {
-      padding: theme.spacing(3),
-    },
-    demo1: {
-      backgroundColor: theme.palette.background.paper,
-    },
-    demo2: {
-      backgroundColor: '#2e1534',
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  padding: {
+    padding: theme.spacing(3),
+  },
+  demo1: {
+    backgroundColor: theme.palette.background.paper,
+  },
+  demo2: {
+    backgroundColor: '#2e1534',
+  },
+}));
 
 export default function CustomizedTabs() {
   const classes = useStyles();
