@@ -19,7 +19,7 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 
 const columns = [
   { id: 'name', label: 'Name', minWidth: 200 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
+  { id: 'code', label: 'ISO Code' },
   {
     id: 'population',
     label: 'Population',
@@ -29,7 +29,7 @@ const columns = [
   },
   {
     id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
+    label: 'Size (km\u00b2)',
     minWidth: 120,
     align: 'right',
     format: v => v.toLocaleString(),
@@ -219,11 +219,7 @@ ScrollableTableToolbar.propTypes = {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: 420,
     width: '100%',
-    position: 'relative',
-  },
-  tableWrapper: {
     height: '100%',
   },
   bbar: {
@@ -231,7 +227,7 @@ const useStyles = makeStyles(theme => ({
     bottom: 0,
     right: 0,
   },
-  scrollWrapper: {
+  tableWrapper: {
     position: 'relative',
     height: '100%',
     maxHeight: 'calc(100% - 120px)',
@@ -315,73 +311,71 @@ export default function ScrollableTable() {
   const isSelected = dataIndex => selected.indexOf(dataIndex) !== -1;
 
   return (
-    <Paper className={classes.root}>
+    <div className={classes.root}>
+      <ScrollableTableToolbar numSelected={selected.length} />
       <div className={classes.tableWrapper}>
-        <ScrollableTableToolbar numSelected={selected.length} />
-        <div className={classes.scrollWrapper}>
-          <Table role="grid" aria-labelledby="tableTitle" size="medium">
-            <ScrollableTableHead
-              classes={classes}
-              numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              rowCount={rows.length}
-            />
-            <TableBody>
-              {stableSort(rows, getSorting(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(row => {
-                  const dataIndex = rows.indexOf(row);
-                  const isItemSelected = isSelected(dataIndex);
-                  const labelId = `scrollable-table-checkbox-${dataIndex}`;
+        <Table role="grid" aria-labelledby="tableTitle" size="medium">
+          <ScrollableTableHead
+            classes={classes}
+            numSelected={selected.length}
+            order={order}
+            orderBy={orderBy}
+            onSelectAllClick={handleSelectAllClick}
+            onRequestSort={handleRequestSort}
+            rowCount={rows.length}
+          />
+          <TableBody>
+            {stableSort(rows, getSorting(order, orderBy))
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map(row => {
+                const dataIndex = rows.indexOf(row);
+                const isItemSelected = isSelected(dataIndex);
+                const labelId = `scrollable-table-checkbox-${dataIndex}`;
 
-                  return (
-                    <TableRow
-                      hover
-                      onClick={event => handleClick(event, dataIndex)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={dataIndex}
-                      selected={isItemSelected}
-                    >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          checked={isItemSelected}
-                          inputProps={{ 'aria-labelledby': labelId }}
-                        />
+                return (
+                  <TableRow
+                    hover
+                    onClick={event => handleClick(event, dataIndex)}
+                    role="checkbox"
+                    aria-checked={isItemSelected}
+                    tabIndex={-1}
+                    key={dataIndex}
+                    selected={isItemSelected}
+                  >
+                    <TableCell padding="checkbox">
+                      <Checkbox
+                        color="primary"
+                        checked={isItemSelected}
+                        inputProps={{ 'aria-labelledby': labelId }}
+                      />
+                    </TableCell>
+                    {columns.map(column => (
+                      <TableCell key={column.id} align={column.align}>
+                        {column.format ? column.format(row[column.id]) : row[column.id]}
                       </TableCell>
-                      {columns.map(column => (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format ? column.format(row[column.id]) : row[column.id]}
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  );
-                })}
-            </TableBody>
-          </Table>
-        </div>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          className={classes.bbar}
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          backIconButtonProps={{
-            'aria-label': 'previous page',
-          }}
-          nextIconButtonProps={{
-            'aria-label': 'next page',
-          }}
-          onChangePage={handleChangePage}
-          onChangeRowsPerPage={handleChangeRowsPerPage}
-        />
+                    ))}
+                  </TableRow>
+                );
+              })}
+          </TableBody>
+        </Table>
       </div>
-    </Paper>
+      <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        className={classes.bbar}
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        backIconButtonProps={{
+          'aria-label': 'previous page',
+        }}
+        nextIconButtonProps={{
+          'aria-label': 'next page',
+        }}
+        onChangePage={handleChangePage}
+        onChangeRowsPerPage={handleChangeRowsPerPage}
+      />
+    </div>
   );
 }
