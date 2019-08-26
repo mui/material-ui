@@ -88,13 +88,11 @@ You will need to use a babel plugin to rewrite the import path dynamically.
       'babel-plugin-transform-imports',
       {
         '@material-ui/core': {
-          // Use "transform: '@material-ui/core/${member}'," if your bundler does not support ES modules
-          'transform': '@material-ui/core/esm/${member}',
+          'transform': '@material-ui/core/${member}',
           'preventFullImport': true
         },
         '@material-ui/icons': {
-          // Use "transform: '@material-ui/icons/${member}'," if your bundler does not support ES modules
-          'transform': '@material-ui/icons/esm/${member}',
+          'transform': '@material-ui/icons/${member}',
           'preventFullImport': true
         }
       }
@@ -117,11 +115,11 @@ module.exports = {
       "transform-imports",
       {
         "@material-ui/core": {
-          "transform": "@material-ui/core/esm/${member}",
+          "transform": "@material-ui/core/${member}",
           "preventFullImport": true
         },
         "@material-ui/icons": {
-          "transform": "@material-ui/icons/esm/${member}",
+          "transform": "@material-ui/icons/${member}",
           "preventFullImport": true
         }
       }
