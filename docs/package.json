@@ -63,7 +63,7 @@
     "lodash": "^4.17.15",
     "lz-string": "^1.4.4",
     "markdown-to-jsx": "^6.10.2",
-    "material-table": "^1.40.1",
+    "material-table": "^1.50.0",
     "material-ui-popup-state": "^1.4.0",
     "next": "8.1.0",
     "notistack": "^0.8.9",
