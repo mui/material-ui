@@ -9,7 +9,7 @@ import {
   fireEvent as rtlFireEvent,
   queries,
   render,
-} from '@testing-library/react';
+} from '@testing-library/react/pure';
 
 // holes are *All* selectors which aren't necessary for id selectors
 const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueries(
