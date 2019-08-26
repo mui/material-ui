@@ -104,14 +104,13 @@ You will need to use a babel plugin to rewrite the import path dynamically.
   module.exports = {plugins};
   ```
 
-If you are using Create React App, there is no need for a `.babelrc.js` file and the configuration is easy by using [craco](https://github.com/sharegate/craco):
+If you are using Create React App, there is no need for a `.babelrc.js` file. Use [craco](https://github.com/sharegate/craco) to configure babel:
 
   `yarn add -D @craco/craco babel-plugin-transform-imports`
   
   Create a `craco-config.js` file in the root directory:
 
   ```js
-/* eslint-disable no-template-curly-in-string */
 module.exports = {
   babel: {
     plugins: [[
