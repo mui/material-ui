@@ -6133,10 +6133,10 @@ eslint-plugin-jsx-a11y@^6.2.3:
     has "^1.0.3"
     jsx-ast-utils "^2.2.1"
 
-eslint-plugin-mocha@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-mocha/-/eslint-plugin-mocha-6.0.0.tgz#0a2af057280962e9deab929361141865b2b8a761"
-  integrity sha512-Qgy1q64cTKqiHiYP3ZPAcMlEoPejeM7GLKDs2pvYG/fXbVDYDJw7ELlHlbn3147SL9+cPSqat7uCCbbNmVpc1g==
+eslint-plugin-mocha@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-mocha/-/eslint-plugin-mocha-6.1.0.tgz#4950ceea8e51b1f4265116c0d03d0cbae86d0a6f"
+  integrity sha512-EQj355rhaSGOLP6WH9P9xu+0Xuy+G5dZUuRTlLPNpICw5x0zrqK+uxQZvMVKWO9zOJA4PDVR1XHO0rm9wbOLuA==
   dependencies:
     ramda "^0.26.1"
 
