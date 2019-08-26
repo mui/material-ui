@@ -46,7 +46,7 @@ const columns = [
 const createData = (name, code, population, size) => {
   const density = population / size;
   return { name, code, population, size, density };
-}
+};
 
 const rows = [
   createData('India', 'IN', 1324171354, 3287263),
@@ -74,7 +74,7 @@ const desc = (a, b, orderBy) => {
     return 1;
   }
   return 0;
-}
+};
 
 const stableSort = (array, cmp) => {
   const stabilizedThis = array.map((el, index) => [el, index]);
@@ -84,11 +84,11 @@ const stableSort = (array, cmp) => {
     return a[1] - b[1];
   });
   return stabilizedThis.map(el => el[0]);
-}
+};
 
 const getSorting = (order, orderBy) => {
   return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
-}
+};
 
 const ScrollableTableHead = props => {
   const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
@@ -133,7 +133,7 @@ const ScrollableTableHead = props => {
       </TableRow>
     </TableHead>
   );
-}
+};
 
 ScrollableTableHead.propTypes = {
   classes: PropTypes.object.isRequired,
@@ -272,7 +272,7 @@ export default ScrollableTable = () => {
     const isDesc = orderBy === property && order === 'desc';
     setOrder(isDesc ? 'asc' : 'desc');
     setOrderBy(property);
-  }
+  };
 
   const handleSelectAllClick = event => {
     if (event.target.checked) {
@@ -281,7 +281,7 @@ export default ScrollableTable = () => {
       return;
     }
     setSelected([]);
-  }
+  };
 
   const handleClick = (event, dataIndex) => {
     const selectedIndex = selected.indexOf(dataIndex);
@@ -301,16 +301,16 @@ export default ScrollableTable = () => {
     }
 
     setSelected(newSelected);
-  }
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
-  }
+  };
 
   const handleChangeRowsPerPage = event => {
     setRowsPerPage(+event.target.value);
     setPage(0);
-  }
+  };
 
   const isSelected = dataIndex => selected.indexOf(dataIndex) !== -1;
 
@@ -384,4 +384,4 @@ export default ScrollableTable = () => {
       </div>
     </Paper>
   );
-}
+};
