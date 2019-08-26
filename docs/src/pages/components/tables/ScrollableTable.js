@@ -260,7 +260,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default ScrollableTable = () => {
+export default function ScrollableTable() {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState(columns[0].id);
