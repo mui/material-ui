@@ -21,7 +21,7 @@ O ícone resultante pode ser usado como está, ou incluído como filho para outr
 
 ### SVG Material Ícones
 
-É interessante ter as ferramentas necessárias para implementar ícones customizados, mas com quais predefinições? [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) is an npm package that includes the 1,000+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to `SvgIcon` components.
+É interessante ter as ferramentas necessárias para implementar ícones customizados, mas com quais predefinições? [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) é um pacote npm que inclui mais de 1000 [ícones oficiais da Material](https://material.io/tools/icons/?style=baseline) convertidos para componentes `SvgIcon`.
 
 <a href="/components/material-icons/">
   <img src="/static/images/icons/icons.png" alt="Material oficial de ícones" style="width: 566px" />
@@ -29,12 +29,12 @@ O ícone resultante pode ser usado como está, ou incluído como filho para outr
 
 #### Uso
 
-You can use our [internal search](/components/material-icons/) or [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) to find a specific icon. Ao importar um ícone, tenha em mente que os nomes dos ícones são `PascalCase`, por exemplo:
+Você pode usar nossa [procura interna](/components/material-icons/) ou [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) para encontrar um ícone específico. Ao importar um ícone, tenha em mente que os nomes dos ícones são `PascalCase`, por exemplo:
 
 - [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) é exposto como `@material-ui/icons/Delete`
 - [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) é exposto como `@material-ui/icons/DeleteForever`
 
-For "themed" icons, append the theme name to the icon name. Por exemplo, com o
+Para ícones baseados em tema, acrescente o nome do tema ao nome do ícone. Por exemplo, com o
 
 - O ícone [`delete`](https://material.io/tools/icons/?icon=delete&style=outline) delineado é exposto como `@material-ui/icons/DeleteOutlined`
 - O ícone [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded) arredondado é exposto como `@material-ui/icons/DeleteRounded`
@@ -51,21 +51,21 @@ Há três exceções para esta regra:
 
 #### Importações
 
-You can import the icons with one of these two options:
+Você pode importar os ícones com uma destas duas opções:
 
-- Option n°1:
+- Opção n ° 1:
 
 ```jsx
   import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
   import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
   ```
-- Option n2:
+- Opção n2:
 
   ```jsx
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-The safest option is n°1 but option n°2 can yield the best experience.
+A opção mais segura é n° 1, mas a opção n° 2 pode proporcionar a melhor experiência.
 Make sure you follow our [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the approach n°2.
 We encourage the configuration of a Babel plugin.
 

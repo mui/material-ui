@@ -1,4 +1,4 @@
-# Theming
+# テーマ
 
 <p class="description">あなたが作成したテーマでMaterial-UIをカスタマイズしてください。 色や文字のスタイルなどを変更できます。</p>
 
@@ -10,63 +10,63 @@
 
 ## テーマプロバイダー
 
-If you wish to customize the theme, you need to use the `ThemeProvider` component in order to inject a theme into your application. However, this is optional; Material-UI components come with a default theme.
+テーマをカスタマイズする場合は、`ThemeProvider`コンポーネントを使用して、アプリケーションにテーマを挿入する必要があります。 ただし、これはオプションです。 Material-UIコンポーネントにはデフォルトのテーマが付属しています。
 
-`ThemeProvider` relies on the context feature of React to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize. You can learn more about this in [the API section](/styles/api/#themeprovider).
+`ThemeProvider`はReactのコンテキスト機能に依存して, テーマをコンポーネントに渡します。 そのため、`ThemeProvider`が、カスタマイズしようとしているコンポーネントの親であることを確認する必要があります。 詳細については、[ APIセクション](/styles/api/#themeprovider) をご覧ください。
 
-## Theme configuration variables
+## テーマ構成変数(Theme configuration variables)
 
-Changing the theme configuration variables is the most effective way to match Material-UI to your needs. The following sections cover the most important theme variables:
+テーマの構成変数を変更することは、Material-UIをニーズに合わせる最も効果的な方法です。 以下のセクションでは、最も重要なテーマ変数について説明します。
 
 - [パレット](/customization/palette/)
 - [タイポグラフィ](/customization/typography/)
 - [間隔](/customization/spacing/)
-- [ブレイクポイント](/customization/breakpoints/)
+- [ブレークポイント](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
 - [グローバル](/customization/globals/)
 
-You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
+[既定のテーマセクション](/customization/default-theme/)をチェックアウトすると、既定のテーマをすべて表示できます。
 
-### Custom variables
+### カスタム変数
 
-When using Material-UI's theme with our [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. 例えば：
+Material-UIのテーマを、[styling solution](/styles/basics/)また[any others](/guides/interoperability/#themeprovider)と一緒に使用する場合。 テーマに変数を追加すると、どこでも使用できるので便利です。 例えば：
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
-## Accessing the theme in a component
+## コンポーネント内のテーマへのアクセス
 
-You [can access](/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
+Reactコンポーネント内のテーマ変数に[アクセスできます](/styles/advanced/#accessing-the-theme-in-a-component) 。
 
-## Nesting the theme
+## テーマのネスト
 
-[You can nest](/styles/advanced/#theme-nesting) multiple theme providers.
+複数のテーマプロバイダーを[ネストできます](/styles/advanced/#theme-nesting)。
 
 {{"demo": "pages/customization/theming/ThemeNesting.js"}}
 
-The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
+内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。
 
 {{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
-### A note on performance
+### パフォーマンスに関する注意
 
-The performance implications of nesting the `ThemeProvider` component are linked to JSS's work behind the scenes. The main point to understand is that the injected CSS is cached with the following tuple `(styles, theme)`.
+`ThemeProvider`コンポーネントをネストすることによるパフォーマンスへの影響は、JSSの背後で行われる作業に関連しています。 理解すべき主な点は、挿入されたCSSが次のタプル`（styles、theme）`でキャッシュされることです 。
 
-- `theme`: If you provide a new theme at each render, a new CSS object will be computed and injected. Both for UI consistency and performance, it's better to render a limited number of theme objects.
-- `styles`: The larger the styles object is, the more work is needed.
+- `theme`: レンダリングのたびに新しいテーマを指定すると、新しいCSSオブジェクトが計算されて注入されます。 UIの一貫性とパフォーマンスの両方のために、限られた数のテーマオブジェクトをレンダリングすることをお勧めします。
+- `styles` ：スタイルオブジェクトが大きいほど、より多くの作業が必要になります。
 
 ## API
 
 ### `createMuiTheme(options) => theme`
 
-Generate a theme base on the options received.
+受け取ったオプションに基づいてテーマを生成します。
 
 #### 引数
 
-1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
+1. `options` (*Object*): 不完全なテーマオブジェクトを取得し、不足している部分を追加します。
 
 #### 戻り値
 
-`theme` (*Object*): A complete, ready to use theme object.
+`theme` (*Object*): すぐに使用できる完全なテーマオブジェクト。
 
 #### 例
 
@@ -88,21 +88,21 @@ const theme = createMuiTheme({
 
 ### `responsiveFontSizes(theme, options) => theme`
 
-Generate responsive typography settings based on the options received.
+受け取ったオプションに基づいて、 レスポンシブなtypographyを生成します。
 
 #### 引数
 
-1. `theme` (*Object*): The theme object to enhance.
+1. `theme` (*Object*): 強化するテーマオブジェクト。
 2. `オプション` (*オプジェクト* [任意]):
 
 - `breakpoints` (*Array<string>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
-- `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line heights are preserved and align to Material Design's 4px line height grid. This requires a unitless line height in the theme's styles.
-- `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must be greater than 1.
-- `variants` (*Array<string>* [optional]): Default to all. The typography variants to handle.
+- `disableAlign` (*Boolean* [optional]): Default to `false`. フォントサイズがわずかに変化して線が表示されるかどうか 高さは保持され、Material Designの4pxライン高さグリッドに位置合わせされます。 これには、テーマのスタイルで単位なしの行の高さが必要です。
+- `factor` (*Number* [optional]): Default to `2`. この値は、フォントサイズのサイズ変更の強度を決定します。 値が大きいほど、小さな画面のフォントサイズの差は小さくなります。 値が小さいほど、小さい画面のフォントサイズが大きくなります。 値は1より大きくなければなりません。
+- `variants` (*Array<string>* [optional]): Default to all. 処理するタイポグラフィバリアント。
 
 #### 戻り値
 
-`theme` (*Object*): The new theme with a responsive typography.
+`theme` (*Object*): レスポンシブなタイポグラフィを備えた新しいテーマ。
 
 #### 例
 

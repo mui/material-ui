@@ -11,51 +11,55 @@ components: AppBar, Toolbar, Menu
 
 Может трансформироваться в контекстную панель действий или использоваться в качестве панели навигации.
 
-## Панель навигации с кнопками
+## Simple App Bar
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
 
-## Простая панель навигации
+## App Bar with a primary search field
 
-{{"demo": "pages/components/app-bar/SimpleAppBar.js"}}
-
-## Панель навигации с основным полем поиска
-
-Основная панель поиска.
+A primary searchbar.
 
 {{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
 
-## Панель навигации с меню
+## App Bar with menu
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js"}}
 
-## Панель навигации с полем для поиска
+## App Bar with search field
 
-Боковая панель поиска.
+A side searchbar.
 
 {{"demo": "pages/components/app-bar/SearchAppBar.js"}}
 
-## Dense (Только для компьютеров)
+## Dense (desktop only)
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js"}}
 
-## Нижняя панели навигации
+## Bottom App Bar
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ## Scrolling
 
+You can use the `useScrollTrigger()` hook to respond to user scroll actions.
+
 ### Скрытие панели навигации
 
-Панель навигации скрывается при скролле.
+The app bar hides on scroll down to leave more space for reading.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### Elevate App Bar
 
-An App Bar that elevates on scroll.
+The app bar elevates on scroll to communicate that the user is not at the top of the page.
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
+
+### Back to top
+
+A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+
+{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
 
 ### `useScrollTrigger([options]) => trigger`
 
@@ -69,7 +73,7 @@ An App Bar that elevates on scroll.
 
 #### Возвращает
 
-`trigger`: Соответствует ли положение прокрутки критериям?
+`trigger`: Does the scroll position match the criteria?
 
 #### Примеры
 

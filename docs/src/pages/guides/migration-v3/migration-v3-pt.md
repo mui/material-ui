@@ -242,7 +242,9 @@ Esta alteração é explicada em mais detalhes no nosso guia [TypeScript](/guide
   - O componente `ListItemAvatar` é necessário ao usar um avatar.
   - O componente `ListItemIcon` é necessário ao usar uma caixa de seleção à esquerda.
   - A propriedade `edge` deve ser definida para botões de ícone.
-- [ListItem] Aumente a especificidade CSS das regras de estilo `disabled` e `focusVisible`.
+- [List] `dense` no longer reduces the top and bottom padding of the `List` element.
+
+- [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
 
 ### Menu
 

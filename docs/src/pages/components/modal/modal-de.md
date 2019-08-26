@@ -31,6 +31,23 @@ Wenn Sie ein modales Dialogfeld erstellen, möchten Sie wahrscheinlich die [Dial
 
 Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
 
+## Übergänge
+
+The open/close state of the modal can be animated with a transition component. This component should respect the following conditions:
+
+- Be a direct child descendent of the modal.
+- Have an `in` prop. This corresponds to the open / close state.
+- Call the `onEnter` callback prop when the enter transition starts.
+- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
+
+Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
+
+{{"demo": "pages/components/modal/TransitionsModal.js"}}
+
+Alternatively, you can use [react-spring](https://github.com/react-spring/react-spring).
+
+{{"demo": "pages/components/modal/SpringModal.js"}}
+
 ## Performance
 
 The content of the modal is **lazily mounted** into the DOM. It ensures that having many closed modals in your React tree won't slow down your page.
@@ -39,26 +56,26 @@ However, creating React elements has a cost too. Consider the following case:
 
 ```jsx
 <Modal open={false}>
-  <Table>
-    <TableHead>
-      <TableRow>
-        <TableCell>Nachtisch (100g Portion)</TableCell>
-        <TableCell align="right">Kalorien</TableCell>
-        <TableCell align="right">Fettt&nbsp;(g)</TableCell>
-      </TableRow>
-    </TableHead>
-    <TableBody>
+  <table>
+    <thead>
+      <tr>
+        <td>Dessert (100g serving)</td>
+        <td>Calories</td>
+        <td>Fat (g)</td>
+      </tr>
+    </thead>
+    <tbody>
       {rows.map(row => (
-        <TableRow key={row.id}>
-          <TableCell component="th" scope="row">
+        <tr key={row.id}>
+          <th scope="row">
             {row.name}
-          </TableCell>
-          <TableCell align="right">{row.calories}</TableCell>
-          <TableCell align="right">{row.fat}</TableCell>
-        </TableRow>
+          </th>
+          <td>{row.calories}</td>
+          <td>{row.fat}</TableCell>
+        </tr>
       ))}
-    </TableBody>
-  </Table>
+    </tbody>
+  </table>
 </Modal>
 ```
 
@@ -70,11 +87,11 @@ We create a lot of React elements that will never be mounted. It's wasteful 🐢
 </Modal>
 ```
 
-Auf diese Weise nutzen Sie [React Rendering Laziness Evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). Die Rendermethode der `Tabellen-Komponente` wird nur beim Öffnen des Modals ausgewertet.
+This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). The `TableComponent` render method will only be evaluated when opening the modal.
 
 ## Barrierefreiheit
 
-- Achten Sie darauf, eine Referenzierung des modalen Titels durch `aria-labelledby = "id..."` zu dem `Modal` hinzufügen. Zusätzlich können Sie eine Beschreibung Ihres Modals mit der Eigenschaft `aria-descriptionby = "id..."` für das `Modal`angeben.
+- Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
 
 ```jsx
 <Modal
@@ -90,10 +107,10 @@ Auf diese Weise nutzen Sie [React Rendering Laziness Evaluation](https://overrea
 </Modal>
 ```
 
-- Mit den [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) können Sie den anfänglichen Fokus auf das relevanteste Element setzen, basierend auf Ihrem modalen Inhalt.
+- The [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
 
 ## Server-side modal
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to make it work, you need to disable this feature with the `disablePortal` prop:
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to see the modal, you need to disable the portal feature with the `disablePortal` prop:
 
 {{"demo": "pages/components/modal/ServerModal.js"}}

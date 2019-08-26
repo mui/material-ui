@@ -11,51 +11,55 @@ components: AppBar, Toolbar, Menu
 
 它可以转换为上下文相关的操作栏或直接用作导航栏。
 
-## 带按钮的应用栏
+## Simple App Bar
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
 
-## 简单的应用栏
+## App Bar with a primary search field
 
-{{"demo": "pages/components/app-bar/SimpleAppBar.js"}}
-
-## 带一个主搜索输入框的应用栏
-
-一个主搜索栏
+A primary searchbar.
 
 {{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
 
-## 带有菜单的应用栏
+## App Bar with menu
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js"}}
 
-## 带有搜索输入框的应用栏
+## App Bar with search field
 
-一个侧边搜索栏。
+A side searchbar.
 
 {{"demo": "pages/components/app-bar/SearchAppBar.js"}}
 
-## 紧凑模式 (仅限桌面模式)
+## Dense (desktop only)
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js"}}
 
-## 底部应用栏
+## Bottom App Bar
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## 滚动
+## Scrolling
+
+You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
 ### 隐藏应用栏
 
-一个隐藏滚动条的应用栏。
+The app bar hides on scroll down to leave more space for reading.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### 变高的应用栏
 
-一个在滚动时变高的应用栏。
+The app bar elevates on scroll to communicate that the user is not at the top of the page.
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
+
+### Back to top
+
+A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+
+{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
 
 ### `useScrollTrigger([options]) => trigger`
 
@@ -69,7 +73,7 @@ components: AppBar, Toolbar, Menu
 
 #### 返回结果
 
-`trigger` ：滚动位置是否符合标准？
+`trigger`: Does the scroll position match the criteria?
 
 #### 例子
 

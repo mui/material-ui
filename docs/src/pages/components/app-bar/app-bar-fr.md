@@ -11,51 +11,55 @@ components: AppBar, Toolbar, Menu
 
 Il peut se transformer en une barre d’action contextuelle ou en tant que barre de navigation.
 
-## Boutons de la barre d’application
+## Simple App Bar
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
 
-## Barre d'application simple
+## App Bar with a primary search field
 
-{{"demo": "pages/components/app-bar/SimpleAppBar.js"}}
-
-## Barre d'application avec un champ de recherche principal
-
-Une barre de recherche principale.
+A primary searchbar.
 
 {{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
 
-## La barre d'application avec le menu
+## App Bar with menu
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js"}}
 
-## Barre d'application avec champ de recherche
+## App Bar with search field
 
-Une barre de recherche latérale.
+A side searchbar.
 
 {{"demo": "pages/components/app-bar/SearchAppBar.js"}}
 
-## Dense (bureau uniquement)
+## Dense (desktop only)
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js"}}
 
-## Barre inférieure
+## Bottom App Bar
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Défilement
+## Scrolling
+
+You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
 ### Barre d'application masquable
 
-Une barre d'application qui se masque au défilement.
+The app bar hides on scroll down to leave more space for reading.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### Barre d'application élevable
 
-Une barre d’application qui s’élève au défilement.
+The app bar elevates on scroll to communicate that the user is not at the top of the page.
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
+
+### Back to top
+
+A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+
+{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
 
 ### `useScrollTrigger([options]) => trigger`
 
@@ -69,7 +73,7 @@ Une barre d’application qui s’élève au défilement.
 
 #### Valeur de retour
 
-`trigger`: Est-ce que la position de défilement respecte les critères ?
+`trigger`: Does the scroll position match the criteria?
 
 #### Exemples
 

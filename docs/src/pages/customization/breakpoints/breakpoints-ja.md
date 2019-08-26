@@ -1,10 +1,10 @@
-# ブレイクポイント
+# ブレークポイント
 
-<p class="description">API that enables the use of breakpoints in a wide variety of contexts.</p>
+<p class="description">さまざまなコンテキストでブレークポイントを使用できるようにするAPI。</p>
 
-For optimal user experience, material design interfaces need to be able to adapt their layout at various breakpoints. Material-UI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
+最適なユーザーエクスペリエンスを得るには、material designインターフェイスがさまざまなブレークポイントでレイアウトを調整できる必要があります。 Material-UIは、元の仕様の**簡易**[実装](https://material.io/design/layout/responsive-layout-grid.html#breakpoints)を使用します。
 
-Each breakpoint (a key) matches with a *fixed* screen width (a value):
+各ブレークポイント(a key) は、*固定(a value) 画面幅*と一致します。
 
 - **xs,** extra-small: 0px
 - **sm,** small: 600px
@@ -12,7 +12,7 @@ Each breakpoint (a key) matches with a *fixed* screen width (a value):
 - **lg,** large: 1280px
 - **xl,** extra-large: 1920px
 
-These [breakpoint values](/customization/default-theme/?expend-path=$.breakpoints.values) are used to determine breakpoint ranges. A range starts from the breakpoint value inclusive, to the next breakpoint value exclusive:
+これらの[ブレークポイント値](/customization/default-theme/?expend-path=$.breakpoints.values)は、ブレークポイントの範囲を決定するために使用されます。 範囲は、ブレークポイント値を含む範囲から、次のブレークポイント値を除く範囲までです。
 
 ```js
 value         |0px     600px    960px    1280px   1920px
@@ -21,20 +21,20 @@ screen width  |--------|--------|--------|--------|-------->
 range         |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
-These values can always be customized. You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values) object.
+これらの値はいつでもカスタマイズできます。 これらは、テーマの[`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values)オブジェクトにあります。
 
-The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) and [Hidden](/components/hidden/) components.
+ブレークポイントは、さまざまなコンポーネントで応答性を高めるために内部的に使用されますが、[Grid](/components/grid/)および[Hidden](/components/hidden/)コンポーネントを使用してアプリケーションのレイアウトを制御する場合にも利用できます。
 
-## CSS Media Queries
+## CSSメディアクエリ
 
-CSS media queries is the idiomatic approach to make your UI responsive. We provide four styles helpers to do so:
+CSSメディアクエリは、UIを応答性にする慣用的な手法です。 そのために、4つのスタイルヘルパーを提供します。
 
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
 - [theme.breakpoints.only(key)](#theme-breakpoints-only-key-media-query)
 - [theme.breakpoints.between(start, end)](#theme-breakpoints-between-start-end-media-query)
 
-In the following demo, we change the background color (red, blue & green) based on the screen width.
+次のデモでは、画面の幅に基づいて背景色(赤色、青色 、緑色) を変更します。
 
 ```jsx
 const styles = theme => ({
@@ -55,17 +55,17 @@ const styles = theme => ({
 
 {{"demo": "pages/customization/breakpoints/MediaQuery.js"}}
 
-## JavaScript Media Queries
+## JavaScriptメディアクエリ
 
-Sometimes, using CSS isn't enough. You might want to change the React rendering tree based on the breakpoint value, in JavaScript.
+CSSだけでは不十分な場合もあります。 JavaScriptで、ブレークポイントの値に基づいてReactレンダリングツリーを変更できます。
 
-### useMediaQuery hook
+### useMediaQueryフック
 
-You can learn more on the [useMediaQuery](/components/use-media-query/) page.
+詳細については、 [useMediaQuery](/components/use-media-query/) ページを参照してください。
 
 ### withWidth()
 
-> ⚠️ This higher-order component will be deprecated for the [useMediaQuery](/components/use-media-query/) hook.
+> ⚠️この高次コンポーネントは、[ useMediaQueryフック](/components/use-media-query/)では非推奨になります。
 
 ```jsx
 import withWidth from '@material-ui/core/withWidth';
@@ -77,7 +77,7 @@ function MyComponent(props) {
 export default withWidth()(MyComponent);
 ```
 
-In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del~~ & span) based on the screen width.
+次のデモでは、画面の幅に基づいてレンダリングされたDOM要素(*em*、<u>u</u>、~~del~~& span) を変更します。
 
 {{"demo": "pages/customization/breakpoints/WithWidth.js"}}
 
@@ -87,11 +87,11 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 #### 引数
 
-1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+1. `key` (*String* | *Number*)：ブレークポイントキー（` xs ` 、` sm `など）またはピクセル単位の画面幅の数値。
 
 #### 戻り値
 
-`media query`: A media query string ready to be used with JSS.
+`media query`: ：JSSですぐに使用できるメディアクエリ文字列。
 
 #### 例
 
@@ -112,7 +112,7 @@ const styles = theme => ({
 
 #### 引数
 
-1. `key` (*String* | *Number*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+1. `key` (*String* | *Number*)：ブレークポイントキー（` xs ` 、` sm `など）またはピクセル単位の画面幅の数値。
 
 #### 戻り値
 
@@ -138,7 +138,7 @@ const styles = theme => ({
 
 #### 引数
 
-1. `key` (*String*): A breakpoint key (`xs`, `sm`, etc.).
+1. `key` (*String*)：ブレークポイントキー（` xs ` 、` sm `など）。
 
 #### 戻り値
 
@@ -189,22 +189,23 @@ const styles = theme => ({
 
 ### `withWidth([options]) => higher-order component`
 
-Inject a `width` property. It does not modify the component passed to it; instead, it returns a new component. This `width` breakpoint property match the current screen width. It can be one of the following breakpoints:
+`width`プロパティを挿入します。 渡されたコンポーネントは変更されません。; 代わりに、新しいコンポーネントを返します。 この`width`ブレークポイントのプロパティは、現在の画面の幅に一致します。 次のブレークポイントのいずれかです。
 
 ```ts
 type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 ```
 
-Some implementation details that might be interesting to being aware of:
+注意が必要な実装の詳細は、次のとおりです。
 
-- It forwards *non React static* properties so this HOC is more "transparent". For instance, it can be used to defined a `getInitialProps()` static method (next.js).
+- *non React static* プロパティを転送するので、このHOCはより「透明」です。 たとえば、`getInitialProps()`静的メソッド (next.js) を定義するために使用できます。
 
 #### 引数
 
 1. `オプション` (*オプジェクト* [任意]): 
-  - `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. Provide the `theme` object to the component as a property.
-  - `options.noSSR` (*ブール値* [任意]): デフォルト値 `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. The UI might blink. You can set this flag to `true` if you are not doing server-side rendering.
-  - `options.initialWidth` (*Breakpoint* [optional]): As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/globals/#default-props) on the theme. In order to set the initialWidth we need to pass a custom property with this shape:
+  - `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. `theme`オブジェクトをプロパティとしてコンポーネントに提供します。
+  - `options.noSSR` (*ブール値* [任意]): デフォルト値 `false`. サーバー側のレンダリング調整を実行するには、2回レンダリングする必要があります。 1回目は何もない状態で、2回目は子要素と一緒です。 このダブルパスレンダリングサイクルには欠点があります。 UIが点滅することがあります。 サーバサイドレンダリングを実行しない場合は、このフラグを`true`に設定できます。
+  - ` options.initialWidth ` （*Breakpoint* [optional]）： As ` window.innerWidth `サーバーでは使用できません デフォルトでは、最初のマウント時に空のコンポーネントがレンダリングされます。 ヒューリスティックを使用して、次の値を近似できます。 クライアント・ブラウザの画面幅。 たとえば、ユーザーエージェントまたはクライアントヒントを使用できます。 https://caniuse.com/#search=client%20hint、[`テーマにカスタムプロパティを使用して初期幅
+グローバルに設定することもできます`](/customization/globals/#default-props)。 InitialWidthを設定するには、この形状のカスタムプロパティを渡す必要があります。
 
 ```js
 const theme = createMuiTheme({
@@ -218,25 +219,23 @@ const theme = createMuiTheme({
 });
 ```
 
-- `options.resizeInterval` (*Number* [optional]): Defaults to 166, corresponds to 10 frames at 60 Hz. Number of milliseconds to wait before responding to a screen resize event.
+- `options.resizeInterval` (*Number* [optional]): 既定は166で、60Hzで10フレームに対応します。 画面サイズ変更イベントに応答するまでに待機するミリ秒数。
 
 #### 戻り値
 
-`higher-order component`: Should be used to wrap a component.
+`higher-order component` ：コンポーネントをラップするために使用する必要があります。
 
 #### 例
 
 ```jsx
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
-class MyComponent extends React.Component {
-  render () {
-    if (isWidthUp('sm', this.props.width)) {
-      return <span />
-    }
-
-    return <div />;
+function MyComponent(props) {
+  if (isWidthUp('sm', props.width)) {
+    return <span />
   }
+
+  return <div />;
 }
 
 export default withWidth()(MyComponent);

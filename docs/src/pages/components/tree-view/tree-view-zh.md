@@ -13,4 +13,10 @@ components: 树视图，树节点
 
 ## Customized tree view
 
+### Custom icons, border and animation
+
 {{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
+
+### Gmail clone
+
+{{"demo": "pages/components/tree-view/GmailTreeView.js"}}

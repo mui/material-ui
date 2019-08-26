@@ -16,7 +16,7 @@
 - Reactツリーの**サブセット**に`StylesProvider`を使用している場合
 - バンドラーを使用していて、それが原因で複数のクラス名ジェネレータインスタンスが作成されるようにコードを分割している場合。
 
-> If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
+> Webパックで[SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/)を使用している場合は、[`最適化`で`runtimeChunk`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk)設定を構成してみてください。
 
 全体として、各Material-UIアプリケーションをコンポーネントツリーの最上部にある[`StylesProvider`](/styles/api/#stylesprovider)コンポーネントでWrapし、**コンポーネントツリー間で共有される単一のクラス名ジェネレータを使用することで**、この問題を簡単に解決できます。
 
@@ -42,9 +42,9 @@ const theme = createMuiTheme({
 });
 ```
 
-## How can I disable transitions globally?
+## 移行をグローバルに無効にするにはどうすればよいですか？
 
-You can disable transitions globally by providing the following in your theme:
+テーマに次の項目を指定すると、推移をグローバルに無効にできます。
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -59,7 +59,7 @@ const theme = createMuiTheme({
 
 テスト中やローエンドデバイスなどで、条件付きでこの動作を有効にしたい場合があります。この場合は、テーマの値を動的に変更できます。
 
-You can go one step further by disabling all the transitions, animations and the ripple effect:
+トランジション、アニメーション、およびリプル効果をすべて無効にすると、さらに一歩進めることができます。
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -93,11 +93,11 @@ const theme = createMuiTheme({
 
 ## アプリのスタイルを設定するにはJSSを使用する必要がありますか？
 
-No, it's not required. But this dependenency comes built in, so carries no additional bundle size overhead.
+いいえ、必須ではありません。 しかし、この依存性は組み込まれているため、追加のバンドルサイズのオーバーヘッドはありません。
 
 しかし、おそらくすでに別のスタイルライブラリを使用してアプリケーションにいくつかのMaterial-UIコンポーネントを追加している、 またはすでに別のAPIを使用している場合には、新しいものを学びたくはないでしょう？ その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。
 
-## When should I use inline-style vs CSS?
+## インラインスタイルとCSSのどちらを使用すべきか
 
 経験則として、動的styleプロパティにはinline-styleのみを使用してください。 CSSの代替手段は、次のようなより多くの利点を提供します。
 
@@ -112,7 +112,7 @@ No, it's not required. But this dependenency comes built in, so carries no addit
 
 ## どうやってDOM要素にアクセスできますか？
 
-All Material-UI components that should render something in the DOM forward their ref to the underlying DOM component. This means that you can get DOM elements by reading the ref attached to Material-UI components:
+DOM内の何かを描画するすべてのMaterial-UIコンポーネントは、そのrefを基礎となるDOMコンポーネントに転送します。 つまり、Material-UIコンポーネントにアタッチされたrefを読み取ることでDOM要素 を取得できます。
 
 ```jsx
 // or a ref setter function
@@ -123,37 +123,37 @@ const ref = React.createRef();
 const element = ref.current;
 ```
 
-If you're not sure if the Material-UI component in question forwards its ref you can check the API documentation under "Props" e.g. the [Button API](/api/button/#props) includes
+問題のMaterial-UIコンポーネントがそのrefを転送するかどうかわからない場合は、 [Button API](/api/button/#props)など、「プロパティ」のAPIドキュメントを確認できます。 含む
 
-> The ref is forwarded to the root element.
+> Refはルート要素に転送されます。
 
-indicating that you can access the DOM element with a ref.
+refを使用してDOM要素にアクセスできることを示します。
 
-## I have several instances of styles on the page
+## ページにスタイルのインスタンスがいくつかあります
 
-If you are seeing a warning message in the console like the one below, you probably have several instances of `@material-ui/styles` initialized on the page.
+次のような警告メッセージがコンソールに表示される場合は、ページ上で`@material-ui/styles`のインスタンスがいくつか初期化されている可能性があります。
 
 > It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and makes your application bigger without a good reason.
 
-### Possible reasons
+### 考えられる理由:
 
-There are several common reasons for this to happen:
+これが起こる一般的な理由はいくつかあります。
 
-- You have another `@material-ui/styles` library somewhere in your dependencies.
-- You have a monorepo structure for your project (e.g, lerna, yarn workspaces) and `@material-ui/styles` module is a dependency in more than one package (this one is more or less the same as the previous one).
-- You have several applications that are using `@material-ui/styles` running on the same page (e.g., several entry points in webpack are loaded on the same page).
+- 依存関係のどこかに別の`@material-ui/styles`ライブラリがあります。
+- プロジェクト(例：yarn workspaces)にmonorepo構造があり、`@material-ui/styles`モジュールが複数のパッケージ(これは前のとだいたい同じです)に依存しています。
+- `@material-ui/styles`を使用する複数のアプリケーションが同じページ(たとえば、webpackの複数のエントリポイントが同じページにロードされる。)で実行されています。
 
-### Duplicated module in node_modules
+### node_modulesの重複モジュール
 
-If you think that the issue is in duplicated @material-ui/styles module somewhere in your dependencies, there are several ways to check this. You can use `npm ls @material-ui/styles`, `yarn list @material-ui/styles` or `find -L ./node_modules | grep /@material-ui/styles/package.json` commands in your application folder.
+依存関係のどこかにあるduplicated@material-ui/styles モジュールに問題があると考えられる場合、これをチェックする方法がいくつかあります。 You can use `npm ls @material-ui/styles`, `yarn list @material-ui/styles` or `find -L ./node_modules | grep /@material-ui/styles/package.json` commands in your application folder.
 
-If none of these commands identified the duplication, try analyzing your bundle for multiple instances of @material-ui/styles. You can just check your bundle source, or use a tool like [source-map-explorer](https://github.com/danvk/source-map-explorer) or [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
+これらのコマンドで重複が識別されない場合は、バンドルを分析して@material-ui/stylesの複数のインスタンスを探してください。 これらのコマンドで重複が識別されない場合は、バンドルを分析して@material-ui/stylesの複数のインスタンスを探してください。
 
-If you identified that duplication is the issue that you are encountering there are several things you can try to solve it:
+重複が発生している問題であることがわかった場合は、いくつかの解決方法があります。
 
-If you are using npm you can try running `npm dedupe`. This command searches the local dependencies and tries to simplify the structure by moving common dependencies further up the tree.
+Npmを使用している場合は、`npm dedupe`を実行してみてください。 このコマンドは、ローカルの依存関係を検索し、共通の依存関係をツリーの上位に移動して構造を単純化しようとします。
 
-If you are using webpack, you can change the way it will [resolve](https://webpack.js.org/configuration/resolve/#resolve-modules) the @material-ui/styles module. You can overwrite the default order in which webpack will look for your dependencies and make your application node_modules more prioritized than default node module resolution order:
+Webパックを使用している場合は、@material-ui/stylesモジュールを[解決](https://webpack.js.org/configuration/resolve/#resolve-modules)する方法を変更できます。 Webpackが依存関係を検索するデフォルトの順序を上書きし、アプリケーションのnode_modulesをデフォルトのノードモジュール解決順序よりも優先させることができます。
 
 ```diff
   resolve: {
@@ -163,17 +163,17 @@ If you are using webpack, you can change the way it will [resolve](https://webpa
   }
 ```
 
-### Usage with Lerna
+### Lernaでの使用
 
-One possible fix to get @material-ui/styles to run in a Lerna monorepo across packages, is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. Try running the bootstrap option with the --hoist flag.
+@material-ui/stylesをLerna monorepoの複数のパッケージで動作させるための一つの解決策は、共有されている依存関係をmonorepoファイルのルートに [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) することです。 --hoistフラグを指定してbootstrap option を実行してみてください。
 
 ```sh
 lerna bootstrap --hoist
 ```
 
-Alternatively, you can remove @material-ui/styles from your package.json file and hoist it manually to your top-level package.json file.
+または、パッケージから@material-ui/stylesを削除することもできます。jsonファイルを作成し、手動で最上位のパッケージに上げます。jsonファイルを使用します。
 
-Example of a package.json file in a Lerna root folder
+Lernaルートフォルダー内のpackage.jsonファイルの例
 
 ```json
 {
@@ -193,9 +193,9 @@ Example of a package.json file in a Lerna root folder
 }
 ```
 
-### Running multiple applications on one page
+### 1つのページで複数のアプリケーションを実行する
 
-If you have several applications running on one page, consider using one @material-ui/styles module for all of them. If you are using webpack, you can use [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) to create an explicit [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), that will contain the @material-ui/styles module:
+1つのページで複数のアプリケーションを実行している場合は、それらすべてに1つの@material-ui/stylesモジュールを使用することを検討してください。 Webパックを使用している場合は、[CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/)を使用して@material-ui/stylesモジュールを含む明示的な[vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), を作成できます。
 
 ```diff
   module.exports = {
@@ -213,19 +213,19 @@ If you have several applications running on one page, consider using one @materi
   }
 ```
 
-## My App doesn't render correctly on the server
+## サーバーでアプリが正しくレンダリングされない
 
-If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component. We are very strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out our [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
+動作しない場合は、99%のケースで設定の問題になります。 欠落しているプロパティー、誤った呼び出し順序、または欠落しているコンポーネント。 調べてみることです。私たちは設定に関して非常に厳格であり、何が間違っているのかを知る最善の方法は、あなたのプロジェクトを既に動作しているセットアップと比較し、私たちの[reference implementations](/guides/server-rendering/#reference-implementations)を少しずつ調べてみることです。
 
-### CSS works only on first load then is missing
+### CSSは最初のロードでのみ機能し、その後欠落します
 
-The CSS is only generated on the first load of the page. Then, the CSS is missing on the server for consecutive requests.
+CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。
 
-#### Action to Take
+#### 実行するアクション
 
-We rely on a cache, the sheets manager, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). You need to create **a new `sheets` instance for each request**.
+キャッシュ、つまりシートマネージャに依存して、コンポーネントタイプごとに1回だけCSSを注入します。 (2つのボタンを使用する場合は、ボタンのCSSが1回だけ必要です。)。 要求ごとに**新しい`シート`インスタンスを作成する必要があります**。
 
-*example of fix:*
+*修正の例：*
 
 ```diff
 -// Create a sheets instance.
@@ -242,17 +242,17 @@ function handleRender(req, res) {
   const html = ReactDOMServer.renderToString(
 ```
 
-### React class name hydration mismatch
+### Reactクラス名のハイドレーションの不一致
 
-There is a class name mismatch between the client and the server. It might work for the first request. Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
+クライアントとサーバーの間にクラス名の不一致があります。 最初の要求で機能する場合があります。 う1つの症状は、初期ページ・ロードとクライアント・スクリプトのダウンロードの間でスタイル設定が変更されることです。
 
-#### Action to Take
+#### 実行するアクション
 
-The class names value relies on the concept of [class name generator](/styles/advanced/#class-names). The whole page needs to be rendered with **a single generator**. This generator needs to behave identically on the server and on the client. 例えば：
+クラス名の値は、[class name generator](/styles/advanced/#class-names)の概念に基づいています。 ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば：
 
-- You need to provide a new class name generator for each request. But you shouldn't share a `createGenerateClassName()` between different requests:
+- 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。
 
-*example of fix:*
+*修正の例：*
 
 ```diff
 -// Create a new class name generator.
@@ -269,11 +269,11 @@ function handleRender(req, res) {
   const html = ReactDOMServer.renderToString(
 ```
 
-- You need to verify that your client and server are running the **exactly the same version** of Material-UI. It is possible that a mismatch of even minor versions can cause styling problems. To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
+- しかし、異なるリクエスト間で**createGenerateClassName()**を共有すべきではありません。 マイナーバージョンの不一致でも、スタイルの問題が発生する可能性があります。 バージョン番号を確認するには、アプリケーションを構築する環境と配備環境で`npm list@material-ui/core`を実行します
     
-    You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
+    Package.jsonの依存関係に特定のMUIバージョンを指定することで、異なる環境で同じバージョンを使用することもできます。
 
-*example of fix (package.json):*
+*修正の例（package.json）：*
 
 ```diff
   "dependencies": {
@@ -285,11 +285,11 @@ function handleRender(req, res) {
   },
 ```
 
-- You need to make sure that the server and the client share the same `process.env.NODE_ENV` value.
+- サーバーとクライアントが同じ`process.env.NODE_ENV` valueを共有していることを確認する必要があります。
 
 ## 私が見ている色とこのサイトで見ている色が違うのはなぜですか？
 
-ドキュメントサイトはカスタムテーマを使用しています。 したがって、カラーパレットがあるMaterial-UIが提供しているデフォルトのテーマは異なります。 Please refer to [this page](/customization/theming/) to learn about theme customization.
+ドキュメントサイトはカスタムテーマを使用しています。 したがって、カラーパレットがあるMaterial-UIが提供しているデフォルトのテーマは異なります。 テーマのカスタマイズについて学ぶには、この[ページ](/customization/theming/)を参照してください。
 
 ## Material-UIは最高です。 プロジェクトを支援するにはどのようにできますか？
 
@@ -304,9 +304,9 @@ Material-UIをサポートする方法はたくさんあります。
 
 集められた資金はすべて透過的に管理され、スポンサーはREADMEとMaterial-UIのホームページで表彰されます。
 
-## Why does component X require a DOM node in a prop instead of a ref object?
+## Component Xがrefオブジェクトの代わりにpropでDOMノードを必要とするのはなぜですか？
 
-Components like the [Portal](/api/portal/#props) or [Popper](/api/popper/#props) require a DOM node in the `container` or `anchorEl` prop respectively. It seems convenient to simply pass a ref object in those props and let Material-UI access the current value. This works in a simple scenario:
+[Portal](/api/portal/#props)または[Popper](/api/popper/#props)のようなコンポーネントでは、それぞれ `container` または`anchorEl`プロパティにDOMノードが必要です。 これらのプロップにrefオブジェクトを渡し、Material-UIに現在の値にアクセスさせると便利です。 これは、次のような単純なシナリオで機能します。
 
 ```jsx
 function App() {
@@ -323,7 +323,7 @@ function App() {
 }
 ```
 
-where `Portal` would only mount the children into the container when `container.current` is available. Here is a naive implementation of Portal:
+ここで、`Portal`は、`container.current`が使用可能の場合にのみ、子をコンテナーにマウントします。 Here is a naive implementation of Portal:
 
 ```jsx
 function Portal({ children, container }) {

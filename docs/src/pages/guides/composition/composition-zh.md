@@ -156,9 +156,9 @@ import { Link } from 'react-router-dom';
 
 要确定您使用的Material-UI组件是否具有此需求，请查阅该组件的props API文档。 如果您需要转递 refs，描述将链接到此部分。
 
-### 使用 StrictMode 和 unstable_ConcurrentMode 时要注意
+### Caveat with StrictMode
 
-如果在` React.StrictMode `和` React.unstable_ConcurrentMode ` 模式下，对上述情况使用类组件，则仍然会看到警告。 我们在内部使用` ReactDOM.findDOMNode `用于向后兼容。 您可以使用` React.forwardRef `和类组件中的指定prop来传递` ref `到DOM组件。 这样做不再会触发与` ReactDOM.findDOMNode `相关的弃用警告 。
+If you use class components for the cases described above you will still see warnings in `React.StrictMode`. We use `ReactDOM.findDOMNode` internally for backwards compatibility. You can use `React.forwardRef` and a designated prop in your class component to forward the `ref` to a DOM component. Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
 
 ```diff
 class Component extends React.Component {
