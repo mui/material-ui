@@ -54,7 +54,7 @@
     "downshift": "^3.0.0",
     "emotion-theming": "^10.0.14",
     "fg-loadcss": "^2.0.1",
-    "final-form": "^4.18.2",
+    "final-form": "^4.18.5",
     "flexsearch": "^0.6.30",
     "isomorphic-fetch": "^2.2.1",
     "json2mq": "^0.2.0",
