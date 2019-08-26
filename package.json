@@ -55,7 +55,7 @@
     "@babel/register": "^7.5.5",
     "@testing-library/react": "^8.0.6",
     "@types/chai": "^4.1.7",
-    "@types/chai-dom": "^0.0.7",
+    "@types/chai-dom": "^0.0.8",
     "@types/enzyme": "^3.10.3",
     "@types/fs-extra": "^8.0.0",
     "@types/glob": "^7.1.1",

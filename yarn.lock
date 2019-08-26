@@ -1990,10 +1990,10 @@
   resolved "https://registry.yarnpkg.com/@types/autosuggest-highlight/-/autosuggest-highlight-3.1.0.tgz#62045417c2f6d841f9f12e715336218e4db0fcb1"
   integrity sha512-rJWvrDFKf2NkB3CkeJPcnX3oD0XAQriJOhYC5DUwiK6X/KTM96e1rW+1/PgI0U4tL6GQ2K7dvoiYFhMnAaNLUw==
 
-"@types/chai-dom@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@types/chai-dom/-/chai-dom-0.0.7.tgz#c27722501b36fff7c0642a342dbeddf48b8bfca0"
-  integrity sha512-2zF94t06jMQaEG+1EyaTVFiC2hSD6pQSGzqKge+z9XWozqot8nLaSSSxK8VdAA4tnQhCREuizvAoT6dAgxxxHA==
+"@types/chai-dom@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@types/chai-dom/-/chai-dom-0.0.8.tgz#832b68d78390c80030e64d8fd4990e514484e91d"
+  integrity sha512-F5vAuz2hp7VY+0UmkFLgTwyeHDddIw1c/JbAQZp2lgpZOd3ujlHFijWO4sHdo7sun9HrzwnSJlZfINdKrUwI+w==
   dependencies:
     "@types/chai" "*"
 
