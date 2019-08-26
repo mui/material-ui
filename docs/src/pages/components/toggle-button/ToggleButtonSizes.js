@@ -64,17 +64,32 @@ export default function ToggleButtonSizes() {
         <Typography gutterBottom>Size an entire group of toggle buttons:</Typography>
       </Grid>
       <Grid item>
-        <ToggleButtonGroup size="small" value={alignment} exclusive onChange={handleChangeAlignment}>
+        <ToggleButtonGroup
+          size="small"
+          value={alignment}
+          exclusive
+          onChange={handleChangeAlignment}
+        >
           {groupChildren}
         </ToggleButtonGroup>
       </Grid>
       <Grid item>
-        <ToggleButtonGroup size="medium" value={alignment} exclusive onChange={handleChangeAlignment}>
+        <ToggleButtonGroup
+          size="medium"
+          value={alignment}
+          exclusive
+          onChange={handleChangeAlignment}
+        >
           {groupChildren}
         </ToggleButtonGroup>
       </Grid>
       <Grid item>
-        <ToggleButtonGroup size="large" value={alignment} exclusive onChange={handleChangeAlignment}>
+        <ToggleButtonGroup
+          size="large"
+          value={alignment}
+          exclusive
+          onChange={handleChangeAlignment}
+        >
           {groupChildren}
         </ToggleButtonGroup>
       </Grid>
