@@ -66,7 +66,7 @@ const rows = [
   createData('Brazil', 'BR', 210147125, 8515767),
 ];
 
-const desc => (a, b, orderBy) {
+const desc = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {
     return -1;
   }
