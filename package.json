@@ -83,7 +83,7 @@
     "chai-dom": "^1.8.1",
     "compression-webpack-plugin": "^3.0.0",
     "cross-env": "^5.1.1",
-    "danger": "^9.1.3",
+    "danger": "^9.1.8",
     "dtslint": "^0.9.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.14.0",
