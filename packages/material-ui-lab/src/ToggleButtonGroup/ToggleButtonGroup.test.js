@@ -59,6 +59,37 @@ describe('<ToggleButtonGroup />', () => {
     assert.strictEqual(root.hasClass(classes.root), true);
   });
 
+  it('should apply the groupedChild className to children', () => {
+    const wrapper = mount(
+      <ToggleButtonGroup>
+        <ToggleButton value="hello">hello</ToggleButton>
+      </ToggleButtonGroup>,
+    );
+    assert.strictEqual(findToggleButton(wrapper, 'hello').hasClass(classes.groupedChild), true);
+  });
+
+  it('should render small children', () => {
+    const wrapper = mount(
+      <ToggleButtonGroup size="small">
+        <ToggleButton value="hello">hello</ToggleButton>
+      </ToggleButtonGroup>,
+    );
+    const child = findToggleButton(wrapper, 'hello');
+    assert.strictEqual(child.hasClass(classes.sizeSmallChild), true);
+    assert.strictEqual(child.hasClass(classes.sizeLargeChild), false);
+  });
+
+  it('should render large children', () => {
+    const wrapper = mount(
+      <ToggleButtonGroup size="large">
+        <ToggleButton value="hello">hello</ToggleButton>
+      </ToggleButtonGroup>,
+    );
+    const child = findToggleButton(wrapper, 'hello');
+    assert.strictEqual(child.hasClass(classes.sizeSmallChild), false);
+    assert.strictEqual(child.hasClass(classes.sizeLargeChild), true);
+  });
+
   describe('exclusive', () => {
     it('should render a selected ToggleButton if value is selected', () => {
       const wrapper = mount(

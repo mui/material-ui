@@ -4,6 +4,7 @@ import warning from 'warning';
 import clsx from 'clsx';
 import isValueSelected from './isValueSelected';
 import { withStyles } from '@material-ui/core/styles';
+import { capitalize } from '@material-ui/core/utils';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -11,6 +12,28 @@ export const styles = theme => ({
     backgroundColor: theme.palette.background.paper,
     borderRadius: 2,
     display: 'inline-flex',
+  },
+  /* Styles applied to the children. */
+  groupedChild: {
+    padding: '0px 11px 0px 12px',
+    '&:not(:first-child)': {
+      marginLeft: -1,
+      borderLeft: '1px solid transparent',
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+    },
+    '&:not(:last-child)': {
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+  },
+  /* Styles applied to the children if `size="small"`. */
+  sizeSmallChild: {
+    padding: '0px 7px 0px 8px',
+  },
+  /* Styles applied to the children if `size="large"`. */
+  sizeLargeChild: {
+    padding: '0px 15px 0px 16px',
   },
 });
 
@@ -72,6 +95,13 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
           buttonSelected === undefined ? isValueSelected(buttonValue, value) : buttonSelected;
 
         return React.cloneElement(child, {
+          className: clsx(
+            classes.groupedChild,
+            {
+              [classes[`size${capitalize(size)}Child`]]: size !== 'medium',
+            },
+            child.props.className,
+          ),
           selected,
           onChange: exclusive ? handleExclusiveChange : handleChange,
           size,
