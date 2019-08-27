@@ -5703,10 +5703,10 @@ dts-critic@^2.0.0:
     semver "^6.2.0"
     yargs "^12.0.5"
 
-dtslint@^0.9.0:
-  version "0.9.2"
-  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-0.9.2.tgz#61e04b9dd4d1b27ed1ae5d0842336abc9d6c2c3c"
-  integrity sha512-X/baOkTLSpWclVn+q2XR2d9FLGVJNBtvU093Pha+tmX1EHjLhy8CgDkM7DLtKTyZLQzROsxmKK7BBgGLJQ7ooQ==
+dtslint@^0.9.3:
+  version "0.9.3"
+  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-0.9.3.tgz#42ab9a8743ecf57b278d31b086af91b407ff0a08"
+  integrity sha512-nk71dlxXhvx4U7zIBQt+7UoJKotKT/dv8pQljFevl2RZvpbwmQ5czw/MArf+DjLQEt6QgeUXUa/RNpLcv8s+yA==
   dependencies:
     definitelytyped-header-parser "1.2.0"
     dts-critic "^2.0.0"
