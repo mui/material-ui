@@ -319,7 +319,7 @@ export default function ScrollableTable() {
       <div className={classes.tableWrapper}>
         <ScrollableTableToolbar numSelected={selected.length} />
         <div className={classes.scrollWrapper}>
-          <Table role="grid" aria-labelledby="tableTitle" size="medium">
+          <Table className={classes.table} role="grid" aria-labelledby="tableTitle" size="medium">
             <ScrollableTableHead
               classes={classes}
               numSelected={selected.length}
