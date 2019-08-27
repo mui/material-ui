@@ -240,17 +240,15 @@ const useStyles = makeStyles(theme => ({
     maxHeight: 'calc(100% - 120px)',
     overflow: 'auto',
   },
+  table: {
+    borderCollapse: 'separate',
+  },
   headerCell: {
     position: 'sticky',
     top: 0,
     left: 0,
     backgroundColor: theme.palette.background.default,
     zIndex: 100,
-    //borderBottom: '1px solid #000',
-    //backgroundClip: 'padding-box',
-    //outline: '1px solid #e9ecef',               
-    //border: 'none',
-    //outlineOffset: -1,
   },
   visuallyHidden: {
     border: 0,
