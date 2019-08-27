@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { refType } from '@material-ui/utils';
 import { useFormControl } from '../FormControl';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
@@ -133,9 +134,9 @@ FormControlLabel.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * This prop can be used to pass a ref callback to the `input` element.
+   * This prop can be used to pass a ref to the `input` element.
    */
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  inputRef: refType,
   /**
    * The text to be used in an enclosing label element.
    */

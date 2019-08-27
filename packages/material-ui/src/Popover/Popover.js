@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import warning from 'warning';
 import debounce from '../utils/debounce';
 import clsx from 'clsx';
-import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
+import { chainPropTypes, elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import { createChainedFunction } from '../utils/helpers';
@@ -387,7 +387,7 @@ Popover.propTypes = {
    * @param {object} actions This object contains all possible actions
    * that can be triggered programmatically.
    */
-  action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  action: refType,
   /**
    * This is the DOM element, or a function that returns the DOM element,
    * that may be used to set the position of the popover.

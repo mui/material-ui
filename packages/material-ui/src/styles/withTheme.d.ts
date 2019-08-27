@@ -6,7 +6,7 @@ export interface WithTheme {
 }
 
 export interface ThemedComponentProps extends Partial<WithTheme> {
-  innerRef?: React.Ref<any> | React.RefObject<any>;
+  innerRef?: React.Ref<any>;
 }
 
 declare const withTheme: PropInjector<WithTheme, ThemedComponentProps>;

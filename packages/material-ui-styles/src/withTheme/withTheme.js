@@ -25,7 +25,7 @@ export function withThemeCreator(options = {}) {
 
     WithTheme.propTypes = {
       /**
-       * Use that prop to pass a ref callback to the decorated component.
+       * Use that prop to pass a ref to the decorated component.
        * @deprecated
        */
       innerRef: chainPropTypes(PropTypes.oneOfType([PropTypes.func, PropTypes.object]), props => {

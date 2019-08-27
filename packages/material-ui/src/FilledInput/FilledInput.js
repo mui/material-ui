@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { refType } from '@material-ui/utils';
 import InputBase from '../InputBase';
 import withStyles from '../styles/withStyles';
 
@@ -228,9 +229,9 @@ FilledInput.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * This prop can be used to pass a ref callback to the `input` element.
+   * This prop can be used to pass a ref to the `input` element.
    */
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  inputRef: refType,
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.

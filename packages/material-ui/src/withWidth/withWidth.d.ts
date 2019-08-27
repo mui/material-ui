@@ -13,7 +13,7 @@ export interface WithWidth {
 }
 
 export interface WithWidthProps extends Partial<WithWidth> {
-  innerRef?: React.Ref<any> | React.RefObject<any>;
+  innerRef?: React.Ref<any>;
 }
 
 export function isWidthDown(

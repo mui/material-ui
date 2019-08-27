@@ -21,7 +21,7 @@ export interface BaseTextFieldProps
   helperText?: React.ReactNode;
   id?: string;
   InputLabelProps?: Partial<InputLabelProps>;
-  inputRef?: React.Ref<any> | React.RefObject<any>;
+  inputRef?: React.Ref<any>;
   label?: React.ReactNode;
   margin?: PropTypes.Margin;
   multiline?: boolean;

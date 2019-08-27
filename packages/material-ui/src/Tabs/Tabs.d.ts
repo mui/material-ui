@@ -4,7 +4,7 @@ import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent
 
 declare const Tabs: OverridableComponent<{
   props: {
-    action?: (actions: TabsActions) => void;
+    action?: React.Ref<TabsActions>;
     centered?: boolean;
     children?: React.ReactNode;
     indicatorColor?: 'secondary' | 'primary' | string;

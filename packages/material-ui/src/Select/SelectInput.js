@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import warning from 'warning';
+import { refType } from '@material-ui/utils';
 import Menu from '../Menu/Menu';
 import { isFilled } from '../InputBase/utils';
 import { useForkRef } from '../utils/reactHelpers';
@@ -361,9 +362,9 @@ SelectInput.propTypes = {
    */
   IconComponent: PropTypes.elementType,
   /**
-   * Use that prop to pass a ref callback to the native select element.
+   * Use that prop to pass a ref to the native select element.
    */
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  inputRef: refType,
   /**
    * Props applied to the [`Menu`](/api/menu/) element.
    */

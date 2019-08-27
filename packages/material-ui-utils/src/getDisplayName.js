@@ -33,7 +33,7 @@ function getWrappedName(outerType, innerType, wrapperName) {
  * @param {React.ReactType} Component
  * @returns {string | undefined}
  */
-function getDisplayName(Component) {
+export default function getDisplayName(Component) {
   if (Component == null) {
     return undefined;
   }
@@ -57,5 +57,3 @@ function getDisplayName(Component) {
 
   return undefined;
 }
-
-export default getDisplayName;
