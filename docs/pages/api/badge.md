@@ -29,12 +29,12 @@ You can learn more about the difference by [reading our guide](/guides/minimizin
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">horizontalAlignment</span> | <span class="prop-type">'left'<br>&#124;&nbsp;'right'</span> | <span class="prop-default">'right'</span> | The badge's horizontalAlignment alignment. |
+| <span class="prop-name">horizontalAlignment</span> | <span class="prop-type">'left'<br>&#124;&nbsp;'right'</span> | <span class="prop-default">'right'</span> | The badge's horizontal alignment. |
 | <span class="prop-name">invisible</span> | <span class="prop-type">bool</span> |  | If `true`, the badge will be invisible. |
 | <span class="prop-name">max</span> | <span class="prop-type">number</span> | <span class="prop-default">99</span> | Max count to show. |
 | <span class="prop-name">showZero</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Controls whether the badge is hidden when `badgeContent` is zero. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'dot'<br>&#124;&nbsp;'standard'</span> | <span class="prop-default">'standard'</span> | The variant to use. |
-| <span class="prop-name">verticalAlignment</span> | <span class="prop-type">'top'<br>&#124;&nbsp;'bottom'</span> | <span class="prop-default">'top'</span> | The badge's verticalAlignment alignment. |
+| <span class="prop-name">verticalAlignment</span> | <span class="prop-type">'bottom'<br>&#124;&nbsp;'top'</span> | <span class="prop-default">'top'</span> | The badge's vertical alignment. |
 
 The `ref` is forwarded to the root element.
 

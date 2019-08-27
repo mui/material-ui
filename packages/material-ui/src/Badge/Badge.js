@@ -164,7 +164,7 @@ Badge.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * The badge's horizontalAlignment alignment.
+   * The badge's horizontal alignment.
    */
   horizontalAlignment: PropTypes.oneOf(['left', 'right']),
   /**
@@ -184,7 +184,7 @@ Badge.propTypes = {
    */
   variant: PropTypes.oneOf(['dot', 'standard']),
   /**
-   * The badge's verticalAlignment alignment.
+   * The badge's vertical alignment.
    */
   verticalAlignment: PropTypes.oneOf(['bottom', 'top']),
 };

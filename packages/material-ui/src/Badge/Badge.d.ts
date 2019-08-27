@@ -21,7 +21,7 @@ export interface BadgeProps
    */
   component?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
   /**
-   * The badge's horizontalAlignment alignment.
+   * The badge's horizontal alignment.
    */
   horizontalAlignment?: 'left' | 'right';
   /**
@@ -41,7 +41,7 @@ export interface BadgeProps
    */
   variant?: 'standard' | 'dot';
   /**
-   * The badge's verticalAlignment alignment.
+   * The badge's vertical alignment.
    */
   verticalAlignment?: 'top' | 'bottom';
 }
