@@ -29,6 +29,7 @@ You can learn more about the difference by [reading our guide](/guides/minimizin
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'table'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">padding</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'checkbox'<br>&#124;&nbsp;'none'</span> | <span class="prop-default">'default'</span> | Allows TableCells to inherit padding of the Table. |
 | <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'</span> | <span class="prop-default">'medium'</span> | Allows TableCells to inherit size of the Table. |
+| <span class="prop-name">stickyHeader</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Set the header sticky.<br>⚠️ It doesn't work with IE 11. |
 
 The `ref` is forwarded to the root element.
 
@@ -42,6 +43,7 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">MuiTable-root</span> | Styles applied to the root element.
+| <span class="prop-name">stickyHeader</span> | <span class="prop-name">MuiTable-stickyHeader</span> | Styles applied to the root element if `stickyHeader={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -59,17 +59,18 @@ custom actions.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}
 
+## Fixed header
+
+An example of a table with scrollable rows and fixed column headers.
+It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
+
+{{"demo": "pages/components/tables/StickyHeadTable.js"}}
+
 ## Spanning Table
 
 A simple example with spanning rows & columns.
 
 {{"demo": "pages/components/tables/SpanningTable.js"}}
-
-## Standard Scrollable Table
-
-An example of a table with scrollable rows and fixed sortable column headers using only the standard library. A fixed bottom toolbar can be used for paging very big data sets often found in enterprise applications.
-
-{{"demo": "pages/components/tables/ScrollableTable.js"}}
 
 ## Virtualized Table
 

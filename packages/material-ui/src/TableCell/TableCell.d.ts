@@ -39,7 +39,8 @@ export type TableCellClassKey =
   | 'alignJustify'
   | 'sizeSmall'
   | 'paddingCheckbox'
-  | 'paddingNone';
+  | 'paddingNone'
+  | 'stickyHeader';
 
 declare const TableCell: React.ComponentType<TableCellProps>;
 
