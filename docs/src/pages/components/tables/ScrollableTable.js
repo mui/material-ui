@@ -226,9 +226,6 @@ const useStyles = makeStyles(theme => ({
   tableWrapper: {
     height: '100%',
   },
-  table: {
-    borderCollapse: 'separate',
-  },
   bbar: {
     position: 'absolute',
     bottom: 0,
