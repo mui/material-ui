@@ -84,7 +84,7 @@
     "compression-webpack-plugin": "^3.0.0",
     "cross-env": "^5.1.1",
     "danger": "^9.1.8",
-    "dtslint": "^0.9.0",
+    "dtslint": "^0.9.3",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^5.9.0",
