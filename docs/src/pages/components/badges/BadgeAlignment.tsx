@@ -6,11 +6,12 @@ import {
   FormLabel,
   Radio,
   RadioGroup,
+  Theme,
   makeStyles,
 } from '@material-ui/core';
 import { Mail as MailIcon } from '@material-ui/icons';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -29,8 +30,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function BadgeAlignment() {
   const classes = useStyles();
-  const [horizontalAlignment, setHorizontalAlignment] = React.useState('right');
-  const [verticalAlignment, setVerticalAlignment] = React.useState('top');
+  const [horizontalAlignment, setHorizontalAlignment] = React.useState<'left' | 'right'>('right');
+  const [verticalAlignment, setVerticalAlignment] = React.useState<'top' | 'bottom'>('top');
 
   function handleHorizontalAlignmentChange() {
     setHorizontalAlignment(previousHorizontalAlignment =>
