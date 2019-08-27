@@ -261,14 +261,10 @@ function Tooltip(props) {
 
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
-    if (leaveDelay) {
-      event.persist();
-      leaveTimer.current = setTimeout(() => {
-        handleClose(event);
-      }, leaveDelay);
-    } else {
+    event.persist();
+    leaveTimer.current = setTimeout(() => {
       handleClose(event);
-    }
+    }, leaveDelay);
   };
 
   const handleTouchStart = event => {
