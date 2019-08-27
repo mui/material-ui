@@ -4,7 +4,8 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 
-const RADIUS = 10;
+const RADIUS_STANDARD = 10;
+const RADIUS_DOT = 3;
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -23,21 +24,19 @@ export const styles = theme => ({
     alignContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: 0,
-    right: 0,
     boxSizing: 'border-box',
     fontFamily: theme.typography.fontFamily,
     fontWeight: theme.typography.fontWeightMedium,
     fontSize: theme.typography.pxToRem(12),
-    minWidth: RADIUS * 2,
+    minWidth: RADIUS_STANDARD * 2,
     padding: '0 4px',
-    height: RADIUS * 2,
-    borderRadius: RADIUS,
+    height: RADIUS_STANDARD * 2,
+    borderRadius: RADIUS_STANDARD,
     backgroundColor: theme.palette.color,
     color: theme.palette.textColor,
     zIndex: 1, // Render the badge on top of potential ripples.
-    transform: 'scale(1) translate(50%, -50%)',
-    transformOrigin: '100% 0%',
+    transform: 'scale(1)',
+    transformOrigin: 'center',
     transition: theme.transitions.create('transform', {
       easing: theme.transitions.easing.easeInOut,
       duration: theme.transitions.duration.enteringScreen,
@@ -64,14 +63,26 @@ export const styles = theme => ({
       easing: theme.transitions.easing.easeInOut,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    transform: 'scale(0) translate(50%, -50%)',
-    transformOrigin: '100% 0%',
+    transform: 'scale(0)',
   },
   /* Styles applied to the root element if `variant="dot"`. */
   dot: {
-    height: 6,
-    minWidth: 6,
+    height: RADIUS_DOT * 2,
+    minWidth: RADIUS_DOT * 2,
+    margin: RADIUS_STANDARD - RADIUS_DOT,
     padding: 0,
+  },
+  horizontalAlignmentLeft: {
+    left: -RADIUS_STANDARD,
+  },
+  horizontalAlignmentRight: {
+    right: -RADIUS_STANDARD,
+  },
+  verticalAlignmentTop: {
+    top: -RADIUS_STANDARD,
+  },
+  verticalAlignmentBottom: {
+    bottom: -RADIUS_STANDARD,
   },
 });
 
@@ -83,10 +94,12 @@ const Badge = React.forwardRef(function Badge(props, ref) {
     className,
     color = 'default',
     component: ComponentProp = 'span',
+    horizontalAlignment = 'right',
     invisible: invisibleProp,
     max = 99,
     showZero = false,
     variant = 'standard',
+    verticalAlignment = 'top',
     ...other
   } = props;
 
@@ -113,6 +126,8 @@ const Badge = React.forwardRef(function Badge(props, ref) {
           [classes[`color${capitalize(color)}`]]: color !== 'default',
           [classes.invisible]: invisible,
           [classes.dot]: variant === 'dot',
+          [classes[`horizontalAlignment${capitalize(horizontalAlignment)}`]]: horizontalAlignment,
+          [classes[`verticalAlignment${capitalize(verticalAlignment)}`]]: verticalAlignment,
         })}
       >
         {displayValue}
@@ -149,6 +164,10 @@ Badge.propTypes = {
    */
   component: PropTypes.elementType,
   /**
+   * The badge's horizontalAlignment alignment.
+   */
+  horizontalAlignment: PropTypes.oneOf(['left', 'right']),
+  /**
    * If `true`, the badge will be invisible.
    */
   invisible: PropTypes.bool,
@@ -164,6 +183,10 @@ Badge.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['dot', 'standard']),
+  /**
+   * The badge's verticalAlignment alignment.
+   */
+  verticalAlignment: PropTypes.oneOf(['bottom', 'top']),
 };
 
 export default withStyles(styles, { name: 'MuiBadge' })(Badge);

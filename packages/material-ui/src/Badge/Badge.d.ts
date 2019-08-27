@@ -21,6 +21,10 @@ export interface BadgeProps
    */
   component?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
   /**
+   * The badge's horizontalAlignment alignment.
+   */
+  horizontalAlignment?: 'left' | 'right';
+  /**
    * If `true`, the badge will be invisible.
    */
   invisible?: boolean;
@@ -36,6 +40,10 @@ export interface BadgeProps
    * The variant to use.
    */
   variant?: 'standard' | 'dot';
+  /**
+   * The badge's verticalAlignment alignment.
+   */
+  verticalAlignment?: 'top' | 'bottom';
 }
 
 export type BadgeClassKey =

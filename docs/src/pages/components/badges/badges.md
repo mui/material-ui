@@ -33,6 +33,12 @@ The badge auto hides with badgeContent is zero. You can override this with the `
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
+## Badge alignment
+
+You can use the `horizontalAlignment` and `verticalAlignment` properties to move the badge to any corner of the wrapped element.
+
+{{"demo": "pages/components/badges/BadgeAlignment.js"}}
+
 ## Customized badges
 
 Here is an example of customizing the component. You can learn more about this in the
