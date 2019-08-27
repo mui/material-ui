@@ -219,12 +219,15 @@ ScrollableTableToolbar.propTypes = {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: 420,
+    height: 415,
     width: '100%',
     position: 'relative',
   },
   tableWrapper: {
     height: '100%',
+  },
+  table: {
+    borderCollapse: 'separate',
   },
   bbar: {
     position: 'absolute',
@@ -237,15 +240,17 @@ const useStyles = makeStyles(theme => ({
     maxHeight: 'calc(100% - 120px)',
     overflow: 'auto',
   },
-  tableBody: {
-    width: '100%',
-  },
   headerCell: {
     position: 'sticky',
     top: 0,
     left: 0,
     backgroundColor: theme.palette.background.default,
     zIndex: 100,
+    //borderBottom: '1px solid #000',
+    //backgroundClip: 'padding-box',
+    //outline: '1px solid #e9ecef',               
+    //border: 'none',
+    //outlineOffset: -1,
   },
   visuallyHidden: {
     border: 0,
