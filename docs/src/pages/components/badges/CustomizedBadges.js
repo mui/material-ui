@@ -1,26 +1,70 @@
 import React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import { withStyles } from '@material-ui/core/styles';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import {
+  makeStyles,
+  FormControlLabel,
+  Switch,
+  List,
+  ListItem,
+  ListItemAvatar,
+  Badge,
+  Avatar,
+  ListItemText,
+} from '@material-ui/core';
 
-const StyledBadge = withStyles(theme => ({
+const useStyles = makeStyles(theme => ({
   badge: {
-    top: '50%',
-    right: -3,
-    // The border color match the background color.
-    border: `2px solid ${
-      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[900]
-    }`,
+    backgroundColor: '#44b700',
+    border: `2px solid ${theme.palette.background.level2}`,
+    minWidth: 12,
+    height: 12,
   },
-}))(Badge);
+  horizontalAlignmentRight: {
+    right: 0,
+  },
+  verticalAlignmentBottom: {
+    bottom: 0,
+  },
+}));
 
 export default function CustomizedBadges() {
+  const classes = useStyles();
+
+  const [isOnline, setIsOnline] = React.useState(true);
+
+  const handleIsOnlineChange = (event, checked) => {
+    setIsOnline(checked);
+  };
+
   return (
-    <IconButton aria-label="cart">
-      <StyledBadge badgeContent={4} color="primary">
-        <ShoppingCartIcon />
-      </StyledBadge>
-    </IconButton>
+    <div>
+      <FormControlLabel
+        control={<Switch />}
+        label="Johnny's online status"
+        checked={isOnline}
+        onChange={handleIsOnlineChange}
+      />
+      <List>
+        <ListItem>
+          <ListItemAvatar>
+            <Badge
+              classes={{
+                badge: classes.badge,
+                horizontalAlignmentRight: classes.horizontalAlignmentRight,
+                verticalAlignmentBottom: classes.verticalAlignmentBottom,
+              }}
+              verticalAlignment="bottom"
+              badgeContent=" "
+              invisible={!isOnline}
+            >
+              <Avatar alt="Stock avatar" src="/static/images/avatar/1.jpg" />
+            </Badge>
+          </ListItemAvatar>
+          <ListItemText
+            primary="Johnny Doe"
+            secondary="Could you pop by the store on your way back and grab some tomatoes? 🍅"
+          />
+        </ListItem>
+      </List>
+    </div>
   );
 }
