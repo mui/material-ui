@@ -206,10 +206,10 @@ Typography.propTypes = {
    */
   gutterBottom: PropTypes.bool,
   /**
-   * If `true`, the text will not wrap, but instead will truncate with an text overflow ellipsis.
+   * If `true`, the text will not wrap, but instead will truncate with a text overflow ellipsis.
    *
-   * Notice that text overflow can only happen on block or inline-block level elements
-   * (the element needs to have a width in order to be overflow-ed).
+   * Note that text overflow can only happen with block or inline-block level elements
+   * (the element needs to have a width in order to overflow).
    */
   noWrap: PropTypes.bool,
   /**
