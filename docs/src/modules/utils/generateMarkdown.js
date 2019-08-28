@@ -78,6 +78,10 @@ function isElementTypeAcceptingRefProp(type) {
   return type.raw === 'elementTypeAcceptingRef';
 }
 
+function isRefType(type) {
+  return type.raw === 'refType';
+}
+
 function isElementAcceptingRefProp(type) {
   return /^elementAcceptingRef/.test(type.raw);
 }
@@ -169,6 +173,9 @@ function generatePropType(type) {
       }
       if (isElementAcceptingRefProp(type)) {
         return `element`;
+      }
+      if (isRefType(type)) {
+        return `ref`;
       }
 
       const deprecatedInfo = getDeprecatedInfo(type);

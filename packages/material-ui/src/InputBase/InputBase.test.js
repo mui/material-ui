@@ -221,7 +221,7 @@ describe('<InputBase />', () => {
           return <input ref={inputRef} {...other} />;
         }
         FullTarget.propTypes = {
-          inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+          inputRef: PropTypes.any,
         };
 
         function FilledState(props) {
