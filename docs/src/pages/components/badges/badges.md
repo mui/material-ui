@@ -33,6 +33,12 @@ The badge auto hides with badgeContent is zero. You can override this with the `
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
+## Badge overlap
+
+You can use the `overlap` property to place the badge relative to the corner of the wrapped element.
+
+{{"demo": "pages/components/badges/BadgeOverlap.js"}}
+
 ## Badge alignment
 
 You can use the `horizontalAlignment` and `verticalAlignment` properties to move the badge to any corner of the wrapped element.

@@ -72,17 +72,41 @@ export const styles = theme => ({
     margin: RADIUS_STANDARD - RADIUS_DOT,
     padding: 0,
   },
-  horizontalAlignmentLeft: {
+  horizontalAlignmentLeftOverlapRectangle: {
     left: -RADIUS_STANDARD,
   },
-  horizontalAlignmentRight: {
+  horizontalAlignmentRightOverlapRectangle: {
     right: -RADIUS_STANDARD,
   },
-  verticalAlignmentTop: {
+  verticalAlignmentTopOverlapRectangle: {
     top: -RADIUS_STANDARD,
   },
-  verticalAlignmentBottom: {
+  verticalAlignmentBottomOverlapRectangle: {
     bottom: -RADIUS_STANDARD,
+  },
+  horizontalAlignmentLeftOverlapCircle: {
+    left: -RADIUS_STANDARD + 4,
+  },
+  horizontalAlignmentRightOverlapCircle: {
+    right: -RADIUS_STANDARD + 4,
+  },
+  verticalAlignmentTopOverlapCircle: {
+    top: -RADIUS_STANDARD + 4,
+  },
+  verticalAlignmentBottomOverlapCircle: {
+    bottom: -RADIUS_STANDARD + 4,
+  },
+  horizontalAlignmentLeftOverlapNone: {
+    left: -RADIUS_STANDARD - 6,
+  },
+  horizontalAlignmentRightOverlapNone: {
+    right: -RADIUS_STANDARD - 6,
+  },
+  verticalAlignmentTopOverlapNone: {
+    top: -RADIUS_STANDARD - 6,
+  },
+  verticalAlignmentBottomOverlapNone: {
+    bottom: -RADIUS_STANDARD - 6,
   },
 });
 
@@ -97,6 +121,7 @@ const Badge = React.forwardRef(function Badge(props, ref) {
     horizontalAlignment = 'right',
     invisible: invisibleProp,
     max = 99,
+    overlap = 'rectangle',
     showZero = false,
     variant = 'standard',
     verticalAlignment = 'top',
@@ -126,8 +151,12 @@ const Badge = React.forwardRef(function Badge(props, ref) {
           [classes[`color${capitalize(color)}`]]: color !== 'default',
           [classes.invisible]: invisible,
           [classes.dot]: variant === 'dot',
-          [classes[`horizontalAlignment${capitalize(horizontalAlignment)}`]]: horizontalAlignment,
-          [classes[`verticalAlignment${capitalize(verticalAlignment)}`]]: verticalAlignment,
+          [classes[
+            `horizontalAlignment${capitalize(horizontalAlignment)}Overlap${capitalize(overlap)}`
+          ]]: true,
+          [classes[
+            `verticalAlignment${capitalize(verticalAlignment)}Overlap${capitalize(overlap)}`
+          ]]: true,
         })}
       >
         {displayValue}

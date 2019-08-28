@@ -33,6 +33,10 @@ export interface BadgeProps
    */
   max?: number;
   /**
+   * Wrapped shape the badge should overlap.
+   */
+  overlap?: 'circle' | 'rectangle' | 'none';
+  /**
    * Controls whether the badge is hidden when `badgeContent` is zero.
    */
   showZero?: boolean;
