@@ -7,34 +7,40 @@ import {
   Radio,
   RadioGroup,
   Theme,
+  createStyles,
   makeStyles,
 } from '@material-ui/core';
 import clsx from 'clsx';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  formControl: {
-    margin: theme.spacing(3),
-  },
-  row: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  margin: {
-    margin: theme.spacing(2),
-  },
-  shape: {
-    backgroundColor: theme.palette.background.default,
-    width: 40,
-    height: 40,
-  },
-  shapeCircle: {
-    borderRadius: '50%',
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    formControl: {
+      margin: theme.spacing(3),
+    },
+    row: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    margin: {
+      margin: theme.spacing(2),
+    },
+    shapeContainer: {
+      margin: theme.spacing(2),
+    },
+    shape: {
+      backgroundColor: theme.palette.primary.main,
+      width: 40,
+      height: 40,
+    },
+    shapeCircle: {
+      borderRadius: '50%',
+    },
+  }),
+);
 
 export default function BadgeAlignment() {
   const classes = useStyles();
@@ -57,9 +63,16 @@ export default function BadgeAlignment() {
         </FormControl>
       </div>
       <div className={classes.row}>
-        <Badge color="secondary" overlap={overlap} badgeContent=" ">
-          <div className={clsx(classes.shape, overlap === 'circle' && classes.shapeCircle)} />
-        </Badge>
+        <div className={classes.shapeContainer}>
+          <Badge color="secondary" overlap={overlap} badgeContent=" " variant="dot">
+            <div className={clsx(classes.shape, overlap === 'circle' && classes.shapeCircle)} />
+          </Badge>
+        </div>
+        <div className={classes.shapeContainer}>
+          <Badge color="secondary" overlap={overlap} badgeContent=" ">
+            <div className={clsx(classes.shape, overlap === 'circle' && classes.shapeCircle)} />
+          </Badge>
+        </div>
       </div>
     </div>
   );

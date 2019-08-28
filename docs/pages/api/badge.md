@@ -32,6 +32,7 @@ You can learn more about the difference by [reading our guide](/guides/minimizin
 | <span class="prop-name">horizontalAlignment</span> | <span class="prop-type">'left'<br>&#124;&nbsp;'right'</span> | <span class="prop-default">'right'</span> | The badge's horizontal alignment. |
 | <span class="prop-name">invisible</span> | <span class="prop-type">bool</span> |  | If `true`, the badge will be invisible. |
 | <span class="prop-name">max</span> | <span class="prop-type">number</span> | <span class="prop-default">99</span> | Max count to show. |
+| <span class="prop-name">overlap</span> | <span class="prop-type">'circle'<br>&#124;&nbsp;'rectangle'<br>&#124;&nbsp;'none'</span> | <span class="prop-default">'rectangle'</span> | Wrapped shape the badge should overlap. |
 | <span class="prop-name">showZero</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Controls whether the badge is hidden when `badgeContent` is zero. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'dot'<br>&#124;&nbsp;'standard'</span> | <span class="prop-default">'standard'</span> | The variant to use. |
 | <span class="prop-name">verticalAlignment</span> | <span class="prop-type">'bottom'<br>&#124;&nbsp;'top'</span> | <span class="prop-default">'top'</span> | The badge's vertical alignment. |
@@ -54,10 +55,21 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">colorError</span> | <span class="prop-name">MuiBadge-colorError</span> | Styles applied to the root element if `color="error"`.
 | <span class="prop-name">invisible</span> | <span class="prop-name">MuiBadge-invisible</span> | Styles applied to the badge `span` element if `invisible={true}`.
 | <span class="prop-name">dot</span> | <span class="prop-name">MuiBadge-dot</span> | Styles applied to the root element if `variant="dot"`.
-| <span class="prop-name">horizontalAlignmentLeft</span> | <span class="prop-name">MuiBadge-horizontalAlignmentLeft</span> | 
-| <span class="prop-name">horizontalAlignmentRight</span> | <span class="prop-name">MuiBadge-horizontalAlignmentRight</span> | 
-| <span class="prop-name">verticalAlignmentTop</span> | <span class="prop-name">MuiBadge-verticalAlignmentTop</span> | 
-| <span class="prop-name">verticalAlignmentBottom</span> | <span class="prop-name">MuiBadge-verticalAlignmentBottom</span> | 
+| <span class="prop-name">dotOverlapRectangle</span> | <span class="prop-name">MuiBadge-dotOverlapRectangle</span> | 
+| <span class="prop-name">dotOverlapCircle</span> | <span class="prop-name">MuiBadge-dotOverlapCircle</span> | 
+| <span class="prop-name">dotOverlapNone</span> | <span class="prop-name">MuiBadge-dotOverlapNone</span> | 
+| <span class="prop-name">badgeHorizontalAlignmentLeftOverlapRectangle</span> | <span class="prop-name">MuiBadge-badgeHorizontalAlignmentLeftOverlapRectangle</span> | 
+| <span class="prop-name">badgeHorizontalAlignmentRightOverlapRectangle</span> | <span class="prop-name">MuiBadge-badgeHorizontalAlignmentRightOverlapRectangle</span> | 
+| <span class="prop-name">badgeVerticalAlignmentTopOverlapRectangle</span> | <span class="prop-name">MuiBadge-badgeVerticalAlignmentTopOverlapRectangle</span> | 
+| <span class="prop-name">badgeVerticalAlignmentBottomOverlapRectangle</span> | <span class="prop-name">MuiBadge-badgeVerticalAlignmentBottomOverlapRectangle</span> | 
+| <span class="prop-name">badgeHorizontalAlignmentLeftOverlapCircle</span> | <span class="prop-name">MuiBadge-badgeHorizontalAlignmentLeftOverlapCircle</span> | 
+| <span class="prop-name">badgeHorizontalAlignmentRightOverlapCircle</span> | <span class="prop-name">MuiBadge-badgeHorizontalAlignmentRightOverlapCircle</span> | 
+| <span class="prop-name">badgeVerticalAlignmentTopOverlapCircle</span> | <span class="prop-name">MuiBadge-badgeVerticalAlignmentTopOverlapCircle</span> | 
+| <span class="prop-name">badgeVerticalAlignmentBottomOverlapCircle</span> | <span class="prop-name">MuiBadge-badgeVerticalAlignmentBottomOverlapCircle</span> | 
+| <span class="prop-name">badgeHorizontalAlignmentLeftOverlapNone</span> | <span class="prop-name">MuiBadge-badgeHorizontalAlignmentLeftOverlapNone</span> | 
+| <span class="prop-name">badgeHorizontalAlignmentRightOverlapNone</span> | <span class="prop-name">MuiBadge-badgeHorizontalAlignmentRightOverlapNone</span> | 
+| <span class="prop-name">badgeVerticalAlignmentTopOverlapNone</span> | <span class="prop-name">MuiBadge-badgeVerticalAlignmentTopOverlapNone</span> | 
+| <span class="prop-name">badgeVerticalAlignmentBottomOverlapNone</span> | <span class="prop-name">MuiBadge-badgeVerticalAlignmentBottomOverlapNone</span> | 
 
 You can override the style of the component thanks to one of these customization points:
 

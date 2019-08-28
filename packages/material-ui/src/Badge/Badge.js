@@ -7,6 +7,10 @@ import { capitalize } from '../utils/helpers';
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 3;
 
+const OFFSET_OVERLAP_RECTANGLE = 0;
+const OFFSET_OVERLAP_CIRCLE = 4;
+const OFFSET_OVERLAP_NONE = -4;
+
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
@@ -69,44 +73,52 @@ export const styles = theme => ({
   dot: {
     height: RADIUS_DOT * 2,
     minWidth: RADIUS_DOT * 2,
-    margin: RADIUS_STANDARD - RADIUS_DOT,
     padding: 0,
   },
-  horizontalAlignmentLeftOverlapRectangle: {
-    left: -RADIUS_STANDARD,
+  dotOverlapRectangle: {
+    margin: RADIUS_STANDARD - RADIUS_DOT + OFFSET_OVERLAP_RECTANGLE / 2,
   },
-  horizontalAlignmentRightOverlapRectangle: {
-    right: -RADIUS_STANDARD,
+  dotOverlapCircle: {
+    margin: RADIUS_STANDARD - RADIUS_DOT + OFFSET_OVERLAP_CIRCLE / 2,
   },
-  verticalAlignmentTopOverlapRectangle: {
-    top: -RADIUS_STANDARD,
+  dotOverlapNone: {
+    margin: RADIUS_STANDARD - RADIUS_DOT + OFFSET_OVERLAP_NONE / 2,
   },
-  verticalAlignmentBottomOverlapRectangle: {
-    bottom: -RADIUS_STANDARD,
+  badgeHorizontalAlignmentLeftOverlapRectangle: {
+    left: -RADIUS_STANDARD + OFFSET_OVERLAP_RECTANGLE,
   },
-  horizontalAlignmentLeftOverlapCircle: {
-    left: -RADIUS_STANDARD + 4,
+  badgeHorizontalAlignmentRightOverlapRectangle: {
+    right: -RADIUS_STANDARD + OFFSET_OVERLAP_RECTANGLE,
   },
-  horizontalAlignmentRightOverlapCircle: {
-    right: -RADIUS_STANDARD + 4,
+  badgeVerticalAlignmentTopOverlapRectangle: {
+    top: -RADIUS_STANDARD + OFFSET_OVERLAP_RECTANGLE,
   },
-  verticalAlignmentTopOverlapCircle: {
-    top: -RADIUS_STANDARD + 4,
+  badgeVerticalAlignmentBottomOverlapRectangle: {
+    bottom: -RADIUS_STANDARD + OFFSET_OVERLAP_RECTANGLE,
   },
-  verticalAlignmentBottomOverlapCircle: {
-    bottom: -RADIUS_STANDARD + 4,
+  badgeHorizontalAlignmentLeftOverlapCircle: {
+    left: -RADIUS_STANDARD + OFFSET_OVERLAP_CIRCLE,
   },
-  horizontalAlignmentLeftOverlapNone: {
-    left: -RADIUS_STANDARD - 6,
+  badgeHorizontalAlignmentRightOverlapCircle: {
+    right: -RADIUS_STANDARD + OFFSET_OVERLAP_CIRCLE,
   },
-  horizontalAlignmentRightOverlapNone: {
-    right: -RADIUS_STANDARD - 6,
+  badgeVerticalAlignmentTopOverlapCircle: {
+    top: -RADIUS_STANDARD + OFFSET_OVERLAP_CIRCLE,
   },
-  verticalAlignmentTopOverlapNone: {
-    top: -RADIUS_STANDARD - 6,
+  badgeVerticalAlignmentBottomOverlapCircle: {
+    bottom: -RADIUS_STANDARD + OFFSET_OVERLAP_CIRCLE,
   },
-  verticalAlignmentBottomOverlapNone: {
-    bottom: -RADIUS_STANDARD - 6,
+  badgeHorizontalAlignmentLeftOverlapNone: {
+    left: -RADIUS_STANDARD + OFFSET_OVERLAP_NONE,
+  },
+  badgeHorizontalAlignmentRightOverlapNone: {
+    right: -RADIUS_STANDARD + OFFSET_OVERLAP_NONE,
+  },
+  badgeVerticalAlignmentTopOverlapNone: {
+    top: -RADIUS_STANDARD + OFFSET_OVERLAP_NONE,
+  },
+  badgeVerticalAlignmentBottomOverlapNone: {
+    bottom: -RADIUS_STANDARD + OFFSET_OVERLAP_NONE,
   },
 });
 
@@ -151,11 +163,14 @@ const Badge = React.forwardRef(function Badge(props, ref) {
           [classes[`color${capitalize(color)}`]]: color !== 'default',
           [classes.invisible]: invisible,
           [classes.dot]: variant === 'dot',
+          [classes[`dotOverlap${capitalize(overlap)}`]]: variant === 'dot',
           [classes[
-            `horizontalAlignment${capitalize(horizontalAlignment)}Overlap${capitalize(overlap)}`
+            `badgeHorizontalAlignment${capitalize(horizontalAlignment)}Overlap${capitalize(
+              overlap,
+            )}`
           ]]: true,
           [classes[
-            `verticalAlignment${capitalize(verticalAlignment)}Overlap${capitalize(overlap)}`
+            `badgeVerticalAlignment${capitalize(verticalAlignment)}Overlap${capitalize(overlap)}`
           ]]: true,
         })}
       >
@@ -204,6 +219,10 @@ Badge.propTypes = {
    * Max count to show.
    */
   max: PropTypes.number,
+  /**
+   * Wrapped shape the badge should overlap.
+   */
+  overlap: PropTypes.oneOf(['circle', 'rectangle', 'none']),
   /**
    * Controls whether the badge is hidden when `badgeContent` is zero.
    */

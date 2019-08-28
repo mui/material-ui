@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Theme,
+  createStyles,
   makeStyles,
   FormControlLabel,
   Switch,
@@ -12,20 +13,14 @@ import {
   ListItemText,
 } from '@material-ui/core';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  badge: {
-    backgroundColor: '#44b700',
-    border: `2px solid ${theme.palette.background.level2}`,
-    minWidth: 12,
-    height: 12,
-  },
-  horizontalAlignmentRight: {
-    right: 0,
-  },
-  verticalAlignmentBottom: {
-    bottom: 0,
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    badge: {
+      backgroundColor: '#44b700',
+      boxShadow: `0 0 0 2px ${theme.palette.type === 'light' ? theme.palette.grey[100] : '#333'}`,
+    },
+  }),
+);
 
 export default function CustomizedBadges() {
   const classes = useStyles();
@@ -48,12 +43,10 @@ export default function CustomizedBadges() {
         <ListItem>
           <ListItemAvatar>
             <Badge
-              classes={{
-                badge: classes.badge,
-                horizontalAlignmentRight: classes.horizontalAlignmentRight,
-                verticalAlignmentBottom: classes.verticalAlignmentBottom,
-              }}
+              classes={{ badge: classes.badge }}
               verticalAlignment="bottom"
+              overlap="circle"
+              variant="dot"
               badgeContent=" "
               invisible={!isOnline}
             >

@@ -7,26 +7,29 @@ import {
   Radio,
   RadioGroup,
   Theme,
+  createStyles,
   makeStyles,
 } from '@material-ui/core';
 import { Mail as MailIcon } from '@material-ui/icons';
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  formControl: {
-    margin: theme.spacing(3),
-  },
-  row: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
-  margin: {
-    margin: theme.spacing(2),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    formControl: {
+      margin: theme.spacing(3),
+    },
+    row: {
+      display: 'flex',
+      justifyContent: 'center',
+    },
+    margin: {
+      margin: theme.spacing(2),
+    },
+  }),
+);
 
 export default function BadgeAlignment() {
   const classes = useStyles();

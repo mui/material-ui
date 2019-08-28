@@ -25,8 +25,11 @@ const useStyles = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(2),
   },
+  shapeContainer: {
+    margin: theme.spacing(2),
+  },
   shape: {
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.primary.main,
     width: 40,
     height: 40,
   },
@@ -56,9 +59,16 @@ export default function BadgeAlignment() {
         </FormControl>
       </div>
       <div className={classes.row}>
-        <Badge color="secondary" overlap={overlap} badgeContent=" ">
-          <div className={clsx(classes.shape, overlap === 'circle' && classes.shapeCircle)} />
-        </Badge>
+        <div className={classes.shapeContainer}>
+          <Badge color="secondary" overlap={overlap} badgeContent=" " variant="dot">
+            <div className={clsx(classes.shape, overlap === 'circle' && classes.shapeCircle)} />
+          </Badge>
+        </div>
+        <div className={classes.shapeContainer}>
+          <Badge color="secondary" overlap={overlap} badgeContent=" ">
+            <div className={clsx(classes.shape, overlap === 'circle' && classes.shapeCircle)} />
+          </Badge>
+        </div>
       </div>
     </div>
   );
