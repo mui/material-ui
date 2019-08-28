@@ -70,6 +70,7 @@ describe('<Table />', () => {
     expect(context).to.deep.equal({
       size: 'medium',
       padding: 'default',
+      stickyHeader: false,
     });
   });
 });
