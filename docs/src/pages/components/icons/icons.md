@@ -63,21 +63,21 @@ There are three exceptions to this rule:
 
 You can import the icons with one of these two options:
 
-- Option n°1:
+- Option 1:
 
   ```jsx
   import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
   import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
   ```
   
-- Option n°2:
+- Option 2:
 
   ```jsx
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-The safest option is n°1 but option n°2 can yield the best experience.
-Make sure you follow our [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the approach n°2.
+The safest is option 1 but option 2 can yield the best experience.
+Make sure you follow our [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
 We encourage the configuration of a Babel plugin.
 
 ### More SVG icons
