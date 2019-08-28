@@ -12,14 +12,11 @@ export const styles = theme => ({
   root: {
     ...theme.typography.button,
     boxSizing: 'border-box',
+    borderRadius: theme.shape.borderRadius,
     height: 48,
-    padding: '0px 11px 0px 12px',
+    padding: '0px 12px',
     border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
     color: fade(theme.palette.action.active, 0.38),
-    '&:not(:first-child)': {
-      marginLeft: -1,
-      borderLeft: '1px solid transparent',
-    },
     '&$selected': {
       color: theme.palette.action.active,
       backgroundColor: fade(theme.palette.action.active, 0.12),
@@ -45,15 +42,6 @@ export const styles = theme => ({
         backgroundColor: 'transparent',
       },
     },
-    '&:first-child': {
-      borderTopLeftRadius: 2,
-      borderBottomLeftRadius: 2,
-    },
-    '&:last-child': {
-      borderTopRightRadius: 2,
-      borderBottomRightRadius: 2,
-      paddingLeft: 12,
-    },
   },
   /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
@@ -69,13 +57,13 @@ export const styles = theme => ({
   /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
     height: 40,
-    padding: '0px 7px 0px 8px',
+    padding: '0px 8px',
     fontSize: theme.typography.pxToRem(13),
   },
   /* Styles applied to the root element if `size="large"`. */
   sizeLarge: {
     height: 56,
-    padding: '0px 15px 0px 16px',
+    padding: '0px 16px',
     fontSize: theme.typography.pxToRem(15),
   },
 });
