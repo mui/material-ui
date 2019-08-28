@@ -24,6 +24,8 @@ export const styles = theme => ({
     pointerEvents: 'none',
     position: 'absolute',
     backgroundColor: 'currentcolor',
+    overflow: 'hidden',
+    borderRadius: 'inherit',
     top: 0,
     right: 0,
     bottom: 0,
