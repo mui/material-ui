@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import warning from 'warning';
-import { capitalize } from '@material-ui/core/utils';
+import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import { darken, lighten } from '../styles/colorManipulator';
 import useTheme from '../styles/useTheme';
@@ -11,7 +11,7 @@ const TRANSITION_DURATION = 4; // seconds
 
 export const styles = theme => {
   const getColor = color =>
-    theme.palette.type === 'light' ? lighten(color, 0.6) : darken(color, 0.4);
+    theme.palette.type === 'light' ? lighten(color, 0.62) : darken(color, 0.5);
 
   const backgroundPrimary = getColor(theme.palette.primary.main);
   const backgroundSecondary = getColor(theme.palette.secondary.main);
