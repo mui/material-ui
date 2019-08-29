@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import warning from 'warning';
+import { capitalize } from '@material-ui/core/utils';
 import withStyles from '../styles/withStyles';
 import { darken, lighten } from '../styles/colorManipulator';
 import useTheme from '../styles/useTheme';
@@ -9,11 +10,11 @@ import useTheme from '../styles/useTheme';
 const TRANSITION_DURATION = 4; // seconds
 
 export const styles = theme => {
-  const getColor = (color, value) =>
-    theme.palette.type === 'light' ? lighten(color, value) : darken(color, value);
+  const getColor = color =>
+    theme.palette.type === 'light' ? lighten(color, 0.6) : darken(color, 0.4);
 
-  const backgroundPrimary = getColor(theme.palette.primary.light, 0.6);
-  const backgroundSecondary = getColor(theme.palette.secondary.light, 0.6);
+  const backgroundPrimary = getColor(theme.palette.primary.main);
+  const backgroundSecondary = getColor(theme.palette.secondary.main);
 
   return {
     /* Styles applied to the root element. */
@@ -176,37 +177,6 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   } = props;
   const theme = useTheme();
 
-  const className = clsx(
-    classes.root,
-    {
-      [classes.colorPrimary]: color === 'primary',
-      [classes.colorSecondary]: color === 'secondary',
-      [classes.determinate]: variant === 'determinate',
-      [classes.indeterminate]: variant === 'indeterminate',
-      [classes.buffer]: variant === 'buffer',
-      [classes.query]: variant === 'query',
-    },
-    classNameProp,
-  );
-  const dashedClass = clsx(classes.dashed, {
-    [classes.dashedColorPrimary]: color === 'primary',
-    [classes.dashedColorSecondary]: color === 'secondary',
-  });
-  const bar1ClassName = clsx(classes.bar, {
-    [classes.barColorPrimary]: color === 'primary',
-    [classes.barColorSecondary]: color === 'secondary',
-    [classes.bar1Indeterminate]: variant === 'indeterminate' || variant === 'query',
-    [classes.bar1Determinate]: variant === 'determinate',
-    [classes.bar1Buffer]: variant === 'buffer',
-  });
-  const bar2ClassName = clsx(classes.bar, {
-    [classes.barColorPrimary]: color === 'primary' && variant !== 'buffer',
-    [classes.colorPrimary]: color === 'primary' && variant === 'buffer',
-    [classes.barColorSecondary]: color === 'secondary' && variant !== 'buffer',
-    [classes.colorSecondary]: color === 'secondary' && variant === 'buffer',
-    [classes.bar2Indeterminate]: variant === 'indeterminate' || variant === 'query',
-    [classes.bar2Buffer]: variant === 'buffer',
-  });
   const rootProps = {};
   const inlineStyles = { bar1: {}, bar2: {} };
 
@@ -243,11 +213,44 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   }
 
   return (
-    <div className={className} role="progressbar" {...rootProps} ref={ref} {...other}>
-      {variant === 'buffer' ? <div className={dashedClass} /> : null}
-      <div className={bar1ClassName} style={inlineStyles.bar1} />
+    <div
+      className={clsx(
+        classes.root,
+        classes[`color${capitalize(color)}`],
+        {
+          [classes.determinate]: variant === 'determinate',
+          [classes.indeterminate]: variant === 'indeterminate',
+          [classes.buffer]: variant === 'buffer',
+          [classes.query]: variant === 'query',
+        },
+        classNameProp,
+      )}
+      role="progressbar"
+      {...rootProps}
+      ref={ref}
+      {...other}
+    >
+      {variant === 'buffer' ? (
+        <div className={clsx(classes.dashed, classes[`dashedColor${capitalize(color)}`])} />
+      ) : null}
+      <div
+        className={clsx(classes.bar, classes[`barColor${capitalize(color)}`], {
+          [classes.bar1Indeterminate]: variant === 'indeterminate' || variant === 'query',
+          [classes.bar1Determinate]: variant === 'determinate',
+          [classes.bar1Buffer]: variant === 'buffer',
+        })}
+        style={inlineStyles.bar1}
+      />
       {variant === 'determinate' ? null : (
-        <div className={bar2ClassName} style={inlineStyles.bar2} />
+        <div
+          className={clsx(classes.bar, {
+            [classes[`barColor${capitalize(color)}`]]: variant !== 'buffer',
+            [classes[`color${capitalize(color)}`]]: variant === 'buffer',
+            [classes.bar2Indeterminate]: variant === 'indeterminate' || variant === 'query',
+            [classes.bar2Buffer]: variant === 'buffer',
+          })}
+          style={inlineStyles.bar2}
+        />
       )}
     </div>
   );
