@@ -12,6 +12,9 @@ export const styles = theme => {
   const getColor = (color, value) =>
     theme.palette.type === 'light' ? lighten(color, value) : darken(color, value);
 
+  const backgroundPrimary = getColor(theme.palette.primary.light, 0.6);
+  const backgroundSecondary = getColor(theme.palette.secondary.light, 0.6);
+
   return {
     /* Styles applied to the root element. */
     root: {
@@ -21,11 +24,11 @@ export const styles = theme => {
     },
     /* Styles applied to the root & bar2 element if `color="primary"`; bar2 if `variant-"buffer"`. */
     colorPrimary: {
-      backgroundColor: getColor(theme.palette.primary.light, 0.6),
+      backgroundColor: backgroundPrimary,
     },
     /* Styles applied to the root & bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`. */
     colorSecondary: {
-      backgroundColor: getColor(theme.palette.secondary.light, 0.4),
+      backgroundColor: backgroundSecondary,
     },
     /* Styles applied to the root element if `variant="determinate"`. */
     determinate: {},
@@ -49,19 +52,13 @@ export const styles = theme => {
     },
     /* Styles applied to the additional bar element if `variant="buffer"` & `color="primary"`. */
     dashedColorPrimary: {
-      backgroundImage: `radial-gradient(${getColor(
-        theme.palette.primary.light,
-        0.6,
-      )} 0%, ${getColor(theme.palette.primary.light, 0.6)} 16%, transparent 42%)`,
+      backgroundImage: `radial-gradient(${backgroundPrimary} 0%, ${backgroundPrimary} 16%, transparent 42%)`,
       backgroundSize: '10px 10px',
       backgroundPosition: '0px -23px',
     },
     /* Styles applied to the additional bar element if `variant="buffer"` & `color="secondary"`. */
     dashedColorSecondary: {
-      backgroundImage: `radial-gradient(${getColor(
-        theme.palette.secondary.light,
-        0.4,
-      )} 0%, ${getColor(theme.palette.secondary.light, 0.6)} 16%, transparent 42%)`,
+      backgroundImage: `radial-gradient(${backgroundSecondary} 0%, ${backgroundSecondary} 16%, transparent 42%)`,
       backgroundSize: '10px 10px',
       backgroundPosition: '0px -23px',
     },
