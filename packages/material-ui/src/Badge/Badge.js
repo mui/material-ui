@@ -7,10 +7,6 @@ import { capitalize } from '../utils/helpers';
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 3;
 
-const OFFSET_OVERLAP_RECTANGLE = 0;
-const OFFSET_OVERLAP_CIRCLE = 4;
-const OFFSET_OVERLAP_NONE = -4;
-
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
@@ -18,6 +14,7 @@ export const styles = theme => ({
     display: 'inline-flex',
     // For correct alignment with the text.
     verticalAlign: 'middle',
+    flexShrink: 0,
   },
   /* Styles applied to the badge `span` element. */
   badge: {
@@ -39,8 +36,6 @@ export const styles = theme => ({
     backgroundColor: theme.palette.color,
     color: theme.palette.textColor,
     zIndex: 1, // Render the badge on top of potential ripples.
-    transform: 'scale(1)',
-    transformOrigin: 'center',
     transition: theme.transitions.create('transform', {
       easing: theme.transitions.easing.easeInOut,
       duration: theme.transitions.duration.enteringScreen,
@@ -61,82 +56,118 @@ export const styles = theme => ({
     backgroundColor: theme.palette.error.main,
     color: theme.palette.error.contrastText,
   },
-  /* Styles applied to the badge `span` element if `invisible={true}`. */
-  invisible: {
-    transition: theme.transitions.create('transform', {
-      easing: theme.transitions.easing.easeInOut,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    transform: 'scale(0)',
-  },
   /* Styles applied to the root element if `variant="dot"`. */
   dot: {
     height: RADIUS_DOT * 2,
     minWidth: RADIUS_DOT * 2,
     padding: 0,
   },
-  dotOverlapRectangle: {
-    margin: RADIUS_STANDARD - RADIUS_DOT + OFFSET_OVERLAP_RECTANGLE / 2,
+  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangle"`. */
+  anchorOriginTopRightRectangle: {
+    top: 0,
+    right: 0,
+    transform: 'scale(1) translate(50%, -50%)',
+    transformOrigin: '100% 0%',
+    '&$invisible': {
+      transform: 'scale(0) translate(50%, -50%)',
+    },
   },
-  dotOverlapCircle: {
-    margin: RADIUS_STANDARD - RADIUS_DOT + OFFSET_OVERLAP_CIRCLE / 2,
+  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangle"`. */
+  anchorOriginBottomRightRectangle: {
+    bottom: 0,
+    right: 0,
+    transform: 'scale(1) translate(50%, 50%)',
+    transformOrigin: '100% 100%',
+    '&$invisible': {
+      transform: 'scale(0) translate(50%, 50%)',
+    },
   },
-  dotOverlapNone: {
-    margin: RADIUS_STANDARD - RADIUS_DOT + OFFSET_OVERLAP_NONE / 2,
+  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangle"`. */
+  anchorOriginTopLeftRectangle: {
+    top: 0,
+    left: 0,
+    transform: 'scale(1) translate(-50%, -50%)',
+    transformOrigin: '0% 0%',
+    '&$invisible': {
+      transform: 'scale(0) translate(-50%, -50%)',
+    },
   },
-  badgeHorizontalAlignmentLeftOverlapRectangle: {
-    left: -RADIUS_STANDARD + OFFSET_OVERLAP_RECTANGLE,
+  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangle"`. */
+  anchorOriginBottomLeftRectangle: {
+    bottom: 0,
+    left: 0,
+    transform: 'scale(1) translate(-50%, 50%)',
+    transformOrigin: '0% 100%',
+    '&$invisible': {
+      transform: 'scale(0) translate(-50%, 50%)',
+    },
   },
-  badgeHorizontalAlignmentRightOverlapRectangle: {
-    right: -RADIUS_STANDARD + OFFSET_OVERLAP_RECTANGLE,
+  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circle"`. */
+  anchorOriginTopRightCircle: {
+    top: '10%',
+    right: '10%',
+    transform: 'scale(1) translate(50%, -50%)',
+    transformOrigin: '100% 0%',
+    '&$invisible': {
+      transform: 'scale(0) translate(50%, -50%)',
+    },
   },
-  badgeVerticalAlignmentTopOverlapRectangle: {
-    top: -RADIUS_STANDARD + OFFSET_OVERLAP_RECTANGLE,
+  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circle"`. */
+  anchorOriginBottomRightCircle: {
+    bottom: '10%',
+    right: '10%',
+    transform: 'scale(1) translate(50%, 50%)',
+    transformOrigin: '100% 100%',
+    '&$invisible': {
+      transform: 'scale(0) translate(50%, 50%)',
+    },
   },
-  badgeVerticalAlignmentBottomOverlapRectangle: {
-    bottom: -RADIUS_STANDARD + OFFSET_OVERLAP_RECTANGLE,
+  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circle"`. */
+  anchorOriginTopLeftCircle: {
+    top: '10%',
+    left: '10%',
+    transform: 'scale(1) translate(-50%, -50%)',
+    transformOrigin: '0% 0%',
+    '&$invisible': {
+      transform: 'scale(0) translate(-50%, -50%)',
+    },
   },
-  badgeHorizontalAlignmentLeftOverlapCircle: {
-    left: -RADIUS_STANDARD + OFFSET_OVERLAP_CIRCLE,
+  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circle"`. */
+  anchorOriginBottomLeftCircle: {
+    bottom: '10%',
+    left: '10%',
+    transform: 'scale(1) translate(-50%, 50%)',
+    transformOrigin: '0% 100%',
+    '&$invisible': {
+      transform: 'scale(0) translate(-50%, 50%)',
+    },
   },
-  badgeHorizontalAlignmentRightOverlapCircle: {
-    right: -RADIUS_STANDARD + OFFSET_OVERLAP_CIRCLE,
-  },
-  badgeVerticalAlignmentTopOverlapCircle: {
-    top: -RADIUS_STANDARD + OFFSET_OVERLAP_CIRCLE,
-  },
-  badgeVerticalAlignmentBottomOverlapCircle: {
-    bottom: -RADIUS_STANDARD + OFFSET_OVERLAP_CIRCLE,
-  },
-  badgeHorizontalAlignmentLeftOverlapNone: {
-    left: -RADIUS_STANDARD + OFFSET_OVERLAP_NONE,
-  },
-  badgeHorizontalAlignmentRightOverlapNone: {
-    right: -RADIUS_STANDARD + OFFSET_OVERLAP_NONE,
-  },
-  badgeVerticalAlignmentTopOverlapNone: {
-    top: -RADIUS_STANDARD + OFFSET_OVERLAP_NONE,
-  },
-  badgeVerticalAlignmentBottomOverlapNone: {
-    bottom: -RADIUS_STANDARD + OFFSET_OVERLAP_NONE,
+  /* Pseudo-class to the badge `span` element if `invisible={true}`. */
+  invisible: {
+    transition: theme.transitions.create('transform', {
+      easing: theme.transitions.easing.easeInOut,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
   },
 });
 
 const Badge = React.forwardRef(function Badge(props, ref) {
   const {
+    anchorOrigin = {
+      vertical: 'top',
+      horizontal: 'right',
+    },
     badgeContent,
     children,
     classes,
     className,
     color = 'default',
     component: ComponentProp = 'span',
-    horizontalAlignment = 'right',
     invisible: invisibleProp,
     max = 99,
     overlap = 'rectangle',
     showZero = false,
     variant = 'standard',
-    verticalAlignment = 'top',
     ...other
   } = props;
 
@@ -159,20 +190,20 @@ const Badge = React.forwardRef(function Badge(props, ref) {
     <ComponentProp className={clsx(classes.root, className)} ref={ref} {...other}>
       {children}
       <span
-        className={clsx(classes.badge, {
-          [classes[`color${capitalize(color)}`]]: color !== 'default',
-          [classes.invisible]: invisible,
-          [classes.dot]: variant === 'dot',
-          [classes[`dotOverlap${capitalize(overlap)}`]]: variant === 'dot',
-          [classes[
-            `badgeHorizontalAlignment${capitalize(horizontalAlignment)}Overlap${capitalize(
-              overlap,
-            )}`
-          ]]: true,
-          [classes[
-            `badgeVerticalAlignment${capitalize(verticalAlignment)}Overlap${capitalize(overlap)}`
-          ]]: true,
-        })}
+        className={clsx(
+          classes.badge,
+          classes[`${anchorOrigin.horizontal}${capitalize(anchorOrigin.vertical)}}`],
+          classes[
+            `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
+              anchorOrigin.horizontal,
+            )}${capitalize(overlap)}`
+          ],
+          {
+            [classes[`color${capitalize(color)}`]]: color !== 'default',
+            [classes.invisible]: invisible,
+            [classes.dot]: variant === 'dot',
+          },
+        )}
       >
         {displayValue}
       </span>
@@ -181,6 +212,13 @@ const Badge = React.forwardRef(function Badge(props, ref) {
 });
 
 Badge.propTypes = {
+  /**
+   * The anchor of the badge.
+   */
+  anchorOrigin: PropTypes.shape({
+    horizontal: PropTypes.oneOf(['left', 'right']).isRequired,
+    vertical: PropTypes.oneOf(['bottom', 'top']).isRequired,
+  }),
   /**
    * The content rendered within the badge.
    */
@@ -208,10 +246,6 @@ Badge.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * The badge's horizontal alignment.
-   */
-  horizontalAlignment: PropTypes.oneOf(['left', 'right']),
-  /**
    * If `true`, the badge will be invisible.
    */
   invisible: PropTypes.bool,
@@ -222,7 +256,7 @@ Badge.propTypes = {
   /**
    * Wrapped shape the badge should overlap.
    */
-  overlap: PropTypes.oneOf(['circle', 'rectangle', 'none']),
+  overlap: PropTypes.oneOf(['circle', 'rectangle']),
   /**
    * Controls whether the badge is hidden when `badgeContent` is zero.
    */
@@ -231,10 +265,6 @@ Badge.propTypes = {
    * The variant to use.
    */
   variant: PropTypes.oneOf(['dot', 'standard']),
-  /**
-   * The badge's vertical alignment.
-   */
-  verticalAlignment: PropTypes.oneOf(['bottom', 'top']),
 };
 
 export default withStyles(styles, { name: 'MuiBadge' })(Badge);

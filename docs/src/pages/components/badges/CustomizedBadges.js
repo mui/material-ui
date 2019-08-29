@@ -1,60 +1,95 @@
 import React from 'react';
-import {
-  makeStyles,
-  FormControlLabel,
-  Switch,
-  List,
-  ListItem,
-  ListItemAvatar,
-  Badge,
-  Avatar,
-  ListItemText,
-} from '@material-ui/core';
+import Badge from '@material-ui/core/Badge';
+import Box from '@material-ui/core/Box';
+import Avatar from '@material-ui/core/Avatar';
+import { withStyles } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
-const useStyles = makeStyles(theme => ({
+const StyledBadge1 = withStyles(theme => ({
+  badge: {
+    top: '50%',
+    right: -3,
+    border: `2px solid ${theme.palette.background.paper}`,
+  },
+}))(Badge);
+
+const StyledBadge2 = withStyles(theme => ({
   badge: {
     backgroundColor: '#44b700',
-    boxShadow: `0 0 0 2px ${theme.palette.type === 'light' ? theme.palette.grey[100] : '#333'}`,
+    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+    '&::after': {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      borderRadius: '50%',
+      animation: '$ripple 1.2s infinite ease-in-out',
+      border: '1px solid #44b700',
+      content: '""',
+    },
   },
-}));
+  '@keyframes ripple': {
+    '0%': {
+      transform: 'scale(.8)',
+      opacity: 1,
+    },
+    '100%': {
+      transform: 'scale(2.4)',
+      opacity: 0,
+    },
+  },
+}))(Badge);
+
+const StyledBadge3 = withStyles(theme => ({
+  badge: {
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: 0,
+  },
+}))(Badge);
+
+const SmallAvatar = withStyles({
+  root: {
+    width: 18,
+    height: 18,
+  },
+})(Avatar);
 
 export default function CustomizedBadges() {
-  const classes = useStyles();
-
-  const [isOnline, setIsOnline] = React.useState(true);
-
-  const handleIsOnlineChange = (event, checked) => {
-    setIsOnline(checked);
-  };
-
   return (
-    <div>
-      <FormControlLabel
-        control={<Switch />}
-        label="Johnny's online status"
-        checked={isOnline}
-        onChange={handleIsOnlineChange}
-      />
-      <List>
-        <ListItem>
-          <ListItemAvatar>
-            <Badge
-              classes={{ badge: classes.badge }}
-              verticalAlignment="bottom"
-              overlap="circle"
-              variant="dot"
-              badgeContent=" "
-              invisible={!isOnline}
-            >
-              <Avatar alt="Stock avatar" src="/static/images/avatar/1.jpg" />
-            </Badge>
-          </ListItemAvatar>
-          <ListItemText
-            primary="Johnny Doe"
-            secondary="Could you pop by the store on your way back and grab some tomatoes? 🍅"
-          />
-        </ListItem>
-      </List>
-    </div>
+    <Box display="flex">
+      <Box m={1}>
+        <IconButton aria-label="cart">
+          <StyledBadge1 badgeContent={4} color="primary">
+            <ShoppingCartIcon />
+          </StyledBadge1>
+        </IconButton>
+      </Box>
+      <Box m={1}>
+        <StyledBadge2
+          overlap="circle"
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          variant="dot"
+        >
+          <Avatar alt="Stock avatar" src="/static/images/avatar/1.jpg" />
+        </StyledBadge2>
+      </Box>
+      <Box m={1}>
+        <StyledBadge3
+          overlap="circle"
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          badgeContent={<SmallAvatar src="/static/images/avatar/1.jpg" />}
+        >
+          <Avatar src="/static/images/avatar/2.jpg" />
+        </StyledBadge3>
+      </Box>
+    </Box>
   );
 }

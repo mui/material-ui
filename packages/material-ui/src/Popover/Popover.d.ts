@@ -5,8 +5,8 @@ import { ModalProps } from '../Modal';
 import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
 
 export interface PopoverOrigin {
-  horizontal: 'left' | 'center' | 'right' | number;
   vertical: 'top' | 'center' | 'bottom' | number;
+  horizontal: 'left' | 'center' | 'right' | number;
 }
 
 export interface PopoverPosition {

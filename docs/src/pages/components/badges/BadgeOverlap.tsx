@@ -1,32 +1,21 @@
 import React from 'react';
-import {
-  Badge,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-  Theme,
-  createStyles,
-  makeStyles,
-} from '@material-ui/core';
 import clsx from 'clsx';
+import Badge from '@material-ui/core/Badge';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-    },
     formControl: {
-      margin: theme.spacing(3),
+      marginBottom: theme.spacing(3),
     },
     row: {
       display: 'flex',
       justifyContent: 'center',
-    },
-    margin: {
-      margin: theme.spacing(2),
     },
     shapeContainer: {
       margin: theme.spacing(2),
@@ -42,23 +31,22 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function BadgeAlignment() {
+export default function BadgeOverlap() {
   const classes = useStyles();
-  const [overlap, setOverlap] = React.useState<'circle' | 'rectangle' | 'none'>('rectangle');
+  const [overlap, setOverlap] = React.useState<'circle' | 'rectangle'>('rectangle');
 
-  function handleOverlapChange(event: any, value: string) {
-    setOverlap(value as any);
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setOverlap((event.target as HTMLInputElement).value as 'circle' | 'rectangle');
   }
 
   return (
-    <div className={classes.root}>
+    <div>
       <div className={classes.row}>
         <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend">Overlap</FormLabel>
-          <RadioGroup value={overlap} onChange={handleOverlapChange}>
-            <FormControlLabel value="circle" control={<Radio />} label="Circle" />
+          <RadioGroup value={overlap} onChange={handleChange}>
             <FormControlLabel value="rectangle" control={<Radio />} label="Rectangle" />
-            <FormControlLabel value="none" control={<Radio />} label="None" />
+            <FormControlLabel value="circle" control={<Radio />} label="Circle" />
           </RadioGroup>
         </FormControl>
       </div>

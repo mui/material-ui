@@ -1,29 +1,20 @@
 import React from 'react';
-import {
-  Badge,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-  makeStyles,
-} from '@material-ui/core';
 import clsx from 'clsx';
+import Badge from '@material-ui/core/Badge';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormLabel from '@material-ui/core/FormLabel';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
   formControl: {
-    margin: theme.spacing(3),
+    marginBottom: theme.spacing(3),
   },
   row: {
     display: 'flex',
     justifyContent: 'center',
-  },
-  margin: {
-    margin: theme.spacing(2),
   },
   shapeContainer: {
     margin: theme.spacing(2),
@@ -38,23 +29,22 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function BadgeAlignment() {
+export default function BadgeOverlap() {
   const classes = useStyles();
   const [overlap, setOverlap] = React.useState('rectangle');
 
-  function handleOverlapChange(event, value) {
-    setOverlap(value);
+  function handleChange(event) {
+    setOverlap(event.target.value);
   }
 
   return (
-    <div className={classes.root}>
+    <div>
       <div className={classes.row}>
         <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend">Overlap</FormLabel>
-          <RadioGroup value={overlap} onChange={handleOverlapChange}>
-            <FormControlLabel value="circle" control={<Radio />} label="Circle" />
+          <RadioGroup value={overlap} onChange={handleChange}>
             <FormControlLabel value="rectangle" control={<Radio />} label="Rectangle" />
-            <FormControlLabel value="none" control={<Radio />} label="None" />
+            <FormControlLabel value="circle" control={<Radio />} label="Circle" />
           </RadioGroup>
         </FormControl>
       </div>

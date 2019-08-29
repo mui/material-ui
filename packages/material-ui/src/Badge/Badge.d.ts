@@ -1,8 +1,21 @@
 import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
 
+export interface BadgeOrigin {
+  vertical: 'top' | 'bottom';
+  horizontal: 'left' | 'right';
+}
+
 export interface BadgeProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, BadgeClassKey> {
+  /**
+   * The anchor of the badge.
+   */
+  anchorOrigin?: BadgeOrigin;
+  /**
+   * Wrapped shape the badge should overlap.
+   */
+  overlap?: 'rectangle' | 'circle';
   /**
    * The content rendered within the badge.
    */
@@ -21,10 +34,6 @@ export interface BadgeProps
    */
   component?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
   /**
-   * The badge's horizontal alignment.
-   */
-  horizontalAlignment?: 'left' | 'right';
-  /**
    * If `true`, the badge will be invisible.
    */
   invisible?: boolean;
@@ -33,10 +42,6 @@ export interface BadgeProps
    */
   max?: number;
   /**
-   * Wrapped shape the badge should overlap.
-   */
-  overlap?: 'circle' | 'rectangle' | 'none';
-  /**
    * Controls whether the badge is hidden when `badgeContent` is zero.
    */
   showZero?: boolean;
@@ -44,10 +49,6 @@ export interface BadgeProps
    * The variant to use.
    */
   variant?: 'standard' | 'dot';
-  /**
-   * The badge's vertical alignment.
-   */
-  verticalAlignment?: 'top' | 'bottom';
 }
 
 export type BadgeClassKey =
@@ -56,7 +57,14 @@ export type BadgeClassKey =
   | 'colorPrimary'
   | 'colorSecondary'
   | 'colorError'
-  | 'invisible'
-  | 'dot';
+  | 'dot'
+  | 'anchorOriginTopRightRectangle'
+  | 'anchorOriginBottomRightRectangle'
+  | 'anchorOriginTopLeftRectangle'
+  | 'anchorOriginBottomLeftRectangle'
+  | 'anchorOriginTopRightCircle'
+  | 'anchorOriginBottomRightCircle'
+  | 'anchorOriginTopLeftCircle'
+  | 'invisible';
 
 export default function Badge(props: BadgeProps): JSX.Element | null;
