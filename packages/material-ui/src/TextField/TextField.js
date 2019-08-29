@@ -100,7 +100,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       const labelNode = ReactDOM.findDOMNode(labelRef.current);
       setLabelWidth(labelNode != null ? labelNode.offsetWidth : 0);
     }
-  }, [variant, required]);
+  }, [variant, required, label]);
 
   warning(
     !select || Boolean(children),
