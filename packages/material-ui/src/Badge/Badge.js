@@ -30,6 +30,7 @@ export const styles = theme => ({
     fontWeight: theme.typography.fontWeightMedium,
     fontSize: theme.typography.pxToRem(12),
     minWidth: RADIUS_STANDARD * 2,
+    lineHeight: 1,
     padding: '0 4px',
     height: RADIUS_STANDARD * 2,
     borderRadius: RADIUS_STANDARD,
@@ -104,8 +105,8 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circle"`. */
   anchorOriginTopRightCircle: {
-    top: '10%',
-    right: '10%',
+    top: '14%',
+    right: '14%',
     transform: 'scale(1) translate(50%, -50%)',
     transformOrigin: '100% 0%',
     '&$invisible': {
@@ -114,8 +115,8 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circle"`. */
   anchorOriginBottomRightCircle: {
-    bottom: '10%',
-    right: '10%',
+    bottom: '14%',
+    right: '14%',
     transform: 'scale(1) translate(50%, 50%)',
     transformOrigin: '100% 100%',
     '&$invisible': {
@@ -124,8 +125,8 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circle"`. */
   anchorOriginTopLeftCircle: {
-    top: '10%',
-    left: '10%',
+    top: '14%',
+    left: '14%',
     transform: 'scale(1) translate(-50%, -50%)',
     transformOrigin: '0% 0%',
     '&$invisible': {
@@ -134,8 +135,8 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circle"`. */
   anchorOriginBottomLeftCircle: {
-    bottom: '10%',
-    left: '10%',
+    bottom: '14%',
+    left: '14%',
     transform: 'scale(1) translate(-50%, 50%)',
     transformOrigin: '0% 100%',
     '&$invisible': {

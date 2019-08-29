@@ -42,19 +42,13 @@ const StyledBadge2 = withStyles(theme => ({
   },
 }))(Badge);
 
-const StyledBadge3 = withStyles(theme => ({
-  badge: {
-    border: `2px solid ${theme.palette.background.paper}`,
-    padding: 0,
-  },
-}))(Badge);
-
-const SmallAvatar = withStyles({
+const SmallAvatar = withStyles(theme => ({
   root: {
-    width: 18,
-    height: 18,
+    width: 22,
+    height: 22,
+    border: `2px solid ${theme.palette.background.paper}`,
   },
-})(Avatar);
+}))(Avatar);
 
 export default function CustomizedBadges() {
   return (
@@ -79,7 +73,7 @@ export default function CustomizedBadges() {
         </StyledBadge2>
       </Box>
       <Box m={1}>
-        <StyledBadge3
+        <Badge
           overlap="circle"
           anchorOrigin={{
             vertical: 'bottom',
@@ -88,7 +82,7 @@ export default function CustomizedBadges() {
           badgeContent={<SmallAvatar src="/static/images/avatar/1.jpg" />}
         >
           <Avatar src="/static/images/avatar/2.jpg" />
-        </StyledBadge3>
+        </Badge>
       </Box>
     </Box>
   );

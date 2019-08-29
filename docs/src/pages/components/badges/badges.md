@@ -15,8 +15,7 @@ Examples of badges containing text, using primary and secondary colors. The badg
 
 ## Customized badges
 
-Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
