@@ -76,22 +76,12 @@ However, you need to apply the following steps correctly.
 
 `yarn add -D @material-ui/babel-plugin-material-ui`
 
-Create a `.babelrc.js` file in the root directory of your project:
+Create a `.babelrc` file in the root directory of your project:
 
-```js
-const plugins = [
-  [
-    '@material-ui/babel-plugin-material-ui',
-    {
-      // Set to true if your bundler supports ES modules
-      useESM: false,
-      // Set to true if you target the ECMA-262 standard (https://material-ui.com/guides/minimizing-bundle-size/#ecmascript)
-      useES: false,
-    },
-  ],
-];
-
-module.exports = { plugins };
+```json
+{
+  "plugins": ["@material-ui/babel-plugin-material-ui"]
+}
 ```
 
 If you are using Create React App, you will need to use a couple of projects that let you use `.babelrc` configuration, without ejecting.
