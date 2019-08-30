@@ -78,18 +78,10 @@ module.exports = {
       ],
     },
     esm: {
-      plugins: [
-        ...productionPlugins,
-        ['@babel/plugin-transform-runtime', { useESModules: true }],
-        ['./packages/babel-plugin-material-ui', { useESM: true }],
-      ],
+      plugins: [...productionPlugins, ['@babel/plugin-transform-runtime', { useESModules: true }]],
     },
     es: {
-      plugins: [
-        ...productionPlugins,
-        ['@babel/plugin-transform-runtime', { useESModules: true }],
-        ['./packages/babel-plugin-material-ui', { useES: true }],
-      ],
+      plugins: [...productionPlugins, ['@babel/plugin-transform-runtime', { useESModules: true }]],
     },
     production: {
       plugins: [...productionPlugins, ['@babel/plugin-transform-runtime', { useESModules: true }]],
