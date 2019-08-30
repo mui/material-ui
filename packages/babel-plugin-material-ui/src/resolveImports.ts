@@ -2,10 +2,13 @@ import fs from 'fs';
 import path from 'path';
 import * as babel from '@babel/core';
 import * as t from '@babel/types';
+import { Packages } from './packages';
 
-export type MappedImportsType = { [K in string]: Array<{ default: boolean; name: string }> };
+export type MappedImportsType = {
+  [K in string]: Array<{ default: boolean; namespaceImport?: boolean; name: string }>
+};
 
-export default (indexPath: string): MappedImportsType => {
+export default (indexPath: string, packageName: string): MappedImportsType => {
   let esPath = path.join(path.dirname(indexPath), 'es/index.js');
   if (!fs.existsSync(esPath)) {
     // If the file doesn't exist we're running the tests. The index.js file is
@@ -48,6 +51,11 @@ export default (indexPath: string): MappedImportsType => {
       });
     });
   });
+
+  // @material-ui/core exports * from ./colors as colors
+  if (packageName === Packages.Core) {
+    importLookup['colors'] = [{ name: 'colors', default: false, namespaceImport: true }];
+  }
 
   return importLookup;
 };

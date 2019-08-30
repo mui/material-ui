@@ -1,13 +1,7 @@
 import * as babel from '@babel/core';
 import * as t from '@babel/types';
 import resolveImports, { MappedImportsType } from './resolveImports';
-
-enum Packages {
-  Core = '@material-ui/core',
-  Styles = '@material-ui/styles',
-  Lab = '@material-ui/lab',
-  Icons = '@material-ui/icons',
-}
+import { Packages } from './packages';
 
 /**
  * Holds the import name and location of everything found in the index file of each package
@@ -20,7 +14,7 @@ const importMaps: { [K: string]: MappedImportsType | undefined } = {};
  */
 function transformImport(path: babel.NodePath<t.ImportDeclaration>, packageName: string) {
   if (importMaps[packageName] === undefined) {
-    importMaps[packageName] = resolveImports(require.resolve(packageName));
+    importMaps[packageName] = resolveImports(require.resolve(packageName), packageName);
   }
 
   const { node } = path;
@@ -32,7 +26,9 @@ function transformImport(path: babel.NodePath<t.ImportDeclaration>, packageName:
     }
 
     const elements = importMap[key];
-    const newSpecifiers: Array<t.ImportDefaultSpecifier | t.ImportSpecifier> = [];
+    const newSpecifiers: Array<
+      t.ImportDefaultSpecifier | t.ImportSpecifier | t.ImportNamespaceSpecifier
+    > = [];
 
     node.specifiers = node.specifiers.filter(spec => {
       if (!t.isImportSpecifier(spec)) {
@@ -45,7 +41,9 @@ function transformImport(path: babel.NodePath<t.ImportDeclaration>, packageName:
       }
 
       newSpecifiers.push(
-        mappedImport.default
+        mappedImport.namespaceImport
+          ? t.importNamespaceSpecifier(spec.local)
+          : mappedImport.default
           ? t.importDefaultSpecifier(spec.local)
           : t.importSpecifier(spec.local, spec.imported),
       );
