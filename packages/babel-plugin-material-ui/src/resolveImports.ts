@@ -30,13 +30,14 @@ export default (indexPath: string): MappedImportsType => {
       return;
     }
 
+    // Remove ./ from the file path
+    const filePath = node.source.value.replace(/^\.\//, '');
+
     node.specifiers.forEach(spec => {
       if (!t.isExportSpecifier(spec)) {
         return;
       }
 
-      // Remove ./ from the file path
-      const filePath = node.source!.value.replace(/^\.\//, '');
       if (importLookup[filePath] === undefined) {
         importLookup[filePath] = [];
       }
