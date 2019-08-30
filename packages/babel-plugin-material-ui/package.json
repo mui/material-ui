@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@types/babel__core": "^7.1.2",
-    "babel-plugin-tester": "^6.4.0",
+    "babel-plugin-tester": "^7.0.1",
     "typescript": "^3.5.3"
   },
   "dependencies": {
