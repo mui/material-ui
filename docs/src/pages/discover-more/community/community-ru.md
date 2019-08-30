@@ -1,4 +1,4 @@
-# Сообщество
+# Community
 
 <p class="description">If you want to stay up to date on the development of Material-UI or to reach out to the community, you can follow those resources.</p>
 

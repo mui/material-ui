@@ -21,14 +21,16 @@ export const styles = theme => ({
   focusVisible: {},
   /* Styles applied to the overlay that covers the action area when it is keyboard focused. */
   focusHighlight: {
+    overflow: 'hidden',
     pointerEvents: 'none',
     position: 'absolute',
-    backgroundColor: 'currentcolor',
     top: 0,
     right: 0,
     bottom: 0,
     left: 0,
+    borderRadius: 'inherit',
     opacity: 0,
+    backgroundColor: 'currentcolor',
     transition: theme.transitions.create('opacity', {
       duration: theme.transitions.duration.short,
     }),

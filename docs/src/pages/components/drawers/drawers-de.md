@@ -30,7 +30,7 @@ Diese Komponente ist mit einem 2-kB-gzipped -Overhead ausgestattet. Einige mobil
 We are using the following set of properties on this documentation website for optimal usability of the component:
 
 - iOS is hosted on high-end devices. Wir können den Hintergrundübergang aktivieren, ohne einen Einbruch der Bilder pro Sekunde zu sehen. Die Leistung wird gut genug sein.
-- iOS hat eine „Swipe, um zurück zu gehen“ Feature, welches Chaos bei der Discovery-Funktion verursacht. Wir müssen es deaktivieren.
+- iOS has a "swipe to go back" feature that mess with the discovery feature. Wir müssen es deaktivieren.
 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);

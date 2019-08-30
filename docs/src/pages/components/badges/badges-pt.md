@@ -35,6 +35,6 @@ O emblema se esconde automaticamente quando o badgeContent é zero. Você pode s
 
 ## Emblemas Customizados
 
-Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}

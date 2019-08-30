@@ -313,7 +313,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const valueDerived = isControlled ? valueProp : valueState;
   const range = Array.isArray(valueDerived);
   const instanceRef = React.useRef();
-  let values = range ? valueDerived.sort(asc) : [valueDerived];
+  let values = range ? [...valueDerived].sort(asc) : [valueDerived];
   values = values.map(value => clamp(value, min, max));
   const marks =
     marksProp === true && step !== null
@@ -739,7 +739,6 @@ Slider.propTypes = {
 
     return null;
   }),
-
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
@@ -765,8 +764,8 @@ Slider.propTypes = {
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider.
    *
-   * @param {number} value The thumb label's value to format
-   * @param {number} index The thumb label's index to format
+   * @param {number} value The thumb label's value to format.
+   * @param {number} index The thumb label's index to format.
    */
   getAriaValueText: PropTypes.func,
   /**
@@ -792,15 +791,15 @@ Slider.propTypes = {
   /**
    * Callback function that is fired when the slider's value changed.
    *
-   * @param {object} event The event source of the callback
-   * @param {any} value The new value
+   * @param {object} event The event source of the callback.
+   * @param {any} value The new value.
    */
   onChange: PropTypes.func,
   /**
    * Callback function that is fired when the `mouseup` is triggered.
    *
-   * @param {object} event The event source of the callback
-   * @param {any} value The new value
+   * @param {object} event The event source of the callback.
+   * @param {any} value The new value.
    */
   onChangeCommitted: PropTypes.func,
   /**

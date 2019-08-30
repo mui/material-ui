@@ -3,20 +3,20 @@ title: Textarea Autosize React component
 components: TextareaAutosize
 ---
 
-# Textarea Autosize
+# テキストエリアの自動サイズ調整
 
-<p class="description">A textarea component for React which grows with content.</p>
+<p class="description">コンテンツとともに大きくなるReactのテキストエリアコンポーネント。</p>
 
-- 📦 [2.1 kB gzipped](/size-snapshot)
+- [2.1 kB gzipped](/size-snapshot).
 
-## Empty
+## 空のテキストエリア
 
 {{"demo": "pages/components/textarea-autosize/EmptyTextarea.js"}}
 
-## Minimum height
+## 最小高さ
 
 {{"demo": "pages/components/textarea-autosize/MinHeightTextarea.js"}}
 
-## Maximum height
+## 最大高さ
 
 {{"demo": "pages/components/textarea-autosize/MaxHeightTextarea.js"}}

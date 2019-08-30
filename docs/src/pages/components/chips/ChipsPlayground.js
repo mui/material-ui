@@ -38,7 +38,8 @@ function ChipsPlayground(props) {
     size: 'medium',
   });
 
-  const handleChange = key => (event, value) => {
+  const handleChange = key => event => {
+    const value = event.target.value;
     setState(state => ({
       ...state,
       [key]: value,

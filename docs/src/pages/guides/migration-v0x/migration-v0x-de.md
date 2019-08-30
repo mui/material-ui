@@ -13,7 +13,7 @@ Gute Frage! Die Antwort ist nein. Die Kernkonzepte haben sich nicht geändert. S
 Die Material-UI wurde vor [4 Jahren gestartet](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). Das Ökosystem hat sich seitdem stark verändert, wir haben auch viel gelernt. [@nathanmarks](https://github.com/nathanmarks/) begann eine ehrgeizige Aufgabe, Material-UI **von Grund auf ** neu zu erstellen unter Ausnutzung seines Wissen seit langem bestehende Probleme zu lösen. Um einige der wichtigsten Änderungen zu nennen:
 
 - Neue Styling-Lösung mit CSS-in-JS (bessere[ Anpassungsmöglichkeiten](/customization/components/), bessere Leistung)
-- Neues Theming (Schachteln, selbsttragend usw.)
+- New theme handling (nesting, self-supporting, etc.)
 - Schnelle Dokumentation dank [Next.js](https://github.com/zeit/next.js)
 - Viel bessere [Testabdeckung](/guides/testing/) (99%+, läuft auf allen gängigen Browsern, [visuelle Regressionstests](https://www.argos-ci.com/mui-org/material-ui))
 - Vollständige [serverseitiges Rendern](/guides/server-rendering/) Unterstützung
@@ -187,4 +187,4 @@ Erhöhter Button-Aktualisierungspfad:
 
 ### Fortsetzung folgt…
 
-Haben Sie Ihre App erfolgreich migriert und möchten der Community helfen? Bitte hilf uns! Wir haben ein offenes Problem, um den Migrationsleitfaden [#7195](https://github.com/mui-org/material-ui/issues/7195) abzuschließen. Jede Pull-Anfrage wird begrüßt 😊.
+Haben Sie Ihre App erfolgreich migriert und möchten der Community helfen? Bitte hilf uns! Wir haben ein offenes Problem, um den Migrationsleitfaden [#7195](https://github.com/mui-org/material-ui/issues/7195) abzuschließen. Any pull request is welcomed 😊.

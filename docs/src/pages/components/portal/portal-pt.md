@@ -7,7 +7,7 @@ components: Portal
 
 <p class="description">O componente portal renderiza seu filho em uma nova sub-árvore fora da hierarquia do componente atual.</p>
 
-- 📦 [1.3 kB gzipped](/size-snapshot)
+- 📦 [1.3 kB gzipado](/size-snapshot)
 
 O filho do componente portal será adicionado ao `container` especificado.
 

@@ -5,86 +5,86 @@ components: Tabs, Tab
 
 # Tabs
 
-<p class="description">Tabs make it easy to explore and switch between different views.</p>
+<p class="description">タブを使用すると、さまざまなビューを簡単に探索して切り替えることができます。</p>
 
-[Tabs](https://material.io/design/components/tabs.html) organize and allow navigation between groups of content that are related and at the same level of hierarchy.
+[タブ](https://material.io/design/components/tabs.html) は、関連し、同じ階層レベルにあるコンテンツのグループ間のナビゲーションを整理し、許可します。
 
-## Simple Tabs
+## シンプルなタブ
 
 飾り気のないシンプルな例です。
 
 {{"demo": "pages/components/tabs/SimpleTabs.js"}}
 
-### Wrapped Labels
+### ラップされたラベル
 
-Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow and the text will not be visible.
+長いラベルはタブで自動的に折り返されます。 ラベルがタブに対して長すぎる場合、ラベルはオーバーフローし、テキストは表示されません。
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
 
-### Disabled Tab
+### 無効タブ
 
-A Tab can be disabled by setting `disabled` property.
+`disabled` プロパティを設定すると、タブを無効にできます。
 
 {{"demo": "pages/components/tabs/DisabledTabs.js"}}
 
-## Fixed Tabs
+## 固定タブ
 
-Fixed tabs should be used with a limited number of tabs and when consistent placement will aid muscle memory.
+固定タブは、限られた数のタブで、一定の配置が筋肉の記憶に役立つ場合に使用します。
 
-### Full width
+### 最大幅
 
-The `variant="fullWidth"` property should be used for smaller views. This demo also uses [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to animate the Tab transition, and allowing tabs to be swiped on touch devices.
+小さいビューには、 `variant = "fullWidth"` プロパティを使用する必要があります。 このデモでは、 [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) を使用してタブの遷移をアニメーション化し、タッチデバイスでタブをスワイプできるようにします。
 
 {{"demo": "pages/components/tabs/FullWidthTabs.js"}}
 
-### Centered
+### 中央揃え
 
-The `centered` property should be used for larger views.
+より大きなビューには、`centered`プロパティを使用する必要があります。
 
 {{"demo": "pages/components/tabs/CenteredTabs.js"}}
 
-## Scrollable Tabs
+## スクロール可能なタブ
 
-### Automatic Scroll Buttons
+### 自動スクロールボタン
 
-Left and right scroll buttons will automatically be presented on desktop and hidden on mobile. (based on viewport width)
+左右のスクロールボタンはデスクトップに自動的に表示され、モバイルでは非表示になります。 （ビューポート幅に基づく）
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonAuto.js"}}
 
-### Forced Scroll Buttons
+### 強制スクロールボタン
 
-Left and right scroll buttons will be presented regardless of the viewport width.
+ビューポートの幅に関係なく、左右のスクロールボタンが表示されます。
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonForce.js"}}
 
-### Prevent Scroll Buttons
+### スクロールボタンを防ぐ
 
-Left and right scroll buttons will never be presented. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
+左右のスクロールボタンは表示されません。 すべてのスクロールは、ユーザーエージェントのスクロールメカニズム(たとえば、左右のスワイプ、Shift-マウスホイールなど。)を使用して開始する必要があります。
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js"}}
 
-## Customized tabs
+## カスタマイズされたタブ
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js"}}
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/tabs).
+👑 インスピレーションを求めているなら, [MUI Treasury's customization examples](https://mui-treasury.com/components/tabs)を確認できます。
 
-## Vertical tabs
+## 垂直タブ
 
 {{"demo": "pages/components/tabs/VerticalTabs.js"}}
 
-## Nav Tabs
+## ナビゲーションタブ
 
-By default tabs use a `button` element, but you can provide your own custom tag or component. Here's an example of implementing tabbed navigation:
+デフォルトでは、タブは `button`要素を使用しますが、独自のカスタムタグまたはコンポーネントを提供できます。 次に、タブナビゲーションを実装する例を示します。
 
 {{"demo": "pages/components/tabs/NavTabs.js"}}
 
-## Icon Tabs
+## アイコンタブ
 
-Tab labels may be either all icons or all text.
+タブラベルは、すべてアイコンまたはすべてテキストのいずれかです。
 
-{{"demo": "pages/components/tabs/IconTabs.js"}}
+{{"demo": "pages/components/tabs/NavTabs.js"}}
 
 {{"demo": "pages/components/tabs/IconLabelTabs.js"}}

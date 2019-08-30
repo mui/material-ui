@@ -56,6 +56,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">alignCenter</span> | <span class="prop-name">MuiTableCell-alignCenter</span> | Styles applied to the root element if `align="center"`.
 | <span class="prop-name">alignRight</span> | <span class="prop-name">MuiTableCell-alignRight</span> | Styles applied to the root element if `align="right"`.
 | <span class="prop-name">alignJustify</span> | <span class="prop-name">MuiTableCell-alignJustify</span> | Styles applied to the root element if `align="justify"`.
+| <span class="prop-name">stickyHeader</span> | <span class="prop-name">MuiTableCell-stickyHeader</span> | Styles applied to the root element if `context.table.stickyHeader={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

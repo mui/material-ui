@@ -4,9 +4,9 @@ import { OverridableComponent, SimplifiedPropsOf } from '@material-ui/core/Overr
 declare const Skeleton: OverridableComponent<{
   props: {
     disableAnimate?: boolean;
-    height?: any;
+    height?: number | string;
     variant?: 'text' | 'rect' | 'circle';
-    width?: any;
+    width?: number | string;
   };
   defaultComponent: 'div';
   classKey: SkeletonClassKey;

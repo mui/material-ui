@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { refType } from '@material-ui/utils';
 import SwitchBase from '../internal/SwitchBase';
 import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
@@ -143,15 +144,14 @@ Checkbox.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * This prop can be used to pass a ref callback to the `input` element.
+   * This prop can be used to pass a ref to the `input` element.
    */
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  inputRef: refType,
   /**
    * Callback fired when the state is changed.
    *
    * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.checked`.
-   * @param {boolean} checked The `checked` value of the switch
+   * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange: PropTypes.func,
   /**

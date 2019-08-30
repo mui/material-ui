@@ -1,5 +1,5 @@
 ---
-title: Detect click outside React component
+title: Reactコンポーネント外のクリックを検出
 components: ClickAwayListener
 ---
 

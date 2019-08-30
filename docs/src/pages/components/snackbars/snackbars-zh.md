@@ -23,7 +23,7 @@ Snackbars contain a single line of text directly related to the operation perfor
 
 ## 自定义的消息条
 
-这是一些自定义样式开关的例子 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+Here are some examples of customizing the component. 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
@@ -55,7 +55,7 @@ Snackbars contain a single line of text directly related to the operation perfor
 
 ### 更改过渡动画
 
-[Grow](/components/transitions/#grow) 是默认的过渡动画，但你可以选择使用不同的过渡动画。
+[Grow](/components/transitions/#grow)是默认的过渡动画但你可以使用不同的过渡动画。
 
 {{"demo": "pages/components/snackbars/TransitionsSnackbar.js"}}
 
@@ -71,7 +71,7 @@ Snackbars contain a single line of text directly related to the operation perfor
 
 ### notistack
 
-![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
+![评星](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/notistack.svg)
 
 在下面的示例中, 我们演示如何使用 [notistack](https://github.com/iamhosseindhv/notistack)。 notistack 可以很容易地显示消息条（因此您不必处理它们的打开/关闭状态）。 它还使您能够将它们堆叠在彼此之上 (但规范不鼓励这样做)。
 

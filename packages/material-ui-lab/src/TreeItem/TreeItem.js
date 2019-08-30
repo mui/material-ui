@@ -19,6 +19,8 @@ export const styles = theme => ({
       backgroundColor: theme.palette.grey[400],
     },
   },
+  /* Pseudo-class applied to the root element when expanded. */
+  expanded: {},
   /* Styles applied to the `role="group"` element. */
   group: {
     margin: 0,
@@ -43,7 +45,9 @@ export const styles = theme => ({
     justifyContent: 'center',
   },
   /* Styles applied to the label element. */
-  label: {},
+  label: {
+    width: '100%',
+  },
 });
 
 const isPrintableCharacter = str => {
@@ -226,7 +230,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
   React.useEffect(() => {
     if (handleFirstChars && label) {
-      handleFirstChars(nodeId, label.substring(0, 1).toLowerCase());
+      handleFirstChars(nodeId, contentRef.current.textContent.substring(0, 1).toLowerCase());
     }
   }, [handleFirstChars, nodeId, label]);
 
@@ -238,7 +242,9 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
   return (
     <li
-      className={clsx(classes.root, className)}
+      className={clsx(classes.root, className, {
+        [classes.expanded]: expanded,
+      })}
       role="treeitem"
       onKeyDown={handleKeyDown}
       onFocus={handleFocus}
@@ -249,7 +255,9 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     >
       <div className={classes.content} onClick={handleClick} ref={contentRef}>
         {icon ? <div className={classes.iconContainer}>{icon}</div> : null}
-        <Typography className={classes.label}>{label}</Typography>
+        <Typography component="div" className={classes.label}>
+          {label}
+        </Typography>
       </div>
       {children && (
         <TransitionComponent

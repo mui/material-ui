@@ -3,7 +3,7 @@ title: React Grid（栅格）组件
 components: Grid
 ---
 
-# Grid（栅格)
+# Grid
 
 <p class="description">Material Design 响应式布局的栅格可适应屏幕大小和方向，确保布局之间的一致性。</p>
 
@@ -31,7 +31,7 @@ components: Grid
 
 ## Fluid grids（流式格网）
 
-Fluid grids use columns that scale and resize content. A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
+流体网格使用的列可以缩放和调整内容的大小。 流体网格的布局可以通过使用断点来确定布局是否需要显式更新。
 
 ### 基本栅格
 
@@ -45,7 +45,7 @@ Fluid grids use columns that scale and resize content. A fluid grid’s layout c
 
 <p>{{"demo": "pages/components/grid/FullWidthGrid.js"}}</p>
 
-<h2>交互</h2>
+<h2>交互式</h2>
 
 <p>下面是一个交互式的演示，您可让探索不同设置下的视觉结果：</p>
 
@@ -53,8 +53,8 @@ Fluid grids use columns that scale and resize content. A fluid grid’s layout c
 
 <h2>自动布局</h2>
 
-<p>The Auto-layout makes the <em>items</em> equitably share the available space.
-That also means you can set the width of one <em>item</em> and the others will automatically resize around it.</p>
+<p>自适应布局使得 <em>项</em> 可以平摊使用空间。
+这也意味着你可以显式设置一个 <em>项</em> 的宽度，而使其他项的大小自动进行调整。</p>
 
 <p>{{"demo": "pages/components/grid/AutoGrid.js"}}</p>
 
@@ -66,7 +66,7 @@ That also means you can set the width of one <em>item</em> and the others will a
 
 <h2>嵌套栅格</h2>
 
-<p>The <code>container` and `item` properties are two independent booleans. They can be combined.
+<p><code>container`和` item `属性分别是两个独立的布尔值，它们可以嵌套使用。 它们可以组合起来使用。
 
 > 一个 flex **容器** 是通过将 `flex` 或 `inline-flex`的计算显示赋予给一个元素而生成的。 Flex 容器的流入子容器称为 flex **items**， 它们使用 flex 布局模型进行布局。
 
@@ -78,10 +78,10 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### 负边距
 
-当我们使用负边距来实现项目之间的间距的时候，会有一个限制。 如果负边距超出`<body>`元素，则会出现水平滚动。 There are 3 available workarounds:
+当我们使用负边距来实现项目之间的间距的时候，会有一个限制。 如果负边距超出`<body>`元素，则会出现水平滚动。 这里有3种可用的解决方案：
 
 1. 不使用 spacing 的特性并且设置成默认的`spacing={0}`
-2. 将填充应用于父级元素，并且至少将一半的间距值应用于子级元素：
+2. 将填充应用于父级元素，并且将至少一半的间距值赋予子级元素：
 
 ```jsx
   <body>
@@ -97,14 +97,14 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### white-space: nowrap;
 
-The initial setting on flex items is `min-width: auto`. It's causing a positioning conflict when the children is using `white-space: nowrap;`. You can experience the issue with:
+弹性布局元素的默认属性值为 `min-width：auto`。 当子元素使用 `white-space: nowrap;`时会出现布局冲突。 您可以从以下内容看到这个问题：
 
 ```jsx
 <Grid item xs>
   <Typography noWrap>
 ```
 
-In order for the item to stay within the container you need to set `min-width: 0`. In practice, you can set the `zeroMinWidth` property:
+为了使项留在容器内，您需要设置 `min-width: 0`。 实际上，您也可以通过设置 `zeroMinWidth` 属性解决问题：
 
 ```jsx
 <Grid item xs zeroMinWidth>

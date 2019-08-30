@@ -40,7 +40,7 @@ Gere uma função de montagem aprimorada com o contexto necessário. Por favor, 
 
 #### Argumentos
 
-1. `options` (*Object* [opcional]) 
+1. `options` (*Object* [optional]) 
   - `options.mount` (*Function* [opcional]): A função de montagem para melhorar, usa **enzyme por padrão**.
   - As outras chaves são encaminhadas para o argumento de opções de `enzyme.mount()`.
 
@@ -85,7 +85,7 @@ Gere uma função superficial aprimorada com o contexto necessário. Por favor, 
 
 #### Argumentos
 
-1. `options` (*Object* [opcional]) 
+1. `options` (*Object* [optional]) 
   - `options.shallow` (*Function* [opcional]): A função superficial para melhorar, usa **enzyme por padrão**.
   - `options.untilSelector` (*String* [opcional]): Recursivamente, renderiza superficialmente o componente children até encontrar o seletor fornecido. É útil para detalhar os componentes de ordem mais alta.
   - `options.dive` (*Boolean* [opcional]): A função superficial renderiza o filho não-DOM do wrapper atual e retorna um wrapper em torno do resultado.
@@ -119,7 +119,7 @@ Gere uma função de render para string com o contexto necessário. Por favor, c
 
 #### Argumentos
 
-1. `options` (*Object* [opcional]) 
+1. `options` (*Object* [optional]) 
   - `options.render` (*Function* [opcional]): A função de renderização para melhorar, usa **enzyme por padrão**.
   - As outras chaves são encaminhadas para o argumento de opções de `enzyme.render()`.
 

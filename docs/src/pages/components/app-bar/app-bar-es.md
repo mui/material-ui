@@ -11,51 +11,55 @@ La [top App Bar](https://material.io/design/components/app-bars-top.html) provee
 
 Puede transformarse en una barra de acción contextual o ser usada como una barra de navegación.
 
-## App bar con botones
+## Simple App Bar
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
 
-## App bar simple
+## App Bar with a primary search field
 
-{{"demo": "pages/components/app-bar/SimpleAppBar.js"}}
-
-## App bar con un campo de búsqueda principal
-
-Una barra de búsqueda principal.
+A primary searchbar.
 
 {{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
 
-## App bar con un menú
+## App Bar with menu
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js"}}
 
-## App bar con un campo de búsqueda
+## App Bar with search field
 
-Barra de búsqueda secundaria.
+A side searchbar.
 
 {{"demo": "pages/components/app-bar/SearchAppBar.js"}}
 
-## App bar densa (solo en desktop)
+## Dense (desktop only)
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js"}}
 
-## App bar en pie de página
+## Bottom App Bar
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Desplazamiento
+## Scrolling
+
+You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
 ### Ocultar App bar
 
-An App Bar that hides on scroll.
+The app bar hides on scroll down to leave more space for reading.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### Elevar App Bar
 
-An App Bar that elevates on scroll.
+The app bar elevates on scroll to communicate that the user is not at the top of the page.
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
+
+### Back to top
+
+A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+
+{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
 
 ### `useScrollTrigger([options]) => trigger`
 

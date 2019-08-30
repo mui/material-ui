@@ -156,7 +156,7 @@ Link a style sheet with a function component using the **styled components** pat
 2. `styles` (*Function | Object*): A function generating the styles or a styles object. It will be linked to the component. Use the function signature if you need to have access to the theme. It's provided as property of the first argument.
 3. `オプション` (*オプジェクト* [任意]): 
   - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-  - `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. Provide the `theme` object to the component as a property.
+  - `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. `theme`オブジェクトをプロパティとしてコンポーネントに提供します。
   - `options.name` (*String* [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
   - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
   - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
@@ -362,7 +362,7 @@ export default function MyComponent() {
   </p>
   
   <p>
-    Some implementation details that might be interesting to being aware of:
+    注意が必要な実装の詳細は、次のとおりです。
   </p>
   
   <ul spaces="0" level="0" marker="-">
@@ -376,7 +376,7 @@ export default function MyComponent() {
       The <code>innerRef</code> prop is deprecated. Use <code>ref</code> instead.
     </li>
     <li level="0">
-      It does <strong>not</strong> copy over statics. For instance, it can be used to defined a <code>getInitialProps()</code> static method (next.js).
+      It does <strong>not</strong> copy over statics. たとえば、<code>getInitialProps()</code>静的メソッド (next.js) を定義するために使用できます。
     </li>
   </ul>
   
@@ -395,7 +395,7 @@ export default function MyComponent() {
           <code>options.defaultTheme</code> (<em>Object</em> [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
         </li>
         <li level="1">
-          <code>options.withTheme</code> (<em>ブール値</em> [任意]): デフォルト値 <code>false</code>. Provide the <code>theme</code> object to the component as a property.
+          <code>options.withTheme</code> (<em>ブール値</em> [任意]): デフォルト値 <code>false</code>. <code>theme</code>オブジェクトをプロパティとしてコンポーネントに提供します。
         </li>
         <li level="1">
           <code>options.name</code> (<em>String</em> [optional]): The name of the style sheet. Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
@@ -415,7 +415,7 @@ export default function MyComponent() {
   </h4>
   
   <p>
-    <code>higher-order component</code>: Should be used to wrap a component.
+    <code>higher-order component</code> ：コンポーネントをラップするために使用する必要があります。
   </p>
   
   <h4>
@@ -431,10 +431,8 @@ const styles = {
   },
 };
 
-class MyComponent extends React.Component {
-  render () {
-    return &lt;div className={this.props.classes.root} /&gt;;
-  }
+function MyComponent(props) {
+  return &lt;div className={props.classes.root} /&gt;;
 }
 
 export default withStyles(styles)(MyComponent);

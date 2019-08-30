@@ -96,7 +96,7 @@ FABを使用するのは、それが画面の主なアクションを提示す�
 
 ## カスタムButton
 
-Here are some examples of customizing the component. 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 

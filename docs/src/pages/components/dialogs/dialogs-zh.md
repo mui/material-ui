@@ -13,7 +13,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## 简单的对话框
 
-Simple dialogs can provide additional details or actions about a list item. For example, they can display avatars, icons, clarifying subtext, or orthogonal actions (such as adding an account).
+简单对话框可以提供有关列表的额外信息与操作。 例如，它们可以显示头像，图标，纯文本或具体动作(例如添加帐户)。
 
 触摸操作机制：
 
@@ -26,7 +26,7 @@ Simple dialogs can provide additional details or actions about a list item. For 
 
 警告框是一种紧急中断的行为，用以将某一情况通知用户，并需要确认。
 
-Most alerts don't need titles. They summarize a decision in a sentence or two by either:
+大多数警报不需要标题。 They summarize a decision in a sentence or two by either:
 
 - 问一个问题（例如："是否删除此对话？”）
 - 发表一个和动作按钮相关的声明
@@ -54,7 +54,7 @@ Use title bar alerts only for high-risk situations, such as the potential loss o
 
 ## 自定义对话框
 
-以下是自定义组件的一个示例。 您可以在[样式重写文档页](/customization/components/)中了解有关此内容的更多信息。
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 该对话框加上了一个关闭按钮来辅助可用性。
 
@@ -95,7 +95,7 @@ function MyComponent() {
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## 无障碍设计
+## 可及性
 
 参考[模态框可及性的部分](/components/modal/#accessibility)。
 

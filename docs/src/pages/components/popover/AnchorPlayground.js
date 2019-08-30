@@ -91,7 +91,8 @@ function AnchorPlayground(props) {
     anchorReference: 'anchorEl',
   });
 
-  const handleChange = key => (event, value) => {
+  const handleChange = key => event => {
+    const value = event.target.value;
     setState(state => ({
       ...state,
       [key]: value,
@@ -99,9 +100,10 @@ function AnchorPlayground(props) {
   };
 
   const handleNumberInputChange = key => event => {
+    const value = event.target.value;
     setState(state => ({
       ...state,
-      [key]: parseInt(event.target.value, 10),
+      [key]: parseInt(value, 10),
     }));
   };
 

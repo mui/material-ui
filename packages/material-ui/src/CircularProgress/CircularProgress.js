@@ -196,6 +196,8 @@ CircularProgress.propTypes = {
   }),
   /**
    * The size of the circle.
+   * If using a number, the pixel unit is assumed.
+   * If using a string, you need to provide the CSS unit, e.g '3rem'.
    */
   size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**

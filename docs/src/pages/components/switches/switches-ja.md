@@ -1,31 +1,31 @@
 ---
-title: Switch React component
+title: Reactコンポーネントの切り替え
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
 # スイッチ
 
-<p class="description">Switches toggle the state of a single setting on or off.</p>
+<p class="description">スイッチは、単一の設定の状態をオンまたはオフに切り替えます。</p>
 
-[Switches](https://material.io/design/components/selection-controls.html#switches) are the preferred way to adjust settings on mobile. The option that the switch controls, as well as the state it’s in, should be made clear from the corresponding inline label.
+[スイッチ](https://material.io/design/components/selection-controls.html#switches) は、モバイルの設定を調整するための好ましい方法です。 The option that the switch controls, as well as the state it’s in, should be made clear from the corresponding inline label.
 
 {{"demo": "pages/components/switches/Switches.js"}}
 
 ## Switches with FormControlLabel
 
-`Switch` can also be used with a label description thanks to the `FormControlLabel` component.
+`Switch` コンポーネントは` FormControlLabel<code>コンポーネントを説明のラベルとして使うことができます。</p>
 
-{{"demo": "pages/components/switches/SwitchLabels.js"}}
+<p>{{"demo": "pages/components/switches/SwitchLabels.js"}}</p>
 
-## Switches with FormGroup
+<h2>Switches with FormGroup</h2>
 
-`FormGroup` は、より簡単なAPIを提供する選択コントロールコンポーネントをグループ化するために使用される便利なラッパーです。 However, we encourage you to use a [Checkbox](#checkboxes) instead.
+<p><code>FormGroup` は、より簡単なAPIを提供する選択コントロールコンポーネントをグループ化するために使用される便利なラッパーです。 However, we encourage you to use a [Checkbox](#checkboxes) instead.
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
 ## Customized switches
 
-Here are some examples of customizing the component. 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 

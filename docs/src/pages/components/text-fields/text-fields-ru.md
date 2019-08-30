@@ -7,7 +7,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 <p class="description">Текстовые поля позволяют пользователям вводить и редактировать текст.</p>
 
-[Text fields](https://material.io/design/components/text-fields.html) allow users to enter text into a UI. They typically appear in forms and dialogs.
+[Текстовые поля](https://material.io/design/components/text-fields.html) позволяют пользователям вводить текст в интерфейсе. Обычно они появляются в формах и диалогах.
 
 ## Текстовое поля
 
@@ -43,7 +43,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ## Кастомизированные поля ввода
 
-Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -79,7 +79,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ## Ограничения
 
-### Shrink
+### Сжатие
 
 Состояние метки поля ввода (label) "shrink" не всегда корректно. Предполагается, что метка поля ввода уменьшается, как только в поле ввода что-нибудь отображается. В некоторых случаях мы не можем определить состояние "shrink" (числовое поле, поле даты, Stripe input). Вы могли заметить совпадения.
 
@@ -97,11 +97,11 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 <InputLabel shrink>Contagem</InputLabel>
 ```
 
-### Floating label
+### Плавающая метка
 
-The floating label is absolutely positioned, it won't impact the layout of the page. You need to make sure that the input is larger than the label to display correctly.
+Плавающий ярлык абсолютно позиционируется, он не повлияет на макет страницы. Необходимо убедиться, что поле ввода больше, чем метка для корректного отображения.
 
-## Integration with 3rd party input libraries
+## Интеграция с сторонними библиотеками текстовых полей
 
 Вы можете использовать сторонние библиотеки для форматирования ввода. Вы должны предоставить пользовательскую реализацию элемента `<input>` со свойством `inputComponent`.
 
@@ -109,7 +109,7 @@ The floating label is absolutely positioned, it won't impact the layout of the p
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-Предоставленный компонент ввода должен обрабатывать свойство `inputRef`. The property should be called with a value that implements the following interface:
+The provided input component should handle the `inputRef` property. Свойство должно вызываться со значением, которое реализует следующий интерфейс:
 
 ```ts
 interface InputElement {
@@ -168,7 +168,7 @@ In order for the text field to be accessible, **the input should be linked to th
 
 ## Дополнительные проекты
 
-Для более сложных вариантов использования вы можете воспользоваться:
+Для более сложных решений вы можете применить следующие пакеты:
 
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Набор компонентов-оберток для облегчения работы с Material UI в связке с Redux Form.
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Привязки для использования Material-UI с formik.

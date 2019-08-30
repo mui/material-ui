@@ -33,9 +33,9 @@ If you want to start with a more complete and real world example, you could take
 - [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase)
     
   - 使用Create React App创建，开箱即用
-  - 以Firebase为基准构建，内置身份验证模块
-  - Robust routing with React Router including error handling (404)
-  - Extensive mobile support with [react-swipeable-views](https://react-swipeable-views.com) for tabs
+  - Built on top of Firebase with Authentication, Cloud Firestore, Cloud Functions, Storage, and Performance Monitoring working from the start
+  - Robust routing with React Router including error handling
+  - Extensive mobile support with full-screen dialogs and [react-swipeable-views](https://react-swipeable-views.com) for tabs
 - [Material Sense](https://github.com/alexanmtz/material-sense), which includes:
     
   - 使用 recharts 的图表

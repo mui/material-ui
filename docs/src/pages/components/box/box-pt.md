@@ -47,7 +47,7 @@ Os elementos filhos de Box aceitam uma função de renderização de propriedade
 </Box>
 ```
 
-> ⚠️ A especificidade do CSS depende da ordem de importação. If you want the guarantee that the wrapped component's style will be overridden, you need to import the Box last.
+> ⚠️ A especificidade do CSS depende da ordem de importação. Se você quer garantir que o estilo do componente encapsulado seja substituído, você precisa importar o Box por último.
 
 ## API
 

@@ -11,16 +11,14 @@ export const DELAY_RIPPLE = 80;
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    display: 'block',
-    position: 'absolute',
     overflow: 'hidden',
-    borderRadius: 'inherit',
-    width: '100%',
-    height: '100%',
-    left: 0,
-    top: 0,
     pointerEvents: 'none',
-    zIndex: 0,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    borderRadius: 'inherit',
   },
   /* Styles applied to the internal `Ripple` components `ripple` class. */
   ripple: {

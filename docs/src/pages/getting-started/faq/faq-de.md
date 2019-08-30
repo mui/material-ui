@@ -33,10 +33,10 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   props: {
-    // Name der Komponente ⚛️
+    // Name of the component ⚛️
     MuiButtonBase: {
-      // Die Eigenschaften, die angewandt werden soll
-      disableRipple: true, // Keine Welleneffekte für die ganze App 💣!
+      // The properties to apply
+      disableRipple: true, // No more ripple, on the whole application 💣!
     },
   },
 });
@@ -289,7 +289,7 @@ function handleRender(req, res) {
 
 ## Warum unterscheiden sich die Farben, die ich sehe, von denen, die ich hier sehe?
 
-Die Dokumentationssite verwendet ein benutzerdefiniertes Theme. Daher unterscheidet sich die Farbpalette vom Standarddesign der Material-UI. Siehe [diese Seite](/customization/theming/), um Informationen zum Anpassen von Motiven zu erhalten.
+Die Dokumentationssite verwendet ein benutzerdefiniertes Theme. Daher unterscheidet sich die Farbpalette vom Standarddesign der Material-UI. Please refer to [this page](/customization/theming/) to learn about theme customization.
 
 ## Material-UI ist großartig. Wie kann ich das Projekt unterstützen?
 

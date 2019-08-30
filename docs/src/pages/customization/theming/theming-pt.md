@@ -1,4 +1,4 @@
-# Temas
+# Theming
 
 <p class="description">Personalize Material-UI com seu tema. Você pode mudar as cores, a tipografia e muito mais.</p>
 
@@ -12,14 +12,14 @@ Para promover uma maior consistência entre os aplicativos, os temas claro e esc
 
 Se você deseja personalizar o tema, você precisa usar o ` ThemeProvider ` componente para injetar um tema em sua aplicação. No entanto, isso é opcional; Material-UI componentes vêm com um tema padrão.
 
-O `ThemeProvider` depende do recurso de contexto do React para passar o tema para os componentes, então você precisa ter certeza de que `ThemeProvider` é um pai (parent) dos componentes que você está tentando customizar. Você pode aprender mais sobre isso na [ seção da API ](/styles/api/#themeprovider).
+O `ThemeProvider` depende do recurso de contexto do React para passar o tema para os componentes, então você precisa ter certeza de que `ThemeProvider` é um pai (parent) dos componentes que você está tentando customizar. You can learn more about this in [the API section](/styles/api/#themeprovider).
 
 ## Variáveis de configuração do tema
 
 Alterar as variáveis de configuração do tema é a maneira mais eficaz de combinar o Material-UI às suas necessidades. As seções a seguir abordam as variáveis mais importantes do tema:
 
 - [Paleta de Cores](/customization/palette/)
-- [Typography](/customization/typography/)
+- [Tipografia](/customization/typography/)
 - [Espaçamento](/customization/spacing/)
 - [Pontos de quebra](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
@@ -33,7 +33,7 @@ Quando usando o tema do Material-UI com nossa [solução de estilo](/styles/basi
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
-## Acessando o tema em um componente
+## Accessing the theme in a component
 
 Você [pode acessar](/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
 
@@ -43,7 +43,7 @@ Você [pode acessar](/styles/advanced/#accessing-the-theme-in-a-component) as va
 
 {{"demo": "pages/customization/theming/ThemeNesting.js"}}
 
-O tema interno **sobrescreverá** o tema exterior. Você pode estender o tema externo fornecendo uma função:
+The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
 
 {{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 

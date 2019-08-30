@@ -1,17 +1,17 @@
 ---
-title: 文本框 React 组件
+title: React Text Field（文本框）组件
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
-# Text Fields
+# Text Fields（文本框）
 
-<p class="description">用户可以在文本框内输入或编辑文字</p>
+<p class="description">用户可以在文本框内输入或编辑文字。</p>
 
 [Text fields](https://material.io/design/components/text-fields.html) allow users to enter text into a UI. They typically appear in forms and dialogs.
 
 ## TextField
 
-` TextField `包装器组件是一个完整的表单控件，包括标签，输入和帮助文本。
+`TextField` wrapper 组件是一个完整的表单控件，包括标签，输入和帮助文本。
 
 {{"demo": "pages/components/text-fields/TextFields.js"}}
 
@@ -31,19 +31,19 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ## 组件
 
-`TextField` 是由较小的组件组成的 ( [`FormControl`](/api/form-control/), [`Input`](/api/input/), [`FilledInput`](/api/filled-input/), [`InputLabel`](/api/input-label/), [`OutlinedInput`](/api/outlined-input/), and [`FormHelperText`](/api/form-helper-text/) ) 你可以利用这一点来自定义你的表单输入.
+`TextField` 是由以下较小的组件组成的 ( [`FormControl`](/api/form-control/), [`Input`](/api/input/), [`FilledInput`](/api/filled-input/), [`InputLabel`](/api/input-label/), [`OutlinedInput`](/api/outlined-input/), and [`FormHelperText`](/api/form-helper-text/) )， 你可以直接利用这一点来自定义你的表单输入.
 
-您可能注意到了， 和原生的 HTML input 组件相比，`TextField` 组件缺缺失了一些属性。 这是故意为之的， 该组件只负责处理最常用的一些属性，如果有需求，需要由用户自己使用下面 Demo 中演示的基础组件。 但是同时, 为了避免过于模版化，您仍然可以使用 `inputProps` (和 `inputProps`, `InputLabelProps` 属性) 来控制原生组件的属性。
+您可能注意到了， 和原生的 HTML input 组件相比，`TextField` 组件缺缺失了一些属性。 这是故意而为之的。 该组件只负责处理最常用的一些属性，如果有其他需求，用户可以自行使用下面 Demo 中演示的基础组件。 但是同时, 为了避免过于模版化，您仍然可以使用 `inputProps` (和 `inputProps`, `InputLabelProps` 属性) 来控制原生组件的属性。
 
 {{"demo": "pages/components/text-fields/ComposedTextField.js"}}
 
-## 输入
+## Inputs（输入）
 
 {{"demo": "pages/components/text-fields/Inputs.js"}}
 
 ## 自定义输入
 
-这是一些自定义样式开关的例子 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -67,7 +67,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 {{"demo": "pages/components/text-fields/FilledInputAdornments.js"}}
 
-### 修饰轮廓
+### 修饰输入框的轮廓
 
 {{"demo": "pages/components/text-fields/OutlinedInputAdornments.js"}}
 
@@ -94,7 +94,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 或者
 
 ```jsx
-<InputLabel shrink>Count</InputLabel>
+<InputLabel shrink>计数</InputLabel>
 ```
 
 ### Floating label
@@ -109,7 +109,7 @@ The floating label is absolutely positioned, it won't impact the layout of the p
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-提供的输入组件应该处理 `inputRef` 属性。 The property should be called with a value that implements the following interface:
+The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
 
 ```ts
 interface InputElement {
@@ -143,7 +143,7 @@ function MyInputComponent(props) {
 />;
 ```
 
-## 无障碍设计
+## 可及性
 
 In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure.
 
@@ -168,7 +168,7 @@ In order for the text field to be accessible, **the input should be linked to th
 
 ## 补充项目
 
-对于更高级的用例，您可以利用：
+对于更高级的用例，您可以使用这些：
 
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui)：一组用于更加方便地与 Redux Form 配搭来使用 Material UI 的封装组件。
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui)：用 formil 来绑定 Material-UI。

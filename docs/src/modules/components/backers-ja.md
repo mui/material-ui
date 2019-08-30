@@ -21,9 +21,6 @@ Material-UIはMITライセンスのオープンソースプロジェクトです
   <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener nofollow" target="_blank" style="margin-right: 16px;">
     <img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Ff4053300-e0ea-11e7-acf0-0fa7c0509f4e.png&height=100" alt="callemall" title="グループにメッセージを送る簡単な方法">
   </a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="localize" href="https://localizejs.com" rel="noopener nofollow" target="_blank" style="margin-right: 16px;">
-    <img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2F629dea80-f1ae-11e8-b356-a5942970e22b.png&height=65" alt="localize" title="アプリの翻訳とプラットフォームのローカライゼーション">
-  </a>
 </p>
 
 ### もっとあります！

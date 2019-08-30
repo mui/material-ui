@@ -261,14 +261,10 @@ function Tooltip(props) {
 
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
-    if (leaveDelay) {
-      event.persist();
-      leaveTimer.current = setTimeout(() => {
-        handleClose(event);
-      }, leaveDelay);
-    } else {
+    event.persist();
+    leaveTimer.current = setTimeout(() => {
       handleClose(event);
-    }
+    }, leaveDelay);
   };
 
   const handleTouchStart = event => {
@@ -457,13 +453,13 @@ Tooltip.propTypes = {
   /**
    * Callback fired when the tooltip requests to be closed.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onClose: PropTypes.func,
   /**
    * Callback fired when the tooltip requests to be open.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onOpen: PropTypes.func,
   /**

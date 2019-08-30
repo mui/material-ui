@@ -2,7 +2,7 @@
 
 <p class="description">This section covers more advanced usage of @material-ui/styles.</p>
 
-## Theming
+## テーマ
 
 Add a `ThemeProvider` to the top level of your app to pass the theme down the React component tree. Then, you can access the theme object in style functions.
 
@@ -24,7 +24,7 @@ function Theming() {
 
 {{"demo": "pages/styles/advanced/Theming.js"}}
 
-### Accessing the theme in a component
+### コンポーネント内のテーマへのアクセス
 
 You might need to access the theme variables inside your React components.
 
@@ -70,7 +70,7 @@ You can nest multiple theme providers. This can be really useful when dealing wi
 
 {{"demo": "pages/styles/advanced/ThemeNesting.js"}}
 
-The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
+内部テーマは外側のテーマを**オーバーライドします**。 関数を提供することにより、外側のテーマを拡張できます。
 
 ```jsx
 <ThemeProvider theme={…} >
@@ -354,7 +354,7 @@ function App() {
 export default App;
 ```
 
-## Server-side rendering
+## サーバーサイドレンダリング
 
 This example returns a string of HTML and inlines the critical CSS required, right before it’s used:
 

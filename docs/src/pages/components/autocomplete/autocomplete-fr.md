@@ -7,7 +7,7 @@ components: TextField, Paper, MenuItem, Popper
 
 <p class="description">La saisie semi-automatique est une entrée de texte normale améliorée par un panneau d'options suggérées.</p>
 
-Material-UI doesn't provide any high-level API for solving this problem. We encourage people relying on the solutions the React community has built.
+Material-UI ne fourni pas d'API de haut niveau pour résoudre ce problème. Nous encourageons les gens à se fier aux solutions que la communauté React a construites.
 
 ## downshift
 
@@ -15,7 +15,7 @@ Material-UI doesn't provide any high-level API for solving this problem. We enco
 
 Dans l'exemple suivant, nous montrons comment utiliser [downshift](https://github.com/downshift-js/downshift).
 
-The last demo allows the user to clear the input and show a number of options on focus.
+La dernière démo permet à l'utilisateur d'effacer une entrée et de montrer un certain nombre d'options sur le focus.
 
 {{"demo": "pages/components/autocomplete/IntegrationDownshift.js"}}
 

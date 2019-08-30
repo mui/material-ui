@@ -3,37 +3,37 @@ title: Rating React component
 components: Rating
 ---
 
-# Rating
+# レート
 
-<p class="description">Ratings provide insight regarding others’ opinions and experiences with a product. Users can also rate products they’ve purchased.</p>
+<p class="description">評価は、他の人の意見や製品に関する経験に関する洞察を提供します。 ユーザーは購入した製品を評価することもできます。</p>
 
 - 📦 [20 kB gzipped](/size-snapshot) (but only 6 kB without @material-ui/styles).
 
-## Simple ratings
+## 簡単な評価
 
 {{"demo": "pages/components/rating/SimpleRating.js"}}
 
-## Customized ratings
+## カスタマイズされた評価
 
-Here are some examples of customizing the component. 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/rating/CustomizedRatings.js"}}
 
-## Hover feedback
+## ホバーのフィードバック
 
-You can display a label on hover to help users pick the correct rating value. The first demo uses the `onChangeActive` prop while the last one uses the `IconContainerComponent` prop.
+ユーザーが正しい評価値を選択するのに役立つように、ホバーにラベルを表示できます。 最初のデモは `onChangeActive` prop を使用し、最後のデモは `IconContainerComponent` prop を使用します。
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 
-## Half ratings
+## 半分の評価
 
-The rating can display any float number with the `value` prop. Use the `precision` prop to define the minimum increment value change allowed.
+評価は`value`propを持つ任意の浮動小数点数を表示できます。 `precision` prop を使用して、許可される最小増分値の変更を定義します。
 
 {{"demo": "pages/components/rating/HalfRating.js"}}
 
 ## サイズ
 
-Fancy larger or smaller ratings? Use the `size` prop.
+大きな評価ボタンと小さな評価ボタンがありますか? `size`propを使用します。
 
 {{"demo": "pages/components/rating/RatingSize.js"}}
 
@@ -41,5 +41,5 @@ Fancy larger or smaller ratings? Use the `size` prop.
 
 このコンポーネントのアクセシビリティは、
 
-- A radio group is used with its fields visually hidden. It contains six radio buttons, one for each star and another for 0 stars, which is checked by default. Make sure you are providing a `name` prop that is unique to the parent form.
-- The labels for the radio buttons contain actual text (“1 Star”, “2 Stars”, …), make sure you provide a `getLabelText` prop when the page language is not English.
+- ラジオグループは、フィールドを視覚的に非表示にして使用されます。 これには6つのラジオボタンがあり、それぞれが星1つ、星が0つ星です。デフォルトではオンになっています。 親フォームに固有の `name` プロパティを指定していることを確認します。
+- ラジオボタンのラベルには実際のテキスト（ "1 Star"、 "2 Stars"、 …）が含まれています。ページの言語が英語でない場合は、必ず `getLabelText` propを指定してください。

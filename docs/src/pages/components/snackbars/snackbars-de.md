@@ -23,7 +23,7 @@ Eine einfache Snackbar, die das Verhalten der Snackbar von Google Keep reproduzi
 
 ## Benutzerdefinierte Snackbars
 
-Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Here are some examples of customizing the component. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 

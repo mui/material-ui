@@ -1,9 +1,9 @@
 ---
-title: Autocomplete React component
+title: オートコンプリートReactコンポーネント
 components: TextField, Paper, MenuItem, Popper
 ---
 
-# 自動補完
+# Autocomplete
 
 <p class="description">オートコンプリートは、推奨オプションのパネルによって強化された通常のテキスト入力です。</p>
 
@@ -31,6 +31,6 @@ Material-UIには、この問題を解決するための高レベルAPIはあり
 
 ![Stars](https://img.shields.io/github/stars/moroshko/react-autosuggest.svg?style=social&label=Stars) ![npmダウンロード](https://img.shields.io/npm/dm/react-autosuggest.svg)
 
-次の例では、 リスト コンポーネントで [react-autosuggest](https://github.com/moroshko/react-autosuggest) を使用する方法を示します。 強調表示ロジックに [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight) も使用されています 。
+次の例では、 リスト コンポーネントで [react-window](https://github.com/moroshko/react-autosuggest) を使用する方法を示します。 強調表示ロジックに [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight) も使用されています 。
 
 {{"demo":"pages/components/autocomplete/IntegrationAutosuggest.js"}}

@@ -21,20 +21,20 @@ L'icône résultante peut être utilisée telle quelle, ou incluse en tant qu'en
 
 ### Icônes SVG Material
 
-Il est intéressant de disposer des éléments nécessaires à la mise en œuvre d'icônes personnalisées, mais qu'en est-il des préréglages? Nous fournissons un package npm séparé, [@ material-ui / icons](https://www.npmjs.com/package/@material-ui/icons), qui inclut les 1 000+ icônes de matériau [officielles](https://material.io/tools/icons/?style=baseline) converties en composants `SvgIcon`.
+Il est intéressant de disposer des éléments nécessaires à la mise en œuvre d'icônes personnalisées, mais qu'en est-il des préréglages? [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) is an npm package that includes the 1,000+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to `SvgIcon` components.
 
-<a href="https://material.io/tools/icons/?icon=3d_rotation&style=baseline">
+<a href="/components/material-icons/">
   <img src="/static/images/icons/icons.png" alt="Icônes matérielles officielles" style="width: 566px" />
 </a>
 
 #### Utilisation
 
-Vous pouvez utiliser [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) pour rechercher une icône spécifique. Lors de l'importation d'une icône, n'oubliez pas que les noms des icônes sont `PascalCase`, par exemple:
+You can use our [internal search](/components/material-icons/) or [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) to find a specific icon. Lors de l'importation d'une icône, n'oubliez pas que les noms des icônes sont `PascalCase`, par exemple:
 
 - [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) est exposé en tant que `@material-ui/icons/Delete`
 - [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) est exposé en tant que `@material-ui/icons/DeleteForever`
 
-For *"themed"* icons, append the theme name to the icon name. For instance with the
+For "themed" icons, append the theme name to the icon name. For instance with the
 
 - L'icône avec contour [`Delete`](https://material.io/tools/icons/?icon=delete&style=outline) est exposée comme `@material-ui /icons/DeleteOutlined`
 - L'icône Arrondi [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded) est exposée sous la forme `@ material-ui/icons /DeleteRounded`
@@ -51,28 +51,35 @@ Il y a trois exceptions à cette règle:
 
 #### Importations
 
-- Si votre environnement ne prend pas en charge le tree-shaking, la façon **recommandée** d'importer les icônes est la suivante:
+You can import the icons with one of these two options:
+
+- Option n°1:
 
 ```jsx
-import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
-import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
-```
+  import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
+  import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
+  ```
+- Option n2:
 
-- Si votre environnement prend en charge le tree-shaking, vous pouvez également importer les icônes de cette façon:
+  ```jsx
+  import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
+  ```
 
-```jsx
-import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
-```
+The safest option is n°1 but option n°2 can yield the best experience.
+Make sure you follow our [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the approach n°2.
+We encourage the configuration of a Babel plugin.
 
-Note : L'importation des exportations nommées de cette manière entraînera le code pour *chaque icône* étant incluse dans votre projet, il n'est donc pas recommandé à moins que vous ne configuriez le [tree-shaking](https://webpack.js.org/guides/tree-shaking/). Il peut également avoir un impact sur les performances de recharge des modules à chaud.
+### More SVG icons
 
-### Plus d'icônes SVG
+Looking for even more SVG icons? There are a lot of projects out there,
+but [https://materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 official and community provided icons.
+[mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) packages these icons as Material-UI SvgIcons in much the same way as [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) does for the official icons.
 
-Vous recherchez encore plus d'icônes SVG? Il existe de nombreux projets, mais [https://materialdesignicons.com](https://materialdesignicons.com/) fournit plus de 2 000 icônes officielles et fournies par la communauté. [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) empaquette ces icônes en tant que SvgIcons Material-UI de la même manière que [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) pour les icônes officielles.
+## Font Icons
 
-## Polices d'icônes
-
-Le composant `Icon` affichera une icône à partir de toute police d’icône prenant en charge les ligatures. Avant de commencer, vous devez en inclure une, telle que la police [Material icon](https://google.github.io/material-design-icons/#icon-font-for-the-web) dans votre projet, par exemple via Google Web Fonts:
+The `Icon` component will display an icon from any icon font that supports ligatures.
+As a prerequisite, you must include one, such as the
+[Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project, for instance, via Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -80,7 +87,7 @@ Le composant `Icon` affichera une icône à partir de toute police d’icône pr
 
 `Icon` will set the correct class name for the Material icon font. For other fonts, you must supply the class name using the Icon component's `className` property.
 
-Pour utiliser une icône, enveloppez simplement le nom de l'icône (ligature de police) avec le composant `Icon` , par exemple:
+To use an icon simply wrap the icon name (font ligature) with the `Icon` component, for example:
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
@@ -90,38 +97,38 @@ import Icon from '@material-ui/core/Icon';
 
 Par défaut, une icône héritera de la couleur de texte actuelle. Vous pouvez éventuellement définir la couleur de l'icône à l'aide de l'une des propriétés de couleur du thème: `primary`, `secondary`, `action`, `error` & `disabled`.
 
-### Icônes de police Material
+### Font Material icons
 
-{{"demo": "pages/components/buttons/TextButtons.js"}}
+{{"demo": "pages/components/icons/Icons.js"}}
 
 ### Font Awesome
 
-[Font Awesome](https://fontawesome.com/icons) Peut être utilisé avec le composant `Icon` comme suit:
+[Font Awesome](https://fontawesome.com/icons) can be used with the `Icon` component as follow:
 
-{{"demo": "pages/style/icons/FontAwesome.js", "hideEditButton": true}}
+{{"demo": "pages/components/icons/FontAwesome.js", "hideEditButton": true}}
 
 ## Font vs SVG. Which approach to use?
 
-Les deux approches fonctionnent bien, cependant, il existe quelques différences subtiles, notamment en termes de performances et de qualité de rendu. Lorsque cela est possible, Le SVG est préférable car il permet la division de code, prend en charge plus d'icônes, rend les rendus plus rapidement et mieux.
+Both approaches work fine, however, there are some subtle differences, especially in terms of performance and rendering quality. Whenever possible SVG is preferred as it allows code splitting, supports more icons, renders faster and better.
 
-Pour plus de détails, vous pouvez voir [pourquoi GitHub a migré d'icônes de police en icônes SVG](https://github.blog/2016-02-22-delivering-octicons-with-svg/).
+For more details, you can check out [why GitHub migrated from font icons to SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/).
 
 ## Accessibilité
 
-Les icônes peuvent transmettre toutes sortes d'informations utiles. Il est donc important qu'elles atteignent le plus grand nombre de personnes possible. There are two use cases you’ll want to consider:
+Icons can convey all sorts of meaningful information, so it’s important that they reach the largest amount of people possible. There are two use cases you’ll want to consider:
 
-- **Decorative Icons** are only being used for visual or branding reinforcement. S'ils étaient supprimés de la page, les utilisateurs comprendraient toujours et pourraient utiliser votre page.
-- **Les Icônes sémantiques** sont celles que vous utilisez pour transmettre du sens, plutôt que de simples décorations. Cela inclut les icônes sans texte adjacentes utilisées comme commandes interactives - boutons, éléments de formulaire, bascules, etc.
+- **Decorative Icons** are only being used for visual or branding reinforcement. If they were removed from the page, users would still understand and be able to use your page.
+- **Semantic Icons** are ones that you’re using to convey meaning, rather than just pure decoration. This includes icons without text next to them used as interactive controls — buttons, form elements, toggles, etc.
 
-### Icônes SVG décoratives
+### Decorative SVG Icons
 
 If your icons are purely decorative, you’re already done! We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
 
-### Icônes SVG sémantiques
+### Semantic SVG Icons
 
-Si votre icône a une signification sémantique, il vous suffit d'ajouter une propriété `titleAccess = "meaning"` . Nous ajoutons l'attribut `role = "img"` et l'élément`<title>` afin que vos icônes soient correctement accessibles.
+If your icon has semantic meaning, all you need to do is throw in a `titleAccess="meaning"` property. We add the `role="img"` attribute and the `<title>` element so that your icons are properly accessible.
 
-Dans le cas d'éléments interactifs "focusable", comme avec un bouton icône, vous pouvez utiliser la propriété `aria-label`:
+In the case of focusable interactive elements, like when used with an icon button, you can use the `aria-label` property:
 
 ```jsx
 import IconButton from '@material-ui/core/IconButton';
@@ -136,13 +143,13 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 </IconButton>
 ```
 
-### Icônes de polices décoratives
+### Decorative Font Icons
 
 If your icons are purely decorative, you’re already done! We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
 
-### Icônes de polices sémantiques
+### Semantic Font Icons
 
-Si vos icônes ont un sens sémantique, vous devez fournir une alternative textuelle uniquement visible aux technologies d'assistance.
+If your icons have semantic meaning, you need to provide a text alternative only visible to assistive technologies.
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
@@ -151,9 +158,9 @@ import Typography from '@material-ui/core/Typography';
 // ...
 
 <Icon>add_circle</Icon>
-<Typography variant="srOnly">Créez un utilisateur</Typography>
+<Typography variant="srOnly">Create a user</Typography>
 ```
 
-### Référence
+### Reference
 
 - https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/

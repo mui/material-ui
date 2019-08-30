@@ -105,7 +105,7 @@ Die Komponente höherer Ordnung `withWidth()` fügt die Bildschirmbreite der Sei
 
 ### `useMediaQuery(query, [options]) => matches`
 
-#### Parameter
+#### Argumente
 
 1. `query` (*String* | *Function*): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
 2. `options` (*Object* [optional]): 

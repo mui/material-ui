@@ -30,7 +30,7 @@ The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It 
 We are using the following set of properties on this documentation website for optimal usability of the component:
 
 - iOS is hosted on high-end devices. Поэтому использование backdrop transition не вызывает пропуска кадров. Производительность достаточно хороша.
-- iOS предоставляет скользящий жест для возврата, который мешает использованию панелей. Данный жест должен быть отключен.
+- iOS has a "swipe to go back" feature that mess with the discovery feature. Данный жест должен быть отключен.
 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);

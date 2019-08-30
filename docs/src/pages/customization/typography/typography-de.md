@@ -1,4 +1,4 @@
-# Typography
+# Typografie
 
 <p class="description">Das Theme bietet eine Anzahl von Schriftgrößen, die gut zusammen mit dem Layoutraster funktionieren.</p>
 
@@ -142,7 +142,7 @@ theme.typography.h1 = {
 };
 ```
 
-Um dieses Setup zu automatisieren, können Sie die Funktion [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) Helfer verwenden, um die Schriftgrößen der Typografie im Design ansprechend zu gestalten.
+To automate this setup, you can use the [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideHeader": true}}
 

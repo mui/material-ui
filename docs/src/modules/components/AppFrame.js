@@ -32,9 +32,12 @@ import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import PageTitle from 'docs/src/modules/components/PageTitle';
-import { LANGUAGES } from 'docs/src/modules/constants';
+import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
+
+const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
+const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -47,41 +50,6 @@ Router.onRouteChangeComplete = () => {
 Router.onRouteChangeError = () => {
   NProgress.done();
 };
-
-export const languages = [
-  {
-    code: 'en',
-    text: '🇺🇸 English',
-  },
-  {
-    code: 'zh',
-    text: '🇨🇳 中文',
-  },
-  {
-    code: 'ru',
-    text: '🇷🇺 Русский',
-  },
-  {
-    code: 'pt',
-    text: '🇧🇷 Português',
-  },
-  {
-    code: 'fr',
-    text: '🇫🇷 Français',
-  },
-  {
-    code: 'es',
-    text: '🇪🇸 Español',
-  },
-  {
-    code: 'de',
-    text: '🇩🇪 Deutsch',
-  },
-  {
-    code: 'ja',
-    text: '🇯🇵 日本語',
-  },
-];
 
 const styles = theme => ({
   root: {
@@ -157,6 +125,8 @@ function AppFrame(props) {
     t: state.options.t,
     userLanguage: state.options.userLanguage,
   }));
+
+  const crowdInLocale = LOCALES[userLanguage] || userLanguage;
 
   const [languageMenu, setLanguageMenu] = React.useState(null);
   function handleLanguageIconClick(event) {
@@ -249,22 +219,33 @@ function AppFrame(props) {
                     open={Boolean(languageMenu)}
                     onClose={handleLanguageMenuClose}
                   >
-                    {languages
-                      .filter(language => LANGUAGES.indexOf(language.code) !== -1)
-                      .map(language => (
-                        <MenuItem
-                          component="a"
-                          data-no-link="true"
-                          href={
-                            language.code === 'en' ? canonical : `/${language.code}${canonical}`
-                          }
-                          key={language.code}
-                          selected={userLanguage === language.code}
-                          onClick={handleLanguageMenuClose}
-                        >
-                          {language.text}
-                        </MenuItem>
-                      ))}
+                    {LANGUAGES_LABEL.map(language => (
+                      <MenuItem
+                        component="a"
+                        data-no-link="true"
+                        href={language.code === 'en' ? canonical : `/${language.code}${canonical}`}
+                        key={language.code}
+                        selected={userLanguage === language.code}
+                        onClick={handleLanguageMenuClose}
+                      >
+                        {language.text}
+                      </MenuItem>
+                    ))}
+                    <MenuItem
+                      component="a"
+                      data-no-link="true"
+                      href={
+                        userLanguage === 'en' || userLanguage === 'aa'
+                          ? `${CROWDIN_ROOT_URL}`
+                          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
+                      }
+                      rel="noopener nofollow"
+                      target="_blank"
+                      key={userLanguage}
+                      onClick={handleLanguageMenuClose}
+                    >
+                      {`🌍 ${t('helpToTranslate')}`}
+                    </MenuItem>
                   </Menu>
                 </NoSsr>
                 <Tooltip title={t('editWebsiteColors')} enterDelay={300}>

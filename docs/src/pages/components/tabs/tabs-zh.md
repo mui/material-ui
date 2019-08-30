@@ -11,7 +11,7 @@ components: Tabs, Tab
 
 ## 简单选项卡
 
-一个没有多余装饰的简单例子。
+一个没有多余装饰的简单例子
 
 {{"demo": "pages/components/tabs/SimpleTabs.js"}}
 
@@ -65,7 +65,7 @@ Left and right scroll buttons will never be presented. All scrolling must be ini
 
 ## Customized tabs
 
-以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js"}}
 

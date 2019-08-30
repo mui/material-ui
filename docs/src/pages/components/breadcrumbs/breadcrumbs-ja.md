@@ -1,11 +1,11 @@
 ---
-title: Breadcrumbs React component
+title: Breadcrumbs Reactコンポーネント
 components: Breadcrumbs, Link, Typography
 ---
 
 # Breadcrumbs
 
-<p class="description">Breadcrumbsを使用すると、値の範囲から選択できます。</p>
+<p class="description">ブレッドクラムを使用すると、値の範囲から選択できます。</p>
 
 ## Simple breadcrumbs
 

@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(1),
   },
   dense: {
-    marginTop: 16,
+    marginTop: theme.spacing(2),
   },
   menu: {
     width: 200,

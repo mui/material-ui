@@ -8,7 +8,7 @@ As pessoas chegam ao Material-UI de diferentes culturas e com diferentes estilos
 
 A [página de uso](/getting-started/usage/#quick-start) contém um pequeno exemplo de Material-UI com um editor. Mesmo que você ainda não saiba nada sobre o Material-UI, tente alterar o código e veja como isso afeta o resultado.
 
-## Projetos de exemplo
+## Exemplos de Projetos
 
 Nós [hospedamos alguns projetos de exemplo](/getting-started/example-projects/) fornecendo a infraestrutura necessária para desenvolver e implantar sites com React.
 
@@ -38,7 +38,7 @@ Ao começar a aprender o Material-UI, você pode encontrar postagens de blogs de
   
   - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
   - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
-- **React Material-UI Cookbook**: Construa aplicações modernas implementando os princípios de Material Design em aplicações React usando Material-UI.
+- **React Material-UI Cookbook**: Build modern day application by implementing Material Design principles in React applications using Material-UI.
   
   - 📘 [O livro](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
 

@@ -33,10 +33,10 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   props: {
-    // Nome do componente ⚛️
+    // Name of the component ⚛️
     MuiButtonBase: {
-      // As propriedades para aplicar
-      disableRipple: true, // Sem efeito cascata, em toda aplicação 💣!
+      // The properties to apply
+      disableRipple: true, // No more ripple, on the whole application 💣!
     },
   },
 });
@@ -289,7 +289,7 @@ function handleRender(req, res) {
 
 ## Por que as cores que estou vendo são diferentes do que vejo aqui?
 
-O site de documentação está usando um tema customizado. Assim, a paleta de cores é diferente do tema padrão que é fornecido pelo Material-UI. Por favor, consulte [esta página](/customization/theming/) para aprender sobre customização de temas.
+O site de documentação está usando um tema customizado. Assim, a paleta de cores é diferente do tema padrão que é fornecido pelo Material-UI. Please refer to [this page](/customization/theming/) to learn about theme customization.
 
 ## Material-UI é incrível. Como posso apoiar o projeto?
 

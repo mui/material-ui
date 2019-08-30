@@ -58,5 +58,5 @@ Esta documentação sempre reflete a última versão estável do Material-UI. Vo
 Agora que você tem uma ideia da configuração básica, é hora de aprender mais sobre:
 
 - Como aplicar [a fonte e a tipografia do Material Design](/components/typography/).
-- Como tirar proveito da [solução de tema](/customization/theming/).
+- How to take advantage of the [theming solution](/customization/theming/).
 - Como [sobrescrever](/customization/components/) o visual e a aparência dos componentes.

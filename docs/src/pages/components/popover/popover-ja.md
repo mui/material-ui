@@ -5,12 +5,12 @@ components: Grow, Popover
 
 # Popover
 
-<p class="description">A Popover can be used to display some content on top of another.</p>
+<p class="description">Popoverを使用すると、一部のコンテンツを別のコンテンツの上に表示できます。</p>
 
-Things to know when using the `Popover` component:
+`Popover` コンポーネントを使用する際の注意事項：
 
-- The component is built on top of the [`Modal`](/components/modal/) component.
-- The scroll and click away are blocked unlike with the [`Popper`](/components/popper/) component.
+- コンポーネントは、 [`Modal`](/components/modal/) コンポーネントの上に構築されます。
+- [`Popper`](/components/popper/) コンポーネントとは異なり、スクロールとクリックはブロックされます。
 
 ## Simple Popover
 
@@ -18,19 +18,19 @@ Things to know when using the `Popover` component:
 
 ## Anchor playground
 
-Use the radio buttons to adjust the `anchorOrigin` and `transformOrigin` positions. You can also set the `anchorReference` to `anchorPosition` or `anchorEl`. When it is `anchorPosition`, the component will, instead of `anchorEl`, refer to the `anchorPosition` prop which you can adjust to set the position of the popover.
+ラジオボタンを使用して、 `anchorOrigin` および `transformOrigin` 位置を調整します。 `anchorReference` を `anchorPosition` または `anchorEl`設定することもできます。 `anchorPosition`の場合、コンポーネントは`anchorEl`の代わりに ポップオーバーの位置を調整する`anchorPosition` >propを参照してください。
 
 {{"demo": "pages/components/popover/AnchorPlayground.js", "hideHeader": true}}
 
-## Mouse over interaction
+## マウスオーバー操作
 
-We demonstrate how to use the `Popover` component to implement a popover behavior based on the mouse over event.
+`ポップオーバー` コンポーネントを使用して、マウスオーバーイベントに基づいてポップオーバー動作を実装する方法を示します。
 
 {{"demo": "pages/components/popover/MouseOverPopover.js"}}
 
-## Complementary projects
+## 補完プロジェクト
 
-より高度なユースケースのためにあなたは利用することができるかもしれません：
+より高度な使用例では、以下を利用できます。
 
 ### PopupState helper
 

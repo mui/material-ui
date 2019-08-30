@@ -25,18 +25,18 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 {{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js"}}
 
-## Secondary heading and Columns (第2の見出しと列)
-
-複数の列を使用してコンテンツを構成でき、ユーザーを支援するためにヘルパーテキストをパネルに追加できます。
-
-{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}
-
-## パフォーマンス
-
-ExpansionPanelsのコンテンツは、パネルが展開されていない場合でもデフォルトでマウントされます。 このデフォルトの動作では、サーバー側のレンダリングとSEOが考慮されています。 パネル内に高価なコンポーネントツリーをレンダリングするか、単に パネルを多数レンダリングする場合は、 `TransitionProps`： `<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />`の `unmountOnExit` 有効にしてこのデフォルトの動作を変更することをお勧めします。 他のパフォーマンス最適化と同様、これは特効薬ではありません。 まずボトルネックを特定してから、これらの最適化戦略を試してください。
-
 ## カスタマイズされた拡張パネル
 
 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}
+
+## パフォーマンス
+
+ExpansionPanelsのコンテンツは、パネルが展開されていない場合でもデフォルトでマウントされます。 このデフォルトの動作では、サーバー側のレンダリングとSEOが考慮されています。 パネル内に高価なコンポーネントツリーをレンダリングするか、単に パネルを多数レンダリングする場合は、 `TransitionProps`： `<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />`の `unmountOnExit` 有効にしてこのデフォルトの動作を変更することをお勧めします。 他のパフォーマンス最適化と同様、これは特効薬ではありません。 まずボトルネックを特定してから、これらの最適化戦略を試してください。
+
+## Secondary heading and Columns (第2の見出しと列)
+
+コンテンツを構造化するために複数の列を使用することができ、ユーザを支援するためにヘルパーテキストをパネルに追加することができる。
+
+{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}

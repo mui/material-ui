@@ -25,7 +25,7 @@ Discrete sliders can be adjusted to a specific value by referencing its value in
 
 ## Customized sliders
 
-Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 

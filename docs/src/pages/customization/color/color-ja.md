@@ -1,26 +1,26 @@
 # カラー
 
-<p class="description">Convey meaning through color. Out of the box you get access to all colors in the Material Design spec.</p>
+<p class="description">色で意味を伝えます。 最初からMaterial Design仕様のすべての色にアクセスできます。</p>
 
-The Material Design [color system](https://material.io/design/color/) can be used to create a color theme that reflects your brand or style.
+Material Design[color system](https://material.io/design/color/)を使用すると、自分のブランドやスタイルを反映した色のテーマを作成できます。
 
-## Color system
+## カラーシステム (Color system)
 
-### Important Terms
+### 重要な用語
 
 #### "パレット"
 
-A palette is a collection of colors, i.e. hues and their shades. Material-UI provides all colors from the Material Design guidelines. [This color palette](#color-palette) has been designed with colors that work harmoniously with each other.
+パレットは色のコレクション、つまり色相とその色合いです。 Material-UIは、Material Designガイドラインのすべてのカラーを提供します。 [このカラーパレット](#color-palette)は、互いに調和する色でデザインされています。
 
-#### "Hue" & "Shade"
+#### "色相" & "シェード"
 
-A single color within the palette is made up of a hue such as "red", and shade, such as "500". "red 50" is the lightest shade of red (*pink!*), while "red 900" is the darkest. In addition, most hues come with "accent" shades, prefixed with an `A`.
+パレット内の単色は、「赤」などの色相と「500」などのシェードで構成されます。 "red 50" は赤(*pink!*) の最も明るいシェードで、"red 900"は最も暗いシェードです。 また、ほとんどの色相には、先頭に`A`を持つ「アクセント」シェードが使用されます。
 
 ### 例
 
-The Material Design color palette comprises primary and accent colors that can be used for illustration or to develop your brand colors. They’ve been designed to work harmoniously with each other.
+Material Design　カラーパレットは、イラストやブランドカラーの作成に使用できる原色とアクセント色で構成されています。 それらは互いに調和するように設計されています。
 
-For instance, you can refer to complementary primary and accent colors (for example 'red 500' & 'purple A200'), like so:
+たとえば、次のように補足的な原色とアクセント色(例:'red 500'&'purple A200') を参照できます。
 
 ```js
 import purple from '@material-ui/core/colors/purple';
@@ -31,9 +31,9 @@ const accent = purple['A200']; // #E040FB
 const accent = purple.A200; // #E040FB (alternative method)
 ```
 
-### Color palette
+### カラー・パレット
 
-Given a *HUE* (red, pink, etc.) and a *SHADE* (500, 600, etc.) you can import the color like this:
+* HUEが与えられた場合* （赤、ピンクなど）および* SHADE * （500、600など）次のように色をインポートできます。
 
 ```jsx
 import HUE from '@material-ui/core/colors/HUE';
@@ -45,11 +45,11 @@ const color = HUE[SHADE];
 
 ## Color tool
 
-To test a [material.io/design/color](https://material.io/design/color/) color scheme with the Material-UI documentation, simply select colors using the palette and sliders below. Alternatively, you can enter hex values in the Primary and Secondary text fields.
+[ material.io/design/colorをテストするには](https://material.io/design/color/) Material-UIのドキュメントの配色では、以下のパレットとスライダーを使用してカラーを選択するだけです。 または、プライマリおよびセカンダリテキストフィールドに16進値を入力できます。
 
 {{"demo": "pages/customization/color/ColorTool.js", "hideHeader": true}}
 
-The output shown in the color sample can be pasted directly into a [`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) function (to be used with [`MuiThemeProvider`](/customization/theming/#theme-provider)):
+カラーサンプルに示されている出力は、[`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme)関数([`MuiThemeProvider`](/customization/theming/#theme-provider)で使用される) に直接貼り付けることができます。
 
 ```jsx
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -65,19 +65,19 @@ const theme = createMuiTheme({
 });
 ```
 
-Only the `main` shades need be provided (unless you wish to further customize `light`, `dark` or `contrastText`), as the other colors will be calculated by `createMuiTheme()`, as described in the [Theme customization](/customization/palette/) section.
+他の色は [Theme customization](/customization/palette/)セクションで説明されているように`createMuiTheme()`によって計算されるので、`main`シェーディングのみを提供する必要があります(`light`、`dark`、`contrastText`をさらにカスタマイズする場合を除きます)。
 
-If you are using the default primary and / or secondary shades then by providing the color object, `createMuiTheme()` will use the appropriate shades from the material color for main, light and dark.
+デフォルトの一次または二次シェード、あるいはその両方を使用している場合にカラーオブジェクトを指定すると、`createMuiTheme()`はメイン、ライト、およびダークにマテリアルカラーからの適切なシェードを使用します。
 
-### Official color tool
+### 公式カラーツール
 
-The Material Design team has also built an awesome palette configuration tool: [material.io/tools/color](https://material.io/tools/color/). This can help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
+Material Designチームは素晴らしいパレット設定ツール、[materialio/tools/color](https://material.io/tools/color/)も開発しました。 これにより、UIのカラーパレットを作成したり、任意のカラー組み合わせのアクセシビリティレベルを測定したりできます。
 
 <a href="https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336">
-  <img src="/static/images/color/colorTool.png" alt="Official color tool" style="width: 574px" />
+  <img src="/static/images/color/colorTool.png" alt="公式カラーツール" style="width: 574px" />
 </a>
 
-The output can be fed into `createMuiTheme()` function:
+出力は、`createMuiTheme()`関数に渡すことができます。
 
 ```jsx
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -100,8 +100,8 @@ const theme = createMuiTheme({
 });
 ```
 
-### Tools by the community
+### コミュニティによるツール
 
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/) Is an online tool for creating Material-UI themes via Material Design Color Tool.
-- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
-- [Material palette generator](https://material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/)はMaterial Design Color Toolを使用してMaterial-UIテーマを作成するためのオンラインツールです。
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/)は、カラーを選択してライブプレビューを表示するだけで、Material-UIアプリケーションのテーマを生成するツールです。
+- [マテリアルパレットジェネレータ](https://material.io/inline-tools/color/)　: マテリアルパレットジェネレータを使用して、入力した任意のカラーのパレットを生成できます。

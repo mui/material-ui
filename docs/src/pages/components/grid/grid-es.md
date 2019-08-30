@@ -77,7 +77,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### Margen negativo
 
-Existe una limitación con el margen negativo que utilizamos para implementar el espaciado entre los elementos. Un scroll horizontal aparecerá si un margen negativo va más allá del `<body>`. Hay 3 soluciones disponibles:
+Existe una limitación con el margen negativo que utilizamos para implementar el espaciado entre los elementos. Un scroll horizontal aparecerá si un margen negativo va más allá del `<body>`. There are 3 available workarounds:
 
 1. No usar la función de espaciado e implementarla en el espacio de usuario `spacing={0}` (por defecto).
 2. Aplicar padding al padre con al menos la mitad del valor de espaciado aplicado al hijo:

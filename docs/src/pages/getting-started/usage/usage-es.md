@@ -58,5 +58,5 @@ Material-UI proporciona un componente opcional llamado [CssBaseline](/components
 Ahora que tienes una idea de la organización básica, es hora de aprender más acerca de:
 
 - Cómo proporcionar [la fuente y tipografía de Material Design](/components/typography/).
-- Cómo aprovechar la [solución de plantilla](/customization/theming/).
+- How to take advantage of the [theming solution](/customization/theming/).
 - Cómo [reemplazar](/customization/components/) el aspecto de los componentes.

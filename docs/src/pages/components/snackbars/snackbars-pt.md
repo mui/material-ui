@@ -23,7 +23,7 @@ Um snackbar básico que tem como objetivo reproduzir o comportamento do Google K
 
 ## Snackbars personalizados
 
-Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
@@ -67,7 +67,7 @@ Você pode alterar a direção da transição do [Slide](/components/transitions
 
 ## Projetos Complementares
 
-Para casos de uso mais avançados, você pode tirar proveito de:
+Para usos mais avançados, você pode tirar vantagem com:
 
 ### notistack
 

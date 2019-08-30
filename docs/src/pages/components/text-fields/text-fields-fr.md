@@ -43,7 +43,7 @@ Vous avez peut-être également remarqué que certaines propriétés d'entrée H
 
 ## Inputs personnalisées
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -103,13 +103,13 @@ The floating label is absolutely positioned, it won't impact the layout of the p
 
 ## Integration with 3rd party input libraries
 
-Vous pouvez utiliser des bibliothèques tierces pour formater un input. Vous devez fournir une implémentation personnalisée de l'élément `<input>` avec la propriété `inputComponent`.
+You can use third-party libraries to format an input. You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
 
 La démo suivante utilise les bibliothèques [react-text-mask](https://github.com/text-mask/text-mask) et [react-number-format](https://github.com/s-yadav/react-number-format). The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/demos/text-fields/FormattedInputs.js"}}
 
-Le composantinput fourni doit gérer la propriété `inputRef`. The property should be called with a value that implements the following interface:
+The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
 
 ```ts
 interface InputElement {

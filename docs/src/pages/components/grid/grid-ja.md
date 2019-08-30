@@ -31,7 +31,7 @@ components: Grid
 
 ## Fluid grids
 
-Fluid gridsでは、コンテンツの尺度とサイズを変更する列を使用します。 A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
+Fluid gridsでは、コンテンツの尺度とサイズを変更する列を使用します。 流体グリッドのレイアウトでは、ブレークポイントを使用して、レイアウトを大幅に変更する必要があるかどうかを判断できます。
 
 ### Basic grid
 
@@ -53,7 +53,7 @@ Fluid gridsでは、コンテンツの尺度とサイズを変更する列を使
 
 ## 自動レイアウト
 
-自動レイアウトにより、 *items* が使用可能なスペースを均等に共有します。 That also means you can set the width of one *item* and the others will automatically resize around it.
+自動レイアウトにより、 *items* が使用可能なスペースを均等に共有します。 それはまた、あなたが1つの *item* 幅を設定することができ、他のものはそれの周りに自動的にサイズ変更されることを意味します。
 
 {{"demo": "pages/components/grid/AutoGrid.js"}}
 

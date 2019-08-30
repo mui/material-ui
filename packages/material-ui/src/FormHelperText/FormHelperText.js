@@ -32,7 +32,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `variant="filled"` or `variant="outlined"`. */
   contained: {
-    margin: '8px 12px 0',
+    margin: '8px 14px 0',
   },
   /* Pseudo-class applied to the root element if `focused={true}`. */
   focused: {},

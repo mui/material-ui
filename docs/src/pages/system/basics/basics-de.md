@@ -234,7 +234,7 @@ Verwenden Sie diesen Helfer, um Ihre eigene Style-Funktion zu erstellen.
 
 Wir unterstützen nicht alle CSS-Eigenschaften. Möglicherweise möchten Sie neue unterstützen. Es ist auch möglich, dass Sie das Designpfad-Präfix ändern möchten.
 
-#### Parameter
+#### Argumente
 
 1. `options` (*Object*): 
   - `options.pro ` (*String*): Die Eigenschaft, für die die Style-Funktion ausgelöst wird.

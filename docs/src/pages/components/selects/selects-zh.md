@@ -21,7 +21,7 @@ components: Select, NativeSelect
 
 ## 自定义选择器
 
-这是一些自定义样式开关的例子 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 第一步是设置 `InputBase` 组件的样式。 一旦设置好样式，您就可以直接将其用作文本字段，也可以将其提供给 select 组件的 `input` 属性作为一个 `select` 字段。
 

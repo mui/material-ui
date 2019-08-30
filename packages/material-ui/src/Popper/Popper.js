@@ -5,6 +5,7 @@ import { chainPropTypes } from '@material-ui/utils';
 import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
 import { setRef, useForkRef } from '../utils/reactHelpers';
+import ownerWindow from '../utils/ownerWindow';
 
 /**
  * Flips placement if in <body dir="rtl" />
@@ -206,8 +207,9 @@ Popper.propTypes = {
   anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {
     if (props.open) {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
+      const containerWindow = ownerWindow(resolvedAnchorEl);
 
-      if (resolvedAnchorEl instanceof Element) {
+      if (resolvedAnchorEl instanceof containerWindow.Element) {
         const box = resolvedAnchorEl.getBoundingClientRect();
 
         if (

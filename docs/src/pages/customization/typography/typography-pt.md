@@ -1,4 +1,4 @@
-# Typography
+# Tipografia
 
 <p class="description">O tema fornece um conjunto de tamanhos de tipos que funcionam bem juntos e também com a grade de leiaute.</p>
 
@@ -142,7 +142,7 @@ theme.typography.h1 = {
 };
 ```
 
-Para automatizar estas configurações, você pode usar a função auxiliar [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme), para fazer a tipografia de tamanhos da fonte no tema responsivo.
+To automate this setup, you can use the [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideHeader": true}}
 

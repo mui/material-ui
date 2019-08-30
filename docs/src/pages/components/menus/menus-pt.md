@@ -36,7 +36,7 @@ A principal responsabilidade do componente `MenuList` é manipular o foco.
 
 ## Menus Customizados
 
-Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 
@@ -62,7 +62,7 @@ Use uma transição diferente.
 
 ## Projetos Complementares
 
-Para casos de uso mais avançados, você pode tirar proveito de:
+Para usos mais avançados, você pode tirar vantagem com:
 
 ### PopupState helper
 

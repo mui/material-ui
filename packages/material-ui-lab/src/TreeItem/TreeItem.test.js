@@ -515,7 +515,7 @@ describe('<TreeItem />', () => {
         const { getByTestId } = render(
           <TreeView>
             <TreeItem nodeId="one" label="one" data-testid="one" />
-            <TreeItem nodeId="two" label="two" data-testid="two" />
+            <TreeItem nodeId="two" label={<span>two</span>} data-testid="two" />
             <TreeItem nodeId="three" label="three" data-testid="three" />
             <TreeItem nodeId="four" label="four" data-testid="four" />
           </TreeView>,

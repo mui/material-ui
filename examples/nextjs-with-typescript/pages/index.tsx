@@ -2,6 +2,7 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import MuiLink from '@material-ui/core/Link';
 import ProTip from '../src/ProTip';
 import Link from '../src/Link';
 
@@ -9,19 +10,19 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <MuiLink color="inherit" href="https://material-ui.com/">
         Your Website
-      </Link>{' '}
+      </MuiLink>{' '}
       {new Date().getFullYear()}
       {'. Built with '}
-      <Link color="inherit" href="https://material-ui.com/">
+      <MuiLink color="inherit" href="https://material-ui.com/">
         Material-UI.
-      </Link>
+      </MuiLink>
     </Typography>
   );
 }
 
-export default function App() {
+export default function Index() {
   return (
     <Container maxWidth="sm">
       <Box my={4}>

@@ -96,6 +96,13 @@ export const styles = theme => ({
   alignJustify: {
     textAlign: 'justify',
   },
+  /* Styles applied to the root element if `context.table.stickyHeader={true}`. */
+  stickyHeader: {
+    position: 'sticky',
+    top: 0,
+    left: 0,
+    backgroundColor: theme.palette.background.default,
+  },
 });
 
 const TableCell = React.forwardRef(function TableCell(props, ref) {
@@ -108,7 +115,7 @@ const TableCell = React.forwardRef(function TableCell(props, ref) {
     scope: scopeProp,
     size: sizeProp,
     sortDirection,
-    variant,
+    variant: variantProp,
     ...other
   } = props;
 
@@ -128,6 +135,7 @@ const TableCell = React.forwardRef(function TableCell(props, ref) {
   }
   const padding = paddingProp || (table && table.padding ? table.padding : 'default');
   const size = sizeProp || (table && table.size ? table.size : 'medium');
+  const variant = variantProp || (tablelvl2 && tablelvl2.variant);
 
   let ariaSort = null;
   if (sortDirection) {
@@ -140,11 +148,10 @@ const TableCell = React.forwardRef(function TableCell(props, ref) {
       className={clsx(
         classes.root,
         {
-          [classes.head]: variant ? variant === 'head' : tablelvl2 && tablelvl2.variant === 'head',
-          [classes.body]: variant ? variant === 'body' : tablelvl2 && tablelvl2.variant === 'body',
-          [classes.footer]: variant
-            ? variant === 'footer'
-            : tablelvl2 && tablelvl2.variant === 'footer',
+          [classes.head]: variant === 'head',
+          [classes.stickyHeader]: variant === 'head' && table && table.stickyHeader,
+          [classes.body]: variant === 'body',
+          [classes.footer]: variant === 'footer',
           [classes[`align${capitalize(align)}`]]: align !== 'inherit',
           [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
           [classes[`size${capitalize(size)}`]]: size !== 'medium',

@@ -5,24 +5,24 @@ components: CircularProgress, LinearProgress
 
 # Progress
 
-<p class="description">Progress indicators commonly known as spinners, express an unspecified wait time or display the length of a process. The animation works with CSS, not JavaScript.</p>
+<p class="description">一般にスピナーと呼ばれる進行状況インジケータは、指定されていない待機時間を表したり、プロセスの長さを表示します。 アニメーションはJavaScriptではなくCSSで動作します。</p>
 
-[Progress indicators](https://material.io/design/components/progress-indicators.html) inform users about the status of ongoing processes, such as loading an app, submitting a form, or saving updates. They communicate an app’s state and indicate available actions, such as whether users can navigate away from the current screen.
+[進行状況インジケータ](https://material.io/design/components/progress-indicators.html) 、アプリの読み込み、フォームの送信、更新の保存など、進行中のプロセスのステータスについてユーザーに通知します。 アプリの状態を伝え、ユーザーが現在の画面から移動できるかどうかなど、利用可能なアクションを示します。
 
-**Determinate** indicators display how long an operation will take.
+**Determinate** インジケータは、操作にかかる時間を表示します。
 
-**Indeterminate** indicators visualize an unspecified wait time.
+**Indeterminate**インジケータは、不特定の待機時間を視覚化します。
 
-#### Progress as a group
+#### グループとしての進捗
 
-When displaying progress for a sequence of processes, indicate overall progress rather than the progress of each activity.
+一連のプロセスの進行状況を表示する場合、各アクティビティの進行状況ではなく、全体的な進行状況を示します。
 
 ## Circular
 
-[Circular progress](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) support both determinate and indeterminate processes.
+[Circular progress](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) 、確定プロセスと不確定プロセスの両方をサポートします。
 
-- **Determinate** circular indicators fill the invisible, circular track with color, as the indicator moves from 0 to 360 degrees.
-- **Indeterminate** circular indicators grow and shrink in size while moving along the invisible track.
+- **Determinate** 円形インジケーターは、インジケーターが0から360度に移動するときに、見えない円形のトラックを色で塗りつぶします。
+- **Indeterminate** 円形インジケータは、不可視のトラックに沿って移動しながらサイズが拡大および縮小します。
 
 ### Circular Indeterminate
 
@@ -30,19 +30,19 @@ When displaying progress for a sequence of processes, indicate overall progress 
 
 ### Interactive Integration
 
-{{"demo": "pages/components/progress/CircularIntegration.js"}}
+{{"demo": "pages/components/progress/CircularIndeterminate.js"}}
 
 ### Circular Determinate
 
-{{"demo": "pages/components/progress/CircularDeterminate.js"}}
+{{"demo": "pages/components/progress/CircularIndeterminate.js"}}
 
 ### Circular Static
 
-{{"demo": "pages/components/progress/CircularStatic.js"}}
+{{"demo": "pages/components/progress/CircularIndeterminate.js"}}
 
 ## Linear
 
-[Linear progress](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) indicators.
+[Linear](https://material.io/design/components/progress-indicators.html#linear-progress-indicators) インジケーター。
 
 ### Linear Indeterminate
 
@@ -62,7 +62,7 @@ When displaying progress for a sequence of processes, indicate overall progress 
 
 ## Non-standard ranges
 
-The progress components accept a value in the range 0 - 100. This simplifies things for screen-reader users, where these are the default min / max values. Sometimes, however, you might be working with a data source where the values fall outside this range. Here's how you can easily transform a value in any range to a scale of 0 - 100:
+進捗コンポーネントは、0〜100の範囲の値を受け入れます。 これにより、これらがデフォルトの最小値/最大値であるスクリーンリーダーユーザーの作業が簡素化されます。 ただし、場合によっては、値がこの範囲外のデータソースを使用している場合があります。 範囲内の値を0〜100のスケールに簡単に変換する方法は次のとおりです。
 
 ```jsx
 // MIN = Minimum expected value
@@ -81,24 +81,24 @@ function Progress(props) {
 }
 ```
 
-## Customized progress bars
+## カスタマイズされた進行状況バー
 
-Here are some examples of customizing the component. 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/progress/CustomizedProgressBars.js"}}
 
-## Delaying appearance
+## 外観の遅延
 
-There are [3 important limits](https://www.nngroup.com/articles/response-times-3-important-limits/) to know around response time. The ripple effect of the `ButtonBase` component ensures that the user feels that the system is reacting instantaneously. Normally, no special feedback is necessary during delays of more than 0.1 but less than 1.0 second. After 1.0 second, you can display a loader to keep user's flow of thought uninterrupted.
+応答時間について知っておくべき重要な制限は [3つあります](https://www.nngroup.com/articles/response-times-3-important-limits/) 。 `ButtonBase` コンポーネントの波及効果により、ユーザーはシステムが瞬時に反応しているように感じます。 通常、0.1秒以上1.0秒未満の遅延の間、特別なフィードバックは必要ありません。 1.0秒後、ローダーを表示して、ユーザーの思考の流れが中断されないようにすることができます。
 
 {{"demo": "pages/components/progress/DelayingAppearance.js"}}
 
 ## 制限
 
-Under heavy load, you might lose the stroke dash animation or see random CircularProgress ring widths. You should run processor intensive operations in a web worker or by batch in order not to block the main rendering thread.
+負荷が高いと、ストロークダッシュアニメーションが失われるか、ランダムなCircularProgressリング幅が表示される場合があります。 メインレンダリングスレッドをブロックしないように、プロセッサを集中的に使用する操作をWebワーカーで、またはバッチで実行する必要があります。
 
 ![heavy load](/static/images/progress/heavy-load.gif)
 
-When it's not possible, you can leverage the `disableShrink` property to mitigate the issue. See [this issue](https://github.com/mui-org/material-ui/issues/10327).
+不可能な場合は、 `disableShrink` プロパティを活用して問題を軽減できます。 [この問題](https://github.com/mui-org/material-ui/issues/10327)参照してください。
 
 {{"demo": "pages/components/progress/CircularUnderLoad.js"}}

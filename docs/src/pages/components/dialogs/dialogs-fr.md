@@ -54,7 +54,7 @@ Les boîtes de dialogue de formulaire permettent aux utilisateurs de remplir des
 
 ## Customized dialogs
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
 The dialog has a close button added to aide usability.
 

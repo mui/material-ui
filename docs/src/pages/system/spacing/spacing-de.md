@@ -1,4 +1,4 @@
-# Abstände (Spacing)
+# Abstände
 
 <p class="description">Eine große Auswahl an reaktionsschnellen Abkürzungs- und Auffüllungswerkzeugklassen zum Ändern der Darstellung eines Elements.</p>
 

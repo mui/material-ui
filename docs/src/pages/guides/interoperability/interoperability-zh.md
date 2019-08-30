@@ -34,7 +34,7 @@
 
 ```jsx
 import React from 'react';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 export default function PlainCssButton() {
   return (
@@ -50,7 +50,7 @@ export default function PlainCssButton() {
 
 **请注意：** JSS 在 `<head>` 底部注入其样式表。 如果您不想使用 **!important** 来标记样式属性，您则需要更改 [CSS 的注入顺序](/styles/advanced/#css-injection-order)，如上所示。
 
-## 全局CSS
+## 全局 CSS
 
 明确向提组件提供类名是不是太大费周章了？ [您可以定位到由 Material-UI 生成的类名](/styles/advanced/#with-material-ui-core)。
 
@@ -72,7 +72,7 @@ export default function PlainCssButton() {
 
 ```jsx
 import React from 'react';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 export default function GlobalCssButton() {
   return (
@@ -85,18 +85,18 @@ export default function GlobalCssButton() {
 
 [![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/9yxopv4vmp)
 
-**请注意：** JSS 在 `<head>` 底部注入其样式表。 如果您不想使用 **!important**标记样式属性，则需要更改 [CSS注入顺序](/styles/advanced/#css-injection-order)，如演示中所示。
+**请注意：** JSS 在 `<head>` 底部注入其样式表。 如果您不想使用 **!important** 来标记样式属性，您则需要更改 [CSS 的注入顺序](/styles/advanced/#css-injection-order)，如上所示。
 
 ## Styled Components
 
-![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
+![评星](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
 
 `styled()` 方法适用于我们所有的组件。
 
 ```jsx
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const StyledButton = styled(Button)`
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
@@ -146,7 +146,7 @@ import { StylesProvider } from '@material-ui/styles';
 ```jsx
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const StyledButton = styled(({ color, ...other }) => <Button {...other} />)`
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
@@ -178,7 +178,7 @@ export default function StyledComponentsDeep() {
 ```jsx
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const StyledButton = styled(({ color, ...other }) => (
   <Button classes={{ label: 'label' }} {...other} />
@@ -240,7 +240,7 @@ const StyledMenu = styled(({ className, ...props }) => (
 
 ## CSS Modules
 
-![stars](https://img.shields.io/github/stars/css-modules/css-modules.svg?style=social&label=Star)
+![评星](https://img.shields.io/github/stars/css-modules/css-modules.svg?style=social&label=Star)
 
 鉴于它全权依赖于大家使用的打包方案，我们很难得知[此种样式方案](https://github.com/css-modules/css-modules)的市场占有率。
 
@@ -264,7 +264,7 @@ const StyledMenu = styled(({ className, ...props }) => (
 import React from 'react';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesButton.css';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 export default function CssModulesButton() {
   return (
@@ -282,7 +282,7 @@ export default function CssModulesButton() {
 
 ## Emotion
 
-![stars](https://img.shields.io/github/stars/emotion-js/emotion.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/emotion.svg?)
+![评星](https://img.shields.io/github/stars/emotion-js/emotion.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/emotion.svg?)
 
 ### `css` 属性
 
@@ -291,7 +291,7 @@ Emotion的 **css()** 方法与Material-UI无缝协作。
 ```jsx
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 // We just assign them the Button's className attribute
 export default function EmotionButton() {
@@ -328,7 +328,7 @@ export default function EmotionButton() {
 
 ## React JSS
 
-![stars](https://img.shields.io/github/stars/cssinjs/jss.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/react-jss.svg?)
+![评星](https://img.shields.io/github/stars/cssinjs/jss.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/react-jss.svg?)
 
 Material-UI 的样式方案与 [react-jss](https://github.com/cssinjs/react-jss) 共享了许多代码块。 为了解决我们独特的需求，我们继续开发并且克隆了项目，但是我们仍致力于合并那些从 Material-UI 返回到 react-jss 的变动和修复。
 
@@ -336,7 +336,7 @@ Material-UI 的样式方案与 [react-jss](https://github.com/cssinjs/react-jss)
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const styles = {
   button: {
@@ -370,14 +370,14 @@ export default injectSheet(styles)(ReactJssButton);
 
 ## Glamor
 
-![stars](https://img.shields.io/github/stars/threepointone/glamor.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/glamor.svg?)
+![评星](https://img.shields.io/github/stars/threepointone/glamor.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/glamor.svg?)
 
 使用 Glamour 应用样式的一个好的办法是利用 **css()** 函数，然后使用 **classnames** 将它们打包为字符串：
 
 ```jsx
 import React from 'react';
 import { css } from 'glamor';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const buttonStyles = {
   background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
@@ -389,7 +389,7 @@ const buttonStyles = {
   boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .30)"
 };
 
-// 接着我们只需要将它们传入Button 的 className 属性中
+// Then we just assign them the Button's className attribute
 export default function GlamorButton() {
   return (
     <div>

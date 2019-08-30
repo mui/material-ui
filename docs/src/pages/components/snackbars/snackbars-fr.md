@@ -3,7 +3,7 @@ title: Snackbar React component
 components: Snackbar, SnackbarContent
 ---
 
-# Snackbars (Messages rapides)
+# Snackbars
 
 <p class="description">Snackbars provide brief messages about app processes - typically at the bottom of the screen.</p>
 
@@ -23,7 +23,7 @@ A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 
 ## Customized snackbars
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 

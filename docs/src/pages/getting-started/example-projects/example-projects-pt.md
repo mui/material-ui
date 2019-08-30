@@ -33,9 +33,9 @@ If you want to start with a more complete and real world example, you could take
 - [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
     
   - Bootstrapped com Create React App, porém, também funcionará em seus boilerplates
-  - Criado sobre o Firebase com autenticação funcionando desde o início
-  - Encaminhamento robusto com o React Router, incluindo tratamento de erros (404)
-  - Suporte mobile extensível com [react-swipeable-views](https://react-swipeable-views.com) para as guias
+  - Built on top of Firebase with Authentication, Cloud Firestore, Cloud Functions, Storage, and Performance Monitoring working from the start
+  - Robust routing with React Router including error handling
+  - Extensive mobile support with full-screen dialogs and [react-swipeable-views](https://react-swipeable-views.com) for tabs
 - [Material Sense](https://github.com/alexanmtz/material-sense), que inclui:
     
   - Gráfico usando recharts

@@ -40,7 +40,7 @@ Generate an enhanced mount function with the needed context. Please refer to the
 
 #### 引数
 
-1. `オプション` (*オプジェクト* [任意]) 
+1. `options` (*Object* [optional]) 
   - `options.mount` (*Function* [optional]): The mount function to enhance, it uses **enzyme by default**.
   - The other keys are forwarded to the options argument of `enzyme.mount()`.
 
@@ -85,7 +85,7 @@ Generate an enhanced shallow function with the needed context. Please refer to t
 
 #### 引数
 
-1. `オプション` (*オプジェクト* [任意]) 
+1. `options` (*Object* [optional]) 
   - `options.shallow` (*Function* [optional]): The shallow function to enhance, it uses **enzyme by default**.
   - `options.untilSelector` (*String* [optional]): Recursively shallow renders the children until it can find the provided selector. It's useful to drill down higher-order components.
   - `options.dive` (*Boolean* [optional]): Shallow function renders the one non-DOM child of the current wrapper, and returns a wrapper around the result.
@@ -119,7 +119,7 @@ Generate a render to string function with the needed context. Please refer to th
 
 #### 引数
 
-1. `オプション` (*オプジェクト* [任意]) 
+1. `options` (*Object* [optional]) 
   - `options.render` (*Function* [optional]): The render function to enhance, it uses **enzyme by default**.
   - The other keys are forwarded to the options argument of `enzyme.render()`.
 

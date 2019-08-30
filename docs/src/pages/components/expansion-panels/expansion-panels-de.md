@@ -25,18 +25,18 @@ Erweitern Sie das Standardbedienfeldverhalten, um ein Akkordeon mit der Komponen
 
 {{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js"}}
 
-## Sekundäre Überschrift und Spalten
-
-Zur Strukturierung des Inhalts können mehrere Spalten verwendet werden. Dem Bedienfeld kann ein Hilfetext hinzugefügt werden, welches den Benutzer unterstützt.
-
-{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}
-
-## Performance
-
-Der Inhalt von ExpansionPanels wird standardmäßig bereitgestellt, auch wenn das Panel nicht erweitert wird. Bei diesem Standardverhalten werden serverseitiges Rendering und SEO berücksichtigt. Wenn Sie teure Komponentenbäume in Ihren Panels rendern oder einfach viele Panels rendern, empfiehlt es sich, dieses Standardverhalten zu ändern, indem Sie `unmountOnExit` in `TransitionProps` aktivieren: `<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />`. Wie bei jeder Leistungsoptimierung ist dies keine Silberkugel. Stellen Sie sicher, dass Sie zuerst Engpässe erkennen und anschließend diese Optimierungsstrategien ausprobieren.
-
 ## Individuelles Erweiterungspanel
 
 Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}
+
+## Performance
+
+Der Inhalt von ExpansionPanels wird standardmäßig bereitgestellt, auch wenn das Panel nicht erweitert wird. Bei diesem Standardverhalten werden serverseitiges Rendering und SEO berücksichtigt. Wenn Sie teure Komponentenbäume in Ihren Panels rendern oder einfach viele Panels rendern, empfiehlt es sich, dieses Standardverhalten zu ändern, indem Sie `unmountOnExit` in `TransitionProps` aktivieren: `<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />`. Wie bei jeder Leistungsoptimierung ist dies keine Silberkugel. Stellen Sie sicher, dass Sie zuerst Engpässe erkennen und anschließend diese Optimierungsstrategien ausprobieren.
+
+## Sekundäre Überschrift und Spalten
+
+Zur Strukturierung des Inhalts können mehrere Spalten verwendet werden. Dem Bedienfeld kann ein Hilfetext hinzugefügt werden, welches den Benutzer unterstützt.
+
+{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}

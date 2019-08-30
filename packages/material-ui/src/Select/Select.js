@@ -136,7 +136,7 @@ Select.propTypes = {
    * Callback function fired when a menu item is selected.
    *
    * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value`.
+   * You can pull out the new value by accessing `event.target.value` (any).
    * @param {object} [child] The react element that was selected when `native` is `false` (default).
    */
   onChange: PropTypes.func,
@@ -144,14 +144,14 @@ Select.propTypes = {
    * Callback fired when the component requests to be closed.
    * Use in controlled mode (see open).
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onClose: PropTypes.func,
   /**
    * Callback fired when the component requests to be opened.
    * Use in controlled mode (see open).
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onOpen: PropTypes.func,
   /**

@@ -6,7 +6,7 @@
 
 Eine Funktion, die eine [Klassennamengeneratorfunktion](https://cssinjs.org/jss-api/#generate-your-class-names) zurückgibt.
 
-#### Parameter
+#### Argumente
 
 1. `options` (*Object* [optional]): 
   - `options.disableGlobal ` (*Boolean* [optional]): Standardeinstellung ist `false`. Deaktivieren Sie die Generierung deterministischer Klassennamen.
@@ -431,10 +431,8 @@ const styles = {
   },
 };
 
-class MyComponent extends React.Component {
-  render () {
-    return &lt;div className={this.props.classes.root} /&gt;;
-  }
+function MyComponent(props) {
+  return &lt;div className={props.classes.root} /&gt;;
 }
 
 export default withStyles(styles)(MyComponent);

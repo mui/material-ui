@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { refType } from '@material-ui/utils';
 
 /**
  * @ignore - internal component.
@@ -54,10 +55,10 @@ NativeSelectInput.propTypes = {
    */
   IconComponent: PropTypes.elementType,
   /**
-   * Use that prop to pass a ref callback to the native select element.
+   * Use that prop to pass a ref to the native select element.
    * @deprecated
    */
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  inputRef: refType,
   /**
    * @ignore
    */
@@ -70,7 +71,7 @@ NativeSelectInput.propTypes = {
    * Callback function fired when a menu item is selected.
    *
    * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value`.
+   * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
   /**

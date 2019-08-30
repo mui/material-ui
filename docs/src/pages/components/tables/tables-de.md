@@ -47,7 +47,7 @@ Der Tabelle wurde eine feste Breite zugewiesen, um das horizontale Scrollen zu v
 
 ## Benutzerdefinierte Tabellen
 
-Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js"}}
 

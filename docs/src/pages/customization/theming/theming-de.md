@@ -12,53 +12,53 @@ Um die Konsistenz zwischen Apps zu erhöhen, stehen helle und dunkle Themenarten
 
 Wenn Sie das Design anpassen möchten, müssen Sie die `ThemeProvider` Komponente verwenden, um ein Theme in Ihre Anwendung einzufügen. Dies ist jedoch optional. Material-UI-Komponenten werden mit einem Standarddesign geliefert.
 
-`ThemeProvider` stützt sich auf die Kontext - Funktion von React um das Theme an die Komponenten zu übergeben. Deswegen müssen Sie den `ThemeProvider` als ein übergeordnetes Element der Komponenten, die Sie anpassen möchten, setzen. Mehr darüber erfahren Sie im [API](/styles/api/#themeprovider) Abschnitt.
+`ThemeProvider` stützt sich auf die Kontext - Funktion von React um das Theme an die Komponenten zu übergeben. Deswegen müssen Sie den `ThemeProvider` als ein übergeordnetes Element der Komponenten, die Sie anpassen möchten, setzen. You can learn more about this in [the API section](/styles/api/#themeprovider).
 
 ## Theme-Konfigurationsvariablen
 
 Das Ändern der Konfigurationsvariablen für das Theme ist der effektivste Weg, um die Material-UI an Ihre Bedürfnisse anzupassen. Die folgenden Abschnitte behandeln die wichtigsten Theme-Variablen:
 
 - [Palette](/customization/palette/)
-- [Typography](/customization/typography/)
+- [Typografie](/customization/typography/)
 - [Abstände](/customization/spacing/)
 - [Haltepunkte](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
 - [Globale Objekte](/customization/globals/)
 
-Sie können den [Standard-Themenbereich](/customization/default-theme/) auschecken, um das Standarddesign vollständig anzuzeigen.
+You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
 
-### Benutzerdefinierte Variablen
+### Custom variables
 
-Wenn Sie das Material-UI-Theme mit unserer [Styling-Lösung](/styles/basics/) oder einer [beliebige andere](/guides/interoperability/#themeprovider) verwenden, kann praktisch sein, dem Theme weitere Variablen hinzuzufügen, damit Sie sie überall verwenden können. Zum Beispiel:
+When using Material-UI's theme with our [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
-## Zugriff auf das Theme in einer Komponente
+## Accessing the theme in a component
 
 Sie können auf die Themenvariablen in Ihren React-Komponenten [zugreifen](/styles/advanced/#accessing-the-theme-in-a-component).
 
-## Schachteln des Themes
+## Nesting the theme
 
 Sie können mehrere Themenanbieter [verschachteln](/styles/advanced/#theme-nesting).
 
 {{"demo": "pages/customization/theming/ThemeNesting.js"}}
 
-Das innere Theme ** überschreibt** das äußere Theme. Sie können das äußere Theme erweitern, indem Sie eine Funktion bereitstellen:
+The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
 
 {{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
-### Ein Hinweis zur Leistung
+### A note on performance
 
-Die Auswirkungen der Verschachtelung der `ThemeProviders` Komponente auf die Performanz sind mit der Arbeit von JSS hinter den Kulissen verbunden. Der wichtigste Punkt zu verstehen ist, dass das injizierte CSS mit dem folgenden Tupel `(styles, theme)` zwischengespeichert wird.
+The performance implications of nesting the `ThemeProvider` component are linked to JSS's work behind the scenes. Der wichtigste Punkt zu verstehen ist, dass das injizierte CSS mit dem folgenden Tupel `(styles, theme)` zwischengespeichert wird.
 
-- `Theme`: Wenn Sie bei jedem Rendering ein neues Themebereitstellen, wird ein neues CSS-Objekt berechnet und eingefügt. Sowohl für die Konsistenz der Benutzeroberfläche als auch für die Leistung ist es besser, eine begrenzte Anzahl von Themeobjekten wiederzugeben.
-- `styles`: Je größer das Styles-Objekt ist, desto mehr Arbeit ist erforderlich.
+- `theme`: If you provide a new theme at each render, a new CSS object will be computed and injected. Both for UI consistency and performance, it's better to render a limited number of theme objects.
+- `styles`: The larger the styles object is, the more work is needed.
 
 ## API
 
 ### `createMuiTheme(options) => theme`
 
-Generieren Sie eine Themenbasis von den gegebenen Optionen.
+Generate a theme base on the options received.
 
 #### Parameter
 
@@ -66,7 +66,7 @@ Generieren Sie eine Themenbasis von den gegebenen Optionen.
 
 #### Rückgabewerte
 
-`theme` (*Object*): Ein vollständiges, gebrauchsfertiges Themeobjekt.
+`theme` (*Object*): A complete, ready to use theme object.
 
 #### Beispiele
 

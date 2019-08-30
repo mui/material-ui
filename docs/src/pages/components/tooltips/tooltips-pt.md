@@ -21,7 +21,7 @@ O `Tooltip` tem 12 **posicionamentos** para ser escolhido. Eles não têm setas 
 
 ## Dicas customizadas
 
-Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 

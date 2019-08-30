@@ -30,7 +30,7 @@ Este componente vem sobrecarregado com 2 kB gzipped de utilidades. Alguns dispos
 Estamos usando o seguinte conjunto de propriedades neste site de documentação para otimizar a usabilidade do componente:
 
 - iOS está hospedado em dispositivos de última geração. Podemos ativar a transição backdrop sem perder quadros. O desempenho será suficientemente bom.
-- iOS tem um recurso "deslize para voltar" que bagunça com o recurso de descoberta. Tivemos que desativá-lo.
+- O iOS tem um recurso "deslizar para trás" que bagunça com o recurso de descoberta. Tivemos que desativá-lo.
 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);

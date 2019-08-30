@@ -5,46 +5,46 @@ components: Select, NativeSelect
 
 # Selects
 
-<p class="description">Select components are used for collecting user provided information from a list of options.</p>
+<p class="description">選択コンポーネントは、オプションのリストからユーザー提供の情報を収集するために使用されます。</p>
 
-## Simple Select
+## 簡単な選択
 
-Menus are positioned over their emitting elements such that the currently selected menu item appears on top of the emitting element.
+メニューは、現在選択されているメニュー項目が放出要素の上に表示されるように、放出要素の上に配置されます。
 
 {{"demo": "pages/components/selects/SimpleSelect.js"}}
 
-## Native Select
+## ネイティブを選択
 
-As the user experience can be improved on mobile using the native select of the platform, we allow such pattern.
+プラットフォームのネイティブ選択を使用することで、モバイルでのユーザーエクスペリエンスを向上させることができます。 このようなパターンを許容します。
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
-## Customized selects
+## カスタマイズされた選択
 
-Here are some examples of customizing the component. 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
 
-The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a `select` field.
+最初のステップは、 `InputBase` コンポーネントのスタイル設定です。 スタイルを設定したら、テキストフィールドとして直接使用するか、select `input` プロパティに提供して、 `select` フィールドを作成できます。
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
-## Multiple Select
+## 複数選択
 
-The `Select` component can handle multiple selections. It's enabled with the `multiple` property.
+`Select` コンポーネントは、複数の選択を処理できます。 `multiple` プロパティで有効になります。
 
-Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
+単一選択の場合と同様に、 `onChange` コールバックで `event.target.value` にアクセスすることにより、新しい値を引き出すことができます。 常に配列です。
 
-{{"demo": "pages/components/selects/MultipleSelect.js"}}
+{{{{"demo": "pages/components/selects/MultipleSelect.js"}}
 
-## Controlled Open Select
+## 制御開選択
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
-## With a Dialog
+## ダイアログ付き
 
-While it's discouraged by the Material Design specification, you can use a select inside a dialog.
+Material Designの仕様では推奨されていませんが、ダイアログ内でselectを使用できます。
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 
 ## Text Fields
 
-`TextField` ラッパーコンポーネントは、ラベル、入力、およびヘルプテキストを含む完全なフォームコントロールです。 You can find an example with the select mode [in this section](/components/text-fields/#textfield).
+The `TextField` wrapper component is a complete form control including a label, input and help text. このセクション</a>で、選択モード 例を見つけることができます。</p>

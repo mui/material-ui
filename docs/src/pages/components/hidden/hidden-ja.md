@@ -1,5 +1,5 @@
 ---
-title: Hidden React component
+title: Hidden Reactコンポーネント
 components: Hidden
 ---
 
@@ -41,23 +41,23 @@ mdDown      |                     hide | show
 
 ## ブレイクポイント
 
-Using any breakpoint `down` property, the given *children* will be hidden *at or below* the breakpoint.
+ブレークポイントの`down`プロパティを使用すると、指定した*children*がブレークポイントの位置またはその上*at or below*になります。
 
 {{"demo": "pages/components/hidden/BreakpointDown.js"}}
 
-## Breakpoint only
+## ブレークポイントのみ
 
-Using the breakpoint `only` property, the given *children* will be hidden *at* the specified breakpoint(s).
+ブレークポイントの `only`プロパティを使用すると、指定した*children*がブレークポイントの位置またはその上*at*>になります。
 
-The `only` property can be used in two ways:
+`only` プロパティは、次の2つの方法で使用できます。
 
-- list a single breakpoint
-- list an array of breakpoints
+- 単一のブレークポイントをリストする
+- ブレークポイントの配列をリストします
 
 {{"demo": "pages/components/hidden/BreakpointOnly.js"}}
 
-## Integration with Grid
+## グリッドとの統合
 
-It is quite common to alter `Grid` at different responsive breakpoints, and in many cases, you want to hide some of those elements.
+さまざまな応答ブレークポイントで`Grid` を変更することはよくあり、多くの場合、これらの要素の一部を非表示にする必要があります。
 
 {{"demo": "pages/components/hidden/GridIntegration.js"}}

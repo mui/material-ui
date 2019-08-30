@@ -44,7 +44,7 @@ As funções de estilo de dimensionamento suportam diferentes tipos de entrada d
 import { sizing } from '@material-ui/system';
 ```
 
-| Nome da importação | Prop        | Propriedade CSS | Chave do tema |
+| Nome da importação | Propriedade | Propriedade CSS | Chave do tema |
 |:------------------ |:----------- |:--------------- |:------------- |
 | `width`            | `width`     | `width`         | none          |
 | `maxWidth`         | `maxWidth`  | `max-width`     | none          |

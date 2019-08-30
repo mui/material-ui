@@ -431,10 +431,8 @@ const styles = {
   },
 };
 
-class MyComponent extends React.Component {
-  render () {
-    return &lt;div className={this.props.classes.root} /&gt;;
-  }
+function MyComponent(props) {
+  return &lt;div className={props.classes.root} /&gt;;
 }
 
 export default withStyles(styles)(MyComponent);

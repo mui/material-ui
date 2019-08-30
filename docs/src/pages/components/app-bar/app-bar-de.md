@@ -11,51 +11,55 @@ Die [obere App-Bar](https://material.io/design/components/app-bars-top.html) lie
 
 Sie kann in eine kontextabhängige Aktionsleiste verwandelt, oder als Navigationsleiste verwendet werden.
 
-## App-Bar mit Schaltflächen
+## Simple App Bar
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
 
-## Einfache App-Bar
+## App Bar with a primary search field
 
-{{"demo": "pages/components/app-bar/SimpleAppBar.js"}}
-
-## App-Bar mit einem Hauptsuchfeld
-
-Eine primäre Suchleiste.
+A primary searchbar.
 
 {{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
 
-## App-Bar mit Menü
+## App Bar with menu
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js"}}
 
-## App-Bar mit Suchfeld
+## App Bar with search field
 
-Ein seitliches Suchfeld.
+A side searchbar.
 
 {{"demo": "pages/components/app-bar/SearchAppBar.js"}}
 
-## Verdichtet (nur für Desktop)
+## Dense (desktop only)
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js"}}
 
-## Untere App-Bar
+## Bottom App Bar
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Scrollen
+## Scrolling
+
+You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
 ### App-Bar verstecken
 
-Eine App-Bar die sich beim Scrollen versteckt.
+The app bar hides on scroll down to leave more space for reading.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### App-Bar anheben
 
-Eine App-Bar die sich beim Scrollen anhebt.
+The app bar elevates on scroll to communicate that the user is not at the top of the page.
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
+
+### Back to top
+
+A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+
+{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
 
 ### `useScrollTrigger([options]) => trigger`
 
@@ -69,7 +73,7 @@ Eine App-Bar die sich beim Scrollen anhebt.
 
 #### Rückgabewerte
 
-`trigger`: Entspricht die Bildlaufposition den Kriterien?
+`trigger`: Does the scroll position match the criteria?
 
 #### Beispiele
 

@@ -13,7 +13,13 @@ export interface TreeItemProps
   TransitionComponent?: React.ComponentType<TransitionProps>;
 }
 
-export type TreeItemClassKey = 'root' | 'group' | 'content' | 'iconContainer' | 'label';
+export type TreeItemClassKey =
+  | 'root'
+  | 'expanded'
+  | 'group'
+  | 'content'
+  | 'iconContainer'
+  | 'label';
 
 declare const TreeItem: React.ComponentType<TreeItemProps>;
 

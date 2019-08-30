@@ -1,4 +1,4 @@
-# 言語
+# 言語設定
 
 <p class="description">The Material-UI documentation is available in the following languages.</p>
 

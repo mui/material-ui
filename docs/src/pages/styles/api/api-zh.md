@@ -17,7 +17,7 @@
 
 `类名生成器`：应该将生成器提供给JSS。
 
-#### 示例
+#### 例子
 
 ```jsx
 import React from 'react';
@@ -431,10 +431,8 @@ const styles = {
   },
 };
 
-class MyComponent extends React.Component {
-  render () {
-    return &lt;div className={this.props.classes.root} /&gt;;
-  }
+function MyComponent(props) {
+  return &lt;div className={props.classes.root} /&gt;;
 }
 
 export default withStyles(styles)(MyComponent);

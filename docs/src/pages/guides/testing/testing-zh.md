@@ -46,7 +46,7 @@
 
 #### 返回结果
 
-`mount` (*mount*)：安装功能。
+`mount` (*mount*)：一个 mount 函数。
 
 #### 示例
 
@@ -93,9 +93,9 @@ describe('<MyComponent />', () => {
 
 #### 返回结果
 
-`shallow` （*shallow*）：浅函数。
+`shallow`(*shallow*)：一个浅层函数。
 
-#### 例子
+#### 示例
 
 ```jsx
 mport { createShallow } from '@material-ui/core/test-utils';
@@ -127,7 +127,7 @@ describe('<MyComponent />', () => {
 
 `render` (*Function*)：渲染到字符串函数。
 
-#### 例子
+#### 示例
 
 ```jsx
 import { createRender } from '@material-ui/core/test-utils';

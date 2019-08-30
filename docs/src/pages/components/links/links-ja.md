@@ -4,38 +4,38 @@ components: Link
 
 # リンク
 
-<p class="description">The Link component allows you to easily customize anchor elements with your theme colors and typography styles.</p>
+<p class="description">Linkコンポーネントを使用すると、テーマの色とタイポグラフィスタイルでアンカー要素を簡単にカスタマイズできます。</p>
 
-## Simple links
+## 簡単なリンク
 
-The Link component is built on top of the [Typography](/api/typography/) component. You can leverage its properties.
+Linkコンポーネントは、 [Typography](/api/typography/) コンポーネントの上に構築されています。 そのプロパティを活用できます。
 
 {{"demo": "pages/components/links/Links.js"}}
 
-However, the Link component has different default properties than the Typography component:
+ただし、Linkコンポーネントには、Typographyコンポーネントとは異なるデフォルトプロパティがあります。
 
-- `color="primary"` as the link needs to stand out.
-- `variant="inherit"` as the link will, most of the time, be used as a child of a Typography component.
+- リンクが目立つようにするには、`color="primary"`とします。
+- ほとんどの場合、リンクはタイポグラフィコンポーネントの子として使用されるため、`variant="inherit"` となります。
 
 ## アクセシビリティ
 
-- When providing the content for the link, avoid generic descriptions like "click here" or "go to". Instead, use [specific descriptions](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
-- For the best user experience, links should stand out from the text on the page.
-- If a link doesn't have a meaningful href, [it should be rendered using a `<button>` element](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md).
+- リンクのコンテンツを提供するときは、「ここをクリック」や「移動」などの一般的な説明は避けてください。 代わりに、 [特定の説明](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text)使用します。
+- 最高のユーザーエクスペリエンスを得るには、ページ上のテキストからリンクを目立たせる必要があります。
+- リンクに意味のあるhrefがない場合、[`<button>`要素を使用してレンダリングする必要があります。](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md)
 
 {{"demo": "pages/components/links/ButtonLink.js"}}
 
-## Security
+## セキュリティ
 
-When you use `target="_blank"` with Links, it is [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to third party content.
+リンクで `target="_blank"` を使用する場合は、サードパーティのコンテンツにリンクする際に、`rel="noopener"` または`rel="noreferrer"`を必ず設定することを[推奨します。](https://developers.google.com/web/tools/lighthouse/audits/noopener)
 
-- `rel="noopener"` prevents the new page from being able to access the `window.opener` property and ensures it runs in a separate process. Without this, the target page can potentially redirect your page to a malicious URL.
-- `rel="noreferrer"` has the same effect, but also prevents the *Referer* header from being sent to the new page. ⚠️ Removing the referrer header will affect analytics.
+- `rel="noopener"` は、新しいページがにアクセスできないように`window.opener`プロパティを使用し、別のプロセスで実行されるようにします。 これがないと、ターゲットページがページを悪意のあるURLにリダイレクトする可能性があります。
+- `rel="noreferrer"` は同じ効果を持ちますが、*Referer* ヘッダーが新しいページに送信されなくなります。 ⚠️リファラーヘッダーを削除すると、分析に影響します。
 
 ## サードパーティ製ルーティングライブラリ
 
-One common use case is to perform the navigation on the client only, without doing a .html round-trip with the server. The `Link` component provides a property to handle this use case: `component`.
+一般的な使用例の1つは、サーバーとの.htmlラウンドトリップを行わずに、クライアントのみでナビゲーションを実行することです。 `Link` コンポーネントには、このユースケースを処理するためのプロパティが用意されています。：`component`
 
 {{"demo": "pages/components/links/LinkRouter.js", "defaultCodeOpen": true}}
 
-*Note: Creating the Link components is necessary to prevent unexpected unmounting. 詳細については、<a href=「/guides/composition/#component-property」>コンポーネント・プロパティー・ガイド</a>を参照してください。*
+*注：予期しないアンマウントを防ぐために、リンクコンポーネントを作成する必要があります。 詳細については、<a href=「/guides/composition/#component-property」>コンポーネント・プロパティー・ガイド</a>を参照してください。*

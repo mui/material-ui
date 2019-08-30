@@ -21,7 +21,7 @@ The `Tooltip` has 12 **placements** choice. They don’t have directional arrows
 
 ## Customized tooltips
 
-这是一些自定义样式开关的例子 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 

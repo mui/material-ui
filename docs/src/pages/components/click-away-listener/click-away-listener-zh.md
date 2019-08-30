@@ -5,9 +5,9 @@ components: ClickAwayListener
 
 # Click away listener（他处点击监听器）
 
-<p class="description">Detect if a click event happened outside of an element. It listens for clicks that occur somewhere in the document.</p>
+<p class="description">用于检测点击事件是否发生在元素之外。 它可以监听文档中某处发生的点击事件。</p>
 
-- 📦 [1.4 kB gzipped](/size-snapshot).
+- 📦 [1.4kB 已压缩的包](/size-snapshot).
 
 ## 简单的下拉菜单
 

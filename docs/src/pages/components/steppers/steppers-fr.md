@@ -32,7 +32,7 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prop 
 
 ### Customized Stepper
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
 {{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 

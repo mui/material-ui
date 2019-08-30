@@ -1,5 +1,5 @@
 ---
-title: Box React component
+title: Box Reactコンポーネント
 ---
 
 # Box
@@ -46,7 +46,7 @@ The Box componentは、コンポーネントをラップします。 新しいDO
 </Box>
 ```
 
-> CSSの仕様は、インポート順序に依存します。 If you want the guarantee that the wrapped component's style will be overridden, you need to import the Box last.
+> CSSの仕様は、インポート順序に依存します。 ラップされたコンポーネントのスタイルが確実にオーバーライドされるようにするには、最後にボックスをインポートする必要があります。
 
 ## API
 

@@ -21,7 +21,7 @@ Material-UI's styling solution is inspired by many other styling libraries such 
 
 ## インストール
 
-次のコマンドを実行してください。これで、あなたの`package.json` に保存できます。
+インストールして`package.json` のdependenciesに保存します。次を実行してください。
 
 ```sh
 // with npm

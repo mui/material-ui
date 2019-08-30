@@ -4,17 +4,17 @@ components: タイポグラフィ
 
 # タイポグラフィ
 
-<p class="description">Use typography to present your design and content as clearly and efficiently as possible.</p>
+<p class="description">タイポグラフィを使用して、デザインとコンテンツをできるだけ明確かつ効率的に表現します。</p>
 
-Too many type sizes and styles at once can spoil any layout. A [typographic scale](https://material.io/design/typography/#type-scale) has a limited set of type sizes that work well together along with the layout grid.
+文字サイズとスタイルが多すぎると、レイアウトが損なわれます。 [typographic scale](https://material.io/design/typography/#type-scale) は、レイアウトグリッドとともに適切に機能する限られたタイプサイズのセットがあります。
 
-## General
+## 基本設定
 
-The *Roboto* font will **not** be automatically loaded by Material-UI. The developer is responsible for loading all fonts used in their application. Roboto Font has a few easy ways to get started. For more advanced configuration, check out [the theme customization section](/customization/typography/).
+*Roboto*フォントは、Material-UIによって自動的にロード**されません** 。 開発者は、アプリケーションで使用されるすべてのフォントをロードする責任があります。 Roboto Fontには、簡単に開始できる方法がいくつかあります。 より高度な設定については、[テーマのカスタマイズセクション](/customization/typography/)チェックしてください 。
 
 ## Roboto Font CDN
 
-Shown below is a sample link markup used to load the Roboto font from a CDN:
+以下に、CDNからRobotoフォントをロードするために使用されるリンクマークアップのサンプルを示します。
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
@@ -22,19 +22,19 @@ Shown below is a sample link markup used to load the Roboto font from a CDN:
 
 ## Install with npm
 
-You can [install it](https://www.npmjs.com/package/typeface-roboto) by typing the below command in your terminal:
+端末で次のコマンドを入力すると、[インストール](https://www.npmjs.com/package/typeface-roboto)できます。
 
 `npm install typeface-roboto --save`
 
-Then, you can import it in your entry-point.
+その後、エントリポイントにインポートできます。
 
 ```js
 import 'typeface-roboto';
 ```
 
-For more info check out the [typeface](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto) project.
+詳細については、 [typeface](https://github.com/KyleAMathews/typefaces/tree/master/packages/roboto) プロジェクトをご覧ください。
 
-⚠️ Be careful when using this approach. Make sure your bundler doesn't eager load all the font variations (100/300/400/500/700/900, italic/regular, SVG/woff). Inlining all the font files can significantly increase the size of your bundle. Material-UI default typography configuration only relies on 300, 400, 500, and 700 font weights.
+⚠️このアプローチを使用する場合は注意してください。 バンドラーがすべてのフォントバリエーション（100/300/400/500/700/900、イタリック/レギュラー、SVG / woff）を積極的に読み込まないようにしてください。 すべてのフォントファイルをインライン化すると、バンドルのサイズが大幅に増加する可能性があります。 Material-UIのデフォルトのタイポグラフィ構成は、300、400、500、および700のフォントウェイトのみに依存しています。
 
 ## Component
 
@@ -42,13 +42,13 @@ For more info check out the [typeface](https://github.com/KyleAMathews/typefaces
 
 ## テーマ
 
-In some situations you might not be able to use the `Typography` component. Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expend-path=$.typography) keys of the theme.
+状況によっては、 `Typography` コンポーネントを使用できない場合があります。 このテーマのe [`typography`](/customization/default-theme/?expend-path=$.typography)キーを活用できることを願っています。
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 
-## Changing the semantic element
+## セマンティック要素の変更
 
-The Typography component uses the `variantMapping` property to associate a UI variant with a semantic element. It’s important to realize that the style of a typography is independent from the semantic underlying element.
+Typographyコンポーネントは、 `variantMapping` プロパティを使用して、UIバリアントをセマンティック要素に関連付けます。 It’s important to realize that the style of a typography is independent from the semantic underlying element.
 
 - You can change the underlying element for a one time occasion with the `component` property:
 
@@ -59,7 +59,7 @@ The Typography component uses the `variantMapping` property to associate a UI va
 </Typography>
 ```
 
-- You can change the mapping [globally using the theme](/customization/globals/#default-props):
+- 以下のようにテーマ使用して、[マッピング をグローバルに](/customization/globals/#default-props)変更できます。
 
 ```js
 const theme = createMuiTheme({

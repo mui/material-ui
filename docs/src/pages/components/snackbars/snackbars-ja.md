@@ -3,76 +3,76 @@ title: Snackbar React component
 components: Snackbar, SnackbarContent
 ---
 
-# Snackbars
+# スナックバー
 
-<p class="description">Snackbars provide brief messages about app processes - typically at the bottom of the screen.</p>
+<p class="description">スナックバーは、アプリプロセスに関する簡単なメッセージを提供します-通常は画面の下部にあります。</p>
 
-[Snackbars](https://material.io/design/components/snackbars.html) inform users of a process that an app has performed or will perform. They appear temporarily, towards the bottom of the screen. They shouldn’t interrupt the user experience, and they don’t require user input to disappear.
+[スナックバー](https://material.io/design/components/snackbars.html) は、アプリが実行したプロセスまたは実行するプロセスをユーザーに通知します。 一時的に画面の下部に表示されます。 ユーザーの操作を中断したり、ユーザー入力を消去したりする必要はありません。
 
-Snackbars contain a single line of text directly related to the operation performed. They may contain a text action, but no icons. You can use them to display notifications.
+スナックバーには、実行された操作に直接関連する1行のテキストが含まれます。 テキストアクションは含まれますが、アイコンは含まれません。 You can use them to display notifications.
 
-#### Frequency
+#### 頻度
 
-Only one snackbar may be displayed at a time.
+一度に表示できるsnackbarは1つだけです。
 
-## Simple snackbars
+## シンプルなスナックバー
 
-A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
+Google Keepのスナックバーの動作を再現することを目的とした基本的なスナックバー。
 
 {{"demo": "pages/components/snackbars/SimpleSnackbar.js"}}
 
-## Customized snackbars
+## カスタマイズされたスナックバー
 
-Here are some examples of customizing the component. 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
-## Positioned snackbars
+## 配置されたスナックバー
 
-There may be circumstances when the placement of the snackbar needs to be more flexible.
+スナックバーの配置をより柔軟にする必要がある場合があります。
 
 {{"demo": "pages/components/snackbars/PositionedSnackbar.js"}}
 
-## Message Length
+## メッセージの長さ
 
-Some snackbars with varying message length.
+メッセージの長さが異なるスナックバー。
 
 {{"demo": "pages/components/snackbars/LongTextSnackbar.js"}}
 
-## Transições
+## Transitions
 
-### Consecutive Snackbars
+### 連続スナックバー
 
-When multiple snackbar updates are necessary, they should appear one at a time.
+複数のsnackbarの更新が必要な場合は、一度に1つずつ表示されます。
 
 {{"demo": "pages/components/snackbars/ConsecutiveSnackbars.js"}}
 
-### Snackbars and floating action buttons (FABs)
+### スナックバーとフローティングアクションボタン（FAB）
 
-Snackbars should appear above FABs (on mobile).
+スナックバーはFAB（モバイル）の上に表示されます。
 
 {{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 500}}
 
-### Change Transition
+### トランジションの変更
 
-[Grow](/components/transitions/#grow) is the default transition but you can use a different one.
+[Grow](/components/transitions/#grow) はデフォルトのトランジションですが、別のトランジションを使用できます。
 
 {{"demo": "pages/components/snackbars/TransitionsSnackbar.js"}}
 
-### Control Slide direction
+### スライド方向の制御
 
-You can change the direction of the [Slide](/components/transitions/#slide) transition.
+[スライド](/components/transitions/#slide) トランジションの方向を変更できます。
 
-{{"demo": "pages/components/snackbars/DirectionSnackbar.js"}}
+{{"demo": "pages/components/snackbars/TransitionsSnackbar.js"}}
 
-## Complementary projects
+## 補完プロジェクト
 
-より高度なユースケースのためにあなたは利用することができるかもしれません：
+より高度な使用例では、以下を利用できます。
 
 ### notistack
 
 ![Stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npmダウンロード](https://img.shields.io/npm/dm/notistack.svg)
 
-In the following example, we demonstrate how to use [notistack](https://github.com/iamhosseindhv/notistack). notistack makes it easy to display snackbars (so you don't have to deal with open/close state of them). It also enables you to stack them on top of one another (but discouraged by the specification).
+次の例では、 [notistack](https://github.com/iamhosseindhv/notistack)の使用方法を示します。 snackbars(オープン/クローズの状態に対処する必要はありません。) を簡単に表示できます。 また、重ねて表示することもできます(しかし仕様では推奨されていない)。
 
 {{"demo": "pages/components/snackbars/IntegrationNotistack.js"}}

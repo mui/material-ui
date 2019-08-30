@@ -242,6 +242,8 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   - The `ListItemAvatar` component is required when using an avatar.
   - The `ListItemIcon` component is required when using a left checkbox.
   - The `edge` property should be set on the icon buttons.
+- [List] `dense` no longer reduces the top and bottom padding of the `List` element.
+
 - [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
 
 ### Menu

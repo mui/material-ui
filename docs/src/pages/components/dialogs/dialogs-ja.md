@@ -1,5 +1,5 @@
 ---
-title: Dialog React component
+title: Dialog Reactコンポーネント
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
@@ -40,7 +40,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 {{"demo":"pages/components/dialogs/AlertDialog.js"}}
 
-## Transitions
+## Transições
 
 トランジションを入れ替えることもできます。次の例では、`Slide`. を使用します。
 

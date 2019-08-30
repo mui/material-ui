@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import clsx from 'clsx';
-import { elementTypeAcceptingRef } from '@material-ui/utils';
+import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import { useForkRef } from '../utils/reactHelpers';
 import useEventCallback from '../utils/useEventCallback';
 import withStyles from '../styles/withStyles';
@@ -301,12 +301,12 @@ ButtonBase.propTypes = {
    * A ref for imperative actions.
    * It currently only supports `focusVisible()` action.
    */
-  action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  action: refType,
   /**
-   * Use that prop to pass a ref callback to the native button component.
+   * Use that prop to pass a ref to the native button component.
    * @deprecated Use `ref` instead
    */
-  buttonRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  buttonRef: refType,
   /**
    * If `true`, the ripples will be centered.
    * They won't start at the cursor interaction position.

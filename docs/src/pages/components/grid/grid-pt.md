@@ -3,7 +3,7 @@ title: Componente React para Grade
 components: Grid
 ---
 
-# Grade
+# Grid
 
 <p class="description">O layout responsivo da grade do Material Design se adapta ao tamanho e orientação da tela, garantindo a consistência entre layouts.</p>
 
@@ -77,7 +77,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### Margem negativa
 
-Há uma limitação com a margem negativa que usamos para implementar o espaçamento entre itens. Uma barra de rolagem horizontal irá aparecer se uma margem negativa vai além do `<body>`. Existem 3 soluções alternativas disponíveis:
+Há uma limitação com a margem negativa que usamos para implementar o espaçamento entre itens. Uma barra de rolagem horizontal irá aparecer se uma margem negativa vai além do `<body>`. Existem 3 soluções disponíveis:
 
 1. Não usar o recurso de espaçamento e implementá-lo no espaço do usuário `spacing={0}` (Padrão).
 2. Aplicando padding ao pai com pelo menos metade do valor de espaçamento aplicado ao filho:

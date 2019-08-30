@@ -47,7 +47,7 @@ Data tableの上部には、列名をリストするヘッダー行があり、�
 
 ## Customized tables
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/tables/CustomizedTables.js"}}
 
@@ -65,7 +65,7 @@ Data tableの上部には、列名をリストするヘッダー行があり、�
 
 ## Virtualized Table
 
-次の例では、 ` Table ` コンポーネントで [react-virtualized](https://github.com/bvaughn/react-virtualized) を使用する方法を示します。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。
+次の例では、 ` Table ` コンポーネントで [react-window](https://github.com/bvaughn/react-virtualized) を使用する方法を示します。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js"}}
 

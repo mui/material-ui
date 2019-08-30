@@ -1,6 +1,6 @@
 ---
-title: Container React component
-components: Container(コンテナ)
+title: Container Reactコンポーネント
+components: Container
 ---
 
 # Container(コンテナ)
