@@ -18,13 +18,13 @@ const importMaps: { [K: string]: MappedImportsType | undefined } = {};
  * Used to transform the specified root import to specific imports based on the exports found
  * in the index file of the package
  */
-function transformImport(path: babel.NodePath<t.ImportDeclaration>, rootPath: string) {
-  if (importMaps[rootPath] === undefined) {
-    importMaps[rootPath] = resolveImports(require.resolve(rootPath));
+function transformImport(path: babel.NodePath<t.ImportDeclaration>, packageName: string) {
+  if (importMaps[packageName] === undefined) {
+    importMaps[packageName] = resolveImports(require.resolve(packageName));
   }
 
   const { node } = path;
-  const importMap = importMaps[rootPath]!;
+  const importMap = importMaps[packageName]!;
 
   for (const key in importMap) {
     if (!importMap.hasOwnProperty(key)) {
@@ -53,7 +53,9 @@ function transformImport(path: babel.NodePath<t.ImportDeclaration>, rootPath: st
     });
 
     if (newSpecifiers.length) {
-      path.insertBefore(t.importDeclaration(newSpecifiers, t.stringLiteral(`${rootPath}/${key}`)));
+      path.insertBefore(
+        t.importDeclaration(newSpecifiers, t.stringLiteral(`${packageName}/${key}`)),
+      );
     }
 
     if (node.specifiers.length === 0) {
@@ -70,7 +72,7 @@ function transformImport(path: babel.NodePath<t.ImportDeclaration>, rootPath: st
  * Used to perform a simple transform on the specified import where all imports is a
  * file/folder (@material-ui/icons)
  */
-function simpleTransform(path: babel.NodePath<t.ImportDeclaration>, rootPath: string) {
+function simpleTransform(path: babel.NodePath<t.ImportDeclaration>, packageName: string) {
   const { node } = path;
   node.specifiers = node.specifiers.filter(spec => {
     if (!t.isImportSpecifier(spec)) {
@@ -80,7 +82,7 @@ function simpleTransform(path: babel.NodePath<t.ImportDeclaration>, rootPath: st
     path.insertBefore(
       t.importDeclaration(
         [t.importDefaultSpecifier(spec.local)],
-        t.stringLiteral(`${rootPath}/${spec.imported.name}`),
+        t.stringLiteral(`${packageName}/${spec.imported.name}`),
       ),
     );
 
@@ -97,17 +99,17 @@ export default (): babel.PluginObj => {
     name: '@material-ui/babel-plugin-material-ui',
     visitor: {
       ImportDeclaration(path) {
-        const importPath = path.node.source.value;
+        const packageName = path.node.source.value;
 
         switch (path.node.source.value) {
           case Packages.Core:
           case Packages.Styles:
           case Packages.Lab: {
-            transformImport(path, importPath);
+            transformImport(path, packageName);
             return;
           }
           case Packages.Icons: {
-            simpleTransform(path, importPath);
+            simpleTransform(path, packageName);
             return;
           }
         }
