@@ -2,6 +2,13 @@ import * as babel from '@babel/core';
 import * as t from '@babel/types';
 import resolveImports, { MappedImportsType } from './resolveImports';
 
+enum Packages {
+  Core = '@material-ui/core',
+  Styles = '@material-ui/styles',
+  Lab = '@material-ui/lab',
+  Icons = '@material-ui/icons',
+}
+
 let coreImports: MappedImportsType;
 let labImports: MappedImportsType;
 let stylesImports: MappedImportsType;
@@ -81,29 +88,29 @@ export default (): babel.PluginObj => {
     visitor: {
       ImportDeclaration(path) {
         switch (path.node.source.value) {
-          case '@material-ui/core': {
+          case Packages.Core: {
             if (coreImports === undefined) {
-              coreImports = resolveImports(require.resolve('@material-ui/core'));
+              coreImports = resolveImports(require.resolve(Packages.Core));
             }
-            handleImports(path, coreImports, `@material-ui/core`);
+            handleImports(path, coreImports, Packages.Core);
             return;
           }
-          case '@material-ui/styles': {
+          case Packages.Styles: {
             if (stylesImports === undefined) {
-              stylesImports = resolveImports(require.resolve('@material-ui/styles'));
+              stylesImports = resolveImports(require.resolve(Packages.Styles));
             }
-            handleImports(path, stylesImports, `@material-ui/styles`);
+            handleImports(path, stylesImports, Packages.Styles);
             return;
           }
-          case '@material-ui/lab': {
+          case Packages.Lab: {
             if (labImports === undefined) {
-              labImports = resolveImports(require.resolve('@material-ui/lab'));
+              labImports = resolveImports(require.resolve(Packages.Lab));
             }
-            handleImports(path, labImports, `@material-ui/lab`);
+            handleImports(path, labImports, Packages.Lab);
             return;
           }
-          case '@material-ui/icons': {
-            handleIcons(path, `@material-ui/icons`);
+          case Packages.Icons: {
+            handleIcons(path, Packages.Icons);
             return;
           }
         }
