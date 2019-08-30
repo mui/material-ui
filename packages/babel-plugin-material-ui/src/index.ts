@@ -9,16 +9,22 @@ enum Packages {
   Icons = '@material-ui/icons',
 }
 
-let coreImports: MappedImportsType;
-let labImports: MappedImportsType;
-let stylesImports: MappedImportsType;
+/**
+ * Holds the import name and location of everything found in the index file of each package
+ */
+const importMaps: { [K: string]: MappedImportsType | undefined } = {};
 
-function handleImports(
-  path: babel.NodePath<t.ImportDeclaration>,
-  importMap: MappedImportsType,
-  rootPath: string,
-) {
+/**
+ * Used to transform the specified root import to specific imports based on the exports found
+ * in the index file of the package
+ */
+function transformImport(path: babel.NodePath<t.ImportDeclaration>, rootPath: string) {
+  if (importMaps[rootPath] === undefined) {
+    importMaps[rootPath] = resolveImports(require.resolve(rootPath));
+  }
+
   const { node } = path;
+  const importMap = importMaps[rootPath]!;
 
   for (const key in importMap) {
     if (!importMap.hasOwnProperty(key)) {
@@ -60,7 +66,11 @@ function handleImports(
   }
 }
 
-function handleIcons(path: babel.NodePath<t.ImportDeclaration>, rootPath: string) {
+/**
+ * Used to perform a simple transform on the specified import where all imports is a
+ * file/folder (@material-ui/icons)
+ */
+function simpleTransform(path: babel.NodePath<t.ImportDeclaration>, rootPath: string) {
   const { node } = path;
   node.specifiers = node.specifiers.filter(spec => {
     if (!t.isImportSpecifier(spec)) {
@@ -87,30 +97,17 @@ export default (): babel.PluginObj => {
     name: '@material-ui/babel-plugin-material-ui',
     visitor: {
       ImportDeclaration(path) {
+        const importPath = path.node.source.value;
+
         switch (path.node.source.value) {
-          case Packages.Core: {
-            if (coreImports === undefined) {
-              coreImports = resolveImports(require.resolve(Packages.Core));
-            }
-            handleImports(path, coreImports, Packages.Core);
-            return;
-          }
-          case Packages.Styles: {
-            if (stylesImports === undefined) {
-              stylesImports = resolveImports(require.resolve(Packages.Styles));
-            }
-            handleImports(path, stylesImports, Packages.Styles);
-            return;
-          }
+          case Packages.Core:
+          case Packages.Styles:
           case Packages.Lab: {
-            if (labImports === undefined) {
-              labImports = resolveImports(require.resolve(Packages.Lab));
-            }
-            handleImports(path, labImports, Packages.Lab);
+            transformImport(path, importPath);
             return;
           }
           case Packages.Icons: {
-            handleIcons(path, Packages.Icons);
+            simpleTransform(path, importPath);
             return;
           }
         }
