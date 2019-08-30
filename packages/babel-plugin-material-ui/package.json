@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.5.5",
-    "@babel/plugin-syntax-typescript": "^7.3.3",
     "@babel/types": "^7.5.5"
   }
 }

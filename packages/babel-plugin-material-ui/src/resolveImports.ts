@@ -1,21 +1,26 @@
 import fs from 'fs';
+import path from 'path';
 import * as babel from '@babel/core';
 import * as t from '@babel/types';
 
 export type MappedImportsType = { [K in string]: Array<{ default: boolean; name: string }> };
 
 export default (indexPath: string): MappedImportsType => {
-  indexPath = indexPath.replace(/\.js$/, '.d.ts');
-  const content = fs.readFileSync(indexPath, 'utf8');
+  let esPath = path.join(path.dirname(indexPath), 'es/index.js');
+  if (!fs.existsSync(esPath)) {
+    // If the file doesn't exist we're running the tests. The index.js file is
+    // not transpiled so the exports can be collected from there
+    esPath = indexPath;
+  }
+  const content = fs.readFileSync(esPath, 'utf8');
 
   const ast = babel.parseSync(content, {
     babelrc: false,
     configFile: false,
-    plugins: [require.resolve('@babel/plugin-syntax-typescript')],
   });
 
   if (!ast || !t.isFile(ast)) {
-    throw new Error(`Unable to parse ${indexPath}`);
+    throw new Error(`Unable to parse ${esPath}`);
   }
 
   const importLookup: MappedImportsType = {};
@@ -30,9 +35,8 @@ export default (indexPath: string): MappedImportsType => {
         return;
       }
 
-      // Remove ./ and @material-ui/styles from the file path
-      // @material-ui/styles exports useTheme using the full path
-      const filePath = node.source!.value.replace(/^(\.\/)|(@material-ui\/styles\/)/, '');
+      // Remove ./ from the file path
+      const filePath = node.source!.value.replace(/^\.\//, '');
       if (importLookup[filePath] === undefined) {
         importLookup[filePath] = [];
       }
