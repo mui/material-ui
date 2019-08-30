@@ -4,9 +4,13 @@ import * as babel from '@babel/core';
 import * as t from '@babel/types';
 import { Packages } from './packages';
 
-export type MappedImportsType = {
-  [K in string]: Array<{ default: boolean; namespaceImport?: boolean; name: string }>
-};
+export enum ImportType {
+  Default,
+  Namespace,
+  Named,
+}
+
+export type MappedImportsType = { [K in string]: Array<{ name: string; type: ImportType }> };
 
 export default (indexPath: string, packageName: string): MappedImportsType => {
   let esPath = path.join(path.dirname(indexPath), 'es/index.js');
@@ -47,14 +51,14 @@ export default (indexPath: string, packageName: string): MappedImportsType => {
 
       importLookup[filePath].push({
         name: spec.exported.name,
-        default: spec.local.name === 'default',
+        type: spec.local.name === 'default' ? ImportType.Default : ImportType.Named,
       });
     });
   });
 
   // @material-ui/core exports * from ./colors as colors
   if (packageName === Packages.Core) {
-    importLookup['colors'] = [{ name: 'colors', default: false, namespaceImport: true }];
+    importLookup['colors'] = [{ name: 'colors', type: ImportType.Namespace }];
   }
 
   return importLookup;

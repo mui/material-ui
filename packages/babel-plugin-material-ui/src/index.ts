@@ -1,6 +1,6 @@
 import * as babel from '@babel/core';
 import * as t from '@babel/types';
-import resolveImports, { MappedImportsType } from './resolveImports';
+import resolveImports, { MappedImportsType, ImportType } from './resolveImports';
 import { Packages } from './packages';
 
 /**
@@ -41,9 +41,9 @@ function transformImport(path: babel.NodePath<t.ImportDeclaration>, packageName:
       }
 
       newSpecifiers.push(
-        mappedImport.namespaceImport
+        mappedImport.type === ImportType.Namespace
           ? t.importNamespaceSpecifier(spec.local)
-          : mappedImport.default
+          : mappedImport.type === ImportType.Default
           ? t.importDefaultSpecifier(spec.local)
           : t.importSpecifier(spec.local, spec.imported),
       );
