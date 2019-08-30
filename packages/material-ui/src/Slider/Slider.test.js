@@ -460,5 +460,12 @@ describe('<Slider />', () => {
         'you need to use the `getAriaValueText` prop instead of',
       );
     });
+
+    it('should warn if aria-label is a string', () => {
+      render(<Slider value={[20, 50]} aria-label="hot" />);
+      expect(consoleErrorMock.args()[0][0]).to.include(
+        'you need to use the `getAriaLabel` prop instead of',
+      );
+    });
   });
 });
