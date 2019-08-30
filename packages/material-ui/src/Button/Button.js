@@ -9,7 +9,6 @@ import { capitalize } from '../utils/helpers';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    lineHeight: 1.75, // To remove with v4.
     ...theme.typography.button,
     boxSizing: 'border-box',
     minWidth: 64,
