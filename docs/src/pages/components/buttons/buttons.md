@@ -58,7 +58,7 @@ The ButtonGroup component can be used to group outlined (the default) or contain
 
 ## Split Button
 
-ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be use to immediately trigger a related action.
+ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
 
 {{"demo": "pages/components/buttons/SplitButton.js"}}
 
