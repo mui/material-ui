@@ -45,8 +45,8 @@ const IOSSwitch = withStyles(theme => ({
     },
   },
   thumb: {
-    width: theme.spacing(3),
-    height: theme.spacing(3),
+    width: 24,
+    height: 24,
   },
   track: {
     borderRadius: 26 / 2,
