@@ -4,6 +4,7 @@
   "private": false,
   "author": "Material-UI Team",
   "description": "React components that implement Google's Material Design.",
+  "main": "src/index.js",
   "keywords": [
     "react",
     "react-component",
