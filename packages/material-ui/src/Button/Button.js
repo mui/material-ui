@@ -14,13 +14,11 @@ export const styles = theme => ({
     minWidth: 64,
     padding: '6px 16px',
     borderRadius: theme.shape.borderRadius,
-    color: theme.palette.text.primary,
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border'], {
       duration: theme.transitions.duration.short,
     }),
     '&:hover': {
       textDecoration: 'none',
-      backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -43,23 +41,13 @@ export const styles = theme => ({
   /* Styles applied to the root element if `variant="text"`. */
   text: {
     padding: '6px 8px',
-  },
-  /* Styles applied to the root element if `variant="text"` and `color="primary"`. */
-  textPrimary: {
-    color: theme.palette.primary.main,
+    color: props => theme.palette[props.color || theme.palette.text.primary].main,
     '&:hover': {
-      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
-  },
-  /* Styles applied to the root element if `variant="text"` and `color="secondary"`. */
-  textSecondary: {
-    color: theme.palette.secondary.main,
-    '&:hover': {
-      backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+      backgroundColor: props =>
+        fade(
+          theme.palette[props.color || theme.palette.text.primary].main,
+          theme.palette.action.hoverOpacity,
+        ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -68,18 +56,22 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
+    color: props => theme.palette[props.color || theme.palette.text.primary].main,
     padding: '5px 16px',
-    border: `1px solid ${
-      theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-    }`,
+    border: props =>
+      `1px solid ${
+        props.color
+          ? fade(theme.palette[props.color].main, 0.5)
+          : theme.palette.type === 'light'
+          ? 'rgba(0, 0, 0, 0.23)'
+          : 'rgba(255, 255, 255, 0.23)'
+      }`,
     '&$disabled': {
       border: `1px solid ${theme.palette.action.disabled}`,
     },
   },
   /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
   outlinedPrimary: {
-    color: theme.palette.primary.main,
-    border: `1px solid ${fade(theme.palette.primary.main, 0.5)}`,
     '&:hover': {
       border: `1px solid ${theme.palette.primary.main}`,
       backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
@@ -91,8 +83,6 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
   outlinedSecondary: {
-    color: theme.palette.secondary.main,
-    border: `1px solid ${fade(theme.palette.secondary.main, 0.5)}`,
     '&:hover': {
       border: `1px solid ${theme.palette.secondary.main}`,
       backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
@@ -100,9 +90,6 @@ export const styles = theme => ({
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
-    },
-    '&$disabled': {
-      border: `1px solid ${theme.palette.action.disabled}`,
     },
   },
   /* Styles applied to the root element if `variant="contained"`. */
