@@ -75,56 +75,37 @@ function handleIcons(path: babel.NodePath<t.ImportDeclaration>, rootPath: string
   }
 }
 
-interface Options {
-  useES: boolean;
-  useESM: boolean;
-}
-
-export default (): babel.PluginObj<{ opts: Options }> => {
+export default (): babel.PluginObj => {
   return {
     name: '@material-ui/babel-plugin-material-ui',
     visitor: {
-      ImportDeclaration(path, state) {
-        const { opts } = state;
-        if (opts.useES && opts.useESM) {
-          console.error("Material-UI: 'useESM' has no effect when 'useES' is enabled");
-        }
-
-        const libraryFolder = opts.useES ? '/es' : opts.useESM ? '/esm' : '';
-
+      ImportDeclaration(path) {
         switch (path.node.source.value) {
           case '@material-ui/core': {
             if (coreImports === undefined) {
               coreImports = resolveImports(require.resolve('@material-ui/core'));
             }
-            handleImports(path, coreImports, `@material-ui/core${libraryFolder}`);
+            handleImports(path, coreImports, `@material-ui/core`);
             return;
           }
           case '@material-ui/styles': {
             if (stylesImports === undefined) {
               stylesImports = resolveImports(require.resolve('@material-ui/styles'));
             }
-            handleImports(path, stylesImports, `@material-ui/styles${libraryFolder}`);
+            handleImports(path, stylesImports, `@material-ui/styles`);
             return;
           }
           case '@material-ui/lab': {
             if (labImports === undefined) {
               labImports = resolveImports(require.resolve('@material-ui/lab'));
             }
-            handleImports(path, labImports, `@material-ui/lab${libraryFolder}`);
+            handleImports(path, labImports, `@material-ui/lab`);
             return;
           }
           case '@material-ui/icons': {
-            handleIcons(path, `@material-ui/icons${libraryFolder}`);
+            handleIcons(path, `@material-ui/icons`);
             return;
           }
-        }
-
-        if (libraryFolder) {
-          path.node.source.value = path.node.source.value.replace(
-            /(@material-ui\/(core|lab|icons|styles|utils|system))(?!\/(es|esm)(\/|$))/,
-            `$1/${libraryFolder}`,
-          );
         }
       },
     },
