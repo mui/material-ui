@@ -2,158 +2,161 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import warning from 'warning';
+import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
-import { lighten } from '../styles/colorManipulator';
+import { darken, lighten } from '../styles/colorManipulator';
 import useTheme from '../styles/useTheme';
 
 const TRANSITION_DURATION = 4; // seconds
 
-export const styles = theme => ({
-  /* Styles applied to the root element. */
-  root: {
-    position: 'relative',
-    overflow: 'hidden',
-    height: 4,
-  },
-  /* Styles applied to the root & bar2 element if `color="primary"`; bar2 if `variant-"buffer"`. */
-  colorPrimary: {
-    backgroundColor: lighten(theme.palette.primary.light, 0.6),
-  },
-  /* Styles applied to the root & bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`. */
-  colorSecondary: {
-    backgroundColor: lighten(theme.palette.secondary.light, 0.4),
-  },
-  /* Styles applied to the root element if `variant="determinate"`. */
-  determinate: {},
-  /* Styles applied to the root element if `variant="indeterminate"`. */
-  indeterminate: {},
-  /* Styles applied to the root element if `variant="buffer"`. */
-  buffer: {
-    backgroundColor: 'transparent',
-  },
-  /* Styles applied to the root element if `variant="query"`. */
-  query: {
-    transform: 'rotate(180deg)',
-  },
-  /* Styles applied to the additional bar element if `variant="buffer"`. */
-  dashed: {
-    position: 'absolute',
-    marginTop: 0,
-    height: '100%',
-    width: '100%',
-    animation: '$buffer 3s infinite linear',
-  },
-  /* Styles applied to the additional bar element if `variant="buffer"` & `color="primary"`. */
-  dashedColorPrimary: {
-    backgroundImage: `radial-gradient(${lighten(theme.palette.primary.light, 0.6)} 0%, ${lighten(
-      theme.palette.primary.light,
-      0.6,
-    )} 16%, transparent 42%)`,
-    backgroundSize: '10px 10px',
-    backgroundPosition: '0px -23px',
-  },
-  /* Styles applied to the additional bar element if `variant="buffer"` & `color="secondary"`. */
-  dashedColorSecondary: {
-    backgroundImage: `radial-gradient(${lighten(theme.palette.secondary.light, 0.4)} 0%, ${lighten(
-      theme.palette.secondary.light,
-      0.6,
-    )} 16%, transparent 42%)`,
-    backgroundSize: '10px 10px',
-    backgroundPosition: '0px -23px',
-  },
-  /* Styles applied to the layered bar1 & bar2 elements. */
-  bar: {
-    width: '100%',
-    position: 'absolute',
-    left: 0,
-    bottom: 0,
-    top: 0,
-    transition: 'transform 0.2s linear',
-    transformOrigin: 'left',
-  },
-  /* Styles applied to the bar elements if `color="primary"`; bar2 if `variant` not "buffer". */
-  barColorPrimary: {
-    backgroundColor: theme.palette.primary.main,
-  },
-  /* Styles applied to the bar elements if `color="secondary"`; bar2 if `variant` not "buffer". */
-  barColorSecondary: {
-    backgroundColor: theme.palette.secondary.main,
-  },
-  /* Styles applied to the bar1 element if `variant="indeterminate or query"`. */
-  bar1Indeterminate: {
-    width: 'auto',
-    animation: '$mui-indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite',
-  },
-  /* Styles applied to the bar1 element if `variant="determinate"`. */
-  bar1Determinate: {
-    transition: `transform .${TRANSITION_DURATION}s linear`,
-  },
-  /* Styles applied to the bar1 element if `variant="buffer"`. */
-  bar1Buffer: {
-    zIndex: 1,
-    transition: `transform .${TRANSITION_DURATION}s linear`,
-  },
-  /* Styles applied to the bar2 element if `variant="indeterminate or query"`. */
-  bar2Indeterminate: {
-    width: 'auto',
-    animation: '$mui-indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
-    animationDelay: '1.15s',
-  },
-  /* Styles applied to the bar2 element if `variant="buffer"`. */
-  bar2Buffer: {
-    transition: `transform .${TRANSITION_DURATION}s linear`,
-  },
-  // Legends:
-  // || represents the viewport
-  // -  represents a light background
-  // x  represents a dark background
-  '@keyframes mui-indeterminate1': {
-    //  |-----|---x-||-----||-----|
-    '0%': {
-      left: '-35%',
-      right: '100%',
+export const styles = theme => {
+  const getColor = color =>
+    theme.palette.type === 'light' ? lighten(color, 0.62) : darken(color, 0.5);
+
+  const backgroundPrimary = getColor(theme.palette.primary.main);
+  const backgroundSecondary = getColor(theme.palette.secondary.main);
+
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      position: 'relative',
+      overflow: 'hidden',
+      height: 4,
     },
-    //  |-----|-----||-----||xxxx-|
-    '60%': {
-      left: '100%',
-      right: '-90%',
+    /* Styles applied to the root & bar2 element if `color="primary"`; bar2 if `variant-"buffer"`. */
+    colorPrimary: {
+      backgroundColor: backgroundPrimary,
     },
-    '100%': {
-      left: '100%',
-      right: '-90%',
+    /* Styles applied to the root & bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`. */
+    colorSecondary: {
+      backgroundColor: backgroundSecondary,
     },
-  },
-  '@keyframes mui-indeterminate2': {
-    //  |xxxxx|xxxxx||-----||-----|
-    '0%': {
-      left: '-200%',
-      right: '100%',
+    /* Styles applied to the root element if `variant="determinate"`. */
+    determinate: {},
+    /* Styles applied to the root element if `variant="indeterminate"`. */
+    indeterminate: {},
+    /* Styles applied to the root element if `variant="buffer"`. */
+    buffer: {
+      backgroundColor: 'transparent',
     },
-    //  |-----|-----||-----||-x----|
-    '60%': {
-      left: '107%',
-      right: '-8%',
+    /* Styles applied to the root element if `variant="query"`. */
+    query: {
+      transform: 'rotate(180deg)',
     },
-    '100%': {
-      left: '107%',
-      right: '-8%',
+    /* Styles applied to the additional bar element if `variant="buffer"`. */
+    dashed: {
+      position: 'absolute',
+      marginTop: 0,
+      height: '100%',
+      width: '100%',
+      animation: '$buffer 3s infinite linear',
     },
-  },
-  '@keyframes buffer': {
-    '0%': {
-      opacity: 1,
+    /* Styles applied to the additional bar element if `variant="buffer"` & `color="primary"`. */
+    dashedColorPrimary: {
+      backgroundImage: `radial-gradient(${backgroundPrimary} 0%, ${backgroundPrimary} 16%, transparent 42%)`,
+      backgroundSize: '10px 10px',
       backgroundPosition: '0px -23px',
     },
-    '50%': {
-      opacity: 0,
+    /* Styles applied to the additional bar element if `variant="buffer"` & `color="secondary"`. */
+    dashedColorSecondary: {
+      backgroundImage: `radial-gradient(${backgroundSecondary} 0%, ${backgroundSecondary} 16%, transparent 42%)`,
+      backgroundSize: '10px 10px',
       backgroundPosition: '0px -23px',
     },
-    '100%': {
-      opacity: 1,
-      backgroundPosition: '-200px -23px',
+    /* Styles applied to the layered bar1 & bar2 elements. */
+    bar: {
+      width: '100%',
+      position: 'absolute',
+      left: 0,
+      bottom: 0,
+      top: 0,
+      transition: 'transform 0.2s linear',
+      transformOrigin: 'left',
     },
-  },
-});
+    /* Styles applied to the bar elements if `color="primary"`; bar2 if `variant` not "buffer". */
+    barColorPrimary: {
+      backgroundColor: theme.palette.primary.main,
+    },
+    /* Styles applied to the bar elements if `color="secondary"`; bar2 if `variant` not "buffer". */
+    barColorSecondary: {
+      backgroundColor: theme.palette.secondary.main,
+    },
+    /* Styles applied to the bar1 element if `variant="indeterminate or query"`. */
+    bar1Indeterminate: {
+      width: 'auto',
+      animation: '$mui-indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite',
+    },
+    /* Styles applied to the bar1 element if `variant="determinate"`. */
+    bar1Determinate: {
+      transition: `transform .${TRANSITION_DURATION}s linear`,
+    },
+    /* Styles applied to the bar1 element if `variant="buffer"`. */
+    bar1Buffer: {
+      zIndex: 1,
+      transition: `transform .${TRANSITION_DURATION}s linear`,
+    },
+    /* Styles applied to the bar2 element if `variant="indeterminate or query"`. */
+    bar2Indeterminate: {
+      width: 'auto',
+      animation: '$mui-indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
+      animationDelay: '1.15s',
+    },
+    /* Styles applied to the bar2 element if `variant="buffer"`. */
+    bar2Buffer: {
+      transition: `transform .${TRANSITION_DURATION}s linear`,
+    },
+    // Legends:
+    // || represents the viewport
+    // -  represents a light background
+    // x  represents a dark background
+    '@keyframes mui-indeterminate1': {
+      //  |-----|---x-||-----||-----|
+      '0%': {
+        left: '-35%',
+        right: '100%',
+      },
+      //  |-----|-----||-----||xxxx-|
+      '60%': {
+        left: '100%',
+        right: '-90%',
+      },
+      '100%': {
+        left: '100%',
+        right: '-90%',
+      },
+    },
+    '@keyframes mui-indeterminate2': {
+      //  |xxxxx|xxxxx||-----||-----|
+      '0%': {
+        left: '-200%',
+        right: '100%',
+      },
+      //  |-----|-----||-----||-x----|
+      '60%': {
+        left: '107%',
+        right: '-8%',
+      },
+      '100%': {
+        left: '107%',
+        right: '-8%',
+      },
+    },
+    '@keyframes buffer': {
+      '0%': {
+        opacity: 1,
+        backgroundPosition: '0px -23px',
+      },
+      '50%': {
+        opacity: 0,
+        backgroundPosition: '0px -23px',
+      },
+      '100%': {
+        opacity: 1,
+        backgroundPosition: '-200px -23px',
+      },
+    },
+  };
+};
 
 /**
  * ## ARIA
@@ -174,37 +177,6 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   } = props;
   const theme = useTheme();
 
-  const className = clsx(
-    classes.root,
-    {
-      [classes.colorPrimary]: color === 'primary',
-      [classes.colorSecondary]: color === 'secondary',
-      [classes.determinate]: variant === 'determinate',
-      [classes.indeterminate]: variant === 'indeterminate',
-      [classes.buffer]: variant === 'buffer',
-      [classes.query]: variant === 'query',
-    },
-    classNameProp,
-  );
-  const dashedClass = clsx(classes.dashed, {
-    [classes.dashedColorPrimary]: color === 'primary',
-    [classes.dashedColorSecondary]: color === 'secondary',
-  });
-  const bar1ClassName = clsx(classes.bar, {
-    [classes.barColorPrimary]: color === 'primary',
-    [classes.barColorSecondary]: color === 'secondary',
-    [classes.bar1Indeterminate]: variant === 'indeterminate' || variant === 'query',
-    [classes.bar1Determinate]: variant === 'determinate',
-    [classes.bar1Buffer]: variant === 'buffer',
-  });
-  const bar2ClassName = clsx(classes.bar, {
-    [classes.barColorPrimary]: color === 'primary' && variant !== 'buffer',
-    [classes.colorPrimary]: color === 'primary' && variant === 'buffer',
-    [classes.barColorSecondary]: color === 'secondary' && variant !== 'buffer',
-    [classes.colorSecondary]: color === 'secondary' && variant === 'buffer',
-    [classes.bar2Indeterminate]: variant === 'indeterminate' || variant === 'query',
-    [classes.bar2Buffer]: variant === 'buffer',
-  });
   const rootProps = {};
   const inlineStyles = { bar1: {}, bar2: {} };
 
@@ -241,11 +213,44 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   }
 
   return (
-    <div className={className} role="progressbar" {...rootProps} ref={ref} {...other}>
-      {variant === 'buffer' ? <div className={dashedClass} /> : null}
-      <div className={bar1ClassName} style={inlineStyles.bar1} />
+    <div
+      className={clsx(
+        classes.root,
+        classes[`color${capitalize(color)}`],
+        {
+          [classes.determinate]: variant === 'determinate',
+          [classes.indeterminate]: variant === 'indeterminate',
+          [classes.buffer]: variant === 'buffer',
+          [classes.query]: variant === 'query',
+        },
+        classNameProp,
+      )}
+      role="progressbar"
+      {...rootProps}
+      ref={ref}
+      {...other}
+    >
+      {variant === 'buffer' ? (
+        <div className={clsx(classes.dashed, classes[`dashedColor${capitalize(color)}`])} />
+      ) : null}
+      <div
+        className={clsx(classes.bar, classes[`barColor${capitalize(color)}`], {
+          [classes.bar1Indeterminate]: variant === 'indeterminate' || variant === 'query',
+          [classes.bar1Determinate]: variant === 'determinate',
+          [classes.bar1Buffer]: variant === 'buffer',
+        })}
+        style={inlineStyles.bar1}
+      />
       {variant === 'determinate' ? null : (
-        <div className={bar2ClassName} style={inlineStyles.bar2} />
+        <div
+          className={clsx(classes.bar, {
+            [classes[`barColor${capitalize(color)}`]]: variant !== 'buffer',
+            [classes[`color${capitalize(color)}`]]: variant === 'buffer',
+            [classes.bar2Indeterminate]: variant === 'indeterminate' || variant === 'query',
+            [classes.bar2Buffer]: variant === 'buffer',
+          })}
+          style={inlineStyles.bar2}
+        />
       )}
     </div>
   );
