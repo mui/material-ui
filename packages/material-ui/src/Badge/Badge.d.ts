@@ -1,8 +1,21 @@
 import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
 
+export interface BadgeOrigin {
+  vertical: 'top' | 'bottom';
+  horizontal: 'left' | 'right';
+}
+
 export interface BadgeProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, BadgeClassKey> {
+  /**
+   * The anchor of the badge.
+   */
+  anchorOrigin?: BadgeOrigin;
+  /**
+   * Wrapped shape the badge should overlap.
+   */
+  overlap?: 'rectangle' | 'circle';
   /**
    * The content rendered within the badge.
    */
@@ -44,7 +57,14 @@ export type BadgeClassKey =
   | 'colorPrimary'
   | 'colorSecondary'
   | 'colorError'
-  | 'invisible'
-  | 'dot';
+  | 'dot'
+  | 'anchorOriginTopRightRectangle'
+  | 'anchorOriginBottomRightRectangle'
+  | 'anchorOriginTopLeftRectangle'
+  | 'anchorOriginBottomLeftRectangle'
+  | 'anchorOriginTopRightCircle'
+  | 'anchorOriginBottomRightCircle'
+  | 'anchorOriginTopLeftCircle'
+  | 'invisible';
 
 export default function Badge(props: BadgeProps): JSX.Element | null;

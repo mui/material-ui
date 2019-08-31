@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
   },
   divider: {
+    margin: theme.spacing(2, 0),
     width: '100%',
   },
   row: {
