@@ -140,13 +140,13 @@ module.exports = withTypescript({
     }
 
     // We want to speed-up the build of pull requests.
-    // if (process.env.PULL_REQUEST === 'true') {
-    //   traverse(pages, 'en');
-    // } else {
-    LANGUAGES_SSR.forEach(userLanguage => {
-      traverse(pages, userLanguage);
-    });
-    // }
+    if (process.env.PULL_REQUEST === 'true') {
+      traverse(pages, 'en');
+    } else {
+      LANGUAGES_SSR.forEach(userLanguage => {
+        traverse(pages, userLanguage);
+      });
+    }
 
     return map;
   },
