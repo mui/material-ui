@@ -14,7 +14,7 @@ const importMaps: { [K: string]: MappedImportsType | undefined } = {};
  */
 function transformImport(path: babel.NodePath<t.ImportDeclaration>, packageName: string) {
   if (importMaps[packageName] === undefined) {
-    importMaps[packageName] = resolveImports(require.resolve(packageName), packageName);
+    importMaps[packageName] = resolveImports(packageName);
   }
 
   const { node } = path;

@@ -12,22 +12,19 @@ export enum ImportType {
 
 export type MappedImportsType = { [K in string]: Array<{ name: string; type: ImportType }> };
 
-export default (indexPath: string, packageName: string): MappedImportsType => {
-  let esPath = path.join(path.dirname(indexPath), 'es/index.js');
-  if (!fs.existsSync(esPath)) {
-    // If the file doesn't exist we're running the tests. The index.js file is
-    // not transpiled so the exports can be collected from there
-    esPath = indexPath;
-  }
-  const content = fs.readFileSync(esPath, 'utf8');
+export default (packageName: string): MappedImportsType => {
+  const pkgPath = require.resolve(`${packageName}/package.json`);
+  const pkg = require(pkgPath);
+  const modulePath = path.join(path.dirname(pkgPath), pkg.module ? pkg.module : pkg.main);
 
+  const content = fs.readFileSync(modulePath, 'utf8');
   const ast = babel.parseSync(content, {
     babelrc: false,
     configFile: false,
   });
 
   if (!ast || !t.isFile(ast)) {
-    throw new Error(`Unable to parse ${esPath}`);
+    throw new Error(`Unable to parse ${modulePath}`);
   }
 
   const importLookup: MappedImportsType = {};
