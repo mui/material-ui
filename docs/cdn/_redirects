@@ -1,3 +1,8 @@
+/fr/* /:splat 200
+/de/* /:splat 200
+/ja/* /:splat 200
+/aa/* /:splat 200
+
 # v1
 https://v1-5-0.material-ui.com/* https://v1.material-ui.com/:splat 301!
 

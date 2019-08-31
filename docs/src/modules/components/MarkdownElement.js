@@ -312,9 +312,7 @@ const styles = theme => ({
 function MarkdownElement(props) {
   const { classes, className, text, ...other } = props;
 
-  const { userLanguage } = useSelector(state => ({
-    userLanguage: state.options.userLanguage,
-  }));
+  const userLanguage = useSelector(state => state.options.userLanguage);
 
   // eslint-disable-next-line no-underscore-dangle
   global.__MARKED_USER_LANGUAGE__ = userLanguage;

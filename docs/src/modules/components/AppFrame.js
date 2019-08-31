@@ -121,10 +121,8 @@ const styles = theme => ({
 function AppFrame(props) {
   const { children, classes } = props;
   const theme = useTheme();
-  const { t, userLanguage } = useSelector(state => ({
-    t: state.options.t,
-    userLanguage: state.options.userLanguage,
-  }));
+  const t = useSelector(state => state.options.t);
+  const userLanguage = useSelector(state => state.options.userLanguage);
 
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;
 

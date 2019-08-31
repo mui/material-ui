@@ -6,6 +6,7 @@ const next = require('next');
 const { addTeardown } = require('../../modules/handleKillSignals');
 const { pathnameToLanguage } = require('./modules/utils/helpers');
 const log = require('../../modules/log');
+const { LANGUAGES_SSR } = require('./modules/constants');
 
 const nextApp = next({
   dev: process.env.NODE_ENV !== 'production',
@@ -44,7 +45,7 @@ async function run() {
       }
 
       nextApp.render(req, res, pathname, {
-        userLanguage,
+        userLanguage: LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? userLanguage : 'en',
         ...parsedUrl.query,
       });
       return;

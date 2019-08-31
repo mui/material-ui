@@ -106,9 +106,7 @@ export default function HomePage() {
 
     loadDependencies();
   }, []);
-  const { t } = useSelector(state => ({
-    t: state.options.t,
-  }));
+  const t = useSelector(state => state.options.t);
   const classes = useStyles();
 
   return (

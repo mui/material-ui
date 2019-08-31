@@ -9,7 +9,7 @@
     "build-sw": "node ./scripts/buildServiceWorker.js",
     "dev": "rimraf ./node_modules/.cache/babel-loader && cross-env NODE_ENV=development node src/server.js",
     "deploy": "git push material-ui-docs master:latest",
-    "export": "rimraf docs/export && next export -o export && yarn build-sw && cpy cdn/. export",
+    "export": "rimraf docs/export && next export --threads=3 --concurrency=5 -o export && yarn build-sw && cpy cdn/. export",
     "icons": "rimraf static/icons/* && node ./scripts/buildIcons.js",
     "start": "next start",
     "typescript": "tslint -p tsconfig.json \"src/pages/**/*.{ts,tsx}\"",

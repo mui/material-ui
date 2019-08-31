@@ -45,7 +45,7 @@ const styles = theme => ({
 
 function HomeQuickWord(props) {
   const { classes } = props;
-  const { t } = useSelector(state => ({ t: state.options.t }));
+  const t = useSelector(state => state.options.t);
   const backer = backers[Math.round((backers.length - 1) * Math.random())];
 
   return (
