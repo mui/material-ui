@@ -31,7 +31,7 @@ export const styles = theme => ({
     fontSize: theme.typography.pxToRem(12),
     minWidth: RADIUS_STANDARD * 2,
     lineHeight: 1,
-    padding: '0 4px',
+    padding: '0 6px',
     height: RADIUS_STANDARD * 2,
     borderRadius: RADIUS_STANDARD,
     backgroundColor: theme.palette.color,
