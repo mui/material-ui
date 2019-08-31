@@ -1,5 +1,64 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.4.0
+###### *Aug 31, 2019*
+
+Big thanks to the 28 contributors who made this release possible!
+
+Here are some highlights ✨:
+- ✨ Support fixed Table header (#17139) @egerardus
+- 🌳 Support any label in TreeView (#17080) @oliviertassinari
+- 🏝 Support standalone ToggleButton mode (#17187) @simshaun
+- And many more 🐛 bug fixes 📚 improvements.
+
+### `@material-ui/core@v4.3.4`
+
+- [Backdrop] Render children inside div (#17115) @dominictwlee
+- [Button] Fix typo in demo text (#17230) @jasonkylefrank
+- [Button] Remove code leftover from < v4 (#17232) @sakulstra
+- [ButtonGroup] Fix border color when disabled and contained (#17109) @ryanburr
+- [CardActionArea] Fix 'border-radius' (#17221) @stasiukanya
+- [CircularProgress] Document String format for size prop (#17081) @devsumanmdn
+- [Drawer] Include ref when variant=persistent (#17090) (#17091) @ZachStoltz
+- [Menu] Include 'list' in class key  (#17205) @rbrishabh
+- [MenuItem] Add missing dense classkey (#17103) @JapuDCret
+- [Popover] Fix anchorEl positioning within popup window (#17128) @zekehernandez
+- [Popover] Fix update position action (#17097) @netochaves
+- [RadioGroup] Make value accept any (#17132) @cmeeren
+- [Slider] Avoid mutating user's value prop (#17085) @elmeerr
+- [Switch] Fix rendering in IE 11 and Safari (#17095) @rbrishabh
+- [Table] Add sticky header support (#17139) @egerardus
+- [TextField] Specs alignment (#17192) @elmeerr
+- [TextField] Update outlined label when prop changes (#17217) @Shubhamchinda
+- [Tooltip] Fix interactive + enterDelay combination (#17174) @kiransiluveru
+- [Typography] noWrap requires display block (#17206) @rbrishabh
+
+### `@material-ui/lab@v4.0.0-alpha.25`
+
+- [ToggleButton] Improve customizability (#17187) @simshaun
+- [TreeView] Support node label (#17080) @oliviertassinari
+- [Rating] Add Custom prop-type to prop name (#17078) @netochaves
+- [Rating] Improve signature in docs (#17093) @cmeeren
+
+### Docs
+
+- [docs] Better document the ref props in the API (#17198) @oliviertassinari
+- [docs] Fix edit dependencies extraction  (#17120) @Shubhamchinda
+- [docs] Fix page rendering on Crowdin (#17135) @mbrookes
+- [docs] Fix popover demo event.target is null (#17104) @spaceexperiment
+- [docs] Fix typo in modal demo (#17122) @Shubhamchinda
+- [docs] Implement in-context translation (#17040) @mbrookes
+- [docs] Improve custom styles of the demos (#17118) @uxitten
+- [docs] Improve enhanced table variable name (#17141) @keiohtani
+- [docs] Improve style of the demos (#17218) @uxitten
+- [docs] Minor Update to remove "n°" notations (#17200) @skube
+- [docs] Missing degree/option symbol (#17189) @skube
+- [docs] New translations (#17134) @mbrookes
+- [docs] Remove unecessary createStyles in TypeScript Tabs demo  (#17164) @Imballinst
+- [docs] Require less strict tsconfig (#17214) @eps1lon
+- [examples] Fix warning in next.js example (#17133) @Janpot
+- [examples] Fix warnings Container in _app.js with Next.js (#17181) @saltyshiomix
+
 ## 4.3.3
 ###### *Aug 21, 2019*
 
