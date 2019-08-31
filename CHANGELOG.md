@@ -3,12 +3,12 @@
 ## 4.4.0
 ###### *Aug 31, 2019*
 
-Big thanks to the 28 contributors who made this release possible!
+Big thanks to the 29 contributors who made this release possible!
 
 Here are some highlights ✨:
-- ✨ Support fixed Table header (#17139) @egerardus
-- 🌳 Support any label in TreeView (#17080) @oliviertassinari
-- 🏝 Support standalone ToggleButton mode (#17187) @simshaun
+- ✨ Add fixed Table header Support (#17139) @egerardus
+- 🌳 Accept any label in TreeView (#17080) @oliviertassinari
+- 🏝 Add standalone ToggleButton mode (#17187) @simshaun
 - And many more 🐛 bug fixes 📚 improvements.
 
 ### `@material-ui/core@v4.3.4`
@@ -32,6 +32,8 @@ Here are some highlights ✨:
 - [TextField] Update outlined label when prop changes (#17217) @Shubhamchinda
 - [Tooltip] Fix interactive + enterDelay combination (#17174) @kiransiluveru
 - [Typography] noWrap requires display block (#17206) @rbrishabh
+- [Badge] Add alignment options to badges (#17204) @ahtcx
+- [LinearProgress] Make color adapt to theme type (#17219) @ahtcx
 
 ### `@material-ui/lab@v4.0.0-alpha.25`
 
