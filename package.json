@@ -60,7 +60,7 @@
     "@types/fs-extra": "^8.0.0",
     "@types/glob": "^7.1.1",
     "@types/jsdom": "^12.2.4",
-    "@types/lodash": "^4.14.137",
+    "@types/lodash": "^4.14.138",
     "@types/mocha": "^5.2.7",
     "@types/prettier": "^1.18.0",
     "@types/react": "^16.9.2",
