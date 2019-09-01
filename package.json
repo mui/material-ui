@@ -132,7 +132,7 @@
     "tslint": "5.14.0",
     "typescript": "3.2.4",
     "vrtest": "^0.2.0",
-    "webpack": "^4.28.4",
+    "webpack": "^4.39.3",
     "webpack-bundle-analyzer": "^3.0.0",
     "webpack-cli": "^3.3.7",
     "yarn-deduplicate": "^1.1.1"
