@@ -454,18 +454,38 @@ describe('<Slider />', () => {
       PropTypes.resetWarningCache();
     });
 
-    it('should warn if aria-valuetext is a string', () => {
+    it('should warn if aria-valuetext is provided', () => {
       render(<Slider value={[20, 50]} aria-valuetext="hot" />);
       expect(consoleErrorMock.args()[0][0]).to.include(
         'you need to use the `getAriaValueText` prop instead of',
       );
     });
 
-    it('should warn if aria-label is a string', () => {
+    it('should warn if aria-label is provided', () => {
       render(<Slider value={[20, 50]} aria-label="hot" />);
       expect(consoleErrorMock.args()[0][0]).to.include(
         'you need to use the `getAriaLabel` prop instead of',
       );
     });
+  });
+
+  it('should support getAriaValueText', () => {
+    const getAriaValueText = value => `${value}°C`;
+    const { getAllByRole } = render(
+      <Slider value={[20, 50]} getAriaValueText={getAriaValueText} />,
+    );
+    expect(getAllByRole('slider').map(x => x.getAttribute('aria-valuetext'))).to.deep.equal([
+      '20°C',
+      '50°C',
+    ]);
+  });
+
+  it('should support getAriaLabel', () => {
+    const getAriaLabel = index => `Label ${index}`;
+    const { getAllByRole } = render(<Slider value={[20, 50]} getAriaLabel={getAriaLabel} />);
+    expect(getAllByRole('slider').map(x => x.getAttribute('aria-label'))).to.deep.equal([
+      'Label 0',
+      'Label 1',
+    ]);
   });
 });
