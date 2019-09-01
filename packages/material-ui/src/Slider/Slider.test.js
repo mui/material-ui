@@ -120,9 +120,12 @@ describe('<Slider />', () => {
 
       fireEvent.touchStart(
         container.firstChild,
-        createTouches([{ identifier: 1, pageX: 0, pageY: 20 }]),
+        createTouches([{ identifier: 1, clientX: 0, clientY: 20 }]),
       );
-      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, pageX: 0, pageY: 22 }]));
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 0, clientY: 22 }]),
+      );
 
       expect(handleChange.callCount).to.equal(2);
       expect(handleChange.args[0][1]).to.equal(80);
@@ -194,11 +197,17 @@ describe('<Slider />', () => {
 
       fireEvent.touchStart(
         container.firstChild,
-        createTouches([{ identifier: 1, pageX: 21, pageY: 0 }]),
+        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
       );
 
-      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, pageX: 22, pageY: 0 }]));
-      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, pageX: 22, pageY: 0 }]));
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 22, clientY: 0 }]),
+      );
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 22, clientY: 0 }]),
+      );
 
       expect(handleChange.callCount).to.equal(3);
       expect(handleChange.args[0][1]).to.deep.equal([21, 30]);
@@ -226,7 +235,7 @@ describe('<Slider />', () => {
 
       fireEvent.touchStart(
         container.firstChild,
-        createTouches([{ identifier: 1, pageX: 21, pageY: 0 }]),
+        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
       );
       expect(thumb).to.have.attribute('aria-valuenow', '20');
 
@@ -434,10 +443,10 @@ describe('<Slider />', () => {
 
     fireEvent.touchStart(
       container.firstChild,
-      createTouches([{ identifier: 1, pageX: 20, pageY: 0 }]),
+      createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
     );
 
-    fireEvent.touchMove(document.body, createTouches([{ identifier: 1, pageX: 22, pageY: 0 }]));
+    fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 22, clientY: 0 }]));
 
     expect(handleChange.callCount).to.equal(2);
     expect(handleChange.args[0][1]).to.equal(80);
