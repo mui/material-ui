@@ -6,7 +6,7 @@
 
 ### Woah - a API é diferente! Isso significa que 1.0 é completamente diferente, vou ter que aprender o básico de novo, e a migração será praticamente impossível?
 
-Estou feliz que você tenha perguntado! A resposta é não. Os principais conceitos não mudaram. Você notará que a API oferece mais flexibilidade, mas isso tem um custo. Temos feito componentes de baixo nível, abstraindo menos complexidade.
+Estou feliz que você tenha perguntado! A resposta é não. Os principais conceitos não mudaram. You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
 
 ### O que motivou uma mudança tão grande?
 
@@ -187,4 +187,4 @@ Caminho de atualização do RaisedButton:
 
 ### Continua…
 
-Você migrou sua aplicação com sucesso e deseja ajudar a comunidade? Por favor nos ajude! Temos um problema em aberto para concluir este guia de migração [#7195](https://github.com/mui-org/material-ui/issues/7195). Any pull request is welcomed 😊.
+Você migrou sua aplicação com sucesso e deseja ajudar a comunidade? There is an open issue in order to finish this migration guide [#7195](https://github.com/mui-org/material-ui/issues/7195). Any pull request is welcomed 😊.

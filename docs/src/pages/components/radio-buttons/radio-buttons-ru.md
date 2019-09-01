@@ -27,6 +27,12 @@ Use [radio buttons](https://material.io/design/components/selection-controls.htm
 
 {{"demo": "pages/components/radio-buttons/FormControlLabelPosition.js"}}
 
+## Customized radios
+
+Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+
+{{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
+
 ## Доступность
 
 Все элементы формы должны иметь метки, в том числе радиокнопки, переключатели и чекбоксы. В большинстве случаев это делается с помощью элемента `<label>` ([FormControlLabel](/api/form-control-label/)).

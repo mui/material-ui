@@ -29,6 +29,12 @@ Sie können die Platzierung des Etiketts ändern:
 
 {{"demo": "pages/components/checkboxes/FormControlLabelPosition.js"}}
 
+## Customized checkbox
+
+Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+
+{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
+
 ## Barrierefreiheit
 
 Alle Formularsteuerelemente sollten Beschriftungen haben. Dazu gehören Optionsfelder, Kontrollkästchen und Schalter. In den meisten Fällen wird dazu das Element `<label>` ([FormControlLabel](/api/form-control-label/)) verwendet.

@@ -107,7 +107,7 @@ Um die Box-Komponente noch nützlicher zu machen, haben wir eine Sammlung von St
 - [spacing](/system/spacing/#api)
 - [typography](/system/typography/#api)
 
-Wenn Sie bereits `@material-ui/core` verwenden, können Sie unsere [vorgefertigte Box](/components/box/) Komponente verwenden (intern mit JSS):
+If you are already using `@material-ui/core`, you can use the [Box component](/components/box/) (using JSS internally):
 
 ```jsx
 import Box from '@material-ui/core/Box';
@@ -190,7 +190,7 @@ const theme = {
 
 ### Kollokation
 
-Wenn Sie die Rasterpunktewerte gruppieren möchten, können Sie unsere ` breakpoints()` Helfer verwenden.
+If you want to group the breakpoint values, you can use the `breakpoints()` helper.
 
 ```jsx
 import { compose, spacing, palette, breakpoints } from '@material-ui/system';
@@ -232,7 +232,7 @@ const Box = styled.div`
 
 Verwenden Sie diesen Helfer, um Ihre eigene Style-Funktion zu erstellen.
 
-Wir unterstützen nicht alle CSS-Eigenschaften. Möglicherweise möchten Sie neue unterstützen. Es ist auch möglich, dass Sie das Designpfad-Präfix ändern möchten.
+Not all CSS properties are supported. Möglicherweise möchten Sie neue unterstützen. Es ist auch möglich, dass Sie das Designpfad-Präfix ändern möchten.
 
 #### Argumente
 
@@ -248,7 +248,7 @@ Wir unterstützen nicht alle CSS-Eigenschaften. Möglicherweise möchten Sie neu
 
 #### Beispiele
 
-We can create a component that supports some CSS grid properties like `grid-gap`. By supplying `spacing` as the `themeKey` we can reuse logic enabling the behavior we see in other spacing properties like `padding`.
+You can create a component that supports some CSS grid properties like `grid-gap`. By supplying `spacing` as the `themeKey` you can reuse logic enabling the behavior we see in other spacing properties like `padding`.
 
 ```jsx
 import styled from 'styled-components';
@@ -264,7 +264,7 @@ const Grid = styled(Box)`${gridGap}`;
 const example = <Grid display="grid" gridGap={[2, 3]}>...</Grid>;
 ```
 
-We can also customize the prop name by adding both a `prop` and `cssProperty` and transform the value by adding a `transform` function.
+You can also customize the prop name by adding both a `prop` and `cssProperty` and transform the value by adding a `transform` function.
 
 ```jsx
 import styled from 'styled-components';
@@ -316,7 +316,7 @@ Der `style()` Helfer kann auch verwendet werden, um Eigenschaften Stilobjekten i
 
 ## CSS-Eigenschaft
 
-Wenn Sie benutzerdefinierte CSS-Werte unterstützen möchten, können Sie unseren `css()` Helfer verwenden. Dieser verarbeitet die `css ` Eigenshaften.
+If you want to support custom CSS values, you can use the `css()` helper. Dieser verarbeitet die `css ` Eigenshaften.
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
@@ -336,7 +336,7 @@ In Praxis kann eine Box-Komponente viel Zeit sparen. In diesem Beispiel wird gez
 
 - [Tachyons](https://tachyons.io/) war eine der ersten (2014) CSS-Bibliotheken, die das [Atomic CSS-Muster](https://css-tricks.com/lets-define-exactly-atomic-css/) förderten (oder funktionales CSS).
 - Tachyons wurde später (2017) gefolgt von [Tailwind CSS](https://tailwindcss.com/). Sie haben Atomic CSS populärer gemacht.
-- [Twitter-Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) hat langsam atomare Klassennamen in v2, v3 und v4 eingeführt. Wir haben die Art, wie sie ihre "Helper-Klassen" gruppieren, als Inspiration genutzt.
+- [Twitter-Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) hat langsam atomare Klassennamen in v2, v3 und v4 eingeführt. The way they group their "Helper classes" was used as inspiration.
 - In der Welt von React, war das [Styled System](https://github.com/jxnblk/styled-system) eins der ersten (2017), die Stilfunktionen unterstützte. Sie kann als generische Box-Komponente verwendet werden und ersetzt die atomaren CSS-Helfer sowie Helfer beim Schreiben neuer Komponenten.
 - Große Unternehmen wie Pinterest, GitHub und Segment.io verwenden denselben Ansatz in verschiedenen Geschmacksrichtungen: 
   - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)

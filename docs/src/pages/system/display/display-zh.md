@@ -1,6 +1,6 @@
 # 显示
 
-<p class="description">使用我们的显示实用程序快速响应地切换组件的显示值等。 包括对一些更常见值的支持，以及一些用于在打印时控制显示的附加功能。</p>
+<p class="description">Quickly and responsively toggle the display value of components and more with the display utilities. 包括对一些更常见值的支持，以及一些用于在打印时控制显示的附加功能。</p>
 
 ## 例子
 

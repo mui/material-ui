@@ -21,7 +21,7 @@ components: Select, NativeSelect
 
 ## カスタマイズされた選択
 
-コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 最初のステップは、 `InputBase` コンポーネントのスタイル設定です。 スタイルを設定したら、テキストフィールドとして直接使用するか、select `input` プロパティに提供して、 `select` フィールドを作成できます。
 
@@ -33,7 +33,7 @@ components: Select, NativeSelect
 
 単一選択の場合と同様に、 `onChange` コールバックで `event.target.value` にアクセスすることにより、新しい値を引き出すことができます。 常に配列です。
 
-{{{{"demo": "pages/components/selects/MultipleSelect.js"}}
+{{"demo": "pages/components/selects/MultipleSelect.js"}}
 
 ## 制御開選択
 
@@ -47,4 +47,4 @@ Material Designの仕様では推奨されていませんが、ダイアログ�
 
 ## Text Fields
 
-The `TextField` wrapper component is a complete form control including a label, input and help text. このセクション</a>で、選択モード 例を見つけることができます。</p>
+`TextField` ラッパーコンポーネントは、ラベル、入力、ヘルプテキストを含む完全なフォームコントロールです。 このセクション</a>で、選択モード 例を見つけることができます。</p>

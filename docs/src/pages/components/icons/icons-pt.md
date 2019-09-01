@@ -29,7 +29,7 @@ O ícone resultante pode ser usado como está, ou incluído como filho para outr
 
 #### Uso
 
-Você pode usar nossa [procura interna](/components/material-icons/) ou [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) para encontrar um ícone específico. Ao importar um ícone, tenha em mente que os nomes dos ícones são `PascalCase`, por exemplo:
+You can use the [internal search](/components/material-icons/) or [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) to find a specific icon. Ao importar um ícone, tenha em mente que os nomes dos ícones são `PascalCase`, por exemplo:
 
 - [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) é exposto como `@material-ui/icons/Delete`
 - [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) é exposto como `@material-ui/icons/DeleteForever`
@@ -53,21 +53,22 @@ Há três exceções para esta regra:
 
 Você pode importar os ícones com uma destas duas opções:
 
-- Opção n ° 1:
+- Opção 1:
 
 ```jsx
   import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
   import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
   ```
-- Opção n2:
+
+- Option 2:
 
   ```jsx
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-A opção mais segura é n° 1, mas a opção n° 2 pode proporcionar a melhor experiência.
-Make sure you follow our [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the approach n°2.
-We encourage the configuration of a Babel plugin.
+The safest is option 1 but option 2 can yield the best experience.
+Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
+The configuration of a Babel plugin is encouraged.
 
 ### More SVG icons
 
@@ -122,11 +123,11 @@ Icons can convey all sorts of meaningful information, so it’s important that t
 
 ### Decorative SVG Icons
 
-If your icons are purely decorative, you’re already done! We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
+If your icons are purely decorative, you’re already done! The `aria-hidden=true` attribute is added so that your icons are properly accessible (invisible).
 
 ### Semantic SVG Icons
 
-If your icon has semantic meaning, all you need to do is throw in a `titleAccess="meaning"` property. We add the `role="img"` attribute and the `<title>` element so that your icons are properly accessible.
+If your icon has semantic meaning, all you need to do is throw in a `titleAccess="meaning"` property. The `role="img"` attribute and the `<title>` element are added so that your icons are properly accessible.
 
 In the case of focusable interactive elements, like when used with an icon button, you can use the `aria-label` property:
 
@@ -145,7 +146,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 ### Decorative Font Icons
 
-If your icons are purely decorative, you’re already done! We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
+If your icons are purely decorative, you’re already done! The `aria-hidden=true` attribute is added so that your icons are properly accessible (invisible).
 
 ### Semantic Font Icons
 
@@ -158,9 +159,9 @@ import Typography from '@material-ui/core/Typography';
 // ...
 
 <Icon>add_circle</Icon>
-<Typography variant="srOnly">Create a user</Typography>
+<Typography variant="srOnly">Criar usuário</Typography>
 ```
 
-### Reference
+### Referência
 
 - https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/

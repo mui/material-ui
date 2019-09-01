@@ -59,7 +59,7 @@ Você pode usar [json2mq](https://github.com/akiran/json2mq) para gerar uma stri
 
 ## Renderização no servidor (Server-Side Rendering)
 
-Uma implementação de [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) é necessária no servidor. Recomendamos usar [css-mediaquery](https://github.com/ericf/css-mediaquery) para emulá-lo.
+Uma implementação de [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) é necessária no servidor. Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it is recommended.
 
 {{"demo": "pages/components/use-media-query/ServerSide.js"}}
 
@@ -75,7 +75,7 @@ Tente confiar em consultas de mídia CSS do lado do cliente primeiro. Por exempl
 
 Semelhante ao caso do lado do servidor, você precisa de uma implementação de [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) em seu ambiente de teste.
 
-Por exemplo, [jsdom não suporta ainda](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html). Você deve usar um polyfill para isso. Recomendamos usar [css-mediaquery](https://github.com/ericf/css-mediaquery) para emulá-lo.
+Por exemplo, [jsdom não suporta ainda](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html). Você deve usar um polyfill para isso. Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it is recommended.
 
 ```js
 import mediaQuery from 'css-mediaquery';

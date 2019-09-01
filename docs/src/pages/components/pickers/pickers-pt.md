@@ -3,7 +3,7 @@ title: Componentes React para Seletor de Data e Seletor de Hora
 components: TextField
 ---
 
-# Seletores de Data/Hora
+# Seletores Data / Hora
 
 <p class="description">Seletores de datas e seletores de hora fornecem uma maneira simples de selecionar um único valor de um conjunto pré-determinado.</p>
 

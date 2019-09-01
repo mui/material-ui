@@ -24,7 +24,7 @@ components: Grow, Popover
 
 ## 鼠标悬停在互动上
 
-我们演示了如何使用 `Popover` 组件来实现基于鼠标悬停事件的弹出行为。
+This demonstrates how to use the `Popover` component to implement a popover behavior based on the mouse over event.
 
 {{"demo": "pages/components/popover/MouseOverPopover.js"}}
 

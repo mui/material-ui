@@ -38,4 +38,4 @@ When you use `target="_blank"` with Links, it is [recommended](https://developer
 
 {{"demo": "pages/components/links/LinkRouter.js", "defaultCodeOpen": true}}
 
-*备注：为防止意外的卸载，创建Link组件是非常有必要的。 您可以在我们的 [组件属性指南](/guides/composition/#component-property)阅读更多相关信息。*
+*备注：为防止意外的卸载，创建Link组件是非常有必要的。 You can read more about it in the [component prop guide](/guides/composition/#component-property).*

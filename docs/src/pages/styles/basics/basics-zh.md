@@ -6,17 +6,14 @@ Material-UI 旨在为构建动态 UI 提供坚实的基础。 为了项目结构
 
 ## Why use Material-UI's styling solution?
 
-在以前的版本中，Material-UI 曾使用过 LESS，以及而后的自定义内嵌式来编写组件的样式。但是这些方法已被证明了其局限性。 最近， [我们开始向*CSS-in-JS*解决方案方向转移 ](https://github.com/oliviertassinari/a-journey-toward-better-style)。 它**解锁了许多很棒的功能**(主题嵌套、动态样式、自我支持等...) 我们认为这是未来：
-
-- [统一的样式语言](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
-- [将 SCSS（Sass）转换为 CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
+在以前的版本中，Material-UI 曾使用过 LESS，以及而后的自定义内嵌式来编写组件的样式。但是这些方法已被证明了其局限性。 [A *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style) overcomes many of those limitations, and **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 
 Material-UI的样式解决方案受到许多其他CSS-in-JS库的启发，例如 [styled-components](https://www.styled-components.com/) 和 [emotion](https://emotion.sh/)。
 
-- 💅具备styled-components的 [ 优势](https://www.styled-components.com/docs/basics#motivation)。
-- 🚀[超 ](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles)快 。
-- 🧩可通过[插件](https://github.com/cssinjs/jss/blob/master/docs/plugins.md)API 扩展。
-- ⚡️它使用[ JSS ](https://github.com/cssinjs/jss)作为其核心 -- 一个 [高性能](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript到CSS编译器，它在运行时和服务器端工作。
+- 💅 You can expect [the same advantages](https://www.styled-components.com/docs/basics#motivation) as styled-components.
+- 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles).
+- 🧩 It's extensible via a [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
+- ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core – a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
 - 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles); and no bundle size increase if used alongside Material-UI.
 
 ## 安装
@@ -33,7 +30,7 @@ yarn add @material-ui/styles
 
 ## 入门
 
-我们提供3种不同的API来生成和应用样式，但它们都共享相同的底层逻辑。
+There are 3 possible APIs you can use to generate and apply styles, however they all share the same underlying logic.
 
 ### Hook API
 

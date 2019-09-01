@@ -38,4 +38,4 @@ Ein häufiger Anwendungsfall besteht darin, die Navigation nur clientseitig durc
 
 {{"demo": "pages/components/links/LinkRouter.js", "defaultCodeOpen": true}}
 
-*Merke: Das Erstellen einer Link Komponente ist notwendig um unerwünschtes Unmounting zu verhindern. Weitere Informationen dazu finden Sie in unserem [Komponenten-Guide](/guides/composition/#component-property).*
+*Merke: Das Erstellen einer Link Komponente ist notwendig um unerwünschtes Unmounting zu verhindern. You can read more about it in the [component prop guide](/guides/composition/#component-property).*

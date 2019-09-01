@@ -5,9 +5,9 @@ components: Hidden
 
 # Hidden
 
-<p class="description">您可以使用我们的隐藏组件来实现快速并响应式地控制元素的显隐。</p>
+<p class="description">Quickly and responsively toggle the visibility value of components and more with the hidden utilities.</p>
 
-除非**明确指定是隐藏的**，所有元素都是可见的。 为了简化与[响应式断点](/customization/breakpoints/)的集成， 此组件可用于隐藏任何内容，或者您可以将它与我们的[`栅格`](/components/grid/)组件结合使用。
+除非**明确指定是隐藏的**，所有元素都是可见的。 To ease integration with Material-UI's [responsive breakpoints](/customization/breakpoints/), this component can be used to hide any content, or you can use it in conjunction with the [`Grid`](/components/grid/) component.
 
 ## 它是如何工作的
 

@@ -11,13 +11,13 @@ components: Divider
 
 ## List Dividers
 
-[Dividers](https://material.io/design/components/dividers.html)はデフォルトで `<hr>` としてレンダリングされます。 このDOM要素のレンダリングを節約するには、 `ListItem` コンポーネントの `divider` プロパティを使用します。
+The divider renders as an `<hr>` by default. このDOM要素のレンダリングを節約するには、 `ListItem` コンポーネントの `divider` プロパティを使用します。
 
 {{"demo": "pages/components/dividers/ListDividers.js"}}
 
 ## HTML5仕様
 
-`Divider`がHTML5仕様に合うように`li`としてレンダリングされていることを確認する必要があります。 次の例は、これを実現する2つの方法を示しています。
+In a list, you should ensure the `Divider` is rendered as an `<li>` to match the HTML5 specification. 次の例は、これを実現する2つの方法を示しています。
 
 ## Inset Dividers
 

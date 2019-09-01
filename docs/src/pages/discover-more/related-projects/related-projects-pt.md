@@ -1,22 +1,49 @@
 # Projetos Relacionados
 
-<p class="description">Temos cuidadosamente organizado uma lista de bibliotecas que vale a pena dar uma olhada.</p>
+<p class="description">A carefully curated list of libraries that are worth having a look at.</p>
 
-Como o escopo dos problemas que o Material-UI resolve é limitado, tentamos interagir bem com outras bibliotecas. Sinta-se à vontade para enviar um Pull Request e adicionar mais projetos; vamos aceitá-los se corresponderem aos nossos critérios.
+Como o escopo dos problemas que o Material-UI resolve é limitado, tentamos interagir bem com outras bibliotecas. Feel free to submit a pull request to add another project; it will be accepted if it is suitable.
 
 ## Recursos de Design
 
 - [Figma UI Kit](https://material.5ly.co/) for Material-UI.
 
-## Bibliotecas
+## Images and illustrations
 
-Esta é uma coleção de projetos que não podemos contextualizar melhor nas páginas de documentação.
+- [Unsplash](https://unsplash.com): 📷 A great resource for finding beautiful, high-resolution, free photos that you can use in your projects.
+- [unDraw](https://undraw.co/): 📐 Like Unsplash but for amazing vector illustrations.
 
-- [Advanced Filter Builder](https://github.com/logipro/logi-filter-builder) O componente ajudará seus usuários a criar poderosos critérios de filtro.
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/) Ferramenta online para criação de temas de Material-UI por meio da ferramenta Material Design Color.
-- [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/) Um gráfico para Material-UI que visualiza dados usando uma variedade de tipos de série, incluindo barra, linha, área, dispersão, pizza e muito mais ([licença customizada](https://js.devexpress.com/licensing/)).
-- [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest) Um componente de pesquisa difusa para React e Material-UI.
-- [material-ui-tema-editor](https://in-your-saas.github.io/material-ui-theme-editor/) Uma ferramenta para gerar temas para seus aplicativos de Material-UI, basta selecionar as cores e ter uma visualização ao vivo.
-- [mui-downshift](https://github.com/techniq/mui-downshift) Camada fina sobre o downshift do paypal para usar componentes visuais do Material-UI.
-- [react-basket](https://github.com/mbrn/react-basket) Uma biblioteca de componentes de carrinho de compras baseada em componentes Material-UI.
-- [Wertarbyte](https://mui.wertarbyte.com/) Esta é uma coleção de componentes complementares que a Wertarbyte construiu. Carrossel, imagem, senha, classificação, ícones, etc.
+## Componentes
+
+This is a collection of third-party projects that extend Material-UI.
+
+### Tabelas
+
+- [material-table](https://github.com/mbrn/material-table): A simple and powerful Datatable for React based on Material-UI Table with some additional features. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
+- [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.
+
+### Autocompletar
+
+- [material-ui-chip-input](https://mui.wertarbyte.com/#material-ui-chip-input): The chip input is used to allow selecting multiple text values.
+- [mui-downshift](https://github.com/techniq/mui-downshift): Thin layer over paypal's downshift to use Material-UI visual components.
+- [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest): A fuzzy-search component for React and Material-UI.
+- [react-select-material-ui](https://github.com/iulian-radu-at/react-select-material-ui): Extend react-select with Material-UI.
+
+### Notifications
+
+- [notistack](https://github.com/iamhosseindhv/notistack): Makes it easy to display snackbars (so you don't have to deal with open/close state of them).
+
+### Carousel
+
+- [material-auto-rotating-carousel](https://mui.wertarbyte.com/#material-auto-rotating-carousel): Introduce new users to your app.
+
+### Image
+
+- [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Images are ugly until they're loaded. Materialize it with material image! It will fade in like the material image loading pattern suggests.
+
+## Theming
+
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): An online tool for creating Material-UI themes via Material Design Color Tool.
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
+- [Material palette generator](https://material.io/inline-tools/color/): O gerador de paleta do Material pode ser usado para gerar uma paleta para qualquer cor que você inserir.

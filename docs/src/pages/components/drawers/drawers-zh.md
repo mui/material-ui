@@ -27,10 +27,10 @@ The Drawer can be cancelled by clicking the overlay or pressing the Esc key. It 
 
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
-We are using the following set of properties on this documentation website for optimal usability of the component:
+The following properties are used in this documentation website for optimal usability of the component:
 
-- iOS is hosted on high-end devices. 我们可以在不丢帧的情况下启用背景转换。 这样展示令人足够满意了。
-- iOS has a "swipe to go back" feature that mess with the discovery feature. 我们必须禁用它。
+- iOS is hosted on high-end devices. The backdrop transition can be enabled without dropping frames. 这样展示令人足够满意了。
+- iOS has a "swipe to go back" feature that interferes with the discovery feature, so discovery has to be disabled.
 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);

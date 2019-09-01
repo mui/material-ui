@@ -1,6 +1,6 @@
 # よくある質問と回答
 
-<p class="description">特定の問題で立ち往生していますか？ よくある質問でこれらのよくある問題のいくつかを最初に確認してください。</p>
+<p class="description">特定の問題で立ち往生していますか？ Check some of these common gotchas first in the FAQ.</p>
 
 もし探しているものがまだ見つからない場合、 [Spectrum](https://spectrum.chat/material-ui)にある我々のコミュニティに質問ができます 使い方の質問やその他重要ではない問題は、Github issuesではなく[StackOverflow](https://stackoverflow.com/questions/tagged/material-ui)を使ってください。 `material-ui`というStackOverflowタグがあります。 質問にはそのタグをつけてください。
 
@@ -22,7 +22,7 @@
 
 ## モーダルを開くと、fixed positionされたDOMが移動するのはなぜですか？
 
-モーダルが開かれるとすぐにスクロールをブロックします。 モーダルが唯一のインタラクティブなコンテンツであるべき場合、backgroundとの連動を防ぎます。しかし、スクロールバーを取り除くことで**fixed positionされたDOM**を動かすことができます。 この場合、Material-UIにこれらのDOMを処理するように伝えるために、グローバルな `.mui-fixed`クラス名を適用することができます。
+Scroll is blocked as soon as a modal is opened. モーダルが唯一のインタラクティブなコンテンツであるべき場合、backgroundとの連動を防ぎます。しかし、スクロールバーを取り除くことで**fixed positionされたDOM**を動かすことができます。 この場合、Material-UIにこれらのDOMを処理するように伝えるために、グローバルな `.mui-fixed`クラス名を適用することができます。
 
 ## 波紋アニメーションをグローバルに無効にする方法は？
 
@@ -108,7 +108,7 @@ const theme = createMuiTheme({
 
 ## react-routerの使い方は？
 
-私達は[サードパーティ製ルーティングライブラリ](/components/buttons/#third-party-routing-library)で`ButtonBase`コンポーネントの使い方をドキュメント化しました。 多くのインタラクティブなコンポーネントを内部的に使っています：`Button`, `MenuItem`, `<ListItem button />`, `Tab` それらの例を参考にしてください。
+How to use a [third-party routing library](/components/buttons/#third-party-routing-library) is documented with the `ButtonBase` component. A lot of the interactive components use it internally: `Link`, `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. それらの例を参考にしてください。
 
 ## どうやってDOM要素にアクセスできますか？
 
@@ -215,7 +215,7 @@ Lernaルートフォルダー内のpackage.jsonファイルの例
 
 ## サーバーでアプリが正しくレンダリングされない
 
-動作しない場合は、99%のケースで設定の問題になります。 欠落しているプロパティー、誤った呼び出し順序、または欠落しているコンポーネント。 調べてみることです。私たちは設定に関して非常に厳格であり、何が間違っているのかを知る最善の方法は、あなたのプロジェクトを既に動作しているセットアップと比較し、私たちの[reference implementations](/guides/server-rendering/#reference-implementations)を少しずつ調べてみることです。
+動作しない場合は、99%のケースで設定の問題になります。 欠落しているプロパティー、誤った呼び出し順序、または欠落しているコンポーネント。 Server side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
 ### CSSは最初のロードでのみ機能し、その後欠落します
 
@@ -223,7 +223,7 @@ CSSは、ページの最初のロード時にのみ生成されます。 この�
 
 #### 実行するアクション
 
-キャッシュ、つまりシートマネージャに依存して、コンポーネントタイプごとに1回だけCSSを注入します。 (2つのボタンを使用する場合は、ボタンのCSSが1回だけ必要です。)。 要求ごとに**新しい`シート`インスタンスを作成する必要があります**。
+The styling solution relies on a cache, the *sheets manager*, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). 要求ごとに**新しい`シート`インスタンスを作成する必要があります**。
 
 *修正の例：*
 
@@ -323,7 +323,7 @@ function App() {
 }
 ```
 
-ここで、`Portal`は、`container.current`が使用可能の場合にのみ、子をコンテナーにマウントします。 Here is a naive implementation of Portal:
+ここで、`Portal`は、`container.current`が使用可能の場合にのみ、子をコンテナーにマウントします。 ポータルの単純な実装は次のとおりです。
 
 ```jsx
 function Portal({ children, container }) {
@@ -340,9 +340,9 @@ function Portal({ children, container }) {
 }
 ```
 
-With this simple heuristic `Portal` might re-render after it mounts because refs are up-to-date before any effects run. However, just because a ref is up-to-date doesn't mean it points to a defined instance. If the ref is attached to a ref forwarding component it is not clear when the DOM node will be available. In the above example the `Portal` would run run an effect once but might not re-render because `ref.current` is still `null`. This is especially apparent for React.lazy components in Suspense. The above implementation could also not account for a change in the DOM node.
+この単純なヒューリスティックな` Portal ` refはエフェクトが実行される前に最新であるため、マウント後に再レンダリングされる可能性があります。 ただし、refが最新であるからといって、定義済みインスタンスを指しているわけではありません。 refがref転送コンポーネントに接続されている場合、DOMノードがいつ使用可能になるかは不明です。 上記の例では、`Portal`は効果を一度だけ実行しますが、`ref.current`はまだ`null`です。 これは特に 遅延（Suspense）のReact.lazy components の場合に顕著です。 上記の実装では、DOMノードの変更も考慮できませんでした。
 
-This is why we require a prop with the actual DOM node so that React can take care of determining when the `Portal` should re-render:
+このため、Reactが`Portal`をいつ再レンダリングするかを決定できるように、実際のDOMノードを持つプロップが必要です。
 
 ```jsx
 function App() {
@@ -358,4 +358,33 @@ function App() {
     </div>
   );
 }
+```
+
+## Clsxの依存関係は何ですか？
+
+[clsx](https://github.com/lukeed/clsx)は、条件付きで`className`文字列を構築するための小さなユーティリティです。
+
+Instead of writing:
+
+```jsx
+return (
+  <div
+    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ? 'Mui-selected' : ''}`}
+  />
+);
+```
+
+you can do:
+
+```jsx
+import clsx from 'clsx';
+
+return (
+  <div
+    className={clsx('MuiButton-root', {
+      'Mui-disabled': disabled,
+      'Mui-selected': selected,
+    })}
+  />
+);
 ```

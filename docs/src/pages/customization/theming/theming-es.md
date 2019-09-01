@@ -29,7 +29,7 @@ Puede consultar la sección de [Tema predeterminado](/customization/default-them
 
 ### Variables personalizadas
 
-Al usar el tema de Material-UI con nuestra [solución de estilo](/styles/basics/) o [ cualquier otro ](/guides/interoperability/#themeprovider). Puede ser conveniente agregar variables adicionales al tema para que pueda usarlas en cualquier lugar. Por ejemplo:
+When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). Puede ser conveniente agregar variables adicionales al tema para que pueda usarlas en cualquier lugar. Por ejemplo:
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
@@ -95,10 +95,10 @@ Generate responsive typography settings based on the options received.
 1. `theme` (*Object*): The theme object to enhance.
 2. `options` (*Object* [optional]):
 
-- `breakpoints` (*Array<string>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
+- `breakpoints` (*Array<String>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
 - `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line heights are preserved and align to Material Design's 4px line height grid. This requires a unitless line height in the theme's styles.
 - `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. The value must be greater than 1.
-- `variants` (*Array<string>* [optional]): Default to all. The typography variants to handle.
+- `variants` (*Array<String>* [optional]): Default to all. The typography variants to handle.
 
 #### Devuelve
 

@@ -103,9 +103,10 @@ export default function MyComponent(props) {
 
 ## `ServerStyleSheets`
 
-This is a class helper to handle server-side rendering. [You can follow our guide for a practical approach](/guides/server-rendering/).
+This is a class helper to handle server-side rendering. [You can follow this guide for a practical approach](/guides/server-rendering/).
 
 ```jsx
+
 import ReactDOMServer from 'react-dom/server';
 import { ServerStyleSheets } from '@material-ui/styles';
 
@@ -140,7 +141,8 @@ The method returns the collected styles.
 
 ⚠️ You must call `.collect()` before using this method.
 
-### `sheets.getStyleElement() => CSS React element`
+### `
+sheets.getStyleElement() => CSS React element`
 
 The method is an alternative to `.toString()` when you are rendering the whole page with React.
 
@@ -163,7 +165,7 @@ Link a style sheet with a function component using the **styled components** pat
 
 #### 戻り値
 
-`Component`: The new component created.
+`Component` ：作成された新しいコンポーネント。
 
 #### 例
 
@@ -336,7 +338,7 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
   </h4>
   
   <p>
-    <code>theme</code>: The theme object previously injected in the context.
+    <code>theme</code>：以前にコンテキストに挿入されたテーマオブジェクト。
   </p>
   
   <h4>
@@ -439,7 +441,7 @@ export default withStyles(styles)(MyComponent);
 </code></pre>
   
   <p>
-    Also, you can use as <a href="https://babeljs.io/docs/en/babel-plugin-proposal-decorators">decorators</a> like so:
+    また、<a href="https://babeljs.io/docs/en/babel-plugin-proposal-decorators">デコレータ</a>などとしてしても使用できます。
   </p>
   
   <pre><code class="jsx">import React from 'react';
@@ -475,7 +477,7 @@ export default MyComponent
   
   <ol start="1" spaces="0" level="0">
     <li level="0">
-      <code>Component</code>: The component that will be wrapped.
+      <code>Component</code>:：ラップされるコンポーネント。
     </li>
   </ol>
   
@@ -484,7 +486,7 @@ export default MyComponent
   </h4>
   
   <p>
-    <code>Component</code>: The new component created. Does forward refs to the inner component.
+    <code>Component</code> ：作成された新しいコンポーネント。 内部コンポーネントへの参照を転送します。
   </p>
   
   <h4>

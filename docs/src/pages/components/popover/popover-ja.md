@@ -24,7 +24,7 @@ components: Grow, Popover
 
 ## マウスオーバー操作
 
-`ポップオーバー` コンポーネントを使用して、マウスオーバーイベントに基づいてポップオーバー動作を実装する方法を示します。
+This demonstrates how to use the `Popover` component to implement a popover behavior based on the mouse over event.
 
 {{"demo": "pages/components/popover/MouseOverPopover.js"}}
 

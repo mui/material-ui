@@ -29,7 +29,7 @@
 
 ### カスタム変数
 
-Material-UIのテーマを、[styling solution](/styles/basics/)また[any others](/guides/interoperability/#themeprovider)と一緒に使用する場合。 テーマに変数を追加すると、どこでも使用できるので便利です。 例えば：
+When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). テーマに変数を追加すると、どこでも使用できるので便利です。 例えば：
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
@@ -95,10 +95,10 @@ const theme = createMuiTheme({
 1. `theme` (*Object*): 強化するテーマオブジェクト。
 2. `オプション` (*オプジェクト* [任意]):
 
-- `breakpoints` (*Array<string>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
+- `breakpoints` (*Array<String>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
 - `disableAlign` (*Boolean* [optional]): Default to `false`. フォントサイズがわずかに変化して線が表示されるかどうか 高さは保持され、Material Designの4pxライン高さグリッドに位置合わせされます。 これには、テーマのスタイルで単位なしの行の高さが必要です。
 - `factor` (*Number* [optional]): Default to `2`. この値は、フォントサイズのサイズ変更の強度を決定します。 値が大きいほど、小さな画面のフォントサイズの差は小さくなります。 値が小さいほど、小さい画面のフォントサイズが大きくなります。 値は1より大きくなければなりません。
-- `variants` (*Array<string>* [optional]): Default to all. 処理するタイポグラフィバリアント。
+- `variants` (*Array<String>* [optional]): Default to all. 処理するタイポグラフィバリアント。
 
 #### 戻り値
 

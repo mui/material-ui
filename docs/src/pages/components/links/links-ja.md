@@ -38,4 +38,4 @@ Linkコンポーネントは、 [Typography](/api/typography/) コンポーネ�
 
 {{"demo": "pages/components/links/LinkRouter.js", "defaultCodeOpen": true}}
 
-*注：予期しないアンマウントを防ぐために、リンクコンポーネントを作成する必要があります。 詳細については、<a href=「/guides/composition/#component-property」>コンポーネント・プロパティー・ガイド</a>を参照してください。*
+*注：予期しないアンマウントを防ぐために、リンクコンポーネントを作成する必要があります。 You can read more about it in the [component prop guide](/guides/composition/#component-property).*

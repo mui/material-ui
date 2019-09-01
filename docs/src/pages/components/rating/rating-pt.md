@@ -7,8 +7,6 @@ components: Rating
 
 <p class="description">As avaliações fornecem informações sobre opiniões e experiências de outros usuários com um produto. Os usuários também podem avaliar os produtos que compraram.</p>
 
-- 📦 [20 kB gzipped](/size-snapshot) (mas apenas 6 kB sem @material-ui/styles).
-
 ## Avaliações simples
 
 {{"demo": "pages/components/rating/SimpleRating.js"}}
@@ -41,5 +39,5 @@ Gosta de avaliações maiores ou menores? Use a propriedade `size`.
 
 A acessibilidade neste componente conta com:
 
-- Um grupo de botões de opção é usado com seus campos visualmente ocultos. Ele contém seis botões de opção, um para cada estrela e outro para 0 estrelas, que é marcado por padrão. Certifique-se de que você está fornecendo uma propriedade `name`, que é exclusivo para o formulário principal.
-- Os rótulos dos botões de opção contêm o texto atualmente como ("1 Star", "2 Star", …). Certifique-se de fornecer uma propriedade `getLabelText` quando o idioma da página não for o inglês.
+- A radio group is used with its fields visually hidden. It contains six radio buttons, one for each star and another for 0 stars, which is checked by default. Make sure you are providing a `name` prop that is unique to the parent form.
+- The labels for the radio buttons contain actual text (“1 Star”, “2 Stars”, …), make sure you provide a `getLabelText` prop when the page language is not English.

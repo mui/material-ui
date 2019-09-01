@@ -70,8 +70,10 @@ yarn add @material-ui/styles
 
 ### Estilos
 
-- ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com o v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. Remover `react-jss` do seu `package.json` pode ajudar. O componente StylesProvider substitui o componente JssProvider.
-- Remova a primeira opção de argumento do `withTheme()`. O primeiro argumento era um espaço reservado para uma eventual opção futura. Nós não encontramos uma necessidade para ele. É hora de remover esse argumento. Corresponde à [emotion API](https://emotion.sh/docs/introduction) e [styled-components API](https://www.styled-components.com).
+- ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com o v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Removing `react-jss` from your `package.json` can help). O componente StylesProvider substitui o componente JssProvider.
+- Remove the first option argument of `withTheme()`. (The first argument was a placeholder for a potential future option that never arose.)
+  
+    It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
 
 ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
@@ -170,7 +172,7 @@ function MySelect({ children }) {
 }
 ```
 
-Esta alteração é explicada em mais detalhes no nosso guia [TypeScript](/guides/typescript/#handling-value-and-event-handlers)
+This change is explained in more detail in the [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
 
 ### Botão
 
@@ -356,7 +358,7 @@ Esta alteração é explicada em mais detalhes no nosso guia [TypeScript](/guide
   - FormLabelClasses={{ asterisk: 'bar' }}
   + classes={{ asterisk: 'bar' }}
   >
-    Foo
+  Foo
   </InputLabel>
   ```
 
@@ -395,9 +397,9 @@ Esta alteração é explicada em mais detalhes no nosso guia [TypeScript](/guide
   +<Typography variantMapping={variantMapping}>
   ```
 
-- [Typography] Modifique a variante padrão de `body2` para `body1`. Um tamanho de fonte de 16px é um padrão melhor que 14px. Bootstrap, material.io e até nossa documentação usam 16px como tamanho de fonte padrão. 14px como o Ant Design usa, é compreensível, já que os usuários chineses têm um alfabeto diferente. Recomendamos 12px como o tamanho de fonte padrão para japonês.
+- [Typography] Modifique a variante padrão de `body2` para `body1`. Um tamanho de fonte de 16px é um padrão melhor que 14px. Bootstrap, material.io, and even the documentation use 16px as a default font size. 14px como o Ant Design usa, é compreensível, já que os usuários chineses têm um alfabeto diferente. 12px is recommended as the default font size for Japanese.
 - [Typography] Remova a cor padrão das variantes de tipografia. A cor deve herdar a maior parte do tempo. É o comportamento padrão da web.
-- [Typography] Rename `color="default"` to `color="initial"` following the logic of [this thread](https://github.com/mui-org/material-ui/issues/13028). O uso de *default* deve ser evitado, isso perde semântica.
+- [Typography] Renomeie `color="default"` para `color="initial"` seguindo a lógica [desta discussão](https://github.com/mui-org/material-ui/issues/13028). O uso de *default* deve ser evitado, isso perde semântica.
 
 ### Node
 
@@ -409,8 +411,8 @@ Esta alteração é explicada em mais detalhes no nosso guia [TypeScript](/guide
   
   ```diff
   const {
-  Button,
-  TextField,
+    Button,
+    TextField,
   -} = window['material-ui'];
   +} = MaterialUI;
   ```

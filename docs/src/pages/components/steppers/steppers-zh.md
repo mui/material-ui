@@ -32,7 +32,7 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prop 
 
 ### 定制步进器
 
-Here is an example of customizing the component. 您可以在[样式重写文档页](/customization/components/)中了解有关此内容的更多信息。
+以下是自定义组件的一个示例。 您可以在[样式重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 
@@ -42,7 +42,7 @@ Here is an example of customizing the component. 您可以在[样式重写文档
 
 此示例类似于常规的水平步进器，但步骤不再基于` activeStep `属性自动设置` disabled = {true} `。
 
-我们在这里使用` StepButton `来演示可点击的步骤标签以及设置` completed `。但是因为可以以非线性方式访问步骤，所以这取决于您自己的实现确定所有步骤何时完成（或者甚至是否需要完成）。
+The use of the `StepButton` here demonstrates clickable step labels, as well as setting the `completed` flag. However because steps can be accessed in a non-linear fashion, it's up to your own implementation to determine when all steps are completed (or even if they need to be completed).
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js"}}
 

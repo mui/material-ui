@@ -43,7 +43,7 @@ Möglicherweise haben Sie auch festgestellt, dass einige native HTML-Eingabeeige
 
 ## Benutzerdefinierte Eingabe
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 

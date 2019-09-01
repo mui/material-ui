@@ -59,7 +59,7 @@ JavaScriptオブジェクトからメディアクエリ文字列を生成する�
 
 ## サーバーサイドレンダリング
 
-サーバー上で [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) の実装が必要です。 [css-mediaquery](https://github.com/ericf/css-mediaquery)を使用してエミュレートすることをお勧めします。
+サーバー上で [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) の実装が必要です。 Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it is recommended.
 
 {{"demo": "pages/components/use-media-query/ServerSide.js"}}
 
@@ -75,7 +75,7 @@ Try relying on client-side CSS media queries first. たとえば、
 
 サーバー側の場合と同様に、テスト環境では [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) 実装が必要です。
 
-たとえば、 [jsdomはまだサポートしていません](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html)。 ポリフィルしたほうがいいですよ。 [css-mediaquery](https://github.com/ericf/css-mediaquery)を使用してエミュレートすることをお勧めします。
+たとえば、 [jsdomはまだサポートしていません](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html)。 ポリフィルしたほうがいいですよ。 Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it is recommended.
 
 ```js
 import mediaQuery from 'css-mediaquery';

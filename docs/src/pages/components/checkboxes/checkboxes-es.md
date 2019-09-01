@@ -29,6 +29,12 @@ Puede cambiar la ubicación de la etiqueta:
 
 {{"demo": "pages/components/checkboxes/FormControlLabelPosition.js"}}
 
+## Customized checkbox
+
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+
+{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
+
 ## Accesibilidad
 
 Todos los controles de formulario deben tener etiquetas, y esto incluye radio buttons, checkboxes, and switches. En la mayoría de los casos, esto se hace usando el elemento `<label>` ([FormControlLabel](/api/form-control-label/)).

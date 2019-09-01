@@ -4,7 +4,7 @@ title: Plantias React gratuitas
 
 # Plantillas React
 
-<p class="description">Una selección de plantillas de reacción básicas para ayudarlo a comenzar a crear su aplicación. Nuestra colección contiene panel de control en React, administración y más.</p>
+<p class="description">A selection of basic react templates to help you get started building your app. The collection contains react dashboard, admin, and more.</p>
 
 Las plantillas pueden combinarse con una de las [aplicaciones de ejemplo](https://github.com/mui-org/material-ui/tree/master/examples) para formar un proyecto de inicio completo.
 
@@ -18,6 +18,6 @@ Hasta ahora tenemos demostraciones para el panel de control, página de inicio d
 
 ## Temas Premium
 
-¿Buscas más? Puedes encontrar plantillas y temas completos en nuestra <a href="https://themes.material-ui.com/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-link">sección de temas premium</a>.
+¿Buscas más? You can find complete templates & themes in the <a href="https://themes.material-ui.com/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-link">premium themes section</a>.
 
 <a href="https://themes.material-ui.com/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-image"><img src="/static/images/themes-light.jpg" alt="plantillas React" /></a>

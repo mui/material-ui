@@ -1,6 +1,6 @@
 # インストール
 
-<p class="description">世界で最も人気のあるReact UIフレームワークMaterial-UIをインストールします。</p>
+<p class="description">Material-UIをインストールします。世界で最も人気のあるReact UIフレームワークです。</p>
 
 Material-UIは[ npmパッケージ](https://www.npmjs.com/package/@material-ui/core) として入手可能です。
 
@@ -50,13 +50,13 @@ yarn add @material-ui/icons
 
 プロトタイピングには最適な最小限のフロントエンド構造でMaterial-UIを使い始めることができます。
 
-私たちは以下2種類の (**UMD**) ファイルを提供しています。
+Two Universal Module Definition (**UMD**) files are provided:
 
 - 開発用: https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
 - 本番用: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
 
 [CDN example](https://github.com/mui-org/material-ui/tree/master/examples/cdn)に従うことで、すぐに開発を始めることができます。
 
-⚠️ We **discourage** using this approach in **production** though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilization.
+⚠️ Using this approach in **production** is **discouraged** though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilization.
 
-⚠️ The UMD links are using the `latest` tag to point to the latest version of the library. This pointer is **unstable**, it shifts as we release new versions. You should consider pointing to a specific version like [v3.9.3](https://unpkg.com/@material-ui/core@3.9.3/umd/material-ui.development.js).
+⚠️ UMDリンクは、ライブラリの最新バージョンを示すために`latest`タグを使用しています。 このポインターは**不安定です** 、新しいバージョンがリリースされると変わります。 You should consider pointing to a specific version, such as [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).

@@ -37,7 +37,7 @@ Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrõe
 
 - `box-sizing` é definido globalmente no elemento `<html>` para `border-box`. Todos elementos —incluindo `*::before` e `*::after` são declarados para herdar essa propriedade, que garante que a largura declarada do elemento nunca seja excedida devido ao preenchimento da borda.
 
-### Typography
+### Tipografia
 
 - Nenhum tamanho de fonte base é declarado no `<html>`, mas 16px é assumido (o padrão do navegador). Você pode aprender mais sobre as implicações da mudança do padrão de tamanho de fonte do `<html>` na página de [documentação de tema](/customization/typography/#typography-html-font-size).
 - Defina o estilo `theme.typography.body2` no elemento `<body>`.

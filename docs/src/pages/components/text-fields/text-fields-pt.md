@@ -79,9 +79,9 @@ A customização não para no CSS, você pode usar composição para criar compo
 
 ## Limitações
 
-### Shrink
+### Reduzir
 
-O label de entrada "shrink" nem sempre está correto. O input label deve encolher assim que o input estiver exibindo algo. Em algumas circunstâncias, não podemos determinar o estado de "srink" (input numérico, input datetime, input Stripe). Você pode notar uma sobreposição.
+O label de entrada "shrink" nem sempre está correto. O input label deve encolher assim que o input estiver exibindo algo. Em algumas circunstâncias, não podemos determinar o estado de "shrink" (input numérico, input datetime, input Stripe). Você pode notar uma sobreposição.
 
 ![minimizar](/static/images/text-fields/shrink.png)
 
@@ -97,7 +97,7 @@ ou
 <InputLabel shrink>Contagem</InputLabel>
 ```
 
-### Floating label
+### Rótulo flutuante
 
 The floating label is absolutely positioned, it won't impact the layout of the page. You need to make sure that the input is larger than the label to display correctly.
 

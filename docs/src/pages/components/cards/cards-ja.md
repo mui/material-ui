@@ -5,7 +5,7 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 # Card
 
-<p class="description">Cardはコンテンツと一つの主題に関するアクションを含みます。</p>
+<p class="description">Cardは一つの主題に関してのコンテンツとアクションを含みます。</p>
 
 [Card](https://material.io/design/components/cards.html) は、1つのトピックに関するコンテンツとアクションを表示する面です。
 

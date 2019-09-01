@@ -1,6 +1,6 @@
 ---
 title: 树视图组件
-components: 树视图，树节点
+components: TreeView, TreeItem
 ---
 
 # 树视图

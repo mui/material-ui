@@ -1,6 +1,6 @@
-# 高度な
+# 高度な機能(Advanced)
 
-<p class="description">This section covers more advanced usage of @material-ui/styles.</p>
+<p class="description">このセクションでは、@material-ui/stylesのより高度な使用法について説明します。</p>
 
 ## テーマ
 
@@ -218,7 +218,7 @@ Note that this doesn't support selectors, or nested rules.
 
 ## CSS injection order
 
-> It's **really important** to understand how the CSS specificity is calculated by the browser. It's one of the key elements to know when overriding styles. We **encourage** you to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+> It's **really important** to understand how the CSS specificity is calculated by the browser, as it's one of the key elements to know when overriding styles. You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
 By default, the style tags are injected **last** in the `<head>` element of the page. They gain more specificity than any other style tags on your page e.g. CSS modules, styled components.
 
@@ -386,7 +386,7 @@ You can [follow the server side guide](/guides/server-rendering/) for a more det
 
 ### Gatsby
 
-We have [an official plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Refer to the plugin's page for setup and usage instructions.
+There is [an official plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Refer to the plugin's page for setup and usage instructions.
 
 Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
 
@@ -508,7 +508,7 @@ The [`jss-plugin-global`](#jss-plugins) plugin is installed in the default prese
 
 {{"demo": "pages/styles/advanced/GlobalCss.js"}}
 
-### Hybrid
+### ハイブリッド
 
 You can also combine JSS generated class names with global ones.
 
@@ -518,7 +518,7 @@ You can also combine JSS generated class names with global ones.
 
 JSS uses feature detection to apply the correct prefixes. [Don't be surprised](https://github.com/mui-org/material-ui/issues/9293) if you can't see a specific prefix in the latest version of Chrome. Your browser probably doesn't need it.
 
-## Content Security Policy (CSP)
+## コンテンツセキュリティポリシー（CSP）
 
 ### What is CSP and why is it useful?
 
@@ -534,7 +534,7 @@ This vulnerability would allow the attacker to execute anything. However, with a
 
 You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
 
-### How does one implement CSP?
+### CSPの実装方法
 
 In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
 

@@ -26,12 +26,12 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 警告框是一种紧急中断的行为，用以将某一情况通知用户，并需要确认。
 
-大多数警报不需要标题。 They summarize a decision in a sentence or two by either:
+大多数警报不需要标题。 他们通过以下两种方式总结了一两句话的决定：
 
 - 问一个问题（例如："是否删除此对话？”）
 - 发表一个和动作按钮相关的声明
 
-Use title bar alerts only for high-risk situations, such as the potential loss of connectivity. Users should be able to understand the choices based on the title and button text alone.
+仅在高风险情况下使用标题栏警报，例如可能丢失连接。 用户应该能够仅根据标题和按钮文本来理解选择。
 
 如果需要加上标题请:
 
@@ -54,7 +54,7 @@ Use title bar alerts only for high-risk situations, such as the potential loss o
 
 ## 自定义对话框
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 该对话框加上了一个关闭按钮来辅助可用性。
 

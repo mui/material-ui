@@ -70,8 +70,10 @@ yarn add @material-ui/styles
 
 ### Styles（样式表单）
 
-- ⚠️ Material-UI 依赖于 JSS v10版本。 JSS v10版本与v9版本不向后兼容。 请保证您的开发环境中未安装 JSS v9版本。 在您的 `package.json` 中移除 `react-jss` 将会有所帮助。 StylesProvider 组件替代了 JssProvider 组件。
-- 请移除 `withTheme()` 中的第一个可选的参数。 第一个参数本是作为未来的可能的选项的一个占位符。 我们从未发现有需要它的情况。 是时候来删除这个参数了。 它与[emotion 的 API](https://emotion.sh/docs/introduction) 以及 [styled-components 的 API ](https://www.styled-components.com) 相匹配。
+- ⚠️ Material-UI 依赖于 JSS v10版本。 JSS v10版本与v9版本不向后兼容。 请保证您的开发环境中未安装 JSS v9版本。 (Removing `react-jss` from your `package.json` can help). StylesProvider 组件替代了 JssProvider 组件。
+- Remove the first option argument of `withTheme()`. (The first argument was a placeholder for a potential future option that never arose.)
+  
+    It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
 
 ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
@@ -155,7 +157,7 @@ function MySelect({ children }) {
 }
 ```
 
-我们在 [TypeScript 指南中](/guides/typescript/#handling-value-and-event-handlers)更详细地解释了此变更。
+This change is explained in more detail in the [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
 
 ### Buttons（按钮）
 
@@ -341,7 +343,7 @@ function MySelect({ children }) {
   - FormLabelClasses={{ asterisk: 'bar' }}
   + classes={{ asterisk: 'bar' }}
   >
-    Foo
+  Foo
   </InputLabel>
   ```
 
@@ -380,7 +382,7 @@ function MySelect({ children }) {
   +<Typography variantMapping={variantMapping}>
   ```
 
-- [Typography] 将默认的字体从 `body2` 换成 `body1`。 默认为16px的字体大小比默认为14px好。 Bootstrap，material.io，甚至我们的文档都将16px作为默认字体大小。 像 Ant Design 一样使用14px是可以理解的，因为中国的用户使用了不同的字母表。 我们建议使用12px作为日语的默认字体大小。
+- [Typography] 将默认的字体从 `body2` 换成 `body1`。 默认为16px的字体大小比默认为14px好。 Bootstrap, material.io, and even the documentation use 16px as a default font size. 像 Ant Design 一样使用14px是可以理解的，因为中国的用户使用了不同的字母表。 12px is recommended as the default font size for Japanese.
 - [Typography] 移除了铸排变体的默认颜色。 大多数情况下，字体颜色应该是继承而来的。 这是网站的默认行为。
 - [Typography] Rename `color="default"` to `color="initial"` following the logic of [this thread](https://github.com/mui-org/material-ui/issues/13028). 您不应该再使用 *default*，它缺少明确的语义。
 
@@ -394,8 +396,8 @@ function MySelect({ children }) {
   
   ```diff
   const {
-  Button,
-  TextField,
+    Button,
+    TextField,
   -} = window['material-ui'];
   +} = MaterialUI;
   ```

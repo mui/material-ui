@@ -1,19 +1,18 @@
-# Spacing
+# 間隔
 
-<p class="description">Use the theme.spacing() helper to create consistent spacing between the elements of your UI.</p>
+<p class="description">theme.spacing()　ヘルパーを使用して、 UIの要素間の間隔を一定にします。</p>
 
-Material-UI uses [a recommended 8px scaling factor by default](https://material.io/design/layout/understanding-layout.html).
+Material-UI uses [a recommended 8px scaling factor](https://material.io/design/layout/understanding-layout.html) by default.
 
 ```js
-const styles = theme => ({
-  root: {
-    // JSS uses px as the default units for this CSS property.
-    padding: theme.spacing(2), // = 8 * 2
-  },
-});
+const theme = createMuiTheme();
+
+theme.spacing(2) // = 8 * 2
 ```
 
-You can change the spacing transformation by providing:
+## Custom spacing
+
+間隔の変換は、次の方法で変更できます。
 
 - a number
 
@@ -47,9 +46,14 @@ theme.spacing(2); // = 8
 
 ## Multiple arity
 
-The `theme.spacing()` helper accepts up to 4 arguments. You can use the arguments to reduce the boilerplate:
+`theme.spacing()` ヘルパーは最大4つの引数を受け入れます。 You can use the arguments to reduce the boilerplate. Instead of doing:
 
-```diff
-<br />-  padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
-+  padding: theme.spacing(1, 2), // '8px 16px'
+```js
+padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'
+```
+
+you can do:
+
+```js
+padding: theme.spacing(1, 2), // '8px 16px'
 ```

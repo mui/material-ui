@@ -1,6 +1,6 @@
 # Dimensionierung
 
-<p class="description">Mit unseren Hilfsmitteln für Breite und Höhe können Sie ein Element problemlos so breit oder so groß (relativ zu seinem übergeordneten Element) machen, wie sie wollen.</p>
+<p class="description">Easily make an element as wide or as tall (relative to its parent) with the width and height utilities.</p>
 
 ## Unterstützte Werte
 

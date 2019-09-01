@@ -2,16 +2,15 @@
 
 <p class="description">Use o auxiliar theme.spacing() para criar um espaçamento consistente entre os elementos da sua UI.</p>
 
-Material-UI usa [um fator de escala recomendado de 8px por padrão](https://material.io/design/layout/understanding-layout.html).
+Material-UI uses [a recommended 8px scaling factor](https://material.io/design/layout/understanding-layout.html) by default.
 
 ```js
-const styles = theme => ({
-  root: {
-    // O JSS usa px como unidade padrão para essa propriedade CSS.
-    padding: theme.spacing(2), // = 8 * 2
-  },
-});
+const theme = createMuiTheme();
+
+theme.spacing(2) // = 8 * 2
 ```
+
+## Custom spacing
 
 Você pode alterar a transformação do espaçamento fornecendo:
 
@@ -45,11 +44,16 @@ const theme = createMuiTheme({
 theme.spacing(2); // = 8
 ```
 
-## Aridade múltipla
+## Multiple arity
 
-O auxiliar ` theme.spacing()` aceita até 4 argumentos. Você pode usar os argumentos para reduzir o boilerplate:
+O auxiliar ` theme.spacing()` aceita até 4 argumentos. You can use the arguments to reduce the boilerplate. Instead of doing:
 
-```diff
-<br />-  padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
-+  padding: theme.spacing(1, 2), // '8px 16px'
+```js
+padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'
+```
+
+you can do:
+
+```js
+padding: theme.spacing(1, 2), // '8px 16px'
 ```

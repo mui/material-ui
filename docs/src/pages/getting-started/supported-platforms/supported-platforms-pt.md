@@ -15,7 +15,7 @@ Como o Googlebot usa um serviço de renderização da Web (WRS) para indexar o c
 
 ## Servidor
 
-Because Material-UI supports server-side rendering, it needs to support the latest, stable releases of [Node.js](https://github.com/nodejs/node). Também tentamos suportar as versões do [ LTS que estão em manutenção ](https://github.com/nodejs/Release#lts-schedule1). Right now, it supports **node v8.x** and newer versions.
+Because Material-UI supports server-side rendering, it needs to support the latest, stable releases of [Node.js](https://github.com/nodejs/node). Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1) are supported. Right now, it supports **node v8.x** and newer versions.
 
 ### Prefixos CSS
 
@@ -25,4 +25,4 @@ O CSS exibido nesta documentação é processado com [`autoprefixer`](https://ww
 
 ## React
 
-Material-UI supports the most recent versions of React, starting with ^16.8.0 (the one with the hooks). Have a look at our older [versions](/versions/) for backward compatibility.
+Material-UI supports the most recent versions of React, starting with ^16.8.0 (the one with the hooks). Have a look at the older [versions](/versions/) for backward compatibility.

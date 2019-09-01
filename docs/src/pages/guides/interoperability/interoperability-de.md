@@ -2,7 +2,7 @@
 
 <p class="description">Zwar ist die Verwendung der JSS-basierten Styling-Lösung, die von Material-UI zur Verfügung gestellt wird, einfach, um Ihre Anwendung zu stylen. Es ist jedoch möglich, eine beliebige Styling-Lösung zu verwenden, von einfachem CSS bis zu einer beliebigen Anzahl von CSS-in-JS-Bibliotheken.</p>
 
-In diesem Handbuch sollen die beliebtesten Alternativen dokumentiert werden, aber Sie sollten sich merken, dass die hier vorgestellten Anwendungen an andere Bibliotheken angepasst werden können. Wir haben Beispiele für folgende Styling-Lösungen bereitgestellt:
+In diesem Handbuch sollen die beliebtesten Alternativen dokumentiert werden, aber Sie sollten sich merken, dass die hier vorgestellten Anwendungen an andere Bibliotheken angepasst werden können. There are examples for the following styling solutions:
 
 - [Einfaches CSS](#plain-css)
 - [Globales CSS](#global-css)
@@ -14,7 +14,7 @@ In diesem Handbuch sollen die beliebtesten Alternativen dokumentiert werden, abe
 
 ## Einfaches CSS
 
-Nichts Besonderes, einfach nur altes CSS. Warum das Rad neu erfinden, wenn es seit Jahrzehnten funktioniert?
+Nothing fancy, just plain old CSS.
 
 **PlainCssButton.css**
 
@@ -91,7 +91,7 @@ export default function GlobalCssButton() {
 
 ![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
 
-Die `styled()` Methode funktioniert perfekt für alle unsere Komponenten.
+The `styled()` method works perfectly on all of the components.
 
 ```jsx
 import React from 'react';
@@ -293,7 +293,7 @@ Die Emotion **css()** Methode funktioniert nahtlos mit der Material-UI.
 import { jsx, css } from '@emotion/core';
 import Button from '@material-ui/core/Button';
 
-// We just assign them the Button's className attribute
+// Just assign them the Button's className attribute
 export default function EmotionButton() {
   return (
     <div>
@@ -330,7 +330,7 @@ Es funktioniert genauso wie gestylte Komponenten. Sie können [dieselbe Anleitun
 
 ![stars](https://img.shields.io/github/stars/cssinjs/jss.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/react-jss.svg?)
 
-Die Styling-Lösung von Material-UI teilt viele Bausteine mit [react-jss](https://github.com/cssinjs/react-jss). Wir haben das Projekt für uns entwickelt, um unsere individuellen Anforderungen zu erfüllen, aber wir arbeiten daran, die Änderungen und Korrekturen von der Material-UI wieder in React-Jss zu integrieren.
+Die Styling-Lösung von Material-UI teilt viele Bausteine mit [react-jss](https://github.com/cssinjs/react-jss). A fork was needed in order to handle Material-UI's unique needs, but with the intent to merge the changes and fixes from Material-UI back to react-jss.
 
 ```jsx
 import React from 'react';

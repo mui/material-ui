@@ -1,10 +1,10 @@
 # Sizing
 
-<p class="description">Easily make an element as wide or as tall (relative to its parent) with our width and height utilities.</p>
+<p class="description">Easily make an element as wide or as tall (relative to its parent) with the width and height utilities.</p>
 
 ## Supported values
 
-The sizing style functions support different property input type:
+サイズ変更スタイル関数は異なるプロパティ入力タイプをしています。
 
 ```jsx
 <Box width={1/4}> // Números em [0,1] são multiplicados por 100 e convertido em % valores.
@@ -44,11 +44,11 @@ The sizing style functions support different property input type:
 import { sizing } from '@material-ui/system';
 ```
 
-| Import name | Prop        | CSS property | Theme key |
-|:----------- |:----------- |:------------ |:--------- |
-| `width`     | `width`     | `width`      | none      |
-| `maxWidth`  | `maxWidth`  | `max-width`  | none      |
-| `minWidth`  | `minWidth`  | `min-width`  | none      |
-| `height`    | `height`    | `height`     | none      |
-| `maxHeight` | `maxHeight` | `max-height` | none      |
-| `minHeight` | `minHeight` | `min-height` | none      |
+| インポート名      | プロパティ       | CSSプロパティ     | テーマキー |
+|:----------- |:----------- |:------------ |:----- |
+| `width`     | `width`     | `width`      | none  |
+| `maxWidth`  | `maxWidth`  | `max-width`  | none  |
+| `minWidth`  | `minWidth`  | `min-width`  | none  |
+| `height`    | `height`    | `height`     | none  |
+| `maxHeight` | `maxHeight` | `max-height` | none  |
+| `minHeight` | `minHeight` | `min-height` | none  |

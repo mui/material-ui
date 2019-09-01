@@ -51,5 +51,5 @@ Continuous sliders allow users to select a value along a subjective range.
 
 The component handles most of the work necessary to make it accessible. However, you need to make sure that:
 
-- The slider, as a whole, has a label (`aria-label` or `aria-labelledby` prop).
-- Each thumb has a user-friendly name for its current value. This is not required if the value matches the semantics of the label. You can change the name with the `getAriaValueText` or `aria-valuetext` prop.
+- Each thumb has a user-friendly label (`aria-label`, `aria-labelledby` or `getAriaLabel` prop).
+- Each thumb has a user-friendly text for its current value. This is not required if the value matches the semantics of the label. You can change the name with the `getAriaValueText` or `aria-valuetext` prop.

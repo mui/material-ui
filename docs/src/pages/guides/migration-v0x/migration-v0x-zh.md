@@ -6,7 +6,7 @@
 
 ### 哇—— API 看起来完全不一样！ 这是否意味着1.0完全不同，而我得重新学习基础知识，而迁移是几乎不可能的？
 
-我很高兴你问了！ 答案是不。我们的核心概念并没有改变。 您会注意到 API 的灵活性更强了，但这是有一些代价的。 我们一直在实现一些较低级别的组件，并且减少了复杂性。
+我很高兴你问了！ 答案是不。我们的核心概念并没有改变。 You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
 
 ### 到底是什么带来了如此巨大的改变呢？
 
@@ -187,4 +187,4 @@ This will apply a change such as the following:
 
 ### 未完待续...
 
-您是否已成功迁移您的应用，并助社区一臂之力？ 请帮助我们！ 我们有一个未解决的问题，以完成此迁移指南 [＃7195](https://github.com/mui-org/material-ui/issues/7195)。 Any pull request is welcomed 😊.
+您是否已成功迁移您的应用，并助社区一臂之力？ There is an open issue in order to finish this migration guide [#7195](https://github.com/mui-org/material-ui/issues/7195). Any pull request is welcomed 😊.

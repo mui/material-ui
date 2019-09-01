@@ -218,7 +218,7 @@ Beachten Sie, dass dies keine Selektoren oder verschachtelten Regeln unterstütz
 
 ## CSS-Injektionsreihenfolge
 
-> Es ist **wirklich wichtig** um zu verstehen, wie die CSS-Spezifität vom Browser berechnet wird. Dies ist eines der Schlüsselelemente, die beim Überschreiben von Stilen zu beachten sind. Wir **ermutigen** Sie diesen MDN-Absatz: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated) zu lesen
+> It's **really important** to understand how the CSS specificity is calculated by the browser, as it's one of the key elements to know when overriding styles. You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
 Standardmäßig werden die Style-Tags **zuletzt** im `<head>` -Element der Seite eingefügt. Sie erhalten mehr Details als jedes andere Styletag auf Ihrer Seite, z.B. CSS-Module oder StilKomponenten.
 
@@ -386,7 +386,7 @@ Sie können der [serverseitigen Anleitung](/guides/server-rendering/) für ein d
 
 ### Gatsby
 
-Wir haben [ein offizielles Plugin](https://github.com/hupe1980/gatsby-plugin-material-ui), welches serverseitiges Rendering für `@material-ui/styles` ermöglicht. Anleitungen zur Einrichtung und Verwendung finden Sie auf der Seite des Plugins.
+There is [an official plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Anleitungen zur Einrichtung und Verwendung finden Sie auf der Seite des Plugins.
 
 Siehe [dieses Beispielprojekt](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) für ein aktuelles Verwendungsbeispiel.
 

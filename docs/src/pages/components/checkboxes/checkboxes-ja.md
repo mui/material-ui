@@ -11,7 +11,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 リストに複数のオプションを持っている場合は、 Checkboxを使用して代わりのオン/オフスイッチのスペースを保存することができます。 選択肢が1つしかない場合は、チェックボックスを使用せずに代わりにオン/オフスイッチを使用します。
 
-{{"demo": "pages/demos/checkboxes/Checkboxes.js"}}
+{{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
 `Checkbox`コンポーネントは` FormControlLabel<code>コンポーネントを説明のラベルとして使うことができます。</p>
 
@@ -28,6 +28,12 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ラベルの配置は自由に変更できます。
 
 {{"demo": "pages/components/checkboxes/FormControlLabelPosition.js"}}
+
+## Customized checkbox
+
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+
+{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
 
 ## アクセシビリティ
 

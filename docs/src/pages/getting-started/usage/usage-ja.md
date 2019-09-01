@@ -8,7 +8,7 @@ Material-UIコンポーネントは独立して機能します。 **They are sel
 
 ## 今すぐ始める
 
-これがすぐ始める為の簡単な例です、**文字通り必要とする全てです**:
+以下に簡単な例を示します。**文字通り必要なものすべてです**:
 
 ```jsx
 import React from 'react';
@@ -30,7 +30,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 {{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
 
-## グローバル
+## Globals
 
 知っておく必要のあるいくつかの重要なことで、Material-UIの使い易さは改善されます。
 
@@ -47,7 +47,7 @@ Material-UIは最初にモバイルで開発されました。最初にモバイ
 
 ### CssBaseline
 
-Material-UIはオプションで[CssBaseline](/components/css-baseline/)コンポーネントを提供しています。 It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
+Material-UIはオプションで[CssBaseline](/components/css-baseline/)コンポーネントを提供しています。 これは、ブラウザやデバイス間の不整合を修正すると同時に、一般的なHTML要素に対して少しだけ独自のリセットを提供します。
 
 ## バージョン管理されたドキュメント
 
@@ -58,5 +58,5 @@ Material-UIはオプションで[CssBaseline](/components/css-baseline/)コン�
 これで基本的なセットアップがわかったので、次の項目について詳しく学びましょう。
 
 - [Material Designフォントとタイポグラフィ](/components/typography/)を導入する方法
-- How to take advantage of the [theming solution](/customization/theming/).
+- [テーマソリューションを活用する方法](/customization/theming/) 。
 - コンポーネントの見た目を[上書き](/customization/components/)する方法

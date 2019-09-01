@@ -1,10 +1,10 @@
-# Spacing
+# 間隔
 
-<p class="description">A wide range of shorthand responsive margin and padding utility classes to modify an element’s appearance.</p>
+<p class="description">要素の外観を変更するための、応答の短いマージンとパディングユーティリティークラス。</p>
 
-## Notation
+## 表記
 
-The space utility converts shorthand margin and padding props to margin and padding CSS declarations. The props are named using the format `{property}{sides}`.
+スペースユーティリティは、簡易マージンとパディングプロップをマージンとパディングのCSS宣言に変換します。 プロップには、`{property}{sides}`という形式で名前が付けられます。
 
 Where *property* is one of:
 

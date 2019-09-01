@@ -4,18 +4,18 @@
 
 ## ブラウザ
 
-Material-UIは主要なブラウザとプラットフォームの最新の安定版リリースをサポートしています。 It also supports Internet Explorer 11. You don't need to provide any JavaScript polyfill as it manages unsupported browser features internally and in isolation.
+Material-UIは主要なブラウザとプラットフォームの最新の安定版リリースをサポートしています。 Internet Explorer 11もサポートしています。 JavaScriptポリフィルは、サポートされていないブラウザー機能を内部で個別に管理するため、提供する必要はありません。
 
 | IE | Edge  | Firefox | Chrome | Safari | Googlebot |
 |:-- |:----- |:------- |:------ |:------ |:--------- |
 | 11 | >= 14 | >= 52   | >= 49  | >= 10  | ✅         |
 
 
-Googlebotはページコンテンツのインデックス作成にweb rendering service (WRS) を使用するので、Material-UIがそれをサポートすることは重要です。 [WRS regularly updates the rendering engine it uses](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html). 特に支障なくレンダリングできるMaterial-UIのコンポーネントを期待できます。
+Googlebotはページコンテンツのインデックス作成にweb rendering service (WRS) を使用するので、Material-UIがそれをサポートすることは重要です。 [WRSは、使用するレンダリングエンジンを定期的に更新します](https://webmasters.googleblog.com/2019/05/the-new-evergreen-googlebot.html)。 特に支障なくレンダリングできるMaterial-UIのコンポーネントを期待できます。
 
 ## サーバ
 
-Because Material-UI supports server-side rendering, it needs to support the latest, stable releases of [Node.js](https://github.com/nodejs/node). [LTS](https://github.com/nodejs/Release#lts-schedule1)のサポートも同様に試みています。 Right now, it supports **node v8.x** and newer versions.
+Material-UIはサーバ側レンダリングをサポートしているため、[Nodeの最新の安定したリリースをサポートする必要があります。js](https://github.com/nodejs/node)。 Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1) are supported. 現時点では、**ノードv8.x**以降のバージョンをサポートしています。
 
 ### CSSプレフィックス
 
@@ -25,4 +25,4 @@ Because Material-UI supports server-side rendering, it needs to support the late
 
 ## React
 
-Material-UI supports the most recent versions of React, starting with ^16.8.0 (the one with the hooks). Have a look at our older [versions](/versions/) for backward compatibility.
+Material-UIは、^16.8. 0(フックのついた方) 以降のReactの最新バージョンをサポートします。 Have a look at the older [versions](/versions/) for backward compatibility.

@@ -2,7 +2,7 @@
 
 <p class="description">您是否正在寻找一个范例项目来开始？</p>
 
-您可以在[GitHub存储库中](https://github.com/mui-org/material-ui)的[`/examples`](https://github.com/mui-org/material-ui/tree/master/examples)的文件夹下面，找到一些我们托管一些范例项目：
+You can find some example projects in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
 
 - [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
@@ -20,7 +20,7 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
 
 你在寻找更高级的示范例项目吗？
 
-If you want to start with a more complete and real world example, you could take a look at our [free templates](/getting-started/templates/) or [premium themes & templates](https://themes.material-ui.com/) or:
+If you want to start with a more complete and real world example, you could take a look at the [free templates](/getting-started/templates/) or [premium themes & templates](https://themes.material-ui.com/) or:
 
 - [React Most Wanted](https://github.com/TarikHuber/react-most-wanted), which includes:
     

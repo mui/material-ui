@@ -16,9 +16,9 @@ Ici vous pouvez trouver la dernière documentation non publiée et le code. Vous
 
 ## Stratégie de gestion des versions
 
-Nous sommes conscients que vous avez besoin de **stabilité** pour la librairie Material-UI. La stabilité garantit des composants réutilisables et les librairies, tutoriels, outils ainsi que les pratiques acquises ne deviennes pas soudainement obsolètes. La stabilité est essentielle au développement de l’écosystème Material-UI.
+Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around Material-UI to thrive.
 
-Ce document contient ** les pratiques que nous suivons ** pour vous fournir une bibliothèque d'interface utilisateur de pointe, équilibrée avec stabilité. Nous nous efforçons de faire en sorte que les futurs changements soient toujours introduits de manière prévisible. Nous voulons que tous ceux qui dépendent de Material-UI sachent quand et comment les nouvelles fonctionnalités sont ajoutées, et bien préparés lorsque celles qui sont obsolètes sont supprimées.
+This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
 Matériel-UI suit strictement [la gestion sémantique des versions 2.0.0](https://semver.org/). Les numéros de version Material-UI ont trois parties : `majeur.mineur.correctifs`. Le numéro de version est incrémenté en fonction du niveau de changement inclus dans la version.
 
@@ -28,7 +28,7 @@ Matériel-UI suit strictement [la gestion sémantique des versions 2.0.0](https:
 
 ## Fréquence de version
 
-We work toward a regular schedule of releases, so that you can plan and coordinate your updates with the continuing evolution of Material-UI.
+A regular schedule of releases helps you plan and coordinate your updates with the continuing evolution of Material-UI.
 
 In general, you can expect the following release cycle:
 
@@ -47,24 +47,24 @@ In general, you can expect the following release cycle:
 | ? ⏳        | `@material-ui/core` v5.0.0 |
 
 
-Vous pouvez suivre [ nos milestones ](https://github.com/mui-org/material-ui/milestones) pour un aperçu plus détaillé.
+You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
 ## Politique de support
 
-We only support the latest version of Material-UI. We don't yet have the resources to offer [LTS](https://en.wikipedia.org/wiki/Long-term_support) releases.
+Only the latest version of Material-UI is supported. We don't yet have the resources to offer [LTS](https://en.wikipedia.org/wiki/Long-term_support) releases.
 
 ## Pratiques de l'obsolescence
 
 Sometimes **"breaking changes"**, such as the removal of support for select APIs and features, are necessary.
 
-To make these transitions as easy as possible, we make two commitments to you:
+To make these transitions as easy as possible:
 
-- We work hard to minimize the number of breaking changes and to provide migration tools when possible.
-- We follow the deprecation policy described here, so you have time to update your apps to the latest APIs and best practices.
+- The number of breaking changes is minimized, and migration tools provided when possible.
+- The deprecation policy described below is followed, so that you have time to update your apps to the latest APIs and best practices.
 
-To help ensure that you have sufficient time and a clear path to update, this is our deprecation policy:
+### Deprecation policy
 
-- We announce deprecated features in the changelog, and when possible, with warnings at runtime.
-- When we announce a deprecation, we also announce a recommended update path.
-- We support existing use of a stable API during the deprecation period, so your code will keep working during that period.
-- We only make peer dependency updates (React) that require changes to your apps in a major release.
+- Deprecated features iare announced n the changelog, and when possible, with warnings at runtime.
+- When a deprecation is announced, recommended update path is provided.
+- Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
+- Peer dependency updates (React) that require changes to your apps are only made in a major release.

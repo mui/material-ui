@@ -2,7 +2,7 @@
 
 <p class="description">最初のサンプルプロジェクトをお探しですか？</p>
 
-[GitHubリポジトリ](https://github.com/mui-org/material-ui)の下の[`/examples`](https://github.com/mui-org/material-ui/tree/master/examples)フォルダにいくつかのサンプルプロジェクトを用意しています。
+You can find some example projects in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
 
 - [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
@@ -20,22 +20,22 @@ Create React AppはReactを学ぶのに良いプロジェクトです。 どの�
 
 更に高度なサンプルプロジェクトをお探しですか？
 
-If you want to start with a more complete and real world example, you could take a look at our [free templates](/getting-started/templates/) or [premium themes & templates](https://themes.material-ui.com/) or:
+If you want to start with a more complete and real world example, you could take a look at the [free templates](/getting-started/templates/) or [premium themes & templates](https://themes.material-ui.com/) or:
 
 - [React Most Wanted](https://github.com/TarikHuber/react-most-wanted), which includes:
     
   - [Create React App](https://facebook.github.io/create-react-app/)による生成
-  - Custom Create React App script to start a new project with just a single CLI command
-  - Build for Firebase including Authentication using the official Firebase Web Auth UI
-  - Routing with React Router including error handling (404) and lazy loading
-  - All PWA features included (SW, Notifications, deffered installation prompt and more)
-  - Optimized and scalable performance (all ~100 points on Lighthouse)
+  - 単一のCLIコマンドで新しいプロジェクトを開始するカスタムCreate React Appスクリプト
+  - 公式のFirebase Web Auth UIを使用した認証を含むFirebase用のビルド
+  - エラー処理（404）および遅延ロードを含むReact Routerによるルーティング
+  - すべてのPWA機能が含まれています（SW、通知、遅延インストールプロンプトなど）
+  - 最適化されたスケーラブルなパフォーマンス（すべてLighthouseで最大100ポイント）
 - [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
     
-  - Bootstrapped with Create React App, the same tooling works out of the box
-  - Built on top of Firebase with Authentication, Cloud Firestore, Cloud Functions, Storage, and Performance Monitoring working from the start
-  - Robust routing with React Router including error handling
-  - Extensive mobile support with full-screen dialogs and [react-swipeable-views](https://react-swipeable-views.com) for tabs
+  - React Appの作成でブートストラップされ、同じツールがすぐに使用できます
+  - 認証、Cloud Firestore、Cloud Functions、Storage、およびPerformance Monitoringを最初から使用できるFirebaseの上に構築
+  - エラー処理を含むReact Routerによる堅牢なルーティング
+  - フルスクリーンダイアログと[ react-swipeable-viewsによる広範なモバイルサポート](https://react-swipeable-views.com)タブ用
 - [Material Sense](https://github.com/alexanmtz/material-sense), which includes:
     
   - rechartsを用いたグラフ

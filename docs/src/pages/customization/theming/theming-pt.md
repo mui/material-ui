@@ -29,7 +29,7 @@ Você pode conferir a [seção de tema padrão](/customization/default-theme/) p
 
 ### Variáveis customizáveis
 
-Quando usando o tema do Material-UI com nossa [solução de estilo](/styles/basics/) ou [quaisquer outras](/guides/interoperability/#themeprovider), surgem algumas necessidades de customização. Pode ser conveniente adicionar variáveis adicionais ao tema para que você possa usá-las em todos os lugares. Por exemplo:
+When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). Pode ser conveniente adicionar variáveis adicionais ao tema para que você possa usá-las em todos os lugares. Por exemplo:
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
@@ -95,10 +95,10 @@ Gera configurações de tipografia responsivas com base nas opções recebidas.
 1. `theme` (*Object*): O objeto de tema a ser aplicado as alterações.
 2. `options` (*Object* [opcional]):
 
-- `breakpoints` (*Array<string>* [opcional]): Padrão `['sm', 'md', 'lg']`. Array de [pontos de quebra](/customization/breakpoints/) (identificadores).
+- `breakpoints` (*Array<String>* [optional]): Default to `['sm', 'md', 'lg']`. Array de [pontos de quebra](/customization/breakpoints/) (identificadores).
 - `disableAlign` (*Boolean* [opcional]): Padrão `false`. Se os tamanhos de fonte mudam pouco, as alturas da linha são preservadas e alinhadas à altura da linha da grade em 4px do Material Design. Isso requer uma altura de linha sem unidade nos estilos do tema.
 - `factor` (*Number* [opcional]): Padrão `2`. Este valor determina o fator de redimensionamento do tamanho da fonte. Quanto maior o valor, menor a diferença entre tamanhos de fonte em telas pequenas. Quanto menor o valor, maiores os tamanhos de fonte para telas pequenas. O valor deve ser maior que 1.
-- `variants` (*Array<string>* [opcional]): Padrão todos. As variantes de tipografia para manipular.
+- `variants` (*Array<String>* [optional]): Default to all. As variantes de tipografia para manipular.
 
 #### Retornos
 

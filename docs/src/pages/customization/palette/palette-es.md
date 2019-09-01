@@ -81,8 +81,7 @@ import indigo from '@material-ui/core/colors/indigo';
 import pink from '@material-ui/core/colors/pink';
 import red from '@material-ui/core/colors/red';
 
-// All the following keys are optional.
-// We try our best to provide a great default value.
+// All the following keys are optional, as default values are provided.
 const theme = createMuiTheme({
   palette: {
     primary: indigo,
@@ -163,3 +162,7 @@ const theme = createMuiTheme({
 ```
 
 {{"demo": "pages/customization/palette/DarkTheme.js"}}
+
+## Default values
+
+You can explore the default values of the palette using [the theme explorer](/customization/default-theme/?expend-path=$.palette) or by opening the dev tools console on this page (`window.theme.palette`).

@@ -58,7 +58,7 @@ crwdns93106:0crwdne93106:0
 
 crwdns93110:0crwdne93110:0 crwdns93112:0crwdne93112:0
 
-<a href="crwdns93114:0crwdne93114:0">
+<a href="crwdns93114:0crwdne93114:0" target="_blank" rel="noopener nofollow">
   <img src="crwdns93116:0crwdne93116:0" alt="crwdns93118:0crwdne93118:0" style="width: 574px" />
 </a>
 
@@ -70,6 +70,6 @@ crwdns93122:0{ createMuiTheme }crwdne93122:0
 
 ### crwdns93124:0crwdne93124:0
 
-- crwdns93126:0crwdne93126:0
-- crwdns93128:0crwdne93128:0
+- crwdns100876:0crwdne100876:0
+- crwdns100878:0crwdne100878:0
 - crwdns93130:0crwdne93130:0

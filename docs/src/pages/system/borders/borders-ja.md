@@ -1,6 +1,6 @@
-# Borders
+# ボーダー
 
-<p class="description">Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons, or any other element.</p>
+<p class="description">Use border utilities to quickly style the border and border-radius of an element. 画像、ボタン、その他の要素に最適です。</p>
 
 ## Border
 

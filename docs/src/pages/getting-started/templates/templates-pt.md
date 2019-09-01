@@ -4,7 +4,7 @@ title: Modelos de React grátis
 
 # Modelos React
 
-<p class="description">A selection of basic react templates to help you get started building your app. Our collection contains react dashboard, admin, and more.</p>
+<p class="description">A selection of basic react templates to help you get started building your app. The collection contains react dashboard, admin, and more.</p>
 
 The templates can be combined with one of the [example applications](https://github.com/mui-org/material-ui/tree/master/examples) to form a complete starter.
 
@@ -18,6 +18,6 @@ So far we have demos for dashboard, sign in page, sign up page, blog page, check
 
 ## Temas Premium
 
-Looking for something more? You can find complete templates & themes in our <a href="https://themes.material-ui.com/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-link">premium themes section</a>.
+Looking for something more? You can find complete templates & themes in the <a href="https://themes.material-ui.com/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-link">premium themes section</a>.
 
 <a href="https://themes.material-ui.com/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-image"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>

@@ -32,7 +32,7 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prop 
 
 ### Anpasster Stepper
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 
@@ -42,7 +42,7 @@ Mit nichtlinearen Steppern können Benutzer an jedem Punkt einen mehrstufigen Fl
 
 Dieses Beispiel ähnelt dem regulären horizontalen Stepper, mit der Ausnahme, dass Schritte nicht mehr automatisch auf `=disabled={true}` basierend auf der Eigenschaft `activeStep` gesetzt werden.
 
-Wir haben den `StepButton` hier verwendet, um anklickbare Schrittbeschriftungen zu demonstrieren sowie das Eigenschaft `completed`. Da Schritte auf nicht lineare Weise aufgerufen werden können, müssen Sie dies selbst implementieren und festzulegen, wann alle Schritte abgeschlossen sind (oder auch wenn sie abgeschlossen sein müssen).
+The use of the `StepButton` here demonstrates clickable step labels, as well as setting the `completed` flag. However because steps can be accessed in a non-linear fashion, it's up to your own implementation to determine when all steps are completed (or even if they need to be completed).
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js"}}
 

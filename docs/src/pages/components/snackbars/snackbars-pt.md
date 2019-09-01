@@ -5,7 +5,7 @@ components: Snackbar, SnackbarContent
 
 # Snackbar
 
-<p class="description">Snackbars fornecem mensagens breves sobre processos da aplicação - normalmente na parte inferior da tela.</p>
+<p class="description">Snackbars provide brief messages about app processes. The component is also known as a toast.</p>
 
 [Snackbars](https://material.io/design/components/snackbars.html) informam aos usuários de um processo que a aplicação realizou ou irá executar. Eles aparecem temporariamente, na parte inferior da tela. Eles não devem interromper a experiência do usuário e não exigem ação do usuário para que desapareça.
 
@@ -73,6 +73,6 @@ Para usos mais avançados, você pode tirar vantagem com:
 
 ![estrelas](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
 
-No exemplo a seguir, demonstramos como usar [notistack](https://github.com/iamhosseindhv/notistack). O notistack facilita a exibição de snackbars (para que você não tenha que lidar com o estado de abertura / fechamento delas). Também permite empilhá-los uns sobre os outros (mas não recomendamos devido a especificação).
+No exemplo a seguir, demonstramos como usar [notistack](https://github.com/iamhosseindhv/notistack). O notistack facilita a exibição de snackbars (para que você não tenha que lidar com o estado de abertura / fechamento delas). It also enables you to stack them on top of one another (although this is discouraged by the specification).
 
 {{"demo": "pages/components/snackbars/IntegrationNotistack.js"}}

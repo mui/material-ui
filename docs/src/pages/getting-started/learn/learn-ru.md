@@ -10,15 +10,15 @@
 
 ## Примеры проектов
 
-We [host some example projects](/getting-started/example-projects/) providing the infrastructure needed to develop and deploy websites in React.
+There are [some example projects](/getting-started/example-projects/) available, providing the infrastructure needed to develop and deploy websites in React.
 
 ## Templates
 
-We have a [selection of basic templates](/getting-started/templates/) to help you get started building your app.
+This [selection of basic templates](/getting-started/templates/) will help you get started building your app.
 
 ## Рекомендуемые ресурсы
 
-Впервые изучая Material-UI, вы можете найти публикации в блогах, книги и видео курсы более полезными, чем официальная документация. We maintain a list of commonly recommended resources, some of which are free.
+Впервые изучая Material-UI, вы можете найти публикации в блогах, книги и видео курсы более полезными, чем официальная документация. Here are some recommended resources, some of which are free.
 
 ### Free
 

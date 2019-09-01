@@ -1,6 +1,6 @@
 # Preguntas frecuentes
 
-<p class="description">¿Atrapado en un problema en particular? Revisa las dudas más comunes primero en nuestras Preguntas frecuentes.</p>
+<p class="description">¿Atrapado en un problema en particular? Check some of these common gotchas first in the FAQ.</p>
 
 If you still can't find what you're looking for, you can ask the community in [Spectrum](https://spectrum.chat/material-ui). Para preguntas how-to y otros non-issues, por favor utiliza [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) en lugar de los issues en Github. Existe una etiqueta en StackOverflow llamada `material-ui` que puedes usar para etiquetar tus preguntas.
 
@@ -22,7 +22,7 @@ Overall, it's simple to recover from this problem by wrapping each Material-UI a
 
 ## ¿Por qué los elementos de posición fija se mueven cuando se abre un modal?
 
-We block the scroll as soon as a modal is opened. This prevents interacting with the background when the modal should be the only interactive content, however, removing the scrollbar can make your **fixed positioned elements** move. In this situation, you can apply a global `.mui-fixed` class name to tell Material-UI to handle those elements.
+Scroll is blocked as soon as a modal is opened. This prevents interacting with the background when the modal should be the only interactive content, however, removing the scrollbar can make your **fixed positioned elements** move. In this situation, you can apply a global `.mui-fixed` class name to tell Material-UI to handle those elements.
 
 ## How can I disable the ripple effect globally?
 
@@ -108,7 +108,7 @@ As a rule of thumb, only use inline-style for dynamic style properties. The CSS 
 
 ## How do I use react-router?
 
-We have documented how to use a [third-party routing library](/components/buttons/#third-party-routing-library) with the `ButtonBase` component. A lot of our interactive components use it internally: `Link`, `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. You can use the same solution with them.
+How to use a [third-party routing library](/components/buttons/#third-party-routing-library) is documented with the `ButtonBase` component. A lot of the interactive components use it internally: `Link`, `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. You can use the same solution with them.
 
 ## How can I access the DOM element?
 
@@ -215,7 +215,7 @@ If you have several applications running on one page, consider using one @materi
 
 ## My App doesn't render correctly on the server
 
-If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component. We are very strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out our [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
+If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component. Server side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
 ### CSS works only on first load then is missing
 
@@ -223,7 +223,7 @@ The CSS is only generated on the first load of the page. Then, the CSS is missin
 
 #### Action to Take
 
-We rely on a cache, the sheets manager, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). You need to create **a new `sheets` instance for each request**.
+The styling solution relies on a cache, the *sheets manager*, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). You need to create **a new `sheets` instance for each request**.
 
 *example of fix:*
 
@@ -358,4 +358,33 @@ function App() {
     </div>
   );
 }
+```
+
+## What's the clsx dependency for?
+
+[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally.
+
+Instead of writing:
+
+```jsx
+return (
+  <div
+    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ? 'Mui-selected' : ''}`}
+  />
+);
+```
+
+you can do:
+
+```jsx
+import clsx from 'clsx';
+
+return (
+  <div
+    className={clsx('MuiButton-root', {
+      'Mui-disabled': disabled,
+      'Mui-selected': selected,
+    })}
+  />
+);
 ```

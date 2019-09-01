@@ -9,7 +9,7 @@ components: ToggleButton, ToggleButtonGroup
 
 Para enfatizar grupos de [botões de alternância](https://material.io/design/components/buttons.html#toggle-button) relacionados, o grupo deve ter um container em comum.
 
-O `ToggleButtonGroup` controlará o selecionado de seus botões filhos quando receber sua propriedade `value`.
+The `ToggleButtonGroup` will control the selected state of its child buttons when given its own `value` prop.
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 
@@ -18,3 +18,13 @@ O `ToggleButtonGroup` controlará o selecionado de seus botões filhos quando re
 Gosta de botões maiores ou menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
+
+## Standalone toggle button
+
+{{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}
+
+## Acessibilidade
+
+ToggleButtonGroup has `role="group"`. You should provide an accessible label with `arial-label="label"`, `aria-labelledby="id"` or `<label>`.
+
+ToggleButton sets `aria-pressed="<bool>"` according to the button state. You should label each button with `aria-label`.

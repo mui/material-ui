@@ -1,5 +1,6 @@
 {
   "homeQuickWord": "来自我们的赞助商的一个简短概括：",
+  "helpToTranslate": "Help to translate",
   "editWebsiteColors": "编辑网站的颜色",
   "toggleTheme": "在light（亮色）和dark（暗色）主题中切换",
   "toggleRTL": "从右到左/从左到右切换",
@@ -28,7 +29,7 @@
   "team": " 团队",
   "homeFooterRelease": "当前 {{versionNumber}}. 根据 {{license}} 发布。",
   "license": "MIT 许可证",
-  "likeMui": "喜欢 Material-UI 吗？",
+  "likeMui": "帮助我们继续运行",
   "adblock": "如果您不介意与技术相关的广告，并且支持开源代码，请在你的 ad blocker 中将 Material-UI 设置为白名单。",
   "thanks": "感谢！",
   "editPage": "帮助改进此页面的翻译",
@@ -87,7 +88,7 @@
     "/getting-started/installation": "安装",
     "/getting-started/usage": "使用",
     "/getting-started/example-projects": "范例项目",
-    "/getting-started/templates": "Templates",
+    "/getting-started/templates": "模板",
     "/getting-started/learn": "学习",
     "/getting-started/faq": "常见问题解答",
     "/getting-started/supported-components": "支持的组件",
@@ -132,7 +133,7 @@
     "/components/no-ssr": "没有 SSR",
     "/components/other": "其他",
     "/components/paper": "Paper（纸张）",
-    "/components/pickers": "Date/Time（日期/时间）",
+    "/components/pickers": "Date / Time",
     "/components/popover": "Popover（弹出框）",
     "/components/popper": "Popper（弹出提示工具）",
     "/components/portal": "Portal（传送门）",
@@ -172,7 +173,7 @@
     "/system/spacing": "Spacing（间距）",
     "/system/typography": "Typography（文字铸排）",
     "/customization": "个性化",
-    "/customization/theming": "Theming",
+    "/customization/theming": "概览",
     "/customization/breakpoints": "Breakpoints（断点）",
     "/customization/color": "Color（颜色）",
     "/customization/themes": "概览",
@@ -212,6 +213,12 @@
     "/styles": "Styles（样式表单）",
     "/styles/basics": "基础",
     "/styles/advanced": "高级",
-    "https://themes.material-ui.com/": "高级版主题"
+    "https://themes.material-ui.com/": "高级版主题",
+    "/components/material-icons": "Material Icons",
+    "/components/textarea-autosize": "Textarea Autosize",
+    "/components/rating": "Rating",
+    "/components/skeleton": "Skeleton",
+    "/components/tree-view": "树视图",
+    "/customization/density": "间距(density)"
   }
 }

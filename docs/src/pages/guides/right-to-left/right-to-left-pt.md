@@ -32,7 +32,7 @@ npm install jss-rtl
 
 Tendo instalado o plugin em seu projeto, os componentes de Material-UI ainda exigem que ele seja carregado pela instância do jss, conforme descrito abaixo. Internamente, withStyles está usando este plugin JSS quando `direção: 'rtl'` está definido no tema. Vá para o [README do plugin](https://github.com/alitaheri/jss-rtl) para aprender mais sobre isso.
 
-Depois de criar uma nova instância do JSS com o plugin, você precisará disponibilizá-la para todos os componentes na árvore de componentes. Nós temos um componente [`StylesProvider`](/styles/api/#stylesprovider) para isso:
+Depois de criar uma nova instância do JSS com o plugin, você precisará disponibilizá-la para todos os componentes na árvore de componentes. The [`StylesProvider`](/styles/api/#stylesprovider) component enables this:
 
 ```jsx
 import { create } from 'jss';

@@ -2,13 +2,11 @@
 
 <p class="description">Das Theme bietet eine Anzahl von Schriftgrößen, die gut zusammen mit dem Layoutraster funktionieren.</p>
 
-The following example demonstrates how to change the [default values](/customization/default-theme/?expend-path=$.typography) of the typography in the theme. You can learn more about how to use the [Typography component](/components/typography/) by checking out the dedicated page.
-
-{{"demo": "pages/customization/typography/TypographyTheme.js"}}
-
 ## Schriftfamilie
 
-Sie können die Systemschriftart anstelle der Standardschriftart Roboto verwenden.
+You can change the font family with the `theme.typography.fontFamily` property.
+
+For instance, this demo use the system font instead of the default Roboto font:
 
 ```js
 const theme = createMuiTheme({
@@ -29,11 +27,11 @@ const theme = createMuiTheme({
 });
 ```
 
-## Bereitstellen von eigenen Schriftarten
+### Self-hosted fonts
 
-Um Schriftarten selbst zu hosten, laden Sie diese als ` ttf`, ` woff ` und/oder ` woff2 ` herunter und importieren Sie diese in Ihren Code.
+To self-host fonts, download the font files in `ttf`, `woff`, and/or `woff2` formats and import them into your code.
 
-⚠️ Voraussetzung dafür ist, dass Sie in Ihrem Build-Prozess ein Plugin oder Loader haben, dass das Laden von `ttf`, `woff` und `woff2` Datein ermöglicht. Schriftarten werden *nicht * in deinen Bundle eingebettet sein. Sie werden von Ihrem Webserver anstelle von CDN geladen.
+⚠️ This requires that you have a plugin or loader in your build process that can handle loading `ttf`, `woff`, and `woff2` files. Fonts will *not* be embedded within your bundle. They will be loaded from your webserver instead of a CDN.
 
 ```js
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
@@ -52,24 +50,12 @@ const raleway = {
 };
 ```
 
-Dann können Sie das Theme ändern, um diese neue Schriftart zu verwenden. Um Raleway global als Schriftart zu definieren, verwenden Sie die [`CssBaseline`](/components/css-baseline/) Komponente.
+Next, you need to change the theme to use this new font. In order to globally define Raleway as a font face, the [`CssBaseline`](/components/css-baseline/) component can be used (or any other CSS solution of your choice).
 
 ```js
 const theme = createMuiTheme({
   typography: {
-    fontFamily: [
-      'Raleway',
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
+    fontFamily: 'Raleway, Arial',
   },
   overrides: {
     MuiCssBaseline: {
@@ -83,9 +69,9 @@ const theme = createMuiTheme({
 
 ## Schriftgröße
 
-Material-UI verwendet `rem` Einheiten für die Schriftgröße. Die Standardschriftgröße des Browsers `<html>` ist `16px`, aber Browser haben eine Option, um diesen Wert zu ändern, deshalb ermöglichen es uns `rem` Einheiten, die Einstellungen des Benutzers anzupassen, was zu einer viel besseren Benutzererfahrung führt. Benutzer ändern Schriftgröße aus alle Arten von Gründen, von Sehschwäche bis zu optimalen Einstellungen für Geräte, die sehr unterschiedlich in Größe und Betrachtungsabstand sein können.
+Material-UI uses `rem` units for the font size. The browser `<html>` element default font size is `16px`, but browsers have an option to change this value, so `rem` units allow us to accommodate the user's settings, resulting in a better accessibility support. Users change font size settings for all kinds of reasons, from poor eyesight to choosing optimum settings for devices that can be vastly different in size and viewing distance.
 
-Um die Schriftgröße der Material-UI zu ändern, können Sie eine `fontSize` Eigenschaft angeben. Der Standardwert ist `14px`.
+To change the font-size of Material-UI you can provide a `fontSize` property. The default value is `14px`.
 
 ```js
 const theme = createMuiTheme({
@@ -97,13 +83,13 @@ const theme = createMuiTheme({
 });
 ```
 
-Die vom Browser berechnete Schriftgröße folgt dieser mathematischen Gleichung:
+The computed font size by the browser follows this mathematical equation:
 
 ![font-size](/static/images/font-size.gif) <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
-## HTML-Schriftgröße
+### HTML font size
 
-Möglicherweise möchten Sie die Standardschriftgröße des `<html>` Elements ändern. Zum Beispiel bei der Verwendung der [10px-Vereinfachung](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/). Wir bieten eine `htmlFontSize` Theme-Eigenschaft für diesen Anwendungsfall an. Es sagt dem Material-UI, was die Schriftgröße des `<html>`-Elements ist. Es wird verwendet, um den `rem` Wert einzustellen, damit die berechnete Schriftgröße immer der Spezifikation entspricht.
+You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/). An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createMuiTheme({
@@ -120,13 +106,13 @@ html {
 }
 ```
 
-*Sie müssen das obige CSS auf das HTML-Element dieser Seite anwenden, um die unten stehende Demo korrekt anzuzeigen*
+*You need to apply the above CSS on the html element of this page to see the below demo rendered correctly*
 
 {{"demo": "pages/customization/typography/FontSizeTheme.js"}}
 
-## Responsive Schriftgrößen
+### Responsive font sizes
 
-Die Eigenschaften der Typografievarianten werden direkt dem generierten CSS zugeordnet. Sie können in ihnen [Medienabfragen](/customization/breakpoints/#api) verwenden:
+The typography variants properties map directly to the generated CSS. You can use [media queries](/customization/breakpoints/#api) inside them:
 
 ```js
 const theme = createMuiTheme();
@@ -146,10 +132,59 @@ To automate this setup, you can use the [`responsiveFontSizes()`](/customization
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideHeader": true}}
 
-Sie können dies in dem folgenden Beispiel in Aktion sehen. Passen Sie die Fenstergröße Ihres Browsers an und beachten Sie, wie sich die Schriftgröße ändert, wenn die Breite die unterschiedlichen [Haltepunkte](/customization/breakpoints/) überschreitet:
+You can see this in action in the example below. adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
+
+```js
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+
+let theme = createMuiTheme();
+theme = responsiveFontSizes(theme);
+```
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizes.js"}}
 
-## Fließende Schriftgrößen
+### Fluid font sizes
 
-Noch zu tun: [#15251](https://github.com/mui-org/material-ui/issues/15251).
+To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
+
+## Varianten
+
+The typography object comes with [13 variants](/components/typography/#component) by default:
+
+- h1
+- h2
+- h3
+- h4
+- h5
+- h6
+- subtitle1
+- subtitle2
+- body1
+- body2
+- button
+- caption
+- overline
+
+Each of these variants can be customized individually:
+
+```js
+const theme = createMuiTheme({
+  typography: {
+    subtitle1: {
+      fontSize: 12,
+    },
+    body1: {
+      fontWeight: 500,
+    },
+    button: {
+      fontStyle: 'italic',
+    },
+  },
+});
+```
+
+{{"demo": "pages/customization/typography/TypographyVariants.js"}}
+
+## Default values
+
+You can explore the default values of the typography using [the theme explorer](/customization/default-theme/?expend-path=$.typography) or by opening the dev tools console on this page (`window.theme.typography`).

@@ -107,7 +107,7 @@ export default App
 - [spacing](/system/spacing/#api)
 - [typography](/system/typography/#api)
 
-如果你已经在使用 `@material-ui/core`，你可以用我们 [预写好的 Box ](/components/box/)组件 (内部使用了 JSS)：
+If you are already using `@material-ui/core`, you can use the [Box component](/components/box/) (using JSS internally):
 
 ```jsx
 import Box from '@material-ui/core/Box';
@@ -190,7 +190,7 @@ const theme = {
 
 ### Collocation
 
-如果你想要聚合一组断点值，可以使用我们的工具函数 `breakpoints()` 。
+If you want to group the breakpoint values, you can use the `breakpoints()` helper.
 
 ```jsx
 import { compose, spacing, palette, breakpoints } from '@material-ui/system';
@@ -232,7 +232,7 @@ const Box = styled.div`
 
 你可以使用这个函数来创建你自己的样式工具。
 
-我们没有支持所有CSS属性。 不过如果你想，你可以支持一个新的属性。 改变的主题路径的前缀也是可以的。
+Not all CSS properties are supported. 不过如果你想，你可以支持一个新的属性。 改变的主题路径的前缀也是可以的。
 
 #### 参数
 
@@ -248,7 +248,7 @@ const Box = styled.div`
 
 #### 例子
 
-我们可以创建一个支持一些CSS网格属性的组件，比如` grid-gap ` 。 通过提供`spacing`作为` themeKey `我们可以重用逻辑来启用我们在其他间距属性（如`padding`）中看到的行为。
+You can create a component that supports some CSS grid properties like `grid-gap`. By supplying `spacing` as the `themeKey` you can reuse logic enabling the behavior we see in other spacing properties like `padding`.
 
 ```jsx
 import styled from 'styled-components';
@@ -264,7 +264,7 @@ const Grid = styled(Box)`${gridGap}`;
 const example = <Grid display="grid" gridGap={[2, 3]}>...</Grid>;
 ```
 
-我们还可以通过添加` prop `和` cssProperty `来定制属性名，还可以添加`transform`方法来转换它的值。
+You can also customize the prop name by adding both a `prop` and `cssProperty` and transform the value by adding a `transform` function.
 
 ```jsx
 import styled from 'styled-components';
@@ -316,7 +316,7 @@ const palette = compose(textColor, bgcolor);
 
 ## CSS 属性
 
-如果你想要自定义CSS值，可以使用`css()`， 它可以处理的 `css` 属性。
+If you want to support custom CSS values, you can use the `css()` helper. 它可以处理的 `css` 属性。
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
@@ -336,7 +336,7 @@ styled-system在[解释它如何工作](https://github.com/jxnblk/styled-system/
 
 - [Tachyons](https://tachyons.io/) (2014年) 是第一个促进了 [原子 CSS 模式(Atomic CSS pattern)](https://css-tricks.com/lets-define-exactly-atomic-css/) 发展的CSS库。
 - TachyTachyons (2017年) 跟随了 [Tailwind CSS](https://tailwindcss.com/) 的脚步 他们让原子CSS更受欢迎。
-- [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) 在v2，v3, 和v4中一步步介绍了原子类名 他们使用 `Helper classes` 聚合它们的方式给了我们启发。
+- [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) 在v2，v3, 和v4中一步步介绍了原子类名 The way they group their "Helper classes" was used as inspiration.
 - 在 React 世界中， [Styled System](https://github.com/jxnblk/styled-system) (2017年) 是第一个推动样式函数的。 它可以做出一个通用的 Box 组件来已经衍生其他组件，这种方式可以替换原子CSS之中的辅助原子类的做法。
 - Large companies such as Pinterest, GitHub, and Segment.io are using the same approach in different flavours: 
   - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)

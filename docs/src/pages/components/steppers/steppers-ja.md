@@ -3,7 +3,7 @@ title: Stepper React component
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
 
-# Steppers
+# ステッパー（Steppers）
 
 <p class="description">ステッパーは、番号の付いたステップを通して進捗を伝えます。 ウィザードのようなワークフローを提供します。</p>
 
@@ -30,9 +30,9 @@ components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIco
 
 {{"demo": "pages/components/steppers/HorizontalLinearAlternativeLabelStepper.js"}}
 
-### Customized Stepper
+### カスタマイズされたステッパー
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 
@@ -42,7 +42,7 @@ Non-linearステッパーにより、ユーザーはいつでもマルチステ�
 
 この例は、ステップが `activeStep` プロパティに基づいて `disabled ={true}` 自動的に設定されることを除いて、通常の水平ステッパーに似ています。
 
-ここでは、</code>StepButton</code>を使用して、クリック可能なステップラベルと、`completed`の設定を示します。 しかし、ステップはノンリニアな方法でアクセスできるので、それはあなた自身の実装次第です。 すべての手順が完了したことを確認します(完成させる必要があっても)。
+The use of the `StepButton` here demonstrates clickable step labels, as well as setting the `completed` flag. However because steps can be accessed in a non-linear fashion, it's up to your own implementation to determine when all steps are completed (or even if they need to be completed).
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js"}}
 

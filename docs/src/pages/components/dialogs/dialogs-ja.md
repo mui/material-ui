@@ -38,13 +38,13 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 - 「USBストレージを消去しますか?」など、内容領域に明確な質問や説明を入力します。
 - 「警告」や「よろしいですか」などの謝罪、あいまいさ、または質問を避けます。
 
-{{"demo":"pages/components/dialogs/AlertDialog.js"}}
+{{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
 ## Transições
 
 トランジションを入れ替えることもできます。次の例では、`Slide`. を使用します。
 
-{{"demo":"pages/components/dialogs/AlertDialogSlide.js"}}
+{{"demo": "pages/components/dialogs/AlertDialogSlide.js"}}
 
 ## フォームダイアログ
 
@@ -62,7 +62,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## Full-screen dialogs
 
-{{"demo":"pages/components/dialogs/FullScreenDialog.js"}}
+{{"demo": "pages/components/dialogs/FullScreenDialog.js"}}
 
 ## オプションサイズ
 
@@ -85,7 +85,7 @@ function MyComponent() {
 }
 ```
 
-{{"demo":"pages/components/dialogs/ResponsiveDialog.js"}}
+{{"demo": "pages/components/dialogs/ResponsiveDialog.js"}}
 
 ## 確認ダイアログ
 
@@ -114,7 +114,7 @@ function MyComponent() {
 
 [react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。
 
-{{"demo":"pages/components/dialogs/DraggableDialog.js"}}
+{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## パフォーマンス
 

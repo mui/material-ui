@@ -70,8 +70,10 @@ yarn add @material-ui/styles
 
 ### Estilos
 
-- ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9. Make sure JSS v9 is not installed in your environment. Removing `react-jss` from your `package.json` can help. The StylesProvider component replaces the JssProvider one.
-- Remove the first option argument of `withTheme()`. The first argument was a placeholder for a potential future option. We have never found a need for it. It's time to remove this argument. It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
+- ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9. Make sure JSS v9 is not installed in your environment. (Removing `react-jss` from your `package.json` can help). The StylesProvider component replaces the JssProvider one.
+- Remove the first option argument of `withTheme()`. (The first argument was a placeholder for a potential future option that never arose.)
+  
+    It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
 
 ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
@@ -170,7 +172,7 @@ function MySelect({ children }) {
 }
 ```
 
-This change is explained in more detail in our [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
+This change is explained in more detail in the [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
 
 ### Button
 
@@ -356,7 +358,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   - FormLabelClasses={{ asterisk: 'bar' }}
   + classes={{ asterisk: 'bar' }}
   >
-    Foo
+  Foo
   </InputLabel>
   ```
 
@@ -395,7 +397,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   +<Typography variantMapping={variantMapping}>
   ```
 
-- [Typography] Change the default variant from `body2` to `body1`. A font size of 16px is a better default than 14px. Bootstrap, material.io, and even our documentation use 16px as a default font size. 14px like Ant Design uses is understandable, as Chinese users have a different alphabet. We recommend 12px as the default font size for Japanese.
+- [Typography] Change the default variant from `body2` to `body1`. A font size of 16px is a better default than 14px. Bootstrap, material.io, and even the documentation use 16px as a default font size. 14px like Ant Design uses is understandable, as Chinese users have a different alphabet. 12px is recommended as the default font size for Japanese.
 - [Typography] Remove the default color from the typography variants. The color should inherit most of the time. It's the default behavior of the web.
 - [Typography] Rename `color="default"` to `color="initial"` following the logic of [this thread](https://github.com/mui-org/material-ui/issues/13028). The usage of *default* should be avoided, it lacks semantic.
 
@@ -409,8 +411,8 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   
   ```diff
   const {
-  Button,
-  TextField,
+    Button,
+    TextField,
   -} = window['material-ui'];
   +} = MaterialUI;
   ```

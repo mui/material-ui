@@ -25,7 +25,7 @@ However, the Link component has different default properties than the Typography
 
 {{"demo": "pages/components/links/ButtonLink.js"}}
 
-## Security
+## Безопасность
 
 When you use `target="_blank"` with Links, it is [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to third party content.
 
@@ -38,4 +38,4 @@ One common use case is to perform the navigation on the client only, without doi
 
 {{"demo": "pages/components/links/LinkRouter.js", "defaultCodeOpen": true}}
 
-*Note: Creating the Link components is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*
+*Note: Creating the Link components is necessary to prevent unexpected unmounting. You can read more about it in the [component prop guide](/guides/composition/#component-property).*

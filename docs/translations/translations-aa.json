@@ -1,5 +1,6 @@
 {
   "homeQuickWord": "crwdns99822:0crwdne99822:0",
+  "helpToTranslate": "crwdns100754:0crwdne100754:0",
   "editWebsiteColors": "crwdns99824:0crwdne99824:0",
   "toggleTheme": "crwdns99826:0crwdne99826:0",
   "toggleRTL": "crwdns99828:0crwdne99828:0",
@@ -132,7 +133,7 @@
     "/components/no-ssr": "crwdns100080:0crwdne100080:0",
     "/components/other": "crwdns100082:0crwdne100082:0",
     "/components/paper": "crwdns100084:0crwdne100084:0",
-    "/components/pickers": "crwdns100086:0crwdne100086:0",
+    "/components/pickers": "crwdns100756:0crwdne100756:0",
     "/components/popover": "crwdns100088:0crwdne100088:0",
     "/components/popper": "crwdns100090:0crwdne100090:0",
     "/components/portal": "crwdns100092:0crwdne100092:0",
@@ -172,7 +173,7 @@
     "/system/spacing": "crwdns100160:0crwdne100160:0",
     "/system/typography": "crwdns100162:0crwdne100162:0",
     "/customization": "crwdns100164:0crwdne100164:0",
-    "/customization/theming": "crwdns100166:0crwdne100166:0",
+    "/customization/theming": "crwdns100758:0crwdne100758:0",
     "/customization/breakpoints": "crwdns100168:0crwdne100168:0",
     "/customization/color": "crwdns100170:0crwdne100170:0",
     "/customization/themes": "crwdns100172:0crwdne100172:0",
@@ -212,6 +213,12 @@
     "/styles": "crwdns100240:0crwdne100240:0",
     "/styles/basics": "crwdns100242:0crwdne100242:0",
     "/styles/advanced": "crwdns100244:0crwdne100244:0",
-    "https://themes.material-ui.com/": "crwdns100246:0crwdne100246:0"
+    "https://themes.material-ui.com/": "crwdns100246:0crwdne100246:0",
+    "/components/material-icons": "crwdns100760:0crwdne100760:0",
+    "/components/textarea-autosize": "crwdns100762:0crwdne100762:0",
+    "/components/rating": "crwdns100764:0crwdne100764:0",
+    "/components/skeleton": "crwdns100766:0crwdne100766:0",
+    "/components/tree-view": "crwdns100768:0crwdne100768:0",
+    "/customization/density": "crwdns100770:0crwdne100770:0"
   }
 }

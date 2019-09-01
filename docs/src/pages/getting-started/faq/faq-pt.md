@@ -1,6 +1,6 @@
 # Perguntas Frequentes
 
-<p class="description">Preso em um determinado problema? Confira algumas dessas dicas recorrentes em nosso FAQ.</p>
+<p class="description">Preso em um determinado problema? Check some of these common gotchas first in the FAQ.</p>
 
 Se você não encontrou o que procurava, você pode perguntar para a comunidade no [Spectrum](https://spectrum.chat/material-ui). Para perguntas sobre como fazer e outros assuntos, use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) em vez de abrir issues no Github. Há uma tag no StackOverflow chamada `material-ui` que você pode usar para marcar suas perguntas.
 
@@ -22,7 +22,7 @@ No geral, é simples livrar-se desse problema encapsulando cada aplicação Mate
 
 ## Por que os elementos posicionados como fixos se movem quando um modal é aberto?
 
-Nós bloqueamos a rolagem assim que um modal é aberto. Isso evita a interação com o segundo plano quando o modal deve ser o único conteúdo interativo, no entanto, remover a barra de rolagem pode fazer com que seus **elementos posicionados como fixos** se movam. Nesta situação, você pode aplicar um nome de classe global `.mui-fixed ` para informar ao Material-UI para manipular esses elementos.
+Scroll is blocked as soon as a modal is opened. Isso evita a interação com o segundo plano quando o modal deve ser o único conteúdo interativo, no entanto, remover a barra de rolagem pode fazer com que seus **elementos posicionados como fixos** se movam. Nesta situação, você pode aplicar um nome de classe global `.mui-fixed ` para informar ao Material-UI para manipular esses elementos.
 
 ## Como posso desativar o efeito cascata globalmente?
 
@@ -108,7 +108,7 @@ Como regra geral, use apenas o estilo em linha para propriedades de estilo dinâ
 
 ## Como usar react-router?
 
-Documentamos como usar uma [biblioteca de roteamento de terceiros ](/components/buttons/#third-party-routing-library) com o componente `ButtonBase`. Muitos de nossos componentes interativos usam internamente: `Link`, `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. Você pode usar a mesma solução com eles.
+How to use a [third-party routing library](/components/buttons/#third-party-routing-library) is documented with the `ButtonBase` component. A lot of the interactive components use it internally: `Link`, `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. Você pode usar a mesma solução com eles.
 
 ## Como posso acessar o elemento DOM?
 
@@ -215,7 +215,7 @@ Se você tiver várias aplicações em execução em uma página, considere o us
 
 ## Minha aplicaçao não é renderizada corretamente no servidor
 
-Se isso não funcionar, em 99% dos casos é um problema de configuração. Uma propriedade ausente, uma ordem de chamada incorreta ou um componente ausente. Somos muito rigorosos quanto à configuração, e a melhor maneira de descobrir o que está errado é comparar seu projeto com uma configuração já em funcionamento, confira nossas [implementações de referência](/guides/server-rendering/#reference-implementations), de ponto a ponto.
+Se isso não funcionar, em 99% dos casos é um problema de configuração. Uma propriedade ausente, uma ordem de chamada incorreta ou um componente ausente. Server side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
 ### O CSS funciona apenas no primeiro carregamento, em seguida, para de funcionar
 
@@ -223,7 +223,7 @@ O CSS é gerado apenas no primeiro carregamento da página. Em seguida, o CSS n�
 
 #### Ação a tomar
 
-Contamos com um cache, o gerenciador de folhas (sheets), para injetar apenas o CSS uma vez por tipo de componente (se você usa dois botões, você só precisa do CSS do botão uma vez). Você precisa criar **uma nova instância de `sheets` para cada requisição **.
+The styling solution relies on a cache, the *sheets manager*, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). Você precisa criar **uma nova instância de `sheets` para cada requisição **.
 
 *exemplo de correção:*
 
@@ -358,4 +358,33 @@ function App() {
     </div>
   );
 }
+```
+
+## What's the clsx dependency for?
+
+[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally.
+
+Instead of writing:
+
+```jsx
+return (
+  <div
+    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ? 'Mui-selected' : ''}`}
+  />
+);
+```
+
+you can do:
+
+```jsx
+import clsx from 'clsx';
+
+return (
+  <div
+    className={clsx('MuiButton-root', {
+      'Mui-disabled': disabled,
+      'Mui-selected': selected,
+    })}
+  />
+);
 ```

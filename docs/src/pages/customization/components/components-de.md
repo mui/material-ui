@@ -85,7 +85,7 @@ Um die internen Zustände der Komponenten zu überschreiben, **müssen Sie die S
 .Button {
   color: black;
 }
-.Button:disabled { /* We increase the specificity */
+.Button:disabled { /* Increase the specificity */
   color: white;
 }
 ```
@@ -100,7 +100,7 @@ Manchmal können Sie keine **Pseudoklasse** verwenden, da der Zustand nicht in d
 .MenuItem {
   color: black;
 }
-.MenuItem.selected { /* We increase the specificity */
+.MenuItem.selected { /* Increase the specificity */
   color: blue;
 }
 ```
@@ -133,7 +133,7 @@ Instead of providing values to the `classes` prop API, you can rely on [the glob
 .MenuItem {
   color: black;
 }
-.MenuItem.Mui-selected { /* We increase the specificity */
+.MenuItem.Mui-selected { /* Increase the specificity */
   color: blue;
 }
 ```
@@ -251,7 +251,7 @@ const theme = createMuiTheme({
 
 ### Globales CSS überschreiben
 
-Sie können auch alle Instanzen einer Komponente mit CSS anpassen. Wir legen [globale Klassennamen](/styles/advanced/#with-material-ui-core) offen, um das zu tun. Es ist sehr ähnlich, wie Sie Bootstrap anpassen würden.
+Sie können auch alle Instanzen einer Komponente mit CSS anpassen. Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this. Es ist sehr ähnlich, wie Sie Bootstrap anpassen würden.
 
 ```jsx
 const GlobalCss = withStyles({

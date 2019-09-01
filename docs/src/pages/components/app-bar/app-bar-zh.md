@@ -1,5 +1,5 @@
 ---
-title: React的 App Bar（应用栏）组件
+title: React App Bar（应用栏）组件
 components: AppBar, Toolbar, Menu
 ---
 
@@ -11,53 +11,53 @@ components: AppBar, Toolbar, Menu
 
 它可以转换为上下文相关的操作栏或直接用作导航栏。
 
-## Simple App Bar
+## 简单的应用栏
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
 
-## App Bar with a primary search field
+## 带一个主搜索输入框的应用栏
 
-A primary searchbar.
+一个主要搜索栏。
 
 {{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
 
-## App Bar with menu
+## 带有菜单的应用栏
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js"}}
 
-## App Bar with search field
+## 带有搜索输入框的应用栏
 
-A side searchbar.
+一个侧边搜索栏。
 
 {{"demo": "pages/components/app-bar/SearchAppBar.js"}}
 
-## Dense (desktop only)
+## 紧凑模式 (仅限桌面模式)
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js"}}
 
-## Bottom App Bar
+## 底部应用栏
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Scrolling
+## 滚动
 
-You can use the `useScrollTrigger()` hook to respond to user scroll actions.
+您可以使用 `useScrollTrigger()` 挂钩来回应用户的滚动操作。
 
 ### 隐藏应用栏
 
-The app bar hides on scroll down to leave more space for reading.
+当向下滚动时，应用栏将会隐藏，这样一来会留有更多的空间进行阅读。
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### 变高的应用栏
 
-The app bar elevates on scroll to communicate that the user is not at the top of the page.
+应用栏会在滚动时提升，以表明用户还未到页面的顶部。
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
 
-### Back to top
+### 回到顶部
 
-A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+在滚动的时候，会出现一个浮动操作按钮，这样以便于返回页面的顶部。
 
 {{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
 
@@ -73,7 +73,7 @@ A floating action buttons appears on scroll to make it easy to get back to the t
 
 #### 返回结果
 
-`trigger`: Does the scroll position match the criteria?
+`trigger` ：滚动的位置是否符合标准？
 
 #### 例子
 

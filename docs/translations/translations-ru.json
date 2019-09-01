@@ -1,5 +1,6 @@
 {
   "homeQuickWord": "Несколько слов от наших спонсоров:",
+  "helpToTranslate": "Help to translate",
   "editWebsiteColors": "Редактировать цветовую гамму сайта",
   "toggleTheme": "Переключить светлую/темную тему",
   "toggleRTL": "Переключить справа-налево/слева-направо",
@@ -132,7 +133,7 @@
     "/components/no-ssr": "No SSR",
     "/components/other": "Прочее",
     "/components/paper": "Paper",
-    "/components/pickers": "Date/Time",
+    "/components/pickers": "Date / Time",
     "/components/popover": "Popover",
     "/components/popper": "Popper",
     "/components/portal": "Portal",
@@ -172,7 +173,7 @@
     "/system/spacing": "Интервал",
     "/system/typography": "Оформление текста",
     "/customization": "Customization",
-    "/customization/theming": "Theming",
+    "/customization/theming": "Themes",
     "/customization/breakpoints": "Точки останова",
     "/customization/color": "Цвет",
     "/customization/themes": "Themes",
@@ -212,6 +213,12 @@
     "/styles": "Styles",
     "/styles/basics": "Основы",
     "/styles/advanced": "Advanced",
-    "https://themes.material-ui.com/": "Премиум темы"
+    "https://themes.material-ui.com/": "Премиум темы",
+    "/components/material-icons": "Material Icons",
+    "/components/textarea-autosize": "Textarea Autosize",
+    "/components/rating": "Rating",
+    "/components/skeleton": "Skeleton",
+    "/components/tree-view": "Tree View",
+    "/customization/density": "Density"
   }
 }

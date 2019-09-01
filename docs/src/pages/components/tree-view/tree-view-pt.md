@@ -13,10 +13,10 @@ As visualizações em árvore podem ser usadas para representar um navegador do 
 
 ## Visualização em árvore customizada
 
-### Custom icons, border and animation
+### Ícones customizados, borda e animação
 
 {{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
 
-### Gmail clone
+### Clone do Gmail
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}

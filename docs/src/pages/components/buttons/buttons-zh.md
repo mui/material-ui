@@ -96,7 +96,7 @@ ButtonGroup也可用于创建分割按钮。 下拉列表可以更改按钮操�
 
 ## Customized Buttons（自定义按钮）
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+以下是自定义组件的一些例子。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 
@@ -110,10 +110,10 @@ Here are some examples of customizing the component. You can learn more about th
 
 ## Third-party routing library（第三方路由库）
 
-一个常见的用例是使用按钮触发导航到新页面。 `ButtonBase` 组件提供了一个处理此用例的属性：`component`。 然而，一些特定 `ButtonBase` 的代码需要所给组件的 DOM 节点。 在组件上附加一个 ref，并且预期此组件能够将这个 ref 传递到下层 DOM 节点，通过这样的方法可以实现。 鉴于我们的许多交互式组件都依赖于 `ButtonBase`，你几乎可以在任何地方都能体验到使用它的好处：
+一个常见的用例是使用按钮触发导航到新页面。 `ButtonBase` 组件提供了一个处理此用例的属性：`component`。 然而，一些特定 `ButtonBase` 的代码需要所给组件的 DOM 节点。 在组件上附加一个 ref，并且预期此组件能够将这个 ref 传递到下层 DOM 节点，通过这样的方法可以实现。 Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
 这里有个使用了react-router的示例：
 
 {{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 
-*备注：为防止意外的卸载，创建Link组件非常必要。 You can read more about it in our [component property guide](/guides/composition/#component-property).*
+*备注：为防止意外的卸载，创建Link组件非常必要。 You can read more about it in the [component prop guide](/guides/composition/#component-property).*

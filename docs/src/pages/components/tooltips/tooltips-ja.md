@@ -21,7 +21,7 @@ components: Tooltip
 
 ## Customized tooltips
 
-コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
@@ -31,7 +31,7 @@ components: Tooltip
 
 ```jsx
 function MyComponent(props) {
-  // We spread the properties to the underlying DOM element.
+  //  Spread the properties to the underlying DOM element.
   return <div {...props}>Bin</div>
 }
 
