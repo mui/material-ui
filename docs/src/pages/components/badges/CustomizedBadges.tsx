@@ -9,9 +9,9 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 const StyledBadge1 = withStyles((theme: Theme) =>
   createStyles({
     badge: {
-      top: '50%',
       right: -3,
       border: `2px solid ${theme.palette.background.paper}`,
+      padding: '0 4px',
     },
   }),
 )(Badge);
