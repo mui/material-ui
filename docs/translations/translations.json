@@ -219,15 +219,6 @@
     "/components/rating": "Rating",
     "/components/skeleton": "Skeleton",
     "/components/tree-view": "Tree View",
-    "/customization/density": "Density",
-    "/blog": "Blog",
-    "/blog/july-2019-update": "July 2019 Update",
-    "/blog/june-2019-update": "June 2019 Update",
-    "/blog/may-2019-update": "May 2019 Update",
-    "/blog/material-ui-v4-is-out": "Material-UI v4 is out",
-    "/blog/april-2019-update": "April 2019 Update",
-    "/blog/march-2019-update": "March 2019 Update",
-    "/blog/2019-developer-survey-results": "2019 Developer Survey Results",
-    "/blog/material-ui-v1-is-out": "Material-UI v1 is out"
+    "/customization/density": "Density"
   }
 }
