@@ -19,17 +19,6 @@ const pages = [
     children: [
       {
         pathname: '/components',
-        subheader: '/components/layout',
-        children: [
-          { pathname: '/components/box' },
-          { pathname: '/components/container' },
-          { pathname: '/components/grid' },
-          { pathname: '/components/grid-list' },
-          { pathname: '/components/hidden' },
-        ],
-      },
-      {
-        pathname: '/components',
         subheader: '/components/inputs',
         children: [
           { pathname: '/components/autocomplete' },
@@ -42,6 +31,22 @@ const pages = [
           { pathname: '/components/switches' },
           { pathname: '/components/text-fields' },
           { pathname: '/components/transfer-list' },
+        ],
+      },
+      {
+        pathname: '/components',
+        subheader: '/components/data-display',
+        children: [
+          { pathname: '/components/avatars' },
+          { pathname: '/components/badges' },
+          { pathname: '/components/chips' },
+          { pathname: '/components/dividers' },
+          { pathname: '/components/icons' },
+          { pathname: '/components/material-icons' },
+          { pathname: '/components/lists' },
+          { pathname: '/components/tables' },
+          { pathname: '/components/tooltips' },
+          { pathname: '/components/typography' },
         ],
       },
       {
@@ -59,6 +64,15 @@ const pages = [
       },
       {
         pathname: '/components',
+        subheader: '/components/feedback',
+        children: [
+          { pathname: '/components/progress' },
+          { pathname: '/components/dialogs' },
+          { pathname: '/components/snackbars' },
+        ],
+      },
+      {
+        pathname: '/components',
         subheader: '/components/surfaces',
         children: [
           { pathname: '/components/app-bar' },
@@ -69,27 +83,13 @@ const pages = [
       },
       {
         pathname: '/components',
-        subheader: '/components/feedback',
+        subheader: '/components/layout',
         children: [
-          { pathname: '/components/progress' },
-          { pathname: '/components/dialogs' },
-          { pathname: '/components/snackbars' },
-        ],
-      },
-      {
-        pathname: '/components',
-        subheader: '/components/data-display',
-        children: [
-          { pathname: '/components/avatars' },
-          { pathname: '/components/badges' },
-          { pathname: '/components/chips' },
-          { pathname: '/components/dividers' },
-          { pathname: '/components/icons' },
-          { pathname: '/components/material-icons' },
-          { pathname: '/components/lists' },
-          { pathname: '/components/tables' },
-          { pathname: '/components/tooltips' },
-          { pathname: '/components/typography' },
+          { pathname: '/components/box' },
+          { pathname: '/components/container' },
+          { pathname: '/components/grid' },
+          { pathname: '/components/grid-list' },
+          { pathname: '/components/hidden' },
         ],
       },
       {
