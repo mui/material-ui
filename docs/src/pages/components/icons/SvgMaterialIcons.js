@@ -20,10 +20,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     color: theme.palette.text.primary,
   },
-  icon: {
-    margin: theme.spacing(1),
-    fontSize: 32,
-  },
 }));
 
 export default function SvgMaterialIcons() {
@@ -35,44 +31,44 @@ export default function SvgMaterialIcons() {
         <Typography>Filled</Typography>
       </Grid>
       <Grid item xs={8}>
-        <DeleteIcon className={classes.icon} />
-        <DeleteForeverIcon className={classes.icon} />
+        <DeleteIcon />
+        <DeleteForeverIcon />
       </Grid>
       <Grid item xs={4}>
         <Typography>Outlined</Typography>
       </Grid>
       <Grid item xs={8}>
-        <DeleteOutlinedIcon className={classes.icon} />
-        <DeleteForeverOutlinedIcon className={classes.icon} />
+        <DeleteOutlinedIcon />
+        <DeleteForeverOutlinedIcon />
       </Grid>
       <Grid item xs={4}>
         <Typography>Rounded</Typography>
       </Grid>
       <Grid item xs={8}>
-        <DeleteRoundedIcon className={classes.icon} />
-        <DeleteForeverRoundedIcon className={classes.icon} />
+        <DeleteRoundedIcon />
+        <DeleteForeverRoundedIcon />
       </Grid>
       <Grid item xs={4}>
         <Typography>Two Tone</Typography>
       </Grid>
       <Grid item xs={8}>
-        <DeleteTwoToneIcon className={classes.icon} />
-        <DeleteForeverTwoToneIcon className={classes.icon} />
+        <DeleteTwoToneIcon />
+        <DeleteForeverTwoToneIcon />
       </Grid>
       <Grid item xs={4}>
         <Typography>Sharp</Typography>
       </Grid>
       <Grid item xs={8}>
-        <DeleteSharpIcon className={classes.icon} />
-        <DeleteForeverSharpIcon className={classes.icon} />
+        <DeleteSharpIcon />
+        <DeleteForeverSharpIcon />
       </Grid>
       <Grid item xs={4}>
         <Typography>Edge-cases</Typography>
       </Grid>
       <Grid item xs={8}>
-        <ThreeDRotationIcon className={classes.icon} />
-        <FourKIcon className={classes.icon} />
-        <ThreeSixtyIcon className={classes.icon} />
+        <ThreeDRotationIcon />
+        <FourKIcon />
+        <ThreeSixtyIcon />
       </Grid>
     </Grid>
   );
