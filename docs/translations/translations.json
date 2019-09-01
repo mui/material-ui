@@ -133,7 +133,7 @@
     "/components/no-ssr": "No SSR",
     "/components/other": "Other",
     "/components/paper": "Paper",
-    "/components/pickers": "Date/Time",
+    "/components/pickers": "Date / Time",
     "/components/popover": "Popover",
     "/components/popper": "Popper",
     "/components/portal": "Portal",
@@ -173,7 +173,7 @@
     "/system/spacing": "Spacing",
     "/system/typography": "Typography",
     "/customization": "Customization",
-    "/customization/theming": "Theming",
+    "/customization/theming": "Overview",
     "/customization/breakpoints": "Breakpoints",
     "/customization/color": "Color",
     "/customization/themes": "Overview",
@@ -213,6 +213,12 @@
     "/styles": "Styles",
     "/styles/basics": "Basics",
     "/styles/advanced": "Advanced",
-    "https://themes.material-ui.com/": "Premium Themes"
+    "https://themes.material-ui.com/": "Premium Themes",
+    "/components/material-icons": "Material Icons",
+    "/components/textarea-autosize": "Textarea Autosize",
+    "/components/rating": "Rating",
+    "/components/skeleton": "Skeleton",
+    "/components/tree-view": "Tree View",
+    "/customization/density": "Density"
   }
 }
