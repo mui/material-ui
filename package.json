@@ -103,7 +103,7 @@
     "glob-gitignore": "^1.0.11",
     "jsdom": "^15.1.1",
     "jsonlint": "^1.6.3",
-    "karma": "^4.2.0",
+    "karma": "^4.3.0",
     "karma-browserstack-launcher": "^1.3.0",
     "karma-chrome-launcher": "^3.0.0",
     "karma-mocha": "^1.3.0",
