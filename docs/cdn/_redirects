@@ -1,10 +1,8 @@
+# Proxies
 /fr/* /:splat 200
 /de/* /:splat 200
 /ja/* /:splat 200
 /aa/* /:splat 200
-
-# v1
-https://v1-5-0.material-ui.com/* https://v1.material-ui.com/:splat 301!
 
 # For Google
 /drafts / 301
@@ -21,39 +19,44 @@ https://next.material-ui.com/* https://material-ui.com/:splat 301!
 https://material-ui-next.com/* https://material-ui.com/:splat 301!
 https://material-ui.dev/* https://material-ui.com/:splat 301!
 
-# old code links
-# likely /style/typography#migration-to-typography-v2
-/style/typography https://v3.material-ui.com/style/typography/#migration-to-typography-v2 301
-
-# To remove at some point (2021).
-/demos/selection-controls/ /components/radio-buttons/ 301
-/page-layout-examples/* /getting-started/page-layout-examples/:splat 301
-/getting-started/page-layout-examples/* /getting-started/templates/:splat 301
-/guides/csp/ /styles/advanced/#what-is-csp-and-why-is-it-useful 301
-/utils/modals/ /components/modal/ 301
-/utils/popovers/ /components/popover/ 301
-/guides/migration-v0.x /guides/migration-v0x/ 301
-/customization/css-in-js/ /styles/basics/ 301
-/demos/* /components/:splat 301
-/style/color/ /customization/color/ 301
-/style/* /components/:splat 301
-/layout/basics/ /guides/responsive-ui/ 301
-/layout/* /components/:splat 301
-/utils/* /components/:splat 301
-/lab/api/* /api/:splat 301
-/lab/about/ /components/about-the-lab/ 301
-/lab/* /components/:splat 301
-/css-in-js/* /styles/:splat 301
-
-# To remove at some point (2022).
-/premium-themes* https://themes.material-ui.com/ 301
-/customization/themes/ /customization/theming/ 301
-
 # link shortener
 /r/styles-instance-warning /getting-started/faq/#i-have-several-instances-of-styles-on-the-page 302
 /r/caveat-with-refs-guide /guides/composition/#caveat-with-refs 302
 /r/pseudo-classes-guide /customization/components/#pseudo-classes 302
 /r/input-component-ref-interface /components/text-fields/#integration-with-3rd-party-input-libraries 302
+
+# To remove at some point (2021).
+
+/css-in-js/* /styles/:splat 301
+/customization/css-in-js/ /styles/basics/ 301
+/customization/overrides/ /customization/components/ 301
+/demos/selection-controls/ /components/radio-buttons/ 301
+/demos/* /components/:splat 301
+/getting-started/page-layout-examples/* /getting-started/templates/:splat 301
+/guides/csp/ /styles/advanced/#what-is-csp-and-why-is-it-useful 301
+/guides/migration-v0.x /guides/migration-v0x/ 301
+/lab/about/ /components/about-the-lab/ 301
+/lab/api/* /api/:splat 301
+/lab/* /components/:splat 301
+/layout/basics/ /guides/responsive-ui/ 301
+/layout/breakpoints/ /customization/breakpoints/ 301
+/layout/css-in-js/ /styles/basics/ 301
+/layout/* /components/:splat 301
+/page-layout-examples/* /getting-started/page-layout-examples/:splat 301
+/style/color/ /customization/color/ 301
+/style/reboot/ /components/css-baseline/ 301
+/style/typography https://v3.material-ui.com/style/typography/#migration-to-typography-v2 301
+/style/* /components/:splat 301
+/utils/modals/ /components/modal/ 301
+/utils/popovers/ /components/popover/ 301
+/utils/* /components/:splat 301
+/api/mui-theme-provider/ /styles/api/ 301
+
+# To remove at some point (2022).
+/premium-themes* https://themes.material-ui.com/ 301
+/customization/themes/ /customization/theming/ 301
+https://v1-5-0.material-ui.com/* https://v1.material-ui.com/:splat 301!
+https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
 
 # Legacy
 /v0.20.0 https://v0.material-ui.com/v0.20.0
