@@ -24,7 +24,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@emotion/core": "^10.0.14",
+    "@emotion/core": "^10.0.17",
     "@emotion/styled": "^10.0.14",
     "benchmark": "^2.1.4",
     "emotion": "^10.0.14",
