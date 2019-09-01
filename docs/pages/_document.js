@@ -85,21 +85,6 @@ class MyDocument extends Document {
           <style id="app-search" />
           <style id="prismjs" />
           <style id="insertion-point-jss" />
-          {userLanguage === 'aa' ? (
-            <React.Fragment>
-              <meta name="robots" content="noindex,nofollow" />
-              <script
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{
-                  __html: `
-              var _jipt = [];
-              _jipt.push(['project', 'material-ui-docs']);
-              `,
-                }}
-              />
-              <script type="text/javascript" src="//cdn.crowdin.com/jipt/jipt.js" />
-            </React.Fragment>
-          ) : null}
         </Head>
         <body>
           <Main />

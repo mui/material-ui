@@ -159,10 +159,7 @@ export default function AppSearch() {
   const classes = useStyles();
   const inputRef = React.useRef(null);
   const theme = useTheme();
-
-  const { userLanguage } = useSelector(state => ({
-    userLanguage: state.options.userLanguage,
-  }));
+  const userLanguage = useSelector(state => state.options.userLanguage);
 
   React.useEffect(() => {
     const handleKeyDown = event => {

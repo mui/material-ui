@@ -135,9 +135,7 @@ function useThrottledOnScroll(callback, delay) {
 export default function AppTableOfContents(props) {
   const { contents } = props;
   const classes = useStyles();
-  const { t } = useSelector(state => ({
-    t: state.options.t,
-  }));
+  const t = useSelector(state => state.options.t);
 
   const itemsServer = React.useMemo(() => {
     const itemsCollectorRef = { current: [] };

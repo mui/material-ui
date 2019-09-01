@@ -34,7 +34,7 @@ const styles = theme => ({
 
 function HomeFooter(props) {
   const { classes } = props;
-  const { t } = useSelector(state => ({ t: state.options.t }));
+  const t = useSelector(state => state.options.t);
 
   return (
     <div className={classes.root}>

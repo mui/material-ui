@@ -26,7 +26,7 @@ function DefaultTheme(props) {
   const docsTheme = useTheme();
   const [checked, setChecked] = React.useState(false);
   const [expandPaths, setExpandPaths] = React.useState(null);
-  const { t } = useSelector(state => ({ t: state.options.t }));
+  const t = useSelector(state => state.options.t);
 
   React.useEffect(() => {
     const URL = url.parse(document.location.href, true);
