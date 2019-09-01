@@ -84,7 +84,7 @@ export const styles = theme => {
     /* Styles applied to the bar1 element if `variant="indeterminate or query"`. */
     bar1Indeterminate: {
       width: 'auto',
-      animation: '$mui-indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite',
+      animation: '$indeterminate1 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite',
     },
     /* Styles applied to the bar1 element if `variant="determinate"`. */
     bar1Determinate: {
@@ -98,7 +98,7 @@ export const styles = theme => {
     /* Styles applied to the bar2 element if `variant="indeterminate or query"`. */
     bar2Indeterminate: {
       width: 'auto',
-      animation: '$mui-indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
+      animation: '$indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
       animationDelay: '1.15s',
     },
     /* Styles applied to the bar2 element if `variant="buffer"`. */
@@ -109,7 +109,7 @@ export const styles = theme => {
     // || represents the viewport
     // -  represents a light background
     // x  represents a dark background
-    '@keyframes mui-indeterminate1': {
+    '@keyframes indeterminate1': {
       //  |-----|---x-||-----||-----|
       '0%': {
         left: '-35%',
@@ -125,7 +125,7 @@ export const styles = theme => {
         right: '-90%',
       },
     },
-    '@keyframes mui-indeterminate2': {
+    '@keyframes indeterminate2': {
       //  |xxxxx|xxxxx||-----||-----|
       '0%': {
         left: '-200%',
