@@ -679,7 +679,7 @@ const appList = [
     description:
       'An Open Source bounty platform for git projects. ' +
       'Maintained by our development community. ' +
-      "We use Material UI fully customized.",
+      'We use Material UI fully customized.',
     link: 'https://gitpay.me/',
     image: 'gitpay.jpg',
     dateAdded: '2019-08-01',
