@@ -18,10 +18,14 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function HomeIcon(props: SvgIconProps) {
+function HomeIcon(
+  props: SvgIconProps & { children?: React.ReactNode; pathProps?: React.SVGProps<SVGPathElement> },
+) {
+  const { children, pathProps, ...other } = props;
   return (
-    <SvgIcon {...props}>
-      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+    <SvgIcon {...other}>
+      {children}
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" {...pathProps} />
     </SvgIcon>
   );
 }
@@ -37,28 +41,14 @@ export default function SvgIcons() {
       <HomeIcon color="action" />
       <HomeIcon className={classes.iconHover} color="error" style={{ fontSize: 30 }} />
       <HomeIcon color="disabled" fontSize="large" />
-      <HomeIcon
-        color="primary"
-        fontSize="large"
-        component={(svgProps: SvgIconProps) => {
-          return (
-            <svg {...svgProps}>
-              <defs>
-                <linearGradient id="gradient1">
-                  <stop offset="30%" stopColor={blue[400]} />
-                  <stop offset="70%" stopColor={red[400]} />
-                </linearGradient>
-              </defs>
-              {React.cloneElement(
-                (svgProps.children as React.ReactNodeArray)[0] as React.ReactElement,
-                {
-                  fill: 'url(#gradient1)',
-                },
-              )}
-            </svg>
-          );
-        }}
-      />
+      <HomeIcon color="primary" fontSize="large" pathProps={{ fill: 'url(#gradient1)' }}>
+        <defs>
+          <linearGradient id="gradient1">
+            <stop offset="30%" stopColor={blue[400]} />
+            <stop offset="70%" stopColor={red[400]} />
+          </linearGradient>
+        </defs>
+      </HomeIcon>
     </div>
   );
 }
