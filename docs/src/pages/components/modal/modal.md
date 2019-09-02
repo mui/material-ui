@@ -79,7 +79,7 @@ However, creating React elements has a cost too. Consider the following case:
             {row.name}
           </th>
           <td>{row.calories}</td>
-          <td>{row.fat}</TableCell>
+          <td>{row.fat}</td>
         </tr>
       ))}
     </tbody>
