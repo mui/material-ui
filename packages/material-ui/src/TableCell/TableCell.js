@@ -101,6 +101,7 @@ export const styles = theme => ({
     position: 'sticky',
     top: 0,
     left: 0,
+    zIndex: 1,
     backgroundColor: theme.palette.background.default,
   },
 });
