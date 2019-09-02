@@ -474,18 +474,16 @@ describe('<Slider />', () => {
     const { getAllByRole } = render(
       <Slider value={[20, 50]} getAriaValueText={getAriaValueText} />,
     );
-    expect(getAllByRole('slider').map(x => x.getAttribute('aria-valuetext'))).to.deep.equal([
-      '20°C',
-      '50°C',
-    ]);
+
+    expect(getAllByRole('slider')[0]).to.have.attribute('aria-valuetext', '20°C');
+    expect(getAllByRole('slider')[1]).to.have.attribute('aria-valuetext', '50°C');
   });
 
   it('should support getAriaLabel', () => {
     const getAriaLabel = index => `Label ${index}`;
     const { getAllByRole } = render(<Slider value={[20, 50]} getAriaLabel={getAriaLabel} />);
-    expect(getAllByRole('slider').map(x => x.getAttribute('aria-label'))).to.deep.equal([
-      'Label 0',
-      'Label 1',
-    ]);
+
+    expect(getAllByRole('slider')[0]).to.have.attribute('aria-label', 'Label 0');
+    expect(getAllByRole('slider')[1]).to.have.attribute('aria-label', 'Label 1');
   });
 });
