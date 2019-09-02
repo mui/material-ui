@@ -6,7 +6,6 @@ import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
 import { fade, lighten } from '../styles/colorManipulator';
 import { useIsFocusVisible } from '../utils/focusVisible';
-import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
 import { useForkRef } from '../utils/reactHelpers';
 import ValueLabel from './ValueLabel';
@@ -47,8 +46,8 @@ function trackFinger(event, touchId) {
       const touch = event.changedTouches[i];
       if (touch.identifier === touchId.current) {
         return {
-          x: touch.pageX,
-          y: touch.pageY,
+          x: touch.clientX,
+          y: touch.clientY,
         };
       }
     }
@@ -57,8 +56,8 @@ function trackFinger(event, touchId) {
   }
 
   return {
-    x: event.pageX,
-    y: event.pageY,
+    x: event.clientX,
+    y: event.clientY,
   };
 }
 
@@ -446,9 +445,9 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       let percent;
 
       if (axis.indexOf('vertical') === 0) {
-        percent = (bottom + ownerWindow(slider).pageYOffset - finger.y) / height;
+        percent = (bottom - finger.y) / height;
       } else {
-        percent = (finger.x - left - ownerWindow(slider).pageXOffset) / width;
+        percent = (finger.x - left) / width;
       }
 
       if (axis.indexOf('-reverse') !== -1) {

@@ -1,8 +1,9 @@
 import React from 'react';
 import { expect } from 'chai';
+import { stub } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Rating from './Rating';
 
 describe('<Rating />', () => {
@@ -29,9 +30,9 @@ describe('<Rating />', () => {
 
   describeConformance(<Rating {...defaultProps} />, () => ({
     classes,
-    inheritComponent: 'div',
+    inheritComponent: 'span',
     mount,
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],
   }));
 
@@ -49,5 +50,24 @@ describe('<Rating />', () => {
     const checked = container.querySelector('input[name="rating-test"]:checked');
     expect(input).to.equal(checked);
     expect(input.value).to.equal('4');
+  });
+
+  it('should handle mouse hover correctly', () => {
+    const { container } = render(<Rating {...defaultProps} />);
+    stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      left: 0,
+      right: 100,
+    }));
+    stub(container.firstChild.firstChild, 'getBoundingClientRect').callsFake(() => ({
+      width: 20,
+    }));
+    fireEvent.mouseMove(container.firstChild, {
+      clientX: 19,
+    });
+    expect(container.querySelectorAll(`.${classes.iconHover}`).length).to.equal(1);
+    fireEvent.mouseMove(container.firstChild, {
+      clientX: 21,
+    });
+    expect(container.querySelectorAll(`.${classes.iconHover}`).length).to.equal(2);
   });
 });

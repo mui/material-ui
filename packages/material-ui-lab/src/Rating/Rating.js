@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import { useTheme, withStyles } from '@material-ui/core/styles';
-import { capitalize, useForkRef, ownerWindow, useIsFocusVisible } from '@material-ui/core/utils';
+import { capitalize, useForkRef, useIsFocusVisible } from '@material-ui/core/utils';
 import Star from '../internal/svg-icons/Star';
 
 function clamp(value, min, max) {
@@ -29,7 +29,7 @@ function roundValueToPrecision(value, precision) {
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    display: 'flex',
+    display: 'inline-flex',
     position: 'relative',
     fontSize: theme.typography.pxToRem(24),
     color: '#ffb400',
@@ -113,7 +113,7 @@ export const styles = theme => ({
 
 function IconContainer(props) {
   const { value, ...other } = props;
-  return <div {...other} />;
+  return <span {...other} />;
 }
 
 IconContainer.propTypes = {
@@ -181,13 +181,14 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     let percent;
 
     if (theme.direction === 'rtl') {
-      percent = (right - event.pageX - ownerWindow(rootNode).pageXOffset) / (width * max);
+      percent = (right - event.clientX) / (width * max);
     } else {
-      percent = (event.pageX - left - ownerWindow(rootNode).pageXOffset) / (width * max);
+      percent = (event.clientX - left) / (width * max);
     }
 
-    let newHover = roundValueToPrecision(max * percent, precision);
+    let newHover = roundValueToPrecision(max * percent + precision / 2, precision);
     newHover = clamp(newHover, precision, max);
+
     setState(prev =>
       prev.hover === newHover && prev.focus === newHover
         ? prev
@@ -306,7 +307,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   };
 
   return (
-    <div
+    <span
       ref={handleRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -345,7 +346,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
         if (precision < 1) {
           const items = Array.from(new Array(1 / precision));
           return (
-            <div
+            <span
               key={itemValue}
               className={clsx(classes.decimal, {
                 [classes.iconActive]:
@@ -382,7 +383,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
                   },
                 );
               })}
-            </div>
+            </span>
           );
         }
 
@@ -399,7 +400,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           },
         );
       })}
-    </div>
+    </span>
   );
 });
 
