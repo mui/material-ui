@@ -60,6 +60,13 @@ async function generateProptypes(
       if (prop.name === 'children') {
         return true;
       }
+
+      const documentRegExp = new RegExp(/\r?\n?@document/);
+      if (prop.jsDoc && documentRegExp.test(prop.jsDoc)) {
+        prop.jsDoc = prop.jsDoc.replace(documentRegExp, '');
+        return true;
+      }
+
       return undefined;
     },
   });
