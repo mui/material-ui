@@ -6,11 +6,17 @@ filename: /packages/material-ui/src/CircularProgress/CircularProgress.js
 
 # CircularProgress API
 
-<p class="description">The API documentation of the CircularProgress React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the CircularProgress React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
 
 ```js
 import CircularProgress from '@material-ui/core/CircularProgress';
+// or
+import { CircularProgress } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 ## ARIA
 
@@ -23,46 +29,42 @@ attribute to `true` on that region until it has finished loading.
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'&nbsp;&#124;<br>&nbsp;'inherit'<br></span> | <span class="prop-default">'primary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'inherit'</span> | <span class="prop-default">'primary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">disableShrink</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the shrink animation is disabled. This only works if variant is `indeterminate`. |
-| <span class="prop-name">size</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;string<br></span> | <span class="prop-default">40</span> | The size of the circle. |
+| <span class="prop-name">size</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> | <span class="prop-default">40</span> | The size of the circle. If using a number, the pixel unit is assumed. If using a string, you need to provide the CSS unit, e.g '3rem'. |
 | <span class="prop-name">thickness</span> | <span class="prop-type">number</span> | <span class="prop-default">3.6</span> | The thickness of the circle. |
 | <span class="prop-name">value</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | The value of the progress indicator for the determinate and static variants. Value between 0 and 100. |
-| <span class="prop-name">variant</span> | <span class="prop-type">enum:&nbsp;'determinate'&nbsp;&#124;<br>&nbsp;'indeterminate'&nbsp;&#124;<br>&nbsp;'static'<br></span> | <span class="prop-default">'indeterminate'</span> | The variant to use. Use indeterminate when there is no progress value. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'determinate'<br>&#124;&nbsp;'indeterminate'<br>&#124;&nbsp;'static'</span> | <span class="prop-default">'indeterminate'</span> | The variant to use. Use indeterminate when there is no progress value. |
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiCircularProgress`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiCircularProgress-root</span> | Styles applied to the root element.
+| <span class="prop-name">static</span> | <span class="prop-name">MuiCircularProgress-static</span> | Styles applied to the root element if `variant="static"`.
+| <span class="prop-name">indeterminate</span> | <span class="prop-name">MuiCircularProgress-indeterminate</span> | Styles applied to the root element if `variant="indeterminate"`.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiCircularProgress-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiCircularProgress-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">svg</span> | <span class="prop-name">MuiCircularProgress-svg</span> | Styles applied to the `svg` element.
+| <span class="prop-name">circle</span> | <span class="prop-name">MuiCircularProgress-circle</span> | Styles applied to the `circle` svg path.
+| <span class="prop-name">circleStatic</span> | <span class="prop-name">MuiCircularProgress-circleStatic</span> | Styles applied to the `circle` svg path if `variant="static"`.
+| <span class="prop-name">circleIndeterminate</span> | <span class="prop-name">MuiCircularProgress-circleIndeterminate</span> | Styles applied to the `circle` svg path if `variant="indeterminate"`.
+| <span class="prop-name">circleDisableShrink</span> | <span class="prop-name">MuiCircularProgress-circleDisableShrink</span> | Styles applied to the `circle` svg path if `disableShrink={true}`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">static</span> | Styles applied to the root element if `variant="static"`.
-| <span class="prop-name">indeterminate</span> | Styles applied to the root element if `variant="indeterminate"`.
-| <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
-| <span class="prop-name">svg</span> | Styles applied to the `svg` element.
-| <span class="prop-name">circle</span> | Styles applied to the `circle` svg path.
-| <span class="prop-name">circleStatic</span> | Styles applied to the `circle` svg path if `variant="static"`.
-| <span class="prop-name">circleIndeterminate</span> | Styles applied to the `circle` svg path if `variant="indeterminate"`.
-| <span class="prop-name">circleDisableShrink</span> | Styles applied to the `circle` svg path if `disableShrink={true}`.
+You can override the style of the component thanks to one of these customization points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/CircularProgress/CircularProgress.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiCircularProgress`.
-
-## Notes
-
-The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/CircularProgress/CircularProgress.js) for more detail.
 
 ## Demos
 

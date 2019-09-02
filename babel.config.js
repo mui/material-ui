@@ -101,5 +101,17 @@ module.exports = {
         ],
       ],
     },
+    benchmark: {
+      plugins: [
+        ...productionPlugins,
+        [
+          'babel-plugin-module-resolver',
+          {
+            root: ['./'],
+            alias: defaultAlias,
+          },
+        ],
+      ],
+    },
   },
 };

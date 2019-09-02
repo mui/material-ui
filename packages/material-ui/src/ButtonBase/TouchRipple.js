@@ -11,16 +11,14 @@ export const DELAY_RIPPLE = 80;
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    display: 'block',
-    position: 'absolute',
     overflow: 'hidden',
-    borderRadius: 'inherit',
-    width: '100%',
-    height: '100%',
-    left: 0,
-    top: 0,
     pointerEvents: 'none',
-    zIndex: 0,
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    borderRadius: 'inherit',
   },
   /* Styles applied to the internal `Ripple` components `ripple` class. */
   ripple: {
@@ -31,10 +29,7 @@ export const styles = theme => ({
   rippleVisible: {
     opacity: 0.3,
     transform: 'scale(1)',
-    animation: `mui-ripple-enter ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
-    // Backward compatible logic between JSS v9 and v10.
-    // To remove with the release of Material-UI v4
-    animationName: '$mui-ripple-enter',
+    animation: `$enter ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
   },
   /* Styles applied to the internal `Ripple` components `ripplePulsate` class. */
   ripplePulsate: {
@@ -52,22 +47,16 @@ export const styles = theme => ({
   /* Styles applied to the internal `Ripple` components `childLeaving` class. */
   childLeaving: {
     opacity: 0,
-    animation: `mui-ripple-exit ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
-    // Backward compatible logic between JSS v9 and v10.
-    // To remove with the release of Material-UI v4
-    animationName: '$mui-ripple-exit',
+    animation: `$exit ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
   },
   /* Styles applied to the internal `Ripple` components `childPulsate` class. */
   childPulsate: {
     position: 'absolute',
     left: 0,
     top: 0,
-    animation: `mui-ripple-pulsate 2500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
-    // Backward compatible logic between JSS v9 and v10.
-    // To remove with the release of Material-UI v4
-    animationName: '$mui-ripple-pulsate',
+    animation: `$pulsate 2500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
   },
-  '@keyframes mui-ripple-enter': {
+  '@keyframes enter': {
     '0%': {
       transform: 'scale(0)',
       opacity: 0.1,
@@ -77,7 +66,7 @@ export const styles = theme => ({
       opacity: 0.3,
     },
   },
-  '@keyframes mui-ripple-exit': {
+  '@keyframes exit': {
     '0%': {
       opacity: 1,
     },
@@ -85,7 +74,7 @@ export const styles = theme => ({
       opacity: 0,
     },
   },
-  '@keyframes mui-ripple-pulsate': {
+  '@keyframes pulsate': {
     '0%': {
       transform: 'scale(1)',
     },

@@ -111,10 +111,8 @@ function MarkdownDocs(props) {
     reqSource,
   } = props;
 
-  const { t, userLanguage } = useSelector(state => ({
-    t: state.options.t,
-    userLanguage: state.options.userLanguage,
-  }));
+  const t = useSelector(state => state.options.t);
+  const userLanguage = useSelector(state => state.options.userLanguage);
 
   let demos;
   let markdown = markdownProp;

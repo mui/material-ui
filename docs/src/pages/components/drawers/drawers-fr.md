@@ -27,7 +27,10 @@ This component comes with a 2 kB gzipped payload overhead. Some low-end mobile d
 
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
-We are using the following set of properties on this documentation website for optimal usability of the component: - iOS is hosted on high-end devices. We can enable the backdrop transition without dropping frames. The performance will be good enough. - iOS has a "swipe to go back" feature that mess with the discovery feature. We have to disable it.
+We are using the following set of properties on this documentation website for optimal usability of the component:
+
+- iOS is hosted on high-end devices. We can enable the backdrop transition without dropping frames. The performance will be good enough.
+- iOS has a "swipe to go back" feature that mess with the discovery feature. We have to disable it.
 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -63,7 +66,7 @@ The mini variant is recommended for apps sections that need quick selection acce
 
 ## Tiroir permanent
 
-Les tiroirs de navigation permanents sont toujours visibles et épinglés sur le bord gauche, à la même altitude que le contenu ou l'arrière-plan. Ils ne peuvent pas être fermés.
+Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
 
 Les tiroirs de navigation permanents sont les **valeurs par défaut recommandées pour le bureau**.
 

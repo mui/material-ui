@@ -40,9 +40,9 @@ Generieren Sie eine erweiterte Mount-Funktion mit dem erforderlichen Kontext. Bi
 
 #### Argumente
 
-1. `Optionen` (*Object* [optional]) 
-    - `options.mount` (*Function* [optional]): Die Mount-Funktion, die verbessert werden soll, verwendet **standardmäßig Enzym**.
-    - Die anderen Schlüssel werden an das Optionsargument von `enzyme.mount()` weitergeleitet.
+1. `options` (*Object* [optional]) 
+  - `options.mount` (*Function* [optional]): Die Mount-Funktion, die verbessert werden soll, verwendet **standardmäßig Enzym**.
+  - Die anderen Schlüssel werden an das Optionsargument von `enzyme.mount()` weitergeleitet.
 
 #### Rückgabewerte
 
@@ -85,11 +85,11 @@ Generieren Sie eine erweiterte Shallow-Funktion mit dem erforderlichen Kontext. 
 
 #### Argumente
 
-1. `Optionen` (*Object* [optional]) 
-    - `options.shallow` (*Function* [optional]): Die Shallow-Funktion, die verbessert werden soll, verwendet **standardmäßig Enzym**.
-    - `options.untilSelector` (*String* [optional]): Rendert rekursiv die Kinder flach, so lange, bis sie den bereitgestellten Selektor finden können. Es ist hilfreich, Komponenten höherer Ordnung aufzuschlüsseln.
-    - `options.dive` (*Boolean* [optional]): Rendert funktional flach das erste nicht-DOM-Child des aktuellen Wrappers und gibt einen Wrapper zurück.
-    - Die anderen Schlüssel werden an das Optionsargument von `enzyme.shallow()` weitergeleitet.
+1. `options` (*Object* [optional]) 
+  - `options.shallow` (*Function* [optional]): Die Shallow-Funktion, die verbessert werden soll, verwendet **standardmäßig Enzym**.
+  - `options.untilSelector` (*String* [optional]): Rendert rekursiv die Kinder flach, so lange, bis sie den bereitgestellten Selektor finden können. Es ist hilfreich, Komponenten höherer Ordnung aufzuschlüsseln.
+  - `options.dive` (*Boolean* [optional]): Rendert funktional flach das erste nicht-DOM-Child des aktuellen Wrappers und gibt einen Wrapper zurück.
+  - Die anderen Schlüssel werden an das Optionsargument von `enzyme.shallow()` weitergeleitet.
 
 #### Rückgabewerte
 
@@ -119,9 +119,9 @@ Generieren Sie eine Render-zu-String-Funktion mit dem erforderlichen Kontext. Bi
 
 #### Argumente
 
-1. `Optionen` (*Object* [optional]) 
-    - `options.render` (*Function* [optional]): Die Renderfunktion, die verbessert werden soll, verwendet **standardmäßig Enzym**.
-    - Die anderen Schlüssel werden an das Optionsargument von `enzyme.render()` weitergeleitet.
+1. `options` (*Object* [optional]) 
+  - `options.render` (*Function* [optional]): Die Renderfunktion, die verbessert werden soll, verwendet **standardmäßig Enzym**.
+  - Die anderen Schlüssel werden an das Optionsargument von `enzyme.render()` weitergeleitet.
 
 #### Rückgabewerte
 

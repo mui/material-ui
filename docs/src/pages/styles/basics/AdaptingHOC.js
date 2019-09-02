@@ -28,6 +28,9 @@ function MyButtonRaw(props) {
 }
 
 MyButtonRaw.propTypes = {
+  /**
+   * Override or extend the styles applied to the component.
+   */
   classes: PropTypes.object.isRequired,
   color: PropTypes.oneOf(['blue', 'red']).isRequired,
 };

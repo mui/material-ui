@@ -8,7 +8,7 @@ Because the scope of problems Material-UI solves is limited, we try to play nice
 
 - [Figma UI Kit](https://material.5ly.co/) for Material-UI.
 
-## Libraries
+## ライブラリ
 
 This is a collection of projects that we couldn't better contextualize in the documentation pages.
 

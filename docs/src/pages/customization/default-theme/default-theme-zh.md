@@ -6,7 +6,7 @@
 
 浏览文档主题对象：
 
-{{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideEditButton": true}}
+{{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideHeader": true}}
 
 > 提示：你可以在**您的控制台**使用文档主题对象. 我们在所有文档页面上都公开了一个文档`主题`对象。 请注意，文档站点正在使用自定义主题。
 

@@ -11,13 +11,13 @@ components: Divider
 
 ## Разделители списков
 
-По умолчанию разделитель отображается как `<hr>`. Вместо этого Вы можете сформировать отображение этого DOM-элемента, используя свойство `divider` в компоненте `ListItem`.
+The divider renders as a `<hr>` by default. You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
 
 {{"demo": "pages/components/dividers/ListDividers.js"}}
 
 ## Спецификации HTML5
 
-Для соблюдения спецификации HTML5 нужно, чтобы `Разделитель` отрисовывался как `li`.
+We need to make sure the `Divider` is rendered as a `li` to match the HTML5 specification. The examples below show two ways of achieving this.
 
 ## Вкладыш
 

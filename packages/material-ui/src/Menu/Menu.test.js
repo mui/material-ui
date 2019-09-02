@@ -51,9 +51,9 @@ describe('<Menu />', () => {
             onEntering={handleEntering}
             onEntered={() => {
               assert.strictEqual(handleEnter.callCount, 1);
-              assert.strictEqual(handleEnter.args[0].length, 1);
+              assert.strictEqual(handleEnter.args[0].length, 2);
               assert.strictEqual(handleEntering.callCount, 1);
-              assert.strictEqual(handleEntering.args[0].length, 1);
+              assert.strictEqual(handleEntering.args[0].length, 2);
               done();
             }}
             {...defaultProps}

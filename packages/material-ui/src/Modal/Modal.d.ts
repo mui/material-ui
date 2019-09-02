@@ -16,6 +16,7 @@ export interface ModalProps
   disableEscapeKeyDown?: boolean;
   disablePortal?: PortalProps['disablePortal'];
   disableRestoreFocus?: boolean;
+  disableScrollLock?: boolean;
   hideBackdrop?: boolean;
   keepMounted?: boolean;
   manager?: ModalManager;

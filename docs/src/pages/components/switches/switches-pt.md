@@ -31,7 +31,7 @@ Aqui esta um exemplo de customização do componente. Você pode aprender mais s
 
 ## Tamanhos
 
-Fancy smaller switches? Use the `size` property.
+Gosta de interruptores menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/switches/SwitchesSize.js"}}
 
@@ -49,7 +49,7 @@ Quando um rótulo não pode ser usado, é necessário adicionar um atributo dire
 
 ```jsx
 <Switch
-  value="checkedA"
-  inputProps={{ 'aria-label': 'Switch A' }}
+  value="interruptorA"
+  inputProps={{ 'aria-label': 'Interruptor A' }}
 />
 ```

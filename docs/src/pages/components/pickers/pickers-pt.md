@@ -3,18 +3,26 @@ title: Componentes React para Seletor de Data e Seletor de Hora
 components: TextField
 ---
 
-# Entradas de data/hora
+# Seletores de Data/Hora
 
-<p class="description">Entradas de data/hora (short: seletores) fornecem uma maneira simples de selecionar um único valor de um conjunto pré-determinado.</p>
+<p class="description">Seletores de datas e seletores de hora fornecem uma maneira simples de selecionar um único valor de um conjunto pré-determinado.</p>
 
 - Em dispositivos móveis, seletores são melhores aplicados quando mostrados em diálogos de confirmação.
 - Para exibição em linha, como em um formulário, considere usar controles compactos, como botões suspensos segmentados.
 
+## @material-ui/pickers
+
+![estrelas](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
+
+[@material-ui/pickers](https://material-ui-pickers.dev/) fornece os controles seletores de data e hora.
+
+{{"demo": "pages/components/pickers/MaterialUIPickers.js"}}
+
 ## Seletores nativos
 
-⚠️ O suporte dos navegadores aos controles de entrada nativos [não é perfeito](https://caniuse.com/#feat=input-datetime). Dê uma olhada nos [projetos complementares](#complementary-projects) para uma melhor solução.
+⚠️ O suporte dos navegadores aos controles de entrada nativos [não é perfeito](https://caniuse.com/#feat=input-datetime). Dê uma olhada em [@material-ui/pickers](#material-ui-pickers) para obter uma melhor solução.
 
-### Seletores de Data
+### Selecionadores de data
 
 Um exemplo de seletor de data nativo com `type="date"`.
 
@@ -31,15 +39,3 @@ Um exemplo de seletor de data & hora nativo com `type="datetime-local"`.
 Um exemplo de seletor de hora nativo com `type="time"`.
 
 {{"demo": "pages/components/pickers/TimePickers.js"}}
-
-## Projetos Complementares
-
-Para caso de usos mais avançados, você é capaz de aproveitar de.
-
-### @material-ui/pickers
-
-![estrelas](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
-
-[@material-ui/pickers](https://material-ui-pickers.dev/) fornece controles de data e hora que seguem as especificações do Material Design.
-
-{{"demo": "pages/components/pickers/MaterialUIPickers.js"}}

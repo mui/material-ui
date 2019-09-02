@@ -36,7 +36,7 @@ function TrapFocus(props) {
   // ⚠️ You may rely on React.useMemo as a performance optimization, not as a semantic guarantee.
   // https://reactjs.org/docs/hooks-reference.html#usememo
   React.useMemo(() => {
-    if (!open) {
+    if (!open || typeof window === 'undefined') {
       return;
     }
 

@@ -154,14 +154,14 @@ describe('<FormControlLabel />', () => {
     });
   });
 
-  it('should not inject extra properties', () => {
+  it('should not inject extra props', () => {
     const Control = props => <div data-testid="control" name="Dave" {...props} />;
     const { getByTestId } = render(<FormControlLabel label="Pizza" control={<Control />} />);
 
     expect(getByTestId('control')).to.have.attribute('name', 'Dave');
   });
 
-  it('should forward some properties', () => {
+  it('should forward some props', () => {
     const { getByTestId } = render(
       <FormControlLabel value="test" label="Pizza" control={<div data-testid="control" />} />,
     );

@@ -9,7 +9,7 @@ components: Badge
 
 ## Badges simples
 
-Exemples de badges contenant du texte, utilisant des couleurs primaires et secondaires. Le badge est appliqué à ses enfants.
+Exemples de badges contenant du texte, utilisant les couleurs primaires et secondaires. Le badge est appliqué aux enfants.
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
@@ -21,7 +21,7 @@ Vous pouvez utiliser la propriété `max` pour limiter la valeur du contenu du b
 
 ## Badge à points
 
-La propriété `point` change un badge en un petit point. Cela peut être utilisé comme une notification que quelque chose a changé sans donner de compte.
+La propriété `dot` change un badge en petit point. Il peut être utilisé comme une notification indiquant que quelque chose a changé sans donner un nombre.
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
@@ -29,12 +29,12 @@ La propriété `point` change un badge en un petit point. Cela peut être utilis
 
 La visibilité des badges peut être contrôlée à l'aide de la propriété `invisible`.
 
-Le badge se cache automatiquement avec badgeContent est zéro. Vous pouvez remplacer cela avec la propriété `showZero`.
+Le badge se cache automatiquement quand badgeContent est nul. Vous pouvez la remplacer avec la propriété `showZero`.
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-## Customized badges
+## Badges custom
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}

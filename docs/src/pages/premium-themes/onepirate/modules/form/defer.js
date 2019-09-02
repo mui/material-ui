@@ -1,21 +1,15 @@
 import React from 'react';
 
-function defer(Component) {
-  class Defer extends React.Component {
-    state = {
-      mounted: false,
-    };
+export default function defer(Component) {
+  const Defer = props => {
+    const [mounted, setMounted] = React.useState(false);
 
-    componentDidMount() {
-      this.setState({ mounted: true });
-    }
+    React.useEffect(() => {
+      setMounted(true);
+    }, []);
 
-    render() {
-      return <Component mounted={this.state.mounted} {...this.props} />;
-    }
-  }
+    return <Component mounted={mounted} {...props} />;
+  };
 
   return Defer;
 }
-
-export default defer;

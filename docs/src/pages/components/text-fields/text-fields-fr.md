@@ -7,7 +7,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 <p class="description">Les champs de texte permettent aux utilisateurs d'entrer et de modifier du texte.</p>
 
-[Les champs de texte](https://material.io/design/components/text-fields.html) permettent aux utilisateurs de saisir du texte dans une interface utilisateur. Ils apparaissent généralement dans des formulaires et des boîtes de dialogue.
+[Text fields](https://material.io/design/components/text-fields.html) allow users to enter text into a UI. They typically appear in forms and dialogs.
 
 ## TextField
 
@@ -43,7 +43,7 @@ Vous avez peut-être également remarqué que certaines propriétés d'entrée H
 
 ## Inputs personnalisées
 
-Voici quelques exemples de personnalisation du composant. Vous pouvez en apprendre plus sur [la page de documentation de personnalisation](/customization/components/).
+Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -79,6 +79,8 @@ Les icônes peuvent être spécifiées comme prédéfinies ou ajoutées.
 
 ## Restrictions
 
+### Shrink
+
 Le label "shrink" n'est pas toujours correct. Le label d'input est supposé se réduire dès que l'input affiche quelque chose. Dans certaines circonstances, nous ne pouvons pas déterminer l'état de "réduction" (entrée de numéro, entrée de date / heure, entrée de bande). Vous remarquerez peut-être un chevauchement.
 
 ![shrink](/static/images/text-fields/shrink.png)
@@ -94,6 +96,10 @@ ou
 ```jsx
 <InputLabel shrink>Contagem</InputLabel>
 ```
+
+### Floating label
+
+The floating label is absolutely positioned, it won't impact the layout of the page. You need to make sure that the input is larger than the label to display correctly.
 
 ## Integration with 3rd party input libraries
 
@@ -139,7 +145,7 @@ function MyInputComponent(props) {
 
 ## Accessibilité
 
-Pour que le champ de texte soit accessible, **le champ de texte doit être lié au label et au texte d'assistance**. Les nœuds DOM sous-jacents doivent avoir cette structure.
+In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure.
 
 ```jsx
 <div class="form-control">

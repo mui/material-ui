@@ -71,14 +71,14 @@ Material-UI сначала разрабатывается для мобильн�
     Now that you have an idea of the basic setup, it's time to learn more about:
   </p>
   
-  <ul>
-    <li>
+  <ul spaces="0" level="0" marker="-">
+    <li level="0">
       How to provide <a href="/components/typography/">the Material Design font and typography</a>.
     </li>
-    <li>
-      How to take advantage of the <a href="/customization/themes/">theming solution</a>.
+    <li level="0">
+      How to take advantage of the <a href="/customization/theming/">theming solution</a>.
     </li>
-    <li>
+    <li level="0">
       How to <a href="/customization/components/">override</a> the look and feel of the components.
     </li>
   </ul>

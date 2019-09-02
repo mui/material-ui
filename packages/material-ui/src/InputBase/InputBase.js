@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import clsx from 'clsx';
+import { refType } from '@material-ui/utils';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
 import withStyles from '../styles/withStyles';
@@ -179,7 +180,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     onKeyUp,
     placeholder,
     readOnly,
-    renderPrefix,
+    renderSuffix,
     rows,
     rowsMax,
     select = false,
@@ -208,6 +209,17 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 
   const [focused, setFocused] = React.useState(false);
   const muiFormControl = useFormControl();
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (muiFormControl) {
+        return muiFormControl.registerEffect();
+      }
+
+      return undefined;
+    }, [muiFormControl]);
+  }
 
   const fcs = formControlState({
     props,
@@ -363,12 +375,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       ref={ref}
       {...other}
     >
-      {renderPrefix
-        ? renderPrefix({
-            ...fcs,
-            startAdornment,
-          })
-        : null}
       {startAdornment}
       <FormControlContext.Provider value={null}>
         <InputComponent
@@ -408,6 +414,12 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         />
       </FormControlContext.Provider>
       {endAdornment}
+      {renderSuffix
+        ? renderSuffix({
+            ...fcs,
+            startAdornment,
+          })
+        : null}
     </div>
   );
 });
@@ -471,9 +483,9 @@ InputBase.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * This prop can be used to pass a ref callback to the `input` element.
+   * This prop can be used to pass a ref to the `input` element.
    */
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  inputRef: refType,
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
@@ -495,7 +507,7 @@ InputBase.propTypes = {
    * Callback fired when the value is changed.
    *
    * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value`.
+   * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
   /**
@@ -526,7 +538,7 @@ InputBase.propTypes = {
   /**
    * @ignore
    */
-  renderPrefix: PropTypes.func,
+  renderSuffix: PropTypes.func,
   /**
    * If `true`, the `input` element will be required.
    */

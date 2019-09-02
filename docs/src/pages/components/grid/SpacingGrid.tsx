@@ -26,8 +26,8 @@ export default function SpacingGrid() {
   const [spacing, setSpacing] = React.useState<GridSpacing>(2);
   const classes = useStyles();
 
-  function handleChange(event: any, value: string) {
-    setSpacing(Number(value) as GridSpacing);
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setSpacing(Number((event.target as HTMLInputElement).value) as GridSpacing);
   }
 
   return (

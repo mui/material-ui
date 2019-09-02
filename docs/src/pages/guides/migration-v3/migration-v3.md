@@ -261,6 +261,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   - The `ListItemIcon` component is required when using a left checkbox.
   - The `edge` property should be set on the icon buttons.
 
+- [List] `dense` no longer reduces the top and bottom padding of the `List` element.
 - [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
 
 ### Menu
@@ -431,7 +432,7 @@ You should be able to move the custom styles to the `root` class key.
   We recommend 12px as the default font size for Japanese.
 - [Typography] Remove the default color from the typography variants.
   The color should inherit most of the time. It's the default behavior of the web.
-- [Typography] Rename `color="default"` to `color="initial"` following the logic of #13028.
+- [Typography] Rename `color="default"` to `color="initial"` following the logic of [this thread](https://github.com/mui-org/material-ui/issues/13028).
   The usage of *default* should be avoided, it lacks semantic.
 
 ### Node

@@ -96,12 +96,15 @@ export type WithStyles<
   IncludeTheme extends boolean | undefined = false
 > = (IncludeTheme extends true ? { theme: ThemeOfStyles<StylesType> } : {}) & {
   classes: ClassNameMap<ClassKeyOfStyles<StylesType>>;
-  innerRef?: React.Ref<any> | React.RefObject<any>;
+  innerRef?: React.Ref<any>;
 } & PropsOfStyles<StylesType>;
 
 export interface StyledComponentProps<ClassKey extends string = string> {
+  /**
+   * Override or extend the styles applied to the component.
+   */
   classes?: Partial<ClassNameMap<ClassKey>>;
-  innerRef?: React.Ref<any> | React.RefObject<any>;
+  innerRef?: React.Ref<any>;
 }
 
 export default function withStyles<

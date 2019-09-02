@@ -9,6 +9,9 @@ export const styles = {
   root: {
     zIndex: -1,
     position: 'fixed',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     right: 0,
     bottom: 0,
     top: 0,
@@ -26,7 +29,15 @@ export const styles = {
 };
 
 const Backdrop = React.forwardRef(function Backdrop(props, ref) {
-  const { classes, className, invisible = false, open, transitionDuration, ...other } = props;
+  const {
+    children,
+    classes,
+    className,
+    invisible = false,
+    open,
+    transitionDuration,
+    ...other
+  } = props;
 
   return (
     <Fade in={open} timeout={transitionDuration} {...other}>
@@ -41,17 +52,23 @@ const Backdrop = React.forwardRef(function Backdrop(props, ref) {
         )}
         aria-hidden
         ref={ref}
-      />
+      >
+        {children}
+      </div>
     </Fade>
   );
 });
 
 Backdrop.propTypes = {
   /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -71,7 +88,11 @@ Backdrop.propTypes = {
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
   ]),
 };
 

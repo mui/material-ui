@@ -9,9 +9,12 @@ Wenn die Konfigurationsvariablen nicht ausreichen, können Sie die Vorteile der 
 ```js
 const theme = createMuiTheme({
   overrides: {
-    MuiButton: { // Name der Komponente ⚛️ / Style-Sheet
-      text: { // Name der Regel
-        color: 'white', // Einige CSS
+    // Style sheet name ⚛️
+    MuiButton: {
+      // Name of the rule
+      text: {
+        // Some CSS
+        color: 'white',
       },
     },
   },

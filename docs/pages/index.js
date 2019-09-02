@@ -1,5 +1,3 @@
-import 'docs/src/modules/components/bootstrap';
-// --- Post bootstrap -----
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -108,9 +106,7 @@ export default function HomePage() {
 
     loadDependencies();
   }, []);
-  const { t } = useSelector(state => ({
-    t: state.options.t,
-  }));
+  const t = useSelector(state => state.options.t);
   const classes = useStyles();
 
   return (

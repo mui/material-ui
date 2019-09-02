@@ -13,7 +13,7 @@ async function run() {
 
     const traverse = pages2 => {
       pages2.forEach(page => {
-        if (page.pathname.indexOf('api') === -1) {
+        if (page.pathname.indexOf('/api') === -1 && page.pathname.indexOf('/blog') === -1) {
           const title = pageToTitle(page);
 
           if (title) {

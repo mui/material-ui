@@ -14,19 +14,19 @@ Depending on the component, density is applied either via lower spacing, or simp
 
 The following components have props applying higher density:
 
-- [Buttons（按钮）](/api/button)
-- [Fab](/api/fab)
-- [FilledInput](/api/filled-input)
-- [FormControl](/api/form-control)
-- [FormHelperText](/api/form-helper-text)
-- [IconButton](/api/icon-button)
-- [InputBase](/api/input-base)
-- [InputLabel](/api/input-label)
-- [ListItem](/api/list-item)
-- [OutlinedInput](/api/outlined-input)
-- [Table](/api/table)
-- [TextField](/api/text-field)
-- [Toolbar](/api/toolbar)
+- [Buttons（按钮）](/api/button/)
+- [Fab](/api/fab/)
+- [FilledInput](/api/filled-input/)
+- [FormControl](/api/form-control/)
+- [FormHelperText](/api/form-helper-text/)
+- [IconButton](/api/icon-button/)
+- [InputBase](/api/input-base/)
+- [InputLabel](/api/input-label/)
+- [ListItem](/api/list-item/)
+- [OutlinedInput](/api/outlined-input/)
+- [Table](/api/table/)
+- [TextField](/api/text-field/)
+- [Toolbar](/api/toolbar/)
 
 ## Explore theme density
 

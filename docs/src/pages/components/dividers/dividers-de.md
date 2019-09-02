@@ -11,13 +11,13 @@ components: Divider
 
 ## Listentrenner
 
-Der Trenner wird standardmäßig als `<hr>` gerendert. Sie können sich das einzelne Rendern des DOM- Elements sparen, indem Sie die `divider` Eigenschaft der `ListItem` Komponente nutzen.
+The divider renders as a `<hr>` by default. You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
 
 {{"demo": "pages/components/dividers/ListDividers.js"}}
 
 ## HTML5-Spezifikation
 
-Wir müssen sicherstellen, dass der `Trenner` als `li` gerendert wird, um der HTML5-Spezifikation zu entsprechen. Die folgenden Beispiele zeigen zwei Wege, um dies zu erreichen.
+We need to make sure the `Divider` is rendered as a `li` to match the HTML5 specification. The examples below show two ways of achieving this.
 
 ## Eingerückter Trenner
 

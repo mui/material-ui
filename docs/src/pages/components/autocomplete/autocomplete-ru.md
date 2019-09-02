@@ -7,7 +7,7 @@ components: TextField, Paper, MenuItem, Popper
 
 <p class="description">Автодополнение - это обычный ввод текста, дополненный панелью предлагаемых опций.</p>
 
-Material-UI не предоставляет высокоуровневый API для решения этой проблемы. Мы призываем людей полагаться на решения, разработанные сообществом React.
+Material-UI doesn't provide any high-level API for solving this problem. We encourage people relying on the solutions the React community has built.
 
 ## downshift
 

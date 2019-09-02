@@ -236,7 +236,7 @@ Wir unterstützen nicht alle CSS-Eigenschaften. Möglicherweise möchten Sie neu
 
 #### Argumente
 
-1. `Optionen` (*Object*): 
+1. `options` (*Object*): 
   - `options.pro ` (*String*): Die Eigenschaft, für die die Style-Funktion ausgelöst wird.
   - `options.cssProperty ` (*String|Boolean* [optional]): Standardeinstellung ist `options.prop`. Die verwendete CSS-Eigenschaft. Sie können diese Option deaktivieren, indem Sie `false` angeben. Wenn diese Eigenschaft deaktiviert ist, wird der Eigenschaftswert als eigenes Stilobjekt behandelt. Es kann für [Rendering-Varianten](#variants) verwendet werden.
   - `options.themeKey` (*String* [optional]): Der Themepfadpräfix.

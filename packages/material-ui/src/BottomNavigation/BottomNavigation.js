@@ -58,12 +58,12 @@ BottomNavigation.propTypes = {
   /**
    * The content of the component.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -75,7 +75,6 @@ BottomNavigation.propTypes = {
   component: PropTypes.elementType,
   /**
    * Callback fired when the value changes.
-   *
    * @param {object} event The event source of the callback
    * @param {any} value We default to the index of the child
    */

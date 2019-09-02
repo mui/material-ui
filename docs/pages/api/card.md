@@ -6,11 +6,17 @@ filename: /packages/material-ui/src/Card/Card.js
 
 # Card API
 
-<p class="description">The API documentation of the Card React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the Card React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
 
 ```js
 import Card from '@material-ui/core/Card';
+// or
+import { Card } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 
@@ -23,33 +29,29 @@ import Card from '@material-ui/core/Card';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element ([Paper](/api/paper/)).
+Any other props supplied will be provided to the root element ([Paper](/api/paper/)).
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiCard`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiCard-root</span> | Styles applied to the root element.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
+You can override the style of the component thanks to one of these customization points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Card/Card.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiCard`.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Card/Card.js) for more detail.
 
 ## Inheritance
 
-The properties of the [Paper](/api/paper/) component are also available.
+The props of the [Paper](/api/paper/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
-
-## Notes
-
-The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
 
 ## Demos
 

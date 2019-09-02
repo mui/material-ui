@@ -115,7 +115,7 @@ CardHeader.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the children won't be wrapped by a Typography component.
+   * If `true`, `subheader` and `title` won't be wrapped by a Typography component.
    * This can be useful to render an alternative Typography variant by wrapping
    * the `title` text, and optional `subheader` text
    * with the Typography component.

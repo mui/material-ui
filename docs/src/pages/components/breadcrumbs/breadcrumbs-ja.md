@@ -1,5 +1,5 @@
 ---
-title: Breadcrumbs React component
+title: Breadcrumbs Reactコンポーネント
 components: Breadcrumbs, Link, Typography
 ---
 
@@ -37,10 +37,10 @@ components: Breadcrumbs, Link, Typography
 
 このコンポーネントのアクセシビリティは、
 
-- The set of links is structured using an ordered list (`<ol>` element).
-- To prevent screen reader announcement of the visual separators between links, they are hidden with `aria-hidden`.
-- A nav element labeled with `aria-label` identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it is easy to locate.
+- リンクのセットは、順序付けられたリスト(`<ol>` element) を使用して構造化されます。
+- リンク間のビジュアルセパレータがスクリーンリーダーから通知されないようにするには、 `aria-hidden`を使用します。
+- `aria-label` というラベルが付いたnav要素は、その構造をBreadcrumbs経路として識別し、それをナビゲーション用の目印にして、見つけやすくします。
 
-## Integration with react-router
+## react-routerとの統合
 
 {{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js"}}

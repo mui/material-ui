@@ -15,6 +15,6 @@ Die `ToggleButtonGroup` wird die Auswahl von den untergeordneten Schaltern steue
 
 ## Größen
 
-Lust auf größere oder kleinere Schaltflächen? Verwenden Sie die Eigenschaft `size`.
+Fancy larger or smaller buttons? Use the `size` property.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}

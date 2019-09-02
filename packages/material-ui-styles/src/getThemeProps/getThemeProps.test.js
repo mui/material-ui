@@ -26,7 +26,7 @@ describe('getThemeProps', () => {
     assert.deepEqual(props, {});
   });
 
-  it('should return the properties', () => {
+  it('should return the props', () => {
     const props = getThemeProps({
       theme: {
         props: {

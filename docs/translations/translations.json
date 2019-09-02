@@ -1,5 +1,6 @@
 {
   "homeQuickWord": "A quick word from our sponsors:",
+  "helpToTranslate": "Help to translate",
   "editWebsiteColors": "Edit website colors",
   "toggleTheme": "Toggle light/dark theme",
   "toggleRTL": "Toggle right-to-left/left-to-right",
@@ -28,8 +29,8 @@
   "team": " Team",
   "homeFooterRelease": "Currently {{versionNumber}}. Released under the {{license}}.",
   "license": "MIT License",
-  "likeMui": "Like Material-UI?",
-  "adblock": "If you don't mind tech-related ads, and want to support Open Source, please whitelist Material-UI in your ad blocker.",
+  "likeMui": "Help us keep running",
+  "adblock": "If you don't mind tech related ads (no tracking or remarketing), and want to keep us running, please whitelist Material-UI in your blocker.",
   "thanks": "Thank you!",
   "editPage": "Edit this page",
   "tableOfContents": "Contents",
@@ -132,7 +133,7 @@
     "/components/no-ssr": "No SSR",
     "/components/other": "Other",
     "/components/paper": "Paper",
-    "/components/pickers": "Date/Time",
+    "/components/pickers": "Date / Time",
     "/components/popover": "Popover",
     "/components/popper": "Popper",
     "/components/portal": "Portal",
@@ -172,7 +173,7 @@
     "/system/spacing": "Spacing",
     "/system/typography": "Typography",
     "/customization": "Customization",
-    "/customization/theme": "Theme",
+    "/customization/theming": "Overview",
     "/customization/breakpoints": "Breakpoints",
     "/customization/color": "Color",
     "/customization/themes": "Overview",
@@ -212,6 +213,12 @@
     "/styles": "Styles",
     "/styles/basics": "Basics",
     "/styles/advanced": "Advanced",
-    "https://themes.material-ui.com/": "Premium Themes"
+    "https://themes.material-ui.com/": "Premium Themes",
+    "/components/material-icons": "Material Icons",
+    "/components/textarea-autosize": "Textarea Autosize",
+    "/components/rating": "Rating",
+    "/components/skeleton": "Skeleton",
+    "/components/tree-view": "Tree View",
+    "/customization/density": "Density"
   }
 }

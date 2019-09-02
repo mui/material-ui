@@ -804,4 +804,15 @@ describe('<Modal />', () => {
       mount(<TestCase />);
     });
   });
+
+  describe('prop: disablePortal', () => {
+    it('should render the content into the parent', () => {
+      const { container } = render(
+        <Modal open disablePortal>
+          <div />
+        </Modal>,
+      );
+      expect(container.querySelector('[role="document"]')).to.be.ok;
+    });
+  });
 });

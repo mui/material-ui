@@ -45,12 +45,21 @@ describe('styled', () => {
   });
 
   describe('prop: clone', () => {
-    it('should be able to clone the child element', () => {
-      const wrapper = mount(
-        <StyledButton clone>
+    let wrapper;
+
+    before(() => {
+      wrapper = mount(
+        <StyledButton clone data-test="enzyme">
           <div>Styled Components</div>
         </StyledButton>,
       );
+    });
+
+    it('should be able to pass props to cloned element', () => {
+      assert.strictEqual(wrapper.find('div').props()['data-test'], 'enzyme');
+    });
+
+    it('should be able to clone the child element', () => {
       assert.strictEqual(wrapper.getDOMNode().nodeName, 'DIV');
       wrapper.setProps({
         clone: false,
@@ -100,7 +109,7 @@ describe('styled', () => {
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.args()[0][0],
-        'You can not use the clone and component properties at the same time',
+        'You can not use the clone and component prop at the same time',
       );
     });
   });

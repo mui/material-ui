@@ -12,11 +12,20 @@ const styles = theme => ({
 
 const options = {
   overrides: {
-    h1: { component: props => <Typography gutterBottom variant="h4" {...props} /> },
-    h2: { component: props => <Typography gutterBottom variant="h6" {...props} /> },
-    h3: { component: props => <Typography gutterBottom variant="subtitle1" {...props} /> },
-    h4: { component: props => <Typography gutterBottom variant="caption" paragraph {...props} /> },
-    p: { component: props => <Typography paragraph {...props} /> },
+    h1: {
+      component: Typography,
+      props: {
+        gutterBottom: true,
+        variant: 'h4',
+      },
+    },
+    h2: { component: Typography, props: { gutterBottom: true, variant: 'h6' } },
+    h3: { component: Typography, props: { gutterBottom: true, variant: 'subtitle1' } },
+    h4: {
+      component: Typography,
+      props: { gutterBottom: true, variant: 'caption', paragraph: true },
+    },
+    p: { component: Typography, props: { paragraph: true } },
     a: { component: Link },
     li: {
       component: withStyles(styles)(({ classes, ...props }) => (

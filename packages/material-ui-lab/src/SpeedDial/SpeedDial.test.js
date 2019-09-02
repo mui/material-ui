@@ -18,7 +18,7 @@ describe('<SpeedDial />', () => {
 
   const icon = <Icon>font_icon</Icon>;
   const FakeAction = () => <div />;
-  const props = {
+  const defaultProps = {
     open: true,
     icon,
     ariaLabel: 'mySpeedDial',
@@ -33,7 +33,7 @@ describe('<SpeedDial />', () => {
     // StrictModeViolation: unknown
     mount = createMount({ strict: false });
     classes = getClasses(
-      <SpeedDial {...props} icon={icon}>
+      <SpeedDial {...defaultProps} icon={icon}>
         <div />
       </SpeedDial>,
     );
@@ -45,7 +45,7 @@ describe('<SpeedDial />', () => {
 
   it('should render with a minimal setup', () => {
     const wrapper = mount(
-      <SpeedDial {...props} icon={icon}>
+      <SpeedDial {...defaultProps} icon={icon}>
         <SpeedDialAction icon={<Icon>save_icon</Icon>} tooltipTitle="Save" />
       </SpeedDial>,
     );
@@ -54,7 +54,7 @@ describe('<SpeedDial />', () => {
 
   it('should render a Fade transition', () => {
     const wrapper = mount(
-      <SpeedDial {...props} icon={icon}>
+      <SpeedDial {...defaultProps} icon={icon}>
         <FakeAction />
       </SpeedDial>,
     );
@@ -63,7 +63,7 @@ describe('<SpeedDial />', () => {
 
   it('should render a Fab', () => {
     const wrapper = mount(
-      <SpeedDial {...props} icon={icon}>
+      <SpeedDial {...defaultProps} icon={icon}>
         <FakeAction />
       </SpeedDial>,
     );
@@ -73,7 +73,7 @@ describe('<SpeedDial />', () => {
 
   it('should render with a null child', () => {
     const wrapper = mount(
-      <SpeedDial {...props} icon={icon}>
+      <SpeedDial {...defaultProps} icon={icon}>
         <SpeedDialAction icon={icon} tooltipTitle="One" />
         {null}
         <SpeedDialAction icon={icon} tooltipTitle="Three" />
@@ -84,7 +84,7 @@ describe('<SpeedDial />', () => {
 
   it('should render with the root class', () => {
     const wrapper = mount(
-      <SpeedDial {...props} icon={icon}>
+      <SpeedDial {...defaultProps} icon={icon}>
         <FakeAction />
       </SpeedDial>,
     );
@@ -93,7 +93,7 @@ describe('<SpeedDial />', () => {
 
   it('should render with the user and root classes', () => {
     const wrapper = mount(
-      <SpeedDial {...props} className="mySpeedDialClass" icon={icon}>
+      <SpeedDial {...defaultProps} className="mySpeedDialClass" icon={icon}>
         <FakeAction />
       </SpeedDial>,
     );
@@ -108,7 +108,7 @@ describe('<SpeedDial />', () => {
 
   it('should render the actions with the actions class', () => {
     const wrapper = mount(
-      <SpeedDial {...props} className="mySpeedDial" icon={icon}>
+      <SpeedDial {...defaultProps} className="mySpeedDial" icon={icon}>
         <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction" />
       </SpeedDial>,
     );
@@ -119,7 +119,7 @@ describe('<SpeedDial />', () => {
 
   it('should render the actions with the actions and actionsClosed classes', () => {
     const wrapper = mount(
-      <SpeedDial {...props} open={false} className="mySpeedDial" icon={icon}>
+      <SpeedDial {...defaultProps} open={false} className="mySpeedDial" icon={icon}>
         <SpeedDialAction icon={icon} tooltipTitle="SpeedDialAction" />
       </SpeedDial>,
     );
@@ -131,7 +131,7 @@ describe('<SpeedDial />', () => {
   it('should pass the open prop to its children', () => {
     const actionClasses = { buttonClosed: 'is-closed' };
     const wrapper = mount(
-      <SpeedDial {...props} icon={icon}>
+      <SpeedDial {...defaultProps} icon={icon}>
         <SpeedDialAction classes={actionClasses} icon={icon} tooltipTitle="SpeedDialAction1" />
         <SpeedDialAction classes={actionClasses} icon={icon} tooltipTitle="SpeedDialAction2" />
       </SpeedDial>,
@@ -144,7 +144,7 @@ describe('<SpeedDial />', () => {
     it('should be set as the onClick prop of the Fab', () => {
       const onClick = spy();
       const wrapper = mount(
-        <SpeedDial {...props} icon={icon} onClick={onClick}>
+        <SpeedDial {...defaultProps} icon={icon} onClick={onClick}>
           <FakeAction />
         </SpeedDial>,
       );
@@ -161,7 +161,7 @@ describe('<SpeedDial />', () => {
         const onClick = spy();
 
         const wrapper = mount(
-          <SpeedDial {...props} icon={icon} onClick={onClick}>
+          <SpeedDial {...defaultProps} icon={icon} onClick={onClick}>
             <FakeAction />
           </SpeedDial>,
         );
@@ -179,7 +179,7 @@ describe('<SpeedDial />', () => {
     it('should be called when a key is pressed', () => {
       const handleKeyDown = spy();
       const wrapper = mount(
-        <SpeedDial {...props} icon={icon} onKeyDown={handleKeyDown}>
+        <SpeedDial {...defaultProps} icon={icon} onKeyDown={handleKeyDown}>
           <FakeAction />
         </SpeedDial>,
       );
@@ -198,7 +198,7 @@ describe('<SpeedDial />', () => {
     const testDirection = direction => {
       const className = `direction${direction}`;
       const wrapper = mount(
-        <SpeedDial {...props} direction={direction.toLowerCase()} icon={icon}>
+        <SpeedDial {...defaultProps} direction={direction.toLowerCase()} icon={icon}>
           <SpeedDialAction icon={icon} tooltipTitle="action1" />
           <SpeedDialAction icon={icon} tooltipTitle="action2" />
         </SpeedDial>,
@@ -232,7 +232,7 @@ describe('<SpeedDial />', () => {
 
       wrapper = mount(
         <SpeedDial
-          {...props}
+          {...defaultProps}
           ButtonProps={{
             ref: ref => {
               dialButtonRef = ref;

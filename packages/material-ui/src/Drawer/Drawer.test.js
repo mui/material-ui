@@ -1,9 +1,9 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import describeConformance from '../test-utils/describeConformance';
 import Slide from '../Slide';
-import createMuiTheme from '../styles/createMuiTheme';
 import Paper from '../Paper';
 import Modal from '../Modal';
 import Drawer, { getAnchor, isHorizontal } from './Drawer';
@@ -244,19 +244,25 @@ describe('<Drawer />', () => {
       const theme = createMuiTheme({
         direction: 'rtl',
       });
-      const wrapper = mount(
-        <Drawer open theme={theme}>
-          <div />
-        </Drawer>,
+      const wrapper1 = mount(
+        <MuiThemeProvider theme={theme}>
+          <Drawer open anchor="left">
+            <div />
+          </Drawer>
+        </MuiThemeProvider>,
       );
-
-      wrapper.setProps({ anchor: 'left' });
       // slide direction for left is right, if left is switched to right, we should get left
-      assert.strictEqual(wrapper.find(Slide).props().direction, 'left');
+      assert.strictEqual(wrapper1.find(Slide).props().direction, 'left');
 
-      wrapper.setProps({ anchor: 'right' });
+      const wrapper2 = mount(
+        <MuiThemeProvider theme={theme}>
+          <Drawer open anchor="right">
+            <div />
+          </Drawer>
+        </MuiThemeProvider>,
+      );
       // slide direction for right is left, if right is switched to left, we should get right
-      assert.strictEqual(wrapper.find(Slide).props().direction, 'right');
+      assert.strictEqual(wrapper2.find(Slide).props().direction, 'right');
     });
   });
 

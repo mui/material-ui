@@ -6,11 +6,17 @@ filename: /packages/material-ui/src/CardActions/CardActions.js
 
 # CardActions API
 
-<p class="description">The API documentation of the CardActions React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the CardActions React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
 
 ```js
 import CardActions from '@material-ui/core/CardActions';
+// or
+import { CardActions } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 
@@ -24,29 +30,25 @@ import CardActions from '@material-ui/core/CardActions';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiCardActions`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiCardActions-root</span> | Styles applied to the root element.
+| <span class="prop-name">spacing</span> | <span class="prop-name">MuiCardActions-spacing</span> | Styles applied to the root element if `disableSpacing={false}`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">spacing</span> | Styles applied to the root element if `disableSpacing={false}`.
+You can override the style of the component thanks to one of these customization points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/CardActions/CardActions.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiCardActions`.
-
-## Notes
-
-The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/CardActions/CardActions.js) for more detail.
 
 ## Demos
 

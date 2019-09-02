@@ -4,6 +4,7 @@ trigger:
     - '*'
     exclude:
     - l10n
+    - dependabot/*
 
 pool:
   vmImage: 'ubuntu-latest'

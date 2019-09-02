@@ -6,11 +6,17 @@ filename: /packages/material-ui/src/Dialog/Dialog.js
 
 # Dialog API
 
-<p class="description">The API documentation of the Dialog React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the Dialog React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
 
 ```js
 import Dialog from '@material-ui/core/Dialog';
+// or
+import { Dialog } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 Dialogs are overlaid modal paper based components with a backdrop.
 
@@ -24,9 +30,9 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | <span class="prop-name">disableEscapeKeyDown</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, hitting escape will not fire the `onClose` callback. |
 | <span class="prop-name">fullScreen</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the dialog will be full-screen |
 | <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the dialog stretches to `maxWidth`. |
-| <span class="prop-name">maxWidth</span> | <span class="prop-type">enum:&nbsp;'xs', 'sm', 'md', 'lg', 'xl', false<br></span> | <span class="prop-default">'sm'</span> | Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to `false` to disable `maxWidth`. |
+| <span class="prop-name">maxWidth</span> | <span class="prop-type">'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;false</span> | <span class="prop-default">'sm'</span> | Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to `false` to disable `maxWidth`. |
 | <span class="prop-name">onBackdropClick</span> | <span class="prop-type">func</span> |  | Callback fired when the backdrop is clicked. |
-| <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback<br>*reason:* Can be:`"escapeKeyDown"`, `"backdropClick"` |
+| <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback.<br>*reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`. |
 | <span class="prop-name">onEnter</span> | <span class="prop-type">func</span> |  | Callback fired before the dialog enters. |
 | <span class="prop-name">onEntered</span> | <span class="prop-type">func</span> |  | Callback fired when the dialog has entered. |
 | <span class="prop-name">onEntering</span> | <span class="prop-type">func</span> |  | Callback fired when the dialog is entering. |
@@ -37,54 +43,50 @@ Dialogs are overlaid modal paper based components with a backdrop.
 | <span class="prop-name required">open&nbsp;*</span> | <span class="prop-type">bool</span> |  | If `true`, the Dialog is open. |
 | <span class="prop-name">PaperComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Paper</span> | The component used to render the body of the dialog. |
 | <span class="prop-name">PaperProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`Paper`](/api/paper/) element. |
-| <span class="prop-name">scroll</span> | <span class="prop-type">enum:&nbsp;'body'&nbsp;&#124;<br>&nbsp;'paper'<br></span> | <span class="prop-default">'paper'</span> | Determine the container for scrolling the dialog. |
+| <span class="prop-name">scroll</span> | <span class="prop-type">'body'<br>&#124;&nbsp;'paper'</span> | <span class="prop-default">'paper'</span> | Determine the container for scrolling the dialog. |
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Fade</span> | The component used for the transition. |
-| <span class="prop-name">transitionDuration</span> | <span class="prop-type">union:&nbsp;number&nbsp;&#124;<br>&nbsp;{ enter?: number, exit?: number }<br></span> | <span class="prop-default">{ enter: duration.enteringScreen, exit: duration.leavingScreen }</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| <span class="prop-name">transitionDuration</span> | <span class="prop-type">number<br>&#124;&nbsp;{ enter?: number, exit?: number }</span> | <span class="prop-default">{ enter: duration.enteringScreen, exit: duration.leavingScreen }</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Props applied to the `Transition` element. |
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element ([Modal](/api/modal/)).
+Any other props supplied will be provided to the root element ([Modal](/api/modal/)).
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiDialog`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiDialog-root</span> | Styles applied to the root element.
+| <span class="prop-name">scrollPaper</span> | <span class="prop-name">MuiDialog-scrollPaper</span> | Styles applied to the container element if `scroll="paper"`.
+| <span class="prop-name">scrollBody</span> | <span class="prop-name">MuiDialog-scrollBody</span> | Styles applied to the container element if `scroll="body"`.
+| <span class="prop-name">container</span> | <span class="prop-name">MuiDialog-container</span> | Styles applied to the container element.
+| <span class="prop-name">paper</span> | <span class="prop-name">MuiDialog-paper</span> | Styles applied to the `Paper` component.
+| <span class="prop-name">paperScrollPaper</span> | <span class="prop-name">MuiDialog-paperScrollPaper</span> | Styles applied to the `Paper` component if `scroll="paper"`.
+| <span class="prop-name">paperScrollBody</span> | <span class="prop-name">MuiDialog-paperScrollBody</span> | Styles applied to the `Paper` component if `scroll="body"`.
+| <span class="prop-name">paperWidthFalse</span> | <span class="prop-name">MuiDialog-paperWidthFalse</span> | Styles applied to the `Paper` component if `maxWidth=false`.
+| <span class="prop-name">paperWidthXs</span> | <span class="prop-name">MuiDialog-paperWidthXs</span> | Styles applied to the `Paper` component if `maxWidth="xs"`.
+| <span class="prop-name">paperWidthSm</span> | <span class="prop-name">MuiDialog-paperWidthSm</span> | Styles applied to the `Paper` component if `maxWidth="sm"`.
+| <span class="prop-name">paperWidthMd</span> | <span class="prop-name">MuiDialog-paperWidthMd</span> | Styles applied to the `Paper` component if `maxWidth="md"`.
+| <span class="prop-name">paperWidthLg</span> | <span class="prop-name">MuiDialog-paperWidthLg</span> | Styles applied to the `Paper` component if `maxWidth="lg"`.
+| <span class="prop-name">paperWidthXl</span> | <span class="prop-name">MuiDialog-paperWidthXl</span> | Styles applied to the `Paper` component if `maxWidth="xl"`.
+| <span class="prop-name">paperFullWidth</span> | <span class="prop-name">MuiDialog-paperFullWidth</span> | Styles applied to the `Paper` component if `fullWidth={true}`.
+| <span class="prop-name">paperFullScreen</span> | <span class="prop-name">MuiDialog-paperFullScreen</span> | Styles applied to the `Paper` component if `fullScreen={true}`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">scrollPaper</span> | Styles applied to the container element if `scroll="paper"`.
-| <span class="prop-name">scrollBody</span> | Styles applied to the container element if `scroll="body"`.
-| <span class="prop-name">container</span> | Styles applied to the container element.
-| <span class="prop-name">paper</span> | Styles applied to the `Paper` component.
-| <span class="prop-name">paperScrollPaper</span> | Styles applied to the `Paper` component if `scroll="paper"`.
-| <span class="prop-name">paperScrollBody</span> | Styles applied to the `Paper` component if `scroll="body"`.
-| <span class="prop-name">paperWidthFalse</span> | Styles applied to the `Paper` component if `maxWidth=false`.
-| <span class="prop-name">paperWidthXs</span> | Styles applied to the `Paper` component if `maxWidth="xs"`.
-| <span class="prop-name">paperWidthSm</span> | Styles applied to the `Paper` component if `maxWidth="sm"`.
-| <span class="prop-name">paperWidthMd</span> | Styles applied to the `Paper` component if `maxWidth="md"`.
-| <span class="prop-name">paperWidthLg</span> | Styles applied to the `Paper` component if `maxWidth="lg"`.
-| <span class="prop-name">paperWidthXl</span> | Styles applied to the `Paper` component if `maxWidth="xl"`.
-| <span class="prop-name">paperFullWidth</span> | Styles applied to the `Paper` component if `fullWidth={true}`.
-| <span class="prop-name">paperFullScreen</span> | Styles applied to the `Paper` component if `fullScreen={true}`.
+You can override the style of the component thanks to one of these customization points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Dialog/Dialog.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiDialog`.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Dialog/Dialog.js) for more detail.
 
 ## Inheritance
 
-The properties of the [Modal](/api/modal/) component are also available.
+The props of the [Modal](/api/modal/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
-
-## Notes
-
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
 
 ## Demos
 

@@ -7,7 +7,7 @@ components: TextField, Paper, MenuItem, Popper
 
 <p class="description">Die Autovervollständigung ist eine normale Texteingabe, die durch ein Panel mit vorgeschlagenen Optionen ergänzt wird.</p>
 
-Material-UI bietet keine High-Level-API zur Lösung dieses Problems. Wir unterstützen Menschen, die sich auf die Lösungen verlassen, die die React-Community entwickelt hat.
+Material-UI doesn't provide any high-level API for solving this problem. We encourage people relying on the solutions the React community has built.
 
 ## downshift
 

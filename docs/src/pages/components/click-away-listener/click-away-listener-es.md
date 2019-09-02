@@ -7,7 +7,7 @@ components: ClickAwayListener
 
 <p class="description">Detect if a click event happened outside of an element. It listens for clicks that occur somewhere in the document.</p>
 
-- 
+- 📦 [1.4 kB gzipped](/size-snapshot).
 
 ## Simple menu dropdown
 

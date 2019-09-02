@@ -12,9 +12,9 @@ La page [d'utilisation](/getting-started/usage/#quick-start) contient un petit e
 
 Nous [hébergeons des exemples de projets](/getting-started/example-projects/) fournissant l'infrastructure nécessaire au développement et au déploiement de sites Web avec React.
 
-## Exemples de mise en page
+## Templates
 
-Nous avons une [sélection de mises en page de base](/getting-started/page-layout-examples/) pour vous aider à commencer à créer votre application.
+We have a [selection of basic templates](/getting-started/templates/) to help you get started building your app.
 
 ## Ressources recommandées
 
@@ -34,7 +34,12 @@ Lors de la première utilisation de Material-UI, vous trouverez peut-être que l
 
 ### Payant
 
-- **React Material-UI Cookbook**: Build modern day application by implementing Material Design principles in React applications using Material-UI. 
+- **Material-UI with React**: Material-UI is an excellent framework to develop beautiful React components faster! This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using Material-UI and React.
+  
+  - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
+  - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
+- **React Material-UI Cookbook**: Build modern day application by implementing Material Design principles in React applications using Material-UI.
+  
   - 📘 [The book](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
 
 [![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)

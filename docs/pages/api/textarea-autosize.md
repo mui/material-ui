@@ -6,11 +6,17 @@ filename: /packages/material-ui/src/TextareaAutosize/TextareaAutosize.js
 
 # TextareaAutosize API
 
-<p class="description">The API documentation of the TextareaAutosize React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the TextareaAutosize React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
 
 ```js
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+// or
+import { TextareaAutosize } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 
@@ -18,16 +24,12 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">rows</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br></span> |  | Minimum umber of rows to display. |
-| <span class="prop-name">rowsMax</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;number<br></span> |  | Maximum number of rows to display. |
+| <span class="prop-name">rows</span> | <span class="prop-type">string<br>&#124;&nbsp;number</span> |  | Minimum number of rows to display. |
+| <span class="prop-name">rowsMax</span> | <span class="prop-type">string<br>&#124;&nbsp;number</span> |  | Maximum number of rows to display. |
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element (native element).
-
-## Notes
-
-The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
+Any other props supplied will be provided to the root element (native element).
 
 ## Demos
 

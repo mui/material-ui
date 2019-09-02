@@ -6,11 +6,17 @@ filename: /packages/material-ui/src/AppBar/AppBar.js
 
 # AppBar API
 
-<p class="description">The API documentation of the AppBar React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the AppBar React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
 
 ```js
 import AppBar from '@material-ui/core/AppBar';
+// or
+import { AppBar } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 
@@ -18,48 +24,44 @@ import AppBar from '@material-ui/core/AppBar';
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | The content of the component. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">color</span> | <span class="prop-type">enum:&nbsp;'inherit'&nbsp;&#124;<br>&nbsp;'primary'&nbsp;&#124;<br>&nbsp;'secondary'&nbsp;&#124;<br>&nbsp;'default'<br></span> | <span class="prop-default">'primary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
-| <span class="prop-name">position</span> | <span class="prop-type">enum:&nbsp;'fixed', 'absolute', 'sticky', 'static', 'relative'<br></span> | <span class="prop-default">'fixed'</span> | The positioning type. The behavior of the different options is described [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning). Note: `sticky` is not universally supported and will fall back to `static` when unavailable. |
+| <span class="prop-name">color</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'primary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span class="prop-name">position</span> | <span class="prop-type">'absolute'<br>&#124;&nbsp;'fixed'<br>&#124;&nbsp;'relative'<br>&#124;&nbsp;'static'<br>&#124;&nbsp;'sticky'</span> | <span class="prop-default">'fixed'</span> | The positioning type. The behavior of the different options is described [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning). Note: `sticky` is not universally supported and will fall back to `static` when unavailable. |
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element ([Paper](/api/paper/)).
+Any other props supplied will be provided to the root element ([Paper](/api/paper/)).
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiAppBar`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiAppBar-root</span> | Styles applied to the root element.
+| <span class="prop-name">positionFixed</span> | <span class="prop-name">MuiAppBar-positionFixed</span> | Styles applied to the root element if `position="fixed"`.
+| <span class="prop-name">positionAbsolute</span> | <span class="prop-name">MuiAppBar-positionAbsolute</span> | Styles applied to the root element if `position="absolute"`.
+| <span class="prop-name">positionSticky</span> | <span class="prop-name">MuiAppBar-positionSticky</span> | Styles applied to the root element if `position="sticky"`.
+| <span class="prop-name">positionStatic</span> | <span class="prop-name">MuiAppBar-positionStatic</span> | Styles applied to the root element if `position="static"`.
+| <span class="prop-name">positionRelative</span> | <span class="prop-name">MuiAppBar-positionRelative</span> | Styles applied to the root element if `position="relative"`.
+| <span class="prop-name">colorDefault</span> | <span class="prop-name">MuiAppBar-colorDefault</span> | Styles applied to the root element if `color="default"`.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiAppBar-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiAppBar-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">positionFixed</span> | Styles applied to the root element if `position="fixed"`.
-| <span class="prop-name">positionAbsolute</span> | Styles applied to the root element if `position="absolute"`.
-| <span class="prop-name">positionSticky</span> | Styles applied to the root element if `position="sticky"`.
-| <span class="prop-name">positionStatic</span> | Styles applied to the root element if `position="static"`.
-| <span class="prop-name">positionRelative</span> | Styles applied to the root element if `position="relative"`.
-| <span class="prop-name">colorDefault</span> | Styles applied to the root element if `color="default"`.
-| <span class="prop-name">colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+You can override the style of the component thanks to one of these customization points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/AppBar/AppBar.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiAppBar`.
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/AppBar/AppBar.js) for more detail.
 
 ## Inheritance
 
-The properties of the [Paper](/api/paper/) component are also available.
+The props of the [Paper](/api/paper/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
-
-## Notes
-
-The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
 
 ## Demos
 

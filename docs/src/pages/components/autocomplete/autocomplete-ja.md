@@ -1,5 +1,5 @@
 ---
-title: Autocomplete React component
+title: オートコンプリートReactコンポーネント
 components: TextField, Paper, MenuItem, Popper
 ---
 
@@ -7,13 +7,13 @@ components: TextField, Paper, MenuItem, Popper
 
 <p class="description">オートコンプリートは、推奨オプションのパネルによって強化された通常のテキスト入力です。</p>
 
-Material-UIはこの問題を解決するための高度なAPIを提供していません。 Reactコミュニティが構築したソリューションを奨励します。
+Material-UIには、この問題を解決するための高レベルAPIはありません。 Reactコミュニティが構築したソリューションに頼ることを推奨します。
 
 ## downshift
 
 ![Stars](https://img.shields.io/github/stars/paypal/downshift.svg?style=social&label=Stars) ![npmダウンロード](https://img.shields.io/npm/dm/downshift.svg)
 
-In the following example, we demonstrate how to use [downshift](https://github.com/downshift-js/downshift).
+次の例では、<a href=「https://github.com/downshift-js/downshift」>downshift</a>の使用方法を示します。
 
 最後のデモでは、ユーザーが入力をクリアしてフォーカスのある多くのオプションを表示することができます。
 
@@ -23,7 +23,7 @@ In the following example, we demonstrate how to use [downshift](https://github.c
 
 ![Stars](https://img.shields.io/github/stars/JedWatson/react-select.svg?style=social&label=Stars) ![npmダウンロード](https://img.shields.io/npm/dm/react-select.svg)
 
-In the following example, we demonstrate how to use [react-select](https://github.com/JedWatson/react-select).
+次の例では、[react-select](https://github.com/JedWatson/react-select).の使用方法を示します。
 
 {{"demo": "pages/components/autocomplete/IntegrationReactSelect.js"}}
 

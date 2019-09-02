@@ -10,7 +10,7 @@ function arrowGenerator(color: string) {
       top: 0,
       left: 0,
       marginTop: '-0.95em',
-      width: '3em',
+      width: '2em',
       height: '1em',
       '&::before': {
         borderWidth: '0 1em 1em 1em',
@@ -21,7 +21,7 @@ function arrowGenerator(color: string) {
       bottom: 0,
       left: 0,
       marginBottom: '-0.95em',
-      width: '3em',
+      width: '2em',
       height: '1em',
       '&::before': {
         borderWidth: '1em 1em 0 1em',
@@ -31,7 +31,7 @@ function arrowGenerator(color: string) {
     '&[x-placement*="right"] $arrow': {
       left: 0,
       marginLeft: '-0.95em',
-      height: '3em',
+      height: '2em',
       width: '1em',
       '&::before': {
         borderWidth: '1em 1em 1em 0',
@@ -41,7 +41,7 @@ function arrowGenerator(color: string) {
     '&[x-placement*="left"] $arrow': {
       right: 0,
       marginRight: '-0.95em',
-      height: '3em',
+      height: '2em',
       width: '1em',
       '&::before': {
         borderWidth: '1em 0 1em 1em',
@@ -68,8 +68,6 @@ const useStylesArrow = makeStyles((theme: Theme) =>
     arrow: {
       position: 'absolute',
       fontSize: 6,
-      width: '3em',
-      height: '3em',
       '&::before': {
         content: '""',
         margin: 'auto',
@@ -116,8 +114,6 @@ const useStylesBootstrap = makeStyles((theme: Theme) =>
     arrow: {
       position: 'absolute',
       fontSize: 6,
-      width: '3em',
-      height: '3em',
       '&::before': {
         content: '""',
         margin: 'auto',

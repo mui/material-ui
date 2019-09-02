@@ -34,7 +34,7 @@
 
 ```jsx
 import React from 'react';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 export default function PlainCssButton() {
   return (
@@ -72,7 +72,7 @@ export default function PlainCssButton() {
 
 ```jsx
 import React from 'react';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 export default function GlobalCssButton() {
   return (
@@ -96,7 +96,7 @@ export default function GlobalCssButton() {
 ```jsx
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const StyledButton = styled(Button)`
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
@@ -146,7 +146,7 @@ import { StylesProvider } from '@material-ui/styles';
 ```jsx
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const StyledButton = styled(({ color, ...other }) => <Button {...other} />)`
   background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
@@ -178,7 +178,7 @@ export default function StyledComponentsDeep() {
 ```jsx
 import React from 'react';
 import styled from 'styled-components';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const StyledButton = styled(({ color, ...other }) => (
   <Button classes={{ label: 'label' }} {...other} />
@@ -264,7 +264,7 @@ const StyledMenu = styled(({ className, ...props }) => (
 import React from 'react';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesButton.css';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 export default function CssModulesButton() {
   return (
@@ -291,7 +291,7 @@ Emotion的 **css()** 方法与Material-UI无缝协作。
 ```jsx
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 // We just assign them the Button's className attribute
 export default function EmotionButton() {
@@ -336,7 +336,7 @@ Material-UI 的样式方案与 [react-jss](https://github.com/cssinjs/react-jss)
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const styles = {
   button: {
@@ -377,7 +377,7 @@ export default injectSheet(styles)(ReactJssButton);
 ```jsx
 import React from 'react';
 import { css } from 'glamor';
-import { Button } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
 
 const buttonStyles = {
   background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
@@ -389,7 +389,7 @@ const buttonStyles = {
   boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .30)"
 };
 
-// 接着我们只需要将它们传入Button 的 className 属性中
+// Then we just assign them the Button's className attribute
 export default function GlamorButton() {
   return (
     <div>

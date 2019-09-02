@@ -27,11 +27,12 @@ Extend the default panel behavior to create an accordion with the `ExpansionPane
 
 {{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js"}}
 
-## Secondary heading and Columns
+## Customized expansion panels
 
-Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
+Here is an example of customizing the component. You can learn more about this in the
+[overrides documentation page](/customization/components/).
 
-{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}
+{{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}
 
 ## Performance
 
@@ -43,9 +44,8 @@ panels it might be a good idea to change this default behavior by enabling the
 As with any performance optimization this is not a silver bullet. Be sure to identify
 bottlenecks first and then try out these optimization strategies.
 
-## Customized expansion panels
+## Secondary heading and Columns
 
-Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/components/).
+Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
 
-{{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}
+{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}

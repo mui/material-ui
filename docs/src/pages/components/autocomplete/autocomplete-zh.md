@@ -7,7 +7,7 @@ components: TextField, Paper, MenuItem, Popper
 
 <p class="description">自动补全是一个通过一组建议选项来帮助用户输入的普通文本输入框。</p>
 
-Material-UI不提供任何高级 API 来解决此问题。我们鼓励大家参考那些 React 社区已有的解决方案。
+Material-UI 不提供任何高级的 API 来对此进行支持。 我们鼓励您使用由 React 社区提供的现有解决方案。
 
 ## downshift
 
@@ -15,7 +15,7 @@ Material-UI不提供任何高级 API 来解决此问题。我们鼓励大家参�
 
 在下面的示例中，我们演示了如何使用 [downshift](https://github.com/downshift-js/downshift)。
 
-The last demo allows the user to clear the input and show a number of options on focus.
+在最后一个例子中，用户可以清除已有的输入，并在焦点的位置上显示一系列的选项。
 
 {{"demo": "pages/components/autocomplete/IntegrationDownshift.js"}}
 

@@ -3,7 +3,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ExtendButtonBase } from '../ButtonBase';
 import { Omit } from '@material-ui/types';
 
-export type MenuItemClassKey = 'root' | 'gutters' | 'selected';
+export type MenuItemClassKey = 'root' | 'gutters' | 'selected' | 'dense';
 
 export type MenuItemTypeMap<P, D extends React.ElementType> = Omit<
   ListItemTypeMap<P, D>,

@@ -4,7 +4,7 @@ import { spy, stub, useFakeTimers } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Collapse from './Collapse';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 
 describe('<Collapse />', () => {
@@ -116,6 +116,11 @@ describe('<Collapse />', () => {
         it('should set element height to 0 initially', () => {
           assert.strictEqual(nodeEnterHeightStyle, '0px');
         });
+
+        it('should call handleEnter', () => {
+          assert.strictEqual(handleEnter.args[0][0], container.instance());
+          assert.strictEqual(handleEnter.args[0][1], false);
+        });
       });
 
       describe('handleEntering()', () => {
@@ -126,6 +131,7 @@ describe('<Collapse />', () => {
         it('should call handleEntering', () => {
           assert.strictEqual(handleEntering.callCount, 1);
           assert.strictEqual(handleEntering.args[0][0], container.instance());
+          assert.strictEqual(handleEntering.args[0][1], false);
         });
       });
 
@@ -133,6 +139,7 @@ describe('<Collapse />', () => {
         it('should set height to auto', () => {
           clock.tick(1000);
           assert.strictEqual(handleEntered.args[0][0].style.height, 'auto');
+          assert.strictEqual(handleEntered.args[0][1], false);
         });
 
         it('should have called onEntered', () => {
@@ -191,19 +198,21 @@ describe('<Collapse />', () => {
     });
 
     it('should delay based on height when timeout is auto', () => {
-      const next = spy();
-
       const theme = createMuiTheme({
         transitions: {
           getAutoHeightDuration: n => n,
         },
       });
 
-      const wrapper = mount(
-        <Collapse timeout="auto" onEntered={next} theme={theme}>
-          <div />
-        </Collapse>,
+      const next1 = spy();
+      const Test = props => (
+        <MuiThemeProvider theme={theme}>
+          <Collapse timeout="auto" onEntered={next1} {...props}>
+            <div />
+          </Collapse>
+        </MuiThemeProvider>
       );
+      const wrapper = mount(<Test />);
 
       // Gets wrapper
       stub(
@@ -220,11 +229,11 @@ describe('<Collapse />', () => {
       });
 
       const autoTransitionDuration = 10;
-      assert.strictEqual(next.callCount, 0);
+      assert.strictEqual(next1.callCount, 0);
       clock.tick(0);
-      assert.strictEqual(next.callCount, 0);
+      assert.strictEqual(next1.callCount, 0);
       clock.tick(autoTransitionDuration);
-      assert.strictEqual(next.callCount, 1);
+      assert.strictEqual(next1.callCount, 1);
 
       const next2 = spy();
       const wrapper2 = mount(
@@ -232,7 +241,6 @@ describe('<Collapse />', () => {
           <div />
         </Collapse>,
       );
-
       wrapper2.setProps({ in: true });
 
       assert.strictEqual(next2.callCount, 0);

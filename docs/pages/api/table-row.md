@@ -6,11 +6,17 @@ filename: /packages/material-ui/src/TableRow/TableRow.js
 
 # TableRow API
 
-<p class="description">The API documentation of the TableRow React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the TableRow React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
 
 ```js
 import TableRow from '@material-ui/core/TableRow';
+// or
+import { TableRow } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 Will automatically set dynamic row height
 based on the material table element parent (head, body, etc).
@@ -27,32 +33,28 @@ based on the material table element parent (head, body, etc).
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiTableRow`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiTableRow-root</span> | Styles applied to the root element.
+| <span class="prop-name">selected</span> | <span class="prop-name">Mui-selected</span> | Pseudo-class applied to the root element if `selected={true}`.
+| <span class="prop-name">hover</span> | <span class="prop-name">MuiTableRow-hover</span> | Pseudo-class applied to the root element if `hover={true}`.
+| <span class="prop-name">head</span> | <span class="prop-name">MuiTableRow-head</span> | Styles applied to the root element if table variant="head".
+| <span class="prop-name">footer</span> | <span class="prop-name">MuiTableRow-footer</span> | Styles applied to the root element if table variant="footer".
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">selected</span> | Pseudo-class applied to the root element if `selected={true}`.
-| <span class="prop-name">hover</span> | Pseudo-class applied to the root element if `hover={true}`.
-| <span class="prop-name">head</span> | Styles applied to the root element if table variant="head".
-| <span class="prop-name">footer</span> | Styles applied to the root element if table variant="footer".
+You can override the style of the component thanks to one of these customization points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TableRow/TableRow.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiTableRow`.
-
-## Notes
-
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/TableRow/TableRow.js) for more detail.
 
 ## Demos
 

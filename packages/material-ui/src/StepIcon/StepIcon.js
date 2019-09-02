@@ -82,7 +82,7 @@ StepIcon.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * The icon displayed by the step label.
+   * The label displayed in the step icon.
    */
   icon: PropTypes.node.isRequired,
 };

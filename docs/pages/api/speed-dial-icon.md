@@ -6,11 +6,17 @@ filename: /packages/material-ui-lab/src/SpeedDialIcon/SpeedDialIcon.js
 
 # SpeedDialIcon API
 
-<p class="description">The API documentation of the SpeedDialIcon React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the SpeedDialIcon React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
 
 ```js
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
+// or
+import { SpeedDialIcon } from '@material-ui/lab';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 
@@ -24,33 +30,29 @@ import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 
 The component cannot hold a ref.
 
-Any other properties supplied will be provided to the root element (native element).
+Any other props supplied will be provided to the root element (native element).
 
 ## CSS
 
-You can override all the class names injected by Material-UI thanks to the `classes` prop.
-This prop accepts the following keys:
+- Style sheet name: `MuiSpeedDialIcon`.
+- Style sheet details:
 
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">MuiSpeedDialIcon-root</span> | Styles applied to the root element.
+| <span class="prop-name">icon</span> | <span class="prop-name">MuiSpeedDialIcon-icon</span> | Styles applied to the icon component.
+| <span class="prop-name">iconOpen</span> | <span class="prop-name">MuiSpeedDialIcon-iconOpen</span> | Styles applied to the icon component if `open={true}`.
+| <span class="prop-name">iconWithOpenIconOpen</span> | <span class="prop-name">MuiSpeedDialIcon-iconWithOpenIconOpen</span> | Styles applied to the icon when and `openIcon` is provided & if `open={true}`.
+| <span class="prop-name">openIcon</span> | <span class="prop-name">MuiSpeedDialIcon-openIcon</span> | Styles applied to the `openIcon` if provided.
+| <span class="prop-name">openIconOpen</span> | <span class="prop-name">MuiSpeedDialIcon-openIconOpen</span> | Styles applied to the `openIcon` if provided & if `open={true}`.
 
-| Name | Description |
-|:-----|:------------|
-| <span class="prop-name">root</span> | Styles applied to the root element.
-| <span class="prop-name">icon</span> | Styles applied to the icon component.
-| <span class="prop-name">iconOpen</span> | Styles applied to the icon component if `open={true}`.
-| <span class="prop-name">iconWithOpenIconOpen</span> | Styles applied to the icon when and `openIcon` is provided & if `open={true}`.
-| <span class="prop-name">openIcon</span> | Styles applied to the `openIcon` if provided.
-| <span class="prop-name">openIconOpen</span> | Styles applied to the `openIcon` if provided & if `open={true}`.
+You can override the style of the component thanks to one of these customization points:
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/SpeedDialIcon/SpeedDialIcon.js)
-for more detail.
+- With a rule name of the [`classes` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [`overrides` property](/customization/globals/#css).
 
-If using the `overrides` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: `MuiSpeedDialIcon`.
-
-## Notes
-
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
+If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-lab/src/SpeedDialIcon/SpeedDialIcon.js) for more detail.
 
 ## Demos
 

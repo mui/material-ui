@@ -5,7 +5,7 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 # Таблицы
 
-<p class="description">Таблицы отображают массивы данных. Они могут быть полностью кастомизированны.</p>
+<p class="description">Data tables display sets of data. They can be fully customized.</p>
 
 [Таблицы](https://material.io/design/components/data-tables.html) отображают информацию так, чтобы ее было легко воспринимать визуально. Так чтобы пользователи видели шаблоны отображения данных. Они могут быть встроены в основной контент, например в карточки.
 
@@ -47,7 +47,7 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 ## Customized tables
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js"}}
 

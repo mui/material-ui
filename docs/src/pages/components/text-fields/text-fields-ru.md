@@ -7,7 +7,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 <p class="description">Текстовые поля позволяют пользователям вводить и редактировать текст.</p>
 
-[Текстовые поля](https://material.io/design/components/text-fields.html) позволяют пользователям вводить текст в интерфейсe. Они обычно появляются в формах и диалогах.
+[Текстовые поля](https://material.io/design/components/text-fields.html) позволяют пользователям вводить текст в интерфейсе. Обычно они появляются в формах и диалогах.
 
 ## Текстовое поля
 
@@ -43,7 +43,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ## Кастомизированные поля ввода
 
-Ниже приведены несколько примеров настройки компонента. Более подробно с этой темой можно ознакомиться на [странице документации по переопределению компонентов](/customization/components/).
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -79,6 +79,8 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 ## Ограничения
 
+### Сжатие
+
 Состояние метки поля ввода (label) "shrink" не всегда корректно. Предполагается, что метка поля ввода уменьшается, как только в поле ввода что-нибудь отображается. В некоторых случаях мы не можем определить состояние "shrink" (числовое поле, поле даты, Stripe input). Вы могли заметить совпадения.
 
 ![сжатие](/static/images/text-fields/shrink.png)
@@ -95,15 +97,19 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 <InputLabel shrink>Contagem</InputLabel>
 ```
 
-## Integration with 3rd party input libraries
+### Плавающая метка
 
-You can use third-party libraries to format an input. You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
+Плавающий ярлык абсолютно позиционируется, он не повлияет на макет страницы. Необходимо убедиться, что поле ввода больше, чем метка для корректного отображения.
+
+## Интеграция с сторонними библиотеками текстовых полей
+
+Вы можете использовать сторонние библиотеки для форматирования ввода. Вы должны предоставить пользовательскую реализацию элемента `<input>` со свойством `inputComponent`.
 
 В следующем примере используются библиотеки [response-text-mask](https://github.com/text-mask/text-mask) и [response-number-format](https://github.com/s-yadav/react-number-format). The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
+The provided input component should handle the `inputRef` property. Свойство должно вызываться со значением, которое реализует следующий интерфейс:
 
 ```ts
 interface InputElement {
@@ -139,7 +145,7 @@ function MyInputComponent(props) {
 
 ## Доступность
 
-Для того, чтобы текстовое поле было доступно, **поле ввода должно быть связано с меткой и вспомогательным текстом**. Базовые узлы DOM должны иметь эту структуру.
+In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure.
 
 ```jsx
 <div class="form-control">

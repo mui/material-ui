@@ -29,11 +29,6 @@ const backers = [
     title: 'Call-Em-All - The easy way to message your group',
   },
   {
-    href: 'https://localizejs.com',
-    alt: 'localize',
-    title: 'Localize — Application translation & localization platform',
-  },
-  {
     href: 'https://blokt.com',
     alt: 'blokt',
     title: 'Leading Cryptocurrency News',
@@ -50,7 +45,7 @@ const styles = theme => ({
 
 function HomeQuickWord(props) {
   const { classes } = props;
-  const { t } = useSelector(state => ({ t: state.options.t }));
+  const t = useSelector(state => state.options.t);
   const backer = backers[Math.round((backers.length - 1) * Math.random())];
 
   return (

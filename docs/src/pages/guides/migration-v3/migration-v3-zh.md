@@ -33,7 +33,7 @@
 ```sh
 npm install @material-ui/core
 
-or
+或者
 
 yarn add @material-ui/core
 ```
@@ -57,7 +57,7 @@ yarn add @material-ui/core
 ```sh
 npm install @material-ui/styles
 
-or
+或者
 
 yarn add @material-ui/styles
 ```
@@ -117,7 +117,7 @@ yarn add @material-ui/styles
 
   您可以在项目中使用 [迁移小帮手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api)来让您的迁移流程更加顺畅。
 
-### 布局
+### Layout（布局）
 
 - [Grid] 本着支持任意间距值并且摈弃心理上一直需要在8的基础上计数的目的，我们改变了 spacing 的 API: 
 
@@ -139,9 +139,9 @@ yarn add @material-ui/styles
 
 ### TypeScript
 
-#### `value` type
+#### `value` 类型 
 
-Normalized `value` prop type for input components to use `unknown`. 这会影响
+将 input 组件的 `value` 属性的类型正常化，这样可以使用 `unknown`了。 这会影响
 `InputBase`，`NativeSelect`，`OutlinedInput`，`Radio`，`RadioGroup`，`Select`，`SelectInput`，`TextArea` 和 `TextField`。
 
 ```diff
@@ -187,7 +187,7 @@ function MySelect({ children }) {
 
 - [ButtonBase] 传递给`组件`的属性的组件需要能接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
   
-  在 `BottomNavigationAction`，`Button`，`CardActionArea`，`Checkbox`，`ExpansionPanelSummary`，`Fab`，`IconButton`，`MenuItem`，`Radio`，`StepButton`，`Tab`，`TableSortLabel` 以及 `ListItem` 上，若它们的 `button` 属性是 true，则也适用。
+    在 `BottomNavigationAction`，`Button`，`CardActionArea`，`Checkbox`，`ExpansionPanelSummary`，`Fab`，`IconButton`，`MenuItem`，`Radio`，`StepButton`，`Tab`，`TableSortLabel` 以及 `ListItem` 上，若它们的 `button` 属性是 true，则也适用。
 
 ### Cards（卡片）
 
@@ -227,8 +227,9 @@ function MySelect({ children }) {
   - 当使用头像时，您必须要使用 `ListItemAvatar` 组件。
   - 当使用左边的复选框时，您必须使用 `ListItemIcon` 组件。
   - 您必须要在图标按钮上设置 `edge` 属性。
+- [List] `dense` no longer reduces the top and bottom padding of the `List` element.
 
-- [ListItem] 加强 `disabled` 和 `focusVisible` 样式规则的 CSS 特性。
+- [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
 
 ### Menu（菜单）
 
@@ -238,7 +239,7 @@ function MySelect({ children }) {
 
 - [Modal] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
   
-  这也适用于 `Dialog` 和 `Popover` 。
+    这也适用于 `Dialog` 和 `Popover` 。
 
 - [Modal] 删除Modal组件类的自定义API (独立使用时将减少-74％的打包大小)。
 
@@ -253,19 +254,19 @@ function MySelect({ children }) {
   +<Paper elevation={2} />
   ```
   
-  这也会影响 `扩展面板`。
+    这也会影响 `扩展面板`。
 
-### Portal
+### Portal（传送门）
 
 - [Portal] 当使用 `disablePortal`属性的时候，子元素需要能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
-### Slide（滑块）
+### Slide（幻灯片）
 
 - [Slide] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
-### Slider
+### Slider（滑块）
 
-- [Slider] Move from `@material-ui/lab` to `@material-ui/core`.
+- [Slider] 从 `@material-ui/lab` 迁移到 `@material-ui/core`。
   
   ```diff
   -import Slider from '@material-ui/lab/Slider'
@@ -288,9 +289,9 @@ function MySelect({ children }) {
 - [Snackbar] 匹配新的规范。
   
   - 更改尺寸。
-  - 将默认的过渡动画从`Slide`改成`Grow`。
+  - 将默认的过渡动画从 `Slide` 改成 `Grow`。
 
-### SvgIcon（Svg图标）
+### SvgIcon（Svg 图标）
 
 - [SvgIcon] 重命名nativeColor - > htmlColor。 React 在 `for` 这个 HTML 属性上也遇到了同样的问题，他们选择命名这个属性为`htmlFor`。 此变化的原因大同小异。
   
@@ -299,11 +300,11 @@ function MySelect({ children }) {
   +<AddIcon htmlColor="#fff" />
   ```
 
-### 选项卡
+### Tabs（选项卡）
 
-- [Tab] 为了简单起见，删除了` labelContainer `，`label` 和 `labelWrapped`等类的 key。 这使得我们可以移走中间的两个 DOM 元素。 您应该将自定义的样式已到`根元素`的类的 key 上。
+- [Tab] 为了简单起见，删除了` labelContainer `，`label` 和 `labelWrapped` 等类的 key。 这使得我们可以移走两个中间的 DOM 元素。 您应该可以将自定义的样式移到`根元素`的类的键上。
   
-  ![一个更简单的标签项的 DOM 结构](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
+    ![一个更简单的标签项的 DOM 结构](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
 - [Tabs] 移除了弃用的 <0>fullWidth</0> 和 <0>scrollable</0> 属性：:
   
@@ -312,7 +313,7 @@ function MySelect({ children }) {
   +<Tabs variant="scrollable" />
   ```
 
-### Table
+### Table（表格）
 
 - [TableCell] 移除了弃用的 `numeric` 属性：
   
@@ -331,7 +332,7 @@ function MySelect({ children }) {
 
 - [TablePagination] 此组件不再修复无效的属性（`page`，`count`，`rowsPerPage`）组合。 相反的，它会给出一个警告。
 
-### TextField
+### TextField（文本框）
 
 - [InputLabel] 凭借 InputLabel 组件的类 API，您应该可以覆盖 FormLabel 组件所有的样式表。 我们移除了 `FormLabelClasses` 属性。
   
@@ -350,16 +351,16 @@ function MySelect({ children }) {
   box-sizing: border-box;
   ```
   
-  与 `fullWidth` 属性有关的问题迎刃而解。
+    与 `fullWidth` 属性有关的问题迎刃而解。
 
 - [InputBase] 从 `InputBase` 中移走了 `inputType` 类。
 
-### Tooltip
+### Tooltip（文字提示）
 
 - [Tooltip] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 - [Tooltip] 相比以前任何聚焦都会出现，现在只会在 focus-visible 聚焦的时候出现。
 
-### Typography
+### Typography（文字铸排）
 
 - [Typography] 移除了各种弃用的铸排变体。 您可以通过执行以下的替换来升级： 
   - display4 => h1
@@ -372,7 +373,7 @@ function MySelect({ children }) {
   - body2 => body1
   - body1 (default) => body2 (default)
 - [Typography] 移除了固定的 `display: block` 这个默认的铸排样式。 您现在可以使用新的 `display?: 'initial' | 'inline' | 'block';` 属性。
-- [Typography] Rename the `headlineMapping` property to `variantMapping` to better align with its purpose.
+- [Typography] 为了达到更好的排版效果，请重命名属性 `headlineMapping` 为 `variantMapping`。
   
   ```diff
   -<Typography headlineMapping={headlineMapping}>
@@ -381,7 +382,7 @@ function MySelect({ children }) {
 
 - [Typography] 将默认的字体从 `body2` 换成 `body1`。 默认为16px的字体大小比默认为14px好。 Bootstrap，material.io，甚至我们的文档都将16px作为默认字体大小。 像 Ant Design 一样使用14px是可以理解的，因为中国的用户使用了不同的字母表。 我们建议使用12px作为日语的默认字体大小。
 - [Typography] 移除了铸排变体的默认颜色。 大多数情况下，字体颜色应该是继承而来的。 这是网站的默认行为。
-- [Typography] 遵循 #13028的逻辑，将 `color="default"` 重命名为 `color="initial"`。 The usage of *default* should be avoided, it lacks semantic.
+- [Typography] Rename `color="default"` to `color="initial"` following the logic of [this thread](https://github.com/mui-org/material-ui/issues/13028). 您不应该再使用 *default*，它缺少明确的语义。
 
 ### Node
 
@@ -393,13 +394,13 @@ function MySelect({ children }) {
   
   ```diff
   const {
-    Button,
-    TextField,
+  Button,
+  TextField,
   -} = window['material-ui'];
   +} = MaterialUI;
   ```
   
-  它与其他 React 的项目保持一致：
+    它与其他 React 的项目保持一致：
   
   - material-ui => MaterialUI
   - react-dom => ReactDOM

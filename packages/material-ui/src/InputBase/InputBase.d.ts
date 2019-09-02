@@ -17,7 +17,7 @@ export interface InputBaseProps
   id?: string;
   inputComponent?: React.ElementType<InputBaseComponentProps>;
   inputProps?: InputBaseComponentProps;
-  inputRef?: React.Ref<any> | React.RefObject<any>;
+  inputRef?: React.Ref<any>;
   margin?: 'dense' | 'none';
   multiline?: boolean;
   name?: string;

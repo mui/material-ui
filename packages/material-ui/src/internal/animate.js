@@ -2,14 +2,14 @@ function easeInOutSin(time) {
   return (1 + Math.sin(Math.PI * time - Math.PI / 2)) / 2;
 }
 
-function animate(prop, element, to, options = {}, cb = () => {}) {
+export default function animate(property, element, to, options = {}, cb = () => {}) {
   const {
     ease = easeInOutSin,
     duration = 300, // standard
   } = options;
 
   let start = null;
-  const from = element[prop];
+  const from = element[property];
   let cancelled = false;
 
   const cancel = () => {
@@ -27,7 +27,7 @@ function animate(prop, element, to, options = {}, cb = () => {}) {
     }
     const time = Math.min(1, (timestamp - start) / duration);
 
-    element[prop] = ease(time) * (to - from) + from;
+    element[property] = ease(time) * (to - from) + from;
 
     if (time >= 1) {
       requestAnimationFrame(() => {
@@ -47,5 +47,3 @@ function animate(prop, element, to, options = {}, cb = () => {}) {
   requestAnimationFrame(step);
   return cancel;
 }
-
-export default animate;

@@ -43,6 +43,7 @@ const blacklistSuite = [
   'docs-customization-default-theme',
 
   // Image load issue
+  'docs-components-skeleton',
   'docs-discover-more-team',
   'docs-getting-started-templates-album',
   'docs-getting-started-templates-blog',
@@ -64,6 +65,7 @@ const blacklistFilename = [
   'docs-components-steppers/TextMobileStepper.png', // external img
   'docs-getting-started-usage/Usage.png', // codesandbox iframe
   'docs-customization-typography/ResponsiveFontSizesChart.png', // Chart
+  'docs-components-material-icons/synonyms.png', // Not a component
 
   // Already tested once assembled
   'docs-getting-started-templates-dashboard/Chart.png',
@@ -77,6 +79,7 @@ const blacklistFilename = [
   // Flaky
   'docs-components-grid-list/ImageGridList.png',
   'docs-components-icons/FontAwesome.png',
+  'docs-components-tree-view/CustomizedTreeView.png',
 
   // Redux isolation
   'docs-components-chips/ChipsPlayground.png',

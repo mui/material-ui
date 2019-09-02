@@ -33,10 +33,10 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   props: {
-    // Nome do componente ⚛️
+    // Name of the component ⚛️
     MuiButtonBase: {
-      // As propriedades para aplicar
-      disableRipple: true, // Sem efeito cascata, em toda aplicação 
+      // The properties to apply
+      disableRipple: true, // No more ripple, on the whole application 💣!
     },
   },
 });
@@ -93,12 +93,7 @@ const theme = createMuiTheme({
 
 ## Preciso usar o JSS para estilizar minha aplicação?
 
-É recomendado:
-
-- Ele vem embutido, portanto, não causa sobrecarga adicional no tamanho do pacote.
-- É rápido & tem um controle de memória eficiente.
-- Possui uma API limpa e consistente.
-- Ele suporta vários recursos avançados, seja nativamente ou por meio de plug-ins.
+Não, não é obrigatório. Mas essa dependência vem embutida, portanto, não sobrecarrega o tamanho do pacote.
 
 No entanto, talvez você esteja adicionando os componentes Material-UI para uma aplicação que já usa outra solução de estilos, ou já esta familiarizado com uma API diferente, e não quer aprender uma nova? Nesse caso, dirija-se à seção de [interoperabilidade da biblioteca de estilos](/guides/interoperability/), onde mostramos como é simples reestilizar os componentes do Material-UI com bibliotecas de estilos alternativas.
 
@@ -294,7 +289,7 @@ function handleRender(req, res) {
 
 ## Por que as cores que estou vendo são diferentes do que vejo aqui?
 
-O site de documentação está usando um tema customizado. Assim, a paleta de cores é diferente do tema padrão que é fornecido pelo Material-UI. Por favor, consulte [esta página](/customization/themes/) para aprender sobre customização de temas.
+O site de documentação está usando um tema customizado. Assim, a paleta de cores é diferente do tema padrão que é fornecido pelo Material-UI. Please refer to [this page](/customization/theming/) to learn about theme customization.
 
 ## Material-UI é incrível. Como posso apoiar o projeto?
 

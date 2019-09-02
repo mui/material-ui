@@ -6,15 +6,21 @@ filename: /packages/material-ui/src/RootRef/RootRef.js
 
 # RootRef API
 
-<p class="description">The API documentation of the RootRef React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the RootRef React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
 
 ```js
 import RootRef from '@material-ui/core/RootRef';
+// or
+import { RootRef } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 ⚠️⚠️⚠️
 If you want the DOM element of a Material-UI component check out
-[/getting-started/faq/#how-can-i-access-the-dom-element](FAQ: How can I access the DOM element?)
+[FAQ: How can I access the DOM element?](/getting-started/faq/#how-can-i-access-the-dom-element)
 first.
 
 This component uses `findDOMNode` which is deprecated in React.StrictMode.
@@ -28,23 +34,18 @@ For example:
 import React from 'react';
 import RootRef from '@material-ui/core/RootRef';
 
-class MyComponent extends React.Component {
-  constructor() {
-    super();
-    this.domRef = React.createRef();
-  }
+function MyComponent() {
+  const domRef = React.useRef();
 
-  componentDidMount() {
-    console.log(this.domRef.current); // DOM node
-  }
+  React.useEffect(() => {
+    console.log(domRef.current); // DOM node
+  }, []);
 
-  render() {
-    return (
-      <RootRef rootRef={this.domRef}>
-        <SomeChildComponent />
-      </RootRef>
-    );
-  }
+  return (
+    <RootRef rootRef={domRef}>
+      <SomeChildComponent />
+    </RootRef>
+  );
 }
 ```
 
@@ -53,12 +54,8 @@ class MyComponent extends React.Component {
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">element</span> |  | The wrapped element. |
-| <span class="prop-name required">rootRef&nbsp;*</span> | <span class="prop-type">union:&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> |  | Provide a way to access the DOM node of the wrapped element. You can provide a callback ref or a `React.createRef()` ref. |
+| <span class="prop-name required">rootRef&nbsp;*</span> | <span class="prop-type">func<br>&#124;&nbsp;object</span> |  | Provide a way to access the DOM node of the wrapped element. You can provide a callback ref or a `React.createRef()` ref. |
 
 The component cannot hold a ref.
 
-
-## Notes
-
-The component can cause issues in [StrictMode](https://reactjs.org/docs/strict-mode.html).
 

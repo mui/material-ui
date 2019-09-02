@@ -15,6 +15,6 @@ The `ToggleButtonGroup` will control the selected of its child buttons when give
 
 ## Tailles
 
-Envie de boutons plus grands ou plus petits? Utilisez la propriété `size`.
+Fancy larger or smaller buttons? Use the `size` property.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}

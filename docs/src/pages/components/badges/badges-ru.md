@@ -9,7 +9,7 @@ components: Badge
 
 ## Простые значки
 
-Примеры значков, содержащих текст, с использованием основного и дополнительного цветов. Значок применяется к дочерним элементам.
+Примеры значков, содержащих текст, с использованием первичных и вторичных цветов. Знак применяется к своим детям.
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
@@ -21,7 +21,7 @@ components: Badge
 
 ## Точечный значок
 
-Свойство `dot` превращает значок в маленькую точку. Это можно использовать как уведомление о том, что что-то изменилось без счетчика.
+Свойство `точка` превращает значок в маленькую точку. Это можно использовать как уведомление о том, что что-то изменилось без подсчета.
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
@@ -29,12 +29,12 @@ components: Badge
 
 Видимость значков можно контролировать с помощью свойства `invisible`.
 
-Значок автоматически скрывается, если badgeContent равен нулю. Вы можете переопределить это с помощью свойства `showZero`.
+The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-## Customized badges
+## Кастомизированный значок
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}

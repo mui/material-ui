@@ -6,11 +6,17 @@ filename: /packages/material-ui/src/MenuList/MenuList.js
 
 # MenuList API
 
-<p class="description">The API documentation of the MenuList React component. Learn more about the properties and the CSS customization points.</p>
+<p class="description">The API documentation of the MenuList React component. Learn more about the props and the CSS customization points.</p>
+
+## Import
 
 ```js
 import MenuList from '@material-ui/core/MenuList';
+// or
+import { MenuList } from '@material-ui/core';
 ```
+
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
 
 
 
@@ -24,16 +30,12 @@ import MenuList from '@material-ui/core/MenuList';
 
 The `ref` is forwarded to the root element.
 
-Any other properties supplied will be provided to the root element ([List](/api/list/)).
+Any other props supplied will be provided to the root element ([List](/api/list/)).
 
 ## Inheritance
 
-The properties of the [List](/api/list/) component are also available.
+The props of the [List](/api/list/) component are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
-
-## Notes
-
-The component is fully [StrictMode](https://reactjs.org/docs/strict-mode.html) compatible.
 
 ## Demos
 

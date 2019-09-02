@@ -40,7 +40,12 @@ renderer.heading = (text, level) => {
   );
 };
 
-const externs = ['https://material.io/', 'https://getbootstrap.com/', 'https://www.amazon.com'];
+const externs = [
+  'https://material.io/',
+  'https://getbootstrap.com/',
+  'https://www.amazon.com',
+  'https://materialdesignicons.com',
+];
 
 renderer.link = (href, title, text) => {
   let more = '';
@@ -148,7 +153,7 @@ const styles = theme => ({
     '& h1': {
       ...theme.typography.h3,
       fontSize: 40,
-      margin: '24px 0 16px',
+      margin: '16px 0',
     },
     '& .description': {
       ...theme.typography.h5,
@@ -307,9 +312,7 @@ const styles = theme => ({
 function MarkdownElement(props) {
   const { classes, className, text, ...other } = props;
 
-  const { userLanguage } = useSelector(state => ({
-    userLanguage: state.options.userLanguage,
-  }));
+  const userLanguage = useSelector(state => state.options.userLanguage);
 
   // eslint-disable-next-line no-underscore-dangle
   global.__MARKED_USER_LANGUAGE__ = userLanguage;

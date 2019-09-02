@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Link from '@material-ui/core/Link';
 import ListItem from '@material-ui/core/ListItem';
@@ -42,7 +42,7 @@ ListItemLink.propTypes = {
   to: PropTypes.string.isRequired,
 };
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -55,72 +55,61 @@ const styles = theme => ({
   nested: {
     paddingLeft: theme.spacing(4),
   },
-});
+}));
 
 const LinkRouter = props => <Link {...props} component={RouterLink} />;
 
-class RouterBreadcrumbs extends React.Component {
-  state = {
-    open: true,
+export default function RouterBreadcrumbs() {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(true);
+
+  const handleClick = () => {
+    setOpen(prevOpen => !prevOpen);
   };
 
-  handleClick = () => {
-    this.setState(state => ({ open: !state.open }));
-  };
+  return (
+    <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
+      <div className={classes.root}>
+        <Route>
+          {({ location }) => {
+            const pathnames = location.pathname.split('/').filter(x => x);
 
-  render() {
-    const { classes } = this.props;
+            return (
+              <Breadcrumbs aria-label="breadcrumb">
+                <LinkRouter color="inherit" to="/">
+                  Home
+                </LinkRouter>
+                {pathnames.map((value, index) => {
+                  const last = index === pathnames.length - 1;
+                  const to = `/${pathnames.slice(0, index + 1).join('/')}`;
 
-    return (
-      <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
-        <div className={classes.root}>
-          <Route>
-            {({ location }) => {
-              const pathnames = location.pathname.split('/').filter(x => x);
-
-              return (
-                <Breadcrumbs aria-label="breadcrumb">
-                  <LinkRouter color="inherit" to="/">
-                    Home
-                  </LinkRouter>
-                  {pathnames.map((value, index) => {
-                    const last = index === pathnames.length - 1;
-                    const to = `/${pathnames.slice(0, index + 1).join('/')}`;
-
-                    return last ? (
-                      <Typography color="textPrimary" key={to}>
-                        {breadcrumbNameMap[to]}
-                      </Typography>
-                    ) : (
-                      <LinkRouter color="inherit" to={to} key={to}>
-                        {breadcrumbNameMap[to]}
-                      </LinkRouter>
-                    );
-                  })}
-                </Breadcrumbs>
-              );
-            }}
-          </Route>
-          <nav className={classes.lists} aria-label="mailbox folders">
-            <List>
-              <ListItemLink to="/inbox" open={this.state.open} onClick={this.handleClick} />
-              <Collapse component="li" in={this.state.open} timeout="auto" unmountOnExit>
-                <List disablePadding>
-                  <ListItemLink to="/inbox/important" className={classes.nested} />
-                </List>
-              </Collapse>
-              <ListItemLink to="/trash" />
-              <ListItemLink to="/spam" />
-            </List>
-          </nav>
-        </div>
-      </MemoryRouter>
-    );
-  }
+                  return last ? (
+                    <Typography color="textPrimary" key={to}>
+                      {breadcrumbNameMap[to]}
+                    </Typography>
+                  ) : (
+                    <LinkRouter color="inherit" to={to} key={to}>
+                      {breadcrumbNameMap[to]}
+                    </LinkRouter>
+                  );
+                })}
+              </Breadcrumbs>
+            );
+          }}
+        </Route>
+        <nav className={classes.lists} aria-label="mailbox folders">
+          <List>
+            <ListItemLink to="/inbox" open={open} onClick={handleClick} />
+            <Collapse component="li" in={open} timeout="auto" unmountOnExit>
+              <List disablePadding>
+                <ListItemLink to="/inbox/important" className={classes.nested} />
+              </List>
+            </Collapse>
+            <ListItemLink to="/trash" />
+            <ListItemLink to="/spam" />
+          </List>
+        </nav>
+      </div>
+    </MemoryRouter>
+  );
 }
-
-RouterBreadcrumbs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(RouterBreadcrumbs);

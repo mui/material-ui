@@ -3,8 +3,8 @@
 import React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
 import Document, { Head, Main, NextScript } from 'next/document';
-import { Router } from 'next/router';
-import { LANGUAGES } from 'docs/src/modules/constants';
+import { Router as Router2 } from 'next/router';
+import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { themeColor } from 'docs/src/modules/components/ThemeContext';
 
@@ -55,20 +55,20 @@ class MyDocument extends Document {
           {/* SEO */}
           <link
             rel="canonical"
-            href={`https://material-ui.com${Router._rewriteUrlForNextExport(
+            href={`https://material-ui.com${Router2._rewriteUrlForNextExport(
               `${userLanguage === 'en' ? '' : `/${userLanguage}`}${canonical}`,
             )}`}
           />
           <link
             rel="alternate"
-            href={`https://material-ui.com${Router._rewriteUrlForNextExport(canonical)}`}
+            href={`https://material-ui.com${Router2._rewriteUrlForNextExport(canonical)}`}
             hrefLang="x-default"
           />
-          {LANGUAGES.map(userLanguage2 => (
+          {LANGUAGES_LABEL.map(({ code: userLanguage2 }) => (
             <link
               key={userLanguage2}
               rel="alternate"
-              href={`https://material-ui.com${Router._rewriteUrlForNextExport(
+              href={`https://material-ui.com${Router2._rewriteUrlForNextExport(
                 `${userLanguage2 === 'en' ? '' : `/${userLanguage2}`}${canonical}`,
               )}`}
               hrefLang={userLanguage2}
@@ -92,8 +92,8 @@ class MyDocument extends Document {
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-window.ga('create','${GOOGLE_ID}','auto');
+                window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+                window.ga('create','${GOOGLE_ID}','auto');
               `,
             }}
           />

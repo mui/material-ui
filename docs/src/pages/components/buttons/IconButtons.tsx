@@ -1,8 +1,8 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import AlarmIcon from '@material-ui/icons/Alarm';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 
@@ -29,7 +29,7 @@ export default function IconButtons() {
         <DeleteIcon />
       </IconButton>
       <IconButton color="secondary" className={classes.button} aria-label="add an alarm">
-        <Icon>alarm</Icon>
+        <AlarmIcon />
       </IconButton>
       <IconButton color="primary" className={classes.button} aria-label="add to shopping cart">
         <AddShoppingCartIcon />

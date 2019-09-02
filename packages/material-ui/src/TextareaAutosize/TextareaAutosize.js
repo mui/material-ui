@@ -20,6 +20,7 @@ const styles = {
     overflow: 'hidden',
     height: 0,
     top: 0,
+    left: 0,
   },
 };
 
@@ -155,7 +156,7 @@ TextareaAutosize.propTypes = {
    */
   placeholder: PropTypes.string,
   /**
-   * Minimum umber of rows to display.
+   * Minimum number of rows to display.
    */
   rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**

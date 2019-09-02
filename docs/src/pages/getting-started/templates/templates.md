@@ -26,4 +26,4 @@ So far we have demos for dashboard, sign in page, sign up page, blog page, check
 
 Looking for something more? You can find complete templates & themes in our <a href="https://themes.material-ui.com/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-link">premium themes section</a>.
 
-<a href="https://themes.material-ui.com/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-link"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>
+<a href="https://themes.material-ui.com/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-image"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>

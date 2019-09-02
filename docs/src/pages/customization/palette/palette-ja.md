@@ -135,7 +135,7 @@ Both the `tonalOffset` and `contrastThreshold` values may be customized as neede
 
 Note that `contrastThreshold` follows a non-linear curve.
 
-## Example
+## 例
 
 {{"demo": "pages/customization/palette/Palette.js"}}
 

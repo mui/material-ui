@@ -59,7 +59,7 @@ Debería cambiar la alineación del list item cuando se muestran 3 o más línea
 
 Un checkbox puede ser una acción primaria o una acción secundaria.
 
-El checkbox es la acción principal y el indicador de estado para el elemento de la lista. El botón de comentario es una acción secundaria y un objetivo separado.
+The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.
 
 {{"demo": "pages/components/lists/CheckboxList.js"}}
 

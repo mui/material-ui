@@ -62,7 +62,7 @@ function Header(props) {
             </Hidden>
             <Grid item xs />
             <Grid item>
-              <Typography className={classes.link} component="a" href="#">
+              <Typography className={classes.link} variant="body2" component="a" href="#">
                 Go to docs
               </Typography>
             </Grid>

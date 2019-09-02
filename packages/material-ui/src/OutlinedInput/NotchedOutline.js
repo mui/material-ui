@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '../styles';
+import withStyles from '../styles/withStyles';
+import useTheme from '../styles/useTheme';
 import { capitalize } from '../utils/helpers';
 
 export const styles = theme => {
@@ -51,10 +52,9 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
     labelWidth: labelWidthProp,
     notched,
     style,
-    theme,
     ...other
   } = props;
-
+  const theme = useTheme();
   const align = theme.direction === 'rtl' ? 'right' : 'left';
   const labelWidth = labelWidthProp > 0 ? labelWidthProp * 0.75 + 8 : 0;
 
@@ -112,12 +112,6 @@ NotchedOutline.propTypes = {
    * @ignore
    */
   style: PropTypes.object,
-  /**
-   * @ignore
-   */
-  theme: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'PrivateNotchedOutline', withTheme: true })(
-  NotchedOutline,
-);
+export default withStyles(styles, { name: 'PrivateNotchedOutline' })(NotchedOutline);

@@ -36,7 +36,7 @@ The Box component has a `clone` property to enable the usage of the clone elemen
 </Box>
 ```
 
-1. Use render props
+2. Use render props
 
 The Box children accepts a render props function. You can pull out the `className`.
 
@@ -59,5 +59,6 @@ import Box from '@material-ui/core/Box';
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br />&nbsp;func<br /></span>                                 |                                         | Box render function or node.                                                                          |
 | <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | If `true`, the box will recycle its children DOM element. It's using `React.cloneElement` internally. |
 | <span class="prop-name">component</span>                | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br />&nbsp;func&nbsp;&#124;<br />&nbsp;object<br /></span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component.            |
+
 
 Any other properties supplied will be used by [the style functions](/system/basics/#all-inclusive) or spread to the root element.

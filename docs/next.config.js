@@ -1,11 +1,10 @@
 const webpack = require('webpack');
-const pkg = require('../package.json');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { findPages } = require('./src/modules/utils/find');
-const withTypescript = require('@zeit/next-typescript');
 const path = require('path');
-
-const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de'];
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const withTypescript = require('@zeit/next-typescript');
+const pkg = require('../package.json');
+const { findPages } = require('./src/modules/utils/find');
+const { LANGUAGES_SSR } = require('./src/modules/constants');
 
 const workspaceRoot = path.join(__dirname, '../');
 
@@ -15,6 +14,7 @@ module.exports = withTypescript({
       new webpack.DefinePlugin({
         'process.env': {
           LIB_VERSION: JSON.stringify(pkg.version),
+          ENABLE_AD: JSON.stringify(process.env.ENABLE_AD),
         },
       }),
     ]);
@@ -83,7 +83,7 @@ module.exports = withTypescript({
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
-            include: /node_modules\/(material-table|notistack|@material-ui\/pickers)/,
+            include: /node_modules(\/|\\)(material-table|notistack|@material-ui(\/|\\)pickers)/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -144,7 +144,7 @@ module.exports = withTypescript({
     if (process.env.PULL_REQUEST === 'true') {
       traverse(pages, 'en');
     } else {
-      LANGUAGES.forEach(userLanguage => {
+      LANGUAGES_SSR.forEach(userLanguage => {
         traverse(pages, userLanguage);
       });
     }
