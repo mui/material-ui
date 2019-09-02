@@ -13,6 +13,12 @@ declare const ToggleButton: ExtendButtonBase<{
 
 export type ToggleButtonProps = SimplifiedPropsOf<typeof ToggleButton>;
 
-export type ToggleButtonClassKey = ButtonBaseClassKey | 'label' | 'selected';
+export type ToggleButtonClassKey =
+  | 'root'
+  | 'disabled'
+  | 'selected'
+  | 'label'
+  | 'sizeSmall'
+  | 'sizeLarge';
 
 export default ToggleButton;

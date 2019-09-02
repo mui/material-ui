@@ -16,7 +16,11 @@ export interface ToggleButtonGroupProps
   value?: any;
 }
 
-export type ToggleButtonGroupClassKey = 'root' | 'selected';
+export type ToggleButtonGroupClassKey =
+  | 'root'
+  | 'grouped'
+  | 'groupedSizeSmall'
+  | 'groupedSizeLarge';
 
 declare const ToggleButtonGroup: React.ComponentType<ToggleButtonGroupProps>;
 
