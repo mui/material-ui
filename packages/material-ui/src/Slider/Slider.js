@@ -283,6 +283,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     component: Component = 'span',
     defaultValue,
     disabled = false,
+    getAriaLabel,
     getAriaValueText,
     marks: marksProp = defaultMarks,
     max = 100,
@@ -695,7 +696,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
               role="slider"
               style={style}
               data-index={index}
-              aria-label={ariaLabel}
+              aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
               aria-labelledby={ariaLabelledby}
               aria-orientation={orientation}
               aria-valuemax={max}
@@ -719,7 +720,17 @@ Slider.propTypes = {
   /**
    * The label of the slider.
    */
-  'aria-label': PropTypes.string,
+  'aria-label': chainPropTypes(PropTypes.string, props => {
+    const range = Array.isArray(props.value || props.defaultValue);
+
+    if (range && props['aria-label'] != null) {
+      return new Error(
+        'Material-UI: you need to use the `getAriaLabel` prop instead of `aria-label` when using a range slider.',
+      );
+    }
+
+    return null;
+  }),
   /**
    * The id of the element containing a label for the slider.
    */
@@ -730,9 +741,9 @@ Slider.propTypes = {
   'aria-valuetext': chainPropTypes(PropTypes.string, props => {
     const range = Array.isArray(props.value || props.defaultValue);
 
-    if (range && props['aria-valuetext']) {
+    if (range && props['aria-valuetext'] != null) {
       return new Error(
-        'Material-UI: you need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range input.',
+        'Material-UI: you need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range slider.',
       );
     }
 
@@ -761,10 +772,18 @@ Slider.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider.
+   *
+   * @param {number} index The thumb label's index to format.
+   * @returns {string}
+   */
+  getAriaLabel: PropTypes.func,
+  /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider.
    *
    * @param {number} value The thumb label's value to format.
    * @param {number} index The thumb label's index to format.
+   * @returns {string}
    */
   getAriaValueText: PropTypes.func,
   /**

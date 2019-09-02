@@ -24,6 +24,7 @@ export interface SliderProps
   component?: React.ElementType<React.HTMLAttributes<HTMLSpanElement>>;
   defaultValue?: number | number[];
   disabled?: boolean;
+  getAriaLabel?: (index: number) => string;
   getAriaValueText?: (value: number, index: number) => string;
   marks?: boolean | Mark[];
   max?: number;
