@@ -58,7 +58,6 @@ const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
     classes,
     className,
     color = 'inherit',
-    component: Component = 'svg',
     fontSize = 'default',
     htmlColor,
     titleAccess,
@@ -67,7 +66,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
   } = props;
 
   return (
-    <Component
+    <svg
       className={clsx(
         classes.root,
         {
@@ -86,7 +85,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
     >
       {children}
       {titleAccess ? <title>{titleAccess}</title> : null}
-    </Component>
+    </svg>
   );
 });
 
@@ -109,11 +108,6 @@ SvgIcon.propTypes = {
    * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
    */
   color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'action', 'error', 'disabled']),
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
