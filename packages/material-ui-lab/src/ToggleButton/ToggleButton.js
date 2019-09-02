@@ -115,6 +115,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(props, ref) {
       onChange={onChange}
       value={value}
       disableRipple={disableRipple}
+      aria-pressed={selected}
       {...other}
     >
       <span className={classes.label}>{children}</span>

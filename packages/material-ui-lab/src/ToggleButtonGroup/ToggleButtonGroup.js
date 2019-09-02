@@ -76,7 +76,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
   };
 
   return (
-    <div className={clsx(classes.root, className)} ref={ref} {...other}>
+    <div className={clsx(classes.root, className)} ref={ref} role="group" {...other}>
       {React.Children.map(children, child => {
         if (!React.isValidElement(child)) {
           return null;
