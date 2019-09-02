@@ -48,7 +48,7 @@ const styles = theme => {
           height: 2,
           boxShadow: `${theme.nprogress.color} 1px 0 6px 1px`,
           borderRadius: '100%',
-          animation: 'nprogress-pulse 2s ease-out 0s infinite',
+          animation: 'mui-nprogress-pulse 2s ease-out 0s infinite',
         },
         '& dd': {
           opacity: 0.6,
@@ -63,7 +63,7 @@ const styles = theme => {
           clip: 'rect(-6px,90px,14px,-6px)',
         },
       },
-      '@keyframes nprogress-pulse': {
+      '@keyframes mui-nprogress-pulse': {
         '30%': {
           opacity: 0.6,
         },

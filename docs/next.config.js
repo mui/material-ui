@@ -14,6 +14,7 @@ module.exports = withTypescript({
       new webpack.DefinePlugin({
         'process.env': {
           LIB_VERSION: JSON.stringify(pkg.version),
+          ENABLE_AD: JSON.stringify(process.env.ENABLE_AD),
         },
       }),
     ]);

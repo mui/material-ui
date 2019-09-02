@@ -46,7 +46,7 @@ function getAdblock(classes, t) {
   );
 }
 
-const disable = process.env.NODE_ENV !== 'production';
+const disable = process.env.NODE_ENV !== 'production' && process.env.ENABLE_AD !== 'true';
 
 function Ad(props) {
   const { classes } = props;

@@ -29,7 +29,7 @@ export const styles = theme => ({
   rippleVisible: {
     opacity: 0.3,
     transform: 'scale(1)',
-    animation: `$mui-ripple-enter ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
+    animation: `$enter ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
   },
   /* Styles applied to the internal `Ripple` components `ripplePulsate` class. */
   ripplePulsate: {
@@ -47,16 +47,16 @@ export const styles = theme => ({
   /* Styles applied to the internal `Ripple` components `childLeaving` class. */
   childLeaving: {
     opacity: 0,
-    animation: `$mui-ripple-exit ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
+    animation: `$exit ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
   },
   /* Styles applied to the internal `Ripple` components `childPulsate` class. */
   childPulsate: {
     position: 'absolute',
     left: 0,
     top: 0,
-    animation: `$mui-ripple-pulsate 2500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
+    animation: `$pulsate 2500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
   },
-  '@keyframes mui-ripple-enter': {
+  '@keyframes enter': {
     '0%': {
       transform: 'scale(0)',
       opacity: 0.1,
@@ -66,7 +66,7 @@ export const styles = theme => ({
       opacity: 0.3,
     },
   },
-  '@keyframes mui-ripple-exit': {
+  '@keyframes exit': {
     '0%': {
       opacity: 1,
     },
@@ -74,7 +74,7 @@ export const styles = theme => ({
       opacity: 0,
     },
   },
-  '@keyframes mui-ripple-pulsate': {
+  '@keyframes pulsate': {
     '0%': {
       transform: 'scale(1)',
     },

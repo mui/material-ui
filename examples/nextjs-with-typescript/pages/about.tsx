@@ -14,10 +14,7 @@ function Copyright() {
         Your Website
       </MuiLink>{' '}
       {new Date().getFullYear()}
-      {'. Built with '}
-      <MuiLink color="inherit" href="https://material-ui.com/">
-        Material-UI.
-      </MuiLink>
+      {'.'}
     </Typography>
   );
 }

@@ -5,15 +5,11 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-  },
-  icon: {
-    margin: theme.spacing(2),
+    '& > svg': {
+      margin: theme.spacing(2),
+    },
   },
   iconHover: {
-    margin: theme.spacing(2),
     '&:hover': {
       color: red[800],
     },
@@ -33,14 +29,13 @@ export default function SvgIcons() {
 
   return (
     <div className={classes.root}>
-      <HomeIcon className={classes.icon} />
-      <HomeIcon className={classes.icon} color="primary" />
-      <HomeIcon className={classes.icon} color="secondary" />
-      <HomeIcon className={classes.icon} color="action" />
+      <HomeIcon />
+      <HomeIcon color="primary" />
+      <HomeIcon color="secondary" />
+      <HomeIcon color="action" />
       <HomeIcon className={classes.iconHover} color="error" style={{ fontSize: 30 }} />
-      <HomeIcon color="disabled" className={classes.icon} fontSize="large" />
+      <HomeIcon color="disabled" fontSize="large" />
       <HomeIcon
-        className={classes.icon}
         color="primary"
         fontSize="large"
         component={svgProps => {
