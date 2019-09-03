@@ -100,7 +100,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
 
   clickProps.style = { transitionDelay: `${delay}ms` };
 
-  if (ButtonProps.style) {
+  if (ButtonProps && ButtonProps.style) {
     ButtonProps.style.transitionDelay = `${delay}ms`;
   }
 

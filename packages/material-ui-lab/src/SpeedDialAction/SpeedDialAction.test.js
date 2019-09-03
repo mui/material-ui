@@ -32,7 +32,7 @@ describe('<SpeedDialAction />', () => {
 
   it('should render a Tooltip', () => {
     const wrapper = mount(
-      <SpeedDialAction {...defaultProps} open tooltipOpen tooltipTitle="An Action" />,
+      <SpeedDialAction {...defaultProps} open tooltipTitle="An Action" />,
     );
 
     assert.strictEqual(

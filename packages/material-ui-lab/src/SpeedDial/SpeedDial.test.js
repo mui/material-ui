@@ -174,8 +174,6 @@ describe('<SpeedDial />', () => {
         assert.strictEqual(onClick.callCount, 1);
         assert.strictEqual(event.preventDefault.callCount, 1);
         assert.strictEqual(event.stopPropagation.callCount, 1);
-
-        assert.strictEqual(buttonWrapper.props().onTouchEnd, onClick);
       });
 
       after(() => {
