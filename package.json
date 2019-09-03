@@ -131,6 +131,7 @@
     "ts-node": "^8.3.0",
     "tslint": "5.14.0",
     "typescript": "3.2.4",
+    "typescript-to-proptypes": "^1.2.5",
     "vrtest": "^0.2.0",
     "webpack": "^4.39.3",
     "webpack-bundle-analyzer": "^3.0.0",

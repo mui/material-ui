@@ -38,6 +38,7 @@ export interface SpeedDialProps
   icon?: React.ReactNode;
   /**
    * Callback fired when the component requests to be closed.
+   *
    * @param {object} event The event source of the callback.
    * @param {string} key The key pressed.
    */
