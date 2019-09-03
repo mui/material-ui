@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import warning from 'warning';
+import { capitalize } from '../utils/helpers';
 import { refType } from '@material-ui/utils';
 import Menu from '../Menu/Menu';
 import { isFilled } from '../InputBase/utils';
@@ -299,7 +300,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         autoFocus={autoFocus}
         {...other}
       />
-      <IconComponent className={classes.icon} />
+      <IconComponent className={clsx(classes.icon, classes[`icon${capitalize(variant)}`])} />
       <Menu
         id={`menu-${name || ''}`}
         anchorEl={displayRef.current}

@@ -65,6 +65,12 @@ export const styles = theme => ({
     color: theme.palette.action.active,
     pointerEvents: 'none', // Don't block pointer events on the select under the icon.
   },
+  iconFilled: {
+    right: 7,
+  },
+  iconOutlined: {
+    right: 7,
+  },
 });
 
 const defaultInput = <Input />;

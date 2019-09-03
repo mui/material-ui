@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
+import { capitalize } from '../utils/helpers';
 
 /**
  * @ignore - internal component.
@@ -26,7 +27,9 @@ const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref
         ref={inputRef || ref}
         {...other}
       />
-      {props.multiple ? null : <IconComponent className={classes.icon} />}
+      {props.multiple ? null : (
+        <IconComponent className={clsx(classes.icon, classes[`icon${capitalize(variant)}`])} />
+      )}
     </React.Fragment>
   );
 });
