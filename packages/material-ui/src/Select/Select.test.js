@@ -7,6 +7,8 @@ import MenuItem from '../MenuItem';
 import Input from '../Input';
 import Select from './Select';
 import { spy } from 'sinon';
+import OutlinedInput from '../OutlinedInput';
+import FilledInput from '../FilledInput';
 
 describe('<Select />', () => {
   let classes;
@@ -77,6 +79,31 @@ describe('<Select />', () => {
 
       const selected = onChangeHandler.args[0][1];
       expect(React.isValidElement(selected)).to.equal(true);
+    });
+  });
+
+  describe('prop: variant', () => {
+    it('Should render a OutlinedInput', () => {
+      const wrapper = mount(
+        <Select
+          value=""
+          variant="outlined"
+          inputProps={{ name: 'age', id: 'outlined-age-simple' }}
+        />,
+      );
+      expect(wrapper.find(OutlinedInput)).to.exist;
+      expect(wrapper.find(OutlinedInput).props()).to.have.property('labelWidth', 0);
+    });
+
+    it('Should render a FilledInput', () => {
+      const wrapper = mount(
+        <Select
+          value=""
+          variant="filled"
+          inputProps={{ name: 'age', id: 'outlined-age-simple' }}
+        />,
+      );
+      expect(wrapper.find(FilledInput)).to.exist;
     });
   });
 
