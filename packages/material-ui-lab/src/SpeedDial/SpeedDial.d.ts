@@ -42,7 +42,7 @@ export interface SpeedDialProps
    * @param {object} event The event source of the callback.
    * @param {string} key The key pressed.
    */
-  onClose?: (event: React.SyntheticEvent<{}, Event>, key: string) => void;
+  onClose?: (event: React.SyntheticEvent<{}>, key: string) => void;
   /**
    * If `true`, the SpeedDial is open.
    */
