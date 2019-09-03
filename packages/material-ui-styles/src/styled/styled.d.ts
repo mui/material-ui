@@ -5,11 +5,15 @@ import {
   WithStylesOptions,
 } from '@material-ui/styles/withStyles';
 import * as React from 'react';
+import { DefaultTheme } from '../defaultTheme';
 
 /**
  * @internal
  */
-export type ComponentCreator<Component extends React.ElementType> = <Theme, Props extends {} = any>(
+export type ComponentCreator<Component extends React.ElementType> = <
+  Theme = DefaultTheme,
+  Props extends {} = any
+>(
   styles:
     | CreateCSSProperties<Props>
     | ((props: { theme: Theme } & CoerceEmptyInterface<Props>) => CreateCSSProperties<Props>),
