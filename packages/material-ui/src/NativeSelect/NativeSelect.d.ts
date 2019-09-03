@@ -15,11 +15,13 @@ export interface NativeSelectProps
 export type NativeSelectClassKey =
   | 'root'
   | 'select'
+  | 'filled'
+  | 'outlined'
   | 'selectMenu'
   | 'disabled'
   | 'icon'
-  | 'filled'
-  | 'outlined';
+  | 'iconFilled'
+  | 'iconOutlined';
 
 declare const NativeSelect: React.ComponentType<NativeSelectProps>;
 

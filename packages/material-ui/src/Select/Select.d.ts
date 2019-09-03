@@ -26,11 +26,13 @@ export interface SelectProps
 export type SelectClassKey =
   | 'root'
   | 'select'
+  | 'filled'
+  | 'outlined'
   | 'selectMenu'
   | 'disabled'
   | 'icon'
-  | 'filled'
-  | 'outlined';
+  | 'iconFilled'
+  | 'iconOutlined';
 
 declare const Select: React.ComponentType<SelectProps>;
 

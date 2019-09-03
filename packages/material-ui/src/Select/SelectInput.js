@@ -50,7 +50,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     tabIndex: tabIndexProp,
     type = 'hidden',
     value,
-    variant,
+    variant = 'standard',
     ...other
   } = props;
 
@@ -262,10 +262,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           classes.root, // TODO v5: merge root and select
           classes.select,
           classes.selectMenu,
+          classes[variant],
           {
             [classes.disabled]: disabled,
-            [classes.filled]: variant === 'filled',
-            [classes.outlined]: variant === 'outlined',
           },
           className,
         )}
