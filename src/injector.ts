@@ -71,12 +71,7 @@ function plugin(
   options: InjectOptions = {},
   mapOfPropTypes: Map<string, string>,
 ): babel.PluginObj {
-  const {
-    includeUnusedProps = false,
-    includeJSDoc = true,
-    sortProptypes,
-    removeExistingPropTypes = false,
-  } = options;
+  const { includeUnusedProps = false, removeExistingPropTypes = false, ...otherOptions } = options;
 
   const shouldInclude: InjectOptions['shouldInclude'] = data => {
     if (options.shouldInclude) {
@@ -274,10 +269,9 @@ function plugin(
     const { path, props, usedProps, nodeName } = options;
 
     const source = generate(props, {
+      ...otherOptions,
       importedName: importName,
       shouldInclude: prop => shouldInclude!({ prop, usedProps }),
-      sortProptypes,
-      includeJSDoc,
     });
 
     const placeholder = `const a${uuid().replace(/\-/g, '_')} = null;`;
