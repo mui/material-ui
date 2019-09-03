@@ -1,12 +1,12 @@
 /* eslint-disable no-console */
 
+import 'isomorphic-fetch';
 import fse from 'fs-extra';
 import path from 'path';
 import yargs from 'yargs';
 import Queue from 'modules/waterfall/Queue';
 import sleep from 'modules/waterfall/sleep';
 import retry from 'modules/waterfall/retry';
-import 'isomorphic-fetch';
 
 const themeMap = {
   baseline: '', // filled
@@ -25,13 +25,14 @@ const themeFileNameMap = {
 };
 
 function downloadIcon(icon) {
-  const { name } = icon;
-  console.log(`downloadIcon ${icon.index}: ${name}`);
+  console.log(`downloadIcon ${icon.index}: ${icon.name}`);
 
   return Promise.all(
     Object.keys(themeMap).map(async theme => {
       const response = await fetch(
-        `https://fonts.gstatic.com/s/i/materialicons${themeMap[theme]}/${name}/v1/24px.svg`,
+        `https://fonts.gstatic.com/s/i/materialicons${themeMap[theme]}/${icon.name}/v${
+          icon.version
+        }/24px.svg`,
       );
       if (response.status !== 200) {
         throw new Error(`status ${response.status}`);
@@ -57,7 +58,7 @@ async function run() {
     await fse.ensureDir(path.join(__dirname, '../material-io-tools-icons'));
     const response = await fetch('https://fonts.google.com/metadata/icons');
     const text = await response.text();
-    const data = await JSON.parse(text.replace(")]}'", ''));
+    const data = JSON.parse(text.replace(")]}'", ''));
     let icons = data.icons;
     icons = icons.map((icon, index) => ({ index, ...icon }));
     icons = icons.splice(argv.startAfter || 0);

@@ -428,7 +428,7 @@ const synonyms = {
   Markunread: 'envelope letter',
   MarkunreadMailbox: 'deliver envelop letter postal postbox receive send',
   Maximize: 'line shape',
-  MeetingRoom: 'door',
+  MeetingRoom: 'door logout signout',
   Memory: 'chip',
   Menu: 'hamburger',
   MenuBook: 'page',
