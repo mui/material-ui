@@ -14388,10 +14388,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript-to-proptypes@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/typescript-to-proptypes/-/typescript-to-proptypes-1.2.5.tgz#eee684df6b760b279a079fb5fe38a01c6bcd6d0b"
-  integrity sha512-4z3P3HEgefAFBebxrvr/98k7xwgcJ8p+ghjhQzNWE7905tc0O6VWyHFWW+dAZZm8l+zKBpyUrHRKEcbnEitAjA==
+typescript-to-proptypes@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/typescript-to-proptypes/-/typescript-to-proptypes-1.3.0.tgz#0b645ce754532aa00697449844fc0c600094b78f"
+  integrity sha512-uzOnSpiGRMarKaXRIpt6zmHiuHhoFujU6eY0wYk3WcbR/86J/pfQpgvBpgoCOW3ScUUkC/QyYyCo8hqRv+OZJQ==
   dependencies:
     "@babel/core" "^7.5.4"
     "@babel/plugin-syntax-class-properties" "^7.2.0"
