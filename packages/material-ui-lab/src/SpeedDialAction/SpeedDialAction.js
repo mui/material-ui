@@ -6,25 +6,54 @@ import clsx from 'clsx';
 import { emphasize, withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 export const styles = theme => ({
+  /* Styles applied to the root (`Tooltip`) component. */
+  root: {
+    position: 'relative',
+  },
+  /* Styles applied to the `Tooltip` label wrapper element */
+  tooltip: {
+    backgroundColor: theme.palette.background.paper,
+    borderRadius: theme.shape.borderRadius,
+    boxShadow: theme.shadows[1],
+    fontSize: theme.typography.pxToRem(14),
+    color: theme.palette.text.primary,
+    padding: '5px 16px',
+  },
   /* Styles applied to the `Button` component. */
-  button: {
+  actionButton: {
     margin: 8,
     color: theme.palette.text.secondary,
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: emphasize(theme.palette.background.default, 0.12),
     '&:hover': {
-      backgroundColor: emphasize(theme.palette.common.white, 0.15),
+      backgroundColor: emphasize(theme.palette.background.default, 0.15),
     },
+  },
+  /* Styles applied to the `Button` or `Paper` component if `open={true}`. */
+  button: {
     transition: `${theme.transitions.create('transform', {
       duration: theme.transitions.duration.shorter,
     })}, opacity 0.8s`,
     opacity: 1,
   },
-  /* Styles applied to the `Button` component if `open={false}`. */
+  /* Styles applied to the `Button` or `Paper` component if `open={false}`. */
   buttonClosed: {
     opacity: 0,
     transform: 'scale(0)',
+  },
+  /* Styles applied to the `Paper` component if `tooltipOpen={true}` */
+  textLabel: {
+    position: 'absolute',
+    right: 65,
+    top: 14,
+    padding: '5px 16px',
+  },
+  /* Styles applied to the root (`span`) component if `tooltipOpen={true}`. */
+  tooltipOpenContainer: {
+    position: 'relative',
   },
 });
 
@@ -47,54 +76,65 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
   } = props;
 
   const [tooltipOpen, setTooltipOpen] = React.useState(tooltipOpenProp);
-  const timeout = React.useRef();
-  const [prevPropOpen, setPreviousOpen] = React.useState(null);
 
-  // getDerivedStateFromProps alternate
-  if (!open && tooltipOpen) {
-    setTooltipOpen(false);
-    setPreviousOpen(open);
-  }
+  const handleTooltipClose = () => setTooltipOpen(false);
 
-  React.useEffect(() => {
-    if (!tooltipOpenProp || prevPropOpen === open) {
-      return undefined;
-    }
+  const handleTooltipOpen = () => setTooltipOpen(true);
 
-    if (!tooltipOpen) {
-      timeout.current = setTimeout(() => setTooltipOpen(true), delay + 100);
-      return () => {
-        clearTimeout(timeout.current);
-      };
-    }
-
-    return undefined;
-  });
-
-  const handleTooltipClose = () => {
-    if (tooltipOpenProp) return;
-    setTooltipOpen(false);
-  };
-
-  const handleTooltipOpen = () => {
-    if (tooltipOpenProp) return;
-    setTooltipOpen(true);
-  };
-
-  let clickProp = { onClick };
+  let clickProps = { onClick };
   if (typeof document !== 'undefined' && 'ontouchstart' in document.documentElement) {
     let startTime;
-    clickProp = {
-      onTouchStart: () => {
-        startTime = new Date();
-      },
-      onTouchEnd: event => {
-        // only perform action if the touch is a tap, i.e. not long press
-        if (new Date() - startTime < 500) {
-          onClick(event);
-        }
-      },
+    clickProps.onTouchStart = () => {
+      startTime = new Date();
     };
+    clickProps.onTouchEnd = event => {
+      // only perform action if the touch is a tap, i.e. not long press
+      if (new Date() - startTime < 500) {
+        onClick();
+      }
+      event.preventDefault();
+      event.stopPropagation();
+    };
+  }
+
+  clickProps.style = { transitionDelay: `${delay}ms` };
+
+  if (ButtonProps.style) {
+    ButtonProps.style.transitionDelay = `${delay}ms`;
+  }
+
+  const actionButton = (
+    <Fab
+      size="small"
+      className={clsx(
+        className,
+        classes.button,
+        classes.actionButton,
+        !open && classes.buttonClosed,
+      )}
+      style={{ transitionDelay: `${delay}ms` }}
+      tabIndex={-1}
+      role="menuitem"
+      onKeyDown={onKeyDown}
+      {...ButtonProps}
+      {...clickProps}
+    >
+      {icon}
+    </Fab>
+  );
+
+  if (tooltipOpenProp) {
+    return (
+      <span className={classes.tooltipOpenContainer}>
+        <Paper
+          className={clsx(classes.textLabel, classes.button, !open && classes.buttonClosed)}
+          {...clickProps}
+        >
+          <Typography color="inherit">{tooltipTitle}</Typography>
+        </Paper>
+        {actionButton}
+      </span>
+    );
   }
 
   return (
@@ -109,18 +149,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
       classes={TooltipClasses}
       {...other}
     >
-      <Fab
-        size="small"
-        className={clsx(className, classes.button, !open && classes.buttonClosed)}
-        style={{ transitionDelay: `${delay}ms` }}
-        tabIndex={-1}
-        role="menuitem"
-        onKeyDown={onKeyDown}
-        {...ButtonProps}
-        {...clickProp}
-      >
-        {icon}
-      </Fab>
+      {actionButton}
     </Tooltip>
   );
 });

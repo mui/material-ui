@@ -166,6 +166,15 @@ describe('<SpeedDial />', () => {
           </SpeedDial>,
         );
         const buttonWrapper = wrapper.find(Fab);
+        const event = {
+          preventDefault: spy(),
+          stopPropagation: spy(),
+        };
+        buttonWrapper.simulate('touchEnd', event);
+        assert.strictEqual(onClick.callCount, 1);
+        assert.strictEqual(event.preventDefault.callCount, 1);
+        assert.strictEqual(event.stopPropagation.callCount, 1);
+
         assert.strictEqual(buttonWrapper.props().onTouchEnd, onClick);
       });
 

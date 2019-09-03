@@ -239,10 +239,14 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     [classes.directionRight]: direction === 'right',
   });
 
-  let clickProp = { onClick };
+  let clickProps = { onClick };
 
   if (typeof document !== 'undefined' && 'ontouchstart' in document.documentElement) {
-    clickProp = { onTouchEnd: onClick };
+    clickProps.onTouchEnd = event => {
+      onClick();
+      event.preventDefault();
+      event.stopPropagation();
+    };
   }
 
   return (
@@ -260,7 +264,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
           aria-haspopup="true"
           aria-expanded={open ? 'true' : 'false'}
           aria-controls={`${id}-actions`}
-          {...clickProp}
+          {...clickProps}
           {...ButtonProps}
           className={clsx(classes.fab, ButtonProps.className)}
           ref={handleFabRef}

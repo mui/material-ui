@@ -44,8 +44,13 @@ Any other props supplied will be provided to the root element ([Tooltip](/api/to
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">button</span> | <span class="prop-name">MuiSpeedDialAction-button</span> | Styles applied to the `Button` component.
-| <span class="prop-name">buttonClosed</span> | <span class="prop-name">MuiSpeedDialAction-buttonClosed</span> | Styles applied to the `Button` component if `open={false}`.
+| <span class="prop-name">root</span> | <span class="prop-name">MuiSpeedDialAction-root</span> | Styles applied to the root (`Tooltip`) component.
+| <span class="prop-name">tooltip</span> | <span class="prop-name">MuiSpeedDialAction-tooltip</span> | Styles applied to the `Tooltip` label wrapper element
+| <span class="prop-name">actionButton</span> | <span class="prop-name">MuiSpeedDialAction-actionButton</span> | Styles applied to the `Button` component.
+| <span class="prop-name">button</span> | <span class="prop-name">MuiSpeedDialAction-button</span> | Styles applied to the `Button` or `Paper` component if `open={true}`.
+| <span class="prop-name">buttonClosed</span> | <span class="prop-name">MuiSpeedDialAction-buttonClosed</span> | Styles applied to the `Button` or `Paper` component if `open={false}`.
+| <span class="prop-name">textLabel</span> | <span class="prop-name">MuiSpeedDialAction-textLabel</span> | Styles applied to the `Paper` component if `tooltipOpen={true}`
+| <span class="prop-name">tooltipOpenContainer</span> | <span class="prop-name">MuiSpeedDialAction-tooltipOpenContainer</span> | Styles applied to the root (`span`) component if `tooltipOpen={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 
