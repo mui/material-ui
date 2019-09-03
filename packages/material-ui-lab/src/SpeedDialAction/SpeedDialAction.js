@@ -134,7 +134,7 @@ SpeedDialAction.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -146,7 +146,7 @@ SpeedDialAction.propTypes = {
   /**
    * The Icon to display in the SpeedDial Floating Action Button.
    */
-  icon: PropTypes.node.isRequired,
+  icon: PropTypes.node,
   /**
    * @ignore
    */
@@ -191,7 +191,7 @@ SpeedDialAction.propTypes = {
   /**
    * Label to display in the tooltip.
    */
-  tooltipTitle: PropTypes.node.isRequired,
+  tooltipTitle: PropTypes.node,
 };
 
 export default withStyles(styles, { name: 'MuiSpeedDialAction' })(SpeedDialAction);
