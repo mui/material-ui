@@ -50,6 +50,7 @@ export const styles = theme => ({
     right: 65,
     top: 14,
     padding: '5px 16px',
+    whiteSpace: 'nowrap'
   },
   /* Styles applied to the root (`span`) component if `tooltipOpen={true}`. */
   tooltipOpenContainer: {
@@ -81,7 +82,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
 
   const handleTooltipOpen = () => setTooltipOpen(true);
 
-  let clickProps = { onClick };
+  const clickProps = { onClick };
   if (typeof document !== 'undefined' && 'ontouchstart' in document.documentElement) {
     let startTime;
     clickProps.onTouchStart = () => {
@@ -112,12 +113,11 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
         classes.actionButton,
         !open && classes.buttonClosed,
       )}
-      style={{ transitionDelay: `${delay}ms` }}
       tabIndex={-1}
       role="menuitem"
       onKeyDown={onKeyDown}
-      {...ButtonProps}
       {...clickProps}
+      {...ButtonProps}
     >
       {icon}
     </Fab>
