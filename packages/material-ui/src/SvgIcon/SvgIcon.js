@@ -94,12 +94,12 @@ SvgIcon.propTypes = {
   /**
    * Node passed into the SVG element.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -108,7 +108,7 @@ SvgIcon.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
    */
-  color: PropTypes.oneOf(['inherit', 'primary', 'secondary', 'action', 'error', 'disabled']),
+  color: PropTypes.oneOf(['action', 'disabled', 'error', 'inherit', 'primary', 'secondary']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
@@ -117,7 +117,7 @@ SvgIcon.propTypes = {
   /**
    * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
    */
-  fontSize: PropTypes.oneOf(['inherit', 'default', 'small', 'large']),
+  fontSize: PropTypes.oneOf(['default', 'inherit', 'large', 'small']),
   /**
    * Applies a color attribute to the SVG element.
    */
