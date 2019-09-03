@@ -1,5 +1,4 @@
 import React, { SyntheticEvent } from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -69,7 +68,7 @@ function MySnackbarContentWrapper(props: Props) {
         </span>
       }
       action={[
-        <IconButton key="close" aria-label="Close" color="inherit" onClick={onClose}>
+        <IconButton key="close" aria-label="close" color="inherit" onClick={onClose}>
           <CloseIcon className={classes.icon} />
         </IconButton>,
       ]}
@@ -77,13 +76,6 @@ function MySnackbarContentWrapper(props: Props) {
     />
   );
 }
-
-MySnackbarContentWrapper.propTypes = {
-  className: PropTypes.string,
-  message: PropTypes.node,
-  onClose: PropTypes.func,
-  variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired,
-};
 
 const useStyles2 = makeStyles((theme: Theme) => ({
   margin: {

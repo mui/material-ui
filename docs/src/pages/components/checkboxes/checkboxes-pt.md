@@ -38,10 +38,10 @@ Quando um rótulo não pode ser usado, é necessário adicionar um atributo dire
 ```jsx
 <Checkbox
   value="checkedA"
-  inputProps={{ 'aria-label': 'Caixa de seleção A' } }
+  inputProps={{ 'aria-label': 'Checkbox A' }}
 />
 ```
 
 ## Guia
 
-- [Caixas de Seleção vs. Botões de Opção](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Caixas de Seleção vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

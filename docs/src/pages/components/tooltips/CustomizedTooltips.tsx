@@ -3,7 +3,6 @@ import { withStyles, Theme, makeStyles, createStyles } from '@material-ui/core/s
 import Button from '@material-ui/core/Button';
 import Tooltip, { TooltipProps } from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
-import PropTypes from 'prop-types';
 
 function arrowGenerator(color: string) {
   return {
@@ -11,7 +10,7 @@ function arrowGenerator(color: string) {
       top: 0,
       left: 0,
       marginTop: '-0.95em',
-      width: '3em',
+      width: '2em',
       height: '1em',
       '&::before': {
         borderWidth: '0 1em 1em 1em',
@@ -22,7 +21,7 @@ function arrowGenerator(color: string) {
       bottom: 0,
       left: 0,
       marginBottom: '-0.95em',
-      width: '3em',
+      width: '2em',
       height: '1em',
       '&::before': {
         borderWidth: '1em 1em 0 1em',
@@ -32,7 +31,7 @@ function arrowGenerator(color: string) {
     '&[x-placement*="right"] $arrow': {
       left: 0,
       marginLeft: '-0.95em',
-      height: '3em',
+      height: '2em',
       width: '1em',
       '&::before': {
         borderWidth: '1em 1em 1em 0',
@@ -42,7 +41,7 @@ function arrowGenerator(color: string) {
     '&[x-placement*="left"] $arrow': {
       right: 0,
       marginRight: '-0.95em',
-      height: '3em',
+      height: '2em',
       width: '1em',
       '&::before': {
         borderWidth: '1em 0 1em 1em',
@@ -69,8 +68,6 @@ const useStylesArrow = makeStyles((theme: Theme) =>
     arrow: {
       position: 'absolute',
       fontSize: 6,
-      width: '3em',
-      height: '3em',
       '&::before': {
         content: '""',
         margin: 'auto',
@@ -112,17 +109,11 @@ function ArrowTooltip(props: TooltipProps) {
   );
 }
 
-ArrowTooltip.propTypes = {
-  title: PropTypes.node,
-};
-
 const useStylesBootstrap = makeStyles((theme: Theme) =>
   createStyles({
     arrow: {
       position: 'absolute',
       fontSize: 6,
-      width: '3em',
-      height: '3em',
       '&::before': {
         content: '""',
         margin: 'auto',
@@ -179,10 +170,6 @@ function BootstrapTooltip(props: TooltipProps) {
     />
   );
 }
-
-BootstrapTooltip.propTypes = {
-  title: PropTypes.node,
-};
 
 const HtmlTooltip = withStyles((theme: Theme) => ({
   tooltip: {

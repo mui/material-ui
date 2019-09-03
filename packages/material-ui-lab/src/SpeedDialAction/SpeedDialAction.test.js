@@ -17,7 +17,7 @@ describe('<SpeedDialAction />', () => {
   };
 
   before(() => {
-    // StrictModeViolation: uses ButtonBase
+    // StrictModeViolation: unknown
     mount = createMount({ strict: false });
     classes = getClasses(<SpeedDialAction {...defaultProps} />);
   });
@@ -80,7 +80,7 @@ describe('<SpeedDialAction />', () => {
     it('should be called when a click is triggered', () => {
       const handleClick = spy();
       const wrapper = mount(<SpeedDialAction {...defaultProps} open onClick={handleClick} />);
-      const buttonWrapper = wrapper.childAt(0);
+      const buttonWrapper = wrapper.find('button');
       buttonWrapper.simulate('click');
       assert.strictEqual(handleClick.callCount, 1);
     });

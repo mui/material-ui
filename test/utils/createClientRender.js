@@ -1,5 +1,6 @@
 /* eslint-env mocha */
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   act,
   buildQueries,
@@ -8,7 +9,7 @@ import {
   fireEvent as rtlFireEvent,
   queries,
   render,
-} from '@testing-library/react';
+} from '@testing-library/react/pure';
 
 // holes are *All* selectors which aren't necessary for id selectors
 const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueries(
@@ -36,17 +37,31 @@ const customQueries = { queryDescriptionOf, getDescriptionOf, findDescriptionOf 
  * TODO: type return RenderResult in setProps
  */
 function clientRender(element, options = {}) {
-  const { baseElement, disableUnnmount = false, strict = false } = options;
+  const {
+    baseElement,
+    disableUnnmount = false,
+    strict = false,
+    wrapper: InnerWrapper = React.Fragment,
+  } = options;
 
   if (!disableUnnmount) {
     cleanup();
   }
 
   const Mode = strict ? React.StrictMode : React.Fragment;
+  function Wrapper({ children }) {
+    return (
+      <Mode>
+        <InnerWrapper>{children}</InnerWrapper>
+      </Mode>
+    );
+  }
+  Wrapper.propTypes = { children: PropTypes.node };
+
   const result = render(element, {
     baseElement,
     queries: { ...queries, ...customQueries },
-    wrapper: Mode,
+    wrapper: Wrapper,
   });
 
   /**
@@ -62,23 +77,11 @@ function clientRender(element, options = {}) {
 
 export function createClientRender(globalOptions = {}) {
   const { strict: globalStrict } = globalOptions;
-  let baseElement;
-
-  before(() => {
-    baseElement = document.createElement('div');
-    baseElement.className = 'rtl--baseElement';
-    document.body.appendChild(baseElement);
-  });
-
-  after(() => {
-    baseElement.parentNode.removeChild(baseElement);
-    baseElement = null;
-  });
 
   return function configuredClientRender(element, options = {}) {
     const { strict = globalStrict, ...localOptions } = options;
 
-    return clientRender(element, { ...localOptions, baseElement, strict });
+    return clientRender(element, { ...localOptions, strict });
   };
 }
 

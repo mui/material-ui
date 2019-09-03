@@ -6,7 +6,7 @@
 
 Explore the documentation theme object:
 
-{{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideEditButton": true}}
+{{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideHeader": true}}
 
 > Tip: you can play with the documentation theme object in **your console**.
 We expose a documentation `theme` variable on all the documentation pages.

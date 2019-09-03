@@ -32,7 +32,7 @@ export default function RadioButtonsGroup() {
       <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">Gender</FormLabel>
         <RadioGroup
-          aria-label="Gender"
+          aria-label="gender"
           name="gender1"
           className={classes.group}
           value={value}

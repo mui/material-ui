@@ -1,9 +1,9 @@
 /* eslint-disable react/forbid-foreign-prop-types, no-underscore-dangle */
 
 import { parse as parseDoctrine } from 'doctrine';
-import recast from 'recast';
+import * as recast from 'recast';
 import { parse as docgenParse } from 'react-docgen';
-import { Router } from 'next/router';
+import { Router as Router2 } from 'next/router';
 import { pageToTitle } from './helpers';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 
@@ -76,6 +76,10 @@ function escapeCell(value) {
 
 function isElementTypeAcceptingRefProp(type) {
   return type.raw === 'elementTypeAcceptingRef';
+}
+
+function isRefType(type) {
+  return type.raw === 'refType';
 }
 
 function isElementAcceptingRefProp(type) {
@@ -170,6 +174,9 @@ function generatePropType(type) {
       if (isElementAcceptingRefProp(type)) {
         return `element`;
       }
+      if (isRefType(type)) {
+        return `ref`;
+      }
 
       const deprecatedInfo = getDeprecatedInfo(type);
       if (deprecatedInfo !== false) {
@@ -196,22 +203,31 @@ function generatePropType(type) {
 
     case 'union':
     case 'enum': {
-      let values = type.value.map(type2 => {
-        if (type.name === 'enum') {
-          return escapeCell(type2.value);
-        }
+      return (
+        type.value
+          .map(type2 => {
+            if (type.name === 'enum') {
+              return escapeCell(type2.value);
+            }
 
-        return generatePropType(type2);
-      });
-
-      // Display one value per line as it's better for visibility.
-      if (values.length < 5) {
-        values = values.join('&nbsp;&#124;<br>&nbsp;');
-      } else {
-        values = values.join(', ');
-      }
-      return `${type.name}:&nbsp;${values}<br>`;
+            return generatePropType(type2);
+          })
+          // Display one value per line as it's better for visibility.
+          .join('<br>&#124;&nbsp;')
+      );
     }
+
+    case 'arrayOf': {
+      return `Array<${generatePropType(type.value)}>`;
+    }
+
+    case 'instanceOf': {
+      if (type.value.startsWith('typeof')) {
+        return /typeof (.*) ===/.exec(type.value)[1];
+      }
+      return type.value;
+    }
+
     default:
       return type.name;
   }
@@ -241,7 +257,7 @@ function generateProps(reactAPI) {
     const prop = getProp(reactAPI.props, propRaw);
 
     if (typeof prop.description === 'undefined') {
-      throw new Error(`The "${propRaw}" property is missing a description`);
+      throw new Error(`The "${propRaw}" prop is missing a description`);
     }
 
     const description = generatePropDescription(prop);
@@ -288,14 +304,18 @@ function generateProps(reactAPI) {
     refHint = 'The component cannot hold a ref.';
   } else if (reactAPI.forwardsRefTo === 'React.Component') {
     refHint = 'The `ref` is attached to a component class.';
+  } else if (reactAPI.forwardsRefTo === 'Object') {
+    refHint = `The \`ref\` is attached to an Imperative Handle. Have a look at the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath(
+      reactAPI.filename,
+    )}) for more detail.`;
   }
   text = `${text}\n${refHint}\n`;
 
   if (reactAPI.spread) {
     text = `${text}
-Any other properties supplied will be provided to the root element (${
+Any other props supplied will be provided to the root element (${
       reactAPI.inheritance
-        ? `[${reactAPI.inheritance.component}](${Router._rewriteUrlForNextExport(
+        ? `[${reactAPI.inheritance.component}](${Router2._rewriteUrlForNextExport(
             reactAPI.inheritance.pathname,
           )})`
         : 'native element'
@@ -316,38 +336,40 @@ function generateClasses(reactAPI) {
 
   let text = '';
   if (Object.keys(reactAPI.styles.descriptions).length) {
-    text = `
-| Name | Description |
-|:-----|:------------|\n`;
+    text = `| Rule name | Global class | Description |
+|:-----|:-------------|:------------|\n`;
     text += reactAPI.styles.classes
       .map(
-        className =>
-          `| <span class="prop-name">${className}</span> | ${
-            reactAPI.styles.descriptions[className]
-              ? escapeCell(reactAPI.styles.descriptions[className])
+        styleRule =>
+          `| <span class="prop-name">${styleRule}</span> | <span class="prop-name">${
+            reactAPI.styles.globalClasses[styleRule]
+          }</span> | ${
+            reactAPI.styles.descriptions[styleRule]
+              ? escapeCell(reactAPI.styles.descriptions[styleRule])
               : ''
           }`,
       )
       .join('\n');
   } else {
-    text = reactAPI.styles.classes.map(className => `- \`${className}\``).join('\n');
+    text = reactAPI.styles.classes.map(styleRule => `- \`${styleRule}\``).join('\n');
   }
 
   return `## CSS
 
-You can override all the class names injected by Material-UI thanks to the \`classes\` property.
-This property accepts the following keys:
+- Style sheet name: \`${reactAPI.styles.name}\`.
+- Style sheet details:
 
 ${text}
 
-Have a look at the [overriding styles with classes](/customization/components/#overriding-styles-with-classes) section
-and the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath(
-    reactAPI.filename,
-  )})
-for more detail.
+You can override the style of the component thanks to one of these customization points:
 
-If using the \`overrides\` [key of the theme](/customization/themes/#css),
-you need to use the following style sheet name: \`${reactAPI.styles.name}\`.
+- With a rule name of the [\`classes\` object prop](/customization/components/#overriding-styles-with-classes).
+- With a [global class name](/customization/components/#overriding-styles-with-global-class-names).
+- With a theme and an [\`overrides\` property](/customization/globals/#css).
+
+If that's not sufficient, you can check the [implementation of the component](${SOURCE_CODE_ROOT_URL}${normalizePath(
+    reactAPI.filename,
+  )}) for more detail.
 
 `;
 }
@@ -372,7 +394,7 @@ function generateInheritance(reactAPI) {
 
   return `## Inheritance
 
-The properties of the [${inheritance.component}](${Router._rewriteUrlForNextExport(
+The props of the [${inheritance.component}](${Router2._rewriteUrlForNextExport(
     inheritance.pathname,
   )}) component${suffix} are also available.
 You can take advantage of this behavior to [target nested components](/guides/api/#spread).
@@ -396,7 +418,7 @@ function generateDemos(reactAPI) {
   return `## Demos
 
 ${pagesMarkdown
-  .map(page => `- [${pageToTitle(page)}](${Router._rewriteUrlForNextExport(page.pathname)})`)
+  .map(page => `- [${pageToTitle(page)}](${Router2._rewriteUrlForNextExport(page.pathname)})`)
   .join('\n')}
 
 `;
@@ -409,27 +431,17 @@ function generateImportStatement(reactAPI) {
       /\/packages\/material-ui(-(.+?))?\/src/,
       (match, dash, pkg) => `@material-ui/${pkg || 'core'}`,
     )
-    // convert things like `Table/Table.js` to `Table`
-    .replace(/([^/]+)\/\1\.js$/, '$1')
-    // strip off trailing `.js` if any
-    .replace(/\.js$/, '');
-  return `\`\`\`js
-import ${reactAPI.name} from '${source}';
-\`\`\``;
-}
+    // convert things like `/Table/Table.js` to ``
+    .replace(/\/([^/]+)\/\1\.js$/, '');
+  return `## Import
 
-function generateNotes(reactAPI) {
-  const { strictModeReady } = reactAPI;
-  const strictModeLinked = '[StrictMode](https://reactjs.org/docs/strict-mode.html)';
-  return `## Notes
+\`\`\`js
+import ${reactAPI.name} from '${source}/${reactAPI.name}';
+// or
+import { ${reactAPI.name} } from '${source}';
+\`\`\`
 
-The component ${
-    !strictModeReady
-      ? `can cause issues in ${strictModeLinked}`
-      : `is fully ${strictModeLinked} compatible`
-  }.
-
-`;
+You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).`;
 }
 
 export default function generateMarkdown(reactAPI) {
@@ -441,7 +453,7 @@ export default function generateMarkdown(reactAPI) {
     `# ${reactAPI.name} API`,
     '',
     `<p class="description">The API documentation of the ${reactAPI.name} React component. ` +
-      'Learn more about the properties and the CSS customization points.</p>',
+      'Learn more about the props and the CSS customization points.</p>',
     '',
     generateImportStatement(reactAPI),
     '',
@@ -449,8 +461,6 @@ export default function generateMarkdown(reactAPI) {
     '',
     generateProps(reactAPI),
     '',
-    `${generateClasses(reactAPI)}${generateInheritance(reactAPI)}${generateNotes(
-      reactAPI,
-    )}${generateDemos(reactAPI)}`,
+    `${generateClasses(reactAPI)}${generateInheritance(reactAPI)}${generateDemos(reactAPI)}`,
   ].join('\n');
 }

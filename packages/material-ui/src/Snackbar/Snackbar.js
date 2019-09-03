@@ -96,7 +96,7 @@ export const styles = theme => {
 const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   const {
     action,
-    anchorOrigin: { vertical, horizontal },
+    anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'center' },
     autoHideDuration,
     children,
     classes,
@@ -117,13 +117,16 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     open,
     resumeHideDuration,
     TransitionComponent = Grow,
-    transitionDuration,
+    transitionDuration = {
+      enter: duration.enteringScreen,
+      exit: duration.leavingScreen,
+    },
     TransitionProps,
     ...other
   } = props;
 
   const timerAutoHide = React.useRef();
-  const [exited, setExited] = React.useState(!open);
+  const [exited, setExited] = React.useState(true);
 
   // Timer that controls delay before snackbar auto hides
   const setAutoHideTimer = React.useCallback(
@@ -289,11 +292,11 @@ Snackbar.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Properties applied to the `ClickAwayListener` element.
+   * Props applied to the `ClickAwayListener` element.
    */
   ClickAwayListenerProps: PropTypes.object,
   /**
-   * Properties applied to the [`SnackbarContent`](/api/snackbar-content/) element.
+   * Props applied to the [`SnackbarContent`](/api/snackbar-content/) element.
    */
   ContentProps: PropTypes.object,
   /**
@@ -302,7 +305,7 @@ Snackbar.propTypes = {
   disableWindowBlurListener: PropTypes.bool,
   /**
    * When displaying multiple consecutive Snackbars from a parent rendering a single
-   * <Snackbar/>, add the key property to ensure independent treatment of each message.
+   * <Snackbar/>, add the key prop to ensure independent treatment of each message.
    * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
    * features such as autoHideDuration may be canceled.
    */
@@ -318,8 +321,8 @@ Snackbar.propTypes = {
    * The `reason` parameter can optionally be used to control the response to `onClose`,
    * for example ignoring `clickaway`.
    *
-   * @param {object} event The event source of the callback
-   * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`
+   * @param {object} event The event source of the callback.
+   * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`.
    */
   onClose: PropTypes.func,
   /**
@@ -360,8 +363,8 @@ Snackbar.propTypes = {
   open: PropTypes.bool,
   /**
    * The number of milliseconds to wait before dismissing after user interaction.
-   * If `autoHideDuration` property isn't specified, it does nothing.
-   * If `autoHideDuration` property is specified but `resumeHideDuration` isn't,
+   * If `autoHideDuration` prop isn't specified, it does nothing.
+   * If `autoHideDuration` prop is specified but `resumeHideDuration` isn't,
    * we default to `autoHideDuration / 2` ms.
    */
   resumeHideDuration: PropTypes.number,
@@ -378,20 +381,9 @@ Snackbar.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
   /**
-   * Properties applied to the `Transition` element.
+   * Props applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
-};
-
-Snackbar.defaultProps = {
-  anchorOrigin: {
-    vertical: 'bottom',
-    horizontal: 'center',
-  },
-  transitionDuration: {
-    enter: duration.enteringScreen,
-    exit: duration.leavingScreen,
-  },
 };
 
 export default withStyles(styles, { flip: false, name: 'MuiSnackbar' })(Snackbar);

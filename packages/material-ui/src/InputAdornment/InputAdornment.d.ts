@@ -15,7 +15,9 @@ export type InputAdornmentClassKey =
   | 'filled'
   | 'positionStart'
   | 'positionEnd'
-  | 'disablePointerEvents';
+  | 'disablePointerEvents'
+  | 'hiddenLabel'
+  | 'marginDense';
 
 declare const InputAdornment: React.ComponentType<InputAdornmentProps>;
 

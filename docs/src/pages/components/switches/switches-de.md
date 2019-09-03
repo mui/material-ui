@@ -29,6 +29,12 @@ Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf de
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
+## Größen
+
+Fancy smaller switches? Use the `size` property.
+
+{{"demo": "pages/components/switches/SwitchesSize.js"}}
+
 ## Etikettenplatzierung
 
 Sie können die Platzierung des Etiketts ändern:
@@ -44,6 +50,6 @@ Wenn ein Label nicht verwendet werden kann, muss der Eingabekomponente ein Attri
 ```jsx
 <Switch
   value="checkedA"
-  inputProps={{ 'aria-label': 'Switch A' } }
+  inputProps={{ 'aria-label': 'Switch A' }}
 />
 ```

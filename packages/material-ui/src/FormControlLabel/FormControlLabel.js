@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withFormControlContext from '../FormControl/withFormControlContext';
+import { refType } from '@material-ui/utils';
+import { useFormControl } from '../FormControl';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import { capitalize } from '../utils/helpers';
@@ -62,12 +63,12 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(props, ref) 
     inputRef,
     label,
     labelPlacement = 'end',
-    muiFormControl,
     name,
     onChange,
     value,
     ...other
   } = props;
+  const muiFormControl = useFormControl();
 
   let disabled = disabledProp;
   if (typeof disabled === 'undefined' && typeof control.props.disabled !== 'undefined') {
@@ -133,9 +134,9 @@ FormControlLabel.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * This property can be used to pass a ref callback to the `input` element.
+   * This prop can be used to pass a ref to the `input` element.
    */
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  inputRef: refType,
   /**
    * The text to be used in an enclosing label element.
    */
@@ -144,10 +145,6 @@ FormControlLabel.propTypes = {
    * The position of the label.
    */
   labelPlacement: PropTypes.oneOf(['end', 'start', 'top', 'bottom']),
-  /**
-   * @ignore
-   */
-  muiFormControl: PropTypes.object,
   /*
    * @ignore
    */
@@ -156,8 +153,7 @@ FormControlLabel.propTypes = {
    * Callback fired when the state is changed.
    *
    * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.checked`.
-   * @param {boolean} checked The `checked` value of the switch
+   * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange: PropTypes.func,
   /**
@@ -166,6 +162,4 @@ FormControlLabel.propTypes = {
   value: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'MuiFormControlLabel' })(
-  withFormControlContext(FormControlLabel),
-);
+export default withStyles(styles, { name: 'MuiFormControlLabel' })(FormControlLabel);

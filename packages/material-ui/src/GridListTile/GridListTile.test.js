@@ -3,7 +3,6 @@ import { assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { setRef } from '../utils/reactHelpers';
 import GridListTile from './GridListTile';
 
 describe('<GridListTile />', () => {
@@ -50,15 +49,9 @@ describe('<GridListTile />', () => {
 
   function mountMockImage(imgEl) {
     const Image = React.forwardRef((props, ref) => {
-      return (
-        <img
-          alt="test"
-          ref={() => {
-            setRef(ref, imgEl);
-          }}
-          {...props}
-        />
-      );
+      React.useImperativeHandle(ref, () => imgEl, []);
+
+      return <img alt="test" {...props} />;
     });
     Image.muiName = 'Image';
 

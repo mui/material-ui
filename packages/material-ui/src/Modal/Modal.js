@@ -22,14 +22,9 @@ function getHasTransition(props) {
   return props.children ? props.children.props.hasOwnProperty('in') : false;
 }
 
+// A modal manager used to track and manage the state of open Modals.
 // Modals don't open on the server so this won't conflict with concurrent requests.
 const defaultManager = new ModalManager();
-
-function getModal(modal, mountNodeRef, modalRef) {
-  modal.current.modalRef = modalRef.current;
-  modal.current.mountNode = mountNodeRef.current;
-  return modal.current;
-}
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -73,6 +68,7 @@ const Modal = React.forwardRef(function Modal(props, ref) {
     disableEscapeKeyDown = false,
     disablePortal = false,
     disableRestoreFocus = false,
+    disableScrollLock = false,
     hideBackdrop = false,
     keepMounted = false,
     manager = defaultManager,
@@ -85,7 +81,7 @@ const Modal = React.forwardRef(function Modal(props, ref) {
   } = props;
 
   const theme = useTheme();
-  const [exited, setExited] = React.useState(!open);
+  const [exited, setExited] = React.useState(true);
   const modal = React.useRef({});
   const mountNodeRef = React.useRef(null);
   const modalRef = React.useRef(null);
@@ -93,9 +89,14 @@ const Modal = React.forwardRef(function Modal(props, ref) {
   const hasTransition = getHasTransition(props);
 
   const getDoc = () => ownerDocument(mountNodeRef.current);
+  const getModal = () => {
+    modal.current.modalRef = modalRef.current;
+    modal.current.mountNode = mountNodeRef.current;
+    return modal.current;
+  };
 
   const handleMounted = () => {
-    manager.mount(getModal(modal, mountNodeRef, modalRef));
+    manager.mount(getModal(), { disableScrollLock });
 
     // Fix a bug on Chrome where the scroll isn't initially 0.
     modalRef.current.scrollTop = 0;
@@ -104,7 +105,7 @@ const Modal = React.forwardRef(function Modal(props, ref) {
   const handleOpen = useEventCallback(() => {
     const resolvedContainer = getContainer(container) || getDoc().body;
 
-    manager.add(getModal(modal, mountNodeRef, modalRef), resolvedContainer);
+    manager.add(getModal(), resolvedContainer);
 
     // The element was already mounted.
     if (modalRef.current) {
@@ -112,12 +113,20 @@ const Modal = React.forwardRef(function Modal(props, ref) {
     }
   });
 
-  const handleRendered = useEventCallback(() => {
+  const isTopModal = React.useCallback(() => manager.isTopModal(getModal()), [manager]);
+
+  const handlePortalRef = useEventCallback(node => {
+    mountNodeRef.current = node;
+
+    if (!node) {
+      return;
+    }
+
     if (onRendered) {
       onRendered();
     }
 
-    if (open) {
+    if (open && isTopModal()) {
       handleMounted();
     } else {
       ariaHidden(modalRef.current, true);
@@ -125,7 +134,7 @@ const Modal = React.forwardRef(function Modal(props, ref) {
   });
 
   const handleClose = React.useCallback(() => {
-    manager.remove(getModal(modal, mountNodeRef, modalRef));
+    manager.remove(getModal());
   }, [manager]);
 
   React.useEffect(() => {
@@ -141,11 +150,6 @@ const Modal = React.forwardRef(function Modal(props, ref) {
       handleClose();
     }
   }, [open, handleClose, hasTransition, closeAfterTransition, handleOpen]);
-
-  const isTopModal = React.useCallback(
-    () => manager.isTopModal(getModal(modal, mountNodeRef, modalRef)),
-    [manager],
-  );
 
   if (!keepMounted && !open && (!hasTransition || exited)) {
     return null;
@@ -202,6 +206,7 @@ const Modal = React.forwardRef(function Modal(props, ref) {
 
   const inlineStyle = styles(theme || { zIndex });
   const childProps = {};
+  // FixMe: Always apply document role. Revisit once React Flare is released
   if (children.role === undefined) {
     childProps.role = children.role || 'document';
   }
@@ -216,12 +221,7 @@ const Modal = React.forwardRef(function Modal(props, ref) {
   }
 
   return (
-    <Portal
-      ref={mountNodeRef}
-      container={container}
-      disablePortal={disablePortal}
-      onRendered={handleRendered}
-    >
+    <Portal ref={handlePortalRef} container={container} disablePortal={disablePortal}>
       {/*
           Marking an element with the role presentation indicates to assistive technology
           that this element should be ignored; it exists to support the web application and
@@ -260,11 +260,11 @@ const Modal = React.forwardRef(function Modal(props, ref) {
 
 Modal.propTypes = {
   /**
-   * A backdrop component. This property enables custom backdrop rendering.
+   * A backdrop component. This prop enables custom backdrop rendering.
    */
   BackdropComponent: PropTypes.elementType,
   /**
-   * Properties applied to the [`Backdrop`](/api/backdrop/) element.
+   * Props applied to the [`Backdrop`](/api/backdrop/) element.
    */
   BackdropProps: PropTypes.object,
   /**
@@ -315,20 +315,21 @@ Modal.propTypes = {
    */
   disableRestoreFocus: PropTypes.bool,
   /**
+   * Disable the scroll lock behavior.
+   */
+  disableScrollLock: PropTypes.bool,
+  /**
    * If `true`, the backdrop is not rendered.
    */
   hideBackdrop: PropTypes.bool,
   /**
    * Always keep the children in the DOM.
-   * This property can be useful in SEO situation or
+   * This prop can be useful in SEO situation or
    * when you want to maximize the responsiveness of the Modal.
    */
   keepMounted: PropTypes.bool,
   /**
    * @ignore
-   *
-   * A modal manager used to track and manage the state of open
-   * Modals. This enables customizing how modals interact within a container.
    */
   manager: PropTypes.object,
   /**
@@ -339,8 +340,8 @@ Modal.propTypes = {
    * Callback fired when the component requests to be closed.
    * The `reason` parameter can optionally be used to control the response to `onClose`.
    *
-   * @param {object} event The event source of the callback
-   * @param {string} reason Can be:`"escapeKeyDown"`, `"backdropClick"`
+   * @param {object} event The event source of the callback.
+   * @param {string} reason Can be:`"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose: PropTypes.func,
   /**
@@ -350,7 +351,9 @@ Modal.propTypes = {
   onEscapeKeyDown: PropTypes.func,
   /**
    * Callback fired once the children has been mounted into the `container`.
-   * It signals that the `open={true}` property took effect.
+   * It signals that the `open={true}` prop took effect.
+   *
+   * This prop will be deprecated and removed in v5, the ref can be used instead.
    */
   onRendered: PropTypes.func,
   /**

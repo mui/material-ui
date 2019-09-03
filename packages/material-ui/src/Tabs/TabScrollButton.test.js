@@ -7,6 +7,8 @@ import ButtonBase from '../ButtonBase';
 describe('<TabScrollButton />', () => {
   const props = {
     direction: 'left',
+    visible: false,
+    orientation: 'horizontal',
   };
   let shallow;
   let mount;
@@ -15,8 +17,7 @@ describe('<TabScrollButton />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     classes = getClasses(<TabScrollButton {...props} />);
-    // StrictModeViolation: uses ButtonBase
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
   });
 
   after(() => {
@@ -34,7 +35,7 @@ describe('<TabScrollButton />', () => {
 
   describe('prop: !visible', () => {
     it('should render as a div with root class', () => {
-      const wrapper = shallow(<TabScrollButton {...props} visible={false} />);
+      const wrapper = shallow(<TabScrollButton {...props} />);
 
       assert.strictEqual(wrapper.name(), 'div');
       assert.strictEqual(wrapper.hasClass(classes.root), true);

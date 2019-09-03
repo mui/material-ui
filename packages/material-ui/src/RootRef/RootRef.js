@@ -7,7 +7,7 @@ import { setRef } from '../utils/reactHelpers';
 /**
  * ⚠️⚠️⚠️
  * If you want the DOM element of a Material-UI component check out
- * [/getting-started/faq/#how-can-i-access-the-dom-element](FAQ: How can I access the DOM element?)
+ * [FAQ: How can I access the DOM element?](/getting-started/faq/#how-can-i-access-the-dom-element)
  * first.
  *
  * This component uses `findDOMNode` which is deprecated in React.StrictMode.
@@ -21,23 +21,18 @@ import { setRef } from '../utils/reactHelpers';
  * import React from 'react';
  * import RootRef from '@material-ui/core/RootRef';
  *
- * class MyComponent extends React.Component {
- *   constructor() {
- *     super();
- *     this.domRef = React.createRef();
- *   }
+ * function MyComponent() {
+ *   const domRef = React.useRef();
  *
- *   componentDidMount() {
- *     console.log(this.domRef.current); // DOM node
- *   }
+ *   React.useEffect(() => {
+ *     console.log(domRef.current); // DOM node
+ *   }, []);
  *
- *   render() {
- *     return (
- *       <RootRef rootRef={this.domRef}>
- *         <SomeChildComponent />
- *       </RootRef>
- *     );
- *   }
+ *   return (
+ *     <RootRef rootRef={domRef}>
+ *       <SomeChildComponent />
+ *     </RootRef>
+ *   );
  * }
  * ```
  */

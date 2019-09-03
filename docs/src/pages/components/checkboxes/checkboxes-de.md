@@ -38,7 +38,7 @@ Wenn ein Label nicht verwendet werden kann, muss der Eingabekomponente ein Attri
 ```jsx
 <Checkbox
   value="checkedA"
-  inputProps={{ 'aria-label': 'Checkbox A' } }
+  inputProps={{ 'aria-label': 'Checkbox A' }}
 />
 ```
 

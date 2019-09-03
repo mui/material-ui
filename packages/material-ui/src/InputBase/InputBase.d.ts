@@ -17,7 +17,7 @@ export interface InputBaseProps
   id?: string;
   inputComponent?: React.ElementType<InputBaseComponentProps>;
   inputProps?: InputBaseComponentProps;
-  inputRef?: React.Ref<any> | React.RefObject<any>;
+  inputRef?: React.Ref<any>;
   margin?: 'dense' | 'none';
   multiline?: boolean;
   name?: string;
@@ -38,7 +38,6 @@ export interface InputBaseProps
   startAdornment?: React.ReactNode;
   type?: string;
   value?: unknown;
-  onFilled?: () => void;
   /**
    * `onChange`, `onKeyUp` + `onKeyDown` are applied to the inner `InputComponent`,
    * which by default is an input or textarea. Since these handlers differ from the
@@ -74,7 +73,8 @@ export type InputBaseClassKey =
   | 'inputMultiline'
   | 'inputTypeSearch'
   | 'inputAdornedStart'
-  | 'inputAdornedEnd';
+  | 'inputAdornedEnd'
+  | 'inputHiddenLabel';
 
 declare const InputBase: React.ComponentType<InputBaseProps>;
 

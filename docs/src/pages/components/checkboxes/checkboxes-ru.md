@@ -38,7 +38,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ```jsx
 <Checkbox
   value="checkedA"
-  inputProps={{ 'aria-label': 'Checkbox A' } }
+  inputProps={{ 'aria-label': 'Checkbox A' }}
 />
 ```
 

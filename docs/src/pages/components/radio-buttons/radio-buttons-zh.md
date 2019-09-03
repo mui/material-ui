@@ -36,7 +36,7 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 ```jsx
 <RadioButton
   value="radioA"
-  inputProps={{ 'aria-label': '单选按钮 A' } }
+  inputProps={{ 'aria-label': 'Radio A' }}
 />
 ```
 

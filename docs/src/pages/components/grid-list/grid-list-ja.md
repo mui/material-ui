@@ -5,30 +5,30 @@ components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 
 # Grid List
 
-<p class="description">Grid lists display a collection of images in an organized grid.</p>
+<p class="description">グリッドリストは、整理されたグリッドで画像のコレクションを表示します。</p>
 
-[Grid lists](https://material.io/design/components/image-lists.html) represent a collection of items in a repeated pattern. They help improve the visual comprehension of the content they hold.
+[グリッドリスト](https://material.io/design/components/image-lists.html) は、繰り返しパターンの項目の集まりを表します。 それらは、保持するコンテンツの視覚的理解を改善するのに役立ちます。
 
-## Image-only Grid list
+## 画像のみのGrid list
 
-A simple example of a scrollable image `GridList`.
+スクロール可能な画像の簡単な `GridList`の例。
 
 {{"demo": "pages/components/grid-list/ImageGridList.js", "hideEditButton": true}}
 
-## Grid list with titlebars
+## タイトルバー付きのGrid list
 
-This example demonstrates the use of the `GridListTileBar` to add an overlay to each `GridListTile`. The overlay can accommodate a `title`, `subtitle` and secondary action - in this example an `IconButton`.
+この例は、 `GridListTileBar` を使用して、各 `GridListTile`オーバーレイを追加する方法を示しています。 オーバーレイには、 `title`, `subtitle` および副次的アクション例えば`IconButton`を含めることができます。
 
 {{"demo": "pages/components/grid-list/TitlebarGridList.js", "hideEditButton": true}}
 
-## Single line Grid list
+## Single line Grid list 単一行グリッドリスト
 
-This example demonstrates a horizontal scrollable single-line grid list of images. Horizontally scrolling grid lists are discouraged because the scrolling interferes with typical reading patterns, affecting comprehension. One notable exception is a horizontally-scrolling, single-line grid list of images, such as a gallery.
+この例では、水平スクロール可能な単一行グリッドの画像リストを示します。 水平方向のスクロールグリッドリストは、スクロールが一般的な読み方の邪魔になり理解に影響を与えるため、推奨されません。 注目すべき例外の1つは、水平にスクロールする、ギャラリーなどの画像の1行グリッドリストです。
 
 {{"demo": "pages/components/grid-list/SingleLineGridList.js", "hideEditButton": true}}
 
-## Advanced Grid list
+## 高度なグリッドリスト
 
-This example demonstrates "featured" tiles, using the `rows` and `cols` props to adjust the size of the tile, and the `padding` prop to adjust the spacing. The tiles have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`. The secondary action `IconButton` is positioned on the left.
+この例では、`rows` and `cols` プロップを使用してタイルのサイズを調整し、 `padding`プロップを使用して間隔を調整する方法を示します。 タイルには、上部にカスタムのタイトルバーがあり、カスタムのグラデーション`titleBackground`があります。 セカンダリアクション `IconButton` は左側に配置されます。
 
 {{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true}}

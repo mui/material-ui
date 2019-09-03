@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
   drawerHeader: {
     display: 'flex',
     alignItems: 'center',
-    padding: '0 8px',
+    padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
     justifyContent: 'flex-start',
   },
@@ -104,7 +104,7 @@ export default function PersistentDrawerRight() {
           </Typography>
           <IconButton
             color="inherit"
-            aria-label="Open drawer"
+            aria-label="open drawer"
             edge="end"
             onClick={handleDrawerOpen}
             className={clsx(open && classes.hide)}

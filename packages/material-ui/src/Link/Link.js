@@ -33,7 +33,7 @@ export const styles = {
     WebkitTapHighlightColor: 'transparent',
     backgroundColor: 'transparent', // Reset default value
     // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 'none',
+    outline: 0,
     border: 0,
     margin: 0, // Remove the margin in Safari
     borderRadius: 0,
@@ -152,11 +152,11 @@ Link.propTypes = {
    */
   onFocus: PropTypes.func,
   /**
-   * `classes` property applied to the [`Typography`](/api/typography/) element.
+   * `classes` prop applied to the [`Typography`](/api/typography/) element.
    */
   TypographyClasses: PropTypes.object,
   /**
-   *  Controls when the link should have an underline.
+   * Controls when the link should have an underline.
    */
   underline: PropTypes.oneOf(['none', 'hover', 'always']),
   /**

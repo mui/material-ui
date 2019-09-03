@@ -2,7 +2,7 @@
 
 <p class="description">Das Theme bietet eine Anzahl von Schriftgrößen, die gut zusammen mit dem Layoutraster funktionieren.</p>
 
-Das folgende Beispiel zeigt, wie die Standardwerte für die Typografie geändert werden können - in diesem Fall die Schriftfamilie. Wenn Sie mehr über Typografie erfahren möchten, können Sie sich über die [Typografie Komponente](/components/typography/) informieren.
+The following example demonstrates how to change the [default values](/customization/default-theme/?expend-path=$.typography) of the typography in the theme. You can learn more about how to use the [Typography component](/components/typography/) by checking out the dedicated page.
 
 {{"demo": "pages/customization/typography/TypographyTheme.js"}}
 
@@ -142,7 +142,7 @@ theme.typography.h1 = {
 };
 ```
 
-Um dieses Setup zu automatisieren, können Sie die Funktion [`responsiveFontSizes()`](/customization/themes/#responsivefontsizes-theme-options-theme) Helfer verwenden, um die Schriftgrößen der Typografie im Design ansprechend zu gestalten.
+To automate this setup, you can use the [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideHeader": true}}
 

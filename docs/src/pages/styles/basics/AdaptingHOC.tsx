@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles, createStyles, WithStyles } from '@material-ui/styles';
 import Button, { ButtonProps } from '@material-ui/core/Button';
 import { Omit } from '@material-ui/types';
@@ -31,11 +30,6 @@ function MyButtonRaw(props: WithStyles<typeof styles> & Omit<ButtonProps, keyof 
   const { classes, color, ...other } = props;
   return <Button className={classes.root} {...other} />;
 }
-
-(MyButtonRaw as any).propTypes = {
-  classes: PropTypes.object.isRequired,
-  color: PropTypes.oneOf(['red', 'blue']).isRequired,
-};
 
 const MyButton = withStyles(styles)(MyButtonRaw);
 

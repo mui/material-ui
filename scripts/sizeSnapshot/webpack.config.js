@@ -5,9 +5,10 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const workspaceRoot = path.join(__dirname, '..', '..');
 
 async function getSizeLimitBundles() {
-  const buildId = await fse.readFile('.next/BUILD_ID', 'utf8');
+  const nextDir = path.join(workspaceRoot, 'docs/.next');
+  const buildId = await fse.readFile(path.join(nextDir, 'BUILD_ID'), 'utf8');
 
-  const dirname = '.next/static/chunks';
+  const dirname = path.join(nextDir, 'static/chunks');
   const [main] = (await fse.readdir(dirname)).reduce((result, filename) => {
     if (filename.length === 31) {
       return [...result, { path: `${dirname}/${filename}` }];
@@ -103,6 +104,11 @@ async function getSizeLimitBundles() {
       path: 'packages/material-ui/build/esm/Slider/index.js',
     },
     {
+      name: 'Rating',
+      webpack: true,
+      path: 'packages/material-ui-lab/build/esm/Rating/index.js',
+    },
+    {
       // vs https://bundlephobia.com/result?p=react-portal
       name: 'Portal',
       webpack: true,
@@ -111,17 +117,15 @@ async function getSizeLimitBundles() {
     {
       name: 'docs.main',
       webpack: false,
-      path: main.path,
+      path: path.relative(workspaceRoot, main.path),
     },
     {
       name: 'docs.landing',
       webpack: false,
-      path: `.next/static/${buildId}/pages/index.js`,
+      path: path.relative(workspaceRoot, path.join(nextDir, `static/${buildId}/pages/index.js`)),
     },
   ];
 }
-
-module.exports = getSizeLimitBundles;
 
 module.exports = async function webpackConfig() {
   const entries = await getSizeLimitBundles();

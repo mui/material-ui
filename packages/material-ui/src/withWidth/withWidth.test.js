@@ -4,6 +4,7 @@ import { assert } from 'chai';
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 import mediaQuery from 'css-mediaquery';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
+import { testReset } from '../useMediaQuery/useMediaQuery';
 import createMuiTheme from '../styles/createMuiTheme';
 
 function createMatchMedia(width, ref) {
@@ -46,6 +47,7 @@ describe('withWidth', () => {
 
   beforeEach(() => {
     matchMediaInstances = [];
+    testReset();
     window.matchMedia = createMatchMedia(1200, matchMediaInstances);
   });
 
@@ -173,7 +175,7 @@ describe('withWidth', () => {
   describe('option: noSSR', () => {
     it('should work as expected', () => {
       const EmptyWithWidth2 = withWidth({ noSSR: true })(Empty);
-      const wrapper = shallow(<EmptyWithWidth2 />);
+      const wrapper = mount(<EmptyWithWidth2 />);
       assert.strictEqual(wrapper.find(Empty).props().width, 'md');
     });
   });

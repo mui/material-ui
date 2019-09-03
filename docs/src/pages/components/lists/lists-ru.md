@@ -59,7 +59,7 @@ function ListItemLink(props) {
 
 Checkbox может быть основным или второстепенным действием.
 
-В этом примере checkbox является основным действием и индикатором состояния для элемента списка. Кнопка комментария является второстепенным действием.
+The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.
 
 {{"demo": "pages/components/lists/CheckboxList.js"}}
 

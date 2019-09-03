@@ -4,18 +4,50 @@ import warning from 'warning';
 import clsx from 'clsx';
 import isValueSelected from './isValueSelected';
 import { withStyles } from '@material-ui/core/styles';
+import { capitalize } from '@material-ui/core/utils';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     backgroundColor: theme.palette.background.paper,
-    borderRadius: 2,
+    borderRadius: theme.shape.borderRadius,
     display: 'inline-flex',
+  },
+  /* Styles applied to the children. */
+  grouped: {
+    padding: '0px 11px 0px 12px',
+    '&:not(:first-child)': {
+      marginLeft: -1,
+      borderLeft: '1px solid transparent',
+      borderTopLeftRadius: 0,
+      borderBottomLeftRadius: 0,
+    },
+    '&:not(:last-child)': {
+      borderTopRightRadius: 0,
+      borderBottomRightRadius: 0,
+    },
+  },
+  /* Styles applied to the children if `size="small"`. */
+  groupedSizeSmall: {
+    padding: '0px 7px 0px 8px',
+  },
+  /* Styles applied to the children if `size="large"`. */
+  groupedSizeLarge: {
+    padding: '0px 15px 0px 16px',
   },
 });
 
 const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
-  const { children, className, classes, exclusive, onChange, size, value, ...other } = props;
+  const {
+    children,
+    classes,
+    className,
+    exclusive = false,
+    onChange,
+    size = 'medium',
+    value,
+    ...other
+  } = props;
 
   const handleChange = (event, buttonValue) => {
     if (!onChange) {
@@ -63,6 +95,13 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButton(props, ref) {
           buttonSelected === undefined ? isValueSelected(buttonValue, value) : buttonSelected;
 
         return React.cloneElement(child, {
+          className: clsx(
+            classes.grouped,
+            {
+              [classes[`groupedSize${capitalize(size)}`]]: size !== 'medium',
+            },
+            child.props.className,
+          ),
           selected,
           onChange: exclusive ? handleExclusiveChange : handleChange,
           size,
@@ -93,7 +132,7 @@ ToggleButtonGroup.propTypes = {
   /**
    * Callback fired when the value changes.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    * @param {object} value of the selected buttons. When `exclusive` is true
    * this is a single value; when false an array of selected values. If no value
    * is selected and `exclusive` is true the value is null; when false an empty array.
@@ -108,11 +147,6 @@ ToggleButtonGroup.propTypes = {
    * values when `exclusive` is false.
    */
   value: PropTypes.any,
-};
-
-ToggleButtonGroup.defaultProps = {
-  exclusive: false,
-  size: 'medium',
 };
 
 export default withStyles(styles, { name: 'MuiToggleButtonGroup' })(ToggleButtonGroup);

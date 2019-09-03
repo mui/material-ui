@@ -32,10 +32,10 @@ export const StylesContext = React.createContext(defaultOptions);
 let injectFirstNode;
 
 function StylesProvider(props) {
-  const { children, injectFirst, ...localOptions } = props;
+  const { children, injectFirst = false, disableGeneration = false, ...localOptions } = props;
 
   const outerOptions = React.useContext(StylesContext);
-  const context = { ...outerOptions, ...localOptions };
+  const context = { ...outerOptions, disableGeneration, ...localOptions };
 
   warning(
     typeof window !== 'undefined' || context.sheetsManager,
@@ -123,10 +123,5 @@ StylesProvider.propTypes = {
 if (process.env.NODE_ENV !== 'production') {
   StylesProvider.propTypes = exactProp(StylesProvider.propTypes);
 }
-
-StylesProvider.defaultProps = {
-  disableGeneration: false,
-  injectFirst: false,
-};
 
 export default StylesProvider;

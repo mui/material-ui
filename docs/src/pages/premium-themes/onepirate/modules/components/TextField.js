@@ -67,8 +67,8 @@ function TextField(props) {
       ...InputPropsOther
     } = {},
     InputLabelProps,
-    noBorder,
-    size,
+    noBorder = false,
+    size = 'medium',
     SelectProps,
     ...other
   } = props;
@@ -116,11 +116,6 @@ TextField.propTypes = {
   noBorder: PropTypes.bool,
   SelectProps: PropTypes.object,
   size: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
-};
-
-TextField.defaultProps = {
-  noBorder: false,
-  size: 'medium',
 };
 
 export default withStyles(styles)(TextField);

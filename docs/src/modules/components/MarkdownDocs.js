@@ -102,8 +102,8 @@ function MarkdownDocs(props) {
     blog,
     classes,
     disableAd = false,
-    disableToc = false,
     disableEdit,
+    disableToc = false,
     markdown: markdownProp,
     markdownLocation: markdownLocationProp,
     req,
@@ -111,10 +111,8 @@ function MarkdownDocs(props) {
     reqSource,
   } = props;
 
-  const { t, userLanguage } = useSelector(state => ({
-    t: state.options.t,
-    userLanguage: state.options.userLanguage,
-  }));
+  const t = useSelector(state => state.options.t);
+  const userLanguage = useSelector(state => state.options.userLanguage);
 
   let demos;
   let markdown = markdownProp;
@@ -178,7 +176,7 @@ function MarkdownDocs(props) {
             </Portal>
           )}
 
-          <AppContent disableToc={disableToc} className={classes.root}>
+          <AppContent disableToc={disableToc}>
             {!disableEdit ? (
               <div className={classes.header}>
                 <EditPage

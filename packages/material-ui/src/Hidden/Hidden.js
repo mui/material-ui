@@ -7,13 +7,54 @@ import HiddenCss from './HiddenCss';
  * Responsively hides children based on the selected implementation.
  */
 function Hidden(props) {
-  const { implementation, ...other } = props;
+  const {
+    implementation = 'js',
+    lgDown = false,
+    lgUp = false,
+    mdDown = false,
+    mdUp = false,
+    smDown = false,
+    smUp = false,
+    xlDown = false,
+    xlUp = false,
+    xsDown = false,
+    xsUp = false,
+    ...other
+  } = props;
 
   if (implementation === 'js') {
-    return <HiddenJs {...other} />;
+    return (
+      <HiddenJs
+        lgDown={lgDown}
+        lgUp={lgUp}
+        mdDown={mdDown}
+        mdUp={mdUp}
+        smDown={smDown}
+        smUp={smUp}
+        xlDown={xlDown}
+        xlUp={xlUp}
+        xsDown={xsDown}
+        xsUp={xsUp}
+        {...other}
+      />
+    );
   }
 
-  return <HiddenCss {...other} />;
+  return (
+    <HiddenCss
+      lgDown={lgDown}
+      lgUp={lgUp}
+      mdDown={mdDown}
+      mdUp={mdUp}
+      smDown={smDown}
+      smUp={smUp}
+      xlDown={xlDown}
+      xlUp={xlUp}
+      xsDown={xsDown}
+      xsUp={xsUp}
+      {...other}
+    />
+  );
 }
 
 Hidden.propTypes = {
@@ -31,7 +72,7 @@ Hidden.propTypes = {
    */
   implementation: PropTypes.oneOf(['js', 'css']),
   /**
-   * You can use this property when choosing the `js` implementation with server-side rendering.
+   * You can use this prop when choosing the `js` implementation with server-side rendering.
    *
    * As `window.innerWidth` is unavailable on the server,
    * we default to rendering an empty component during the first mount.
@@ -89,20 +130,6 @@ Hidden.propTypes = {
    * If true, screens this size and up will be hidden.
    */
   xsUp: PropTypes.bool,
-};
-
-Hidden.defaultProps = {
-  implementation: 'js',
-  lgDown: false,
-  lgUp: false,
-  mdDown: false,
-  mdUp: false,
-  smDown: false,
-  smUp: false,
-  xlDown: false,
-  xlUp: false,
-  xsDown: false,
-  xsUp: false,
 };
 
 export default Hidden;

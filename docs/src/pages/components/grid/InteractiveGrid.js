@@ -78,9 +78,11 @@ export default function InteractiveGrid() {
                 <RadioGroup
                   row
                   name="direction"
-                  aria-label="Direction"
+                  aria-label="direction"
                   value={direction}
-                  onChange={(e, value) => setDirection(value)}
+                  onChange={event => {
+                    setDirection(event.target.value);
+                  }}
                 >
                   <FormControlLabel value="row" control={<Radio />} label="row" />
                   <FormControlLabel value="row-reverse" control={<Radio />} label="row-reverse" />
@@ -99,9 +101,11 @@ export default function InteractiveGrid() {
                 <RadioGroup
                   row
                   name="justify"
-                  aria-label="Justify"
+                  aria-label="justify"
                   value={justify}
-                  onChange={(e, value) => setJustify(value)}
+                  onChange={event => {
+                    setJustify(event.target.value);
+                  }}
                 >
                   <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
                   <FormControlLabel value="center" control={<Radio />} label="center" />
@@ -122,9 +126,11 @@ export default function InteractiveGrid() {
                 <RadioGroup
                   row
                   name="alignItems"
-                  aria-label="Align items"
+                  aria-label="align items"
                   value={alignItems}
-                  onChange={(e, value) => setAlignItems(value)}
+                  onChange={event => {
+                    setAlignItems(event.target.value);
+                  }}
                 >
                   <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
                   <FormControlLabel value="center" control={<Radio />} label="center" />

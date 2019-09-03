@@ -53,12 +53,12 @@ export default function RecipeReviewCard() {
     <Card className={classes.card}>
       <CardHeader
         avatar={
-          <Avatar aria-label="Recipe" className={classes.avatar}>
+          <Avatar aria-label="recipe" className={classes.avatar}>
             R
           </Avatar>
         }
         action={
-          <IconButton aria-label="Settings">
+          <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
@@ -77,10 +77,10 @@ export default function RecipeReviewCard() {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="Add to favorites">
+        <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="Share">
+        <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
         <IconButton
@@ -89,7 +89,7 @@ export default function RecipeReviewCard() {
           })}
           onClick={handleExpandClick}
           aria-expanded={expanded}
-          aria-label="Show more"
+          aria-label="show more"
         >
           <ExpandMoreIcon />
         </IconButton>

@@ -1,16 +1,16 @@
-# 组合
+# Composition（组合）
 
-<p class="description">Material-UI尝试使组合尽可能简单。</p>
+<p class="description">Material-UI 试着让组合尽可能的简单。</p>
 
 ## 封装组件
 
-为了提供最大的灵活性和性能， 我们需要一种方法来知道组件接收子元素的本质。 为了解决这个问题，我们在需要 时使用 `muiName` 静态属性标记我们的一些组件。
+我们需要一种了解组件接收的子元素的本质的方式，这样可以尽可能提供最大的灵活性和最好的性能。 在需要的时候我们会用 `muiName` 静态属性来标记一些我们的组件，这样能够解决这个问题。
 
-但是，您仍可能需要包装一个组件以增强它的功能，即使这可能与` muiName `解决方案冲突。 如果你封装一个组件，并验证是否该组件具有这种静态属性集。
+但是，您仍可能需要封装一个组件以增强它的功能，而这可能与 `muiName` 的解决方案相冲突。 If you wrap a component, verify if that component has this static property set.
 
-如果遇到此问题，则需要为封装组件与被封装组件使用相同的标记。 另外，由于父组件可能需要控制被封装子组件的属性，你应该将子组件的这些属性向父组件传递。
+如果您遇到此问题，那么请为封装组件附加上与被封装组件一样的标记。 另外，鉴于父组件可能需要对被封装的组件属性加以控制，您应该向父组件传递这些属性。
 
-我们来看一个例子：
+让我们来看一个例子：
 
 ```jsx
 const WrappedIcon = props => <Icon {...props} />;
@@ -21,17 +21,17 @@ WrappedIcon.muiName = Icon.muiName;
 
 ## 组件属性
 
-Material-UI允许您通过名为`component`的属性，实现更改组件被渲染后呈现的根节点（HTML元素）。
+在 Material-UI 中，通过一个叫 `component` 的属性，您可以更改渲染后呈现的根节点。
 
-### 它如何工作？
+### 它是如何工作的呢？
 
-该组件将呈现如下：
+该组件将这样渲染：
 
 ```js
 return React.createElement(this.props.component, props)
 ```
 
-例如，在默认情况下，`List` 组件将被渲染为`<ul>`元素。 但只要把一个[React组件](https://reactjs.org/docs/components-and-props.html#function-and-class-components) 传递给 `component` 属性就可以更改这个默认行为。 在下面的例子里， `List` 组件的根元素就会被渲染为一个`<nav>`元素：
+例如，在默认情况下，`List` 组件会渲染 `<ul>` 元素。 通过将一个 [React 组件](https://reactjs.org/docs/components-and-props.html#function-and-class-components)传递给 `component` 属性，就可以改变此默认行为。 下面的例子则将 `List` 组件和一个`<nav>` 元素渲染为根节点：
 
 ```jsx
 <List component="nav">
@@ -44,9 +44,9 @@ return React.createElement(this.props.component, props)
 </List>
 ```
 
-这种模式非常强大，具有很大的灵活性，并允许其与其他库进行交互，例如[` react-router `](#react-router-demo)或者你最喜欢的表单库。 但它也**带有一个小小的警告!**
+这种模式非常强大，它拥有很强的灵活性，也涵盖了与其他库互操作的方法，例如 [`react-router`](#react-router-demo) 或者你最喜欢的表格库。 但它也**带有一个小小的警告!**
 
-### 使用内联时要注意
+### 当与内联函数一起使用时要注意
 
 使用内联函数作为 `component` 属性的参数可能会导致 **意外的卸载**，因为每次React呈现时都会将新组件传递给 `component` 属性。 例如，如果要创建自定义` ListItem `作为链接，您可以执行以下操作：
 
@@ -70,23 +70,26 @@ const ListItemLink = ({ icon, primary, secondary, to }) => (
 ```jsx
 import { Link as RouterLink } from 'react-router-dom';
 
-class ListItemLink extends React.Component {
-  renderLink = React.forwardRef((itemProps, ref) => (
-    // 在 react-router-dom@^5.0.0 中用 `ref` 代替 `innerRef`
-    <RouterLink to={this.props.to} {...itemProps} innerRef={ref} />
-  ));
+function ListItemLink(props) {
+  const { icon, primary, to } = props;
 
-  render() {
-    const { icon, primary, secondary, to } = this.props;
-    return (
-      <li>
-        <ListItem button component={this.renderLink}>
-          {icon && <ListItemIcon>{icon}</ListItemIcon>}
-          <ListItemText inset primary={primary} secondary={secondary} />
-        </ListItem>
-      </li>
-    );
-  }
+  const renderLink = React.useMemo(
+    () =>
+      React.forwardRef((itemProps, ref) => (
+        // with react-router-dom@^5.0.0 use `ref` instead of `innerRef`
+        <RouterLink to={to} {...itemProps} innerRef={ref} />
+      )),
+    [to],
+  );
+
+  return (
+    <li>
+      <ListItem button component={renderLink}>
+        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemText primary={primary} />
+      </ListItem>
+    </li>
+  );
 }
 ```
 
@@ -153,9 +156,9 @@ import { Link } from 'react-router-dom';
 
 要确定您使用的Material-UI组件是否具有此需求，请查阅该组件的props API文档。 如果您需要转递 refs，描述将链接到此部分。
 
-### 使用 StrictMode 和 unstable_ConcurrentMode 时要注意
+### Caveat with StrictMode
 
-如果在` React.StrictMode `和` React.unstable_ConcurrentMode ` 模式下，对上述情况使用类组件，则仍然会看到警告。 我们在内部使用` ReactDOM.findDOMNode `用于向后兼容。 您可以使用` React.forwardRef `和类组件中的指定prop来传递` ref `到DOM组件。 这样做不再会触发与` ReactDOM.findDOMNode `相关的弃用警告 。
+If you use class components for the cases described above you will still see warnings in `React.StrictMode`. We use `ReactDOM.findDOMNode` internally for backwards compatibility. You can use `React.forwardRef` and a designated prop in your class component to forward the `ref` to a DOM component. Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
 
 ```diff
 class Component extends React.Component {

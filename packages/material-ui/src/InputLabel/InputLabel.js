@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
-import withFormControlContext from '../FormControl/withFormControlContext';
+import useFormControl from '../FormControl/useFormControl';
 import withStyles from '../styles/withStyles';
 import FormLabel from '../FormLabel';
 
@@ -87,11 +87,12 @@ const InputLabel = React.forwardRef(function InputLabel(props, ref) {
     className,
     disableAnimation = false,
     margin,
-    muiFormControl,
     shrink: shrinkProp,
     variant,
     ...other
   } = props;
+
+  const muiFormControl = useFormControl();
 
   let shrink = shrinkProp;
   if (typeof shrink === 'undefined' && muiFormControl) {
@@ -168,10 +169,6 @@ InputLabel.propTypes = {
    */
   margin: PropTypes.oneOf(['dense']),
   /**
-   * @ignore
-   */
-  muiFormControl: PropTypes.object,
-  /**
    * if `true`, the label will indicate that the input is required.
    */
   required: PropTypes.bool,
@@ -185,4 +182,4 @@ InputLabel.propTypes = {
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
-export default withStyles(styles, { name: 'MuiInputLabel' })(withFormControlContext(InputLabel));
+export default withStyles(styles, { name: 'MuiInputLabel' })(InputLabel);

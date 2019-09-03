@@ -4,8 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import clsx from 'clsx';
+import { refType } from '@material-ui/utils';
 import formControlState from '../FormControl/formControlState';
-import FormControlContext from '../FormControl/FormControlContext';
+import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
 import withStyles from '../styles/withStyles';
 import { useForkRef } from '../utils/reactHelpers';
 import TextareaAutosize from '../TextareaAutosize';
@@ -120,9 +121,9 @@ export const styles = theme => {
     inputMarginDense: {
       paddingTop: 4 - 1,
     },
-    /* Styles applied to the `input` element if `select={true}. */
+    /* Styles applied to the `input` element if `select={true}`. */
     inputSelect: {
-      paddingRight: 32,
+      paddingRight: 24,
     },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
@@ -140,8 +141,12 @@ export const styles = theme => {
     inputAdornedStart: {},
     /* Styles applied to the `input` element if `endAdornment` is provided. */
     inputAdornedEnd: {},
+    /* Styles applied to the `input` element if `hiddenLabel={true}`. */
+    inputHiddenLabel: {},
   };
 };
+
+const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
 /**
  * `InputBase` contains as few styles as possible.
@@ -170,14 +175,12 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     onBlur,
     onChange,
     onClick,
-    onEmpty,
-    onFilled,
     onFocus,
     onKeyDown,
     onKeyUp,
     placeholder,
     readOnly,
-    renderPrefix,
+    renderSuffix,
     rows,
     rowsMax,
     select = false,
@@ -195,8 +198,8 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       !instance || instance instanceof HTMLInputElement || instance.focus,
       [
         'Material-UI: you have provided a `inputComponent` to the input component',
-        'that does not correctly handle the `inputRef` property.',
-        'Make sure the `inputRef` property is called with a HTMLInputElement.',
+        'that does not correctly handle the `inputRef` prop.',
+        'Make sure the `inputRef` prop is called with a HTMLInputElement.',
       ].join('\n'),
     );
   }, []);
@@ -205,12 +208,23 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const handleInputRef = useForkRef(inputRef, handleInputRefProp);
 
   const [focused, setFocused] = React.useState(false);
-  const muiFormControl = React.useContext(FormControlContext);
+  const muiFormControl = useFormControl();
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (muiFormControl) {
+        return muiFormControl.registerEffect();
+      }
+
+      return undefined;
+    }, [muiFormControl]);
+  }
 
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['disabled', 'error', 'margin', 'required', 'filled'],
+    states: ['disabled', 'error', 'hiddenLabel', 'margin', 'required', 'filled'],
   });
   fcs.focused = muiFormControl ? muiFormControl.focused : focused;
 
@@ -231,33 +245,18 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         if (muiFormControl && muiFormControl.onFilled) {
           muiFormControl.onFilled();
         }
-        if (onFilled) {
-          onFilled();
-        }
-        return;
-      }
-
-      if (muiFormControl && muiFormControl.onEmpty) {
+      } else if (muiFormControl && muiFormControl.onEmpty) {
         muiFormControl.onEmpty();
       }
-      if (onEmpty) {
-        onEmpty();
-      }
     },
-    [muiFormControl, onEmpty, onFilled],
+    [muiFormControl],
   );
 
-  React.useEffect(() => {
+  useEnhancedEffect(() => {
     if (isControlled) {
       checkDirty({ value });
     }
   }, [value, checkDirty, isControlled]);
-
-  React.useEffect(() => {
-    if (!isControlled) {
-      checkDirty(inputRef.current);
-    }
-  }, [checkDirty, isControlled]);
 
   const handleFocus = event => {
     // Fix a bug with IE 11 where the focus/blur events are triggered
@@ -292,8 +291,17 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 
   const handleChange = (event, ...args) => {
     if (!isControlled) {
+      const element = event.target || inputRef.current;
+      if (element == null) {
+        throw new TypeError(
+          'Material-UI: Expected valid input target. ' +
+            'Did you use a custom `inputComponent` and forget to forward refs? ' +
+            'See https://material-ui.com/r/input-component-ref-interface for more info.',
+        );
+      }
+
       checkDirty({
-        value: (event.target || inputRef.current).value,
+        value: element.value,
       });
     }
 
@@ -367,12 +375,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       ref={ref}
       {...other}
     >
-      {renderPrefix
-        ? renderPrefix({
-            ...fcs,
-            startAdornment,
-          })
-        : null}
       {startAdornment}
       <FormControlContext.Provider value={null}>
         <InputComponent
@@ -388,6 +390,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
               [classes.inputMultiline]: multiline,
               [classes.inputSelect]: select,
               [classes.inputMarginDense]: fcs.margin === 'dense',
+              [classes.inputHiddenLabel]: fcs.hiddenLabel,
               [classes.inputAdornedStart]: startAdornment,
               [classes.inputAdornedEnd]: endAdornment,
             },
@@ -411,6 +414,12 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
         />
       </FormControlContext.Provider>
       {endAdornment}
+      {renderSuffix
+        ? renderSuffix({
+            ...fcs,
+            startAdornment,
+          })
+        : null}
     </div>
   );
 });
@@ -421,7 +430,7 @@ InputBase.propTypes = {
    */
   'aria-describedby': PropTypes.string,
   /**
-   * This property helps users to fill forms faster, especially on mobile devices.
+   * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
    * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
    */
@@ -474,9 +483,9 @@ InputBase.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * This property can be used to pass a ref callback to the `input` element.
+   * This prop can be used to pass a ref to the `input` element.
    */
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  inputRef: refType,
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
@@ -498,21 +507,13 @@ InputBase.propTypes = {
    * Callback fired when the value is changed.
    *
    * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value`.
+   * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
   /**
    * @ignore
    */
   onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onEmpty: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFilled: PropTypes.func,
   /**
    * @ignore
    */
@@ -537,7 +538,7 @@ InputBase.propTypes = {
   /**
    * @ignore
    */
-  renderPrefix: PropTypes.func,
+  renderSuffix: PropTypes.func,
   /**
    * If `true`, the `input` element will be required.
    */

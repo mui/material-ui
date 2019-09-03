@@ -10,7 +10,7 @@ components: ToggleButton, ToggleButtonGroup
 To emphasize groups of related [Toggle buttons](https://material.io/design/components/buttons.html#toggle-button),
 a group should share a common container.
 
-The `ToggleButtonGroup` will control the selected of its child buttons when
+The `ToggleButtonGroup` will control the selected state of its child buttons when
 given its own `value` prop.
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
@@ -20,3 +20,7 @@ given its own `value` prop.
 Fancy larger or smaller buttons? Use the `size` property.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
+
+## Standalone toggle button
+
+{{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}

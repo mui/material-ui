@@ -53,7 +53,7 @@ class LongMenu extends React.Component {
       <div className={classes.root}>
         <IconButton
           ref={this.buttonRef}
-          aria-label="More"
+          aria-label="more"
           aria-owns={open ? 'long-menu' : undefined}
           aria-haspopup="true"
           onClick={this.handleClick}

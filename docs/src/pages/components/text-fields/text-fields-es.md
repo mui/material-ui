@@ -7,7 +7,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 <p class="description">Los campos de texto permiten a los usuarios ingresar y editar texto.</p>
 
-Los [campos de texto](https://material.io/design/components/text-fields.html) permiten a los usuarios ingresar texto en la interfaz de usuario. Usualmente aparecen en formularios y diálogos.
+[Text fields](https://material.io/design/components/text-fields.html) allow users to enter text into a UI. They typically appear in forms and dialogs.
 
 ## TextField
 
@@ -15,7 +15,7 @@ El componente `TextField` es un control de formulario completo, incluyendo una e
 
 {{"demo": "pages/components/text-fields/TextFields.js"}}
 
-> **Nota:** Esta versión del text field ya no está incluida en la documentación oficial de Material Design.
+> **Note:** This version of the text field is no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support it.
 
 ## Delineado
 
@@ -79,6 +79,8 @@ Iconos se pueden poner en frente o detrás del campo de texto.
 
 ## Limitaciones
 
+### Shrink
+
 El estado "shrink" de la etiqueta del campo de texto no está siempre correcto. La etiqueta debe achicarse al momento que el campo demuestra algun texto. En algunas circunstancias, no se puede determinar el estado "shrink" (campo de números, campo de fecha y hora, campo de Stripe). Tal vez veas una superposición.
 
 ![shrink](/static/images/text-fields/shrink.png)
@@ -95,17 +97,55 @@ o
 <InputLabel shrink>Contagem</InputLabel>
 ```
 
-## Campos de texto formateados
+### Floating label
 
-Se pueden utilizar librerías externas para formatear un campo de texto. Para ello, hay que proporcionar una implementación personalizada del elemento `<input>` con el atributo `inputComponent`. El componente del campo de texto proporcionado debe manejar el atributo `inputRef`. El atributo debe ser creado con un valor usando el interfaz [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
+The floating label is absolutely positioned, it won't impact the layout of the page. You need to make sure that the input is larger than the label to display correctly.
 
-El siguiente demo utiliza las librerías [react-text-mask](https://github.com/text-mask/text-mask) y [react-number-format](https://github.com/s-yadav/react-number-format).
+## Integration with 3rd party input libraries
+
+Se pueden utilizar librerías externas para formatear un campo de texto. Para ello, hay que proporcionar una implementación personalizada del elemento `<input>` con el atributo `inputComponent`.
+
+El siguiente demo utiliza las librerías [react-text-mask](https://github.com/text-mask/text-mask) y [react-number-format](https://github.com/s-yadav/react-number-format). The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
+The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
+
+```ts
+interface InputElement {
+  focus(): void;
+  value?: string;
+}
+```
+
+```jsx
+function MyInputComponent(props) {
+  const { component: Component, inputRef, ...other } = props;
+
+  // implement `InputElement` interface
+  React.useImperativeHandle(inputRef, () => ({
+    focus: () => {
+      // logic to focus the rendered component from 3rd party belongs here
+    },
+    // hiding the value e.g. react-stripe-elements
+  }));
+
+  // `Component` will be your `SomeThirdPartyComponent` from below
+  return <Component {...other} />;
+}
+
+// usage
+<TextField
+  InputProps={{
+    inputComponent: MyInputComponent,
+    inputProps: { component: SomeThirdPartyComponent },
+  }}
+/>;
+```
+
 ## Accesibilidad
 
-Para facilitar la accesibilidad, ** el campo debe estar vinculado a la etiqueta y al texto de ayuda**. Los nodos DOM subyacentes deben tener esta estructura.
+In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure.
 
 ```jsx
 <div class="form-control">
@@ -128,7 +168,7 @@ Para facilitar la accesibilidad, ** el campo debe estar vinculado a la etiqueta 
 
 ## Proyectos relacionados
 
-Para usos más avanzados tal vez puedas aprovercharte de:
+Para usos más avanzados tal vez puedas sacarle partido a:
 
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Un conjunto de componentes contenedor para facilitar el uso de Material-UI junto a Redux Form.
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Enlaces para utilizar Material-UI con formik.

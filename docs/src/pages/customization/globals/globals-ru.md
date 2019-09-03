@@ -9,9 +9,12 @@
 ```js
 const theme = createMuiTheme({
   overrides: {
-    MuiButton: { // Название компонента
-      text: { // Название правила
-        color: 'white', // Изменение стилей
+    // Style sheet name ⚛️
+    MuiButton: {
+      // Name of the rule
+      text: {
+        // Some CSS
+        color: 'white',
       },
     },
   },

@@ -3,13 +3,13 @@ title: Transition React component
 components: Collapse, Fade, Grow, Slide, Zoom
 ---
 
-# Transições
+# Transitions
 
-<p class="description">Transition helps make a UI expressive and easy to use.</p>
+<p class="description">Transitionは、UIを表現力豊かで使いやすくするのに役立ちます。</p>
 
-Material-UI provides a number of transitions that can be used to introduce some basic [motion](https://material.io/design/motion/) to your applications components.
+Material-UIは、いくつかの基本的な [モーション](https://material.io/design/motion/) をアプリケーションコンポーネントに導入するために使用できる多くのトランジションを提供します。
 
-To better support server rendering Material-UI provides a `style` property to the children of some transition components (Fade, Grow, Zoom, Slide). The `style` property must be applied to the DOM for the animation to work as expected.
+サーバーレンダリングをより適切にサポートするために、Material-UIはいくつかの遷移コンポーネント（フェード、成長、ズーム、スライド）の子に `スタイル` プロパティ を提供します。 アニメーションが期待どおりに機能するには、 `スタイル` プロパティをDOMに適用する必要があります。
 
 ```jsx
 // The `props` object contains a `style` property.
@@ -33,36 +33,36 @@ export default Main() {
 
 ## Collapse
 
-Expand vertically from the top of the child element. The `collapsedHeight` property can be used to set the minimum height when not expanded.
+子要素の上部から垂直方向に展開します。 `collapsedHeight` プロパティを使用して、展開されていないときの最小の高さを設定できます。
 
 {{"demo": "pages/components/transitions/SimpleCollapse.js"}}
 
 ## Fade
 
-Fade in from transparent to opaque.
+透明から不透明にフェードインします。
 
 {{"demo": "pages/components/transitions/SimpleFade.js"}}
 
 ## Grow
 
-Expand outwards from the center of the child element, while also fading in from transparent to opaque.
+子要素の中心から外側に拡張し、同時にフェードインします。 透明から不透明へ。
 
-The second example demonstrates how to change the `transform-origin`, and conditionally applies the `timeout` property to change the entry speed.
+次の例では、 `transform-origin`を変更する方法を示し、条件付きで適用します。 `timeout` プロパティを使用して、進入速度を変更します。
 
 {{"demo": "pages/components/transitions/SimpleGrow.js"}}
 
 ## Slide
 
-Slide in from the edge of the screen. The `direction` property controls which edge of the screen the transition starts from.
+画面の端からスライドします。 `direction` プロパティは、画面のどの端からトランジションを開始するかを制御します。
 
-The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. This prevents the relatively positioned component from scrolling into view from it's off-screen position. Similarly the `unmountOnExit` property removes the component from the DOM after it has been transition off screen.
+トランジションコンポーネントの `mountOnEnter`プロパティーにより、 `in`が`true`になるまで。子コンポーネントがマウントされないようにします これにより、相対的に配置されたコンポーネントが画面外の位置からビューにスクロールするのを防ぐことができます。 同様に、 `unmountOnExit` プロパティは、画面外に遷移した後、DOMからコンポーネント を削除します。
 
 {{"demo": "pages/components/transitions/SimpleSlide.js"}}
 
 ## Zoom
 
-Expand outwards from the center of the child element.
+子要素の中心から外側に展開します。
 
-This example also demonstrates how to delay the enter transition.
+この例は、入力遷移を遅らせる方法も示しています。
 
 {{"demo": "pages/components/transitions/SimpleZoom.js"}}

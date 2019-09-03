@@ -5,7 +5,7 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 # Tablas
 
-<p class="description">Las tablas de datos muestran conjuntos de datos. Pueden ser totalmente personalizadas.</p>
+<p class="description">Data tables display sets of data. They can be fully customized.</p>
 
 [Las tablas de datos](https://material.io/design/components/data-tables.html) muestran información de una manera que es fácil de ojear, de modo que los usuarios pueden buscar patrones e información. Se pueden integrar en contenido principal, tal como tarjetas.
 

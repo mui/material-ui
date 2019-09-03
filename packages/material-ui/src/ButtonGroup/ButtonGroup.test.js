@@ -154,19 +154,19 @@ describe('<ButtonGroup />', () => {
   it('should have a ripple by default', () => {
     const wrapper = mount(
       <ButtonGroup>
-        <Button>Hello World</Button>
+        <Button TouchRippleProps={{ classes: { root: 'touchRipple' } }}>Hello World</Button>
       </ButtonGroup>,
     );
-    assert.strictEqual(wrapper.find('TouchRipple').exists(), true);
+    assert.strictEqual(wrapper.find('.touchRipple').exists(), true);
   });
 
   it('can disable the ripple', () => {
     const wrapper = mount(
       <ButtonGroup disableRipple>
-        <Button>Hello World</Button>
+        <Button TouchRippleProps={{ classes: { root: 'touchRipple' } }}>Hello World</Button>
       </ButtonGroup>,
     );
-    assert.strictEqual(wrapper.find('TouchRipple').exists(), false);
+    assert.strictEqual(wrapper.find('.touchRipple').exists(), false);
   });
 
   it('should not be fullWidth by default', () => {

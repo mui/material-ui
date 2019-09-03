@@ -27,7 +27,7 @@ export default function CustomSeparator() {
   return (
     <div className={classes.root}>
       <Paper elevation={0} className={classes.paper}>
-        <Breadcrumbs separator="›" aria-label="Breadcrumb">
+        <Breadcrumbs separator="›" aria-label="breadcrumb">
           <Link color="inherit" href="/" onClick={handleClick}>
             Material-UI
           </Link>
@@ -39,7 +39,7 @@ export default function CustomSeparator() {
       </Paper>
       <br />
       <Paper elevation={0} className={classes.paper}>
-        <Breadcrumbs separator="-" aria-label="Breadcrumb">
+        <Breadcrumbs separator="-" aria-label="breadcrumb">
           <Link color="inherit" href="/" onClick={handleClick}>
             Material-UI
           </Link>
@@ -51,7 +51,7 @@ export default function CustomSeparator() {
       </Paper>
       <br />
       <Paper elevation={0} className={classes.paper}>
-        <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="Breadcrumb">
+        <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
           <Link color="inherit" href="/" onClick={handleClick}>
             Material-UI
           </Link>

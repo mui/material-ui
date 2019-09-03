@@ -19,15 +19,12 @@ describe('<Toolbar />', () => {
     cleanup();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<Toolbar />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
+    after: () => mount.cleanUp(),
   }));
 
   it('should render with gutters class', () => {

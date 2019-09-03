@@ -13,8 +13,7 @@ describe('<TableSortLabel />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    // StrictModeViolation: uses ButtonBase
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(<TableSortLabel />);
   });
 

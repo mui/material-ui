@@ -1,14 +1,3 @@
-const bpmr = require('babel-plugin-module-resolver');
-
-function resolvePath(sourcePath, currentFile, opts) {
-  if (sourcePath === 'markdown') {
-    const base = currentFile.substring(__dirname.length).slice(0, -3);
-    return `${__dirname}/docs/src/${base}/`;
-  }
-
-  return bpmr.resolvePath(sourcePath, currentFile, opts);
-}
-
 let defaultPresets;
 
 // We release a ES version of Material-UI.
@@ -88,65 +77,33 @@ module.exports = {
         ],
       ],
     },
-    'docs-development': {
-      presets: ['next/babel', '@zeit/next-typescript/babel'],
-      plugins: [
-        'babel-plugin-preval',
-        [
-          'babel-plugin-module-resolver',
-          {
-            alias: {
-              ...defaultAlias,
-              '@material-ui/docs': './packages/material-ui-docs/src',
-              docs: './docs',
-              modules: './modules',
-              pages: './pages',
-            },
-            transformFunctions: ['require', 'require.context'],
-            resolvePath,
-          },
-        ],
-      ],
-    },
-    'docs-production': {
-      presets: ['next/babel', '@zeit/next-typescript/babel'],
-      plugins: [
-        'babel-plugin-preval',
-        [
-          'babel-plugin-module-resolver',
-          {
-            alias: {
-              ...defaultAlias,
-              '@material-ui/docs': './packages/material-ui-docs/src',
-              docs: './docs',
-              modules: './modules',
-              pages: './pages',
-            },
-            transformFunctions: ['require', 'require.context'],
-            resolvePath,
-          },
-        ],
-        'babel-plugin-transform-react-constant-elements',
-        'babel-plugin-transform-dev-warning',
-        ['babel-plugin-react-remove-properties', { properties: ['data-mui-test'] }],
-        ['babel-plugin-transform-react-remove-prop-types', { mode: 'remove' }],
-      ],
-    },
     esm: {
-      plugins: productionPlugins,
+      plugins: [...productionPlugins, ['@babel/plugin-transform-runtime', { useESModules: true }]],
     },
     es: {
-      plugins: productionPlugins,
+      plugins: [...productionPlugins, ['@babel/plugin-transform-runtime', { useESModules: true }]],
     },
     production: {
-      plugins: productionPlugins,
+      plugins: [...productionPlugins, ['@babel/plugin-transform-runtime', { useESModules: true }]],
     },
     'production-umd': {
-      plugins: productionPlugins,
+      plugins: [...productionPlugins, ['@babel/plugin-transform-runtime', { useESModules: true }]],
     },
     test: {
       sourceMaps: 'both',
       plugins: [
+        [
+          'babel-plugin-module-resolver',
+          {
+            root: ['./'],
+            alias: defaultAlias,
+          },
+        ],
+      ],
+    },
+    benchmark: {
+      plugins: [
+        ...productionPlugins,
         [
           'babel-plugin-module-resolver',
           {

@@ -13,7 +13,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import { keys as breakpointKeys } from '../styles/createBreakpoints';
 import requirePropFactory from '../utils/requirePropFactory';
 
 const SPACINGS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -64,6 +63,11 @@ function generateGrid(globalStyles, theme, breakpoint) {
   }
 }
 
+function getOffset(val, div = 1) {
+  const parse = parseFloat(val);
+  return `${parse / div}${String(val).replace(String(parse), '') || 'px'}`;
+}
+
 function generateGutter(theme, breakpoint) {
   const styles = {};
 
@@ -75,10 +79,10 @@ function generateGutter(theme, breakpoint) {
     }
 
     styles[`spacing-${breakpoint}-${spacing}`] = {
-      margin: -themeSpacing / 2,
-      width: `calc(100% + ${themeSpacing}px)`,
+      margin: `-${getOffset(themeSpacing, 2)}`,
+      width: `calc(100% + ${getOffset(themeSpacing)})`,
       '& > $item': {
-        padding: themeSpacing / 2,
+        padding: getOffset(themeSpacing, 2),
       },
     };
   });
@@ -188,7 +192,7 @@ export const styles = theme => ({
     justifyContent: 'space-evenly',
   },
   ...generateGutter(theme, 'xs'),
-  ...breakpointKeys.reduce((accumulator, key) => {
+  ...theme.breakpoints.keys.reduce((accumulator, key) => {
     // Use side effect over immutability for better performance.
     generateGrid(accumulator, theme, key);
     return accumulator;

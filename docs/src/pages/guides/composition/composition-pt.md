@@ -70,23 +70,26 @@ A solução é simples: **evite funções em linha e passe um componente estáti
 ```jsx
 import { Link as RouterLink } from 'react-router-dom';
 
-class ListItemLink extends React.Component {
-  renderLink = React.forwardRef((itemProps, ref) => (
-    // com react-router-dom@^5.0.0 use `ref` ao invés de `innerRef`
-    <RouterLink to={this.props.to} {...itemProps} innerRef={ref} />
-  ));
+function ListItemLink(props) {
+  const { icon, primary, to } = props;
 
-  render() {
-    const { icon, primary, secondary, to } = this.props;
-    return (
-      <li>
-        <ListItem button component={this.renderLink}>
-          {icon && <ListItemIcon>{icon}</ListItemIcon>}
-          <ListItemText inset primary={primary} secondary={secondary} />
-        </ListItem>
-      </li>
-    );
-  }
+  const renderLink = React.useMemo(
+    () =>
+      React.forwardRef((itemProps, ref) => (
+        // com react-router-dom@^5.0.0 use `ref` ao invés de `innerRef`
+        <RouterLink to={to} {...itemProps} innerRef={ref} />
+      )),
+    [to],
+  );
+
+  return (
+    <li>
+      <ListItem button component={renderLink}>
+        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemText primary={primary} />
+      </ListItem>
+    </li>
+  );
 }
 ```
 
@@ -153,9 +156,9 @@ Cobrimos apenas os dois casos de uso mais comuns. Para mais informações, consu
 
 Para descobrir se o componente de Material-UI que você está usando tem esse requisito, verifique na documentação de propriedades da API do componente. Se você precisar encaminhar refs, a descrição será vinculada a esta seção.
 
-### Advertência com StrictMode ou unstable_ConcurrentMode
+### Caveat with StrictMode
 
-Se você usar componentes de classe para os casos descritos acima, ainda verá avisos em `React.StrictMode` e ` React.unstable_ConcurrentMode`. Nós usamos `ReactDOM.findDOMNode` internamente para manter compatibilidade com versões anteriores. Você pode usar `React.forwardRef` e uma propriedade designada em seu componente de classe para encaminhar o `ref` para um componente DOM. Isso não deve acionar mais nenhum aviso relacionado à depreciação de uso de `ReactDOM.findDOMNode`.
+If you use class components for the cases described above you will still see warnings in `React.StrictMode`. We use `ReactDOM.findDOMNode` internally for backwards compatibility. You can use `React.forwardRef` and a designated prop in your class component to forward the `ref` to a DOM component. Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
 
 ```diff
 class Component extends React.Component {

@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/system",
-  "version": "4.3.0",
+  "version": "4.3.3",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI System - Design system for Material-UI.",
@@ -38,8 +38,8 @@
     "react-dom": "^16.8.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.2.0",
-    "deepmerge": "^3.0.0",
+    "@babel/runtime": "^7.4.4",
+    "deepmerge": "^4.0.0",
     "prop-types": "^15.7.2",
     "warning": "^4.0.1"
   },

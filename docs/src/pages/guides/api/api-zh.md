@@ -101,13 +101,13 @@ const styles = {
     
     ```tsx
     type Props = {
-    variant: 'text' | 'contained' | 'fab';
+      variant: 'text' | 'contained' | 'fab';
     }
     ```
     
     这个API更详细： `<Button>`,`<Button variant="contained">`,`<Button variant="fab">`。
     
-    但是它可以防止使用无效组合， 限制暴露的属性数量， 并且可以在将来轻松支持新的价值观。
+    However it prevents an invalid combination from being used, bounds the number of properties exposed, and can easily support new values in the future.
 
 Material-UI组件根据以下规则使用两种方法的组合：
 

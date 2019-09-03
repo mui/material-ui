@@ -24,7 +24,7 @@
 
 {{"demo": "pages/system/typography/FontWeight.js"}}
 
-## Font size
+## フォントサイズ
 
 ```jsx
 <Box fontSize="fontSize">…
@@ -44,7 +44,7 @@
 
 {{"demo": "pages/system/typography/FontStyle.js"}}
 
-## Font family
+## フォントファミリー
 
 ```jsx
 <Box fontFamily="fontFamily">…
@@ -80,7 +80,7 @@ import { typography } from '@material-ui/system';
 | Import name     | Prop            | CSS property     | Theme key                                                              |
 |:--------------- |:--------------- |:---------------- |:---------------------------------------------------------------------- |
 | `fontFamily`    | `fontFamily`    | `font-family`    | [`typography`](/customization/default-theme/?expend-path=$.typography) |
-| `fontSize`      | `fontSize`      | `font-size`      | [`typography`](/customization/default-theme/?expend-path=$.typography) |
+| `fontSize`      | `fontSize`      | `フォント サイズ`       | [`typography`](/customization/default-theme/?expend-path=$.typography) |
 | `fontStyle`     | `fontStyle`     | `font-style`     | [`typography`](/customization/default-theme/?expend-path=$.typography) |
 | `fontWeight`    | `fontWeight`    | `font-weight`    | [`typography`](/customization/default-theme/?expend-path=$.typography) |
 | `letterSpacing` | `letterSpacing` | `letter-spacing` | none                                                                   |

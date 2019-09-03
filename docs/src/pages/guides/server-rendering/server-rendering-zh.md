@@ -50,7 +50,7 @@ const theme = createMuiTheme({
 
 ### 服务器端
 
-下面的大纲可以大致展现一下我们的服务器端。 我们将使用 [app.use](https://expressjs.com/en/api.html) 来设置一个 [Express middleware](https://expressjs.com/en/guide/using-middleware.html) 从而处理来自我们服务器端的所有请求。 如果您对 Express 或者 middleware 不太熟悉，您只需要知道每次服务器收到了一个请求，都会调用我们的 handleRender 函数。
+下面的大纲可以大致展现一下我们的服务器端。 我们将使用 [app.use](https://expressjs.com/en/api.html) 来设置一个 [Express 的中间件](https://expressjs.com/en/guide/using-middleware.html)，从而处理来自我们服务器端的所有请求。 如果您对 Express 或者 middleware 不太熟悉，您只需要知道每次服务器收到了一个请求，都会调用我们的 handleRender 函数。
 
 `server.js`
 

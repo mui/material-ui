@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
@@ -30,7 +29,7 @@ export interface SimpleDialogProps {
 
 function SimpleDialog(props: SimpleDialogProps) {
   const classes = useStyles();
-  const { onClose, selectedValue, ...other } = props;
+  const { onClose, selectedValue, open } = props;
 
   function handleClose() {
     onClose(selectedValue);
@@ -41,7 +40,7 @@ function SimpleDialog(props: SimpleDialogProps) {
   }
 
   return (
-    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" {...other}>
+    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
       <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
       <List>
         {emails.map(email => (
@@ -66,12 +65,6 @@ function SimpleDialog(props: SimpleDialogProps) {
     </Dialog>
   );
 }
-
-SimpleDialog.propTypes = {
-  onClose: PropTypes.func,
-  open: PropTypes.bool,
-  selectedValue: PropTypes.string,
-};
 
 export default function SimpleDialogDemo() {
   const [open, setOpen] = React.useState(false);

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, useTheme } from '@material-ui/core/styles';
 import * as colors from '@material-ui/core/colors';
 
 const mainColors = [
@@ -114,7 +114,8 @@ function getColorGroup(options) {
 }
 
 function Color(props) {
-  const { classes, theme } = props;
+  const { classes } = props;
+  const theme = useTheme();
 
   return (
     <div className={classes.root}>
@@ -140,7 +141,6 @@ function Color(props) {
 
 Color.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(Color);
+export default withStyles(styles)(Color);

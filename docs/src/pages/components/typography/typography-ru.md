@@ -1,8 +1,8 @@
 ---
-components: Оформление текста
+components: Typography
 ---
 
-# Оформление текста
+# Typography
 
 <p class="description">Use typography to present your design and content as clearly and efficiently as possible.</p>
 
@@ -50,7 +50,7 @@ For more info check out the [typeface](https://github.com/KyleAMathews/typefaces
 
 The Typography component uses the `variantMapping` property to associate a UI variant with a semantic element. It’s important to realize that the style of a typography is independent from the semantic underlying element.
 
-- You can change the underlying element for a one time occassion with the `component` property:
+- You can change the underlying element for a one time occasion with the `component` property:
 
 ```jsx
 {/* We already have an h1 in the page, let's not duplicate it. */}

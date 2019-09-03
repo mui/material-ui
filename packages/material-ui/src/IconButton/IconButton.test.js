@@ -15,17 +15,12 @@ describe('<IconButton />', () => {
   const render = createClientRender({ strict: false });
 
   before(() => {
-    // StrictModeViolation: uses ButtonBase
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(<IconButton />);
   });
 
   afterEach(() => {
     cleanup();
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<IconButton>book</IconButton>, () => ({
@@ -34,6 +29,7 @@ describe('<IconButton />', () => {
     mount,
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
   it('should render an inner label span (bloody safari)', () => {

@@ -2,11 +2,19 @@ import * as React from 'react';
 import { PropInjector, CoerceEmptyInterface, IsEmptyInterface } from '@material-ui/types';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
+import { DefaultTheme } from '../defaultTheme';
+
+// Disable automatic export
+export {};
+
+type JSSFontface = CSS.FontFace & { fallbacks?: CSS.FontFace[] };
 
 /**
  * Allows the user to augment the properties available
  */
-export interface BaseCSSProperties extends CSS.Properties<number | string> {}
+export interface BaseCSSProperties extends CSS.Properties<number | string> {
+  '@font-face'?: JSSFontface | JSSFontface[];
+}
 
 export interface CSSProperties extends BaseCSSProperties {
   // Allow pseudo selectors and media queries
@@ -51,7 +59,7 @@ export type Styles<Theme, Props extends object, ClassKey extends string = string
   | StyleRules<Props, ClassKey>
   | StyleRulesCallback<Theme, Props, ClassKey>;
 
-export interface WithStylesOptions<Theme> extends JSS.StyleSheetFactoryOptions {
+export interface WithStylesOptions<Theme = DefaultTheme> extends JSS.StyleSheetFactoryOptions {
   defaultTheme?: Theme;
   flip?: boolean;
   withTheme?: boolean;
@@ -88,12 +96,15 @@ export type WithStyles<
   IncludeTheme extends boolean | undefined = false
 > = (IncludeTheme extends true ? { theme: ThemeOfStyles<StylesType> } : {}) & {
   classes: ClassNameMap<ClassKeyOfStyles<StylesType>>;
-  innerRef?: React.Ref<any> | React.RefObject<any>;
+  innerRef?: React.Ref<any>;
 } & PropsOfStyles<StylesType>;
 
 export interface StyledComponentProps<ClassKey extends string = string> {
+  /**
+   * Override or extend the styles applied to the component.
+   */
   classes?: Partial<ClassNameMap<ClassKey>>;
-  innerRef?: React.Ref<any> | React.RefObject<any>;
+  innerRef?: React.Ref<any>;
 }
 
 export default function withStyles<

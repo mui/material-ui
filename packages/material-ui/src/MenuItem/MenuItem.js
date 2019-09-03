@@ -23,6 +23,10 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `selected={true}`. */
   selected: {},
+  /* Styles applied to the root element if dense. */
+  dense: {
+    minHeight: 'auto',
+  },
 });
 
 const MenuItem = React.forwardRef(function MenuItem(props, ref) {
@@ -49,6 +53,7 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
       component={component}
       selected={selected}
       disableGutters={disableGutters}
+      classes={{ dense: classes.dense }}
       className={clsx(
         classes.root,
         {
@@ -82,6 +87,10 @@ MenuItem.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * If `true`, compact vertical padding designed for keyboard and mouse input will be used.
+   */
+  dense: PropTypes.bool,
   /**
    * @ignore
    */

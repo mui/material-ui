@@ -8,7 +8,7 @@ function requirePropFactory(componentNameInError) {
 
     if (typeof props[propName] !== 'undefined' && !props[requiredProp]) {
       return new Error(
-        `The property \`${propFullNameSafe}\` of ` +
+        `The prop \`${propFullNameSafe}\` of ` +
           `\`${componentNameInError}\` must be used on \`${requiredProp}\`.`,
       );
     }

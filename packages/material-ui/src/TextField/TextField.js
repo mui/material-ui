@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import warning from 'warning';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { refType } from '@material-ui/utils';
 import Input from '../Input';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
@@ -18,7 +19,7 @@ const variantComponent = {
   outlined: OutlinedInput,
 };
 
-const styles = {
+export const styles = {
   /* Styles applied to the root element. */
   root: {},
 };
@@ -39,7 +40,7 @@ const styles = {
  * - [Input](/api/input/)
  * - [FormHelperText](/api/form-helper-text/)
  *
- * If you wish to alter the properties applied to the `input` element, you can do so as follows:
+ * If you wish to alter the props applied to the `input` element, you can do so as follows:
  *
  * ```jsx
  * const inputProps = {
@@ -67,6 +68,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     FormHelperTextProps,
     fullWidth,
     helperText,
+    hiddenLabel,
     id,
     InputLabelProps,
     inputProps,
@@ -98,7 +100,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       const labelNode = ReactDOM.findDOMNode(labelRef.current);
       setLabelWidth(labelNode != null ? labelNode.offsetWidth : 0);
     }
-  }, [variant, required]);
+  }, [variant, required, label]);
 
   warning(
     !select || Boolean(children),
@@ -147,6 +149,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       className={clsx(classes.root, classNameProp)}
       error={error}
       fullWidth={fullWidth}
+      hiddenLabel={hiddenLabel}
       ref={ref}
       required={required}
       variant={variant}
@@ -175,7 +178,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
 
 TextField.propTypes = {
   /**
-   * This property helps users to fill forms faster, especially on mobile devices.
+   * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.
    * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
    */
@@ -210,7 +213,7 @@ TextField.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * Properties applied to the [`FormHelperText`](/api/form-helper-text/) element.
+   * Props applied to the [`FormHelperText`](/api/form-helper-text/) element.
    */
   FormHelperTextProps: PropTypes.object,
   /**
@@ -222,16 +225,20 @@ TextField.propTypes = {
    */
   helperText: PropTypes.node,
   /**
+   * @ignore
+   */
+  hiddenLabel: PropTypes.bool,
+  /**
    * The id of the `input` element.
-   * Use this property to make `label` and `helperText` accessible for screen readers.
+   * Use this prop to make `label` and `helperText` accessible for screen readers.
    */
   id: PropTypes.string,
   /**
-   * Properties applied to the [`InputLabel`](/api/input-label/) element.
+   * Props applied to the [`InputLabel`](/api/input-label/) element.
    */
   InputLabelProps: PropTypes.object,
   /**
-   * Properties applied to the Input element.
+   * Props applied to the Input element.
    * It will be a [`FilledInput`](/api/filled-input/),
    * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
    * component depending on the `variant` prop value.
@@ -242,9 +249,9 @@ TextField.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * This property can be used to pass a ref callback to the `input` element.
+   * This prop can be used to pass a ref to the `input` element.
    */
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  inputRef: refType,
   /**
    * The label content.
    */
@@ -269,7 +276,7 @@ TextField.propTypes = {
    * Callback fired when the value is changed.
    *
    * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value`.
+   * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
   /**
@@ -298,7 +305,7 @@ TextField.propTypes = {
    */
   select: PropTypes.bool,
   /**
-   * Properties applied to the [`Select`](/api/select/) element.
+   * Props applied to the [`Select`](/api/select/) element.
    */
   SelectProps: PropTypes.object,
   /**

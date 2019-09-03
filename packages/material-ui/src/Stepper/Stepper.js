@@ -120,7 +120,7 @@ Stepper.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * A component to be placed between each step.
+   * An element to be placed between each step.
    */
   connector: PropTypes.element,
   /**

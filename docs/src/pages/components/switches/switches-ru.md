@@ -29,6 +29,12 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
+## Размеры
+
+Fancy smaller switches? Use the `size` property.
+
+{{"demo": "pages/components/switches/SwitchesSize.js"}}
+
 ## Расположение метки
 
 Расположение метки можно изменить:
@@ -44,6 +50,6 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ```jsx
 <Switch
   value="checkedA"
-  inputProps={{ 'aria-label': 'Switch A' } }
+  inputProps={{ 'aria-label': 'Switch A' }}
 />
 ```

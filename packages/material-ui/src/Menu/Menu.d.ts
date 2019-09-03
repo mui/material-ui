@@ -16,7 +16,7 @@ export interface MenuProps
   variant?: 'menu' | 'selectedMenu';
 }
 
-export type MenuClassKey = 'paper';
+export type MenuClassKey = 'paper' | 'list';
 
 declare const Menu: React.ComponentType<MenuProps>;
 

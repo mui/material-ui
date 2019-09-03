@@ -3,7 +3,7 @@ title: React Grid（栅格）组件
 components: Grid
 ---
 
-# Grid（栅格)
+# Grid
 
 <p class="description">Material Design 响应式布局的栅格可适应屏幕大小和方向，确保布局之间的一致性。</p>
 
@@ -31,7 +31,7 @@ components: Grid
 
 ## Fluid grids（流式格网）
 
-流式格网使用了可缩放和调整内容大小的列。 使用 breakpoints（断点)，您可以来确定流式格网的布局是否需要大量的更改。
+流体网格使用的列可以缩放和调整内容的大小。 流体网格的布局可以通过使用断点来确定布局是否需要显式更新。
 
 ### 基本栅格
 
@@ -53,7 +53,8 @@ components: Grid
 
 <h2>自动布局</h2>
 
-<p>自动布局使每个 <em>item</em> 公平地共享可用空间。这也意味着您可以设置一个<em>item</em>的宽度，而其他元素将自动调整其大小。</p>
+<p>自适应布局使得 <em>项</em> 可以平摊使用空间。
+这也意味着你可以显式设置一个 <em>项</em> 的宽度，而使其他项的大小自动进行调整。</p>
 
 <p>{{"demo": "pages/components/grid/AutoGrid.js"}}</p>
 
@@ -65,7 +66,7 @@ components: Grid
 
 <h2>嵌套栅格</h2>
 
-<p><code>container` 和 `item` 属性是两个独立的 booleans（布尔值），而它们可以结合使用。
+<p><code>container`和` item `属性分别是两个独立的布尔值，它们可以嵌套使用。 它们可以组合起来使用。
 
 > 一个 flex **容器** 是通过将 `flex` 或 `inline-flex`的计算显示赋予给一个元素而生成的。 Flex 容器的流入子容器称为 flex **items**， 它们使用 flex 布局模型进行布局。
 
@@ -77,7 +78,10 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### 负边距
 
-当我们使用负边距来实现项目之间的间距的时候，会有一个限制。 如果负边距超出`<body>`元素，则会出现水平滚动。 有以下三种解决方法： 1。 不使用 spacing 的特性并且设置成默认的`spacing={0}` 2。 将填充应用于父级元素，并且将至少一半的间距值赋予子级元素：
+当我们使用负边距来实现项目之间的间距的时候，会有一个限制。 如果负边距超出`<body>`元素，则会出现水平滚动。 这里有3种可用的解决方案：
+
+1. 不使用 spacing 的特性并且设置成默认的`spacing={0}`
+2. 将填充应用于父级元素，并且将至少一半的间距值赋予子级元素：
 
 ```jsx
   <body>
@@ -89,18 +93,18 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
   </body>
 ```
 
-1. 3。将父元素设置为 `overflow-x: hidden;`。
+3. 3。将父元素设置为 `overflow-x: hidden;`。
 
 ### white-space: nowrap;
 
-Flex 项目的初始设置为 `min-width: auto`。当子级使用 `white-space: nowrap;` 时会导致冲突。 您可能遇到以下问题:
+弹性布局元素的默认属性值为 `min-width：auto`。 当子元素使用 `white-space: nowrap;`时会出现布局冲突。 您可以从以下内容看到这个问题：
 
 ```jsx
 <Grid item xs>
   <Typography noWrap>
 ```
 
-为了使项目保持在容器内，您需要设置 `min-width: 0`。在实际操作中, 您可以设置 `zeroMinWidth` 属性:
+为了使项留在容器内，您需要设置 `min-width: 0`。 实际上，您也可以通过设置 `zeroMinWidth` 属性解决问题：
 
 ```jsx
 <Grid item xs zeroMinWidth>

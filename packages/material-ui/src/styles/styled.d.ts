@@ -27,7 +27,9 @@ export type ComponentCreator<Component extends React.ElementType> = <
     JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>,
     'classes' | 'className'
   > &
-    StyledComponentProps<'root'> & { className?: string } & CoerceEmptyInterface<Props>
+    StyledComponentProps<'root'> & { className?: string } & CoerceEmptyInterface<
+      Props extends { theme: Theme } ? Omit<Props, 'theme'> & { theme?: Theme } : Props
+    >
 >;
 
 export interface StyledProps {

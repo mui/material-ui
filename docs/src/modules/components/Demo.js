@@ -6,6 +6,7 @@ import copy from 'clipboard-copy';
 import { useSelector, useDispatch } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Collapse from '@material-ui/core/Collapse';
 import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
@@ -49,7 +50,7 @@ const styles = theme => ({
     },
   },
   demo: {
-    outline: 'none',
+    outline: 0,
     margin: 'auto',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: theme.palette.background.level2,
@@ -127,10 +128,9 @@ function getDemoData(codeVariant, demo, githubLocation) {
 function Demo(props) {
   const { classes, demo, demoOptions, githubLocation } = props;
   const dispatch = useDispatch();
-  const { t, codeVariant } = useSelector(state => ({
-    t: state.options.t,
-    codeVariant: state.options.codeVariant,
-  }));
+  const t = useSelector(state => state.options.t);
+  const codeVariant = useSelector(state => state.options.codeVariant);
+
   const demoData = getDemoData(codeVariant, demo, githubLocation);
 
   const [sourceHintSeen, setSourceHintSeen] = React.useState(false);
@@ -261,6 +261,8 @@ function Demo(props) {
     setSourceHintSeen(setSourceHintSeen(true));
   }
 
+  const match = useMediaQuery(theme => theme.breakpoints.up('sm'));
+
   return (
     <div className={classes.root}>
       <div className={classes.anchorLink} id={`${demoName}.js`} />
@@ -279,7 +281,7 @@ function Demo(props) {
               <Tooltip
                 classes={{ popper: classes.tooltip }}
                 key={showSourceHint}
-                open={showSourceHint ? true : undefined}
+                open={showSourceHint && match ? true : undefined}
                 PopperProps={{ disablePortal: true }}
                 title={codeOpen ? t('hideSource') : t('showSource')}
                 placement="top"

@@ -27,16 +27,11 @@ describe('<ListItem />', () => {
 
   before(() => {
     classes = getClasses(<ListItem />);
-    // StrictModeViolation: uses ButtonBase
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
   });
 
   afterEach(() => {
     cleanup();
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<ListItem />, () => ({
@@ -44,6 +39,7 @@ describe('<ListItem />', () => {
     inheritComponent: 'li',
     mount,
     refInstanceof: window.HTMLLIElement,
+    after: () => mount.cleanUp(),
   }));
 
   it('should render with gutters classes', () => {

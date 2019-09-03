@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -10,6 +9,10 @@ import Container from '@material-ui/core/Container';
 import Slide from '@material-ui/core/Slide';
 
 interface Props {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
   window?: () => Window;
   children: React.ReactElement;
 }
@@ -27,13 +30,6 @@ function HideOnScroll(props: Props) {
     </Slide>
   );
 }
-
-HideOnScroll.propTypes = {
-  children: PropTypes.node.isRequired,
-  // Injected by the documentation to work in an iframe.
-  // You won't need it on your project.
-  window: PropTypes.func,
-};
 
 export default function HideAppBar(props: Props) {
   return (

@@ -16,11 +16,14 @@ const fse = require('fs-extra');
 const path = require('path');
 const babel = require('@babel/core');
 const prettier = require('prettier');
-const os = require('os');
+const typescriptToProptypes = require('typescript-to-proptypes');
+const { fixBabelGeneratorIssues, fixLineEndings } = require('./helpers');
+
+const tsConfig = typescriptToProptypes.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
 
 const babelConfig = {
   presets: ['@babel/preset-typescript'],
-  plugins: ['unwrap-createStyles'],
+  plugins: ['unwrap-createstyles'],
   generatorOpts: { retainLines: true },
   babelrc: false,
   configFile: false,
@@ -58,26 +61,13 @@ async function getFiles(root) {
   return files;
 }
 
-function getLineFeed(source) {
-  const match = source.match(/\r?\n/);
-  if (match === null) {
-    return os.EOL;
-  }
-  return match[0];
-}
-
-const fixBabelIssuesRegExp = new RegExp(/(?<=(\/>)|,)(\r?\n){2}/g);
-function fixBabelGeneratorIssues(source) {
-  return source.replace(fixBabelIssuesRegExp, getLineFeed(source));
-}
-
 const TranspileResult = {
   Success: 0,
   Skipped: 1,
   Failed: 2,
 };
 
-async function transpileFile(tsxPath, ignoreCache = false) {
+async function transpileFile(tsxPath, program, ignoreCache = false) {
   const jsPath = tsxPath.replace('.tsx', '.js');
   try {
     if (!cacheDisabled && !ignoreCache && (await fse.exists(jsPath))) {
@@ -88,14 +78,33 @@ async function transpileFile(tsxPath, ignoreCache = false) {
       }
     }
 
-    const { code } = await babel.transformFileAsync(tsxPath, babelConfig);
-    const prettified = prettier.format(code, { ...prettierConfig, filepath: tsxPath });
-    const formatted = fixBabelGeneratorIssues(prettified);
+    const source = await fse.readFile(tsxPath, 'utf8');
 
-    await fse.writeFile(jsPath, formatted);
+    const { code } = await babel.transformAsync(source, { ...babelConfig, filename: tsxPath });
+
+    if (/import \w* from 'prop-types'/.test(code)) {
+      throw new Error('TypeScript demo contains prop-types, please remove them');
+    }
+
+    const propTypesAST = typescriptToProptypes.parseFromProgram(tsxPath, program, {
+      shouldResolveObject: ({ name }) => {
+        if (name === 'classes') {
+          return false;
+        }
+
+        return undefined;
+      },
+    });
+    const codeWithPropTypes = typescriptToProptypes.inject(propTypesAST, code);
+
+    const prettified = prettier.format(codeWithPropTypes, { ...prettierConfig, filepath: tsxPath });
+    const formatted = fixBabelGeneratorIssues(prettified);
+    const correctedLineEndings = fixLineEndings(source, formatted);
+
+    await fse.writeFile(jsPath, correctedLineEndings);
     return TranspileResult.Success;
   } catch (err) {
-    console.error(err);
+    console.error('Something went wrong transpiling %s\n%s\n', tsxPath, err);
     return TranspileResult.Failed;
   }
 }
@@ -103,10 +112,12 @@ async function transpileFile(tsxPath, ignoreCache = false) {
 (async () => {
   const tsxFiles = await getFiles(path.join(workspaceRoot, 'docs/src/pages'));
 
+  const program = typescriptToProptypes.createProgram(tsxFiles, tsConfig);
+
   let successful = 0;
   let failed = 0;
   let skipped = 0;
-  (await Promise.all(tsxFiles.map(file => transpileFile(file)))).forEach(result => {
+  (await Promise.all(tsxFiles.map(file => transpileFile(file, program)))).forEach(result => {
     switch (result) {
       case TranspileResult.Success: {
         successful += 1;
@@ -147,7 +158,7 @@ async function transpileFile(tsxPath, ignoreCache = false) {
 
   tsxFiles.forEach(filePath => {
     fse.watchFile(filePath, { interval: 500 }, async () => {
-      if ((await transpileFile(filePath, true)) === 0) {
+      if ((await transpileFile(filePath, program, true)) === 0) {
         console.log('Success - %s', filePath);
       }
     });

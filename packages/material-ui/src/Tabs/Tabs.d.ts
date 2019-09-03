@@ -1,18 +1,18 @@
 import * as React from 'react';
 import ButtonBase from '../ButtonBase/ButtonBase';
-import { TabIndicatorProps } from './TabIndicator';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof ButtonBase> {
   props: P & {
-    action?: (actions: TabsActions) => void;
+    action?: React.Ref<TabsActions>;
     centered?: boolean;
     children?: React.ReactNode;
     indicatorColor?: 'secondary' | 'primary' | string;
     onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
+    orientation?: 'horizontal' | 'vertical';
     ScrollButtonComponent?: React.ElementType;
     scrollButtons?: 'auto' | 'desktop' | 'on' | 'off';
-    TabIndicatorProps?: Partial<TabIndicatorProps>;
+    TabIndicatorProps?: Partial<React.HTMLAttributes<HTMLDivElement>>;
     textColor?: 'secondary' | 'primary' | 'inherit' | string;
     value: any;
     variant?: 'standard' | 'scrollable' | 'fullWidth';

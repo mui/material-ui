@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import warning from 'warning';
+import { refType } from '@material-ui/utils';
 import Menu from '../Menu/Menu';
 import { isFilled } from '../InputBase/utils';
 import { useForkRef } from '../utils/reactHelpers';
@@ -12,6 +13,10 @@ function areEqualValues(a, b) {
   }
 
   return String(a) === String(b);
+}
+
+function isEmpty(display) {
+  return display == null || (typeof display === 'string' && !display.trim());
 }
 
 /**
@@ -205,7 +210,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     if (multiple) {
       if (!Array.isArray(value)) {
         throw new Error(
-          'Material-UI: the `value` property must be an array ' +
+          'Material-UI: the `value` prop must be an array ' +
             'when using the `Select` component with `multiple`.',
         );
       }
@@ -222,6 +227,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     return React.cloneElement(child, {
+      'aria-selected': selected ? 'true' : undefined,
       onClick: handleItemClick(child),
       role: 'option',
       selected,
@@ -264,11 +270,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         )}
         ref={displayRef}
         data-mui-test="SelectDisplay"
-        aria-pressed={open ? 'true' : 'false'}
         tabIndex={tabIndex}
         role="button"
+        aria-expanded={open ? 'true' : undefined}
+        aria-haspopup="listbox"
         aria-owns={open ? `menu-${name || ''}` : undefined}
-        aria-haspopup="true"
         onKeyDown={handleKeyDown}
         onBlur={handleBlur}
         onClick={disabled || readOnly ? null : handleClick}
@@ -278,8 +284,12 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         {...SelectDisplayProps}
       >
         {/* So the vertical align positioning algorithm kicks in. */}
-        {/* eslint-disable-next-line react/no-danger */}
-        {display != null ? display : <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
+        {isEmpty(display) ? (
+          // eslint-disable-next-line react/no-danger
+          <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+        ) : (
+          display
+        )}
       </div>
       <input
         value={Array.isArray(value) ? value.join(',') : value}
@@ -352,11 +362,11 @@ SelectInput.propTypes = {
    */
   IconComponent: PropTypes.elementType,
   /**
-   * Use that property to pass a ref callback to the native select element.
+   * Use that prop to pass a ref to the native select element.
    */
-  inputRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  inputRef: refType,
   /**
-   * Properties applied to the [`Menu`](/api/menu/) element.
+   * Props applied to the [`Menu`](/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**
@@ -375,7 +385,7 @@ SelectInput.propTypes = {
    * Callback function fired when a menu item is selected.
    *
    * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value`.
+   * You can pull out the new value by accessing `event.target.value` (any).
    * @param {object} [child] The react element that was selected.
    */
   onChange: PropTypes.func,
@@ -383,7 +393,7 @@ SelectInput.propTypes = {
    * Callback fired when the component requests to be closed.
    * Use in controlled mode (see open).
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onClose: PropTypes.func,
   /**
@@ -394,7 +404,7 @@ SelectInput.propTypes = {
    * Callback fired when the component requests to be opened.
    * Use in controlled mode (see open).
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onOpen: PropTypes.func,
   /**
@@ -417,7 +427,7 @@ SelectInput.propTypes = {
    */
   required: PropTypes.bool,
   /**
-   * Properties applied to the clickable div element.
+   * Props applied to the clickable div element.
    */
   SelectDisplayProps: PropTypes.object,
   /**

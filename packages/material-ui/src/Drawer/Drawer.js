@@ -8,6 +8,7 @@ import Slide from '../Slide';
 import Paper from '../Paper';
 import { capitalize } from '../utils/helpers';
 import { duration } from '../styles/transitions';
+import useTheme from '../styles/useTheme';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -31,7 +32,7 @@ export const styles = theme => ({
     // We disable the focus ring for mouse, touch and keyboard users.
     // At some point, it would be better to keep it for keyboard users.
     // :focus-ring CSS pseudo-class will help.
-    outline: 'none',
+    outline: 0,
   },
   /* Styles applied to the `Paper` component if `anchor="left"`. */
   paperAnchorLeft: {
@@ -98,7 +99,7 @@ export function getAnchor(theme, anchor) {
 
 const defaultTransitionDuration = { enter: duration.enteringScreen, exit: duration.leavingScreen };
 /**
- * The properties of the [Modal](/api/modal/) component are available
+ * The props of the [Modal](/api/modal/) component are available
  * when `variant="temporary"` is set.
  */
 const Drawer = React.forwardRef(function Drawer(props, ref) {
@@ -114,11 +115,11 @@ const Drawer = React.forwardRef(function Drawer(props, ref) {
     open = false,
     PaperProps,
     SlideProps,
-    theme,
     transitionDuration = defaultTransitionDuration,
     variant = 'temporary',
     ...other
   } = props;
+  const theme = useTheme();
 
   // Let's assume that the Drawer will always be rendered on user space.
   // We use this state is order to skip the appear transition during the
@@ -164,7 +165,7 @@ const Drawer = React.forwardRef(function Drawer(props, ref) {
 
   if (variant === 'persistent') {
     return (
-      <div className={clsx(classes.root, classes.docked, className)} {...other}>
+      <div className={clsx(classes.root, classes.docked, className)} ref={ref} {...other}>
         {slidingDrawer}
       </div>
     );
@@ -218,13 +219,13 @@ Drawer.propTypes = {
    */
   elevation: PropTypes.number,
   /**
-   * Properties applied to the [`Modal`](/api/modal/) element.
+   * Props applied to the [`Modal`](/api/modal/) element.
    */
   ModalProps: PropTypes.object,
   /**
    * Callback fired when the component requests to be closed.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onClose: PropTypes.func,
   /**
@@ -232,17 +233,13 @@ Drawer.propTypes = {
    */
   open: PropTypes.bool,
   /**
-   * Properties applied to the [`Paper`](/api/paper/) element.
+   * Props applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.object,
   /**
-   * Properties applied to the [`Slide`](/api/slide/) element.
+   * Props applied to the [`Slide`](/api/slide/) element.
    */
   SlideProps: PropTypes.object,
-  /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -257,4 +254,4 @@ Drawer.propTypes = {
   variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),
 };
 
-export default withStyles(styles, { name: 'MuiDrawer', flip: false, withTheme: true })(Drawer);
+export default withStyles(styles, { name: 'MuiDrawer', flip: false })(Drawer);

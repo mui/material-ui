@@ -11,8 +11,7 @@ describe('<ToggleButtonGroup />', () => {
   let classes;
 
   before(() => {
-    // StrictModeViolation: uses ButtonBase
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(
       <ToggleButtonGroup>
         <ToggleButton value="hello" />

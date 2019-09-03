@@ -15,7 +15,7 @@ export interface StepProps
   orientation?: Orientation;
 }
 
-export type StepClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeLabel';
+export type StepClasskey = 'root' | 'horizontal' | 'vertical' | 'alternativeLabel' | 'completed';
 
 declare const Step: React.ComponentType<StepProps>;
 

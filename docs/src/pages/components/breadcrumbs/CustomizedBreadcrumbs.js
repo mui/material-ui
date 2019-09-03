@@ -10,7 +10,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 const StyledBreadcrumb = withStyles(theme => ({
   root: {
     backgroundColor: theme.palette.grey[100],
-    height: 24,
+    height: theme.spacing(3),
     color: theme.palette.grey[800],
     fontWeight: theme.typography.fontWeightRegular,
     '&:hover, &:focus': {
@@ -43,7 +43,7 @@ export default function CustomizedBreadcrumbs() {
 
   return (
     <Paper elevation={0} className={classes.root}>
-      <Breadcrumbs aria-label="Breadcrumb">
+      <Breadcrumbs aria-label="breadcrumb">
         <StyledBreadcrumb
           component="a"
           href="#"

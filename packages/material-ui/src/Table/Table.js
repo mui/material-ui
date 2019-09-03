@@ -12,6 +12,10 @@ export const styles = {
     borderCollapse: 'collapse',
     borderSpacing: 0,
   },
+  /* Styles applied to the root element if `stickyHeader={true}`. */
+  stickyHeader: {
+    borderCollapse: 'separate',
+  },
 };
 
 const Table = React.forwardRef(function Table(props, ref) {
@@ -21,13 +25,22 @@ const Table = React.forwardRef(function Table(props, ref) {
     component: Component = 'table',
     padding = 'default',
     size = 'medium',
+    stickyHeader = false,
     ...other
   } = props;
-  const table = React.useMemo(() => ({ padding, size }), [padding, size]);
+  const table = React.useMemo(() => ({ padding, size, stickyHeader }), [
+    padding,
+    size,
+    stickyHeader,
+  ]);
 
   return (
     <TableContext.Provider value={table}>
-      <Component ref={ref} className={clsx(classes.root, className)} {...other} />
+      <Component
+        ref={ref}
+        className={clsx(classes.root, { [classes.stickyHeader]: stickyHeader }, className)}
+        {...other}
+      />
     </TableContext.Provider>
   );
 });
@@ -59,6 +72,12 @@ Table.propTypes = {
    * Allows TableCells to inherit size of the Table.
    */
   size: PropTypes.oneOf(['small', 'medium']),
+  /**
+   * Set the header sticky.
+   *
+   * ⚠️ It doesn't work with IE 11.
+   */
+  stickyHeader: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiTable' })(Table);

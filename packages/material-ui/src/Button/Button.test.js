@@ -17,10 +17,6 @@ describe('<Button />', () => {
     classes = getClasses(<Button>Hello World</Button>);
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   afterEach(() => {
     cleanup();
   });
@@ -31,6 +27,7 @@ describe('<Button />', () => {
     mount,
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
   it('should render with the root & text classes but no others', () => {

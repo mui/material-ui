@@ -179,7 +179,7 @@ StepLabel.propTypes = {
    */
   error: PropTypes.bool,
   /**
-   * Override the default icon.
+   * Override the default label of the step icon.
    */
   icon: PropTypes.node,
   /**
@@ -199,7 +199,7 @@ StepLabel.propTypes = {
    */
   StepIconComponent: PropTypes.elementType,
   /**
-   * Properties applied to the [`StepIcon`](/api/step-icon/) element.
+   * Props applied to the [`StepIcon`](/api/step-icon/) element.
    */
   StepIconProps: PropTypes.object,
 };

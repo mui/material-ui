@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 import MuiLink from '@material-ui/core/Link';
 import { useSelector } from 'react-redux';
@@ -27,21 +27,21 @@ NextComposed.propTypes = {
 // https://nextjs.org/docs/#with-link
 function Link(props) {
   const {
-    activeClassName,
+    activeClassName = 'active',
     className: classNameProps,
     innerRef,
     naked,
     role: roleProp,
-    router,
     ...other
   } = props;
+  const router = useRouter();
 
-  const { userLanguage } = useSelector(state => ({ userLanguage: state.options.userLanguage }));
+  const userLanguage = useSelector(state => state.options.userLanguage);
   const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === props.href && activeClassName,
   });
 
-  if (userLanguage !== 'en' && other.href.indexOf('/') === 0) {
+  if (userLanguage !== 'en' && other.href.indexOf('/') === 0 && other.href.indexOf('/blog') !== 0) {
     other.as = `/${userLanguage}${other.href}`;
   }
 
@@ -67,15 +67,6 @@ Link.propTypes = {
   onClick: PropTypes.func,
   prefetch: PropTypes.bool,
   role: PropTypes.string,
-  router: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }).isRequired,
 };
 
-Link.defaultProps = {
-  activeClassName: 'active',
-};
-
-const RouterLink = withRouter(Link);
-
-export default React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />);
+export default React.forwardRef((props, ref) => <Link {...props} innerRef={ref} />);

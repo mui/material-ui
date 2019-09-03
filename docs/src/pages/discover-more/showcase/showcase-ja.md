@@ -6,6 +6,6 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
 
 - Non-Material Design customization
 - High traffic
-- Open source
+- オープンソース
 
 {{"demo": "pages/discover-more/showcase/Showcase.js", "hideHeader": true}}

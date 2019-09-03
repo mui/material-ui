@@ -1,406 +1,293 @@
+/* eslint-disable jsx-a11y/tabindex-no-positive */
 import React from 'react';
-import { assert, expect } from 'chai';
-import TestUtils from 'react-dom/test-utils';
-import { createMount } from '@material-ui/core/test-utils';
-import Popover from '@material-ui/core/Popover';
-import SimpleMenu from './fixtures/menus/SimpleMenu';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import { setRef } from '../../src/utils/reactHelpers';
-import { stub } from 'sinon';
 import PropTypes from 'prop-types';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { cleanup, render, fireEvent } from 'test/utils/createClientRender';
+import { expect } from 'chai';
+import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import { cleanup, createClientRender, fireEvent, wait } from 'test/utils/createClientRender';
 
-describe('<Menu> integration', () => {
-  describe('Using mount', () => {
-    let mount;
+const options = [
+  'Show some love to Material-UI',
+  'Show all notification content',
+  'Hide sensitive notification content',
+];
 
-    before(() => {
-      // StrictModeViolation: test uses simulate
-      mount = createMount({ strict: false });
-    });
+function SimpleMenu({ selectedIndex: selectedIndexProp, ...props }) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [selectedIndex, setSelectedIndex] = React.useState(selectedIndexProp || null);
 
-    after(() => {
-      mount.cleanUp();
-    });
+  function handleClickListItem(event) {
+    setAnchorEl(event.currentTarget);
+  }
 
-    describe('mounted open', () => {
-      let wrapper;
-      let portalLayer;
+  function handleMenuItemClick(event, index) {
+    setSelectedIndex(index);
+    setAnchorEl(null);
+  }
 
-      before(() => {
-        wrapper = mount(<SimpleMenu transitionDuration={0} />);
-      });
+  function handleClose() {
+    setAnchorEl(null);
+  }
 
-      it('should not be open', () => {
-        const popover = wrapper.find(Popover);
-        assert.strictEqual(popover.props().open, false, 'should have passed open=false to Popover');
-        const menuEl = document.getElementById('simple-menu');
-        assert.strictEqual(menuEl, null);
-      });
+  const open = Boolean(anchorEl);
 
-      it('should focus the list as nothing has been selected', () => {
-        wrapper.find('button').simulate('click');
-        portalLayer = document.querySelector('[data-mui-test="Modal"]');
-        assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('ul')[0]);
-      });
-
-      it('should change focus to the first item when down arrow is pressed', () => {
-        TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), {
-          key: 'ArrowDown',
-        });
-        assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[0]);
-      });
-
-      it('should change focus to the 2nd item when down arrow is pressed', () => {
-        TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), {
-          key: 'ArrowDown',
-        });
-        assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[1]);
-      });
-
-      it('should change focus to the 3rd item when down arrow is pressed', () => {
-        TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), {
-          key: 'ArrowDown',
-        });
-        assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
-      });
-
-      it('should switch focus from the 3rd item to the 1st item when down arrow is pressed', () => {
-        TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), {
-          key: 'ArrowDown',
-        });
-        assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[0]);
-      });
-
-      it('should switch focus from the 1st item to the 3rd item when up arrow is pressed', () => {
-        TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), {
-          key: 'ArrowUp',
-        });
-        assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
-      });
-
-      it('should switch focus from the 3rd item to the 1st item when home key is pressed', () => {
-        TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), {
-          key: 'Home',
-        });
-        assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[0]);
-      });
-
-      it('should switch focus from the 1st item to the 3rd item when end key is pressed', () => {
-        TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), {
-          key: 'End',
-        });
-        assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
-      });
-
-      it('should keep focus on the last item when a key with no associated action is pressed', () => {
-        TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), {
-          key: 'ArrowRight',
-        });
-        assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
-      });
-
-      it('should change focus to the 2nd item when up arrow is pressed', () => {
-        TestUtils.Simulate.keyDown(portalLayer.querySelector('ul'), {
-          key: 'ArrowUp',
-        });
-        assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[1]);
-      });
-
-      it('should select the 2nd item and close the menu', () => {
-        portalLayer.querySelectorAll('li')[1].click();
-        assert.strictEqual(wrapper.text(), 'selectedIndex: 1, open: false');
-      });
-    });
-
-    describe('opening with a selected item', () => {
-      let wrapper;
-
-      before(() => {
-        wrapper = mount(<SimpleMenu transitionDuration={0} selectedIndex={2} />);
-      });
-
-      it('should not be open', () => {
-        const popover = wrapper.find(Popover);
-        assert.strictEqual(popover.props().open, false);
-        const menuEl = document.getElementById('simple-menu');
-        assert.strictEqual(menuEl, null);
-      });
-
-      it('should focus the 3rd selected item', () => {
-        wrapper.find('button').simulate('click');
-        const portalLayer = document.querySelector('[data-mui-test="Modal"]');
-        assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[2]);
-      });
-
-      it('should select the 2nd item and close the menu', () => {
-        const portalLayer = document.querySelector('[data-mui-test="Modal"]');
-        const item = portalLayer.querySelector('ul').children[1];
-        item.click();
-        assert.strictEqual(wrapper.text(), 'selectedIndex: 1, open: false');
-      });
-
-      it('should focus the 2nd selected item', () => {
-        wrapper.find('button').simulate('click');
-        const portalLayer = document.querySelector('[data-mui-test="Modal"]');
-        assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('li')[1]);
-      });
-    });
-
-    describe('Menu variant differences', () => {
-      const contentAnchorTracker = [false, false, false];
-      const focusTracker = [false, false, false];
-      let menuListFocusTracker = false;
-      const tabIndexTracker = [false, false, false];
-      const TrackingMenuItem = React.forwardRef(({ itemIndex, ...other }, ref) => {
-        return (
+  return (
+    <div>
+      <Button
+        aria-haspopup="true"
+        aria-controls="lock-menu"
+        aria-label="open menu"
+        onClick={handleClickListItem}
+      >
+        {`selectedIndex: ${selectedIndex}, open: ${open}`}
+      </Button>
+      <Menu id="lock-menu" anchorEl={anchorEl} open={open} onClose={handleClose} {...props}>
+        {options.map((option, index) => (
           <MenuItem
-            onFocus={() => {
-              focusTracker[itemIndex] = true;
-            }}
-            ref={instance => {
-              setRef(ref, instance);
-              if (instance && !instance.stubbed) {
-                if (instance.tabIndex === 0) {
-                  tabIndexTracker[itemIndex] = true;
-                } else if (instance.tabIndex > 0) {
-                  tabIndexTracker[itemIndex] = instance.tabIndex;
-                }
-                const offsetTop = instance.offsetTop;
-                stub(instance, 'offsetTop').get(() => {
-                  contentAnchorTracker[itemIndex] = true;
-                  return offsetTop;
-                });
-                instance.stubbed = true;
-              }
-            }}
-            {...other}
-          />
-        );
-      });
-      TrackingMenuItem.propTypes = {
-        /**
-         * @ignore
-         */
-        itemIndex: PropTypes.number,
-      };
-      // Array.fill not supported by Chrome 41
-      const fill = (array, value) => {
-        for (let i = 0; i < array.length; i += 1) {
-          array[i] = value;
-        }
-      };
-      const mountTrackingMenu = (
-        variant,
-        {
-          selectedIndex,
-          selectedTabIndex,
-          invalidIndex,
-          autoFocusIndex,
-          disabledIndex,
-          autoFocus,
-          themeDirection,
-        } = {},
-      ) => {
-        const theme =
-          themeDirection !== undefined
-            ? createMuiTheme({
-                direction: themeDirection,
-              })
-            : undefined;
-
-        fill(contentAnchorTracker, false);
-        fill(focusTracker, false);
-        menuListFocusTracker = false;
-        fill(tabIndexTracker, false);
-        mount(
-          <Menu
-            variant={variant}
-            autoFocus={autoFocus}
-            anchorEl={document.body}
-            open
-            theme={theme}
-            MenuListProps={{
-              onFocus: () => {
-                menuListFocusTracker = true;
-              },
-            }}
+            key={option}
+            selected={index === selectedIndex}
+            onClick={event => handleMenuItemClick(event, index)}
           >
-            {[0, 1, 2].map(itemIndex => {
-              if (itemIndex === invalidIndex) {
-                return null;
-              }
-              return (
-                <TrackingMenuItem
-                  key={itemIndex}
-                  disabled={itemIndex === disabledIndex ? true : undefined}
-                  itemIndex={itemIndex}
-                  selected={itemIndex === selectedIndex}
-                  tabIndex={itemIndex === selectedIndex ? selectedTabIndex : undefined}
-                  autoFocus={itemIndex === autoFocusIndex ? true : undefined}
-                >
-                  Menu Item {itemIndex}
-                </TrackingMenuItem>
-              );
-            })}
-          </Menu>,
-        );
-      };
+            {option}
+          </MenuItem>
+        ))}
+      </Menu>
+    </div>
+  );
+}
 
-      it('[variant=menu] adds coverage for rtl and Tab with no onClose', () => {
-        // This isn't adding very meaningful coverage apart from verifying it doesn't error, but
-        // it was so close to 100% that this has value in avoiding needing to drill into coverage
-        // details to see what isn't being tested.
-        mountTrackingMenu('menu', { themeDirection: 'rtl' });
-        assert.deepEqual(contentAnchorTracker, [true, false, false]);
-        assert.deepEqual(focusTracker, [false, false, false]);
-        assert.strictEqual(menuListFocusTracker, true);
-        assert.deepEqual(tabIndexTracker, [false, false, false]);
+SimpleMenu.propTypes = { selectedIndex: PropTypes.number };
 
-        // Adds coverage for Tab with no onClose
-        TestUtils.Simulate.keyDown(document.activeElement, {
-          key: 'Tab',
-        });
-      });
+describe('<Menu /> integration', () => {
+  const render = createClientRender({ strict: false });
 
-      it('[variant=menu] nothing selected', () => {
-        assert.deepEqual(contentAnchorTracker, [true, false, false]);
-        assert.deepEqual(focusTracker, [false, false, false]);
-        assert.strictEqual(menuListFocusTracker, true);
-        assert.deepEqual(tabIndexTracker, [false, false, false]);
-      });
+  afterEach(() => {
+    cleanup();
+  });
 
-      it('[variant=menu] nothing selected, autoFocus on third', () => {
-        mountTrackingMenu('menu', { autoFocusIndex: 2 });
-        assert.deepEqual(contentAnchorTracker, [true, false, false]);
-        assert.deepEqual(focusTracker, [false, false, true]);
-        assert.strictEqual(menuListFocusTracker, true);
-        assert.deepEqual(tabIndexTracker, [false, false, false]);
-      });
+  it('is not part of the DOM by default', () => {
+    const { queryByRole } = render(<SimpleMenu transitionDuration={0} />);
 
-      it('[variant=selectedMenu] nothing selected', () => {
-        mountTrackingMenu('selectedMenu');
-        assert.deepEqual(contentAnchorTracker, [true, false, false]);
-        assert.deepEqual(focusTracker, [false, false, false]);
-        assert.strictEqual(menuListFocusTracker, true);
-        assert.deepEqual(tabIndexTracker, [false, false, false]);
-      });
+    expect(queryByRole('menu')).to.be.null;
+  });
 
-      it('[variant=selectedMenu] nothing selected, first index invalid', () => {
-        mountTrackingMenu('selectedMenu', { invalidIndex: 0 });
-        assert.deepEqual(contentAnchorTracker, [false, true, false]);
-        assert.deepEqual(focusTracker, [false, false, false]);
-        assert.strictEqual(menuListFocusTracker, true);
-        assert.deepEqual(tabIndexTracker, [false, false, false]);
-      });
+  it('is not part of the DOM by default even with a selectedIndex', () => {
+    const { queryByRole } = render(<SimpleMenu transitionDuration={0} selectedIndex={2} />);
 
-      it('[variant=menu] second item selected', () => {
-        mountTrackingMenu('menu', { selectedIndex: 1 });
-        assert.deepEqual(contentAnchorTracker, [true, false, false]);
-        assert.deepEqual(focusTracker, [false, false, false]);
-        assert.strictEqual(menuListFocusTracker, true);
-        assert.deepEqual(tabIndexTracker, [false, false, false]);
-      });
+    expect(queryByRole('menu')).to.be.null;
+  });
 
-      it('[variant=selectedMenu] second item selected, explicit tabIndex', () => {
-        mountTrackingMenu('selectedMenu', { selectedIndex: 1, selectedTabIndex: 2 });
-        assert.deepEqual(contentAnchorTracker, [false, true, false]);
-        assert.deepEqual(focusTracker, [false, true, false]);
-        assert.strictEqual(menuListFocusTracker, true);
-        assert.deepEqual(tabIndexTracker, [false, 2, false]);
-      });
+  it('should focus the list on open', () => {
+    const { getByLabelText, getByRole } = render(<SimpleMenu transitionDuration={0} keepMounted />);
+    const button = getByLabelText('open menu');
+    const menu = getByRole('menu');
 
-      it('[variant=selectedMenu] second item selected', () => {
-        mountTrackingMenu('selectedMenu', { selectedIndex: 1 });
-        assert.deepEqual(contentAnchorTracker, [false, true, false]);
-        assert.deepEqual(focusTracker, [false, true, false]);
-        assert.strictEqual(menuListFocusTracker, true);
-        assert.deepEqual(tabIndexTracker, [false, true, false]);
-      });
+    expect(menu).to.not.be.focused;
 
-      it('[variant=selectedMenu] second item selected and disabled', () => {
-        mountTrackingMenu('selectedMenu', { selectedIndex: 1, disabledIndex: 1 });
-        assert.deepEqual(contentAnchorTracker, [true, false, false]);
-        assert.deepEqual(focusTracker, [false, false, false]);
-        assert.strictEqual(menuListFocusTracker, true);
-        assert.deepEqual(tabIndexTracker, [false, false, false]);
-      });
+    button.focus();
+    fireEvent.click(button);
+    expect(menu).to.be.focused;
+  });
 
-      it('[variant=selectedMenu] second item selected, no autoFocus', () => {
-        mountTrackingMenu('selectedMenu', { selectedIndex: 1, autoFocus: false });
-        assert.deepEqual(contentAnchorTracker, [false, true, false]);
-        assert.deepEqual(focusTracker, [false, false, false]);
-        assert.strictEqual(menuListFocusTracker, false);
-        assert.deepEqual(tabIndexTracker, [false, true, false]);
-      });
+  it('should focus the list as nothing has been selected and changes focus according to keyboard navigation', () => {
+    const { getAllByRole, queryByRole, getByLabelText } = render(
+      <SimpleMenu transitionDuration={0} />,
+    );
+    const button = getByLabelText('open menu');
+
+    expect(queryByRole('menu')).to.be.null;
+
+    button.focus();
+    fireEvent.click(button);
+    expect(queryByRole('menu')).to.be.focused;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+    expect(getAllByRole('menuitem')[0]).to.be.focused;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+    expect(getAllByRole('menuitem')[2]).to.be.focused;
+
+    fireEvent.keyDown(document.activeElement, { key: 'Home' });
+    expect(getAllByRole('menuitem')[0]).to.be.focused;
+
+    fireEvent.keyDown(document.activeElement, { key: 'End' });
+    expect(getAllByRole('menuitem')[2]).to.be.focused;
+
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
+    expect(getAllByRole('menuitem')[2], 'no change on unassociated keys').to.be.focused;
+  });
+
+  it('focuses the selected item when opening', () => {
+    const { getAllByRole, getByLabelText } = render(
+      <SimpleMenu transitionDuration={0} selectedIndex={2} />,
+    );
+    const button = getByLabelText('open menu');
+
+    expect(document.body).to.be.focused;
+
+    button.focus();
+    fireEvent.click(button);
+    expect(getAllByRole('menuitem')[2]).to.be.focused;
+  });
+
+  describe('Menu variant differences', () => {
+    function OpenMenu(props) {
+      return <Menu anchorEl={document.body} open {...props} />;
+    }
+
+    specify('[variant=menu] will focus the menu if nothing is selected', () => {
+      const { getAllByRole, getByRole } = render(
+        <OpenMenu variant="menu">
+          <MenuItem />
+          <MenuItem />
+          <MenuItem />
+        </OpenMenu>,
+      );
+
+      expect(getByRole('menu')).to.be.focused;
+      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
     });
 
-    describe('closing', () => {
-      let wrapper;
-      let portalLayer;
+    specify('[variant=selectedMenu] will focus the menu if nothing is selected', () => {
+      const { getAllByRole, getByRole } = render(
+        <OpenMenu variant="selectedMenu">
+          <MenuItem />
+          <MenuItem />
+          <MenuItem />
+        </OpenMenu>,
+      );
 
-      beforeEach(() => {
-        wrapper = mount(<SimpleMenu transitionDuration={0} />);
-        wrapper.find('button').simulate('click');
-        portalLayer = document.querySelector('[data-mui-test="Modal"]');
-      });
+      expect(getByRole('menu')).to.be.focused;
+      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
+    });
 
-      it('should close the menu with tab', done => {
-        wrapper.setProps({
-          onExited() {
-            assert.strictEqual(document.getElementById('[data-mui-test="Menu"]'), null);
-            done();
-          },
-        });
-        assert.strictEqual(wrapper.text(), 'selectedIndex: null, open: true');
-        const list = portalLayer.querySelector('ul');
-        TestUtils.Simulate.keyDown(list, {
-          key: 'Tab',
-        });
-        assert.strictEqual(wrapper.text(), 'selectedIndex: null, open: false');
-      });
+    // no case for variant=selectedMenu
+    specify('[variant=menu] ignores `autoFocus` on `MenuItem`', () => {
+      const { getAllByRole, getByRole } = render(
+        <OpenMenu variant="menu">
+          <MenuItem />
+          <MenuItem />
+          <MenuItem autoFocus />
+        </OpenMenu>,
+      );
 
-      it('should close the menu using the backdrop', done => {
-        wrapper.setProps({
-          onExited() {
-            assert.strictEqual(document.getElementById('[data-mui-test="Menu"]'), null);
-            done();
-          },
-        });
-        assert.strictEqual(wrapper.text(), 'selectedIndex: null, open: true');
-        const backdrop = portalLayer.querySelector('[data-mui-test="Backdrop"]');
-        assert.strictEqual(backdrop != null, true);
-        backdrop.click();
-        assert.strictEqual(wrapper.text(), 'selectedIndex: null, open: false');
-      });
+      expect(getByRole('menu')).to.be.focused;
+      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
+    });
+
+    specify('[variant=menu] ignores `selected` on `MenuItem`', () => {
+      const { getAllByRole, getByRole } = render(
+        <OpenMenu variant="menu">
+          <MenuItem />
+          <MenuItem selected />
+          <MenuItem />
+        </OpenMenu>,
+      );
+
+      expect(getByRole('menu')).to.be.focused;
+      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
+    });
+
+    specify('[variant=selectedMenu] focuses the `selected` `MenuItem`', () => {
+      const { getAllByRole } = render(
+        <OpenMenu variant="selectedMenu">
+          <MenuItem />
+          <MenuItem selected />
+          <MenuItem />
+        </OpenMenu>,
+      );
+
+      expect(getAllByRole('menuitem')[1]).to.be.focused;
+      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', 0);
+      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
+    });
+
+    specify('[variant=selectedMenu] allows overriding `tabIndex` on `MenuItem`', () => {
+      const { getAllByRole } = render(
+        <OpenMenu variant="selectedMenu">
+          <MenuItem />
+          <MenuItem selected tabIndex={2} />
+          <MenuItem />
+        </OpenMenu>,
+      );
+
+      expect(getAllByRole('menuitem')[1]).to.be.focused;
+      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', 2);
+      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
+    });
+
+    // no case for menu
+    specify('[variant=selectedMenu] focuses the menu if the selected menuitem is disabled', () => {
+      const { getAllByRole, getByRole } = render(
+        <OpenMenu variant="selectedMenu">
+          <MenuItem />
+          <MenuItem disabled selected />
+          <MenuItem />
+        </OpenMenu>,
+      );
+
+      expect(getByRole('menu')).to.be.focused;
+      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
+    });
+
+    // no case for menu
+    specify('[variant=selectedMenu] focuses no part of the menu when `autoFocus={false}`', () => {
+      const { getAllByRole, getByTestId } = render(
+        <OpenMenu autoFocus={false} variant="selectedMenu" PaperProps={{ 'data-testid': 'Paper' }}>
+          <MenuItem />
+          <MenuItem selected />
+          <MenuItem />
+        </OpenMenu>,
+      );
+
+      expect(getByTestId('Paper')).to.be.focused;
+      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', 0);
+      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
     });
   });
 
-  describe('Using RTL render with keepMounted', () => {
-    let wrapper;
+  it('closes the menu when Tabbing while the list is active', async () => {
+    const { queryByRole, getByLabelText } = render(<SimpleMenu transitionDuration={0} />);
+    const button = getByLabelText('open menu');
 
-    before(() => {
-      // Using render instead of createClientRender because createClientRender specifies an explicit
-      // base element that is the starting point for queries, but the menu would be rendered outside
-      // of that base element.
-      wrapper = render(<SimpleMenu transitionDuration={0} keepMounted />);
-    });
+    expect(document.body).to.be.focused;
 
-    after(() => {
-      cleanup();
-    });
+    button.focus();
+    fireEvent.click(button);
+    expect(queryByRole('menu')).to.be.focused;
 
-    it('should focus the list on open', () => {
-      const button = wrapper.getByLabelText('When device is locked');
-      const menu = wrapper.getByRole('menu');
-      expect(menu).to.not.be.focused;
-      button.focus();
-      fireEvent.click(button);
-      expect(menu).to.be.focused;
-      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-      expect(wrapper.getAllByRole('menuitem')[0]).to.be.focused;
-    });
+    fireEvent.keyDown(document.activeElement, { key: 'Tab' });
+
+    // react-transition-group uses one commit per state transition so we need to wait a bit
+    await wait(() => expect(queryByRole('menu')).to.be.null, { timeout: 10 });
+  });
+
+  it('closes the menu when the backdrop is clicked', async () => {
+    const { queryByRole, getByLabelText } = render(<SimpleMenu transitionDuration={0} />);
+    const button = getByLabelText('open menu');
+
+    expect(queryByRole('menu')).to.be.null;
+
+    button.focus();
+    fireEvent.click(button);
+    expect(queryByRole('menu')).to.be.focused;
+
+    fireEvent.click(document.querySelector('[data-mui-test="Backdrop"]'));
+
+    await wait(() => expect(queryByRole('menu')).to.be.null, { timeout: 10 });
   });
 });

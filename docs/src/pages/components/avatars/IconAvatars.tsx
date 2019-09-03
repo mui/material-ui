@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { green, pink } from '@material-ui/core/colors';
 import Avatar from '@material-ui/core/Avatar';
 import FolderIcon from '@material-ui/icons/Folder';
@@ -7,23 +7,21 @@ import PageviewIcon from '@material-ui/icons/Pageview';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles(
-  createStyles({
-    avatar: {
-      margin: 10,
-    },
-    pinkAvatar: {
-      margin: 10,
-      color: '#fff',
-      backgroundColor: pink[500],
-    },
-    greenAvatar: {
-      margin: 10,
-      color: '#fff',
-      backgroundColor: green[500],
-    },
-  }),
-);
+const useStyles = makeStyles({
+  avatar: {
+    margin: 10,
+  },
+  pinkAvatar: {
+    margin: 10,
+    color: '#fff',
+    backgroundColor: pink[500],
+  },
+  greenAvatar: {
+    margin: 10,
+    color: '#fff',
+    backgroundColor: green[500],
+  },
+});
 
 export default function IconAvatars() {
   const classes = useStyles();

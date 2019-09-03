@@ -27,7 +27,12 @@ describe('<Fade />', () => {
     classes: {},
     inheritComponent: Transition,
     mount,
-    skip: ['componentProp', 'refForwarding'],
+    refInstanceof: window.HTMLDivElement,
+    skip: [
+      'componentProp',
+      // react-transition-group issue
+      'reactTestRenderer',
+    ],
   }));
 
   describe('transition lifecycle', () => {

@@ -20,19 +20,25 @@ Create React AppはReactを学ぶのに良いプロジェクトです。 どの�
 
 更に高度なサンプルプロジェクトをお探しですか？
 
-If you want to start with a more complete and real world example, you could take a look at our [free themes](https://themes.material-ui.com/) or:
+If you want to start with a more complete and real world example, you could take a look at our [free templates](/getting-started/templates/) or [premium themes & templates](https://themes.material-ui.com/) or:
 
+- [React Most Wanted](https://github.com/TarikHuber/react-most-wanted), which includes:
+    
+  - [Create React App](https://facebook.github.io/create-react-app/)による生成
+  - Custom Create React App script to start a new project with just a single CLI command
+  - Build for Firebase including Authentication using the official Firebase Web Auth UI
+  - Routing with React Router including error handling (404) and lazy loading
+  - All PWA features included (SW, Notifications, deffered installation prompt and more)
+  - Optimized and scalable performance (all ~100 points on Lighthouse)
 - [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
-  
+    
   - Bootstrapped with Create React App, the same tooling works out of the box
-  - Built on top of Firebase with authentication working from the start
-  - Robust routing with React Router including error handling (404)
-  - Extensive mobile support with [react-swipeable-views](https://react-swipeable-views.com) for tabs
-
+  - Built on top of Firebase with Authentication, Cloud Firestore, Cloud Functions, Storage, and Performance Monitoring working from the start
+  - Robust routing with React Router including error handling
+  - Extensive mobile support with full-screen dialogs and [react-swipeable-views](https://react-swipeable-views.com) for tabs
 - [Material Sense](https://github.com/alexanmtz/material-sense), which includes:
-  
+    
   - rechartsを用いたグラフ
   - ナビゲーションのサンプルに含まれるReact Router
   - プロダクションビルド用のNginxサーバ含むdockerコンテナ
   - [Create React App](https://facebook.github.io/create-react-app/)による生成
-  - *NOTE*: This project is using *v3* of the Material lib, not yet updated for v4

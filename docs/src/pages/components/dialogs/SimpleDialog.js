@@ -24,7 +24,7 @@ const useStyles = makeStyles({
 
 function SimpleDialog(props) {
   const classes = useStyles();
-  const { onClose, selectedValue, ...other } = props;
+  const { onClose, selectedValue, open } = props;
 
   function handleClose() {
     onClose(selectedValue);
@@ -35,7 +35,7 @@ function SimpleDialog(props) {
   }
 
   return (
-    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" {...other}>
+    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
       <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
       <List>
         {emails.map(email => (
@@ -63,9 +63,9 @@ function SimpleDialog(props) {
 }
 
 SimpleDialog.propTypes = {
-  onClose: PropTypes.func,
-  open: PropTypes.bool,
-  selectedValue: PropTypes.string,
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  selectedValue: PropTypes.string.isRequired,
 };
 
 export default function SimpleDialogDemo() {

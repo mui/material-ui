@@ -3,9 +3,9 @@ import { assert } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
+import { mount } from 'enzyme';
 import { isMuiElement, setRef, useForkRef } from './reactHelpers';
 import { Input, ListItemSecondaryAction, SvgIcon } from '..';
-import { mount } from 'enzyme';
 
 describe('utils/reactHelpers.js', () => {
   describe('isMuiElement', () => {

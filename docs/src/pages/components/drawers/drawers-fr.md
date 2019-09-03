@@ -7,7 +7,7 @@ components: Drawer, SwipeableDrawer
 
 <p class="description">Les tiroirs de navigation permettent d'accéder aux destinations de votre application. Les feuilles latérales sont des surfaces contenant du contenu supplémentaire ancré au bord gauche ou droit de l'écran.</p>
 
-[Navigation drawers](https://material.io/design/components/navigation-drawer.html) provide access to destinations and app functionality, such as switching accounts. They can either be permanently on-screen or controlled by a navigation menu icon.
+[Navigation drawers](https://material.io/design/components/navigation-drawer.html) (or "sidebars") provide access to destinations and app functionality, such as switching accounts. They can either be permanently on-screen or controlled by a navigation menu icon.
 
 [Side sheets](https://material.io/design/components/sheets-side.html) are supplementary surfaces primarily used on tablet and desktop.
 
@@ -27,7 +27,10 @@ This component comes with a 2 kB gzipped payload overhead. Some low-end mobile d
 
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
-We are using the following set of properties on this documentation website for optimal usability of the component: - iOS is hosted on high-end devices. We can enable the backdrop transition without dropping frames. The performance will be good enough. - iOS has a "swipe to go back" feature that mess with the discovery feature. We have to disable it.
+We are using the following set of properties on this documentation website for optimal usability of the component:
+
+- iOS is hosted on high-end devices. We can enable the backdrop transition without dropping frames. The performance will be good enough.
+- iOS has a "swipe to go back" feature that mess with the discovery feature. We have to disable it.
 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -63,7 +66,7 @@ The mini variant is recommended for apps sections that need quick selection acce
 
 ## Tiroir permanent
 
-Les tiroirs de navigation permanents sont toujours visibles et épinglés sur le bord gauche, à la même altitude que le contenu ou l'arrière-plan. Ils ne peuvent pas être fermés.
+Permanent navigation drawers are always visible and pinned to the left edge, at the same elevation as the content or background. They cannot be closed.
 
 Les tiroirs de navigation permanents sont les **valeurs par défaut recommandées pour le bureau**.
 

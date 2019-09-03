@@ -123,7 +123,7 @@ it simply merges the class names provided with the style sheet.
 const Nested = withStyles({
   root: {}, // a style rule
   label: {}, // a nested style rule
-})({ classes }) => (
+})(({ classes }) => (
   <button className={classes.root}>
     <span className={classes.label}> // 'jss2 my-label'
       Nested
@@ -253,13 +253,13 @@ The injection of style tags happens in the **same order** as the `makeStyles` / 
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 
-const useStyleBase = makeStyles({
+const useStylesBase = makeStyles({
   root: {
     color: 'blue', // 🔵
   },
 });
 
-const useStyle = makeStyles({
+const useStyles = makeStyles({
   root: {
     color: 'red', // 🔴
   },
@@ -268,7 +268,7 @@ const useStyle = makeStyles({
 export default function MyComponent() {
   // Order doesn't matter
   const classes = useStyles();
-  const classesBase = useStyleBase();
+  const classesBase = useStylesBase();
 
   // Order doesn't matter
   const className = clsx(classes.root, classesBase.root)
@@ -456,8 +456,8 @@ The generated class names of the `@material-ui/core` components behave different
 When the following conditions are met, the class names are **deterministic**:
 
 - Only one theme provider is used (**No theme nesting**)
-- The style sheet has a name that starts with `Mui`. (All Material-UI components)
-- The `disableGlobal` option of the [class name generator](/styles/api/#creategenerateclassname-options-class-name-generator) is `false`. (The default)
+- The style sheet has a name that starts with `Mui` (all Material-UI components).
+- The `disableGlobal` option of the [class name generator](/styles/api/#creategenerateclassname-options-class-name-generator) is `false` (the default).
 
 These conditions are met with the most common use cases of `@material-ui/core`.
 For instance, this style sheet:
@@ -504,7 +504,7 @@ const StyledTextField = styled(TextField)`
   }
   .MuiOutlinedInput-root {
     fieldset {
-      border-color: red; 🔴
+      border-color: red; 💔
     }
     &:hover fieldset {
       border-color: yellow; 💛
@@ -580,12 +580,12 @@ If you are using Server-Side Rendering (SSR), you should pass the nonce in the `
 <style
   id="jss-server-side"
   nonce={nonce}
-  dangerouslySetInnerHTML={{ __html: sheets.toString() } }
+  dangerouslySetInnerHTML={{ __html: sheets.toString() }}
 />
 ```
 
 Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags.
-The client side gets the nonce from a header. You must include this header regardless of whether or not SSR is used.
+The client-side gets the nonce from a header. You must include this header regardless of whether or not SSR is used.
 
 ```jsx
 <meta property="csp-nonce" content={nonce} />

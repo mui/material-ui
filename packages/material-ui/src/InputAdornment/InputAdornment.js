@@ -4,8 +4,7 @@ import clsx from 'clsx';
 import warning from 'warning';
 import Typography from '../Typography';
 import withStyles from '../styles/withStyles';
-import withFormControlContext from '../FormControl/withFormControlContext';
-import FormControlContext from '../FormControl/FormControlContext';
+import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -17,7 +16,7 @@ export const styles = {
   },
   /* Styles applied to the root element if `variant="filled"`. */
   filled: {
-    '&$positionStart': {
+    '&$positionStart:not($hiddenLabel)': {
       marginTop: 16,
     },
   },
@@ -33,28 +32,32 @@ export const styles = {
   disablePointerEvents: {
     pointerEvents: 'none',
   },
+  /* Styles applied if the adornment is used inside <FormControl hiddenLabel />. */
+  hiddenLabel: {},
+  /* Styles applied if the adornment is used inside <FormControl margin="dense" />. */
+  marginDense: {},
 };
 
 const InputAdornment = React.forwardRef(function InputAdornment(props, ref) {
   const {
     children,
-    component: Component = 'div',
     classes,
     className,
+    component: Component = 'div',
     disablePointerEvents = false,
     disableTypography = false,
-    muiFormControl,
     position,
     variant: variantProp,
     ...other
   } = props;
+  const muiFormControl = useFormControl() || {};
 
   let variant = variantProp;
 
-  if (variantProp && muiFormControl) {
+  if (variantProp && muiFormControl.variant) {
     warning(
       variantProp !== muiFormControl.variant,
-      'Material-UI: The `InputAdornment` variant infers the variant property ' +
+      'Material-UI: The `InputAdornment` variant infers the variant prop ' +
         'you do not have to provide one.',
     );
   }
@@ -73,6 +76,8 @@ const InputAdornment = React.forwardRef(function InputAdornment(props, ref) {
             [classes.positionStart]: position === 'start',
             [classes.positionEnd]: position === 'end',
             [classes.disablePointerEvents]: disablePointerEvents,
+            [classes.marginDense]: muiFormControl.margin === 'dense',
+            [classes.hiddenLabel]: muiFormControl.hiddenLabel,
           },
           className,
         )}
@@ -133,6 +138,4 @@ InputAdornment.propTypes = {
   variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
-export default withStyles(styles, { name: 'MuiInputAdornment' })(
-  withFormControlContext(InputAdornment),
-);
+export default withStyles(styles, { name: 'MuiInputAdornment' })(InputAdornment);

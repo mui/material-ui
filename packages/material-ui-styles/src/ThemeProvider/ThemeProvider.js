@@ -26,7 +26,7 @@ function mergeOuterLocalTheme(outerTheme, localTheme) {
 }
 
 /**
- * This component takes a `theme` property.
+ * This component takes a `theme` prop.
  * It makes the `theme` available down the React tree thanks to React context.
  * This component should preferably be used at **the root of your component tree**.
  */
@@ -37,8 +37,7 @@ function ThemeProvider(props) {
   warning(
     outerTheme !== null || typeof localTheme !== 'function',
     [
-      'Material-UI: you are providing a theme function property ' +
-        'to the ThemeProvider component:',
+      'Material-UI: you are providing a theme function prop to the ThemeProvider component:',
       '<ThemeProvider theme={outerTheme => outerTheme} />',
       '',
       'However, no outer theme is present.',

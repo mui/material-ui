@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '../styles';
+import makeStyles from '../styles/makeStyles';
 import { exactProp } from '@material-ui/utils';
 
 const useStyles = makeStyles(
@@ -27,6 +27,11 @@ const useStyles = makeStyles(
         '@media print': {
           // Save printer ink.
           backgroundColor: theme.palette.common.white,
+        },
+        // Add support for document.body.requestFullScreen().
+        // Other elements, if background transparent, are not supported.
+        '&::backdrop': {
+          backgroundColor: theme.palette.background.default,
         },
       },
     },

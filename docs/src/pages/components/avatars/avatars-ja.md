@@ -5,22 +5,22 @@ components: Avatar
 
 # Avatars
 
-<p class="description">Avatars are found throughout material design with uses in everything from tables to dialog menus.</p>
+<p class="description">Avatars(アバター) は、テーブルからダイアログメニューまで、あらゆる用途に使用されています。</p>
 
 ## Image avatars
 
-Image avatars can be created by passing standard `img` props `src` or `srcSet` into the component.
+画像アバターは、標準の `img` プロップス `src` または `srcSet` をコンポーネントに渡すことで作成できます。
 
-{{"demo": "pages/components/avatars/ImageAvatars.js"}}
+{{"demo":"pages/components/avatars/ImageAvatars.js"}}
 
 ## Letter avatars
 
-Avatars containing simple characters can be created by passing your string as `children`.
+単純な文字を含むアバターは、文字列を `子要素`として渡すことによって作成できます。
 
-{{"demo": "pages/components/avatars/LetterAvatars.js"}}
+{{"demo":"pages/components/avatars/LetterAvatars.js"}}
 
 ## Icon avatars
 
-Icon avatars are created by passing an icon as `children`.
+アイコンアバターは、 `子要素`としてアイコンを渡すことによって作成されます。
 
-{{"demo": "pages/components/avatars/IconAvatars.js"}}
+{{"demo":"pages/components/avatars/IconAvatars.js"}}

@@ -4,9 +4,9 @@ components: CssBaseline
 
 # CSSベースライン
 
-<p class="description">Material-UI provides a CssBaseline component to kickstart an elegant, consistent, and simple baseline to build upon.</p>
+<p class="description">Material-UIはCssBaselineコンポーネントを提供することで、エレガントで一貫性のあるシンプルなベースラインを構築します。</p>
 
-You might be familiar with [normalize.css](https://github.com/necolas/normalize.css), a collection of HTML element and attribute style-normalizations.
+貴方はもしかしたら、HTMLの要素と属性のスタイル正規化のコレクションである [normalize.css](https://github.com/necolas/normalize.css)精通しているかもしれません。
 
 ```jsx
 import React from 'react';
@@ -19,27 +19,24 @@ function MyApp() {
       {/* The rest of your application */}
     </React.Fragment>
   );
-}
-
-export default MyApp;
 ```
 
-## Approach
+## アプローチ
 
-### Page
+### ページ
 
-The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
+`<html>` および `<body>` 要素は、ページ全体のデフォルトが改善されるように更新されています。 具体的には:
 
-- The margin in all browsers is removed.
-- The default Material Design background color is applied. It's using [`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background) for standard devices and a white background for print devices.
+- すべてのブラウザの余白が削除されています。
+- デフォルトのマテリアルデザインの背景色が適用されます。 標準のデバイスや、白背景に印刷されたデバイスの為に[`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background) が使われています。
 
 ### レイアウト
 
-- `box-sizing` is set globally on the `<html>` element to `border-box`. Every element—including `*::before` and `*::after` are declared to inherit this property, which ensures that the declared width of the element is never exceeded due to padding or border.
+- `ボックスサイズ` は、 `<html>` 要素で `border-box`グローバルに設定されます。 すべての要素（ `*:: before` および `*:: after` を含む）は、このプロパティを継承するように宣言されています は、要素の宣言された幅がパディングまたは境界のために超過しないことを保証されます。
 
 ### タイポグラフィ
 
-- No base font-size is declared on the `<html>`, but 16px is assumed (the browser default). You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/customization/typography/#typography-html-font-size) page.
-- Set the `theme.typography.body2` style on the `<body>` element.
-- Set the font-weight to "bolder" for the `<b>` and `<strong>` elements. Bolder is one font weight heavier than the parent element (among the available weights of the font).
-- Font antialiasing is enabled for better display of the Roboto font.
+- `<html>`には基本フォントサイズは宣言されていませんが、16pxが想定されています（ブラウザのデフォルト）。 デフォルトのフォントサイズの`<html>`を変更した場合の影響については、ここをクリックしてください。[the theme documentation](/customization/typography/#typography-html-font-size)
+- `<body>` 要素に `theme.typography.body2` スタイルを設定します。
+- `<b>` および `<strong>` 要素のfont-weightを「bolder」に設定します。 Bolderは、親要素よりも重いフォントの重みです（使用可能なフォントの重みの中で）。
+- Robotoフォントを見やすくするために、フォントのアンチエイリアスが有効になります。

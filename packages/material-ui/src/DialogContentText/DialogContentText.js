@@ -6,7 +6,7 @@ import Typography from '../Typography';
 export const styles = {
   /* Styles applied to the root element. */
   root: {
-    marginBottom: 16,
+    marginBottom: 12,
   },
 };
 

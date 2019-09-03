@@ -52,7 +52,7 @@ function Header(props) {
               <Grid item>
                 <IconButton
                   color="inherit"
-                  aria-label="Open drawer"
+                  aria-label="open drawer"
                   onClick={onDrawerToggle}
                   className={classes.menuButton}
                 >
@@ -62,7 +62,7 @@ function Header(props) {
             </Hidden>
             <Grid item xs />
             <Grid item>
-              <Typography className={classes.link} component="a" href="#">
+              <Typography className={classes.link} variant="body2" component="a" href="#">
                 Go to docs
               </Typography>
             </Grid>

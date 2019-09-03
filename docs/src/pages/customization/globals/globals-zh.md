@@ -9,9 +9,12 @@
 ```js
 const theme = createMuiTheme({
   overrides: {
-    MuiButton: { // 组件的名称 ⚛️ / 样式表
-      text: { // 规则的名称
-        color: 'white', // 一些CSS
+    // Style sheet name ⚛️
+    MuiButton: {
+      // Name of the rule
+      text: {
+        // Some CSS
+        color: 'white',
       },
     },
   },

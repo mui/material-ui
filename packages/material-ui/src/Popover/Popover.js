@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import warning from 'warning';
 import debounce from '../utils/debounce';
 import clsx from 'clsx';
-import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
+import { chainPropTypes, elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 import { createChainedFunction } from '../utils/helpers';
@@ -76,7 +76,7 @@ export const styles = {
     maxWidth: 'calc(100% - 32px)',
     maxHeight: 'calc(100% - 32px)',
     // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 'none',
+    outline: 0,
   },
 };
 
@@ -115,15 +115,6 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     ...other
   } = props;
   const paperRef = React.useRef();
-  const handleResizeRef = React.useRef(() => {});
-
-  React.useImperativeHandle(
-    action,
-    () => ({
-      updatePosition: handleResizeRef.current,
-    }),
-    [],
-  );
 
   // Returns the top/left offset of the position
   // to attach to on the anchor element (or body if none is provided)
@@ -132,16 +123,18 @@ const Popover = React.forwardRef(function Popover(props, ref) {
       if (anchorReference === 'anchorPosition') {
         warning(
           anchorPosition,
-          'Material-UI: you need to provide a `anchorPosition` property when using ' +
+          'Material-UI: you need to provide a `anchorPosition` prop when using ' +
             '<Popover anchorReference="anchorPosition" />.',
         );
         return anchorPosition;
       }
 
       const resolvedAnchorEl = getAnchorEl(anchorEl);
+      const containerWindow = ownerWindow(resolvedAnchorEl);
+
       // If an anchor element wasn't provided, just use the parent body element of this Popover
       const anchorElement =
-        resolvedAnchorEl instanceof Element
+        resolvedAnchorEl instanceof containerWindow.Element
           ? resolvedAnchorEl
           : ownerDocument(paperRef.current).body;
       const anchorRect = anchorElement.getBoundingClientRect();
@@ -174,8 +167,8 @@ const Popover = React.forwardRef(function Popover(props, ref) {
           anchorOrigin.vertical === 'top',
           [
             'Material-UI: you can not change the default `anchorOrigin.vertical` value ',
-            'when also providing the `getContentAnchorEl` property to the popover component.',
-            'Only use one of the two properties.',
+            'when also providing the `getContentAnchorEl` prop to the popover component.',
+            'Only use one of the two props.',
             'Set `getContentAnchorEl` to `null | undefined`' +
               ' or leave `anchorOrigin.vertical` unchanged.',
           ].join('\n'),
@@ -297,9 +290,9 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     [getPositioningStyle],
   );
 
-  const handleEntering = element => {
+  const handleEntering = (element, isAppearing) => {
     if (onEntering) {
-      onEntering(element);
+      onEntering(element, isAppearing);
     }
 
     setPositioningStyles(element);
@@ -310,22 +303,32 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     paperRef.current = ReactDOM.findDOMNode(instance);
   }, []);
 
-  React.useEffect(() => {
-    handleResizeRef.current = debounce(() => {
-      // Because we debounce the event, the open property might no longer be true
-      // when the callback resolves.
-      if (!open) {
-        return;
-      }
+  const updatePosition = React.useMemo(() => {
+    if (!open) {
+      return undefined;
+    }
 
+    return debounce(() => {
       setPositioningStyles(paperRef.current);
     });
-    window.addEventListener('resize', handleResizeRef.current);
-    return () => {
-      handleResizeRef.current.clear();
-      window.removeEventListener('resize', handleResizeRef.current);
-    };
   }, [open, setPositioningStyles]);
+
+  React.useImperativeHandle(action, () => (open ? { updatePosition } : null), [
+    open,
+    updatePosition,
+  ]);
+
+  React.useEffect(() => {
+    if (!updatePosition) {
+      return undefined;
+    }
+
+    window.addEventListener('resize', updatePosition);
+    return () => {
+      window.removeEventListener('resize', updatePosition);
+      updatePosition.clear();
+    };
+  }, [updatePosition]);
 
   let transitionDuration = transitionDurationProp;
 
@@ -365,6 +368,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
           elevation={elevation}
           ref={handlePaperRef}
           {...PaperProps}
+          // eslint-disable-next-line react/prop-types
           className={clsx(classes.paper, PaperProps.className)}
         >
           {children}
@@ -376,14 +380,14 @@ const Popover = React.forwardRef(function Popover(props, ref) {
 
 Popover.propTypes = {
   /**
-   * This is callback property. It's called by the component on mount.
+   * This is callback prop. It's called by the component on mount.
    * This is useful when you want to trigger an action programmatically.
    * It currently only supports updatePosition() action.
    *
    * @param {object} actions This object contains all possible actions
    * that can be triggered programmatically.
    */
-  action: PropTypes.func,
+  action: refType,
   /**
    * This is the DOM element, or a function that returns the DOM element,
    * that may be used to set the position of the popover.
@@ -391,8 +395,9 @@ Popover.propTypes = {
   anchorEl: chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {
     if (props.open && (!props.anchorReference || props.anchorReference === 'anchorEl')) {
       const resolvedAnchorEl = getAnchorEl(props.anchorEl);
+      const containerWindow = ownerWindow(resolvedAnchorEl);
 
-      if (resolvedAnchorEl instanceof Element) {
+      if (resolvedAnchorEl instanceof containerWindow.Element) {
         const box = resolvedAnchorEl.getBoundingClientRect();
 
         if (
@@ -475,7 +480,7 @@ Popover.propTypes = {
   elevation: PropTypes.number,
   /**
    * This function is called in order to retrieve the content anchor element.
-   * It's the opposite of the `anchorEl` property.
+   * It's the opposite of the `anchorEl` prop.
    * The content anchor element should be an element inside the popover.
    * It's used to correctly scroll and set the position of the popover.
    * The positioning strategy tries to make the content anchor element just above the
@@ -487,7 +492,7 @@ Popover.propTypes = {
    */
   marginThreshold: PropTypes.number,
   /**
-   * `classes` property applied to the [`Modal`](/api/modal/) element.
+   * `classes` prop applied to the [`Modal`](/api/modal/) element.
    */
   ModalClasses: PropTypes.object,
   /**
@@ -526,7 +531,7 @@ Popover.propTypes = {
    */
   open: PropTypes.bool.isRequired,
   /**
-   * Properties applied to the [`Paper`](/api/paper/) element.
+   * Props applied to the [`Paper`](/api/paper/) element.
    */
   PaperProps: PropTypes.shape({
     component: elementTypeAcceptingRef,
@@ -560,7 +565,7 @@ Popover.propTypes = {
     PropTypes.oneOf(['auto']),
   ]),
   /**
-   * Properties applied to the `Transition` element.
+   * Props applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
 };

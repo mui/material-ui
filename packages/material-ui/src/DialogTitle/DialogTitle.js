@@ -18,7 +18,13 @@ const DialogTitle = React.forwardRef(function DialogTitle(props, ref) {
 
   return (
     <div className={clsx(classes.root, className)} ref={ref} {...other}>
-      {disableTypography ? children : <Typography variant="h6">{children}</Typography>}
+      {disableTypography ? (
+        children
+      ) : (
+        <Typography component="h2" variant="h6">
+          {children}
+        </Typography>
+      )}
     </div>
   );
 });

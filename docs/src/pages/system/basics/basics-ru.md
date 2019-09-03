@@ -207,12 +207,12 @@ const Box = styled.div`
 
 <Box
   p={2}
-  sm={{ p: 3 } }
-  md={{ p: 4 } }
+  sm={{ p: 3 }}
+  md={{ p: 4 }}
 />
 
 /**
- * Saídas:
+ * Outputs:
  *
  * padding: 16px;
  * @media (min-width: 600px) {

@@ -6,7 +6,6 @@ import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
 import { fade, lighten } from '../styles/colorManipulator';
 import { useIsFocusVisible } from '../utils/focusVisible';
-import ownerWindow from '../utils/ownerWindow';
 import useEventCallback from '../utils/useEventCallback';
 import { useForkRef } from '../utils/reactHelpers';
 import ValueLabel from './ValueLabel';
@@ -47,8 +46,8 @@ function trackFinger(event, touchId) {
       const touch = event.changedTouches[i];
       if (touch.identifier === touchId.current) {
         return {
-          x: touch.pageX,
-          y: touch.pageY,
+          x: touch.clientX,
+          y: touch.clientY,
         };
       }
     }
@@ -57,8 +56,8 @@ function trackFinger(event, touchId) {
   }
 
   return {
-    x: event.pageX,
-    y: event.pageY,
+    x: event.clientX,
+    y: event.clientY,
   };
 }
 
@@ -200,7 +199,7 @@ export const styles = theme => ({
     marginTop: -5,
     boxSizing: 'border-box',
     borderRadius: '50%',
-    outline: 'none',
+    outline: 0,
     backgroundColor: 'currentColor',
     display: 'flex',
     alignItems: 'center',
@@ -284,6 +283,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     component: Component = 'span',
     defaultValue,
     disabled = false,
+    getAriaLabel,
     getAriaValueText,
     marks: marksProp = defaultMarks,
     max = 100,
@@ -313,7 +313,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const valueDerived = isControlled ? valueProp : valueState;
   const range = Array.isArray(valueDerived);
   const instanceRef = React.useRef();
-  let values = range ? valueDerived.sort(asc) : [valueDerived];
+  let values = range ? [...valueDerived].sort(asc) : [valueDerived];
   values = values.map(value => clamp(value, min, max));
   const marks =
     marksProp === true && step !== null
@@ -446,9 +446,9 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       let percent;
 
       if (axis.indexOf('vertical') === 0) {
-        percent = (bottom + ownerWindow(slider).pageYOffset - finger.y) / height;
+        percent = (bottom - finger.y) / height;
       } else {
-        percent = (finger.x - left - ownerWindow(slider).pageXOffset) / width;
+        percent = (finger.x - left) / width;
       }
 
       if (axis.indexOf('-reverse') !== -1) {
@@ -544,7 +544,11 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const handleMouseEnter = useEventCallback(event => {
     // If the slider was being interacted with but the mouse went off the window
     // and then re-entered while unclicked then end the interaction.
-    if (event.buttons === 0) {
+    //
+    // In Firefox, the event can be triggered when a new DOM node is inserted and hovered.
+    // We need to make sure that the relatedTarget (The EventTarget the pointing device exited from)
+    // is not null (it should be the html element)
+    if (event.buttons === 0 && event.relatedTarget !== null) {
       handleTouchEnd(event);
     }
   });
@@ -657,6 +661,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
               })}
             />
             <span
+              aria-hidden
               style={style}
               className={clsx(classes.markLabel, {
                 [classes.markLabelActive]: markActive,
@@ -691,7 +696,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
               role="slider"
               style={style}
               data-index={index}
-              aria-label={ariaLabel}
+              aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
               aria-labelledby={ariaLabelledby}
               aria-orientation={orientation}
               aria-valuemax={max}
@@ -715,7 +720,17 @@ Slider.propTypes = {
   /**
    * The label of the slider.
    */
-  'aria-label': PropTypes.string,
+  'aria-label': chainPropTypes(PropTypes.string, props => {
+    const range = Array.isArray(props.value || props.defaultValue);
+
+    if (range && props['aria-label'] != null) {
+      return new Error(
+        'Material-UI: you need to use the `getAriaLabel` prop instead of `aria-label` when using a range slider.',
+      );
+    }
+
+    return null;
+  }),
   /**
    * The id of the element containing a label for the slider.
    */
@@ -726,15 +741,14 @@ Slider.propTypes = {
   'aria-valuetext': chainPropTypes(PropTypes.string, props => {
     const range = Array.isArray(props.value || props.defaultValue);
 
-    if (range && props['aria-valuetext']) {
+    if (range && props['aria-valuetext'] != null) {
       return new Error(
-        'Material-UI: you need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range input.',
+        'Material-UI: you need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range slider.',
       );
     }
 
     return null;
   }),
-
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
@@ -758,10 +772,18 @@ Slider.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
+   * Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider.
+   *
+   * @param {number} index The thumb label's index to format.
+   * @returns {string}
+   */
+  getAriaLabel: PropTypes.func,
+  /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider.
    *
-   * @param {number} value The thumb label's value to format
-   * @param {number} index The thumb label's index to format
+   * @param {number} value The thumb label's value to format.
+   * @param {number} index The thumb label's index to format.
+   * @returns {string}
    */
   getAriaValueText: PropTypes.func,
   /**
@@ -787,15 +809,15 @@ Slider.propTypes = {
   /**
    * Callback function that is fired when the slider's value changed.
    *
-   * @param {object} event The event source of the callback
-   * @param {any} value The new value
+   * @param {object} event The event source of the callback.
+   * @param {any} value The new value.
    */
   onChange: PropTypes.func,
   /**
    * Callback function that is fired when the `mouseup` is triggered.
    *
-   * @param {object} event The event source of the callback
-   * @param {any} value The new value
+   * @param {object} event The event source of the callback.
+   * @param {any} value The new value.
    */
   onChangeCommitted: PropTypes.func,
   /**
@@ -821,7 +843,7 @@ Slider.propTypes = {
    */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.arrayOf(PropTypes.number)]),
   /**
-   * The value label componnet.
+   * The value label component.
    */
   ValueLabelComponent: PropTypes.elementType,
   /**

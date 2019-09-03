@@ -5,7 +5,7 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 # Table（表格）
 
-<p class="description">Data tables（数据表格）用于展示一系列的数据集。表格可以完全自定义开发。</p>
+<p class="description">Data tables display sets of data. They can be fully customized.</p>
 
 [数据表格](https://material.io/design/components/data-tables.html)以一种一目了然地方式显示信息，这便于用户寻找一些规律和深入的见解。 表格可以被内嵌在主要内容中，如 cards（卡片）。
 
@@ -47,7 +47,7 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 ## 自定义表格
 
-以下是自定义组件的一个示例。您可以在[重写文档页面](/customization/components/)中了解有关此内容的更多信息。
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js"}}
 

@@ -56,13 +56,13 @@ export default function ButtonSizes() {
         </Button>
       </div>
       <div>
-        <Fab size="small" color="secondary" aria-label="Add" className={classes.margin}>
+        <Fab size="small" color="secondary" aria-label="add" className={classes.margin}>
           <AddIcon />
         </Fab>
-        <Fab size="medium" color="secondary" aria-label="Add" className={classes.margin}>
+        <Fab size="medium" color="secondary" aria-label="add" className={classes.margin}>
           <AddIcon />
         </Fab>
-        <Fab color="secondary" aria-label="Add" className={classes.margin}>
+        <Fab color="secondary" aria-label="add" className={classes.margin}>
           <AddIcon />
         </Fab>
       </div>
@@ -71,7 +71,7 @@ export default function ButtonSizes() {
           variant="extended"
           size="small"
           color="primary"
-          aria-label="Add"
+          aria-label="add"
           className={classes.margin}
         >
           <NavigationIcon className={classes.extendedIcon} />
@@ -81,28 +81,28 @@ export default function ButtonSizes() {
           variant="extended"
           size="medium"
           color="primary"
-          aria-label="Add"
+          aria-label="add"
           className={classes.margin}
         >
           <NavigationIcon className={classes.extendedIcon} />
           Extended
         </Fab>
-        <Fab variant="extended" color="primary" aria-label="Add" className={classes.margin}>
+        <Fab variant="extended" color="primary" aria-label="add" className={classes.margin}>
           <NavigationIcon className={classes.extendedIcon} />
           Extended
         </Fab>
       </div>
       <div>
-        <IconButton aria-label="Delete" className={classes.margin} size="small">
+        <IconButton aria-label="delete" className={classes.margin} size="small">
           <ArrowDownwardIcon fontSize="inherit" />
         </IconButton>
-        <IconButton aria-label="Delete" className={classes.margin}>
+        <IconButton aria-label="delete" className={classes.margin}>
           <DeleteIcon fontSize="small" />
         </IconButton>
-        <IconButton aria-label="Delete" className={classes.margin}>
+        <IconButton aria-label="delete" className={classes.margin}>
           <DeleteIcon />
         </IconButton>
-        <IconButton aria-label="Delete" className={classes.margin}>
+        <IconButton aria-label="delete" className={classes.margin}>
           <DeleteIcon fontSize="large" />
         </IconButton>
       </div>

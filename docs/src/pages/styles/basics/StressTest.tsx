@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { ThemeProvider, useTheme, makeStyles, createStyles } from '@material-ui/styles';
 
 interface MyTheme {
@@ -38,10 +37,6 @@ const Component = React.memo((props: ComponentProps) => {
     </div>
   );
 });
-
-(Component as any).propTypes = {
-  backgroundColor: PropTypes.string.isRequired,
-};
 
 export default function StressTest() {
   const [backgroundColor, setBackgroundColor] = React.useState('#2196f3');

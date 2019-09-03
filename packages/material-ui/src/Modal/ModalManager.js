@@ -58,34 +58,30 @@ function findIndexOf(containerInfo, callback) {
   return idx;
 }
 
-function handleNewContainer(containerInfo) {
-  // We are only interested in the actual `style` here because we will override it.
-  const restoreStyle = {
-    overflow: containerInfo.container.style.overflow,
-    paddingRight: containerInfo.container.style.paddingRight,
-  };
-
-  const style = {
-    overflow: 'hidden',
-  };
-
+function handleContainer(containerInfo, props) {
+  const restoreStyle = {};
+  const style = {};
   const restorePaddings = [];
   let fixedNodes;
 
-  if (containerInfo.overflowing) {
-    const scrollbarSize = getScrollbarSize();
+  if (!props.disableScrollLock) {
+    restoreStyle.overflow = containerInfo.container.style.overflow;
+    restoreStyle['padding-right'] = containerInfo.container.style.paddingRight;
+    style.overflow = 'hidden';
 
-    // Use computed style, here to get the real padding to add our scrollbar width.
-    style.paddingRight = `${getPaddingRight(containerInfo.container) + scrollbarSize}px`;
+    if (isOverflowing(containerInfo.container)) {
+      const scrollbarSize = getScrollbarSize();
 
-    // .mui-fixed is a global helper.
-    fixedNodes = ownerDocument(containerInfo.container).querySelectorAll('.mui-fixed');
+      // Use computed style, here to get the real padding to add our scrollbar width.
+      style['padding-right'] = `${getPaddingRight(containerInfo.container) + scrollbarSize}px`;
 
-    [].forEach.call(fixedNodes, node => {
-      const paddingRight = getPaddingRight(node);
-      restorePaddings.push(paddingRight);
-      node.style.paddingRight = `${paddingRight + scrollbarSize}px`;
-    });
+      // .mui-fixed is a global helper.
+      fixedNodes = ownerDocument(containerInfo.container).querySelectorAll('.mui-fixed');
+      [].forEach.call(fixedNodes, node => {
+        restorePaddings.push(node.style.paddingRight);
+        node.style.paddingRight = `${getPaddingRight(node) + scrollbarSize}px`;
+      });
+    }
   }
 
   Object.keys(style).forEach(key => {
@@ -95,12 +91,20 @@ function handleNewContainer(containerInfo) {
   const restore = () => {
     if (fixedNodes) {
       [].forEach.call(fixedNodes, (node, i) => {
-        node.style.paddingRight = `${restorePaddings[i]}px`;
+        if (restorePaddings[i]) {
+          node.style.paddingRight = restorePaddings[i];
+        } else {
+          node.style.removeProperty('padding-right');
+        }
       });
     }
 
     Object.keys(restoreStyle).forEach(key => {
-      containerInfo.container.style[key] = restoreStyle[key];
+      if (restoreStyle[key]) {
+        containerInfo.container.style.setProperty(key, restoreStyle[key]);
+      } else {
+        containerInfo.container.style.removeProperty(key);
+      }
     });
   };
 
@@ -128,13 +132,12 @@ export default class ModalManager {
   constructor() {
     // this.modals[modalIndex] = modal
     this.modals = [];
-    // this.contaniners[containerIndex] = {
+    // this.containers[containerIndex] = {
     //   modals: [],
     //   container,
-    //   overflowing,
     //   restore: null,
     // }
-    this.contaniners = [];
+    this.containers = [];
   }
 
   add(modal, container) {
@@ -154,16 +157,15 @@ export default class ModalManager {
     const hiddenSiblingNodes = getHiddenSiblings(container);
     ariaHiddenSiblings(container, modal.mountNode, modal.modalRef, hiddenSiblingNodes, true);
 
-    const containerIndex = findIndexOf(this.contaniners, item => item.container === container);
+    const containerIndex = findIndexOf(this.containers, item => item.container === container);
     if (containerIndex !== -1) {
-      this.contaniners[containerIndex].modals.push(modal);
+      this.containers[containerIndex].modals.push(modal);
       return modalIndex;
     }
 
-    this.contaniners.push({
+    this.containers.push({
       modals: [modal],
       container,
-      overflowing: isOverflowing(container),
       restore: null,
       hiddenSiblingNodes,
     });
@@ -171,12 +173,12 @@ export default class ModalManager {
     return modalIndex;
   }
 
-  mount(modal) {
-    const containerIndex = findIndexOf(this.contaniners, item => item.modals.indexOf(modal) !== -1);
-    const containerInfo = this.contaniners[containerIndex];
+  mount(modal, props) {
+    const containerIndex = findIndexOf(this.containers, item => item.modals.indexOf(modal) !== -1);
+    const containerInfo = this.containers[containerIndex];
 
     if (!containerInfo.restore) {
-      containerInfo.restore = handleNewContainer(containerInfo);
+      containerInfo.restore = handleContainer(containerInfo, props);
     }
   }
 
@@ -187,8 +189,8 @@ export default class ModalManager {
       return modalIndex;
     }
 
-    const containerIndex = findIndexOf(this.contaniners, item => item.modals.indexOf(modal) !== -1);
-    const containerInfo = this.contaniners[containerIndex];
+    const containerIndex = findIndexOf(this.containers, item => item.modals.indexOf(modal) !== -1);
+    const containerInfo = this.containers[containerIndex];
 
     containerInfo.modals.splice(containerInfo.modals.indexOf(modal), 1);
     this.modals.splice(modalIndex, 1);
@@ -212,7 +214,7 @@ export default class ModalManager {
         containerInfo.hiddenSiblingNodes,
         false,
       );
-      this.contaniners.splice(containerIndex, 1);
+      this.containers.splice(containerIndex, 1);
     } else {
       // Otherwise make sure the next top modal is visible to a screen reader.
       const nextTop = containerInfo.modals[containerInfo.modals.length - 1];

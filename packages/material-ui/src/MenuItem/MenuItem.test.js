@@ -15,8 +15,7 @@ describe('<MenuItem />', () => {
   before(() => {
     shallow = createShallow({ dive: true });
     classes = getClasses(<MenuItem />);
-    // StrictModeViolation: uses ButtonBase
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
   });
 
   after(() => {

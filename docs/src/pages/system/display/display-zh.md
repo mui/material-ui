@@ -36,6 +36,7 @@
 | 仅在lg上可见  | `display={{ xs: 'none', lg: 'block', xl: 'none' }}`  |
 | 仅在xl上可见  | `display={{ xs: 'none', xl: 'block' }}`              |
 
+
 ```jsx
 <Box display={{ xs: 'block', md: 'none' }}>
   隐藏在比md宽的屏幕上

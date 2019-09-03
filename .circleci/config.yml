@@ -41,6 +41,9 @@ jobs:
       - run:
           name: Should not have any git not staged
           command: git diff --exit-code
+      - run:
+          name: Check for duplicated packages
+          command: yarn deduplicate
       - save_cache:
           key: v2-yarn-sha-{{ checksum "yarn.lock" }}
           paths:
@@ -85,6 +88,12 @@ jobs:
       - checkout
       - install_js
       - run:
+          name: Generate PropTypes
+          command: yarn proptypes --disable-cache
+      - run:
+          name: '`yarn proptypes` changes committed?'
+          command: git diff --exit-code
+      - run:
           name: Can we generate the documentation?
           command: yarn docs:api
       - run:
@@ -106,25 +115,13 @@ jobs:
       - install_js
       - run:
           name: Transpile TypeScript demos
-          command: yarn docs:typescript:formatted --disable-cache
+          command: yarn workspace docs typescript:transpile --disable-cache
       - run:
           name: Are the compiled TypeScript demos equivalent to the JavaScript demos?
           command: git add -A && git diff --exit-code --staged
       - run:
           name: Tests TypeScript definitions
           command: yarn typescript
-  test_production:
-    <<: *defaults
-    steps:
-      - checkout
-      - install_js
-      - run:
-          name: Can we generate the @material-ui/core umd build?
-          command: yarn workspace @material-ui/core build:umd
-      - prepare_chrome_headless
-      - run:
-          name: Test umd release
-          command: yarn test:umd
   test_browser:
     <<: *defaults
     steps:
@@ -134,6 +131,12 @@ jobs:
       - run:
           name: Tests real browsers
           command: yarn test:karma
+      - run:
+          name: Can we generate the @material-ui/core umd build?
+          command: yarn workspace @material-ui/core build:umd
+      - run:
+          name: Test umd release
+          command: yarn test:umd
   test_regressions:
     <<: *defaults
     docker:
@@ -154,7 +157,9 @@ workflows:
       - checkout:
           filters:
             branches:
-              ignore: l10n
+              ignore: 
+                - l10n
+                - /dependabot\//
       - test_unit:
           requires:
             - checkout
@@ -167,13 +172,9 @@ workflows:
       - test_browser:
           requires:
             - checkout
-      - test_production:
-          requires:
-            - checkout
       - test_regressions:
           requires:
             - test_unit
             - test_static
             - test_types
             - test_browser
-            - test_production

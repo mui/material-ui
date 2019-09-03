@@ -6,7 +6,7 @@ function getBorder(value) {
     return value;
   }
 
-  return `${value}px solid${value === 0 ? ' !important' : ''}`;
+  return `${value}px solid`;
 }
 
 export const border = style({
@@ -42,7 +42,6 @@ export const borderLeft = style({
 export const borderColor = style({
   prop: 'borderColor',
   themeKey: 'palette',
-  transform: value => `${value} !important`,
 });
 
 export const borderRadius = style({

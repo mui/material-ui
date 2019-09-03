@@ -82,7 +82,7 @@ const blackList = ['/.eslintrc', '/_document', '/_app'];
 // Each pathname is a route you can navigate to.
 function findPages(
   options = {},
-  directory = path.resolve(__dirname, '../../../../pages'),
+  directory = path.resolve(__dirname, '../../../pages'),
   pages = [],
 ) {
   fs.readdirSync(directory).forEach(item => {

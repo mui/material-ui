@@ -3,20 +3,20 @@ title: Bottom Navigation React component
 components: BottomNavigation, BottomNavigationAction
 ---
 
-# Bottom Navigation
+# ボトムナビゲーション
 
-<p class="description">Bottom navigation bars allow movement between primary destinations in an app.</p>
+<p class="description">ボトムナビゲーションを使用すると、アプリ内の主要な目的地間を移動できます。</p>
 
-[Bottom navigation](https://material.io/design/components/bottom-navigation.html) bars display three to five destinations at the bottom of a screen. Each destination is represented by an icon and an optional text label. When a bottom navigation icon is tapped, the user is taken to the top-level navigation destination associated with that icon.
+[ボトムナビゲーション](https://material.io/design/components/bottom-navigation.html) バーは、画面下部に3〜5つの目的地を表示します。 各目的地は、アイコンとオプションのテキストラベルで表されます。 ボトムナビゲーションアイコンをタップすると、そのアイコンに関連付けられている最上位のナビゲーション先に移動します。
 
-## Bottom Navigation
+## ボトムナビゲーション
 
-When there are only **three** actions, display both icons and text labels at all times.
+**3** アクションしかない場合は、アイコンとテキストラベルの両方を常に表示します。
 
-{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js"}}
+{{"demo":"pages/components/bottom-navigation/SimpleBottomNavigation.js"}}
 
-## Bottom Navigation with no label
+## ラベルなしのボトムナビゲーション
 
-If there are **four** or **five** actions, display inactive views as icons only.
+**4** または **5** アクションがある場合は、非アクティブビューをアイコンとしてのみ表示します。
 
-{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js"}}
+{{"demo":"pages/components/bottom-navigation/LabelBottomNavigation.js"}}

@@ -1,8 +1,8 @@
 import ownerDocument from './ownerDocument';
 
-function ownerWindow(node, fallback = window) {
+function ownerWindow(node) {
   const doc = ownerDocument(node);
-  return doc.defaultView || doc.parentView || fallback;
+  return doc.defaultView || window;
 }
 
 export default ownerWindow;

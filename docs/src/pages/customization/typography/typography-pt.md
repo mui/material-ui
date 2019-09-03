@@ -2,7 +2,7 @@
 
 <p class="description">O tema fornece um conjunto de tamanhos de tipos que funcionam bem juntos e também com a grade de leiaute.</p>
 
-O exemplo a seguir demonstra como alterar os valores padrão da tipografia - nesse caso, a família da fonte. Se você quiser aprender mais sobre tipografia, você pode conferir a seção do [componente tipografia](/components/typography/).
+O exemplo a seguir demonstra como alterar o [valores padrão](/customization/default-theme/?expend-path=$.typography) da tipografia no tema. Você pode aprender mais sobre como usar o [componente de tipografia](/components/typography/), verificando a página dedicada.
 
 {{"demo": "pages/customization/typography/TypographyTheme.js"}}
 
@@ -142,7 +142,7 @@ theme.typography.h1 = {
 };
 ```
 
-Para automatizar estas configurações, você pode usar a função auxiliar [`responsiveFontSizes()`](/customization/themes/#responsivefontsizes-theme-options-theme), para fazer a tipografia de tamanhos da fonte no tema responsivo.
+To automate this setup, you can use the [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizesChart.js", "hideHeader": true}}
 

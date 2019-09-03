@@ -11,6 +11,7 @@ import Grow from '../Grow';
 import Popper from '../Popper';
 import { useForkRef } from '../utils/reactHelpers';
 import { useIsFocusVisible } from '../utils/focusVisible';
+import useTheme from '../styles/useTheme';
 
 export const styles = theme => ({
   /* Styles applied to the Popper component. */
@@ -36,6 +37,7 @@ export const styles = theme => ({
     fontSize: theme.typography.pxToRem(10),
     lineHeight: `${theme.typography.round(14 / 10)}em`,
     maxWidth: 300,
+    wordWrap: 'break-word',
     fontWeight: theme.typography.fontWeightMedium,
   },
   /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
@@ -97,12 +99,12 @@ function Tooltip(props) {
     open: openProp,
     placement = 'bottom',
     PopperProps,
-    theme,
     title,
     TransitionComponent = Grow,
     TransitionProps,
     ...other
   } = props;
+  const theme = useTheme();
 
   const [openState, setOpenState] = React.useState(false);
   const [, forceUpdate] = React.useState(0);
@@ -136,7 +138,7 @@ function Tooltip(props) {
 
   React.useEffect(() => {
     // Fallback to this default id when possible.
-    // Use the random value for client side rendering only.
+    // Use the random value for client-side rendering only.
     // We can't use it server-side.
     if (!defaultId.current) {
       defaultId.current = `mui-tooltip-${Math.round(Math.random() * 1e5)}`;
@@ -185,7 +187,7 @@ function Tooltip(props) {
     // We don't want to wait for the next render commit.
     // We would risk displaying two tooltips at the same time (native + this one).
     if (childNode) {
-      childNode.setAttribute('title', '');
+      childNode.removeAttribute('title');
     }
 
     clearTimeout(enterTimer.current);
@@ -259,14 +261,10 @@ function Tooltip(props) {
 
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
-    if (leaveDelay) {
-      event.persist();
-      leaveTimer.current = setTimeout(() => {
-        handleClose(event);
-      }, leaveDelay);
-    } else {
+    event.persist();
+    leaveTimer.current = setTimeout(() => {
       handleClose(event);
-    }
+    }, leaveDelay);
   };
 
   const handleTouchStart = event => {
@@ -357,8 +355,8 @@ function Tooltip(props) {
   warning(
     !children.props.title,
     [
-      'Material-UI: you have provided a `title` property to the child of <Tooltip />.',
-      `Remove this title property \`${children.props.title}\` or the Tooltip component.`,
+      'Material-UI: you have provided a `title` prop to the child of <Tooltip />.',
+      `Remove this title prop \`${children.props.title}\` or the Tooltip component.`,
     ].join('\n'),
   );
 
@@ -425,7 +423,7 @@ Tooltip.propTypes = {
   disableTouchListener: PropTypes.bool,
   /**
    * The number of milliseconds to wait before showing the tooltip.
-   * This property won't impact the enter touch delay (`enterTouchDelay`).
+   * This prop won't impact the enter touch delay (`enterTouchDelay`).
    */
   enterDelay: PropTypes.number,
   /**
@@ -434,8 +432,8 @@ Tooltip.propTypes = {
   enterTouchDelay: PropTypes.number,
   /**
    * The relationship between the tooltip and the wrapper component is not clear from the DOM.
-   * This property is used with aria-describedby to solve the accessibility issue.
-   * If you don't provide this property. It falls back to a randomly generated id.
+   * This prop is used with aria-describedby to solve the accessibility issue.
+   * If you don't provide this prop. It falls back to a randomly generated id.
    */
   id: PropTypes.string,
   /**
@@ -445,7 +443,7 @@ Tooltip.propTypes = {
   interactive: PropTypes.bool,
   /**
    * The number of milliseconds to wait before hiding the tooltip.
-   * This property won't impact the leave touch delay (`leaveTouchDelay`).
+   * This prop won't impact the leave touch delay (`leaveTouchDelay`).
    */
   leaveDelay: PropTypes.number,
   /**
@@ -455,13 +453,13 @@ Tooltip.propTypes = {
   /**
    * Callback fired when the tooltip requests to be closed.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onClose: PropTypes.func,
   /**
    * Callback fired when the tooltip requests to be open.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onOpen: PropTypes.func,
   /**
@@ -486,13 +484,9 @@ Tooltip.propTypes = {
     'top',
   ]),
   /**
-   * Properties applied to the [`Popper`](/api/popper/) element.
+   * Props applied to the [`Popper`](/api/popper/) element.
    */
   PopperProps: PropTypes.object,
-  /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
   /**
    * Tooltip title. Zero-length titles string are never displayed.
    */
@@ -502,9 +496,9 @@ Tooltip.propTypes = {
    */
   TransitionComponent: PropTypes.elementType,
   /**
-   * Properties applied to the `Transition` element.
+   * Props applied to the `Transition` element.
    */
   TransitionProps: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTooltip', withTheme: true })(Tooltip);
+export default withStyles(styles, { name: 'MuiTooltip' })(Tooltip);

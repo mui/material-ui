@@ -96,7 +96,11 @@ describe('<SwipeableDrawer />', () => {
     inheritComponent: Drawer,
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: [
+      'componentProp',
+      // https://github.com/facebook/react/issues/11565
+      'reactTestRenderer',
+    ],
   }));
 
   it('should render a Drawer and a SwipeArea', () => {

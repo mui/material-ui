@@ -53,7 +53,7 @@ O segundo exemplo demonstra como alterar `transform-origin` e condicionalmente a
 
 ## Slide
 
-Slide (Deslize) a partir da borda da tela. A propriedade `direction` controla em qual borda da tela a transição começa.
+Deslize a partir da borda da tela. A propriedade `direction` controla em qual borda da tela a transição começa.
 
 A propriedade de transição do componente `mountOnEnter` impede que o componente filho seja montado até que `in` seja `true`. Isso evita que o componente relativamente posicionado role para a visão a partir da posição fora da tela. Da mesma forma, a propriedade `unmountOnExit` remove o componente do DOM após a transição ter sido exibida (`in` = `false`).
 

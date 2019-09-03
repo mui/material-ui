@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import Icon from '@material-ui/core/Icon';
+import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import NavigationIcon from '@material-ui/icons/Navigation';
 
@@ -20,17 +20,17 @@ export default function FloatingActionButtons() {
 
   return (
     <div>
-      <Fab color="primary" aria-label="Add" className={classes.fab}>
+      <Fab color="primary" aria-label="add" className={classes.fab}>
         <AddIcon />
       </Fab>
-      <Fab color="secondary" aria-label="Edit" className={classes.fab}>
-        <Icon>edit_icon</Icon>
+      <Fab color="secondary" aria-label="edit" className={classes.fab}>
+        <EditIcon />
       </Fab>
-      <Fab variant="extended" aria-label="Delete" className={classes.fab}>
+      <Fab variant="extended" aria-label="delete" className={classes.fab}>
         <NavigationIcon className={classes.extendedIcon} />
         Extended
       </Fab>
-      <Fab disabled aria-label="Delete" className={classes.fab}>
+      <Fab disabled aria-label="delete" className={classes.fab}>
         <DeleteIcon />
       </Fab>
     </div>

@@ -53,6 +53,6 @@
 | [spacing](/system/spacing/)       | `spacing`        | `px`             | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expend-path=$.spacing)       |
 | [spacing](/system/spacing/)       | `spacing`        | `py`             | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expend-path=$.spacing)       |
 | [typography](/system/typography/) | `fontFamily`     | `fontFamily`     | `font-family`                   | [`typography`](/customization/default-theme/?expend-path=$.typography) |
-| [typography](/system/typography/) | `fontSize`       | `fontSize`       | `font-size`                     | [`typography`](/customization/default-theme/?expend-path=$.typography) |
+| [typography](/system/typography/) | `fontSize`       | `fontSize`       | `フォント サイズ`                      | [`typography`](/customization/default-theme/?expend-path=$.typography) |
 | [typography](/system/typography/) | `fontWeight`     | `fontWeight`     | `font-weight`                   | [`typography`](/customization/default-theme/?expend-path=$.typography) |
 | [typography](/system/typography/) | `textAlign`      | `textAlign`      | `text-align`                    | none                                                                   |

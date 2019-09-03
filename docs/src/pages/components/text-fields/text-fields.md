@@ -15,7 +15,7 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 {{"demo": "pages/components/text-fields/TextFields.js"}}
 
-> **Note:** This version of the text field is no longer documented in the Material Design documentation.
+> **Note:** This version of the text field is no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support it.
 
 ## Outlined
 
@@ -94,6 +94,8 @@ other styles to meet the specification.
 
 ## Limitations
 
+### Shrink
+
 The input label "shrink" state isn't always correct.
 The input label is supposed to shrink as soon as the input is displaying something.
 In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
@@ -109,16 +111,54 @@ or
 <InputLabel shrink>Count</InputLabel>
 ```
 
-## Formatted inputs
+### Floating label
+
+The floating label is absolutely positioned, it won't impact the layout of the page.
+You need to make sure that the input is larger than the label to display correctly.
+
+## Integration with 3rd party input libraries
 
 You can use third-party libraries to format an input.
 You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
-The provided input component should handle the `inputRef` property.
-The property should be called with a value implementing the [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement) interface.
 
-The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries.
+The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
+
+The provided input component should handle the `inputRef` property.
+The property should be called with a value that implements the following interface:
+
+```ts
+interface InputElement {
+  focus(): void;
+  value?: string;
+}
+```
+
+```jsx
+function MyInputComponent(props) {
+  const { component: Component, inputRef, ...other } = props;
+
+  // implement `InputElement` interface
+  React.useImperativeHandle(inputRef, () => ({
+    focus: () => {
+      // logic to focus the rendered component from 3rd party belongs here
+    },
+    // hiding the value e.g. react-stripe-elements
+  }));
+
+  // `Component` will be your `SomeThirdPartyComponent` from below
+  return <Component {...other} />;
+}
+
+// usage
+<TextField
+  InputProps={{
+    inputComponent: MyInputComponent,
+    inputProps: { component: SomeThirdPartyComponent },
+  }}
+/>;
+```
 
 ## Accessibility
 

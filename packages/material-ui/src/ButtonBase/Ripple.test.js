@@ -8,8 +8,7 @@ import Ripple from './Ripple';
 
 describe('<Ripple />', () => {
   let classes;
-  // StrictModeViolation: uses react-transition-group
-  const mount = createClientRender({ strict: false });
+  const render = createClientRender({ strict: true });
 
   before(() => {
     classes = getClasses(<TouchRipple />);
@@ -20,8 +19,8 @@ describe('<Ripple />', () => {
   });
 
   it('should have the ripple className', () => {
-    const { container } = mount(
-      <Ripple classes={classes} timeout={{}} rippleX={0} rippleY={0} rippleSize={11} />,
+    const { container } = render(
+      <Ripple classes={classes} timeout={0} rippleX={0} rippleY={0} rippleSize={11} />,
     );
     const ripple = container.querySelector('span');
     expect(ripple).to.have.class(classes.ripple);
@@ -32,14 +31,8 @@ describe('<Ripple />', () => {
     let wrapper;
 
     before(() => {
-      wrapper = mount(
-        <Ripple
-          classes={classes}
-          timeout={{ exit: 0, enter: 0 }}
-          rippleX={0}
-          rippleY={0}
-          rippleSize={11}
-        />,
+      wrapper = render(
+        <Ripple classes={classes} timeout={0} rippleX={0} rippleY={0} rippleSize={11} />,
       );
     });
 
@@ -61,10 +54,10 @@ describe('<Ripple />', () => {
     let wrapper;
 
     before(() => {
-      wrapper = mount(
+      wrapper = render(
         <Ripple
           classes={classes}
-          timeout={{ enter: 0, exit: 0 }}
+          timeout={0}
           in={false}
           rippleX={0}
           rippleY={0}
@@ -105,10 +98,10 @@ describe('<Ripple />', () => {
 
     beforeEach(() => {
       callbackSpy = spy();
-      wrapper = mount(
+      wrapper = render(
         <Ripple
           classes={classes}
-          timeout={{ exit: 550 }}
+          timeout={550}
           in
           onExited={callbackSpy}
           rippleX={0}

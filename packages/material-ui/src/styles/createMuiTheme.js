@@ -32,7 +32,7 @@ function createMuiTheme(options = {}) {
     mixins: createMixins(breakpoints, spacing, mixinsInput),
     overrides: {}, // Inject custom styles
     palette,
-    props: {}, // Inject custom properties
+    props: {}, // Inject custom props
     shadows: shadowsInput || shadows,
     typography: createTypography(palette, typographyInput),
     spacing,

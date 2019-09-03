@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
-      maxWidth: '360px',
+      maxWidth: 360,
       backgroundColor: theme.palette.background.paper,
     },
   }),
@@ -19,7 +19,7 @@ export default function ListDividers() {
   const classes = useStyles();
 
   return (
-    <List component="nav" className={classes.root} aria-label="Mailbox folders">
+    <List component="nav" className={classes.root} aria-label="mailbox folders">
       <ListItem button>
         <ListItemText primary="Inbox" />
       </ListItem>

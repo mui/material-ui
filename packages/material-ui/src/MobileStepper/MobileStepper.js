@@ -130,7 +130,7 @@ MobileStepper.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Properties applied to the `LinearProgress` element.
+   * Props applied to the `LinearProgress` element.
    */
   LinearProgressProps: PropTypes.object,
   /**

@@ -7,7 +7,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 <p class="description">Campos de texto permitem que os usuários digitem e editem texto.</p>
 
-[Campos de Texto](https://material.io/design/components/text-fields.html) permitem que os usuários insiram texto em uma interface de usuário. Eles geralmente aparecem em formulários e diálogos.
+[Campos de texto](https://material.io/design/components/text-fields.html) permitem que os usuários insiram texto em uma interface de usuário. Eles geralmente aparecem em formulários e diálogos.
 
 ## TextField
 
@@ -15,7 +15,7 @@ O componente wrapper `TextField` é um controle de formulário completo, incluin
 
 {{"demo": "pages/components/text-fields/TextFields.js"}}
 
-> **Nota:** Esta versão do campo de texto não está mais documentada na documentação do Material Design.
+> **Nota:** Esta versão do campo de texto não está mais documentada nas [diretrizes do Material Design](https://material.io/), mas Material-UI continuará a suportá-la.
 
 ## Delineado
 
@@ -43,7 +43,7 @@ Você também pode ter notado que algumas propriedades de entrada nativas do HTM
 
 ## Inputs Costumizados
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de substituições](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -79,6 +79,8 @@ A customização não para no CSS, você pode usar composição para criar compo
 
 ## Limitações
 
+### Shrink
+
 O label de entrada "shrink" nem sempre está correto. O input label deve encolher assim que o input estiver exibindo algo. Em algumas circunstâncias, não podemos determinar o estado de "srink" (input numérico, input datetime, input Stripe). Você pode notar uma sobreposição.
 
 ![minimizar](/static/images/text-fields/shrink.png)
@@ -95,17 +97,55 @@ ou
 <InputLabel shrink>Contagem</InputLabel>
 ```
 
-## Inputs Formatados
+### Floating label
 
-Você pode usar bibliotecas de terceiros para formatar uma entrada. Você precisa fornecer uma implementação personalizada do elemento `<input>` com a propriedade `inputComponent`. O componente de entrada fornecido deve manipular a propriedade `inputRef`. A propriedade deve ser chamada com um valor que implementa a interface [`HTMLInputElement`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement).
+The floating label is absolutely positioned, it won't impact the layout of the page. You need to make sure that the input is larger than the label to display correctly.
 
-A seguinte demonstração usa as bibliotecas [react-text-mask](https://github.com/text-mask/text-mask) e [react-number-format](https://github.com/s-yadav/react-number-format).
+## Integração com bibliotecas de input de terceiros
+
+Você pode usar bibliotecas de terceiros para formatar uma entrada. Você precisa fornecer uma implementação personalizada do elemento `<input>` com a propriedade `inputComponent`.
+
+A seguinte demonstração usa as bibliotecas [react-text-mask](https://github.com/text-mask/text-mask) e [react-number-format](https://github.com/s-yadav/react-number-format). O mesmo conceito pode ser aplicado para, [p. ex. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
+The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
+
+```ts
+interface InputElement {
+  focus(): void;
+  value?: string;
+}
+```
+
+```jsx
+function MeuInputComponente(props) {
+  const { component: Component, inputRef, ...other } = props;
+
+  // implementa a interface `InputElement`
+  React.useImperativeHandle(inputRef, () => ({
+    focus: () => {
+      // logica para focar o componente renderizado de terceiros entra aquito focus
+    },
+    // ocultando o valor p.ex. react-stripe-elements
+  }));
+
+  // O `Component` abaixo será seu `AlgumComponentDeTerceiro`
+  return <Component {...other} />;
+}
+
+// uso
+<TextField
+  InputProps={{
+    inputComponent: MeuInputComponente,
+    inputProps: { component: AlgumComponentDeTerceiro },
+  }}
+/>;
+```
+
 ## Acessibilidade
 
-Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao label e ao texto auxiliar**. Os nós DOM subjacentes devem ter essa estrutura.
+In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure.
 
 ```jsx
 <div class="form-control">
@@ -128,7 +168,7 @@ Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao l
 
 ## Projetos Complementares
 
-Para caso de usos mais avançados, você é capaz de aproveitar de:
+Para os usos mais avançados, você é capaz de aproveita:
 
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Um conjunto de componentes do wrapper para facilitar o uso do Material UI com Redux Form.
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Ligações para usar Mateiral-UI com formik.

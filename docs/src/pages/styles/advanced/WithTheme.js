@@ -7,7 +7,9 @@ function DeepChildRaw(props) {
 }
 
 DeepChildRaw.propTypes = {
-  theme: PropTypes.object.isRequired,
+  theme: PropTypes.shape({
+    spacing: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 const DeepChild = withTheme(DeepChildRaw);

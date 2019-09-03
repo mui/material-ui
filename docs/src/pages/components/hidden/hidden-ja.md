@@ -1,17 +1,17 @@
 ---
-title: Hidden React component
+title: Hidden Reactコンポーネント
 components: Hidden
 ---
 
 # Hidden
 
-<p class="description">Quickly and responsively toggle the visibility value of components and more with our hidden utilities.</p>
+<p class="description">非表示のユーティリティを使用して、コンポーネントの表示/非表示の値などをすばやくすばやく切り替えることができます。</p>
 
-All elements are visible unless **they are explicitly hidden**. To ease integration with Material-UI's [responsive breakpoints](/customization/breakpoints/), this component can be used to hide any content, or you can use it in conjunction with our [`Grid`](/components/grid/) component.
+**明示的に非表示にしない限り**、すべての要素が表示されます。 Materialized UIの [responsive breakpoints](/customization/breakpoints/) との統合を容易にするには、次の手順に従います。 このコンポーネントを使用して任意のコンテンツを非表示にできます。 また、[`Grid`](/components/grid/)コンポーネントと組み合わせて使用することもできます。
 
 ## 仕組み
 
-Hidden works with a range of breakpoints e.g. `xsUp` or `mdDown`, or one or more breakpoints e.g. `only='sm'` or `only={['md', 'xl']}`. Ranges and individual breakpoints can be used simultaneously to achieve very customized behavior. The ranges are inclusive of the specified breakpoints.
+Hiddenは、`xsUp`または`mdDown` などのブレークポイントの範囲、 `{['sm','md','xl']}`などのブレークポイントで機能します。 範囲と個々のブレークポイントを同時に使用して、非常にカスタマイズされた動作を実現できます。 範囲には、指定したブレークポイントが含まれます。
 
 ```js
 innerWidth  |xs      sm       md       lg       xl
@@ -23,41 +23,41 @@ mdDown      |                     hide | show
 
 ```
 
-## Implementations
+## 実装
 
 ### js
 
-By default, the `js` implementation is used, responsively hiding content based on using the [`withWidth()`](/customization/breakpoints/#withwidth) higher-order component that watches screen size. This has the benefit of not rendering any content at all unless the breakpoint is met.
+デフォルトでは、`js`実装が使用され、画面サイズを監視する [`withWidth()`](/customization/breakpoints/#withwidth)高次コンポーネントの使用に基づいて、応答的にコンテンツが非表示にされます これには、ブレークポイントに到達しない限りコンテンツをまったくレンダリングしないという利点があります。
 
 ### css
 
-If you are using server-side rendering, you can set `implementation="css"` if you don't want the browser to re-flow your content on the screen.
+サーバ側レンダリングを使用している場合、ブラウザで画面上のコンテンツを再フローしないようにするには、`implementation="css"`と設定します。
 
-## Breakpoint up
+## ブレイクポイント
 
-Using any breakpoint `up` property, the given *children* will be hidden *at or above* the breakpoint.
+ブレークポイントの `up`プロパティを使用すると、指定した*children*がブレークポイントの位置またはその上*at or above*になります。
 
 {{"demo": "pages/components/hidden/BreakpointUp.js"}}
 
-## Breakpoint down
+## ブレイクポイント
 
-Using any breakpoint `down` property, the given *children* will be hidden *at or below* the breakpoint.
+ブレークポイントの`down`プロパティを使用すると、指定した*children*がブレークポイントの位置またはその上*at or below*になります。
 
 {{"demo": "pages/components/hidden/BreakpointDown.js"}}
 
-## Breakpoint only
+## ブレークポイントのみ
 
-Using the breakpoint `only` property, the given *children* will be hidden *at* the specified breakpoint(s).
+ブレークポイントの `only`プロパティを使用すると、指定した*children*がブレークポイントの位置またはその上*at*>になります。
 
-The `only` property can be used in two ways:
+`only` プロパティは、次の2つの方法で使用できます。
 
-- list a single breakpoint
-- list an array of breakpoints
+- 単一のブレークポイントをリストする
+- ブレークポイントの配列をリストします
 
 {{"demo": "pages/components/hidden/BreakpointOnly.js"}}
 
-## Integration with Grid
+## グリッドとの統合
 
-It is quite common to alter `Grid` at different responsive breakpoints, and in many cases, you want to hide some of those elements.
+さまざまな応答ブレークポイントで`Grid` を変更することはよくあり、多くの場合、これらの要素の一部を非表示にする必要があります。
 
 {{"demo": "pages/components/hidden/GridIntegration.js"}}

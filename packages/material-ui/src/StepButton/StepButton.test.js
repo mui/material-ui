@@ -16,8 +16,7 @@ describe('<StepButton />', () => {
   before(() => {
     classes = getClasses(<StepButton />);
     shallow = createShallow({ dive: true });
-    // StrictModeViolation: uses ButtonBase
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
   });
 
   after(() => {

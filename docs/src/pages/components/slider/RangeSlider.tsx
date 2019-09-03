@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
-import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles({
   root: {
@@ -16,10 +15,10 @@ function valuetext(value: number) {
 
 export default function RangeSlider() {
   const classes = useStyles();
-  const [value, setValue] = React.useState<number | number[]>([20, 37]);
+  const [value, setValue] = React.useState<number[]>([20, 37]);
 
   const handleChange = (event: any, newValue: number | number[]) => {
-    setValue(newValue);
+    setValue(newValue as number[]);
   };
 
   return (

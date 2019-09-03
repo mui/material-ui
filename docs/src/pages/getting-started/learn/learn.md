@@ -14,9 +14,9 @@ Even if you don’t know anything about Material-UI yet, try changing the code a
 
 We [host some example projects](/getting-started/example-projects/) providing the infrastructure needed to develop and deploy websites in React.
 
-## Page layout examples
+## Templates
 
-We have a [selection of basic page layouts](/getting-started/page-layout-examples/) to help you get started building your app.
+We have a [selection of basic templates](/getting-started/templates/) to help you get started building your app.
 
 ## Recommended resources
 
@@ -37,7 +37,14 @@ We maintain a list of commonly recommended resources, some of which are free.
 
 ### Paid
 
+- **Material-UI with React**: Material-UI is an excellent framework to develop beautiful React components faster! This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using Material-UI and React.
+  - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
+  - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
+
 - **React Material-UI Cookbook**: Build modern day application by implementing Material Design principles in React applications using Material-UI.
-  - 📘 [The book](https://www.packtpub.com/application-development/react-material-ui-cookbook)
+  - 📘 [The book](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
+
+[![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
+
 - **Builder Book**: Learn how to build a full-stack JavaScript web application from scratch, using a Modern JavaScript stack and Material-UI.
   - 📘 [The book](https://builderbook.org/book)

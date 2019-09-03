@@ -76,8 +76,9 @@ const styles = theme => ({
   },
 });
 
-// eslint-disable-next-line react/prop-types
-function renderNavItems({ pages, ...params }) {
+function renderNavItems(options) {
+  const { pages, ...params } = options;
+
   return (
     <List>
       {pages.reduce(
@@ -100,6 +101,7 @@ function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
 
     items.push(
       <AppDrawerNavItem
+        linkProps={page.linkProps}
         depth={depth}
         key={title}
         topLevel={topLevel && !page.subheader}
@@ -115,6 +117,7 @@ function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
 
     items.push(
       <AppDrawerNavItem
+        linkProps={page.linkProps}
         depth={depth}
         key={title}
         title={title}
@@ -135,9 +138,7 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 function AppDrawer(props) {
   const { classes, className, disablePermanent, mobileOpen, onClose, onOpen } = props;
   const { activePage, pages } = React.useContext(PageContext);
-  const { t } = useSelector(state => ({
-    t: state.options.t,
-  }));
+  const t = useSelector(state => state.options.t);
 
   const drawer = (
     <PersistScroll>

@@ -47,7 +47,7 @@ export default function FabIntegrationSnackbar() {
               edge="start"
               className={classes.menuButton}
               color="inherit"
-              aria-label="Menu"
+              aria-label="menu"
             >
               <MenuIcon />
             </IconButton>

@@ -27,7 +27,7 @@ Dans les exemples qui suivent, nous utilisons deux chaînes de caractère et une
 
 ## Fil d'Ariane personnalisé
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 

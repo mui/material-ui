@@ -74,7 +74,7 @@ export default function SearchAppBar() {
             edge="start"
             className={classes.menuButton}
             color="inherit"
-            aria-label="Open drawer"
+            aria-label="open drawer"
           >
             <MenuIcon />
           </IconButton>
@@ -91,7 +91,7 @@ export default function SearchAppBar() {
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
-              inputProps={{ 'aria-label': 'Search' }}
+              inputProps={{ 'aria-label': 'search' }}
             />
           </div>
         </Toolbar>

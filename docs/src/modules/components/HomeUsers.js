@@ -30,6 +30,10 @@ const users = [
     logo: 'bethesda.png',
     caption: 'Bethesda',
   },
+  {
+    logo: 'jpmorgan.png',
+    caption: 'J.P. Morgan',
+  },
 ];
 
 const styles = theme => ({
@@ -53,7 +57,7 @@ const styles = theme => ({
 
 function HomeUsers(props) {
   const { classes } = props;
-  const { t } = useSelector(state => ({ t: state.options.t }));
+  const t = useSelector(state => state.options.t);
 
   return (
     <div className={classes.root}>

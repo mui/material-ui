@@ -14,21 +14,14 @@ export { Omit };
  * certain `classes`, on which one can also set a top-level `className` and inline
  * `style`.
  */
-export type StandardProps<
+export type StandardProps<C, ClassKey extends string, Removals extends keyof C = never> = Omit<
   C,
-  ClassKey extends string,
-  Removals extends keyof C = never,
-  AcceptsRef = true
-> = Omit<C, 'classes' | Removals> &
+  'classes' | Removals
+> &
   StyledComponentProps<ClassKey> & {
     className?: string;
+    ref?: C extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
     style?: React.CSSProperties;
-  } & {
-    ref?: AcceptsRef extends true
-      ? C extends { ref?: infer RefType }
-        ? RefType
-        : React.Ref<unknown>
-      : never;
   };
 
 export type PaletteType = 'light' | 'dark';
@@ -70,6 +63,9 @@ export {
   WithStyles,
   withTheme,
   WithTheme,
+  MuiThemeProvider,
+  responsiveFontSizes,
+  styled,
 } from './styles';
 
 export { default as AppBar } from './AppBar';
@@ -175,6 +171,7 @@ export { default as TableHead } from './TableHead';
 export { default as TablePagination } from './TablePagination';
 export { default as TableRow } from './TableRow';
 export { default as TableSortLabel } from './TableSortLabel';
+export { default as TextareaAutosize } from './TextareaAutosize';
 export { default as Tabs } from './Tabs';
 export { default as TextField } from './TextField';
 export { default as Toolbar } from './Toolbar';

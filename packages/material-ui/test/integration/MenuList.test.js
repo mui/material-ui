@@ -64,8 +64,7 @@ function expectFocusVisible(element, focusVisibleClass) {
 }
 
 describe('<MenuList> integration', () => {
-  // StrictModeViolation: Uses MenuItem
-  const render = createClientRender({ strict: false });
+  const render = createClientRender({ strict: true });
 
   if (/Chrome\/49\.0/.test(window.navigator.userAgent)) {
     // fails repeatedly on chrome 49 in karma but works when manually testing

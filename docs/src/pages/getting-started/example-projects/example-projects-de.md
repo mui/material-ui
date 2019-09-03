@@ -20,19 +20,25 @@ Der Quellcode für diese Dokumentationsseite ist auch im Repository enthalten. D
 
 Suchen Sie nach einem fortgeschritteneren Beispielprojekt?
 
-If you want to start with a more complete and real world example, you could take a look at our [free themes](https://themes.material-ui.com/) or:
+If you want to start with a more complete and real world example, you could take a look at our [free templates](/getting-started/templates/) or [premium themes & templates](https://themes.material-ui.com/) or:
 
+- [React Most Wanted](https://github.com/TarikHuber/react-most-wanted), which includes:
+    
+  - Erstellt mit [Create React App](https://facebook.github.io/create-react-app/)
+  - Custom Create React App script to start a new project with just a single CLI command
+  - Build for Firebase including Authentication using the official Firebase Web Auth UI
+  - Routing with React Router including error handling (404) and lazy loading
+  - All PWA features included (SW, Notifications, deffered installation prompt and more)
+  - Optimized and scalable performance (all ~100 points on Lighthouse)
 - [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
-  
+    
   - Mit Create React App gebootet, funktioniert das gleiche Tool sofort
-  - Aufbauend auf Firebase mit Authentifizierung von Anfang an
-  - Robustes Routing mit React Router inklusive Fehlerbehandlung (404)
-  - Umfassender mobiler Support mit [react-swipeable-views](https://react-swipeable-views.com) für Tabs
-
+  - Built on top of Firebase with Authentication, Cloud Firestore, Cloud Functions, Storage, and Performance Monitoring working from the start
+  - Robust routing with React Router including error handling
+  - Extensive mobile support with full-screen dialogs and [react-swipeable-views](https://react-swipeable-views.com) for tabs
 - [Material Sense](https://github.com/alexanmtz/material-sense), welches beeinhaltet:
-  
+    
   - Diagramme mit recharts
   - React Router mit einem Navigationsbeispiel
   - Ein Docker-Container mit einem Nginx-Server für den Produktionsaufbau
   - Erstellt mit [Create React App](https://facebook.github.io/create-react-app/)
-  - *NOTE*: This project is using *v3* of the Material lib, not yet updated for v4

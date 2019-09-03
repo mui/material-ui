@@ -160,7 +160,7 @@ describe('<ExpansionPanel />', () => {
       /* works locally but doesn't catch the errors in test:karma
       it('requires at least one child', () => {
         assert.throws(() => mount(<ExpansionPanel>[]</ExpansionPanel>));
-        // 2 other errors are from accesing property of undefined and react component stack
+        // 2 other errors are from accesing prop of undefined and react component stack
         assert.strictEqual(consoleErrorMock.callCount(), 3);
         assert.include(consoleErrorMock.args()[0][0], 'Material-UI: expected the first child');
       }); */

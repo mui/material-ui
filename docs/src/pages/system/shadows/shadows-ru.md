@@ -2,7 +2,7 @@
 
 <p class="description">Add or remove shadows to elements with box-shadow utilities.</p>
 
-## Example
+## Пример
 
 ```jsx
 <Box boxShadow={0}>…

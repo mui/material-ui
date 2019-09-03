@@ -72,7 +72,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    padding: '0 8px',
+    padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
   },
   content: {
@@ -106,7 +106,7 @@ export default function MiniDrawer() {
         <Toolbar>
           <IconButton
             color="inherit"
-            aria-label="Open drawer"
+            aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
             className={clsx(classes.menuButton, {

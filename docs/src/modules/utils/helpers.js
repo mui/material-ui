@@ -99,18 +99,18 @@ function getDependencies(raw, options = {}) {
     jss: 'next',
     'jss-plugin-template': 'next',
   };
-  const re = /^import\s.*\sfrom\s+'([^']+)|import\s'([^']+)'/gm;
+  const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
   let m;
   // eslint-disable-next-line no-cond-assign
   while ((m = re.exec(raw))) {
     let name;
 
-    if (m[1]) {
+    if (m[2]) {
       // full import
       // handle scope names
-      name = m[1].charAt(0) === '@' ? m[1].split('/', 2).join('/') : m[1].split('/', 1)[0];
+      name = m[2].charAt(0) === '@' ? m[2].split('/', 2).join('/') : m[2].split('/', 1)[0];
     } else {
-      name = m[2];
+      name = m[1];
     }
 
     if (!deps[name]) {

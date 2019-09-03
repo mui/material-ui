@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { createStyles, Theme, withStyles, WithStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
@@ -42,11 +41,11 @@ interface Row {
 
 interface MuiVirtualizedTableProps extends WithStyles<typeof styles> {
   columns: ColumnData[];
-  headerHeight: number;
+  headerHeight?: number;
   onRowClick?: () => void;
   rowCount: number;
   rowGetter: (row: Row) => Data;
-  rowHeight: number;
+  rowHeight?: number;
 }
 
 class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> {
@@ -97,11 +96,18 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
   };
 
   render() {
-    const { classes, columns, ...tableProps } = this.props;
+    const { classes, columns, rowHeight, headerHeight, ...tableProps } = this.props;
     return (
       <AutoSizer>
         {({ height, width }) => (
-          <Table height={height} width={width} {...tableProps} rowClassName={this.getRowClassName}>
+          <Table
+            height={height}
+            width={width}
+            rowHeight={rowHeight!}
+            headerHeight={headerHeight!}
+            {...tableProps}
+            rowClassName={this.getRowClassName}
+          >
             {columns.map(({ dataKey, ...other }, index) => {
               return (
                 <Column
@@ -125,14 +131,6 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
     );
   }
 }
-
-(MuiVirtualizedTable as any).propTypes = {
-  classes: PropTypes.object.isRequired,
-  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
-  headerHeight: PropTypes.number,
-  onRowClick: PropTypes.func,
-  rowHeight: PropTypes.number,
-};
 
 const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
 

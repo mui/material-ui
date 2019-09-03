@@ -1,27 +1,33 @@
+/* eslint-disable no-underscore-dangle */
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { Router, useRouter } from 'next/router';
 import Button from '@material-ui/core/Button';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
-const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
-const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/edit/master';
 
-function EditPage(props) {
-  const { markdownLocation, t, userLanguage } = props;
-  const crowdInLocale = LOCALES[userLanguage] || userLanguage;
-  const crowdInPath = markdownLocation.substring(0, markdownLocation.lastIndexOf('/'));
+export default function EditPage(props) {
+  const { markdownLocation } = props;
+  const t = useSelector(state => state.options.t);
+  const userLanguage = useSelector(state => state.options.userLanguage);
+  const router = useRouter();
+  const { canonical } = pathnameToLanguage(Router._rewriteUrlForNextExport(router.asPath));
 
   return (
     <Button
-      component="a"
-      href={
-        userLanguage === 'en'
-          ? `${SOURCE_CODE_ROOT_URL}${markdownLocation}`
-          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging${crowdInPath}`
-      }
+      component={userLanguage === 'en' ? 'a' : 'button'}
+      onClick={() => {
+        if (userLanguage === 'en') {
+          return;
+        }
+        window.location = `/aa${canonical}`;
+      }}
+      href={userLanguage === 'en' ? `${SOURCE_CODE_ROOT_URL}${markdownLocation}` : null}
       target="_blank"
-      rel="noopener"
+      rel="noopener nofollow"
       size="small"
       data-ga-event-category={userLanguage === 'en' ? undefined : 'l10n'}
       data-ga-event-action={userLanguage === 'en' ? undefined : 'edit-button'}
@@ -34,11 +40,4 @@ function EditPage(props) {
 
 EditPage.propTypes = {
   markdownLocation: PropTypes.string.isRequired,
-  t: PropTypes.func.isRequired,
-  userLanguage: PropTypes.string.isRequired,
 };
-
-export default connect(state => ({
-  t: state.options.t,
-  userLanguage: state.options.userLanguage,
-}))(EditPage);

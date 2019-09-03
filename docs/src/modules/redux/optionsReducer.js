@@ -30,7 +30,8 @@ const getT = memoize(userLanguage => (key, options = {}) => {
 
   if (!translation) {
     const fullKey = `${userLanguage}:${key}`;
-    if (!ignoreWarning && !warnOnce[fullKey]) {
+    // No warnings in CI env
+    if (!ignoreWarning && !warnOnce[fullKey] && typeof window !== 'undefined') {
       console.error(`Missing translation for ${fullKey}.`);
       warnOnce[fullKey] = true;
     }

@@ -24,8 +24,8 @@ export default function SpacingGrid() {
   const [spacing, setSpacing] = React.useState(2);
   const classes = useStyles();
 
-  function handleChange(event, value) {
-    setSpacing(Number(value));
+  function handleChange(event) {
+    setSpacing(Number(event.target.value));
   }
 
   return (
@@ -46,7 +46,7 @@ export default function SpacingGrid() {
               <FormLabel>spacing</FormLabel>
               <RadioGroup
                 name="spacing"
-                aria-label="Spacing"
+                aria-label="spacing"
                 value={spacing.toString()}
                 onChange={handleChange}
                 row

@@ -30,10 +30,8 @@ export default function ProTip() {
     <Typography className={classes.root} color="textSecondary">
       <LightBulbIcon className={classes.lightBulb} />
       Pro tip: See more{' '}
-      <Link href="https://material-ui.com/getting-started/page-layout-examples/">
-        page layout examples
-      </Link>{' '}
-      on the Material-UI documentation.
+      <Link href="https://material-ui.com/getting-started/templates/">templates</Link> on the
+      Material-UI documentation.
     </Typography>
   );
 }

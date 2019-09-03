@@ -1,5 +1,5 @@
 import React from 'react';
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
 import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
@@ -75,7 +75,11 @@ describe('<Popover />', () => {
     inheritComponent: Modal,
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: [
+      'componentProp',
+      // react-transition-group issue
+      'reactTestRenderer',
+    ],
   }));
 
   describe('root node', () => {
@@ -602,14 +606,16 @@ describe('<Popover />', () => {
     });
   });
 
-  describe('on window resize', () => {
+  describe('update position', () => {
     let clock;
-    let innerHeightContainer;
+    let windowInnerHeight;
     let element;
     let wrapper;
 
-    before(() => {
-      innerHeightContainer = window.innerHeight;
+    beforeEach(() => {
+      clock = useFakeTimers();
+
+      windowInnerHeight = window.innerHeight;
       const mockedAnchor = document.createElement('div');
       stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
         left: 0,
@@ -629,12 +635,10 @@ describe('<Popover />', () => {
         </Popover>,
       );
       element = handleEntering.args[0][0];
-
-      clock = useFakeTimers();
     });
 
-    after(() => {
-      window.innerHeight = innerHeightContainer;
+    afterEach(() => {
+      window.innerHeight = windowInnerHeight;
 
       clock.restore();
     });
@@ -645,7 +649,7 @@ describe('<Popover />', () => {
         left: element.style.left,
         transformOrigin: element.style.transformOrigin,
       };
-      window.innerHeight = innerHeightContainer * 2;
+      window.innerHeight = windowInnerHeight * 2;
       window.dispatchEvent(new window.Event('resize'));
       clock.tick(166);
       const afterStyle = {
@@ -653,7 +657,7 @@ describe('<Popover />', () => {
         left: element.style.left,
         transformOrigin: element.style.transformOrigin,
       };
-      assert.notStrictEqual(JSON.stringify(beforeStyle), JSON.stringify(afterStyle));
+      expect(JSON.stringify(beforeStyle)).to.not.equal(JSON.stringify(afterStyle));
     });
 
     it('should not recalculate position if the popover is closed', () => {
@@ -662,7 +666,7 @@ describe('<Popover />', () => {
         left: element.style.left,
         transformOrigin: element.style.transformOrigin,
       };
-      window.innerHeight = innerHeightContainer * 2;
+      window.innerHeight = windowInnerHeight * 2;
       window.dispatchEvent(new window.Event('resize'));
       wrapper.setProps({ open: false });
       clock.tick(166);
@@ -671,7 +675,39 @@ describe('<Popover />', () => {
         left: element.style.left,
         transformOrigin: element.style.transformOrigin,
       };
-      assert.strictEqual(JSON.stringify(beforeStyle), JSON.stringify(afterStyle));
+      expect(JSON.stringify(beforeStyle)).to.equal(JSON.stringify(afterStyle));
+    });
+
+    it('should be able to manually recalculate position', () => {
+      let popoverActions;
+      wrapper.setProps({
+        open: false,
+        action: actions => {
+          popoverActions = actions;
+        },
+      });
+      wrapper.setProps({
+        open: true,
+      });
+      const beforeStyle = {
+        top: element.style.top,
+        left: element.style.left,
+        transformOrigin: element.style.transformOrigin,
+      };
+      window.innerHeight = windowInnerHeight * 2;
+      assert.strictEqual(
+        typeof popoverActions.updatePosition === 'function',
+        true,
+        'Should be a function.',
+      );
+      popoverActions.updatePosition();
+      clock.tick(166);
+      const afterStyle = {
+        top: element.style.top,
+        left: element.style.left,
+        transformOrigin: element.style.transformOrigin,
+      };
+      expect(JSON.stringify(beforeStyle)).to.not.equal(JSON.stringify(afterStyle));
     });
   });
 
@@ -745,10 +781,10 @@ describe('<Popover />', () => {
 
       describe('bottom > heightThreshold', () => {
         let positioningStyle;
-        let innerHeightContainer;
+        let windowInnerHeight;
 
         before(() => {
-          innerHeightContainer = window.innerHeight;
+          windowInnerHeight = window.innerHeight;
           window.innerHeight = marginThreshold * 2;
           const mockedAnchor = document.createElement('div');
           stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
@@ -760,7 +796,7 @@ describe('<Popover />', () => {
         });
 
         after(() => {
-          window.innerHeight = innerHeightContainer;
+          window.innerHeight = windowInnerHeight;
         });
 
         it('should set top to marginThreshold', () => {
@@ -868,33 +904,8 @@ describe('<Popover />', () => {
     });
   });
 
-  describe('prop: action', () => {
-    it('should be able to access updatePosition function', () => {
-      let popoverActions = {};
-      mount(
-        <Popover
-          {...defaultProps}
-          action={actions => {
-            popoverActions = actions;
-          }}
-        >
-          <div>content #1</div>
-          <div>content #2</div>
-          <div>content #3</div>
-        </Popover>,
-      );
-
-      assert.strictEqual(
-        typeof popoverActions.updatePosition === 'function',
-        true,
-        'Should be a function.',
-      );
-      popoverActions.updatePosition();
-    });
-  });
-
   describe('prop: transitionDuration', () => {
-    it('should apply the auto property if supported', () => {
+    it('should apply the auto prop if supported', () => {
       const wrapper = mount(
         <Popover {...defaultProps} open>
           <div />
@@ -903,7 +914,7 @@ describe('<Popover />', () => {
       assert.strictEqual(wrapper.find(Grow).props().timeout, 'auto');
     });
 
-    it('should not apply the auto property if not supported', () => {
+    it('should not apply the auto prop if not supported', () => {
       const TransitionComponent = React.forwardRef((_, ref) => <div ref={ref} tabIndex="-1" />);
       const wrapper = mount(
         <Popover {...defaultProps} open TransitionComponent={TransitionComponent}>

@@ -64,6 +64,10 @@ export default function OutlinedInputAdornments() {
     setValues({ ...values, showPassword: !values.showPassword });
   };
 
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
+
   return (
     <div className={classes.root}>
       <TextField
@@ -128,8 +132,9 @@ export default function OutlinedInputAdornments() {
             <InputAdornment position="end">
               <IconButton
                 edge="end"
-                aria-label="Toggle password visibility"
+                aria-label="toggle password visibility"
                 onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
               >
                 {values.showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>

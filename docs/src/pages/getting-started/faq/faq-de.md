@@ -36,7 +36,7 @@ const theme = createMuiTheme({
     // Name of the component ⚛️
     MuiButtonBase: {
       // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 
+      disableRipple: true, // No more ripple, on the whole application 💣!
     },
   },
 });
@@ -93,12 +93,7 @@ const theme = createMuiTheme({
 
 ## Muss ich JSS verwenden, um meine App zu stylen?
 
-Es wird empfohlen:
-
-- Es wird eingebaut geliefert, so dass keine zusätzlichen Paketgrößen anfallen.
-- Es ist schnell & speichereffizient.
-- Es verfügt über eine saubere, konsistente API.
-- Es unterstützt eine Reihe von erweiterten Funktionen, entweder nativ oder durch Plugins.
+No, it's not required. But this dependenency comes built in, so carries no additional bundle size overhead.
 
 Vielleicht fügen Sie jedoch einer App einige Material-UI-Komponenten hinzu, die bereits eine andere Styling-Lösung verwendet, oder Sie sind bereits mit einer anderen API vertraut und wollen keine neue lernen? In diesem Fall gehen Sie zum [Zusammenführen von Style Libraries](/guides/interoperability/) Abschnitt in dem wir zeigen, wie einfach es ist, Material-UI-Komponenten mit alternativen Stilbibliotheken umzustrukturieren.
 
@@ -128,7 +123,7 @@ const ref = React.createRef ();
 const Element = ref.current;
 ```
 
-Wenn Sie nicht sicher sind, ob die Material-UI-Komponente in Frage sein ref weiterleitet, können Sie die Dokumentation API überprüfen unter „Props“ zB die the [/api/button/#props](Button API) enthält
+If you're not sure if the Material-UI component in question forwards its ref you can check the API documentation under "Props" e.g. the [Button API](/api/button/#props) includes
 
 > Der ref wird an das Wurzelelement weitergeleitet.
 
@@ -138,7 +133,7 @@ was anzeigt, dass Sie mit einem ref auf das DOM-Element zugreifen können.
 
 Wenn in der Konsole eine Warnmeldung wie die folgende angezeigt wird, haben Sie wahrscheinlich mehrere Instanzen von `@material-ui/styles` auf der Seite initialisiert.
 
-> It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names and makes your application bigger without a good reason.
+> It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and makes your application bigger without a good reason.
 
 ### Mögliche Gründe
 
@@ -294,7 +289,7 @@ function handleRender(req, res) {
 
 ## Warum unterscheiden sich die Farben, die ich sehe, von denen, die ich hier sehe?
 
-Die Dokumentationssite verwendet ein benutzerdefiniertes Theme. Daher unterscheidet sich die Farbpalette vom Standarddesign der Material-UI. Siehe [diese Seite](/customization/themes/), um Informationen zum Anpassen von Motiven zu erhalten.
+Die Dokumentationssite verwendet ein benutzerdefiniertes Theme. Daher unterscheidet sich die Farbpalette vom Standarddesign der Material-UI. Please refer to [this page](/customization/theming/) to learn about theme customization.
 
 ## Material-UI ist großartig. Wie kann ich das Projekt unterstützen?
 

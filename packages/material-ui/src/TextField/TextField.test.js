@@ -22,16 +22,13 @@ describe('<TextField />', () => {
     cleanup();
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<TextField />, () => ({
     classes,
     inheritComponent: FormControl,
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
   describe('structure', () => {
@@ -113,7 +110,7 @@ describe('<TextField />', () => {
   });
 
   describe('prop: InputProps', () => {
-    it('should apply additional properties to the Input component', () => {
+    it('should apply additional props to the Input component', () => {
       const { getByTestId } = render(
         <TextField InputProps={{ 'data-testid': 'InputComponent' }} />,
       );

@@ -4,6 +4,7 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
   props: P & {
     absolute?: boolean;
     light?: boolean;
+    orientation?: 'horizontal' | 'vertical';
     variant?: 'fullWidth' | 'inset' | 'middle';
   };
   defaultComponent: D;
@@ -12,7 +13,7 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
 
 declare const Divider: OverridableComponent<DividerTypeMap>;
 
-export type DividerClassKey = 'root' | 'absolute' | 'inset' | 'light' | 'middle';
+export type DividerClassKey = 'root' | 'absolute' | 'inset' | 'light' | 'middle' | 'vertical';
 
 export type DividerProps<
   D extends React.ElementType = DividerTypeMap['defaultComponent'],

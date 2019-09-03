@@ -162,4 +162,4 @@ const theme = createMuiTheme({
 });
 ```
 
-{{"demo": "pages/customization/palette/DarkTheme.js", "hideEditButton": true}}
+{{"demo": "pages/customization/palette/DarkTheme.js"}}

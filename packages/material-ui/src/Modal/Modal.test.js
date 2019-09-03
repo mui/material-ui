@@ -1,8 +1,9 @@
 import React from 'react';
 import { assert, expect } from 'chai';
-import { spy } from 'sinon';
+import { useFakeTimers, spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
+import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Fade from '../Fade';
@@ -11,6 +12,7 @@ import Modal from './Modal';
 
 describe('<Modal />', () => {
   let mount;
+  const render = createClientRender({ strict: false });
   let savedBodyStyle;
 
   before(() => {
@@ -21,6 +23,10 @@ describe('<Modal />', () => {
 
   beforeEach(() => {
     document.body.setAttribute('style', savedBodyStyle);
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   after(() => {
@@ -35,7 +41,12 @@ describe('<Modal />', () => {
       inheritComponent: 'div',
       mount,
       refInstanceof: window.HTMLDivElement,
-      skip: ['rootClass', 'componentProp'],
+      skip: [
+        'rootClass',
+        'componentProp',
+        // https://github.com/facebook/react/issues/11565
+        'reactTestRenderer',
+      ],
     }),
   );
 
@@ -132,6 +143,27 @@ describe('<Modal />', () => {
       const backdropSpan = wrapper.find('div[data-mui-test="Backdrop"] > span');
       backdropSpan.simulate('click');
       assert.strictEqual(onBackdropClick.callCount, 0);
+    });
+
+    // Test case for https://github.com/mui-org/material-ui/issues/12831
+    it('should unmount the children when starting open and closing immediately', () => {
+      function TestCase() {
+        const [open, setOpen] = React.useState(true);
+
+        React.useEffect(() => {
+          setOpen(false);
+        }, []);
+
+        return (
+          <Modal open={open}>
+            <Fade in={open}>
+              <div id="modal-body">hello</div>
+            </Fade>
+          </Modal>
+        );
+      }
+      render(<TestCase />);
+      expect(document.querySelector('#modal-body')).to.equal(null);
     });
   });
 
@@ -504,6 +536,46 @@ describe('<Modal />', () => {
       });
       assert.strictEqual(document.activeElement.getAttribute('data-test'), 'sentinelEnd');
     });
+
+    describe('', () => {
+      let clock;
+
+      before(() => {
+        clock = useFakeTimers();
+      });
+
+      after(() => {
+        clock.restore();
+      });
+
+      it('contains the focus if the active element is removed', () => {
+        function WithRemovableElement({ hideButton = false }) {
+          return (
+            <Modal open>
+              <div>{!hideButton && <button type="button">I am going to disappear</button>}</div>
+            </Modal>
+          );
+        }
+        WithRemovableElement.propTypes = {
+          hideButton: PropTypes.bool,
+        };
+
+        wrapper = {
+          unmount() {},
+        };
+
+        const { getByRole, setProps } = render(<WithRemovableElement />);
+        expect(getByRole('document')).to.be.focused;
+
+        getByRole('button').focus();
+        expect(getByRole('button')).to.be.focused;
+
+        setProps({ hideButton: true });
+        expect(getByRole('document')).to.not.be.focused;
+        clock.tick(500); // wait for the interval check to kick in.
+        expect(getByRole('document')).to.be.focused;
+      });
+    });
   });
 
   describe('prop: onRendered', () => {
@@ -730,6 +802,17 @@ describe('<Modal />', () => {
         }
       }
       mount(<TestCase />);
+    });
+  });
+
+  describe('prop: disablePortal', () => {
+    it('should render the content into the parent', () => {
+      const { container } = render(
+        <Modal open disablePortal>
+          <div />
+        </Modal>,
+      );
+      expect(container.querySelector('[role="document"]')).to.be.ok;
     });
   });
 });

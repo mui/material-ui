@@ -3,21 +3,21 @@ title: Radio buttons コンポーネント
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 ---
 
-# Radio buttons
+# ラジオボタン
 
-<p class="description">Radio buttons allow the user to select one option from a set.</p>
+<p class="description">ラジオボタンを使用すると、ユーザーはセットから1つのオプションを選択できます。</p>
 
-Use [radio buttons](https://material.io/design/components/selection-controls.html#radio-buttons) when the user needs to see all available options. If available options can be collapsed, consider using a dropdown menu because it uses less space.
+ユーザーが利用可能なすべてのオプションを確認する必要がある場合は、 [ラジオボタン](https://material.io/design/components/selection-controls.html#radio-buttons) 使用します。 使用可能なオプションを折りたたむことができる場合は、使用するスペースが少なくて済むため、ドロップダウンメニューを使用することを検討してください。
 
-Radio buttons should have the most commonly used option selected by default.
+ラジオボタンは、デフォルトで最も一般的に使用されるオプションで設定されています。
 
-`RadioGroup` is a helpful wrapper used to group `Radio` components that provides an easier API, and proper keyboard accessibility to the group.
+`RadioGroup` は、 `Radio` コンポーネントをグループ化するのに使用される便利なラッパーで、より簡単なAPIと、グループへの適切なキーボードアクセシビリティを提供します。
 
 {{"demo": "pages/components/radio-buttons/RadioButtonsGroup.js"}}
 
-## Standalone Radio Buttons
+## スタンドアロンラジオボタン
 
-`Radio` can also be used standalone, without the wrapper.
+`Radio` は、ラッパーなしでスタンドアロンでも使用できます。
 
 {{"demo": "pages/components/radio-buttons/RadioButtons.js"}}
 
@@ -36,7 +36,7 @@ Radio buttons should have the most commonly used option selected by default.
 ```jsx
 <RadioButton
   value="radioA"
-  inputProps={{ 'aria-label': 'Radio A' } }
+  inputProps={{ 'aria-label': 'Radio A' }}
 />
 ```
 

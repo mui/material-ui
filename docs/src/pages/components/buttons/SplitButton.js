@@ -41,11 +41,10 @@ export default function SplitButton() {
   return (
     <Grid container>
       <Grid item xs={12} align="center">
-        <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="Split button">
+        <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
           <Button onClick={handleClick}>{options[selectedIndex]}</Button>
           <Button
             color="primary"
-            variant="contained"
             size="small"
             aria-owns={open ? 'menu-list-grow' : undefined}
             aria-haspopup="true"

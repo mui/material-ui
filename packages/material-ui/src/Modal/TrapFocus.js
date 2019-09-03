@@ -36,7 +36,7 @@ function TrapFocus(props) {
   // ⚠️ You may rely on React.useMemo as a performance optimization, not as a semantic guarantee.
   // https://reactjs.org/docs/hooks-reference.html#usememo
   React.useMemo(() => {
-    if (!open) {
+    if (!open || typeof window === 'undefined') {
       return;
     }
 
@@ -100,7 +100,18 @@ function TrapFocus(props) {
     doc.addEventListener('focus', contain, true);
     doc.addEventListener('keydown', loopFocus, true);
 
+    // With Edge, Safari and Firefox, no focus related events are fired when the focused area stops being a focused area
+    // e.g. https://bugzilla.mozilla.org/show_bug.cgi?id=559561.
+    //
+    // The whatwg spec defines how the browser should behave but does not explicitly mention any events:
+    // https://html.spec.whatwg.org/multipage/interaction.html#focus-fixup-rule.
+    const interval = setInterval(() => {
+      contain();
+    }, 50);
+
     return () => {
+      clearInterval(interval);
+
       doc.removeEventListener('focus', contain, true);
       doc.removeEventListener('keydown', loopFocus, true);
 
@@ -161,7 +172,7 @@ TrapFocus.propTypes = {
   getDoc: PropTypes.func.isRequired,
   /**
    * Do we still want to enforce the focus?
-   * This property helps nesting TrapFocus elements.
+   * This prop helps nesting TrapFocus elements.
    */
   isEnabled: PropTypes.func.isRequired,
   /**

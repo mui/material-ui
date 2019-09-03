@@ -5,7 +5,7 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 # Tables
 
-<p class="description">データテーブルにはデータセットが表示されます。完全にカスタマイズすることができます。</p>
+<p class="description">Data tables display sets of data. They can be fully customized.</p>
 
 [Data tables](https://material.io/design/components/data-tables.html) は情報を見やすく表示する方法です。 Cardなどの他のプライマリーコンテンツを埋め込むことができます。
 
@@ -47,7 +47,7 @@ Data tableの上部には、列名をリストするヘッダー行があり、�
 
 ## Customized tables
 
-コンポーネントのカスタマイズ例をいくつか示します。あなたはこれについてもっと詳しく知ることができます [上書きドキュメントのページ](/customization/components/)。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/tables/CustomizedTables.js"}}
 

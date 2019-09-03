@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Fab from '@material-ui/core/Fab';
@@ -38,7 +38,8 @@ const styles = theme => ({
 });
 
 function ColorDemo(props) {
-  const { classes, data, theme } = props;
+  const { classes, data } = props;
+  const theme = useTheme();
   const primary = theme.palette.augmentColor({
     main: data.primary,
     output:
@@ -68,12 +69,12 @@ function ColorDemo(props) {
               edge="start"
               className={classes.menuButton}
               color="inherit"
-              aria-label="Menu"
+              aria-label="menu"
             >
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit">
-              Color sample
+              Color
             </Typography>
           </Toolbar>
         </AppBar>
@@ -85,7 +86,7 @@ function ColorDemo(props) {
   },
 }`}
         </pre>
-        <Fab className={classes.fab} style={{ backgroundColor: secondary.main }} aria-label="Add">
+        <Fab className={classes.fab} style={{ backgroundColor: secondary.main }} aria-label="add">
           <AddIcon htmlColor={secondary.contrastText} />
         </Fab>
       </div>
@@ -96,7 +97,6 @@ function ColorDemo(props) {
 ColorDemo.propTypes = {
   classes: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(ColorDemo);
+export default withStyles(styles)(ColorDemo);

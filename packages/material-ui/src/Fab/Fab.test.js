@@ -13,17 +13,12 @@ describe('<Fab />', () => {
   let classes;
 
   before(() => {
-    // StrictModeViolation: uses ButtonBase
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(<Fab>Fab</Fab>);
   });
 
   afterEach(() => {
     cleanup();
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<Fab>Conformance?</Fab>, () => ({
@@ -32,6 +27,7 @@ describe('<Fab />', () => {
     mount,
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
   it('should render with the root class but no others', () => {

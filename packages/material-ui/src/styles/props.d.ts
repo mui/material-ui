@@ -30,6 +30,8 @@ import { ExpansionPanelActionsProps } from '../ExpansionPanelActions';
 import { ExpansionPanelDetailsProps } from '../ExpansionPanelDetails';
 import { ExpansionPanelProps } from '../ExpansionPanel';
 import { ExpansionPanelSummaryProps } from '../ExpansionPanelSummary';
+import { FabProps } from '../Fab';
+import { FilledInputProps } from '../FilledInput';
 import { FormControlLabelProps } from '../FormControlLabel';
 import { FormControlProps } from '../FormControl';
 import { FormGroupProps } from '../FormGroup';
@@ -42,6 +44,7 @@ import { GridProps } from '../Grid';
 import { IconButtonProps } from '../IconButton';
 import { IconProps } from '../Icon';
 import { InputAdornmentProps } from '../InputAdornment';
+import { InputBaseProps } from '../InputBase';
 import { InputLabelProps } from '../InputLabel';
 import { InputProps } from '../Input';
 import { LinearProgressProps } from '../LinearProgress';
@@ -59,6 +62,8 @@ import { MenuProps } from '../Menu';
 import { MobileStepperProps } from '../MobileStepper';
 import { ModalProps } from '../Modal';
 import { NativeSelectProps } from '../NativeSelect';
+import { Options as useMediaQueryOptions } from '../useMediaQuery';
+import { OutlinedInputProps } from '../OutlinedInput';
 import { PaperProps } from '../Paper';
 import { PopoverProps } from '../Popover';
 import { RadioGroupProps } from '../RadioGroup';
@@ -129,6 +134,8 @@ export interface ComponentsPropsList {
   MuiExpansionPanelActions: ExpansionPanelActionsProps;
   MuiExpansionPanelDetails: ExpansionPanelDetailsProps;
   MuiExpansionPanelSummary: ExpansionPanelSummaryProps;
+  MuiFab: FabProps;
+  MuiFilledInput: FilledInputProps;
   MuiFormControl: FormControlProps;
   MuiFormControlLabel: FormControlLabelProps;
   MuiFormGroup: FormGroupProps;
@@ -142,6 +149,7 @@ export interface ComponentsPropsList {
   MuiIconButton: IconButtonProps;
   MuiInput: InputProps;
   MuiInputAdornment: InputAdornmentProps;
+  MuiInputBase: InputBaseProps;
   MuiInputLabel: InputLabelProps;
   MuiLinearProgress: LinearProgressProps;
   MuiLink: LinkProps;
@@ -158,6 +166,7 @@ export interface ComponentsPropsList {
   MuiMobileStepper: MobileStepperProps;
   MuiModal: ModalProps;
   MuiNativeSelect: NativeSelectProps;
+  MuiOutlinedInput: OutlinedInputProps;
   MuiPaper: PaperProps;
   MuiPopover: PopoverProps;
   MuiRadio: RadioProps;
@@ -189,5 +198,6 @@ export interface ComponentsPropsList {
   MuiTooltip: TooltipProps;
   MuiTouchRipple: TouchRippleProps;
   MuiTypography: TypographyProps;
+  MuiUseMediaQuery: useMediaQueryOptions;
   MuiWithWidth: WithWidthOptions;
 }

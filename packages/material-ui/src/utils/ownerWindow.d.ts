@@ -1,1 +1,1 @@
-export default function ownerWindow(node: Node, fallback?: Window): Window;
+export default function ownerWindow(node: Node): Window;

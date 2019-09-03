@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import warning from 'warning';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
@@ -68,6 +69,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     disabled = false,
     error = false,
     fullWidth = false,
+    hiddenLabel = false,
     margin = 'none',
     required = false,
     variant = 'standard',
@@ -120,25 +122,28 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     setFocused(false);
   }
 
-  const handleFocus = () => {
-    setFocused(true);
-  };
+  let registerEffect;
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const registeredInput = React.useRef(false);
+    registerEffect = () => {
+      if (registeredInput.current) {
+        warning(
+          false,
+          [
+            'Material-UI: there are multiple InputBase components inside a FromControl.',
+            'This is not supported. It might cause infinite rendering loops.',
+            'Only use one InputBase.',
+          ].join('\n'),
+        );
+      }
 
-  const handleBlur = () => {
-    setFocused(false);
-  };
-
-  const handleDirty = () => {
-    if (!filled) {
-      setFilled(true);
-    }
-  };
-
-  const handleClean = () => {
-    if (filled) {
-      setFilled(false);
-    }
-  };
+      registeredInput.current = true;
+      return () => {
+        registeredInput.current = false;
+      };
+    };
+  }
 
   const childContext = {
     adornedStart,
@@ -146,11 +151,25 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     error,
     filled,
     focused,
+    hiddenLabel,
     margin,
-    onBlur: handleBlur,
-    onEmpty: handleClean,
-    onFilled: handleDirty,
-    onFocus: handleFocus,
+    onBlur: () => {
+      setFocused(false);
+    },
+    onEmpty: () => {
+      if (filled) {
+        setFilled(false);
+      }
+    },
+    onFilled: () => {
+      if (!filled) {
+        setFilled(true);
+      }
+    },
+    onFocus: () => {
+      setFocused(true);
+    },
+    registerEffect,
     required,
     variant,
   };
@@ -206,6 +225,12 @@ FormControl.propTypes = {
    * If `true`, the component will take up the full width of its container.
    */
   fullWidth: PropTypes.bool,
+  /**
+   * If `true`, the label will be hidden.
+   * This is used to increase density for a `FilledInput`.
+   * Be sure to add `aria-label` to the `input` element.
+   */
+  hiddenLabel: PropTypes.bool,
   /**
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
    */

@@ -161,7 +161,7 @@ TablePagination.propTypes = {
    */
   ActionsComponent: PropTypes.elementType,
   /**
-   * Properties applied to the back arrow [`IconButton`](/api/icon-button/) component.
+   * Props applied to the back arrow [`IconButton`](/api/icon-button/) component.
    */
   backIconButtonProps: PropTypes.object,
   /**
@@ -192,20 +192,20 @@ TablePagination.propTypes = {
    */
   labelRowsPerPage: PropTypes.node,
   /**
-   * Properties applied to the next arrow [`IconButton`](/api/icon-button/) element.
+   * Props applied to the next arrow [`IconButton`](/api/icon-button/) element.
    */
   nextIconButtonProps: PropTypes.object,
   /**
    * Callback fired when the page is changed.
    *
-   * @param {object} event The event source of the callback
-   * @param {number} page The page selected
+   * @param {object} event The event source of the callback.
+   * @param {number} page The page selected.
    */
   onChangePage: PropTypes.func.isRequired,
   /**
    * Callback fired when the number of rows per page is changed.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    */
   onChangeRowsPerPage: PropTypes.func,
   /**
@@ -232,7 +232,7 @@ TablePagination.propTypes = {
    */
   rowsPerPageOptions: PropTypes.array,
   /**
-   * Properties applied to the rows per page [`Select`](/api/select/) element.
+   * Props applied to the rows per page [`Select`](/api/select/) element.
    */
   SelectProps: PropTypes.object,
 };

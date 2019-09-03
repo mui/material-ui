@@ -68,7 +68,7 @@ describe('useScrollTrigger', () => {
       assert.strictEqual(values.callCount, 1);
     });
 
-    it('should be false by default when using setRef', () => {
+    it('should be false by default when using ref', () => {
       const TestDefaultWithRef = () => {
         const [container, setContainer] = React.useState();
         const trigger = useScrollTrigger({

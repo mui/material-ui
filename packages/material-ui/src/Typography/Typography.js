@@ -58,7 +58,7 @@ export const styles = theme => ({
   alignJustify: {
     textAlign: 'justify',
   },
-  /* Styles applied to the root element if `align="nowrap"`. */
+  /* Styles applied to the root element if `nowrap={true}`. */
   noWrap: {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -130,7 +130,6 @@ const Typography = React.forwardRef(function Typography(props, ref) {
     gutterBottom = false,
     noWrap = false,
     paragraph = false,
-    theme,
     variant = 'body1',
     variantMapping = defaultVariantMapping,
     ...other
@@ -207,17 +206,16 @@ Typography.propTypes = {
    */
   gutterBottom: PropTypes.bool,
   /**
-   * If `true`, the text will not wrap, but instead will truncate with an ellipsis.
+   * If `true`, the text will not wrap, but instead will truncate with a text overflow ellipsis.
+   *
+   * Note that text overflow can only happen with block or inline-block level elements
+   * (the element needs to have a width in order to overflow).
    */
   noWrap: PropTypes.bool,
   /**
    * If `true`, the text will have a bottom margin.
    */
   paragraph: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
   /**
    * Applies the theme typography styles.
    */
@@ -239,12 +237,12 @@ Typography.propTypes = {
     'inherit',
   ]),
   /**
-   * We are empirically mapping the variant property to a range of different DOM element types.
+   * We are empirically mapping the variant prop to a range of different DOM element types.
    * For instance, subtitle1 to `<h6>`.
    * If you wish to change that mapping, you can provide your own.
-   * Alternatively, you can use the `component` property.
+   * Alternatively, you can use the `component` prop.
    */
   variantMapping: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTypography', withTheme: true })(Typography);
+export default withStyles(styles, { name: 'MuiTypography' })(Typography);

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -64,8 +63,8 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
     onClose(value);
   }
 
-  function handleChange(event: React.ChangeEvent<{}>, newValue: string) {
-    setValue(newValue);
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setValue((event.target as HTMLInputElement).value);
   }
 
   return (
@@ -82,7 +81,7 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
       <DialogContent dividers>
         <RadioGroup
           ref={radioGroupRef}
-          aria-label="Ringtone"
+          aria-label="ringtone"
           name="ringtone"
           value={value}
           onChange={handleChange}
@@ -103,12 +102,6 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
     </Dialog>
   );
 }
-
-ConfirmationDialogRaw.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  value: PropTypes.string.isRequired,
-};
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -152,7 +145,7 @@ export default function ConfirmationDialog() {
           divider
           aria-haspopup="true"
           aria-controls="ringtone-menu"
-          aria-label="Phone ringtone"
+          aria-label="phone ringtone"
           onClick={handleClickListItem}
           role="listitem"
         >

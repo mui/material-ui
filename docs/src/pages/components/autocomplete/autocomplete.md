@@ -17,7 +17,7 @@ We encourage people relying on the solutions the React community has built.
 
 In the following example, we demonstrate how to use [downshift](https://github.com/downshift-js/downshift).
 
-The last demo allow to clear the input and show a number of options on focus.
+The last demo allows the user to clear the input and show a number of options on focus.
 
 {{"demo": "pages/components/autocomplete/IntegrationDownshift.js"}}
 

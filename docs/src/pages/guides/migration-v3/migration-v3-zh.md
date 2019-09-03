@@ -1,4 +1,4 @@
-# Migration from v3 to v4
+# 从v3版本迁移到v4版本
 
 <p class="description">是的，我们已经发布了v4版本！</p>
 
@@ -14,7 +14,7 @@
 
 此文档介绍了*h如何*从v3版本迁移到v4版本。 关于迁移的*原因*，我们则在 [Medium上发布了一篇博客](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701)来详细解说。
 
-## Updating your dependencies
+## 更新您的依赖包
 
 您需要做的第一件事，就是更新您的依赖包。
 
@@ -31,11 +31,11 @@
 或者运行
 
 ```sh
-npm install @material-ui/core@next
+npm install @material-ui/core
 
 或者
 
-yarn add @material-ui/core@next
+yarn add @material-ui/core
 ```
 
 ### 更新 React 的版本
@@ -55,11 +55,11 @@ yarn add @material-ui/core@next
 或者运行
 
 ```sh
-npm install @material-ui/styles@next
+npm install @material-ui/styles
 
 或者
 
-yarn add @material-ui/styles@next
+yarn add @material-ui/styles
 ```
 
 ## 处理变化带来的系统崩溃
@@ -71,14 +71,14 @@ yarn add @material-ui/styles@next
 ### Styles（样式表单）
 
 - ⚠️ Material-UI 依赖于 JSS v10版本。 JSS v10版本与v9版本不向后兼容。 请保证您的开发环境中未安装 JSS v9版本。 在您的 `package.json` 中移除 `react-jss` 将会有所帮助。 StylesProvider 组件替代了 JssProvider 组件。
-- 请移除 `withTheme()` 中的第一个可选的参数。 第一个参数本是作为未来的可能的选项的一个占位符。 我们从未发现有需要它的情况。 该是删除这个参数的时候了。 它与[emotion 的 API](https://emotion.sh/docs/introduction) 以及 [styled-components 的 API ](https://www.styled-components.com) 相匹配。
+- 请移除 `withTheme()` 中的第一个可选的参数。 第一个参数本是作为未来的可能的选项的一个占位符。 我们从未发现有需要它的情况。 是时候来删除这个参数了。 它与[emotion 的 API](https://emotion.sh/docs/introduction) 以及 [styled-components 的 API ](https://www.styled-components.com) 相匹配。
 
 ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
-- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). 您应该在您的代码中做出以下改变。
-  It helps isolating the animation logic:
+-  约束 [keyframes 的 API](https://cssinjs.org/jss-syntax/#keyframes-animation). 您应该在您的代码中做出以下改变。
+  这对分离动画的逻辑有所帮助：
 
   ```diff
     rippleVisible: {
@@ -95,11 +95,7 @@ yarn add @material-ui/styles@next
       },
     },
   ```
-
-### Theme
-
-- The `theme.palette.augmentColor()` method no longer performs a side effect on its input color.
-  若想要正确地使用它，您必须使用返回的值。
+  若想要正确地使用它，您必须使用返回值。
 
   ```diff
   -const background = { main: color };
@@ -109,7 +105,7 @@ yarn add @material-ui/styles@next
   console.log({ background });
   ```
 
-- You can safely remove the next variant from the theme creation:
+—您可以从主题创建中安全地移除下一个变体：
 
   ```diff
   typography: {
@@ -117,35 +113,24 @@ yarn add @material-ui/styles@next
   },
   ```
 
-- `theme.spacing.unit` usage is deprecated, you can use the new API:
+—我们已经不再使用`theme.spacing.unit`，请参照新的 API：
 
-  ```diff
-  label: {
-    [theme.breakpoints.up('sm')]: {
-  -   paddingTop: theme.spacing.unit * 12,
-  +   paddingTop: theme.spacing(12),
-    },
-  }
-  ```
+  您可以在项目中使用 [迁移小帮手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api)来让您的迁移流程更加顺畅。
 
-  *Tip: you can provide more than 1 argument: `theme.spacing(1, 2) // = '8px 16px'`*.
+### Layout（布局）
 
-  You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
-
-### Layout
-
-- [Grid] In order to support arbitrary spacing values and to remove the need to mentally count by 8, we are changing the spacing API:
+- [Grid] 本着支持任意间距值并且摈弃心理上一直需要在8的基础上计数的目的，我们改变了 spacing 的 API: 
 
   ```diff
     /**
-     * Defines the space between the type `item` component.
+     * 在类别为`item` 组件之间定义间距。
      * 它只能用于类型为 `container` 的组件。
      */
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
-  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
-- [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
+  从今往后，您可以使用主题来实现 [一个自定义的网格间距变换函数](https://material-ui.com/system/spacing/#transformation)。
+- [Container] 从 `@material-ui/lab` 迁移到 `@material-ui/core`。
 
   ```diff
   -import Container from '@material-ui/lab/Container';
@@ -154,23 +139,23 @@ yarn add @material-ui/styles@next
 
 ### TypeScript
 
-#### `value` type 
+#### `value` 类型 
 
-Normalized `value` prop type for input components to use `unknown`. This affects
-`InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
+将 input 组件的 `value` 属性的类型正常化，这样可以使用 `unknown`了。 这会影响
+`InputBase`，`NativeSelect`，`OutlinedInput`，`Radio`，`RadioGroup`，`Select`，`SelectInput`，`TextArea` 和 `TextField`。
 
 ```diff
 function MySelect({ children }) {
 -  function handleChange(event: any, value: string) {
 +  function handleChange(event: any, value: unknown) {
-    // handle value
+    //处理值
   }
 
   return <Select onChange={handleChange}>{children}</Select>
 }
 ```
 
-This change is explained in more detail in our [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
+我们在 [TypeScript 指南中](/guides/typescript/#handling-value-and-event-handlers)更详细地解释了此变更。
 
 ### Buttons（按钮）
 
@@ -202,7 +187,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 
 - [ButtonBase] 传递给`组件`的属性的组件需要能接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
   
-  在 `BottomNavigationAction`，`Button`，`CardActionArea`，`Checkbox`，`ExpansionPanelSummary`，`Fab`，`IconButton`，`MenuItem`，`Radio`，`StepButton`，`Tab`，`TableSortLabel` 以及 `ListItem` 上，若它们的 `button` 属性是 true，则也适用。
+    在 `BottomNavigationAction`，`Button`，`CardActionArea`，`Checkbox`，`ExpansionPanelSummary`，`Fab`，`IconButton`，`MenuItem`，`Radio`，`StepButton`，`Tab`，`TableSortLabel` 以及 `ListItem` 上，若它们的 `button` 属性是 true，则也适用。
 
 ### Cards（卡片）
 
@@ -210,18 +195,18 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 - [CardActions] 移除 CSS类中的 `disableActionSpacing`。
 - [CardActions] 将CSS类 `action` 重命名为 `spacing`。
 
-### ClickAwayListener
+### ClickAwayListener（他处点击监听器）
 
 - [ClickAwayListener] 隐藏 react-event-listener 的属性。
 
-### Dialog
+### Dialog（对话框）
 
 - [DialogActions] 将 `disableActionSpacing` 属性重命名为 `disableSpacing`。
 - [DialogActions] 将CSS类 `action` 重命名为 `spacing`。
 - [DialogContentText] 不使用文字铸排变体 `subtitle1`，而使用 `body1`。
 - [Dialog] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
-### Divider
+### Dividers（分隔线）
 
 - [Divider] 移除了弃用的 ` inset ` 属性：
   
@@ -239,27 +224,28 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 
 - [List] 为了符合规范，我们重新在列表组件上做了调整 ：
   
-  - The `ListItemAvatar` component is required when using an avatar.
+  - 当使用头像时，您必须要使用 `ListItemAvatar` 组件。
   - 当使用左边的复选框时，您必须使用 `ListItemIcon` 组件。
   - 您必须要在图标按钮上设置 `edge` 属性。
+- [List] `dense` no longer reduces the top and bottom padding of the `List` element.
 
-- [ListItem] 加强 `disabled` 和 `focusVisible` 样式规则的 CSS 特性。
+- [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
 
-### Menu
+### Menu（菜单）
 
 - [MenuItem] 删除 MenuItem 的固定高度。 浏览器将会自行根据间距和行高来计算高度。
 
-### Modal
+### Modal（模态框）
 
 - [Modal] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
   
-  这也适用于 `Dialog` 和 `Popover` 。
+    这也适用于 `Dialog` 和 `Popover` 。
 
-- [Modal] Remove the classes customization API for the Modal component (-74% bundle size reduction when used standalone).
+- [Modal] 删除Modal组件类的自定义API (独立使用时将减少-74％的打包大小)。
 
 - [Modal] 现在忽略了 event.defaultPrevented。 即使当向下离开事件调用了 `event.preventDefault()`，新的逻辑也会关闭模态框。 `event.preventDefault()` 旨在禁用一些默认的行为，如单击一个复选框来选中它；点击按钮来提交表单；以及点击左键来移除文本输入框的光标等等。 只有一些特殊的HTML元素才具有这些默认的行为。 若您不想触发模态框的 `onClose` 事件，您需要使用 `event.stopPropagation()`。
 
-### Paper
+### Paper（纸张）
 
 - [Paper] 减小默认的 elevation（阴影高度）。 为了适配卡片组件和扩展面板组件，请更改默认纸张的阴影高度：
   
@@ -268,15 +254,24 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   +<Paper elevation={2} />
   ```
   
-  这也会影响 `扩展面板`。
+    这也会影响 `扩展面板`。
 
-### Portal
+### Portal（传送门）
 
 - [Portal] 当使用 `disablePortal`属性的时候，子元素需要能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 
-### Slide（滑动）
+### Slide（幻灯片）
 
 - [Slide] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
+
+### Slider（滑块）
+
+- [Slider] 从 `@material-ui/lab` 迁移到 `@material-ui/core`。
+  
+  ```diff
+  -import Slider from '@material-ui/lab/Slider'
+  +import Slider from '@material-ui/core/Slider'
+  ```
 
 ### Switch （开关）
 
@@ -294,9 +289,9 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 - [Snackbar] 匹配新的规范。
   
   - 更改尺寸。
-  - 将默认的过渡动画从`Slide`改成`Grow`。
+  - 将默认的过渡动画从 `Slide` 改成 `Grow`。
 
-### SvgIcon（Svg图标）
+### SvgIcon（Svg 图标）
 
 - [SvgIcon] 重命名nativeColor - > htmlColor。 React 在 `for` 这个 HTML 属性上也遇到了同样的问题，他们选择命名这个属性为`htmlFor`。 此变化的原因大同小异。
   
@@ -305,11 +300,11 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   +<AddIcon htmlColor="#fff" />
   ```
 
-### 选项卡
+### Tabs（选项卡）
 
-- [Tab] 为了简单起见，删除了` labelContainer `，`label` 和 `labelWrapped`等类的 key。 这使得我们可以移走中间的两个 DOM 元素。 您应该将自定义的样式已到`根元素`的类的 key 上。
+- [Tab] 为了简单起见，删除了` labelContainer `，`label` 和 `labelWrapped` 等类的 key。 这使得我们可以移走两个中间的 DOM 元素。 您应该可以将自定义的样式移到`根元素`的类的键上。
   
-  ![一个更简单的标签项的 DOM 结构](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
+    ![一个更简单的标签项的 DOM 结构](https://user-images.githubusercontent.com/3165635/53287870-53a35500-3782-11e9-9431-2d1a14a41be0.png)
 
 - [Tabs] 移除了弃用的 <0>fullWidth</0> 和 <0>scrollable</0> 属性：:
   
@@ -318,7 +313,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   +<Tabs variant="scrollable" />
   ```
 
-### Table
+### Table（表格）
 
 - [TableCell] 移除了弃用的 `numeric` 属性：
   
@@ -337,14 +332,14 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 
 - [TablePagination] 此组件不再修复无效的属性（`page`，`count`，`rowsPerPage`）组合。 相反的，它会给出一个警告。
 
-### TextField
+### TextField（文本框）
 
 - [InputLabel] 凭借 InputLabel 组件的类 API，您应该可以覆盖 FormLabel 组件所有的样式表。 我们移除了 `FormLabelClasses` 属性。
   
   ```diff
   <InputLabel
-  - FormLabelClasses={{ asterisk: 'bar' } }
-  + classes={{ asterisk: 'bar' } }
+  - FormLabelClasses={{ asterisk: 'bar' }}
+  + classes={{ asterisk: 'bar' }}
   >
     Foo
   </InputLabel>
@@ -356,16 +351,16 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   box-sizing: border-box;
   ```
   
-  与 `fullWidth` 属性有关的问题迎刃而解。
+    与 `fullWidth` 属性有关的问题迎刃而解。
 
 - [InputBase] 从 `InputBase` 中移走了 `inputType` 类。
 
-### Tooltip
+### Tooltip（文字提示）
 
 - [Tooltip] 子组件能够接受一个 ref。 [组合指南](/guides/composition/#caveat-with-refs)解释了迁移的策略。
 - [Tooltip] 相比以前任何聚焦都会出现，现在只会在 focus-visible 聚焦的时候出现。
 
-### Typography
+### Typography（文字铸排）
 
 - [Typography] 移除了各种弃用的铸排变体。 您可以通过执行以下的替换来升级： 
   - display4 => h1
@@ -378,7 +373,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   - body2 => body1
   - body1 (default) => body2 (default)
 - [Typography] 移除了固定的 `display: block` 这个默认的铸排样式。 您现在可以使用新的 `display?: 'initial' | 'inline' | 'block';` 属性。
-- [Typography] Rename the `headlineMapping` property to `variantMapping` to better align with its purpose.
+- [Typography] 为了达到更好的排版效果，请重命名属性 `headlineMapping` 为 `variantMapping`。
   
   ```diff
   -<Typography headlineMapping={headlineMapping}>
@@ -387,7 +382,7 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
 
 - [Typography] 将默认的字体从 `body2` 换成 `body1`。 默认为16px的字体大小比默认为14px好。 Bootstrap，material.io，甚至我们的文档都将16px作为默认字体大小。 像 Ant Design 一样使用14px是可以理解的，因为中国的用户使用了不同的字母表。 我们建议使用12px作为日语的默认字体大小。
 - [Typography] 移除了铸排变体的默认颜色。 大多数情况下，字体颜色应该是继承而来的。 这是网站的默认行为。
-- [Typography] 遵循 #13028的逻辑，将 `color="default"` 重命名为 `color="initial"`。 不应该再使用*default*，它缺少明确的语义。
+- [Typography] Rename `color="default"` to `color="initial"` following the logic of [this thread](https://github.com/mui-org/material-ui/issues/13028). 您不应该再使用 *default*，它缺少明确的语义。
 
 ### Node
 
@@ -399,13 +394,13 @@ This change is explained in more detail in our [TypeScript guide](/guides/typesc
   
   ```diff
   const {
-    Button,
-    TextField,
+  Button,
+  TextField,
   -} = window['material-ui'];
   +} = MaterialUI;
   ```
   
-  它与其他 React 的项目保持一致：
+    它与其他 React 的项目保持一致：
   
   - material-ui => MaterialUI
   - react-dom => ReactDOM

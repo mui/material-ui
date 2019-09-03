@@ -1,16 +1,14 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
-const useStyles = makeStyles(
-  createStyles({
-    root: {
-      width: 500,
-    },
-  }),
-);
+const useStyles = makeStyles({
+  root: {
+    width: 500,
+  },
+});
 
 export default function PositionedTooltips() {
   const classes = useStyles();

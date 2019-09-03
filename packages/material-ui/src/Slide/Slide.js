@@ -9,8 +9,6 @@ import useTheme from '../styles/useTheme';
 import { duration } from '../styles/transitions';
 import { reflow, getTransitionProps } from '../transitions/utils';
 
-const GUTTER = 24;
-
 // Translate the node so he can't be seen on the screen.
 // Later, we gonna translate back the node to his original location
 // with `none`.`
@@ -45,7 +43,7 @@ function getTranslateValue(direction, node) {
   }
 
   if (direction === 'right') {
-    return `translateX(-${rect.left + rect.width + GUTTER - offsetX}px)`;
+    return `translateX(-${rect.left + rect.width - offsetX}px)`;
   }
 
   if (direction === 'up') {
@@ -53,7 +51,7 @@ function getTranslateValue(direction, node) {
   }
 
   // direction === 'down'
-  return `translateY(-${rect.top + rect.height + GUTTER - offsetY}px)`;
+  return `translateY(-${rect.top + rect.height - offsetY}px)`;
 }
 
 export function setTranslateValue(direction, node) {
@@ -100,17 +98,17 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   const handleRefIntermediary = useForkRef(children.ref, handleOwnRef);
   const handleRef = useForkRef(handleRefIntermediary, ref);
 
-  const handleEnter = () => {
+  const handleEnter = (_, isAppearing) => {
     const node = childrenRef.current;
     setTranslateValue(direction, node);
     reflow(node);
 
     if (onEnter) {
-      onEnter(node);
+      onEnter(node, isAppearing);
     }
   };
 
-  const handleEntering = () => {
+  const handleEntering = (_, isAppearing) => {
     const node = childrenRef.current;
     const transitionProps = getTransitionProps(
       { timeout, style },
@@ -129,7 +127,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     node.style.webkitTransform = 'none';
     node.style.transform = 'none';
     if (onEntering) {
-      onEntering(node);
+      onEntering(node, isAppearing);
     }
   };
 

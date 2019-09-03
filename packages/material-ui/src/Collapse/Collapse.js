@@ -5,6 +5,7 @@ import { Transition } from 'react-transition-group';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import { getTransitionProps } from '../transitions/utils';
+import useTheme from '../styles/useTheme';
 
 export const styles = theme => ({
   /* Styles applied to the container element. */
@@ -52,10 +53,10 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     onExit,
     onExiting,
     style,
-    theme,
     timeout = duration.standard,
     ...other
   } = props;
+  const theme = useTheme();
   const timer = React.useRef();
   const wrapperRef = React.useRef(null);
   const autoTransitionDuration = React.useRef();
@@ -66,15 +67,15 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     };
   }, []);
 
-  const handleEnter = node => {
+  const handleEnter = (node, isAppearing) => {
     node.style.height = collapsedHeight;
 
     if (onEnter) {
-      onEnter(node);
+      onEnter(node, isAppearing);
     }
   };
 
-  const handleEntering = node => {
+  const handleEntering = (node, isAppearing) => {
     const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
 
     const { duration: transitionDuration } = getTransitionProps(
@@ -96,15 +97,15 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     node.style.height = `${wrapperHeight}px`;
 
     if (onEntering) {
-      onEntering(node);
+      onEntering(node, isAppearing);
     }
   };
 
-  const handleEntered = node => {
+  const handleEntered = (node, isAppearing) => {
     node.style.height = 'auto';
 
     if (onEntered) {
-      onEntered(node);
+      onEntered(node, isAppearing);
     }
   };
 
@@ -239,10 +240,6 @@ Collapse.propTypes = {
    */
   style: PropTypes.object,
   /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
-  /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    *
@@ -257,7 +254,4 @@ Collapse.propTypes = {
 
 Collapse.muiSupportAuto = true;
 
-export default withStyles(styles, {
-  withTheme: true,
-  name: 'MuiCollapse',
-})(Collapse);
+export default withStyles(styles, { name: 'MuiCollapse' })(Collapse);

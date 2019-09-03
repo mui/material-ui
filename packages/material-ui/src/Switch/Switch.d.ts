@@ -7,6 +7,7 @@ export interface SwitchProps
   checkedIcon?: React.ReactNode;
   color?: 'primary' | 'secondary' | 'default';
   icon?: React.ReactNode;
+  size?: 'small' | 'medium';
 }
 
 export type SwitchClassKey =
@@ -14,6 +15,7 @@ export type SwitchClassKey =
   | 'switchBase'
   | 'colorPrimary'
   | 'colorSecondary'
+  | 'sizeSmall'
   | 'thumb'
   | 'track';
 

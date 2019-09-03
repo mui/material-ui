@@ -30,7 +30,11 @@ describe('<Popper />', () => {
     inheritComponent: 'div',
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: [
+      'componentProp',
+      // https://github.com/facebook/react/issues/11565
+      'reactTestRenderer',
+    ],
   }));
 
   describe('prop: placement', () => {
@@ -215,6 +219,32 @@ describe('<Popper />', () => {
       });
       assert.strictEqual(ref1.current, null);
       assert.strictEqual(ref2.current instanceof PopperJS, true);
+    });
+  });
+
+  describe('prop: disablePortal', () => {
+    it('should work', () => {
+      const popperRef = React.createRef();
+      const wrapper = mount(<Popper {...defaultProps} disablePortal popperRef={popperRef} />);
+      // renders
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      // correctly sets modifiers
+      assert.strictEqual(
+        popperRef.current.options.modifiers.preventOverflow.boundariesElement,
+        'scrollParent',
+      );
+    });
+
+    it('sets preventOverflow to window when disablePortal is false', () => {
+      const popperRef = React.createRef();
+      const wrapper = mount(<Popper {...defaultProps} popperRef={popperRef} />);
+      // renders
+      assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+      // correctly sets modifiers
+      assert.strictEqual(
+        popperRef.current.options.modifiers.preventOverflow.boundariesElement,
+        'window',
+      );
     });
   });
 

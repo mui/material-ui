@@ -1,4 +1,3 @@
-import { codes as keycodes } from 'keycode';
 import React from 'react';
 import { assert } from 'chai';
 import { spy } from 'sinon';
@@ -21,6 +20,7 @@ describe('<SpeedDial />', () => {
   const FakeAction = () => <div />;
   const defaultProps = {
     open: true,
+    icon,
     ariaLabel: 'mySpeedDial',
   };
 
@@ -30,7 +30,7 @@ describe('<SpeedDial />', () => {
   }
 
   before(() => {
-    // StrictModeViolation: uses ButtonBase
+    // StrictModeViolation: unknown
     mount = createMount({ strict: false });
     classes = getClasses(
       <SpeedDial {...defaultProps} icon={icon}>
@@ -185,7 +185,10 @@ describe('<SpeedDial />', () => {
       );
       const buttonWrapper = wrapper.find('[aria-expanded]').first();
       const eventMock = 'something-to-match';
-      buttonWrapper.simulate('keyDown', { eventMock });
+      buttonWrapper.simulate('keyDown', {
+        key: ' ',
+        eventMock,
+      });
       assert.strictEqual(handleKeyDown.callCount, 1);
       assert.strictEqual(handleKeyDown.calledWithMatch({ eventMock }), true);
     });
@@ -248,6 +251,7 @@ describe('<SpeedDial />', () => {
                 },
               }}
               icon={icon}
+              data-test={i}
               tooltipTitle={`action${i}`}
             />
           ))}
@@ -268,7 +272,10 @@ describe('<SpeedDial />', () => {
       if (actionIndex === -1) {
         return getDialButton();
       }
-      return wrapper.find(SpeedDialAction).at(actionIndex);
+      return wrapper
+        .find(SpeedDialAction)
+        .at(actionIndex)
+        .find(Fab);
     };
     /**
      * @returns true if the button of the nth action is focused
@@ -299,7 +306,7 @@ describe('<SpeedDial />', () => {
     describe('first item selection', () => {
       const createShouldAssertFirst = assertFn => (dialDirection, arrowKey) => {
         resetDialToOpen(dialDirection);
-        getDialButton().simulate('keydown', { keyCode: keycodes[arrowKey] });
+        getDialButton().simulate('keydown', { key: arrowKey });
         assertFn(isActionFocused(0));
       };
 
@@ -307,31 +314,31 @@ describe('<SpeedDial />', () => {
       const shouldNotFocusFirst = createShouldAssertFirst(assert.isFalse);
 
       it('considers arrow keys with the same orientation', () => {
-        shouldFocusFirst('up', 'up');
-        shouldFocusFirst('up', 'down');
+        shouldFocusFirst('up', 'ArrowUp');
+        shouldFocusFirst('up', 'ArrowDown');
 
-        shouldFocusFirst('down', 'up');
-        shouldFocusFirst('down', 'down');
+        shouldFocusFirst('down', 'ArrowUp');
+        shouldFocusFirst('down', 'ArrowDown');
 
-        shouldFocusFirst('right', 'right');
-        shouldFocusFirst('right', 'left');
+        shouldFocusFirst('right', 'ArrowRight');
+        shouldFocusFirst('right', 'ArrowLeft');
 
-        shouldFocusFirst('left', 'right');
-        shouldFocusFirst('left', 'left');
+        shouldFocusFirst('left', 'ArrowRight');
+        shouldFocusFirst('left', 'ArrowLeft');
       });
 
       it('ignores arrow keys orthogonal to the direction', () => {
-        shouldNotFocusFirst('up', 'left');
-        shouldNotFocusFirst('up', 'right');
+        shouldNotFocusFirst('up', 'ArrowLeft');
+        shouldNotFocusFirst('up', 'ArrowRight');
 
-        shouldNotFocusFirst('down', 'left');
-        shouldNotFocusFirst('down', 'right');
+        shouldNotFocusFirst('down', 'ArrowLeft');
+        shouldNotFocusFirst('down', 'ArrowRight');
 
-        shouldNotFocusFirst('right', 'up');
-        shouldNotFocusFirst('right', 'up');
+        shouldNotFocusFirst('right', 'ArrowUp');
+        shouldNotFocusFirst('right', 'ArrowUp');
 
-        shouldNotFocusFirst('left', 'down');
-        shouldNotFocusFirst('left', 'down');
+        shouldNotFocusFirst('left', 'ArrowDown');
+        shouldNotFocusFirst('left', 'ArrowDown');
       });
     });
 
@@ -349,7 +356,7 @@ describe('<SpeedDial />', () => {
       ) => {
         resetDialToOpen(dialDirection);
 
-        getDialButton().simulate('keydown', { keyCode: keycodes[firstKey] });
+        getDialButton().simulate('keydown', { key: firstKey });
         assert.strictEqual(
           isActionFocused(firstFocusedAction),
           true,
@@ -362,7 +369,7 @@ describe('<SpeedDial />', () => {
           const combinationUntilNot = [firstKey, ...combination.slice(0, i + 1)];
 
           getActionButton(previousFocusedAction).simulate('keydown', {
-            keyCode: keycodes[arrowKey],
+            key: arrowKey,
           });
           assert.strictEqual(
             isActionFocused(expectedFocusedAction),
@@ -381,31 +388,87 @@ describe('<SpeedDial />', () => {
       };
 
       it('considers the first arrow key press as forward navigation', async () => {
-        await testCombination('up', ['up', 'up', 'up', 'down'], [0, 1, 2, 1]);
-        await testCombination('up', ['down', 'down', 'down', 'up'], [0, 1, 2, 1]);
+        await testCombination('up', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
+        await testCombination(
+          'up',
+          ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'],
+          [0, 1, 2, 1],
+        );
 
-        await testCombination('right', ['right', 'right', 'right', 'left'], [0, 1, 2, 1]);
-        await testCombination('right', ['left', 'left', 'left', 'right'], [0, 1, 2, 1]);
+        await testCombination(
+          'right',
+          ['ArrowRight', 'ArrowRight', 'ArrowRight', 'ArrowLeft'],
+          [0, 1, 2, 1],
+        );
+        await testCombination(
+          'right',
+          ['ArrowLeft', 'ArrowLeft', 'ArrowLeft', 'ArrowRight'],
+          [0, 1, 2, 1],
+        );
 
-        await testCombination('down', ['down', 'down', 'down', 'up'], [0, 1, 2, 1]);
-        await testCombination('down', ['up', 'up', 'up', 'down'], [0, 1, 2, 1]);
+        await testCombination(
+          'down',
+          ['ArrowDown', 'ArrowDown', 'ArrowDown', 'ArrowUp'],
+          [0, 1, 2, 1],
+        );
+        await testCombination('down', ['ArrowUp', 'ArrowUp', 'ArrowUp', 'ArrowDown'], [0, 1, 2, 1]);
 
-        await testCombination('left', ['left', 'left', 'left', 'right'], [0, 1, 2, 1]);
-        await testCombination('left', ['right', 'right', 'right', 'left'], [0, 1, 2, 1]);
+        await testCombination(
+          'left',
+          ['ArrowLeft', 'ArrowLeft', 'ArrowLeft', 'ArrowRight'],
+          [0, 1, 2, 1],
+        );
+        await testCombination(
+          'left',
+          ['ArrowRight', 'ArrowRight', 'ArrowRight', 'ArrowLeft'],
+          [0, 1, 2, 1],
+        );
       });
 
       it('ignores array keys orthogonal to the direction', async () => {
-        await testCombination('up', ['up', 'left', 'right', 'up'], [0, 0, 0, 1]);
-        await testCombination('right', ['right', 'up', 'down', 'right'], [0, 0, 0, 1]);
-        await testCombination('down', ['down', 'left', 'right', 'down'], [0, 0, 0, 1]);
-        await testCombination('left', ['left', 'up', 'down', 'left'], [0, 0, 0, 1]);
+        await testCombination(
+          'up',
+          ['ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowUp'],
+          [0, 0, 0, 1],
+        );
+        await testCombination(
+          'right',
+          ['ArrowRight', 'ArrowUp', 'ArrowDown', 'ArrowRight'],
+          [0, 0, 0, 1],
+        );
+        await testCombination(
+          'down',
+          ['ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowDown'],
+          [0, 0, 0, 1],
+        );
+        await testCombination(
+          'left',
+          ['ArrowLeft', 'ArrowUp', 'ArrowDown', 'ArrowLeft'],
+          [0, 0, 0, 1],
+        );
       });
 
       it('does not wrap around', async () => {
-        await testCombination('up', ['up', 'down', 'down', 'up'], [0, -1, -1, 0]);
-        await testCombination('right', ['right', 'left', 'left', 'right'], [0, -1, -1, 0]);
-        await testCombination('down', ['down', 'up', 'up', 'down'], [0, -1, -1, 0]);
-        await testCombination('left', ['left', 'right', 'right', 'left'], [0, -1, -1, 0]);
+        await testCombination(
+          'up',
+          ['ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowUp'],
+          [0, -1, -1, 0],
+        );
+        await testCombination(
+          'right',
+          ['ArrowRight', 'ArrowLeft', 'ArrowLeft', 'ArrowRight'],
+          [0, -1, -1, 0],
+        );
+        await testCombination(
+          'down',
+          ['ArrowDown', 'ArrowUp', 'ArrowUp', 'ArrowDown'],
+          [0, -1, -1, 0],
+        );
+        await testCombination(
+          'left',
+          ['ArrowLeft', 'ArrowRight', 'ArrowRight', 'ArrowLeft'],
+          [0, -1, -1, 0],
+        );
       });
     });
   });

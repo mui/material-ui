@@ -14,10 +14,12 @@ export type OutlinedInputClassKey =
   | 'adornedStart'
   | 'adornedEnd'
   | 'error'
+  | 'marginDense'
   | 'multiline'
   | 'notchedOutline'
   | 'input'
   | 'inputMarginDense'
+  | 'inputSelect'
   | 'inputMultiline'
   | 'inputAdornedStart'
   | 'inputAdornedEnd';

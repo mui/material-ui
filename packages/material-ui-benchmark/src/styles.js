@@ -45,7 +45,7 @@ const cssObject = {
     position: 'relative',
     WebkitTapHighlightColor: 'transparent',
     backgroundColor: 'transparent',
-    outline: 'none',
+    outline: 0,
     border: 0,
     margin: 0,
     borderRadius: 0,

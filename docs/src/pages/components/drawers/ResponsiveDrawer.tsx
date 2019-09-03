@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -54,9 +53,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface ResponsiveDrawerProps {
-  // Injected by the documentation to work in an iframe.
-  // You won't need it on your project.
-  container: Element;
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  container?: Element;
 }
 
 export default function ResponsiveDrawer(props: ResponsiveDrawerProps) {
@@ -100,7 +101,7 @@ export default function ResponsiveDrawer(props: ResponsiveDrawerProps) {
         <Toolbar>
           <IconButton
             color="inherit"
-            aria-label="Open drawer"
+            aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
             className={classes.menuButton}
@@ -112,7 +113,7 @@ export default function ResponsiveDrawer(props: ResponsiveDrawerProps) {
           </Typography>
         </Toolbar>
       </AppBar>
-      <nav className={classes.drawer} aria-label="Mailbox folders">
+      <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
@@ -172,9 +173,3 @@ export default function ResponsiveDrawer(props: ResponsiveDrawerProps) {
     </div>
   );
 }
-
-ResponsiveDrawer.propTypes = {
-  // Injected by the documentation to work in an iframe.
-  // You won't need it on your project.
-  container: PropTypes.object,
-};

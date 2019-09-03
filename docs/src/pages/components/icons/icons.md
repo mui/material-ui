@@ -30,23 +30,21 @@ Optionally, you can set the icon color using one of the theme color properties: 
 ### SVG Material icons
 
 It's interesting to have the building blocks needed to implement custom icons, but what about presets?
-We provide a separate npm package,
-[@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons),
-that includes the 1,000+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to `SvgIcon` components.
+[@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) is an npm package that includes the 1,000+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to `SvgIcon` components.
 
-<a href="https://material.io/tools/icons/?icon=3d_rotation&style=baseline">
+<a href="/components/material-icons/">
   <img src="/static/images/icons/icons.png" alt="Official material icons" style="width: 566px" />
 </a>
 
 #### Usage
 
-You can use [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) to find a specific icon.
+You can use our [internal search](/components/material-icons/) or [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) to find a specific icon.
 When importing an icon, keep in mind that the names of the icons are `PascalCase`, for instance:
 
 - [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) is exposed as `@material-ui/icons/Delete`
 - [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) is exposed as `@material-ui/icons/DeleteForever`
 
-For *"themed"* icons, append the theme name to the icon name. For instance with the
+For "themed" icons, append the theme name to the icon name. For instance with the
 
 - The Outlined [`delete`](https://material.io/tools/icons/?icon=delete&style=outline) icon is exposed as `@material-ui/icons/DeleteOutlined`
 - The Rounded [`delete`](https://material.io/tools/icons/?icon=delete&style=rounded) icon is exposed as `@material-ui/icons/DeleteRounded`
@@ -63,18 +61,24 @@ There are three exceptions to this rule:
 
 #### Imports
 
-- If your environment doesn't support tree-shaking, the **recommended** way to import the icons is the following:
-```jsx
-import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
-import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
-```
+You can import the icons with one of these two options:
 
-- If your environment support tree-shaking you can also import the icons this way:
-```jsx
-import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
-```
+- Option 1:
 
-Note: Importing named exports in this way will result in the code for *every icon* being included in your project, so is not recommended unless you configure [tree-shaking](https://webpack.js.org/guides/tree-shaking/). It may also impact Hot Module Reload performance.
+  ```jsx
+  import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
+  import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
+  ```
+
+- Option 2:
+
+  ```jsx
+  import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
+  ```
+
+The safest is option 1 but option 2 can yield the best experience.
+Make sure you follow our [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
+We encourage the configuration of a Babel plugin.
 
 ### More SVG icons
 
@@ -151,7 +155,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 // ...
 
-<IconButton aria-label="Delete">
+<IconButton aria-label="delete">
   <SvgIcon>
     <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
   </SvgIcon>

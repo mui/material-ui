@@ -33,6 +33,11 @@ export const styles = theme => ({
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
   },
+  /* Styles applied to the root element if `orientation="vertical"`. */
+  vertical: {
+    height: '100%',
+    width: 1,
+  },
 });
 
 const Divider = React.forwardRef(function Divider(props, ref) {
@@ -42,6 +47,7 @@ const Divider = React.forwardRef(function Divider(props, ref) {
     className,
     component: Component = 'hr',
     light = false,
+    orientation = 'horizontal',
     role = Component !== 'hr' ? 'separator' : undefined,
     variant = 'fullWidth',
     ...other
@@ -52,10 +58,10 @@ const Divider = React.forwardRef(function Divider(props, ref) {
       className={clsx(
         classes.root,
         {
-          [classes.inset]: variant === 'inset',
-          [classes.middle]: variant === 'middle',
+          [classes[variant]]: variant !== 'fullWidth',
           [classes.absolute]: absolute,
           [classes.light]: light,
+          [classes.vertical]: orientation === 'vertical',
         },
         className,
       )}
@@ -90,11 +96,15 @@ Divider.propTypes = {
    */
   light: PropTypes.bool,
   /**
+   * The divider orientation.
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
    * @ignore
    */
   role: PropTypes.string,
   /**
-   *  The variant to use.
+   * The variant to use.
    */
   variant: PropTypes.oneOf(['fullWidth', 'inset', 'middle']),
 };

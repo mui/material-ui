@@ -7,6 +7,7 @@ export interface InputLabelProps extends StandardProps<FormLabelProps, InputLabe
   disabled?: boolean;
   error?: boolean;
   focused?: boolean;
+  margin?: 'dense';
   required?: boolean;
   shrink?: boolean;
   variant?: 'standard' | 'outlined' | 'filled';

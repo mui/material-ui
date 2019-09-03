@@ -15,8 +15,8 @@ function mergeClasses(options = {}) {
       false,
       [
         `Material-UI: the value \`${newClasses}\` ` +
-          `provided to the classes property of ${getDisplayName(Component)} is incorrect.`,
-        'You might want to use the className property instead.',
+          `provided to the classes prop of ${getDisplayName(Component)} is incorrect.`,
+        'You might want to use the className prop instead.',
       ].join('\n'),
     );
 
@@ -28,7 +28,7 @@ function mergeClasses(options = {}) {
       baseClasses[key] || !newClasses[key],
       [
         `Material-UI: the key \`${key}\` ` +
-          `provided to the classes property is not implemented in ${getDisplayName(Component)}.`,
+          `provided to the classes prop is not implemented in ${getDisplayName(Component)}.`,
         `You can only override one of the following: ${Object.keys(baseClasses).join(',')}.`,
       ].join('\n'),
     );
@@ -37,7 +37,7 @@ function mergeClasses(options = {}) {
       !newClasses[key] || typeof newClasses[key] === 'string',
       [
         `Material-UI: the key \`${key}\` ` +
-          `provided to the classes property is not valid for ${getDisplayName(Component)}.`,
+          `provided to the classes prop is not valid for ${getDisplayName(Component)}.`,
         `You need to provide a non empty string instead of: ${newClasses[key]}.`,
       ].join('\n'),
     );

@@ -73,6 +73,10 @@ Here is an example of customizing the component. You can learn more about this i
 
 👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/tabs).
 
+## Vertical tabs
+
+{{"demo": "pages/components/tabs/VerticalTabs.js"}}
+
 ## Nav Tabs
 
 By default tabs use a `button` element, but you can provide your own custom tag or component. Here's an example of implementing tabbed navigation:

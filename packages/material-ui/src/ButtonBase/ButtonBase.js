@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import clsx from 'clsx';
-import { elementTypeAcceptingRef } from '@material-ui/utils';
+import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import { useForkRef } from '../utils/reactHelpers';
 import useEventCallback from '../utils/useEventCallback';
 import withStyles from '../styles/withStyles';
@@ -21,7 +21,7 @@ export const styles = {
     WebkitTapHighlightColor: 'transparent',
     backgroundColor: 'transparent', // Reset default value
     // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 'none',
+    outline: 0,
     border: 0,
     margin: 0, // Remove the margin in Safari
     borderRadius: 0,
@@ -288,7 +288,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       {children}
       {!disableRipple && !disabled ? (
         <NoSsr>
-          {/* TouchRipple is only needed client side, x2 boost on the server. */}
+          {/* TouchRipple is only needed client-side, x2 boost on the server. */}
           <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
         </NoSsr>
       ) : null}
@@ -301,12 +301,12 @@ ButtonBase.propTypes = {
    * A ref for imperative actions.
    * It currently only supports `focusVisible()` action.
    */
-  action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  action: refType,
   /**
-   * Use that property to pass a ref callback to the native button component.
+   * Use that prop to pass a ref to the native button component.
    * @deprecated Use `ref` instead
    */
-  buttonRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  buttonRef: refType,
   /**
    * If `true`, the ripples will be centered.
    * They won't start at the cursor interaction position.
@@ -351,7 +351,7 @@ ButtonBase.propTypes = {
    */
   focusRipple: PropTypes.bool,
   /**
-   * This property can help a person know which element has the keyboard focus.
+   * This prop can help a person know which element has the keyboard focus.
    * The class name will be applied when the element gain the focus through a keyboard interaction.
    * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
    * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
@@ -421,12 +421,12 @@ ButtonBase.propTypes = {
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * Properties applied to the `TouchRipple` element.
+   * Props applied to the `TouchRipple` element.
    */
   TouchRippleProps: PropTypes.object,
   /**
    * Used to control the button's purpose.
-   * This property passes the value to the `type` attribute of the native button component.
+   * This prop passes the value to the `type` attribute of the native button component.
    */
   type: PropTypes.oneOf(['submit', 'reset', 'button']),
 };

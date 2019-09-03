@@ -64,6 +64,14 @@ function renderInput(inputProps) {
   );
 }
 
+renderInput.propTypes = {
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object.isRequired,
+  InputProps: PropTypes.object,
+};
+
 function renderSuggestion(suggestionProps) {
   const { suggestion, index, itemProps, highlightedIndex, selectedItem } = suggestionProps;
   const isHighlighted = highlightedIndex === index;
@@ -83,12 +91,15 @@ function renderSuggestion(suggestionProps) {
     </MenuItem>
   );
 }
+
 renderSuggestion.propTypes = {
-  highlightedIndex: PropTypes.number,
-  index: PropTypes.number,
-  itemProps: PropTypes.object,
-  selectedItem: PropTypes.string,
-  suggestion: PropTypes.shape({ label: PropTypes.string }).isRequired,
+  highlightedIndex: PropTypes.oneOfType([PropTypes.oneOf([null]), PropTypes.number]).isRequired,
+  index: PropTypes.number.isRequired,
+  itemProps: PropTypes.object.isRequired,
+  selectedItem: PropTypes.string.isRequired,
+  suggestion: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 function getSuggestions(value, { showEmpty = false } = {}) {

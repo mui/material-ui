@@ -90,12 +90,22 @@ const styles = theme => ({
 });
 
 const PremiumThemesLink = React.forwardRef((props, ref) => {
-  return <Link href="https://themes.material-ui.com/" naked ref={ref} {...props} />;
+  return (
+    <Link
+      data-ga-event-category="premium-themes"
+      data-ga-event-action="click"
+      data-ga-event-label="home-link"
+      href="https://themes.material-ui.com/"
+      naked
+      ref={ref}
+      {...props}
+    />
+  );
 });
 
 function HomeSteps(props) {
   const { classes } = props;
-  const { t } = useSelector(state => ({ t: state.options.t }));
+  const t = useSelector(state => state.options.t);
   const theme = useTheme();
 
   return (
@@ -183,7 +193,13 @@ function HomeSteps(props) {
           <Typography variant="subtitle1" component="div" gutterBottom>
             {t('themesDescr')}
           </Typography>
-          <Link href="https://themes.material-ui.com/" className={classes.link}>
+          <Link
+            href="https://themes.material-ui.com/"
+            data-ga-event-category="premium-themes"
+            data-ga-event-action="click"
+            data-ga-event-label="home-image"
+            className={classes.link}
+          >
             <NoSsr>
               <img
                 className={classes.img}

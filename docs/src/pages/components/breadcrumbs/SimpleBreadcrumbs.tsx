@@ -28,7 +28,7 @@ export default function SimpleBreadcrumbs() {
   return (
     <div className={classes.root}>
       <Paper elevation={0} className={classes.paper}>
-        <Breadcrumbs aria-label="Breadcrumb">
+        <Breadcrumbs aria-label="breadcrumb">
           <Link color="inherit" href="/" onClick={handleClick}>
             Material-UI
           </Link>
@@ -40,7 +40,7 @@ export default function SimpleBreadcrumbs() {
       </Paper>
       <br />
       <Paper elevation={0} className={classes.paper}>
-        <Breadcrumbs aria-label="Breadcrumb">
+        <Breadcrumbs aria-label="breadcrumb">
           <Link color="inherit" href="/" onClick={handleClick}>
             Material-UI
           </Link>

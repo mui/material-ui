@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import formControlState from '../FormControl/formControlState';
-import withFormControlContext from '../FormControl/withFormControlContext';
+import useFormControl from '../FormControl/useFormControl';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -50,11 +50,11 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
     error,
     filled,
     focused,
-    muiFormControl,
     required,
     ...other
   } = props;
 
+  const muiFormControl = useFormControl();
   const fcs = formControlState({
     props,
     muiFormControl,
@@ -83,7 +83,6 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
           className={clsx(classes.asterisk, {
             [classes.error]: fcs.error,
           })}
-          data-mui-test="FormLabelAsterisk"
         >
           &thinsp;{'*'}
         </span>
@@ -128,13 +127,9 @@ FormLabel.propTypes = {
    */
   focused: PropTypes.bool,
   /**
-   * @ignore
-   */
-  muiFormControl: PropTypes.object,
-  /**
    * If `true`, the label will indicate that the input is required.
    */
   required: PropTypes.bool,
 };
 
-export default withStyles(styles, { name: 'MuiFormLabel' })(withFormControlContext(FormLabel));
+export default withStyles(styles, { name: 'MuiFormLabel' })(FormLabel);

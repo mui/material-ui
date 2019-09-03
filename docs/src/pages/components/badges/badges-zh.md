@@ -9,7 +9,7 @@ components: Badge
 
 ## 简单的徽章
 
-下面是一些含有文本的徽章的示例，他们使用了主要和次要颜色。 徽章会被应用于其子项组件上。
+这个示例是个包含了文本的徽章，同时使用了主色和副色。 徽章会对其子元素生效。
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
@@ -21,7 +21,7 @@ components: Badge
 
 ## 圆点徽章
 
-`dot` 属性将徽章更改为圆形。您可以将此用于通知系统，来展示一些不计数的内容变化。
+`dot` 属性会使得徽章渲染为一个小点。 这可以用作通知，或在没有计数的情况下，提示某些内容发生了变化。
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
@@ -29,12 +29,12 @@ components: Badge
 
 徽章的可见性是可以通过 `invisible` 属性来控制。
 
-带有 badgeContent 属性的徽章会在计数为0的时候自动隐藏。您可以使用 `showZero` 属性强制显示。
+带badgeContent的徽章自动隐藏为零尺寸。 您可以使用 `showZero` 属性覆盖它。
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
 ## 自定义徽章
 
-以下是自定义组件的一个示例。您可以在[重写文档页面](/customization/components/)中了解有关此内容的更多信息。
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}

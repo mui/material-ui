@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { fade, withStyles, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
@@ -10,8 +9,8 @@ import PopperJs from 'popper.js';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: 300 + 24 * 2,
-      padding: 24,
+      width: 300 + theme.spacing(3) * 2,
+      padding: theme.spacing(3),
     },
     margin: {
       height: theme.spacing(3),
@@ -49,12 +48,6 @@ function ValueLabelComponent(props: Props) {
     </Tooltip>
   );
 }
-
-ValueLabelComponent.propTypes = {
-  children: PropTypes.element.isRequired,
-  open: PropTypes.bool.isRequired,
-  value: PropTypes.number.isRequired,
-};
 
 const iOSBoxShadow =
   '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
@@ -209,22 +202,22 @@ export default function CustomizedSlider() {
   return (
     <Paper className={classes.root}>
       <Typography gutterBottom>iOS</Typography>
-      <IOSSlider aria-label="iOS slider" defaultValue={60} marks={marks} valueLabelDisplay="on" />
+      <IOSSlider aria-label="ios slider" defaultValue={60} marks={marks} valueLabelDisplay="on" />
       <div className={classes.margin} />
       <Typography gutterBottom>pretto.fr</Typography>
-      <PrettoSlider valueLabelDisplay="auto" aria-label="Pretto slider" defaultValue={20} />
+      <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={20} />
       <div className={classes.margin} />
       <Typography gutterBottom>Tooltip value label</Typography>
       <Slider
         ValueLabelComponent={ValueLabelComponent}
-        aria-label="Custom thumb label"
+        aria-label="custom thumb label"
         defaultValue={20}
       />
       <div className={classes.margin} />
       <Typography gutterBottom>Airbnb</Typography>
       <AirbnbSlider
         ThumbComponent={AirbnbThumbComponent}
-        aria-label="Airbnb slider"
+        aria-label="airbnb slider"
         defaultValue={[20, 40]}
       />
     </Paper>

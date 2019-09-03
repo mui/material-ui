@@ -7,14 +7,14 @@ components: Modal
 
 <p class="description">O componente modal fornece uma base sólida para criar diálogos, popovers, lightboxes ou qualquer outra coisa.</p>
 
-O componente torna seus nós `children` na frente de um componente de plano de fundo. O `Modal` oferece recursos importantes:
+O componente renderiza o conteúdo de seu `children` sobre um componente backdrop. O `Modal` oferece recursos importantes:
 
-- 
-- 
-- 
+- 💄 Manages modal stacking when one-at-a-time just isn't enough.
+- 🔐 Creates a backdrop, for disabling interaction below the modal.
+- 🔐 It disables scrolling of the page content while open.
 - ♿️ Gerencia adequadamente o foco; movendo para o conteúdo modal, e mantendo-o lá até que o modal seja fechado.
 - ♿️ Adiciona as funções ARIA apropriadas automaticamente.
-- 
+- 📦 [5 kB gzipado](/size-snapshot).
 
 > **Nota sobre a terminologia**. O termo "modal" algumas vezes é usado com o sentido de "diálogo", mas isto é um equívoco. Uma janela Modal descreve partes de uma UI. Um elemento é considerado modal se [ele bloqueia interações com o resto da aplicação](https://en.wikipedia.org/wiki/Modal_window).
 
@@ -29,38 +29,57 @@ Se você está criando um diálogo Modal, você provavelmente quer usar o compon
 
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
+Você pode desativar o contorno (muitas vezes azul ou ouro) com a propriedade CSS `outline: 0`.
+
+## Transições
+
+The open/close state of the modal can be animated with a transition component. This component should respect the following conditions:
+
+- Be a direct child descendent of the modal.
+- Have an `in` prop. This corresponds to the open / close state.
+- Call the `onEnter` callback prop when the enter transition starts.
+- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
+
+Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
+
+{{"demo": "pages/components/modal/TransitionsModal.js"}}
+
+Alternatively, you can use [react-spring](https://github.com/react-spring/react-spring).
+
+{{"demo": "pages/components/modal/SpringModal.js"}}
+
 ## Performance
 
-O conteúdo dos modais são **montados lentamente** dentro do DOM. Isso garante que, mesmo tendo muitos modais fechados em sua árvore React, o carregamento da sua página não será afetado.
+The content of the modal is **lazily mounted** into the DOM. It ensures that having many closed modals in your React tree won't slow down your page.
 
-Porém, criar elementos React tem um preço também. Considere o caso a seguir:
+However, creating React elements has a cost too. Consider the following case:
 
 ```jsx
 <Modal open={false}>
-  <Table>
-    <TableHead>
-      <TableRow>
-        <TableCell>Dessert (100g serving)</TableCell>
-        <TableCell align="right">Calories</TableCell>
-        <TableCell align="right">Fat&nbsp;(g)</TableCell>
-      </TableRow>
-    </TableHead>
-    <TableBody>
+  <table>
+    <thead>
+      <tr>
+        <td>Dessert (100g serving)</td>
+        <td>Calories</td>
+        <td>Fat (g)</td>
+      </tr>
+    </thead>
+    <tbody>
       {rows.map(row => (
-        <TableRow key={row.id}>
-          <TableCell component="th" scope="row">
+        <tr key={row.id}>
+          <th scope="row">
             {row.name}
-          </TableCell>
-          <TableCell align="right">{row.calories}</TableCell>
-          <TableCell align="right">{row.fat}</TableCell>
-        </TableRow>
+          </th>
+          <td>{row.calories}</td>
+          <td>{row.fat}</TableCell>
+        </tr>
       ))}
-    </TableBody>
-  </Table>
+    </tbody>
+  </table>
 </Modal>
 ```
 
-We create a lot of React elements that will never be mounted. It's wasteful 
+We create a lot of React elements that will never be mounted. It's wasteful 🐢. You can **speed up** the rendering by moving the modal body into its own component.
 
 ```jsx
 <Modal open={false}>
@@ -68,24 +87,30 @@ We create a lot of React elements that will never be mounted. It's wasteful
 </Modal>
 ```
 
-Desta forma, você tem a vantagem do [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). A renderização do `TableComponent` só irá ocorrer quando a janela modal for aberta.
+This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). The `TableComponent` render method will only be evaluated when opening the modal.
 
 ## Acessibilidade
 
-- Certifique-se de adicionar `aria-labelledby="id..."`, referenciando o título modal, ao `Modal`. Adicionalmente, você pode dar uma descrição do seu modal com a propriedade `aria-describedby = "id..."` no `Modal`.
+- Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
 
 ```jsx
 <Modal
-  aria-labelledby="simple-modal-title"
-  aria-describedby="simple-modal-description"
+  aria-labelledby="modal-titulo"
+  aria-describedby="modal-descricao"
 >
-  <Typography variant="h6" id="modal-title">
-    Meu título
-  </Typography>
-  <Typography variant="subtitle1" id="simple-modal-description">
-    Minha descrição
-  </Typography>
+  <h2 id="modal-titulo">
+    Meu Título
+  </h2>
+  <p id="modal-descricao">
+    Minha Descrição
+  </p>
 </Modal>
 ```
 
-- O [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) pode ajudá-lo a definir o foco inicial no elemento mais relevante, com base no seu conteúdo modal.
+- The [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
+
+## Server-side modal
+
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to see the modal, you need to disable the portal feature with the `disablePortal` prop:
+
+{{"demo": "pages/components/modal/ServerModal.js"}}

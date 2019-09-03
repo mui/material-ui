@@ -5,7 +5,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     alt?: string;
     childrenClassName?: string;
-    imgProps?: React.HtmlHTMLAttributes<HTMLImageElement>;
+    imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
     sizes?: string;
     src?: string;
     srcSet?: string;

@@ -25,7 +25,7 @@ export default function RadioButtonsGroup() {
   const classes = useStyles();
   const [value, setValue] = React.useState('female');
 
-  function handleChange(event: React.ChangeEvent<unknown>) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setValue((event.target as HTMLInputElement).value);
   }
 
@@ -34,7 +34,7 @@ export default function RadioButtonsGroup() {
       <FormControl component="fieldset" className={classes.formControl}>
         <FormLabel component="legend">Gender</FormLabel>
         <RadioGroup
-          aria-label="Gender"
+          aria-label="gender"
           name="gender1"
           className={classes.group}
           value={value}

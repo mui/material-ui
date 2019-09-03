@@ -27,7 +27,7 @@ const CardMedia = React.forwardRef(function CardMedia(props, ref) {
 
   warning(
     'children' in other || Boolean(image || src),
-    'Material-UI: either `children`, `image` or `src` property must be specified.',
+    'Material-UI: either `children`, `image` or `src` prop must be specified.',
   );
 
   const isMediaComponent = MEDIA_COMPONENTS.indexOf(Component) !== -1;

@@ -7,6 +7,7 @@ import MenuList from '../MenuList';
 import warning from 'warning';
 import ReactDOM from 'react-dom';
 import { setRef } from '../utils/reactHelpers';
+import useTheme from '../styles/useTheme';
 
 const RTL_ORIGIN = {
   vertical: 'top',
@@ -31,7 +32,7 @@ export const styles = {
   /* Styles applied to the `List` component via `MenuList`. */
   list: {
     // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 'none',
+    outline: 0,
   },
 };
 
@@ -47,11 +48,11 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     open,
     PaperProps = {},
     PopoverClasses,
-    theme,
     transitionDuration = 'auto',
     variant = 'selectedMenu',
     ...other
   } = props;
+  const theme = useTheme();
 
   const autoFocus = (autoFocusProp !== undefined ? autoFocusProp : !disableAutoFocusItem) && open;
 
@@ -61,13 +62,13 @@ const Menu = React.forwardRef(function Menu(props, ref) {
 
   const getContentAnchorEl = () => firstSelectedItemRef.current || firstValidItemRef.current;
 
-  const handleEntering = element => {
+  const handleEntering = (element, isAppearing) => {
     if (menuListActionsRef.current) {
       menuListActionsRef.current.adjustStyleForScrollbar(element, theme);
     }
 
     if (onEntering) {
-      onEntering(element);
+      onEntering(element, isAppearing);
     }
   };
 
@@ -192,14 +193,14 @@ Menu.propTypes = {
    */
   disableAutoFocusItem: PropTypes.bool,
   /**
-   * Properties applied to the [`MenuList`](/api/menu-list/) element.
+   * Props applied to the [`MenuList`](/api/menu-list/) element.
    */
   MenuListProps: PropTypes.object,
   /**
    * Callback fired when the component requests to be closed.
    *
-   * @param {object} event The event source of the callback
-   * @param {string} reason Can be:`"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`
+   * @param {object} event The event source of the callback.
+   * @param {string} reason Can be:`"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`.
    */
   onClose: PropTypes.func,
   /**
@@ -235,13 +236,9 @@ Menu.propTypes = {
    */
   PaperProps: PropTypes.object,
   /**
-   * `classes` property applied to the [`Popover`](/api/popover/) element.
+   * `classes` prop applied to the [`Popover`](/api/popover/) element.
    */
   PopoverClasses: PropTypes.object,
-  /**
-   * @ignore
-   */
-  theme: PropTypes.object.isRequired,
   /**
    * The length of the transition in `ms`, or 'auto'
    */
@@ -257,4 +254,4 @@ Menu.propTypes = {
   variant: PropTypes.oneOf(['menu', 'selectedMenu']),
 };
 
-export default withStyles(styles, { name: 'MuiMenu', withTheme: true })(Menu);
+export default withStyles(styles, { name: 'MuiMenu' })(Menu);

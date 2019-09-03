@@ -58,7 +58,7 @@ The ButtonGroup component can be used to group outlined (the default) or contain
 
 ## Split Button
 
-ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be use to immediately trigger a related action.
+ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
 
 {{"demo": "pages/components/buttons/SplitButton.js"}}
 
@@ -131,7 +131,9 @@ However for certain focus polyfills `ButtonBase` requires the DOM node of the pr
 component. This is achieved by attaching a ref to the component and expecting that the
 component forwards this ref to the underlying DOM node.
 Given that a lot of our interactive components rely on `ButtonBase`, you should be
-able to take advantage of it everywhere:
+able to take advantage of it everywhere.
+
+Here is an integration example with react-router:
 
 {{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 

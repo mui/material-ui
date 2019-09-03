@@ -7,7 +7,7 @@ components: TextField, Paper, MenuItem, Popper
 
 <p class="description">Автодополнение - это обычный ввод текста, дополненный панелью предлагаемых опций.</p>
 
-Material-UI не предоставляет высокоуровневый API для решения этой проблемы. Мы призываем людей полагаться на решения, разработанные сообществом React.
+Material-UI doesn't provide any high-level API for solving this problem. We encourage people relying on the solutions the React community has built.
 
 ## downshift
 
@@ -15,7 +15,7 @@ Material-UI не предоставляет высокоуровневый API �
 
 В следующем примере мы демонстрируем как использовать библиотеку [downshift](https://github.com/downshift-js/downshift).
 
-The last demo allow to clear the input and show a number of options on focus.
+The last demo allows the user to clear the input and show a number of options on focus.
 
 {{"demo": "pages/components/autocomplete/IntegrationDownshift.js"}}
 

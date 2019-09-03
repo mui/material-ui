@@ -1,4 +1,4 @@
-# Interfaz de usuario adaptable
+# Responsive UI
 
 <p class="description">Material Design layouts encourage consistency across platforms, environments, and screen sizes by using uniform elements and spacing.</p>
 
