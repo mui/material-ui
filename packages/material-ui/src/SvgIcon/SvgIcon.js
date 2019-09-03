@@ -91,6 +91,10 @@ const SvgIcon = React.forwardRef(function SvgIcon(props, ref) {
 });
 
 SvgIcon.propTypes = {
+  // |----------------------------- Warning -------------------------------|
+  // | These PropTypes were generated from the TypeScript type definitions |
+  // | To update the PropTypes edit the d.ts file and run "yarn proptypes" |
+  // |----------------------------- Warning -------------------------------|
   /**
    * Node passed into the SVG element.
    */
