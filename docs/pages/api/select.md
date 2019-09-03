@@ -31,6 +31,7 @@ You can learn more about the difference by [reading our guide](/guides/minimizin
 | <span class="prop-name">IconComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">ArrowDropDownIcon</span> | The icon that displays the arrow. |
 | <span class="prop-name">input</span> | <span class="prop-type">element</span> | <span class="prop-default">&lt;Input /></span> | An `Input` element; does not have to be a material-ui specific `Input`. |
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object</span> |  | [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. When `native` is `true`, the attributes are applied on the `select` element. |
+| <span class="prop-name">labelWidth</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | The label width to be used on OutlinedInput This prop is required when the `variant` prop is `outlined` |
 | <span class="prop-name">MenuProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Menu`](/api/menu/) element. |
 | <span class="prop-name">multiple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If true, `value` must be an array and the menu will support multiple selections. |
 | <span class="prop-name">native</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the component will be using a native `select` element. |
@@ -41,7 +42,7 @@ You can learn more about the difference by [reading our guide](/guides/minimizin
 | <span class="prop-name">renderValue</span> | <span class="prop-type">func</span> |  | Render the selected value. You can only use it when the `native` prop is `false` (default).<br><br>**Signature:**<br>`function(value: any) => ReactElement`<br>*value:* The `value` provided to the component. |
 | <span class="prop-name">SelectDisplayProps</span> | <span class="prop-type">object</span> |  | Props applied to the clickable div element. |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The input value. This prop is required when the `native` prop is `false` (default). |
-| <span class="prop-name">variant</span> | <span class="prop-type">'standard'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'filled'</span> |  | The variant to use. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'standard'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'filled'</span> | <span class="prop-default">'standart'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
 
