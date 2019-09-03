@@ -291,12 +291,12 @@ SpeedDial.propTypes = {
   /**
    * SpeedDialActions to display when the SpeedDial is `open`.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -304,7 +304,7 @@ SpeedDial.propTypes = {
   /**
    * The direction the actions open relative to the floating action button.
    */
-  direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
+  direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
   /**
    * If `true`, the SpeedDial will be hidden.
    */
@@ -313,14 +313,13 @@ SpeedDial.propTypes = {
    * The icon to display in the SpeedDial Floating Action Button. The `SpeedDialIcon` component
    * provides a default Icon with animation.
    */
-  icon: PropTypes.element.isRequired,
+  icon: PropTypes.node,
   /**
    * @ignore
    */
   onClick: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.
-   *
    * @param {object} event The event source of the callback.
    * @param {string} key The key pressed.
    */
@@ -347,7 +346,11 @@ SpeedDial.propTypes = {
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
   ]),
   /**
    * Props applied to the `Transition` element.
