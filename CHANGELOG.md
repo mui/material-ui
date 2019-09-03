@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.5](https://github.com/merceyz/typescript-to-proptypes/compare/v1.2.4...v1.2.5) (2019-09-03)
+
+### Bug Fixes
+
+- **parser:** use doctrine to unwrap comments ([53a9d43](https://github.com/merceyz/typescript-to-proptypes/commit/53a9d43))
+
+### Tests
+
+- add missing test config ([d00c7f2](https://github.com/merceyz/typescript-to-proptypes/commit/d00c7f2))
+
 ### [1.2.4](https://github.com/merceyz/typescript-to-proptypes/compare/v1.2.3...v1.2.4) (2019-08-16)
 
 ### Bug Fixes
