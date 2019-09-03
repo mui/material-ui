@@ -279,10 +279,10 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
 });
 
 SpeedDial.propTypes = {
-  // |----------------------------- Warning -------------------------------|
-  // | These PropTypes were generated from the TypeScript type definitions |
-  // | To update the PropTypes edit the d.ts file and run "yarn proptypes" |
-  // |----------------------------- Warning -------------------------------|
+  // |---------------------------- Warning -------------------------------|
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |---------------------------- Warning -------------------------------|
   /**
    * The aria-label of the `Button` element.
    * Also used to provide the `id` for the `SpeedDial` element and its children.

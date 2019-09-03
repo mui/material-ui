@@ -66,10 +66,10 @@ const SpeedDialIcon = React.forwardRef(function SpeedDialIcon(props, ref) {
 });
 
 SpeedDialIcon.propTypes = {
-  // |----------------------------- Warning -------------------------------|
-  // | These PropTypes were generated from the TypeScript type definitions |
-  // | To update the PropTypes edit the d.ts file and run "yarn proptypes" |
-  // |----------------------------- Warning -------------------------------|
+  // |---------------------------- Warning -------------------------------|
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |---------------------------- Warning -------------------------------|
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
