@@ -23,6 +23,7 @@
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
     "@types/babel__core": "^7.1.2",
+    "@types/doctrine": "^0.0.3",
     "@types/jest": "^24.0.15",
     "@types/lodash": "^4.14.136",
     "@types/node": "^12.6.2",
@@ -41,6 +42,7 @@
     "@babel/plugin-syntax-class-properties": "^7.2.0",
     "@babel/plugin-syntax-jsx": "^7.2.0",
     "@babel/types": "^7.5.0",
+    "doctrine": "^3.0.0",
     "lodash": "^4.17.14",
     "typescript": "3.5.2",
     "uuid": "^3.3.2"

@@ -1,5 +1,6 @@
 import * as ts from 'typescript';
 import * as t from './types';
+import * as doctrine from 'doctrine';
 
 /**
  * Options that specify how the parser should act
@@ -441,19 +442,7 @@ export function parseFromProgram(
       if (comments && comments.length === 1) {
         const commentNode = comments[0];
         if (ts.isJSDoc(commentNode)) {
-          let commentText = commentNode.comment ? commentNode.comment : '';
-          if (commentNode.tags) {
-            const tags = commentNode.tags
-              .map(tag =>
-                tag
-                  .getText()
-                  .replace(/\* *$/, '')
-                  .trim(),
-              )
-              .reduce((prev, curr) => `${prev}\n${curr}`);
-            commentText = commentText ? `${commentText}\n${tags}` : tags;
-          }
-          return commentText;
+          return doctrine.unwrapComment(commentNode.getText()).trim();
         }
       }
     }
