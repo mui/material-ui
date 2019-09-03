@@ -2,9 +2,12 @@ import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as ttp from 'typescript-to-proptypes';
 import * as prettier from 'prettier';
-import * as glob from 'glob';
+import * as globCallback from 'glob';
+import { promisify } from 'util';
 import * as _ from 'lodash';
-import { fixBabelGeneratorIssues, fixLineEndings } from '../../../docs/scripts/helpers';
+import { fixBabelGeneratorIssues, fixLineEndings } from '../docs/scripts/helpers';
+
+const glob = promisify(globCallback);
 
 const ignoreCache = process.argv.includes('--disable-cache');
 const verbose = process.argv.includes('--verbose');
@@ -19,7 +22,7 @@ enum GenerateResult {
 const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
 
 const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
-  config: path.join(__dirname, '../../../prettier.config.js'),
+  config: path.join(__dirname, '../prettier.config.js'),
 });
 
 async function generateProptypes(
@@ -86,11 +89,20 @@ async function generateProptypes(
 async function run() {
   // Matches files where the folder and file both start with uppercase letters
   // Example: AppBar/AppBar.d.ts
-  const files = glob
-    .sync('+([A-Z])*/+([A-Z])*.d.ts', {
-      absolute: true,
-      cwd: path.resolve(__dirname, '../src'),
-    })
+
+  const allFiles = await Promise.all(
+    [
+      path.resolve(__dirname, '../packages/material-ui/src'),
+      path.resolve(__dirname, '../packages/material-ui-lab/src'),
+    ].map(folderPath =>
+      glob('+([A-Z])*/+([A-Z])*.d.ts', {
+        absolute: true,
+        cwd: folderPath,
+      }),
+    ),
+  );
+
+  const files = _.flatten(allFiles)
     // Filter out files where the directory name and filename doesn't match
     // Example: Modal/ModalManager.d.ts
     .filter(filePath => {
