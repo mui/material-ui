@@ -47,10 +47,10 @@ async function generateProptypes(
     component.types.forEach(prop => {
       if (prop.name === 'classes' && prop.jsDoc) {
         prop.jsDoc += '\nSee [CSS API](#css) below for more details.';
-      } else if (prop.name === 'className') {
-        prop.jsDoc = '@ignore';
       } else if (prop.name === 'children' && !prop.jsDoc) {
         prop.jsDoc = 'The content of the component.';
+      } else if (!prop.jsDoc) {
+        prop.jsDoc = '@ignore';
       }
     });
   });
