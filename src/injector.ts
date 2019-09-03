@@ -22,7 +22,7 @@ export type InjectOptions = {
    * @default includeUnusedProps ? true : data.usedProps.includes(`${data.prop.name}`)
    */
   shouldInclude?(data: { prop: t.PropTypeNode; usedProps: string[] }): boolean | undefined;
-} & Pick<GenerateOptions, 'sortProptypes' | 'includeJSDoc'>;
+} & Pick<GenerateOptions, 'sortProptypes' | 'includeJSDoc' | 'comment'>;
 
 /**
  * Injects the PropTypes from `parse` into the provided JavaScript code

@@ -25,6 +25,15 @@ export interface GenerateOptions {
    * @param proptype The current PropType about to be converted to text
    */
   shouldInclude?(proptype: t.PropTypeNode): boolean | undefined;
+
+  /**
+   * A comment that will be added to the start of the PropTypes code block
+   * @example
+   * foo.propTypes = {
+   *  // Comment goes here
+   * }
+   */
+  comment?: string;
 }
 
 /**
@@ -73,7 +82,14 @@ export function generate(node: t.Node | t.PropTypeNode[], options: GenerateOptio
   }
 
   if (t.isComponentNode(node)) {
-    return `${node.name}.propTypes = {\n${generate(node.types, options)}\n}`;
+    const comment =
+      options.comment &&
+      `// ${options.comment.split(/\r?\n/gm).reduce((prev, curr) => `${prev}\n// ${curr}`)}\n`;
+
+    return `${node.name}.propTypes = {\n${comment ? comment : ''}${generate(
+      node.types,
+      options,
+    )}\n}`;
   }
 
   if (t.isPropTypeNode(node)) {
