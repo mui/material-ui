@@ -1,9 +1,9 @@
 import * as React from 'react';
 import ButtonBase from '../ButtonBase/ButtonBase';
-import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-declare const Tabs: OverridableComponent<{
-  props: {
+export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof ButtonBase> {
+  props: P & {
     action?: React.Ref<TabsActions>;
     centered?: boolean;
     children?: React.ReactNode;
@@ -18,9 +18,11 @@ declare const Tabs: OverridableComponent<{
     variant?: 'standard' | 'scrollable' | 'fullWidth';
     width?: string;
   };
-  defaultComponent: typeof ButtonBase;
+  defaultComponent: D;
   classKey: TabsClassKey;
-}>;
+}
+
+declare const Tabs: OverridableComponent<TabsTypeMap>;
 
 export type TabsClassKey =
   | 'root'
@@ -37,6 +39,9 @@ export interface TabsActions {
   updateIndicator(): void;
 }
 
-export type TabsProps = SimplifiedPropsOf<typeof Tabs>;
+export type TabsProps<
+  D extends React.ElementType = TabsTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<TabsTypeMap<P, D>, D>;
 
 export default Tabs;

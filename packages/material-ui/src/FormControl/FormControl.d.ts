@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { PropTypes } from '..';
-import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-declare const FormControl: OverridableComponent<{
-  props: {
+export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & {
     disabled?: boolean;
     error?: boolean;
     fullWidth?: boolean;
@@ -14,12 +14,17 @@ declare const FormControl: OverridableComponent<{
     required?: boolean;
     variant?: 'standard' | 'outlined' | 'filled';
   };
-  defaultComponent: 'div';
+  defaultComponent: D;
   classKey: FormControlClassKey;
-}>;
+}
+
+declare const FormControl: OverridableComponent<FormControlTypeMap>;
 
 export type FormControlClassKey = 'root' | 'marginNormal' | 'marginDense' | 'fullWidth';
 
-export type FormControlProps = SimplifiedPropsOf<typeof FormControl>;
+export type FormControlProps<
+  D extends React.ElementType = FormControlTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<FormControlTypeMap<P, D>, D>;
 
 export default FormControl;

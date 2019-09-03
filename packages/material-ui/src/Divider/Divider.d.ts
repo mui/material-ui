@@ -1,18 +1,23 @@
-import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-declare const Divider: OverridableComponent<{
-  props: {
+export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
+  props: P & {
     absolute?: boolean;
     light?: boolean;
     orientation?: 'horizontal' | 'vertical';
     variant?: 'fullWidth' | 'inset' | 'middle';
   };
-  defaultComponent: 'hr';
+  defaultComponent: D;
   classKey: DividerClassKey;
-}>;
+}
+
+declare const Divider: OverridableComponent<DividerTypeMap>;
 
 export type DividerClassKey = 'root' | 'absolute' | 'inset' | 'light' | 'middle' | 'vertical';
 
-export type DividerProps = SimplifiedPropsOf<typeof Divider>;
+export type DividerProps<
+  D extends React.ElementType = DividerTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<DividerTypeMap<P, D>, D>;
 
 export default Divider;

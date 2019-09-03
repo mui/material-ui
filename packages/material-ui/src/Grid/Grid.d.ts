@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Breakpoint } from '../styles/createBreakpoints';
-import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
+import { OverridableComponent, SimplifiedPropsOf, OverrideProps } from '../OverridableComponent';
+import { SkeletonTypeMap } from '@material-ui/lab/Skeleton';
 
 export type GridItemsAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
 
@@ -27,8 +28,6 @@ export type GridJustification =
 export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
 export type GridSize = 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-
-export type GridProps = SimplifiedPropsOf<typeof Grid>;
 
 export type GridClassKey =
   | 'root'
@@ -77,39 +76,28 @@ export type GridClassKey =
   | 'grid-xs-11'
   | 'grid-xs-12';
 
-declare const Grid: OverridableComponent<{
-  props: Partial<Record<Breakpoint, boolean | GridSize>> & {
-    alignContent?: GridContentAlignment;
-    alignItems?: GridItemsAlignment;
-    container?: boolean;
-    direction?: GridDirection;
-    item?: boolean;
-    justify?: GridJustification;
-    spacing?: GridSpacing;
-    wrap?: GridWrap;
-    zeroMinWidth?: boolean;
-  };
-  defaultComponent: 'div';
+export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P &
+    Partial<Record<Breakpoint, boolean | GridSize>> & {
+      alignContent?: GridContentAlignment;
+      alignItems?: GridItemsAlignment;
+      container?: boolean;
+      direction?: GridDirection;
+      item?: boolean;
+      justify?: GridJustification;
+      spacing?: GridSpacing;
+      wrap?: GridWrap;
+      zeroMinWidth?: boolean;
+    };
+  defaultComponent: D;
   classKey: GridClassKey;
-}>;
+}
+
+declare const Grid: OverridableComponent<GridTypeMap>;
+
+export type GridProps<
+  D extends React.ElementType = GridTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<GridTypeMap<P, D>, D>;
 
 export default Grid;
-
-type StrippedProps =
-  | 'classes'
-  | 'className'
-  | 'component'
-  | 'container'
-  | 'item'
-  | 'alignContent'
-  | 'alignItems'
-  | 'direction'
-  | 'spacing'
-  | 'hidden'
-  | 'justify'
-  | 'wrap'
-  | 'xs'
-  | 'sm'
-  | 'md'
-  | 'lg'
-  | 'xl';

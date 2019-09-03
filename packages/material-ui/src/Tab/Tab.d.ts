@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { ExtendButtonBase } from '../ButtonBase';
-import { SimplifiedPropsOf } from '../OverridableComponent';
+import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { OverrideProps } from '../OverridableComponent';
 
-declare const Tab: ExtendButtonBase<{
-  props: {
+export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButtonBaseTypeMap<{
+  props: P & {
     disableFocusRipple?: boolean;
     fullWidth?: boolean;
     icon?: string | React.ReactElement;
@@ -16,9 +16,11 @@ declare const Tab: ExtendButtonBase<{
     value?: any;
     wrapped?: boolean;
   };
-  defaultComponent: 'div';
+  defaultComponent: D;
   classKey: TabClassKey;
 }>;
+
+declare const Tab: ExtendButtonBase<TabTypeMap>;
 
 export type TabClassKey =
   | 'root'
@@ -32,6 +34,9 @@ export type TabClassKey =
   | 'wrapped'
   | 'wrapper';
 
-export type TabProps = SimplifiedPropsOf<typeof Tab>;
+export type TabProps<
+  D extends React.ElementType = TabTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<TabTypeMap<P, D>, D>;
 
 export default Tab;

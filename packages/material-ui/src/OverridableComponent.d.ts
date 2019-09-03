@@ -55,6 +55,13 @@ export interface OverridableTypeMap {
   classKey: string;
 }
 
+/**
+ * @deprecated Not used in this library.
+ */
 export type Simplify<T> = T extends any ? { [K in keyof T]: T[K] } : never;
 
+/**
+ * @deprecated Not used in this library.
+ */
+// tslint:disable-next-line: deprecation
 export type SimplifiedPropsOf<C extends React.ElementType> = Simplify<React.ComponentProps<C>>;

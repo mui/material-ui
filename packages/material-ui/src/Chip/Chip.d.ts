@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { PropTypes } from '..';
-import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-declare const Chip: OverridableComponent<{
-  props: {
+export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & {
     avatar?: React.ReactElement;
     clickable?: boolean;
     color?: PropTypes.Color;
@@ -14,9 +14,11 @@ declare const Chip: OverridableComponent<{
     size?: 'small' | 'medium';
     variant?: 'default' | 'outlined';
   };
-  defaultComponent: 'div';
+  defaultComponent: D;
   classKey: ChipClassKey;
-}>;
+}
+
+declare const Chip: OverridableComponent<ChipTypeMap>;
 
 export type ChipClassKey =
   | 'root'
@@ -50,6 +52,9 @@ export type ChipClassKey =
   | 'deleteIconOutlinedColorPrimary'
   | 'deleteIconOutlinedColorSecondary';
 
-export type ChipProps = SimplifiedPropsOf<typeof Chip>;
+export type ChipProps<
+  D extends React.ElementType = ChipTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<ChipTypeMap<P, D>, D>;
 
 export default Chip;

@@ -2,7 +2,10 @@ import { PropTypes } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 
-export type ButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBaseTypeMap<{
+export type ButtonTypeMap<
+  P = {},
+  D extends React.ElementType = 'button'
+> = ExtendButtonBaseTypeMap<{
   props: P & {
     color?: PropTypes.Color;
     disableFocusRipple?: boolean;
@@ -15,12 +18,12 @@ export type ButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBaseType
   classKey: ButtonClassKey;
 }>;
 
-declare const Button: ExtendButtonBase<ButtonTypeMap<{}, 'button'>>;
+declare const Button: ExtendButtonBase<ButtonTypeMap>;
 
-export type ButtonProps<D extends React.ElementType = 'button', P = {}> = OverrideProps<
-  ButtonTypeMap<P, D>,
-  D
->;
+export type ButtonProps<
+  D extends React.ElementType = ButtonTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<ButtonTypeMap<P, D>, D>;
 
 export type ButtonClassKey =
   | 'root'

@@ -1,18 +1,23 @@
 import * as React from 'react';
-import { ExtendButtonBase } from '../ButtonBase';
+import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { SvgIconProps } from '../SvgIcon';
-import { SimplifiedPropsOf } from '../OverridableComponent';
+import { OverrideProps } from '../OverridableComponent';
 
-declare const TableSortLabel: ExtendButtonBase<{
-  props: {
+export type TableSortLabelTypeMap<
+  P = {},
+  D extends React.ElementType = 'span'
+> = ExtendButtonBaseTypeMap<{
+  props: P & {
     active?: boolean;
     direction?: 'asc' | 'desc';
     hideSortIcon?: boolean;
     IconComponent?: React.ComponentType<SvgIconProps>;
   };
-  defaultComponent: 'span';
+  defaultComponent: D;
   classKey: TableSortLabelClassKey;
 }>;
+
+declare const TableSortLabel: ExtendButtonBase<TableSortLabelTypeMap>;
 
 export type TableSortLabelClassKey =
   | 'root'
@@ -21,6 +26,9 @@ export type TableSortLabelClassKey =
   | 'iconDirectionDesc'
   | 'iconDirectionAsc';
 
-export type TableSortLabelProps = SimplifiedPropsOf<typeof TableSortLabel>;
+export type TableSortLabelProps<
+  D extends React.ElementType = TableSortLabelTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<TableSortLabelTypeMap<P, D>, D>;
 
 export default TableSortLabel;
