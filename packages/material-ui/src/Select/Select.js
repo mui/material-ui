@@ -14,8 +14,6 @@ import OutlinedInput from '../OutlinedInput';
 
 export const styles = nativeSelectStyles;
 
-const defaultInput = <Input />;
-
 const Select = React.forwardRef(function Select(props, ref) {
   const {
     autoWidth = false,
@@ -23,7 +21,7 @@ const Select = React.forwardRef(function Select(props, ref) {
     classes,
     displayEmpty = false,
     IconComponent = ArrowDropDownIcon,
-    input = defaultInput,
+    input,
     inputProps,
     MenuProps,
     multiple = false,
@@ -33,7 +31,7 @@ const Select = React.forwardRef(function Select(props, ref) {
     open,
     renderValue,
     SelectDisplayProps,
-    variant = 'standart',
+    variant: variantProps = 'standard',
     labelWidth = 0,
     ...other
   } = props;
@@ -47,13 +45,15 @@ const Select = React.forwardRef(function Select(props, ref) {
     states: ['variant'],
   });
 
-  const variantComponent = {
-    standart: input,
-    outlined: <OutlinedInput labelWidth={labelWidth} />,
-    filled: <FilledInput />,
-  };
+  const variant = fcs.variant || variantProps;
 
-  const InputComponent = variantComponent[variant];
+  const InputComponent =
+    input ||
+    {
+      standard: <Input />,
+      outlined: <OutlinedInput labelWidth={labelWidth} />,
+      filled: <FilledInput />,
+    }[variant];
 
   return React.cloneElement(InputComponent, {
     // Most of the logic is implemented in `SelectInput`.
@@ -63,7 +63,7 @@ const Select = React.forwardRef(function Select(props, ref) {
     inputProps: {
       children,
       IconComponent,
-      variant: fcs.variant,
+      variant,
       type: undefined, // We render a select. We can ignore the type provided by the `Input`.
       multiple,
       ...(native
@@ -132,8 +132,8 @@ Select.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * The label width to be used on OutlinedInput
-   * This prop is required when the `variant` prop is `outlined`
+   * The label width to be used on OutlinedInput.
+   * This prop is required when the `variant` prop is `outlined`.
    */
   labelWidth: PropTypes.number,
   /**
