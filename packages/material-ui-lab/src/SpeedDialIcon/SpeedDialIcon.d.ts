@@ -12,8 +12,8 @@ export interface SpeedDialIconProps
    */
   openIcon?: React.ReactNode;
   /**
-   * If `true`, the SpeedDial is open.
    * @ignore
+   * If `true`, the SpeedDial is open.
    */
   open?: boolean;
 }

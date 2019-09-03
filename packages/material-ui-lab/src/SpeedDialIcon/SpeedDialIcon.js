@@ -76,8 +76,8 @@ SpeedDialIcon.propTypes = {
    */
   icon: PropTypes.node,
   /**
-   * If `true`, the SpeedDial is open.
    * @ignore
+   * If `true`, the SpeedDial is open.
    */
   open: PropTypes.bool,
   /**
