@@ -51,6 +51,7 @@ function useMediaQuery(queryInput, options = {}) {
   });
 
   React.useEffect(() => {
+    let ignore = false;
     hydrationCompleted = true;
 
     if (!supportMatchMedia) {
@@ -59,11 +60,14 @@ function useMediaQuery(queryInput, options = {}) {
 
     const queryList = window.matchMedia(query);
     const updateMatch = () => {
-      setMatch(queryList.matches);
+      if (!ignore) {
+        setMatch(queryList.matches);
+      }
     };
     updateMatch();
     queryList.addListener(updateMatch);
     return () => {
+      ignore = true;
       queryList.removeListener(updateMatch);
     };
   }, [query, supportMatchMedia]);
