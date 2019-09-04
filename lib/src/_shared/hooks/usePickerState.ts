@@ -92,7 +92,7 @@ export function usePickerState(props: BasePickerProps, options: StateHookOptions
 
   const validationError = validate(value, utils, props);
   useEffect(() => {
-    if (validationError && onError) {
+    if (onError) {
       onError(validationError, value);
     }
   }, [onError, validationError, value]);
