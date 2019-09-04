@@ -6,7 +6,7 @@ import { Packages } from './packages';
 /**
  * Holds the import name and location of everything found in the index file of each package
  */
-const importMaps: { [K: string]: MappedImportsType | undefined } = {};
+const importMaps: Record<string, MappedImportsType | undefined> = {};
 
 /**
  * Used to transform the specified root import to specific imports based on the exports found

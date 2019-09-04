@@ -10,7 +10,7 @@ export enum ImportType {
   Named,
 }
 
-export type MappedImportsType = { [K in string]: Array<{ name: string; type: ImportType }> };
+export type MappedImportsType = Record<string, Array<{ name: string; type: ImportType }>>;
 
 export default (packageName: string): MappedImportsType => {
   const pkgPath = require.resolve(`${packageName}/package.json`);
