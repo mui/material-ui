@@ -27,7 +27,7 @@ color and type weight.
 
 #### Keyboard Input
 
-It is recommended to use keyboard input with mask for better desktop experience. Make sure that mask will be automatically
+It is recommended to use keyboard input with mask for a better desktop experience. Make sure that mask will be automatically
 generated from passed `format`. It's recommended to use only robust formats for keyboard input.
 
 > Make sure that `onChange` have second parameter here. So if you will not do `onChange={date => handleDateChange(date)}` you will get console warning [useState hook dose not accept a second callback argument](https://github.com/facebook/react/issues/14174)
@@ -50,7 +50,7 @@ Thus you can easily create
 
 #### Static mode
 
-It is possible to render any picker inline. This will be really helpful to build cutom popover/modal containers.
+It is possible to render any picker inline. This will be really helpful to build custom popover/modal containers.
 For that use `variant="static"`.
 
 <Example paddingBottom source={StaticDatePicker} />
@@ -63,7 +63,7 @@ The displaying of dates is heavily cusomizable. Thus you can add badges or fully
 
 #### Dynamic data
 
-Sometimes it's required to displaying additional info right in calendar.
+Sometimes it's required to display additional info right in the calendar.
 For this just return `Promise` in `onMonthChange`.
 
 <Example source={ServerRequest} />
