@@ -39,7 +39,12 @@ async function run() {
     let newSynonyms = 'const synonyms = {\n';
     iconList.forEach(icon => {
       const synonymsIconStrings = synonyms[icon] ? synonyms[icon].split(' ') : [];
-      const materialIconStrings = materialIcons[icon] ? materialIcons[icon] : [];
+
+      // Some MD tags have multiple words in a string, so we separate those out to dedupe them
+      const materialIconStrings = materialIcons[icon]
+        ? materialIcons[icon].reduce((tags, tag) => tags.concat(tag.split(' ')), [])
+        : [];
+
       const mergedStrings = union(synonymsIconStrings, materialIconStrings).join(' ');
 
       if (mergedStrings !== '') {
