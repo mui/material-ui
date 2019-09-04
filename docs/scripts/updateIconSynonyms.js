@@ -31,7 +31,9 @@ async function run() {
     }, {});
 
     // Merge the icon names from both lists
-    const iconList = union(Object.keys(materialIcons), Object.keys(synonyms)).sort();
+    const iconList = union(Object.keys(materialIcons), Object.keys(synonyms)).sort(
+      (a, b) => -b.localeCompare(a),
+    );
 
     let newSynonyms = 'const synonyms = {\n';
     iconList.forEach(icon => {
