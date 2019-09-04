@@ -42,7 +42,7 @@ function downloadIcon(icon) {
       await fse.writeFile(
         path.join(
           __dirname,
-          `../material-io-resources-icons/ic_${icon.name}${themeFileMap[theme]}_24px.svg`,
+          `../material-icons/ic_${icon.name}${themeFileMap[theme]}_24px.svg`,
         ),
         SVG,
       );
@@ -56,7 +56,7 @@ async function run() {
       .usage('Download the SVG from material.io/resources/icons')
       .describe('start-after', 'Resume at the following index').argv;
     console.log('run', argv);
-    await fse.ensureDir(path.join(__dirname, '../material-io-resources-icons'));
+    await fse.ensureDir(path.join(__dirname, '../material-icons'));
     const response = await fetch('https://fonts.google.com/metadata/icons');
     const text = await response.text();
     const data = JSON.parse(text.replace(")]}'", ''));
