@@ -10,18 +10,10 @@ import retry from 'modules/waterfall/retry';
 
 const themeMap = {
   baseline: '', // filled
-  outline: 'outlined',
-  round: 'round',
-  twotone: 'twotone',
-  sharp: 'sharp',
-};
-
-const themeFileNameMap = {
-  baseline: '', // filled
-  outline: 'Outlined',
-  round: 'Rounded',
-  twotone: 'TwoTone',
-  sharp: 'Sharp',
+  outline: '_outlined',
+  round: '_round',
+  twotone: '_two_tone',
+  sharp: '_sharp',
 };
 
 function downloadIcon(icon) {
@@ -29,8 +21,9 @@ function downloadIcon(icon) {
 
   return Promise.all(
     Object.keys(themeMap).map(async theme => {
+      const formattedTheme = themeMap[theme].split('_').join('');
       const response = await fetch(
-        `https://fonts.gstatic.com/s/i/materialicons${themeMap[theme]}/${icon.name}/v${
+        `https://fonts.gstatic.com/s/i/materialicons${formattedTheme}/${icon.name}/v${
           icon.version
         }/24px.svg`,
       );
@@ -41,7 +34,7 @@ function downloadIcon(icon) {
       await fse.writeFile(
         path.join(
           __dirname,
-          `../material-io-tools-icons/ic_${icon.name}${themeFileNameMap[theme]}_24px.svg`,
+          `../material-io-tools-icons/ic_${icon.name}${themeMap[theme]}_24px.svg`,
         ),
         SVG,
       );
