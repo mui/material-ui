@@ -40,10 +40,7 @@ function downloadIcon(icon) {
       }
       const SVG = await response.text();
       await fse.writeFile(
-        path.join(
-          __dirname,
-          `../material-icons/ic_${icon.name}${themeFileMap[theme]}_24px.svg`,
-        ),
+        path.join(__dirname, `../material-icons/ic_${icon.name}${themeFileMap[theme]}_24px.svg`),
         SVG,
       );
     }),

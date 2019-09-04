@@ -171,7 +171,7 @@ async function worker({ svgPath, options, renameFilter, template }) {
     paths,
     componentName: getComponentName(destPath),
   });
-  
+
   const absDestPath = path.join(options.outputDir, destPath);
   await fse.writeFile(absDestPath, fileString);
 }
