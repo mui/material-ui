@@ -171,7 +171,7 @@ async function worker({ svgPath, options, renameFilter, template }) {
     paths,
     componentName: getComponentName(destPath),
   });
-
+  
   const absDestPath = path.join(options.outputDir, destPath);
   await fse.writeFile(absDestPath, fileString);
 }
@@ -226,6 +226,8 @@ export async function main(options) {
 
     queue.push(svgPaths);
     await queue.wait({ empty: true });
+
+    await fse.copy(path.join(__dirname, '/legacy'), options.outputDir);
 
     await generateIndex(options);
 
