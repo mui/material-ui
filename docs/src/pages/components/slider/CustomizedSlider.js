@@ -110,6 +110,7 @@ const IOSSlider = withStyles({
     marginTop: -3,
   },
   markActive: {
+    opacity: 1,
     backgroundColor: 'currentColor',
   },
 })(Slider);
@@ -215,7 +216,7 @@ export default function CustomizedSlider() {
       <Typography gutterBottom>Airbnb</Typography>
       <AirbnbSlider
         ThumbComponent={AirbnbThumbComponent}
-        aria-label="airbnb slider"
+        getAriaLabel={index => (index === 0 ? 'Minimum price' : 'Maximum price')}
         defaultValue={[20, 40]}
       />
     </Paper>
