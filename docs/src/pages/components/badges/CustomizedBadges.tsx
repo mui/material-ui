@@ -85,9 +85,9 @@ export default function CustomizedBadges() {
             vertical: 'bottom',
             horizontal: 'right',
           }}
-          badgeContent={<SmallAvatar src="/static/images/avatar/1.jpg" />}
+          badgeContent={<SmallAvatar alt="Stock avatar" src="/static/images/avatar/1.jpg" />}
         >
-          <Avatar src="/static/images/avatar/2.jpg" />
+          <Avatar alt="Stock avatar" src="/static/images/avatar/2.jpg" />
         </Badge>
       </Box>
     </Box>

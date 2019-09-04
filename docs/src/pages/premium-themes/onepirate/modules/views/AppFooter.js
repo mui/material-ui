@@ -6,6 +6,18 @@ import Container from '@material-ui/core/Container';
 import Typography from '../components/Typography';
 import TextField from '../components/TextField';
 
+function Copyright() {
+  return (
+    <React.Fragment>
+      {'© '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+    </React.Fragment>
+  );
+}
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -83,7 +95,9 @@ export default function AppFooter() {
                   <img src="/static/themes/onepirate/appFooterTwitter.png" alt="Twitter" />
                 </a>
               </Grid>
-              <Grid item>© 2018 Onepirate</Grid>
+              <Grid item>
+                <Copyright />
+              </Grid>
             </Grid>
           </Grid>
           <Grid item xs={6} sm={4} md={2}>

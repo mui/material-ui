@@ -8,7 +8,7 @@ const ACTION_TYPES = {
 };
 
 // Valid languages to server-side render in production
-const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de', 'ja', 'aa'];
+const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'es', 'fr', 'de', 'ja', 'aa'];
 
 // Server side rendered languages
 const LANGUAGES_SSR = ['en', 'zh', 'ru', 'pt', 'es'];
@@ -35,12 +35,12 @@ const LANGUAGES_LABEL = [
     text: '🇧🇷 Português',
   },
   {
-    code: 'fr',
-    text: '🇫🇷 Français',
-  },
-  {
     code: 'es',
     text: '🇪🇸 Español',
+  },
+  {
+    code: 'fr',
+    text: '🇫🇷 Français',
   },
   {
     code: 'de',
