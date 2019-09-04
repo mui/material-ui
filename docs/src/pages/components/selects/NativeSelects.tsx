@@ -1,8 +1,5 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
@@ -71,7 +68,10 @@ export default function NativeSelects() {
         <NativeSelect
           value={state.age}
           onChange={handleChange('age')}
-          input={<Input name="age" id="age-native-helper" />}
+          inputProps={{
+            name: 'age',
+            id: 'age-native-helper',
+          }}
         >
           <option value="" />
           <option value={10}>Ten</option>
@@ -102,7 +102,10 @@ export default function NativeSelects() {
         <NativeSelect
           value={state.age}
           onChange={handleChange('age')}
-          input={<Input name="age" id="age-native-label-placeholder" />}
+          inputProps={{
+            name: 'age',
+            id: 'age-native-label-placeholder',
+          }}
         >
           <option value="">None</option>
           <option value={10}>Ten</option>
@@ -116,7 +119,10 @@ export default function NativeSelects() {
         <NativeSelect
           value={state.name}
           onChange={handleChange('name')}
-          input={<Input name="name" id="name-native-disabled" />}
+          inputProps={{
+            name: 'name',
+            id: 'name-native-disabled',
+          }}
         >
           <option value="" />
           <optgroup label="Author">
@@ -135,7 +141,9 @@ export default function NativeSelects() {
           value={state.name}
           onChange={handleChange('name')}
           name="name"
-          input={<Input id="name-native-error" />}
+          inputProps={{
+            id: 'name-native-error',
+          }}
         >
           <option value="" />
           <optgroup label="Author">
@@ -150,7 +158,13 @@ export default function NativeSelects() {
       </FormControl>
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="uncontrolled-native">Name</InputLabel>
-        <NativeSelect defaultValue={30} input={<Input name="name" id="uncontrolled-native" />}>
+        <NativeSelect
+          defaultValue={30}
+          inputProps={{
+            name: 'name',
+            id: 'uncontrolled-native',
+          }}
+        >
           <option value="" />
           <option value={10}>Ten</option>
           <option value={20}>Twenty</option>
@@ -201,9 +215,11 @@ export default function NativeSelects() {
           native
           value={state.age}
           onChange={handleChange('age')}
-          input={
-            <OutlinedInput name="age" labelWidth={labelWidth} id="outlined-age-native-simple" />
-          }
+          labelWidth={labelWidth}
+          inputProps={{
+            name: 'age',
+            id: 'outlined-age-native-simple',
+          }}
         >
           <option value="" />
           <option value={10}>Ten</option>
@@ -217,7 +233,10 @@ export default function NativeSelects() {
           native
           value={state.age}
           onChange={handleChange('age')}
-          input={<FilledInput name="age" id="filled-age-native-simple" />}
+          inputProps={{
+            name: 'age',
+            id: 'filled-age-native-simple',
+          }}
         >
           <option value="" />
           <option value={10}>Ten</option>
