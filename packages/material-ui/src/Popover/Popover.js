@@ -380,12 +380,8 @@ const Popover = React.forwardRef(function Popover(props, ref) {
 
 Popover.propTypes = {
   /**
-   * This is callback prop. It's called by the component on mount.
-   * This is useful when you want to trigger an action programmatically.
+   * A ref for imperative actions.
    * It currently only supports updatePosition() action.
-   *
-   * @param {object} actions This object contains all possible actions
-   * that can be triggered programmatically.
    */
   action: refType,
   /**

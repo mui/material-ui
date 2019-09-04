@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { exactProp } from '@material-ui/utils';
+import { exactProp, refType } from '@material-ui/utils';
 import { setRef } from '../utils/reactHelpers';
 
 /**
@@ -71,10 +71,9 @@ RootRef.propTypes = {
    */
   children: PropTypes.element.isRequired,
   /**
-   * Provide a way to access the DOM node of the wrapped element.
-   * You can provide a callback ref or a `React.createRef()` ref.
+   * A ref that points to the first DOM node of the wrapped element.
    */
-  rootRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
+  rootRef: refType.isRequired,
 };
 
 if (process.env.NODE_ENV !== 'production') {

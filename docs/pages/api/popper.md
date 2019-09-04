@@ -33,7 +33,7 @@ Poppers rely on the 3rd party library [Popper.js](https://github.com/FezVrasta/p
 | <span class="prop-name required">open&nbsp;*</span> | <span class="prop-type">bool</span> |  | If `true`, the popper is visible. |
 | <span class="prop-name">placement</span> | <span class="prop-type">'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top'</span> | <span class="prop-default">'bottom'</span> | Popper placement. |
 | <span class="prop-name">popperOptions</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Options provided to the [`popper.js`](https://github.com/FezVrasta/popper.js) instance. |
-| <span class="prop-name">popperRef</span> | <span class="prop-type">func<br>&#124;&nbsp;object</span> |  | Callback fired when a new popper instance is used. |
+| <span class="prop-name">popperRef</span> | <span class="prop-type">ref</span> |  | A ref that points to the used popper instance. |
 | <span class="prop-name">transition</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Help supporting a react-transition-group/Transition component. |
 
 The `ref` is forwarded to the root element.
