@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Omit } from '@material-ui/core';
+import { Omit } from '../_helpers/utils';
 import { StaticWrapper } from './StaticWrapper';
 import { ModalWrapper, ModalWrapperProps } from './ModalWrapper';
 import { InlineWrapper, InlineWrapperProps } from './InlineWrapper';

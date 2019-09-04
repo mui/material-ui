@@ -6,3 +6,5 @@ export function arrayIncludes<T>(array: T[], itemOrItems: T | T[]) {
 
   return array.indexOf(itemOrItems) !== -1;
 }
+
+export type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;

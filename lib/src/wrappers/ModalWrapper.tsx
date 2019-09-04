@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import ModalDialog from '../_shared/ModalDialog';
-import { Omit } from '@material-ui/core';
 import { WrapperProps } from './Wrapper';
+import { Omit } from '../_helpers/utils';
 import { useKeyDown } from '../_shared/hooks/useKeyDown';
 import { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
 
