@@ -37,7 +37,7 @@ export default function createTypography(palette, typography) {
     `Material-UI: 'htmlFontSize' is required to be a number.`,
   );
 
-  const coef = fontSize / 14;
+  const coef = fontSize / htmlFontSize;
   const pxToRem = size => `${(size / htmlFontSize) * coef}rem`;
   const buildVariant = (fontWeight, size, lineHeight, letterSpacing, casing) => ({
     fontFamily,
