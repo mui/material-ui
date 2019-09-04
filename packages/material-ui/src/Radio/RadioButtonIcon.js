@@ -33,10 +33,10 @@ export const styles = theme => ({
  * @ignore - internal component.
  */
 function RadioButtonIcon(props) {
-  const { checked, classes, className, ...other } = props;
+  const { checked, classes } = props;
 
   return (
-    <div className={clsx(classes.root, { [classes.checked]: checked }, className)} {...other}>
+    <div className={clsx(classes.root, { [classes.checked]: checked })}>
       <RadioButtonUncheckedIcon />
       <RadioButtonCheckedIcon className={classes.layer} />
     </div>
@@ -53,10 +53,6 @@ RadioButtonIcon.propTypes = {
    * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
 };
 
 export default withStyles(styles, { name: 'PrivateRadioButtonIcon' })(RadioButtonIcon);
