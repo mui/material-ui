@@ -16,6 +16,14 @@ const themeMap = {
   sharp: '_sharp',
 };
 
+const themeFileMap = {
+  baseline: '', // filled
+  outline: '_outlined',
+  round: '_rounded',
+  twotone: '_two_tone',
+  sharp: '_sharp',
+};
+
 function downloadIcon(icon) {
   console.log(`downloadIcon ${icon.index}: ${icon.name}`);
 
@@ -34,7 +42,7 @@ function downloadIcon(icon) {
       await fse.writeFile(
         path.join(
           __dirname,
-          `../material-io-resources-icons/ic_${icon.name}${themeMap[theme]}_24px.svg`,
+          `../material-io-resources-icons/ic_${icon.name}${themeFileMap[theme]}_24px.svg`,
         ),
         SVG,
       );
