@@ -38,10 +38,6 @@
     "test:watch": "yarn test:unit --watch",
     "typescript": "lerna run typescript --parallel"
   },
-  "peerDependencies": {
-    "react": "*",
-    "react-dom": "*"
-  },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
