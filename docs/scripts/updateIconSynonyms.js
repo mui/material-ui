@@ -45,7 +45,11 @@ async function run() {
         ? materialIcons[icon].reduce((tags, tag) => tags.concat(tag.split(' ')), [])
         : [];
 
-      const mergedStrings = union(synonymsIconStrings, materialIconStrings).join(' ');
+      let mergedStrings = union(synonymsIconStrings, materialIconStrings);
+      // remove strings that are substrings of others
+      mergedStrings = mergedStrings
+        .filter(tag => !mergedStrings.some(one => one.includes(tag) && one !== tag))
+        .join(' ');
 
       if (mergedStrings !== '') {
         newSynonyms += `  ${icon}: '${mergedStrings}',\n`;
