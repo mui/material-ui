@@ -18,10 +18,9 @@ async function run() {
   try {
     const response = await fetch('https://fonts.google.com/metadata/icons');
     const text = await response.text();
-    const data = await JSON.parse(text.replace(")]}'", ''));
-    let materialIcons = data.icons;
+    const data = JSON.parse(text.replace(")]}'", ''));
 
-    const iconsReducer = (acc, icon) => {
+    const materialIcons = data.icons.reduce((acc, icon) => {
       // remove the icon name strings from the tags
       icon.tags = not(icon.tags, icon.name.replace('_'));
       // Fix the 3 exceptions
@@ -29,9 +28,7 @@ async function run() {
 
       acc[icon.name] = icon.tags;
       return acc;
-    };
-
-    materialIcons = materialIcons.reduce(iconsReducer, {});
+    }, {});
 
     // Merge the icon names from both lists
     const iconList = union(Object.keys(materialIcons), Object.keys(synonyms)).sort();
@@ -45,7 +42,7 @@ async function run() {
         ? materialIcons[icon].reduce((tags, tag) => tags.concat(tag.split(' ')), [])
         : [];
 
-      const mergedStrings = union(synonymsIconStrings, materialIconStrings).join(' ');
+      const mergedStrings = union(synonymsIconStrings, materialIconStrings).sort().join(' ');
 
       if (mergedStrings !== '') {
         newSynonyms += `  ${icon}: '${mergedStrings}',\n`;
