@@ -262,6 +262,6 @@ function MyComponent(props) {
 export default withWidth()(MyComponent);
 ```
 
-## The default values
+## Default values
 
-You can explore all the default values of the breakpoints using our [explorer](/customization/default-theme/?expend-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).
+You can explore the default values of the breakpoints using [the theme explorer](/customization/default-theme/?expend-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).

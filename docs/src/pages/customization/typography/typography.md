@@ -27,7 +27,7 @@ const theme = createMuiTheme({
 });
 ```
 
-### Self-host fonts
+### Self-hosted fonts
 
 To self-host fonts, download the font files in `ttf`, `woff`, and/or `woff2` formats and import them into your code.
 
@@ -52,8 +52,8 @@ const raleway = {
 };
 ```
 
-Then, you need to change the theme to use this new font.
-In order to globally define Raleway as a font face the [`CssBaseline`](/components/css-baseline/) component can be used (or any other CSS solution of your choice).
+Next, you need to change the theme to use this new font.
+In order to globally define Raleway as a font face, the [`CssBaseline`](/components/css-baseline/) component can be used (or any other CSS solution of your choice).
 
 ```js
 const theme = createMuiTheme({
@@ -198,6 +198,6 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/typography/TypographyVariants.js"}}
 
-## The default values
+## Default values
 
-You can explore all the default values of the typography using our [explorer](/customization/default-theme/?expend-path=$.typography) or by opening the dev tools console on this page (`window.theme.typography`).
+You can explore the default values of the typography using [the theme explorer](/customization/default-theme/?expend-path=$.typography) or by opening the dev tools console on this page (`window.theme.typography`).
