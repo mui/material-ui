@@ -15,7 +15,7 @@ export const styles = theme => ({
     // To remove at some point.
     overflow: 'hidden',
     flexShrink: 0,
-    verticalAlign: '-0.125em',
+    verticalAlign: 'bottom',
   },
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {

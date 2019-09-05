@@ -17,7 +17,7 @@ export const styles = theme => ({
     transition: theme.transitions.create('fill', {
       duration: theme.transitions.duration.shorter,
     }),
-    verticalAlign: '-0.125em',
+    verticalAlign: 'bottom',
   },
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
