@@ -26,6 +26,7 @@ function Copyright() {
     </Typography>
   );
 }
+
 const useStyles = makeStyles(theme => ({
   icon: {
     marginRight: theme.spacing(2),
