@@ -3,9 +3,24 @@ import { createMuiTheme, createStyles, withStyles, WithStyles } from '@material-
 import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
+import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 import Navigator from './Navigator';
 import Content from './Content';
 import Header from './Header';
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 
 let theme = createMuiTheme({
   palette: {
@@ -130,14 +145,18 @@ const styles = createStyles({
       flexShrink: 0,
     },
   },
-  appContent: {
+  app: {
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
   },
-  mainContent: {
+  main: {
     flex: 1,
-    padding: '48px 36px 0',
+    padding: theme.spacing(6, 4),
+    background: '#eaeff1',
+  },
+  footer: {
+    padding: theme.spacing(2),
     background: '#eaeff1',
   },
 });
@@ -169,11 +188,14 @@ function Paperbase(props: PaperbaseProps) {
             <Navigator PaperProps={{ style: { width: drawerWidth } }} />
           </Hidden>
         </nav>
-        <div className={classes.appContent}>
+        <div className={classes.app}>
           <Header onDrawerToggle={handleDrawerToggle} />
-          <main className={classes.mainContent}>
+          <main className={classes.main}>
             <Content />
           </main>
+          <footer className={classes.footer}>
+            <Copyright />
+          </footer>
         </div>
       </div>
     </ThemeProvider>
