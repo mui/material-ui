@@ -15,6 +15,13 @@ export const styles = theme => ({
     width: 'auto',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
+    // Fix IE 11 issue (minHeight conflict)
+    '&:after': {
+      display: 'block',
+      content: '""',
+      fontSize: 0,
+      minHeight: 'inherit',
+    },
   },
   /* Styles applied to the root element if `disableGutters={false}`. */
   gutters: {
