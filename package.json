@@ -39,10 +39,6 @@
     "test:watch": "yarn test:unit --watch",
     "typescript": "lerna run typescript --parallel"
   },
-  "peerDependencies": {
-    "react": "*",
-    "react-dom": "*"
-  },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
@@ -74,7 +70,6 @@
     "babel-plugin-istanbul": "^5.2.0",
     "babel-plugin-module-resolver": "^3.0.0",
     "babel-plugin-optimize-clsx": "^2.3.0",
-    "babel-plugin-preval": "^2.0.0",
     "babel-plugin-react-remove-properties": "^0.3.0",
     "babel-plugin-tester": "^7.0.1",
     "babel-plugin-transform-dev-warning": "^0.1.0",
@@ -133,6 +128,7 @@
     "tslint": "5.14.0",
     "typescript": "3.2.4",
     "vrtest": "^0.2.0",
+    "warning": "^4.0.3",
     "webpack": "^4.39.3",
     "webpack-bundle-analyzer": "^3.0.0",
     "webpack-cli": "^3.3.7",
