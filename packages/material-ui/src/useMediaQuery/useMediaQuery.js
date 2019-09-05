@@ -51,7 +51,7 @@ function useMediaQuery(queryInput, options = {}) {
   });
 
   React.useEffect(() => {
-    let ignore = false;
+    let active = true;
     hydrationCompleted = true;
 
     if (!supportMatchMedia) {
@@ -60,14 +60,17 @@ function useMediaQuery(queryInput, options = {}) {
 
     const queryList = window.matchMedia(query);
     const updateMatch = () => {
-      if (!ignore) {
+      // Workaround Safari wrong implementation of matchMedia
+      // TODO can we remove it?
+      // https://github.com/mui-org/material-ui/pull/17315#issuecomment-528286677
+      if (active) {
         setMatch(queryList.matches);
       }
     };
     updateMatch();
     queryList.addListener(updateMatch);
     return () => {
-      ignore = true;
+      active = false;
       queryList.removeListener(updateMatch);
     };
   }, [query, supportMatchMedia]);
