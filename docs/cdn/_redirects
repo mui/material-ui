@@ -42,7 +42,7 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 /layout/breakpoints/ /customization/breakpoints/ 301
 /layout/css-in-js/ /styles/basics/ 301
 /layout/* /components/:splat 301
-/page-layout-examples/* /getting-started/page-layout-examples/:splat 301
+/page-layout-examples/* /getting-started/templates/:splat 301
 /style/color/ /customization/color/ 301
 /style/reboot/ /components/css-baseline/ 301
 /style/typography https://v3.material-ui.com/style/typography/#migration-to-typography-v2 301
