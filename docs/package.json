@@ -30,6 +30,7 @@
     "@material-ui/pickers": "^3.2.1",
     "@material-ui/styles": "^4.1.2",
     "@material-ui/system": "^4.3.0",
+    "@material-ui/types": "^4.1.1",
     "@trendmicro/react-interpolate": "^0.5.5",
     "@types/autosuggest-highlight": "^3.1.0",
     "@types/json2mq": "^0.2.0",
