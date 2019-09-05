@@ -8,24 +8,13 @@ export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     ...theme.typography.subtitle1,
-    minHeight: 48,
+    height: 48,
     paddingTop: 4,
     paddingBottom: 4,
     boxSizing: 'border-box',
     width: 'auto',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
-    // Fix IE 11 issue (minHeight conflict)
-    '&:after': {
-      display: 'block',
-      content: '""',
-      fontSize: 0,
-      minHeight: 48 - 8,
-      // IE doesn't support flex so omit that.
-      '@supports (position: sticky)': {
-        content: 'none',
-      },
-    },
   },
   /* Styles applied to the root element if `disableGutters={false}`. */
   gutters: {
@@ -36,7 +25,7 @@ export const styles = theme => ({
   selected: {},
   /* Styles applied to the root element if dense. */
   dense: {
-    minHeight: 'auto',
+    height: 'auto',
   },
 });
 
