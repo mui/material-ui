@@ -39,7 +39,7 @@ They support many different use cases (editable, filtering, grouping, sorting, s
 
 ### Carousel
 
-- [material-auto-rotating-carousel](https://mui.wertarbyte.com/#material-auto-rotating-carousel): So you wrote a great app and deployed it and everything. But how do you introduce new users to your app?
+- [material-auto-rotating-carousel](https://mui.wertarbyte.com/#material-auto-rotating-carousel): Introduce new users to your app.
 
 ### Image
 
