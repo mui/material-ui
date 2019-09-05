@@ -11,7 +11,7 @@ Here are some highlights ✨:
 - 🏝 Add standalone ToggleButton mode (#17187) @simshaun
 - And many more 🐛 bug fixes 📚 improvements.
 
-### `@material-ui/core@v4.3.4`
+### `@material-ui/core@v4.4.0`
 
 - [Backdrop] Render children inside div (#17115) @dominictwlee
 - [Button] Fix typo in demo text (#17230) @jasonkylefrank
