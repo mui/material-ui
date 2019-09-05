@@ -94,6 +94,7 @@ async function generateIndex(options) {
 const noises = [
   ['<path fill="none" d="M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z" />', ''],
   ['<path fill="none" d="M0 0h24v24H0V0zm0 0h24v24H0V0z" />', ''],
+  ['<path fill="none" d="M0 0h24v24H0V0z" />', ''],
   ['<path fill="none" d="M0 0h24v24H0z" />', ''],
   ['="M0 0h24v24H0V0zm0 0h24v24H0V0z', '="'],
   ['="M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z', '="'],
@@ -225,6 +226,8 @@ export async function main(options) {
 
     queue.push(svgPaths);
     await queue.wait({ empty: true });
+
+    await fse.copy(path.join(__dirname, '/legacy'), options.outputDir);
 
     await generateIndex(options);
 
