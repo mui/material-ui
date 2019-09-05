@@ -20,7 +20,11 @@ export const styles = theme => ({
       display: 'block',
       content: '""',
       fontSize: 0,
-      minHeight: 'inherit',
+      minHeight: 48 - 8,
+      // IE doesn't support flex so omit that.
+      '@supports (position: sticky)': {
+        content: 'none',
+      },
     },
   },
   /* Styles applied to the root element if `disableGutters={false}`. */
