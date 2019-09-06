@@ -126,10 +126,10 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
 });
 
 SpeedDialAction.propTypes = {
-  // |---------------------------- Warning -------------------------------|
+  // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // |---------------------------- Warning -------------------------------|
+  // ----------------------------------------------------------------------
   /**
    * Props applied to the [`Button`](/api/button/) component.
    */

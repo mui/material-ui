@@ -60,10 +60,10 @@ async function generateProptypes(
   const result = ttp.inject(proptypes, jsContent, {
     removeExistingPropTypes: true,
     comment: [
-      '|---------------------------- Warning -------------------------------|',
+      '----------------------------- Warning --------------------------------',
       '| These PropTypes are generated from the TypeScript type definitions |',
       '|     To update them edit the d.ts file and run "yarn proptypes"     |',
-      '|---------------------------- Warning -------------------------------|',
+      '----------------------------------------------------------------------',
     ].join('\n'),
     shouldInclude: ({ prop }) => {
       if (prop.name === 'children') {
