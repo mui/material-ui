@@ -34,8 +34,6 @@ export interface ToggleButtonGroupProps
    * values when `exclusive` is false.
    */
   value?: any;
-
-  selected?: boolean;
 }
 
 export type ToggleButtonGroupClassKey =
