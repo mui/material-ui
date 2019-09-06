@@ -76,3 +76,11 @@ For more advanced use cases you might be able to take advantage of:
 There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
 
 {{"demo": "pages/components/menus/MenuPopupState.js"}}
+
+### MenuItem with react-router-dom's Link
+
+In case you are in need of using this component in conjuction with [react-router-dom](https://www.npmjs.com/package/react-router-dom) the following approach needs to be used: 
+
+```js
+<MenuItem component={Link} to="/profile">Profile</MenuItem>
+```
