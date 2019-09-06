@@ -42,7 +42,7 @@ export default function createGenerateClassName(options = {}) {
       ].join(''),
     );
 
-    const name = styleSheet.options.name;
+    const name = styleSheet.options.globalName;
 
     // Is a global static MUI style?
     if (name && name.indexOf('Mui') === 0 && !styleSheet.options.link && !disableGlobal) {
@@ -53,9 +53,9 @@ export default function createGenerateClassName(options = {}) {
 
       const prefix = `${seedPrefix}${name}-${rule.key}`;
 
-      if (!styleSheet.options.theme[nested] || seed !== '') {
-        return prefix;
-      }
+      // if (!styleSheet.options.theme[nested] || seed !== '') {
+      //   return prefix;
+      // }
 
       return `${prefix}-${ruleCounter}`;
     }

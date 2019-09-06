@@ -9,17 +9,16 @@ class ServerStyleSheets {
   }
 
   collect(children) {
-    // This is needed in order to deduplicate the injection of CSS in the page.
-    const sheetsManager = new Map();
     // This is needed in order to inject the critical CSS.
     this.sheetsRegistry = new SheetsRegistry();
     // A new class name generator
     const generateClassName = createGenerateClassName();
 
+    this.sheetsRegistry.foo = 'foo';
+
     return (
       <StylesProvider
-        sheetsManager={sheetsManager}
-        serverGenerateClassName={generateClassName}
+        generateClassName={generateClassName}
         sheetsRegistry={this.sheetsRegistry}
         {...this.options}
       >
@@ -29,7 +28,9 @@ class ServerStyleSheets {
   }
 
   toString() {
-    return this.sheetsRegistry ? this.sheetsRegistry.toString() : '';
+    return this.sheetsRegistry
+      ? this.sheetsRegistry.registry.map(sheet => sheet.toString()).join('\n')
+      : '';
   }
 
   getStyleElement(props) {
