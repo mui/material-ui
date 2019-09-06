@@ -79,8 +79,8 @@ describe('<TextareaAutosize />', () => {
       it('should handle the resize event', () => {
         const wrapper = mount(<TextareaAutosize />);
         assert.deepEqual(getStyle(wrapper), {
-          height: undefined,
-          overflow: null,
+          height: 0,
+          overflow: 'hidden',
         });
         setLayout(wrapper, {
           getComputedStyle: {
@@ -102,7 +102,7 @@ describe('<TextareaAutosize />', () => {
     it('should update when uncontrolled', () => {
       const handleChange = spy();
       const wrapper = mount(<TextareaAutosize onChange={handleChange} />);
-      assert.deepEqual(getStyle(wrapper), { height: undefined, overflow: null });
+      assert.deepEqual(getStyle(wrapper), { height: 0, overflow: 'hidden' });
       setLayout(wrapper, {
         getComputedStyle: {
           'box-sizing': 'content-box',
@@ -122,7 +122,7 @@ describe('<TextareaAutosize />', () => {
     it('should take the border into account with border-box', () => {
       const border = 5;
       const wrapper = mount(<TextareaAutosize />);
-      assert.deepEqual(getStyle(wrapper), { height: undefined, overflow: null });
+      assert.deepEqual(getStyle(wrapper), { height: 0, overflow: 'hidden' });
       setLayout(wrapper, {
         getComputedStyle: {
           'box-sizing': 'border-box',
@@ -170,6 +170,22 @@ describe('<TextareaAutosize />', () => {
 
     it('should have at max "rowsMax" rows', () => {
       const rowsMax = 3;
+      const lineHeight = 15;
+      const wrapper = mount(<TextareaAutosize rowsMax={rowsMax} />);
+      setLayout(wrapper, {
+        getComputedStyle: {
+          'box-sizing': 'content-box',
+        },
+        scrollHeight: 100,
+        lineHeight,
+      });
+      wrapper.setProps();
+      wrapper.update();
+      assert.deepEqual(getStyle(wrapper), { height: lineHeight * rowsMax, overflow: null });
+    });
+
+    it('should show scrollbar when passing "rowsMax"', () => {
+      const rowsMax = 5;
       const lineHeight = 15;
       const wrapper = mount(<TextareaAutosize rowsMax={rowsMax} />);
       setLayout(wrapper, {
