@@ -16,7 +16,7 @@ import RootRef from '@material-ui/core/RootRef';
 import { RootRef } from '@material-ui/core';
 ```
 
-You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
 ⚠️⚠️⚠️
 If you want the DOM element of a Material-UI component check out

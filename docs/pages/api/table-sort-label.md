@@ -16,7 +16,7 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import { TableSortLabel } from '@material-ui/core';
 ```
 
-You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
 A button based label for placing inside `TableCell` for column sorting.
 

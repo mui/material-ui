@@ -16,7 +16,7 @@ import ListItem from '@material-ui/core/ListItem';
 import { ListItem } from '@material-ui/core';
 ```
 
-You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
 Uses an additional container component if `ListItemSecondaryAction` is the last child.
 

@@ -16,7 +16,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import { ListItemIcon } from '@material-ui/core';
 ```
 
-You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
 A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
 

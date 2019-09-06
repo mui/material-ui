@@ -16,7 +16,7 @@ import FormControl from '@material-ui/core/FormControl';
 import { FormControl } from '@material-ui/core';
 ```
 
-You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
 Provides context such as filled/focused/error/required for form inputs.
 Relying on the context provides high flexibility and ensures that the state always stays

@@ -16,7 +16,7 @@ import Modal from '@material-ui/core/Modal';
 import { Modal } from '@material-ui/core';
 ```
 
-You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
 Modal is a lower-level construct that is leveraged by the following components:
 

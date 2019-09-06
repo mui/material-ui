@@ -16,7 +16,7 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import { ClickAwayListener } from '@material-ui/core';
 ```
 
-You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
 Listen for click events that occur somewhere in the document, outside of the element itself.
 For instance, if you need to hide a menu when people click anywhere else on your page.

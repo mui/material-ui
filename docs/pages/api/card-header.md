@@ -16,7 +16,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import { CardHeader } from '@material-ui/core';
 ```
 
-You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
 
 

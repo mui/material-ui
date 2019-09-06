@@ -16,7 +16,7 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import { ButtonBase } from '@material-ui/core';
 ```
 
-You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
 `ButtonBase` contains as few styles as possible.
 It aims to be a simple building block for creating a button.
