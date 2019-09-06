@@ -9,7 +9,7 @@ export interface ToggleButtonGroupProps
     'onChange' | 'children'
   > {
   /**
-   * The content of the button
+   * The content of the button.
    */
   children?: React.ReactNode;
   /**
