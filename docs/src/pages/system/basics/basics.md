@@ -110,7 +110,7 @@ To make the Box component more useful, we have been building a collection of sty
 - [spacing](/system/spacing/#api)
 - [typography](/system/typography/#api)
 
-If you are already using `@material-ui/core`, you can use our [prepackaged Box](/components/box/) component (using JSS internally):
+If you are already using `@material-ui/core`, you can use the [Box component](/components/box/) (using JSS internally):
 
 ```jsx
 import Box from '@material-ui/core/Box';
@@ -194,7 +194,7 @@ const theme = {
 
 ### Collocation
 
-If you want to group the breakpoint values, you can use our `breakpoints()` helper.
+If you want to group the breakpoint values, you can use the `breakpoints()` helper.
 
 ```jsx
 import { compose, spacing, palette, breakpoints } from '@material-ui/system';
@@ -323,7 +323,7 @@ In this example, the `variant` property supports all the keys present in `theme.
 
 ## CSS property
 
-If you want to support custom CSS values, you can use our `css()` helper.
+If you want to support custom CSS values, you can use the `css()` helper.
 It will process the `css` property.
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}

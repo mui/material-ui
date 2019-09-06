@@ -38,7 +38,7 @@ It's interesting to have the building blocks needed to implement custom icons, b
 
 #### Usage
 
-You can use our [internal search](/components/material-icons/) or [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) to find a specific icon.
+You can use the [internal search](/components/material-icons/) or [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) to find a specific icon.
 When importing an icon, keep in mind that the names of the icons are `PascalCase`, for instance:
 
 - [`delete`](https://material.io/tools/icons/?icon=delete&style=baseline) is exposed as `@material-ui/icons/Delete`
@@ -77,7 +77,7 @@ You can import the icons with one of these two options:
   ```
 
 The safest is option 1 but option 2 can yield the best experience.
-Make sure you follow our [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
+Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
 We encourage the configuration of a Babel plugin.
 
 ### More SVG icons

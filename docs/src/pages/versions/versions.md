@@ -67,7 +67,7 @@ To make these transitions as easy as possible, we make two commitments to you:
 - We work hard to minimize the number of breaking changes and to provide migration tools when possible.
 - We follow the deprecation policy described here, so you have time to update your apps to the latest APIs and best practices.
 
-To help ensure that you have sufficient time and a clear path to update, this is our deprecation policy:
+To help ensure that you have sufficient time and a clear path to update, this is the deprecation policy:
 - We announce deprecated features in the changelog, and when possible, with warnings at runtime.
 - When we announce a deprecation, we also announce a recommended update path.
 - We support existing use of a stable API during the deprecation period, so your code will keep working during that period.

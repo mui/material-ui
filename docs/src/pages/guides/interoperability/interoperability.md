@@ -91,7 +91,7 @@ export default function GlobalCssButton() {
 ![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star)
 ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
 
-The `styled()` method works perfectly on all of our components.
+The `styled()` method works perfectly on all of the components.
 
 ```jsx
 import React from 'react';
@@ -340,7 +340,7 @@ It works exactly like styled components. You can [use the same guide](/guides/in
 ![npm](https://img.shields.io/npm/dm/react-jss.svg?)
 
 Material-UI's styling solution shares many building blocks with [react-jss](https://github.com/cssinjs/react-jss).
-We went ahead and forked the project in order to handle our unique needs, but we're working to merge the changes and fixes from Material-UI back to react-jss.
+We went ahead and forked the project in order to handle Material-UI's unique needs, but we're working to merge the changes and fixes from Material-UI back to react-jss.
 
 ```jsx
 import React from 'react';

@@ -4,7 +4,7 @@
 
 Because the scope of problems Material-UI solves is limited, we try to play nicely with
 other libraries.
-Feel free to submit a pull request to add more projects; we will accept them if they match our criteria.
+Feel free to submit a pull request to add more projects; we will accept them if they match the criteria.
 
 ## Design resources
 

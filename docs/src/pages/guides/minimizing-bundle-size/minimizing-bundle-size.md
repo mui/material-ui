@@ -43,7 +43,7 @@ import TextField from '@material-ui/core/TextField';
 ```
 
 This is the option we document in **all** the demos because it requires no configuration.
-We encourage it for library authors extending our components.
+We encourage it for library authors extending the components.
 Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
 
 While importing directly in this manner doesn't use the exports in [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public.
@@ -184,7 +184,7 @@ If you are using Create React App, you will need to use a couple of projects tha
 
 #### 2. Convert all your imports
 
-Finally, you can convert your exisiting codebase to this option with our [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) codemod.
+Finally, you can convert your exisiting codebase to this option with this [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) codemod.
 It will perform the following diffs:
 
 ```diff

@@ -6,7 +6,7 @@
 
 In order to provide the maximum flexibility and performance,
 we need a way to know the nature of the child elements a component receives.
-To solve this problem we tag some of our components when needed
+To solve this problem we tag some of the components when needed
 with a `muiName` static property.
 
 You may, however, need to wrap a component in order to enhance it,
@@ -76,7 +76,7 @@ const ListItemLink = ({ icon, primary, secondary, to }) => (
 ⚠️ However, since we are using an inline function to change the rendered component, React will unmount the link every time `ListItemLink` is rendered. Not only will React update the DOM unnecessarily, the ripple effect of the `ListItem` will also not work correctly.
 
 The solution is simple: **avoid inline functions and pass a static component to the `component` property** instead.
-Let's change our `ListItemLink` to the following:
+Let's change the `ListItemLink` to the following:
 
 ```jsx
 import { Link as RouterLink } from 'react-router-dom';

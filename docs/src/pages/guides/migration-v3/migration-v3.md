@@ -186,7 +186,7 @@ function MySelect({ children }) {
 }
 ```
 
-This change is explained in more detail in our [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
+This change is explained in more detail in the [TypeScript guide](/guides/typescript/#handling-value-and-event-handlers)
 
 ### Button
 
@@ -427,7 +427,7 @@ You should be able to move the custom styles to the `root` class key.
   ```
 - [Typography] Change the default variant from `body2` to `body1`.
   A font size of 16px is a better default than 14px.
-  Bootstrap, material.io, and even our documentation use 16px as a default font size.
+  Bootstrap, material.io, and even the documentation use 16px as a default font size.
   14px like Ant Design uses is understandable, as Chinese users have a different alphabet.
   We recommend 12px as the default font size for Japanese.
 - [Typography] Remove the default color from the typography variants.
