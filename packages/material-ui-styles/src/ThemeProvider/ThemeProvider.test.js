@@ -99,6 +99,11 @@ describe('ThemeProvider', () => {
   });
 
   it('does not allow setting mui.nested manually', () => {
+    if (typeof Symbol === 'undefined') {
+      // skip in IE11
+      return;
+    }
+
     const useStyles = makeStyles({ root: {} }, { name: 'MuiTest' });
     function Component(props) {
       const classes = useStyles();
