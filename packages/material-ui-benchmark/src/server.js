@@ -54,7 +54,6 @@ function renderPricing(req, res) {
     <StylesProvider
       sheetsRegistry={sheetsRegistry}
       generateClassName={createGenerateClassName()}
-      sheetsManager={new Map()}
     >
       <ThemeProvider theme={theme}>
         <Pricing />
@@ -71,7 +70,6 @@ function renderBox(req, res) {
     <StylesProvider
       sheetsRegistry={sheetsRegistry}
       generateClassName={createGenerateClassName()}
-      sheetsManager={new Map()}
     >
       <ThemeProvider theme={theme}>
         {Array.from(new Array(1000)).map((_, index) => (
@@ -90,7 +88,6 @@ function renderAvatar(req, res) {
     <StylesProvider
       sheetsRegistry={sheetsRegistry}
       generateClassName={createGenerateClassName()}
-      sheetsManager={new Map()}
     >
       {Array.from(new Array(1)).map((_, index) => (
         <Avatar key={String(index)}>Avatar</Avatar>
@@ -107,7 +104,6 @@ function renderStyledFunction(req, res) {
     <StylesProvider
       sheetsRegistry={sheetsRegistry}
       generateClassName={createGenerateClassName()}
-      sheetsManager={new Map()}
     >
       {Array.from(new Array(1000)).map((_, index) => (
         <StyledFunction key={String(index)} />
