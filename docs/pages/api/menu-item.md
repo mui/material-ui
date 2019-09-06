@@ -54,6 +54,12 @@ You can override the style of the component thanks to one of these customization
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/MenuItem/MenuItem.js) for more detail.
 
+In case you are in need of using this component in conjuction with [react-router-dom](https://www.npmjs.com/package/react-router-dom) the following approach needs to be used: 
+
+```js
+<MenuItem component={Link} to="/profile">Profile</MenuItem>
+```
+
 ## Inheritance
 
 The props of the [ListItem](/api/list-item/) component are also available.
