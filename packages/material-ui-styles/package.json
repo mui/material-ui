@@ -55,6 +55,7 @@
     "jss-plugin-rule-value-function": "10.0.0-alpha.24",
     "jss-plugin-vendor-prefixer": "10.0.0-alpha.24",
     "prop-types": "^15.7.2",
+    "react-jss": "^10.0.0-alpha.24",
     "warning": "^4.0.1"
   },
   "sideEffects": false,
