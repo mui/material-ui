@@ -12,16 +12,16 @@ Even if you don’t know anything about Material-UI yet, try changing the code a
 
 ## Example Projects
 
-We [host some example projects](/getting-started/example-projects/) providing the infrastructure needed to develop and deploy websites in React.
+There are [some example projects](/getting-started/example-projects/) available, providing the infrastructure needed to develop and deploy websites in React.
 
 ## Templates
 
-We have a [selection of basic templates](/getting-started/templates/) to help you get started building your app.
+This [selection of basic templates](/getting-started/templates/) will help you get started building your app.
 
 ## Recommended resources
 
 When first learning Material-UI, you might find third-party blog posts, books and video courses more helpful than the official documentation.
-We maintain a list of commonly recommended resources, some of which are free.
+Here are some recommended resources, some of which are free.
 
 ### Free
 

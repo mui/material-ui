@@ -4,7 +4,8 @@
 
 ## Applying density
 
-We won't cover possible use cases, or considerations for using density in your application.
+This section explains how to apply density. 
+It doesn't cover petential use cases, or considerations for using density in your application.
 The Material design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering these topics in more detail.
 
 ## Implementing density

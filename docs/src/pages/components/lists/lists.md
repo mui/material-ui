@@ -77,8 +77,8 @@ The switch is the secondary action and a separate target.
 
 Upon scrolling, subheaders remain pinned to the top of the screen until pushed off screen by the next subheader.
 
-This feature is relying on the CSS sticky positioning.
-Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the browsers we are supporting. We default to `disableSticky` when not supported.
+This feature relies on CSS sticky positioning.
+Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the supported browsers. It defaults to `disableSticky` when not supported.
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js"}}
 
@@ -94,5 +94,5 @@ Virtualization helps with performance issues.
 
 {{"demo": "pages/components/lists/VirtualizedList.js"}}
 
-We encourage the use of [react-window](https://github.com/bvaughn/react-window) when possible.
+ The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
 If this library doesn't cover your use case, you should consider using [react-virtualized](https://github.com/bvaughn/react-virtualized), then alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso).

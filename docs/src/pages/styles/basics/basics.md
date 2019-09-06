@@ -9,12 +9,8 @@ You can use it, but you don't have to, since Material-UI is also [interoperable 
 ## Why use Material-UI's styling solution?
 
 In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the component styles, but these approaches have proven to be limited.
-We have [adopted a *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style).
-It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
-We think that this is the future:
-
-- [A Unified Styling Language](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
-- [Convert SCSS (Sass) to CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
+[A *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style) overcomes many of those limitations,
+and **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 
 Material-UI's styling solution is inspired by many other styling libraries such as [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
 
@@ -38,7 +34,7 @@ yarn add @material-ui/styles
 
 ## Getting started
 
-We provide 3 different APIs to generate and apply styles, however they all share the same underlying logic.
+There are 3 possible APIs you can use to generate and apply styles, however they all share the same underlying logic.
 
 ### Hook API
 

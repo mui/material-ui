@@ -61,7 +61,7 @@ You can use [json2mq](https://github.com/akiran/json2mq) to generate media query
 ## Server-side rendering
 
 An implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) is required on the server.
-We recommend using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it.
+Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it is recommended.
 
 {{"demo": "pages/components/use-media-query/ServerSide.js"}}
 
@@ -80,7 +80,7 @@ For instance, you could use:
 Similar to the server-side case, you need an implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) in your test environment.
 
 For instance, [jsdom doesn't support it yet](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html). You should polyfill it.
-We recommend using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it.
+Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it is recommended.
 
 ```js
 import mediaQuery from 'css-mediaquery';

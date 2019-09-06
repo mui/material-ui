@@ -78,7 +78,7 @@ You can import the icons with one of these two options:
 
 The safest is option 1 but option 2 can yield the best experience.
 Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
-We encourage the configuration of a Babel plugin.
+The configuration of a Babel plugin is encouraged.
 
 ### More SVG icons
 
@@ -140,12 +140,12 @@ This includes icons without text next to them used as interactive controls — b
 ### Decorative SVG Icons
 
 If your icons are purely decorative, you’re already done!
-We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
+The `aria-hidden=true` attribute is added so that your icons are properly accessible (invisible).
 
 ### Semantic SVG Icons
 
 If your icon has semantic meaning, all you need to do is throw in a `titleAccess="meaning"` property.
-We add the `role="img"` attribute and the `<title>` element so that your icons are properly accessible.
+The `role="img"` attribute and the `<title>` element are added so that your icons are properly accessible.
 
 In the case of focusable interactive elements, like when used with an icon button, you can use the `aria-label` property:
 
@@ -165,7 +165,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 ### Decorative Font Icons
 
 If your icons are purely decorative, you’re already done!
-We add the `aria-hidden=true` attribute so that your icons are properly accessible (invisible).
+The `aria-hidden=true` attribute isa dded so that your icons are properly accessible (invisible).
 
 ### Semantic Font Icons
 

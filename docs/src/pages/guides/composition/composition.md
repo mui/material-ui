@@ -153,11 +153,11 @@ React in your console similar to:
 Be aware that you will still get this warning for `lazy` and `memo` components if their
 wrapped component can't hold a ref.
 
-In some instances we issue an additional warning to help debugging, similar to:
+In some instances an additional warning is issued to help with debugging, similar to:
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
 
-We will only cover the two most common use cases. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
+Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
 
 ```diff
 - const MyButton = props => <div role="button" {...props} />;
@@ -179,7 +179,7 @@ the description will link to this section.
 
 If you use class components for the cases described above you will still see
 warnings in `React.StrictMode`.
-We use `ReactDOM.findDOMNode` internally for backwards compatibility.
+`ReactDOM.findDOMNode` is used internally for backwards compatibility.
 You can use `React.forwardRef` and a designated prop in your class component to forward the `ref` to a DOM component.
 Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
 

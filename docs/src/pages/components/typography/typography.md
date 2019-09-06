@@ -62,7 +62,7 @@ It’s important to realize that the style of a typography is independent from t
 - You can change the underlying element for a one time occasion with the `component` property:
 
 ```jsx
-{/* We already have an h1 in the page, let's not duplicate it. */}
+{/* There is already an h1 in the page, let's not duplicate it. */}
 <Typography variant="h1" component="h2">
   h1. Heading
 </Typography>

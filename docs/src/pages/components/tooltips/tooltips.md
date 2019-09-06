@@ -34,7 +34,7 @@ If the child is a custom React element, you need to make sure that it spreads it
 
 ```jsx
 function MyComponent(props) {
-  // We spread the properties to the underlying DOM element.
+  //  Spread the properties to the underlying DOM element.
   return <div {...props}>Bin</div>
 }
 

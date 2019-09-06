@@ -1,6 +1,6 @@
 # Related projects
 
-<p class="description">We have carefully curated a list of libraries that are worth having a look at.</p>
+<p class="description">A carefully curated ist of libraries that are worth having a look at.</p>
 
 Because the scope of problems Material-UI solves is limited, we try to play nicely with
 other libraries.
