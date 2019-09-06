@@ -16,7 +16,7 @@ import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import Ad from 'docs/src/modules/components/Ad';
 import EditPage from 'docs/src/modules/components/EditPage';
-import MarkdownDocsContents from 'docs/src/modules/components/MarkdownDocsContents';
+import useMarkdownDocsContents from 'docs/src/modules/components/useMarkdownDocsContents';
 import PageContext from 'docs/src/modules/components/PageContext';
 import {
   getHeaders,
@@ -160,126 +160,127 @@ function MarkdownDocs(props) {
   // eslint-disable-next-line no-underscore-dangle
   global.__MARKED_UNIQUE__ = {};
 
+  const { contents, markdownLocation } = useMarkdownDocsContents({
+    markdown,
+    markdownLocationProp,
+  });
+
   return (
-    <MarkdownDocsContents markdown={markdown} markdownLocation={markdownLocationProp}>
-      {({ contents, markdownLocation }) => (
-        <AppFrame>
-          <Head
-            title={`${headers.title || getTitle(markdown)} - Material-UI`}
-            description={headers.description || getDescription(markdown)}
-          />
-          {disableToc ? null : <AppTableOfContents contents={contents} />}
-          {disableAd ? null : (
-            <Portal container={() => document.querySelector('.description')}>
-              <Ad />
-            </Portal>
-          )}
+    <AppFrame>
+      <Head
+        title={`${headers.title || getTitle(markdown)} - Material-UI`}
+        description={headers.description || getDescription(markdown)}
+      />
+      {disableToc ? null : <AppTableOfContents contents={contents} />}
+      {disableAd ? null : (
+        <Portal container={() => document.querySelector('.description')}>
+          <Ad />
+        </Portal>
+      )}
+      <AppContent disableToc={disableToc}>
+        {!disableEdit ? (
+          <div className={classes.header}>
+            <EditPage
+              markdownLocation={markdownLocation}
+              sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
+            />
+          </div>
+        ) : null}
+        {contents.map((content, index) => {
+          if (demos && demoRegexp.test(content)) {
+            let demoOptions;
+            try {
+              demoOptions = JSON.parse(`{${content}}`);
+            } catch (err) {
+              console.error(err);
+              return null;
+            }
 
-          <AppContent disableToc={disableToc}>
-            {!disableEdit ? (
-              <div className={classes.header}>
-                <EditPage
-                  markdownLocation={markdownLocation}
-                  sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
-                />
-              </div>
-            ) : null}
-            {contents.map((content, index) => {
-              if (demos && demoRegexp.test(content)) {
-                let demoOptions;
-                try {
-                  demoOptions = JSON.parse(`{${content}}`);
-                } catch (err) {
-                  console.error(err);
-                  return null;
-                }
+            const name = demoOptions.demo;
+            if (!demos || !demos[name]) {
+              const errorMessage = [
+                `Missing demo: ${name}. You can use one of the following:`,
+                Object.keys(demos),
+              ].join('\n');
 
-                const name = demoOptions.demo;
-                if (!demos || !demos[name]) {
-                  const errorMessage = [
-                    `Missing demo: ${name}. You can use one of the following:`,
-                    Object.keys(demos),
-                  ].join('\n');
-
-                  if (userLanguage === 'en') {
-                    throw new Error(errorMessage);
-                  }
-
-                  if (process.env.NODE_ENV !== 'production') {
-                    console.error(errorMessage);
-                  }
-
-                  const warnIcon = (
-                    <span role="img" aria-label={t('emojiWarning')}>
-                      ⚠️
-                    </span>
-                  );
-                  return (
-                    <div key={content}>
-                      {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-                      {warnIcon} Missing demo `{name}` {warnIcon}
-                    </div>
-                  );
-                }
-
-                return (
-                  <Demo
-                    key={content}
-                    demo={demos[name]}
-                    demoOptions={demoOptions}
-                    githubLocation={`${SOURCE_CODE_ROOT_URL}/${name}`}
-                  />
-                );
+              if (userLanguage === 'en') {
+                throw new Error(errorMessage);
               }
 
-              return (
-                <MarkdownElement
-                  className={clsx(classes.markdownElement, { [classes.markdownElementBlog]: blog })}
-                  key={index}
-                  text={content}
-                />
+              if (process.env.NODE_ENV !== 'production') {
+                console.error(errorMessage);
+              }
+
+              const warnIcon = (
+                <span role="img" aria-label={t('emojiWarning')}>
+                  ⚠️
+                </span>
               );
-            })}
-            <footer className={classes.footer}>
-              {currentPage.displayNav === false ||
-              (nextPage.displayNav === false && !prevPage) ? null : (
-                <React.Fragment>
-                  <Divider />
-                  <div className={classes.pagination}>
-                    {prevPage ? (
-                      <Button
-                        component={Link}
-                        naked
-                        href={prevPage.pathname}
-                        size="large"
-                        className={classes.pageLinkButton}
-                      >
-                        <ChevronLeftIcon fontSize="small" className={classes.chevronLeftIcon} />
-                        {pageToTitleI18n(prevPage, t)}
-                      </Button>
-                    ) : (
-                      <div />
-                    )}
-                    {nextPage.displayNav === false ? null : (
-                      <Button
-                        component={Link}
-                        naked
-                        href={nextPage.pathname}
-                        size="large"
-                        className={classes.pageLinkButton}
-                      >
-                        {pageToTitleI18n(nextPage, t)}
-                        <ChevronRightIcon fontSize="small" className={classes.chevronRightIcon} />
-                      </Button>
-                    )}
-                  </div>
-                </React.Fragment>
-              )}
-            </footer>
-          </AppContent>
-        </AppFrame>
-      )}
-    </MarkdownDocsContents>
+              return (
+                <div key={content}>
+                  {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+                  {warnIcon} Missing demo `{name}` {warnIcon}
+                </div>
+              );
+            }
+
+            return (
+              <Demo
+                key={content}
+                demo={demos[name]}
+                demoOptions={demoOptions}
+                githubLocation={`${SOURCE_CODE_ROOT_URL}/${name}`}
+              />
+            );
+          }
+
+          return (
+            <MarkdownElement
+              className={clsx(classes.markdownElement, { [classes.markdownElementBlog]: blog })}
+              key={index}
+              text={content}
+            />
+          );
+        })}
+        <footer className={classes.footer}>
+          {!currentPage ||
+          currentPage.displayNav === false ||
+          (nextPage.displayNav === false && !prevPage) ? null : (
+            <React.Fragment>
+              <Divider />
+              <div className={classes.pagination}>
+                {prevPage ? (
+                  <Button
+                    component={Link}
+                    naked
+                    href={prevPage.pathname}
+                    size="large"
+                    className={classes.pageLinkButton}
+                  >
+                    <ChevronLeftIcon fontSize="small" className={classes.chevronLeftIcon} />
+                    {pageToTitleI18n(prevPage, t)}
+                  </Button>
+                ) : (
+                  <div />
+                )}
+                {nextPage.displayNav === false ? null : (
+                  <Button
+                    component={Link}
+                    naked
+                    href={nextPage.pathname}
+                    size="large"
+                    className={classes.pageLinkButton}
+                  >
+                    {pageToTitleI18n(nextPage, t)}
+                    <ChevronRightIcon fontSize="small" className={classes.chevronRightIcon} />
+                  </Button>
+                )}
+              </div>
+            </React.Fragment>
+          )}
+        </footer>
+      </AppContent>
+    </AppFrame>
   );
 }
 
