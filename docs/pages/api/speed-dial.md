@@ -26,16 +26,16 @@ You can learn more about the difference by [reading our guide](/guides/minimizin
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">ariaLabel&nbsp;*</span> | <span class="prop-type">string</span> |  | The aria-label of the `Button` element. Also used to provide the `id` for the `SpeedDial` element and its children. |
 | <span class="prop-name">ButtonProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`Button`](/api/button/) element. |
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | SpeedDialActions to display when the SpeedDial is `open`. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | SpeedDialActions to display when the SpeedDial is `open`. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">direction</span> | <span class="prop-type">'up'<br>&#124;&nbsp;'down'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'</span> | <span class="prop-default">'up'</span> | The direction the actions open relative to the floating action button. |
+| <span class="prop-name">direction</span> | <span class="prop-type">'down'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'up'</span> | <span class="prop-default">'up'</span> | The direction the actions open relative to the floating action button. |
 | <span class="prop-name">hidden</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the SpeedDial will be hidden. |
-| <span class="prop-name required">icon&nbsp;*</span> | <span class="prop-type">element</span> |  | The icon to display in the SpeedDial Floating Action Button. The `SpeedDialIcon` component provides a default Icon with animation. |
+| <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon to display in the SpeedDial Floating Action Button. The `SpeedDialIcon` component provides a default Icon with animation. |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, key: string) => void`<br>*event:* The event source of the callback.<br>*key:* The key pressed. |
 | <span class="prop-name required">open&nbsp;*</span> | <span class="prop-type">bool</span> |  | If `true`, the SpeedDial is open. |
 | <span class="prop-name">openIcon</span> | <span class="prop-type">node</span> |  | The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open. |
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Zoom</span> | The component used for the transition. |
-| <span class="prop-name">transitionDuration</span> | <span class="prop-type">number<br>&#124;&nbsp;{ enter?: number, exit?: number }</span> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| <span class="prop-name">transitionDuration</span> | <span class="prop-type">number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }</span> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> |  | Props applied to the `Transition` element. |
 
 The component cannot hold a ref.

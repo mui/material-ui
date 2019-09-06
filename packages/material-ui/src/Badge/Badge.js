@@ -213,6 +213,10 @@ const Badge = React.forwardRef(function Badge(props, ref) {
 });
 
 Badge.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The anchor of the badge.
    */

@@ -27,11 +27,11 @@ You can learn more about the difference by [reading our guide](/guides/minimizin
 | <span class="prop-name">ButtonProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Button`](/api/button/) component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">delay</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | Adds a transition delay, to allow a series of SpeedDialActions to be animated. |
-| <span class="prop-name required">icon&nbsp;*</span> | <span class="prop-type">node</span> |  | The Icon to display in the SpeedDial Floating Action Button. |
+| <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The Icon to display in the SpeedDial Floating Action Button. |
 | <span class="prop-name">TooltipClasses</span> | <span class="prop-type">object</span> |  | Classes applied to the [`Tooltip`](/api/tooltip/) element. |
 | <span class="prop-name">tooltipOpen</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Make the tooltip always visible when the SpeedDial is open. |
 | <span class="prop-name">tooltipPlacement</span> | <span class="prop-type">'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top'</span> | <span class="prop-default">'left'</span> | Placement of the tooltip. |
-| <span class="prop-name required">tooltipTitle&nbsp;*</span> | <span class="prop-type">node</span> |  | Label to display in the tooltip. |
+| <span class="prop-name">tooltipTitle</span> | <span class="prop-type">node</span> |  | Label to display in the tooltip. |
 
 The component cannot hold a ref.
 

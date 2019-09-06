@@ -46,6 +46,7 @@ const SpeedDialIcon = React.forwardRef(function SpeedDialIcon(props, ref) {
     [classes.iconOpen]: open,
     [classes.iconWithOpenIconOpen]: openIconProp && open,
   });
+
   const openIconClassName = clsx(classes.openIcon, { [classes.openIconOpen]: open });
 
   function formatIcon(icon, className) {
@@ -65,11 +66,15 @@ const SpeedDialIcon = React.forwardRef(function SpeedDialIcon(props, ref) {
 });
 
 SpeedDialIcon.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * The icon to display in the SpeedDial Floating Action Button.
    */

@@ -279,6 +279,10 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
 });
 
 SpeedDial.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The aria-label of the `Button` element.
    * Also used to provide the `id` for the `SpeedDial` element and its children.
@@ -291,12 +295,12 @@ SpeedDial.propTypes = {
   /**
    * SpeedDialActions to display when the SpeedDial is `open`.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -304,7 +308,7 @@ SpeedDial.propTypes = {
   /**
    * The direction the actions open relative to the floating action button.
    */
-  direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
+  direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
   /**
    * If `true`, the SpeedDial will be hidden.
    */
@@ -313,7 +317,7 @@ SpeedDial.propTypes = {
    * The icon to display in the SpeedDial Floating Action Button. The `SpeedDialIcon` component
    * provides a default Icon with animation.
    */
-  icon: PropTypes.element.isRequired,
+  icon: PropTypes.node,
   /**
    * @ignore
    */
@@ -347,7 +351,11 @@ SpeedDial.propTypes = {
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
+    PropTypes.shape({
+      appear: PropTypes.number,
+      enter: PropTypes.number,
+      exit: PropTypes.number,
+    }),
   ]),
   /**
    * Props applied to the `Transition` element.

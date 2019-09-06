@@ -55,6 +55,10 @@ const Portal = React.forwardRef(function Portal(props, ref) {
 });
 
 Portal.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The children to render into the `container`.
    */
