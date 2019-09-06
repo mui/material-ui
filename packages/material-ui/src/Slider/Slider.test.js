@@ -120,9 +120,12 @@ describe('<Slider />', () => {
 
       fireEvent.touchStart(
         container.firstChild,
-        createTouches([{ identifier: 1, pageX: 0, pageY: 20 }]),
+        createTouches([{ identifier: 1, clientX: 0, clientY: 20 }]),
       );
-      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, pageX: 0, pageY: 22 }]));
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 0, clientY: 22 }]),
+      );
 
       expect(handleChange.callCount).to.equal(2);
       expect(handleChange.args[0][1]).to.equal(80);
@@ -194,11 +197,17 @@ describe('<Slider />', () => {
 
       fireEvent.touchStart(
         container.firstChild,
-        createTouches([{ identifier: 1, pageX: 21, pageY: 0 }]),
+        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
       );
 
-      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, pageX: 22, pageY: 0 }]));
-      fireEvent.touchMove(document.body, createTouches([{ identifier: 1, pageX: 22, pageY: 0 }]));
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 22, clientY: 0 }]),
+      );
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 22, clientY: 0 }]),
+      );
 
       expect(handleChange.callCount).to.equal(3);
       expect(handleChange.args[0][1]).to.deep.equal([21, 30]);
@@ -226,7 +235,7 @@ describe('<Slider />', () => {
 
       fireEvent.touchStart(
         container.firstChild,
-        createTouches([{ identifier: 1, pageX: 21, pageY: 0 }]),
+        createTouches([{ identifier: 1, clientX: 21, clientY: 0 }]),
       );
       expect(thumb).to.have.attribute('aria-valuenow', '20');
 
@@ -434,10 +443,10 @@ describe('<Slider />', () => {
 
     fireEvent.touchStart(
       container.firstChild,
-      createTouches([{ identifier: 1, pageX: 20, pageY: 0 }]),
+      createTouches([{ identifier: 1, clientX: 20, clientY: 0 }]),
     );
 
-    fireEvent.touchMove(document.body, createTouches([{ identifier: 1, pageX: 22, pageY: 0 }]));
+    fireEvent.touchMove(document.body, createTouches([{ identifier: 1, clientX: 22, clientY: 0 }]));
 
     expect(handleChange.callCount).to.equal(2);
     expect(handleChange.args[0][1]).to.equal(80);
@@ -454,11 +463,36 @@ describe('<Slider />', () => {
       PropTypes.resetWarningCache();
     });
 
-    it('should warn if aria-valuetext is a string', () => {
+    it('should warn if aria-valuetext is provided', () => {
       render(<Slider value={[20, 50]} aria-valuetext="hot" />);
       expect(consoleErrorMock.args()[0][0]).to.include(
         'you need to use the `getAriaValueText` prop instead of',
       );
     });
+
+    it('should warn if aria-label is provided', () => {
+      render(<Slider value={[20, 50]} aria-label="hot" />);
+      expect(consoleErrorMock.args()[0][0]).to.include(
+        'you need to use the `getAriaLabel` prop instead of',
+      );
+    });
+  });
+
+  it('should support getAriaValueText', () => {
+    const getAriaValueText = value => `${value}°C`;
+    const { getAllByRole } = render(
+      <Slider value={[20, 50]} getAriaValueText={getAriaValueText} />,
+    );
+
+    expect(getAllByRole('slider')[0]).to.have.attribute('aria-valuetext', '20°C');
+    expect(getAllByRole('slider')[1]).to.have.attribute('aria-valuetext', '50°C');
+  });
+
+  it('should support getAriaLabel', () => {
+    const getAriaLabel = index => `Label ${index}`;
+    const { getAllByRole } = render(<Slider value={[20, 50]} getAriaLabel={getAriaLabel} />);
+
+    expect(getAllByRole('slider')[0]).to.have.attribute('aria-label', 'Label 0');
+    expect(getAllByRole('slider')[1]).to.have.attribute('aria-label', 'Label 1');
   });
 });

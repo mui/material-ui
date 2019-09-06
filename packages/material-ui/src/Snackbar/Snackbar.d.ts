@@ -5,8 +5,8 @@ import { TransitionHandlerProps, TransitionProps } from '../transitions/transiti
 import { ClickAwayListenerProps } from '../ClickAwayListener';
 
 export interface SnackbarOrigin {
-  horizontal: 'left' | 'center' | 'right';
   vertical: 'top' | 'bottom';
+  horizontal: 'left' | 'center' | 'right';
 }
 
 export interface SnackbarProps

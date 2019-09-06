@@ -21,7 +21,7 @@ const styles = theme => ({
 
 function HomeBackers(props) {
   const { classes } = props;
-  const { userLanguage } = useSelector(state => ({ userLanguage: state.options.userLanguage }));
+  const userLanguage = useSelector(state => state.options.userLanguage);
 
   return (
     <div className={classes.root}>

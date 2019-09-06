@@ -77,9 +77,9 @@ import {
   Theme,
   createStyles,
 } from '@material-ui/core/styles';
-import { DialogProps } from '@material-ui/core/Dialog';
-import { Link as ReactRouterLink } from 'react-router-dom';
+import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router-dom';
 import { ButtonBaseActions } from '@material-ui/core/ButtonBase';
+import { IconButtonProps } from '@material-ui/core/IconButton';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;
@@ -187,6 +187,19 @@ const IconButtonTest = () => (
     <IconButton color="primary" aria-label="add to shopping cart">
       <FakeIcon />
     </IconButton>
+    {() => {
+      const ForwardedLink = React.forwardRef<HTMLAnchorElement, ReactRouterLinkProps>(
+        (props, ref) => <ReactRouterLink {...props} innerRef={ref} />,
+      );
+      const ExtendedIconButton: React.FC<IconButtonProps<typeof ForwardedLink>> = props => (
+        <IconButton component={ForwardedLink} {...props} />
+      );
+      return (
+        <ExtendedIconButton color="secondary" aria-label="Go to top page." to="/" target="_self">
+          <FakeIcon />
+        </ExtendedIconButton>
+      );
+    }}
   </div>
 );
 

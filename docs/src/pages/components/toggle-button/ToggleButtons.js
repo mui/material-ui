@@ -38,17 +38,22 @@ export default function ToggleButtons() {
     <Grid container spacing={2}>
       <Grid item sm={12} md={6}>
         <div className={classes.toggleContainer}>
-          <ToggleButtonGroup value={alignment} exclusive onChange={handleAlignment}>
-            <ToggleButton value="left">
+          <ToggleButtonGroup
+            value={alignment}
+            exclusive
+            onChange={handleAlignment}
+            aria-label="text alignment"
+          >
+            <ToggleButton value="left" aria-label="left aligned">
               <FormatAlignLeftIcon />
             </ToggleButton>
-            <ToggleButton value="center">
+            <ToggleButton value="center" aria-label="centered">
               <FormatAlignCenterIcon />
             </ToggleButton>
-            <ToggleButton value="right">
+            <ToggleButton value="right" aria-label="right aligned">
               <FormatAlignRightIcon />
             </ToggleButton>
-            <ToggleButton value="justify" disabled>
+            <ToggleButton value="justify" aria-label="justified" disabled>
               <FormatAlignJustifyIcon />
             </ToggleButton>
           </ToggleButtonGroup>
@@ -62,17 +67,17 @@ export default function ToggleButtons() {
       </Grid>
       <Grid item sm={12} md={6}>
         <div className={classes.toggleContainer}>
-          <ToggleButtonGroup value={formats} onChange={handleFormat}>
-            <ToggleButton value="bold">
+          <ToggleButtonGroup value={formats} onChange={handleFormat} arial-label="text formatting">
+            <ToggleButton value="bold" aria-label="bold">
               <FormatBoldIcon />
             </ToggleButton>
-            <ToggleButton value="italic">
+            <ToggleButton value="italic" aria-label="italic">
               <FormatItalicIcon />
             </ToggleButton>
-            <ToggleButton value="underlined">
+            <ToggleButton value="underlined" aria-label="underlined">
               <FormatUnderlinedIcon />
             </ToggleButton>
-            <ToggleButton disabled value="color">
+            <ToggleButton value="color" aria-label="color" disabled>
               <FormatColorFillIcon />
               <ArrowDropDownIcon />
             </ToggleButton>

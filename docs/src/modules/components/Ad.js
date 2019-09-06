@@ -46,15 +46,13 @@ function getAdblock(classes, t) {
   );
 }
 
-const disable = process.env.NODE_ENV !== 'production';
+const disable = process.env.NODE_ENV !== 'production' && process.env.ENABLE_AD !== 'true';
 
 function Ad(props) {
   const { classes } = props;
   const { current: random } = React.useRef(Math.random());
   const timerAdblock = React.useRef();
-  const { t } = useSelector(state => ({
-    t: state.options.t,
-  }));
+  const t = useSelector(state => state.options.t);
   const [adblock, setAdblock] = React.useState(null);
 
   const checkAdblock = React.useCallback((attempt = 1) => {

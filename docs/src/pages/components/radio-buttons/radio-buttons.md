@@ -28,6 +28,13 @@ You can change the placement of the label:
 
 {{"demo": "pages/components/radio-buttons/FormControlLabelPosition.js"}}
 
+## Customized radios
+
+Here is an example of customizing the component. You can learn more about this in the
+[overrides documentation page](/customization/components/).
+
+{{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
+
 ## Accessibility
 
 All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).

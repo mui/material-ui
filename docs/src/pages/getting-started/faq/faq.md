@@ -394,3 +394,32 @@ function App() {
   );
 }
 ```
+
+## What's the clsx dependency for?
+
+[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally.
+
+Instead of writing:
+
+```jsx
+return (
+  <div
+    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ? 'Mui-selected' : ''}`}
+  />
+);
+```
+
+you can do:
+
+```jsx
+import clsx from 'clsx';
+
+return (
+  <div
+    className={clsx('MuiButton-root', {
+      'Mui-disabled': disabled,
+      'Mui-selected': selected,
+    })}
+  />
+);
+```

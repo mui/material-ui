@@ -35,10 +35,8 @@ export default function Notifications() {
   const mounted = React.useRef(false);
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = React.useState({});
-  const { t, userLanguage } = useSelector(state => ({
-    t: state.options.t,
-    userLanguage: state.options.userLanguage,
-  }));
+  const t = useSelector(state => state.options.t);
+  const userLanguage = useSelector(state => state.options.userLanguage);
 
   const handleMessage = () => {
     const lastSeen = getLastSeenNotification();

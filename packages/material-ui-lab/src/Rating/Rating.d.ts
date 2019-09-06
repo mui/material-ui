@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 
-export interface IconContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface IconContainerProps extends React.HTMLAttributes<HTMLSpanElement> {
   value: number;
 }
 
 export interface RatingProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, RatingClassKey, 'onChange'> {
+  extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, RatingClassKey, 'onChange'> {
   disabled?: boolean;
   emptyIcon?: React.ReactElement;
   getLabelText?: (value: number) => string;

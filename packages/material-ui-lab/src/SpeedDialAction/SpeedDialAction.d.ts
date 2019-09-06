@@ -4,7 +4,7 @@ import { ButtonProps } from '@material-ui/core/Button';
 import { TooltipProps } from '@material-ui/core/Tooltip';
 
 export interface SpeedDialActionProps
-  extends StandardProps<Partial<TooltipProps>, SpeedDialActionClassKey, never, false> {
+  extends StandardProps<Partial<TooltipProps>, SpeedDialActionClassKey> {
   ButtonProps?: Partial<ButtonProps>;
   delay?: number;
   icon: React.ReactNode;

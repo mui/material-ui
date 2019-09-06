@@ -78,6 +78,6 @@ For more advanced use cases you might be able to take advantage of:
 
 In the following example, we demonstrate how to use [notistack](https://github.com/iamhosseindhv/notistack).
 notistack makes it easy to display snackbars (so you don't have to deal with open/close state of them).
-It also enables you to stack them on top of one another (but discouraged by the specification).
+It also enables you to stack them on top of one another (although this is discouraged by the specification).
 
 {{"demo": "pages/components/snackbars/IntegrationNotistack.js"}}

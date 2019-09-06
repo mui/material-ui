@@ -1,14 +1,9 @@
 import * as React from 'react';
 import { TouchRippleProps } from './TouchRipple';
-import {
-  OverrideProps,
-  OverridableComponent,
-  SimplifiedPropsOf,
-  OverridableTypeMap,
-} from '../OverridableComponent';
+import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
 
-export interface ButtonBaseTypeMap {
-  props: {
+export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button'> {
+  props: P & {
     action?: React.Ref<ButtonBaseActions>;
     /**
      * Prefer `ref` instead.
@@ -23,7 +18,7 @@ export interface ButtonBaseTypeMap {
     onFocusVisible?: React.FocusEventHandler<any>;
     TouchRippleProps?: Partial<TouchRippleProps>;
   };
-  defaultComponent: 'button';
+  defaultComponent: D;
   classKey: ButtonBaseClassKey;
 }
 
@@ -45,7 +40,10 @@ export type ExtendButtonBase<M extends OverridableTypeMap> = ((
 
 declare const ButtonBase: ExtendButtonBase<ButtonBaseTypeMap>;
 
-export type ButtonBaseProps = SimplifiedPropsOf<typeof ButtonBase>;
+export type ButtonBaseProps<
+  D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<ButtonBaseTypeMap<P, D>, D>;
 
 export type ButtonBaseClassKey = 'root' | 'disabled' | 'focusVisible';
 

@@ -13,6 +13,10 @@ import { useForkRef } from '../utils/reactHelpers';
 import { useIsFocusVisible } from '../utils/focusVisible';
 import useTheme from '../styles/useTheme';
 
+function round(value) {
+  return Math.round(value * 1e5) / 1e5;
+}
+
 export const styles = theme => ({
   /* Styles applied to the Popper component. */
   popper: {
@@ -35,7 +39,7 @@ export const styles = theme => ({
     fontFamily: theme.typography.fontFamily,
     padding: '4px 8px',
     fontSize: theme.typography.pxToRem(10),
-    lineHeight: `${theme.typography.round(14 / 10)}em`,
+    lineHeight: `${round(14 / 10)}em`,
     maxWidth: 300,
     wordWrap: 'break-word',
     fontWeight: theme.typography.fontWeightMedium,
@@ -44,7 +48,7 @@ export const styles = theme => ({
   touch: {
     padding: '8px 16px',
     fontSize: theme.typography.pxToRem(14),
-    lineHeight: `${theme.typography.round(16 / 14)}em`,
+    lineHeight: `${round(16 / 14)}em`,
     fontWeight: theme.typography.fontWeightRegular,
   },
   /* Styles applied to the tooltip (label wrapper) element if `placement` contains "left". */

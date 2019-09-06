@@ -128,10 +128,9 @@ function getDemoData(codeVariant, demo, githubLocation) {
 function Demo(props) {
   const { classes, demo, demoOptions, githubLocation } = props;
   const dispatch = useDispatch();
-  const { t, codeVariant } = useSelector(state => ({
-    t: state.options.t,
-    codeVariant: state.options.codeVariant,
-  }));
+  const t = useSelector(state => state.options.t);
+  const codeVariant = useSelector(state => state.options.codeVariant);
+
   const demoData = getDemoData(codeVariant, demo, githubLocation);
 
   const [sourceHintSeen, setSourceHintSeen] = React.useState(false);

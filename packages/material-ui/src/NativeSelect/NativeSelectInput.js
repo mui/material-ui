@@ -2,12 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
+import { capitalize } from '../utils/helpers';
 
 /**
  * @ignore - internal component.
  */
 const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref) {
-  const { classes, className, disabled, IconComponent, inputRef, variant, ...other } = props;
+  const {
+    classes,
+    className,
+    disabled,
+    IconComponent,
+    inputRef,
+    variant = 'standard',
+    ...other
+  } = props;
 
   return (
     <React.Fragment>
@@ -15,9 +24,8 @@ const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref
         className={clsx(
           classes.root, // TODO v5: merge root and select
           classes.select,
+          classes[variant],
           {
-            [classes.filled]: variant === 'filled',
-            [classes.outlined]: variant === 'outlined',
             [classes.disabled]: disabled,
           },
           className,
@@ -26,7 +34,9 @@ const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref
         ref={inputRef || ref}
         {...other}
       />
-      {props.multiple ? null : <IconComponent className={classes.icon} />}
+      {props.multiple ? null : (
+        <IconComponent className={clsx(classes.icon, classes[`icon${capitalize(variant)}`])} />
+      )}
     </React.Fragment>
   );
 });

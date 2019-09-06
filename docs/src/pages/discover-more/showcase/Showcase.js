@@ -78,7 +78,7 @@ function Showcase(props) {
   const { classes } = props;
   const [sortFunctionName, setSortFunctionName] = React.useState('dateAdded');
   const sortFunction = sortFunctions[sortFunctionName];
-  const { t } = useSelector(state => ({ t: state.options.t }));
+  const t = useSelector(state => state.options.t);
 
   function handleChangeSort(event) {
     setSortFunctionName(event.target.value);

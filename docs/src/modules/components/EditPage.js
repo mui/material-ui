@@ -11,10 +11,8 @@ const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/edit/master
 
 export default function EditPage(props) {
   const { markdownLocation } = props;
-  const { t, userLanguage } = useSelector(state => ({
-    t: state.options.t,
-    userLanguage: state.options.userLanguage,
-  }));
+  const t = useSelector(state => state.options.t);
+  const userLanguage = useSelector(state => state.options.userLanguage);
   const router = useRouter();
   const { canonical } = pathnameToLanguage(Router._rewriteUrlForNextExport(router.asPath));
 

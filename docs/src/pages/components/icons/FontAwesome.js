@@ -7,12 +7,9 @@ import Icon from '@material-ui/core/Icon';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-  },
-  icon: {
-    margin: theme.spacing(2),
+    '& > .fa': {
+      margin: theme.spacing(2),
+    },
   },
   iconHover: {
     margin: theme.spacing(2),
@@ -34,16 +31,16 @@ export default function FontAwesome() {
 
   return (
     <div className={classes.root}>
-      <Icon className={clsx(classes.icon, 'fa fa-plus-circle')} />
-      <Icon className={clsx(classes.icon, 'fa fa-plus-circle')} color="primary" />
-      <Icon className={clsx(classes.icon, 'fa fa-plus-circle')} color="secondary" />
-      <Icon className={clsx(classes.icon, 'fa fa-plus-circle')} color="action" />
+      <Icon className="fa fa-plus-circle" />
+      <Icon className="fa fa-plus-circle" color="primary" />
+      <Icon className="fa fa-plus-circle" color="secondary" />
+      <Icon className="fa fa-plus-circle" color="action" />
       <Icon
         className={clsx(classes.iconHover, 'fa fa-plus-circle')}
         color="error"
         style={{ fontSize: 30 }}
       />
-      <Icon className={clsx(classes.icon, 'fa fa-plus-circle')} color="disabled" fontSize="large" />
+      <Icon className="fa fa-plus-circle" color="disabled" fontSize="large" />
     </div>
   );
 }

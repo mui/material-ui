@@ -5,19 +5,21 @@ import { Omit } from '@material-ui/types';
 
 export type MenuItemClassKey = 'root' | 'gutters' | 'selected' | 'dense';
 
-export type MenuItemTypeMap<P, D extends React.ElementType> = Omit<
+export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Omit<
   ListItemTypeMap<P, D>,
   'classKey'
 > & {
   classKey: MenuItemClassKey;
 };
 
-declare const MenuItem: OverridableComponent<MenuItemTypeMap<{ button: false }, 'li'>> &
-  ExtendButtonBase<MenuItemTypeMap<{ button?: true }, 'li'>>;
+declare const MenuItem: OverridableComponent<
+  MenuItemTypeMap<{ button: false }, MenuItemTypeMap['defaultComponent']>
+> &
+  ExtendButtonBase<MenuItemTypeMap<{ button?: true }, MenuItemTypeMap['defaultComponent']>>;
 
-export type MenuItemProps<D extends React.ElementType = 'li', P = {}> = OverrideProps<
-  MenuItemTypeMap<P, D>,
-  D
->;
+export type MenuItemProps<
+  D extends React.ElementType = MenuItemTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<MenuItemTypeMap<P, D>, D>;
 
 export default MenuItem;

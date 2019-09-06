@@ -8,7 +8,13 @@ const ACTION_TYPES = {
 };
 
 // Valid languages to server-side render in production
-const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'fr', 'es', 'de', 'ja', 'aa'];
+const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'es', 'fr', 'de', 'ja', 'aa'];
+
+// Server side rendered languages
+const LANGUAGES_SSR = ['en', 'zh', 'ru', 'pt', 'es'];
+
+// Work in progress
+const LANGUAGES_IN_PROGRESS = [...LANGUAGES];
 
 // Valid languages to use in production
 const LANGUAGES_LABEL = [
@@ -29,12 +35,12 @@ const LANGUAGES_LABEL = [
     text: '🇧🇷 Português',
   },
   {
-    code: 'fr',
-    text: '🇫🇷 Français',
-  },
-  {
     code: 'es',
     text: '🇪🇸 Español',
+  },
+  {
+    code: 'fr',
+    text: '🇫🇷 Français',
   },
   {
     code: 'de',
@@ -46,13 +52,11 @@ const LANGUAGES_LABEL = [
   },
 ];
 
-// Work in progress
-const LANGUAGES_IN_PROGRESS = [...LANGUAGES];
-
 module.exports = {
   CODE_VARIANTS,
   ACTION_TYPES,
   LANGUAGES,
+  LANGUAGES_SSR,
   LANGUAGES_LABEL,
   LANGUAGES_IN_PROGRESS,
 };

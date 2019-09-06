@@ -132,12 +132,12 @@ export default class ModalManager {
   constructor() {
     // this.modals[modalIndex] = modal
     this.modals = [];
-    // this.contaniners[containerIndex] = {
+    // this.containers[containerIndex] = {
     //   modals: [],
     //   container,
     //   restore: null,
     // }
-    this.contaniners = [];
+    this.containers = [];
   }
 
   add(modal, container) {
@@ -157,13 +157,13 @@ export default class ModalManager {
     const hiddenSiblingNodes = getHiddenSiblings(container);
     ariaHiddenSiblings(container, modal.mountNode, modal.modalRef, hiddenSiblingNodes, true);
 
-    const containerIndex = findIndexOf(this.contaniners, item => item.container === container);
+    const containerIndex = findIndexOf(this.containers, item => item.container === container);
     if (containerIndex !== -1) {
-      this.contaniners[containerIndex].modals.push(modal);
+      this.containers[containerIndex].modals.push(modal);
       return modalIndex;
     }
 
-    this.contaniners.push({
+    this.containers.push({
       modals: [modal],
       container,
       restore: null,
@@ -174,8 +174,8 @@ export default class ModalManager {
   }
 
   mount(modal, props) {
-    const containerIndex = findIndexOf(this.contaniners, item => item.modals.indexOf(modal) !== -1);
-    const containerInfo = this.contaniners[containerIndex];
+    const containerIndex = findIndexOf(this.containers, item => item.modals.indexOf(modal) !== -1);
+    const containerInfo = this.containers[containerIndex];
 
     if (!containerInfo.restore) {
       containerInfo.restore = handleContainer(containerInfo, props);
@@ -189,8 +189,8 @@ export default class ModalManager {
       return modalIndex;
     }
 
-    const containerIndex = findIndexOf(this.contaniners, item => item.modals.indexOf(modal) !== -1);
-    const containerInfo = this.contaniners[containerIndex];
+    const containerIndex = findIndexOf(this.containers, item => item.modals.indexOf(modal) !== -1);
+    const containerInfo = this.containers[containerIndex];
 
     containerInfo.modals.splice(containerInfo.modals.indexOf(modal), 1);
     this.modals.splice(modalIndex, 1);
@@ -214,7 +214,7 @@ export default class ModalManager {
         containerInfo.hiddenSiblingNodes,
         false,
       );
-      this.contaniners.splice(containerIndex, 1);
+      this.containers.splice(containerIndex, 1);
     } else {
       // Otherwise make sure the next top modal is visible to a screen reader.
       const nextTop = containerInfo.modals[containerInfo.modals.length - 1];

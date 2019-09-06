@@ -1,17 +1,22 @@
 import { PropTypes } from '..';
-import { ExtendButtonBase } from '../ButtonBase';
-import { SimplifiedPropsOf } from '../OverridableComponent';
+import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
+import { OverrideProps } from '../OverridableComponent';
 
-declare const IconButton: ExtendButtonBase<{
-  props: {
+export type IconButtonTypeMap<
+  P = {},
+  D extends React.ElementType = 'button'
+> = ExtendButtonBaseTypeMap<{
+  props: P & {
     color?: PropTypes.Color;
     disableFocusRipple?: boolean;
     edge?: 'start' | 'end' | false;
     size?: 'small' | 'medium';
   };
-  defaultComponent: 'button';
+  defaultComponent: D;
   classKey: IconButtonClassKey;
 }>;
+
+declare const IconButton: ExtendButtonBase<IconButtonTypeMap>;
 
 export type IconButtonClassKey =
   | 'root'
@@ -24,6 +29,9 @@ export type IconButtonClassKey =
   | 'sizeSmall'
   | 'label';
 
-export type IconButtonProps = SimplifiedPropsOf<typeof IconButton>;
+export type IconButtonProps<
+  D extends React.ElementType = IconButtonTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<IconButtonTypeMap<P, D>, D>;
 
 export default IconButton;

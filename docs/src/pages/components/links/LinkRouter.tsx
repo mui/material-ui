@@ -8,13 +8,11 @@ import { Omit } from '@material-ui/types';
 // The usage of React.forwardRef will no longer be required for react-router-dom v6.
 // see https://github.com/ReactTraining/react-router/issues/6056
 const AdapterLink = React.forwardRef<HTMLAnchorElement, RouterLinkProps>((props, ref) => (
-  <RouterLink innerRef={ref as any} {...props} />
+  <RouterLink innerRef={ref} {...props} />
 ));
 
 const CollisionLink = React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'innerRef' | 'to'>>(
-  (props, ref) => (
-    <RouterLink innerRef={ref as any} to="/getting-started/installation/" {...props} />
-  ),
+  (props, ref) => <RouterLink innerRef={ref} to="/getting-started/installation/" {...props} />,
 );
 
 export default function LinkRouter() {

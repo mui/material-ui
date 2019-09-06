@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-declare const Avatar: OverridableComponent<{
-  props: {
+export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & {
     alt?: string;
     childrenClassName?: string;
     imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
@@ -10,12 +10,17 @@ declare const Avatar: OverridableComponent<{
     src?: string;
     srcSet?: string;
   };
-  defaultComponent: 'div';
+  defaultComponent: D;
   classKey: AvatarClassKey;
-}>;
+}
+
+declare const Avatar: OverridableComponent<AvatarTypeMap>;
 
 export type AvatarClassKey = 'root' | 'colorDefault' | 'img';
 
-export type AvatarProps = SimplifiedPropsOf<typeof Avatar>;
+export type AvatarProps<
+  D extends React.ElementType = AvatarTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<AvatarTypeMap<P, D>, D>;
 
 export default Avatar;

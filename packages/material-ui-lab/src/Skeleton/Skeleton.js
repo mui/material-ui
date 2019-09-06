@@ -23,9 +23,9 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `disabledAnimate={false}`. */
   animate: {
-    animation: '$mui-skeleton 1.5s ease-in-out infinite',
+    animation: '$animate 1.5s ease-in-out infinite',
   },
-  '@keyframes mui-skeleton': {
+  '@keyframes animate': {
     '0%': {
       opacity: 1,
     },

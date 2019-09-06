@@ -4,7 +4,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const withTypescript = require('@zeit/next-typescript');
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
-const { LANGUAGES } = require('./src/modules/constants');
+const { LANGUAGES_SSR } = require('./src/modules/constants');
 
 const workspaceRoot = path.join(__dirname, '../');
 
@@ -14,6 +14,7 @@ module.exports = withTypescript({
       new webpack.DefinePlugin({
         'process.env': {
           LIB_VERSION: JSON.stringify(pkg.version),
+          ENABLE_AD: JSON.stringify(process.env.ENABLE_AD),
         },
       }),
     ]);
@@ -143,7 +144,7 @@ module.exports = withTypescript({
     if (process.env.PULL_REQUEST === 'true') {
       traverse(pages, 'en');
     } else {
-      LANGUAGES.forEach(userLanguage => {
+      LANGUAGES_SSR.forEach(userLanguage => {
         traverse(pages, userLanguage);
       });
     }
