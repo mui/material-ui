@@ -20,11 +20,8 @@ function transformImport(path: babel.NodePath<t.ImportDeclaration>, packageName:
   const { node } = path;
   const importMap = importMaps[packageName]!;
 
-  for (const key in importMap) {
-    if (!importMap.hasOwnProperty(key)) {
-      continue;
-    }
-
+  // Uses find to be able to break out of the loop
+  Object.keys(importMap).find(key => {
     const elements = importMap[key];
     const newSpecifiers: Array<
       t.ImportDefaultSpecifier | t.ImportSpecifier | t.ImportNamespaceSpecifier
@@ -56,10 +53,8 @@ function transformImport(path: babel.NodePath<t.ImportDeclaration>, packageName:
       );
     }
 
-    if (node.specifiers.length === 0) {
-      break;
-    }
-  }
+    return node.specifiers.length === 0;
+  });
 
   if (node.specifiers.length === 0) {
     path.remove();
