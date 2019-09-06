@@ -7,6 +7,7 @@ files:
       - /docs/src/pages/discover-more/backers/*
       - /docs/src/pages/discover-more/governance/*
       - /docs/src/pages/discover-more/roadmap/*
+      - /docs/src/pages/company/*
     translation: /%original_path%/%file_name%-%two_letters_code%.%file_extension%
   - source: /docs/translations/*.json
     ignore:

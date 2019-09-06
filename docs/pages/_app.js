@@ -293,7 +293,7 @@ function AppWrapper(props) {
     pathname = pathname.replace(/\/$/, '');
   }
   // console.log(pages, { ...router, pathname })
-  const activePage = findActivePage(pages, pathname);
+  const activePage = findActivePage(pages, pathname) || { pathname };
 
   let fonts = ['https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'];
   if (pathname.match(/onepirate/)) {

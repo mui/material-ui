@@ -24,6 +24,7 @@
   "letUsKnow": "Let us know!",
   "footerCommunity": "Community",
   "footerResources": "Resources",
+  "footerCompany": "Company",
   "homeFooterRelease": "Currently {{versionNumber}}. Released under the {{license}}.",
   "license": "MIT License",
   "likeMui": "Help us keep running",
