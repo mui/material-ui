@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import { useTheme } from '@material-ui/styles';
+import { getThemeProps, useTheme } from '@material-ui/styles';
 import { elementAcceptingRef } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import Portal from '../Portal';
@@ -55,7 +55,9 @@ export const styles = theme => ({
  *
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
-const Modal = React.forwardRef(function Modal(props, ref) {
+const Modal = React.forwardRef(function Modal(inProps, ref) {
+  const theme = useTheme();
+  const props = getThemeProps({ name: 'MuiModal', props: { ...inProps }, theme });
   const {
     BackdropComponent = SimpleBackdrop,
     BackdropProps,
@@ -80,7 +82,6 @@ const Modal = React.forwardRef(function Modal(props, ref) {
     ...other
   } = props;
 
-  const theme = useTheme();
   const [exited, setExited] = React.useState(true);
   const modal = React.useRef({});
   const mountNodeRef = React.useRef(null);
