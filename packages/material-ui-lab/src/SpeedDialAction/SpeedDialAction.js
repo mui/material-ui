@@ -49,7 +49,7 @@ export const styles = theme => ({
     position: 'absolute',
     right: 65,
     top: 14,
-    padding: '5px 16px',
+    padding: '3px 16px',
     whiteSpace: 'nowrap'
   },
   /* Styles applied to the root (`span`) component if `tooltipOpen={true}`. */
