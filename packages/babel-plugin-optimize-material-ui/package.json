@@ -21,14 +21,12 @@
     "test": "yarn build && cd ../../ && cross-env NODE_ENV=test mocha 'packages/babel-plugin-optimize-material-ui/test/index.js'"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.5",
     "@types/babel__core": "^7.1.2",
     "babel-plugin-tester": "^7.0.1",
     "typescript": "^3.5.3"
   },
   "peerDependencies": {
     "@babel/core": "^7.5.5"
-  },
-  "dependencies": {
-    "@babel/types": "^7.5.5"
   }
 }

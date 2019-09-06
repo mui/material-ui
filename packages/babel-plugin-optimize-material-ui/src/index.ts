@@ -1,5 +1,4 @@
-import * as babel from '@babel/core';
-import * as t from '@babel/types';
+import { types as t, NodePath } from '@babel/core';
 import resolveImports, { MappedImportsType, ImportType } from './resolveImports';
 import { Packages } from './packages';
 
@@ -12,7 +11,7 @@ const importMaps: Record<string, MappedImportsType | undefined> = {};
  * Used to transform the specified root import to specific imports based on the exports found
  * in the index file of the package
  */
-function transformImport(path: babel.NodePath<t.ImportDeclaration>, packageName: string) {
+function transformImport(path: NodePath<t.ImportDeclaration>, packageName: string) {
   if (importMaps[packageName] === undefined) {
     importMaps[packageName] = resolveImports(packageName);
   }
@@ -65,7 +64,7 @@ function transformImport(path: babel.NodePath<t.ImportDeclaration>, packageName:
  * Used to perform a simple transform on the specified import where all imports is a
  * file/folder (@material-ui/icons)
  */
-function simpleTransform(path: babel.NodePath<t.ImportDeclaration>, packageName: string) {
+function simpleTransform(path: NodePath<t.ImportDeclaration>, packageName: string) {
   const { node } = path;
   node.specifiers = node.specifiers.filter(spec => {
     if (!t.isImportSpecifier(spec)) {

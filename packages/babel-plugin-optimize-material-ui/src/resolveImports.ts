@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import * as babel from '@babel/core';
-import * as t from '@babel/types';
+import { types as t, parseSync } from '@babel/core';
 import { Packages } from './packages';
 
 export enum ImportType {
@@ -18,7 +17,7 @@ export default (packageName: string): MappedImportsType => {
   const modulePath = path.join(path.dirname(pkgPath), pkg.module ? pkg.module : pkg.main);
 
   const content = fs.readFileSync(modulePath, 'utf8');
-  const ast = babel.parseSync(content, {
+  const ast = parseSync(content, {
     babelrc: false,
     configFile: false,
   });
