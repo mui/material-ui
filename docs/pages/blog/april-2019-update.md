@@ -1,5 +1,5 @@
 ---
-description: Here are the most significant changes in April.
+description: Here are the most significant improvements in April.
 ---
 
 # April 2019 Update
@@ -8,7 +8,7 @@ description: Here are the most significant changes in April.
 
 *May 7, 2019*
 
-Here are the most significant changes in April:
+Here are the most significant improvements in April:
 
 - 📚 We have migrated [most](https://github.com/mui-org/material-ui/issues/14897) of our demos to TypeScript. **@eps1lon** has lead the effort. You can switch between the JavaScript demo and the TypeScript demo using this toggle button:
 

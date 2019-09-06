@@ -1,5 +1,5 @@
 ---
-description: Here are the most significant changes in March.
+description: Here are the most significant improvements in March.
 ---
 
 # March 2019 Update
@@ -8,7 +8,7 @@ description: Here are the most significant changes in March.
 
 *April 5, 2019*
 
-Here are the most significant changes in March:
+Here are the most significant improvements in March:
 
 - We have removed the old styles modules 💅.
 Be aware [of the difference](/customization/default-theme/#material-ui-core-styles-vs-material-ui-styles) between `@material-ui/core/styles` and `@material-ui/styles`.
