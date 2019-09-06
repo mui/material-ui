@@ -228,6 +228,7 @@ export async function main(options) {
     await queue.wait({ empty: true });
 
     await fse.copy(path.join(__dirname, '/legacy'), options.outputDir);
+    await fse.copy(path.join(__dirname, '/custom'), options.outputDir);
 
     await generateIndex(options);
 
