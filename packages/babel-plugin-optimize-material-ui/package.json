@@ -1,5 +1,5 @@
 {
-  "name": "@material-ui/babel-plugin-material-ui",
+  "name": "babel-plugin-optimize-material-ui",
   "version": "1.0.0",
   "description": "A simple transform to cherry-pick Material-UI imports",
   "main": "dist/index.js",
@@ -11,14 +11,14 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mui-org/material-ui.git",
-    "directory": "packages/babel-plugin-material-ui"
+    "directory": "packages/babel-plugin-optimize-material-ui"
   },
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "yarn build && cd ../../ && cross-env NODE_ENV=test mocha 'packages/babel-plugin-material-ui/test/index.js'"
+    "test": "yarn build && cd ../../ && cross-env NODE_ENV=test mocha 'packages/babel-plugin-optimize-material-ui/test/index.js'"
   },
   "devDependencies": {
     "@types/babel__core": "^7.1.2",

@@ -94,7 +94,7 @@ function simpleTransform(path: babel.NodePath<t.ImportDeclaration>, packageName:
 
 export default (): babel.PluginObj => {
   return {
-    name: '@material-ui/babel-plugin-material-ui',
+    name: 'babel-plugin-optimize-material-ui',
     visitor: {
       ImportDeclaration(path) {
         const packageName = path.node.source.value;
