@@ -32,7 +32,7 @@ function StylesProvider(props) {
     injectFirst,
     sheetsRegistry: registry,
     generateClassName,
-    disableGeneration: disableStylesGeneration,
+    disableGeneration,
     ...localOptions
   } = props;
 
@@ -54,7 +54,7 @@ function StylesProvider(props) {
       ...(!context.generateId && generateClassName ? { generateId: generateClassName } : {}),
     },
     ...(registry ? { registry } : {}),
-    ...(disableStylesGeneration ? { disableStylesGeneration } : {}),
+    ...(disableGeneration ? { disableGeneration } : {}),
     ...localOptions,
   };
 

@@ -53,9 +53,9 @@ export default function createGenerateClassName(options = {}) {
 
       const prefix = `${seedPrefix}${name}-${rule.key}`;
 
-      // if (!styleSheet.options.theme[nested] || seed !== '') {
-      //   return prefix;
-      // }
+      if (!styleSheet.options.theme[nested] || seed !== '') {
+        return prefix;
+      }
 
       return `${prefix}-${ruleCounter}`;
     }

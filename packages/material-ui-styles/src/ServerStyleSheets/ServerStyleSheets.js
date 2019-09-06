@@ -14,8 +14,6 @@ class ServerStyleSheets {
     // A new class name generator
     const generateClassName = createGenerateClassName();
 
-    this.sheetsRegistry.foo = 'foo';
-
     return (
       <StylesProvider
         generateClassName={generateClassName}

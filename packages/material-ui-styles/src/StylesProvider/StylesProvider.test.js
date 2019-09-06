@@ -87,11 +87,7 @@ describe('StylesProvider', () => {
       const sheetsRegistry = new SheetsRegistry();
 
       const markup = ReactDOMServer.renderToString(
-        <StylesProvider
-          sheetsManager={new Map()}
-          sheetsRegistry={sheetsRegistry}
-          generateClassName={generateClassName}
-        >
+        <StylesProvider sheetsRegistry={sheetsRegistry} generateClassName={generateClassName}>
           <Button>Hello World</Button>
         </StylesProvider>,
       );
@@ -105,7 +101,6 @@ describe('StylesProvider', () => {
       const sheetsRegistry1 = new SheetsRegistry();
       const markup1 = ReactDOMServer.renderToString(
         <StylesProvider
-          sheetsManager={new Map()}
           sheetsCache={sheetsCache}
           sheetsRegistry={sheetsRegistry1}
           generateClassName={generateClassName}
@@ -118,7 +113,6 @@ describe('StylesProvider', () => {
       const sheetsRegistry2 = new SheetsRegistry();
       const markup2 = ReactDOMServer.renderToString(
         <StylesProvider
-          sheetsManager={new Map()}
           sheetsCache={sheetsCache}
           sheetsRegistry={sheetsRegistry2}
           generateClassName={generateClassName}
