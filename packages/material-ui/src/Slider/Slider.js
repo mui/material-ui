@@ -4,10 +4,11 @@ import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
-import { fade, lighten } from '../styles/colorManipulator';
+import { fade } from '../styles/colorManipulator';
 import { useIsFocusVisible } from '../utils/focusVisible';
 import useEventCallback from '../utils/useEventCallback';
 import { useForkRef } from '../utils/reactHelpers';
+import { capitalize } from '../utils/helpers';
 import ValueLabel from './ValueLabel';
 
 function asc(a, b) {
@@ -153,6 +154,14 @@ export const styles = theme => ({
       padding: '0 11px',
     },
   },
+  /* Styles applied to the root element if `color="primary"`. */
+  colorPrimary: {
+    // TODO v5, move the style here
+  },
+  /* Styles applied to the root element if `color="secondary"`. */
+  colorSecondary: {
+    color: theme.palette.secondary.main,
+  },
   /* Styles applied to the root element if `marks` is provided with at least one label. */
   marked: {
     marginBottom: 20,
@@ -235,6 +244,19 @@ export const styles = theme => ({
       marginBottom: -4,
     },
   },
+  /* Styles applied to the thumb element if `color="primary"`. */
+  thumbColorPrimary: {
+    // TODO v5, move the style here
+  },
+  /* Styles applied to the thumb element if `color="secondary"`. */
+  thumbColorSecondary: {
+    '&$focusVisible,&:hover': {
+      boxShadow: `0px 0px 0px 8px ${fade(theme.palette.secondary.main, 0.16)}`,
+    },
+    '&$active': {
+      boxShadow: `0px 0px 0px 14px ${fade(theme.palette.secondary.main, 0.16)}`,
+    },
+  },
   /* Pseudo-class applied to the thumb element if it's active. */
   active: {},
   /* Pseudo-class applied to the thumb element if keyboard focused. */
@@ -251,7 +273,8 @@ export const styles = theme => ({
   },
   /* Styles applied to the mark element if active (depending on the value). */
   markActive: {
-    backgroundColor: lighten(theme.palette.primary.main, 0.76),
+    backgroundColor: theme.palette.background.paper,
+    opacity: 0.8,
   },
   /* Styles applied to the mark label element. */
   markLabel: {
@@ -280,6 +303,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     'aria-valuetext': ariaValuetext,
     classes,
     className,
+    color = 'primary',
     component: Component = 'span',
     defaultValue,
     disabled = false,
@@ -632,6 +656,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       ref={handleRef}
       className={clsx(
         classes.root,
+        classes[`color${capitalize(color)}`],
         {
           [classes.disabled]: disabled,
           [classes.marked]: marks.length > 0 && marks.some(mark => mark.label),
@@ -688,7 +713,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             disabled={disabled}
           >
             <ThumbComponent
-              className={clsx(classes.thumb, {
+              className={clsx(classes.thumb, classes[`thumbColor${capitalize(color)}`], {
                 [classes.active]: active === index,
                 [classes.focusVisible]: focusVisible === index,
               })}
@@ -758,6 +783,10 @@ Slider.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.

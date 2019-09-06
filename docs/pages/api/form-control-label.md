@@ -29,7 +29,7 @@ Use this component if you want to display an extra label.
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">control</span> | <span class="prop-type">element</span> |  | A control element. For instance, it can be be a `Radio`, a `Switch` or a `Checkbox`. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | If `true`, the control will be disabled. |
-| <span class="prop-name">inputRef</span> | <span class="prop-type">ref</span> |  | This prop can be used to pass a ref to the `input` element. |
+| <span class="prop-name">inputRef</span> | <span class="prop-type">ref</span> |  | Pass a ref to the `input` element. |
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The text to be used in an enclosing label element. |
 | <span class="prop-name">labelPlacement</span> | <span class="prop-type">'end'<br>&#124;&nbsp;'start'<br>&#124;&nbsp;'top'<br>&#124;&nbsp;'bottom'</span> | <span class="prop-default">'end'</span> | The position of the label. |
 | <span class="prop-name">name</span> | <span class="prop-type">string</span> |  |  |

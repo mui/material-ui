@@ -189,7 +189,7 @@ Menu.propTypes = {
   classes: PropTypes.object.isRequired,
   /**
    * Same as `autoFocus=false`.
-   * @deprecated Use `autoFocus` instead
+   * @deprecated Use `autoFocus` instead.
    */
   disableAutoFocusItem: PropTypes.bool,
   /**

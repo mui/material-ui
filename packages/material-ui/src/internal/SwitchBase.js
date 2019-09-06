@@ -119,7 +119,6 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
       ref={ref}
       {...other}
     >
-      {checked ? checkedIcon : icon}
       <input
         autoFocus={autoFocus}
         checked={checkedProp}
@@ -137,6 +136,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
         value={value}
         {...inputProps}
       />
+      {checked ? checkedIcon : icon}
     </IconButton>
   );
 });
@@ -186,7 +186,7 @@ SwitchBase.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
-   * This prop can be used to pass a ref to the `input` element.
+   * Pass a ref to the `input` element.
    */
   inputRef: refType,
   /*
