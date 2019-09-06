@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PopperJS from 'popper.js';
-import { chainPropTypes } from '@material-ui/utils';
+import { chainPropTypes, refType } from '@material-ui/utils';
 import Portal from '../Portal';
 import { createChainedFunction } from '../utils/helpers';
 import { setRef, useForkRef } from '../utils/reactHelpers';
@@ -303,9 +303,9 @@ Popper.propTypes = {
    */
   popperOptions: PropTypes.object,
   /**
-   * Callback fired when a new popper instance is used.
+   * A ref that points to the used popper instance.
    */
-  popperRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  popperRef: refType,
   /**
    * Help supporting a react-transition-group/Transition component.
    */

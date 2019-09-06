@@ -4,7 +4,7 @@ import React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
 import Document, { Head, Main, NextScript } from 'next/document';
 import { Router as Router2 } from 'next/router';
-import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
+import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { themeColor } from 'docs/src/modules/components/ThemeContext';
 
@@ -64,7 +64,7 @@ class MyDocument extends Document {
             href={`https://material-ui.com${Router2._rewriteUrlForNextExport(canonical)}`}
             hrefLang="x-default"
           />
-          {LANGUAGES_LABEL.map(({ code: userLanguage2 }) => (
+          {LANGUAGES_SSR.map(userLanguage2 => (
             <link
               key={userLanguage2}
               rel="alternate"

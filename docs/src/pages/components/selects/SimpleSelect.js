@@ -1,8 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -65,7 +62,10 @@ export default function SimpleSelect() {
         <Select
           value={values.age}
           onChange={handleChange}
-          input={<Input name="age" id="age-helper" />}
+          inputProps={{
+            name: 'age',
+            id: 'age-helper',
+          }}
         >
           <MenuItem value="">
             <em>None</em>
@@ -100,7 +100,10 @@ export default function SimpleSelect() {
         <Select
           value={values.age}
           onChange={handleChange}
-          input={<Input name="age" id="age-label-placeholder" />}
+          inputProps={{
+            name: 'age',
+            id: 'age-label-placeholder',
+          }}
           displayEmpty
           name="age"
           className={classes.selectEmpty}
@@ -119,7 +122,10 @@ export default function SimpleSelect() {
         <Select
           value={values.name}
           onChange={handleChange}
-          input={<Input name="name" id="name-disabled" />}
+          inputProps={{
+            name: 'name',
+            id: 'name-disabled',
+          }}
         >
           <MenuItem value="">
             <em>None</em>
@@ -137,7 +143,9 @@ export default function SimpleSelect() {
           onChange={handleChange}
           name="name"
           renderValue={value => `⚠️  - ${value}`}
-          input={<Input id="name-error" />}
+          inputProps={{
+            id: 'name-error',
+          }}
         >
           <MenuItem value="">
             <em>None</em>
@@ -153,7 +161,11 @@ export default function SimpleSelect() {
         <Select
           value={values.name}
           onChange={handleChange}
-          input={<Input name="name" id="name-readonly" readOnly />}
+          inputProps={{
+            name: 'name',
+            id: 'name-readonly',
+            readOnly: true,
+          }}
         >
           <MenuItem value="">
             <em>None</em>
@@ -169,7 +181,10 @@ export default function SimpleSelect() {
         <Select
           value={values.age}
           onChange={handleChange}
-          input={<Input name="age" id="age-auto-width" />}
+          inputProps={{
+            name: 'age',
+            id: 'age-auto-width',
+          }}
           autoWidth
         >
           <MenuItem value="">
@@ -225,7 +240,11 @@ export default function SimpleSelect() {
         <Select
           value={values.age}
           onChange={handleChange}
-          input={<OutlinedInput labelWidth={labelWidth} name="age" id="outlined-age-simple" />}
+          labelWidth={labelWidth}
+          inputProps={{
+            name: 'age',
+            id: 'outlined-age-simple',
+          }}
         >
           <MenuItem value="">
             <em>None</em>
@@ -240,7 +259,10 @@ export default function SimpleSelect() {
         <Select
           value={values.age}
           onChange={handleChange}
-          input={<FilledInput name="age" id="filled-age-simple" />}
+          inputProps={{
+            name: 'age',
+            id: 'filled-age-simple',
+          }}
         >
           <MenuItem value="">
             <em>None</em>

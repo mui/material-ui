@@ -130,6 +130,7 @@ function Navigator(props) {
                 </ListItemText>
               </ListItem>
             ))}
+
             <Divider className={classes.divider} />
           </React.Fragment>
         ))}

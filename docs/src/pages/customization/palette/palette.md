@@ -177,3 +177,7 @@ const theme = createMuiTheme({
 ```
 
 {{"demo": "pages/customization/palette/DarkTheme.js"}}
+
+## Default values
+
+You can explore the default values of the palette using [the theme explorer](/customization/default-theme/?expend-path=$.palette) or by opening the dev tools console on this page (`window.theme.palette`).

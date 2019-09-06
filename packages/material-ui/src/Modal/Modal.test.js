@@ -4,7 +4,9 @@ import { useFakeTimers, spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
+import { ThemeProvider } from '@material-ui/styles';
 import describeConformance from '../test-utils/describeConformance';
 import Fade from '../Fade';
 import Backdrop from '../Backdrop';
@@ -49,6 +51,22 @@ describe('<Modal />', () => {
       ],
     }),
   );
+
+  describe('props', () => {
+    it('should consume theme default props', () => {
+      const container = document.createElement('div');
+      const theme = createMuiTheme({ props: { MuiModal: { container } } });
+      mount(
+        <ThemeProvider theme={theme}>
+          <Modal open>
+            <p id="content">Hello World</p>
+          </Modal>
+        </ThemeProvider>,
+      );
+
+      assert.strictEqual(container.textContent, 'Hello World');
+    });
+  });
 
   describe('prop: open', () => {
     it('should not render the children by default', () => {

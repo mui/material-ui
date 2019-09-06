@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import warning from 'warning';
 import clsx from 'clsx';
+import { refType } from '@material-ui/utils';
 import debounce from '../utils/debounce';
 import ownerWindow from '../utils/ownerWindow';
 import { getNormalizedScrollLeft, detectScrollType } from 'normalize-scroll-left';
@@ -451,7 +452,7 @@ Tabs.propTypes = {
    * @param {object} actions This object contains all possible actions
    * that can be triggered programmatically.
    */
-  action: PropTypes.func,
+  action: refType,
   /**
    * If `true`, the tabs will be centered.
    * This property is intended for large views.

@@ -59,8 +59,8 @@ describe('<SwitchBase />', () => {
     const buttonInside = container.firstChild.firstChild;
 
     expect(buttonInside).to.have.property('nodeName', 'SPAN');
-    expect(buttonInside.childNodes[0]).to.have.text('unchecked');
-    expect(buttonInside.childNodes[1]).to.equal(getByRole('checkbox'));
+    expect(buttonInside.childNodes[0]).to.equal(getByRole('checkbox'));
+    expect(buttonInside.childNodes[1]).to.have.text('unchecked');
   });
 
   it('should have a ripple by default', () => {

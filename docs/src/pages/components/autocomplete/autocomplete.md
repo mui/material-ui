@@ -39,3 +39,12 @@ In the following example, we demonstrate how to use [react-autosuggest](https://
 It's also using [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight) for the highlighting logic.
 
 {{"demo": "pages/components/autocomplete/IntegrationAutosuggest.js"}}
+
+## Complementary projects
+
+For more advanced use cases you might be able to take advantage of:
+
+- [material-ui-chip-input](https://mui.wertarbyte.com/#material-ui-chip-input): The chip input is used to allow selecting multiple text values.
+- [mui-downshift](https://github.com/techniq/mui-downshift): A thin layer over paypal's downshift to use Material-UI visual components.
+- [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest): A fuzzy-search component for React and Material-UI.
+- [react-select-material-ui](https://github.com/iulian-radu-at/react-select-material-ui): Extend react-select with Material-UI.
