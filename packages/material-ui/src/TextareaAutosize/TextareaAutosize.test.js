@@ -184,20 +184,40 @@ describe('<TextareaAutosize />', () => {
       assert.deepEqual(getStyle(wrapper), { height: lineHeight * rowsMax, overflow: null });
     });
 
-    it('should show scrollbar when passing "rowsMax"', () => {
-      const rowsMax = 5;
+    it('should show scrollbar when having more rows than "rowsMax"', () => {
+      const rowsMax = 3;
       const lineHeight = 15;
       const wrapper = mount(<TextareaAutosize rowsMax={rowsMax} />);
       setLayout(wrapper, {
         getComputedStyle: {
-          'box-sizing': 'content-box',
+          'box-sizing': 'border-box',
         },
-        scrollHeight: 100,
+        scrollHeight: lineHeight * 2,
         lineHeight,
       });
       wrapper.setProps();
       wrapper.update();
-      assert.deepEqual(getStyle(wrapper), { height: lineHeight * rowsMax, overflow: null });
+      assert.deepEqual(getStyle(wrapper), { height: lineHeight * 2, overflow: 'hidden' });
+      setLayout(wrapper, {
+        getComputedStyle: {
+          'box-sizing': 'border-box',
+        },
+        scrollHeight: lineHeight * 3,
+        lineHeight,
+      });
+      wrapper.setProps();
+      wrapper.update();
+      assert.deepEqual(getStyle(wrapper), { height: lineHeight * 3, overflow: 'hidden' });
+      setLayout(wrapper, {
+        getComputedStyle: {
+          'box-sizing': 'border-box',
+        },
+        scrollHeight: lineHeight * 4,
+        lineHeight,
+      });
+      wrapper.setProps();
+      wrapper.update();
+      assert.deepEqual(getStyle(wrapper), { height: lineHeight * 3, overflow: null });
     });
 
     it('should update its height when the "rowsMax" prop changes', () => {
