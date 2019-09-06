@@ -2,9 +2,12 @@ import * as path from 'path';
 import * as fse from 'fs-extra';
 import * as ttp from 'typescript-to-proptypes';
 import * as prettier from 'prettier';
-import * as glob from 'glob';
+import * as globCallback from 'glob';
+import { promisify } from 'util';
 import * as _ from 'lodash';
-import { fixBabelGeneratorIssues, fixLineEndings } from '../../../docs/scripts/helpers';
+import { fixBabelGeneratorIssues, fixLineEndings } from '../docs/scripts/helpers';
+
+const glob = promisify(globCallback);
 
 const ignoreCache = process.argv.includes('--disable-cache');
 const verbose = process.argv.includes('--verbose');
@@ -19,7 +22,7 @@ enum GenerateResult {
 const tsconfig = ttp.loadConfig(path.resolve(__dirname, '../tsconfig.json'));
 
 const prettierConfig = prettier.resolveConfig.sync(process.cwd(), {
-  config: path.join(__dirname, '../../../prettier.config.js'),
+  config: path.join(__dirname, '../prettier.config.js'),
 });
 
 async function generateProptypes(
@@ -29,7 +32,7 @@ async function generateProptypes(
 ): Promise<GenerateResult> {
   const proptypes = ttp.parseFromProgram(tsFile, program, {
     shouldResolveObject: ({ name }) => {
-      if (name === 'classes' || name === 'theme' || name.endsWith('Props')) {
+      if (name.toLowerCase().endsWith('classes') || name === 'theme' || name.endsWith('Props')) {
         return false;
       }
       return undefined;
@@ -44,10 +47,10 @@ async function generateProptypes(
     component.types.forEach(prop => {
       if (prop.name === 'classes' && prop.jsDoc) {
         prop.jsDoc += '\nSee [CSS API](#css) below for more details.';
-      } else if (prop.name === 'className') {
-        prop.jsDoc = '@ignore';
       } else if (prop.name === 'children' && !prop.jsDoc) {
         prop.jsDoc = 'The content of the component.';
+      } else if (!prop.jsDoc) {
+        prop.jsDoc = '@ignore';
       }
     });
   });
@@ -56,6 +59,12 @@ async function generateProptypes(
 
   const result = ttp.inject(proptypes, jsContent, {
     removeExistingPropTypes: true,
+    comment: [
+      '----------------------------- Warning --------------------------------',
+      '| These PropTypes are generated from the TypeScript type definitions |',
+      '|     To update them edit the d.ts file and run "yarn proptypes"     |',
+      '----------------------------------------------------------------------',
+    ].join('\n'),
     shouldInclude: ({ prop }) => {
       if (prop.name === 'children') {
         return true;
@@ -86,11 +95,20 @@ async function generateProptypes(
 async function run() {
   // Matches files where the folder and file both start with uppercase letters
   // Example: AppBar/AppBar.d.ts
-  const files = glob
-    .sync('+([A-Z])*/+([A-Z])*.d.ts', {
-      absolute: true,
-      cwd: path.resolve(__dirname, '../src'),
-    })
+
+  const allFiles = await Promise.all(
+    [
+      path.resolve(__dirname, '../packages/material-ui/src'),
+      path.resolve(__dirname, '../packages/material-ui-lab/src'),
+    ].map(folderPath =>
+      glob('+([A-Z])*/+([A-Z])*.d.ts', {
+        absolute: true,
+        cwd: folderPath,
+      }),
+    ),
+  );
+
+  const files = _.flatten(allFiles)
     // Filter out files where the directory name and filename doesn't match
     // Example: Modal/ModalManager.d.ts
     .filter(filePath => {

@@ -115,7 +115,6 @@
     "redux-logger": "^3.0.6",
     "rimraf": "^3.0.0",
     "styled-components": "^4.3.2",
-    "typescript-to-proptypes": "^1.2.3",
     "url-loader": "^2.1.0",
     "warning": "^4.0.3",
     "webfontloader": "^1.6.28",

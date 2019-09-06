@@ -2,7 +2,7 @@
   "version": "4.4.0",
   "private": true,
   "scripts": {
-    "proptypes": "ts-node --skip-project ./packages/material-ui/scripts/generateProptypes.ts",
+    "proptypes": "ts-node --skip-project ./scripts/generateProptypes.ts",
     "deduplicate": "node scripts/deduplicate.js",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN",
     "docs:api": "rimraf ./docs/pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui/src ./docs/pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui-lab/src ./docs/pages/api",
@@ -127,6 +127,7 @@
     "ts-node": "^8.3.0",
     "tslint": "5.14.0",
     "typescript": "3.2.4",
+    "typescript-to-proptypes": "^1.3.0",
     "vrtest": "^0.2.0",
     "warning": "^4.0.3",
     "webpack": "^4.39.3",

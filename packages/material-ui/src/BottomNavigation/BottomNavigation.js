@@ -55,6 +55,10 @@ const BottomNavigation = React.forwardRef(function BottomNavigation(props, ref) 
 });
 
 BottomNavigation.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * The content of the component.
    */
@@ -75,6 +79,7 @@ BottomNavigation.propTypes = {
   component: PropTypes.elementType,
   /**
    * Callback fired when the value changes.
+   *
    * @param {object} event The event source of the callback
    * @param {any} value We default to the index of the child
    */
