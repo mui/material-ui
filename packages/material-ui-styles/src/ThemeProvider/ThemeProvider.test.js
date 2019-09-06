@@ -6,7 +6,6 @@ import { createClientRender } from 'test/utils/createClientRender';
 import makeStyles from '../makeStyles';
 import useTheme from '../useTheme';
 import ThemeProvider from './ThemeProvider';
-import NestedSymbol from './nested';
 
 describe('ThemeProvider', () => {
   let mount;
@@ -112,7 +111,7 @@ describe('ThemeProvider', () => {
     }
 
     const { getByTestId } = render(
-      <ThemeProvider theme={{ [NestedSymbol]: true }}>
+      <ThemeProvider theme={{ [Symbol.for('mui.nested')]: true }}>
         <Component data-testid="global" />
         <ThemeProvider theme={{}}>
           <Component data-testid="nested" />
