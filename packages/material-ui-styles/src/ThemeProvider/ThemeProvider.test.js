@@ -1,12 +1,16 @@
 import React from 'react';
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import { createMount } from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
+import { createClientRender } from 'test/utils/createClientRender';
+import makeStyles from '../makeStyles';
 import useTheme from '../useTheme';
 import ThemeProvider from './ThemeProvider';
+import NestedSymbol from './nested';
 
 describe('ThemeProvider', () => {
   let mount;
+  const render = createClientRender({ strict: true });
 
   before(() => {
     mount = createMount({ strict: true });
@@ -93,6 +97,31 @@ describe('ThemeProvider', () => {
     wrapper.setProps({});
     assert.strictEqual(text(), 'foobar');
     assert.strictEqual(themes.length, 1);
+  });
+
+  it('does not allow setting mui.nested manually', () => {
+    const useStyles = makeStyles({ root: {} }, { name: 'MuiTest' });
+    function Component(props) {
+      const classes = useStyles();
+
+      return (
+        <div {...props} className={classes.root}>
+          Component
+        </div>
+      );
+    }
+
+    const { getByTestId } = render(
+      <ThemeProvider theme={{ [NestedSymbol]: true }}>
+        <Component data-testid="global" />
+        <ThemeProvider theme={{}}>
+          <Component data-testid="nested" />
+        </ThemeProvider>
+      </ThemeProvider>,
+    );
+
+    expect(getByTestId('global')).to.have.class('MuiTest-root');
+    expect(getByTestId('nested')).not.to.have.class('MuiTest-root');
   });
 
   describe('warnings', () => {
