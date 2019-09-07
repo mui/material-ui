@@ -24,7 +24,7 @@ In the following recipe, we are going to look at how to set up server-side rende
 
 ### The theme
 
-Create a theme that will be shared between the client and the server.
+Create a theme that will be shared between the client and the server:
 
 `theme.js`
 

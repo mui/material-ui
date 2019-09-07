@@ -81,7 +81,7 @@ yarn add @material-ui/styles
 ### Styles
 
 - ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9.
-  Make sure JSS v9 is not installed in your environment. 
+  Make sure JSS v9 is not installed in your environment.
   (Removing `react-jss` from your `package.json` can help).
   The StylesProvider component replaces the JssProvider one.
 - Remove the first option argument of `withTheme()`.

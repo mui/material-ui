@@ -6,8 +6,8 @@
 
 In order to provide the maximum flexibility and performance,
 we need a way to know the nature of the child elements a component receives.
-To solve this problem we tag some of the components when needed
-with a `muiName` static property.
+To solve this problem we tag some of the components
+with a `muiName` static property when needed.
 
 You may, however, need to wrap a component in order to enhance it,
 which can conflict with the `muiName` solution. If you wrap a component, verify if

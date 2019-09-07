@@ -71,7 +71,7 @@ withStyles(({ palette, spacing }) => ({
 
 This is because TypeScript [widens the return types of function expressions](https://github.com/Microsoft/TypeScript/issues/241).
 
-Because of this, we recommend using the `createStyles` helper function to construct your style rules object:
+Because of this, using the `createStyles` helper function to construct your style rules object is recommended:
 
 ```ts
 // Non-dependent styles
@@ -286,5 +286,5 @@ type in those cases for [the same reasons `event.target` is not generic in React
 
 The demos include typed variants that use type casting. It is an acceptable tradeoff
 because the types are all located in a single file and are very basic. You have to decide for yourself
-if the same tradeoff is acceptable for you. We want the library types to be strict
+if the same tradeoff is acceptable for you. The library types are be strict
 by default and loose via opt-in.

@@ -55,7 +55,7 @@ You can follow the [milestones](https://github.com/mui-org/material-ui/milestone
 
 ## Support policy
 
-Only support the latest version of Material-UI is supported.
+Only the latest version of Material-UI is supported.
 We don't yet have the resources to offer [LTS](https://en.wikipedia.org/wiki/Long-term_support) releases.
 
 ## Deprecation practices

@@ -340,7 +340,7 @@ It works exactly like styled components. You can [use the same guide](/guides/in
 ![npm](https://img.shields.io/npm/dm/react-jss.svg?)
 
 Material-UI's styling solution shares many building blocks with [react-jss](https://github.com/cssinjs/react-jss).
-We went ahead and forked the project in order to handle Material-UI's unique needs, but we're working to merge the changes and fixes from Material-UI back to react-jss.
+A fork was needed in order to handle Material-UI's unique needs, but with the intent to merge the changes and fixes from Material-UI back to react-jss.
 
 ```jsx
 import React from 'react';

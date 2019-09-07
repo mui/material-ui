@@ -165,7 +165,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 ### Decorative Font Icons
 
 If your icons are purely decorative, you’re already done!
-The `aria-hidden=true` attribute isa dded so that your icons are properly accessible (invisible).
+The `aria-hidden=true` attribute is added so that your icons are properly accessible (invisible).
 
 ### Semantic Font Icons
 

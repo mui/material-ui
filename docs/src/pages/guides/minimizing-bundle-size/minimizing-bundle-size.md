@@ -198,7 +198,7 @@ It will perform the following diffs:
 The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms/).
 
 A second version of the components is also published, which
-you can find this version under the [`/es` folder](https://unpkg.com/@material-ui/core/es/).
+you can find under the [`/es` folder](https://unpkg.com/@material-ui/core/es/).
 All the non-official syntax is transpiled to the [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nothing more.
 This can be used to make separate bundles targeting different browsers.
 Older browsers will require more JavaScript features to be transpiled,
@@ -207,4 +207,4 @@ No polyfills are included for ES2015 runtime features. IE11+ and evergreen brows
 necessary features. If you need support for other browsers, consider using
 [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
 
-⚠️ In order to minimize duplication of code in users' bundles, library authors are **strongly discourage** from using the `/es` folder.
+⚠️ In order to minimize duplication of code in users' bundles, library authors are **strongly discouraged** from using the `/es` folder.
