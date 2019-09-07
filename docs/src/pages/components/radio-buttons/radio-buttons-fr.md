@@ -27,6 +27,12 @@ Vous pouvez changer l'emplacement du label:
 
 {{"demo": "pages/components/radio-buttons/FormControlLabelPosition.js"}}
 
+## Customized radios
+
+Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
+
+{{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
+
 ## Accessibilité
 
 Tous les contrôles de formulaire doivent avoir des labels, cela vaut également pour les boutons radio, les cases à cocher et les interrupteurs. Dans la plupart des cas, cela se fait en utilisant l'élément `<label>` ([FormControlLabel](/api/form-control-label/)).

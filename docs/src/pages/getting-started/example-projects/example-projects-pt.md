@@ -2,7 +2,7 @@
 
 <p class="description">Você está procurando um projeto de exemplo para começar?</p>
 
-Nós hospedamos alguns projetos de exemplo que você pode encontrar no repositório [GitHub](https://github.com/mui-org/material-ui) sob a pasta [`/exemplos`](https://github.com/mui-org/material-ui/tree/master/examples):
+You can find some example projects in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
 
 - [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
@@ -20,7 +20,7 @@ O código-fonte deste site de documentação também está incluído no reposit�
 
 Procurando por um projeto de exemplo mais avançado?
 
-If you want to start with a more complete and real world example, you could take a look at our [free templates](/getting-started/templates/) or [premium themes & templates](https://themes.material-ui.com/) or:
+If you want to start with a more complete and real world example, you could take a look at the [free templates](/getting-started/templates/) or [premium themes & templates](https://themes.material-ui.com/) or:
 
 - [React Most Wanted](https://github.com/TarikHuber/react-most-wanted), which includes:
     

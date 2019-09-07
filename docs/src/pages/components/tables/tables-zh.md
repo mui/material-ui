@@ -47,7 +47,7 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 ## 自定义表格
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/tables/CustomizedTables.js"}}
 
@@ -57,15 +57,21 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}
 
-## Spanning Table（合并的表格）
+## Fixed header
 
-一个行 & 列跨越的简单例子。
+An example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
+
+{{"demo": "pages/components/tables/StickyHeadTable.js"}}
+
+## Spanning Table
+
+A simple example with spanning rows & columns.
 
 {{"demo": "pages/components/tables/SpanningTable.js"}}
 
-## 大型列表渲染（Virtualized Table）
+## Virtualized Table
 
-在下面的示例中，我们演示了如何将 [react-virtualized](https://github.com/bvaughn/react-virtualized) 与 `Table` 组件一起使用。 它渲染了200行，可以轻松处理更多行。 可视化优化了整体的性能。
+In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. 它渲染了200行，可以轻松处理更多行。 可视化优化了整体的性能。
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js"}}
 
@@ -75,13 +81,13 @@ Here is an example of customizing the component. You can learn more about this i
 
 ### material-table
 
-![评星](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/material-table.svg)
+![stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-table.svg)
 
-[material-table](https://github.com/mbrn/material-table) 是一款 React 的简单且强大的数据库。它基于 Material-UI Table 并且添加了一些额外的功能。 它们支持了不同的用户案例（可编辑，筛选，分组，排序，选择，国际化，树形数据等等）。 您应该看一下。
+[material-table](https://github.com/mbrn/material-table) is a simple and powerful Datatable for React based on Material-UI Table with some additional features. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
 
 {{"demo": "pages/components/tables/MaterialTableDemo.js"}}
 
 ### 其他
 
-- [ dx-react-grid-material-ui ](https://devexpress.github.io/devextreme-reactive/react/grid/)：Material-UI 的一种网格数据, 具有分页，排序功能，过滤，分组和编辑功能([自定义许可证](https://js.devexpress.com/licensing/))。
-- [mui-datatables](https://github.com/gregnb/mui-datatables)：Material-UI 的响应式数据表格，包括过滤，排序，搜索等功能。
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
+- [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.

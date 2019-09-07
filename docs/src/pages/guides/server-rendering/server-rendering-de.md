@@ -21,7 +21,7 @@ Im folgenden Rezept wird beschrieben, wie das serverseitige Rendering eingericht
 
 ### Das Theme
 
-Wir erstellen ein Theme, das vom Client und vom Server gemeinsam genutzt wird.
+Create a theme that will be shared between the client and the server:
 
 `theme.js`
 
@@ -52,7 +52,7 @@ export default theme;
 
 ### Die Server-Seite
 
-Im Folgenden wird beschrieben, wie unsere Serverseite aussehen wird. Wir werden eine[ Express-Middleware](https://expressjs.com/en/guide/using-middleware.html) mit [ app.use ](https://expressjs.com/en/api.html) einrichten, um alle Anfragen zu bearbeiten, die auf unserem Server eingehen. Wenn Sie mit Express oder Middleware nicht vertraut sind, sollten Sie wissen, dass unsere handleRender-Funktion jedes Mal aufgerufen wird, wenn der Server eine Anfrage erhält.
+The following is the outline for what the server-side is going to look like. We are going to set up an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) using [app.use](https://expressjs.com/en/api.html) to handle all requests that come in to the server. If you're unfamiliar with Express or middleware, just know that the handleRender function will be called every time the server receives a request.
 
 `server.js`
 
@@ -81,11 +81,11 @@ app.listen(port);
 
 Als Erstes müssen wir bei jeder Anfrage ein neues `ServerStyleSheets` erstellen.
 
-Beim Rendern wickeln wir die `App`, unsere Wurzelkomponente, in einem [`StylesProvider`](/styles/api/#stylesprovider) und [`ThemeProvider`](/styles/api/#themeprovider) ein, um die Stilkonfiguration und das `Theme` für alle Komponenten im Komponentenbaum verfügbar zu machen.
+When rendering, we will wrap `App`, the root component, inside a [`StylesProvider`](/styles/api/#stylesprovider) and [`ThemeProvider`](/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
 
-Der wichtigste Schritt beim serverseitigen Rendern ist das Rendern des ursprünglichen HTM-Codes unserer Komponente **bevor** wir es an den Kunden senden. Dazu verwenden wir [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
+The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client side. Dazu verwenden wir [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
-Wir erhalten dann das CSS aus unsere `Sheets` mit `sheets.toString()`. Wir werden sehen, wie dies in unserer ` enderFullPage`-Funktion weitergegeben wird.
+We then get the CSS from the `sheets` using `sheets.toString()`. We will see how this is passed along in the `renderFullPage` function.
 
 ```jsx
 import express from 'express';
@@ -107,7 +107,7 @@ function handleRender(req, res) {
     ),
   );
 
-  // Entnahme des CSS aus dem Sheet.
+  // Grab the CSS from the sheets.
   const css = sheets.toString();
 
   // Zurücksenden der gerenderten Seite an den Client.
@@ -127,7 +127,7 @@ app.listen(port);
 
 ### Injizieren der ursprüngliche HTML Komponente und CSS
 
-Der letzte Schritt auf der Serverseite ist das Einfügen unserer ursprünglichen HTML Komponente und CSS in eine Vorlage, die auf der Clientseite gerendert werden soll.
+The final step on the server-side is to inject the initial component HTML and CSS into a template to be rendered on the client side.
 
 ```js
 function renderFullPage(html, css) {
@@ -148,7 +148,7 @@ function renderFullPage(html, css) {
 
 ### Die Client-Seite
 
-Die Client-Seite ist unkompliziert. Wir müssen nur das serverseitig erzeugte CSS entfernen. Werfen wir einen Blick auf unsere Client Datei:
+Die Client-Seite ist unkompliziert. Wir müssen nur das serverseitig erzeugte CSS entfernen. Let's take a look at the client file:
 
 `client.js`
 
@@ -187,4 +187,4 @@ Wir bieten verschiedene Referenzimplementierungen an, die Sie im [GitHub-Reposit
 
 ## Problemlösungen
 
-Lesen Sie unsere Antworten auf häufig gestellte Fragen: [Meine App wird auf dem Server nicht richtig gerendert](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).
+Check out the FAQ answer: [My App doesn't render correctly on the server](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).

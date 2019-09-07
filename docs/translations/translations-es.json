@@ -1,5 +1,6 @@
 {
   "homeQuickWord": "Unas palabras de nuestros patrocinadores:",
+  "helpToTranslate": "Help to translate",
   "editWebsiteColors": "Editar los colores del sitio web",
   "toggleTheme": "Alternar tema claro/oscuro",
   "toggleRTL": "Alternar derecha-izquierda/izquierda-derecha",
@@ -132,7 +133,7 @@
     "/components/no-ssr": "No SSR",
     "/components/other": "Otros",
     "/components/paper": "Paper",
-    "/components/pickers": "Date/Time",
+    "/components/pickers": "Date / Time",
     "/components/popover": "Popover",
     "/components/popper": "Popper",
     "/components/portal": "Portal",
@@ -172,7 +173,7 @@
     "/system/spacing": "Espaciado",
     "/system/typography": "Tipografía",
     "/customization": "Personalización",
-    "/customization/theming": "Temática",
+    "/customization/theming": "Estilos",
     "/customization/breakpoints": "Puntos de interrupción",
     "/customization/color": "Color",
     "/customization/themes": "Estilos",
@@ -212,6 +213,12 @@
     "/styles": "Estilos",
     "/styles/basics": "Fundamentos",
     "/styles/advanced": "Avanzado",
-    "https://themes.material-ui.com/": "Temas Premium"
+    "https://themes.material-ui.com/": "Temas Premium",
+    "/components/material-icons": "Material Icons",
+    "/components/textarea-autosize": "Textarea Autosize",
+    "/components/rating": "Rating",
+    "/components/skeleton": "Skeleton",
+    "/components/tree-view": "Tree View",
+    "/customization/density": "Density"
   }
 }

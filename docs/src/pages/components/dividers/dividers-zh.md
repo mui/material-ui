@@ -11,13 +11,13 @@ components: Divider
 
 ## 列表分隔线
 
-The divider renders as a `<hr>` by default. You can save rendering this DOM element by using the `divider` property on the `ListItem` component.
+The divider renders as an `<hr>` by default. 您可以使用 `ListItem` 组件上的 `divider` 属性来保存渲染此DOM元素。
 
 {{"demo": "pages/components/dividers/ListDividers.js"}}
 
 ## HTML5 规范
 
-我们需要保证`Divider`被渲染为`li`以便遵循HTML5规范 The examples below show two ways of achieving this.
+In a list, you should ensure the `Divider` is rendered as an `<li>` to match the HTML5 specification. 该示例演示了实现此目的的两种方法。
 
 ## 内嵌分隔线
 

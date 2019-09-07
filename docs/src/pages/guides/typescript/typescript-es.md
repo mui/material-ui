@@ -4,7 +4,20 @@
 
 Have a look at the [Create React App with TypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript) example. A minimum version of TypeScript 2.8 is required.
 
-Our definitions are tested with the following [tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json). Using a less strict `tsconfig.json` or omitting some of the libraries might cause errors.
+In order for types to work, you have to at least have the following options enabled in your `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "lib": ["es6", "dom"],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true
+  }
+}
+```
+
+The strict mode options are the same that are required for every types package published in the `@types/` namespace. Using a less strict `tsconfig.json` or omitting some of the libraries might cause errors. To get the best type experience with the types we recommend setting `"strict": true`.
 
 ## Usage of `withStyles`
 
@@ -55,7 +68,7 @@ withStyles(({ palette, spacing }) => ({
 
 This is because TypeScript [widens the return types of function expressions](https://github.com/Microsoft/TypeScript/issues/241).
 
-Because of this, we recommend using our `createStyles` helper function to construct your style rules object:
+Because of this, using the `createStyles` helper function to construct your style rules object is recommended:
 
 ```ts
 // Non-dependent styles
@@ -259,4 +272,4 @@ Many components concerned with user input offer a `value` prop or event handlers
 
 However, that type cannot be verified at compile time in situations where it depends on the component's children e.g. for `Select` or `RadioGroup`. This means that the soundest option is to type it as `unknown` and let the developer decide how they want to narrow that type down. We do not offer the possibility to use a generic type in those cases for [the same reasons `event.target` is not generic in React](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682).
 
-Our demos include typed variants that use type casting. It is an acceptable tradeoff because the types are all located in a single file and are very basic. You have to decide for yourself if the same tradeoff is acceptable for you. We want our library types to be strict by default and loose via opt-in.
+The demos include typed variants that use type casting. It is an acceptable tradeoff because the types are all located in a single file and are very basic. You have to decide for yourself if the same tradeoff is acceptable for you. The library types are be strict by default and loose via opt-in.

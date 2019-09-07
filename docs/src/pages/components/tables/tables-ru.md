@@ -57,15 +57,21 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}
 
-## Объединение таблиц
+## Fixed header
 
-Простой пример с объединением строк и столбцов.
+An example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
+
+{{"demo": "pages/components/tables/StickyHeadTable.js"}}
+
+## Spanning Table
+
+A simple example with spanning rows & columns.
 
 {{"demo": "pages/components/tables/SpanningTable.js"}}
 
-## Виртуализированная таблица
+## Virtualized Table
 
-В следующем примере мы покажем, как использовать [react-virtualized](https://github.com/bvaughn/react-virtualized) с компонентом `Table`. Он отображает 200 строк и c легкостью может еще больше. Virtualization helps with performance issues.
+In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. Он отображает 200 строк и c легкостью может еще больше. Virtualization helps with performance issues.
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js"}}
 
@@ -83,5 +89,5 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 ### Прочее
 
-- [dx-react-grid-material-ui<](https://devexpress.github.io/devextreme-reactive/react/grid/) Сетка данных для Material-UI с функциями навигации, сортировки, фильтрации, группировки и редактирования ([пользовательское соглашение](https://js.devexpress.com/licensing/)).
-- [mui-datatables](https://github.com/gregnb/mui-datatables) Адаптируемые таблицы данных для Material-UI с фильтрацией, сортировкой, поиском и многим другим.
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
+- [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.

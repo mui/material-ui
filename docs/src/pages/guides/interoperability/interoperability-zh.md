@@ -2,7 +2,7 @@
 
 <p class="description">虽然使用由 Material-UI 提供的基于JSS的样式解决方案来设置您的应用程序样式比较简单，但您依旧可以在从纯 CSS 到任意数量的 CSS-in-JS 库的方案中选择，来实现您所偏好的样式方案。</p>
 
-本指南旨在归档当前比较流行的一些替代方案，但是您应该可以发现在这里运用的法则也可以在其他库里适用。 我们为以下的样式方案提供了一些方案：
+本指南旨在归档当前比较流行的一些替代方案，但是您应该可以发现在这里运用的法则也可以在其他库里适用。 There are examples for the following styling solutions:
 
 - [纯 CSS](#plain-css)
 - [全局 CSS](#global-css)
@@ -14,7 +14,7 @@
 
 ## 纯 CSS
 
-没有什么特别花哨的，只是普通的旧版 CSS。 大家已经用它了几十年了，何必多此一举呢？
+Nothing fancy, just plain old CSS.
 
 **PlainCssButton.css**
 
@@ -91,7 +91,7 @@ export default function GlobalCssButton() {
 
 ![评星](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
 
-`styled()` 方法适用于我们所有的组件。
+The `styled()` method works perfectly on all of the components.
 
 ```jsx
 import React from 'react';
@@ -293,7 +293,7 @@ Emotion的 **css()** 方法与Material-UI无缝协作。
 import { jsx, css } from '@emotion/core';
 import Button from '@material-ui/core/Button';
 
-// We just assign them the Button's className attribute
+// Just assign them the Button's className attribute
 export default function EmotionButton() {
   return (
     <div>
@@ -330,7 +330,7 @@ export default function EmotionButton() {
 
 ![评星](https://img.shields.io/github/stars/cssinjs/jss.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/react-jss.svg?)
 
-Material-UI 的样式方案与 [react-jss](https://github.com/cssinjs/react-jss) 共享了许多代码块。 为了解决我们独特的需求，我们继续开发并且克隆了项目，但是我们仍致力于合并那些从 Material-UI 返回到 react-jss 的变动和修复。
+Material-UI 的样式方案与 [react-jss](https://github.com/cssinjs/react-jss) 共享了许多代码块。 A fork was needed in order to handle Material-UI's unique needs, but with the intent to merge the changes and fixes from Material-UI back to react-jss.
 
 ```jsx
 import React from 'react';

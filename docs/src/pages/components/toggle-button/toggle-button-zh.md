@@ -9,7 +9,7 @@ components: ToggleButton, ToggleButtonGroup
 
 为了强调组合之间的关联，每一组 [Toggle buttons](https://material.io/design/components/buttons.html#toggle-button) 应该共享一个容器。
 
-当给 `ToggleButtonGroup` 自身的 `value` 属性赋值时，它可以控制哪个子按钮被选中。
+The `ToggleButtonGroup` will control the selected state of its child buttons when given its own `value` prop.
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 
@@ -18,3 +18,13 @@ components: ToggleButton, ToggleButtonGroup
 想要更大或更小的按钮？ 你可以使用 `size` 属性。
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
+
+## Standalone toggle button
+
+{{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}
+
+## 可及性
+
+ToggleButtonGroup has `role="group"`. You should provide an accessible label with `arial-label="label"`, `aria-labelledby="id"` or `<label>`.
+
+ToggleButton sets `aria-pressed="<bool>"` according to the button state. You should label each button with `aria-label`.

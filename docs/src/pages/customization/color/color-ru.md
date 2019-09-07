@@ -73,7 +73,7 @@ If you are using the default primary and / or secondary shades then by providing
 
 The Material Design team has also built an awesome palette configuration tool: [material.io/tools/color](https://material.io/tools/color/). This can help you create a color palette for your UI, as well as measure the accessibility level of any color combination.
 
-<a href="https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336">
+<a href="https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
   <img src="/static/images/color/colorTool.png" alt="Официальный инструмент для работы с цветом" style="width: 574px" />
 </a>
 
@@ -102,6 +102,6 @@ const theme = createMuiTheme({
 
 ### Инструменты, созданные сообществом
 
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/) Это онлайн-инструмент для создания тем Material-UI с помощью Material Design Color Tool.
-- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) Инструмент с функцией предварительного просмотра в реальном времени, который позволяет создавать темы для ваших Material-UI приложений, просто выбирая цвета.
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Is an online tool for creating Material-UI themes via Material Design Color Tool.
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
 - [Material palette generator](https://material.io/inline-tools/color/): Этот инструмент можно использовать для создания палитры на основе любого выбранного цвета.

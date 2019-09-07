@@ -1,22 +1,49 @@
 # 相关项目
 
-<p class="description">我们精心挑选了一系列的库，他们都值得一阅。</p>
+<p class="description">A carefully curated list of libraries that are worth having a look at.</p>
 
-因为 Material-UI 能够解决的问题范围有限，我们尽量会与其他库好好合作。 不用读提交 pull request 来添加更多的项目感到拘束；如果它们符合我们的标准，我们都会纳入其中。
+因为 Material-UI 能够解决的问题范围有限，我们尽量会与其他库好好合作。 Feel free to submit a pull request to add another project; it will be accepted if it is suitable.
 
 ## 设计资源
 
 - Material-UI 的[Figma UI 包](https://material.5ly.co/)。
 
-## 库
+## Images and illustrations
 
-这是一个我们无法在文档页面中更好地说明情况的项目集合。
+- [Unsplash](https://unsplash.com): 📷 A great resource for finding beautiful, high-resolution, free photos that you can use in your projects.
+- [unDraw](https://undraw.co/): 📐 Like Unsplash but for amazing vector illustrations.
 
-- [Advanced Filter Builder](https://github.com/logipro/logi-filter-builder) 一个帮助您创建强大的过滤标准的组件。
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/) 用于通过Material Design Color Tool创建Material-UI主题的在线工具.
-- [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/) 一个 Material-UI 的图标库，它能够用一系列形形色色的类别来视化数据，包含了条形图，折线图，区域图，散点图，饼图，等等（[自定义许可证](https://js.devexpress.com/licensing/)）。
-- [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest) 一个 React 和 Material-UI 的模糊搜索的组件。
-- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) 一款只需要选择颜色即可为你的 Material-UI 应用生成主题的工具，同时还支持在线预览。
-- [mui-downshift](https://github.com/techniq/mui-downshift) paypal 的 downshift 上薄薄的一层，这样可以使用 Material-UI 可视化组件。
-- [react-basket](https://github.com/mbrn/react-basket) 一个基于 Material-UI组件的购物车组件库。
-- [Wertarbyte](https://mui.wertarbyte.com/) 这是 Wertarbyte 开发的一个补充组件的集合。 Carousel，Image，Password，Rating，Icons，等等。
+## 组件
+
+This is a collection of third-party projects that extend Material-UI.
+
+### Table（表格）
+
+- [material-table](https://github.com/mbrn/material-table): A simple and powerful Datatable for React based on Material-UI Table with some additional features. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
+- [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.
+
+### Autocomplete（自动补全）
+
+- [material-ui-chip-input](https://mui.wertarbyte.com/#material-ui-chip-input): The chip input is used to allow selecting multiple text values.
+- [mui-downshift](https://github.com/techniq/mui-downshift): Thin layer over paypal's downshift to use Material-UI visual components.
+- [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest): A fuzzy-search component for React and Material-UI.
+- [react-select-material-ui](https://github.com/iulian-radu-at/react-select-material-ui): Extend react-select with Material-UI.
+
+### Notifications
+
+- [notistack](https://github.com/iamhosseindhv/notistack): Makes it easy to display snackbars (so you don't have to deal with open/close state of them).
+
+### Carousel
+
+- [material-auto-rotating-carousel](https://mui.wertarbyte.com/#material-auto-rotating-carousel): Introduce new users to your app.
+
+### Image
+
+- [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Images are ugly until they're loaded. Materialize it with material image! It will fade in like the material image loading pattern suggests.
+
+## Theming
+
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): An online tool for creating Material-UI themes via Material Design Color Tool.
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
+- [Material调色板生成器](https://material.io/inline-tools/color/)：Material调色板生成器可用于通过您输入的任何颜色生成调色板。

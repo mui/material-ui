@@ -31,7 +31,7 @@ The tooltip needs to apply DOM event listeners to its child element. If the chil
 
 ```jsx
 function MyComponent(props) {
-  // We spread the properties to the underlying DOM element.
+  //  Spread the properties to the underlying DOM element.
   return <div {...props}>Bin</div>
 }
 

@@ -73,7 +73,7 @@ const theme = createMuiTheme({
 
 Material Design 团队提供了一款令人赞叹的调色板配置工具：[material.io/tools/color](https://material.io/tools/color/)。 它会帮助你为你的 UI 建立自己的色彩集合，同时也会帮助测量每个颜色组合的可访问性。
 
-<a href="https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336">
+<a href="https://material.io/tools/color/#!/?view.left=0&view.right=0&primary.color=3F51B5&secondary.color=F44336" target="_blank" rel="noopener nofollow">
   <img src="/static/images/color/colorTool.png" alt="官方色彩工具" style="width: 574px" />
 </a>
 
@@ -102,6 +102,6 @@ const theme = createMuiTheme({
 
 ### 社区工具
 
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/) 是一款使用 Material Design 创建 Material-UI 主题的在线工具。
-- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/) 一款只需要选择颜色即可为你的 Material-UI 应用生成主题的工具，同时还支持在线预览。
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Is an online tool for creating Material-UI themes via Material Design Color Tool.
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
 - [Material调色板生成器](https://material.io/inline-tools/color/)：Material调色板生成器可用于通过您输入的任何颜色生成调色板。

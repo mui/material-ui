@@ -1,12 +1,12 @@
 ---
-title: Material Icons
+title: Ícones Material
 components: Icon, SvgIcon
 ---
 
-# Material Icons
+# Ícones Material
 
-<p class="description">1,000+ React Material icons ready to use from the official website.</p>
+<p class="description">Mais de 1.000 ícones React, oficiais do Material e prontos para uso.</p>
 
-The following npm package, [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons), includes the 1,000+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to [`SvgIcon`](/api/svg-icon/) components.
+O pacote npm a seguir, [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons), inclui os mais de 1,000 [Ícones Material](https://material.io/tools/icons/?style=baseline) oficiais, convertidos para componentes [`SvgIcon`](/api/svg-icon/).
 
 {{"demo": "pages/components/material-icons/SearchIcons.js", "hideHeader": true}}

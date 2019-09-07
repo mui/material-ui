@@ -8,7 +8,7 @@
 
 {{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideHeader": true}}
 
-> 提示：你可以在**您的控制台**使用文档主题对象. 我们在所有文档页面上都公开了一个文档`主题`对象。 请注意，文档站点正在使用自定义主题。
+> Tip: you can play with the documentation theme object in **your console**, as the `theme` variable is exposed on all the documentation pages. Please note that the documentation site is using a custom theme.
 
 如果你想了解更多有关主题是如何组合的信息，请看看 [`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/createMuiTheme.js) 和 如何用`createMuiTheme` 导入主题
 

@@ -77,7 +77,7 @@ Der Schalter ist die sekundäre Aktion und ein separates Ziel.
 
 Nach dem Scrollen bleiben angeheftete Kopfzeilen am oberen Bildschirmrand fixiert, bis sie von der nächsten Kopfzeile aus dem Bildschirm gedrückt werden.
 
-Diese Funktion basiert auf der CSS-Sticky-Positionierung. Leider ist es [ nicht von allen Browsern implementiert](https://caniuse.com/#search=sticky), die wir unterstützt. Wir setzen standardmäßig auf `disableSticky` wenn dies nicht unterstützt wird.
+This feature relies on CSS sticky positioning. Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the supported browsers. It defaults to `disableSticky` when not supported.
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js"}}
 
@@ -91,4 +91,4 @@ Im folgenden Beispiel zeigen wir wie Sie [react-window](https://github.com/bvaug
 
 {{"demo": "pages/components/lists/VirtualizedList.js"}}
 
-Wir empfehlen die Verwendung von [react-window](https://github.com/bvaughn/react-window) wenn dies möglich ist. Wenn diese Bibliothek Ihren Anwendungsfall nicht abdeckt, sollten Sie [react-virtualized](https://github.com/bvaughn/react-virtualized) und Alternativen wie [react-virtuoso](https://github.com/petyosi/react-virtuoso) in Betracht ziehen.
+The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged. Wenn diese Bibliothek Ihren Anwendungsfall nicht abdeckt, sollten Sie [react-virtualized](https://github.com/bvaughn/react-virtualized) und Alternativen wie [react-virtuoso](https://github.com/petyosi/react-virtuoso) in Betracht ziehen.

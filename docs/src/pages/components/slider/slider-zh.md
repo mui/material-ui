@@ -25,7 +25,7 @@ Discrete sliders can be adjusted to a specific value by referencing its value in
 
 ## 自定义滑块
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+以下是自定义组件的一些例子。 You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
@@ -51,5 +51,5 @@ Here are some examples of customizing the component. You can learn more about th
 
 The component handles most of the work necessary to make it accessible. However, you need to make sure that:
 
-- 为整个滑块组件添加一个标签 (`aria-label` or `aria-labelledby`)。
-- 为数值标签的提示气泡添加有意义的名称， 除非数值的含义显而易见。 你可以通过`getAriaValueText` 或者 `aria-valuetext` 更改提示气泡的名称。
+- Each thumb has a user-friendly label (`aria-label`, `aria-labelledby` or `getAriaLabel` prop).
+- Each thumb has a user-friendly text for its current value. 除非数值的含义显而易见。 你可以通过`getAriaValueText` 或者 `aria-valuetext` 更改提示气泡的名称。

@@ -13,9 +13,23 @@ Exemplos de emblemas contendo texto, usando cores primárias e secundárias. O e
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
+## Emblemas Customizados
+
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+
+{{"demo": "pages/components/badges/CustomizedBadges.js"}}
+
+## Visibilidade do emblema
+
+A visibilidade dos emblemas pode ser controlada usando a propriedade `invisible`.
+
+O emblema se esconde automaticamente quando o badgeContent é zero. Você pode sobrescrever isso com a propriedade `showZero`.
+
+{{"demo": "pages/components/badges/BadgeVisibility.js"}}
+
 ## Valor Máximo
 
-Você pode usar a propriedade `max` para limitar o valor do conteúdo do selo.
+Você pode usar a propriedade `max` para limitar o valor do conteúdo do emblema.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
@@ -25,16 +39,14 @@ A propriedade `dot` altera um emblema para um pequeno ponto. Isto pode ser usado
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
-## Visibilidade do Emblema
+## Sobreposição de emblema
 
-A visibilidade dos emblemas pode ser controlada usando a propriedade `invisible`.
+Você pode usar a propriedade `overlap` para colocar o emblema em relação ao canto do elemento envolvido.
 
-O emblema se esconde automaticamente quando o badgeContent é zero. Você pode sobrescrever isso com a propriedade `showZero`.
+{{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
-{{"demo": "pages/components/badges/BadgeVisibility.js"}}
+## Alinhamento de emblema
 
-## Emblemas Customizados
+Você pode usar as propriedades `horizontalAlignment` e `verticalAlignment` para mover o emblema para qualquer canto do elemento agrupado.
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
-
-{{"demo": "pages/components/badges/CustomizedBadges.js"}}
+{{"demo": "pages/components/badges/BadgeAlignment.js"}}

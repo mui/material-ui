@@ -15,7 +15,7 @@ Material-UI支持所有主流浏览器和平台的最新稳定版本。 It also 
 
 ## 服务器
 
-Because Material-UI supports server-side rendering, it needs to support the latest, stable releases of [Node.js](https://github.com/nodejs/node). 我们还会尝试支持[维护中的LTS版本](https://github.com/nodejs/Release#lts-schedule1) 。 Right now, it supports **node v8.x** and newer versions.
+Because Material-UI supports server-side rendering, it needs to support the latest, stable releases of [Node.js](https://github.com/nodejs/node). Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1) are supported. Right now, it supports **node v8.x** and newer versions.
 
 ### CSS前缀
 
@@ -25,4 +25,4 @@ Because Material-UI supports server-side rendering, it needs to support the late
 
 ## React
 
-Material-UI supports the most recent versions of React, starting with ^16.8.0 (the one with the hooks). Have a look at our older [versions](/versions/) for backward compatibility.
+Material-UI支持最新版本的React，从16.8.0开始(带有hook的版本)。 Have a look at the older [versions](/versions/) for backward compatibility.

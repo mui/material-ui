@@ -1,8 +1,8 @@
 # タイポグラフィ
 
-<p class="description">Documentation and examples for common text utilities to control alignment, wrapping, weight, and more.</p>
+<p class="description">位置合わせ、ラッピング、重みなどをコントロールする一般的なテキストユーティリティのドキュメントと例。</p>
 
-## Text alignment
+## テキストの位置
 
 ```jsx
 <Box textAlign="left">…
@@ -34,7 +34,7 @@
 
 {{"demo": "pages/system/typography/FontSize.js"}}
 
-## Font Style
+## フォントスタイル
 
 ```jsx
 <Box fontStyle="normal">…
@@ -53,7 +53,7 @@
 
 {{"demo": "pages/system/typography/FontFamily.js"}}
 
-## Letter Spacing
+## 文字間隔
 
 ```jsx
 <Box letterSpacing={6}>…
@@ -62,7 +62,7 @@
 
 {{"demo": "pages/system/typography/LetterSpacing.js"}}
 
-## Line Height
+## 行の高さ
 
 ```jsx
 <Box lineHeight="normal">…
@@ -80,7 +80,7 @@ import { typography } from '@material-ui/system';
 | Import name     | Prop            | CSS property     | Theme key                                                              |
 |:--------------- |:--------------- |:---------------- |:---------------------------------------------------------------------- |
 | `fontFamily`    | `fontFamily`    | `font-family`    | [`typography`](/customization/default-theme/?expend-path=$.typography) |
-| `fontSize`      | `fontSize`      | `フォント サイズ`       | [`typography`](/customization/default-theme/?expend-path=$.typography) |
+| `fontSize`      | `fontSize`      | `font-size`      | [`typography`](/customization/default-theme/?expend-path=$.typography) |
 | `fontStyle`     | `fontStyle`     | `font-style`     | [`typography`](/customization/default-theme/?expend-path=$.typography) |
 | `fontWeight`    | `fontWeight`    | `font-weight`    | [`typography`](/customization/default-theme/?expend-path=$.typography) |
 | `letterSpacing` | `letterSpacing` | `letter-spacing` | none                                                                   |

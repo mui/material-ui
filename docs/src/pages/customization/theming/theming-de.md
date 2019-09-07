@@ -29,7 +29,7 @@ You can check out the [default theme section](/customization/default-theme/) to 
 
 ### Custom variables
 
-When using Material-UI's theme with our [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
+When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
@@ -95,10 +95,10 @@ Generieren Sie responsive Typografieeinstellungen basierend auf den erhaltenen O
 1. `theme` (*Object*): Das zu verbessernde Themeobjekt.
 2. `options` (*Object* [optional]):
 
-- ` Haltepunkte (Breakpoints)` (* Array <string> * [optional]): Standardmäßig auf ` ['sm', 'md', 'lg'] `. Array von [Haltepunkten](/customization/breakpoints/) (Bezeichner).
+- `breakpoints` (*Array<String>* [optional]): Default to `['sm', 'md', 'lg']`. Array von [Haltepunkten](/customization/breakpoints/) (Bezeichner).
 - `disableAlign` (*Boolean* [optional]): Standardmäßig auf `false`. Ob sich die Schriftgrößen geringfügig ändern, um die Höhen der Linie beizubehalten und an das 4px-Linienhöhenraster von Material Design anzupassent. Dies erfordert eine einheitlose Zeilenhöhe in den Stilen des Designs.
 - `factor` (*Nummer* [optional]): Standardmäßig auf `2`. Dieser Wert bestimmt die Stärke der Größenänderung der Schriftgröße. Je höher der Wert, desto geringer ist der Unterschied zwischen den Schriftgrößen auf kleinen Bildschirmen. Je niedriger der Wert, desto größer die Schriftgröße für kleine Bildschirme. The value must be greater than 1.
-- `variants` (*Array<string>* [optional]): Standardmäßig auf alle. Die zu behandelnden Typografie-Varianten.
+- `variants` (*Array<String>* [optional]): Default to all. Die zu behandelnden Typografie-Varianten.
 
 #### Rückgabewerte
 

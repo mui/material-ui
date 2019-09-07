@@ -1,6 +1,6 @@
 # 常见问题解答
 
-<p class="description">您在一个特定的问题上停滞不前吗？ 您可以先在我们的常见 FAQ (问题解答) 中检索一下常见问题。</p>
+<p class="description">您在一个特定的问题上停滞不前吗？ Check some of these common gotchas first in the FAQ.</p>
 
 当遇到一些无法解决的问题，您可以在[Spectrum](https://spectrum.chat/material-ui)社区中进行提问。 对于如何提问，和其他并非功能性问题的，请使用[StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) 提问，请不要使用 Github 的 issues板块。 在 StackOverflow 里面有一个 ` material-ui `的标签， 您可以用它来标记你的问题。
 
@@ -14,7 +14,7 @@
 
 - 比如你一不小心 **打包**了 两个版本的 Material-UI。 你可能错误地将一个依赖和 material-ui 设置为同版本依赖了。
 - 对于你的React Tree（React树控件）而言，你在使用`StylesProvider`构建**subset（分支）**。
-- You are using a bundler and it is splitting code in a way that causes multiple class name generator instances to be created.
+- 您正在使用打包的代码分割功能，这会生成多个 class 名字
 
 > 如果你正使用带有[SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/) 的webpack，请尝试在[`优化项(optimizations)`下配置 `runtimeChunk`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk) 。
 
@@ -22,7 +22,7 @@
 
 ## 为什么当打开Modal（模态框）时，fixed positioned（位置固定的）元素会移动？
 
-一旦打开模态框，我们就会禁用滚动。 而模态框是应该是唯一的交互式内容时，这可以防止与背景交互，但是，删除滚动条可以恢复**fixed positioned(固定位置的)元素**的移动。 在这种情况下，您可以应用全局`.mui-fixed`类名称来告知 Material-UI 来处理这些元素。
+Scroll is blocked as soon as a modal is opened. 而模态框是应该是唯一的交互式内容时，这可以防止与背景交互，但是，删除滚动条可以恢复**fixed positioned(固定位置的)元素**的移动。 在这种情况下，您可以应用全局`.mui-fixed`类名称来告知 Material-UI 来处理这些元素。
 
 ## 如何在全局禁用 ripple effect（涟漪效果）？
 
@@ -42,9 +42,9 @@ const theme = createMuiTheme({
 });
 ```
 
-## How can I disable transitions globally?
+## 如何禁用全局transition
 
-You can disable transitions globally by providing the following in your theme:
+您可以通过在主题中提供以下内容来禁用全局动画：
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -59,7 +59,7 @@ const theme = createMuiTheme({
 
 有时您会在某些情况下才使用这种行为，例如在测试期间或者在一些低端设备上，在这些情况下，您可以动态地更改主题的值。
 
-You can go one step further by disabling all the transitions, animations and the ripple effect:
+你可以更进一步，禁用所有的 transition，animations 和 ripple effect::
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -91,7 +91,7 @@ const theme = createMuiTheme({
 });
 ```
 
-## 是否必须使用 JSS 给我的 app 添加样式？
+## 我是否必须使用 JSS 给 app 来设置样式呢？
 
 No, it's not required. But this dependenency comes built in, so carries no additional bundle size overhead.
 
@@ -108,7 +108,7 @@ No, it's not required. But this dependenency comes built in, so carries no addit
 
 ## 如何使用 react-router？
 
-我们在`ButtonBase` 组件里面解析了如何使用带有[第三方routing的库](/components/buttons/#third-party-routing-library)。 A lot of our interactive components use it internally: `Link`, `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. 您可以使用相同的解决方案。
+How to use a [third-party routing library](/components/buttons/#third-party-routing-library) is documented with the `ButtonBase` component. A lot of the interactive components use it internally: `Link`, `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. 您可以使用相同的解决方案。
 
 ## 如何访问 DOM 元素？
 
@@ -215,7 +215,7 @@ If you have several applications running on one page, consider using one @materi
 
 ## My App doesn't render correctly on the server
 
-If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component. We are very strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out our [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
+If it doesn't work, in 99% of cases it's a configuration issue. A missing property, a wrong call order, or a missing component. Server side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
 ### CSS works only on first load then is missing
 
@@ -223,7 +223,7 @@ The CSS is only generated on the first load of the page. Then, the CSS is missin
 
 #### 要采取的行动
 
-We rely on a cache, the sheets manager, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). You need to create **a new `sheets` instance for each request**.
+The styling solution relies on a cache, the *sheets manager*, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). You need to create **a new `sheets` instance for each request**.
 
 *example of fix:*
 
@@ -358,4 +358,33 @@ function App() {
     </div>
   );
 }
+```
+
+## What's the clsx dependency for?
+
+[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally.
+
+Instead of writing:
+
+```jsx
+return (
+  <div
+    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ? 'Mui-selected' : ''}`}
+  />
+);
+```
+
+you can do:
+
+```jsx
+import clsx from 'clsx';
+
+return (
+  <div
+    className={clsx('MuiButton-root', {
+      'Mui-disabled': disabled,
+      'Mui-selected': selected,
+    })}
+  />
+);
 ```

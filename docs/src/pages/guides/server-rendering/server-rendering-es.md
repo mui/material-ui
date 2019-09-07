@@ -21,7 +21,7 @@ In the following recipe, we are going to look at how to set up server-side rende
 
 ### The theme
 
-We create a theme that will be shared between the client and the server.
+Create a theme that will be shared between the client and the server:
 
 `theme.js`
 
@@ -52,7 +52,7 @@ export default theme;
 
 ### The server-side
 
-The following is the outline for what our server-side is going to look like. We are going to set up an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) using [app.use](https://expressjs.com/en/api.html) to handle all requests that come in to our server. If you're unfamiliar with Express or middleware, just know that our handleRender function will be called every time the server receives a request.
+The following is the outline for what the server-side is going to look like. We are going to set up an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) using [app.use](https://expressjs.com/en/api.html) to handle all requests that come in to the server. If you're unfamiliar with Express or middleware, just know that the handleRender function will be called every time the server receives a request.
 
 `server.js`
 
@@ -81,11 +81,11 @@ app.listen(port);
 
 The first thing that we need to do on every request is create a new `ServerStyleSheets`.
 
-When rendering, we will wrap `App`, our root component, inside a [`StylesProvider`](/styles/api/#stylesprovider) and [`ThemeProvider`](/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
+When rendering, we will wrap `App`, the root component, inside a [`StylesProvider`](/styles/api/#stylesprovider) and [`ThemeProvider`](/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
 
-The key step in server-side rendering is to render the initial HTML of our component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
+The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
-We then get the CSS from our `sheets` using `sheets.toString()`. We will see how this is passed along in our `renderFullPage` function.
+We then get the CSS from the `sheets` using `sheets.toString()`. We will see how this is passed along in the `renderFullPage` function.
 
 ```jsx
 import express from 'express';
@@ -107,7 +107,7 @@ function handleRender(req, res) {
     ),
   );
 
-  // Grab the CSS from our sheets.
+  // Grab the CSS from the sheets.
   const css = sheets.toString();
 
   // Send the rendered page back to the client.
@@ -127,7 +127,7 @@ app.listen(port);
 
 ### Inject Initial Component HTML and CSS
 
-The final step on the server-side is to inject our initial component HTML and CSS into a template to be rendered on the client side.
+The final step on the server-side is to inject the initial component HTML and CSS into a template to be rendered on the client side.
 
 ```js
 function renderFullPage(html, css) {
@@ -148,7 +148,7 @@ function renderFullPage(html, css) {
 
 ### The Client Side
 
-The client side is straightforward. All we need to do is remove the server-side generated CSS. Let's take a look at our client file:
+The client side is straightforward. All we need to do is remove the server-side generated CSS. Let's take a look at the client file:
 
 `client.js`
 
@@ -187,4 +187,4 @@ We host different reference implementations which you can find in the [GitHub re
 
 ## Troubleshooting
 
-Check out our FAQ answer: [My App doesn't render correctly on the server](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).
+Check out the FAQ answer: [My App doesn't render correctly on the server](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).

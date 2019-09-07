@@ -4,7 +4,7 @@
 
 **flexboxに不慣れ**な場合、 [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) を読むことをおすすめします。
 
-## Properties for the Parent
+## 親のプロパティ
 
 ### display
 
@@ -61,7 +61,7 @@
 
 {{"demo": "pages/system/flexbox/AlignContent.js"}}
 
-## Properties for the Children
+## 子供のプロパティ
 
 ### order
 

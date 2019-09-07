@@ -1,6 +1,6 @@
 # Anzeige
 
-<p class="description">Wechseln Sie mit unseren Anzeigekomponenten schnell und ansprechend den Anzeigewert von Komponenten und mehr. Unterstützt einige der gebräuchlichsten Werte sowie einige Extras zur Steuerung der Anzeige beim Drucken.</p>
+<p class="description">Quickly and responsively toggle the display value of components and more with the display utilities. Unterstützt einige der gebräuchlichsten Werte sowie einige Extras zur Steuerung der Anzeige beim Drucken.</p>
 
 ## Beispiele
 

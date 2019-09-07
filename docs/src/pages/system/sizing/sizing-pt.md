@@ -1,6 +1,6 @@
 # Dimensionando
 
-<p class="description">Facilmente faça um elemento tão largo ou tão alto (relativo a seu pai) com nossos utilitários de largura e altura.</p>
+<p class="description">Easily make an element as wide or as tall (relative to its parent) with the width and height utilities.</p>
 
 ## Valores suportados
 

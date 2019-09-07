@@ -25,4 +25,4 @@ Material-UIはMITライセンスのオープンソースプロジェクトです
 
 ### もっとあります！
 
-[私たちのサポーター](/discover-more/backers/)から全てリストを見ることができます。
+[私たちのサポーター](/discover-more/backers/)のリストを見て下さい。

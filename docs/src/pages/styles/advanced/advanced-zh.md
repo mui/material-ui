@@ -218,7 +218,7 @@ const useStyles = makeStyles({
 
 ## CSS 注入顺序
 
-> 了解浏览器如何计算CSS特异性**非常重要**。 这是重写样式时要知道的关键元素之一。 我们 **推荐**您要阅读此MDN资料：[如何计算特异性？ ](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+> It's **really important** to understand how the CSS specificity is calculated by the browser, as it's one of the key elements to know when overriding styles. You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
 默认情况下，注入的style标签会被插入到页面`<head>`元素的最后。 它们比页面上任何其他样式标签更具特异性，例如CSS模块， styled components。
 
@@ -386,7 +386,7 @@ You can [follow the server side guide](/guides/server-rendering/) for a more det
 
 ### Gatsby
 
-We have [an official plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Refer to the plugin's page for setup and usage instructions.
+There is [an official plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Refer to the plugin's page for setup and usage instructions.
 
 Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
 

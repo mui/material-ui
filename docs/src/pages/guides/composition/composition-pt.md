@@ -4,7 +4,7 @@
 
 ## Encapsulando componentes
 
-Para fornecer o máximo de flexibilidade e desempenho, precisamos de uma maneira de conhecer a natureza dos elementos filhos que um componente recebe. Para resolver este problema, marcamos alguns de nossos componentes, quando necessário com uma propriedade estática `muiName`.
+Para fornecer o máximo de flexibilidade e desempenho, precisamos de uma maneira de conhecer a natureza dos elementos filhos que um componente recebe. To solve this problem we tag some of the components with a `muiName` static property when needed.
 
 Você pode, no entanto, precisar encapsular um componente para melhorá-lo, que pode entrar em conflito com a solução `muiName`. Se você encapsular um componente, verifique se este tem um conjunto de propriedades estáticas.
 
@@ -65,7 +65,7 @@ const ListItemLink = ({ icon, primary, secondary, to }) => (
 
 ⚠️ No entanto, como estamos usando uma função em linha para alterar o componente renderizado, o React desmontará o link toda vez que o `ListItemLink` é renderizado. Não só irá o React atualizar o DOM desnecessariamente, como o efeito cascata do `ListItem` também não funcionará corretamente.
 
-A solução é simples: **evite funções em linha e passe um componente estático para a propriedade `component`**. Vamos mudar nosso `ListItemLink` para o seguinte:
+A solução é simples: **evite funções em linha e passe um componente estático para a propriedade `component`**. Let's change the `ListItemLink` to the following:
 
 ```jsx
 import { Link as RouterLink } from 'react-router-dom';
@@ -136,11 +136,11 @@ Se você não usar um dos tipos acima ao usar seus componentes em conjunto com o
 
 Esteja ciente que você ainda receberá este aviso para componentes `lazy` ou `memo` se eles forem encapsulados por um componente que não contém ref.
 
-Em alguns casos, emitimos um aviso adicional para ajudar na depuração, semelhante a:
+In some instances an additional warning is issued to help with debugging, similar to:
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
-Cobrimos apenas os dois casos de uso mais comuns. Para mais informações, consulte [esta seção na documentação oficial do React](https://reactjs.org/docs/forwarding-refs.html).
+Only the two most common use cases are covered. Para mais informações, consulte [esta seção na documentação oficial do React](https://reactjs.org/docs/forwarding-refs.html).
 
 ```diff
 - const MyButton = props => <div role="button" {...props} />;
@@ -158,7 +158,7 @@ Para descobrir se o componente de Material-UI que você está usando tem esse re
 
 ### Caveat with StrictMode
 
-If you use class components for the cases described above you will still see warnings in `React.StrictMode`. We use `ReactDOM.findDOMNode` internally for backwards compatibility. You can use `React.forwardRef` and a designated prop in your class component to forward the `ref` to a DOM component. Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
+If you use class components for the cases described above you will still see warnings in `React.StrictMode`. `ReactDOM.findDOMNode` is used internally for backwards compatibility. You can use `React.forwardRef` and a designated prop in your class component to forward the `ref` to a DOM component. Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
 
 ```diff
 class Component extends React.Component {

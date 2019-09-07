@@ -11,53 +11,53 @@ A [barra de aplicativos superior](https://material.io/design/components/app-bars
 
 Ele pode se transformar em uma barra de ações contextual ou utilizado como uma barra de navegação.
 
-## Simple App Bar
+## Barra de Aplicativos Simples
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
 
-## App Bar with a primary search field
+## Barra de Aplicativos com um campo de busca principal
 
-A primary searchbar.
+Um campo de busca principal.
 
 {{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
 
-## App Bar with menu
+## Barra de Aplicativos com menu
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js"}}
 
-## App Bar with search field
+## Barra de Aplicativos com campo de busca
 
-A side searchbar.
+Uma barra de pesquisa na lateral.
 
 {{"demo": "pages/components/app-bar/SearchAppBar.js"}}
 
-## Dense (desktop only)
+## Densa (apenas para desktop)
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js"}}
 
-## Bottom App Bar
+## Barra de Aplicativos inferior
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Scrolling
+## Rolagem
 
-You can use the `useScrollTrigger()` hook to respond to user scroll actions.
+Você pode usar o hook `useScrollTrigger()` para responder às ações de rolagem do usuário.
 
 ### Barra de Aplicativos oculta
 
-The app bar hides on scroll down to leave more space for reading.
+A barra de aplicativos se oculta na rolagem para baixo, deixando mais espaço para leitura.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### Barra de aplicativos elevada
 
-The app bar elevates on scroll to communicate that the user is not at the top of the page.
+A barra de aplicativos eleva-se na rolagem para comunicar que o usuário não está na parte superior da página.
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
 
-### Back to top
+### Voltar ao topo
 
-A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+Um botão de ação flutuante aparece na rolagem para facilitar o retorno ao topo da página.
 
 {{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
 
@@ -73,7 +73,7 @@ A floating action buttons appears on scroll to make it easy to get back to the t
 
 #### Retornos
 
-`trigger`: Does the scroll position match the criteria?
+`trigger`: A posição de rolagem corresponde aos critérios?
 
 #### Exemplos
 

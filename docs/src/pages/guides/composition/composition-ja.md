@@ -1,16 +1,16 @@
 # 従属関係
 
-<p class="description">Material-UI tries to make composition as easy as possible.</p>
+<p class="description">Material-UIは、構成をできるだけ簡単にしようとします。</p>
 
-## Wrapping components
+## ラッピングコンポーネント
 
-In order to provide the maximum flexibility and performance, we need a way to know the nature of the child elements a component receives. To solve this problem we tag some of our components when needed with a `muiName` static property.
+最大限の柔軟性とパフォーマンスを提供するために、 コンポーネントが受け取る子要素の性質を知る方法が必要です。 To solve this problem we tag some of the components with a `muiName` static property when needed.
 
-You may, however, need to wrap a component in order to enhance it, which can conflict with the `muiName` solution. If you wrap a component, verify if that component has this static property set.
+ただし、拡張するためにコンポーネントをラップする必要がある場合があり、これは`muiName`ソリューションと競合する可能性があります。 コンポーネントをラップする場合は、そのコンポーネントにこの静的プロパティーが設定されているかどうかを確認します。
 
-If you encounter this issue, you need to use the same tag for your wrapping component that is used with the wrapped component. In addition, you should forward the properties, as the parent component may need to control the wrapped components props.
+コンポーネントをラップする場合は、そのコンポーネントにこの静的プロパティーが設定されているかどうかを確認します。 さらに、親コンポーネントがラップされたコンポーネントプロパティをコントロールする必要がある場合があるため、プロパティを転送する必要があります。
 
-Let's see an example:
+例を見てみましょう：
 
 ```jsx
 const WrappedIcon = props => <Icon {...props} />;
@@ -19,11 +19,11 @@ WrappedIcon.muiName = Icon.muiName;
 
 {{"demo": "pages/guides/composition/Composition.js"}}
 
-## Component property
+## コンポーネントのプロパティ
 
 Material-UI allows you to change the root node that will be rendered via a property called `component`.
 
-### How does it work?
+### どのように機能しますか？
 
 The component will render like this:
 
@@ -46,9 +46,9 @@ For example, by default a `List` component will render a `<ul>` element. This ca
 
 This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libraries, such as [`react-router`](#react-router-demo) or your favorite forms library. But it also **comes with a small caveat!**
 
-### Caveat with inlining
+### インラインのある警告
 
-Using an inline function as an argument for the `component` property may result in **unexpected unmounting**, since you pass a new component to the `component` property every time React renders. For instance, if you want to create a custom `ListItem` that acts as a link, you could do the following:
+Reactがレンダリングされるたびに`component`プロパティに新しいコンポーネントを渡すため、インライン関数を`component`プロパティの引数として使用すると、**が予期せずにアンマウントされる可能性があります**。 For instance, if you want to create a custom `ListItem` that acts as a link, you could do the following:
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -65,7 +65,7 @@ const ListItemLink = ({ icon, primary, secondary, to }) => (
 
 ⚠️ However, since we are using an inline function to change the rendered component, React will unmount the link every time `ListItemLink` is rendered. Not only will React update the DOM unnecessarily, the ripple effect of the `ListItem` will also not work correctly.
 
-The solution is simple: **avoid inline functions and pass a static component to the `component` property** instead. Let's change our `ListItemLink` to the following:
+The solution is simple: **avoid inline functions and pass a static component to the `component` property** instead. Let's change the `ListItemLink` to the following:
 
 ```jsx
 import { Link as RouterLink } from 'react-router-dom';
@@ -136,11 +136,11 @@ If you don't use one of the above types when using your components in conjunctio
 
 Be aware that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref.
 
-In some instances we issue an additional warning to help debugging, similar to:
+In some instances an additional warning is issued to help with debugging, similar to:
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
-We will only cover the two most common use cases. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
+Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
 
 ```diff
 - const MyButton = props => <div role="button" {...props} />;
@@ -158,7 +158,7 @@ To find out if the Material-UI component you're using has this requirement, chec
 
 ### Caveat with StrictMode
 
-If you use class components for the cases described above you will still see warnings in `React.StrictMode`. We use `ReactDOM.findDOMNode` internally for backwards compatibility. You can use `React.forwardRef` and a designated prop in your class component to forward the `ref` to a DOM component. Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
+If you use class components for the cases described above you will still see warnings in `React.StrictMode`. `ReactDOM.findDOMNode` is used internally for backwards compatibility. You can use `React.forwardRef` and a designated prop in your class component to forward the `ref` to a DOM component. Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
 
 ```diff
 class Component extends React.Component {

@@ -6,10 +6,7 @@ Material-UI aims to provide a strong foundation for building dynamic UIs. For th
 
 ## Зачем использовать решение для стилей Material-UI?
 
-В предыдущих версиях Material-UI использовал LESS, а затем пользовательское решение для написания стилей компонентов, но эти подходы оказались ограниченными. We have [adopted a *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style). It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.). We think that this is the future:
-
-- [Унифицированный язык стилей](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
-- [Конвертировать SCSS (Sass) в CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
+В предыдущих версиях Material-UI использовал LESS, а затем пользовательское решение для написания стилей компонентов, но эти подходы оказались ограниченными. [A *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style) overcomes many of those limitations, and **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 
 Material-UI's styling solution is inspired by many other styling libraries such as [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
 
@@ -33,7 +30,7 @@ yarn add @material-ui/styles
 
 ## Начало работы
 
-Мы предоставляем 3 разных API для генерации и применения стилей, но все они имеют одинаковую базовую логику.
+There are 3 possible APIs you can use to generate and apply styles, however they all share the same underlying logic.
 
 ### Hook API
 

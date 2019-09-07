@@ -6,7 +6,7 @@
 
 ### Woah - die API ist anders! Bedeutet das, dass 1.0 völlig anders ist und ich die Grundlagen noch einmal erlernen muss, und eine Migration wird praktisch unmöglich sein?
 
-Gute Frage! Die Antwort ist nein. Die Kernkonzepte haben sich nicht geändert. Sie werden feststellen, dass die API mehr Flexibilität bietet, dies ist jedoch mit Kosten verbunden. Wir haben untergeordnete Komponenten hergestellt und weniger Komplexität abstrahiert.
+Gute Frage! Die Antwort ist nein. Die Kernkonzepte haben sich nicht geändert. You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
 
 ### Was hat zu einer so großen Veränderung geführt?
 
@@ -187,4 +187,4 @@ Erhöhter Button-Aktualisierungspfad:
 
 ### Fortsetzung folgt…
 
-Haben Sie Ihre App erfolgreich migriert und möchten der Community helfen? Bitte hilf uns! Wir haben ein offenes Problem, um den Migrationsleitfaden [#7195](https://github.com/mui-org/material-ui/issues/7195) abzuschließen. Any pull request is welcomed 😊.
+Haben Sie Ihre App erfolgreich migriert und möchten der Community helfen? There is an open issue in order to finish this migration guide [#7195](https://github.com/mui-org/material-ui/issues/7195). Any pull request is welcomed 😊.

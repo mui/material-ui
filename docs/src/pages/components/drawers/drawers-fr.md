@@ -27,10 +27,10 @@ This component comes with a 2 kB gzipped payload overhead. Some low-end mobile d
 
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
-We are using the following set of properties on this documentation website for optimal usability of the component:
+The following properties are used in this documentation website for optimal usability of the component:
 
-- iOS is hosted on high-end devices. We can enable the backdrop transition without dropping frames. The performance will be good enough.
-- iOS has a "swipe to go back" feature that mess with the discovery feature. We have to disable it.
+- iOS is hosted on high-end devices. The backdrop transition can be enabled without dropping frames. The performance will be good enough.
+- iOS has a "swipe to go back" feature that interferes with the discovery feature, so discovery has to be disabled.
 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);

@@ -29,6 +29,12 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 {{"demo": "pages/components/checkboxes/FormControlLabelPosition.js"}}
 
+## Customized checkbox
+
+Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+
+{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
+
 ## Доступность
 
 Все элементы формы должны иметь метки, в том числе радиокнопки, переключатели и чекбоксы. В большинстве случаев это делается с помощью элемента `<label>` ([FormControlLabel](/api/form-control-label/)).

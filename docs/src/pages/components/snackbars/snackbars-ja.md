@@ -5,7 +5,7 @@ components: Snackbar, SnackbarContent
 
 # スナックバー
 
-<p class="description">スナックバーは、アプリプロセスに関する簡単なメッセージを提供します-通常は画面の下部にあります。</p>
+<p class="description">Snackbars provide brief messages about app processes. The component is also known as a toast.</p>
 
 [スナックバー](https://material.io/design/components/snackbars.html) は、アプリが実行したプロセスまたは実行するプロセスをユーザーに通知します。 一時的に画面の下部に表示されます。 ユーザーの操作を中断したり、ユーザー入力を消去したりする必要はありません。
 
@@ -73,6 +73,6 @@ Google Keepのスナックバーの動作を再現することを目的とした
 
 ![Stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npmダウンロード](https://img.shields.io/npm/dm/notistack.svg)
 
-次の例では、 [notistack](https://github.com/iamhosseindhv/notistack)の使用方法を示します。 snackbars(オープン/クローズの状態に対処する必要はありません。) を簡単に表示できます。 また、重ねて表示することもできます(しかし仕様では推奨されていない)。
+次の例では、 [notistack](https://github.com/iamhosseindhv/notistack)の使用方法を示します。 snackbars(オープン/クローズの状態に対処する必要はありません。) を簡単に表示できます。 It also enables you to stack them on top of one another (although this is discouraged by the specification).
 
 {{"demo": "pages/components/snackbars/IntegrationNotistack.js"}}

@@ -103,7 +103,7 @@ export default function MyComponent(props) {
 
 ## `ServerStyleSheets`
 
-Dies ist ein Klassenhelfer für das serverseitige Rendering. [ Sie können unserem Leitfaden für einen praktischen Ansatz folgen](/guides/server-rendering/).
+Dies ist ein Klassenhelfer für das serverseitige Rendering. [You can follow this guide for a practical approach](/guides/server-rendering/).
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';

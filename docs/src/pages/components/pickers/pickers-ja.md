@@ -3,7 +3,7 @@ title: Date picker, Time picker React components
 components: TextField
 ---
 
-# Date/Time ピッカー
+# Date / Time pickers
 
 <p class="description">Date pickers and Time pickers provide a simple way to select a single value from a pre-determined set.</p>
 
@@ -22,19 +22,19 @@ components: TextField
 
 ⚠ブラウザーによるネイティブ入力コントロールのサポート [は完全ではありません](https://caniuse.com/#feat=input-datetime)。 より充実したソリューションについては、 [@ material-ui / pickers](#material-ui-pickers) をご覧ください。
 
-### Datepickers
+### 日付ピッカー（Datepickers）
 
 A native datepicker example with `type="date"`.
 
 {{"demo": "pages/components/pickers/DatePickers.js"}}
 
-### Date & Time pickers
+### 日付＆時間ピッカー（Date & Time pickers）
 
 `type="datetime-local"`を指定したネイティブの日付 & 時刻ピッカーの例。
 
 {{"demo": "pages/components/pickers/DateAndTimePickers.js"}}
 
-### Time pickers
+### 時間ピッカー（Time pickers）
 
 `type="time"`を指定したネイティブの時間ピッカーの例。
 

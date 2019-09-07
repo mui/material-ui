@@ -32,7 +32,7 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prop 
 
 ### Assistente customizado
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 
@@ -42,7 +42,7 @@ Os assistentes não lineares permitem que os usuários insiram um fluxo de vári
 
 Este exemplo é semelhante ao não linear, porém as etapas não são mais automaticamente definidas `disabled={true}` com base na propriedade `activeStep`.
 
-Nós usamos um `StepButton` aqui para demonstrar rótulos de etapa clicáveis, bem como definindo o flag `completed`, porque etapas podem ser acessadas de forma não-linear, e pode até implementar sua própria lógica para determinar quando todas as etapas forem concluídas (ou mesmo se elas precisam ser completadas).
+The use of the `StepButton` here demonstrates clickable step labels, as well as setting the `completed` flag. However because steps can be accessed in a non-linear fashion, it's up to your own implementation to determine when all steps are completed (or even if they need to be completed).
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js"}}
 

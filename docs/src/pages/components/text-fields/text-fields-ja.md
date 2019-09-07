@@ -17,7 +17,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 > **Note:** ：このバージョンのテキストフィールドについては、[Material Design guidelines](https://material.io/)では説明されていませんが、Material-UIでは引き続きサポートされます。
 
-## Outlined
+## アウトライン (Outlined)
 
 `TextField` はアウトラインスタイルをサポートします。
 
@@ -41,9 +41,9 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 {{"demo": "pages/components/text-fields/Inputs.js"}}
 
-## Customized inputs
+## カスタマイズされた入力 (Customized inputs)
 
-コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -51,7 +51,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js"}}
 
-## Input Adornments
+## 入力装飾 (Input Adornments)
 
 `Input` は `InputAdornment `提供を許可します。 これらは、入力に接頭辞、接尾辞、またはアクションを追加するために使用できます。 たとえば、アイコンボタンを使用してパスワードを表示または非表示にすることができます。
 
@@ -107,7 +107,7 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 次のデモでは、[react-text-mask](https://github.com/text-mask/text-mask) と[react-number-format](https://github.com/s-yadav/react-number-format)ライブラリを使用します。 同じ概念を [（たとえば、react-stripe-element)に適用することもできます](https://github.com/mui-org/material-ui/issues/16037)。
 
-{{"demo":"pages/components/text-fields/FormattedInputs.js"}}
+{{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
 指定された入力コンポーネントは、 `inputRef` プロパティを処理する必要があります。 このプロパティは、次のインターフェイスを実装する値で呼び出す必要があります。
 

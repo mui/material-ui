@@ -11,35 +11,35 @@ components: AppBar, Toolbar, Menu
 
 Может трансформироваться в контекстную панель действий или использоваться в качестве панели навигации.
 
-## Simple App Bar
+## Простая панель навигации
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
 
-## App Bar with a primary search field
+## Панель навигации с основным полем поиска
 
-A primary searchbar.
+Основная панель поиска.
 
 {{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
 
-## App Bar with menu
+## Панель навигации с меню
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js"}}
 
-## App Bar with search field
+## Панель навигации с полем для поиска
 
-A side searchbar.
+Боковая панель поиска.
 
 {{"demo": "pages/components/app-bar/SearchAppBar.js"}}
 
-## Dense (desktop only)
+## Dense (Только для компьютеров)
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js"}}
 
-## Bottom App Bar
+## Нижняя панель навигации
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Scrolling
+## Прокрутка
 
 You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
@@ -51,13 +51,13 @@ The app bar hides on scroll down to leave more space for reading.
 
 ### Elevate App Bar
 
-The app bar elevates on scroll to communicate that the user is not at the top of the page.
+Панель приложения поднимается при прокрутке, сообщая, что пользователь находится не в верхней части страницы.
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
 
-### Back to top
+### Вернуться в начало страницы
 
-A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+Появляются плавающие кнопки действий, позволяющие легко вернуться к началу страницы.
 
 {{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
 

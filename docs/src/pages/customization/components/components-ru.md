@@ -85,7 +85,7 @@ In order to override the components special states, **you need to increase speci
 .Button {
   color: black;
 }
-.Button:disabled { /* We increase the specificity */
+.Button:disabled { /* Increase the specificity */
   color: white;
 }
 ```
@@ -100,7 +100,7 @@ In order to override the components special states, **you need to increase speci
 .MenuItem {
   color: black;
 }
-.MenuItem.selected { /* We increase the specificity */
+.MenuItem.selected { /* Increase the specificity */
   color: blue;
 }
 ```
@@ -133,7 +133,7 @@ Instead of providing values to the `classes` prop API, you can rely on [the glob
 .MenuItem {
   color: black;
 }
-.MenuItem.Mui-selected { /* We increase the specificity */
+.MenuItem.Mui-selected { /* Increase the specificity */
   color: blue;
 }
 ```
@@ -251,7 +251,7 @@ const theme = createMuiTheme({
 
 ### Глобальное переопределение CSS
 
-Вы также можете настроить все экземпляры компонента с помощью CSS. Для этого мы предоставляем [глобальные имена классов](/styles/advanced/#with-material-ui-core). Это очень похоже на настройку Bootstrap.
+Вы также можете настроить все экземпляры компонента с помощью CSS. Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this. Это очень похоже на настройку Bootstrap.
 
 ```jsx
 const GlobalCss = withStyles({

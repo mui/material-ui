@@ -85,7 +85,7 @@ Para sobrescrever os estados especiais dos componentes, **você precisa aumentar
 .Button {
   color: black;
 }
-.Button:disabled { /* Aumentamos a especificidade */
+.Button:disabled { /* Increase the specificity */
   color: white;
 }
 ```
@@ -100,7 +100,7 @@ Para sobrescrever os estados especiais dos componentes, **você precisa aumentar
 .MenuItem {
   color: black;
 }
-.MenuItem.selected { /* Aumentamos a especificidade */
+.MenuItem.selected { /* Increase the specificity */
   color: blue;
 }
 ```
@@ -133,7 +133,7 @@ Em vez de fornecer valores para a propriedade `classes` da API, você pode utili
 .MenuItem {
   color: black;
 }
-.MenuItem.Mui-selected { /* Aumentamos a especificidade */
+.MenuItem.Mui-selected { /* Increase the specificity */
   color: blue;
 }
 ```
@@ -251,7 +251,7 @@ const theme = createMuiTheme({
 
 ### Sobrescrita do CSS Global
 
-Você também pode customizar todas as instâncias de um componente com CSS. Nós expomos [nomes de classes globais](/styles/advanced/#with-material-ui-core) para fazer isso. É muito semelhante a como você customizaria o Bootstrap.
+Você também pode customizar todas as instâncias de um componente com CSS. Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this. É muito semelhante a como você customizaria o Bootstrap.
 
 ```jsx
 const GlobalCss = withStyles({

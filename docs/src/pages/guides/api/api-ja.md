@@ -1,52 +1,52 @@
-# API Design Approach
+# APIの設計アプローチ
 
-<p class="description">Nós aprendemos bastante como o Material-UI é usado e o refatoramento da v1 permitiu-nos repensar completamente o componente de API.</p>
+<p class="description">Material-UIの使用方法については多くのことを学び、v1のリライトによってコンポーネントAPIを完全に再考することができました。</p>
 
-> API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
+> API設計が難しいのは、単純に見えるようにしても実際にはかなり複雑に見えるようにしたり、単純だが複雑に見えるようにしたりできるからです。
 
 [@sebmarkbage](https://twitter.com/sebmarkbage/status/728433349337841665)
 
-As Sebastian Markbage [pointed out](https://2014.jsconf.eu/speakers/sebastian-markbage-minimal-api-surface-area-learning-patterns-instead-of-frameworks.html), no abstraction is superior to wrong abstractions. We are providing low-level components to maximize composition capabilities.
+Api設計が難しいのは、単純に見えるようにしても実際にはかなり複雑に見えるようにしたり、単純だが複雑に見えるようにしたりできるからです。 組版機能を最大限に活用するため、低レベルのコンポーネントを提供しています。
 
-## Composition
+## コンポジション
 
-You may have noticed some inconsistency in the API regarding composing components. To provide some transparency, we have been using the following rules when designing the API:
+コンポーネントの構成に関してAPIに矛盾があることに気付いたかもしれません。 透過性を提供するために、APIを設計する際に次のルールを使用しています。
 
-1. Using the `children` property is the idiomatic way to do composition with React.
-2. Sometimes we only need limited child composition, for instance when we don't need to allow child order permutations. In this case, providing explicit properties makes the implementation simpler and more performant; for example, the `Tab` takes an `icon` and a `label` property.
-3. API consistency matters.
+1. `children` プロパティの利用は、Reactで構成を行う慣用的な方法です。
+2. 場合によっては、子どもの順序の入れ替えを許可する必要がない場合など、子どもの構成が限定されることもあります。 この場合、明示的なプロパティーを指定すると、実装がより単純になり、よりパフォーマンスが向上します。; たとえば、`Tab`は`アイコン`および`ラベル`プロパティを例に取ります。
+3. APIの一貫性が重要です。
 
-## Rules
+## ルール
 
-Aside from the above composition trade-off, we enforce the following rules:
+上記の構成のトレードオフとは別に、次のルールを実施します。
 
-### Spread
+### スプレッド
 
-Undocumented properties supplied are spread to the root element; for instance, the `className` property is applied to the root.
+提供されたドキュメント化されていないプロパティはルート要素に広がります; たとえば、`className`プロパティはルートに適用されます。
 
-Now, let's say you want to disable the ripples on the `MenuItem`. You can take advantage of the spread behavior:
+ここで、`MenuItem`のリプルを無効にするとします。 スプレッド動作を利用できます。
 
 ```jsx
 <MenuItem disableRipple />
 ```
 
-The `disableRipple` property will flow this way: [`MenuItem`](/api/menu-item/) > [`ListItem`](/api/list-item/) > [`ButtonBase`](/api/button-base/).
+` disableRipple` プロパティは次のように流れます：[` MenuItem `](/api/menu-item/) > [` ListItem `](/api/list-item/) > [` ButtonBase `](/api/button-base/) 。
 
-### Native properties
+### ネイティブプロパティ
 
-We avoid documenting native properties supported by the DOM like [`className`](/customization/components/#overriding-styles-with-class-names).
+提供されたドキュメント化されていないプロパティはルート要素に広がります; たとえば、[`className`](/customization/components/#overriding-styles-with-class-names)プロパティはルートに適用されます。
 
-### CSS Classes
+### CSS クラス
 
-All the components accept a [`classes`](/customization/components/#overriding-styles-with-classes) property to customize the styles. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
+すべてのコンポーネントで、[`クラス`](/customization/components/#overriding-styles-with-classes)プロパティを使用してスタイルをカスタマイズできます。 クラス設計は、次の2つの制約に答えます: Material Design仕様を実装するのに十分なだけで、可能な限りクラス構造を単純にします。
 
-- The class applied to the root element is always called `root`.
-- All the default styles are grouped in a single class.
-- The classes applied to non-root elements are prefixed with the name of the element, e.g. `paperWidthXs` in the Dialog component.
-- The variants applied by a boolean property **aren't** prefixed, e.g. the `rounded` class applied by the `rounded` property.
-- The variants applied by an enum property **are** prefixed, e.g. the `colorPrimary` class applied by the `color="primary"` property.
-- A variant has **one level of specificity**. The `color` and `variant` properties are considered a variant. The lower the style specificity is, the simpler it is to override.
-- We increase the specificity for a variant modifier. We already **have to do it** for the pseudo-classes (`:hover`, `:focus`, etc.). It allows much more control at the cost of more boilerplate. Hopefully, it's also more intuitive.
+- ルート要素に適用されるクラスは、常に`root`と呼ばれます。
+- 既定のスタイルはすべて1つのクラスにグループ化されます。
+- 非ルート要素に適用されるクラスには、要素の名前の接頭辞が付きます（例：ダイアログコンポーネントの` paperWidthXs`） 。
+- boolean型のプロパティ**で適用される変数に接頭辞は付きません**。例えば、`rounded`プロパティで適用される`rounded`クラスのようになります。
+- Enumプロパティ**によって適用されるバリアントはprifixされます**、(例：`color="primary"`プロパティによって適用される`colorPrimary`クラス)。
+- バリアントには** 1レベルの特異性があります** 。 `color`および`variant`プロパティは、variantと見なされます。 スタイルの特殊性が低いほど、オーバーライドが簡単になります。
+- バリアント修飾子の特異性を高めます。 私たちは既に疑似クラス(`:hover`, `:focus`など。)のためにそれをしなければなりません</strong>。 より多くの定型的なコストで、より多くの制御を可能にします。 もっと直感的になればいいのですが。
 
 ```js
 const styles = {
@@ -60,31 +60,31 @@ const styles = {
 };
 ```
 
-### Nested components
+### ネストされたコンポーネント
 
-Nested components inside a component have:
+コンポーネント内のネストされたコンポーネントには、次のものがあります。
 
-- their own flattened properties when these are key to the top level component abstraction, for instance and `id` property for the `Input` component.
-- their own `xxxProps` property when users might need to tweak the internal render method's sub-components, for instance, exposing the `inputProps` and `InputProps` properties on components that use `Input` internally.
-- their own `xxxComponent` property for performing component injection.
-- their own `xxxRef` property when user might need to perform imperative actions, for instance, exposing a `inputRef` property to access the native `input` on the `Input` component. This helps answer the question ["How can I access the DOM element?"](/getting-started/faq/#how-can-i-access-the-dom-element)
+- 最上位レベルのコンポーネント抽象化の鍵となる独自のフラット化されたプロパティー たとえば、`Input`コンポーネントの場合は`id`プロパティです。
+- ユーザが内部レンダリングメソッドのサブコンポーネントを微調整する必要がある場合は、独自の`xxxProps`プロパティを使用します。 たとえば、`Input`を内部的に使用するコンポーネントの`inputProps`プロパティと`InputProps`プロパティを公開します。
+- 独自の` xxxComponent `コンポーネントインジェクションを実行するためのプロパティ。
+- ユーザーが命令型アクションを実行する必要がある場合は、独自の`xxxRef`プロパティ たとえば、`inputRef`プロパティを公開して、`Input`コンポーネントのネイティブ`入力`にアクセスします。 これは、[「DOM要素にアクセスするにはどうすればいいですか。」](/getting-started/faq/#how-can-i-access-the-dom-element)という質問に答えるのに役立ちます。
 
-### Property naming
+### プロパティの命名
 
-The name of a boolean property should be chosen based on the **default value**. For example, the `disabled` attribute on an input element, if supplied, defaults to `true`. This choice allows the shorthand notation:
+ブーリアン型のプロパティの名前は、**のデフォルト値**に基づいて選択する必要があります。 たとえば、入力エレメントの`disabled`属性を指定すると、デフォルトで`true`になります。 このオプションを選択すると、次のような省略表記が可能になります。
 
 ```diff
 -<Input enabled={false} />
 +<Input disabled />
 ```
 
-### Controlled components
+### 制御されたコンポーネント
 
-Most of the controlled component are controlled via the `value` and the `onChange` properties, however, the `open` / `onClose` / `onOpen` combination is used for display related state.
+ほとんどの制御対象コンポーネントは、`値`および`onChange`プロパティによって制御されます。 ただし、ディスプレイ関連の状態には、`open`/`onClose`/`onOpen`の組み合わせが使用されます。
 
 ### boolean vs enum
 
-There are two options to design the API for the variations of a component: with a *boolean*; or with an *enum*. For example, let's take a button that has different types. Each option has its pros and cons:
+コンポーネントのバリエーションのためのAPIを設計するには、次の二つのオプションがあります。*boolean*; または*enum*を使用します。 たとえば、異なるタイプのボタンを選択します。 各オプションには長所と短所があります。
 
 - Option 1 *boolean*:
     
@@ -95,7 +95,7 @@ There are two options to design the API for the variations of a component: with 
     };
     ```
     
-    This API enabled the shorthand notation: `<Button>`, `<Button contained />`, `<Button fab />`.
+    このAPIは、簡略表記法を有効にしました： `<Button>`、` <2 /> ` 、` <3 /> ` 。
 
 - Option 2 *enum*:
     
@@ -105,25 +105,25 @@ There are two options to design the API for the variations of a component: with 
     }
     ```
     
-    This API is more verbose: `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
+    このAPIはより冗長です： `<Button>`、`<Button variant="contained">`、`<Button variant="fab">`。
     
-    However it prevents an invalid combination from being used, bounds the number of properties exposed, and can easily support new values in the future.
+    ただし、無効な組み合わせの使用を防ぎ、 は公開されるプロパティの数を制限し、 は将来新しい値を簡単にサポートできます。
 
-The Material-UI components use a combination of the two approaches according to the following rules:
+Material-UIコンポーネントは、次の規則に従って2つのアプローチの組み合わせを使用します。
 
-- A *boolean* is used when **2** degrees of freedom are required.
-- An *enum* is used when **> 2** degrees of freedom are required, or if there is the possibility that additional degrees of freedom may be required in the future.
+- *ブーリアン*は、 **2**つの自由度が必要な場合に使用します。
+- *enum*は、**2以上** の自由度が必要な場合、または将来さらに自由度が必要になる可能性がある場合に使用します。
 
-Going back to the previous button example; since it requires 3 degrees of freedom, we use an *enum*.
+前のボタンの例に戻ります。 3自由度が必要なので、* enumを使用します* 。
 
 ### Ref
 
-The `ref` is forwarded to the root element. This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element that which component renders. If you pass a different component via the `component` prop the ref will be attached to that component instead.
+` ref `はルート要素に転送されます。 つまり、レンダリングされたルート要素を変更せずに、 `component`<0>コンポーネント</0>プロパティを介して、コンポーネントがレンダリングする最も外側のDOM要素に転送されます。 `コンポーネント`プロパティを介して別のコンポーネントを渡すと、代わりに参照がそのコンポーネントにアタッチされます。
 
-## Glossary
+## 用語集
 
-- **host component**: a DOM node type in the context of `react-dom`, e.g. a `'div'`. See also [React Implementation Notes](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements).
-- **host element**: a DOM node in the context of `react-dom`, e.g. an instance of `window.HTMLDivElement`.
-- **outermost**: The first component when reading the component tree from top to bottom i.e. breadth-first search.
-- **root component**: the outermost component that renders a host component.
-- **root element**: the outermost element that renders a host component.
+- **host component**:`react-dom`のコンテキストにおけるDOMノードタイプ、例えば`'div'`。 [ React Implementation Notesも参照してください](https://reactjs.org/docs/implementation-notes.html#mounting-host-elements) 。
+- **host element** ：` react-domのコンテキストのDOMノード`たとえば、` window.HTMLDivElementのインスタンス` 。
+- **outermost**:コンポーネントツリーを上から下に読み込むときの最初のコンポーネントです。つまり、幅優先の検索です。
+- **root component** ：ホストコンポーネントをレンダリングする最も外側のコンポーネント。
+- **root element**：ホストコンポーネントをレンダリングする最も外側の要素。

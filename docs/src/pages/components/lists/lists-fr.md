@@ -77,7 +77,7 @@ Le commutateur (switch) est l'action secondaire et une cible distincte.
 
 Lors du défilement, les sous-en-têtes restent épinglés en haut de l'écran jusqu'à ce qu'ils soient déplacés en dehors de l'écran par le prochain en-tête.
 
-Cette fonctionnalité repose sur le positionnement persistant (sticky) de CSS. Malheureusement, cette propriété [n'est pas implémentée](https://caniuse.com/#search=sticky) par tous les navigateurs que nous supportons. Nous avons par défaut désactivé cette fonction à l'aide de `disableSticky` lorsqu'il n'est pas pris en charge.
+This feature relies on CSS sticky positioning. Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the supported browsers. It defaults to `disableSticky` when not supported.
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js"}}
 
@@ -91,4 +91,4 @@ Dans l'exemple suivant, nous montrons comment utiliser [react-virtualized](https
 
 {{"demo": "pages/components/lists/VirtualizedList.js"}}
 
-We encourage the use of [react-window](https://github.com/bvaughn/react-window) when possible. If this library doesn't cover your use case, you should consider using [react-virtualized](https://github.com/bvaughn/react-virtualized), then alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso).
+The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged. If this library doesn't cover your use case, you should consider using [react-virtualized](https://github.com/bvaughn/react-virtualized), then alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso).

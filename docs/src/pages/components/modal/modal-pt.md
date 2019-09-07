@@ -48,61 +48,20 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 
-## Performance
-
-The content of the modal is **lazily mounted** into the DOM. It ensures that having many closed modals in your React tree won't slow down your page.
-
-However, creating React elements has a cost too. Consider the following case:
-
-```jsx
-<Modal open={false}>
-  <table>
-    <thead>
-      <tr>
-        <td>Dessert (100g serving)</td>
-        <td>Calories</td>
-        <td>Fat (g)</td>
-      </tr>
-    </thead>
-    <tbody>
-      {rows.map(row => (
-        <tr key={row.id}>
-          <th scope="row">
-            {row.name}
-          </th>
-          <td>{row.calories}</td>
-          <td>{row.fat}</TableCell>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</Modal>
-```
-
-We create a lot of React elements that will never be mounted. It's wasteful 🐢. You can **speed up** the rendering by moving the modal body into its own component.
-
-```jsx
-<Modal open={false}>
-  <TableComponent />
-</Modal>
-```
-
-This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). The `TableComponent` render method will only be evaluated when opening the modal.
-
 ## Acessibilidade
 
 - Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
 
 ```jsx
 <Modal
-  aria-labelledby="modal-titulo"
-  aria-describedby="modal-descricao"
+  aria-labelledby="modal-title"
+  aria-describedby="modal-description"
 >
-  <h2 id="modal-titulo">
-    Meu Título
+  <h2 id="modal-title">
+    My Title
   </h2>
-  <p id="modal-descricao">
-    Minha Descrição
+  <p id="modal-description">
+    My Description
   </p>
 </Modal>
 ```

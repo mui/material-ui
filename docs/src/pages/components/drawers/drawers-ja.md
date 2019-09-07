@@ -27,10 +27,10 @@ components: Drawer, SwipeableDrawer
 
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
-コンポーネントの使いやすさを最適化するために、このドキュメントWebサイトの次のプロパティセットを使用しています。
+The following properties are used in this documentation website for optimal usability of the component:
 
-- iOSはハイエンドデバイスでホストされています。 フレームを落とさずに背景遷移を有効にすることができます。 性能は十分良いでしょう。
-- iOSには、検出機能に を設定する「戻るスワイプ」機能があります。 無効にする必要があります。
+- iOSはハイエンドデバイスでホストされています。 The backdrop transition can be enabled without dropping frames. 性能は十分良いでしょう。
+- iOS has a "swipe to go back" feature that interferes with the discovery feature, so discovery has to be disabled.
 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);

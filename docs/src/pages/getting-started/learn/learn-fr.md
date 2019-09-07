@@ -10,15 +10,15 @@ La page [d'utilisation](/getting-started/usage/#quick-start) contient un petit e
 
 ## Exemples de Projets
 
-Nous [hébergeons des exemples de projets](/getting-started/example-projects/) fournissant l'infrastructure nécessaire au développement et au déploiement de sites Web avec React.
+There are [some example projects](/getting-started/example-projects/) available, providing the infrastructure needed to develop and deploy websites in React.
 
 ## Templates
 
-We have a [selection of basic templates](/getting-started/templates/) to help you get started building your app.
+This [selection of basic templates](/getting-started/templates/) will help you get started building your app.
 
 ## Ressources recommandées
 
-Lors de la première utilisation de Material-UI, vous trouverez peut-être que les articles de blogs, livres et cours vidéo tiers sont plus utiles que la documentation officielle. Nous maintenons une liste de ressources de bonnes qualités, dont certaines sont gratuites.
+Lors de la première utilisation de Material-UI, vous trouverez peut-être que les articles de blogs, livres et cours vidéo tiers sont plus utiles que la documentation officielle. Here are some recommended resources, some of which are free.
 
 ### Gratuit
 

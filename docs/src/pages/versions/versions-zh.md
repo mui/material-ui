@@ -16,9 +16,9 @@
 
 ## 版本控制方案
 
-我们认识到您需要来自Material-UI库的**稳定性**. 稳定性确保可重用组件和库、教程、工具和学习教程不会意外过时. 稳定性对于Material-UI蓬勃发展的生态系统至关重要.
+Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around Material-UI to thrive.
 
-本文档包含 **我们遵循的做法** ，为您提供前沿的UI库，与稳定性保持平衡。 我们努力确保始终以可预测的方式引入未来的变化。 我们希望每个依赖于Material-UI的人都知道添加新功能的时间和方式，并在删除过时功能时做好充分准备。
+This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
 Material-UI 严格遵循 [Semantic Versioning 2.0.0](https://semver.org/) 语义化版本规范。 Material-UI 的版本号由三部分组成：`主版本号.次版本号.修订版本号`。 版本号的选择是根据更新内容的数量决定
 
@@ -28,7 +28,7 @@ Material-UI 严格遵循 [Semantic Versioning 2.0.0](https://semver.org/) 语义
 
 ## 发布周期
 
-我们致力于定期发布，以便您可以通过Material-UI的不断发展来规划和协调您的更新。
+A regular schedule of releases helps you plan and coordinate your updates with the continuing evolution of Material-UI.
 
 通常情况下, 你可以根据以下的发布周期来预测:
 
@@ -47,24 +47,24 @@ Material-UI 严格遵循 [Semantic Versioning 2.0.0](https://semver.org/) 语义
 | ? ⏳        | `@material-ui/core` v5.0.0 |
 
 
-你可以在 [ 我们的里程碑 ](https://github.com/mui-org/material-ui/milestones) 中查看更详细的概述。
+You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
 ## 支持政策
 
-我们只支持Material-UI的最新版本。 我们目前还没有提供[LTS](https://en.wikipedia.org/wiki/Long-term_support)的版本
+Only the latest version of Material-UI is supported. 我们目前还没有提供[LTS](https://en.wikipedia.org/wiki/Long-term_support)的版本
 
 ## 弃用做法
 
 有时， **“破坏更改”**，例如删除对选定API和功能的支持，是必要的。
 
-为了使这些过渡尽可能简单，我们向您做出两项承诺：
+To make these transitions as easy as possible:
 
-- 我们努力减少重大变更的数量，并尽可能提供迁移工具。
-- 我们遵循此处所述的弃用政策，因此您有时间将应用更新为最新的API和最佳做法。
+- The number of breaking changes is minimized, and migration tools provided when possible.
+- The deprecation policy described below is followed, so that you have time to update your apps to the latest APIs and best practices.
 
-为了确保您有足够的时间和明确的方法更新, 以下是我们的弃用策略:
+### Deprecation policy
 
-- 我们会在更新日志中公布过时的功能, 并在可能的情况下, 在运行时发出警告。
-- 当我们公布一个过时的功能时, 同时会提供一个最佳的更新方法。
-- 我们支持在弃用期间使用稳定的API，因此您的代码将在此期间继续运行。
-- 我们仅在主要版本中进行需要更改应用程序的对等依赖项更新（React）。
+- Deprecated features iare announced n the changelog, and when possible, with warnings at runtime.
+- When a deprecation is announced, recommended update path is provided.
+- Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
+- Peer dependency updates (React) that require changes to your apps are only made in a major release.

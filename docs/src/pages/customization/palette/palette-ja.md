@@ -1,28 +1,28 @@
 # パレット
 
-<p class="description">The palette enables you to modify the color of the components to suit your brand.</p>
+<p class="description">パレットを使用すると、ブランドに合わせてコンポーネントの色を変更できます。</p>
 
 ## Intentions
 
-A color intention is a mapping of a palette to a given intention within your application.
+A color intention とは、パレットをアプリケーション内の特定の意図にマッピングすることです。
 
-The theme exposes the following color intentions:
+このテーマは、次の色の目的を明らかにします。
 
-- primary - used to represent primary interface elements for a user.
-- secondary - used to represent secondary interface elements for a user.
-- error - used to represent interface elements that the user should be made aware of.
+- primary-ユーザのプライマリインタフェース要素を表すために使用します。
+- secondary - ユーザーの二次インタフェース要素を表します。
+- error-ユーザが認識すべきインタフェース要素を表すために使用されます。
 
-The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary intention, and the un-prefixed shades for the other intentions.
+既定のパレットでは、副次的な意図を表すために、先頭に`A`(`A200`など。) が付いたシェーディングが使用されます。 他の目的のために省略されたシェードがあります。
 
-If you want to learn more about color, you can check out [the color section](/customization/color/).
+色の詳細については、[色セクション](/customization/color/)をご覧ください。
 
-## Custom palette
+## カスタムパレット
 
-You may override the default palette values by including a `palette` object as part of your theme.
+テーマの一部として `palette` オブジェクトを含めると、パレットの既定値を変更できます。
 
-If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary) or [`palette.error`](/customization/default-theme/?expend-path=$.palette.error) 'intention' objects are provided, they will replace the defaults.
+[` palette.primary`](/customization/default-theme/?expend-path=$.palette.primary) のいずれか、 [` palette.secondary `](/customization/default-theme/?expend-path=$.palette.secondary)または [` palette.error `](/customization/default-theme/?expend-path=$.palette.error) 'intention'オブジェクトが指定されている場合は、デフォルト値が置き換えられます。
 
-The intention value can either be a [color](/customization/color/) object, or an object with one or more of the keys specified by the following TypeScript interface:
+Intention値は、 [color](/customization/color/)オブジェクト、または次のTypeScriptインターフェイスで指定されたキーを持つオブジェクトのいずれかです。
 
 ```ts
 interface PaletteIntention {
@@ -33,9 +33,9 @@ interface PaletteIntention {
 };
 ```
 
-**Using a color object**
+**カラーオブジェクトを使用する**
 
-The simplest way to customize an intention is to import one or more of the provided colors and apply them to a palette intention:
+意図をカスタマイズする最も簡単な方法は、提供されている1つまたは複数のカラーをインポートすることです。 次のようにパレット意図に適用します。
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -48,7 +48,7 @@ const theme = createMuiTheme({
 });
 ```
 
-If the intention key receives a color object as in the example above, the following mapping is used to populate the required keys:
+上記の例のようにインテンションキーがカラーオブジェクトを受け取った場合、 は次のマッピングを使用して必要なキーを設定します。
 
 ```js
 palette: {
@@ -73,7 +73,7 @@ palette: {
 },
 ```
 
-This example illustrates how you could recreate the default palette values:
+この例は、デフォルトのパレット値を再作成する方法を示しています。
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -81,8 +81,7 @@ import indigo from '@material-ui/core/colors/indigo';
 import pink from '@material-ui/core/colors/pink';
 import red from '@material-ui/core/colors/red';
 
-// All the following keys are optional.
-// We try our best to provide a great default value.
+// All the following keys are optional, as default values are provided.
 const theme = createMuiTheme({
   palette: {
     primary: indigo,
@@ -99,9 +98,9 @@ const theme = createMuiTheme({
 });
 ```
 
-**Providing the colors directly**
+**色を直接提供する**
 
-If you wish to provide more customized colors, you can either create your own color object, or directly supply colors to some or all of the intention's keys:
+よりカスタマイズされた色を提供する場合は、独自の色オブジェクト 作成するか、意図のキーの一部またはすべてに直接色を指定できます。
 
 ```js
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -125,29 +124,29 @@ const theme = createMuiTheme({
 });
 ```
 
-As in the example above, if the intention object contains custom colors using any of the `main`, `light`, `dark` or `contrastText` keys, these map as follows:
+上記の例のように、intentionオブジェクトに `main`、`light`、`dark`または`contrastText`キーは、次のようにマップされます。
 
-- If the `dark` and / or `light` keys are omitted, their value(s) will be calculated from `main`, according to the `tonalOffset` value.
+- `dark`キーまたは`light`キーを省略すると、その値は`main`から計算されます。 `tonalOffset`値の従います。
 
-- If `contrastText` is omitted, its value will be calculated to contrast with `main`, according to the`contrastThreshold` value.
+- `contrastText`を省略すると、その値は`main`と対比するように計算されます。 これは、`contrastThreshold`の値によって決まります。
 
-Both the `tonalOffset` and `contrastThreshold` values may be customized as needed. A higher value for `tonalOffset` will make calculated values for `light` lighter, and `dark` darker. A higher value for `contrastThreshold` increases the point at which a background color is considered light, and given a dark `contrastText`.
+`tonalOffset`値と`contrastThreshold`値は、必要に応じてカスタマイズできます。 `tonalOffset`の値を大きくすると、`light`の計算値は明るくなり、`dark`は暗くなります。v `contrastThresholdの高い値`は、バックグラウンドカラーが明るいとみなされるポイントを増やし、暗い`contrastText`が指定されます。
 
-Note that `contrastThreshold` follows a non-linear curve.
+` contrastThreshold `非線形曲線に従います。
 
 ## 例
 
 {{"demo": "pages/customization/palette/Palette.js"}}
 
-## Color tool
+## カラーツール
 
-Need inspiration? The Material Design team has built an awesome [palette configuration tool](/customization/color/#color-tool) to help you.
+インスピレーションが必要ですか？ Material Designチームは、あなたを助ける素晴らしい[パレット設定ツール](/customization/color/#color-tool)を構築しました。
 
 ## Type (light /dark theme)
 
-Material-UI comes with two theme variants, light (the default) and dark.
+Material-UIには、light（デフォルト）と dark の2つのテーマがあります。
 
-You can make the theme dark by setting `type` to `dark`. While it's only a single property value change, internally it modifies the value of the following keys:
+` type`を`dark`に設定して、テーマを暗くすることができます 。 プロパティ値の変更は1つだけですが、内部的には次のキーの値を変更します。
 
 - `palette.text`
 - `palette.divider`
@@ -163,3 +162,7 @@ const theme = createMuiTheme({
 ```
 
 {{"demo": "pages/customization/palette/DarkTheme.js"}}
+
+## Default values
+
+You can explore the default values of the palette using [the theme explorer](/customization/default-theme/?expend-path=$.palette) or by opening the dev tools console on this page (`window.theme.palette`).

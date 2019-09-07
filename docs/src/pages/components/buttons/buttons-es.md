@@ -52,7 +52,7 @@ The ButtonGroup component can be used to group outlined (the default) or contain
 
 ## Split Button
 
-ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be use to immediately trigger a related action.
+ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
 
 {{"demo": "pages/components/buttons/SplitButton.js"}}
 
@@ -110,10 +110,10 @@ Los Botones de Texto, los Botones Contenidos, los Botones de Acción Flotantes y
 
 ## Librería externa de routing
 
-Un uso común es usar el botón para empezar la navegación hacia una página nueva. El componente `ButtonBase` provee un atributo para tratar este uso: `component`. Sin embargo, para ciertos rellenos `ButtonBase` requiere el nodo DOM del componente proporcionado. Esto se logra adjuntando una referencia al componente y esperando que el componente reenvíe esta referencia al nodo DOM subyacente. Given that a lot of our interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
+Un uso común es usar el botón para empezar la navegación hacia una página nueva. El componente `ButtonBase` provee un atributo para tratar este uso: `component`. Sin embargo, para ciertos rellenos `ButtonBase` requiere el nodo DOM del componente proporcionado. Esto se logra adjuntando una referencia al componente y esperando que el componente reenvíe esta referencia al nodo DOM subyacente. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
 Here is an integration example with react-router:
 
 {{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 
-*Note: Creating the Button components is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*
+*Note: Creating the Button components is necessary to prevent unexpected unmounting. You can read more about it in the [component prop guide](/guides/composition/#component-property).*

@@ -31,7 +31,7 @@ components: Modal
 
 `アウトライン：0` CSSプロパティでアウトライン（多くの場合、青または金）を無効にできることに注意してください。
 
-## Transições
+## トランジション
 
 The open/close state of the modal can be animated with a transition component. This component should respect the following conditions:
 
@@ -47,47 +47,6 @@ Modal has built-in support for [react-transition-group](https://github.com/react
 Alternatively, you can use [react-spring](https://github.com/react-spring/react-spring).
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
-
-## パフォーマンス
-
-The content of the modal is **lazily mounted** into the DOM. It ensures that having many closed modals in your React tree won't slow down your page.
-
-However, creating React elements has a cost too. Consider the following case:
-
-```jsx
-<Modal open={false}>
-  <table>
-    <thead>
-      <tr>
-        <td>Dessert (100g serving)</td>
-        <td>Calories</td>
-        <td>Fat (g)</td>
-      </tr>
-    </thead>
-    <tbody>
-      {rows.map(row => (
-        <tr key={row.id}>
-          <th scope="row">
-            {row.name}
-          </th>
-          <td>{row.calories}</td>
-          <td>{row.fat}</TableCell>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</Modal>
-```
-
-We create a lot of React elements that will never be mounted. It's wasteful 🐢. You can **speed up** the rendering by moving the modal body into its own component.
-
-```jsx
-<Modal open={false}>
-  <TableComponent />
-</Modal>
-```
-
-This way, you take advantage of [React render laziness evaluation](https://overreacted.io/react-as-a-ui-runtime/#lazy-evaluation). The `TableComponent` render method will only be evaluated when opening the modal.
 
 ## アクセシビリティ
 
@@ -111,6 +70,6 @@ This way, you take advantage of [React render laziness evaluation](https://overr
 
 ## Server-side modal
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to see the modal, you need to disable the portal feature with the `disablePortal` prop:
+React は、サーバー上の [`createPortal（）`](https://reactjs.org/docs/portals.html) APIを[サポートしません。](https://github.com/facebook/react/issues/13097) モーダルを表示するには、 `disablePortal` propを使用してポータル機能を無効にする必要があります。
 
 {{"demo": "pages/components/modal/ServerModal.js"}}

@@ -5,9 +5,9 @@ components: Hidden
 
 # Hidden
 
-<p class="description">Wechseln Sie mit unseren versteckten Komponenten schnell und ansprechend den Sichtbarkeitswert von Komponenten und mehr.</p>
+<p class="description">Quickly and responsively toggle the visibility value of components and more with the hidden utilities.</p>
 
-Alle Elemente sind sichtbar, außer **sie explizit versteckt**. Um die Integration mit Material-UI [responsiven Haltepunkten](/customization/breakpoints/) zu vereinfachen, können Sie mit dieser Komponente jeden Inhalt ausblenden oder Sie können ihn zusammen mit unserer [`Grid`](/components/grid/) Komponente verwenden.
+Alle Elemente sind sichtbar, außer **sie explizit versteckt**. To ease integration with Material-UI's [responsive breakpoints](/customization/breakpoints/), this component can be used to hide any content, or you can use it in conjunction with the [`Grid`](/components/grid/) component.
 
 ## So funktioniert es
 

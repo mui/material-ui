@@ -6,18 +6,15 @@ Material-UI hat das Ziel, solide Grundlagen für dynamische UIs zu schaffen. Der
 
 ## Wieso die Styling-Lösung von Material-UI benutzten?
 
-In früheren Versionen hat Material-UI LESS verwendet, eine benutzerdefinierte Inline-Lösung zum Schreiben der Stile der Komponenten. Diese Ansätze erwiesen sich jedoch als begrenzt Einsetzbar. Wir haben eine [*CSS-in-JS* Lösung adoptiert](https://github.com/oliviertassinari/a-journey-toward-better-style). Es ** schaltet viele großartige Funktionen frei ** (Verschachtelung von Themen, dynamische Stile, Selbstunterstützung usw.). Wir denken, das ist die Zukunft:
-
-- [Eine vereinheitlichte Styling-Sprache](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
-- [SCSS (Sass) in CSS-in-JS umwandeln](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
+In früheren Versionen hat Material-UI LESS verwendet, eine benutzerdefinierte Inline-Lösung zum Schreiben der Stile der Komponenten. Diese Ansätze erwiesen sich jedoch als begrenzt Einsetzbar. [A *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style) overcomes many of those limitations, and **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 
 Die Styling-Lösung von Material-UI ist von vielen anderen Styling-Bibliotheken wie [styled-components](https://www.styled-components.com/) und [emotion](https://emotion.sh/) inspiriert.
 
-- 💅 Sie können [die gleichen Vorteile](https://www.styled-components.com/docs/basics#motivation) wie bei styled-components erwarten.
-- 🚀 Es ist [blitzschnell](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles).
-- 🧩 Es ist erweiterbar über eine [Plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
-- ⚡️ Es verwednet [JSS](https://github.com/cssinjs/jss) im Kern - ein JavaScript zum CSS-Compiler mit [hohe Leistung](https://github.com/cssinjs/jss/blob/master/docs/performance.md), der zur Laufzeit und serverseitig arbeitet.
-- 📦 Weniger als [15 KB komprimiert](https://bundlephobia.com/result?p=@material-ui/styles); und keine Erhöhung der Bündelgröße, wenn es zusammen mit der Material-UI verwendet wird.
+- 💅 You can expect [the same advantages](https://www.styled-components.com/docs/basics#motivation) as styled-components.
+- 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles).
+- 🧩 It's extensible via a [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
+- ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core – a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
+- 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles); and no bundle size increase if used alongside Material-UI.
 
 ## Installation
 
@@ -33,7 +30,7 @@ yarn add @material-ui/styles
 
 ## Erste Schritte
 
-Wir bieten 3 verschiedene APIs zum Generieren und Anwenden von Stilen, die jedoch alle dieselbe zugrunde liegende Logik aufweisen.
+There are 3 possible APIs you can use to generate and apply styles, however they all share the same underlying logic.
 
 ### Hook API
 

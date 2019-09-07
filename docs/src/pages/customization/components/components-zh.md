@@ -85,7 +85,7 @@ const StyledButton = withStyles({
 .Button {
   color: black;
 }
-.Button:disabled { /* 我们增加了特异性 */
+.Button:disabled { /* Increase the specificity */
   color: white;
 }
 ```
@@ -100,7 +100,7 @@ const StyledButton = withStyles({
 .MenuItem {
   color: black;
 }
-.MenuItem.selected { /* We increase the specificity */
+.MenuItem.selected { /* Increase the specificity */
   color: blue;
 }
 ```
@@ -133,7 +133,7 @@ const StyledButton = withStyles({
 .MenuItem {
   color: black;
 }
-.MenuItem.Mui-selected { /* We increase the specificity */
+.MenuItem.Mui-selected { /* Increase the specificity */
   color: blue;
 }
 ```
@@ -251,7 +251,7 @@ const theme = createMuiTheme({
 
 ### 全局CSS覆盖
 
-您还可以使用CSS自定义组件的所有实例。 您可以使用我们公开的[全局类名](/styles/advanced/#with-material-ui-core)来实现。 它与您自定义Bootstrap的方式非常相似。
+您还可以使用CSS自定义组件的所有实例。 Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this. 它与您自定义Bootstrap的方式非常相似。
 
 ```jsx
 const GlobalCss = withStyles({

@@ -27,6 +27,12 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 
 {{"demo": "pages/components/radio-buttons/FormControlLabelPosition.js"}}
 
+## Customized radios
+
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+
+{{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
+
 ## アクセシビリティ
 
 ラジオボタン、チェックボックス、スイッチなどのすべてのフォームコントロールにラベルを付ける必要があります。 ほとんどの場合、 `<label>` 要素（[FormControlLabel](/api/form-control-label/)）を使用して行われます。

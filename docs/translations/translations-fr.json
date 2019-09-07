@@ -1,5 +1,6 @@
 {
   "homeQuickWord": "Un mot rapide de nos sponsors :",
+  "helpToTranslate": "Help to translate",
   "editWebsiteColors": "Modifier les couleurs du site",
   "toggleTheme": "Basculer le thème de couleurs \"clair/sombre\"",
   "toggleRTL": "Basculer de droite à gauche / de gauche à droite",
@@ -132,7 +133,7 @@
     "/components/no-ssr": "Pas de SSR",
     "/components/other": "Autres",
     "/components/paper": "Paper",
-    "/components/pickers": "Date/Time",
+    "/components/pickers": "Date / Time",
     "/components/popover": "Popover",
     "/components/popper": "Popper",
     "/components/portal": "Portal",
@@ -172,7 +173,7 @@
     "/system/spacing": "Spacing (Ecartement)",
     "/system/typography": "Typography (Typographie)",
     "/customization": "Personnalisation",
-    "/customization/theming": "Theming",
+    "/customization/theming": "Thèmes",
     "/customization/breakpoints": "Breakpoints",
     "/customization/color": "Couleur",
     "/customization/themes": "Thèmes",
@@ -212,6 +213,12 @@
     "/styles": "Styles",
     "/styles/basics": "Bases",
     "/styles/advanced": "Avancé",
-    "https://themes.material-ui.com/": "Thèmes premium"
+    "https://themes.material-ui.com/": "Thèmes premium",
+    "/components/material-icons": "Material Icons",
+    "/components/textarea-autosize": "Textarea Autosize",
+    "/components/rating": "Rating",
+    "/components/skeleton": "Skeleton",
+    "/components/tree-view": "Tree View",
+    "/customization/density": "Density"
   }
 }

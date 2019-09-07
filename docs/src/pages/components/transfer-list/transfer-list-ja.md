@@ -3,18 +3,18 @@ title: 転送リストReactコンポーネント
 components: List, ListItem, Checkbox, Switch
 ---
 
-# Transfer List
+# 転送リスト(Transfer List)
 
-<p class="description">A transfer list (or "shuttle") enables the user to move one or more list items between lists.</p>
+<p class="description">転送リスト("transfer list")（または"shuttle") を使用すると、ユーザーは1つ以上のリストアイテムをリスト間で移動できます。</p>
 
-## Simple Transfer List
+## シンプルな転送リスト(Transfer List) の場合
 
-For completeness, this example includes buttons for "move all", but not every transfer list needs these.
+完全を期すために、この例には「すべて移動」用のボタンが含まれていますが、すべての転送リストでこれらが必要なわけではありません。
 
 {{"demo": "pages/components/transfer-list/TransferList.js"}}
 
-## Enhanced Transfer List
+## 拡張転送リスト(Enhanced Transfer List) の場合
 
-This example exchanges the "move all" buttons for a "select all / select none" checkbox, and adds a counter.
+この例では、「すべて移動」ボタンを「すべて選択/なしを選択」チェックボックスに交換し、カウンターを追加します。
 
 {{"demo": "pages/components/transfer-list/SelectAllTransferList.js"}}

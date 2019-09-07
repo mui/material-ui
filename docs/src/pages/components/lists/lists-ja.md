@@ -77,7 +77,7 @@ Switchは補助的なアクションであり異なるターゲットです。
 
 スクロールする上で、サブヘッダーは次のサブヘッダーによって画面から押し出されるまで画面の上部に固定されたままになります。
 
-この機能はCSSのSticky positioningに依存しています。 残念ながら、私たちがサポートしている全てのブラウザで[実装されている訳ではありません](https://caniuse.com/#search=sticky)。 サポートされていない場合、デフォルトは `disableSticky` となります。
+This feature relies on CSS sticky positioning. Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the supported browsers. It defaults to `disableSticky` when not supported.
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js"}}
 
@@ -91,4 +91,4 @@ Switchは補助的なアクションであり異なるターゲットです。
 
 {{"demo": "pages/components/lists/VirtualizedList.js"}}
 
-可能であれば、 [react-window](https://github.com/bvaughn/react-window) の使用をお勧めします。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。
+The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged. このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。

@@ -2,7 +2,7 @@
 
 <p class="description">While it is simple to use the JSS based styling solution provided by Material-UI to style your application, it is possible to use any styling solution you prefer, from plain CSS to any number of CSS-in-JS libraries.</p>
 
-This guide aims to document the most popular alternatives, but you should find that the principals applied here can be adapted to other libraries. We have provided examples for the following styling solutions:
+This guide aims to document the most popular alternatives, but you should find that the principals applied here can be adapted to other libraries. There are examples for the following styling solutions:
 
 - [Plain CSS](#plain-css)
 - [Глобальный CSS](#global-css)
@@ -14,7 +14,7 @@ This guide aims to document the most popular alternatives, but you should find t
 
 ## Plain CSS
 
-Nothing fancy, just plain old CSS. Why reinvent the wheel when it has been working for decades?
+Nothing fancy, just plain old CSS.
 
 **PlainCssButton.css**
 
@@ -91,7 +91,7 @@ export default function GlobalCssButton() {
 
 ![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
 
-The `styled()` method works perfectly on all of our components.
+The `styled()` method works perfectly on all of the components.
 
 ```jsx
 import React from 'react';
@@ -293,7 +293,7 @@ Emotion's **css()** method works seamlessly with Material-UI.
 import { jsx, css } from '@emotion/core';
 import Button from '@material-ui/core/Button';
 
-// We just assign them the Button's className attribute
+// Just assign them the Button's className attribute
 export default function EmotionButton() {
   return (
     <div>
@@ -330,7 +330,7 @@ It works exactly like styled components. You can [use the same guide](/guides/in
 
 ![stars](https://img.shields.io/github/stars/cssinjs/jss.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/react-jss.svg?)
 
-Material-UI's styling solution shares many building blocks with [react-jss](https://github.com/cssinjs/react-jss). We went ahead and forked the project in order to handle our unique needs, but we're working to merge the changes and fixes from Material-UI back to react-jss.
+Material-UI's styling solution shares many building blocks with [react-jss](https://github.com/cssinjs/react-jss). A fork was needed in order to handle Material-UI's unique needs, but with the intent to merge the changes and fixes from Material-UI back to react-jss.
 
 ```jsx
 import React from 'react';

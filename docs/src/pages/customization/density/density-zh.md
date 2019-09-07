@@ -4,7 +4,7 @@
 
 ## 使用 `Density`
 
-我们不会覆盖您的应用程序中的样式，考虑一下在你的应用中使用density吧。 <https://material.io/design/layout/applying-density. html#typographic-density>使用案例</>
+This section explains how to apply density. It doesn't cover petential use cases, or considerations for using density in your application. The Material design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering these topics in more detail.
 
 ## Implementing density
 

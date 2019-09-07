@@ -2,9 +2,9 @@
 components: CssBaseline
 ---
 
-# CSS 基线
+# CSS Baseline（CSS 基线）
 
-<p class="description">Material-UI 提供了一个 CssBaseline 组件, 用于启动一个优雅、一致且简单的基线。</p>
+<p class="description">Material-UI 提供了一个 CssBaseline 组件，用于启动一个优雅、一致且简单的基线。</p>
 
 您可能熟悉 [normailize.css](https://github.com/necolas/normalize.css), 一个HTML 元素和属性样式规范化的集合。
 

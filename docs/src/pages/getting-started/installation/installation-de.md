@@ -50,13 +50,13 @@ yarn add @material-ui/icons
 
 Sie können mit der Material-UI mit minimaler Front-End-Infrastruktur verwenden, was sich hervorragend für das Prototyping eignet.
 
-Wir bieten zwei UMD-Dateien (**Universal Module Definition**) an:
+Two Universal Module Definition (**UMD**) files are provided:
 
 - eine für die Entwicklung: https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
 - eine für die Entwicklung: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
 
 Sie können diesem [CDN-Beispiel](https://github.com/mui-org/material-ui/tree/master/examples/cdn) folgen um schnell anfangen zu können.
 
-⚠️ Wir **raten davon ab**, diesen Ansatz in der **Produktion** zu verwenden: Der Client muss die gesamte Bibliothek herunterladen, unabhängig davon, welche Komponenten tatsächlich verwendet werden, was die Leistung und Bandbreitennutzung beeinflusst.
+⚠️ Using this approach in **production** is **discouraged** though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilization.
 
-⚠️ Die UMD-Links verwenden den `neueste` Tag, um auf die neueste Version der Bibliothek zu verweisen. Dieser Link ist **instabil**, da er sich verändert, wenn wir neue Versionen veröffentlichen. Sie sollten in Betracht ziehen, auf eine bestimmte Version wie [v3.9.3](https://unpkg.com/@material-ui/core@3.9.3/umd/material-ui.development.js) zu verweisen.
+⚠️ Die UMD-Links verwenden den `neueste` Tag, um auf die neueste Version der Bibliothek zu verweisen. Dieser Link ist **instabil**, da er sich verändert, wenn wir neue Versionen veröffentlichen. You should consider pointing to a specific version, such as [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).

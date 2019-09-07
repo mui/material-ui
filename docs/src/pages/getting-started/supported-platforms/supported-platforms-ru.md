@@ -15,7 +15,7 @@ Because Googlebot uses a web rendering service (WRS) to index the page content, 
 
 ## Server
 
-Because Material-UI supports server-side rendering, it needs to support the latest, stable releases of [Node.js](https://github.com/nodejs/node). Мы также стараемся поддерживать [LTS версии, которые находятся на обслуживании](https://github.com/nodejs/Release#lts-schedule1). Right now, it supports **node v8.x** and newer versions.
+Because Material-UI supports server-side rendering, it needs to support the latest, stable releases of [Node.js](https://github.com/nodejs/node). Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1) are supported. Right now, it supports **node v8.x** and newer versions.
 
 ### CSS prefixing
 
@@ -25,4 +25,4 @@ The CSS served on this documentation is processed with [`autoprefixer`](https://
 
 ## React
 
-Material-UI supports the most recent versions of React, starting with ^16.8.0 (the one with the hooks). Have a look at our older [versions](/versions/) for backward compatibility.
+Material-UI supports the most recent versions of React, starting with ^16.8.0 (the one with the hooks). Have a look at the older [versions](/versions/) for backward compatibility.

@@ -15,7 +15,7 @@ Es fundamental que Material-UI sea compatible con el servicio de renderización 
 
 ## Servidor
 
-Because Material-UI supports server-side rendering, it needs to support the latest, stable releases of [Node.js](https://github.com/nodejs/node). También nos esforzamos por mantener la compatibilidad con las [versiones LTS que se encuentren en mantenimiento](https://github.com/nodejs/Release#lts-schedule1). Right now, it supports **node v8.x** and newer versions.
+Because Material-UI supports server-side rendering, it needs to support the latest, stable releases of [Node.js](https://github.com/nodejs/node). Where possible, the [LTS versions that are in maintenance](https://github.com/nodejs/Release#lts-schedule1) are supported. Right now, it supports **node v8.x** and newer versions.
 
 ### Prefijado de CSS
 
@@ -25,4 +25,4 @@ El CSS servido en ésta documentación se procesa con [`autoprefixer`](https://w
 
 ## React
 
-Material-UI supports the most recent versions of React, starting with ^16.8.0 (the one with the hooks). Have a look at our older [versions](/versions/) for backward compatibility.
+Material-UI supports the most recent versions of React, starting with ^16.8.0 (the one with the hooks). Have a look at the older [versions](/versions/) for backward compatibility.

@@ -57,15 +57,21 @@ El atributo `Action`del componente `TablePagination` permite implementar accione
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}
 
-## Tabla Expandible
+## Fixed header
 
-Un ejemplo sencillo con filas & columnas expandibles.
+An example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
+
+{{"demo": "pages/components/tables/StickyHeadTable.js"}}
+
+## Spanning Table
+
+A simple example with spanning rows & columns.
 
 {{"demo": "pages/components/tables/SpanningTable.js"}}
 
-## Tabla Virtualizada
+## Virtualized Table
 
-En el siguiente ejemplo, demostramos como usar [react-virtualized](https://github.com/bvaughn/react-virtualized) con el componente `Table`. Renderiza 200 filas y fácilmente puede manejar más. La virtualización ayuda con problemas de rendimiento.
+In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. Renderiza 200 filas y fácilmente puede manejar más. La virtualización ayuda con problemas de rendimiento.
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js"}}
 
@@ -83,5 +89,5 @@ Para usos más avanzados tal vez puedas aprovercharte de:
 
 ### Otros
 
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) Una tabla de datos para Material-UI con herramientas de paginación, ordenación, filtración, agrupación y revisión ([licencia customizada](https://js.devexpress.com/licensing/)).
-- [mui-datatables](https://github.com/gregnb/mui-datatables) Tablas de datos responsivas para Material-UI con filtración, ordenación, búsqueda y más.
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
+- [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.

@@ -4,7 +4,20 @@
 
 [Create React AppでのTypeScript](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript)の使用例を参考にしてください。 TypeScript 2.8以上が必要です。
 
-私たちの定義は、こちらの[tsconfig.json](https://github.com/mui-org/material-ui/tree/master/tsconfig.json) でテストしています。 あまり厳密でない`tsconfig.json`を使ったり、一部のライブラリを省略した場合、エラーが発生する可能性があります。
+In order for types to work, you have to at least have the following options enabled in your `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "lib": ["es6", "dom"],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true
+  }
+}
+```
+
+Strictモードのオプションは、すべてのタイプのパッケージに必要なものと同じです。 は`@types/`namespaceで発行されます。 あまり厳密でない`tsconfig.json`を使ったり、一部のライブラリを省略した場合、エラーが発生する可能性があります。 To get the best type experience with the types we recommend setting `"strict": true`.
 
 ## `withStyles`の使い方
 
@@ -39,7 +52,7 @@ withStyles({
 });
 ```
 
-However type widening rears its ugly head once more if you try to make the styles depend on the theme:
+ただし、スタイルをテーマに依存させようとすると、タイプを広げるとい頭が再び現れます：
 
 ```ts
 withStyles(({ palette, spacing }) => ({
@@ -53,9 +66,9 @@ withStyles(({ palette, spacing }) => ({
 }));
 ```
 
-This is because TypeScript [widens the return types of function expressions](https://github.com/Microsoft/TypeScript/issues/241).
+これは、TypeScript [が関数式の戻り値の型を広げるためです。 ](https://github.com/Microsoft/TypeScript/issues/241)
 
-Because of this, we recommend using our `createStyles` helper function to construct your style rules object:
+Because of this, using the `createStyles` helper function to construct your style rules object is recommended:
 
 ```ts
 // Non-dependent styles
@@ -78,11 +91,11 @@ const styles = ({ palette, spacing }: Theme) => createStyles({
 });
 ```
 
-`createStyles` is just the identity function; it doesn't "do anything" at runtime, just helps guide type inference at compile time.
+`createStyles`は、単なるidentity関数です。実行時に「何でもする」するのではなく、コンパイル時に型推論をガイドするのに役立つだけです。
 
-### Media queries
+### メディアクエリ
 
-`withStyles` allows a styles object with top level media-queries like so:
+`withStyles`では、次のような最上位のメディアクエリを持つスタイルオブジェクトを使用できます。
 
 ```ts
 const styles = createStyles({
@@ -97,7 +110,7 @@ const styles = createStyles({
 });
 ```
 
-However to allow these styles to pass TypeScript, the definitions have to be ambiguous concerning names for CSS classes and actual CSS property names. Due to this class names that are equal to CSS properties should be avoided.
+ただし、これらのスタイルがTypeScriptを渡せるようにするには、CSSクラスの名前と実際のCSSプロパティ名に関して定義があいまいでなければなりません。 このため、CSSプロパティと同じクラス名は使用しないでください。
 
 ```ts
 // error because TypeScript thinks `@media (min-width: 960px)` is a class name
@@ -126,9 +139,9 @@ const ambiguousStyles = createStyles({
 });
 ```
 
-### Augmenting your props using `WithStyles`
+### ` WithStylesを使用して propsを増強する`
 
-Since a component decorated with `withStyles(styles)` gets a special `classes` prop injected, you will want to define its props accordingly:
+`withStyles(styles) で装飾されたコンポーネント`には、特別な`classes` プロパティが挿入されるため、それに応じてプロパティを定義する必要があります。
 
 ```ts
 const styles = (theme: Theme) => createStyles({
@@ -150,7 +163,7 @@ interface Props {
 }
 ```
 
-However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `WithStyles` to help with this, so that you can just write:
+しかし、これはあまり[DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)ではありません。なぜなら、クラス名(`'root'`、`'paper'`、`'button'`、...。) を二つの異なる場所に維持する必要があるからです。 このために、型演算子`WithStyles`を使用して、次のように記述します。
 
 ```ts
 import { WithStyles, createStyles } from '@material-ui/core';
@@ -167,9 +180,9 @@ interface Props extends WithStyles<typeof styles> {
 }
 ```
 
-### Decorating components
+### コンポーネントの装飾
 
-Applying `withStyles(styles)` as a function works as expected:
+` withStyles（styles）`の適用で、関数が期待どおりに機能する：
 
 ```tsx
 const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) => (
@@ -192,13 +205,13 @@ const DecoratedClass = withStyles(styles)(
 );
 ```
 
-Unfortunately due to a [current limitation of TypeScript decorators](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles(styles)` can't be used as a decorator in TypeScript.
+残念ながら、[TypeScript decoratorsの現在の制限](https://github.com/Microsoft/TypeScript/issues/4881) により、`withStyles(スタイル)`はTypeScriptのデコレータとして使用できません。
 
-## Customization of `Theme`
+## `テーマのカスタマイズ`
 
-When adding custom properties to the `Theme`, you may continue to use it in a strongly typed way by exploiting [TypeScript's module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+カスタムプロパティを`テーマ`に追加する場合、[TypeScriptのモジュール拡張](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)を利用して、厳密に型指定した方法で引き続き使用できます。
 
-The following example adds an `appDrawer` property that is merged into the one exported by `material-ui`:
+次の例では、`material-ui`によって書き出されたプロパティに合成される`appDrawer`プロパティを追加します。
 
 ```ts
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
@@ -221,7 +234,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 }
 ```
 
-And a custom theme factory with additional defaulted options:
+カスタムテーマファクトリには、追加の既定のオプションがあります。
 
 **./styles/createMyTheme**:
 
@@ -239,7 +252,7 @@ export default function createMyTheme(options: ThemeOptions) {
 }
 ```
 
-This could be used like:
+これは次のように使用できます。
 
 ```ts
 import createMyTheme from './styles/createMyTheme';
@@ -247,16 +260,16 @@ import createMyTheme from './styles/createMyTheme';
 const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 ```
 
-## Usage of `component` property
+## `コンポーネントの`プロパティの使用法
 
-Material-UI allows you to replace a component's root node via a `component` property. For example, a `Button`'s root node can be replaced with a React Router `Link`, and any additional props that are passed to `Button`, such as `to`, will be spread to the `Link` component. For a code example concerning `Button` and `react-router-dom` checkout [this Button demo](/components/buttons/#third-party-routing-library).
+Material-UIでは、`component`プロパティを使用してコンポーネントのルートノードを置き換えることができます。 たとえば、`Button`のルートノードはReact Router`Link`に置き換えることができ、`Button`に渡される`to`などの追加のプロップはすべて`Link`コンポーネントに分散されます。 `Button`と`react-router-dom`checkoutに関するコード例は、[このボタンのデモ](/components/buttons/#third-party-routing-library)を参照してください。
 
-Not every component fully supports any component type you pass in. If you encounter a component that rejects its `component` props in TypeScript please open an issue. There is an ongoing effort to fix this by making component props generic.
+すべてのコンポーネントが、渡すコンポーネントタイプを完全にサポートしているわけではありません。 次のような問題が発生した場合 TypeScriptで `component`プロパティを拒否するコンポーネントの問題を開いてください。 コンポーネントプロップを汎用化することで、この問題を解決するための取り組みが続けられています。
 
-## Handling `value` and event handlers
+## `value` およびイベントハンドラの処理
 
-Many components concerned with user input offer a `value` prop or event handlers which include the current `value`. In most situations that `value` is only handled within React which allows it be of any type, such as objects or arrays.
+ユーザ入力に関連する多くのコンポーネントは、現在の `value`を含む`value`プロパティまたはイベントハンドラを提供します。 ほとんどの場合、`値`のみが処理されます。 オブジェクトや配列などの任意のタイプを使用できます。
 
-However, that type cannot be verified at compile time in situations where it depends on the component's children e.g. for `Select` or `RadioGroup`. This means that the soundest option is to type it as `unknown` and let the developer decide how they want to narrow that type down. We do not offer the possibility to use a generic type in those cases for [the same reasons `event.target` is not generic in React](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682).
+ただし、そのタイプは、たとえば`Select`または`RadioGroup`など、コンポーネントの子に依存する状況では、コンパイル時に検証できません。 つまり、soundest オプションは、それを`unknown`として入力し、その型をどのように絞り込むかを開発者に決定させることです。 [同じ理由で` event.target` は Reactでは一般的ではないため](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682)これらの場合にジェネリック タイプを使用する可能性は提供しません。
 
-Our demos include typed variants that use type casting. It is an acceptable tradeoff because the types are all located in a single file and are very basic. You have to decide for yourself if the same tradeoff is acceptable for you. We want our library types to be strict by default and loose via opt-in.
+The demos include typed variants that use type casting. すべての型が単一のファイル内にあり、非常に基本的であるため、これは許容できるトレードオフです。 同じトレードオフが受け入れられるかどうかは、自分で判断する必要があります。 The library types are be strict by default and loose via opt-in.

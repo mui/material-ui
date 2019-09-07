@@ -24,7 +24,7 @@ Verwenden Sie die Optionsfelder, um die Positionen des `AnkerOrigin` und des `Tr
 
 ## Maus Interaktionen
 
-Wir zeigen, wie Sie mit der `Popover-Komponente` ein Popover-Verhalten basierend auf dem Mouseover-Ereignis implementieren.
+This demonstrates how to use the `Popover` component to implement a popover behavior based on the mouse over event.
 
 {{"demo": "pages/components/popover/MouseOverPopover.js"}}
 

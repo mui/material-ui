@@ -7,7 +7,7 @@ components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 
 <p class="description">Кнопки позволяют пользователям выполнять действия и делать выбор одним нажатием.</p>
 
-[Buttons](https://material.io/design/components/buttons.html) communicate actions that users can take. They are typically placed throughout your UI, in places like:
+[Кнопки](https://material.io/design/components/buttons.html) обозначают действия, которые могут выполнять пользователи. Они используются в таких местах пользовательского интерфейса, как:
 
 - Диалоги
 - Всплывающие окно
@@ -52,7 +52,7 @@ The ButtonGroup component can be used to group outlined (the default) or contain
 
 ## Split Button
 
-ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be use to immediately trigger a related action.
+ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
 
 {{"demo": "pages/components/buttons/SplitButton.js"}}
 
@@ -110,10 +110,10 @@ Here are some examples of customizing the component. You can learn more about th
 
 ## Сторонняя библиотека маршрутизации
 
-Одним из распространенных вариантов использования кнопки является переход на новую страницу. `ButtonBase` компонент предоставляет свойство для обработки этого варианта использования: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Given that a lot of our interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
+Одним из распространенных вариантов использования кнопки является переход на новую страницу. `ButtonBase` компонент предоставляет свойство для обработки этого варианта использования: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
 Here is an integration example with react-router:
 
 {{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 
-*Note: Creating the Button components is necessary to prevent unexpected unmounting. You can read more about it in our [component property guide](/guides/composition/#component-property).*
+*Note: Creating the Button components is necessary to prevent unexpected unmounting. You can read more about it in the [component prop guide](/guides/composition/#component-property).*

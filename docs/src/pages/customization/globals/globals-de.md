@@ -27,7 +27,7 @@ Die Liste dieser Anpassungspunkte für jede Komponente ist unter der **Komponent
 
 ## Standard-Eigenschaften
 
-Sie können die Standard-Eigenschaften aller Komponenten der Material-UI ändern. Wir stellen einen `props` Schlüssel im `Theme` für diesen Anwendungsfall zur Verfügung.
+Sie können die Standard-Eigenschaften aller Komponenten der Material-UI ändern. A `props` key is exposed in the `theme` for this use case.
 
 ```js
 const theme = createMuiTheme({

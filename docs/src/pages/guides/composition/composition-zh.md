@@ -4,7 +4,7 @@
 
 ## 封装组件
 
-我们需要一种了解组件接收的子元素的本质的方式，这样可以尽可能提供最大的灵活性和最好的性能。 在需要的时候我们会用 `muiName` 静态属性来标记一些我们的组件，这样能够解决这个问题。
+我们需要一种了解组件接收的子元素的本质的方式，这样可以尽可能提供最大的灵活性和最好的性能。 To solve this problem we tag some of the components with a `muiName` static property when needed.
 
 但是，您仍可能需要封装一个组件以增强它的功能，而这可能与 `muiName` 的解决方案相冲突。 If you wrap a component, verify if that component has this static property set.
 
@@ -65,7 +65,7 @@ const ListItemLink = ({ icon, primary, secondary, to }) => (
 
 ⚠️然而，由于我们使用内联函数来更改呈现的组件，因此，在每一次` ListItemLink `被渲染时，React都会先将它卸载。 不只是React会更新那些不必要的DOM，`ListItem` 的涟漪效应也将无法正常工作。
 
-解决方法很简单： **避免内联函数并将静态组件传递给 `component` 属性**。 将上述的` ListItemLink `改成：
+解决方法很简单： **避免内联函数并将静态组件传递给 `component` 属性**。 Let's change the `ListItemLink` to the following:
 
 ```jsx
 import { Link as RouterLink } from 'react-router-dom';
@@ -136,11 +136,11 @@ import { Link } from 'react-router-dom';
 
 请注意，在使用 `lazy` 和 `memo` 组件时，如果被封装的组件无法持有 ref，您仍然有可能收到这个警告。
 
-在某些情况下，我们发出了一个额外警告，帮助调试，类似于：
+In some instances an additional warning is issued to help with debugging, similar to:
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
-我们只涵盖两个最常见的使用案例。 更多信息见[React官方文档中的本章节](https://reactjs.org/docs/forwarding-refs.html)。
+Only the two most common use cases are covered. 更多信息见[React官方文档中的本章节](https://reactjs.org/docs/forwarding-refs.html)。
 
 ```diff
 - const MyButton = props => <div role="button" {...props} />;
@@ -158,7 +158,7 @@ import { Link } from 'react-router-dom';
 
 ### Caveat with StrictMode
 
-If you use class components for the cases described above you will still see warnings in `React.StrictMode`. We use `ReactDOM.findDOMNode` internally for backwards compatibility. You can use `React.forwardRef` and a designated prop in your class component to forward the `ref` to a DOM component. Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
+If you use class components for the cases described above you will still see warnings in `React.StrictMode`. `ReactDOM.findDOMNode` is used internally for backwards compatibility. You can use `React.forwardRef` and a designated prop in your class component to forward the `ref` to a DOM component. Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
 
 ```diff
 class Component extends React.Component {

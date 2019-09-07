@@ -30,8 +30,8 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 A dica precisa aplicar ouvintes de evento DOM ao seu elemento filho. Se o filho for um elemento React personalizado, você precisará garantir que ele estenda suas propriedades para o elemento DOM subjacente.
 
 ```jsx
-function MyComponent (props) {
-  // Distribuímos as propriedades para o elemento DOM subjacente.
+function MyComponent(props) {
+  //  Spread the properties to the underlying DOM element.
   return <div {...props}>Bin</div>
 }
 

@@ -1,60 +1,65 @@
-# Customizing components
+# コンポーネントのカスタマイズ
 
-<p class="description">You can easily customize the appearance of a Material-UI component.</p>
+<p class="description">Material-UIコンポーネントの外観を簡単にカスタマイズできます。</p>
 
-As components can be used in different contexts, there are several approaches to this. Going from the narrowest use-case to the broadest, these are:
+コンポーネントはさまざまなコンテキストで使用できるため、これにはいくつかのアプローチがあります。 最小のユースケースから最大のユースケースまで、次をご覧ください
 
-1. [Specific variation for a one-time situation](#1-specific-variation-for-a-one-time-situation)
-2. [Dynamic variation for a one-time situation](#2-dynamic-variation-for-a-one-time-situation)
-3. [Specific variation of a component](#3-specific-variation-of-a-component) re-used in different contexts
-4. [Material Design variations](#4-material-design-variations) such as with the button component
+1. [一時的な状況の特定のバリエーション](#1-specific-variation-for-a-one-time-situation)
+2. [1回の状況に対する動的変化](#2-dynamic-variation-for-a-one-time-situation)
+3. 異なるコンテキストで再使用される[特定のバリエーションのコンポーネント](#3-specific-variation-of-a-component)
+4. [Material Design variations](#4-material-design-variations)のボタンコンポーネントなど
 5. [グローバルテーマバリエーション](#5-global-theme-variation)
 
-## 1. Specific variation for a one-time situation
+## 1. 一時的な状況の特定のバリエーション
 
-You might need to change the style of a component for a specific implementation, for which you have the following solutions available:
+次のソリューションを使用できる特定の実装のコンポーネントのスタイルを変更する必要がある場合があります。
 
-### Overriding styles with class names
+### クラス名でスタイルをオーバーライドする
 
-The first way to override the style of a component is to use **class names**. Every component provides a `className` property which is always applied to the root element.
+コンポーネントのスタイルをオーバーライドする最初の方法は、**class names**を使用することです。 すべてのコンポーネントには、常にルート要素に適用される`className`プロパティがあります。
 
-This example uses the [`withStyles()`](/styles/basics/#higher-order-component-api) higher-order component to inject custom styles into the DOM, and to pass the class name to the `ClassNames` component via its `classes` property. You can choose [any other styling solution](/guides/interoperability/), or even plain CSS to create the styles, but be sure to consider the [CSS injection order](/styles/advanced/#css-injection-order), as the CSS injected into the DOM by Material-UI to style a component has the highest specificity possible, since the `<link>` is injected at the bottom of the `<head />` to ensure the components always render correctly.
+この例では、[`withStyles()`](/styles/basics/#higher-order-component-api)の高次(higher-order) を使用します。 コンポーネントの`classes`プロパティを使用して、カスタムスタイルをDOMに挿入し、クラス名を`ClassNames`コンポーネントに渡します。 他のスタイリングソリューション</a>、またはプレーンCSSを選択してスタイルを作成することもできますが、必ず CSSがDOMに注入されるときの[CSS注入順序](/styles/advanced/#css-injection-order)を考えてみてください。 Material-UIを使用してコンポーネントをスタイル設定すると、`<link>`が下に挿入されるため、高い特異性が得られます。 の`<head />`を使用して、コンポーネントが常に正しくレンダリングされるようにします。
 
 {{"demo": "pages/customization/components/ClassNames.js"}}
 
-### Overriding styles with classes
+### クラスでスタイルをオーバーライドする
 
-When the `className` property isn't enough, and you need to access deeper elements, you can take advantage of the `classes` object property to customize all the CSS injected by Material-UI for a given component.
+`className`プロパティでは不十分で、より深い要素にアクセスする必要がある場合は、`classes`オブジェクトプロパティを利用して、特定のコンポーネントに対してMaterial-UIによって注入されるすべてのCSSをカスタマイズできます。
 
-The list of classes for each component is documented in the component API page, you should refer to the **CSS section** and **rule name column**. For instance, you can have a look at the [Button CSS API](/api/button/#css). Alternatively, you can use the [browser dev tools](#using-the-dev-tools).
+それぞれのクラスのリスト コンポーネントについては、コンポーネントAPIページの**CSS section**および**rule name column**を参照してください。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 文 または、[browser dev tools](#using-the-dev-tools)を使用することもできます。
 
-This example also uses `withStyles()` (see above), but here, `ClassesNesting` is using `Button`'s `classes` prop to provide an object that maps the **names of classes to override** (style rules) to the **CSS class names to apply** (values). The component's existing classes will continue to be injected, so it is only necessary to provide the specific styles you wish to add or override.
+この例では、`withStyles()`</code></code>も使用していますが、ここでは、`ClassesNesting(上記参照) は<code>Button`の`classes propを使用して、
+オーバーライドするクラスの<strong>名</strong>を適用するCSSクラス名(スタイルルール)</strong>にマップするオブジェクトを提供します(values)。
+コンポーネントの既存のクラスは引き続き注入されるため、必要なのは特定のスタイルを指定することだけです。
+追加またはオーバーライドします。</p>
 
-Notice that in addition to the button styling, the button label's capitalization has been changed:
+<p>Notice that in addition to the button styling, the button label's capitalization has been changed:</p>
 
-{{"demo": "pages/customization/components/ClassesNesting.js"}}
+<p>{{"demo": "pages/customization/components/ClassesNesting.js"}}</p>
 
-### Overriding styles with global class names
+<h3>グローバルクラス名でスタイルをオーバーライドする</h3>
 
-[Follow this section](/styles/advanced/#with-material-ui-core).
+<p><a href="/styles/advanced/#with-material-ui-core">このセクションに従ってください</a> 。</p>
 
-### Using the dev tools
+<h3>開発ツール(dev tools) を使用する</h3>
 
-The browser dev tools can save you a lot of time. Material-UI's class names [follow a simple pattern](/styles/advanced/#class-names) in development mode: `Mui[component name]-[style rule name]-[UUID]`.
+<p>ブラウザ開発ツールを使えば、時間を大幅に節約できます。
+Material-UIのクラス名は、開発モードでは<a href="/styles/advanced/#class-names"> a simple patternに従います</a>。
+<code>Mui[component name]-[style rule name]-[UUID]`。
 
-Let's go back to the above demo. How can you override the button label?
+上記のデモに戻りましょう。 ボタン・ラベルを上書きする方法は?
 
 ![dev-tools](/static/images/customization/dev-tools.png)
 
-Using the dev tools, you know that you need to target the `Button` component and the `label` style rule:
+開発ツールを使用して、`Button`コンポーネントと`label`スタイルルールをターゲットにする必要があることがわかります。
 
 ```jsx
 <Button classes={{ label: 'my-class-name' }} />
 ```
 
-### Shorthand
+### ショートハンド
 
-The above code example can be condensed by using **the same CSS API** as the child component. In this example, the `withStyles()` higher-order component is injecting a `classes` property that is used by the [`Button` component](/api/button/#css).
+上記のコード例は、子コンポーネントとして**同じCSS API**を使用することで要約できます。 この例では、`withStyles()`の上位(高次) コンポーネントは、[`Button`コンポーネント](/api/button/#css)が使用する`classes`プロパティーを注入しています。
 
 ```jsx
 const StyledButton = withStyles({
@@ -75,17 +80,17 @@ const StyledButton = withStyles({
 
 {{"demo": "pages/customization/components/ClassesShorthand.js"}}
 
-### Pseudo-classes
+### 擬似クラス
 
-The components special states, like *hover*, *focus*, *disabled* and *selected*, are styled with a higher CSS specificity. [Specificity is a weight](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity) that is applied to a given CSS declaration.
+*hover*、*focus*、*disabled*、*selected*などのコンポーネントの特殊状態は、より高いCSS 特異性(specificity) が設定されています。 [Specificityは、特定のCSS宣言に適用されるウェイト](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)です。
 
-In order to override the components special states, **you need to increase specificity**. Here is an example with the *disable* state and the button component using a **pseudo-class** (`:disabled`):
+コンポーネントの特別な状態をオーバーライドするには、**特異性を高める必要があります** 。 *disable*状態と、 **pseudo-class**(`:disabled`)を使用したボタンコンポーネントの例を示します。
 
 ```css
 .Button {
   color: black;
 }
-.Button:disabled { /* We increase the specificity */
+.Button:disabled { /* Increase the specificity */
   color: white;
 }
 ```
@@ -94,13 +99,13 @@ In order to override the components special states, **you need to increase speci
 <Button disabled className="Button">
 ```
 
-時にはこのプラットフォームではstateとして**pseudo-class**は使うことができない。 メニュー項目の構成要素と*選ばれた*例として述べる。 Aside from accessing nested elements, the `classes` property can be used to customize the special states of Material-UI components:
+時にはこのプラットフォームではstateとして**pseudo-class**は使うことができない。 メニュー項目の構成要素と*選ばれた*例として述べる。 ネストされた要素にアクセスする以外にも、`classes`プロパティを使用して、Material-UIコンポーネントの特殊な状態をカスタマイズできます。
 
 ```css
 .MenuItem {
   color: black;
 }
-.MenuItem.selected { /* We increase the specificity */
+.MenuItem.selected { /* Increase the specificity */
   color: blue;
 }
 ```
@@ -109,13 +114,13 @@ In order to override the components special states, **you need to increase speci
 <MenuItem selected classes={{ root: 'MenuItem', selected: 'selected' }}>
 ```
 
-#### Why do I need to increase specificity to override one component state?
+#### 1つのコンポーネント状態をオーバーライドするために、特異性を高める必要があるのはなぜですか。
 
-By design, the CSS specification makes the pseudo-classes increase the specificity. For consistency, Material-UI increases the specificity of its custom pseudo-classes. This has one important advantage, it allows you to cherry-pick the state you want to customize.
+設計上、CSS仕様では疑似クラスを使用することで、特定性を高めています。 一貫性を保つために、Material-UIはそのカスタム擬似クラスの特異性を高めます。 これには重要な利点が1つあり、カスタマイズしたい状態を選択することができます。
 
-#### Can I use a different API that requires fewer boilerplate?
+#### より少ない定型文を必要とする別のAPIを使用できますか?
 
-Instead of providing values to the `classes` prop API, you can rely on [the global class names](/styles/advanced/#with-material-ui-core) generated by Material-UI. It implements all these custom pseudo-classes:
+`classes` prop APIに値を指定する代わりに、Material-UIによって生成される[the global class names](/styles/advanced/#with-material-ui-core) を使用できます。 これらすべてのカスタム擬似クラスを実装します。
 
 | クラスキー        | グローバルクラス名        |
 |:------------ |:---------------- |
@@ -133,7 +138,7 @@ Instead of providing values to the `classes` prop API, you can rely on [the glob
 .MenuItem {
   color: black;
 }
-.MenuItem.Mui-selected { /* We increase the specificity */
+.MenuItem.Mui-selected { /* Increase the specificity */
   color: blue;
 }
 ```
@@ -142,9 +147,9 @@ Instead of providing values to the `classes` prop API, you can rely on [the glob
 <MenuItem selected className="MenuItem">
 ```
 
-### Use `$ruleName` to reference a local rule within the same style sheet
+### 同じスタイルシート内のローカルルールを参照するには、`$ruleName`を使用します
 
-The [jss-nested](https://github.com/cssinjs/jss-nested) plugin (available by default) can make the process of increasing specificity easier.
+[jss-nested](https://github.com/cssinjs/jss-nested)プラグイン(デフォルトで使用可能) は、特異性を高めるプロセスを容易にします。
 
 ```js
 const styles = {
@@ -165,7 +170,7 @@ const styles = {
 }
 ```
 
-⚠️ You need to apply the two generated class names (`root` & `disabled`) to the DOM to make it work.
+⚠️DOMを機能させるには、生成された二つのクラス名(`root`&`disabled`) を適用する必要があります。
 
 ```jsx
 <Button
@@ -179,19 +184,19 @@ const styles = {
 
 {{"demo": "pages/customization/components/ClassesState.js"}}
 
-### Overriding with inline-styles
+### インラインスタイルでオーバーライドする
 
-The second way to override the style of a component is to use the **inline-style** approach. Every component provides a `style` property. These properties are always applied to the root element.
+コンポーネントのスタイルをオーバーライドするもう一つの方法は、 **inline-style**アプローチを使用することです。 すべてのコンポーネントには、`style` プロパティがあります。 これらのプロパティは常にルート要素に適用されます。
 
-You don't have to worry about CSS specificity as the inline-style takes precedence over the regular CSS.
+インラインスタイルは通常のCSSよりも優先されるため、CSSの特異性について心配する必要はありません。
 
 {{"demo": "pages/customization/components/InlineStyle.js"}}
 
 [inline-styleもしくはclassesどちらを使うべきですか？](/getting-started/faq/#when-should-i-use-inline-style-vs-classes)
 
-## 2. Dynamic variation for a one-time situation
+## 2. 1回の状況に対する動的変化
 
-You have learned how to override the style of a Material-UI component in the previous section. Now, let's see how we can make these overrides dynamic. Here are five alternatives; each has it's pros and cons.
+前のセクションでMaterial-UIコンポーネントのスタイルをオーバーライドする方法を学習しました。 では、これらのオーバーライドを動的にする方法を見てみましょう。 5つの選択肢があります。それぞれに長所と短所があります。
 
 ### 動的CSS
 
@@ -205,7 +210,7 @@ You have learned how to override the style of a Material-UI component in the pre
 
 {{"demo": "pages/customization/components/DynamicCSSVariables.js"}}
 
-### Inline-styles
+### インラインスタイル
 
 {{"demo": "pages/customization/components/DynamicInlineStyle.js"}}
 
@@ -213,29 +218,29 @@ You have learned how to override the style of a Material-UI component in the pre
 
 {{"demo": "pages/customization/components/DynamicThemeNesting.js"}}
 
-## 3. Specific variation of a component
+## 3. コンポーネントの特定のバリエーション
 
-You might need to create a variation of a component and use it in different contexts, for instance a colorful button on your product page, however you probably want to keep your code [*DRY*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
+コンポーネントのバリエーションを作成し、製品ページのカラフルなボタンなど、さまざまなコンテキストで使用する必要があるかもしれませんが、コードは[*DRYにしておいた方がよいでしょう*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)。
 
-The best approach is to follow option 1 and then take advantage of the composition power of React by exporting your customized component to use wherever you need it.
+最も良い方法は、オプション1を実行し、カスタマイズしたコンポーネントをエクスポートして必要な場所で使用することにより、Reactの合成能力を活用することです。
 
 {{"demo": "pages/customization/components/Component.js", "hideEditButton": true}}
 
-## 4. Material Design variations
+## 4. Material Designのバリエーション
 
-The Material Design specification documents different variations of certain components, such as how buttons come in different shapes: [text](https://material.io/design/components/buttons.html#text-button) (formerly "flat"), [contained](https://material.io/design/components/buttons.html#contained-button) (formerly "raised"), [FAB](https://material.io/design/components/buttons-floating-action-button.html) and more.
+Material Design仕様には、ボタンの形状が異なるなど、特定のコンポーネントのさまざまなバリエーションが記載されています。たとえば、[text](https://material.io/design/components/buttons.html#text-button)(以前の"flat")、[contained](https://material.io/design/components/buttons.html#contained-button)(以前の "raised")、[FAB](https://material.io/design/components/buttons-floating-action-button.html)などです。
 
-Material-UI attempts to implement all of these variations. Please refer to the [Supported Components](/getting-started/supported-components/) documentation to find out the current status of all supported Material Design components.
+Material-UIは、これらすべてのバリエーションを実装しようとします。 サポートされているMaterial Design コンポーネントの現在のステータスについては、[Supported Components](/getting-started/supported-components/)のマニュアルを参照してください。
 
 ## 5. グローバルテーマバリエーション
 
-In order to promote consistency between components, and manage the user interface appearance as a whole, Material-UI provides a mechanism to apply global changes.
+コンポーネント間の一貫性を促進し、ユーザーインターフェイスの外観全体を管理するために、Material-UIはグローバルな変更を適用するメカニズムを提供します。
 
-The demos of this section covers how to the change the button's font size.
+このセクションのデモでは、ボタンのフォントサイズを変更する方法について説明します。
 
 ### テーマ変数
 
-You can adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
+[テーマ設定変数を調整できます](/customization/theming/#theme-configuration-variables) 。
 
 ```jsx
 const theme = createMuiTheme({
@@ -251,7 +256,7 @@ const theme = createMuiTheme({
 
 ### グローバルCSSのオーバーライド
 
-You can also customize all instances of a component with CSS. We expose [global class names](/styles/advanced/#with-material-ui-core) to do so. It's very similar to how you would customize Bootstrap.
+CSSを使用してコンポーネントのすべてのインスタンスをカスタマイズすることもできます。 Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this. Bootstrapをカスタマイズする方法と非常によく似ています。
 
 ```jsx
 const GlobalCss = withStyles({
@@ -271,9 +276,9 @@ const GlobalCss = withStyles({
 
 {{"demo": "pages/customization/components/GlobalCssOverride.js", "iframe": true, "height": 70}}
 
-### Global theme override
+### グローバルテーマオーバーライド
 
-You can take advantage of the `overrides` key of the `theme` to potentially change every single style injected by Material-UI into the DOM. Learn more about it in the [themes section](/customization/globals/#css) of the documentation.
+`theme`の`overrides`キーを利用すると、Material-UIによってDOMに注入されるすべてのスタイルを潜在的に変更できます。 詳細については、ドキュメントの[テーマセクションをご覧ください](/customization/globals/#css)。
 
 ```jsx
 const theme = createMuiTheme({

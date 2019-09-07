@@ -27,7 +27,7 @@ range         |   xs   |   sm   |   md   |   lg   |   xl
 
 ## CSSメディアクエリ
 
-CSSメディアクエリは、UIを応答性にする慣用的な手法です。 そのために、4つのスタイルヘルパーを提供します。
+CSS media queries are the idiomatic approach to make your UI responsive. The theme provides four styles helpers to do so:
 
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
@@ -240,3 +240,7 @@ function MyComponent(props) {
 
 export default withWidth()(MyComponent);
 ```
+
+## Default values
+
+You can explore the default values of the breakpoints using [the theme explorer](/customization/default-theme/?expend-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).

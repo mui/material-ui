@@ -7,29 +7,29 @@ components: Breadcrumbs, Link, Typography
 
 <p class="description">ブレッドクラムを使用すると、値の範囲から選択できます。</p>
 
-## Simple breadcrumbs
+## シンプルなbreadcurmbs
 
-{{"demo":"pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
-## Custom separator
+## カスタムセパレーター (Custom separator）
 
 次の例では、2つの文字列セパレータとSVGアイコンを使用しています。
 
-{{"demo":"pages/components/breadcrumbs/CustomSeparator.js"}}
+{{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
 ## アイコン付きBreadcrumbs
 
-{{"demo":"pages/components/breadcrumbs/IconBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/IconBreadcrumbs.js"}}
 
 ## 折りたたみBreadcrumbs
 
 {{"demo":"pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## カスタマイズBreadcrumbs
+## カスタマイズされた breadcrumbs
 
 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
-{{"demo":"pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
 ## アクセシビリティ
 

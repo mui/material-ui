@@ -21,7 +21,7 @@ The `Tooltip` has 12 **placements** choice. They don’t have directional arrows
 
 ## Customized tooltips
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+以下是自定义组件的一些例子。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
@@ -31,7 +31,7 @@ The tooltip needs to apply DOM event listeners to its child element. If the chil
 
 ```jsx
 function MyComponent(props) {
-  // 我们将属性扩展到底层DOM元素。
+  //  Spread the properties to the underlying DOM element.
   return <div {...props}>Bin</div>
 }
 

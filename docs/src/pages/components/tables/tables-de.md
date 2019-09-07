@@ -47,7 +47,7 @@ Der Tabelle wurde eine feste Breite zugewiesen, um das horizontale Scrollen zu v
 
 ## Benutzerdefinierte Tabellen
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js"}}
 
@@ -57,15 +57,21 @@ Die Eigenschaft `Action` der Komponente `TablePagination` ermöglicht die Implem
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}
 
-## Überspannende Tabellen
+## Fixed header
 
-Ein einfaches Beispiel mit überspannenden Zeilen & Spalten.
+An example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
+
+{{"demo": "pages/components/tables/StickyHeadTable.js"}}
+
+## Spanning Table
+
+A simple example with spanning rows & columns.
 
 {{"demo": "pages/components/tables/SpanningTable.js"}}
 
-## Virtualisierte Tabelle
+## Virtualized Table
 
-Im folgenden Beispiel zeigen wir wie Sie [react-virtualized](https://github.com/bvaughn/react-virtualized) mit der `Table<` Komponente nutzen können. Sie zeigt 200 Zeilen an und kann auch einfach mehr verwalten. Virtualization helps with performance issues.
+In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. Sie zeigt 200 Zeilen an und kann auch einfach mehr verwalten. Virtualisierung hilft bei Leistungsproblemen.
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js"}}
 
@@ -75,13 +81,13 @@ Für fortgeschrittenere Anwendungsfälle können Ihnen folgende Projekte helfen:
 
 ### material-table
 
-![stars](material-table) ![npm downloads](https://img.shields.io/npm/dm/material-table.svg)
+![stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-table.svg)
 
-[Material-Table](https://github.com/mbrn/material-table) ist ein einfache und leistungsfähige Daten Tabelle für React basierend auf Material-UI Table mit einigen zusätzlichen Funktionen. Sie unterstützen viele verschiedene Anwendungsfälle (editierbar, filtern, gruppieren, sortieren, auswählen, i18n, Baumdaten und mehr). Sie sollten es sich mal angucken.
+[material-table](https://github.com/mbrn/material-table) is a simple and powerful Datatable for React based on Material-UI Table with some additional features. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
 
 {{"demo": "pages/components/tables/MaterialTableDemo.js"}}
 
 ### Sonstiges
 
-- [Dx-React-Grid-Material-UI](https://devexpress. github. io/devextreme-reactive/react/grid/) Ein Datengitter für Material-UI mit Funktionen zum Blättern, Sortieren, Filtern, Gruppieren und Bearbeiten ([benutzerdefinierte Lizenz](https://js. devexpress. com/licensing/)).
-- [mui-datatables](https://github.com/gregnb/mui-datatables) Responsive Datentabellen für Material-UI mit Filterung, Sortierung, Suche und mehr.
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
+- [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.

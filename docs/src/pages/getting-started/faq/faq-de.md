@@ -1,6 +1,6 @@
 # Häufige Fragen
 
-<p class="description">Festgefahren bei einem bestimmten Problem? Sehen Sie sich zuerst einige dieser häufig vorkommenden Probleme in unseren FAQ an.</p>
+<p class="description">Festgefahren bei einem bestimmten Problem? Check some of these common gotchas first in the FAQ.</p>
 
 Wenn Sie immer noch nicht finden, wonach Sie suchen, können Sie die Community auf [Spectrum](https://spectrum.chat/material-ui) fragen. Verwenden Sie für Fragen zur Vorgehensweise und zu anderen Problemen [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) anstelle von Github-Problemen. Es gibt ein StackOverflow-Tag namens `material-ui` welchen Sie verwenden können, um Ihre Fragen zu kennzeichnen.
 
@@ -22,7 +22,7 @@ Im Allgemeinen ist es einfach, dieses Problem zu beheben, indem jede Material-UI
 
 ## Warum bewegen sich die fest positionierten Elemente, wenn ein Modal geöffnet wird?
 
-Wir blockieren die Blättern, sobald eine Modalität geöffnet ist. Dies verhindert die Interaktion mit dem Hintergrund, wenn der Modal der einzige interaktive Inhalt sein sollte. Wenn Sie jedoch die Bildlaufleiste entfernen, können Sie Ihre **fest positionierten Elemente ** bewegen. In dieser Situation können Sie einen globalen `.mui-fixed` Klassennamen anwenden, damit Material-UI mit diesen Elementen umgehen kann.
+Scroll is blocked as soon as a modal is opened. Dies verhindert die Interaktion mit dem Hintergrund, wenn der Modal der einzige interaktive Inhalt sein sollte. Wenn Sie jedoch die Bildlaufleiste entfernen, können Sie Ihre **fest positionierten Elemente ** bewegen. In dieser Situation können Sie einen globalen `.mui-fixed` Klassennamen anwenden, damit Material-UI mit diesen Elementen umgehen kann.
 
 ## Wie kann ich den Ripple-Effekt global deaktivieren?
 
@@ -108,7 +108,7 @@ Verwenden Sie als Faustregel Inline-Style nur für dynamische Stileigenschaften.
 
 ## Wie verwende ich den react-router?
 
-Wir haben dokumentiert, wie Sie eine [Routing-Bibliothek von Drittanbietern](/components/buttons/#third-party-routing-library) mit der `ButtonBase` Komponente verwenden. Viele interaktive Komponenten verwenden dies intern: `Link`, `Button`, `MenuItem`, `<ListItem button />`, `Tab`, usw. Sie können dieselbe Lösung mit ihnen verwenden.
+How to use a [third-party routing library](/components/buttons/#third-party-routing-library) is documented with the `ButtonBase` component. A lot of the interactive components use it internally: `Link`, `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. Sie können dieselbe Lösung mit ihnen verwenden.
 
 ## Wie kann ich auf das DOM-Element zugreifen?
 
@@ -215,7 +215,7 @@ Wenn Sie mehrere Anwendungen auf einer Seite ausführen, sollten Sie ein @materi
 
 ## Meine App wird auf dem Server nicht richtig dargestellt
 
-Wenn dies nicht funktioniert, handelt es sich in 99% der Fälle um ein Konfigurationsproblem. Eine fehlende Eigenschaft, eine falsche Aufrufreihenfolge oder eine fehlende Komponente. Bei der Konfiguration sind wir sehr streng. Um herauszufinden, was falsch ist, können Sie am besten Ihr Projekt mit einem bereits funktionierenden Setup vergleichen. Schauen Sie sich unsere [Referenzimplementierungen](/guides/server-rendering/#reference-implementations) an, Stück für Stück.
+Wenn dies nicht funktioniert, handelt es sich in 99% der Fälle um ein Konfigurationsproblem. Eine fehlende Eigenschaft, eine falsche Aufrufreihenfolge oder eine fehlende Komponente. Server side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
 ### CSS funktioniert nur beim ersten Laden, dann fehlt es
 
@@ -223,7 +223,7 @@ Das CSS wird nur beim ersten Laden der Seite generiert. Auf dem Server fehlt dan
 
 #### Zu ergreifende Maßnahmen
 
-Wir setzen auf einen Cache, den Sheets-Manager, um das CSS nur einmal pro Komponententyp (wenn Sie zwei Schaltflächen verwenden, benötigen Sie nur einmal das CSS der Schaltfläche) zu injizieren. Sie müssen **eine neue ` sheets `Instanze für jede Anfrage** erstellen.
+The styling solution relies on a cache, the *sheets manager*, to only inject the CSS once per component type (if you use two buttons, you only need the CSS of the button one time). Sie müssen **eine neue ` sheets `Instanze für jede Anfrage** erstellen.
 
 *beispiel für fix:*
 
@@ -358,4 +358,33 @@ function App() {
     </div>
   );
 }
+```
+
+## What's the clsx dependency for?
+
+[clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally.
+
+Instead of writing:
+
+```jsx
+return (
+  <div
+    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ? 'Mui-selected' : ''}`}
+  />
+);
+```
+
+you can do:
+
+```jsx
+import clsx from 'clsx';
+
+return (
+  <div
+    className={clsx('MuiButton-root', {
+      'Mui-disabled': disabled,
+      'Mui-selected': selected,
+    })}
+  />
+);
 ```

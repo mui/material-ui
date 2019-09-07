@@ -4,12 +4,9 @@
 
 Material-UI aims to provide a strong foundation for building dynamic UIs. For the sake of simplicity, **we expose the styling solution used in Material-UI components** as the `@material-ui/styles` package. You can use it, but you don't have to, since Material-UI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
 
-## Why use Material-UI's styling solution?
+## Material-UIのスタイリングソリューションを使用する理由
 
-In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the component styles, but these approaches have proven to be limited. We have [adopted a *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style). It **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.). We think that this is the future:
-
-- [A Unified Styling Language](https://medium.com/seek-blog/a-unified-styling-language-d0c208de2660)
-- [Convert SCSS (Sass) to CSS-in-JS](https://egghead.io/courses/convert-scss-sass-to-css-in-js)
+In previous versions, Material-UI has used LESS, then a custom inline-style solution to write the component styles, but these approaches have proven to be limited. [A *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style) overcomes many of those limitations, and **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 
 Material-UI's styling solution is inspired by many other styling libraries such as [styled-components](https://www.styled-components.com/) and [emotion](https://emotion.sh/).
 
@@ -31,9 +28,9 @@ npm install @material-ui/styles
 yarn add @material-ui/styles
 ```
 
-## Getting started
+## さあ、はじめよう
 
-We provide 3 different APIs to generate and apply styles, however they all share the same underlying logic.
+There are 3 possible APIs you can use to generate and apply styles, however they all share the same underlying logic.
 
 ### Hook API
 
@@ -64,7 +61,7 @@ export default function Hook() {
 
 ### Styled components API
 
-Note: this only applies to the calling syntax – style definitions still use a JSS object. You can also [change this behavior](/styles/advanced/#string-templates), with some limitations.
+注：これは呼び出し構文にのみ適用されます。スタイル定義は引き続きJSSオブジェクトを使用します。 [この動作を変更することもできます](/styles/advanced/#string-templates) が、いくつかの制限があります。
 
 ```jsx
 import React from 'react';
@@ -183,7 +180,7 @@ This button component has a color property that changes its color:
 
 {{"demo": "pages/styles/basics/AdaptingHOC.js"}}
 
-## Stress test
+## ストレステスト
 
 In the following stress test, you can update the *theme color* and the *background-color property* live:
 

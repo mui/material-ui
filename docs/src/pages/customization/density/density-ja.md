@@ -4,7 +4,7 @@
 
 ## 密度を適用する
 
-ここでは、使用例や密度をアプリケーションで使用する場合の考慮事項については説明しません。 Material design ガイドラインには、これらのトピックの詳細を説明した[comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) があります。
+This section explains how to apply density. It doesn't cover petential use cases, or considerations for using density in your application. The Material design guidelines have a [comprehensive guide](https://material.io/design/layout/applying-density.html#typographic-density) covering these topics in more detail.
 
 ## 実装密度
 

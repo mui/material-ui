@@ -116,12 +116,12 @@ Este é o caso mais simples. O componente encapsulado aceita a propriedade `clas
 
 ```jsx
 const Nested = withStyles({
-  root: {}, // a style rule
-  label: {}, // a nested style rule
+  root: {}, // uma regra de estilo
+  label: {}, // uma regra de estilo aninhada
 })(({ classes }) => (
   <button className={classes.root}>
     <span className={classes.label}> // 'jss2 my-label'
-      Nested
+      Aninhado
     </span>
   </button>
 ));
@@ -218,7 +218,7 @@ Note que isto não suporta seletores, ou regras aninhadas.
 
 ## Ordem de injeção de CSS
 
-> É **muito importante** entender como a especificidade do CSS é calculada pelo navegador. É um dos elementos-chave para saber quando sobrescrever estilos. Nós **recomendamos** que leia este parágrafo do MDN: [Como a especificidade é calculada?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
+> It's **really important** to understand how the CSS specificity is calculated by the browser, as it's one of the key elements to know when overriding styles. You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
 Por padrão, os estilos são inseridos **por último** no elemento `<head>` da sua página. Eles ganham mais especificidade do que qualquer outra folha de estilo em sua página, por exemplo, módulos CSS, componentes estilizados (styled components).
 
@@ -386,7 +386,7 @@ Você pode [seguir o guia lado do servidor](/guides/server-rendering/) para um e
 
 ### Gatsby
 
-Nós temos [um plugin oficial](https://github.com/hupe1980/gatsby-plugin-material-ui) que permite a renderização do lado do servidor para `@material-ui/ styles`. Consulte a página do plugin para obter instruções de configuração e uso.
+There is [an official plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Consulte a página do plugin para obter instruções de configuração e uso.
 
 Para um exemplo de uso atualizado, consulte [este projeto de exemplo](https://github.com/mui-org/material-ui/blob/master/examples/gatsby).
 

@@ -2,22 +2,22 @@
 title: Free React Templates
 ---
 
-# React Templates
+# Reactテンプレート
 
-<p class="description">A selection of basic react templates to help you get started building your app. Our collection contains react dashboard, admin, and more.</p>
+<p class="description">A selection of basic react templates to help you get started building your app. The collection contains react dashboard, admin, and more.</p>
 
-The templates can be combined with one of the [example applications](https://github.com/mui-org/material-ui/tree/master/examples) to form a complete starter.
+テンプレートを [サンプルアプリケーション](https://github.com/mui-org/material-ui/tree/master/examples) いずれかと組み合わせて、完全なスターターを形成できます。
 
-Sections of each layout are clearly defined either by comments or use of separate files, making it simple to extract parts of a page (such as a "hero unit", or footer, for example) for reuse in other pages. For multi-part examples, a table in the README at the linked source code location describes the purpose of each file.
+各レイアウトのセクションは、コメントまたは個別のファイルの使用によって明確に定義されます。 ページの一部を簡単に抽出できるようになりました(たとえば、「ヒーローユニット」やフッタなど)。 他のページで再利用できます。 マルチパートの例については、リンクされたソースコードの場所にあるREADMEの表に各ファイルの目的が説明されています。
 
 {{"demo": "pages/getting-started/templates/Templates.js", "hideHeader": true}}
 
-If while using these examples you make changes or enhancements that could improve the developer experience, or you would like to contribute an additional example, please consider creating a [pull request on GitHub](https://github.com/mui-org/material-ui/pulls).
+これらのサンプルを使用している間に、開発者のエクスペリエンスを改善する可能性のある変更や拡張を行ったり、追加のサンプルを提供したい場合は、GitHub</a>で<a href=「https://github.com/mui-org/material-ui/pulls」>プルリクエストを作成することを検討してください。
 
-So far we have demos for dashboard, sign in page, sign up page, blog page, checkout flow, album page, pricing page, and sticky footer page.
+今のところ、ダッシュボード、サインインページ、サインアップページ、ブログページ、チェックアウトフロー、アルバムページ、価格ページ、スティッキーフッターページのデモがあります。
 
 ## プレミアムテーマ
 
-Looking for something more? You can find complete templates & themes in our <a href="https://themes.material-ui.com/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-link">premium themes section</a>.
+さらに何かをお探しですか？ You can find complete templates & themes in the <a href="https://themes.material-ui.com/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-link">premium themes section</a>.
 
 <a href="https://themes.material-ui.com/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-image"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>

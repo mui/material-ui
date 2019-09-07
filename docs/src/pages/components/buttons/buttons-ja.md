@@ -52,7 +52,7 @@ ButtonGroupコンポーネントは、アウトラインボタン（デフォル
 
 ## Split Button
 
-ButtonGroupは分割ボタンの作成にも使用できます。 この例のようにドロップダウンでボタンの動作を変更することも、関連する動作をすぐに起動するために使用することもできます。
+ButtonGroupは分割ボタンの作成にも使用できます。 The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
 
 {{"demo": "pages/components/buttons/SplitButton.js"}}
 
@@ -96,7 +96,7 @@ FABを使用するのは、それが画面の主なアクションを提示す�
 
 ## カスタムButton
 
-コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 
@@ -110,10 +110,10 @@ FABを使用するのは、それが画面の主なアクションを提示す�
 
 ## サードパーティ製ルーティングライブラリ
 
-一般的な使用例の1つは、ボタンを使用して新しいページへのナビゲーションを開始することです。 `ButtonBase` コンポーネントは、このユースケースを処理するためのプロパティを提供します 。 108/5000 ただし、特定のフォーカスについては` ButtonBase `には提供されているDOMノードが必要です。 これは、refをコンポーネントに添付し、 コンポーネントがこのrefを基になるDOMノードに転送することを期待することによって実現されます。 私たちのインタラクティブなコンポーネントの多くが` ButtonBase `に依存していることを考えると、あなたはどこでもそれを利用することができるはずです。
+一般的な使用例の1つは、ボタンを使用して新しいページへのナビゲーションを開始することです。 `ButtonBase` コンポーネントは、このユースケースを処理するためのプロパティを提供します 。 108/5000 ただし、特定のフォーカスについては` ButtonBase `には提供されているDOMノードが必要です。 これは、refをコンポーネントに添付し、 コンポーネントがこのrefを基になるDOMノードに転送することを期待することによって実現されます。 Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
 次に、react-routerとの統合例を示します。
 
 {{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 
-*注意：ボタンコンポーネントの作成は、予期しないアンマウントを防ぐために必要です。 詳細については、<a href=「/guides/composition/#component-property」>コンポーネント・プロパティー・ガイド</a>を参照してください。*
+*注意：ボタンコンポーネントの作成は、予期しないアンマウントを防ぐために必要です。 You can read more about it in the [component prop guide](/guides/composition/#component-property).*

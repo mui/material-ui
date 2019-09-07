@@ -51,5 +51,5 @@ Os sliders contínuos permitem que os usuários selecionem um valor ao longo de 
 
 O componente lida com a maior parte do trabalho necessário para torná-lo acessível. No entanto, você precisa se certificar de que:
 
-- O slider, como um todo, tem um rótulo (propriedades `aria-label` ou `aria-labelledby`).
-- Cada marcador tem um nome amigável para o seu valor atual. Isso não é necessário se o valor corresponder ao rótulo exibido no slider. Você pode alterar o nome com as propriedades `getAriaValueText` ou `aria-valuetext`.
+- Each thumb has a user-friendly label (`aria-label`, `aria-labelledby` or `getAriaLabel` prop).
+- Each thumb has a user-friendly text for its current value. Isso não é necessário se o valor corresponder ao rótulo exibido no slider. Você pode alterar o nome com as propriedades `getAriaValueText` ou `aria-valuetext`.

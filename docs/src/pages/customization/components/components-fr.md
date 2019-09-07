@@ -85,7 +85,7 @@ In order to override the components special states, **you need to increase speci
 .Button {
   color: black;
 }
-.Button:disabled { /* We increase the specificity */
+.Button:disabled { /* Increase the specificity */
   color: white;
 }
 ```
@@ -100,7 +100,7 @@ Sometimes, you can't use a **pseudo-class** as the state doesn't exist in the pl
 .MenuItem {
   color: black;
 }
-.MenuItem.selected { /* We increase the specificity */
+.MenuItem.selected { /* Increase the specificity */
   color: blue;
 }
 ```
@@ -133,7 +133,7 @@ Instead of providing values to the `classes` prop API, you can rely on [the glob
 .MenuItem {
   color: black;
 }
-.MenuItem.Mui-selected { /* We increase the specificity */
+.MenuItem.Mui-selected { /* Increase the specificity */
   color: blue;
 }
 ```
@@ -251,7 +251,7 @@ const theme = createMuiTheme({
 
 ### Global CSS override
 
-You can also customize all instances of a component with CSS. We expose [global class names](/styles/advanced/#with-material-ui-core) to do so. It's very similar to how you would customize Bootstrap.
+You can also customize all instances of a component with CSS. Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this. It's very similar to how you would customize Bootstrap.
 
 ```jsx
 const GlobalCss = withStyles({

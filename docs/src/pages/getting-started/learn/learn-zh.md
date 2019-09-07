@@ -10,15 +10,15 @@
 
 ## 范例项目
 
-我们在 React 上[托管了一些范例项目](/getting-started/example-projects/)，他们都提供了需要开发和部署网站的架构。
+There are [some example projects](/getting-started/example-projects/) available, providing the infrastructure needed to develop and deploy websites in React.
 
 ## Templates
 
-We have a [selection of basic templates](/getting-started/templates/) to help you get started building your app.
+This [selection of basic templates](/getting-started/templates/) will help you get started building your app.
 
 ## 推荐资源
 
-首次学习 Material-UI 时，您可能会发现一些第三方博客文章，书籍和视频课程反而会比官方文档更有帮助。 在此我们维护了一份常用推荐的资源列表，而其中一些资源是免费的。
+首次学习 Material-UI 时，您可能会发现一些第三方博客文章，书籍和视频课程反而会比官方文档更有帮助。 Here are some recommended resources, some of which are free.
 
 ### 免费的资源
 
