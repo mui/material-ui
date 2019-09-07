@@ -1,6 +1,6 @@
 Last modified: October 7th, 2018.
 
-Material-UI is committed to protecting and respecting your privacy. This Privacy Policy sets out how we collect and process personal information about you when you visit our website argos-ci.com, when you use our products and services (our “Services”), or when you otherwise do business or make contact with us.
+Material-UI is committed to protecting and respecting your privacy. This Privacy Policy sets out how we collect and process personal information about you when you visit the website material-ui.com, when you use our products and services (our “Services”), or when you otherwise do business or make contact with us.
 
 Please read this policy carefully to understand how we handle and treat your personal information.
 

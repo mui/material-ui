@@ -16,7 +16,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import { TablePagination } from '@material-ui/core';
 ```
 
-You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
 A `TableCell` based component for placing inside `TableFooter` for pagination.
 

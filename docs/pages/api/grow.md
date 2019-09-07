@@ -16,7 +16,7 @@ import Grow from '@material-ui/core/Grow';
 import { Grow } from '@material-ui/core';
 ```
 
-You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
 The Grow transition is used by the [Tooltip](/components/tooltips/) and
 [Popover](/components/popover/) components.

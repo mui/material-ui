@@ -32,7 +32,7 @@ Internally, withStyles is using this JSS plugin when `direction: 'rtl'` is set o
 Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to learn more about it.
 
 Once you have created a new JSS instance with the plugin, you need to make it available to all the components in the component tree.
-We have a [`StylesProvider`](/styles/api/#stylesprovider) component for this:
+The [`StylesProvider`](/styles/api/#stylesprovider) component enables this:
 
 ```jsx
 import { create } from 'jss';

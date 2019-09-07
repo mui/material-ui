@@ -16,7 +16,7 @@ import Zoom from '@material-ui/core/Zoom';
 import { Zoom } from '@material-ui/core';
 ```
 
-You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
 The Zoom transition can be used for the floating variant of the
 [Button](/components/buttons/#floating-action-buttons) component.

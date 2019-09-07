@@ -16,7 +16,7 @@ import Chip from '@material-ui/core/Chip';
 import { Chip } from '@material-ui/core';
 ```
 
-You can learn more about the difference by [reading our guide](/guides/minimizing-bundle-size/).
+You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
 Chips represent complex entities in small blocks, such as a contact.
 

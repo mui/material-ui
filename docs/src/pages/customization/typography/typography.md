@@ -99,9 +99,9 @@ The computed font size by the browser follows this mathematical equation:
 ### HTML font size
 
 You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
-We provide a `htmlFontSize` theme property for this use case.
-It's telling Material-UI what's the font-size on the `<html>` element is.
-It's used to adjust the `rem` value so the calculated font-size always match the specification.
+An `htmlFontSize` theme property is provided for this use case,
+which tells Material-UI what the font-size on the `<html>` element is.
+This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createMuiTheme({

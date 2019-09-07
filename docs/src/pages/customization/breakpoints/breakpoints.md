@@ -32,8 +32,8 @@ for controlling the layout of your application through the [Grid](/components/gr
 
 ## CSS Media Queries
 
-CSS media queries is the idiomatic approach to make your UI responsive.
-We provide four styles helpers to do so:
+CSS media queries are the idiomatic approach to make your UI responsive.
+The theme provides four styles helpers to do so:
 
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)

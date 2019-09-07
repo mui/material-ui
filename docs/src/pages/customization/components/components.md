@@ -102,7 +102,7 @@ Here is an example with the *disable* state and the button component using a **p
 .Button {
   color: black;
 }
-.Button:disabled { /* We increase the specificity */
+.Button:disabled { /* Increase the specificity */
   color: white;
 }
 ```
@@ -119,7 +119,7 @@ Aside from accessing nested elements, the `classes` property can be used to cust
 .MenuItem {
   color: black;
 }
-.MenuItem.selected { /* We increase the specificity */
+.MenuItem.selected { /* Increase the specificity */
   color: blue;
 }
 ```
@@ -155,7 +155,7 @@ It implements all these custom pseudo-classes:
 .MenuItem {
   color: black;
 }
-.MenuItem.Mui-selected { /* We increase the specificity */
+.MenuItem.Mui-selected { /* Increase the specificity */
   color: blue;
 }
 ```
@@ -278,7 +278,7 @@ const theme = createMuiTheme({
 ### Global CSS override
 
 You can also customize all instances of a component with CSS.
-We expose [global class names](/styles/advanced/#with-material-ui-core) to do so.
+Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this.
 It's very similar to how you would customize Bootstrap.
 
 ```jsx

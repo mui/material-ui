@@ -17,9 +17,9 @@ You can use it to see what changes are coming and provide better feedback to Mat
 
 ## Versioning strategy
 
-We recognize that you need **stability** from the Material-UI library. Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around Material-UI to thrive.
+ Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around Material-UI to thrive.
 
-This document contains **the practices that we follow** to provide you with a leading-edge UI library, balanced with stability. We strive to ensure that future changes are always introduced in a predictable way. We want everyone who depends on Material-UI to know when and how new features are added, and to be well-prepared when obsolete ones are removed.
+This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
 Material-UI strictly follows [Semantic Versioning 2.0.0](https://semver.org/).
 Material-UI version numbers have three parts: `major.minor.patch`.
@@ -33,7 +33,7 @@ No developer assistance is expected during update.
 
 ## Release frequency
 
-We work toward a regular schedule of releases, so that you can plan and coordinate your updates with the continuing evolution of Material-UI.
+A regular schedule of releases helps you plan and coordinate your updates with the continuing evolution of Material-UI.
 
 In general, you can expect the following release cycle:
 
@@ -51,24 +51,25 @@ In general, you can expect the following release cycle:
 | May 2019  ✅ | `@material-ui/core` v4.0.0 |
 | ? ⏳ | `@material-ui/core` v5.0.0 |
 
-You can follow [our milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
+You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
 ## Support policy
 
-We only support the latest version of Material-UI.
+Only the latest version of Material-UI is supported.
 We don't yet have the resources to offer [LTS](https://en.wikipedia.org/wiki/Long-term_support) releases.
 
 ## Deprecation practices
 
 Sometimes **"breaking changes"**, such as the removal of support for select APIs and features, are necessary.
 
-To make these transitions as easy as possible, we make two commitments to you:
+To make these transitions as easy as possible:
 
-- We work hard to minimize the number of breaking changes and to provide migration tools when possible.
-- We follow the deprecation policy described here, so you have time to update your apps to the latest APIs and best practices.
+- The number of breaking changes is minimized, and migration tools provided when possible.
+- The deprecation policy described below is followed, so that you have time to update your apps to the latest APIs and best practices.
 
-To help ensure that you have sufficient time and a clear path to update, this is our deprecation policy:
-- We announce deprecated features in the changelog, and when possible, with warnings at runtime.
-- When we announce a deprecation, we also announce a recommended update path.
-- We support existing use of a stable API during the deprecation period, so your code will keep working during that period.
-- We only make peer dependency updates (React) that require changes to your apps in a major release.
+### Deprecation policy
+
+- Deprecated features iare announced n the changelog, and when possible, with warnings at runtime.
+- When a deprecation is announced, recommended update path is provided.
+- Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
+- Peer dependency updates (React) that require changes to your apps are only made in a major release.

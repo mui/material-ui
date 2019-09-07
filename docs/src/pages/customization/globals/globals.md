@@ -32,7 +32,7 @@ Alternatively, you can always have a look at the [implementation](https://github
 ## Default props
 
 You can change the default props of all the Material-UI components.
-We expose a `props` key in the `theme` for this use case.
+A `props` key is exposed in the `theme` for this use case.
 
 ```js
 const theme = createMuiTheme({

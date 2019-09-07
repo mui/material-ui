@@ -28,7 +28,7 @@ the position of the popover.
 
 ## Mouse over interaction
 
-We demonstrate how to use the `Popover` component to implement a popover behavior based on the mouse over event.
+This demonstrates how to use the `Popover` component to implement a popover behavior based on the mouse over event.
 
 {{"demo": "pages/components/popover/MouseOverPopover.js"}}
 
