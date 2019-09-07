@@ -13,7 +13,7 @@ components: AppBar, Toolbar, Menu
 
 ## Простая панель навигации
 
-{{"demo": "pages/demos/app-bar/ButtonAppBar.js"}}
+{{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
 
 ## Панель навигации с основным полем поиска
 
