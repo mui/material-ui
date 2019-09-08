@@ -1,14 +1,87 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.4.1
+###### *Sep 8, 2019*
+
+Big thanks to the 21 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- 💄 Introduce 10 new brand icons and 61 new official Material Design icons (#17257, #17274) @colemars and @mbrookes.
+- ⚛️ Move a few descriptions of the props to TypeScript (#17300) @merceyz.
+  This change allows the IDEs to display the props' descriptions in place, without having to go to the documentation.
+- And many more 🐛 bug fixes 📚 improvements.
+
+### `@material-ui/core@v4.4.1`
+
+- [Badge] Improve shape of 2 digit badge (#17247) @mbrookes
+- [Cars] Fix export issue for consistency (#17354) @yikkok-yong
+- [Modal] Support theme default props (#17337) @ianschmitz
+- [Rating] Fix a few issues (#17270) @oliviertassinari
+- [Select] Changes the default input based on variant prop (#17304) @netochaves
+- [Select] Follow spec with placement of dropdown icon (#17303) @lonssi
+- [Slider] Add getAriaLabel prop (#17240) @city41
+- [SvgIcon] Fix color type definition including default (#17288) @merceyz
+- [Table] Fix sticky header table with buttons/inputs (#17285) @Studio384
+- [TextareaAutosize] Show scrollbar when rowsMax is exceeded (#17310) @Shubhamchinda
+- [useMediaQuery] Workaround Safari wrong implementation of matchMedia (#17315) @momentpaul
+
+### `@material-ui/icons@v4.4.1`
+
+- [icons] Add social icons (#17274) @mbrookes
+- [icons] Refresh material icons (#17259) @colemars
+- [icons] Update script to use latest json file (#17257) @colemars
+
+### `@material-ui/styles@v4.4.1`
+
+- [styles] Fix global classnames being disabled in deserialized themes (#17345) @eps1lon
+- [styles] Support augmenting a default theme type (#16777) @merceyz
+
+### `@material-ui/lab@v4.0.0-alpha.26`
+
+- [lab] Generate proptypes from type definitions (#17300) @merceyz
+- [ToggleButton] Improve accessibility (#17290) @mbrookes
+- [ToggleButton] Update TypeScript class keys (#17278) @ljvanschie
+
+### Docs
+
+- [misc] Batch small changes (#17316) @oliviertassinari
+- [docs] Fix CHANGELOG.md (#17331) @skirunman
+- [docs] Add new synonyms for Material Icons (#17272) @mbrookes
+- [docs] Add script to merge MD icon tags with synonyms (#17312) @mbrookes
+- [docs] Batch small changes (#17268) @oliviertassinari
+- [docs] Fix more SEO issue report @oliviertassinari
+- [docs] Add typescript version of paperbase theme (#17213) @eps1lon
+- [docs] Improve /customization/typography/ (#17307) @meebix
+- [docs] Improve grammar in snackbars (#17296) @chaseholdren
+- [docs] Notification for v4.4.0 @oliviertassinari
+- [docs] Only server-side render the popular languages (#17249) @oliviertassinari
+- [docs] Reduce the use of "our", "We"... (#17347) @mbrookes
+- [docs] Remove section about modal performance (#17284) @eps1lon
+- [docs] Remove unnecessary any cast (#17292) @eps1lon
+- [docs] Remove wrong alternate languages (#17311) @oliviertassinari
+- [docs] Sync JavaScript version with TypeScript @oliviertassinari
+- [docs] Update translations (#17351) @mbrookes
+- [docs] Update translations.json (#17266) @mbrookes
+
+### Core
+
+- [core] Add ref type to every component (#17286) @eps1lon
+- [core] Fix typo contaniners -> containers (#17280) @charlax
+- [core] Fix various dependency issues (#17317) @eps1lon
+- [core] Generify props with component property (#16487) @ypresto
+- [core] Guard against bad Symbol polyfills (#17336) @briandelancey
+
 ## 4.4.0
 ###### *Aug 31, 2019*
 
 Big thanks to the 29 contributors who made this release possible!
 
 Here are some highlights ✨:
-- ✨ Add fixed Table header Support (#17139) @egerardus
-- 🌳 Accept any label in TreeView (#17080) @oliviertassinari
-- 🏝 Add standalone ToggleButton mode (#17187) @simshaun
+
+- ✨ Add fixed Table header Support (#17139) @egerardus.
+- 🌳 Accept any label in TreeView (#17080) @oliviertassinari.
+- 🏝 Add standalone ToggleButton mode (#17187) @simshaun.
 - And many more 🐛 bug fixes 📚 improvements.
 
 ### `@material-ui/core@v4.4.0`
@@ -215,19 +288,19 @@ Big thanks to the 23 contributors who made this release possible!
 
 Here are some highlights ✨:
 
-- 🌳 Introduce a new Tree View component in the (#14827) @joshwooding
+- 🌳 Introduce a new Tree View component in the (#14827) @joshwooding.
 
   This is a first step toward a feature rich tree view component.
   We will keep iterate on it to add customization demos, filter, drag and drop, and checkboxes.
   You can find the documentation under [this URL](https://material-ui.com/components/tree-view/).
-- 💄 Support vertical tabs (#16628) @josephpung
+- 💄 Support vertical tabs (#16628) @josephpung.
 
   You can learn more about it following [this URL](https://material-ui.com/components/tabs/#vertical-tabs).
-- 📚 Remove the prop-types from TypeScript demos (#16521) @merceyz
+- 📚 Remove the prop-types from TypeScript demos (#16521) @merceyz.
 
   The runtime prop-types are often redundant with the static type checks.
   We have removed them from the TypeScript demos.
-- ⚛️ Add two codemods to improve the imports (#16192) @jedwards1211
+- ⚛️ Add two codemods to improve the imports (#16192) @jedwards1211.
 
   If you are not familiar with codemods, [check the library out](https://github.com/facebook/codemod). This is a tool tool to assist you with large-scale codebase refactors.
   We introduce two new codemods in this release:
@@ -246,7 +319,7 @@ Here are some highlights ✨:
   +import { createMuiTheme } from '@material-ui/core';
   ```
 
-- 💄 Support small switch (#16620) @darkowic
+- 💄 Support small switch (#16620) @darkowic.
 
   You can learn more about it following [this URL](https://material-ui.com/components/switches/#sizes).
 - And many more 🐛 bug fixes 📚 improvements.
@@ -344,10 +417,10 @@ Big thanks to the 25 contributors who made this release possible!
 
 Here are some highlights ✨:
 
-- ♿️ Improve Dialog header accessibility (#16576) @dayander
-- ⚛️ Fix more strict mode warnings (#16525) @eps1lon
-- 🐛 Fix menu dense support (#16510) @sumedhan
-- ⭐️ Introduce a new Rating component in the lab
+- ♿️ Improve Dialog header accessibility (#16576) @dayander.
+- ⚛️ Fix more strict mode warnings (#16525) @eps1lon.
+- 🐛 Fix menu dense support (#16510) @sumedhan.
+- ⭐️ Introduce a new Rating component in the lab.
 - And many more 🐛 bug fixes 📚 improvements.
 
 ### `@material-ui/core@v4.2.1`
@@ -420,7 +493,7 @@ Big thanks to the 24 contributors who made this release possible!
 
 Here are some highlights ✨:
 
-- ♿️ Fix the persisting aria-hidden logic of the Modal (#16392) @eps1lon
+- ♿️ Fix the persisting aria-hidden logic of the Modal (#16392) @eps1lon.
 - 💄 Move the Slider component to the core (#16416).
 - 💄 Introduce a new TextareaAutosize component (#16362).
 - ⚛️ Migrate a few components to testing-library.
@@ -666,11 +739,11 @@ A big thanks to the 26 contributors who made this release possible!
 
 Here are some highlights ✨:
 
-- 💄 A new ButtonGroup component (#15744) @mbrookes
-- 💄 New system props (flex, fontStyle, letterSpacing, lineHeight) (#16045, #16109) @ljvanschie, @aditya1906
-- 📚 Fix the documentation notification spam (#16070)
-- 💄 A new fontWeightBold typography theme value (#16036) @aditya1906
-- 🚀 Reduce TypeScript compile time when using the icons (#16083) @phryneas
+- 💄 A new ButtonGroup component (#15744) @mbrookes.
+- 💄 New system props (flex, fontStyle, letterSpacing, lineHeight) (#16045, #16109) @ljvanschie, @aditya1906.
+- 📚 Fix the documentation notification spam (#16070).
+- 💄 A new fontWeightBold typography theme value (#16036) @aditya1906.
+- 🚀 Reduce TypeScript compile time when using the icons (#16083) @phryneas.
 - And many more 🐛 bug fixes 📚 improvements.
 
 ### `@material-ui/core@v4.1.0`
@@ -750,7 +823,7 @@ A big thanks to the 30 contributors who made this release possible!
 Here are some highlights ✨:
 
 - 🐛 A second stability release after the release of v4.0.0.
-- 💄 Add a new size="small" prop to the Chip component (#15751) @mbrookes
+- 💄 Add a new size="small" prop to the Chip component (#15751) @mbrookes.
 - 🐛 Fix three IE 11 issues (#15921, #15952, #15967) @eps1lon, @rupert-ong, @ryancogswell
 - And many more 📚 improvements.
 
@@ -831,9 +904,9 @@ A big thanks to the 23 contributors who made this release possible!
 Here are some highlights ✨:
 
 - 🐛 A stability release after the release of v4.0.0.
-- 🤖 A new codemod to migrate the theme.spacing.unit API (#15782) @joshwooding
-- 🐛 Fix IE 11 crash (#15856) @aditya1906
-- 📚 Clean up the documentation after the next -> master migration
+- 🤖 A new codemod to migrate the theme.spacing.unit API (#15782) @joshwooding.
+- 🐛 Fix IE 11 crash (#15856) @aditya1906.
+- 📚 Clean up the documentation after the next -> master migration.
 
 ### `@material-ui/core@v4.0.1`
 
