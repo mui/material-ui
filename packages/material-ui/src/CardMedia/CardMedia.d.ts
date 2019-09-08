@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-interface CardMediaTypeMap<P, D extends React.ElementType> {
+export interface CardMediaTypeMap<P, D extends React.ElementType> {
   props: P & {
     image?: string;
     src?: string;
