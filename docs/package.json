@@ -17,7 +17,7 @@
     "typescript:transpile:dev": "node scripts/formattedTSDemos --watch"
   },
   "dependencies": {
-    "@babel/core": "^7.5.5",
+    "@babel/core": "^7.6.0",
     "@babel/plugin-transform-object-assign": "^7.2.0",
     "@date-io/core": "^1.3.9",
     "@date-io/date-fns": "^1.3.8",
