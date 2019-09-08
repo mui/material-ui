@@ -1754,10 +1754,10 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@material-ui/pickers@^3.2.1", "@material-ui/pickers@^3.2.2":
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/@material-ui/pickers/-/pickers-3.2.2.tgz#9b7a67f5a8f21f8183853ebc1848e5d8dd680d4c"
-  integrity sha512-on/J1yyKeJ4CkLnItpf/jPDKMZVWvHDklkh5FS7wkZ0s1OPoqTsPubLWfA7eND6xREnVRyLFzVTlE3VlWYdQWw==
+"@material-ui/pickers@^3.2.2", "@material-ui/pickers@^3.2.5":
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/@material-ui/pickers/-/pickers-3.2.5.tgz#e5c9a56c8b57ceb8bca50c4fd7b7a03cb3c918e1"
+  integrity sha512-UV5UKslOcmcP4cB2wwOg1SFoXS6RTRRvCNkDclHtOa+Ni+gyZLEt3WcSQWH7oDx8A94gmkiZTpfweNFV7sC4sw==
   dependencies:
     "@babel/runtime" "^7.2.0"
     "@types/styled-jsx" "^2.2.8"
