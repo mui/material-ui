@@ -82,7 +82,7 @@
     "markdown-to-jsx": "^6.10.2",
     "marked": "^0.7.0",
     "material-table": "^1.50.0",
-    "material-ui-popup-state": "^1.4.0",
+    "material-ui-popup-state": "^1.4.1",
     "next": "8.1.0",
     "notistack": "^0.8.9",
     "nprogress": "^0.2.0",
