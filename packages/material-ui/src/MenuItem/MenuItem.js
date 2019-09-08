@@ -7,25 +7,28 @@ import ListItem from '../ListItem';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    ...theme.typography.subtitle1,
-    height: 48,
-    paddingTop: 4,
-    paddingBottom: 4,
+    ...theme.typography.body1,
+    minHeight: 48,
+    paddingTop: 6,
+    paddingBottom: 6,
     boxSizing: 'border-box',
     width: 'auto',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
+    [theme.breakpoints.up('sm')]: {
+      ...theme.typography.body2,
+      minHeight: 'auto',
+    },
   },
+  // TODO To remove in v5?
   /* Styles applied to the root element if `disableGutters={false}`. */
-  gutters: {
-    paddingLeft: 16,
-    paddingRight: 16,
-  },
+  gutters: {},
   /* Styles applied to the root element if `selected={true}`. */
   selected: {},
   /* Styles applied to the root element if dense. */
   dense: {
-    height: 'auto',
+    ...theme.typography.body2,
+    minHeight: 'auto',
   },
 });
 
