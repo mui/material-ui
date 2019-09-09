@@ -28,7 +28,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon to display in the SpeedDial Floating Action Button. |
 | <span class="prop-name">openIcon</span> | <span class="prop-type">node</span> |  | The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open. |
 
-The component cannot hold a ref.
+The `ref` is forwarded to the root element.
 
 Any other props supplied will be provided to the root element (native element).
 

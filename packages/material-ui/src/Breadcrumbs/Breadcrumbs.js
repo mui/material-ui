@@ -84,7 +84,17 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
   };
 
   const allItems = React.Children.toArray(children)
-    .filter(child => React.isValidElement(child))
+    .filter(child => {
+      warning(
+        child.type !== React.Fragment,
+        [
+          "Material-UI: the Breadcrumbs component doesn't accept a Fragment as a child.",
+          'Consider providing an array instead.',
+        ].join('\n'),
+      );
+
+      return React.isValidElement(child);
+    })
     .map((child, index) => (
       <li className={classes.li} key={`child-${index}`}>
         {child}

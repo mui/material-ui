@@ -1,6 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import Backdrop from '@material-ui/core/Backdrop';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
@@ -9,20 +10,21 @@ import SaveIcon from '@material-ui/icons/Save';
 import PrintIcon from '@material-ui/icons/Print';
 import ShareIcon from '@material-ui/icons/Share';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    height: 380,
-    transform: 'translateZ(0px)',
-    flexGrow: 1,
-  },
-  speedDial: {
-    position: 'absolute',
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      height: 380,
+      transform: 'translateZ(0px)',
+      flexGrow: 1,
+    },
+    speedDial: {
+      position: 'absolute',
+      bottom: theme.spacing(2),
+      right: theme.spacing(2),
+    },
+  }),
+);
 
 const actions = [
   { icon: <FileCopyIcon />, name: 'Copy' },
@@ -32,7 +34,7 @@ const actions = [
   { icon: <DeleteIcon />, name: 'Delete' },
 ];
 
-export default function OpenIconSpeedDial() {
+export default function SpeedDialTooltipOpen() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
@@ -52,11 +54,12 @@ export default function OpenIconSpeedDial() {
   return (
     <div className={classes.root}>
       <Button onClick={handleVisibility}>Toggle Speed Dial</Button>
+      <Backdrop open={open} />
       <SpeedDial
-        ariaLabel="SpeedDial openIcon example"
+        ariaLabel="SpeedDial tooltip example"
         className={classes.speedDial}
         hidden={hidden}
-        icon={<SpeedDialIcon openIcon={<EditIcon />} />}
+        icon={<SpeedDialIcon />}
         onClose={handleClose}
         onOpen={handleOpen}
         open={open}
@@ -66,6 +69,7 @@ export default function OpenIconSpeedDial() {
             key={action.name}
             icon={action.icon}
             tooltipTitle={action.name}
+            tooltipOpen
             onClick={handleClose}
           />
         ))}

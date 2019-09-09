@@ -46,16 +46,15 @@ function SimpleSpeedDial(props) {
     down: 'right',
     left: 'bottom',
   };
-  const secondaryPlacement = ['-start', '', '-end'];
 
   return (
     <SpeedDial icon={<SpeedDialIcon />} open {...props}>
-      {['A', 'B', 'C'].map((name, i) => (
+      {['A', 'B', 'C'].map(name => (
         <SpeedDialAction
           key={name}
           icon={<Avatar>{name}</Avatar>}
           tooltipOpen
-          tooltipPlacement={`${tooltipPlacement[props.direction]}${secondaryPlacement[i]}`}
+          tooltipPlacement={tooltipPlacement[props.direction]}
           tooltipTitle={'Tooltip'}
         />
       ))}
@@ -73,7 +72,7 @@ function Directions({ classes }) {
 
   return (
     <div className={classes.root}>
-      {['up', 'right', 'down', 'left'].map(direction => (
+      {['up', 'down'].map(direction => (
         <SimpleSpeedDial
           key={direction}
           ariaLabel={direction}
