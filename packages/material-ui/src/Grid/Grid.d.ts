@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Breakpoint } from '../styles/createBreakpoints';
 import { OverridableComponent, SimplifiedPropsOf, OverrideProps } from '../OverridableComponent';
-import { SkeletonTypeMap } from '@material-ui/lab/Skeleton';
 
 export type GridItemsAlignment = 'flex-start' | 'center' | 'flex-end' | 'stretch' | 'baseline';
 
