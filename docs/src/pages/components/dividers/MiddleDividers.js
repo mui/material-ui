@@ -45,8 +45,8 @@ export default function MiddleDividers() {
           </Grid>
         </Grid>
         <Typography color="textSecondary" variant="body2">
-          Pinstriped cornflower blue cotton blouse takes you on a walk to the park or just down the
-          hall.
+          Handmade, artisinal toothbrush with natural fibers will keeps your teeth clean while
+          keeping plastic out of landfills.
         </Typography>
       </div>
       <Divider variant="middle" />
