@@ -45,7 +45,7 @@ export default function MiddleDividers() {
           </Grid>
         </Grid>
         <Typography color="textSecondary" variant="body2">
-          Handmade, artisinal toothbrush with natural fibers will keep your teeth clean while
+          Handmade, artisanal toothbrush with natural fibers will keep your teeth clean while
           keeping plastic out of landfills.
         </Typography>
       </div>
