@@ -92,10 +92,10 @@ export default function FormattedInputs() {
         className={classes.formControl}
         label="react-number-format"
         value={values.numberformat}
-        onValueChange={handleChange('numberformat')}
         id="formatted-numberformat-input"
         InputProps={{
           inputComponent: NumberFormatCustom,
+          other: { {onValueChange:handleChange('numberformat')} }
         }}
       />
     </div>
