@@ -82,6 +82,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
     delay = 0,
     FabProps,
     icon,
+    id,
     open,
     TooltipClasses,
     tooltipOpen: tooltipOpenProp = false,
@@ -113,6 +114,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
       tabIndex={-1}
       role="menuitem"
       style={transitionStyle}
+      aria-describedby={`${id}-label`}
       {...FabProps}
     >
       {icon}
@@ -122,6 +124,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
   if (tooltipOpenProp) {
     return (
       <span
+        id={id}
         ref={ref}
         className={clsx(
           classes.staticTooltip,
@@ -130,7 +133,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
         )}
         {...other}
       >
-        <span style={transitionStyle} className={classes.staticTooltipLabel}>
+        <span style={transitionStyle} id={`${id}-label`} className={classes.staticTooltipLabel}>
           {tooltipTitle}
         </span>
         {fab}
@@ -140,6 +143,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
 
   return (
     <Tooltip
+      id={id}
       ref={ref}
       title={tooltipTitle}
       placement={tooltipPlacement}
@@ -180,6 +184,10 @@ SpeedDialAction.propTypes = {
    * The Icon to display in the SpeedDial Fab.
    */
   icon: PropTypes.node,
+  /**
+   * @ignore
+   */
+  id: PropTypes.string,
   /**
    * @ignore
    */

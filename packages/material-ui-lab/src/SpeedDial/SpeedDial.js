@@ -177,12 +177,16 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
 
     if (event.key === 'Escape') {
       if (onClose) {
+        actions.current[0].focus();
         onClose(event);
       }
       return;
     }
 
-    if (getOrientation(key) === getOrientation(direction)) {
+    if (
+      getOrientation(key) === getOrientation(nextItemArrowKeyCurrent) &&
+      getOrientation(key) !== undefined
+    ) {
       event.preventDefault();
 
       const actionStep = key === nextItemArrowKeyCurrent ? 1 : -1;
@@ -200,7 +204,6 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     if (!open) {
       focusedAction.current = 0;
       nextItemArrowKey.current = undefined;
-      // actions.current[0].focus();
     }
   }, [open]);
 
@@ -292,6 +295,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
       },
       delay: 30 * (open ? index : allItems.length - index),
       open,
+      id: `${id}-action-${index}`,
     });
   });
 

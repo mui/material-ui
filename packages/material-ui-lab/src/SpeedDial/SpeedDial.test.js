@@ -211,41 +211,16 @@ describe('<SpeedDial />', () => {
     });
 
     describe('first item selection', () => {
-      const createShouldAssertFirst = assertFn => (dialDirection, arrowKey) => {
-        resetDialToOpen(dialDirection);
-        getDialButton().simulate('keydown', { key: arrowKey });
-        assertFn(isActionFocused(0));
-      };
-
-      const shouldFocusFirst = createShouldAssertFirst(assert.isTrue);
-      const shouldNotFocusFirst = createShouldAssertFirst(assert.isFalse);
-
-      it('considers arrow keys with the same orientation', () => {
-        shouldFocusFirst('up', 'ArrowUp');
-        shouldFocusFirst('up', 'ArrowDown');
-
-        shouldFocusFirst('down', 'ArrowUp');
-        shouldFocusFirst('down', 'ArrowDown');
-
-        shouldFocusFirst('right', 'ArrowRight');
-        shouldFocusFirst('right', 'ArrowLeft');
-
-        shouldFocusFirst('left', 'ArrowRight');
-        shouldFocusFirst('left', 'ArrowLeft');
-      });
-
-      it('ignores arrow keys orthogonal to the direction', () => {
-        shouldNotFocusFirst('up', 'ArrowLeft');
-        shouldNotFocusFirst('up', 'ArrowRight');
-
-        shouldNotFocusFirst('down', 'ArrowLeft');
-        shouldNotFocusFirst('down', 'ArrowRight');
-
-        shouldNotFocusFirst('right', 'ArrowUp');
-        shouldNotFocusFirst('right', 'ArrowUp');
-
-        shouldNotFocusFirst('left', 'ArrowDown');
-        shouldNotFocusFirst('left', 'ArrowDown');
+      it('considers arrow keys with the same initial orientation', () => {
+        resetDialToOpen();
+        getDialButton().simulate('keydown', { key: 'left' });
+        assert.strictEqual(isActionFocused(0), true);
+        getDialButton().simulate('keydown', { key: 'up' });
+        assert.strictEqual(isActionFocused(0), true);
+        getDialButton().simulate('keydown', { key: 'left' });
+        assert.strictEqual(isActionFocused(1), true);
+        getDialButton().simulate('keydown', { key: 'right' });
+        assert.strictEqual(isActionFocused(0), true);
       });
     });
 
