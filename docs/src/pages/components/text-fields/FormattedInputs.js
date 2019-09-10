@@ -83,7 +83,7 @@ export default function FormattedInputs() {
         <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
         <Input
           value={values.textmask}
-          onChange={handleChange('textmask')}
+          onValueChange={handleChange('textmask')}
           id="formatted-text-mask-input"
           inputComponent={TextMaskCustom}
         />
@@ -92,7 +92,7 @@ export default function FormattedInputs() {
         className={classes.formControl}
         label="react-number-format"
         value={values.numberformat}
-        onChange={handleChange('numberformat')}
+        onValueChange={handleChange('numberformat')}
         id="formatted-numberformat-input"
         InputProps={{
           inputComponent: NumberFormatCustom,
