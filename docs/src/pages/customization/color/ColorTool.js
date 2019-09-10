@@ -80,7 +80,7 @@ function ColorTool(props) {
   });
 
   const handleChangeColor = name => event => {
-    const isRgb = string => /rgb\([0-9]{1,3},[0-9]{1,3},[0-9]{1,3}\)/i.test(string);
+    const isRgb = string => /rgb\([0-9]{1,3}\s*,\s*[0-9]{1,3}\s*,\s*[0-9]{1,3}\)/i.test(string);
 
     const isHex = string => /^#?([0-9a-f]{3})$|^#?([0-9a-f]){6}$/i.test(string);
 
