@@ -41,8 +41,10 @@ import TextField from '@material-ui/core/TextField';
 // https://github.com/mui-org/material-ui/issues/17369#issuecomment-529622304
 function FocusHandlerTest() {
   const inputHandler = React.useCallback((event: React.FocusEvent<HTMLInputElement>) => {}, []);
-  // undesired failure but using discriminate unions or generics has bad type interop
-  // $ExpectError
+  // Probably a decent tradeoff. React.EventHandler being bivariant does allow unsound
+  // types in this case. I should probably be consistent with the strictness stance
+  // but there are increasing issue reports demanding these unsound types to "write cleaner code"
+  // so lets see how these are received
   const input = <TextField onFocus={inputHandler} />;
 
   // this or a generic `HTMLElement` is probably closer to what we actually use.
@@ -58,7 +60,7 @@ function FocusHandlerTest() {
   const element = <TextField onFocus={genericHandler} />;
 
   const fieldHandler = React.useCallback(
-    (ev?: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {},
+    (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {},
     [],
   );
   const field = <TextField onFocus={fieldHandler} />;
