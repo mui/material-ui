@@ -80,22 +80,35 @@ function ColorTool(props) {
   });
 
   const handleChangeColor = name => event => {
-    const isRgb = string => /#?([0-9a-f]{6})/i.test(string);
+    const isRgb = string => /rgb\([0-9]{1,3}\s*,\s*[0-9]{1,3}\s*,\s*[0-9]{1,3}\)/i.test(string);
 
-    const {
+    const isHex = string => /^#?([0-9a-f]{3})$|^#?([0-9a-f]){6}$/i.test(string);
+
+    let {
       target: { value: color },
     } = event;
 
-    setState({
-      ...state,
+    setState(prevState => ({
+      ...prevState,
       [`${name}Input`]: color,
-    });
+    }));
+
+    let isValidColor = false;
 
     if (isRgb(color)) {
-      setState({
-        ...state,
+      isValidColor = true;
+    } else if (isHex(color)) {
+      isValidColor = true;
+      if (color.indexOf('#') === -1) {
+        color = `#${color}`;
+      }
+    }
+
+    if (isValidColor) {
+      setState(prevState => ({
+        ...prevState,
         [name]: color,
-      });
+      }));
     }
   };
 
