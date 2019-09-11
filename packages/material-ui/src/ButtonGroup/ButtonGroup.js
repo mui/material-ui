@@ -50,6 +50,12 @@ export const styles = theme => ({
       borderColor: theme.palette.secondary.main,
     },
   },
+  /* Styles applied to the children if variant="outlined" & color="error". */
+  groupedOutlinedError: {
+    '&:hover': {
+      borderColor: theme.palette.error.main,
+    },
+  },
   /* Styles applied to the children if variant="contained". */
   groupedContained: {
     boxShadow: 'none',
@@ -70,6 +76,12 @@ export const styles = theme => ({
   groupedContainedSecondary: {
     '&:not(:last-child)': {
       borderRight: `1px solid ${theme.palette.secondary.dark}`,
+    },
+  },
+  /* Styles applied to the children if variant="contained" & color="error". */
+  groupedContainedError: {
+    '&:not(:last-child)': {
+      borderRight: `1px solid ${theme.palette.error.dark}`,
     },
   },
   /* Pseudo-class applied to child elements if `disabled={true}`. */
@@ -96,13 +108,16 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
   const contained = variant === 'contained';
   const primary = color === 'primary';
   const secondary = color === 'secondary';
+  const error = color === 'error';
   const buttonClassName = clsx(classes.grouped, {
     [classes.groupedOutlined]: outlined,
     [classes.groupedOutlinedPrimary]: outlined && primary,
     [classes.groupedOutlinedSecondary]: outlined && secondary,
+    [classes.groupedOutlinedError]: outlined && error,
     [classes.groupedContained]: contained,
     [classes.groupedContainedPrimary]: contained && primary,
     [classes.groupedContainedSecondary]: contained && secondary,
+    [classes.groupedContainedError]: contained && error,
     [classes.disabled]: disabled,
   });
 
@@ -165,7 +180,7 @@ ButtonGroup.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'error']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.

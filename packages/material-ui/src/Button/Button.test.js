@@ -125,10 +125,10 @@ describe('<Button />', () => {
 
   it('should render a error outlined button', () => {
     const { getByRole } = render(
-    <Button variant="outlined" color="error">
-      Hello World
-    </Button>,
-  );
+      <Button variant="outlined" color="error">
+        Hello World
+      </Button>,
+    );
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.root);
@@ -200,10 +200,10 @@ describe('<Button />', () => {
 
   it('should render a contained error button', () => {
     const { getByRole } = render(
-    <Button variant="contained" color="error">
-      Hello World
-    </Button>,
-  );
+      <Button variant="contained" color="error">
+        Hello World
+      </Button>,
+    );
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.root);

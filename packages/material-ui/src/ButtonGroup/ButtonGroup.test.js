@@ -73,6 +73,7 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(button.hasClass(classes.groupedOutlined), true);
     assert.strictEqual(button.hasClass(classes.groupedOutlinedPrimary), true);
     assert.strictEqual(button.hasClass(classes.groupedOutlinedSecondary), false);
+    assert.strictEqual(button.hasClass(classes.groupedOutlinedError), false);
   });
 
   it('can render an outlined secondary button', () => {
@@ -87,6 +88,22 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(button.hasClass(classes.groupedOutlined), true);
     assert.strictEqual(button.hasClass(classes.groupedOutlinedPrimary), false);
     assert.strictEqual(button.hasClass(classes.groupedOutlinedSecondary), true);
+    assert.strictEqual(button.hasClass(classes.groupedOutlinedError), false);
+  });
+
+  it('can render an outlined error button', () => {
+    const wrapper = mount(
+      <ButtonGroup color="error">
+        <Button>Hello World</Button>
+      </ButtonGroup>,
+    );
+    const button = wrapper.find('button');
+    assert.strictEqual(button.hasClass('MuiButton-outlinedSecondary'), true);
+    assert.strictEqual(button.hasClass(classes.grouped), true);
+    assert.strictEqual(button.hasClass(classes.groupedOutlined), true);
+    assert.strictEqual(button.hasClass(classes.groupedOutlinedPrimary), false);
+    assert.strictEqual(button.hasClass(classes.groupedOutlinedSecondary), false);
+    assert.strictEqual(button.hasClass(classes.groupedOutlinedError), true);
   });
 
   it('can render a contained button', () => {
@@ -115,6 +132,7 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(button.hasClass(classes.groupedContained), true);
     assert.strictEqual(button.hasClass(classes.groupedContainedPrimary), true);
     assert.strictEqual(button.hasClass(classes.groupedContainedSecondary), false);
+    assert.strictEqual(button.hasClass(classes.groupedContainedError), false);
   });
 
   it('can render a contained secondary button', () => {
@@ -129,6 +147,22 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(button.hasClass(classes.groupedContained), true);
     assert.strictEqual(button.hasClass(classes.groupedContainedPrimary), false);
     assert.strictEqual(button.hasClass(classes.groupedContainedSecondary), true);
+    assert.strictEqual(button.hasClass(classes.groupedContainedError), false);
+  });
+
+  it('can render a contained error button', () => {
+    const wrapper = mount(
+      <ButtonGroup variant="contained" color="error">
+        <Button>Hello World</Button>
+      </ButtonGroup>,
+    );
+    const button = wrapper.find('button');
+    assert.strictEqual(button.hasClass('MuiButton-containedSecondary'), true);
+    assert.strictEqual(button.hasClass(classes.grouped), true);
+    assert.strictEqual(button.hasClass(classes.groupedContained), true);
+    assert.strictEqual(button.hasClass(classes.groupedContainedPrimary), false);
+    assert.strictEqual(button.hasClass(classes.groupedContainedSecondary), false);
+    assert.strictEqual(button.hasClass(classes.groupedContainedError), true);
   });
 
   it('can render a small button', () => {
