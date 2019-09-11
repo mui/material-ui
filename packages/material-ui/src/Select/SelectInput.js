@@ -360,9 +360,11 @@ SelectInput.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.elementType,
+  IconComponent: PropTypes.elementType.isRequired,
   /**
    * Use that prop to pass a ref to the native select element.
+   *
+   * TODO: there's no native select element here
    */
   inputRef: refType,
   /**
