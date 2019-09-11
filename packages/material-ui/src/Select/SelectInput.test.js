@@ -6,7 +6,7 @@ import { act, cleanup, createClientRender, fireEvent } from 'test/utils/createCl
 import MenuItem from '../MenuItem';
 import SelectInput from './SelectInput';
 
-describe('<SelectInput />', () => {
+describe.only('<SelectInput />', () => {
   // StrictModeViolation: uses Popover
   const render = createClientRender({ strict: false });
 
@@ -197,6 +197,7 @@ describe('<SelectInput />', () => {
      * TODO how do we support this? In its current state it will log a warning
      * with no way to fix it
      */
+    // eslint-disable-next-line mocha/no-skipped-tests
     it.skip('should be able to override it', () => {
       const { container } = render(
         <SelectInput classes={{}} IconComponent="div" type="text" value="10">
