@@ -37,7 +37,6 @@ export const styles = theme => ({
   active: {},
   /* Styles applied to the icon component. */
   icon: {
-    height: 18,
     marginRight: 4,
     marginLeft: 4,
     opacity: 0,
@@ -45,7 +44,6 @@ export const styles = theme => ({
       duration: theme.transitions.duration.shorter,
     }),
     userSelect: 'none',
-    width: 18,
   },
   /* Styles applied to the icon component if `direction="desc"`. */
   iconDirectionDesc: {
