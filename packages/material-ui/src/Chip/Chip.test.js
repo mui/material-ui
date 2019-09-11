@@ -43,12 +43,15 @@ describe('<Chip />', () => {
       assert.strictEqual(chip.hasClass(classes.root), true);
       assert.strictEqual(chip.hasClass(classes.colorPrimary), false);
       assert.strictEqual(chip.hasClass(classes.colorSecondary), false);
+      assert.strictEqual(chip.hasClass(classes.colorError), false);
       assert.strictEqual(chip.hasClass(classes.clickable), false);
       assert.strictEqual(chip.hasClass(classes.clickableColorPrimary), false);
       assert.strictEqual(chip.hasClass(classes.clickableColorSecondary), false);
+      assert.strictEqual(chip.hasClass(classes.clickableColorError), false);
       assert.strictEqual(chip.hasClass(classes.deletable), false);
       assert.strictEqual(chip.hasClass(classes.deletableColorPrimary), false);
       assert.strictEqual(chip.hasClass(classes.deletableColorSecondary), false);
+      assert.strictEqual(chip.hasClass(classes.deletableColorError), false);
     });
 
     it('should render with the root and the primary class', () => {
@@ -65,6 +68,14 @@ describe('<Chip />', () => {
 
       assert.strictEqual(chip.exists(), true);
       assert.strictEqual(chip.hasClass(classes.colorSecondary), true);
+    });
+
+    it('should render with the root and the error class', () => {
+      const wrapper = mount(<Chip className="my-Chip" color="error" />);
+      const chip = wrapper.find(`.${classes.root}`);
+
+      assert.strictEqual(chip.exists(), true);
+      assert.strictEqual(chip.hasClass(classes.colorError), true);
     });
   });
 
@@ -153,6 +164,23 @@ describe('<Chip />', () => {
       assert.strictEqual(secondaryChip.hasClass(classes.colorSecondary), true);
       assert.strictEqual(secondaryChip.hasClass(classes.clickable), true);
       assert.strictEqual(secondaryChip.hasClass(classes.clickableColorSecondary), true);
+    });
+
+    it('should render with the root and clickable error class', () => {
+      const secondaryWrapper = mount(
+        <Chip
+          className="my-Chip"
+          data-my-prop="woofChip"
+          onClick={handleClick}
+          color="error"
+        />,
+      );
+      const secondaryChip = secondaryWrapper.find('.my-Chip').hostNodes();
+
+      assert.strictEqual(secondaryChip.hasClass(classes.root), true);
+      assert.strictEqual(secondaryChip.hasClass(classes.colorError), true);
+      assert.strictEqual(secondaryChip.hasClass(classes.clickable), true);
+      assert.strictEqual(secondaryChip.hasClass(classes.clickableColorError), true);
     });
   });
 
@@ -290,6 +318,34 @@ describe('<Chip />', () => {
       assert.strictEqual(avatarWrapper.exists(), true);
       assert.strictEqual(avatarWrapper.hasClass(classes.avatarColorSecondary), true);
     });
+
+    it('should render with the root, deletable and avatar error classes', () => {
+      wrapper = mount(
+        <Chip
+          avatar={
+            <Avatar className="my-Avatar" data-my-prop="woofChip">
+              MB
+            </Avatar>
+          }
+          label="Text Avatar Chip"
+          onDelete={() => {}}
+          className="my-Chip"
+          data-my-prop="woofChip"
+          color="error"
+        />,
+      );
+      chip = wrapper.find(`.${classes.root}`);
+
+      assert.strictEqual(chip.exists(), true);
+      assert.strictEqual(chip.hasClass(classes.colorError), true);
+      assert.strictEqual(chip.hasClass(classes.deletable), true);
+      assert.strictEqual(chip.hasClass(classes.deletableColorError), true);
+
+      const avatarWrapper = wrapper.find(`.${classes.avatar}`).first();
+
+      assert.strictEqual(avatarWrapper.exists(), true);
+      assert.strictEqual(avatarWrapper.hasClass(classes.avatarColorError), true);
+    });
   });
 
   describe('prop: deleteIcon', () => {
@@ -374,6 +430,21 @@ describe('<Chip />', () => {
       const iconWrapper = wrapper.find('svg[data-mui-test="CancelIcon"]');
       assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
       assert.strictEqual(iconWrapper.hasClass(classes.deleteIconColorSecondary), true);
+    });
+
+    it('should render a default icon with the root, deletable, deleteIcon error class', () => {
+      const wrapper = mount(
+        <Chip label="Custom delete icon Chip" onDelete={() => {}} color="error" />,
+      );
+      const chip = wrapper.find(`.${classes.root}`);
+      assert.strictEqual(chip.exists(), true);
+      assert.strictEqual(chip.hasClass(classes.colorError), true);
+      assert.strictEqual(chip.hasClass(classes.deletable), true);
+      assert.strictEqual(chip.hasClass(classes.deletableColorError), true);
+
+      const iconWrapper = wrapper.find('svg[data-mui-test="CancelIcon"]');
+      assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
+      assert.strictEqual(iconWrapper.hasClass(classes.deleteIconColorError), true);
     });
   });
 

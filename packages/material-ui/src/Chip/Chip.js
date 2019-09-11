@@ -55,6 +55,11 @@ export const styles = theme => {
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.secondary.contrastText,
     },
+    /* Styles applied to the root element if `color="error"`. */
+    colorError: {
+      backgroundColor: theme.palette.error.main,
+      color: theme.palette.error.contrastText,
+    },
     /* Styles applied to the root element if `onClick` is defined or `clickable={true}`. */
     clickable: {
       WebkitTapHighlightColor: 'transparent', // Remove grey highlight
@@ -85,6 +90,15 @@ export const styles = theme => {
         backgroundColor: emphasize(theme.palette.secondary.main, 0.12),
       },
     },
+    /* Styles applied to the root element if `onClick` and `color="error"` is defined or `clickable={true}`. */
+    clickableColorError: {
+      '&:hover, &:focus': {
+        backgroundColor: emphasize(theme.palette.error.main, 0.08),
+      },
+      '&:active': {
+        backgroundColor: emphasize(theme.palette.error.main, 0.12),
+      },
+    },
     /* Styles applied to the root element if `onDelete` is defined. */
     deletable: {
       '&:focus': {
@@ -101,6 +115,12 @@ export const styles = theme => {
     deletableColorSecondary: {
       '&:focus': {
         backgroundColor: emphasize(theme.palette.secondary.main, 0.2),
+      },
+    },
+    /* Styles applied to the root element if `onDelete` and `color="error"` is defined. */
+    deletableColorError: {
+      '&:focus': {
+        backgroundColor: emphasize(theme.palette.error.main, 0.2),
       },
     },
     /* Styles applied to the root element if `variant="outlined"`. */
@@ -132,6 +152,14 @@ export const styles = theme => {
         backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       },
     },
+    /* Styles applied to the root element if `variant="outlined"` and `color="error"`. */
+    outlinedError: {
+      color: theme.palette.error.main,
+      border: `1px solid ${theme.palette.error.main}`,
+      '$clickable&:hover, $clickable&:focus, $deletable&:focus': {
+        backgroundColor: fade(theme.palette.error.main, theme.palette.action.hoverOpacity),
+      },
+    },
     /* Styles applied to the `avatar` element. */
     avatar: {
       marginRight: -4,
@@ -155,6 +183,11 @@ export const styles = theme => {
       color: theme.palette.secondary.contrastText,
       backgroundColor: theme.palette.secondary.dark,
     },
+    /* Styles applied to the `avatar` element if `color="error"`. */
+    avatarColorError: {
+      color: theme.palette.error.contrastText,
+      backgroundColor: theme.palette.error.dark,
+    },
     /* Styles applied to the `avatar` elements children. */
     avatarChildren: {
       height: 18,
@@ -175,6 +208,10 @@ export const styles = theme => {
     },
     /* Styles applied to the `icon` element if `color="secondary"`. */
     iconColorSecondary: {
+      color: 'inherit',
+    },
+    /* Styles applied to the `icon` element if `color="error"`. */
+    iconColorError: {
       color: 'inherit',
     },
     /* Styles applied to the label `span` element`. */
@@ -221,6 +258,13 @@ export const styles = theme => {
         color: theme.palette.secondary.contrastText,
       },
     },
+    /* Styles applied to the deleteIcon element if `color="error"` and `variant="default"`. */
+    deleteIconColorError: {
+      color: fade(theme.palette.error.contrastText, 0.7),
+      '&:hover, &:active': {
+        color: theme.palette.error.contrastText,
+      },
+    },
     /* Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`. */
     deleteIconOutlinedColorPrimary: {
       color: fade(theme.palette.primary.main, 0.7),
@@ -233,6 +277,13 @@ export const styles = theme => {
       color: fade(theme.palette.secondary.main, 0.7),
       '&:hover, &:active': {
         color: theme.palette.secondary.main,
+      },
+    },
+    /* Styles applied to the deleteIcon element if `color="error"` and `variant="outlined"`. */
+    deleteIconOutlinedColorError: {
+      color: fade(theme.palette.error.main, 0.7),
+      '&:hover, &:active': {
+        color: theme.palette.error.main,
       },
     },
   };
@@ -328,6 +379,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
       [classes.outlined]: variant === 'outlined',
       [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
       [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
+      [classes.outlinedError]: variant === 'outlined' && color === 'error',
     },
     classNameProp,
   );
@@ -439,7 +491,7 @@ Chip.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
+  color: PropTypes.oneOf(['default', 'primary', 'secondary', 'error']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
