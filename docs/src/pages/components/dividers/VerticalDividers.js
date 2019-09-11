@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(2, 0),
     width: 'fit-content',
     border: `1px solid ${theme.palette.divider}`,
-    background: theme.palette.background.paper
+    background: theme.palette.background.paper,
   },
   divider: {
     height: theme.spacing(4),
