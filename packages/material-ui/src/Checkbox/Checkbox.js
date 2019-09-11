@@ -53,6 +53,22 @@ export const styles = theme => ({
       color: theme.palette.action.disabled,
     },
   },
+  /* Styles applied to the root element if `color="error"`. */
+  colorError: {
+    '&$checked': {
+      color: theme.palette.error.main,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.error.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+    },
+    '&$disabled': {
+      color: theme.palette.action.disabled,
+    },
+  },
 });
 
 const defaultCheckedIcon = <CheckBoxIcon />;
@@ -111,7 +127,7 @@ Checkbox.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'default']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'error', 'default']),
   /**
    * If `true`, the switch will be disabled.
    */
