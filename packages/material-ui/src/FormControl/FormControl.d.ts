@@ -9,8 +9,6 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
     fullWidth?: boolean;
     hiddenLabel?: boolean;
     margin?: PropTypes.Margin;
-    onBlur?: React.EventHandler<any>;
-    onFocus?: React.EventHandler<any>;
     required?: boolean;
     variant?: 'standard' | 'outlined' | 'filled';
   };

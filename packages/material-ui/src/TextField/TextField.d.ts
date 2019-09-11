@@ -9,7 +9,12 @@ import { InputLabelProps } from '../InputLabel';
 import { SelectProps } from '../Select';
 
 export interface BaseTextFieldProps
-  extends StandardProps<FormControlProps, TextFieldClassKey, 'onChange' | 'defaultValue'> {
+  extends StandardProps<
+    FormControlProps,
+    TextFieldClassKey,
+    // event handlers are declared on derived interfaces
+    'onChange' | 'onBlur' | 'onFocus' | 'defaultValue'
+  > {
   autoComplete?: string;
   autoFocus?: boolean;
   children?: React.ReactNode;
@@ -26,7 +31,6 @@ export interface BaseTextFieldProps
   margin?: PropTypes.Margin;
   multiline?: boolean;
   name?: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
   placeholder?: string;
   required?: boolean;
   rows?: string | number;
@@ -38,18 +42,27 @@ export interface BaseTextFieldProps
 }
 
 export interface StandardTextFieldProps extends BaseTextFieldProps {
+  onBlur?: StandardInputProps['onBlur'];
+  onChange?: StandardInputProps['onChange'];
+  onFocus?: StandardInputProps['onFocus'];
   variant?: 'standard';
   InputProps?: Partial<StandardInputProps>;
   inputProps?: StandardInputProps['inputProps'];
 }
 
 export interface FilledTextFieldProps extends BaseTextFieldProps {
+  onBlur?: FilledInputProps['onBlur'];
+  onChange?: FilledInputProps['onChange'];
+  onFocus?: FilledInputProps['onFocus'];
   variant: 'filled';
   InputProps?: Partial<FilledInputProps>;
   inputProps?: FilledInputProps['inputProps'];
 }
 
 export interface OutlinedTextFieldProps extends BaseTextFieldProps {
+  onBlur?: OutlinedInputProps['onBlur'];
+  onChange?: OutlinedInputProps['onChange'];
+  onFocus?: OutlinedInputProps['onFocus'];
   variant: 'outlined';
   InputProps?: Partial<OutlinedInputProps>;
   inputProps?: OutlinedInputProps['inputProps'];
