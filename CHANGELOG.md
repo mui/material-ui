@@ -1,5 +1,29 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.4.2
+###### *Sep 11, 2019*
+
+Big thanks to the 7 contributors who made this release possible!
+This is a quick release after v4.4.1 to solve 3 regressions.
+
+### `@material-ui/core@v4.4.2`
+
+- [Grid] Remove lab import @oliviertassinari
+- [Radio] Add zIndex to SwitchBase (#17389) @andokai
+- [TextField] Fix incorrect focus handler types for FormControl (#17378) @eps1lon
+- [StepButton] Fix overlap with StepContent (#17374) @rossmmurray
+
+### Docs
+
+- [docs] Add material-ui-flat-pagination to related projects (#17372) @szmslab
+- [docs] Add tubular-react in related project (#17371) @geoperez
+- [docs] Add tubular-react to tables related projects (#17382) @geoperez
+- [docs] Fix color tool crash (#17380) @jsjain
+
+### Core
+
+- [core] Bump `@babel/*` deps (#17363) @eps1lon
+
 ## 4.4.1
 ###### *Sep 8, 2019*
 
