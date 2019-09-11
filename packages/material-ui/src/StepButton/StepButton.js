@@ -19,6 +19,8 @@ export const styles = {
   /* Styles applied to the root element if `orientation="vertical"`. */
   vertical: {
     justifyContent: 'flex-start',
+    padding: '8px',
+    margin: '-8px',
   },
   /* Styles applied to the `ButtonBase` touch-ripple. */
   touchRipple: {

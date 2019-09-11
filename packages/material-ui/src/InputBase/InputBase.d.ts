@@ -5,7 +5,7 @@ export interface InputBaseProps
   extends StandardProps<
     React.HTMLAttributes<HTMLDivElement>,
     InputBaseClassKey,
-    'onChange' | 'onKeyUp' | 'onKeyDown' | 'defaultValue'
+    'onChange' | 'onKeyUp' | 'onKeyDown' | 'onBlur' | 'onFocus' | 'defaultValue'
   > {
   autoComplete?: string;
   autoFocus?: boolean;
@@ -39,16 +39,15 @@ export interface InputBaseProps
   type?: string;
   value?: unknown;
   /**
-   * `onChange`, `onKeyUp` + `onKeyDown` are applied to the inner `InputComponent`,
+   * `onChange`, `onKeyUp`, `onKeyDown`, `onBlur`, `onFocus` are applied to the inner `InputComponent`,
    * which by default is an input or textarea. Since these handlers differ from the
    * ones inherited by `React.HTMLAttributes<HTMLDivElement>` we need to omit them.
-   *
-   * Note that  `blur` and `focus` event handler are applied to the outer `<div>`.
-   * So these can just be inherited from the native `<div>`.
    */
   onChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
 export interface InputBaseComponentProps
