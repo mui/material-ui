@@ -16,6 +16,13 @@ You can save rendering this DOM element by using the `divider` property on the `
 
 {{"demo": "pages/components/dividers/ListDividers.js"}}
 
+
+## Vertical Dividers
+
+A divider can also be rendered vertically using the `orientation` property.
+
+{{"demo": "pages/components/dividers/VerticalDividers.js"}}
+
 ## HTML5 Specification
 
 In a list, you should ensure the `Divider` is rendered as an `<li>` to match the HTML5 specification.
