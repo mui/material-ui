@@ -78,6 +78,10 @@ function clientRender(element, options = {}) {
 export function createClientRender(globalOptions = {}) {
   const { strict: globalStrict } = globalOptions;
 
+  afterEach(() => {
+    cleanup();
+  });
+
   return function configuredClientRender(element, options = {}) {
     const { strict = globalStrict, ...localOptions } = options;
 
