@@ -22,6 +22,7 @@ export const styles = {
     left: 0,
     margin: 0,
     padding: 0,
+    zIndex: 1,
   },
 };
 
