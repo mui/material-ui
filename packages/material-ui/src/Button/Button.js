@@ -66,6 +66,17 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the root element if `variant="text"` and `color="error"`. */
+  textError: {
+    color: theme.palette.error.main,
+    '&:hover': {
+      backgroundColor: fade(theme.palette.error.main, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
+  },
   /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
     padding: '5px 16px',
@@ -96,6 +107,22 @@ export const styles = theme => ({
     '&:hover': {
       border: `1px solid ${theme.palette.secondary.main}`,
       backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
+    '&$disabled': {
+      border: `1px solid ${theme.palette.action.disabled}`,
+    },
+  },
+  /* Styles applied to the root element if `variant="outlined"` and `color="error"`. */
+  outlinedError: {
+    color: theme.palette.error.main,
+    border: `1px solid ${fade(theme.palette.error.main, 0.5)}`,
+    '&:hover': {
+      border: `1px solid ${theme.palette.error.main}`,
+      backgroundColor: fade(theme.palette.error.main, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -156,6 +183,18 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the root element if `variant="contained"` and `color="error"`. */
+  containedError: {
+    color: theme.palette.error.contrastText,
+    backgroundColor: theme.palette.error.main,
+    '&:hover': {
+      backgroundColor: theme.palette.error.dark,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: theme.palette.error.main,
+      },
+    },
+  },
   /* Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
   focusVisible: {},
   /* Pseudo-class applied to the root element if `disabled={true}`. */
@@ -203,18 +242,22 @@ const Button = React.forwardRef(function Button(props, ref) {
   const contained = variant === 'contained';
   const primary = color === 'primary';
   const secondary = color === 'secondary';
+  const error = color === 'error';
   const className = clsx(
     classes.root,
     {
       [classes.text]: text,
       [classes.textPrimary]: text && primary,
       [classes.textSecondary]: text && secondary,
+      [classes.textError]: text && error,
       [classes.outlined]: outlined,
       [classes.outlinedPrimary]: outlined && primary,
       [classes.outlinedSecondary]: outlined && secondary,
+      [classes.outlinedError]: outlined && error,
       [classes.contained]: contained,
       [classes.containedPrimary]: contained && primary,
       [classes.containedSecondary]: contained && secondary,
+      [classes.containedError]: contained && error,
       [classes[`size${capitalize(size)}`]]: size !== 'medium',
       [classes.disabled]: disabled,
       [classes.fullWidth]: fullWidth,
@@ -256,7 +299,7 @@ Button.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'error']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
