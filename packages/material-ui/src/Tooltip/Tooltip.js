@@ -124,13 +124,11 @@ function Tooltip(props) {
   React.useEffect(() => {
     if (__DEV__) {
       if (
-        !!(
-          childNode &&
+        childNode &&
           childNode.disabled &&
           !isControlled &&
           title !== '' &&
           childNode.tagName.toLowerCase() === 'button'
-        )
       ) {
         console.error(
           [
@@ -362,7 +360,7 @@ function Tooltip(props) {
     : {};
 
   if (__DEV__) {
-    if (!!children.props.title) {
+    if (children.props.title) {
       console.error(
         [
           'Material-UI: you have provided a `title` prop to the child of <Tooltip />.',

@@ -188,8 +188,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
         transform = -transform;
       }
       inlineStyles.bar1.transform = `translateX(${transform}%)`;
-    } else {
-      if (__DEV__) {
+    } else if (__DEV__) {
         if (!false) {
           console.error(
             'Material-UI: you need to provide a value prop ' +
@@ -197,7 +196,6 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
           );
         }
       }
-    }
   }
   if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
@@ -206,8 +204,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
         transform = -transform;
       }
       inlineStyles.bar2.transform = `translateX(${transform}%)`;
-    } else {
-      if (__DEV__) {
+    } else if (__DEV__) {
         if (!false) {
           console.error(
             'Material-UI: you need to provide a valueBuffer prop ' +
@@ -215,7 +212,6 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
           );
         }
       }
-    }
   }
 
   return (
