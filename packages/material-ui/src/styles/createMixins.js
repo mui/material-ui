@@ -1,5 +1,3 @@
-//
-
 export default function createMixins(breakpoints, spacing, mixins) {
   return {
     gutters: (styles = {}) => {
