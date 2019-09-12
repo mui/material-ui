@@ -89,13 +89,16 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     if (!React.isValidElement(child)) {
       return null;
     }
-    warning(
-      child.type !== React.Fragment,
-      [
-        "Material-UI: the Menu component doesn't accept a Fragment as a child.",
-        'Consider providing an array instead.',
-      ].join('\n'),
-    );
+    if (__DEV__) {
+      if (!(child.type !== React.Fragment)) {
+        console.error(
+          [
+            "Material-UI: the Menu component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n'),
+        );
+      }
+    }
     if (firstValidElementIndex === null) {
       firstValidElementIndex = index;
     }

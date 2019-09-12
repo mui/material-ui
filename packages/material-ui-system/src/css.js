@@ -27,13 +27,12 @@ function css(styleFunction) {
     return output;
   };
 
-  newStyleFunction.propTypes =
-    __DEV__
-      ? {
-          ...styleFunction.propTypes,
-          css: PropTypes.object,
-        }
-      : {};
+  newStyleFunction.propTypes = __DEV__
+    ? {
+        ...styleFunction.propTypes,
+        css: PropTypes.object,
+      }
+    : {};
 
   newStyleFunction.filterProps = ['css', ...styleFunction.filterProps];
 

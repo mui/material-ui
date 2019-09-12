@@ -48,11 +48,20 @@ function HiddenCss(props) {
   } = props;
   const theme = useTheme();
 
-  warning(
-    Object.keys(other).length === 0 ||
-      (Object.keys(other).length === 1 && other.hasOwnProperty('ref')),
-    `Material-UI: unsupported props received ${Object.keys(other).join(', ')} by \`<Hidden />\`.`,
-  );
+  if (__DEV__) {
+    if (
+      !(
+        Object.keys(other).length === 0 ||
+        (Object.keys(other).length === 1 && other.hasOwnProperty('ref'))
+      )
+    ) {
+      console.error(
+        `Material-UI: unsupported props received ${Object.keys(other).join(
+          ', ',
+        )} by \`<Hidden />\`.`,
+      );
+    }
+  }
 
   const clsx = [];
 

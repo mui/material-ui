@@ -198,13 +198,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       return null;
     }
 
-    warning(
-      child.type !== React.Fragment,
-      [
-        "Material-UI: the Select component doesn't accept a Fragment as a child.",
-        'Consider providing an array instead.',
-      ].join('\n'),
-    );
+    if (__DEV__) {
+      if (!(child.type !== React.Fragment)) {
+        console.error(
+          [
+            "Material-UI: the Select component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n'),
+        );
+      }
+    }
 
     let selected;
 

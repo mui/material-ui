@@ -41,10 +41,13 @@ const StepContent = React.forwardRef(function StepContent(props, ref) {
     ...other
   } = props;
 
-  warning(
-    orientation === 'vertical',
-    'Material-UI: <StepContent /> is only designed for use with the vertical stepper.',
-  );
+  if (__DEV__) {
+    if (!(orientation === 'vertical')) {
+      console.error(
+        'Material-UI: <StepContent /> is only designed for use with the vertical stepper.',
+      );
+    }
+  }
 
   let transitionDuration = transitionDurationProp;
 

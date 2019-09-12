@@ -121,11 +121,14 @@ const Popover = React.forwardRef(function Popover(props, ref) {
   const getAnchorOffset = React.useCallback(
     contentAnchorOffset => {
       if (anchorReference === 'anchorPosition') {
-        warning(
-          anchorPosition,
-          'Material-UI: you need to provide a `anchorPosition` prop when using ' +
-            '<Popover anchorReference="anchorPosition" />.',
-        );
+        if (__DEV__) {
+          if (!anchorPosition) {
+            console.error(
+              'Material-UI: you need to provide a `anchorPosition` prop when using ' +
+                '<Popover anchorReference="anchorPosition" />.',
+            );
+          }
+        }
         return anchorPosition;
       }
 
@@ -163,16 +166,19 @@ const Popover = React.forwardRef(function Popover(props, ref) {
         }
 
         // != the default value
-        warning(
-          anchorOrigin.vertical === 'top',
-          [
-            'Material-UI: you can not change the default `anchorOrigin.vertical` value ',
-            'when also providing the `getContentAnchorEl` prop to the popover component.',
-            'Only use one of the two props.',
-            'Set `getContentAnchorEl` to `null | undefined`' +
-              ' or leave `anchorOrigin.vertical` unchanged.',
-          ].join('\n'),
-        );
+        if (__DEV__) {
+          if (!(anchorOrigin.vertical === 'top')) {
+            console.error(
+              [
+                'Material-UI: you can not change the default `anchorOrigin.vertical` value ',
+                'when also providing the `getContentAnchorEl` prop to the popover component.',
+                'Only use one of the two props.',
+                'Set `getContentAnchorEl` to `null | undefined`' +
+                  ' or leave `anchorOrigin.vertical` unchanged.',
+              ].join('\n'),
+            );
+          }
+        }
       }
 
       return contentAnchorOffset;
@@ -239,14 +245,18 @@ const Popover = React.forwardRef(function Popover(props, ref) {
         elemTransformOrigin.vertical += diff;
       }
 
-      warning(
-        elemRect.height <= heightThreshold || !elemRect.height || !heightThreshold,
-        [
-          'Material-UI: the popover component is too tall.',
-          `Some part of it can not be seen on the screen (${elemRect.height - heightThreshold}px).`,
-          'Please consider adding a `max-height` to improve the user-experience.',
-        ].join('\n'),
-      );
+      if (__DEV__) {
+        if (!(elemRect.height <= heightThreshold || !elemRect.height || !heightThreshold)) {
+          console.error(
+            [
+              'Material-UI: the popover component is too tall.',
+              `Some part of it can not be seen on the screen (${elemRect.height -
+                heightThreshold}px).`,
+              'Please consider adding a `max-height` to improve the user-experience.',
+            ].join('\n'),
+          );
+        }
+      }
 
       // Check if the horizontal axis needs shifting
       if (left < marginThreshold) {

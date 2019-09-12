@@ -71,28 +71,31 @@ function createMuiTheme(options = {}) {
             traverse(child, key, depth + 1);
           }
         } else if (pseudoClasses.indexOf(key) !== -1 && Object.keys(child).length > 0) {
-          warning(
-            false,
-            [
-              `Material-UI: the \`${parentKey}\` component increases ` +
-                `the CSS specificity of the \`${key}\` internal state.`,
-              'You can not override it like this: ',
-              JSON.stringify(node, null, 2),
-              '',
-              'Instead, you need to use the $ruleName syntax:',
-              JSON.stringify(
-                {
-                  root: {
-                    [`&$${key}`]: child,
-                  },
-                },
-                null,
-                2,
-              ),
-              '',
-              'https://material-ui.com/r/pseudo-classes-guide',
-            ].join('\n'),
-          );
+          if (__DEV__) {
+            if (!false) {
+              console.error(
+                [
+                  `Material-UI: the \`${parentKey}\` component increases ` +
+                    `the CSS specificity of the \`${key}\` internal state.`,
+                  'You can not override it like this: ',
+                  JSON.stringify(node, null, 2),
+                  '',
+                  'Instead, you need to use the $ruleName syntax:',
+                  JSON.stringify(
+                    {
+                      root: {
+                        [`&$${key}`]: child,
+                      },
+                    },
+                    null,
+                    2,
+                  ),
+                  '',
+                  'https://material-ui.com/r/pseudo-classes-guide',
+                ].join('\n'),
+              );
+            }
+          }
           // Remove the style to prevent global conflicts.
           node[key] = {};
         }
@@ -102,10 +105,13 @@ function createMuiTheme(options = {}) {
     traverse(muiTheme.overrides);
   }
 
-  warning(
-    muiTheme.shadows.length === 25,
-    'Material-UI: the shadows array provided to createMuiTheme should support 25 elevations.',
-  );
+  if (__DEV__) {
+    if (!(muiTheme.shadows.length === 25)) {
+      console.error(
+        'Material-UI: the shadows array provided to createMuiTheme should support 25 elevations.',
+      );
+    }
+  }
 
   return muiTheme;
 }

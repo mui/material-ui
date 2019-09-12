@@ -25,10 +25,11 @@ const MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
 const CardMedia = React.forwardRef(function CardMedia(props, ref) {
   const { classes, className, component: Component = 'div', image, src, style, ...other } = props;
 
-  warning(
-    'children' in other || Boolean(image || src),
-    'Material-UI: either `children`, `image` or `src` prop must be specified.',
-  );
+  if (__DEV__) {
+    if (!('children' in other || Boolean(image || src))) {
+      console.error('Material-UI: either `children`, `image` or `src` prop must be specified.');
+    }
+  }
 
   const isMediaComponent = MEDIA_COMPONENTS.indexOf(Component) !== -1;
   const composedStyle =

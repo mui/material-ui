@@ -47,12 +47,11 @@ function style(options) {
     return handleBreakpoints(props, propValue, styleFromPropValue);
   };
 
-  fn.propTypes =
-    __DEV__
-      ? {
-          [prop]: responsivePropType,
-        }
-      : {};
+  fn.propTypes = __DEV__
+    ? {
+        [prop]: responsivePropType,
+      }
+    : {};
 
   fn.filterProps = [prop];
 

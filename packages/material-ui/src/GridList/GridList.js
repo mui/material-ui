@@ -41,13 +41,16 @@ const GridList = React.forwardRef(function GridList(props, ref) {
           return null;
         }
 
-        warning(
-          child.type !== React.Fragment,
-          [
-            "Material-UI: the GridList component doesn't accept a Fragment as a child.",
-            'Consider providing an array instead.',
-          ].join('\n'),
-        );
+        if (__DEV__) {
+          if (!(child.type !== React.Fragment)) {
+            console.error(
+              [
+                "Material-UI: the GridList component doesn't accept a Fragment as a child.",
+                'Consider providing an array instead.',
+              ].join('\n'),
+            );
+          }
+        }
 
         const childCols = child.props.cols || 1;
         const childRows = child.props.rows || 1;

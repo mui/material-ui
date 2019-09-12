@@ -84,14 +84,17 @@ function getTransformer(theme) {
 
   if (Array.isArray(themeSpacing)) {
     return abs => {
-      warning(
-        abs <= themeSpacing.length - 1,
-        [
-          `@material-ui/system: the value provided (${abs}) overflows.`,
-          `The supported values are: ${JSON.stringify(themeSpacing)}.`,
-          `${abs} > ${themeSpacing.length - 1}, you need to add the missing values.`,
-        ].join('\n'),
-      );
+      if (__DEV__) {
+        if (!(abs <= themeSpacing.length - 1)) {
+          console.error(
+            [
+              `@material-ui/system: the value provided (${abs}) overflows.`,
+              `The supported values are: ${JSON.stringify(themeSpacing)}.`,
+              `${abs} > ${themeSpacing.length - 1}, you need to add the missing values.`,
+            ].join('\n'),
+          );
+        }
+      }
 
       return themeSpacing[abs];
     };
@@ -101,13 +104,16 @@ function getTransformer(theme) {
     return themeSpacing;
   }
 
-  warning(
-    false,
-    [
-      `@material-ui/system: the \`theme.spacing\` value (${themeSpacing}) is invalid.`,
-      'It should be a number, an array or a function.',
-    ].join('\n'),
-  );
+  if (__DEV__) {
+    if (!false) {
+      console.error(
+        [
+          `@material-ui/system: the \`theme.spacing\` value (${themeSpacing}) is invalid.`,
+          'It should be a number, an array or a function.',
+        ].join('\n'),
+      );
+    }
+  }
 
   return () => undefined;
 }
@@ -160,13 +166,12 @@ function spacing(props) {
     .reduce(merge, {});
 }
 
-spacing.propTypes =
-  __DEV__
-    ? spacingKeys.reduce((obj, key) => {
-        obj[key] = responsivePropType;
-        return obj;
-      }, {})
-    : {};
+spacing.propTypes = __DEV__
+  ? spacingKeys.reduce((obj, key) => {
+      obj[key] = responsivePropType;
+      return obj;
+    }, {})
+  : {};
 
 spacing.filterProps = spacingKeys;
 

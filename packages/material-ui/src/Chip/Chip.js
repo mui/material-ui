@@ -377,11 +377,14 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     });
   }
 
-  warning(
-    !avatar || !icon,
-    'Material-UI: the Chip component can not handle the avatar ' +
-      'and the icon prop at the same time. Pick one.',
-  );
+  if (__DEV__) {
+    if (!(!avatar || !icon)) {
+      console.error(
+        'Material-UI: the Chip component can not handle the avatar ' +
+          'and the icon prop at the same time. Pick one.',
+      );
+    }
+  }
 
   const handleRef = useForkRef(chipRef, ref);
 

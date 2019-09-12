@@ -32,11 +32,16 @@ export default function createTypography(palette, typography) {
     ...other
   } = typeof typography === 'function' ? typography(palette) : typography;
 
-  warning(typeof fontSize === 'number', `Material-UI: 'fontSize' is required to be a number.`);
-  warning(
-    typeof htmlFontSize === 'number',
-    `Material-UI: 'htmlFontSize' is required to be a number.`,
-  );
+  if (__DEV__) {
+    if (!(typeof fontSize === 'number')) {
+      console.error(`Material-UI: 'fontSize' is required to be a number.`);
+    }
+  }
+  if (__DEV__) {
+    if (!(typeof htmlFontSize === 'number')) {
+      console.error(`Material-UI: 'htmlFontSize' is required to be a number.`);
+    }
+  }
 
   const coef = fontSize / 14;
   const pxToRem = pxToRem2 || (size => `${(size / htmlFontSize) * coef}rem`);

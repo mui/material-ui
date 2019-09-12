@@ -37,20 +37,27 @@ function StylesProvider(props) {
   const outerOptions = React.useContext(StylesContext);
   const context = { ...outerOptions, disableGeneration, ...localOptions };
 
-  warning(
-    typeof window !== 'undefined' || context.sheetsManager,
-    'Material-UI: you need to use the ServerStyleSheets API when rendering on the server.',
-  );
+  if (__DEV__) {
+    if (!(typeof window !== 'undefined' || context.sheetsManager)) {
+      console.error(
+        'Material-UI: you need to use the ServerStyleSheets API when rendering on the server.',
+      );
+    }
+  }
 
-  warning(
-    !context.jss.options.insertionPoint || !injectFirst,
-    'Material-UI: you cannot use a custom insertionPoint and <StylesContext injectFirst> at the same time.',
-  );
+  if (__DEV__) {
+    if (!(!context.jss.options.insertionPoint || !injectFirst)) {
+      console.error(
+        'Material-UI: you cannot use a custom insertionPoint and <StylesContext injectFirst> at the same time.',
+      );
+    }
+  }
 
-  warning(
-    !injectFirst || !localOptions.jss,
-    'Material-UI: you cannot use the jss and injectFirst props at the same time.',
-  );
+  if (__DEV__) {
+    if (!(!injectFirst || !localOptions.jss)) {
+      console.error('Material-UI: you cannot use the jss and injectFirst props at the same time.');
+    }
+  }
 
   if (!context.jss.options.insertionPoint && injectFirst && typeof window !== 'undefined') {
     if (!injectFirstNode) {

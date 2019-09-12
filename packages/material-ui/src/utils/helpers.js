@@ -28,10 +28,13 @@ export function createChainedFunction(...funcs) {
         return acc;
       }
 
-      warning(
-        typeof func === 'function',
-        'Material-UI: invalid Argument Type, must only provide functions, undefined, or null.',
-      );
+      if (__DEV__) {
+        if (!(typeof func === 'function')) {
+          console.error(
+            'Material-UI: invalid Argument Type, must only provide functions, undefined, or null.',
+          );
+        }
+      }
 
       return function chainedFunction(...args) {
         acc.apply(this, args);

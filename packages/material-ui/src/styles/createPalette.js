@@ -105,10 +105,13 @@ export default function createPalette(palette) {
   // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
   // and material-components-web https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L54
   function getContrastText(background) {
-    warning(
-      background,
-      `Material-UI: missing background argument in getContrastText(${background}).`,
-    );
+    if (__DEV__) {
+      if (!background) {
+        console.error(
+          `Material-UI: missing background argument in getContrastText(${background}).`,
+        );
+      }
+    }
 
     const contrastText =
       getContrastRatio(background, dark.text.primary) >= contrastThreshold
@@ -117,14 +120,17 @@ export default function createPalette(palette) {
 
     if (__DEV__) {
       const contrast = getContrastRatio(background, contrastText);
-      warning(
-        contrast >= 3,
-        [
-          `Material-UI: the contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`,
-          'falls below the WACG recommended absolute minimum contrast ratio of 3:1.',
-          'https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast',
-        ].join('\n'),
-      );
+      if (__DEV__) {
+        if (!(contrast >= 3)) {
+          console.error(
+            [
+              `Material-UI: the contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`,
+              'falls below the WACG recommended absolute minimum contrast ratio of 3:1.',
+              'https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast',
+            ].join('\n'),
+          );
+        }
+      }
     }
 
     return contrastText;
@@ -156,7 +162,11 @@ export default function createPalette(palette) {
 
   const types = { dark, light };
 
-  warning(types[type], `Material-UI: the palette type \`${type}\` is not supported.`);
+  if (__DEV__) {
+    if (!types[type]) {
+      console.error(`Material-UI: the palette type \`${type}\` is not supported.`);
+    }
+  }
 
   const paletteOutput = deepmerge(
     {

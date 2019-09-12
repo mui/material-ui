@@ -122,22 +122,27 @@ function Tooltip(props) {
   const touchTimer = React.useRef();
 
   React.useEffect(() => {
-    warning(
-      !(
-        childNode &&
-        childNode.disabled &&
-        !isControlled &&
-        title !== '' &&
-        childNode.tagName.toLowerCase() === 'button'
-      ),
-      [
-        'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
-        'A disabled element does not fire events.',
-        "Tooltip needs to listen to the child element's events to display the title.",
-        '',
-        'Place a `div` container on top of the element.',
-      ].join('\n'),
-    );
+    if (__DEV__) {
+      if (
+        !!(
+          childNode &&
+          childNode.disabled &&
+          !isControlled &&
+          title !== '' &&
+          childNode.tagName.toLowerCase() === 'button'
+        )
+      ) {
+        console.error(
+          [
+            'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
+            'A disabled element does not fire events.',
+            "Tooltip needs to listen to the child element's events to display the title.",
+            '',
+            'Place a `div` container on top of the element.',
+          ].join('\n'),
+        );
+      }
+    }
   }, [isControlled, title, childNode]);
 
   React.useEffect(() => {
@@ -356,13 +361,16 @@ function Tooltip(props) {
       }
     : {};
 
-  warning(
-    !children.props.title,
-    [
-      'Material-UI: you have provided a `title` prop to the child of <Tooltip />.',
-      `Remove this title prop \`${children.props.title}\` or the Tooltip component.`,
-    ].join('\n'),
-  );
+  if (__DEV__) {
+    if (!!children.props.title) {
+      console.error(
+        [
+          'Material-UI: you have provided a `title` prop to the child of <Tooltip />.',
+          `Remove this title prop \`${children.props.title}\` or the Tooltip component.`,
+        ].join('\n'),
+      );
+    }
+  }
 
   return (
     <React.Fragment>

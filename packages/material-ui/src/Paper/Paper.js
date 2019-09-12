@@ -37,10 +37,11 @@ const Paper = React.forwardRef(function Paper(props, ref) {
     ...other
   } = props;
 
-  warning(
-    elevation >= 0 && elevation < 25,
-    `Material-UI: this elevation \`${elevation}\` is not implemented.`,
-  );
+  if (__DEV__) {
+    if (!(elevation >= 0 && elevation < 25)) {
+      console.error(`Material-UI: this elevation \`${elevation}\` is not implemented.`);
+    }
+  }
 
   const className = clsx(
     classes.root,

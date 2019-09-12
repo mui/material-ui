@@ -102,10 +102,13 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     }
   }, [variant, required, label]);
 
-  warning(
-    !select || Boolean(children),
-    'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
-  );
+  if (__DEV__) {
+    if (!(!select || Boolean(children))) {
+      console.error(
+        'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
+      );
+    }
+  }
 
   const InputMore = {};
 

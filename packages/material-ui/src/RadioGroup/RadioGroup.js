@@ -35,18 +35,21 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
   );
 
   React.useEffect(() => {
-    warning(
-      isControlled === (valueProp != null),
-      [
-        `Material-UI: A component is changing ${
-          isControlled ? 'a ' : 'an un'
-        }controlled RadioGroup to be ${isControlled ? 'un' : ''}controlled.`,
-        'Input elements should not switch from uncontrolled to controlled (or vice versa).',
-        'Decide between using a controlled or uncontrolled RadioGroup ' +
-          'element for the lifetime of the component.',
-        'More info: https://fb.me/react-controlled-components',
-      ].join('\n'),
-    );
+    if (__DEV__) {
+      if (!(isControlled === (valueProp != null))) {
+        console.error(
+          [
+            `Material-UI: A component is changing ${
+              isControlled ? 'a ' : 'an un'
+            }controlled RadioGroup to be ${isControlled ? 'un' : ''}controlled.`,
+            'Input elements should not switch from uncontrolled to controlled (or vice versa).',
+            'Decide between using a controlled or uncontrolled RadioGroup ' +
+              'element for the lifetime of the component.',
+            'More info: https://fb.me/react-controlled-components',
+          ].join('\n'),
+        );
+      }
+    }
   }, [valueProp, isControlled]);
 
   const value = isControlled ? valueProp : valueState;
