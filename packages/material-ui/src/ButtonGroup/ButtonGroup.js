@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import '../Button'; // So we don't have any override priority issue.

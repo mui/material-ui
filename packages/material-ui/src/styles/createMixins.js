@@ -1,4 +1,4 @@
-// import warning from 'warning';
+//
 
 export default function createMixins(breakpoints, spacing, mixins) {
   return {

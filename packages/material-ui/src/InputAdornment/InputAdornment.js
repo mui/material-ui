@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
 import Typography from '../Typography';
 import withStyles from '../styles/withStyles';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';

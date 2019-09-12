@@ -1,5 +1,4 @@
 import React from 'react';
-import warning from 'warning';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';

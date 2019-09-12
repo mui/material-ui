@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
 import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import { darken, lighten } from '../styles/colorManipulator';
@@ -189,13 +188,13 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
       }
       inlineStyles.bar1.transform = `translateX(${transform}%)`;
     } else if (__DEV__) {
-        if (!false) {
-          console.error(
-            'Material-UI: you need to provide a value prop ' +
-              'when using the determinate or buffer variant of LinearProgress .',
-          );
-        }
+      if (!false) {
+        console.error(
+          'Material-UI: you need to provide a value prop ' +
+            'when using the determinate or buffer variant of LinearProgress .',
+        );
       }
+    }
   }
   if (variant === 'buffer') {
     if (valueBuffer !== undefined) {
@@ -205,13 +204,13 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
       }
       inlineStyles.bar2.transform = `translateX(${transform}%)`;
     } else if (__DEV__) {
-        if (!false) {
-          console.error(
-            'Material-UI: you need to provide a valueBuffer prop ' +
-              'when using the buffer variant of LinearProgress.',
-          );
-        }
+      if (!false) {
+        console.error(
+          'Material-UI: you need to provide a valueBuffer prop ' +
+            'when using the buffer variant of LinearProgress.',
+        );
       }
+    }
   }
 
   return (

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';

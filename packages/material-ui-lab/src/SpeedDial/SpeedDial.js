@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
 import { duration, withStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';

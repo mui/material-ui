@@ -1,5 +1,3 @@
-import warning from 'warning';
-
 let warnOnce;
 
 export default function createSpacing(spacingInput = 8) {

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import clsx from 'clsx';
 import { elementAcceptingRef } from '@material-ui/utils';
 import { fade } from '../styles/colorManipulator';
@@ -125,10 +124,10 @@ function Tooltip(props) {
     if (__DEV__) {
       if (
         childNode &&
-          childNode.disabled &&
-          !isControlled &&
-          title !== '' &&
-          childNode.tagName.toLowerCase() === 'button'
+        childNode.disabled &&
+        !isControlled &&
+        title !== '' &&
+        childNode.tagName.toLowerCase() === 'button'
       ) {
         console.error(
           [

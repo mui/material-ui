@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Popover from '../Popover';
 import MenuList from '../MenuList';
-import warning from 'warning';
 import ReactDOM from 'react-dom';
 import { setRef } from '../utils/reactHelpers';
 import useTheme from '../styles/useTheme';

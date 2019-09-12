@@ -1,5 +1,4 @@
 import React from 'react';
-import warning from 'warning';
 import { getThemeProps, useTheme } from '@material-ui/styles';
 
 // This variable will be true once the server-side hydration is completed.

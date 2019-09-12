@@ -1,7 +1,5 @@
 /* eslint-disable no-use-before-define */
 
-import warning from 'warning';
-
 /**
  * Returns a number whose value is limited to the given range.
  *

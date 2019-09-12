@@ -1,4 +1,3 @@
-import warning from 'warning';
 import PropTypes from 'prop-types';
 import merge from './merge';
 

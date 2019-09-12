@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-import warning from 'warning';
 import debounce from '../utils/debounce';
 import clsx from 'clsx';
 import { chainPropTypes, elementTypeAcceptingRef, refType } from '@material-ui/utils';

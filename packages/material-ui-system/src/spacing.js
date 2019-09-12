@@ -1,4 +1,3 @@
-import warning from 'warning';
 import responsivePropType from './responsivePropType';
 import { handleBreakpoints } from './breakpoints';
 import merge from './merge';

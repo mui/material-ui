@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import clsx from 'clsx';
 import isValueSelected from './isValueSelected';
 import { withStyles } from '@material-ui/core/styles';

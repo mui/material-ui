@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import { exactProp } from '@material-ui/utils';
 import ThemeContext from '../useTheme/ThemeContext';
 import useTheme from '../useTheme';

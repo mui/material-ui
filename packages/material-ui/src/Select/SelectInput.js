@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
 import { capitalize } from '../utils/helpers';
 import { refType } from '@material-ui/utils';
 import Menu from '../Menu/Menu';
