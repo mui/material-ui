@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
+    display: 'block',
     backgroundColor: theme.palette.action.hover,
     height: '1.2em',
   },
