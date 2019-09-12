@@ -194,8 +194,9 @@ describe('<SelectInput />', () => {
     });
 
     /**
-     * TODO how do we support this? In its current state it will log a warning
-     * with no way to fix it
+     * In its current state it will log a react warning
+     * with no way to fix it. It is reachable by using `<Select inputProps={{ type: 'text' }} />`.
+     * We should not support it in v5.
      */
     // eslint-disable-next-line mocha/no-skipped-tests
     it.skip('should be able to override it', () => {
@@ -615,7 +616,7 @@ describe('<SelectInput />', () => {
         getByRole('button').click();
       });
 
-      // TODO not match WAI-ARIA authoring practices
+      // TODO not matching WAI-ARIA authoring practices. It should focus the first (or selected) item.
       expect(getByRole('listbox')).to.be.focused;
     });
   });

@@ -362,9 +362,8 @@ SelectInput.propTypes = {
    */
   IconComponent: PropTypes.elementType.isRequired,
   /**
-   * Use that prop to pass a ref to the native select element.
-   *
-   * TODO: there's no native select element here
+   * Imperative handle implementing `{ value: T, node: HTMLElement, focus(): void }`
+   * Equivalent to `ref`
    */
   inputRef: refType,
   /**
@@ -438,6 +437,7 @@ SelectInput.propTypes = {
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * @ignore
+   * TODO: remove in V5
    */
   type: PropTypes.string,
   /**
