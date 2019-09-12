@@ -14,7 +14,7 @@ export default function createSpacing(spacingInput = 8) {
     transform = spacingInput;
   } else {
     if (__DEV__) {
-      if (!(typeof spacingInput === 'number')) {
+      if (typeof spacingInput !== 'number') {
         console.error(
           [
             `Material-UI: the \`theme.spacing\` value (${spacingInput}) is invalid.`,
@@ -25,7 +25,7 @@ export default function createSpacing(spacingInput = 8) {
     }
     transform = factor => {
       if (__DEV__) {
-        if (!(typeof factor === 'number')) {
+        if (typeof factor !== 'number') {
           console.error(`Expected spacing argument to be a number, got ${factor}`);
         }
       }

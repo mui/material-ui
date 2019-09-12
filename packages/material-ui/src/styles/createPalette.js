@@ -120,7 +120,7 @@ export default function createPalette(palette) {
     if (__DEV__) {
       const contrast = getContrastRatio(background, contrastText);
       if (__DEV__) {
-        if (!(contrast >= 3)) {
+        if (contrast < 3) {
           console.error(
             [
               `Material-UI: the contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`,

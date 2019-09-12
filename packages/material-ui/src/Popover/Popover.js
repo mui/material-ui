@@ -166,7 +166,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
 
         // != the default value
         if (__DEV__) {
-          if (!(anchorOrigin.vertical === 'top')) {
+          if (anchorOrigin.vertical !== 'top') {
             console.error(
               [
                 'Material-UI: you can not change the default `anchorOrigin.vertical` value ',
@@ -245,7 +245,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
       }
 
       if (__DEV__) {
-        if (!(elemRect.height <= heightThreshold || !elemRect.height || !heightThreshold)) {
+        if (elemRect.height > heightThreshold && elemRect.height && heightThreshold) {
           console.error(
             [
               'Material-UI: the popover component is too tall.',

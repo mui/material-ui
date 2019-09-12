@@ -10,7 +10,7 @@
  */
 function clamp(value, min = 0, max = 1) {
   if (__DEV__) {
-    if (!(value >= min && value <= max)) {
+    if (value < min || value > max) {
       console.error(`Material-UI: the value provided ${value} is out of range [${min}, ${max}].`);
     }
   }

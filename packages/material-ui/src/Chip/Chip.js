@@ -377,7 +377,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   }
 
   if (__DEV__) {
-    if (!(!avatar || !icon)) {
+    if (avatar && icon) {
       console.error(
         'Material-UI: the Chip component can not handle the avatar ' +
           'and the icon prop at the same time. Pick one.',

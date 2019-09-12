@@ -10,7 +10,7 @@ function getStylesCreator(stylesOrCreator) {
   const themingEnabled = typeof stylesOrCreator === 'function';
 
   if (__DEV__) {
-    if (typeof stylesOrCreator !== 'object' && themingEnabled === false) {
+    if (typeof stylesOrCreator !== 'object' && !themingEnabled) {
       console.error(
         [
           'Material-UI: the `styles` argument provided is invalid.',

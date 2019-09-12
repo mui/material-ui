@@ -22,10 +22,19 @@ export const styles = {
 const MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
 
 const CardMedia = React.forwardRef(function CardMedia(props, ref) {
-  const { classes, className, component: Component = 'div', image, src, style, ...other } = props;
+  const {
+    children,
+    classes,
+    className,
+    component: Component = 'div',
+    image,
+    src,
+    style,
+    ...other
+  } = props;
 
   if (__DEV__) {
-    if (!('children' in other || Boolean(image || src))) {
+    if (!children && !image && !src) {
       console.error('Material-UI: either `children`, `image` or `src` prop must be specified.');
     }
   }
@@ -47,11 +56,17 @@ const CardMedia = React.forwardRef(function CardMedia(props, ref) {
       style={composedStyle}
       src={isMediaComponent ? image || src : undefined}
       {...other}
-    />
+    >
+      {children}
+    </Component>
   );
 });
 
 CardMedia.propTypes = {
+  /**
+   *
+   */
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.

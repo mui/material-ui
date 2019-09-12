@@ -89,7 +89,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
       return null;
     }
     if (__DEV__) {
-      if (!(child.type !== React.Fragment)) {
+      if (child.type === React.Fragment) {
         console.error(
           [
             "Material-UI: the Menu component doesn't accept a Fragment as a child.",

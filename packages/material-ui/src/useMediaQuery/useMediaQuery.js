@@ -13,7 +13,7 @@ function useMediaQuery(queryInput, options = {}) {
   });
 
   if (__DEV__) {
-    if (!(typeof queryInput !== 'function' || theme !== null)) {
+    if (typeof queryInput === 'function' && theme === null) {
       console.error(
         [
           'Material-UI: the `query` argument provided is invalid.',

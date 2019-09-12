@@ -35,7 +35,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
 
   React.useEffect(() => {
     if (__DEV__) {
-      if (!(isControlled === (valueProp != null))) {
+      if (isControlled !== (valueProp != null)) {
         console.error(
           [
             `Material-UI: A component is changing ${

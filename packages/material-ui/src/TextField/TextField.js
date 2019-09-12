@@ -102,7 +102,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
   }, [variant, required, label]);
 
   if (__DEV__) {
-    if (!(!select || Boolean(children))) {
+    if (select && !children) {
       console.error(
         'Material-UI: `children` must be passed when using the `TextField` component with `select`.',
       );

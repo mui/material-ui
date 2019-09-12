@@ -37,7 +37,7 @@ function ThemeProvider(props) {
   const outerTheme = useTheme();
 
   if (__DEV__) {
-    if (!(outerTheme !== null || typeof localTheme !== 'function')) {
+    if (outerTheme === null && typeof localTheme === 'function') {
       console.error(
         [
           'Material-UI: you are providing a theme function prop to the ThemeProvider component:',

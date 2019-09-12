@@ -54,12 +54,12 @@ export default {
     } = options;
 
     if (__DEV__) {
-      if (!(isString(props) || Array.isArray(props))) {
+      if (!isString(props) && !Array.isArray(props)) {
         console.error('Material-UI: argument "props" must be a string or Array.');
       }
     }
     if (__DEV__) {
-      if (!(isNumber(durationOption) || isString(durationOption))) {
+      if (!isNumber(durationOption) && !isString(durationOption)) {
         console.error(
           `Material-UI: argument "duration" must be a number or a string but found ${durationOption}.`,
         );
@@ -71,12 +71,12 @@ export default {
       }
     }
     if (__DEV__) {
-      if (!(isNumber(delay) || isString(delay))) {
+      if (!isNumber(delay) && !isString(delay)) {
         console.error('Material-UI: argument "delay" must be a number or a string.');
       }
     }
     if (__DEV__) {
-      if (!(Object.keys(other).length === 0)) {
+      if (Object.keys(other).length !== 0) {
         console.error(`Material-UI: unrecognized argument(s) [${Object.keys(other).join(',')}]`);
       }
     }

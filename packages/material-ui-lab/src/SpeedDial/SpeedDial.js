@@ -197,7 +197,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     }
 
     if (__DEV__) {
-      if (!(child.type !== React.Fragment)) {
+      if (child.type === React.Fragment) {
         console.error(
           [
             "Material-UI: the SpeedDial component doesn't accept a Fragment as a child.",

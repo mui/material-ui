@@ -27,7 +27,7 @@ export function createChainedFunction(...funcs) {
       }
 
       if (__DEV__) {
-        if (!(typeof func === 'function')) {
+        if (typeof func !== 'function') {
           console.error(
             'Material-UI: invalid Argument Type, must only provide functions, undefined, or null.',
           );

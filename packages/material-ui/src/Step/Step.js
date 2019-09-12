@@ -67,7 +67,7 @@ const Step = React.forwardRef(function Step(props, ref) {
         }
 
         if (__DEV__) {
-          if (!(child.type !== React.Fragment)) {
+          if (child.type === React.Fragment) {
             console.error(
               [
                 "Material-UI: the Step component doesn't accept a Fragment as a child.",

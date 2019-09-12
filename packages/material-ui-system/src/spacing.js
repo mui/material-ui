@@ -84,7 +84,7 @@ function getTransformer(theme) {
   if (Array.isArray(themeSpacing)) {
     return abs => {
       if (__DEV__) {
-        if (!(abs <= themeSpacing.length - 1)) {
+        if (abs > themeSpacing.length - 1) {
           console.error(
             [
               `@material-ui/system: the value provided (${abs}) overflows.`,

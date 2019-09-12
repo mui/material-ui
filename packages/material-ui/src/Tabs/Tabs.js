@@ -103,7 +103,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   const size = vertical ? 'height' : 'width';
 
   if (__DEV__) {
-    if (!(!centered || !scrollable)) {
+    if (centered && scrollable) {
       console.error(
         'Material-UI: you can not use the `centered={true}` and `variant="scrollable"` properties ' +
           'at the same time on a `Tabs` component.',
@@ -384,7 +384,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     }
 
     if (__DEV__) {
-      if (!(child.type !== React.Fragment)) {
+      if (child.type === React.Fragment) {
         console.error(
           [
             "Material-UI: the Tabs component doesn't accept a Fragment as a child.",

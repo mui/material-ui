@@ -23,7 +23,7 @@ function mergeClasses(options = {}) {
 
   Object.keys(newClasses).forEach(key => {
     if (__DEV__) {
-      if (!(baseClasses[key] || !newClasses[key])) {
+      if (!baseClasses[key] && newClasses[key]) {
         console.error(
           [
             `Material-UI: the key \`${key}\` ` +

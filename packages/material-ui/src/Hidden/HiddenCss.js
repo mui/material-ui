@@ -49,10 +49,8 @@ function HiddenCss(props) {
 
   if (__DEV__) {
     if (
-      !(
-        Object.keys(other).length === 0 ||
-        (Object.keys(other).length === 1 && other.hasOwnProperty('ref'))
-      )
+      Object.keys(other).length !== 0 &&
+      !(Object.keys(other).length === 1 && other.hasOwnProperty('ref'))
     ) {
       console.error(
         `Material-UI: unsupported props received ${Object.keys(other).join(
