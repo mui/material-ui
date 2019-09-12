@@ -6,7 +6,6 @@ if (__DEV__ && process.env.NODE_ENV !== 'test' && typeof window !== 'undefined')
     ponyfillGlobal['__@material-ui/styles-init__'] || 0;
 
   if (ponyfillGlobal['__@material-ui/styles-init__'] === 1) {
-    // eslint-disable-next-line no-console
     console.warn(
       [
         'It looks like there are several instances of `@material-ui/styles` initialized in this application.',

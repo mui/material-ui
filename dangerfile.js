@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 // inspire by reacts dangerfile
 // danger has to be the first thing required!
 const { danger, markdown } = require('danger');

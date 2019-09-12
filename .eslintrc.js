@@ -32,8 +32,8 @@ module.exports = {
     'consistent-this': ['error', 'self'],
     'linebreak-style': 'off', // Doesn't play nicely with Windows
     'no-alert': 'error',
-    // Strict, airbnb is using warn
-    'no-console': 'error',
+    // Strict, airbnb is using warn; allow warn and error for dev environments
+    'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-constant-condition': 'error',
     // Airbnb use error
     'no-param-reassign': 'off',

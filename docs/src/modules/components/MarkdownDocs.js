@@ -191,7 +191,7 @@ function MarkdownDocs(props) {
                 try {
                   demoOptions = JSON.parse(`{${content}}`);
                 } catch (err) {
-                  console.error(err); // eslint-disable-line no-console
+                  console.error(err);
                   return null;
                 }
 

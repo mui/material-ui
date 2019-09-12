@@ -1,5 +1,3 @@
-/* eslint-disable no-console */
-
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 import memoize from '@material-ui/system/memoize';
 import mapTranslations from 'docs/src/modules/utils/mapTranslations';
