@@ -116,7 +116,6 @@
     "rimraf": "^3.0.0",
     "styled-components": "^4.3.2",
     "url-loader": "^2.1.0",
-    "warning": "^4.0.3",
     "webfontloader": "^1.6.28",
     "webpack": "^4.39.2",
     "webpack-bundle-analyzer": "^3.4.1"

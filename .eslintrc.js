@@ -3,6 +3,8 @@ const path = require('path');
 module.exports = {
   root: true, // So parent files don't get applied
   globals: {
+    // replaced with babel
+    __DEV__: true,
     preval: false, // Used in the documentation
   },
   env: {
@@ -111,12 +113,6 @@ module.exports = {
         'mocha/no-skipped-tests': 'error',
         'mocha/no-top-level-hooks': 'error',
         'mocha/valid-suite-description': 'error',
-      },
-    },
-    {
-      files: ['packages/**/*.js'],
-      globals: {
-        __DEV__: true,
       },
     },
   ],
