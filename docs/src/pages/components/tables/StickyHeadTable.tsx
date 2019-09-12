@@ -17,26 +17,26 @@ interface Column {
 }
 
 const columns: Column[] = [
-  { id: 'name', label: 'Name', minWidth: 200 },
+  { id: 'name', label: 'Name', minWidth: 170 },
   { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
   {
     id: 'population',
     label: 'Population',
-    minWidth: 120,
+    minWidth: 170,
     align: 'right',
     format: (value: number) => value.toLocaleString(),
   },
   {
     id: 'size',
     label: 'Size\u00a0(km\u00b2)',
-    minWidth: 120,
+    minWidth: 170,
     align: 'right',
     format: (value: number) => value.toLocaleString(),
   },
   {
     id: 'density',
     label: 'Density',
-    minWidth: 120,
+    minWidth: 170,
     align: 'right',
     format: (value: number) => value.toFixed(2),
   },
@@ -78,7 +78,7 @@ const useStyles = makeStyles({
     width: '100%',
   },
   tableWrapper: {
-    maxHeight: 407,
+    maxHeight: 440,
     overflow: 'auto',
   },
 });

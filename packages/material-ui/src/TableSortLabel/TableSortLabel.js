@@ -15,13 +15,12 @@ export const styles = theme => ({
     flexDirection: 'inherit',
     alignItems: 'center',
     '&:focus': {
-      color: theme.palette.text.primary,
+      color: theme.palette.text.secondary,
     },
     '&:hover': {
-      color: theme.palette.text.primary,
+      color: theme.palette.text.secondary,
       '& $icon': {
         opacity: 1,
-        color: theme.palette.text.secondary,
       },
     },
     '&$active': {
@@ -29,7 +28,7 @@ export const styles = theme => ({
       // && instead of & is a workaround for https://github.com/cssinjs/jss/issues/1045
       '&& $icon': {
         opacity: 1,
-        color: theme.palette.text.primary,
+        color: theme.palette.text.secondary,
       },
     },
   },

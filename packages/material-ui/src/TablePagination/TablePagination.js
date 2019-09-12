@@ -23,8 +23,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the Toolbar component. */
   toolbar: {
-    height: 56,
-    minHeight: 56,
+    minHeight: 52,
     paddingRight: 2,
   },
   /* Styles applied to the spacer element. */
