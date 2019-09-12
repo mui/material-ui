@@ -53,15 +53,13 @@ function TrapFocus(props) {
     if (!disableAutoFocus && rootRef.current && !rootRef.current.contains(doc.activeElement)) {
       if (!rootRef.current.hasAttribute('tabIndex')) {
         if (__DEV__) {
-          if (!false) {
-            console.error(
-              [
-                'Material-UI: the modal content node does not accept focus.',
-                'For the benefit of assistive technologies, ' +
-                  'the tabIndex of the node is being set to "-1".',
-              ].join('\n'),
-            );
-          }
+          console.error(
+            [
+              'Material-UI: the modal content node does not accept focus.',
+              'For the benefit of assistive technologies, ' +
+                'the tabIndex of the node is being set to "-1".',
+            ].join('\n'),
+          );
         }
         rootRef.current.setAttribute('tabIndex', -1);
       }

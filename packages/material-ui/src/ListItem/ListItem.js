@@ -118,11 +118,9 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
       if (listItemRef.current) {
         listItemRef.current.focus();
       } else if (__DEV__) {
-        if (!false) {
-          console.error(
-            'Material-UI: unable to set focus to a ListItem whose component has not been rendered.',
-          );
-        }
+        console.error(
+          'Material-UI: unable to set focus to a ListItem whose component has not been rendered.',
+        );
       }
     }
   }, [autoFocus]);

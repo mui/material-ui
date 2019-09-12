@@ -66,14 +66,12 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
     // items would be shown anyway, we just show all items without the EllipsisItem
     if (itemsBeforeCollapse + itemsAfterCollapse >= allItems.length) {
       if (__DEV__) {
-        if (!false) {
-          console.error(
-            [
-              'Material-UI: you have provided an invalid combination of props to the Breadcrumbs.',
-              `itemsAfterCollapse={${itemsAfterCollapse}} +itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
-            ].join('\n'),
-          );
-        }
+        console.error(
+          [
+            'Material-UI: you have provided an invalid combination of props to the Breadcrumbs.',
+            `itemsAfterCollapse={${itemsAfterCollapse}} +itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
+          ].join('\n'),
+        );
       }
       return allItems;
     }

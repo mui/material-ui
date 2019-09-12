@@ -128,15 +128,13 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     registerEffect = () => {
       if (registeredInput.current) {
         if (__DEV__) {
-          if (!false) {
-            console.error(
-              [
-                'Material-UI: there are multiple InputBase components inside a FromControl.',
-                'This is not supported. It might cause infinite rendering loops.',
-                'Only use one InputBase.',
-              ].join('\n'),
-            );
-          }
+          console.error(
+            [
+              'Material-UI: there are multiple InputBase components inside a FromControl.',
+              'This is not supported. It might cause infinite rendering loops.',
+              'Only use one InputBase.',
+            ].join('\n'),
+          );
         }
       }
 

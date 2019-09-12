@@ -104,14 +104,12 @@ function getTransformer(theme) {
   }
 
   if (__DEV__) {
-    if (!false) {
-      console.error(
-        [
-          `@material-ui/system: the \`theme.spacing\` value (${themeSpacing}) is invalid.`,
-          'It should be a number, an array or a function.',
-        ].join('\n'),
-      );
-    }
+    console.error(
+      [
+        `@material-ui/system: the \`theme.spacing\` value (${themeSpacing}) is invalid.`,
+        'It should be a number, an array or a function.',
+      ].join('\n'),
+    );
   }
 
   return () => undefined;

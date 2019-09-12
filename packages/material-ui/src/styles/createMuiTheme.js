@@ -71,29 +71,27 @@ function createMuiTheme(options = {}) {
           }
         } else if (pseudoClasses.indexOf(key) !== -1 && Object.keys(child).length > 0) {
           if (__DEV__) {
-            if (!false) {
-              console.error(
-                [
-                  `Material-UI: the \`${parentKey}\` component increases ` +
-                    `the CSS specificity of the \`${key}\` internal state.`,
-                  'You can not override it like this: ',
-                  JSON.stringify(node, null, 2),
-                  '',
-                  'Instead, you need to use the $ruleName syntax:',
-                  JSON.stringify(
-                    {
-                      root: {
-                        [`&$${key}`]: child,
-                      },
+            console.error(
+              [
+                `Material-UI: the \`${parentKey}\` component increases ` +
+                  `the CSS specificity of the \`${key}\` internal state.`,
+                'You can not override it like this: ',
+                JSON.stringify(node, null, 2),
+                '',
+                'Instead, you need to use the $ruleName syntax:',
+                JSON.stringify(
+                  {
+                    root: {
+                      [`&$${key}`]: child,
                     },
-                    null,
-                    2,
-                  ),
-                  '',
-                  'https://material-ui.com/r/pseudo-classes-guide',
-                ].join('\n'),
-              );
-            }
+                  },
+                  null,
+                  2,
+                ),
+                '',
+                'https://material-ui.com/r/pseudo-classes-guide',
+              ].join('\n'),
+            );
           }
           // Remove the style to prevent global conflicts.
           node[key] = {};
