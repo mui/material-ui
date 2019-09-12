@@ -8,7 +8,7 @@ export function withThemeCreator(options = {}) {
   const { defaultTheme } = options;
 
   const withTheme = Component => {
-    if (process.env.NODE_ENV !== 'production' && Component === undefined) {
+    if (__DEV__ && Component === undefined) {
       throw new Error(
         [
           'You are calling withTheme(Component) with an undefined component.',
@@ -40,13 +40,13 @@ export function withThemeCreator(options = {}) {
       }),
     };
 
-    if (process.env.NODE_ENV !== 'production') {
+    if (__DEV__) {
       WithTheme.displayName = `WithTheme(${getDisplayName(Component)})`;
     }
 
     hoistNonReactStatics(WithTheme, Component);
 
-    if (process.env.NODE_ENV !== 'production') {
+    if (__DEV__) {
       // Exposed for test purposes.
       WithTheme.Naked = Component;
     }

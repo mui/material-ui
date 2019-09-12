@@ -63,7 +63,7 @@ function breakpoints(styleFunction) {
   };
 
   newStyleFunction.propTypes =
-    process.env.NODE_ENV !== 'production'
+    __DEV__
       ? {
           ...styleFunction.propTypes,
           xs: PropTypes.object,

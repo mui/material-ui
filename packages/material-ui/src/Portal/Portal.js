@@ -87,7 +87,7 @@ Portal.propTypes = {
   onRendered: PropTypes.func,
 };
 
-if (process.env.NODE_ENV !== 'production') {
+if (__DEV__) {
   // eslint-disable-next-line
   Portal['propTypes' + ''] = exactProp(Portal.propTypes);
 }

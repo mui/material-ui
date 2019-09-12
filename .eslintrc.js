@@ -113,5 +113,11 @@ module.exports = {
         'mocha/valid-suite-description': 'error',
       },
     },
+    {
+      files: ['packages/**/*.js'],
+      globals: {
+        __DEV__: true,
+      },
+    },
   ],
 };

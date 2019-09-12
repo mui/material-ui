@@ -32,7 +32,7 @@ function compose(...styles) {
   // };
 
   fn.propTypes =
-    process.env.NODE_ENV !== 'production'
+    __DEV__
       ? styles.reduce((acc, style) => Object.assign(acc, style.propTypes), {})
       : {};
 

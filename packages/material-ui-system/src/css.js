@@ -28,7 +28,7 @@ function css(styleFunction) {
   };
 
   newStyleFunction.propTypes =
-    process.env.NODE_ENV !== 'production'
+    __DEV__
       ? {
           ...styleFunction.propTypes,
           css: PropTypes.object,

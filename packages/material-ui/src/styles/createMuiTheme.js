@@ -49,7 +49,7 @@ function createMuiTheme(options = {}) {
     ),
   };
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (__DEV__) {
     const pseudoClasses = [
       'checked',
       'disabled',

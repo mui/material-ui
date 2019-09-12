@@ -120,7 +120,7 @@ StylesProvider.propTypes = {
   sheetsRegistry: PropTypes.object,
 };
 
-if (process.env.NODE_ENV !== 'production') {
+if (__DEV__) {
   StylesProvider.propTypes = exactProp(StylesProvider.propTypes);
 }
 

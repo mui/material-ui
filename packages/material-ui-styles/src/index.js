@@ -2,7 +2,7 @@ import { ponyfillGlobal } from '@material-ui/utils';
 
 /* Warning if there are several instances of @material-ui/styles */
 if (
-  process.env.NODE_ENV !== 'production' &&
+  __DEV__ &&
   process.env.NODE_ENV !== 'test' &&
   typeof window !== 'undefined'
 ) {

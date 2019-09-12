@@ -70,7 +70,7 @@ ThemeProvider.propTypes = {
   theme: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
-if (process.env.NODE_ENV !== 'production') {
+if (__DEV__) {
   ThemeProvider.propTypes = exactProp(ThemeProvider.propTypes);
 }
 

@@ -12,7 +12,7 @@ import useTheme from '../useTheme';
 const withStyles = (stylesOrCreator, options = {}) => Component => {
   const { defaultTheme, withTheme = false, name, ...stylesOptions } = options;
 
-  if (process.env.NODE_ENV !== 'production' && Component === undefined) {
+  if (__DEV__ && Component === undefined) {
     throw new Error(
       [
         'You are calling withStyles(styles)(Component) with an undefined component.',
@@ -23,7 +23,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
 
   let classNamePrefix = name;
 
-  if (process.env.NODE_ENV !== 'production' && !name) {
+  if (__DEV__ && !name) {
     // Provide a better DX outside production.
     const displayName = getDisplayName(Component);
     if (displayName !== undefined) {
@@ -87,13 +87,13 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     }),
   };
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (__DEV__) {
     WithStyles.displayName = `WithStyles(${getDisplayName(Component)})`;
   }
 
   hoistNonReactStatics(WithStyles, Component);
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (__DEV__) {
     // Exposed for test purposes.
     WithStyles.Naked = Component;
     WithStyles.options = options;

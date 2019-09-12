@@ -48,7 +48,7 @@ function style(options) {
   };
 
   fn.propTypes =
-    process.env.NODE_ENV !== 'production'
+    __DEV__
       ? {
           [prop]: responsivePropType,
         }

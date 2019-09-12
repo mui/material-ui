@@ -56,7 +56,7 @@ export default function createSpacing(spacingInput = 8) {
   // Backward compatibility, to remove in v5.
   Object.defineProperty(spacing, 'unit', {
     get: () => {
-      if (process.env.NODE_ENV !== 'production') {
+      if (__DEV__) {
         warning(
           warnOnce && process.env.NODE_ENV !== 'test',
           [

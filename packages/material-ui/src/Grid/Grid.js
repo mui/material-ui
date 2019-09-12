@@ -245,7 +245,7 @@ const Grid = React.forwardRef((props, ref) => {
   return <Component className={className} ref={ref} {...other} />;
 });
 
-if (process.env.NODE_ENV !== 'production') {
+if (__DEV__) {
   // can't use named function expression since the function body references `Grid`
   // which would point to the render function instead of the actual component
   Grid.displayName = 'ForwardRef(Grid)';
@@ -358,7 +358,7 @@ Grid.propTypes = {
 
 const StyledGrid = withStyles(styles, { name: 'MuiGrid' })(Grid);
 
-if (process.env.NODE_ENV !== 'production') {
+if (__DEV__) {
   const requireProp = requirePropFactory('Grid');
   StyledGrid.propTypes = {
     ...StyledGrid.propTypes,

@@ -10,7 +10,7 @@ function mergeClasses(options = {}) {
 
   const nextClasses = { ...baseClasses };
 
-  if (process.env.NODE_ENV !== 'production' && typeof newClasses === 'string') {
+  if (__DEV__ && typeof newClasses === 'string') {
     warning(
       false,
       [

@@ -55,7 +55,7 @@ CssBaseline.propTypes = {
   children: PropTypes.node,
 };
 
-if (process.env.NODE_ENV !== 'production') {
+if (__DEV__) {
   // eslint-disable-next-line
   CssBaseline['propTypes' + ''] = exactProp(CssBaseline.propTypes);
 }

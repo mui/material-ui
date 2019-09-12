@@ -52,7 +52,7 @@ NoSsr.propTypes = {
   fallback: PropTypes.node,
 };
 
-if (process.env.NODE_ENV !== 'production') {
+if (__DEV__) {
   // eslint-disable-next-line
   NoSsr['propTypes' + ''] = exactProp(NoSsr.propTypes);
 }

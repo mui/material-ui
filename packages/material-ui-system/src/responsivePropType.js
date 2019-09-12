@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const responsivePropType =
-  process.env.NODE_ENV !== 'production'
+  __DEV__
     ? PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object, PropTypes.array])
     : {};
 

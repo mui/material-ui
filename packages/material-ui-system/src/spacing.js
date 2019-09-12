@@ -161,7 +161,7 @@ function spacing(props) {
 }
 
 spacing.propTypes =
-  process.env.NODE_ENV !== 'production'
+  __DEV__
     ? spacingKeys.reduce((obj, key) => {
         obj[key] = responsivePropType;
         return obj;

@@ -115,7 +115,7 @@ export default function createPalette(palette) {
         ? dark.text.primary
         : light.text.primary;
 
-    if (process.env.NODE_ENV !== 'production') {
+    if (__DEV__) {
       const contrast = getContrastRatio(background, contrastText);
       warning(
         contrast >= 3,
@@ -136,7 +136,7 @@ export default function createPalette(palette) {
       color.main = color[mainShade];
     }
 
-    if (process.env.NODE_ENV !== 'production' && !color.main) {
+    if (__DEV__ && !color.main) {
       throw new Error(
         [
           'Material-UI: the color provided to augmentColor(color) is invalid.',

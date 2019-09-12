@@ -102,7 +102,7 @@ const withWidth = (options = {}) => Component => {
     width: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
   };
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (__DEV__) {
     WithWidth.displayName = `WithWidth(${getDisplayName(Component)})`;
   }
 
