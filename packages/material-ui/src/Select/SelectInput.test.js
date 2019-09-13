@@ -46,6 +46,16 @@ describe('<SelectInput />', () => {
     );
   });
 
+  it('should have a input[type="hidden"] by default', () => {
+    const { container } = render(
+      <SelectInput classes={{}} IconComponent="div" value="10">
+        <MenuItem value="10">Ten</MenuItem>
+      </SelectInput>,
+    );
+
+    expect(container.querySelector('input')).to.have.property('type', 'hidden');
+  });
+
   describe('prop: value', () => {
     it('should select the option based on the number value', () => {
       const { getAllByRole } = render(
@@ -179,34 +189,6 @@ describe('<SelectInput />', () => {
       );
 
       expect(getByRole('button')).to.have.attribute('data-test', 'SelectDisplay');
-    });
-  });
-
-  describe('prop: type', () => {
-    it('should be hidden by default', () => {
-      const { container } = render(
-        <SelectInput classes={{}} IconComponent="div" value="10">
-          <MenuItem value="10">Ten</MenuItem>
-        </SelectInput>,
-      );
-
-      expect(container.querySelector('input')).to.have.property('type', 'hidden');
-    });
-
-    /**
-     * In its current state it will log a react warning
-     * with no way to fix it. It is reachable by using `<Select inputProps={{ type: 'text' }} />`.
-     * We should not support it in v5.
-     */
-    // eslint-disable-next-line mocha/no-skipped-tests
-    it.skip('should be able to override it', () => {
-      const { container } = render(
-        <SelectInput classes={{}} IconComponent="div" type="text" value="10">
-          <MenuItem value="10">Ten</MenuItem>
-        </SelectInput>,
-      );
-
-      expect(container.querySelector('input')).to.have.property('type', 'text');
     });
   });
 

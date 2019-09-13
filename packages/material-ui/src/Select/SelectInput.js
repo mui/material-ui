@@ -48,7 +48,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     required,
     SelectDisplayProps,
     tabIndex: tabIndexProp,
-    type = 'hidden',
     value,
     variant = 'standard',
     ...other
@@ -295,7 +294,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         value={Array.isArray(value) ? value.join(',') : value}
         name={name}
         ref={inputRef}
-        type={type}
+        type="hidden"
         autoFocus={autoFocus}
         {...other}
       />
@@ -435,11 +434,6 @@ SelectInput.propTypes = {
    * @ignore
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * @ignore
-   * TODO: remove in V5
-   */
-  type: PropTypes.string,
   /**
    * The input value.
    */
