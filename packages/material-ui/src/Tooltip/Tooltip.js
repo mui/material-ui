@@ -120,8 +120,9 @@ function Tooltip(props) {
   const leaveTimer = React.useRef();
   const touchTimer = React.useRef();
 
-  React.useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
       if (
         childNode &&
         childNode.disabled &&
@@ -139,8 +140,8 @@ function Tooltip(props) {
           ].join('\n'),
         );
       }
-    }
-  }, [isControlled, title, childNode]);
+    }, [isControlled, title, childNode]);
+  }
 
   React.useEffect(() => {
     // Fallback to this default id when possible.

@@ -33,8 +33,9 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
     [],
   );
 
-  React.useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
       if (isControlled !== (valueProp != null)) {
         console.error(
           [
@@ -48,8 +49,8 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
           ].join('\n'),
         );
       }
-    }
-  }, [valueProp, isControlled]);
+    }, [valueProp, isControlled]);
+  }
 
   const value = isControlled ? valueProp : valueState;
 
