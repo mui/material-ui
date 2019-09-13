@@ -3,7 +3,7 @@ import Slider from '@material-ui/core/Slider';
 
 export default React.forwardRef(function DeprecatedSlider(props, ref) {
   if (__DEV__) {
-    console.warn(
+    console.error(
       [
         'Material-UI: the Slider component was moved from the lab to the core.',
         '',
