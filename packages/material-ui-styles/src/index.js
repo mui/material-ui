@@ -33,6 +33,7 @@ export { default as mergeClasses } from './mergeClasses';
 export { default as ServerStyleSheets } from './ServerStyleSheets';
 export { default as styled } from './styled';
 export { default as StylesProvider } from './StylesProvider';
+export * from './StylesProvider';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as useTheme } from './useTheme';
 export { default as withStyles } from './withStyles';

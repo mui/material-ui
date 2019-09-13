@@ -22,3 +22,5 @@ export {
 } from './withStyles';
 export { default as withTheme, WithTheme } from './withTheme';
 export { default as styled, ComponentCreator, StyledProps } from './styled';
+export { default as StylesProvider } from '@material-ui/styles/StylesProvider';
+export * from '@material-ui/styles/StylesProvider';
