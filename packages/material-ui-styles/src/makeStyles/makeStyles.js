@@ -109,8 +109,6 @@ function attach({ state, theme, stylesOptions, stylesCreator, name }, props) {
       ...options,
     });
 
-    // never true
-    // warning(props, 'Material-UI: props missing.');
     dynamicSheet.update(props).attach();
 
     state.dynamicSheet = dynamicSheet;
