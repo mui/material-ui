@@ -69,7 +69,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
         console.error(
           [
             'Material-UI: you have provided an invalid combination of props to the Breadcrumbs.',
-            `itemsAfterCollapse={${itemsAfterCollapse}} +itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
+            `itemsAfterCollapse={${itemsAfterCollapse}} + itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
           ].join('\n'),
         );
       }

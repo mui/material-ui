@@ -63,7 +63,7 @@ export default function createSpacing(spacingInput = 8) {
     get: () => {
       if (__DEV__) {
         if (__DEV__) {
-          if (!(warnOnce && process.env.NODE_ENV !== 'test')) {
+          if (!warnOnce || process.env.NODE_ENV === 'test')) {
             console.error(
               [
                 'Material-UI: theme.spacing.unit usage has been deprecated.',
