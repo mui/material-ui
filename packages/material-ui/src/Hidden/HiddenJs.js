@@ -131,7 +131,7 @@ HiddenJs.propTypes = {
   xsUp: PropTypes.bool,
 };
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   HiddenJs.propTypes = exactProp(HiddenJs.propTypes);
 }
 

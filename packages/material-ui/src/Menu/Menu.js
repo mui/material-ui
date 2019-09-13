@@ -88,7 +88,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     if (!React.isValidElement(child)) {
       return null;
     }
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       if (child.type === React.Fragment) {
         console.error(
           [

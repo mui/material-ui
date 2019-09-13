@@ -102,7 +102,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   const clientSize = vertical ? 'clientHeight' : 'clientWidth';
   const size = vertical ? 'height' : 'width';
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (centered && scrollable) {
       console.error(
         'Material-UI: you can not use the `centered={true}` and `variant="scrollable"` properties ' +
@@ -150,7 +150,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
 
       if (children.length > 0) {
         const tab = children[valueToIndex.get(value)];
-        if (__DEV__) {
+        if (process.env.NODE_ENV !== 'production') {
           if (!tab) {
             console.error(
               [
@@ -383,7 +383,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       return null;
     }
 
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       if (child.type === React.Fragment) {
         console.error(
           [

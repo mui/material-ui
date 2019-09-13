@@ -34,7 +34,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
   );
 
   React.useEffect(() => {
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       if (isControlled !== (valueProp != null)) {
         console.error(
           [

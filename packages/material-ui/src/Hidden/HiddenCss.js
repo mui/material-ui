@@ -47,7 +47,7 @@ function HiddenCss(props) {
   } = props;
   const theme = useTheme();
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (
       Object.keys(other).length !== 0 &&
       !(Object.keys(other).length === 1 && other.hasOwnProperty('ref'))

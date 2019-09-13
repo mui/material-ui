@@ -10,7 +10,7 @@ export default function createSvgIcon(path, displayName) {
     )),
   );
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     Component.displayName = `${displayName}Icon`;
   }
 

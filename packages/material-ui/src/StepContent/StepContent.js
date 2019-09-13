@@ -40,7 +40,7 @@ const StepContent = React.forwardRef(function StepContent(props, ref) {
     ...other
   } = props;
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (orientation !== 'vertical') {
       console.error(
         'Material-UI: <StepContent /> is only designed for use with the vertical stepper.',

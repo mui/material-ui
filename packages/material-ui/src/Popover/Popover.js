@@ -120,7 +120,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
   const getAnchorOffset = React.useCallback(
     contentAnchorOffset => {
       if (anchorReference === 'anchorPosition') {
-        if (__DEV__) {
+        if (process.env.NODE_ENV !== 'production') {
           if (!anchorPosition) {
             console.error(
               'Material-UI: you need to provide a `anchorPosition` prop when using ' +
@@ -165,7 +165,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
         }
 
         // != the default value
-        if (__DEV__) {
+        if (process.env.NODE_ENV !== 'production') {
           if (anchorOrigin.vertical !== 'top') {
             console.error(
               [
@@ -244,7 +244,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
         elemTransformOrigin.vertical += diff;
       }
 
-      if (__DEV__) {
+      if (process.env.NODE_ENV !== 'production') {
         if (elemRect.height > heightThreshold && elemRect.height && heightThreshold) {
           console.error(
             [

@@ -12,7 +12,7 @@ function useMediaQuery(queryInput, options = {}) {
     props: {},
   });
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (typeof queryInput === 'function' && theme === null) {
       console.error(
         [

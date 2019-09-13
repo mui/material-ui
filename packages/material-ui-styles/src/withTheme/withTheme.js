@@ -8,7 +8,7 @@ export function withThemeCreator(options = {}) {
   const { defaultTheme } = options;
 
   const withTheme = Component => {
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       if (Component === undefined) {
         throw new Error(
           [
@@ -42,13 +42,13 @@ export function withThemeCreator(options = {}) {
       }),
     };
 
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       WithTheme.displayName = `WithTheme(${getDisplayName(Component)})`;
     }
 
     hoistNonReactStatics(WithTheme, Component);
 
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       // Exposed for test purposes.
       WithTheme.Naked = Component;
     }

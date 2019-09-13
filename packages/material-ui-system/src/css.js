@@ -27,12 +27,13 @@ function css(styleFunction) {
     return output;
   };
 
-  newStyleFunction.propTypes = __DEV__
-    ? {
-        ...styleFunction.propTypes,
-        css: PropTypes.object,
-      }
-    : {};
+  newStyleFunction.propTypes =
+    process.env.NODE_ENV !== 'production'
+      ? {
+          ...styleFunction.propTypes,
+          css: PropTypes.object,
+        }
+      : {};
 
   newStyleFunction.filterProps = ['css', ...styleFunction.filterProps];
 

@@ -36,7 +36,7 @@ function StylesProvider(props) {
   const outerOptions = React.useContext(StylesContext);
   const context = { ...outerOptions, disableGeneration, ...localOptions };
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (typeof window === 'undefined' && !context.sheetsManager) {
       console.error(
         'Material-UI: you need to use the ServerStyleSheets API when rendering on the server.',
@@ -44,7 +44,7 @@ function StylesProvider(props) {
     }
   }
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (context.jss.options.insertionPoint && injectFirst) {
       console.error(
         'Material-UI: you cannot use a custom insertionPoint and <StylesContext injectFirst> at the same time.',
@@ -52,7 +52,7 @@ function StylesProvider(props) {
     }
   }
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (injectFirst && localOptions.jss) {
       console.error('Material-UI: you cannot use the jss and injectFirst props at the same time.');
     }
@@ -126,7 +126,7 @@ StylesProvider.propTypes = {
   sheetsRegistry: PropTypes.object,
 };
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   StylesProvider.propTypes = exactProp(StylesProvider.propTypes);
 }
 

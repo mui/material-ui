@@ -36,17 +36,7 @@ module.exports = {
         transformFunctions: ['require', 'require.context'],
         resolvePath,
       },
-    ], // Replaces `__DEV__` with `process.env.NODE_ENV !== 'production'`
-    {
-      visitor: {
-        Identifier(path) {
-          // some transpiled node modules bind this manually (e.g. notistack)
-          if (path.node.name === '__DEV__' && path.scope.hasBinding('__DEV__') === false) {
-            path.replaceWithSourceString("process.env.NODE_ENV !== 'production'");
-          }
-        },
-      },
-    },
+    ],
   ],
   ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
   env: {

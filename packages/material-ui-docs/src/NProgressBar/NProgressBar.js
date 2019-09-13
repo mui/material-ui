@@ -97,7 +97,7 @@ NProgressBar.propTypes = {
   children: PropTypes.node,
 };
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   NProgressBar.propTypes = exactProp(NProgressBar.propTypes);
 }
 

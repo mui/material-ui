@@ -13,7 +13,7 @@ export default function createSpacing(spacingInput = 8) {
   if (typeof spacingInput === 'function') {
     transform = spacingInput;
   } else {
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       if (typeof spacingInput !== 'number') {
         console.error(
           [
@@ -24,7 +24,7 @@ export default function createSpacing(spacingInput = 8) {
       }
     }
     transform = factor => {
-      if (__DEV__) {
+      if (process.env.NODE_ENV !== 'production') {
         if (typeof factor !== 'number') {
           console.error(`Expected spacing argument to be a number, got ${factor}`);
         }
@@ -34,7 +34,7 @@ export default function createSpacing(spacingInput = 8) {
   }
 
   const spacing = (...args) => {
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       if (!(args.length <= 4)) {
         console.error(
           `Material-UI: Too many arguments provided, expected between 0 and 4, got ${args.length}`,
@@ -61,7 +61,7 @@ export default function createSpacing(spacingInput = 8) {
   // Backward compatibility, to remove in v5.
   Object.defineProperty(spacing, 'unit', {
     get: () => {
-      if (__DEV__) {
+      if (process.env.NODE_ENV !== 'production') {
         if (!warnOnce || process.env.NODE_ENV === 'test') {
           console.error(
             [

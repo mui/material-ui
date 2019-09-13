@@ -66,7 +66,7 @@ const Step = React.forwardRef(function Step(props, ref) {
           return null;
         }
 
-        if (__DEV__) {
+        if (process.env.NODE_ENV !== 'production') {
           if (child.type === React.Fragment) {
             console.error(
               [

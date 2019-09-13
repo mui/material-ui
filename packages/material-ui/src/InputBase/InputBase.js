@@ -193,7 +193,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 
   const inputRef = React.useRef();
   const handleInputRefWarning = React.useCallback(instance => {
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       if (instance && !(instance instanceof HTMLInputElement) && !instance.focus) {
         console.error(
           [
@@ -212,7 +212,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const [focused, setFocused] = React.useState(false);
   const muiFormControl = useFormControl();
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (muiFormControl) {

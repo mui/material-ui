@@ -9,7 +9,7 @@ function arrayMerge(destination, source) {
 function getStylesCreator(stylesOrCreator) {
   const themingEnabled = typeof stylesOrCreator === 'function';
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (typeof stylesOrCreator !== 'object' && !themingEnabled) {
       console.error(
         [
@@ -26,7 +26,7 @@ function getStylesCreator(stylesOrCreator) {
       try {
         styles = themingEnabled ? stylesOrCreator(theme) : stylesOrCreator;
       } catch (err) {
-        if (__DEV__) {
+        if (process.env.NODE_ENV !== 'production') {
           if (themingEnabled === true && theme === noopTheme) {
             // TODO: prepend error message/name instead
             console.error(
@@ -49,7 +49,7 @@ function getStylesCreator(stylesOrCreator) {
       const stylesWithOverrides = { ...styles };
 
       Object.keys(overrides).forEach(key => {
-        if (__DEV__) {
+        if (process.env.NODE_ENV !== 'production') {
           if (!stylesWithOverrides[key]) {
             console.warn(
               [

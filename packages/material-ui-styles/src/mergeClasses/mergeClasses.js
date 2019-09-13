@@ -9,7 +9,7 @@ function mergeClasses(options = {}) {
 
   const nextClasses = { ...baseClasses };
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (typeof newClasses === 'string') {
       console.error(
         [
@@ -24,7 +24,7 @@ function mergeClasses(options = {}) {
   }
 
   Object.keys(newClasses).forEach(key => {
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       if (!baseClasses[key] && newClasses[key]) {
         console.error(
           [

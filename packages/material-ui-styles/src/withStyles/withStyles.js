@@ -12,7 +12,7 @@ import useTheme from '../useTheme';
 const withStyles = (stylesOrCreator, options = {}) => Component => {
   const { defaultTheme, withTheme = false, name, ...stylesOptions } = options;
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (Component === undefined) {
       throw new Error(
         [
@@ -25,7 +25,7 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
 
   let classNamePrefix = name;
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (!name) {
       // Provide a better DX outside production.
       const displayName = getDisplayName(Component);
@@ -91,13 +91,13 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     }),
   };
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     WithStyles.displayName = `WithStyles(${getDisplayName(Component)})`;
   }
 
   hoistNonReactStatics(WithStyles, Component);
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     // Exposed for test purposes.
     WithStyles.Naked = Component;
     WithStyles.options = options;

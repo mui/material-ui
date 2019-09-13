@@ -33,7 +33,7 @@ export default function createGenerateClassName(options = {}) {
 
   return (rule, styleSheet) => {
     ruleCounter += 1;
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       if (ruleCounter >= 1e10) {
         console.warn(
           [

@@ -47,16 +47,6 @@ module.exports = {
     '@babel/plugin-transform-runtime',
     // for IE 11 support
     '@babel/plugin-transform-object-assign',
-    // Replaces `__DEV__` with `process.env.NODE_ENV !== 'production'`
-    {
-      visitor: {
-        Identifier(path) {
-          if (path.node.name === '__DEV__') {
-            path.replaceWithSourceString("process.env.NODE_ENV !== 'production'");
-          }
-        },
-      },
-    },
   ],
   ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
   env: {

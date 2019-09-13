@@ -23,7 +23,7 @@ function styled(Component) {
   const componentCreator = (style, options = {}) => {
     const { name, ...stylesOptions } = options;
 
-    if (__DEV__ && Component === undefined) {
+    if (process.env.NODE_ENV !== 'production' && Component === undefined) {
       throw new Error(
         [
           'You are calling styled(Component)(style) with an undefined component.',
@@ -34,7 +34,7 @@ function styled(Component) {
 
     let classNamePrefix = name;
 
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       if (!name) {
         // Provide a better DX outside production.
         const displayName = getDisplayName(Component);
@@ -136,7 +136,7 @@ function styled(Component) {
       ...propTypes,
     };
 
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       StyledComponent.displayName = `Styled(${classNamePrefix})`;
     }
 

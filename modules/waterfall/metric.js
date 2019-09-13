@@ -67,7 +67,7 @@ class Metric {
    * Call to begin a measurement.
    */
   static start(name) {
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       if (times.get(name)) {
         console.error('Recording already started');
       }

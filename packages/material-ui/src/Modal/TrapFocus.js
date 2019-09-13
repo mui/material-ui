@@ -52,7 +52,7 @@ function TrapFocus(props) {
     // We might render an empty child.
     if (!disableAutoFocus && rootRef.current && !rootRef.current.contains(doc.activeElement)) {
       if (!rootRef.current.hasAttribute('tabIndex')) {
-        if (__DEV__) {
+        if (process.env.NODE_ENV !== 'production') {
           console.error(
             [
               'Material-UI: the modal content node does not accept focus.',

@@ -53,7 +53,7 @@ export default {
       ...other
     } = options;
 
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       if (!isString(props) && !Array.isArray(props)) {
         console.error('Material-UI: argument "props" must be a string or Array.');
       }

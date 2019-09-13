@@ -3,8 +3,6 @@ const path = require('path');
 module.exports = {
   root: true, // So parent files don't get applied
   globals: {
-    // replaced with babel
-    __DEV__: true,
     preval: false, // Used in the documentation
   },
   env: {

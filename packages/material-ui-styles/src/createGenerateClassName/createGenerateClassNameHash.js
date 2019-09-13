@@ -2,7 +2,7 @@ import hash from '@emotion/hash';
 
 function safePrefix(classNamePrefix) {
   const prefix = String(classNamePrefix);
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (prefix.length >= 256) {
       console.error(`Material-UI: the class name prefix is too long: ${prefix}.`);
     }
@@ -46,7 +46,7 @@ export default function createGenerateClassNameHash(options = {}) {
 
     if (!suffix) {
       ruleCounter += 1;
-      if (__DEV__) {
+      if (process.env.NODE_ENV !== 'production') {
         if (ruleCounter >= 1e10) {
           console.warn(
             [

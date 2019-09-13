@@ -31,7 +31,7 @@ export default function createTypography(palette, typography) {
     ...other
   } = typeof typography === 'function' ? typography(palette) : typography;
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (typeof fontSize !== 'number') {
       console.error(`Material-UI: 'fontSize' is required to be a number.`);
     }

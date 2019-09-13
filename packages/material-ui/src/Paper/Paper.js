@@ -36,7 +36,7 @@ const Paper = React.forwardRef(function Paper(props, ref) {
     ...other
   } = props;
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (elevation < 0 || elevation >= 25) {
       console.error(`Material-UI: this elevation \`${elevation}\` is not implemented.`);
     }

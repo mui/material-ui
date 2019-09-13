@@ -132,7 +132,7 @@ ClickAwayListener.propTypes = {
   touchEvent: PropTypes.oneOf(['onTouchStart', 'onTouchEnd', false]),
 };
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
   ClickAwayListener['propTypes' + ''] = exactProp(ClickAwayListener.propTypes);
 }

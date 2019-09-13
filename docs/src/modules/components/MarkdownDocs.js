@@ -205,7 +205,7 @@ function MarkdownDocs(props) {
                     throw new Error(errorMessage);
                   }
 
-                  if (__DEV__) {
+                  if (process.env.NODE_ENV !== 'production') {
                     console.error(errorMessage);
                   }
 

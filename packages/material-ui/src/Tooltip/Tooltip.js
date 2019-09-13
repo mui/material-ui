@@ -121,7 +121,7 @@ function Tooltip(props) {
   const touchTimer = React.useRef();
 
   React.useEffect(() => {
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       if (
         childNode &&
         childNode.disabled &&
@@ -358,7 +358,7 @@ function Tooltip(props) {
       }
     : {};
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (children.props.title) {
       console.error(
         [

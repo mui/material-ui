@@ -104,7 +104,7 @@ export default function createPalette(palette) {
   // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
   // and material-components-web https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L54
   function getContrastText(background) {
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       if (!background) {
         console.error(
           `Material-UI: missing background argument in getContrastText(${background}).`,
@@ -117,9 +117,9 @@ export default function createPalette(palette) {
         ? dark.text.primary
         : light.text.primary;
 
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       const contrast = getContrastRatio(background, contrastText);
-      if (__DEV__) {
+      if (process.env.NODE_ENV !== 'production') {
         if (contrast < 3) {
           console.error(
             [
@@ -141,7 +141,7 @@ export default function createPalette(palette) {
       color.main = color[mainShade];
     }
 
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       if (!color.main) {
         throw new Error(
           [
@@ -163,7 +163,7 @@ export default function createPalette(palette) {
 
   const types = { dark, light };
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (!types[type]) {
       console.error(`Material-UI: the palette type \`${type}\` is not supported.`);
     }

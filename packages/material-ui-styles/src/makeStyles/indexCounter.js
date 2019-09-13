@@ -13,7 +13,7 @@ let indexCounter = -1e9;
 export function increment() {
   indexCounter += 1;
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (indexCounter >= 0) {
       console.warn(
         [

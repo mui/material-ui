@@ -76,7 +76,7 @@ RootRef.propTypes = {
   rootRef: refType.isRequired,
 };
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   RootRef.propTypes = exactProp(RootRef.propTypes);
 }
 

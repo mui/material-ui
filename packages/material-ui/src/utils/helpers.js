@@ -3,7 +3,7 @@
 // A strict capitalization should uppercase the first letter of each word a the sentence.
 // We only handle the first word.
 export function capitalize(string) {
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (typeof string !== 'string') {
       throw new Error('Material-UI: capitalize(string) expects a string argument.');
     }
@@ -28,7 +28,7 @@ export function createChainedFunction(...funcs) {
         return acc;
       }
 
-      if (__DEV__) {
+      if (process.env.NODE_ENV !== 'production') {
         if (typeof func !== 'function') {
           console.error(
             'Material-UI: invalid Argument Type, must only provide functions, undefined, or null.',

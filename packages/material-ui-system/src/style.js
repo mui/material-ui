@@ -47,11 +47,12 @@ function style(options) {
     return handleBreakpoints(props, propValue, styleFromPropValue);
   };
 
-  fn.propTypes = __DEV__
-    ? {
-        [prop]: responsivePropType,
-      }
-    : {};
+  fn.propTypes =
+    process.env.NODE_ENV !== 'production'
+      ? {
+          [prop]: responsivePropType,
+        }
+      : {};
 
   fn.filterProps = [prop];
 

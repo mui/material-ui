@@ -83,7 +83,7 @@ function getTransformer(theme) {
 
   if (Array.isArray(themeSpacing)) {
     return abs => {
-      if (__DEV__) {
+      if (process.env.NODE_ENV !== 'production') {
         if (abs > themeSpacing.length - 1) {
           console.error(
             [
@@ -103,7 +103,7 @@ function getTransformer(theme) {
     return themeSpacing;
   }
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     console.error(
       [
         `@material-ui/system: the \`theme.spacing\` value (${themeSpacing}) is invalid.`,
@@ -163,12 +163,13 @@ function spacing(props) {
     .reduce(merge, {});
 }
 
-spacing.propTypes = __DEV__
-  ? spacingKeys.reduce((obj, key) => {
-      obj[key] = responsivePropType;
-      return obj;
-    }, {})
-  : {};
+spacing.propTypes =
+  process.env.NODE_ENV !== 'production'
+    ? spacingKeys.reduce((obj, key) => {
+        obj[key] = responsivePropType;
+        return obj;
+      }, {})
+    : {};
 
 spacing.filterProps = spacingKeys;
 

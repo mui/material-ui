@@ -48,7 +48,7 @@ function createMuiTheme(options = {}) {
     ),
   };
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     const pseudoClasses = [
       'checked',
       'disabled',
@@ -70,7 +70,7 @@ function createMuiTheme(options = {}) {
             traverse(child, key, depth + 1);
           }
         } else if (pseudoClasses.indexOf(key) !== -1 && Object.keys(child).length > 0) {
-          if (__DEV__) {
+          if (process.env.NODE_ENV !== 'production') {
             console.error(
               [
                 `Material-UI: the \`${parentKey}\` component increases ` +
@@ -102,7 +102,7 @@ function createMuiTheme(options = {}) {
     traverse(muiTheme.overrides);
   }
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (muiTheme.shadows.length !== 25) {
       console.error(
         'Material-UI: the shadows array provided to createMuiTheme should support 25 elevations.',

@@ -33,7 +33,7 @@ const CardMedia = React.forwardRef(function CardMedia(props, ref) {
     ...other
   } = props;
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (!children && !image && !src) {
       console.error('Material-UI: either `children`, `image` or `src` prop must be specified.');
     }

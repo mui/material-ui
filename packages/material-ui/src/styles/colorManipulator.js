@@ -9,7 +9,7 @@
  * @returns {number} A number in the range [min, max]
  */
 function clamp(value, min = 0, max = 1) {
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (value < min || value > max) {
       console.error(`Material-UI: the value provided ${value} is out of range [${min}, ${max}].`);
     }

@@ -31,9 +31,10 @@ function compose(...styles) {
   //   }, {});
   // };
 
-  fn.propTypes = __DEV__
-    ? styles.reduce((acc, style) => Object.assign(acc, style.propTypes), {})
-    : {};
+  fn.propTypes =
+    process.env.NODE_ENV !== 'production'
+      ? styles.reduce((acc, style) => Object.assign(acc, style.propTypes), {})
+      : {};
 
   fn.filterProps = styles.reduce((acc, style) => acc.concat(style.filterProps), []);
 

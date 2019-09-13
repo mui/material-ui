@@ -19,7 +19,7 @@ const defaultBreakpoints = {
 };
 
 export function handleBreakpoints(props, propValue, styleFromPropValue) {
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (!props.theme) {
       console.error('@material-ui/system: you are calling a style function without a theme value.');
     }
@@ -62,16 +62,17 @@ function breakpoints(styleFunction) {
     return merge(base, extended);
   };
 
-  newStyleFunction.propTypes = __DEV__
-    ? {
-        ...styleFunction.propTypes,
-        xs: PropTypes.object,
-        sm: PropTypes.object,
-        md: PropTypes.object,
-        lg: PropTypes.object,
-        xl: PropTypes.object,
-      }
-    : {};
+  newStyleFunction.propTypes =
+    process.env.NODE_ENV !== 'production'
+      ? {
+          ...styleFunction.propTypes,
+          xs: PropTypes.object,
+          sm: PropTypes.object,
+          md: PropTypes.object,
+          lg: PropTypes.object,
+          xl: PropTypes.object,
+        }
+      : {};
 
   newStyleFunction.filterProps = ['xs', 'sm', 'md', 'lg', 'xl', ...styleFunction.filterProps];
 

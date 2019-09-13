@@ -10,7 +10,7 @@ function mergeOuterLocalTheme(outerTheme, localTheme) {
   if (typeof localTheme === 'function') {
     const mergedTheme = localTheme(outerTheme);
 
-    if (__DEV__) {
+    if (process.env.NODE_ENV !== 'production') {
       if (!mergedTheme) {
         console.error(
           [
@@ -36,7 +36,7 @@ function ThemeProvider(props) {
   const { children, theme: localTheme } = props;
   const outerTheme = useTheme();
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== 'production') {
     if (outerTheme === null && typeof localTheme === 'function') {
       console.error(
         [
@@ -75,7 +75,7 @@ ThemeProvider.propTypes = {
   theme: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
 };
 
-if (__DEV__) {
+if (process.env.NODE_ENV !== 'production') {
   ThemeProvider.propTypes = exactProp(ThemeProvider.propTypes);
 }
 
