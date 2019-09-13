@@ -100,4 +100,11 @@ describe('DatePicker', () => {
 
     cy.get(ids.maskedKeyboard).should('have.value', '03/19/2019');
   });
+
+  it('Should not open disabled and readonly datepickers', () => {
+    ['#disabled', '#readonly'].forEach(id => {
+      cy.get(id).click({ force: true });
+      cy.get('div[role=dialog]').should('not.be.visible');
+    });
+  });
 });

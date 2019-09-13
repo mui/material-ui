@@ -29,7 +29,7 @@ function useDateValues(props: BasePickerProps, options: StateHookOptions) {
 }
 
 export function usePickerState(props: BasePickerProps, options: StateHookOptions) {
-  const { autoOk, disabled, onAccept, onChange, onError, value, variant } = props;
+  const { autoOk, disabled, readOnly, onAccept, onChange, onError, value, variant } = props;
 
   const utils = useUtils();
   const { isOpen, setIsOpen } = useOpenState(props);
@@ -102,9 +102,9 @@ export function usePickerState(props: BasePickerProps, options: StateHookOptions
     () => ({
       inputValue,
       validationError,
-      openPicker: () => !disabled && setIsOpen(true),
+      openPicker: () => !readOnly && !disabled && setIsOpen(true),
     }),
-    [disabled, inputValue, setIsOpen, validationError]
+    [disabled, inputValue, readOnly, setIsOpen, validationError]
   );
 
   const pickerState = { pickerProps, inputProps, wrapperProps };

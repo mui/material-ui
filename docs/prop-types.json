@@ -2,7 +2,7 @@
   "ModalWrapper": {
     "okLabel": {
       "defaultValue": {
-        "value": "\"OK\""
+        "value": "OK"
       },
       "description": "\"OK\" label message",
       "name": "okLabel",
@@ -17,7 +17,7 @@
     },
     "cancelLabel": {
       "defaultValue": {
-        "value": "\"CANCEL\""
+        "value": "Cancel"
       },
       "description": "\"CANCEL\" label message",
       "name": "cancelLabel",
@@ -32,7 +32,7 @@
     },
     "clearLabel": {
       "defaultValue": {
-        "value": "\"CLEAR\""
+        "value": "Clear"
       },
       "description": "\"CLEAR\" label message",
       "name": "clearLabel",
@@ -47,7 +47,7 @@
     },
     "todayLabel": {
       "defaultValue": {
-        "value": "\"TODAY\""
+        "value": "Today"
       },
       "description": "\"TODAY\" label message",
       "name": "todayLabel",
@@ -206,8 +206,21 @@
     },
     "disabled": {
       "defaultValue": null,
-      "description": "Disable datepicker and text field",
+      "description": "Disable picker and text field",
       "name": "disabled",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "readOnly": {
+      "defaultValue": null,
+      "description": "Make picker read only",
+      "name": "readOnly",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -838,7 +851,7 @@
     },
     "disabled": {
       "defaultValue": null,
-      "description": "Disable datepicker and text field",
+      "description": "Disable picker and text field",
       "name": "disabled",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -855,6 +868,19 @@
       },
       "description": "Auto accept date on selection",
       "name": "autoOk",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "readOnly": {
+      "defaultValue": null,
+      "description": "Make picker read only",
+      "name": "readOnly",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -1474,8 +1500,21 @@
     },
     "disabled": {
       "defaultValue": null,
-      "description": "Disable datepicker and text field",
+      "description": "Disable picker and text field",
       "name": "disabled",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "readOnly": {
+      "defaultValue": null,
+      "description": "Make picker read only",
+      "name": "readOnly",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -1914,7 +1953,7 @@
     },
     "disabled": {
       "defaultValue": null,
-      "description": "Disable datepicker and text field",
+      "description": "Disable picker and text field",
       "name": "disabled",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -1936,6 +1975,19 @@
       "required": false,
       "type": {
         "name": "() => void"
+      }
+    },
+    "readOnly": {
+      "defaultValue": null,
+      "description": "Make picker read only",
+      "name": "readOnly",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
       }
     },
     "autoOk": {
@@ -2358,8 +2410,21 @@
     },
     "disabled": {
       "defaultValue": null,
-      "description": "Disable datepicker and text field",
+      "description": "Disable picker and text field",
       "name": "disabled",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
+      }
+    },
+    "readOnly": {
+      "defaultValue": null,
+      "description": "Make picker read only",
+      "name": "readOnly",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
         "name": "BasePickerProps"
@@ -3059,7 +3124,7 @@
     },
     "disabled": {
       "defaultValue": null,
-      "description": "Disable datepicker and text field",
+      "description": "Disable picker and text field",
       "name": "disabled",
       "parent": {
         "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
@@ -3081,6 +3146,19 @@
       "required": false,
       "type": {
         "name": "() => void"
+      }
+    },
+    "readOnly": {
+      "defaultValue": null,
+      "description": "Make picker read only",
+      "name": "readOnly",
+      "parent": {
+        "fileName": "material-ui-pickers/lib/src/typings/BasePicker.tsx",
+        "name": "BasePickerProps"
+      },
+      "required": false,
+      "type": {
+        "name": "boolean"
       }
     },
     "autoOk": {
@@ -3893,7 +3971,9 @@
       }
     },
     "ampm": {
-      "defaultValue": null,
+      "defaultValue": {
+        "value": "true"
+      },
       "description": "12h/24h clock mode",
       "name": "ampm",
       "parent": {
@@ -3906,7 +3986,9 @@
       }
     },
     "minutesStep": {
-      "defaultValue": null,
+      "defaultValue": {
+        "value": "1"
+      },
       "description": "Minutes step",
       "name": "minutesStep",
       "parent": {
@@ -3986,7 +4068,9 @@
       }
     },
     "ampm": {
-      "defaultValue": null,
+      "defaultValue": {
+        "value": "true"
+      },
       "description": "12h/24h clock mode",
       "name": "ampm",
       "parent": {
@@ -3999,7 +4083,9 @@
       }
     },
     "minutesStep": {
-      "defaultValue": null,
+      "defaultValue": {
+        "value": "1"
+      },
       "description": "Minutes step",
       "name": "minutesStep",
       "parent": {
