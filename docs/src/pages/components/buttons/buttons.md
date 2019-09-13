@@ -133,9 +133,4 @@ component forwards this ref to the underlying DOM node.
 Given that many of the interactive components rely on `ButtonBase`, you should be
 able to take advantage of it everywhere.
 
-Here is an integration example with react-router:
-
-{{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
-
-_Note: Creating the Button components is necessary to prevent unexpected unmounting.
-You can read more about it in the [component prop guide](/guides/composition/#component-property)._
+Here is an [integration example with react-router](/guides/composition/#button).
