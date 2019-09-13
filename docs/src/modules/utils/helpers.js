@@ -4,7 +4,7 @@ const { CODE_VARIANTS, LANGUAGES } = require('../constants');
 
 function titleize(string) {
   if (__DEV__) {
-    if (typeof string !== 'string' && string.length <= 0) {
+    if (typeof string !== 'string' || string.length <= 0) {
       console.error('titleize(string) expects a non empty string argument.');
     }
   }
