@@ -141,13 +141,15 @@ export default function createPalette(palette) {
       color.main = color[mainShade];
     }
 
-    if (__DEV__ && !color.main) {
-      throw new Error(
-        [
-          'Material-UI: the color provided to augmentColor(color) is invalid.',
-          `The color object needs to have a \`main\` property or a \`${mainShade}\` property.`,
-        ].join('\n'),
-      );
+    if (__DEV__) {
+      if (!color.main) {
+        throw new Error(
+          [
+            'Material-UI: the color provided to augmentColor(color) is invalid.',
+            `The color object needs to have a \`main\` property or a \`${mainShade}\` property.`,
+          ].join('\n'),
+        );
+      }
     }
 
     addLightOrDark(color, 'light', lightShade, tonalOffset);

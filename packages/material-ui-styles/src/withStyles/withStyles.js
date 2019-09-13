@@ -12,22 +12,26 @@ import useTheme from '../useTheme';
 const withStyles = (stylesOrCreator, options = {}) => Component => {
   const { defaultTheme, withTheme = false, name, ...stylesOptions } = options;
 
-  if (__DEV__ && Component === undefined) {
-    throw new Error(
-      [
-        'You are calling withStyles(styles)(Component) with an undefined component.',
-        'You may have forgotten to import it.',
-      ].join('\n'),
-    );
+  if (__DEV__) {
+    if (Component === undefined) {
+      throw new Error(
+        [
+          'You are calling withStyles(styles)(Component) with an undefined component.',
+          'You may have forgotten to import it.',
+        ].join('\n'),
+      );
+    }
   }
 
   let classNamePrefix = name;
 
-  if (__DEV__ && !name) {
-    // Provide a better DX outside production.
-    const displayName = getDisplayName(Component);
-    if (displayName !== undefined) {
-      classNamePrefix = displayName;
+  if (__DEV__) {
+    if (!name) {
+      // Provide a better DX outside production.
+      const displayName = getDisplayName(Component);
+      if (displayName !== undefined) {
+        classNamePrefix = displayName;
+      }
     }
   }
 

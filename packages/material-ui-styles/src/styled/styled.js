@@ -34,11 +34,13 @@ function styled(Component) {
 
     let classNamePrefix = name;
 
-    if (__DEV__ && !name) {
-      // Provide a better DX outside production.
-      const displayName = getDisplayName(Component);
-      if (displayName !== undefined) {
-        classNamePrefix = displayName;
+    if (__DEV__) {
+      if (!name) {
+        // Provide a better DX outside production.
+        const displayName = getDisplayName(Component);
+        if (displayName !== undefined) {
+          classNamePrefix = displayName;
+        }
       }
     }
 

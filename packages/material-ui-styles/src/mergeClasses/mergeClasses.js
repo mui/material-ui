@@ -9,16 +9,18 @@ function mergeClasses(options = {}) {
 
   const nextClasses = { ...baseClasses };
 
-  if (__DEV__ && typeof newClasses === 'string') {
-    console.error(
-      [
-        `Material-UI: the value \`${newClasses}\` ` +
-          `provided to the classes prop of ${getDisplayName(Component)} is incorrect.`,
-        'You might want to use the className prop instead.',
-      ].join('\n'),
-    );
+  if (__DEV__) {
+    if (typeof newClasses === 'string') {
+      console.error(
+        [
+          `Material-UI: the value \`${newClasses}\` ` +
+            `provided to the classes prop of ${getDisplayName(Component)} is incorrect.`,
+          'You might want to use the className prop instead.',
+        ].join('\n'),
+      );
 
-    return baseClasses;
+      return baseClasses;
+    }
   }
 
   Object.keys(newClasses).forEach(key => {

@@ -8,13 +8,15 @@ export function withThemeCreator(options = {}) {
   const { defaultTheme } = options;
 
   const withTheme = Component => {
-    if (__DEV__ && Component === undefined) {
-      throw new Error(
-        [
-          'You are calling withTheme(Component) with an undefined component.',
-          'You may have forgotten to import it.',
-        ].join('\n'),
-      );
+    if (__DEV__) {
+      if (Component === undefined) {
+        throw new Error(
+          [
+            'You are calling withTheme(Component) with an undefined component.',
+            'You may have forgotten to import it.',
+          ].join('\n'),
+        );
+      }
     }
 
     const WithTheme = React.forwardRef(function WithTheme(props, ref) {
