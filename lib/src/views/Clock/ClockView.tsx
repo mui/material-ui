@@ -94,7 +94,8 @@ ClockView.propTypes = {
   onSecondsChange: PropTypes.func.isRequired,
   ampm: PropTypes.bool,
   minutesStep: PropTypes.number,
-  type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key as any])).isRequired,
+  type: PropTypes.oneOf(Object.keys(ClockType).map(key => ClockType[key as keyof typeof ClockType]))
+    .isRequired,
 } as any;
 
 ClockView.defaultProps = {

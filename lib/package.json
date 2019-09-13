@@ -43,8 +43,7 @@
     "@types/styled-jsx": "^2.2.8",
     "clsx": "^1.0.2",
     "react-transition-group": "^4.0.0",
-    "rifm": "^0.7.0",
-    "tslib": "^1.9.3"
+    "rifm": "^0.7.0"
   },
   "size-limit": [
     {
@@ -93,12 +92,16 @@
     "@types/react": "^16.8.2",
     "@types/react-dom": "^16.8.0",
     "@types/react-transition-group": "^2.0.15",
+    "@typescript-eslint/eslint-plugin": "^1.6.0",
+    "@typescript-eslint/parser": "^1.6.0",
     "babel-plugin-optimize-clsx": "^2.3.0",
     "codecov": "^3.1.0",
     "cross-env": "^5.2.0",
     "date-fns": "^2.0.0-alpha.27",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.9.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.6.0",
     "fs-extra": "^7.0.1",
     "full-icu": "^1.2.1",
     "glob": "^7.1.3",

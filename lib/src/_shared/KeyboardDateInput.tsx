@@ -1,14 +1,14 @@
 import * as React from 'react';
+import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
 import InputAdornment, { InputAdornmentProps } from '@material-ui/core/InputAdornment';
-import TextField, { BaseTextFieldProps, TextFieldProps } from '@material-ui/core/TextField';
 import { Rifm } from 'rifm';
 import { ExtendMui } from '../typings/extendMui';
 import { KeyboardIcon } from './icons/KeyboardIcon';
 import { makeMaskFromFormat, maskedDateFormatter } from '../_helpers/text-field-helper';
 
 export interface KeyboardDateInputProps
-  extends ExtendMui<BaseTextFieldProps, 'variant' | 'onError' | 'onChange' | 'value'> {
+  extends ExtendMui<TextFieldProps, 'variant' | 'onError' | 'onChange' | 'value'> {
   format: string;
   onChange: (value: string | null) => void;
   openPicker: () => void;

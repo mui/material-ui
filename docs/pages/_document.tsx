@@ -12,7 +12,7 @@ class MyDocument extends Document<{ theme?: ThemeType }> {
     // Render app and page and get the context of the page with collected side effects.
     let pageContext: PageContext | undefined;
 
-    const { theme } = cookies(ctx);
+    const { theme } = cookies(ctx as any);
     const page = ctx.renderPage(Component => {
       const WrappedComponent = (props: any) => {
         pageContext = props.pageContext;
