@@ -35,8 +35,7 @@ export default function createTypography(palette, typography) {
     if (typeof fontSize !== 'number') {
       console.error(`Material-UI: 'fontSize' is required to be a number.`);
     }
-  }
-  if (__DEV__) {
+
     if (typeof htmlFontSize !== 'number') {
       console.error(`Material-UI: 'htmlFontSize' is required to be a number.`);
     }

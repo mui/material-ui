@@ -57,25 +57,21 @@ export default {
       if (!isString(props) && !Array.isArray(props)) {
         console.error('Material-UI: argument "props" must be a string or Array.');
       }
-    }
-    if (__DEV__) {
+
       if (!isNumber(durationOption) && !isString(durationOption)) {
         console.error(
           `Material-UI: argument "duration" must be a number or a string but found ${durationOption}.`,
         );
       }
-    }
-    if (__DEV__) {
+
       if (!isString(easingOption)) {
         console.error('Material-UI: argument "easing" must be a string.');
       }
-    }
-    if (__DEV__) {
+
       if (!isNumber(delay) && !isString(delay)) {
         console.error('Material-UI: argument "delay" must be a number or a string.');
       }
-    }
-    if (__DEV__) {
+
       if (Object.keys(other).length !== 0) {
         console.error(`Material-UI: unrecognized argument(s) [${Object.keys(other).join(',')}]`);
       }
