@@ -18,14 +18,16 @@ function Copyright() {
   );
 }
 
-export default function App() {
+export default function Index() {
   return (
     <Container maxWidth="sm">
       <Box my={4}>
         <Typography variant="h4" component="h1" gutterBottom>
           Gatsby v4-beta example
         </Typography>
-        <Link to="/">Go to the main page</Link>
+        <Link to="/about" color="secondary">
+          Go to the about page
+        </Link>
         <ProTip />
         <Copyright />
       </Box>
