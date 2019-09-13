@@ -48,6 +48,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     required,
     SelectDisplayProps,
     tabIndex: tabIndexProp,
+    // catching `type` from Input which makes no sense for SelectInput
+    type,
     value,
     variant = 'standard',
     ...other
@@ -434,6 +436,10 @@ SelectInput.propTypes = {
    * @ignore
    */
   tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
+   * @ignore
+   */
+  type: PropTypes.any,
   /**
    * The input value.
    */
