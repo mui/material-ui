@@ -62,19 +62,18 @@ export default function createSpacing(spacingInput = 8) {
   Object.defineProperty(spacing, 'unit', {
     get: () => {
       if (__DEV__) {
-        if (__DEV__) {
-          if (!warnOnce || process.env.NODE_ENV === 'test')) {
-            console.error(
-              [
-                'Material-UI: theme.spacing.unit usage has been deprecated.',
-                'It will be removed in v5.',
-                'You can replace `theme.spacing.unit * y` with `theme.spacing(y)`.',
-                '',
-                'You can use the `https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api` migration helper to make the process smoother.',
-              ].join('\n'),
-            );
-          }
+        if (!warnOnce || process.env.NODE_ENV === 'test') {
+          console.error(
+            [
+              'Material-UI: theme.spacing.unit usage has been deprecated.',
+              'It will be removed in v5.',
+              'You can replace `theme.spacing.unit * y` with `theme.spacing(y)`.',
+              '',
+              'You can use the `https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api` migration helper to make the process smoother.',
+            ].join('\n'),
+          );
         }
+
         warnOnce = true;
       }
       return spacingInput;
