@@ -17,6 +17,8 @@ export default function makeStyles(stylesOrCreator, options = {}) {
   } = options;
   const classNamePrefix = name || classNamePrefixOption || 'makeStyles';
 
+  // DO_NOT_MERGE_THIS_OR_YOU_WILL_BE_
+  // eslint-disable-next-line no-console
   console.log('name', name);
 
   return createUseStyles(stylesOrCreator, {

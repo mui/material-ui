@@ -78,6 +78,8 @@ function StylesProvider(props) {
     context.jss = create({ plugins: jssPreset().plugins, insertionPoint: injectFirstNode });
   }
 
+  // DO_NOT_MERGE_THIS_OR_YOU_WILL_BE_
+  // eslint-disable-next-line no-console
   console.log('context', context);
 
   return <StylesContext.Provider value={context}>{children}</StylesContext.Provider>;
