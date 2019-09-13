@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
 import Typography from '../Typography';
 import withStyles from '../styles/withStyles';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
@@ -55,11 +54,14 @@ const InputAdornment = React.forwardRef(function InputAdornment(props, ref) {
   let variant = variantProp;
 
   if (variantProp && muiFormControl.variant) {
-    warning(
-      variantProp !== muiFormControl.variant,
-      'Material-UI: The `InputAdornment` variant infers the variant prop ' +
-        'you do not have to provide one.',
-    );
+    if (process.env.NODE_ENV !== 'production') {
+      if (variantProp === muiFormControl.variant) {
+        console.error(
+          'Material-UI: The `InputAdornment` variant infers the variant prop ' +
+            'you do not have to provide one.',
+        );
+      }
+    }
   }
 
   if (muiFormControl && !variant) {

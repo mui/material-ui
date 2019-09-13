@@ -1,7 +1,5 @@
 /* eslint-disable no-use-before-define */
 
-import warning from 'warning';
-
 /**
  * Returns a number whose value is limited to the given range.
  *
@@ -11,10 +9,11 @@ import warning from 'warning';
  * @returns {number} A number in the range [min, max]
  */
 function clamp(value, min = 0, max = 1) {
-  warning(
-    value >= min && value <= max,
-    `Material-UI: the value provided ${value} is out of range [${min}, ${max}].`,
-  );
+  if (process.env.NODE_ENV !== 'production') {
+    if (value < min || value > max) {
+      console.error(`Material-UI: the value provided ${value} is out of range [${min}, ${max}].`);
+    }
+  }
 
   if (value < min) {
     return min;

@@ -1,4 +1,3 @@
-import warning from 'warning';
 import nested from '../ThemeProvider/nested';
 
 /**
@@ -34,13 +33,16 @@ export default function createGenerateClassName(options = {}) {
 
   return (rule, styleSheet) => {
     ruleCounter += 1;
-    warning(
-      ruleCounter < 1e10,
-      [
-        'Material-UI: you might have a memory leak.',
-        'The ruleCounter is not supposed to grow that much.',
-      ].join(''),
-    );
+    if (process.env.NODE_ENV !== 'production') {
+      if (ruleCounter >= 1e10) {
+        console.warn(
+          [
+            'Material-UI: you might have a memory leak.',
+            'The ruleCounter is not supposed to grow that much.',
+          ].join(''),
+        );
+      }
+    }
 
     const name = styleSheet.options.name;
 

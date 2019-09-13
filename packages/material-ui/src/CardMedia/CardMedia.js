@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
@@ -23,12 +22,22 @@ export const styles = {
 const MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
 
 const CardMedia = React.forwardRef(function CardMedia(props, ref) {
-  const { classes, className, component: Component = 'div', image, src, style, ...other } = props;
+  const {
+    children,
+    classes,
+    className,
+    component: Component = 'div',
+    image,
+    src,
+    style,
+    ...other
+  } = props;
 
-  warning(
-    'children' in other || Boolean(image || src),
-    'Material-UI: either `children`, `image` or `src` prop must be specified.',
-  );
+  if (process.env.NODE_ENV !== 'production') {
+    if (!children && !image && !src) {
+      console.error('Material-UI: either `children`, `image` or `src` prop must be specified.');
+    }
+  }
 
   const isMediaComponent = MEDIA_COMPONENTS.indexOf(Component) !== -1;
   const composedStyle =
@@ -47,11 +56,17 @@ const CardMedia = React.forwardRef(function CardMedia(props, ref) {
       style={composedStyle}
       src={isMediaComponent ? image || src : undefined}
       {...other}
-    />
+    >
+      {children}
+    </Component>
   );
 });
 
 CardMedia.propTypes = {
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.

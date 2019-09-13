@@ -2,7 +2,6 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
 import formControlState from '../FormControl/formControlState';
@@ -194,14 +193,17 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
 
   const inputRef = React.useRef();
   const handleInputRefWarning = React.useCallback(instance => {
-    warning(
-      !instance || instance instanceof HTMLInputElement || instance.focus,
-      [
-        'Material-UI: you have provided a `inputComponent` to the input component',
-        'that does not correctly handle the `inputRef` prop.',
-        'Make sure the `inputRef` prop is called with a HTMLInputElement.',
-      ].join('\n'),
-    );
+    if (process.env.NODE_ENV !== 'production') {
+      if (instance && !(instance instanceof HTMLInputElement) && !instance.focus) {
+        console.error(
+          [
+            'Material-UI: you have provided a `inputComponent` to the input component',
+            'that does not correctly handle the `inputRef` prop.',
+            'Make sure the `inputRef` prop is called with a HTMLInputElement.',
+          ].join('\n'),
+        );
+      }
+    }
   }, []);
   const handleInputPropsRefProp = useForkRef(inputPropsProp.ref, handleInputRefWarning);
   const handleInputRefProp = useForkRef(inputRefProp, handleInputPropsRefProp);

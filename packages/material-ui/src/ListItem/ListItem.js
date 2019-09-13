@@ -7,7 +7,6 @@ import ButtonBase from '../ButtonBase';
 import { isMuiElement, useForkRef } from '../utils/reactHelpers';
 import ListContext from '../List/ListContext';
 import ReactDOM from 'react-dom';
-import warning from 'warning';
 
 export const styles = theme => ({
   /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
@@ -118,9 +117,8 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     if (autoFocus) {
       if (listItemRef.current) {
         listItemRef.current.focus();
-      } else {
-        warning(
-          false,
+      } else if (process.env.NODE_ENV !== 'production') {
+        console.error(
           'Material-UI: unable to set focus to a ListItem whose component has not been rendered.',
         );
       }

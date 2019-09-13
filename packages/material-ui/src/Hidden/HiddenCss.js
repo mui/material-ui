@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
@@ -48,11 +47,18 @@ function HiddenCss(props) {
   } = props;
   const theme = useTheme();
 
-  warning(
-    Object.keys(other).length === 0 ||
-      (Object.keys(other).length === 1 && other.hasOwnProperty('ref')),
-    `Material-UI: unsupported props received ${Object.keys(other).join(', ')} by \`<Hidden />\`.`,
-  );
+  if (process.env.NODE_ENV !== 'production') {
+    if (
+      Object.keys(other).length !== 0 &&
+      !(Object.keys(other).length === 1 && other.hasOwnProperty('ref'))
+    ) {
+      console.error(
+        `Material-UI: unsupported props received ${Object.keys(other).join(
+          ', ',
+        )} by \`<Hidden />\`.`,
+      );
+    }
+  }
 
   const clsx = [];
 

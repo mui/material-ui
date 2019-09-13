@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
@@ -128,8 +127,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     const registeredInput = React.useRef(false);
     registerEffect = () => {
       if (registeredInput.current) {
-        warning(
-          false,
+        console.error(
           [
             'Material-UI: there are multiple InputBase components inside a FromControl.',
             'This is not supported. It might cause infinite rendering loops.',

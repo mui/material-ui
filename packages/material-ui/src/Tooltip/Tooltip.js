@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import clsx from 'clsx';
 import { elementAcceptingRef } from '@material-ui/utils';
 import { fade } from '../styles/colorManipulator';
@@ -122,22 +121,25 @@ function Tooltip(props) {
   const touchTimer = React.useRef();
 
   React.useEffect(() => {
-    warning(
-      !(
+    if (process.env.NODE_ENV !== 'production') {
+      if (
         childNode &&
         childNode.disabled &&
         !isControlled &&
         title !== '' &&
         childNode.tagName.toLowerCase() === 'button'
-      ),
-      [
-        'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
-        'A disabled element does not fire events.',
-        "Tooltip needs to listen to the child element's events to display the title.",
-        '',
-        'Place a `div` container on top of the element.',
-      ].join('\n'),
-    );
+      ) {
+        console.error(
+          [
+            'Material-UI: you are providing a disabled `button` child to the Tooltip component.',
+            'A disabled element does not fire events.',
+            "Tooltip needs to listen to the child element's events to display the title.",
+            '',
+            'Place a `div` container on top of the element.',
+          ].join('\n'),
+        );
+      }
+    }
   }, [isControlled, title, childNode]);
 
   React.useEffect(() => {
@@ -356,13 +358,16 @@ function Tooltip(props) {
       }
     : {};
 
-  warning(
-    !children.props.title,
-    [
-      'Material-UI: you have provided a `title` prop to the child of <Tooltip />.',
-      `Remove this title prop \`${children.props.title}\` or the Tooltip component.`,
-    ].join('\n'),
-  );
+  if (process.env.NODE_ENV !== 'production') {
+    if (children.props.title) {
+      console.error(
+        [
+          'Material-UI: you have provided a `title` prop to the child of <Tooltip />.',
+          `Remove this title prop \`${children.props.title}\` or the Tooltip component.`,
+        ].join('\n'),
+      );
+    }
+  }
 
   return (
     <React.Fragment>

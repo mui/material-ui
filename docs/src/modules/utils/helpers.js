@@ -1,13 +1,13 @@
-const warning = require('warning');
 const upperFirst = require('lodash/upperFirst');
 const camelCase = require('lodash/camelCase');
 const { CODE_VARIANTS, LANGUAGES } = require('../constants');
 
 function titleize(string) {
-  warning(
-    typeof string === 'string' && string.length > 0,
-    'titleize(string) expects a non empty string argument.',
-  );
+  if (process.env.NODE_ENV !== 'production') {
+    if (typeof string !== 'string' || string.length <= 0) {
+      console.error('titleize(string) expects a non empty string argument.');
+    }
+  }
 
   return string
     .split('-')

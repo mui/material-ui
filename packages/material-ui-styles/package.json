@@ -54,8 +54,7 @@
     "jss-plugin-props-sort": "10.0.0-alpha.24",
     "jss-plugin-rule-value-function": "10.0.0-alpha.24",
     "jss-plugin-vendor-prefixer": "10.0.0-alpha.24",
-    "prop-types": "^15.7.2",
-    "warning": "^4.0.1"
+    "prop-types": "^15.7.2"
   },
   "sideEffects": false,
   "publishConfig": {

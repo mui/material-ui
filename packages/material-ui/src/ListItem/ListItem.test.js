@@ -178,7 +178,7 @@ describe('<ListItem />', () => {
 
         expect(consoleErrorMock.callCount()).to.equal(1);
         expect(consoleErrorMock.args()[0][0]).to.include(
-          'Warning: Material-UI: unable to set focus to a ListItem whose component has not been rendered.',
+          'Material-UI: unable to set focus to a ListItem whose component has not been rendered.',
         );
       });
     });

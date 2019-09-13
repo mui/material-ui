@@ -1,4 +1,3 @@
-import warning from 'warning';
 import PropTypes from 'prop-types';
 import merge from './merge';
 
@@ -20,10 +19,11 @@ const defaultBreakpoints = {
 };
 
 export function handleBreakpoints(props, propValue, styleFromPropValue) {
-  warning(
-    props.theme,
-    '@material-ui/system: you are calling a style function without a theme value.',
-  );
+  if (process.env.NODE_ENV !== 'production') {
+    if (!props.theme) {
+      console.error('@material-ui/system: you are calling a style function without a theme value.');
+    }
+  }
 
   if (Array.isArray(propValue)) {
     const themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import withStyles from '../styles/withStyles';
 import { emphasize, fade } from '../styles/colorManipulator';
@@ -377,11 +376,14 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     });
   }
 
-  warning(
-    !avatar || !icon,
-    'Material-UI: the Chip component can not handle the avatar ' +
-      'and the icon prop at the same time. Pick one.',
-  );
+  if (process.env.NODE_ENV !== 'production') {
+    if (avatar && icon) {
+      console.error(
+        'Material-UI: the Chip component can not handle the avatar ' +
+          'and the icon prop at the same time. Pick one.',
+      );
+    }
+  }
 
   const handleRef = useForkRef(chipRef, ref);
 
