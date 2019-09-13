@@ -30,7 +30,7 @@ Here are some examples of customizing the component. You can learn more about th
 ## Custom child element
 
 The tooltip needs to apply DOM event listeners to its child element.
-If the child is a custom React element, you need to make sure that it spreads its properties  to the underlying DOM element.
+If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
 
 ```jsx
 function MyComponent(props) {
@@ -74,6 +74,8 @@ A tooltip can be interactive. It won't close when the user hovers over the toolt
 ## Disabled Elements
 
 By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element like a `span`.
+
+If you're using a native `<button>`, to ensure it works as we mentioned in the above, you should also add this line to your `<button>`: `style={ disabled ? { pointerEvents: "none" } : {}}`
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
