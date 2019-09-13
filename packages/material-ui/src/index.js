@@ -11,6 +11,8 @@ export {
   useTheme,
   withStyles,
   withTheme,
+  StylesProvider,
+  StylesContext,
 } from './styles';
 
 export { default as AppBar } from './AppBar';

@@ -66,6 +66,10 @@ export {
   MuiThemeProvider,
   responsiveFontSizes,
   styled,
+  StylesProvider,
+  StylesContext,
+  StylesOptions,
+  StylesProviderProps,
 } from './styles';
 
 export { default as AppBar } from './AppBar';
