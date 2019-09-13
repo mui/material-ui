@@ -64,7 +64,7 @@ const CardMedia = React.forwardRef(function CardMedia(props, ref) {
 
 CardMedia.propTypes = {
   /**
-   *
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
