@@ -97,6 +97,7 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
   const expanded = isControlled ? expandedProp : expandedState;
 
   if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (isControlled !== (expandedProp != null)) {
         console.error(
