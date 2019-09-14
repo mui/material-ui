@@ -38,7 +38,6 @@ describe('<ExpansionPanel />', () => {
     const root = wrapper.find(`.${classes.root}`).first();
     assert.strictEqual(root.type(), Paper);
     assert.strictEqual(root.props().square, false);
-    wrapper.setProps({ expanded: true });
     assert.strictEqual(root.hasClass(classes.expanded), false, 'uncontrolled');
   });
 
@@ -185,6 +184,36 @@ describe('<ExpansionPanel />', () => {
           <ExpansionPanelSummary />
           {null}
         </ExpansionPanel>,
+      );
+    });
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should warn when switching from controlled to uncontrolled', () => {
+      const wrapper = mount(<ExpansionPanel expanded>{minimalChildren}</ExpansionPanel>);
+
+      wrapper.setProps({ expanded: undefined });
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'A component is changing a controlled ExpansionPanel to be uncontrolled.',
+      );
+    });
+
+    it('should warn when switching between uncontrolled to controlled', () => {
+      const wrapper = mount(<ExpansionPanel>{minimalChildren}</ExpansionPanel>);
+
+      wrapper.setProps({ expanded: true });
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'A component is changing an uncontrolled ExpansionPanel to be controlled.',
       );
     });
   });
