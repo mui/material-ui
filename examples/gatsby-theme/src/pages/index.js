@@ -2,17 +2,16 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import MuiLink from '@material-ui/core/Link';
+import { Link } from 'gatsby-theme-material-ui';
 import ProTip from '../components/ProTip';
-import Link from '../components/Link';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <MuiLink color="inherit" href="https://material-ui.com/">
+      <Link color="inherit" href="https://material-ui.com/">
         Your Website
-      </MuiLink>{' '}
+      </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
