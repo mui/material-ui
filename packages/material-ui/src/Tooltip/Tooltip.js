@@ -166,6 +166,24 @@ function Tooltip(props) {
     };
   }, []);
 
+  React.useEffect(() => {
+    if (process.env.NODE_ENV !== 'production') {
+      if (isControlled !== (openProp != null)) {
+        console.error(
+          [
+            `Material-UI: A component is changing ${
+              isControlled ? 'a ' : 'an un'
+            }controlled Tooltip to be ${isControlled ? 'un' : ''}controlled.`,
+            'Input elements should not switch from uncontrolled to controlled (or vice versa).',
+            'Decide between using a controlled or uncontrolled Tooltip ' +
+              'element for the lifetime of the component.',
+            'More info: https://fb.me/react-controlled-components',
+          ].join('\n'),
+        );
+      }
+    }
+  }, [openProp, isControlled]);
+
   const handleOpen = event => {
     // The mouseover event will trigger for every nested element in the tooltip.
     // We can skip rerendering when the tooltip is already open.

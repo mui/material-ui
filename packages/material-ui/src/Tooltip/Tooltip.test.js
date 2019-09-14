@@ -382,4 +382,24 @@ describe('<Tooltip />', () => {
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
     });
   });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should warn when switching between uncontrolled to controlled', () => {
+      const wrapper = mount(<Tooltip {...defaultProps} />);
+
+      wrapper.setProps({ open: true });
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'A component is changing an uncontrolled Tooltip to be controlled.',
+      );
+    });
+  });
 });
