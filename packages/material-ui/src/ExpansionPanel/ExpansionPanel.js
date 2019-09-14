@@ -96,8 +96,8 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
   const [expandedState, setExpandedState] = React.useState(defaultExpanded);
   const expanded = isControlled ? expandedProp : expandedState;
 
-  React.useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
+    React.useEffect(() => {
       if (isControlled !== (expandedProp != null)) {
         console.error(
           [
@@ -111,8 +111,8 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
           ].join('\n'),
         );
       }
-    }
-  }, [expandedProp, isControlled]);
+    }, [expandedProp, isControlled]);
+  }
 
   const handleChange = event => {
     if (!isControlled) {

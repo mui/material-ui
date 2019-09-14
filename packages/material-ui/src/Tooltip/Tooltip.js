@@ -166,8 +166,9 @@ function Tooltip(props) {
     };
   }, []);
 
-  React.useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
       if (isControlled !== (openProp != null)) {
         console.error(
           [
@@ -181,8 +182,8 @@ function Tooltip(props) {
           ].join('\n'),
         );
       }
-    }
-  }, [openProp, isControlled]);
+    }, [openProp, isControlled]);
+  }
 
   const handleOpen = event => {
     // The mouseover event will trigger for every nested element in the tooltip.

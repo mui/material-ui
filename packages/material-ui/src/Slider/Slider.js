@@ -618,8 +618,9 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     };
   }, [disabled, handleMouseEnter, handleTouchEnd, handleTouchMove, handleTouchStart]);
 
-  React.useEffect(() => {
-    if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
       if (isControlled !== (valueProp != null)) {
         console.error(
           [
@@ -633,8 +634,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
           ].join('\n'),
         );
       }
-    }
-  }, [valueProp, isControlled]);
+    }, [valueProp, isControlled]);
+  }
 
   const handleMouseDown = useEventCallback(event => {
     if (onMouseDown) {
