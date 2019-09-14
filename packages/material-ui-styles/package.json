@@ -30,7 +30,7 @@
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag latest",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-styles/src/createGenerateClassName/*.test.js' --exclude '**/node_modules/**'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-styles/src/**/*.test.js' --exclude '**/node_modules/**'",
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{ts,tsx}\""
   },
   "peerDependencies": {

@@ -195,11 +195,7 @@ describe('makeStyles', () => {
 
       const wrapper = mount(
         <ThemeProvider theme={createMuiTheme()}>
-          <StylesProvider
-            sheetsRegistry={sheetsRegistry}
-            sheetsCache={new Map()}
-            generateClassName={generateClassName}
-          >
+          <StylesProvider sheetsRegistry={sheetsRegistry} generateClassName={generateClassName}>
             <StyledComponent />
           </StylesProvider>
         </ThemeProvider>,
@@ -228,11 +224,7 @@ describe('makeStyles', () => {
 
       const wrapper = mount(
         <ThemeProvider theme={createMuiTheme()}>
-          <StylesProvider
-            sheetsRegistry={sheetsRegistry}
-            sheetsCache={new Map()}
-            generateClassName={generateClassName}
-          >
+          <StylesProvider sheetsRegistry={sheetsRegistry} generateClassName={generateClassName}>
             <StyledComponent />
           </StylesProvider>
         </ThemeProvider>,
@@ -275,7 +267,7 @@ describe('makeStyles', () => {
               },
             })}
           >
-            <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
+            <StylesProvider sheetsRegistry={sheetsRegistry}>
               <StyledComponent />
             </StylesProvider>
           </ThemeProvider>,
@@ -306,7 +298,7 @@ describe('makeStyles', () => {
 
         const wrapper = mount(
           <ThemeProvider theme={theme}>
-            <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
+            <StylesProvider sheetsRegistry={sheetsRegistry}>
               <Test />
             </StylesProvider>
           </ThemeProvider>,
@@ -331,11 +323,7 @@ describe('makeStyles', () => {
       };
 
       const Test = props => (
-        <StylesProvider
-          sheetsRegistry={sheetsRegistry}
-          sheetsCache={new Map()}
-          generateClassName={generateClassName}
-        >
+        <StylesProvider sheetsRegistry={sheetsRegistry} generateClassName={generateClassName}>
           <StyledComponent {...props} />
         </StylesProvider>
       );
@@ -370,7 +358,7 @@ describe('makeStyles', () => {
       };
 
       const wrapper = mount(
-        <StylesProvider sheetsRegistry={sheetsRegistry} disableGeneration sheetsCache={new Map()}>
+        <StylesProvider sheetsRegistry={sheetsRegistry} disableGeneration>
           <StyledComponent />
         </StylesProvider>,
       );
@@ -403,7 +391,7 @@ describe('makeStyles', () => {
 
       const sheetsRegistry = new SheetsRegistry();
       const wrapper = mount(
-        <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
+        <StylesProvider sheetsRegistry={sheetsRegistry}>
           <StyledComponent />
         </StylesProvider>,
       );
@@ -443,7 +431,7 @@ describe('makeStyles', () => {
       };
 
       mount(
-        <StylesProvider sheetsRegistry={sheetsRegistry} sheetsCache={new Map()}>
+        <StylesProvider sheetsRegistry={sheetsRegistry}>
           <StyledComponent1 />
           <StyledComponent2 />
         </StylesProvider>,
@@ -526,11 +514,7 @@ describe('makeStyles', () => {
       const sheetsRegistry = new SheetsRegistry();
 
       const wrapper = mount(
-        <StylesProvider
-          sheetsRegistry={sheetsRegistry}
-          sheetsCache={new Map()}
-          generateClassName={generateClassName}
-        >
+        <StylesProvider sheetsRegistry={sheetsRegistry} generateClassName={generateClassName}>
           <StressTest />
         </StylesProvider>,
       );

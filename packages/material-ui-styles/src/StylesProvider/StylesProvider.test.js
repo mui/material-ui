@@ -96,15 +96,9 @@ describe('StylesProvider', () => {
     });
 
     it('should be able to cache the sheets between two requests', () => {
-      const sheetsCache = new Map();
-
       const sheetsRegistry1 = new SheetsRegistry();
       const markup1 = ReactDOMServer.renderToString(
-        <StylesProvider
-          sheetsCache={sheetsCache}
-          sheetsRegistry={sheetsRegistry1}
-          generateClassName={generateClassName}
-        >
+        <StylesProvider sheetsRegistry={sheetsRegistry1} generateClassName={generateClassName}>
           <Button>Hello World</Button>
         </StylesProvider>,
       );
@@ -112,11 +106,7 @@ describe('StylesProvider', () => {
 
       const sheetsRegistry2 = new SheetsRegistry();
       const markup2 = ReactDOMServer.renderToString(
-        <StylesProvider
-          sheetsCache={sheetsCache}
-          sheetsRegistry={sheetsRegistry2}
-          generateClassName={generateClassName}
-        >
+        <StylesProvider sheetsRegistry={sheetsRegistry2} generateClassName={generateClassName}>
           <Button>Hello World</Button>
         </StylesProvider>,
       );
