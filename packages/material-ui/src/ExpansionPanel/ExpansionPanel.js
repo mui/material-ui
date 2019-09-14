@@ -104,7 +104,7 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
             `Material-UI: A component is changing ${
               isControlled ? 'a ' : 'an un'
             }controlled ExpansionPanel to be ${isControlled ? 'un' : ''}controlled.`,
-            'Input elements should not switch from uncontrolled to controlled (or vice versa).',
+            'Elements should not switch from uncontrolled to controlled (or vice versa).',
             'Decide between using a controlled or uncontrolled ExpansionPanel ' +
               'element for the lifetime of the component.',
             'More info: https://fb.me/react-controlled-components',
