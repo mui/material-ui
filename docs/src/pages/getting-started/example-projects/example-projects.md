@@ -1,6 +1,6 @@
 # Example Projects
 
-<p class="description">Are you looking for an example project to get started?</p>
+<p class="description">A selection of example projects to get started with.</p>
 
 ## Official examples
 

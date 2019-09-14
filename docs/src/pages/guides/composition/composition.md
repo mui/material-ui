@@ -44,10 +44,10 @@ The following example will render the `List` component with a `<nav>` element as
 
 ```jsx
 <List component="nav">
-  <ListItem>
+  <ListItem button>
     <ListItemText primary="Trash" />
   </ListItem>
-  <ListItem>
+  <ListItem button>
     <ListItemText primary="Spam" />
   </ListItem>
 </List>
@@ -58,7 +58,7 @@ But it also **comes with a small caveat!**
 
 ### Caveat with inlining
 
-Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since you pass a new component to the `component` prop every time React renders.
+Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders.
 For instance, if you want to create a custom `ListItem` that acts as a link, you could do the following:
 
 ```jsx
@@ -93,7 +93,7 @@ function ListItemLink(props) {
     () =>
       React.forwardRef((linkProps, ref) => (
         // With react-router-dom@^6.0.0 use `ref` instead of `innerRef`
-        // see https://github.com/ReactTraining/react-router/issues/6056
+        // See https://github.com/ReactTraining/react-router/issues/6056
         <Link to={to} {...linkProps} innerRef={ref} />
       )),
     [to],
@@ -112,9 +112,9 @@ function ListItemLink(props) {
 
 `renderLink` will now always reference the same component.
 
-### Caveat with props forwarding
+### Caveat with prop forwarding
 
-You can take advantage of the props forwarding to simplify the code.
+You can take advantage of the prop forwarding to simplify the code.
 In this example, we don't create any intermediary component:
 
 ```jsx
@@ -123,8 +123,8 @@ import { Link } from 'react-router-dom';
 <ListItem button component={Link} to="/">
 ```
 
-⚠️ However, this strategy suffers from a little limitation: properties collision.
-The component providing the `component` prop (e.g. ListItem) might not forward all its properties to the root element (e.g. dense).
+⚠️ However, this strategy suffers from a limitation: prop collisions.
+The component providing the `component` prop (e.g. ListItem) might not forward all the props (for example dense) to the root element.
 
 ### With TypeScript
 
@@ -135,6 +135,7 @@ You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-
 The integration with third-party routing libraries is achieved with the `component` prop.
 The behavior is identical to the description of the prop above.
 Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router).
+It covers the Button, Link, and List components, you should be able to apply the same strategy with all the components.
 
 ### Button
 

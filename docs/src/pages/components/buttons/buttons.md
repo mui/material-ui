@@ -125,7 +125,7 @@ You can take advantage of this lower level component to build custom interaction
 
 ## Third-party routing library
 
-One common use case is to use the button to trigger a navigation to a new page.
+One common use case is to use the button to trigger navigation to a new page.
 The `ButtonBase` component provides a property to handle this use case: `component`.
 However for certain focus polyfills `ButtonBase` requires the DOM node of the provided
 component. This is achieved by attaching a ref to the component and expecting that the

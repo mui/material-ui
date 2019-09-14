@@ -27,7 +27,7 @@ function ListItemLink(props: ListItemLinkProps) {
       React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'innerRef' | 'to'>>(
         (itemProps, ref) => (
           // With react-router-dom@^6.0.0 use `ref` instead of `innerRef`
-          // see https://github.com/ReactTraining/react-router/issues/6056
+          // See https://github.com/ReactTraining/react-router/issues/6056
           <RouterLink to={to} {...itemProps} innerRef={ref} />
         ),
       ),

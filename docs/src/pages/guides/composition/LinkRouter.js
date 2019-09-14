@@ -4,8 +4,8 @@ import { MemoryRouter as Router } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 
-// The usage of React.forwardRef will no longer be required for react-router-dom v6.
-// see https://github.com/ReactTraining/react-router/issues/6056
+// The use of React.forwardRef will no longer be required for react-router-dom v6.
+// See https://github.com/ReactTraining/react-router/issues/6056
 const Link1 = React.forwardRef((props, ref) => <RouterLink innerRef={ref} {...props} />);
 
 const Link2 = React.forwardRef((props, ref) => (
@@ -17,10 +17,10 @@ export default function LinkRouter() {
     <Router>
       <div>
         <Link component={Link1} to="/">
-          With props forwarding
+          With prop forwarding
         </Link>
         <br />
-        <Link component={Link2}>Without props forwarding</Link>
+        <Link component={Link2}>Without prop forwarding</Link>
       </div>
     </Router>
   );

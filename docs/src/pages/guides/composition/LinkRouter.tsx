@@ -5,8 +5,8 @@ import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-d
 import Link from '@material-ui/core/Link';
 import { Omit } from '@material-ui/types';
 
-// The usage of React.forwardRef will no longer be required for react-router-dom v6.
-// see https://github.com/ReactTraining/react-router/issues/6056
+// The use of React.forwardRef will no longer be required for react-router-dom v6.
+// See https://github.com/ReactTraining/react-router/issues/6056
 const Link1 = React.forwardRef<HTMLAnchorElement, RouterLinkProps>((props, ref) => (
   <RouterLink innerRef={ref} {...props} />
 ));
@@ -20,10 +20,10 @@ export default function LinkRouter() {
     <Router>
       <div>
         <Link component={Link1} to="/">
-          With props forwarding
+          With prop forwarding
         </Link>
         <br />
-        <Link component={Link2}>Without props forwarding</Link>
+        <Link component={Link2}>Without prop forwarding</Link>
       </div>
     </Router>
   );
