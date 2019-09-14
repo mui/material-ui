@@ -60,12 +60,12 @@ export default function ListRouter() {
           )}
         </Route>
         <Paper elevation={0}>
-          <List component="nav" aria-label="main mailbox folders">
+          <List aria-label="main mailbox folders">
             <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
             <ListItemLink to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
           </List>
           <Divider />
-          <List component="nav" aria-label="secondary mailbox folders">
+          <List aria-label="secondary mailbox folders">
             <ListItemLink to="/trash" primary="Trash" />
             <ListItemLink to="/spam" primary="Spam" />
           </List>
