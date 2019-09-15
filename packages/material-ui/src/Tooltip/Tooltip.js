@@ -211,12 +211,12 @@ function Tooltip(props) {
 
   const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
   const [childIsFocusVisible, setChildIsFocusVisible] = React.useState(false);
-  function handleBlur() {
+  const handleBlur = () => {
     if (childIsFocusVisible) {
       setChildIsFocusVisible(false);
       onBlurVisible();
     }
-  }
+  };
 
   const handleFocus = event => {
     // Workaround for https://github.com/facebook/react/issues/7769

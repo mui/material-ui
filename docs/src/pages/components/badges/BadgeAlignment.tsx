@@ -32,13 +32,13 @@ export default function BadgeAlignment() {
   const [horizontal, setHorizontal] = React.useState<'left' | 'right'>('right');
   const [vertical, setVertical] = React.useState<'top' | 'bottom'>('top');
 
-  function handleHorizontalChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleHorizontalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setHorizontal((event.target as HTMLInputElement).value as 'left' | 'right');
-  }
+  };
 
-  function handleVerticalChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleVerticalChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setVertical((event.target as HTMLInputElement).value as 'top' | 'bottom');
-  }
+  };
 
   return (
     <div className={classes.root}>

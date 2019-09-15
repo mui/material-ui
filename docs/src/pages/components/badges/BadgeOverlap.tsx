@@ -35,9 +35,9 @@ export default function BadgeOverlap() {
   const classes = useStyles();
   const [overlap, setOverlap] = React.useState<'circle' | 'rectangle'>('rectangle');
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setOverlap((event.target as HTMLInputElement).value as 'circle' | 'rectangle');
-  }
+  };
 
   return (
     <div>

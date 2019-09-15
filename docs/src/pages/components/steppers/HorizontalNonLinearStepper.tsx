@@ -47,23 +47,23 @@ export default function HorizontalNonLinearStepper() {
   const [completed, setCompleted] = React.useState<{ [k: number]: boolean }>({});
   const steps = getSteps();
 
-  function totalSteps() {
+  const totalSteps = () => {
     return steps.length;
-  }
+  };
 
-  function completedSteps() {
+  const completedSteps = () => {
     return Object.keys(completed).length;
-  }
+  };
 
-  function isLastStep() {
+  const isLastStep = () => {
     return activeStep === totalSteps() - 1;
-  }
+  };
 
-  function allStepsCompleted() {
+  const allStepsCompleted = () => {
     return completedSteps() === totalSteps();
-  }
+  };
 
-  function handleNext() {
+  const handleNext = () => {
     const newActiveStep =
       isLastStep() && !allStepsCompleted()
         ? // It's the last step, but not all steps have been completed,
@@ -71,27 +71,27 @@ export default function HorizontalNonLinearStepper() {
           steps.findIndex((step, i) => !(i in completed))
         : activeStep + 1;
     setActiveStep(newActiveStep);
-  }
+  };
 
-  function handleBack() {
+  const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
-  }
+  };
 
   const handleStep = (step: number) => () => {
     setActiveStep(step);
   };
 
-  function handleComplete() {
+  const handleComplete = () => {
     const newCompleted = completed;
     newCompleted[activeStep] = true;
     setCompleted(newCompleted);
     handleNext();
-  }
+  };
 
-  function handleReset() {
+  const handleReset = () => {
     setActiveStep(0);
     setCompleted({});
-  }
+  };
 
   return (
     <div className={classes.root}>

@@ -139,11 +139,11 @@ function Demo(props) {
   }, []);
 
   const [demoHovered, setDemoHovered] = React.useState(false);
-  function handleDemoHover(event) {
+  const handleDemoHover = event => {
     setDemoHovered(event.type === 'mouseenter');
-  }
+  };
 
-  function handleCodeLanguageClick(event, clickedCodeVariant) {
+  const handleCodeLanguageClick = (event, clickedCodeVariant) => {
     if (codeVariant !== clickedCodeVariant) {
       dispatch({
         type: ACTION_TYPES.OPTIONS_CHANGE,
@@ -152,9 +152,9 @@ function Demo(props) {
         },
       });
     }
-  }
+  };
 
-  function handleClickCodeSandbox() {
+  const handleClickCodeSandbox = () => {
     const demoConfig = getDemoConfig(demoData);
     const parameters = compress({
       files: {
@@ -186,26 +186,26 @@ function Demo(props) {
     document.body.appendChild(form);
     form.submit();
     document.body.removeChild(form);
-  }
+  };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  function handleClickMore(event) {
+  const handleClickMore = event => {
     setAnchorEl(event.currentTarget);
-  }
+  };
 
-  function handleCloseMore() {
+  const handleCloseMore = () => {
     setAnchorEl(null);
-  }
+  };
 
-  async function handleClickCopy() {
+  const handleClickCopy = async () => {
     try {
       await copy(demoData.raw);
     } finally {
       handleCloseMore();
     }
-  }
+  };
 
-  function handleClickStackBlitz() {
+  const handleClickStackBlitz = () => {
     const demoConfig = getDemoConfig(demoData);
     const form = document.createElement('form');
     form.method = 'POST';
@@ -224,7 +224,7 @@ function Demo(props) {
     form.submit();
     document.body.removeChild(form);
     handleCloseMore();
-  }
+  };
 
   const showSourceHint = demoHovered && !sourceHintSeen;
   const DemoComponent = demoData.Component;
@@ -255,11 +255,11 @@ function Demo(props) {
     }
   }, [demoName]);
 
-  function handleClickCodeOpen() {
+  const handleClickCodeOpen = () => {
     document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`;
     setCodeOpen(open => !open);
     setSourceHintSeen(setSourceHintSeen(true));
-  }
+  };
 
   const match = useMediaQuery(theme => theme.breakpoints.up('sm'));
 

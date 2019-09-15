@@ -17,9 +17,9 @@ export default function LabelBottomNavigation() {
   const classes = useStyles();
   const [value, setValue] = React.useState('recents');
 
-  function handleChange(event, newValue) {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
-  }
+  };
 
   return (
     <BottomNavigation value={value} onChange={handleChange} className={classes.root}>

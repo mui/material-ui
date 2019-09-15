@@ -33,12 +33,12 @@ export default function SimpleSelect() {
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
 
-  function handleChange(event) {
+  const handleChange = event => {
     setValues(oldValues => ({
       ...oldValues,
       [event.target.name]: event.target.value,
     }));
-  }
+  };
 
   return (
     <form className={classes.root} autoComplete="off">

@@ -80,10 +80,10 @@ describe('<Dialog />', () => {
     const onClose = spy();
     function TestCase() {
       const [open, close] = React.useReducer(() => false, true);
-      function handleClose(...args) {
+      const handleClose = (...args) => {
         close();
         onClose(...args);
-      }
+      };
 
       return (
         <Dialog

@@ -13,22 +13,23 @@ const options = [
   'Hide sensitive notification content',
 ];
 
-function SimpleMenu({ selectedIndex: selectedIndexProp, ...props }) {
+function SimpleMenu(props) {
+  const { selectedIndex: selectedIndexProp, ...other } = props;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState(selectedIndexProp || null);
 
-  function handleClickListItem(event) {
+  const handleClickListItem = event => {
     setAnchorEl(event.currentTarget);
-  }
+  };
 
-  function handleMenuItemClick(event, index) {
+  const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setAnchorEl(null);
-  }
+  };
 
-  function handleClose() {
+  const handleClose = () => {
     setAnchorEl(null);
-  }
+  };
 
   const open = Boolean(anchorEl);
 
@@ -42,7 +43,7 @@ function SimpleMenu({ selectedIndex: selectedIndexProp, ...props }) {
       >
         {`selectedIndex: ${selectedIndex}, open: ${open}`}
       </Button>
-      <Menu id="lock-menu" anchorEl={anchorEl} open={open} onClose={handleClose} {...props}>
+      <Menu id="lock-menu" anchorEl={anchorEl} open={open} onClose={handleClose} {...other}>
         {options.map((option, index) => (
           <MenuItem
             key={option}

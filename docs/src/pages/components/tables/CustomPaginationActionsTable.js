@@ -27,21 +27,21 @@ function TablePaginationActions(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onChangePage } = props;
 
-  function handleFirstPageButtonClick(event) {
+  const handleFirstPageButtonClick = event => {
     onChangePage(event, 0);
-  }
+  };
 
-  function handleBackButtonClick(event) {
+  const handleBackButtonClick = event => {
     onChangePage(event, page - 1);
-  }
+  };
 
-  function handleNextButtonClick(event) {
+  const handleNextButtonClick = event => {
     onChangePage(event, page + 1);
-  }
+  };
 
-  function handleLastPageButtonClick(event) {
+  const handleLastPageButtonClick = event => {
     onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-  }
+  };
 
   return (
     <div className={classes.root}>
@@ -120,14 +120,14 @@ export default function CustomPaginationActionsTable() {
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
-  function handleChangePage(event, newPage) {
+  const handleChangePage = (event, newPage) => {
     setPage(newPage);
-  }
+  };
 
-  function handleChangeRowsPerPage(event) {
+  const handleChangeRowsPerPage = event => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
-  }
+  };
 
   return (
     <Paper className={classes.root}>

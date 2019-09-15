@@ -70,11 +70,11 @@ export default function MultipleSelect() {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
 
-  function handleChange(event) {
+  const handleChange = event => {
     setPersonName(event.target.value);
-  }
+  };
 
-  function handleChangeMultiple(event) {
+  const handleChangeMultiple = event => {
     const { options } = event.target;
     const value = [];
     for (let i = 0, l = options.length; i < l; i += 1) {
@@ -83,7 +83,7 @@ export default function MultipleSelect() {
       }
     }
     setPersonName(value);
-  }
+  };
 
   return (
     <div className={classes.root}>

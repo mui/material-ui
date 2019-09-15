@@ -127,33 +127,33 @@ function AppFrame(props) {
   const crowdInLocale = LOCALES[userLanguage] || userLanguage;
 
   const [languageMenu, setLanguageMenu] = React.useState(null);
-  function handleLanguageIconClick(event) {
+  const handleLanguageIconClick = event => {
     setLanguageMenu(event.currentTarget);
-  }
-  function handleLanguageMenuClose(event) {
+  };
+  const handleLanguageMenuClose = event => {
     if (event.currentTarget.nodeName === 'A') {
       document.cookie = `userLanguage=noDefault;path=/;max-age=31536000`;
     }
     setLanguageMenu(null);
-  }
+  };
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  function handleDrawerOpen() {
+  const handleDrawerOpen = () => {
     setMobileOpen(true);
-  }
-  function handleDrawerClose() {
+  };
+  const handleDrawerClose = () => {
     setMobileOpen(false);
-  }
+  };
 
   const changeTheme = useChangeTheme();
-  function handleTogglePaletteType() {
+  const handleTogglePaletteType = () => {
     const paletteType = theme.palette.type === 'light' ? 'dark' : 'light';
 
     changeTheme({ paletteType });
-  }
-  function handleToggleDirection() {
+  };
+  const handleToggleDirection = () => {
     changeTheme({ direction: theme.direction === 'ltr' ? 'rtl' : 'ltr' });
-  }
+  };
 
   const router = useRouter();
   const { canonical } = pathnameToLanguage(Router2._rewriteUrlForNextExport(router.asPath));

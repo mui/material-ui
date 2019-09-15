@@ -15,17 +15,17 @@ export default function SimpleSnackbar() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
-  function handleClick() {
+  const handleClick = () => {
     setOpen(true);
-  }
+  };
 
-  function handleClose(event, reason) {
+  const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
 
     setOpen(false);
-  }
+  };
 
   return (
     <div>

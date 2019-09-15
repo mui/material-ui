@@ -30,13 +30,13 @@ export default function BadgeAlignment() {
   const [horizontal, setHorizontal] = React.useState('right');
   const [vertical, setVertical] = React.useState('top');
 
-  function handleHorizontalChange(event) {
+  const handleHorizontalChange = event => {
     setHorizontal(event.target.value);
-  }
+  };
 
-  function handleVerticalChange(event) {
+  const handleVerticalChange = event => {
     setVertical(event.target.value);
-  }
+  };
 
   return (
     <div className={classes.root}>

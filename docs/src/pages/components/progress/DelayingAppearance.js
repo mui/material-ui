@@ -32,11 +32,11 @@ export default function DelayingAppearance() {
     [],
   );
 
-  function handleClickLoading() {
+  const handleClickLoading = () => {
     setLoading(prevLoading => !prevLoading);
-  }
+  };
 
-  function handleClickQuery() {
+  const handleClickQuery = () => {
     clearTimeout(timerRef.current);
 
     if (query !== 'idle') {
@@ -48,7 +48,7 @@ export default function DelayingAppearance() {
     timerRef.current = setTimeout(() => {
       setQuery('success');
     }, 2000);
-  }
+  };
 
   return (
     <div className={classes.root}>

@@ -41,23 +41,23 @@ function ConfirmationDialogRaw(props) {
     }
   }, [valueProp, open]);
 
-  function handleEntering() {
+  const handleEntering = () => {
     if (radioGroupRef.current != null) {
       radioGroupRef.current.focus();
     }
-  }
+  };
 
-  function handleCancel() {
+  const handleCancel = () => {
     onClose();
-  }
+  };
 
-  function handleOk() {
+  const handleOk = () => {
     onClose(value);
-  }
+  };
 
-  function handleChange(event) {
+  const handleChange = event => {
     setValue(event.target.value);
-  }
+  };
 
   return (
     <Dialog
@@ -118,17 +118,17 @@ export default function ConfirmationDialog() {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('Dione');
 
-  function handleClickListItem() {
+  const handleClickListItem = () => {
     setOpen(true);
-  }
+  };
 
-  function handleClose(newValue) {
+  const handleClose = newValue => {
     setOpen(false);
 
     if (newValue) {
       setValue(newValue);
     }
-  }
+  };
 
   return (
     <div className={classes.root}>

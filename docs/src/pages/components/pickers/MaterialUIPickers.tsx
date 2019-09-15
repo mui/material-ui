@@ -14,9 +14,9 @@ export default function MaterialUIPickers() {
     new Date('2014-08-18T21:11:54'),
   );
 
-  function handleDateChange(date: Date | null) {
+  const handleDateChange = (date: Date | null) => {
     setSelectedDate(date);
-  }
+  };
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
