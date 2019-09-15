@@ -35,7 +35,7 @@ function HomePro(props) {
       className={classNames(classes.root, 'mui-fixed')}
       href="/getting-started/support/#professional-help-premium"
     >
-      Get Professionally Supported
+      Get Professional Support
     </Link>
   );
 }
