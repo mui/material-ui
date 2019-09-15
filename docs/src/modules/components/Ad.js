@@ -89,7 +89,7 @@ function Ad(props) {
 
   return (
     <span className={classes.root}>
-      {random >= 0.7 ? <AdCodeFund /> : <AdCarbon />}
+      {random >= 0.6 ? <AdCodeFund /> : <AdCarbon />}
       {adblock === true ? getAdblock(classes, t) : null}
     </span>
   );
