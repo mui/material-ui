@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import Paper from '@material-ui/core/Paper';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
@@ -12,24 +13,14 @@ import Typography from '@material-ui/core/Typography';
 import { Route, MemoryRouter } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: 360,
-  },
-  lists: {
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
-
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
   const renderLink = React.useMemo(
     () =>
       React.forwardRef((itemProps, ref) => (
-        // with react-router-dom@^5.0.0 use `ref` instead of `innerRef`
+        // With react-router-dom@^6.0.0 use `ref` instead of `innerRef`
+        // See https://github.com/ReactTraining/react-router/issues/6056
         <RouterLink to={to} {...itemProps} innerRef={ref} />
       )),
     [to],
@@ -38,7 +29,7 @@ function ListItemLink(props) {
   return (
     <li>
       <ListItem button component={renderLink}>
-        <ListItemIcon>{icon}</ListItemIcon>
+        {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
         <ListItemText primary={primary} />
       </ListItem>
     </li>
@@ -46,31 +37,18 @@ function ListItemLink(props) {
 }
 
 ListItemLink.propTypes = {
-  icon: PropTypes.node.isRequired,
-  primary: PropTypes.node.isRequired,
+  icon: PropTypes.element,
+  primary: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
 };
 
-// polyfill required for react-router-dom < 5.0.0
-const Link = React.forwardRef((props, ref) => <RouterLink {...props} innerRef={ref} />);
+const useStyles = makeStyles({
+  root: {
+    width: 360,
+  },
+});
 
-function ListItemLinkShorthand(props) {
-  const { primary, to } = props;
-  return (
-    <li>
-      <ListItem button component={Link} to={to}>
-        <ListItemText primary={primary} />
-      </ListItem>
-    </li>
-  );
-}
-
-ListItemLinkShorthand.propTypes = {
-  primary: PropTypes.node.isRequired,
-  to: PropTypes.string.isRequired,
-};
-
-export default function ComponentProperty() {
+export default function ListRouter() {
   const classes = useStyles();
 
   return (
@@ -81,17 +59,17 @@ export default function ComponentProperty() {
             <Typography gutterBottom>Current route: {location.pathname}</Typography>
           )}
         </Route>
-        <div className={classes.lists}>
-          <List component="nav" aria-label="main mailbox folders">
+        <Paper elevation={0}>
+          <List aria-label="main mailbox folders">
             <ListItemLink to="/inbox" primary="Inbox" icon={<InboxIcon />} />
             <ListItemLink to="/drafts" primary="Drafts" icon={<DraftsIcon />} />
           </List>
           <Divider />
-          <List component="nav" aria-label="secondary mailbox folders">
-            <ListItemLinkShorthand to="/trash" primary="Trash" />
-            <ListItemLinkShorthand to="/spam" primary="Spam" />
+          <List aria-label="secondary mailbox folders">
+            <ListItemLink to="/trash" primary="Trash" />
+            <ListItemLink to="/spam" primary="Spam" />
           </List>
-        </div>
+        </Paper>
       </div>
     </MemoryRouter>
   );

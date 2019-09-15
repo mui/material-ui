@@ -125,7 +125,7 @@ You can take advantage of this lower level component to build custom interaction
 
 ## Third-party routing library
 
-One common use case is to use the button to trigger a navigation to a new page.
+One common use case is to use the button to trigger navigation to a new page.
 The `ButtonBase` component provides a property to handle this use case: `component`.
 However for certain focus polyfills `ButtonBase` requires the DOM node of the provided
 component. This is achieved by attaching a ref to the component and expecting that the
@@ -133,9 +133,4 @@ component forwards this ref to the underlying DOM node.
 Given that many of the interactive components rely on `ButtonBase`, you should be
 able to take advantage of it everywhere.
 
-Here is an integration example with react-router:
-
-{{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
-
-_Note: Creating the Button components is necessary to prevent unexpected unmounting.
-You can read more about it in the [component prop guide](/guides/composition/#component-property)._
+Here is an [integration example with react-router](/guides/composition/#button).
