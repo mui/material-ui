@@ -24,16 +24,16 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">ButtonProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Button`](/api/button/) component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">delay</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | Adds a transition delay, to allow a series of SpeedDialActions to be animated. |
-| <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The Icon to display in the SpeedDial Floating Action Button. |
+| <span class="prop-name">FabProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Fab`](/api/fab/) component. |
+| <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The Icon to display in the SpeedDial Fab. |
 | <span class="prop-name">TooltipClasses</span> | <span class="prop-type">object</span> |  | Classes applied to the [`Tooltip`](/api/tooltip/) element. |
 | <span class="prop-name">tooltipOpen</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Make the tooltip always visible when the SpeedDial is open. |
 | <span class="prop-name">tooltipPlacement</span> | <span class="prop-type">'bottom-end'<br>&#124;&nbsp;'bottom-start'<br>&#124;&nbsp;'bottom'<br>&#124;&nbsp;'left-end'<br>&#124;&nbsp;'left-start'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right-end'<br>&#124;&nbsp;'right-start'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'top-end'<br>&#124;&nbsp;'top-start'<br>&#124;&nbsp;'top'</span> | <span class="prop-default">'left'</span> | Placement of the tooltip. |
 | <span class="prop-name">tooltipTitle</span> | <span class="prop-type">node</span> |  | Label to display in the tooltip. |
 
-The component cannot hold a ref.
+The `ref` is forwarded to the root element.
 
 Any other props supplied will be provided to the root element ([Tooltip](/api/tooltip/)).
 
@@ -44,8 +44,13 @@ Any other props supplied will be provided to the root element ([Tooltip](/api/to
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">button</span> | <span class="prop-name">MuiSpeedDialAction-button</span> | Styles applied to the `Button` component.
-| <span class="prop-name">buttonClosed</span> | <span class="prop-name">MuiSpeedDialAction-buttonClosed</span> | Styles applied to the `Button` component if `open={false}`.
+| <span class="prop-name">fab</span> | <span class="prop-name">MuiSpeedDialAction-fab</span> | Styles applied to the Fab component.
+| <span class="prop-name">fabClosed</span> | <span class="prop-name">MuiSpeedDialAction-fabClosed</span> | Styles applied to the Fab component if `open={false}`.
+| <span class="prop-name">staticTooltip</span> | <span class="prop-name">MuiSpeedDialAction-staticTooltip</span> | Styles applied to the root element if `tooltipOpen={true}`.
+| <span class="prop-name">staticTooltipClosed</span> | <span class="prop-name">MuiSpeedDialAction-staticTooltipClosed</span> | Styles applied to the root element if `tooltipOpen={true}` and `open={false}`.
+| <span class="prop-name">staticTooltipLabel</span> | <span class="prop-name">MuiSpeedDialAction-staticTooltipLabel</span> | Styles applied to the static tooltip label if `tooltipOpen={true}`.
+| <span class="prop-name">tooltipPlacementLeft</span> | <span class="prop-name">MuiSpeedDialAction-tooltipPlacementLeft</span> | Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="left"``
+| <span class="prop-name">tooltipPlacementRight</span> | <span class="prop-name">MuiSpeedDialAction-tooltipPlacementRight</span> | Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="right"``
 
 You can override the style of the component thanks to one of these customization points:
 

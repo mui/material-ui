@@ -8,7 +8,7 @@ import withStyles from '../styles/withStyles';
 import { capitalize } from '../utils/helpers';
 import Grow from '../Grow';
 import Popper from '../Popper';
-import { useForkRef } from '../utils/reactHelpers';
+import { useForkRef, setRef } from '../utils/reactHelpers';
 import { useIsFocusVisible } from '../utils/focusVisible';
 import useTheme from '../styles/useTheme';
 
@@ -84,7 +84,7 @@ export const styles = theme => ({
   },
 });
 
-function Tooltip(props) {
+const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const {
     children,
     classes,
@@ -323,13 +323,15 @@ function Tooltip(props) {
     }, leaveTouchDelay);
   };
 
+  const handleUseRef = useForkRef(setChildNode, ref);
+  const handleFocusRef = useForkRef(focusVisibleRef, handleUseRef);
   // can be removed once we drop support for non ref forwarding class components
-  const handleOwnRef = useForkRef(
-    React.useCallback(instance => {
+  const handleOwnRef = React.useCallback(
+    instance => {
       // #StrictMode ready
-      setChildNode(ReactDOM.findDOMNode(instance));
-    }, []),
-    focusVisibleRef,
+      setRef(handleFocusRef, ReactDOM.findDOMNode(instance));
+    },
+    [handleFocusRef],
   );
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
@@ -426,7 +428,7 @@ function Tooltip(props) {
       </Popper>
     </React.Fragment>
   );
-}
+});
 
 Tooltip.propTypes = {
   /**
@@ -480,13 +482,13 @@ Tooltip.propTypes = {
    */
   leaveTouchDelay: PropTypes.number,
   /**
-   * Callback fired when the tooltip requests to be closed.
+   * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
    */
   onClose: PropTypes.func,
   /**
-   * Callback fired when the tooltip requests to be open.
+   * Callback fired when the component requests to be open.
    *
    * @param {object} event The event source of the callback.
    */

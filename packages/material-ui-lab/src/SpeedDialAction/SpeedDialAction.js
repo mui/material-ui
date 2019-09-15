@@ -6,39 +6,84 @@ import clsx from 'clsx';
 import { emphasize, withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import Tooltip from '@material-ui/core/Tooltip';
+import { capitalize } from '@material-ui/core/utils';
 
 export const styles = theme => ({
-  /* Styles applied to the `Button` component. */
-  button: {
+  /* Styles applied to the Fab component. */
+  fab: {
     margin: 8,
     color: theme.palette.text.secondary,
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: theme.palette.background.paper,
     '&:hover': {
-      backgroundColor: emphasize(theme.palette.common.white, 0.15),
+      backgroundColor: emphasize(theme.palette.background.paper, 0.15),
     },
     transition: `${theme.transitions.create('transform', {
       duration: theme.transitions.duration.shorter,
     })}, opacity 0.8s`,
     opacity: 1,
   },
-  /* Styles applied to the `Button` component if `open={false}`. */
-  buttonClosed: {
+  /* Styles applied to the Fab component if `open={false}`. */
+  fabClosed: {
     opacity: 0,
     transform: 'scale(0)',
+  },
+  /* Styles applied to the root element if `tooltipOpen={true}`. */
+  staticTooltip: {
+    position: 'relative',
+    display: 'flex',
+    '& $staticTooltipLabel': {
+      transition: theme.transitions.create(['transform', 'opacity'], {
+        duration: theme.transitions.duration.shorter,
+      }),
+      opacity: 1,
+    },
+  },
+  /* Styles applied to the root element if `tooltipOpen={true}` and `open={false}`. */
+  staticTooltipClosed: {
+    '& $staticTooltipLabel': {
+      opacity: 0,
+      transform: 'scale(0.5)',
+    },
+  },
+  /* Styles applied to the static tooltip label if `tooltipOpen={true}`. */
+  staticTooltipLabel: {
+    position: 'absolute',
+    ...theme.typography.body1,
+    backgroundColor: theme.palette.background.paper,
+    borderRadius: theme.shape.borderRadius,
+    boxShadow: theme.shadows[1],
+    color: theme.palette.text.secondary,
+    padding: '4px 16px',
+  },
+  /* Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="left"`` */
+  tooltipPlacementLeft: {
+    alignItems: 'center',
+    '& $staticTooltipLabel': {
+      transformOrigin: '100% 50%',
+      right: '100%',
+      marginRight: 8,
+    },
+  },
+  /* Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="right"`` */
+  tooltipPlacementRight: {
+    alignItems: 'center',
+    '& $staticTooltipLabel': {
+      transformOrigin: '0% 50%',
+      left: '100%',
+      marginLeft: 8,
+    },
   },
 });
 
 const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
   const {
-    ButtonProps,
     classes,
     className,
     delay = 0,
+    FabProps,
     icon,
     id,
-    onClick,
-    onKeyDown,
-    open = false,
+    open,
     TooltipClasses,
     tooltipOpen: tooltipOpenProp = false,
     tooltipPlacement = 'left',
@@ -47,54 +92,53 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
   } = props;
 
   const [tooltipOpen, setTooltipOpen] = React.useState(tooltipOpenProp);
-  const timeout = React.useRef();
-  const [prevPropOpen, setPreviousOpen] = React.useState(null);
-
-  // getDerivedStateFromProps alternate
-  if (!open && tooltipOpen) {
-    setTooltipOpen(false);
-    setPreviousOpen(open);
-  }
-
-  React.useEffect(() => {
-    if (!tooltipOpenProp || prevPropOpen === open) {
-      return undefined;
-    }
-
-    if (!tooltipOpen) {
-      timeout.current = setTimeout(() => setTooltipOpen(true), delay + 100);
-      return () => {
-        clearTimeout(timeout.current);
-      };
-    }
-
-    return undefined;
-  });
 
   const handleTooltipClose = () => {
-    if (tooltipOpenProp) return;
     setTooltipOpen(false);
   };
 
   const handleTooltipOpen = () => {
-    if (tooltipOpenProp) return;
     setTooltipOpen(true);
   };
 
-  let clickProp = { onClick };
-  if (typeof document !== 'undefined' && 'ontouchstart' in document.documentElement) {
-    let startTime;
-    clickProp = {
-      onTouchStart: () => {
-        startTime = new Date();
-      },
-      onTouchEnd: event => {
-        // only perform action if the touch is a tap, i.e. not long press
-        if (new Date() - startTime < 500) {
-          onClick(event);
-        }
-      },
-    };
+  const transitionStyle = { transitionDelay: `${delay}ms` };
+
+  if (FabProps && FabProps.style) {
+    FabProps.style.transitionDelay = `${delay}ms`;
+  }
+
+  const fab = (
+    <Fab
+      size="small"
+      className={clsx(classes.fab, !open && classes.fabClosed, className)}
+      tabIndex={-1}
+      role="menuitem"
+      style={transitionStyle}
+      aria-describedby={`${id}-label`}
+      {...FabProps}
+    >
+      {icon}
+    </Fab>
+  );
+
+  if (tooltipOpenProp) {
+    return (
+      <span
+        id={id}
+        ref={ref}
+        className={clsx(
+          classes.staticTooltip,
+          !open && classes.staticTooltipClosed,
+          classes[`tooltipPlacement${capitalize(tooltipPlacement)}`],
+        )}
+        {...other}
+      >
+        <span style={transitionStyle} id={`${id}-label`} className={classes.staticTooltipLabel}>
+          {tooltipTitle}
+        </span>
+        {fab}
+      </span>
+    );
   }
 
   return (
@@ -109,18 +153,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
       classes={TooltipClasses}
       {...other}
     >
-      <Fab
-        size="small"
-        className={clsx(className, classes.button, !open && classes.buttonClosed)}
-        style={{ transitionDelay: `${delay}ms` }}
-        tabIndex={-1}
-        role="menuitem"
-        onKeyDown={onKeyDown}
-        {...ButtonProps}
-        {...clickProp}
-      >
-        {icon}
-      </Fab>
+      {fab}
     </Tooltip>
   );
 });
@@ -130,10 +163,6 @@ SpeedDialAction.propTypes = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
-  /**
-   * Props applied to the [`Button`](/api/button/) component.
-   */
-  ButtonProps: PropTypes.object,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
@@ -148,21 +177,17 @@ SpeedDialAction.propTypes = {
    */
   delay: PropTypes.number,
   /**
-   * The Icon to display in the SpeedDial Floating Action Button.
+   * Props applied to the [`Fab`](/api/fab/) component.
+   */
+  FabProps: PropTypes.object,
+  /**
+   * The Icon to display in the SpeedDial Fab.
    */
   icon: PropTypes.node,
   /**
    * @ignore
    */
   id: PropTypes.string,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
   /**
    * @ignore
    */

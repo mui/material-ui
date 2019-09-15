@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
-import { ButtonProps } from '@material-ui/core/Button';
+import { FabProps } from '@material-ui/core/Fab';
 import { TransitionProps } from 'react-transition-group/Transition';
 import { TransitionHandlerProps } from '@material-ui/core/transitions';
 
@@ -15,14 +15,10 @@ export interface SpeedDialProps
    */
   children?: React.ReactNode;
   /**
-   * The aria-label of the `Button` element.
+   * The aria-label of the button element.
    * Also used to provide the `id` for the `SpeedDial` element and its children.
    */
   ariaLabel: string;
-  /**
-   * Props applied to the [`Button`](/api/button/) element.
-   */
-  ButtonProps?: Partial<ButtonProps>;
   /**
    * The direction the actions open relative to the floating action button.
    */
@@ -32,7 +28,11 @@ export interface SpeedDialProps
    */
   hidden?: boolean;
   /**
-   * The icon to display in the SpeedDial Floating Action Button. The `SpeedDialIcon` component
+   * Props applied to the [`Fab`](/api/fab/) element.
+   */
+  FabProps?: Partial<FabProps>;
+  /**
+   * The icon to display in the SpeedDial Fab. The `SpeedDialIcon` component
    * provides a default Icon with animation.
    */
   icon?: React.ReactNode;
@@ -44,11 +44,17 @@ export interface SpeedDialProps
    */
   onClose?: (event: React.SyntheticEvent<{}>, key: string) => void;
   /**
+   * Callback fired when the component requests to be open.
+   *
+   * @param {object} event The event source of the callback.
+   */
+  onOpen?: (event: React.SyntheticEvent<{}>) => void;
+  /**
    * If `true`, the SpeedDial is open.
    */
   open: boolean;
   /**
-   * The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open.
+   * The icon to display in the SpeedDial Fab when the SpeedDial is open.
    */
   openIcon?: React.ReactNode;
   /**
@@ -68,12 +74,12 @@ export interface SpeedDialProps
 
 export type SpeedDialClassKey =
   | 'root'
-  | 'actions'
-  | 'actionsClosed'
   | 'fab'
   | 'directionUp'
   | 'directionDown'
   | 'directionLeft'
-  | 'directionRight';
+  | 'directionRight'
+  | 'actions'
+  | 'actionsClosed';
 
 export default function SpeedDial(props: SpeedDialProps): JSX.Element;

@@ -30,8 +30,8 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
   const { children, mouseEvent = 'onClick', touchEvent = 'onTouchEnd', onClickAway } = props;
   const mountedRef = useMountedRef();
   const movedRef = React.useRef(false);
-
   const nodeRef = React.useRef(null);
+
   const handleNodeRef = useForkRef(nodeRef, ref);
   // can be removed once we drop support for non ref forwarding class components
   const handleOwnRef = React.useCallback(

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Popper from '../Popper';
 import Tooltip from './Tooltip';
 import Input from '../Input';
@@ -43,6 +44,18 @@ describe('<Tooltip />', () => {
     clock.restore();
     mount.cleanUp();
   });
+
+  describeConformance(<Tooltip {...defaultProps} />, () => ({
+    classes,
+    inheritComponent: 'span',
+    mount,
+    refInstanceof: window.HTMLSpanElement,
+    skip: [
+      'componentProp',
+      // react-transition-group issue
+      'reactTestRenderer',
+    ],
+  }));
 
   it('should render the correct structure', () => {
     const wrapper = mount(<Tooltip {...defaultProps} />);
