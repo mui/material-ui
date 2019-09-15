@@ -58,7 +58,7 @@ The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the
 
 Given the reality of time and resource restraints as well as the desire to keep innovating in the frontend development space, over time it becomes necessary for the Material-UI team to shift focus to newer versions of the framework. However, Material-UI will do everything it can to make the transition to newer versions as smooth as possible, including but not limited to publishing migration guides such as [this one for Material-UI v4](/guides/migration-v3/). The open-source community is always welcome to submit new features and bug fixes as well.
 
-The current status of each Material-UI framework version is:
+The current status of each Material-UI version is as follows:
 
 - Material-UI v4 (hooks) **[Active]**: Latest version in active development.
 - Material-UI v3 (browser version support): Only handle security fixes.
