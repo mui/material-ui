@@ -25,7 +25,7 @@ If you think you have found a bug, or have a new feature idea, please start by m
 - Please begin the title with '[ComponentName]' where appropriate, and use a succinct description that helps others find similar issues.
   - "doesn't work" ❌
   - "[Button] Add support for <some feature>" ✅
-- Please don't group multiple topics into one issue, but instead, each should be its own issue.
+- Please don't group multiple topics in one issue – each should have its own issue instead.
 - Please don't comment "+1" on an issue. It spams the maintainers and doesn't help move the issue forward. Use GitHub reactions instead (👍).
 
 ### Spectrum <svg style="width: 24px; fill: currentColor; margin-left: 0px;" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" preserveAspectRatio="xMidYMid meet"><path d="M6,14.5c0,0.828 0.672,1.5 1.5,1.5l1.5,0c3.866,0 7,3.134 7,7l0,1.5c0,0.828 0.672,1.5 1.5,1.5l7,0c0.828,0 1.5,-0.672 1.5,-1.5l0,-1.5c0,-9.389 -7.611,-17 -17,-17l-1.5,0c-0.828,0 -1.5,0.672 -1.5,1.5l0,7Z"></path></svg>
