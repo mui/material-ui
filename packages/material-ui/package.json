@@ -51,7 +51,7 @@
     "normalize-scroll-left": "^0.2.0",
     "popper.js": "^1.14.1",
     "prop-types": "^15.7.2",
-    "react-transition-group": "^4.0.0"
+    "react-transition-group": "^4.3.0"
   },
   "sideEffects": false,
   "publishConfig": {
