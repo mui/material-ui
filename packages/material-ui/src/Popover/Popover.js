@@ -415,7 +415,8 @@ Popover.propTypes = {
           return new Error(
             [
               'Material-UI: the `anchorEl` prop provided to the component is invalid.',
-              'The node element should be visible.',
+              'The anchor element should be part of the document layout.',
+              "Make sure the element is present in the document or that it's not display none.",
             ].join('\n'),
           );
         }
