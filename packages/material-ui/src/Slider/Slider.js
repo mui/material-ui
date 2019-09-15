@@ -618,6 +618,25 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     };
   }, [disabled, handleMouseEnter, handleTouchEnd, handleTouchMove, handleTouchStart]);
 
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (isControlled !== (valueProp != null)) {
+        console.error(
+          [
+            `Material-UI: A component is changing ${
+              isControlled ? 'a ' : 'an un'
+            }controlled Slider to be ${isControlled ? 'un' : ''}controlled.`,
+            'Elements should not switch from uncontrolled to controlled (or vice versa).',
+            'Decide between using a controlled or uncontrolled Slider ' +
+              'element for the lifetime of the component.',
+            'More info: https://fb.me/react-controlled-components',
+          ].join('\n'),
+        );
+      }
+    }, [valueProp, isControlled]);
+  }
+
   const handleMouseDown = useEventCallback(event => {
     if (onMouseDown) {
       onMouseDown(event);

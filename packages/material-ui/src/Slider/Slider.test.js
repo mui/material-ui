@@ -476,6 +476,24 @@ describe('<Slider />', () => {
         'you need to use the `getAriaLabel` prop instead of',
       );
     });
+
+    it('should warn when switching from controlled to uncontrolled', () => {
+      const { setProps } = render(<Slider value={[20, 50]} />);
+
+      setProps({ value: undefined });
+      expect(consoleErrorMock.args()[0][0]).to.include(
+        'A component is changing a controlled Slider to be uncontrolled.',
+      );
+    });
+
+    it('should warn when switching between uncontrolled to controlled', () => {
+      const { setProps } = render(<Slider />);
+
+      setProps({ value: [20, 50] });
+      expect(consoleErrorMock.args()[0][0]).to.include(
+        'A component is changing an uncontrolled Slider to be controlled.',
+      );
+    });
   });
 
   it('should support getAriaValueText', () => {
