@@ -24,7 +24,7 @@ If you think you have found a bug, or have a new feature idea, please start by m
 - Please follow the issue template.
 - Please begin the title with '[ComponentName]' where appropriate, and use a succinct description that helps others find similar issues.
   - "doesn't work" ❌
-  - "support date range picker" ✅
+  - "[Button] Add support for <some feature>" ✅
 - Please don't group multiple topics into one issue, but instead, each should be its own issue.
 - Please don't comment "+1" on an issue. It spams the maintainers and doesn't help move the issue forward. Use GitHub reactions instead (👍).
 
