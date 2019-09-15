@@ -117,7 +117,7 @@
     "styled-components": "^4.3.2",
     "url-loader": "^2.1.0",
     "webfontloader": "^1.6.28",
-    "webpack": "^4.39.2",
+    "webpack": "^4.40.2",
     "webpack-bundle-analyzer": "^3.4.1"
   },
   "devDependencies": {
