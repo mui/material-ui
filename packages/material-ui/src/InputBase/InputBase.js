@@ -115,6 +115,13 @@ export const styles = theme => {
       '&$disabled': {
         opacity: 1, // Reset iOS opacity
       },
+      '&:-webkit-autofill': {
+        animationDuration: '5000s',
+        animationName: '$auto-fill',
+      },
+    },
+    '@keyframes auto-fill': {
+      from: {},
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense: {
@@ -241,17 +248,20 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     }
   }, [muiFormControl, disabled, focused, onBlur]);
 
+  const onFilled = muiFormControl && muiFormControl.onFilled;
+  const onEmpty = muiFormControl && muiFormControl.onEmpty;
+
   const checkDirty = React.useCallback(
     obj => {
       if (isFilled(obj)) {
-        if (muiFormControl && muiFormControl.onFilled) {
-          muiFormControl.onFilled();
+        if (onFilled) {
+          onFilled();
         }
-      } else if (muiFormControl && muiFormControl.onEmpty) {
-        muiFormControl.onEmpty();
+      } else if (onEmpty) {
+        onEmpty();
       }
     },
-    [muiFormControl],
+    [onFilled, onEmpty],
   );
 
   useEnhancedEffect(() => {
@@ -313,6 +323,12 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     }
   };
 
+  // Check the input state on mount, in case it was filled by the user
+  // or auto filled by the browser before the hydration (for SSR).
+  React.useEffect(() => {
+    checkDirty(inputRef.current);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const handleClick = event => {
     if (inputRef.current && event.currentTarget === event.target) {
       inputRef.current.focus();
@@ -355,6 +371,11 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       ...inputProps,
     };
   }
+
+  const handleAutoFill = () => {
+    // Provide a fake value as Chrome might not let you access it for security reasons.
+    checkDirty({ value: 'x' });
+  };
 
   return (
     <div
@@ -401,6 +422,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           defaultValue={defaultValue}
           disabled={fcs.disabled}
           id={id}
+          onAnimationStart={handleAutoFill}
           name={name}
           onBlur={handleBlur}
           onChange={handleChange}
