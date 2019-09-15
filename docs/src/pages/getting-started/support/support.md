@@ -115,7 +115,7 @@ Material-UI and the maintainers of thousands of other packages are working with 
 
 If you want the flexibility of open-source and the confidence of commercial-grade software, this is worth looking at.
 
-The Tidelift Subscription manages your dependencies for you
+The Tidelift Subscription manages your dependencies for you:
 
 - Get the tools you need to continuously catalog and understand the open-source software that your application depends on.
 - Your subscription helps pay the open-source community maintainers of the exact packages you use to ensure they meet the standards you require
