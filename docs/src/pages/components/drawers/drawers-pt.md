@@ -27,10 +27,10 @@ Este componente vem sobrecarregado com 2 kB gzipped de utilidades. Alguns dispos
 
 {{"demo": "pages/components/drawers/SwipeableTemporaryDrawer.js"}}
 
-The following properties are used in this documentation website for optimal usability of the component:
+As seguintes propriedades são usadas neste site de documentação para otimizar a usabilidade do componente:
 
-- iOS está hospedado em dispositivos de última geração. The backdrop transition can be enabled without dropping frames. O desempenho será suficientemente bom.
-- iOS has a "swipe to go back" feature that interferes with the discovery feature, so discovery has to be disabled.
+- iOS está hospedado em dispositivos de última geração. A transição do plano de fundo pode ser ativada sem deixar cair os quadros. O desempenho será suficientemente bom.
+- O iOS possui um recurso "deslizar para voltar" que interfere com o recurso de descoberta, portanto, a descoberta teve que ser desativada.
 
 ```jsx
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);

@@ -38,4 +38,4 @@ Um caso comum é executar a navegação apenas no cliente, sem fazer uma ida e v
 
 {{"demo": "pages/components/links/LinkRouter.js", "defaultCodeOpen": true}}
 
-*Nota: A criação de componentes de link é necessária para impedir a desmontagem inesperada. You can read more about it in the [component prop guide](/guides/composition/#component-property).*
+*Nota: A criação de componentes de link é necessária para impedir a desmontagem inesperada. Você pode ler mais sobre isso no [guia de propriedades de componente](/guides/composition/#component-property).*

@@ -23,7 +23,7 @@ components: Breadcrumbs, Link, Typography
 
 ## 折りたたみBreadcrumbs
 
-{{"demo":"pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
 ## カスタマイズされた breadcrumbs
 

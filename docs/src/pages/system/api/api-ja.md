@@ -1,6 +1,6 @@
 # API
 
-<p class="description">The API reference of the @material-ui/system package.</p>
+<p class="description">@ material-ui / systemパッケージのAPIリファレンス。</p>
 
 | Group                             | Import name      | Prop             | CSS property                    | Theme key                                                              |
 |:--------------------------------- |:---------------- |:---------------- |:------------------------------- |:---------------------------------------------------------------------- |
