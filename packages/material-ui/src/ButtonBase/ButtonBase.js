@@ -60,9 +60,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     centerRipple = false,
     children,
     classes,
-    className: classNameProp,
+    className,
     component = 'button',
-    disabled,
+    disabled = false,
     disableRipple = false,
     disableTouchRipple = false,
     focusRipple = false,
@@ -234,16 +234,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     }
   });
 
-  const className = clsx(
-    classes.root,
-    {
-      [classes.disabled]: disabled,
-      [classes.focusVisible]: focusVisible,
-      [focusVisibleClassName]: focusVisible,
-    },
-    classNameProp,
-  );
-
   let ComponentProp = component;
 
   if (ComponentProp === 'button' && other.href) {
@@ -267,7 +257,15 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
 
   return (
     <ComponentProp
-      className={className}
+      className={clsx(
+        classes.root,
+        {
+          [classes.disabled]: disabled,
+          [classes.focusVisible]: focusVisible,
+          [focusVisibleClassName]: focusVisible,
+        },
+        className,
+      )}
       onBlur={handleBlur}
       onClick={onClick}
       onFocus={handleFocus}
