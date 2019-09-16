@@ -21,9 +21,6 @@ export const styles = theme => ({
   popper: {
     zIndex: theme.zIndex.tooltip,
     pointerEvents: 'none',
-    position: 'absolute',
-    top: 0,
-    left: 0,
     flip: false, // disable jss-rtl plugin
   },
   /* Styles applied to the Popper component if `interactive={true}`. */
@@ -230,12 +227,12 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
   const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
   const [childIsFocusVisible, setChildIsFocusVisible] = React.useState(false);
-  function handleBlur() {
+  const handleBlur = () => {
     if (childIsFocusVisible) {
       setChildIsFocusVisible(false);
       onBlurVisible();
     }
-  }
+  };
 
   const handleFocus = event => {
     // Workaround for https://github.com/facebook/react/issues/7769

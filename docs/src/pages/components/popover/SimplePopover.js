@@ -14,13 +14,13 @@ export default function SimplePopover() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  function handleClick(event) {
+  const handleClick = event => {
     setAnchorEl(event.currentTarget);
-  }
+  };
 
-  function handleClose() {
+  const handleClose = () => {
     setAnchorEl(null);
-  }
+  };
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;

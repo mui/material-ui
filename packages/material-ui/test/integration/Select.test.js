@@ -16,9 +16,9 @@ describe('<Select> integration', () => {
   describe('with Dialog', () => {
     function SelectAndDialog() {
       const [value, setValue] = React.useState(10);
-      function handleChange(event) {
+      const handleChange = event => {
         setValue(Number(event.target.value));
-      }
+      };
 
       return (
         <Dialog open>

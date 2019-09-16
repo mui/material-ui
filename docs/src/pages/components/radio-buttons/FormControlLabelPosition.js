@@ -8,9 +8,9 @@ import FormLabel from '@material-ui/core/FormLabel';
 export default function FormControlLabelPosition() {
   const [value, setValue] = React.useState('female');
 
-  function handleChange(event) {
+  const handleChange = event => {
     setValue(event.target.value);
-  }
+  };
 
   return (
     <FormControl component="fieldset">

@@ -14,9 +14,9 @@ export default function CenteredTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
-  function handleChange(event, newValue) {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
-  }
+  };
 
   return (
     <Paper className={classes.root}>

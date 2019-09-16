@@ -73,13 +73,13 @@ export default function FloatingActionButtonZoom() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
-  function handleChange(event: unknown, newValue: number) {
+  const handleChange = (event: unknown, newValue: number) => {
     setValue(newValue);
-  }
+  };
 
-  function handleChangeIndex(index: number) {
+  const handleChangeIndex = (index: number) => {
     setValue(index);
-  }
+  };
 
   const transitionDuration = {
     enter: theme.transitions.duration.enteringScreen,

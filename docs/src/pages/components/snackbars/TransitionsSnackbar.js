@@ -26,12 +26,12 @@ export default function TransitionsSnackbar() {
     });
   };
 
-  function handleClose() {
+  const handleClose = () => {
     setState({
       ...state,
       open: false,
     });
-  }
+  };
 
   return (
     <div>

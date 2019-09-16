@@ -4,9 +4,9 @@ import Popper from '@material-ui/core/Popper';
 export default function MinimalPopper() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  function handleClick(event) {
+  const handleClick = event => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
-  }
+  };
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;

@@ -24,17 +24,17 @@ export default function MenuListComposition() {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
 
-  function handleToggle() {
+  const handleToggle = () => {
     setOpen(prevOpen => !prevOpen);
-  }
+  };
 
-  function handleClose(event: React.MouseEvent<EventTarget>) {
+  const handleClose = (event: React.MouseEvent<EventTarget>) => {
     if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
       return;
     }
 
     setOpen(false);
-  }
+  };
 
   return (
     <div className={classes.root}>

@@ -352,13 +352,13 @@ export default function IntegrationReactSelect() {
   const [single, setSingle] = React.useState(null);
   const [multi, setMulti] = React.useState(null);
 
-  function handleChangeSingle(value) {
+  const handleChangeSingle = value => {
     setSingle(value);
-  }
+  };
 
-  function handleChangeMulti(value) {
+  const handleChangeMulti = value => {
     setMulti(value);
-  }
+  };
 
   const selectStyles = {
     input: base => ({

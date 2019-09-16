@@ -44,19 +44,19 @@ export default function HorizontalNonLinearStepperWithError() {
   const [skipped, setSkipped] = React.useState(new Set<number>());
   const steps = getSteps();
 
-  function isStepOptional(step: number) {
+  const isStepOptional = (step: number) => {
     return step === 1;
-  }
+  };
 
-  function isStepFailed(step: number) {
+  const isStepFailed = (step: number) => {
     return step === 1;
-  }
+  };
 
-  function isStepSkipped(step: number) {
+  const isStepSkipped = (step: number) => {
     return skipped.has(step);
-  }
+  };
 
-  function handleNext() {
+  const handleNext = () => {
     let newSkipped = skipped;
     if (isStepSkipped(activeStep)) {
       newSkipped = new Set(skipped.values());
@@ -65,13 +65,13 @@ export default function HorizontalNonLinearStepperWithError() {
 
     setActiveStep(prevActiveStep => prevActiveStep + 1);
     setSkipped(newSkipped);
-  }
+  };
 
-  function handleBack() {
+  const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
-  }
+  };
 
-  function handleSkip() {
+  const handleSkip = () => {
     if (!isStepOptional(activeStep)) {
       // You probably want to guard against something like this,
       // it should never occur unless someone's actively trying to break something.
@@ -84,11 +84,11 @@ export default function HorizontalNonLinearStepperWithError() {
       return newSkipped;
     });
     setActiveStep(prevActiveStep => prevActiveStep + 1);
-  }
+  };
 
-  function handleReset() {
+  const handleReset = () => {
     setActiveStep(0);
-  }
+  };
 
   return (
     <div className={classes.root}>

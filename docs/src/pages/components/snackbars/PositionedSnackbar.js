@@ -15,9 +15,9 @@ export default function PositionedSnackbar() {
     setState({ open: true, ...newState });
   };
 
-  function handleClose() {
+  const handleClose = () => {
     setState({ ...state, open: false });
-  }
+  };
 
   return (
     <div>

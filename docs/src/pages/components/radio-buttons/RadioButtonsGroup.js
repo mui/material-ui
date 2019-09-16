@@ -17,9 +17,9 @@ export default function RadioButtonsGroup() {
   const classes = useStyles();
   const [value, setValue] = React.useState('female');
 
-  function handleChange(event) {
+  const handleChange = event => {
     setValue(event.target.value);
-  }
+  };
 
   return (
     <div>

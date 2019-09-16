@@ -27,9 +27,9 @@ export default function ComposedTextField() {
     setLabelWidth(labelRef.current.offsetWidth);
   }, []);
 
-  function handleChange(event) {
+  const handleChange = event => {
     setName(event.target.value);
-  }
+  };
 
   return (
     <div className={classes.container}>

@@ -86,7 +86,7 @@ yarn add @material-ui/styles
   The StylesProvider component replaces the JssProvider one.
 - Remove the first option argument of `withTheme()`.
   (The first argument was a placeholder for a potential future option that never arose.)
-  
+
   It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
 
   ```diff
@@ -176,10 +176,10 @@ Normalized `value` prop type for input components to use `unknown`. This affects
 
 ```diff
 function MySelect({ children }) {
--  function handleChange(event: any, value: string) {
-+  function handleChange(event: any, value: unknown) {
+- const handleChange = (event: any, value: string) => {
++ const handleChange = (event: any, value: unknown) => {
     // handle value
-  }
+  };
 
   return <Select onChange={handleChange}>{children}</Select>
 }

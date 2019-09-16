@@ -262,22 +262,22 @@ export default function EnhancedTable() {
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  function handleRequestSort(event: React.MouseEvent<unknown>, property: keyof Data) {
+  const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
     const isDesc = orderBy === property && order === 'desc';
     setOrder(isDesc ? 'asc' : 'desc');
     setOrderBy(property);
-  }
+  };
 
-  function handleSelectAllClick(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       const newSelecteds = rows.map(n => n.name);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
-  }
+  };
 
-  function handleClick(event: React.MouseEvent<unknown>, name: string) {
+  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected: string[] = [];
 
@@ -295,20 +295,20 @@ export default function EnhancedTable() {
     }
 
     setSelected(newSelected);
-  }
+  };
 
-  function handleChangePage(event: unknown, newPage: number) {
+  const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
-  }
+  };
 
-  function handleChangeRowsPerPage(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
-  }
+  };
 
-  function handleChangeDense(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDense(event.target.checked);
-  }
+  };
 
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 

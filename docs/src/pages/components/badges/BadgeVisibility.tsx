@@ -32,9 +32,9 @@ export default function BadgeVisibility() {
   const classes = useStyles();
   const [invisible, setInvisible] = React.useState(false);
 
-  function handleBadgeVisibility() {
+  const handleBadgeVisibility = () => {
     setInvisible(!invisible);
-  }
+  };
 
   return (
     <div className={classes.root}>

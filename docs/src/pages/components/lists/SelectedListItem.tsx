@@ -22,12 +22,12 @@ export default function SelectedListItem() {
   const classes = useStyles();
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  function handleListItemClick(
+  const handleListItemClick = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     index: number,
-  ): void {
+  ) => {
     setSelectedIndex(index);
-  }
+  };
 
   return (
     <div className={classes.root}>
