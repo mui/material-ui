@@ -14,7 +14,7 @@ Here are the top priorities:
 
 - 1.0 - **More components**. 🧰 This is challenging to address, as developing a fully-fledged component takes a considerable amount of time.
  We are going to try the following strategy:
-  - Identify frequently needed components. We have different resources we can leverage for this: the developer survey answers, GitHub issue upvotes, Algolia search volume, Google search volume, documentation usage volume, npm downloads, etc.
+   - Identify frequently needed components. There are many resources we can leverage for this: the developer survey answers, GitHub issue upvotes, Algolia search volume, Google search volume, documentation usage, npm downloads, etc.
   - Prioritize the creation of frequently needed components.
   - Encourage the usage of third-party components if they already exist and are well maintained.
   - Offer an option to the highly used and well maintained components to move to the official organization: mui-org/x on GitHub, @material-ui/x on npm and x.material-ui.com for the documentation.
