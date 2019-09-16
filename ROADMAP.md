@@ -10,7 +10,7 @@ Thank you for participating [in the developer survey](https://material-ui.com/bl
 
 ## Priorities
 
-Here are our top priorities, ordered by importance:
+Here are the top priorities:
 
 - 1.0 - **More components**. 🧰 People ask for more components. This is challenging to handle, as building and maintaining a professional component takes an incredible amount of time.
 Everybody underestimates it. As we have a relatively small core team, we are going to try the following strategy:
