@@ -23,6 +23,12 @@ Gosta de botões maiores ou menores? Use a propriedade `size`.
 
 {{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}
 
+## Customized toggle button
+
+Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+
+{{"demo": "pages/components/toggle-button/CustomizedDividers.js"}}
+
 ## Acessibilidade
 
 ToggleButtonGroup has `role="group"`. You should provide an accessible label with `arial-label="label"`, `aria-labelledby="id"` or `<label>`.

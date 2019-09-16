@@ -37,7 +37,7 @@ Material-UI 不提供用于解决此问题的高级 API， 我们鼓励您使用
 
 ## 补充项目
 
-对于更高级的用例，您可以利用：
+对于更高级的用例，您可以参考：
 
 - [material-ui-chip-input](https://mui.wertarbyte.com/#material-ui-chip-input): The chip input is used to allow selecting multiple text values.
 - [mui-downshift](https://github.com/techniq/mui-downshift): A thin layer over paypal's downshift to use Material-UI visual components.

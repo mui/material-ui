@@ -77,7 +77,7 @@ O seletor é uma ação secundária, sem interferir com o estado do item da list
 
 Após a rolagem, os subtítulos permanecem fixos na parte superior da tela até serem empurrados para fora da tela pelo próximo subtítulo.
 
-This feature relies on CSS sticky positioning. Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the supported browsers. It defaults to `disableSticky` when not supported.
+Esse recurso depende do posicionamento fixo do CSS. Infelizmente, [não é implementado](https://caniuse.com/#search=sticky) por todos os navegadores. O padrão é `disableSticky` quando não é suportado.
 
 {{"demo": "pages/components/lists/PinnedSubheaderList.js"}}
 
@@ -91,4 +91,4 @@ No exemplo a seguir, nós demonstramos como usar [react-window](https://github.c
 
 {{"demo": "pages/components/lists/VirtualizedList.js"}}
 
-The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged. Se no seu caso esta biblioteca não resolver, você deve considerar o uso de [react-virtualized](https://github.com/bvaughn/react-virtualized), e em seguida, como alternativa [react-virtuoso](https://github.com/petyosi/react-virtuoso).
+O uso de [react-window](https://github.com/bvaughn/react-window), quando possível, é recomendado. Se no seu caso esta biblioteca não resolver, você deve considerar o uso de [react-virtualized](https://github.com/bvaughn/react-virtualized), e em seguida, como alternativa [react-virtuoso](https://github.com/petyosi/react-virtuoso).

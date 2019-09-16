@@ -70,7 +70,7 @@ This is essentially a back/next button positioned correctly. You must implement 
 
 {{"demo": "pages/components/steppers/TextMobileStepper.js"}}
 
-### Text with Carousel effect
+### Text mit Karussel-Effekt:
 
 Diese Demo ist der vorherigen sehr ähnlich, der Unterschied besteht in der Verwendung von [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views), um den Übergang von Schritten zu realisieren.
 

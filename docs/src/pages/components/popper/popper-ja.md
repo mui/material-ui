@@ -19,25 +19,25 @@ components: Popper
 
 ## シンプルポッパー
 
-{{"demo":"pages/components/popper/SimplePopper.js"}}
+{{"demo": "pages/components/popper/SimplePopper.js" }}
 
 ## ミニマリストポッパー
 
 このコンポーネントは、追加の依存関係なしで使用できます。
 
-{{"demo":"pages/components/popper/MinimalPopper.js"}}
+{{"demo": "pages/components/popper/MinimalPopper.js" }}
 
 ## Scroll playground
 
-{{"demo":"pages/components/popper/ScrollPlayground.js","hideHeader":true}}
+{{"demo": "pages/components/popper/ScrollPlayground.js", "hideHeader": true}}
 
 ## 位置決めポッパー
 
-{{"demo":"pages/components/popper/PositionedPopper.js"}}
+{{"demo": "pages/components/popper/PositionedPopper.js"}}
 
 ## 移行なしPopper
 
-{{"demo":"pages/components/popper/NoTransitionPopper.js"}}
+{{"demo": "pages/components/popper/NoTransitionPopper.js"}}
 
 ## 偽の参照オブジェクト
 
@@ -45,7 +45,7 @@ components: Popper
 
 テキストの一部をハイライトして、ポップヒントを表示します。
 
-{{"demo":"pages/components/popper/FakedReferencePopper.js"}}
+{{"demo": "pages/components/popper/FakedReferencePopper.js"}}
 
 ## 補完プロジェクト
 
@@ -55,4 +55,4 @@ components: Popper
 
 サードパーティ製のパッケージ [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) があり、ほとんどの場合、popperの状態を管理してくれます。
 
-{{"demo":"pages/components/popper/PopperPopupState.js"}}
+{{"demo": "pages/components/popper/PopperPopupState.js"}}

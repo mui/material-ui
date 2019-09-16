@@ -215,7 +215,7 @@
     "/styles/advanced": "高级",
     "https://themes.material-ui.com/": "高级版主题",
     "/components/material-icons": "Material Icons",
-    "/components/textarea-autosize": "Textarea Autosize",
+    "/components/textarea-autosize": "Textarea自动调整大小",
     "/components/rating": "Rating",
     "/components/skeleton": "Skeleton",
     "/components/tree-view": "树视图",

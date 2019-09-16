@@ -21,7 +21,7 @@ Material-UIは、System iconsをレンダリングするための2つのコン�
 
 ### SVG Material icons
 
-カスタムアイコンを実装するのに必要なビルディングブロックがあるのは面白いですが、プリセットはどうでしょうか。 [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) is an npm package that includes the 1,000+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to `SvgIcon` components.
+カスタムアイコンを実装するのに必要なビルディングブロックがあるのは面白いですが、プリセットはどうでしょうか。 [@ material-ui / icons](https://www. npmjs. com/package/@material-ui/icons) は、1,000以上の公式の [マテリアルアイコン](https://material. io/tools/icons/? style=baseline) を `SvgIcon` コンポーネントに変換したnpmパッケージです。
 
 <a href="/components/material-icons/">
   <img src="/static/images/icons/icons.png" alt="公式の素材アイコン" style="width: 566px" />
@@ -29,7 +29,7 @@ Material-UIは、System iconsをレンダリングするための2つのコン�
 
 #### 使い方
 
-You can use the [internal search](/components/material-icons/) or [material.io/tools/icons](https://material.io/tools/icons/?style=baseline) to find a specific icon. アイコンをインポートするときは、アイコンの名前が `PascalCase`であることに注意してください。
+アイコンを探すのに [内部検索](/components/material-icons/)もしくは[material.io/tools/icons](https://material.io/tools/icons/?style=baseline)ページを利用できます。 アイコンをインポートするときは、アイコンの名前が `PascalCase`であることに注意してください。
 
 - [` delete `](https://material.io/tools/icons/?icon=delete&style=baseline) は `@material-ui/icons/Delete`として公開されています。
 - [`delete forever`](https://material.io/tools/icons/?icon=delete_forever&style=baseline) は `@material-ui/icons/DeleteForever`として公開されます。
@@ -150,7 +150,7 @@ If your icons are purely decorative, you’re already done! The `aria-hidden=tru
 
 ### Semantic Font Icons
 
-If your icons have semantic meaning, you need to provide a text alternative only visible to assistive technologies.
+アイコンにセマンティックな意味がある場合、支援技術にのみ表示される代替テキストを提供する必要があります。
 
 ```jsx
 import Icon from '@material-ui/core/Icon';

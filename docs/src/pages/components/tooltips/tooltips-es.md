@@ -74,6 +74,18 @@ By default disabled elements like `<button>` do not trigger user interactions so
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
+> If you're not wrapping a Material-UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property *pointer-events: none;* to your element when disabled:
+
+```jsx
+<Tooltip title="You don't have permission to do this">
+  <span>
+    <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
+      {'A disabled button'}
+    </button>
+  </span>
+</Tooltip>
+```
+
 ## Transiciones
 
 Usar una transición diferente.
