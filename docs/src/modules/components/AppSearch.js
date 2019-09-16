@@ -51,7 +51,7 @@ function initDocsearch(userLanguage) {
       inputSelector: '#docsearch-input',
       algoliaOptions: {
         facetFilters: ['version:master', `language:${userLanguage}`],
-        hitsPerPage: 200,
+        hitsPerPage: 40,
       },
       autocompleteOptions: {
         openOnFocus: true,
