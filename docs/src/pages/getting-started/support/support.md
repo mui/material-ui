@@ -71,13 +71,14 @@ For teams and organizations that require additional support for any framework ve
 
 ## Professional support (Premium)
 
-### Enterprise
+### Enterprise Edition
 
 Accelerate your company’s application development with a secure, long-term solution that’s optimized for enterprise and backed by Material-UI experts.
 
-- **Long Term Support.** LTS provides developers and organizations with additional stability and reliability in the applications they’re developing, including guaranteed service level agreements (SLAs) and advisory services. Take the time you need before upgrading to the latest active version of Material-UI, or remain confident in your application’s long-term supportability by staying on whichever version you’re most comfortable with. LTS is available as a paid service, it extends to Material-UI v1 implementations and higher.
-- **Version Migration Assistance**
-- **Priority Fixes**
+- **Long Term version support.** LTS provides developers and organizations with additional stability and reliability in the applications they’re developing, including guaranteed service level agreements (SLAs) and advisory services. Take the time you need before upgrading to the latest active version of Material-UI, or remain confident in your application’s long-term supportability by staying on whichever version you’re most comfortable with. LTS is available as a paid service, it extends to Material-UI v1 implementations and higher.
+- **Version migration assistance**
+- **Priority fixes**
+- **Support**. Timely support and troubleshooting when you need it most. Get expert help directly from the Material-UI team with guaranteed response times (next-business day).
 
 For more information, [get a quote](mailto:enterprise@material-ui.com) from our team.
 
