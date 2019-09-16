@@ -96,97 +96,103 @@ function initDocsearch(userLanguage) {
   }, 100);
 }
 
-const useStyles = makeStyles(theme => ({
-  '@global': {
-    '.algolia-autocomplete': {
-      '& .ds-dropdown-menu': {
-        boxShadow: theme.shadows[1],
-        borderRadius: theme.shape.borderRadius,
-        '&::before': {
-          display: 'none',
-        },
-        '& [class^=ds-dataset-]': {
-          border: 0,
-          maxHeight: 'calc(100vh - 100px)',
+const useStyles = makeStyles(
+  theme => ({
+    '@global': {
+      '.algolia-autocomplete': {
+        '& .ds-dropdown-menu': {
+          boxShadow: theme.shadows[1],
           borderRadius: theme.shape.borderRadius,
+          '&::before': {
+            display: 'none',
+          },
+          '& [class^=ds-dataset-]': {
+            border: 0,
+            maxHeight: 'calc(100vh - 100px)',
+            borderRadius: theme.shape.borderRadius,
+            backgroundColor: theme.palette.background.paper,
+          },
+        },
+        '& .algolia-docsearch-suggestion--category-header-lvl0': {
+          color: theme.palette.text.primary,
+        },
+        '& .algolia-docsearch-suggestion .algolia-docsearch-suggestion--subcategory-column': {
+          opacity: 1,
+          padding: '5.33px 10.66px',
+          textAlign: 'right',
+          width: '25%',
+        },
+        '& .algolia-docsearch-suggestion .algolia-docsearch-suggestion--content': {
+          float: 'right',
+          padding: '5.33px 0 5.33px 10.66px',
+          width: '75%',
+        },
+        '& .algolia-docsearch-suggestion--subcategory-column-text': {
+          color: theme.palette.text.secondary,
+          fontWeight: theme.typography.fontWeightRegular,
+        },
+        '& .algolia-docsearch-suggestion--highlight': {
+          color: theme.palette.type === 'light' ? '#174d8c' : '#acccf1',
+        },
+        '& .algolia-docsearch-suggestion': {
+          textDecoration: 'none',
           backgroundColor: theme.palette.background.paper,
         },
-      },
-      '& .algolia-docsearch-suggestion--category-header-lvl0': {
-        color: theme.palette.text.primary,
-      },
-      '& .algolia-docsearch-suggestion .algolia-docsearch-suggestion--subcategory-column': {
-        opacity: 1,
-        padding: '5.33px 10.66px',
-        textAlign: 'right',
-        width: '25%',
-      },
-      '& .algolia-docsearch-suggestion .algolia-docsearch-suggestion--content': {
-        float: 'right',
-        padding: '5.33px 0 5.33px 10.66px',
-        width: '75%',
-      },
-      '& .algolia-docsearch-suggestion--subcategory-column-text': {
-        color: theme.palette.text.secondary,
-        fontWeight: theme.typography.fontWeightRegular,
-      },
-      '& .algolia-docsearch-suggestion--highlight': {
-        color: theme.palette.type === 'light' ? '#174d8c' : '#acccf1',
-      },
-      '& .algolia-docsearch-suggestion': {
-        textDecoration: 'none',
-        backgroundColor: theme.palette.background.paper,
-      },
-      '& .algolia-docsearch-suggestion--title': {
-        ...theme.typography.h6,
-        color: theme.palette.text.primary,
-      },
-      '& .algolia-docsearch-suggestion--text': {
-        ...theme.typography.body2,
-        color: theme.palette.text.secondary,
-      },
-      '&& .algolia-docsearch-suggestion--no-results': {
-        width: '100%',
-        '&::before': {
-          display: 'none',
+        '& .algolia-docsearch-suggestion--title': {
+          ...theme.typography.h6,
+          color: theme.palette.text.primary,
+        },
+        '& .algolia-docsearch-suggestion--text': {
+          ...theme.typography.body2,
+          color: theme.palette.text.secondary,
+        },
+        '&& .algolia-docsearch-suggestion--no-results': {
+          width: '100%',
+          '&::before': {
+            display: 'none',
+          },
+        },
+        '& .ds-dropdown-menu .ds-suggestion.ds-cursor .algolia-docsearch-suggestion--content': {
+          backgroundColor: `${theme.palette.action.selected} !important`,
         },
       },
     },
-  },
-  root: {
-    fontFamily: theme.typography.fontFamily,
-    position: 'relative',
-    marginRight: theme.spacing(2),
-    marginLeft: theme.spacing(1),
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    '& $inputInput': {
-      transition: theme.transitions.create('width'),
-      width: 120,
-      '&:focus': {
-        width: 170,
+    root: {
+      fontFamily: theme.typography.fontFamily,
+      position: 'relative',
+      marginRight: theme.spacing(2),
+      marginLeft: theme.spacing(1),
+      borderRadius: theme.shape.borderRadius,
+      backgroundColor: fade(theme.palette.common.white, 0.15),
+      '&:hover': {
+        backgroundColor: fade(theme.palette.common.white, 0.25),
+      },
+      '& $inputInput': {
+        transition: theme.transitions.create('width'),
+        width: 120,
+        '&:focus': {
+          width: 170,
+        },
       },
     },
-  },
-  search: {
-    width: theme.spacing(9),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  inputRoot: {
-    color: 'inherit',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 9),
-  },
-}));
+    search: {
+      width: theme.spacing(9),
+      height: '100%',
+      position: 'absolute',
+      pointerEvents: 'none',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    inputRoot: {
+      color: 'inherit',
+    },
+    inputInput: {
+      padding: theme.spacing(1, 1, 1, 9),
+    },
+  }),
+  { name: 'AppSearch' },
+);
 
 export default function AppSearch() {
   const classes = useStyles();
