@@ -54,6 +54,7 @@ We are eager to find new bundle size reduction opportunities. We hope we can lev
 Here are the components we will work on being supported in the Material-UI ecosystem, no matter if they are from @material-ui/core, a third-party project or a paid source:
 
 - 🧪 In the lab, in progress to move into the core
+- 🛠 Work in progress
 - ⏳ Planning to build
 - ⭐️ At least one part will be paid (non MIT)
 
@@ -64,27 +65,33 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Speed Dial | 🧪 |
 | Toggle Button | 🧪 |
 | Tree View | 🧪 |
+| AutoComplete | 🛠 |
+| ComboBox | 🛠 |
+| MultiSelect | 🛠 |
 | Alert | ⏳ |
-| AutoComplete | ⏳ |
 | Carousel | ⏳ |
-| Color picker | ⏳ |
-| ComboBox | ⏳ |
 | Date Picker range | ⏳ |
 | Dropdown | ⏳ |
 | Dropzone | ⏳ |
 | File Upload | ⏳ |
 | Image | ⏳ |
-| MultiSelect | ⏳ |
+| Navbar | ⏳ |
 | Nested Menu | ⏳ |
 | Numeric Input | ⏳ |
 | Pagination | ⏳ |
 | Scrollspy | ⏳ |
-| Calendar | ⏳ ⭐️ |
-| Charts | ⏳ ⭐️ |
-| Data Grid | ⏳ ⭐️ |
-| Gantt | ⏳ ⭐️ |
-| Gauge | ⏳ ⭐️ |
-| Pivot Grid | ⏳ ⭐️ |
-| Rich Text Editor | ⏳ ⭐️ |
-| Scheduler | ⏳ ⭐️ |
-| Splitter | ⏳ ⭐️ |
+| TopLayout | ⏳ |
+| Calendar | ⏳⭐️ |
+| Charts | ⏳⭐️ |
+| Color picker | ⏳⭐️ |
+| Data Grid | ⏳⭐️ |
+| Gantt | ⏳⭐️ |
+| Gauge | ⏳⭐️ |
+| Masonery | ⏳⭐️ |
+| Pivot Grid | ⏳⭐️ |
+| Rich Text Editor | ⏳⭐️ |
+| Scheduler | ⏳⭐️ |
+| Splitter | ⏳⭐️ |
+| Tree View - Checkbox | ⏳⭐️ |
+| Tree View - Drag & Drop | ⏳⭐️ |
+| TreeSelect | ⏳⭐️ |
