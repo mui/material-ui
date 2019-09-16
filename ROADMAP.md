@@ -4,7 +4,7 @@
 
 ## Methodology
 
-We are community driven, we work on the problems that resonate the most with our users.
+Material-UI is community driven – issues that resonate most with the community get the most attention.
 Please **upvote** (👍) the issues you are the most interested in on GitHub.
 Thank you for participating [in our developer survey](https://material-ui.com/blog/2019-developer-survey-results/).
 
