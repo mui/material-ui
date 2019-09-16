@@ -33,7 +33,7 @@ function HomePro(props) {
     <Link
       variant="body2"
       className={classNames(classes.root, 'mui-fixed')}
-      href="/getting-started/support/#professional-help-premium"
+      href="/getting-started/support/#professional-support-premium"
     >
       Get Professional Support
     </Link>

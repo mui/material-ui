@@ -56,12 +56,13 @@ Receive the latest news on Material-UI.
 
 The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the very beginning, and always will be. Developers can ensure Material-UI is the right choice for their React applications through Material-UI’s community maintenance strategy. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
-Given the reality of time and resource restraints as well as the desire to keep innovating in the frontend development space, over time it becomes necessary for the Material-UI team to shift focus to newer versions of the framework. However, Material-UI will do everything it can to make the transition to newer versions as smooth as possible, including but not limited to publishing migration guides such as [this one for Material-UI v4](/guides/migration-v3/). The open-source community is always welcome to submit new features and bug fixes as well.
+Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework, while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for Material-UI v4](/guides/migration-v3/).
+The open-source community is always welcome to submit new features and bug fixes as well.
 
 The current status of each Material-UI version is as follows:
 
 - Material-UI v4 (hooks) **[Active]**: Latest version in active development.
-- Material-UI v3 (browser version support): Only handle security fixes.
+- Material-UI v3 (change supported browsers): Only handle security fixes.
 - Material-UI v2 (never existed).
 - Material-UI v1 (rewrite): Inactive.
 - Material-UI v0.x: Inactive.
@@ -74,7 +75,7 @@ For teams and organizations that require additional support for any framework ve
 
 Accelerate your company’s application development with a secure, long-term solution that’s optimized for enterprise and backed by Material-UI experts.
 
-- **Long Term Support.** ([LTS](https://en.wikipedia.org/wiki/Long-term_support)) provides developers and organizations with additional stability and reliability in the applications they’re developing, including guaranteed support level agreements (SLAs) and advisory services. Take the preparation time you need before upgrading to the latest active version (v4) of Material-UI or remain confident in your application’s long-term success by staying on whichever version you’re most comfortable with. LTS is available as a paid service, it extends to Material-UI v1 implementations and higher.
+- **Long Term Support.** LTS provides developers and organizations with additional stability and reliability in the applications they’re developing, including guaranteed service level agreements (SLAs) and advisory services. Take the time you need before upgrading to the latest active version of Material-UI, or remain confident in your application’s long-term supportability by staying on whichever version you’re most comfortable with. LTS is available as a paid service, it extends to Material-UI v1 implementations and higher.
 - **Version Migration Assistance**
 - **Priority Fixes**
 
@@ -82,17 +83,16 @@ For more information, [get a quote](mailto:enterprise@material-ui.com) from our 
 
 ### Advisory
 
-Supercharge your team’s development with Material-UI Advisory:
+Supercharge your team’s development with Material-UI Advisory Services:
 
 #### Developer Advisory
 
-Everything your team needs to make sure you’re using React the best way as you evaluate and build on Material-UI.
+Everything your team needs to make sure you’re using React in the best way as you evaluate and build on Material-UI.
 
-- Unlimited technical support covering Material-UI usage of the API, component design, performance, and architectural best practices.
-- A private, dedicated Slack channel with your team and Material-UI. You get access to our pool of Solutions Architect.
-- An initial walkthrough of your architecture and development workflow.
-- Guidance on best practices that help you take full advantage of Material-UI and prevent avoidable mistakes.
-- An early look at Material-UI features in the design and development phase.
+- A private, dedicated Slack channel with access to our consultants.
+  Get real-time advice, guidance, and feedback when you need it, with live Slack access and direct private chat with Material-UI’s expert technical team.
+- An initial review of your architecture and development workflow.
+- Guidance on best practices that will help you take full advantage of Material-UI and prevent avoidable mistakes.
 
 [Get a quote](mailto:advisory@material-ui.com)
 
@@ -102,9 +102,8 @@ A complete support package, for teams using Material-UI for critical business ap
 
 - Includes "Developer Advisory" scaled to your entire scope of work.
 - A designated Technical Account Manager who understands your business requirements and proactively makes sure you’re getting everything you need.
-- A designated Solutions Architect who works with your team through every phase of development, on-line.
+- A designated remote consultant who works with your team through every phase of development.
 - Regular, scheduled reviews.
-- Prioritized assistance to help shepherd your open-source pull requests through the review process.
 
 [Get a quote](mailto:advisory@material-ui.com)
 
