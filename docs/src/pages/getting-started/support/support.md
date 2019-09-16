@@ -68,7 +68,7 @@ The current status of each Material-UI version is as follows:
 
 For teams and organizations that require additional support for any framework version, Material-UI has [options available](#enterprise).
 
-## Professional help (Premium)
+## Professional support (Premium)
 
 ### Enterprise
 
