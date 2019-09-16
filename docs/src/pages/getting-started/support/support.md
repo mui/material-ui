@@ -118,7 +118,7 @@ If you want the flexibility of open-source and the confidence of commercial-grad
 The Tidelift Subscription manages your dependencies for you:
 
 - Get the tools you need to continuously catalog and understand the open-source software that your application depends on.
-- Your subscription helps pay the open-source community maintainers of the exact packages you use to ensure they meet the standards you require
+- Your subscription helps pay the open-source community maintainers of the packages you use, to ensure they meet the standards you require.
 - Address issues proactively, with tools that scan for new security, licensing, and maintenance issues, and alert our paticipating open-source maintainers so they can resolve them on your behalf.
 - Measure and improve your open-source dependencies health—which improves your app's health—and get a shortlist of high-impact steps your team can take to improve them even more.
 - Get commercial assurances that don't come for free with open-source packages, like intellectual property indemnification and support under a service level agreement. You expect these guarantees from proprietary software, and you can get them when using open-source as well.
