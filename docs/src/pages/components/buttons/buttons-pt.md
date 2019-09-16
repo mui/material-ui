@@ -112,8 +112,4 @@ O botões de texto, botões contidos, botões de ação flutuante e ícone botõ
 
 Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. O componente `ButtonBase` fornece uma propriedade para lidar com este caso de uso: `componente`. No entanto, para alguns polyfills de foco `ButtonBase` requer o nó DOM do componente fornecido. Isso é obtido anexando-se uma referência ao componente e esperando que o componente envie essa referência para o nó DOM subjacente. Dado que muitos dos componentes interativos dependem do `ButtonBase`, você deve ser capaz de tirar proveito em todos os lugares.
 
-Aqui está um exemplo de integração com react-router:
-
-{{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
-
-*Nota: A criação de componentes de botão é necessária para impedir a desmontagem inesperada. Você pode ler mais sobre isso no [guia de propriedades de componente](/guides/composition/#component-property).*
+Aqui está um [exemplo de integração com react-router](/guides/composition/#button).

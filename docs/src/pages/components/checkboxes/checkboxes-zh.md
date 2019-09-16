@@ -17,7 +17,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
-## 使用 FormGroup（表单组）控制多个复选框
+## 使用 FormGroup（表单组）的多个复选框
 
 `FormGroup` 会提供相对简单的 API 对选择控件进行分组。
 
@@ -29,9 +29,9 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 {{"demo": "pages/components/checkboxes/FormControlLabelPosition.js"}}
 
-## Customized checkbox
+## 自定义的复选框
 
-以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+以下是自定义此组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
 
@@ -39,7 +39,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 所有表单控件都应该带有标签，而这包括了单选按钮，复选框和开关。 在大多数情况下，这是通过使用一个 `<label>` 元素（[FormControlLabel](/api/form-control-label/)）实现的。
 
-如果无法使用标签，则必须直接在输入组件中添加属性。 在这种情况下，可以应用附加的属性（例如 `arial-label`， `aria-labelledby`， `title`）经由 `inputProps` 属性。
+如果无法使用标签，您则必须直接在 input 组件中添加一个属性。 在这种情况下，您可以通过由 `inputProps` 的属性来应用一些附加的属性（例如 `arial-label`， `aria-labelledby`， `title`）。
 
 ```jsx
 <Checkbox

@@ -41,21 +41,21 @@ components: AppBar, Toolbar, Menu
 
 ## スクロール
 
-You can use the `useScrollTrigger()` hook to respond to user scroll actions.
+`useScrollTrigger()` hookを使用して、ユーザーのスクロールアクションに 対応できます。
 
 ### App Barを隠す
 
-The app bar hides on scroll down to leave more space for reading.
+アプリバーは下にスクロールすると非表示になり、読み込めるスペースが増えます。
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### App Barを固定する
 
-The app bar elevates on scroll to communicate that the user is not at the top of the page.
+アプリバーはスクロール時に上昇し、ユーザーがページの上部にいないことを伝えます。
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
 
-### Back to top
+### トップへ戻る
 
 A floating action buttons appears on scroll to make it easy to get back to the top of the page.
 

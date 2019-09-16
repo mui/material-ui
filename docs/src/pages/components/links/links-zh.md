@@ -34,8 +34,6 @@ When you use `target="_blank"` with Links, it is [recommended](https://developer
 
 ## 第三方路由库
 
-一个常见的用例是仅在客户端上执行导航，而不执行与服务器的.html往返。 为解决此用例 `组件`，`Link` 组件提供了一个属性：
+One common use case is to perform navigation on the client only, without an HTTP round-trip to the server. 为解决此用例 `组件`，`Link` 组件提供了一个属性：
 
-{{"demo": "pages/components/links/LinkRouter.js", "defaultCodeOpen": true}}
-
-*备注：为防止意外的卸载，创建Link组件是非常有必要的。 You can read more about it in the [component prop guide](/guides/composition/#component-property).*
+Here is an [integration example with react-router](/guides/composition/#link).

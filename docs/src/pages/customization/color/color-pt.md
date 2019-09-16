@@ -49,7 +49,7 @@ Para testar um esquema de cores do [material.io/design/color](https://material.i
 
 {{"demo": "pages/customization/color/ColorTool.js", "hideHeader": true}}
 
-The output shown in the color sample can be pasted directly into a [`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) function (to be used with [`MuiThemeProvider`](/customization/theming/#theme-provider)):
+A saída exibida na amostra de cores pode ser colada diretamente na função [`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) (para ser usada com [`MuiThemeProvider`](/customization/theming/#theme-provider)):
 
 ```jsx
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -102,6 +102,6 @@ const theme = createMuiTheme({
 
 ### Ferramentas da comunidade
 
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Is an online tool for creating Material-UI themes via Material Design Color Tool.
-- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/): A tool to generate themes for your Material-UI applications by just selecting the colors and having a live preview.
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): É uma ferramenta online para criar temas de Material-UI por meio da ferramenta de cor do Material Design.
+- [material-ui-tema-editor](https://in-your-saas.github.io/material-ui-theme-editor/): Uma ferramenta para gerar temas para seus aplicativos de Material-UI, basta selecionar as cores e ter uma visualização ao vivo.
 - [Material palette generator](https://material.io/inline-tools/color/): O gerador de paleta do Material pode ser usado para gerar uma paleta para qualquer cor que você inserir.

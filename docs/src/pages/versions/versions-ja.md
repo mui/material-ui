@@ -20,7 +20,7 @@ Stability ensures that reusable components and libraries, tutorials, tools, and 
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
-訳文 Material-UIは厳密に[Semantic Versioning 2.0. 0](https://semver.org/)に従います。 Material-UIのバージョン番号には3つの部分があります：` major.minor.patch ` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。
+Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Material-UIのバージョン番号には3つの部分があります：` major.minor.patch ` 。 バージョン番号は、リリースに含まれる変更のレベルに基づいて増分されます。
 
 - **メジャーリリース**　には、重要な新機能が含まれています。一部の機能は含まれていますが、アップデート中の開発者支援は最小限に抑えられます。 新しいメジャーリリースに更新するときは、更新スクリプトの実行、コードのリファクタリング、追加テストの実行、および新しいAPIの学習が必要になる場合があります。
 - **マイナーリリース**　重要な新機能が含まれています。 マイナーリリースは完全に下位互換性がある; アップデート中に開発者の支援は必要ありませんが、必要に応じて、リリースで追加された新しいAPI、機能、および機能を使用するようにアプリケーションとライブラリを変更できます。
@@ -44,14 +44,14 @@ This document contains the practices that are followed to provide you with a lea
 |:-------- |:-------------------------- |
 | 2018年5月✅ | `@material-ui/core` v1.0.0 |
 | 2019年5月✅ | `@material-ui/core` v4.0.0 |
-| ? ⏳      | `@material-ui/core` v5.0.0 |
+| 2020? ⏳  | `@material-ui/core` v5.0.0 |
 
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
 ## サポートポリシー
 
-Only the latest version of Material-UI is supported. [ LTSを提供するリソースがまだありません](https://en.wikipedia.org/wiki/Long-term_support)リリース。
+Find details on the [supported versions](/getting-started/support/#supported-versions).
 
 ## 廃止予定
 

@@ -34,8 +34,6 @@ When you use `target="_blank"` with Links, it is [recommended](https://developer
 
 ## Drittanbieter-Routing Bibliothek
 
-Ein häufiger Anwendungsfall besteht darin, die Navigation nur clientseitig durchzuführen, ohne einen .html-Roundtrip mit dem Server durchzuführen. Die `Link`- Komponente bietet eine Eigenschaft für diesen Anwendungsfall: `component`.
+One common use case is to perform navigation on the client only, without an HTTP round-trip to the server. Die `Link`- Komponente bietet eine Eigenschaft für diesen Anwendungsfall: `component`.
 
-{{"demo": "pages/components/links/LinkRouter.js", "defaultCodeOpen": true}}
-
-*Merke: Das Erstellen einer Link Komponente ist notwendig um unerwünschtes Unmounting zu verhindern. You can read more about it in the [component prop guide](/guides/composition/#component-property).*
+Here is an [integration example with react-router](/guides/composition/#link).

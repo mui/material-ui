@@ -1,10 +1,10 @@
-# Точки останова
+# Контрольные точки
 
 <p class="description">API that enables the use of breakpoints in a wide variety of contexts.</p>
 
 For optimal user experience, material design interfaces need to be able to adapt their layout at various breakpoints. Material-UI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 
-Каждая точка останова (ключ) соответствует *фиксированной* ширине экрана (значению):
+Каждая контрольная точка (ключ) соответствует *фиксированной* ширине экрана (значению):
 
 - **xs,** extra-small: 0px
 - **sm,** small: 600px
@@ -12,7 +12,7 @@ For optimal user experience, material design interfaces need to be able to adapt
 - **lg,** large: 1280px
 - **xl,** extra-large: 1920px
 
-Эти [ значения точек останова ](/customization/default-theme/?expend-path=$.breakpoints.values) используются для определения диапазонов точек останова. Диапазон начинается с значения первой точки останова включительно до следующей точки останова не включая её:
+Эти [ значения контрольных точек](/customization/default-theme/?expend-path=$.breakpoints.values) используются для определения диапазонов. Диапазон начинается с значения первой точки (включительно) до следующей, но не включая её:
 
 ```js
 значение             |0px     600px    960px    1280px   1920px
@@ -34,7 +34,7 @@ CSS media queries are the idiomatic approach to make your UI responsive. The the
 - [theme.breakpoints.only(key)](#theme-breakpoints-only-key-media-query)
 - [theme.breakpoints.between(start, end)](#theme-breakpoints-between-start-end-media-query)
 
-In the following demo, we change the background color (red, blue & green) based on the screen width.
+В следующем примере мы изменяем фоновой цвет (красный, синий или зеленый) в зависмости от ширини экрана.
 
 ```jsx
 const styles = theme => ({
@@ -57,7 +57,7 @@ const styles = theme => ({
 
 ## JavaScript Media Queries
 
-Иногда использования CSS недостаточно. You might want to change the React rendering tree based on the breakpoint value, in JavaScript.
+Иногда использования CSS недостаточно. Во можете изменить дерево визуализации React'а основываясь на контрольных точках.
 
 ### useMediaQuery hook
 

@@ -20,7 +20,7 @@ Stability ensures that reusable components and libraries, tutorials, tools, and 
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
-Material-UI 严格遵循 [Semantic Versioning 2.0.0](https://semver.org/) 语义化版本规范。 Material-UI 的版本号由三部分组成：`主版本号.次版本号.修订版本号`。 版本号的选择是根据更新内容的数量决定
+Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Material-UI 的版本号由三部分组成：`主版本号.次版本号.修订版本号`。 版本号的选择是根据更新内容的数量决定
 
 - **主要版本** 包含重要的新功能，有些但在更新期间预计会提供最少的开发人员帮助。 更新到新的主要版本时，您可能需要运行更新脚本，重构代码，运行其他测试以及学习新API。
 - **次版本**包含重要的新功能。 次要版本完全向后兼容;更新期间不需要开发人员协助，但您可以选择修改应用程序和库，以开始使用发行版中添加的新API，功能和功能。
@@ -44,14 +44,14 @@ A regular schedule of releases helps you plan and coordinate your updates with t
 |:---------- |:-------------------------- |
 | May 2018 ✅ | `@material-ui/core` v1.0.0 |
 | May 2019 ✅ | `@material-ui/core` v4.0.0 |
-| ? ⏳        | `@material-ui/core` v5.0.0 |
+| 2020? ⏳    | `@material-ui/core` v5.0.0 |
 
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
 ## 支持政策
 
-Only the latest version of Material-UI is supported. 我们目前还没有提供[LTS](https://en.wikipedia.org/wiki/Long-term_support)的版本
+Find details on the [supported versions](/getting-started/support/#supported-versions).
 
 ## 弃用做法
 

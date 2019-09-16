@@ -21,7 +21,7 @@ Material-UIは、System iconsをレンダリングするための2つのコン�
 
 ### SVG Material icons
 
-カスタムアイコンを実装するのに必要なビルディングブロックがあるのは面白いですが、プリセットはどうでしょうか。 [@ material-ui / icons](https://www. npmjs. com/package/@material-ui/icons) は、1,000以上の公式の [マテリアルアイコン](https://material. io/tools/icons/? style=baseline) を `SvgIcon` コンポーネントに変換したnpmパッケージです。
+カスタムアイコンを実装するのに必要なビルディングブロックがあるのは面白いですが、プリセットはどうでしょうか。 [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) is an npm package that includes the 1,000+ official [Material icons](/components/material-icons/) converted to `SvgIcon` components.
 
 <a href="/components/material-icons/">
   <img src="/static/images/icons/icons.png" alt="公式の素材アイコン" style="width: 566px" />
@@ -66,7 +66,7 @@ For "themed" icons, append the theme name to the icon name. たとえば
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-The safest is option 1 but option 2 can yield the best experience.
+The safest is option 1 but option 2 can yield the best developer experience.
 Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
 The configuration of a Babel plugin is encouraged.
 

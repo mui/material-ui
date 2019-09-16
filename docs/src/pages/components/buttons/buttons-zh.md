@@ -5,9 +5,9 @@ components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 
 # Buttons（按钮）
 
-<p class="description">按钮允许用户只需轻按一下即可采取行动并做出选择。</p>
+<p class="description">只需通过轻按一下按钮，用户即可采取行动并做出选择。</p>
 
-[按钮](https://material.io/design/components/buttons.html) 传达用户可以执行的操作。 他们通常直接放置在用户界面中，例如：
+[按钮](https://material.io/design/components/buttons.html) 传达用户可以执行的操作。 他们通常直接放置在您的用户界面中，例如：
 
 - Dialogs（对话框）
 - Modal windows（模态窗口）
@@ -27,8 +27,8 @@ components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 
 [文本按钮](https://material.io/design/components/buttons.html#text-button)通常用于不太醒目的操作, 包括那些位于:
 
-- 对话框中
-- 卡片中
+- dialogs（对话框）中的
+- cards（卡片）中的
 
 在卡片中，使用文本按钮有助于保持卡片内容的醒目程度。
 
@@ -52,15 +52,15 @@ ButtonGroup 组件可用于组合描边按钮（默认的）或者实心按钮�
 
 ## Split Button（分割按钮）
 
-ButtonGroup也可用于创建分割按钮。 下拉列表可以更改按钮操作(如本例所示)，或也可用于立即触发相关操作。
+ButtonGroup 也可用于创建分割按钮。 下拉列表可以用于更改按钮相关的操作（如本例所示），或者用于立即出发一个相关的操作。
 
 {{"demo": "pages/components/buttons/SplitButton.js"}}
 
 ## Floating Action Buttons（提升动作按钮）
 
-[提升动作按钮](https://material.io/design/components/buttons-floating-action-button.html) (FAB) 在屏幕上执行主要的或最常用的操作。 它出现在所有屏幕内容的前面，通常是一个圆形，中间有一个图标。 FAB有两种类型：常规的和扩展的。
+[提升动作按钮](https://material.io/design/components/buttons-floating-action-button.html) (FAB) 在屏幕上执行主要的或最常用的操作。 它出现在所有屏幕内容的前面，通常是一个圆形，中间有一个图标。 FAB 一般有两种类型：常规的和扩展的。
 
-只使用FAB是最适合呈现屏幕主要操作的方法。
+仅使用 FAB 则是最适合呈现屏幕主要操作的方法。
 
 在每个屏幕中，我们建议只有一个浮动操作按钮来表示最常见的操作。
 
@@ -68,9 +68,9 @@ ButtonGroup也可用于创建分割按钮。 下拉列表可以更改按钮操�
 
 默认情况下，浮动操作按钮会以展开的动画出现在屏幕上。
 
-跨越多个横向屏幕（例如标签式屏幕）的浮动操作按钮应该短暂消失， 然后如果其动作改变则重新出现。
+跨越多个横向屏幕（例如标签式屏幕）的浮动操作按钮应该短暂消失，然后如果其动作改变则会重新出现。
 
-可以使用缩放转换来实现此目的。 注意，既然退出和进入动画同时被触发，我们使用`enterDelay`来允许旧的浮动动作按钮动画在新的按钮进入之前完成。
+您可以使用缩放转换来实现此目的。 请注意，鉴于退出和进入的动画会同时被触发，我们使用`enterDelay` 来确保旧的浮动动作按钮的动画会在新的按钮出现之前完成。
 
 {{"demo": "pages/components/buttons/FloatingActionButtonZoom.js"}}
 
@@ -82,7 +82,7 @@ ButtonGroup也可用于创建分割按钮。 下拉列表可以更改按钮操�
 
 ## 带有图标和标签的按钮
 
-有时您可能希望为某个按钮添加图标以增强应用程序的用户体验，因为我们识别徽标比纯文本更容易。 例如，如果您有删除按钮，则可以使用垃圾箱图标对其进行标记。
+有的时候，您可能希望为某个按钮加个图标来增强应用程序的用户体验，而我们也意识到图标比纯文本更通俗易懂。 例如，若您想表示一个删除按钮，您可以使用垃圾箱图标来对标记这个按钮。
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
@@ -100,20 +100,16 @@ ButtonGroup也可用于创建分割按钮。 下拉列表可以更改按钮操�
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 
-👑如果您还在寻找灵感，可以看看 [MUI Treasury定制的示例](https://mui-treasury.com/components/button)。
+👑如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/components/button)。
 
 ## Complex Buttons（复杂按钮）
 
-文本按钮，包含按钮，浮动操作按钮和图标按钮构建在同一组件之上：`ButtonBase`。 您可以利用此较底层的组件来构建自定义交互。
+文本按钮，包含按钮，浮动操作按钮和图标按钮的构建都基于同一个组件：`ButtonBase`。 利用此较底层的组件，您可以创建一些自定义的交互操作。
 
 {{"demo": "pages/components/buttons/ButtonBases.js"}}
 
 ## Third-party routing library（第三方路由库）
 
-一个常见的用例是使用按钮触发导航到新页面。 `ButtonBase` 组件提供了一个处理此用例的属性：`component`。 然而，一些特定 `ButtonBase` 的代码需要所给组件的 DOM 节点。 在组件上附加一个 ref，并且预期此组件能够将这个 ref 传递到下层 DOM 节点，通过这样的方法可以实现。 Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
+One common use case is to use the button to trigger navigation to a new page. `ButtonBase` 组件提供了一个处理此用例的属性：`component`。 然而，对于一些特定的 `ButtonBase` 填补方案，我们则需提供组件的 DOM 节点。 在组件上附加一个 ref，并且预期此组件能够将这个 ref 传递到下层 DOM 节点，通过这样的方法可以实现。 鉴于我们的许多交互式组件都依赖于 `ButtonBase`，您可以在任何情况都能受益于它。
 
-这里有个使用了react-router的示例：
-
-{{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
-
-*备注：为防止意外的卸载，创建Link组件非常必要。 You can read more about it in the [component prop guide](/guides/composition/#component-property).*
+Here is an [integration example with react-router](/guides/composition/#button).

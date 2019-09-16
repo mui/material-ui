@@ -3,13 +3,13 @@ title: Skeleton React component
 components: Skeleton
 ---
 
-# Skeleton
+# 骨架屏
 
-<p class="description">Display a placeholder preview of your content before the data gets loaded to reduce load-time frustration.</p>
+<p class="description">骨架屏可以在获取到数据之前显示一个预览占位符，从而减轻由加载时间造成的困扰。</p>
 
-The data for your components might not be immediately available. You can increase the perceived performance for users by using skeletons. It feels like things are happening immediately, then the information is incrementally displayed on the screen (Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797)).
+当组件需要的数据或许无法立即获取时， 你就可以使用骨架屏来提升用户观感上的表现。 就好像能够感觉到事情马上就要发生了，然后信息再逐步的显示在屏幕上(Cf. [Avoid The Spinner](https://www.lukew.com/ff/entry.asp?1797))。
 
-The component is designed to be used **directly in your components**. For instance:
+这个组件可以**直接在你的组件中**使用。 就像这样：
 
 ```jsx
 {item ? (
@@ -19,10 +19,10 @@ The component is designed to be used **directly in your components**. For instan
 )}
 ```
 
-## YouTube example
+## YouTube 示例
 
 {{"demo": "pages/components/skeleton/YouTube.js"}}
 
-## Facebook example
+## Facebook 示例
 
 {{"demo": "pages/components/skeleton/Facebook.js"}}

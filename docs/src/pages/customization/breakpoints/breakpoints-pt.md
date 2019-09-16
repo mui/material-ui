@@ -27,7 +27,7 @@ Os pontos de quebra são usados internamente em vários componentes para torná-
 
 ## Consultas de Mídia CSS
 
-CSS media queries are the idiomatic approach to make your UI responsive. The theme provides four styles helpers to do so:
+Consultas de mídia CSS são a abordagem idiomática para tornar sua interface de usuário responsiva. O tema fornece quatro estilos auxiliares para fazer isso:
 
 - [theme.breakpoints.up(key)](#theme-breakpoints-up-key-media-query)
 - [theme.breakpoints.down(key)](#theme-breakpoints-down-key-media-query)
@@ -240,6 +240,6 @@ function MyComponent(props) {
 export default withWidth()(MyComponent);
 ```
 
-## Default values
+## Valores padrão
 
-You can explore the default values of the breakpoints using [the theme explorer](/customization/default-theme/?expend-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).
+Você pode explorar os valores padrão dos pontos de quebra usando [o explorador de tema](/customization/default-theme/?expend-path=$.breakpoints) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.breakpoints`).

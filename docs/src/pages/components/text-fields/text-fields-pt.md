@@ -109,7 +109,7 @@ A seguinte demonstração usa as bibliotecas [react-text-mask](https://github.co
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
+O componente de entrada fornecido deve manipular a propriedade `inputRef`. A propriedade deve ser chamada com um valor que implemente a seguinte interface:
 
 ```ts
 interface InputElement {
@@ -145,7 +145,7 @@ function MeuInputComponente(props) {
 
 ## Acessibilidade
 
-In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure.
+Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao rótulo e ao texto auxiliar**. Os nós DOM subjacentes devem ter essa estrutura.
 
 ```jsx
 <div class="form-control">

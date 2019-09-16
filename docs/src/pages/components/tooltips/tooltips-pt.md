@@ -27,7 +27,7 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 ## Elemento filho customizado
 
-A dica precisa aplicar ouvintes de evento DOM ao seu elemento filho. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
+A dica precisa aplicar ouvintes de evento DOM ao seu elemento filho. Se o filho for um elemento React personalizado, você precisará garantir que ele repasse suas propriedades para o elemento DOM subjacente.
 
 ```jsx
 function MyComponent (props) {
@@ -74,13 +74,13 @@ Por padrão os elementos desativados como `<button>` não disparam interações 
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
-> If you're not wrapping a Material-UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property *pointer-events: none;* to your element when disabled:
+> Se você não estiver manipulando com um componente Material-UI que herde de `ButtonBase`, por exemplo, um elemento `<button>` nativo, você também deve adicionar a propriedade CSS *pointer-events: none;* ao seu elemento quando desativado:
 
 ```jsx
-<Tooltip title="You don't have permission to do this">
+<Tooltip title="Você não tem permissão para esta tarefa">
   <span>
     <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
-      {'A disabled button'}
+      {'Um botão desabilitado'}
     </button>
   </span>
 </Tooltip>

@@ -15,38 +15,38 @@ components: Badge
 
 ## 自定义徽章
 
-以下是自定义组件的一些例子。 您可以在[样式重写文档页](/customization/components/)中了解有关此内容的更多信息。
+以下是自定义组件的一些例子。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
-## 徽章的可见性
+## 徽章组件的可见性
 
-徽章组件的显示与隐藏可以通过`invisible`属性来设置
+徽章组件的隐显可以通过 `invisible` 属性来设置。
 
-当badgeContent为零时，徽章自动隐藏。 您可以使用 `showZero` 属性覆盖它。
+当 badgeContent 为零时，徽章组件将会自动隐藏。 您可以通过 `showZero` 属性来覆盖它。
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
 ## 最大值
 
-您可以使用 `max` 属性来限制徽章内容的最大值。
+您可以使用 `max` 属性来限制徽章组件内容的取值。
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
-## 圆点徽章
+## 圆点徽章组件
 
-`dot` 属性会使得徽章渲染为一个小点。 这可以用作提示某些内容发生了变化，如通知，或其它不需要计数的提示场景。
+`dot` 属性会徽章组件渲染成一个小点。 这样的组件可以作为一个提示的工具，来说明有些值已经改变，但是不需要计数。
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
-## 徽章重叠
+## 徽章组件的覆盖
 
-您可以使用 `overlap` 属性将徽章放置于包装元素相对的角。
+您可以使用 `overlap` 这个属性，在封装的元素相对的一角来显示徽章组件。
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
-## 徽章对齐
+## 徽章组件的校准
 
-您可以使用 `horizontalAlignment` 和 `verticalAlignment` 属性将徽章移动到包装元素的任何角落。
+您可以使用 `horizontalAlignment` 和 `verticalAlignment` 这两个属性，在封装的组件任意角落显示徽章组件。
 
 {{"demo": "pages/components/badges/BadgeAlignment.js"}}

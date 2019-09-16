@@ -20,7 +20,7 @@ Stability ensures that reusable components and libraries, tutorials, tools, and 
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
-Material-UI segue estritamente [Semântico de controle de versão 2.0.0](https://semver.org/). Os números de versão do material-UI têm três partes: ` major.minor.patch `. O número da versão é incrementado com base no nível de alteração incluído na nova versão.
+Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Os números de versão do material-UI têm três partes: ` major.minor.patch `. O número da versão é incrementado com base no nível de alteração incluído na nova versão.
 
 - ** versões principais ** contém novos recursos significativos, alguma assistência, mas mínima, do desenvolvedor é esperada durante a atualização. Ao atualizar para uma nova versão principal, talvez seja necessário executar scripts de atualização, refatorar códigos, executar testes adicionais e aprender novas APIs.
 - **versões Menores** contém novos recursos importantes. Versões menores são totalmente compatíveis com versões anteriores; nenhuma assistência do desenvolvedor é esperada durante a atualização, mas você pode opcionalmente modificar seus aplicativos e bibliotecas para começar a usar novas APIs, recursos e recursos que foram adicionados na versão.
@@ -44,14 +44,14 @@ Em geral, você pode esperar o seguinte ciclo de lançamento:
 |:-------------- |:-------------------------- |
 | Maio de 2018 ✅ | `@material-ui/core` v1.0.0 |
 | Maio de 2019 ✅ | `@material-ui/core` v4.0.0 |
-| ? ⏳            | `@material-ui/core` v5.0.0 |
+| 2020? ⏳        | `@material-ui/core` v5.0.0 |
 
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
 ## Política de suporte
 
-Only the latest version of Material-UI is supported. Ainda não temos recursos para oferecer versões [ LTS ](https://en.wikipedia.org/wiki/Long-term_support).
+Find details on the [supported versions](/getting-started/support/#supported-versions).
 
 ## Práticas de substituição
 

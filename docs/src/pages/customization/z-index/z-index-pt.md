@@ -7,10 +7,11 @@ Vários componentes do Material-UI utiliza `z-index`, empregando uma escala z-in
 [Estes valores](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/zIndex.js) começam em um número arbitrário, alto e específico, o suficiente para idealmente evitar conflitos.
 
 - mobile stepper: 1000
-- barras de aplicativos: 1100
+- speed dial: 1050
+- app bar: 1100
 - drawer: 1200
 - modal: 1300
 - snackbar: 1400
-- dicas: 1500
+- tooltip: 1500
 
 Esses valores sempre podem ser customizados. Você os encontrará no tema sob a chave [`zIndex`](/customization/default-theme/?expend-path=$.zIndex) do componente theme. Customização de valores individuais não é recomendada; você deve mudar um, você provavelmente precisará mudar todos eles.

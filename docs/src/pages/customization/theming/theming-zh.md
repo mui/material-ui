@@ -19,7 +19,7 @@
 更改主题配置变量是将Material-UI与您的需求相匹配的最有效方法。 以下列出了一些重要的样式变量：
 
 - [Palette（调色）](/customization/palette/)
-- [Typography（文字排版）](/customization/typography/)
+- [Typography（文字铸排）](/customization/typography/)
 - [Spacing（间距）](/customization/spacing/)
 - [断点](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
@@ -29,7 +29,7 @@ You can check out the [default theme section](/customization/default-theme/) to 
 
 ### Custom variables
 
-When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
+When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. 就像这样：
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 

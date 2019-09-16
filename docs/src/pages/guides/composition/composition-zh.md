@@ -19,65 +19,70 @@ WrappedIcon.muiName = Icon.muiName;
 
 {{"demo": "pages/guides/composition/Composition.js"}}
 
-## 组件属性
+## Component prop
 
-在 Material-UI 中，通过一个叫 `component` 的属性，您可以更改渲染后呈现的根节点。
+Material-UI allows you to change the root element that will be rendered via a prop called `component`.
 
 ### 它是如何工作的呢？
 
 该组件将这样渲染：
 
 ```js
-return React.createElement(this.props.component, props)
+return React.createElement(props.component, props)
 ```
 
-例如，在默认情况下，`List` 组件会渲染 `<ul>` 元素。 通过将一个 [React 组件](https://reactjs.org/docs/components-and-props.html#function-and-class-components)传递给 `component` 属性，就可以改变此默认行为。 下面的例子则将 `List` 组件和一个`<nav>` 元素渲染为根节点：
+例如，在默认情况下，`List` 组件会渲染 `<ul>` 元素。 This can be changed by passing a [React component](https://reactjs.org/docs/components-and-props.html#function-and-class-components) to the `component` prop. The following example will render the `List` component with a `<nav>` element as root element instead:
 
 ```jsx
 <List component="nav">
-  <ListItem>
+  <ListItem button>
     <ListItemText primary="Trash" />
   </ListItem>
-  <ListItem>
+  <ListItem button>
     <ListItemText primary="Spam" />
   </ListItem>
 </List>
 ```
 
-这种模式非常强大，它拥有很强的灵活性，也涵盖了与其他库互操作的方法，例如 [`react-router`](#react-router-demo) 或者你最喜欢的表格库。 但它也**带有一个小小的警告!**
+This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libraries, such as your favorite routing or forms library. 但它也**带有一个小小的警告!**
 
 ### 当与内联函数一起使用时要注意
 
-使用内联函数作为 `component` 属性的参数可能会导致 **意外的卸载**，因为每次React呈现时都会将新组件传递给 `component` 属性。 例如，如果要创建自定义` ListItem `作为链接，您可以执行以下操作：
+Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders. 例如，如果要创建自定义` ListItem `作为链接，您可以执行以下操作：
 
 ```jsx
 import { Link } from 'react-router-dom';
 
-const ListItemLink = ({ icon, primary, secondary, to }) => (
-  <li>
-    <ListItem button component={props => <Link to={to} {...props} />}>
-      {icon && <ListItemIcon>{icon}</ListItemIcon>}
-      <ListItemText inset primary={primary} secondary={secondary} />
-    </ListItem>
-  </li>
-);
+function ListItemLink(props) {
+  const { icon, primary, to } = props;
+
+  return (
+    <li>
+      <ListItem button component={props => <Link to={to} {...props} />}>
+        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemText primary={primary} />
+      </ListItem>
+    </li>
+  );
+}
 ```
 
 ⚠️然而，由于我们使用内联函数来更改呈现的组件，因此，在每一次` ListItemLink `被渲染时，React都会先将它卸载。 不只是React会更新那些不必要的DOM，`ListItem` 的涟漪效应也将无法正常工作。
 
-解决方法很简单： **避免内联函数并将静态组件传递给 `component` 属性**。 Let's change the `ListItemLink` to the following:
+The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` to the following:
 
 ```jsx
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
   const renderLink = React.useMemo(
     () =>
-      React.forwardRef((itemProps, ref) => (
-        // with react-router-dom@^5.0.0 use `ref` instead of `innerRef`
-        <RouterLink to={to} {...itemProps} innerRef={ref} />
+      React.forwardRef((linkProps, ref) => (
+        // With react-router-dom@^6.0.0 use `ref` instead of `innerRef`
+        // See https://github.com/ReactTraining/react-router/issues/6056
+        <Link to={to} {...linkProps} innerRef={ref} />
       )),
     [to],
   );
@@ -95,9 +100,9 @@ function ListItemLink(props) {
 
 ` renderLink `现在将始终引用相同的组件。
 
-### 简化代码时要注意
+### Caveat with prop forwarding
 
-您可以利用属性传递来简化代码。 在此示例中，我们不创建任何中间组件：
+You can take advantage of the prop forwarding to simplify the code. 在此示例中，我们不创建任何中间组件：
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -105,23 +110,33 @@ import { Link } from 'react-router-dom';
 <ListItem button component={Link} to="/">
 ```
 
-⚠️但是，这种策略受到一些限制：属性冲突。 提供`component` 属性的组件 (例如：ListItem) 可能不会将其所有属性传递到根元素 (例如：dense) 。
+⚠️ However, this strategy suffers from a limitation: prop collisions. The component providing the `component` prop (e.g. ListItem) might not forward all the props (for example dense) to the root element.
 
-### React Router 示例
+### With TypeScript
 
-这是一个带有[ React Router DOM](https://github.com/ReactTraining/react-router) 的示例 ：
+You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-component-prop).
 
-{{"demo": "pages/guides/composition/ComponentProperty.js"}}
+## Routing libraries
 
-### 使用 TypeScript
+The integration with third-party routing libraries is achieved with the `component` prop. The behavior is identical to the description of the prop above. Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router). It covers the Button, Link, and List components, you should be able to apply the same strategy with all the components.
 
-您可以在[ TypeScript指南 ](/guides/typescript/#usage-of-component-property)中找到详细信息 。
+### Buttons（按钮）
 
-## 使用refs时要注意
+{{"demo": "pages/guides/composition/ButtonRouter.js"}}
 
-本节介绍将自定义组件用作`子组件`或`component`属性的值时的注意事项。
+### Link
 
-某些组件需要访问DOM节点。 之前提到，通过使用` ReactDOM.findDOMNode ` 就能实现。 该方法已被废弃，代替的是使用` ref `和 ref 转递。 然而，只有下列组件类型才可获得 `ref`：
+{{"demo": "pages/guides/composition/LinkRouter.js"}}
+
+### Lists（列表）
+
+{{"demo": "pages/guides/composition/ListRouter.js"}}
+
+## Caveat with refs
+
+This section covers caveats when using a custom component as `children` or for the `component` prop.
+
+Some of the components need access to the DOM node. This was previously possible by using `ReactDOM.findDOMNode`. This function is deprecated in favor of `ref` and ref forwarding. However, only the following component types can be given a `ref`:
 
 - 任何Material-UI组件
 - 类组件，如 `React.Component` 或 `React.PureComponent` 等
@@ -130,17 +145,17 @@ import { Link } from 'react-router-dom';
 - [React.lazy组件](https://reactjs.org/docs/react-api.html#reactlazy)
 - [React.memo组件](https://reactjs.org/docs/react-api.html#reactmemo)
 
-如果在将组件与Material-UI结合使用时未使用上述类型之一，则可能会在控制台中看到来自React的警告，类似于：
+If you don't use one of the above types when using your components in conjunction with Material-UI, you might see a warning from React in your console similar to:
 
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
-请注意，在使用 `lazy` 和 `memo` 组件时，如果被封装的组件无法持有 ref，您仍然有可能收到这个警告。
+Be aware that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref.
 
 In some instances an additional warning is issued to help with debugging, similar to:
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
-Only the two most common use cases are covered. 更多信息见[React官方文档中的本章节](https://reactjs.org/docs/forwarding-refs.html)。
+Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
 
 ```diff
 - const MyButton = props => <div role="button" {...props} />;
@@ -154,7 +169,7 @@ Only the two most common use cases are covered. 更多信息见[React官方文�
 <Tooltip title="Hello, again."><SomeContent /></Tooltip>;
 ```
 
-要确定您使用的Material-UI组件是否具有此需求，请查阅该组件的props API文档。 如果您需要转递 refs，描述将链接到此部分。
+To find out if the Material-UI component you're using has this requirement, check out the the props API documentation for that component. If you need to forward refs the description will link to this section.
 
 ### Caveat with StrictMode
 

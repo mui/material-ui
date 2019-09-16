@@ -21,7 +21,7 @@ Changing the theme configuration variables is the most effective way to match Ma
 - [Палитра](/customization/palette/)
 - [Оформление текста](/customization/typography/)
 - [Интервал](/customization/spacing/)
-- [Точки останова](/customization/breakpoints/)
+- [Контрольные точки](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
 - [Глобальная настройка](/customization/globals/)
 
