@@ -93,7 +93,6 @@ Everything your team needs to make sure you’re using React the best way as you
 - An initial walkthrough of your architecture and development workflow.
 - Guidance on best practices that help you take full advantage of Material-UI and prevent avoidable mistakes.
 - An early look at Material-UI features in the design and development phase.
-Content, tools, and support that can help you evangelize and teach React across your company.
 
 [Get a quote](mailto:advisory@material-ui.com)
 
