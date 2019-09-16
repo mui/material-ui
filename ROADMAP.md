@@ -25,7 +25,7 @@ Here are the top priorities:
   - Allow the use of the components without any styles: [#6218](https://github.com/mui-org/material-ui/issues/6218).
   - Improve the support of custom breakpoints: [#11649](https://github.com/mui-org/material-ui/issues/11649)
   - Explore the integration with theme-specification, by @jxnblk.
-- 0.3 - **Better documentation.** 📚 It's a wide topic. We will focus our effort in the following areas:
+- 0.3 - **Better documentation.** 📚 This is a broad topic. The focus is on the following areas:
   - Page documentation rating 🥇🥈🥉. We will integrate a rating module in all our documentation pages. This way, we can collect high-quality data points and prioritize the pages that need the most to be improved.
   - Templates. They get people started really quickly, we need more of them!
   - Beginner tutorials & Video lessons.
