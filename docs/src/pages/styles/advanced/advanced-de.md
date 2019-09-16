@@ -31,7 +31,7 @@ Möglicherweise müssen Sie auf die Themevariablen in Ihren React-Komponenten zu
 #### `useTheme` hook
 
 ```jsx
-import { useTheme } from '@material-ui/styles';
+import { useTheme } from '@material-ui/core/styles';
 
 function DeepChild() {
   const theme = useTheme();
@@ -44,7 +44,7 @@ function DeepChild() {
 #### `withTheme` HOC
 
 ```jsx
-import { withTheme } from '@material-ui/styles';
+import { withTheme } from '@material-ui/core/styles';
 
 function DeepChildRaw(props) {
   return <span>{`spacing ${props.theme.spacing}`}</span>;
@@ -241,7 +241,7 @@ Das Einfügen von Style-Tags erfolgt in der **gleichen Reihenfolge** wie die `ma
 
 ```jsx
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStylesBase = makeStyles({
   root: {
