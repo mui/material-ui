@@ -8160,7 +8160,7 @@ The primary motivation for this change is simplicity, it's also making our inter
 `react-jss`.
 ```diff
 -import { withStyles, createStyleSheet } from 'material-ui/styles';
-+import { withStyles } from 'material-ui/core/styles';
++import { withStyles } from 'material-ui/styles';
 
 -const styleSheet = createStyleSheet('Button', {
 +const styles = {

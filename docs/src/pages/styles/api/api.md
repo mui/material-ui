@@ -1,6 +1,6 @@
 # API
 
-<p class="description">The API reference of the @material-ui/code/styles package.</p>
+<p class="description">The API reference of the @material-ui/styles package.</p>
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -51,7 +51,7 @@ style rules to `makeStyles`/`withStyles` which are a function of the `Theme`.
 #### Examples
 
 ```jsx
-import { makeStyles, createStyles } from '@material-ui/code/styles';
+import { makeStyles, createStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -93,7 +93,7 @@ the style sheet.
 
 ```jsx
 import React from 'react';
-import { makeStyles } from '@material-ui/code/styles';
+import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
   root: {
@@ -180,7 +180,7 @@ Use the function signature if you need to have access to the theme. It's provide
 
 ```jsx
 import React from 'react';
-import { styled } from '@material-ui/code/styles';
+import { styled } from '@material-ui/styles';
 
 const MyComponent = styled('div')({
   backgroundColor: 'red',
@@ -275,7 +275,7 @@ This hook returns the `theme` object so it can be used inside a function compone
 
 ```jsx
 import React from 'react';
-import { useTheme } from '@material-ui/code/styles';
+import { useTheme } from '@material-ui/styles';
 
 export default function MyComponent() {
   const theme = useTheme();
@@ -318,7 +318,7 @@ Use the function signature if you need to have access to the theme. It's provide
 
 ```jsx
 import React from 'react';
-import { withStyles } from '@material-ui/code/styles';
+import { withStyles } from '@material-ui/styles';
 
 const styles = {
   root: {
@@ -337,7 +337,7 @@ Also, you can use as [decorators](https://babeljs.io/docs/en/babel-plugin-propos
 
 ```jsx
 import React from 'react';
-import { withStyles } from '@material-ui/code/styles';
+import { withStyles } from '@material-ui/styles';
 
 const styles = {
   root: {
@@ -372,7 +372,7 @@ in the render method.
 
 ```jsx
 import React from 'react';
-import { withTheme } from '@material-ui/code/styles';
+import { withTheme } from '@material-ui/styles';
 
 function MyComponent(props) {
   return <div>{props.theme.direction}</div>;

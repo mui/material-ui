@@ -1,6 +1,6 @@
 # API
 
-<p class="description">The API reference of the @material-ui/code/styles package.</p>
+<p class="description">The API reference of the @material-ui/styles package.</p>
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -49,7 +49,7 @@ This function doesn't really "do anything" at runtime, it's just the identity fu
 #### 例
 
 ```jsx
-import { makeStyles, createStyles } from '@material-ui/code/styles';
+import { makeStyles, createStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -86,7 +86,7 @@ Link a style sheet with a function component using the **hook** pattern.
 
 ```jsx
 import React from 'react';
-import { makeStyles } from '@material-ui/code/styles';
+import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
   root: {
@@ -171,7 +171,7 @@ Link a style sheet with a function component using the **styled components** pat
 
 ```jsx
 import React from 'react';
-import { styled } from '@material-ui/code/styles';
+import { styled } from '@material-ui/styles';
 
 const MyComponent = styled('div')({
   backgroundColor: 'red',
@@ -346,7 +346,7 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
   </h4>
   
   <pre><code class="jsx">import React from 'react';
-import { useTheme } from '@material-ui/code/styles';
+import { useTheme } from '@material-ui/styles';
 
 export default function MyComponent() {
   const theme = useTheme();
@@ -425,7 +425,7 @@ export default function MyComponent() {
   </h4>
   
   <pre><code class="jsx">import React from 'react';
-import { withStyles } from '@material-ui/code/styles';
+import { withStyles } from '@material-ui/styles';
 
 const styles = {
   root: {
@@ -445,7 +445,7 @@ export default withStyles(styles)(MyComponent);
   </p>
   
   <pre><code class="jsx">import React from 'react';
-import { withStyles } from '@material-ui/code/styles';
+import { withStyles } from '@material-ui/styles';
 
 const styles = {
   root: {
@@ -494,7 +494,7 @@ export default MyComponent
   </h4>
   
   <pre><code class="jsx">import React from 'react';
-import { withTheme } from '@material-ui/code/styles';
+import { withTheme } from '@material-ui/styles';
 
 function MyComponent(props) {
   return &lt;div&gt;{props.theme.direction}&lt;/div&gt;;
