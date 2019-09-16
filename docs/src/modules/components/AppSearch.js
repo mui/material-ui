@@ -6,94 +6,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { fade, useTheme, makeStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import SearchIcon from '@material-ui/icons/Search';
-import loadScript from 'docs/src/modules/utils/loadScript';
 import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
-
-let searchTimer;
-let initialized = false;
-let dependenciesLoaded = false;
-
-function loadDependencies() {
-  if (dependenciesLoaded) {
-    return;
-  }
-  dependenciesLoaded = true;
-
-  loadCSS(
-    'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css',
-    document.querySelector('#app-search'),
-  );
-  loadScript(
-    'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js',
-    document.querySelector('head'),
-  );
-}
-
-function initDocsearch(userLanguage) {
-  clearInterval(searchTimer);
-  searchTimer = setInterval(() => {
-    const docsearchInput = document.querySelector('#docsearch-input');
-
-    if (!window.docsearch || !docsearchInput) {
-      return;
-    }
-
-    clearInterval(searchTimer);
-
-    if (initialized === docsearchInput) {
-      return;
-    }
-
-    initialized = docsearchInput;
-    const search = window.docsearch({
-      apiKey: '1d8534f83b9b0cfea8f16498d19fbcab',
-      indexName: 'material-ui',
-      inputSelector: '#docsearch-input',
-      algoliaOptions: {
-        facetFilters: ['version:master', `language:${userLanguage}`],
-      },
-      autocompleteOptions: {
-        openOnFocus: true,
-      },
-      handleSelected: (input, event, suggestion) => {
-        event.button = 0;
-        const parseUrl = url.parse(suggestion.url);
-        handleEvent(event, parseUrl.pathname + parseUrl.hash);
-        input.close();
-      },
-      // debug: true, // Set debug to true if you want to inspect the dropdown.
-    });
-
-    search.autocomplete.on('autocomplete:cursorchanged', event => {
-      const combobox = event.target;
-      const selectedOptionNode = document.getElementById(
-        combobox.getAttribute('aria-activedescendant'),
-      );
-      const listboxNode = document.querySelector('.ds-suggestions').parentElement;
-
-      if (selectedOptionNode === null || listboxNode === null) {
-        if (process.env.NODE_ENV !== 'production') {
-          console.warn('Cant scroll to selected option.');
-        }
-        return;
-      }
-
-      // scroll active descendant into view
-      // logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
-      if (listboxNode.scrollHeight > listboxNode.clientHeight) {
-        const element = selectedOptionNode;
-
-        const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;
-        const elementBottom = element.offsetTop + element.offsetHeight;
-        if (elementBottom > scrollBottom) {
-          listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
-        } else if (element.offsetTop < listboxNode.scrollTop) {
-          listboxNode.scrollTop = element.offsetTop;
-        }
-      }
-    });
-  }, 100);
-}
+import docsearch from 'docsearch.js';
 
 const useStyles = makeStyles(
   theme => ({
@@ -200,6 +114,13 @@ export default function AppSearch() {
   const userLanguage = useSelector(state => state.options.userLanguage);
 
   React.useEffect(() => {
+    loadCSS(
+      'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css',
+      document.querySelector('#app-search'),
+    );
+  }, []);
+
+  React.useEffect(() => {
     const handleKeyDown = event => {
       // Use event.keyCode to support IE 11
       if (
@@ -225,10 +146,59 @@ export default function AppSearch() {
 
   React.useEffect(() => {
     if (desktop) {
-      loadDependencies();
-      initDocsearch(userLanguage);
+      // This assumes that by the time this effect runs the Input component is committed
+      // this holds true as long as the effect and the component are in the same
+      // suspense boundary. If you move effect and component apart be sure to check
+      // that this assumption still holds
+      const search = docsearch({
+        apiKey: '1d8534f83b9b0cfea8f16498d19fbcab',
+        indexName: 'material-ui',
+        inputSelector: '#docsearch-input',
+        algoliaOptions: {
+          facetFilters: ['version:master', `language:${userLanguage}`],
+        },
+        autocompleteOptions: {
+          openOnFocus: true,
+        },
+        handleSelected: (input, event, suggestion) => {
+          event.button = 0;
+          const parseUrl = url.parse(suggestion.url);
+          handleEvent(event, parseUrl.pathname + parseUrl.hash);
+          input.close();
+        },
+        // debug: true, // Set debug to true if you want to inspect the dropdown.
+      });
+
+      search.autocomplete.on('autocomplete:cursorchanged', event => {
+        const combobox = event.target;
+        const selectedOptionNode = document.getElementById(
+          combobox.getAttribute('aria-activedescendant'),
+        );
+        const listboxNode = document.querySelector('.ds-suggestions').parentElement;
+
+        if (selectedOptionNode === null || listboxNode === null) {
+          if (process.env.NODE_ENV !== 'production') {
+            console.warn('Cant scroll to selected option.');
+          }
+          return;
+        }
+
+        // scroll active descendant into view
+        // logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
+        if (listboxNode.scrollHeight > listboxNode.clientHeight) {
+          const element = selectedOptionNode;
+
+          const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;
+          const elementBottom = element.offsetTop + element.offsetHeight;
+          if (elementBottom > scrollBottom) {
+            listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
+          } else if (element.offsetTop < listboxNode.scrollTop) {
+            listboxNode.scrollTop = element.offsetTop;
+          }
+        }
+      });
     }
-  });
+  }, [desktop, userLanguage]);
 
   return (
     <div className={classes.root} style={{ display: desktop ? 'flex' : 'none' }}>

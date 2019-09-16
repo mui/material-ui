@@ -28,7 +28,7 @@ import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR'
 import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
 import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
-import AppSearch from 'docs/src/modules/components/AppSearch';
+import Skeleton from '@material-ui/lab/Skeleton';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import usePageTitle from 'docs/src/modules/components/usePageTitle';
@@ -50,6 +50,22 @@ Router.onRouteChangeComplete = () => {
 Router.onRouteChangeError = () => {
   NProgress.done();
 };
+
+const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
+function DeferredAppSearch() {
+  const fallback = <Skeleton height={32} variant="rect" width={220} />;
+
+  // Suspense isn't supported for SSR yet
+  if (typeof window === 'undefined') {
+    return fallback;
+  }
+
+  return (
+    <React.Suspense fallback={fallback}>
+      <AppSearch />
+    </React.Suspense>
+  );
+}
 
 const styles = theme => ({
   root: {
@@ -193,7 +209,7 @@ function AppFrame(props) {
             <MenuIcon />
           </IconButton>
           <div className={classes.grow} />
-          <AppSearch />
+          <DeferredAppSearch />
           <Tooltip title="Change language" enterDelay={300}>
             <IconButton
               color="inherit"
