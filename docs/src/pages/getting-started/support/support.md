@@ -123,7 +123,7 @@ The Tidelift Subscription manages your dependencies for you:
 - Tidelift helps measure and improve your open-source dependencies' health – which improves your app's health – and gives a shortlist of high-impact steps your team can take to improve them even more.
 - Get commercial assurances that don't come for free with open-source packages, like intellectual property indemnification and support under a service level agreement. You expect these guarantees from proprietary software, and you can get them when using open-source as well.
 
-The end result? All of the capabilities you expect from commercial-grade software, for the full breadth of open-source you use. That means less time grappling with esoteric open-source trivia, and more time building your own applications—and your business.
+The end result? All of the capabilities you expect from commercial-grade software, for the full breadth of open-source you use. That means less time grappling with esoteric open-source trivia, and more time building your own applications – and your business.
 
 [Get more details](https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=enterprise)
 
