@@ -30,10 +30,9 @@ Everybody underestimates it. As we have a relatively small core team, we are goi
   - Templates. They get people started really quickly, we need more of them!
   - Beginner tutorials & Video lessons.
 - 0.3 - **TypeScript.** 📏 There are two dimensions to this problem:
-  - The documentation. We want to provide a TypeScript variant to most of our demos.
+  - The documentation. We want to provide a TypeScript variant of most of our demos.
     You can help us out in [#14897](https://github.com/mui-org/material-ui/issues/14897), we have already covered +90% of them.
-  - The definitions. We are **continuously** improving them. For instance, we are working on moving the props descriptions to TypeScript, so you can access them direction from your IDE.
-
+  - The definitions. We are **continuously** improving them. For instance, we are working on moving the props descriptions to TypeScript, so you can access them directly from your IDE.
     The codebase is written in JavaScript, we don't plan on migrating it to TypeScript in the near future. Upvote [#15984](https://github.com/mui-org/material-ui/issues/15984) if you want us to rewrite the core in a future version.
 - 0.3 - **Performance.** 🚀 React abstraction has a cost. The more components you render, the slower your page will be. You will notice stark differences when rendering a large table or list.
 Performance is all about doing less work. We can leverage the following:
@@ -42,7 +41,7 @@ Performance is all about doing less work. We can leverage the following:
     as most of our APIs are too low level to implement efficient memoization (React.useMemo, React.memo).
     If you find a good opportunity for it, let us know, and we will be happy to work with you on the problem.
   - Avoid rendering. We have documented [how to implement virtualization](/components/tables/#virtualized-table) for the Table components. It's important to consider it above 100 items.
-- 0.2 - **Bundle size.** 📦 You can keep track of our progress [following bundlephobia.com report](https://bundlephobia.com/result?p=@material-ui/core) (.
+- 0.2 - **Bundle size.** 📦 You can keep track of our progress [following bundlephobia.com report](https://bundlephobia.com/result?p=@material-ui/core).
 It's a continuous effort – v4 was [18% smaller](https://bundlephobia.com/result?p=@material-ui/core@3.9.2) than v3, while adding new features.
 We are eager to find new bundle size reduction opportunities. We hope we can leverage these two in the future:
   - A JSS to styled-component migration should help. Compare [JSS v10.0.0-alpha.24](https://bundlephobia.com/result?p=react-jss@10.0.0-alpha.24) with [styled-components v5.0.0-beta.8](https://bundlephobia.com/result?p=styled-components@5.0.0-beta.8). We could save ~6 kB gzipped.

@@ -27,7 +27,7 @@ Here are the most significant improvements in August:
   ![TypeScript](/static/blog/august-2019-update/typescript.png)
 
 - 🎨 We have worked on seeding https://themes.material-ui.com/.
-- 📖 We have updated our ROADMAP. [Check it out](/discover-more/roadmap/)
+- 📖 We have updated our ROADMAP. [Check it out](/discover-more/roadmap/).
 
 But this summary is just scratching the surface. We have accepted 193 commits from 74 different contributors. We have changed 5,875 files with 35,101 additions and 14,701 deletions.
 
@@ -35,9 +35,9 @@ But this summary is just scratching the surface. We have accepted 193 commits fr
 
 *(We'll do our best, no guarantee!)*
 
-- 🔍 We will keep working on providing ready to use autocomplete, combo box, and multi-select components. We have announced it last month but made little progress. We have been caught up with exisiting components bugs. Let's make it happen!
+- 🔍 We will keep working on providing ready to use autocomplete, combo box, and multi-select components. We announced it last month but have made little progress so far due to focusing on fixing bugs in existing components. Let's make it happen!
 
-- ❓ Want something in specific? Please upvotes our GitHub issues, the number of 👍 matters to us.
+- ❓ Want something in specific? Please upvote our GitHub issues, the number of 👍 matters to us.
 
 <hr />
 
