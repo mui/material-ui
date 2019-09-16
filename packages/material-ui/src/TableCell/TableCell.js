@@ -33,7 +33,6 @@ export const styles = theme => ({
   /* Styles applied to the root element if `variant="body"` or `context.table.body`. */
   body: {
     color: theme.palette.text.primary,
-    fontWeight: theme.typography.fontWeightRegular,
   },
   /* Styles applied to the root element if `variant="footer"` or `context.table.footer`. */
   footer: {
