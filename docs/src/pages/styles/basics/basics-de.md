@@ -36,7 +36,7 @@ There are 3 possible APIs you can use to generate and apply styles, however they
 
 ```jsx
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/code/styles';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
@@ -65,7 +65,7 @@ Hinweis: Dies gilt nur für aufrufende Syntax-Stil-Definitionen, die noch ein JS
 
 ```jsx
 import React from 'react';
-import { styled } from '@material-ui/styles';
+import { styled } from '@material-ui/code/styles';
 import Button from '@material-ui/core/Button';
 
 const MyButton = styled(Button)({
@@ -90,7 +90,7 @@ export default function StyledComponents() {
 ```jsx
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/code/styles';
 import Button from '@material-ui/core/Button';
 
 const styles = {

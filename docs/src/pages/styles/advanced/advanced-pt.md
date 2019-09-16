@@ -31,7 +31,7 @@ Você pode precisar acessar as variáveis de tema dentro de seus componentes Rea
 #### `useTheme` hook
 
 ```jsx
-import { useTheme } from '@material-ui/styles';
+import { useTheme } from '@material-ui/core/styles';
 
 function DeepChild() {
   const theme = useTheme();
@@ -44,7 +44,7 @@ function DeepChild() {
 #### `withTheme` HOC
 
 ```jsx
-import { withTheme } from '@material-ui/styles';
+import { withTheme } from '@material-ui/core/styles';
 
 function DeepChildRaw(props) {
   return <span>{`spacing ${props.theme.spacing}`}</span>;
@@ -241,7 +241,7 @@ A injeção de tags de estilo acontece na **mesma ordem** com as invocações de
 
 ```jsx
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStylesBase = makeStyles({
   root: {
@@ -402,7 +402,7 @@ Os nomes de classes são gerados pelo [gerador de nome de classe](/styles/api/#c
 
 ### Padrão
 
-Por padrão, os nomes de classes gerados por `@material-ui/styles` são **não determinísticos**; você não pode confiar que eles irão permanecer os mesmos. Vejamos a seguinte estilo como um exemplo:
+Por padrão, os nomes de classes gerados por `@material-ui/core/styles` são **não determinísticos**; você não pode confiar que eles irão permanecer os mesmos. Vejamos a seguinte estilo como um exemplo:
 
 ```js
 const useStyles = makeStyles({
