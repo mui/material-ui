@@ -13,7 +13,7 @@ Thank you for participating [in the developer survey](https://material-ui.com/bl
 Here are the top priorities:
 
 - 1.0 - **More components**. 🧰 This is challenging to address, as developing a fully-fledged component takes a considerable amount of time.
-Everybody underestimates it. As we have a relatively small core team, we are going to try the following strategy:
+ We are going to try the following strategy:
   - Identify frequently needed components. We have different resources we can leverage for this: the developer survey answers, GitHub issue upvotes, Algolia search volume, Google search volume, documentation usage volume, npm downloads, etc.
   - Prioritize the creation of frequently needed components.
   - Encourage the usage of third-party components if they already exist and are well maintained.
