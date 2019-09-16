@@ -45,12 +45,16 @@ function initDocsearch(userLanguage) {
     }
 
     initialized = docsearchInput;
-    window.docsearch({
+    const search = window.docsearch({
       apiKey: '1d8534f83b9b0cfea8f16498d19fbcab',
       indexName: 'material-ui',
       inputSelector: '#docsearch-input',
       algoliaOptions: {
         facetFilters: ['version:master', `language:${userLanguage}`],
+        hitsPerPage: 200,
+      },
+      autocompleteOptions: {
+        openOnFocus: true,
       },
       handleSelected: (input, event, suggestion) => {
         event.button = 0;
@@ -59,6 +63,35 @@ function initDocsearch(userLanguage) {
         input.close();
       },
       // debug: true, // Set debug to true if you want to inspect the dropdown.
+    });
+
+    search.autocomplete.on('autocomplete:cursorchanged', event => {
+      const combobox = event.target;
+      const selectedOptionNode = document.getElementById(
+        combobox.getAttribute('aria-activedescendant'),
+      );
+      const listboxNode = document.querySelector('.ds-suggestions').parentElement;
+
+      if (selectedOptionNode === null || listboxNode === null) {
+        if (process.env.NODE_ENV !== 'production') {
+          console.warn('Cant scroll to selected option.');
+        }
+        return;
+      }
+
+      // scroll active descendant into view
+      // logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
+      if (listboxNode.scrollHeight > listboxNode.clientHeight) {
+        const element = selectedOptionNode;
+
+        const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;
+        const elementBottom = element.offsetTop + element.offsetHeight;
+        if (elementBottom > scrollBottom) {
+          listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
+        } else if (element.offsetTop < listboxNode.scrollTop) {
+          listboxNode.scrollTop = element.offsetTop;
+        }
+      }
     });
   }, 100);
 }
