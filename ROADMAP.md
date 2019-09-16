@@ -22,7 +22,7 @@ Everybody underestimates it. As we have a relatively small core team, we are goi
   - Better support for styled-components: [#6115](https://github.com/mui-org/material-ui/issues/6115).
   - Allow the usage of the Box props in all the core components: [#15561](https://github.com/mui-org/material-ui/issues/15561).
   - Allow the usage of dynamic theme variants and colors: [#15573](https://github.com/mui-org/material-ui/issues/15573) & [#13875](https://github.com/mui-org/material-ui/issues/13875).
-  - Allow the usage of the components without any styles: [#6218](https://github.com/mui-org/material-ui/issues/6218).
+  - Allow the use of the components without any styles: [#6218](https://github.com/mui-org/material-ui/issues/6218).
   - Improve the support of custom breakpoints: [#11649](https://github.com/mui-org/material-ui/issues/11649)
   - Explore the integration with theme-specification, by @jxnblk.
 - 0.3 - **Better documentation.** 📚 It's a wide topic. We will focus our effort in the following areas:
