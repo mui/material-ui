@@ -9,11 +9,13 @@ import { withStyles, useTheme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 import NoSsr from '@material-ui/core/NoSsr';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu';
 import LanguageIcon from '@material-ui/icons/Translate';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MuiLink from '@material-ui/core/Link';
@@ -93,7 +95,10 @@ const styles = theme => ({
     boxShadow: 'none',
   },
   language: {
-    margin: theme.spacing(0, 1, 0, 0.5),
+    margin: theme.spacing(0, 0.5, 0, 1),
+  },
+  iconButton: {
+    marginLeft: theme.spacing(0.5),
   },
   appBarShift: {
     [theme.breakpoints.up('lg')]: {
@@ -195,7 +200,7 @@ function AppFrame(props) {
           <div className={classes.grow} />
           <AppSearch />
           <Tooltip title="Change language" enterDelay={300}>
-            <IconButton
+            <Button
               color="inherit"
               aria-owns={languageMenu ? 'language-menu' : undefined}
               aria-haspopup="true"
@@ -205,9 +210,10 @@ function AppFrame(props) {
               data-ga-event-action="language"
             >
               <LanguageIcon />
-            </IconButton>
+              <span className={classes.language}>{t('language')}</span>
+              <ExpandMoreIcon />
+            </Button>
           </Tooltip>
-          <span className={classes.language}>{userLanguage.toUpperCase()}</span>
           <NoSsr>
             <Menu
               id="language-menu"
@@ -253,6 +259,7 @@ function AppFrame(props) {
               href="/customization/color/#color-tool"
               data-ga-event-category="AppBar"
               data-ga-event-action="colors"
+              className={classes.iconButton}
             >
               <ColorsIcon />
             </IconButton>
@@ -264,6 +271,7 @@ function AppFrame(props) {
               aria-label={t('toggleTheme')}
               data-ga-event-category="AppBar"
               data-ga-event-action="dark"
+              className={classes.iconButton}
             >
               {theme.palette.type === 'light' ? <LightbulbOutlineIcon /> : <LightbulbFullIcon />}
             </IconButton>
@@ -275,6 +283,7 @@ function AppFrame(props) {
               aria-label={t('toggleRTL')}
               data-ga-event-category="AppBar"
               data-ga-event-action="rtl"
+              className={classes.iconButton}
             >
               {theme.direction === 'rtl' ? (
                 <FormatTextdirectionLToR />
@@ -292,6 +301,7 @@ function AppFrame(props) {
               aria-label={t('github')}
               data-ga-event-category="AppBar"
               data-ga-event-action="github"
+              className={classes.iconButton}
             >
               <GithubIcon />
             </IconButton>
