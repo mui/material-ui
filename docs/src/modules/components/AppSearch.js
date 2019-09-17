@@ -114,10 +114,14 @@ export default function AppSearch() {
   const userLanguage = useSelector(state => state.options.userLanguage);
 
   React.useEffect(() => {
-    loadCSS(
+    const styleNode = loadCSS(
       'https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css',
       document.querySelector('#app-search'),
     );
+
+    return () => {
+      styleNode.parentElement.removeChild(styleNode);
+    };
   }, []);
 
   React.useEffect(() => {
