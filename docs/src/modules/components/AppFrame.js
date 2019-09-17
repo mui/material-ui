@@ -28,7 +28,6 @@ import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR'
 import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
 import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
-import Skeleton from '@material-ui/lab/Skeleton';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import usePageTitle from 'docs/src/modules/components/usePageTitle';
@@ -53,7 +52,7 @@ Router.onRouteChangeError = () => {
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
 function DeferredAppSearch() {
-  const fallback = <Skeleton height={32} variant="rect" width={220} />;
+  const fallback = null;
 
   return (
     <React.Fragment>
