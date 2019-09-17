@@ -208,7 +208,8 @@ ListItem.propTypes = {
    */
   autoFocus: PropTypes.bool,
   /**
-   * If `true`, the list item will be a button (using `ButtonBase`).
+   * If `true`, the list item will be a button (using `ButtonBase`). Props intended
+   * for `ButtonBase` can then be applied to `ListItem`.
    */
   button: PropTypes.bool,
   /**
