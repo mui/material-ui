@@ -55,15 +55,22 @@ const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch
 function DeferredAppSearch() {
   const fallback = <Skeleton height={32} variant="rect" width={220} />;
 
-  // Suspense isn't supported for SSR yet
-  if (typeof window === 'undefined') {
-    return fallback;
-  }
-
   return (
-    <React.Suspense fallback={fallback}>
-      <AppSearch />
-    </React.Suspense>
+    <React.Fragment>
+      <link
+        rel="preload"
+        href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css"
+        as="style"
+      />
+      {/* Suspense isn't supported for SSR yet */}
+      {typeof window === 'undefined' ? (
+        fallback
+      ) : (
+        <React.Suspense fallback={fallback}>
+          <AppSearch />
+        </React.Suspense>
+      )}
+    </React.Fragment>
   );
 }
 

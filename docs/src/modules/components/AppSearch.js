@@ -107,6 +107,11 @@ const useStyles = makeStyles(
   { name: 'AppSearch' },
 );
 
+/**
+ * When using this component it is recommend to include a preload link
+ * `<link rel="preload" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css" as="style" />`
+ * to potentially reduce load times
+ */
 export default function AppSearch() {
   const classes = useStyles();
   const inputRef = React.useRef(null);
