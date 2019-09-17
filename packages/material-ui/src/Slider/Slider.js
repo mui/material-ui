@@ -444,6 +444,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         return;
     }
 
+    // Prevent scroll of the page
     event.preventDefault();
 
     if (step) {

@@ -460,8 +460,7 @@ Tooltip.propTypes = {
    */
   enterTouchDelay: PropTypes.number,
   /**
-   * The relationship between the tooltip and the wrapper component is not clear from the DOM.
-   * This prop is used with aria-describedby to solve the accessibility issue.
+   * This prop is used to help implement the accessibility logic.
    * If you don't provide this prop. It falls back to a randomly generated id.
    */
   id: PropTypes.string,

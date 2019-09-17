@@ -33,7 +33,6 @@ const pages = [
         pathname: '/components',
         subheader: '/components/inputs',
         children: [
-          { pathname: '/components/integrated-autocomplete' },
           { pathname: '/components/buttons' },
           { pathname: '/components/checkboxes' },
           { pathname: '/components/pickers', title: 'Date / Time' },
@@ -43,6 +42,7 @@ const pages = [
           { pathname: '/components/switches' },
           { pathname: '/components/text-fields' },
           { pathname: '/components/transfer-list' },
+          { pathname: '/components/integrated-autocomplete' },
         ],
       },
       {

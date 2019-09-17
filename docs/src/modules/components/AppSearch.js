@@ -192,8 +192,11 @@ export default function AppSearch() {
           return;
         }
 
-        // scroll active descendant into view
-        // logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
+        // Scroll active descendant into view.
+        // Logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
+        //
+        // Consider this API instead once it has a better browser support:
+        // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });
         if (listboxNode.scrollHeight > listboxNode.clientHeight) {
           const element = selectedOptionNode;
 

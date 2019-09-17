@@ -43,10 +43,6 @@ const BootstrapInput = withStyles(theme => ({
 }))(InputBase);
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
   margin: {
     margin: theme.spacing(1),
   },
@@ -59,7 +55,7 @@ export default function CustomizedSelects() {
     setAge(event.target.value);
   };
   return (
-    <form className={classes.root} autoComplete="off">
+    <div>
       <FormControl className={classes.margin}>
         <InputLabel htmlFor="demo-customized-textbox">Age</InputLabel>
         <BootstrapInput id="demo-customized-textbox" />
@@ -95,6 +91,6 @@ export default function CustomizedSelects() {
           <option value={30}>Thirty</option>
         </NativeSelect>
       </FormControl>
-    </form>
+    </div>
   );
 }

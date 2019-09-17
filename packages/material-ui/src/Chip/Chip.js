@@ -60,6 +60,7 @@ export const styles = theme => {
     disabled: {},
     /* Styles applied to the root element if `onClick` is defined or `clickable={true}`. */
     clickable: {
+      userSelect: 'none',
       WebkitTapHighlightColor: 'transparent', // Remove grey highlight
       cursor: 'pointer',
       '&:hover, &:focus': {
@@ -203,9 +204,7 @@ export const styles = theme => {
       alignItems: 'center',
       paddingLeft: 12,
       paddingRight: 12,
-      userSelect: 'none',
       whiteSpace: 'nowrap',
-      cursor: 'inherit',
     },
     labelSmall: {
       paddingLeft: 8,

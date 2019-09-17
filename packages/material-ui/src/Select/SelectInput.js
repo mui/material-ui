@@ -29,6 +29,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     children,
     classes,
     className,
+    defaultValue,
     disabled,
     displayEmpty,
     labelId,
@@ -50,10 +51,33 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     tabIndex: tabIndexProp,
     // catching `type` from Input which makes no sense for SelectInput
     type,
-    value,
+    value: valueProp,
     variant = 'standard',
     ...other
   } = props;
+
+  const { current: isControlled } = React.useRef(valueProp != null);
+  const [valueState, setValueState] = React.useState(defaultValue);
+  const value = isControlled ? valueProp : valueState;
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (isControlled !== (valueProp != null)) {
+        console.error(
+          [
+            `Material-UI: A component is changing ${
+              isControlled ? 'a ' : 'an un'
+            }controlled Select to be ${isControlled ? 'un' : ''}controlled.`,
+            'Elements should not switch from uncontrolled to controlled (or vice versa).',
+            'Decide between using a controlled or uncontrolled Select ' +
+              'element for the lifetime of the component.',
+            'More info: https://fb.me/react-controlled-components',
+          ].join('\n'),
+        );
+      }
+    }, [valueProp, isControlled]);
+  }
 
   const inputRef = React.useRef(null);
   const [displayNode, setDisplayNode] = React.useState(null);
@@ -111,21 +135,25 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       update(false, event);
     }
 
-    if (onChange) {
-      let newValue;
+    let newValue;
 
-      if (multiple) {
-        newValue = Array.isArray(value) ? [...value] : [];
-        const itemIndex = value.indexOf(child.props.value);
-        if (itemIndex === -1) {
-          newValue.push(child.props.value);
-        } else {
-          newValue.splice(itemIndex, 1);
-        }
+    if (multiple) {
+      newValue = Array.isArray(value) ? [...value] : [];
+      const itemIndex = value.indexOf(child.props.value);
+      if (itemIndex === -1) {
+        newValue.push(child.props.value);
       } else {
-        newValue = child.props.value;
+        newValue.splice(itemIndex, 1);
       }
+    } else {
+      newValue = child.props.value;
+    }
 
+    if (!isControlled) {
+      setValueState(newValue);
+    }
+
+    if (onChange) {
       event.persist();
       // Preact support, target is read only property on a native event.
       Object.defineProperty(event, 'target', { writable: true, value: { value: newValue, name } });
@@ -172,7 +200,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   let foundMatch = false;
 
   // No need to display any value if the field is empty.
-  if (isFilled(props) || displayEmpty) {
+  if (isFilled({ value }) || displayEmpty) {
     if (renderValue) {
       display = renderValue(value);
     } else {
@@ -242,7 +270,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
               name ? `(name="${name}") ` : ''
             }component.`,
             "Consider providing a value that matches one of the available options or ''.",
-            `The available values are ${values.join(', ') || '""'}.`,
+            `The available values are ${values
+              .filter(x => x != null)
+              .map(x => `\`${x}\``)
+              .join(', ') || '""'}.`,
           ].join('\n'),
         );
       }
@@ -313,7 +344,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         autoFocus={autoFocus}
         {...other}
       />
-      <IconComponent className={clsx(classes.icon, classes[`icon${capitalize(variant)}`])} />
+      <IconComponent
+        className={clsx(classes.icon, classes[`icon${capitalize(variant)}`], {
+          [classes.iconOpen]: open,
+        })}
+      />
       <Menu
         id={`menu-${name || ''}`}
         anchorEl={displayNode}
@@ -364,6 +399,10 @@ SelectInput.propTypes = {
    * The CSS class name of the select element.
    */
   className: PropTypes.string,
+  /**
+   * The default element value. Use when the component is not controlled.
+   */
+  defaultValue: PropTypes.any,
   /**
    * If `true`, the select will be disabled.
    */
@@ -439,8 +478,8 @@ SelectInput.propTypes = {
   /**
    * Render the selected value.
    *
-   * @param {*} value The `value` provided to the component.
-   * @returns {ReactElement}
+   * @param {any} value The `value` provided to the component.
+   * @returns {ReactNode}
    */
   renderValue: PropTypes.func,
   /**
@@ -462,7 +501,7 @@ SelectInput.propTypes = {
   /**
    * The input value.
    */
-  value: PropTypes.any.isRequired,
+  value: PropTypes.any,
   /**
    * The variant to use.
    */

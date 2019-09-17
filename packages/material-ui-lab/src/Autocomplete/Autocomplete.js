@@ -1,227 +1,930 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
+/* eslint-disable jsx-a11y/role-has-required-aria-props */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/jsx-no-duplicate-props */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Popper from '@material-ui/core/Popper';
-import MenuItem from '@material-ui/core/MenuItem';
+import List from '@material-ui/core/List';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
+import Chip from '@material-ui/core/Chip';
+import { useEventCallback, capitalize } from '@material-ui/core/utils';
+import CloseIcon from '../internal/svg-icons/Close';
+import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 
-export const styles = theme => ({
-  /* Styles applied to the root element */
-  root: {},
-  /* Styles applied to the Paper component */
-  paper: {
-    margin: 0,
-    padding: 0,
-    listStyle: 'none',
+const styles = theme => ({
+  root: {
+    '&:hover $clearIndicatorDirty, &$focused $clearIndicatorDirty': {
+      visibility: 'visible',
+    },
   },
-  /* Styles applied to the MenuItem component */
-  menuItem: {
-    whiteSpace: 'normal',
+  focused: {},
+  chip: {
+    margin: theme.spacing(0.5),
   },
-  /* Styled applied to the Popper component */
+  inputRoot: {
+    flexWrap: 'wrap',
+  },
+  inputRootOutlined: {
+    padding: 8,
+    '& $inputInput': {
+      padding: '10.5px 6px',
+    },
+  },
+  inputRootFilled: {
+    paddingTop: 18,
+    '& $inputInput': {
+      paddingTop: 10,
+    },
+  },
+  inputInput: {
+    width: 0,
+    minWidth: 30,
+    flexGrow: 1,
+    opacity: 0,
+    textOverflow: 'ellipsis',
+  },
+  inputInputFocused: {
+    opacity: 1,
+  },
+  clearIndicator: {
+    marginRight: -2,
+    padding: 4,
+    color: theme.palette.action.active,
+    visibility: 'hidden',
+  },
+  clearIndicatorDirty: {},
+  popupIndicator: {
+    padding: 2,
+    marginRight: -2,
+    color: theme.palette.action.active,
+  },
+  popupIndicatorOpen: {
+    transform: 'rotate(180deg)',
+  },
   popper: {
-    zIndex: theme.zIndex.modal,
+    zIndex: 1,
+  },
+  paper: {
+    margin: '4px 0',
+    '& > ul': {
+      maxHeight: '40vh',
+      overflow: 'auto',
+    },
+  },
+  option: {
+    ...theme.typography.body1,
+    minHeight: 48,
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    cursor: 'pointer',
+    paddingTop: 6,
+    outline: 'none',
+    // Remove grey highlight
+    WebkitTapHighlightColor: 'transparent',
+    paddingBottom: 6,
+    paddingLeft: 16,
+    paddingRight: 16,
+    [theme.breakpoints.up('sm')]: {
+      minHeight: 'auto',
+    },
+    '&[data-focus="true"]': {
+      backgroundColor: theme.palette.action.hover,
+    },
+    '&$selected': {
+      backgroundColor: theme.palette.action.selected,
+    },
+    '&:active': {
+      backgroundColor: theme.palette.action.selected,
+    },
+  },
+  selected: {},
+  loading: {
+    ...theme.typography.body1,
+    color: theme.palette.text.secondary,
+    padding: '14px 16px',
+  },
+  noOptions: {
+    ...theme.typography.body1,
+    color: theme.palette.text.secondary,
+    padding: '14px 16px',
+  },
+  groupLabel: {
+    backgroundColor: theme.palette.background.paper,
+    top: -8,
+  },
+  groupUl: {
+    padding: 0,
   },
 });
 
-const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
-  // Basically <TextField /> props without select, selectProp, autoComplete and inputRef
+// https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
+// Give up on IE 11 support for this feature
+function stripDiacritics(string) {
+  return typeof string.normalize !== 'undefined'
+    ? string.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    : string;
+}
+
+export function createFilterOptions(config = {}) {
   const {
-    autoFocus,
-    children,
+    ignoreAccents = true,
+    ignoreCase = true,
+    matchFrom = 'any',
+    stringify = JSON.stringify,
+    trim = false,
+  } = config;
+
+  return (options, { inputValue }) => {
+    let input = trim ? inputValue.trim() : inputValue;
+    if (ignoreCase) {
+      input = input.toLowerCase();
+    }
+    if (ignoreAccents) {
+      input = stripDiacritics(input);
+    }
+
+    return options.filter(option => {
+      let candidate = stringify(option);
+      if (ignoreCase) {
+        candidate = candidate.toLowerCase();
+      }
+      if (ignoreAccents) {
+        candidate = stripDiacritics(candidate);
+      }
+
+      return matchFrom === 'start' ? candidate.indexOf(input) === 0 : candidate.indexOf(input) > -1;
+    });
+  };
+}
+
+const defaultFilterOptions = createFilterOptions();
+
+// Number of options to jump in list box when pageup and pagedown keys are used.
+const pageSize = 5;
+
+const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
+  const {
+    autoComplete = false,
+    autoHightlight = false,
+    autoSelect = false,
     classes,
     className,
-    component: Component = 'div',
+    clearOnEscape = false,
+    debug = false,
     defaultValue,
-    error,
-    FormHelperTextProps,
-    fullWidth,
-    getSuggestions,
-    getSuggestionValue,
-    helperText,
-    hiddenLabel,
-    id,
-    InputLabelProps,
-    inputProps,
-    InputProps,
-    label,
-    multiline,
-    name,
-    onBlur,
+    disableClearable = false,
+    disableCloseOnSelect = false,
+    disableListWrap = false,
+    disableOpenOnFocus = false,
+    filterOptions = defaultFilterOptions,
+    filterSelectedOptions = false,
+    freeSolo = false,
+    getOptionLabel = x => x,
+    groupBy,
+    id: idProp,
+    includeInputInList = false,
+    ListComponent = List,
+    loading = false,
+    loadingText = 'Loading…',
+    multiple = false,
+    noOptionsText = 'No options',
     onChange,
-    onFocus,
-    onKeyDown,
-    onSuggestionSelect,
-    placeholder,
-    required,
-    rows,
-    rowsMax,
-    type,
-    value,
-    variant = 'standard',
+    onClose,
+    onOpen,
+    open: openProp,
+    options = [],
+    renderGroup: renderGroupProp,
+    renderOption: renderOptionProp,
+    renderValue,
+    TextFieldProps: { InputProps = {}, ...TextFieldProps } = {},
+    value: valueProp,
     ...other
   } = props;
 
+  const defaultRenderOption = params => (
+    <li key={params.key}>
+      <ListSubheader className={classes.groupLabel} component="div">
+        {params.key}
+      </ListSubheader>
+      <ul className={classes.groupUl}>{params.children}</ul>
+    </li>
+  );
+
+  const renderGroup = renderGroupProp || defaultRenderOption;
+  const renderOption = renderOptionProp || getOptionLabel;
+  const [defaultId, setDefaultId] = React.useState();
+  const id = idProp || defaultId;
+
+  React.useEffect(() => {
+    // Fallback to this default id when possible.
+    // Use the random value for client-side rendering only.
+    // We can't use it server-side.
+    setDefaultId(`mui-autocomplete-${Math.round(Math.random() * 1e5)}`);
+  }, []);
+
+  const inputRef = React.useRef(null);
+  const paperRef = React.useRef(null);
+
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [suggestions, setSuggestions] = React.useState([]);
-  const [popperKey, setPopperKey] = React.useState(0);
-  const [selectedIndex, setSelectedIndex] = React.useState(-1);
 
-  const handleChange = e => {
-    setSuggestions(getSuggestions(e.target.value));
-    setPopperKey(popperKey + 1);
+  const [focusedValue, setFocusedValue] = React.useState('input');
+  const defaultHighlighted = autoHightlight ? 0 : -1;
+  const highlightedIndexRef = React.useRef(defaultHighlighted);
+  const selectedIndexRef = React.useRef(-1);
 
-    if (onChange) onChange(e);
-  };
+  function setHighlightedIndex(index, mouse = false) {
+    highlightedIndexRef.current = index;
+    inputRef.current.setAttribute('aria-activedescendant', `${id}-option-${index}`);
 
-  const handleFocus = e => {
-    setSuggestions(getSuggestions(e.target.value));
-
-    if (onFocus) onFocus(e);
-  };
-
-  const handleKeyDown = e => {
-    if (onKeyDown) onKeyDown(e);
-    if (!onSuggestionSelect) return;
-
-    const keyCode = e.keyCode;
-    const length = suggestions.length;
-
-    if (!length || (keyCode !== 38 && keyCode !== 40 && keyCode !== 13 && keyCode !== 27)) return;
-
-    e.preventDefault();
-
-    let index;
-
-    if (keyCode === 38) index = selectedIndex - 1;
-    if (keyCode === 40) index = selectedIndex + 1;
-    if (keyCode === 13 || keyCode === 27) {
-      setSuggestions([]);
-
+    if (!paperRef.current) {
       return;
     }
 
-    if (index < 0) index = length - 1;
-    if (index > length - 1) index = 0;
+    const prev = paperRef.current.querySelector('[data-focus]');
+    if (prev) {
+      prev.removeAttribute('data-focus');
+    }
 
-    setSelectedIndex(index);
-    onSuggestionSelect(getSuggestionValue(suggestions[index]));
+    const listboxNode = paperRef.current.querySelector('ul');
+
+    // "No results"
+    if (!listboxNode) {
+      return;
+    }
+
+    if (index === -1) {
+      listboxNode.scrollTop = 0;
+      return;
+    }
+
+    const option = paperRef.current.querySelector(`[data-option-index="${index}"]`);
+
+    if (!option) {
+      return;
+    }
+
+    option.setAttribute('data-focus', 'true');
+
+    // Scroll active descendant into view.
+    // Logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
+    //
+    // Consider this API instead once it has a better browser support:
+    // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });
+    if (listboxNode.scrollHeight > listboxNode.clientHeight && !mouse) {
+      const element = option;
+
+      const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;
+      const elementBottom = element.offsetTop + element.offsetHeight;
+      if (elementBottom > scrollBottom) {
+        listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
+      } else if (element.offsetTop < listboxNode.scrollTop) {
+        listboxNode.scrollTop = element.offsetTop;
+      }
+    }
+  }
+
+  const { current: isControlled } = React.useRef(valueProp !== undefined);
+  const [valueState, setValue] = React.useState(() => {
+    return !isControlled ? defaultValue || (multiple ? [] : null) : null;
+  });
+  const value = isControlled ? valueProp : valueState;
+
+  const [inputValue, setInputValue] = React.useState('');
+  const [focused, setFocused] = React.useState(false);
+
+  const resetInputValue = useEventCallback(newValue => {
+    setInputValue(newValue != null ? getOptionLabel(newValue) : '');
+  });
+
+  React.useEffect(() => {
+    if (!multiple) {
+      resetInputValue(value);
+    }
+  }, [value, multiple, resetInputValue]);
+
+  const { current: isOpenControlled } = React.useRef(openProp != null);
+  const [openState, setOpenState] = React.useState(false);
+  const open = isOpenControlled ? openProp : openState;
+
+  const inputValueFilter =
+    !multiple && value && inputValue === getOptionLabel(value) ? '' : inputValue;
+
+  let popupOpen = Boolean(open && anchorEl);
+
+  const filteredOptions = popupOpen
+    ? filterOptions(
+        options.filter(option => {
+          if (
+            filterSelectedOptions &&
+            (multiple ? value.indexOf(option) !== -1 : value === option)
+          ) {
+            return false;
+          }
+          return true;
+        }),
+        { inputValue: inputValueFilter },
+      )
+    : [];
+
+  popupOpen = freeSolo && filteredOptions.length === 0 ? false : popupOpen;
+
+  const focusFocusedValue = useEventCallback(focusedValue2 => {
+    if (focusedValue2 === 'input') {
+      inputRef.current.focus();
+    } else {
+      anchorEl.querySelector(`[data-value-index="${focusedValue2}"]`).focus();
+    }
+  });
+
+  // Ensure the focusedValue is never inconsistent
+  React.useEffect(() => {
+    if (multiple && focusedValue > value.length - 1) {
+      setFocusedValue('input');
+      focusFocusedValue('input');
+    }
+  }, [value, multiple, focusedValue, focusFocusedValue]);
+
+  const changeHighlightedIndex = diff => {
+    if (!popupOpen) {
+      return;
+    }
+
+    const getNextIndex = () => {
+      const maxIndex = filteredOptions.length - 1;
+
+      if (diff === 'reset') {
+        return defaultHighlighted;
+      }
+
+      if (diff === 'start') {
+        return 0;
+      }
+
+      if (diff === 'end') {
+        return maxIndex;
+      }
+
+      const newIndex = highlightedIndexRef.current + diff;
+
+      if (newIndex < 0) {
+        if (newIndex === -1 && includeInputInList) {
+          return -1;
+        }
+
+        if (disableListWrap || Math.abs(diff) > 1) {
+          return 0;
+        }
+
+        return maxIndex;
+      }
+
+      if (newIndex > maxIndex) {
+        if (newIndex === maxIndex + 1 && includeInputInList) {
+          return -1;
+        }
+
+        if (disableListWrap || Math.abs(diff) > 1) {
+          return maxIndex;
+        }
+
+        return 0;
+      }
+
+      return newIndex;
+    };
+
+    const nextIndex = getNextIndex();
+    setHighlightedIndex(nextIndex);
+    selectedIndexRef.current = nextIndex;
+
+    if (autoComplete && diff !== 'reset') {
+      inputRef.current.value =
+        nextIndex === -1 ? inputValue : getOptionLabel(filteredOptions[nextIndex]);
+    }
   };
 
-  const handleClickAway = e => {
-    if (e.target === anchorEl || anchorEl.contains(e.target)) return;
+  React.useEffect(() => {
+    changeHighlightedIndex('reset');
+  }, [filteredOptions.length]); // eslint-disable-line react-hooks/exhaustive-deps
 
-    setSuggestions([]);
-    setSelectedIndex(-1);
+  const handleOpen = event => {
+    if (open) {
+      return;
+    }
+
+    if (onOpen) {
+      onOpen(event);
+    }
+    if (!isOpenControlled) {
+      setOpenState(true);
+    }
   };
 
-  const handleSuggestionClick = suggestionValue => () => {
-    onSuggestionSelect(suggestionValue);
-    setSuggestions([]);
+  const handleClose = event => {
+    if (!open) {
+      return;
+    }
+
+    if (onClose) {
+      onClose(event);
+    }
+    if (!isOpenControlled) {
+      setOpenState(false);
+    }
   };
 
-  const inputElement =
-    typeof children === 'function' ? (
-      children({
-        ref: setAnchorEl,
-        onChange: handleChange,
-        onFocus: handleFocus,
-        onKeyDown: handleKeyDown,
-      })
-    ) : (
-      <TextField
-        autoComplete="off"
-        autoFocus={autoFocus}
-        defaultValue={defaultValue}
-        error={error}
-        FormHelperTextProps={FormHelperTextProps}
-        fullWidth={fullWidth}
-        helperText={helperText}
-        hiddenLabel={hiddenLabel}
-        id={id}
-        InputLabelProps={InputLabelProps}
-        inputProps={inputProps}
-        InputProps={InputProps}
-        inputRef={setAnchorEl}
-        label={label}
-        multiline={multiline}
-        name={name}
-        onChange={handleChange}
-        onFocus={handleFocus}
-        onKeyDown={handleKeyDown}
-        placeholder={placeholder}
-        required={required}
-        rows={rows}
-        rowsMax={rowsMax}
-        type={type}
-        value={value}
-        variant={variant}
-      />
+  const handleValue = (event, newValue) => {
+    if (value === newValue) {
+      return;
+    }
+
+    if (onChange) {
+      onChange(event, newValue);
+    }
+    if (!isControlled) {
+      setValue(newValue);
+    }
+  };
+
+  const selectNewValue = (event, newValue) => {
+    if (multiple) {
+      const item = newValue;
+      newValue = Array.isArray(value) ? [...value] : [];
+      const itemIndex = value.indexOf(item);
+      if (itemIndex === -1) {
+        newValue.push(item);
+      } else {
+        newValue.splice(itemIndex, 1);
+      }
+    }
+    handleValue(event, newValue);
+    if (!disableCloseOnSelect) {
+      handleClose(event);
+    }
+
+    if (multiple) {
+      setInputValue('');
+    } else {
+      setInputValue(getOptionLabel(newValue));
+    }
+
+    selectedIndexRef.current = -1;
+  };
+
+  const handleFocusedValue = (event, direction) => {
+    if (!multiple) {
+      return;
+    }
+
+    handleClose(event);
+
+    let nextValue = focusedValue;
+
+    if (focusedValue === 'input') {
+      if (inputValue === '' && direction === 'previous') {
+        nextValue = value.length - 1;
+      }
+    } else {
+      nextValue += direction === 'next' ? 1 : -1;
+
+      if (nextValue === value.length) {
+        nextValue = 'input';
+      }
+
+      if (nextValue < 0) {
+        nextValue = 0;
+      }
+    }
+
+    setFocusedValue(nextValue);
+    focusFocusedValue(nextValue);
+  };
+
+  const handleClear = event => {
+    handleValue(event, multiple ? [] : null);
+    if (disableOpenOnFocus) {
+      handleClose();
+    }
+    setInputValue('');
+  };
+
+  const handleKeyDown = event => {
+    if (TextFieldProps.onKeyDown) {
+      TextFieldProps.onKeyDown(event);
+    }
+
+    if (['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
+      setFocusedValue('input');
+      focusFocusedValue('input');
+    }
+
+    switch (event.key) {
+      case 'Home':
+        // Prevent scroll of the page
+        event.preventDefault();
+        changeHighlightedIndex('start');
+        break;
+      case 'End':
+        // Prevent scroll of the page
+        event.preventDefault();
+        changeHighlightedIndex('end');
+        break;
+      case 'PageUp':
+        // Prevent scroll of the page
+        event.preventDefault();
+        changeHighlightedIndex(-pageSize);
+        handleOpen(event);
+        break;
+      case 'PageDown':
+        // Prevent scroll of the page
+        event.preventDefault();
+        changeHighlightedIndex(pageSize);
+        handleOpen(event);
+        break;
+      case 'ArrowDown':
+        // Prevent cursor move
+        event.preventDefault();
+        changeHighlightedIndex(1);
+        handleOpen(event);
+        break;
+      case 'ArrowUp':
+        // Prevent cursor move
+        event.preventDefault();
+        changeHighlightedIndex(-1);
+        handleOpen(event);
+        break;
+      case 'ArrowLeft':
+        handleFocusedValue(event, 'previous');
+        break;
+      case 'ArrowRight':
+        handleFocusedValue(event, 'next');
+        break;
+      case 'Enter':
+        if (highlightedIndexRef.current !== -1) {
+          // We don't want to validate the form.
+          event.preventDefault();
+          selectNewValue(event, filteredOptions[highlightedIndexRef.current]);
+        } else if (freeSolo) {
+          selectNewValue(event, inputValue);
+        }
+        break;
+      case 'Escape':
+        if (popupOpen) {
+          event.stopPropagation();
+          handleClose(event);
+        } else if (clearOnEscape) {
+          event.stopPropagation();
+          handleClear(event);
+        }
+        break;
+      case 'Backspace':
+        if (multiple && inputValue === '' && value.length > 0) {
+          const index = focusedValue === 'input' ? value.length - 1 : focusedValue;
+          const newValue = [...value];
+          newValue.splice(index, 1);
+          handleValue(event, newValue);
+        }
+        break;
+      default:
+    }
+  };
+
+  const handleFocus = event => {
+    if (TextFieldProps.onFocus) {
+      TextFieldProps.onFocus(event);
+    }
+
+    setFocused(true);
+
+    if (!disableOpenOnFocus) {
+      handleOpen(event);
+    }
+  };
+
+  const handleBlur = event => {
+    if (TextFieldProps.onBlur) {
+      TextFieldProps.onBlur(event);
+    }
+
+    setFocused(false);
+
+    if (debug && inputValue !== '') {
+      return;
+    }
+
+    if (autoSelect && selectedIndexRef.current !== -1) {
+      handleValue(event, filteredOptions[selectedIndexRef.current]);
+    } else if (!freeSolo) {
+      setInputValue((value && getOptionLabel(value)) || '');
+    }
+
+    handleClose(event);
+  };
+
+  const handleInputChange = event => {
+    if (TextFieldProps.onChange) {
+      TextFieldProps.onChange(event);
+    }
+
+    const newValue = event.target.value;
+
+    if (newValue === '') {
+      if (disableOpenOnFocus) {
+        handleClose(event);
+      }
+
+      if (!disableClearable && !multiple) {
+        handleValue(event, null);
+      }
+    } else {
+      handleOpen(event);
+    }
+
+    setInputValue(newValue);
+  };
+
+  // input
+  // arrow down
+  // popup
+  // list box
+
+  const popperRef = React.useRef(null);
+  React.useEffect(() => {
+    if (popperRef.current) {
+      popperRef.current.update();
+    }
+  });
+
+  const handleOptionMouseOver = event => {
+    const index = Number(event.currentTarget.getAttribute('data-option-index'));
+    setHighlightedIndex(index, 'mouse');
+  };
+
+  const handleOptionClick = event => {
+    selectNewValue(event, filteredOptions[highlightedIndexRef.current]);
+  };
+
+  const handleChipDelete = event => {
+    const index = Number(event.currentTarget.getAttribute('data-value-index'));
+    const newValue = [...value];
+    newValue.splice(index, 1);
+    handleValue(event, newValue);
+  };
+
+  const handlePopupRef = useEventCallback(node => {
+    if (!node) {
+      return;
+    }
+
+    // Restore the focus to the correct option.
+    setHighlightedIndex(highlightedIndexRef.current);
+  });
+
+  let startAdornment;
+
+  if (multiple && value.length > 0) {
+    const valueProps = {
+      onDelete: handleChipDelete,
+      className: classes.chip,
+    };
+
+    if (renderValue) {
+      startAdornment = renderValue(value, { ...valueProps, focused });
+    } else {
+      startAdornment = value.map((option, index) => (
+        <Chip
+          key={index}
+          data-value-index={index}
+          tabIndex={-1}
+          label={getOptionLabel(option)}
+          {...valueProps}
+        />
+      ));
+    }
+  }
+
+  const handlePopupIndicator = event => {
+    inputRef.current.focus();
+
+    if (open) {
+      handleClose(event);
+    } else {
+      handleOpen(event);
+    }
+  };
+
+  let dirty = freeSolo && inputValue.length > 0;
+  dirty = dirty || (multiple ? value.length > 0 : value !== null);
+
+  let groupedOptions = filteredOptions;
+
+  if (groupBy) {
+    groupedOptions = filteredOptions.reduce((acc, option, index) => {
+      const key = groupBy(option);
+
+      if (acc.length > 0 && acc[acc.length - 1].key === key) {
+        acc[acc.length - 1].options.push(option);
+      } else {
+        acc.push({
+          key,
+          index,
+          options: [option],
+        });
+      }
+
+      return acc;
+    }, []);
+  }
+
+  const renderListOption = (option, index) => {
+    const selected = multiple ? value.indexOf(option) !== -1 : value === option;
+    return (
+      <li
+        tabIndex={-1}
+        role="option"
+        id={`${id}-option-${index}`}
+        onMouseOver={handleOptionMouseOver}
+        onClick={handleOptionClick}
+        data-option-index={index}
+        className={clsx(classes.option, {
+          [classes.selected]: selected,
+        })}
+        aria-selected={selected}
+        key={index}
+      >
+        {renderOption(option, {
+          selected,
+          inputValue,
+        })}
+      </li>
     );
-
-  const suggestionPanelId = id ? `${id}-suggestion-panel` : undefined;
+  };
 
   return (
-    <Component
-      aria-haspopup="listbox"
-      aria-owns={suggestionPanelId}
-      className={clsx(className, classes.root)}
+    <div
       ref={ref}
       role="combobox"
+      aria-expanded={popupOpen}
+      className={clsx(
+        classes.root,
+        {
+          [classes.focused]: focused,
+        },
+        className,
+      )}
+      aria-owns={popupOpen ? `${id}-popup` : null}
       {...other}
+      /* aria-haspopup="listbox" is the default value, no need to specify it */
     >
-      {inputElement}
-      <ClickAwayListener onClickAway={handleClickAway}>
-        <Popper
-          anchorEl={anchorEl}
-          className={classes.popper}
-          open={Boolean(suggestions.length)}
-          key={popperKey}
-          style={{
-            width: anchorEl && anchorEl.offsetWidth,
-          }}
-        >
-          <Paper component="ul" role="listbox" id={suggestionPanelId} className={classes.paper}>
-            {suggestions.map((suggestion, i) => {
-              const suggestionValue = getSuggestionValue(suggestion);
-              const selected = selectedIndex === i;
-
-              return (
-                <li
-                  role="option"
-                  aria-selected={selected}
-                  key={`MuiAutosuggest-li-${suggestionValue}`}
+      <TextField
+        variant="standard"
+        id={id}
+        value={inputValue}
+        {...TextFieldProps}
+        ref={setAnchorEl}
+        inputRef={inputRef}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
+        onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
+        InputLabelProps={{
+          id: `${id}-label`,
+          ...TextFieldProps.InputLabelProps,
+        }}
+        InputProps={{
+          className: clsx(classes.inputRoot, {
+            [classes[`inputRoot${capitalize(TextFieldProps.variant)}`]]: TextFieldProps.variant,
+          }),
+          startAdornment,
+          ...InputProps,
+          endAdornment: (
+            <React.Fragment>
+              {InputProps.endAdornment}
+              {disableClearable ? null : (
+                <IconButton
+                  tabIndex={-1}
+                  onClick={handleClear}
+                  onMouseDown={event => {
+                    event.preventDefault();
+                  }}
+                  title="Clear"
+                  className={clsx(classes.clearIndicator, {
+                    [classes.clearIndicatorDirty]: dirty,
+                  })}
                 >
-                  <MenuItem
-                    component="div"
-                    className={classes.menuItem}
-                    selected={selected}
-                    onClick={handleSuggestionClick(suggestionValue)}
-                  >
-                    {suggestionValue}
-                  </MenuItem>
-                </li>
-              );
-            })}
+                  <CloseIcon fontSize="small" />
+                </IconButton>
+              )}
+              {freeSolo ? null : (
+                <IconButton
+                  tabIndex={-1}
+                  onClick={handlePopupIndicator}
+                  onMouseDown={event => {
+                    event.preventDefault();
+                  }}
+                  title={popupOpen ? 'Close popup' : 'Open popup'}
+                  className={clsx(classes.popupIndicator, {
+                    [classes.popupIndicatorOpen]: popupOpen,
+                  })}
+                >
+                  <ArrowDropDownIcon />
+                </IconButton>
+              )}
+            </React.Fragment>
+          ),
+        }}
+        inputProps={{
+          className: clsx(classes.inputInput, {
+            [classes.inputInputFocused]: focusedValue === 'input',
+          }),
+          'aria-autocomplete': autoComplete ? 'both' : 'list',
+          'aria-controls': `${id}-listbox`,
+          // Disable browser's suggestion that might overlap with the popup.
+          autoComplete: 'off',
+          autoCorrect: 'off',
+          autoCapitalize: 'none',
+          spellCheck: 'false',
+          ...TextFieldProps.inputProps,
+        }}
+      />
+      <Popper
+        className={classes.popper}
+        ref={handlePopupRef}
+        popperRef={popperRef}
+        anchorEl={anchorEl}
+        open={popupOpen}
+        role="presentation"
+        id={`${id}-popup`}
+      >
+        {popupOpen ? (
+          <Paper
+            ref={paperRef}
+            style={{
+              width: anchorEl ? anchorEl.clientWidth : null,
+            }}
+            className={classes.paper}
+          >
+            {loading ? <div className={classes.loading}>{loadingText}</div> : null}
+            {groupedOptions.length === 0 && !freeSolo && !loading ? (
+              <div className={classes.noOptions}>{noOptionsText}</div>
+            ) : null}
+            {groupedOptions.length > 0 ? (
+              <ListComponent
+                role="listbox"
+                id={`${id}-listbox`}
+                aria-labelledby={`${id}-label`}
+                onMouseDown={event => {
+                  event.preventDefault();
+                }}
+              >
+                {groupedOptions.map((option, index) => {
+                  if (groupBy) {
+                    return renderGroup({
+                      key: option.key,
+                      children: option.options.map((option2, index2) =>
+                        renderListOption(option2, option.index + index2),
+                      ),
+                    });
+                  }
+
+                  return renderListOption(option, index);
+                })}
+              </ListComponent>
+            ) : null}
           </Paper>
-        </Popper>
-      </ClickAwayListener>
-    </Component>
+        ) : (
+          <div />
+        )}
+      </Popper>
+    </div>
   );
 });
 
 Autocomplete.propTypes = {
   /**
-   * If `true`, the `input` element will be focused during the first mount.
+   * If `true`, the portion of the selected suggestion that has not been typed by the user,
+   * known as the completion string, appears inline after the input cursor in the textbox.
+   * The inline completion string is visually highlighted and has a selected state.
    */
-  autoFocus: PropTypes.bool,
+  autoComplete: PropTypes.bool,
   /**
-   * @ignore
+   * If `true`, the first option is automatically highlighted.
    */
-  children: PropTypes.func,
+  autoHightlight: PropTypes.bool,
+  /**
+   * If `true`, the selected option becomes the value of the input
+   * when the Autocomplete loses focus unless the user chooses
+   * a different option or changes the character string in the input.
+   */
+  autoSelect: PropTypes.bool,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
@@ -232,144 +935,156 @@ Autocomplete.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
+   * If `true`, clear all values when the user presses escape and the popup is closed.
    */
-  component: PropTypes.elementType,
+  clearOnEscape: PropTypes.bool,
   /**
-   * The default value of the `input` element.
+   * If `true`, the popup will ignore the blur event if the input if filled.
+   * You can inspect the popup markup with your browser tools.
+   * Consider this option when you need to customize the component.
+   */
+  debug: PropTypes.bool,
+  /**
+   * The default input value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
   /**
-   * If `true`, the `input` element will be disabled.
+   * If `true`, the input can't be cleared.
    */
-  disabled: PropTypes.bool,
+  disableClearable: PropTypes.bool,
   /**
-   * If `true`, the label will be displayed in an error state.
+   * If `true`, the popup won't close when a value is selected.
    */
-  error: PropTypes.bool,
+  disableCloseOnSelect: PropTypes.bool,
   /**
-   * Props applied to the [`FormHelperText`](/api/form-helper-text/) element.
+   * If `true`, the list box in the popup will not wrap focus.
    */
-  FormHelperTextProps: PropTypes.object,
+  disableListWrap: PropTypes.bool,
   /**
-   * If `true`, the input will take up the full width of its container.
+   * If `true`, the popup won't open on input focus.
    */
-  fullWidth: PropTypes.bool,
+  disableOpenOnFocus: PropTypes.bool,
   /**
-   * Callback fired when input's value changes to get suggestions given the input value
-   * @param {string} value - The input value
+   * A filter function that determins the options that are eligible.
+   *
+   * @param {any} options The options to render.
+   * @param {object} state The state of the component.
+   * @returns {boolean}
    */
-  getSuggestions: PropTypes.func.isRequired,
+  filterOptions: PropTypes.func,
   /**
-   * The function that returns a value to display given a suggestion
-   * @param {any} suggestion - The given suggestion
+   * If `true`, hide the selected options from the list box.
    */
-  getSuggestionValue: PropTypes.func.isRequired,
+  filterSelectedOptions: PropTypes.bool,
   /**
-   * The helper text content.
+   * If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
    */
-  helperText: PropTypes.node,
+  freeSolo: PropTypes.bool,
   /**
-   * @ignore
+   * Used to determine the string value for a given option.
+   * It's used to fill the input (and the list box options if `renderOption` is not provided).
    */
-  hiddenLabel: PropTypes.bool,
+  getOptionLabel: PropTypes.func,
   /**
-   * The id of the `input` element.
+   * If provided, the options will be grouped under the returned string.
+   * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
+   *
+   * @param {any} options The option to group.
+   * @returns {string}
+   */
+  groupBy: PropTypes.func,
+  /**
+   * This prop is used to help implement the accessibility logic.
+   * If you don't provide this prop. It falls back to a randomly generated id.
    */
   id: PropTypes.string,
   /**
-   * The component used for the input element.
-   * Either a string to use a DOM element or a component.
+   * If `true`, the highlight can move to the input.
    */
-  inputComponent: PropTypes.elementType,
+  includeInputInList: PropTypes.bool,
   /**
-   * Props applied to the [`InputLabel`](/api/input-label/) element.
+   * The component used for the ul element.
    */
-  InputLabelProps: PropTypes.object,
+  ListComponent: PropTypes.elementType,
   /**
-   * Props applied to the Input element.
-   * It will be a [`FilledInput`](/api/filled-input/),
-   * [`OutlinedInput`](/api/outlined-input/) or [`Input`](/api/input/)
-   * component depending on the `variant` prop value.
+   * If `true`, the component is in a loading state.
    */
-  InputProps: PropTypes.object,
+  loading: PropTypes.bool,
   /**
-   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element.
+   * Text to display when in a loading state.
    */
-  inputProps: PropTypes.object,
+  loadingText: PropTypes.node,
   /**
-   * The label content.
+   * If true, `value` must be an array and the menu will support multiple selections.
    */
-  label: PropTypes.node,
+  multiple: PropTypes.bool,
   /**
-   * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
+   * Text to display when there are no options.
    */
-  margin: PropTypes.oneOf(['none', 'dense', 'normal']),
+  noOptionsText: PropTypes.node,
   /**
-   * If `true`, a textarea element will be rendered instead of an input.
-   */
-  multiline: PropTypes.bool,
-  /**
-   * Name attribute of the `input` element.
-   */
-  name: PropTypes.string,
-  /**
-   * @ignore
-   */
-  onBlur: PropTypes.func,
-  /**
-   * Callback fired when the value is changed.
+   * Callback fired when the value changes.
    *
-   * @param {object} event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value`.
+   * @param {object} event The event source of the callback
+   * @param {any} value
    */
   onChange: PropTypes.func,
   /**
-   * @ignore
+   * Callback fired when the popup requests to be closed.
+   * Use in controlled mode (see open).
+   *
+   * @param {object} event The event source of the callback.
    */
-  onFocus: PropTypes.func,
+  onClose: PropTypes.func,
   /**
-   * @ignore
+   * Callback fired when the input value changes.
    */
-  onKeyDown: PropTypes.func,
+  onInputChange: PropTypes.func,
   /**
-   * Callback fired when a [`MenuItem`](/api/menu-item) representing a suggestion is clicked or selected
-   * @param {string} value The value of the suggestion, returned by `getSuggestionValue()`
+   * Callback fired when the popup requests to be opened.
+   * Use in controlled mode (see open).
+   *
+   * @param {object} event The event source of the callback.
    */
-  onSuggestionSelect: PropTypes.func,
+  onOpen: PropTypes.func,
   /**
-   * The short hint displayed in the input before the user enters a value.
+   * Control the popup` open state.
    */
-  placeholder: PropTypes.string,
+  open: PropTypes.bool,
   /**
-   * Props applied to the [`Popper`](/api/popper) element.
+   * Array of options.
    */
-  PopperProps: PropTypes.object,
+  options: PropTypes.array,
   /**
-   * If `true`, the label is displayed as required and the `input` element` will be required.
+   * Render the group.
+   *
+   * @param {any} option The group to render.
+   * @returns {ReactNode}
    */
-  required: PropTypes.bool,
+  renderGroup: PropTypes.func,
   /**
-   * Number of rows to display when multiline option is set to true.
+   * Render the option, use `getOptionLabel` by default.
+   *
+   * @param {any} option The option to render.
+   * @param {object} state The state of the component.
+   * @returns {ReactNode}
    */
-  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  renderOption: PropTypes.func,
   /**
-   * Maximum number of rows to display when multiline option is set to true.
+   * Render the selected value.
+   *
+   * @param {any} value The `value` provided to the component.
+   * @returns {ReactNode}
    */
-  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  renderValue: PropTypes.func,
   /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * Props applied to the [`TextField`](/api/text-field/) element.
    */
-  type: PropTypes.string,
+  TextFieldProps: PropTypes.object,
   /**
-   * The value of the `input` element, required for a controlled component.
+   * The input value.
    */
   value: PropTypes.any,
-  /**
-   * The variant to use.
-   */
-  variant: PropTypes.oneOf(['standard', 'outlined', 'filled']),
 };
 
-export default withStyles(styles, { name: 'MuiAutocomplete' })(Autocomplete);
+export default withStyles(styles)(Autocomplete);

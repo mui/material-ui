@@ -383,6 +383,12 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     );
   };
 
+  React.useEffect(() => {
+    if (muiFormControl) {
+      muiFormControl.setAdornedStart(Boolean(startAdornment));
+    }
+  }, [muiFormControl, startAdornment]);
+
   return (
     <div
       className={clsx(

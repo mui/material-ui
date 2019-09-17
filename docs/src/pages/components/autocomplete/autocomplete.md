@@ -1,18 +1,141 @@
 ---
 title: Autocomplete React component
-components: TextField, Paper, MenuItem, Popper
+components: TextField, Popper, Autocomplete
 ---
 
 # Autocomplete
 
 <p class="description">The autocomplete is a normal text input enhanced by a panel of suggested options.</p>
 
-## Simple autocomplete
+The widget is useful for setting the value of a single-line textbox in one of two types of scenarios:
 
-The autocomplete component accepts almost all [`TextField`](/components/text-fields) props, making it effortless to get started.
-{{"demo": "pages/components/autocomplete/SimpleAutocomplete.js"}}
+1. The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name: [combo box](#combobox).
+2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, e.g., a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
+
+## Combo box
+
+The value must be chosen from a predefined set of allowed values.
+
+{{"demo": "pages/components/autocomplete/ComboBox.js"}}
+
+### Playground
+
+Each of the following examples demonstrate one feature of the Autocomplete component.
+
+{{"demo": "pages/components/autocomplete/Playground.js"}}
+
+### Country select
+
+Choose one country between 248.
+
+{{"demo": "pages/components/autocomplete/CountrySelect.js"}}
+
+## Free solo
+
+Set `freeSolo` to true so the textbox can contain any arbitrary value.
+
+{{"demo": "pages/components/autocomplete/FreeSolo.js"}}
+
+## Grouped
+
+{{"demo": "pages/components/autocomplete/Grouped.js"}}
+
+## `useAutocomplete?`
+
+WIP: to extract the core logic of the component into as simple reusable API.
 
 ## Customized autocomplete
 
-The component is designed to be easily customized. Below is the implementation of the Google Maps' search input.
-{{"demo": "pages/components/autocomplete/CustomizedAutocomplete.js"}}
+WIP: to implement [this design](https://www.behance.net/gallery/27997595/Multi-select-dropdown-tags-field-with-search).
+
+## Asynchronous requests
+
+{{"demo": "pages/components/autocomplete/Asynchronous.js"}}
+
+### Google Maps place
+
+A customized UI for Google Maps Places Autocomplete.
+For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) API.
+
+{{"demo": "pages/components/autocomplete/GoogleMaps.js"}}
+
+## Multiple values
+
+Also knowned as tags, the user is allowed to enter more than 1 value.
+
+{{"demo": "pages/components/autocomplete/Tags.js"}}
+
+### Fixed options
+
+{{"demo": "pages/components/autocomplete/FixedTags.js"}}
+
+### Checkboxes
+
+{{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
+*replicate the multi-select demos we already have for the select component*
+
+### Gmail send to
+
+{{"demo": "pages/components/autocomplete/GmailTags.js"}}
+
+### GitHub label
+
+WIP: implement the *gmail label box*.
+
+## Highlights
+
+The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
+
+{{"demo": "pages/components/autocomplete/Highlights.js"}}
+
+## Customer filter
+
+The component exposes a factory to create a filter method that can provided to the `filerOption` prop.
+You can use it to change the default option filter behavior.
+
+```js
+import { createFilterOptions } from '@material-ui/lab/Autocomplete';
+```
+
+It supports the following options:
+
+1. `config` (*Object* [optional]):
+  - `config.ignoreAccents` (*Boolean* [optional]): Defaults to `true`. Remove diacritics.
+  - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
+  - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
+  - `config.stringify` (*Func* [optional]): Defaults to `JSON.stringify`.
+  - `config.trim` (*Boolean* [optional]): Defaults to `false`. Remove trailing spaces.
+
+In the following demo, the options need to start with the query prefix:
+
+```js
+const filterOptions = createFilterOptions({
+  matchFrom: 'start',
+  stringify: option => option.title,
+});
+```
+
+{{"demo": "pages/components/autocomplete/Filter.js"}}
+
+For richer filtering mechanisms, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). For instance:
+
+```jsx
+import matchSorter from 'match-sorter';
+
+const filterOptions = (options, { inputValue }) =>
+  matchSorter(options, inputValue);
+```
+
+## Virtualization
+
+Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
+
+{{"demo": "pages/components/autocomplete/Virtualize.js"}}
+
+## Accessibility
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
+
+We encourage the usage of a label for the textbox.
+No further assistance should be required.
+The component implements the WAI-ARIA accessibility recommendations.

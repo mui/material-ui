@@ -33,6 +33,7 @@ export type SelectClassKey =
   | 'selectMenu'
   | 'disabled'
   | 'icon'
+  | 'iconOpen'
   | 'iconFilled'
   | 'iconOutlined';
 
