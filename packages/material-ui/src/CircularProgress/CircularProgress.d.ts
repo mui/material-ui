@@ -3,7 +3,7 @@ import { StandardProps } from '..';
 
 export interface CircularProgressProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, CircularProgressClassKey> {
-  color?: 'primary' | 'secondary' | 'inherit';
+  color?: 'primary' | 'secondary' | 'error' | 'inherit';
   disableShrink?: boolean;
   size?: number | string;
   thickness?: number;
@@ -17,6 +17,7 @@ export type CircularProgressClassKey =
   | 'indeterminate'
   | 'colorPrimary'
   | 'colorSecondary'
+  | 'colorError'
   | 'svg'
   | 'circle'
   | 'circleStatic'

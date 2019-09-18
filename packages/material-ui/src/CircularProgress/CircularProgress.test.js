@@ -42,6 +42,11 @@ describe('<CircularProgress />', () => {
     assert.strictEqual(wrapper.hasClass(classes.colorSecondary), true);
   });
 
+  it('should render with the error color', () => {
+    const wrapper = shallow(<CircularProgress color="error" />);
+    assert.strictEqual(wrapper.hasClass(classes.colorError), true);
+  });
+
   it('should contain an SVG with the svg class, and a circle with the circle class', () => {
     const wrapper = shallow(<CircularProgress />);
     const svg = wrapper.childAt(0);

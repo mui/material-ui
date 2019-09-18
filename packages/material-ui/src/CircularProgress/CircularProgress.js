@@ -45,6 +45,10 @@ export const styles = theme => ({
   colorSecondary: {
     color: theme.palette.secondary.main,
   },
+  /* Styles applied to the root element if `color="error"`. */
+  colorError: {
+    color: theme.palette.error.main,
+  },
   /* Styles applied to the `svg` element. */
   svg: {},
   /* Styles applied to the `circle` svg path. */
@@ -179,7 +183,7 @@ CircularProgress.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'inherit']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'error', 'inherit']),
   /**
    * If `true`, the shrink animation is disabled.
    * This only works if variant is `indeterminate`.
