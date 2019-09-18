@@ -78,6 +78,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     ActionsComponent = TablePaginationActions,
     backIconButtonProps,
     classes,
+    className,
     colSpan: colSpanProp,
     component: Component = TableCell,
     count,
@@ -102,7 +103,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
   const MenuItemComponent = SelectProps.native ? 'option' : MenuItem;
 
   return (
-    <Component className={classes.root} colSpan={colSpan} ref={ref} {...other}>
+    <Component className={clsx(classes.root, className)} colSpan={colSpan} ref={ref} {...other}>
       <Toolbar className={classes.toolbar}>
         <div className={classes.spacer} />
         {rowsPerPageOptions.length > 1 && (
@@ -169,6 +170,10 @@ TablePagination.propTypes = {
    * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * @ignore
    */
