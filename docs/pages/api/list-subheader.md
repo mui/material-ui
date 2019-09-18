@@ -26,7 +26,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">color</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'inherit'</span> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span class="prop-name">color</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'inherit'</span> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'li'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">disableGutters</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the List Subheader will not have gutters. |
 | <span class="prop-name">disableSticky</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the List Subheader will not stick to the top during scroll. |
@@ -45,6 +45,8 @@ Any other props supplied will be provided to the root element (native element).
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">MuiListSubheader-root</span> | Styles applied to the root element.
 | <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiListSubheader-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiListSubheader-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">colorError</span> | <span class="prop-name">MuiListSubheader-colorError</span> | Styles applied to the root element if `color="error"`.
 | <span class="prop-name">colorInherit</span> | <span class="prop-name">MuiListSubheader-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
 | <span class="prop-name">gutters</span> | <span class="prop-name">MuiListSubheader-gutters</span> | Styles applied to the inner `component` element if `disableGutters={false}`.
 | <span class="prop-name">inset</span> | <span class="prop-name">MuiListSubheader-inset</span> | Styles applied to the root element if `inset={true}`.

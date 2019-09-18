@@ -29,7 +29,7 @@ attribute to `true` on that region until it has finished loading.
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'inherit'</span> | <span class="prop-default">'primary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'inherit'</span> | <span class="prop-default">'primary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">disableShrink</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the shrink animation is disabled. This only works if variant is `indeterminate`. |
 | <span class="prop-name">size</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> | <span class="prop-default">40</span> | The size of the circle. If using a number, the pixel unit is assumed. If using a string, you need to provide the CSS unit, e.g '3rem'. |
 | <span class="prop-name">thickness</span> | <span class="prop-type">number</span> | <span class="prop-default">3.6</span> | The thickness of the circle. |
@@ -52,6 +52,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">indeterminate</span> | <span class="prop-name">MuiCircularProgress-indeterminate</span> | Styles applied to the root element if `variant="indeterminate"`.
 | <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiCircularProgress-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiCircularProgress-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">colorError</span> | <span class="prop-name">MuiCircularProgress-colorError</span> | Styles applied to the root element if `color="error"`.
 | <span class="prop-name">svg</span> | <span class="prop-name">MuiCircularProgress-svg</span> | Styles applied to the `svg` element.
 | <span class="prop-name">circle</span> | <span class="prop-name">MuiCircularProgress-circle</span> | Styles applied to the `circle` svg path.
 | <span class="prop-name">circleStatic</span> | <span class="prop-name">MuiCircularProgress-circleStatic</span> | Styles applied to the `circle` svg path if `variant="static"`.

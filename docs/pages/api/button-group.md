@@ -26,7 +26,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | The content of the button group. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">color</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span class="prop-name">color</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'</span> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the buttons will be disabled. |
 | <span class="prop-name">disableFocusRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button keyboard focus ripple will be disabled. `disableRipple` must also be true. |
@@ -53,9 +53,11 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">groupedOutlined</span> | <span class="prop-name">MuiButtonGroup-groupedOutlined</span> | Styles applied to the children if variant="outlined".
 | <span class="prop-name">groupedOutlinedPrimary</span> | <span class="prop-name">MuiButtonGroup-groupedOutlinedPrimary</span> | Styles applied to the children if variant="outlined" & color="primary".
 | <span class="prop-name">groupedOutlinedSecondary</span> | <span class="prop-name">MuiButtonGroup-groupedOutlinedSecondary</span> | Styles applied to the children if variant="outlined" & color="secondary".
+| <span class="prop-name">groupedOutlinedError</span> | <span class="prop-name">MuiButtonGroup-groupedOutlinedError</span> | Styles applied to the children if variant="outlined" & color="error".
 | <span class="prop-name">groupedContained</span> | <span class="prop-name">MuiButtonGroup-groupedContained</span> | Styles applied to the children if variant="contained".
 | <span class="prop-name">groupedContainedPrimary</span> | <span class="prop-name">MuiButtonGroup-groupedContainedPrimary</span> | Styles applied to the children if variant="contained" & color="primary".
 | <span class="prop-name">groupedContainedSecondary</span> | <span class="prop-name">MuiButtonGroup-groupedContainedSecondary</span> | Styles applied to the children if variant="contained" & color="secondary".
+| <span class="prop-name">groupedContainedError</span> | <span class="prop-name">MuiButtonGroup-groupedContainedError</span> | Styles applied to the children if variant="contained" & color="error".
 | <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to child elements if `disabled={true}`.
 
 You can override the style of the component thanks to one of these customization points:

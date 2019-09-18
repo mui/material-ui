@@ -26,7 +26,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">color</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'primary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span class="prop-name">color</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'primary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">position</span> | <span class="prop-type">'absolute'<br>&#124;&nbsp;'fixed'<br>&#124;&nbsp;'relative'<br>&#124;&nbsp;'static'<br>&#124;&nbsp;'sticky'</span> | <span class="prop-default">'fixed'</span> | The positioning type. The behavior of the different options is described [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning). Note: `sticky` is not universally supported and will fall back to `static` when unavailable. |
 
 The `ref` is forwarded to the root element.
@@ -49,6 +49,7 @@ Any other props supplied will be provided to the root element ([Paper](/api/pape
 | <span class="prop-name">colorDefault</span> | <span class="prop-name">MuiAppBar-colorDefault</span> | Styles applied to the root element if `color="default"`.
 | <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiAppBar-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiAppBar-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">colorError</span> | <span class="prop-name">MuiAppBar-colorError</span> | Styles applied to the root element if `color="error"`.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -27,7 +27,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">checked</span> | <span class="prop-type">bool</span> |  | If `true`, the component is checked. |
 | <span class="prop-name">checkedIcon</span> | <span class="prop-type">node</span> |  | The icon to display when the component is checked. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'default'</span> | <span class="prop-default">'secondary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'default'</span> | <span class="prop-default">'secondary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | If `true`, the switch will be disabled. |
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> |  | If `true`, the ripple effect will be disabled. |
 | <span class="prop-name">edge</span> | <span class="prop-type">'start'<br>&#124;&nbsp;'end'<br>&#124;&nbsp;false</span> | <span class="prop-default">false</span> | If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape). |
@@ -58,6 +58,7 @@ Any other props supplied will be provided to the root element ([IconButton](/api
 | <span class="prop-name">switchBase</span> | <span class="prop-name">MuiSwitch-switchBase</span> | Styles applied to the internal `SwitchBase` component's `root` class.
 | <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiSwitch-colorPrimary</span> | Styles applied to the internal SwitchBase component's root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiSwitch-colorSecondary</span> | Styles applied to the internal SwitchBase component's root element if `color="secondary"`.
+| <span class="prop-name">colorError</span> | <span class="prop-name">MuiSwitch-colorError</span> | Styles applied to the internal SwitchBase component's root element if `color="error"`.
 | <span class="prop-name">sizeSmall</span> | <span class="prop-name">MuiSwitch-sizeSmall</span> | Styles applied to the root element if `size="small"`.
 | <span class="prop-name">checked</span> | <span class="prop-name">Mui-checked</span> | Pseudo-class applied to the internal `SwitchBase` component's `checked` class.
 | <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the internal SwitchBase component's disabled class.
