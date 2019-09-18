@@ -98,7 +98,7 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
     const button = wrapper.find('button');
-    assert.strictEqual(button.hasClass('MuiButton-outlinedSecondary'), true);
+    assert.strictEqual(button.hasClass('MuiButton-outlinedError'), true);
     assert.strictEqual(button.hasClass(classes.grouped), true);
     assert.strictEqual(button.hasClass(classes.groupedOutlined), true);
     assert.strictEqual(button.hasClass(classes.groupedOutlinedPrimary), false);
@@ -157,7 +157,7 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
     const button = wrapper.find('button');
-    assert.strictEqual(button.hasClass('MuiButton-containedSecondary'), true);
+    assert.strictEqual(button.hasClass('MuiButton-containedError'), true);
     assert.strictEqual(button.hasClass(classes.grouped), true);
     assert.strictEqual(button.hasClass(classes.groupedContained), true);
     assert.strictEqual(button.hasClass(classes.groupedContainedPrimary), false);
