@@ -1,6 +1,5 @@
 // The API is inspired by console.time
 // The implementation is isomorphic.
-import warning from 'warning';
 
 const times = new Map();
 
@@ -68,7 +67,11 @@ class Metric {
    * Call to begin a measurement.
    */
   static start(name) {
-    warning(!times.get(name), 'Recording already started');
+    if (process.env.NODE_ENV !== 'production') {
+      if (times.get(name)) {
+        console.error('Recording already started');
+      }
+    }
     getImplementation().start(name);
   }
 

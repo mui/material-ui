@@ -14,7 +14,7 @@ When adding new features or modifying existing, please attempt to include tests 
 
 When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab).
 
-### Branch Structure
+### Branch structure
 
 All stable releases are tagged ([view tags](https://github.com/mui-org/material-ui/tags)).
 At any given time, `master` represents the latest development version of the library.
@@ -49,7 +49,7 @@ We will only accept a pull request for which all tests pass. Make sure the follo
 
 Please create a new branch from an up to date master on your fork. (Note, urgent hotfixes should be branched off the latest stable release rather than master)
 
-1. Fork the Material-UI repository on Github
+1. Fork the Material-UI repository on GitHub
 2. Clone your fork to your local machine `git clone git@github.com:<yourname>/material-ui.git`
 3. Create a branch `git checkout -b my-topic-branch`
 4. Make your changes, lint, then push to to GitHub with `git push --set-upstream origin my-topic-branch`.

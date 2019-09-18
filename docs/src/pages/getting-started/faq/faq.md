@@ -119,10 +119,7 @@ The CSS alternative provides more advantages, such as:
 
 ## How do I use react-router?
 
-How to use a [third-party routing library](/components/buttons/#third-party-routing-library) is documented with the `ButtonBase` component.
-A lot of the interactive components use it internally:
-`Link`, `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc.
-You can use the same solution with them.
+We detail the [integration with third-party routing libraries](/guides/composition/#routing-libraries) like react-router, Gatsby or Next.js in our guide.
 
 ## How can I access the DOM element?
 

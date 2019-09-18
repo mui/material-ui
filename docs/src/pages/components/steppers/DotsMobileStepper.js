@@ -17,13 +17,13 @@ export default function DotsMobileStepper() {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
 
-  function handleNext() {
+  const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
-  }
+  };
 
-  function handleBack() {
+  const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
-  }
+  };
 
   return (
     <MobileStepper

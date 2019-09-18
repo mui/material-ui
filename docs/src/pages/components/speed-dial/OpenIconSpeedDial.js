@@ -14,11 +14,13 @@ import EditIcon from '@material-ui/icons/Edit';
 const useStyles = makeStyles(theme => ({
   root: {
     height: 380,
+    transform: 'translateZ(0px)',
+    flexGrow: 1,
   },
   speedDial: {
     position: 'absolute',
     bottom: theme.spacing(2),
-    right: theme.spacing(3),
+    right: theme.spacing(2),
   },
 }));
 
@@ -36,18 +38,11 @@ export default function OpenIconSpeedDial() {
   const [hidden, setHidden] = React.useState(false);
 
   const handleVisibility = () => {
-    setOpen(false);
     setHidden(prevHidden => !prevHidden);
   };
 
-  const handleClick = () => {
-    setOpen(prevOpen => !prevOpen);
-  };
-
   const handleOpen = () => {
-    if (!hidden) {
-      setOpen(true);
-    }
+    setOpen(true);
   };
 
   const handleClose = () => {
@@ -62,12 +57,8 @@ export default function OpenIconSpeedDial() {
         className={classes.speedDial}
         hidden={hidden}
         icon={<SpeedDialIcon openIcon={<EditIcon />} />}
-        onBlur={handleClose}
-        onClick={handleClick}
         onClose={handleClose}
-        onFocus={handleOpen}
-        onMouseEnter={handleOpen}
-        onMouseLeave={handleClose}
+        onOpen={handleOpen}
         open={open}
       >
         {actions.map(action => (
@@ -75,7 +66,7 @@ export default function OpenIconSpeedDial() {
             key={action.name}
             icon={action.icon}
             tooltipTitle={action.name}
-            onClick={handleClick}
+            onClick={handleClose}
           />
         ))}
       </SpeedDial>

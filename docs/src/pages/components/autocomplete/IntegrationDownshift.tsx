@@ -128,24 +128,24 @@ function DownshiftMultiple(props: DownshiftMultipleProps) {
   const [inputValue, setInputValue] = React.useState('');
   const [selectedItem, setSelectedItem] = React.useState<Array<Suggestion['label']>>([]);
 
-  function handleKeyDown(event: React.KeyboardEvent) {
+  const handleKeyDown = (event: React.KeyboardEvent) => {
     if (selectedItem.length && !inputValue.length && event.key === 'Backspace') {
       setSelectedItem(selectedItem.slice(0, selectedItem.length - 1));
     }
-  }
+  };
 
-  function handleInputChange(event: React.ChangeEvent<{ value: string }>) {
+  const handleInputChange = (event: React.ChangeEvent<{ value: string }>) => {
     setInputValue(event.target.value);
-  }
+  };
 
-  function handleChange(item: Suggestion['label']) {
+  const handleChange = (item: Suggestion['label']) => {
     let newSelectedItem = [...selectedItem];
     if (newSelectedItem.indexOf(item) === -1) {
       newSelectedItem = [...newSelectedItem, item];
     }
     setInputValue('');
     setSelectedItem(newSelectedItem);
-  }
+  };
 
   const handleDelete = (item: string) => () => {
     const newSelectedItem = [...selectedItem];

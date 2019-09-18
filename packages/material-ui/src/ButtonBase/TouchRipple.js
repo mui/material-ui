@@ -14,6 +14,7 @@ export const styles = theme => ({
     overflow: 'hidden',
     pointerEvents: 'none',
     position: 'absolute',
+    zIndex: 0,
     top: 0,
     right: 0,
     bottom: 0,

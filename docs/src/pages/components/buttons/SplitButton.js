@@ -17,26 +17,26 @@ export default function SplitButton() {
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  function handleClick() {
+  const handleClick = () => {
     alert(`You clicked ${options[selectedIndex]}`);
-  }
+  };
 
-  function handleMenuItemClick(event, index) {
+  const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
-  }
+  };
 
-  function handleToggle() {
+  const handleToggle = () => {
     setOpen(prevOpen => !prevOpen);
-  }
+  };
 
-  function handleClose(event) {
+  const handleClose = event => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
 
     setOpen(false);
-  }
+  };
 
   return (
     <Grid container>

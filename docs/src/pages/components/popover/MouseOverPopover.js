@@ -16,13 +16,13 @@ export default function MouseOverPopover() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  function handlePopoverOpen(event) {
+  const handlePopoverOpen = event => {
     setAnchorEl(event.currentTarget);
-  }
+  };
 
-  function handlePopoverClose() {
+  const handlePopoverClose = () => {
     setAnchorEl(null);
-  }
+  };
 
   const open = Boolean(anchorEl);
 

@@ -60,9 +60,9 @@ export default function NavTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
-  function handleChange(event, newValue) {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
-  }
+  };
 
   return (
     <div className={classes.root}>

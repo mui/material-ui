@@ -44,9 +44,9 @@ components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
-## Grouped Buttons
+## Сгруппированные кнопки
 
-The ButtonGroup component can be used to group outlined (the default) or contained buttons.
+Компонент ButtonGroup можно использовать для группировки контурных (по умолчанию) или блочных кнопок.
 
 {{"demo": "pages/components/buttons/GroupedButtons.js"}}
 
@@ -96,7 +96,7 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 ## Настраиваемые кнопки
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js"}}
 
@@ -112,7 +112,7 @@ Here are some examples of customizing the component. You can learn more about th
 
 Одним из распространенных вариантов использования кнопки является переход на новую страницу. `ButtonBase` компонент предоставляет свойство для обработки этого варианта использования: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
-Here is an integration example with react-router:
+Вот пример интеграции с react-router:
 
 {{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
 

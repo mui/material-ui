@@ -492,14 +492,14 @@ describe('makeStyles', () => {
 
       StressTest = () => {
         const [backgroundColor, setBackgroundColor] = React.useState('black');
-        function handleBackgroundColorChange(event) {
+        const handleBackgroundColorChange = event => {
           setBackgroundColor(event.target.value);
-        }
+        };
 
         const [color, setColor] = React.useState('white');
-        function handleColorChange(event) {
+        const handleColorChange = event => {
           setColor(event.target.value);
-        }
+        };
 
         const theme = React.useMemo(() => ({ color }), [color]);
 

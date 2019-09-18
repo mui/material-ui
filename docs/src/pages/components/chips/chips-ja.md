@@ -38,7 +38,7 @@ Outlined chipsは代替スタイルを提供します。
 
 ### デフォルトのバリアント
 
-{{"demo":"pages/components/chips/SmallChips.js"}}
+{{"demo": "pages/components/chips/SmallChips.js"}}
 
 ### アウトライン化されたバリアント
 

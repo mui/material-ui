@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import clsx from 'clsx';
 import Collapse from '../Collapse';
 import withStyles from '../styles/withStyles';
@@ -41,10 +40,13 @@ const StepContent = React.forwardRef(function StepContent(props, ref) {
     ...other
   } = props;
 
-  warning(
-    orientation === 'vertical',
-    'Material-UI: <StepContent /> is only designed for use with the vertical stepper.',
-  );
+  if (process.env.NODE_ENV !== 'production') {
+    if (orientation !== 'vertical') {
+      console.error(
+        'Material-UI: <StepContent /> is only designed for use with the vertical stepper.',
+      );
+    }
+  }
 
   let transitionDuration = transitionDurationProp;
 

@@ -21,13 +21,13 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function SmallOutlinedChips() {
   const classes = useStyles();
 
-  function handleDelete() {
+  const handleDelete = () => {
     alert('You clicked the delete icon.');
-  }
+  };
 
-  function handleClick() {
+  const handleClick = () => {
     alert('You clicked the Chip.');
-  }
+  };
 
   return (
     <div className={classes.root}>

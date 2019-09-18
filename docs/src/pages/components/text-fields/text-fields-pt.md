@@ -99,7 +99,7 @@ ou
 
 ### Rótulo flutuante
 
-The floating label is absolutely positioned, it won't impact the layout of the page. You need to make sure that the input is larger than the label to display correctly.
+O rótulo flutuante está absolutamente posicionado, não afetará o leiaute da página. Você precisa ter certeza de que o componente de entrada é maior do que o rótulo para a exibição correta.
 
 ## Integração com bibliotecas de input de terceiros
 

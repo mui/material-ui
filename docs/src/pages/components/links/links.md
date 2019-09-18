@@ -38,9 +38,7 @@ When you use `target="_blank"` with Links, it is [recommended](https://developer
 
 ## Third-party routing library
 
-One common use case is to perform the navigation on the client only, without doing a .html round-trip with the server. The `Link` component provides a property to handle this use case: `component`.
+One common use case is to perform navigation on the client only, without an HTTP round-trip to the server.
+The `Link` component provides a property to handle this use case: `component`.
 
-{{"demo": "pages/components/links/LinkRouter.js", "defaultCodeOpen": true}}
-
-_Note: Creating the Link components is necessary to prevent unexpected unmounting.
-You can read more about it in the [component prop guide](/guides/composition/#component-property)._
+Here is an [integration example with react-router](/guides/composition/#link).

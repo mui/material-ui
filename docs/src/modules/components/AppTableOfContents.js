@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import marked from 'marked';
-import warning from 'warning';
 import throttle from 'lodash/throttle';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
@@ -167,7 +166,11 @@ export default function AppTableOfContents(props) {
 
       const item = itemsClientRef.current[i];
 
-      warning(item.node, `Missing node on the item ${JSON.stringify(item, null, 2)}`);
+      if (process.env.NODE_ENV !== 'production') {
+        if (!item.node) {
+          console.error(`Missing node on the item ${JSON.stringify(item, null, 2)}`);
+        }
+      }
 
       if (
         item.node &&

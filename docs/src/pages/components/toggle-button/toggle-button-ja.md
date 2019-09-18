@@ -23,6 +23,12 @@ components: ToggleButton, ToggleButtonGroup
 
 {{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}
 
+## Customized toggle button
+
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+
+{{"demo": "pages/components/toggle-button/CustomizedDividers.js"}}
+
 ## アクセシビリティ
 
 ToggleButtonGroup has `role="group"`. You should provide an accessible label with `arial-label="label"`, `aria-labelledby="id"` or `<label>`.

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '../test-utils/describeConformance';
 import Popper from '../Popper';
 import Tooltip from './Tooltip';
 import Input from '../Input';
@@ -43,6 +44,18 @@ describe('<Tooltip />', () => {
     clock.restore();
     mount.cleanUp();
   });
+
+  describeConformance(<Tooltip {...defaultProps} />, () => ({
+    classes,
+    inheritComponent: 'span',
+    mount,
+    refInstanceof: window.HTMLSpanElement,
+    skip: [
+      'componentProp',
+      // react-transition-group issue
+      'reactTestRenderer',
+    ],
+  }));
 
   it('should render the correct structure', () => {
     const wrapper = mount(<Tooltip {...defaultProps} />);
@@ -380,6 +393,26 @@ describe('<Tooltip />', () => {
       focusVisible(wrapper.find('#target'));
 
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+    });
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should warn when switching between uncontrolled to controlled', () => {
+      const wrapper = mount(<Tooltip {...defaultProps} />);
+
+      wrapper.setProps({ open: true });
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'A component is changing an uncontrolled Tooltip to be controlled.',
+      );
     });
   });
 });

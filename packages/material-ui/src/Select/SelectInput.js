@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
 import { capitalize } from '../utils/helpers';
 import { refType } from '@material-ui/utils';
 import Menu from '../Menu/Menu';
@@ -48,7 +47,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     required,
     SelectDisplayProps,
     tabIndex: tabIndexProp,
-    type = 'hidden',
+    // catching `type` from Input which makes no sense for SelectInput
+    type,
     value,
     variant = 'standard',
     ...other
@@ -198,13 +198,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       return null;
     }
 
-    warning(
-      child.type !== React.Fragment,
-      [
-        "Material-UI: the Select component doesn't accept a Fragment as a child.",
-        'Consider providing an array instead.',
-      ].join('\n'),
-    );
+    if (process.env.NODE_ENV !== 'production') {
+      if (child.type === React.Fragment) {
+        console.error(
+          [
+            "Material-UI: the Select component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n'),
+        );
+      }
+    }
 
     let selected;
 
@@ -295,7 +298,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         value={Array.isArray(value) ? value.join(',') : value}
         name={name}
         ref={inputRef}
-        type={type}
+        type="hidden"
         autoFocus={autoFocus}
         {...other}
       />
@@ -360,9 +363,10 @@ SelectInput.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.elementType,
+  IconComponent: PropTypes.elementType.isRequired,
   /**
-   * Use that prop to pass a ref to the native select element.
+   * Imperative handle implementing `{ value: T, node: HTMLElement, focus(): void }`
+   * Equivalent to `ref`
    */
   inputRef: refType,
   /**
@@ -437,7 +441,7 @@ SelectInput.propTypes = {
   /**
    * @ignore
    */
-  type: PropTypes.string,
+  type: PropTypes.any,
   /**
    * The input value.
    */

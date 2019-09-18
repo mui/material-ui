@@ -48,9 +48,9 @@ export default function TabsWrappedLabel() {
   const classes = useStyles();
   const [value, setValue] = React.useState('one');
 
-  function handleChange(event, newValue) {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
-  }
+  };
 
   return (
     <div className={classes.root}>

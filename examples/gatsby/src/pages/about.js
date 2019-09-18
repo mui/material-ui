@@ -19,7 +19,7 @@ function Copyright() {
   );
 }
 
-export default function App() {
+export default function About() {
   return (
     <Container maxWidth="sm">
       <Box my={4}>

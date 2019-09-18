@@ -15,13 +15,13 @@ const Transition = React.forwardRef<unknown, TransitionProps>(function Transitio
 export default function AlertDialogSlide() {
   const [open, setOpen] = React.useState(false);
 
-  function handleClickOpen() {
+  const handleClickOpen = () => {
     setOpen(true);
-  }
+  };
 
-  function handleClose() {
+  const handleClose = () => {
     setOpen(false);
-  }
+  };
 
   return (
     <div>

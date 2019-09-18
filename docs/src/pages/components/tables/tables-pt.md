@@ -57,21 +57,21 @@ A propriedade `Action` do componente `TablePagination` permite a implementação
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}
 
-## Fixed header
+## Cabeçalho fixo
 
-An example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
+Um exemplo de uma tabela com linhas roláveis e cabeçalhos de coluna fixos. Ele aproveita do suporte de `stickyHeader` (⚠️ sem suporte ao IE 11).
 
 {{"demo": "pages/components/tables/StickyHeadTable.js"}}
 
-## Spanning Table
+## Abrangendo Tabela
 
-A simple example with spanning rows & columns.
+Um exemplo simples com abrangência de linhas & colunas.
 
 {{"demo": "pages/components/tables/SpanningTable.js"}}
 
-## Virtualized Table
+## Tabela Virtualizada
 
-In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. Ela renderiza 200 linhas e pode facilmente lidar com mais. A virtualização ajuda a lidar com problemas de desempenho.
+No exemplo a seguir, nós demonstramos como usar [react-virtualized](https://github.com/bvaughn/react-virtualized) com o componente `Table`. Ela renderiza 200 linhas e pode facilmente lidar com mais. A virtualização ajuda a lidar com problemas de desempenho.
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js"}}
 
@@ -83,11 +83,12 @@ Para usos mais avançados, você pode tirar vantagem com:
 
 ![estrelas](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-table.svg)
 
-[material-table](https://github.com/mbrn/material-table) is a simple and powerful Datatable for React based on Material-UI Table with some additional features. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
+[material-table](https://github.com/mbrn/material-table) é uma tabela de dados simples e poderosa para React baseado na tabela do Material-UI com alguns recursos adicionais. Eles suportam muitos formas de utilização (edição, filtragem, agrupamento, ordenação, seleção, i18n, árvore de dados e muito mais). Você deveria dar uma olhada.
 
 {{"demo": "pages/components/tables/MaterialTableDemo.js"}}
 
 ### Outros
 
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
-- [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) Uma grade de dados para Material-UI com paginação, ordenação, filtragem, agrupamento e funções de edição.([Com licenciamento de uso pago](https://js.devexpress.com/licensing/)).
+- [mui-datatables](https://github.com/gregnb/mui-datatables): Tabelas de dados responsivas para Material-UI com filtro, ordenação, pesquisa e muito mais.
+- [tubular-react](https://github.com/unosquare/tubular-react): Uma tabela de Material-UI com fonte de dados local ou remota. Com filtragem, classificação, pesquisa de texto livre, exportação para CSV localmente e agregações.

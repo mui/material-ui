@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => {
@@ -37,10 +36,11 @@ const Paper = React.forwardRef(function Paper(props, ref) {
     ...other
   } = props;
 
-  warning(
-    elevation >= 0 && elevation < 25,
-    `Material-UI: this elevation \`${elevation}\` is not implemented.`,
-  );
+  if (process.env.NODE_ENV !== 'production') {
+    if (elevation < 0 || elevation >= 25) {
+      console.error(`Material-UI: this elevation \`${elevation}\` is not implemented.`);
+    }
+  }
 
   const className = clsx(
     classes.root,

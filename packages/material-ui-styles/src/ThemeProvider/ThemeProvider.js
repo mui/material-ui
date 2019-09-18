@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import { exactProp } from '@material-ui/utils';
 import ThemeContext from '../useTheme/ThemeContext';
 import useTheme from '../useTheme';
@@ -11,13 +10,16 @@ function mergeOuterLocalTheme(outerTheme, localTheme) {
   if (typeof localTheme === 'function') {
     const mergedTheme = localTheme(outerTheme);
 
-    warning(
-      mergedTheme,
-      [
-        'Material-UI: you should return an object from your theme function, i.e.',
-        '<ThemeProvider theme={() => ({})} />',
-      ].join('\n'),
-    );
+    if (process.env.NODE_ENV !== 'production') {
+      if (!mergedTheme) {
+        console.error(
+          [
+            'Material-UI: you should return an object from your theme function, i.e.',
+            '<ThemeProvider theme={() => ({})} />',
+          ].join('\n'),
+        );
+      }
+    }
 
     return mergedTheme;
   }
@@ -34,17 +36,20 @@ function ThemeProvider(props) {
   const { children, theme: localTheme } = props;
   const outerTheme = useTheme();
 
-  warning(
-    outerTheme !== null || typeof localTheme !== 'function',
-    [
-      'Material-UI: you are providing a theme function prop to the ThemeProvider component:',
-      '<ThemeProvider theme={outerTheme => outerTheme} />',
-      '',
-      'However, no outer theme is present.',
-      'Make sure a theme is already injected higher in the React tree ' +
-        'or provide a theme object.',
-    ].join('\n'),
-  );
+  if (process.env.NODE_ENV !== 'production') {
+    if (outerTheme === null && typeof localTheme === 'function') {
+      console.error(
+        [
+          'Material-UI: you are providing a theme function prop to the ThemeProvider component:',
+          '<ThemeProvider theme={outerTheme => outerTheme} />',
+          '',
+          'However, no outer theme is present.',
+          'Make sure a theme is already injected higher in the React tree ' +
+            'or provide a theme object.',
+        ].join('\n'),
+      );
+    }
+  }
 
   const theme = React.useMemo(() => {
     const output = outerTheme === null ? localTheme : mergeOuterLocalTheme(outerTheme, localTheme);

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import { useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
@@ -191,7 +190,7 @@ function MarkdownDocs(props) {
                 try {
                   demoOptions = JSON.parse(`{${content}}`);
                 } catch (err) {
-                  console.error(err); // eslint-disable-line no-console
+                  console.error(err);
                   return null;
                 }
 
@@ -206,7 +205,9 @@ function MarkdownDocs(props) {
                     throw new Error(errorMessage);
                   }
 
-                  warning(false, errorMessage);
+                  if (process.env.NODE_ENV !== 'production') {
+                    console.error(errorMessage);
+                  }
 
                   const warnIcon = (
                     <span role="img" aria-label={t('emojiWarning')}>

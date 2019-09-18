@@ -1,5 +1,4 @@
 import React from 'react';
-import warning from 'warning';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
@@ -66,13 +65,14 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
     // This defends against someone passing weird input, to ensure that if all
     // items would be shown anyway, we just show all items without the EllipsisItem
     if (itemsBeforeCollapse + itemsAfterCollapse >= allItems.length) {
-      warning(
-        false,
-        [
-          'Material-UI: you have provided an invalid combination of props to the Breadcrumbs.',
-          `itemsAfterCollapse={${itemsAfterCollapse}} +itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
-        ].join('\n'),
-      );
+      if (process.env.NODE_ENV !== 'production') {
+        console.error(
+          [
+            'Material-UI: you have provided an invalid combination of props to the Breadcrumbs.',
+            `itemsAfterCollapse={${itemsAfterCollapse}} + itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
+          ].join('\n'),
+        );
+      }
       return allItems;
     }
 
@@ -84,7 +84,20 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
   };
 
   const allItems = React.Children.toArray(children)
-    .filter(child => React.isValidElement(child))
+    .filter(child => {
+      if (process.env.NODE_ENV !== 'production') {
+        if (child.type === React.Fragment) {
+          console.error(
+            [
+              "Material-UI: the Breadcrumbs component doesn't accept a Fragment as a child.",
+              'Consider providing an array instead.',
+            ].join('\n'),
+          );
+        }
+      }
+
+      return React.isValidElement(child);
+    })
     .map((child, index) => (
       <li className={classes.li} key={`child-${index}`}>
         {child}
@@ -142,8 +155,8 @@ Breadcrumbs.propTypes = {
   itemsBeforeCollapse: PropTypes.number,
   /**
    * Specifies the maximum number of breadcrumbs to display. When there are more
-   * than the maximum number, only the first and last will be shown, with an
-   * ellipsis in between.
+   * than the maximum number, only the first `itemsBeforeCollapse` and last `itemsAfterCollapse`
+   * will be shown, with an ellipsis in between.
    */
   maxItems: PropTypes.number,
   /**

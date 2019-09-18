@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Popover from '../Popover';
 import MenuList from '../MenuList';
-import warning from 'warning';
 import ReactDOM from 'react-dom';
 import { setRef } from '../utils/reactHelpers';
 import useTheme from '../styles/useTheme';
@@ -89,13 +88,16 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     if (!React.isValidElement(child)) {
       return null;
     }
-    warning(
-      child.type !== React.Fragment,
-      [
-        "Material-UI: the Menu component doesn't accept a Fragment as a child.",
-        'Consider providing an array instead.',
-      ].join('\n'),
-    );
+    if (process.env.NODE_ENV !== 'production') {
+      if (child.type === React.Fragment) {
+        console.error(
+          [
+            "Material-UI: the Menu component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n'),
+        );
+      }
+    }
     if (firstValidElementIndex === null) {
       firstValidElementIndex = index;
     }

@@ -1,5 +1,5 @@
 {
-  "version": "4.4.1",
+  "version": "4.4.2",
   "private": true,
   "scripts": {
     "proptypes": "ts-node --skip-project ./scripts/generateProptypes.ts",
@@ -78,7 +78,7 @@
     "chai": "^4.1.2",
     "chai-dom": "^1.8.1",
     "compression-webpack-plugin": "^3.0.0",
-    "cross-env": "^5.1.1",
+    "cross-env": "^5.2.1",
     "danger": "^9.1.8",
     "dtslint": "^0.9.3",
     "enzyme": "^3.9.0",
@@ -129,8 +129,7 @@
     "typescript": "3.2.4",
     "typescript-to-proptypes": "^1.3.0",
     "vrtest": "^0.2.0",
-    "warning": "^4.0.3",
-    "webpack": "^4.39.3",
+    "webpack": "^4.40.2",
     "webpack-bundle-analyzer": "^3.0.0",
     "webpack-cli": "^3.3.7",
     "yarn-deduplicate": "^1.1.1"

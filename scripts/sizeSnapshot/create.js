@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const childProcess = require('child_process');
 const fse = require('fs-extra');
 const lodash = require('lodash');

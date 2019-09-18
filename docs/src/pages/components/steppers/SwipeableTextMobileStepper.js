@@ -66,17 +66,17 @@ function SwipeableTextMobileStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = tutorialSteps.length;
 
-  function handleNext() {
+  const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
-  }
+  };
 
-  function handleBack() {
+  const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
-  }
+  };
 
-  function handleStepChange(step) {
+  const handleStepChange = step => {
     setActiveStep(step);
-  }
+  };
 
   return (
     <div className={classes.root}>

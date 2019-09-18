@@ -27,7 +27,7 @@ Você pode alterar o posicionamento do rótulo:
 
 {{"demo": "pages/components/radio-buttons/FormControlLabelPosition.js"}}
 
-## Customized radios
+## Opções customizadas
 
 Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 

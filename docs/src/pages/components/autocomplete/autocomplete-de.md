@@ -7,13 +7,13 @@ components: TextField, Paper, MenuItem, Popper
 
 <p class="description">Die Autovervollständigung ist eine normale Texteingabe, die durch ein Panel mit vorgeschlagenen Optionen ergänzt wird.</p>
 
-Material-UI doesn't provide a high-level API for solving this problem. You are encouraged to use a solution the React community has built, following one of the examples below.
+Die Material-UI bietet keine übergeordnete API zur Lösung dieses Problems an. Es wird empfohlen, einer der folgenden Pakete aus der React-Community zu verwenden.
 
 ## downshift
 
 ![stars](https://img.shields.io/github/stars/paypal/downshift.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/downshift.svg)
 
-This example demonstrates how to use [downshift](https://github.com/downshift-js/downshift).
+Dieses Beispiel zeigt die Benutzung von [downshift](https://github.com/downshift-js/downshift).
 
 The last demo allows the user to clear the input and show a number of options on focus.
 
@@ -23,7 +23,7 @@ The last demo allows the user to clear the input and show a number of options on
 
 ![stars](https://img.shields.io/github/stars/JedWatson/react-select.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/react-select.svg)
 
-This example demonstrates how to use [react-select](https://github.com/JedWatson/react-select).
+Dieses Beispiel zeigt die Benutzung von [react-select](https://github.com/JedWatson/react-select).
 
 {{"demo": "pages/components/autocomplete/IntegrationReactSelect.js"}}
 

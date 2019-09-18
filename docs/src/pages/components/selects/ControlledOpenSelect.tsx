@@ -24,17 +24,17 @@ export default function ControlledOpenSelect() {
   const [age, setAge] = React.useState<string | number>('');
   const [open, setOpen] = React.useState(false);
 
-  function handleChange(event: React.ChangeEvent<{ value: unknown }>) {
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setAge(event.target.value as number);
-  }
+  };
 
-  function handleClose() {
+  const handleClose = () => {
     setOpen(false);
-  }
+  };
 
-  function handleOpen() {
+  const handleOpen = () => {
     setOpen(true);
-  }
+  };
 
   return (
     <form autoComplete="off">

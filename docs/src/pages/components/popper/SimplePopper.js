@@ -16,9 +16,9 @@ export default function SimplePopper() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  function handleClick(event) {
+  const handleClick = event => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
-  }
+  };
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;

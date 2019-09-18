@@ -87,17 +87,17 @@ export default function CustomizedSnackbars() {
   const classes = useStyles2();
   const [open, setOpen] = React.useState(false);
 
-  function handleClick() {
+  const handleClick = () => {
     setOpen(true);
-  }
+  };
 
-  function handleClose(event?: SyntheticEvent, reason?: string) {
+  const handleClose = (event?: SyntheticEvent, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
 
     setOpen(false);
-  }
+  };
 
   return (
     <div>

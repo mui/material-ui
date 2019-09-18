@@ -3,7 +3,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import ownerDocument from '../utils/ownerDocument';
 import { useForkRef } from '../utils/reactHelpers';
 
@@ -53,14 +52,15 @@ function TrapFocus(props) {
     // We might render an empty child.
     if (!disableAutoFocus && rootRef.current && !rootRef.current.contains(doc.activeElement)) {
       if (!rootRef.current.hasAttribute('tabIndex')) {
-        warning(
-          false,
-          [
-            'Material-UI: the modal content node does not accept focus.',
-            'For the benefit of assistive technologies, ' +
-              'the tabIndex of the node is being set to "-1".',
-          ].join('\n'),
-        );
+        if (process.env.NODE_ENV !== 'production') {
+          console.error(
+            [
+              'Material-UI: the modal content node does not accept focus.',
+              'For the benefit of assistive technologies, ' +
+                'the tabIndex of the node is being set to "-1".',
+            ].join('\n'),
+          );
+        }
         rootRef.current.setAttribute('tabIndex', -1);
       }
 

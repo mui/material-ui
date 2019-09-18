@@ -66,9 +66,9 @@ export default function ResponsiveDrawer(props: ResponsiveDrawerProps) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  function handleDrawerToggle() {
+  const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-  }
+  };
 
   const drawer = (
     <div>

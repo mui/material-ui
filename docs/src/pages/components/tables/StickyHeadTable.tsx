@@ -88,14 +88,14 @@ export default function StickyHeadTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  function handleChangePage(event: unknown, newPage: number) {
+  const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
-  }
+  };
 
-  function handleChangeRowsPerPage(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
-  }
+  };
 
   return (
     <Paper className={classes.root}>

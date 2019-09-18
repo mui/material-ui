@@ -15,9 +15,9 @@ export default function ScrollDialog() {
     setScroll(scrollType);
   };
 
-  function handleClose() {
+  const handleClose = () => {
     setOpen(false);
-  }
+  };
 
   return (
     <div>

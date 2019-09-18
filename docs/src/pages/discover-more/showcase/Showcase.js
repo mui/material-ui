@@ -80,9 +80,9 @@ function Showcase(props) {
   const sortFunction = sortFunctions[sortFunctionName];
   const t = useSelector(state => state.options.t);
 
-  function handleChangeSort(event) {
+  const handleChangeSort = event => {
     setSortFunctionName(event.target.value);
-  }
+  };
 
   return (
     <div className={classes.root}>

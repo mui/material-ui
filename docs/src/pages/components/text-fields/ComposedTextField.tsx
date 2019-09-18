@@ -29,9 +29,9 @@ export default function ComposedTextField() {
     setLabelWidth(labelRef.current!.offsetWidth);
   }, []);
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
-  }
+  };
 
   return (
     <div className={classes.container}>

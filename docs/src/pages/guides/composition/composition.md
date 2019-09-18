@@ -26,69 +26,75 @@ WrappedIcon.muiName = Icon.muiName;
 
 {{"demo": "pages/guides/composition/Composition.js"}}
 
-## Component property
+## Component prop
 
-Material-UI allows you to change the root node that will be rendered via a property called `component`.
+Material-UI allows you to change the root element that will be rendered via a prop called `component`.
 
 ### How does it work?
 
 The component will render like this:
 
 ```js
-return React.createElement(this.props.component, props)
+return React.createElement(props.component, props)
 ```
 
 For example, by default a `List` component will render a `<ul>` element.
-This can be changed by passing a [React component](https://reactjs.org/docs/components-and-props.html#function-and-class-components) to the `component` property.
-The following example will render the `List` component with a `<nav>` element as root node instead:
+This can be changed by passing a [React component](https://reactjs.org/docs/components-and-props.html#function-and-class-components) to the `component` prop.
+The following example will render the `List` component with a `<nav>` element as root element instead:
 
 ```jsx
 <List component="nav">
-  <ListItem>
+  <ListItem button>
     <ListItemText primary="Trash" />
   </ListItem>
-  <ListItem>
+  <ListItem button>
     <ListItemText primary="Spam" />
   </ListItem>
 </List>
 ```
 
-This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libraries, such as [`react-router`](#react-router-demo) or your favorite forms library. But it also **comes with a small caveat!**
+This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libraries, such as your favorite routing or forms library.
+But it also **comes with a small caveat!**
 
 ### Caveat with inlining
 
-Using an inline function as an argument for the `component` property may result in **unexpected unmounting**, since you pass a new component to the `component` property every time React renders.
+Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders.
 For instance, if you want to create a custom `ListItem` that acts as a link, you could do the following:
 
 ```jsx
 import { Link } from 'react-router-dom';
 
-const ListItemLink = ({ icon, primary, secondary, to }) => (
-  <li>
-    <ListItem button component={props => <Link to={to} {...props} />}>
-      {icon && <ListItemIcon>{icon}</ListItemIcon>}
-      <ListItemText inset primary={primary} secondary={secondary} />
-    </ListItem>
-  </li>
-);
+function ListItemLink(props) {
+  const { icon, primary, to } = props;
+
+  return (
+    <li>
+      <ListItem button component={props => <Link to={to} {...props} />}>
+        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemText primary={primary} />
+      </ListItem>
+    </li>
+  );
+}
 ```
 
 ⚠️ However, since we are using an inline function to change the rendered component, React will unmount the link every time `ListItemLink` is rendered. Not only will React update the DOM unnecessarily, the ripple effect of the `ListItem` will also not work correctly.
 
-The solution is simple: **avoid inline functions and pass a static component to the `component` property** instead.
+The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead.
 Let's change the `ListItemLink` to the following:
 
 ```jsx
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
   const renderLink = React.useMemo(
     () =>
-      React.forwardRef((itemProps, ref) => (
-        // with react-router-dom@^5.0.0 use `ref` instead of `innerRef`
-        <RouterLink to={to} {...itemProps} innerRef={ref} />
+      React.forwardRef((linkProps, ref) => (
+        // With react-router-dom@^6.0.0 use `ref` instead of `innerRef`
+        // See https://github.com/ReactTraining/react-router/issues/6056
+        <Link to={to} {...linkProps} innerRef={ref} />
       )),
     [to],
   );
@@ -106,9 +112,9 @@ function ListItemLink(props) {
 
 `renderLink` will now always reference the same component.
 
-### Caveat with shorthand
+### Caveat with prop forwarding
 
-You can take advantage of the properties forwarding to simplify the code.
+You can take advantage of the prop forwarding to simplify the code.
 In this example, we don't create any intermediary component:
 
 ```jsx
@@ -117,18 +123,31 @@ import { Link } from 'react-router-dom';
 <ListItem button component={Link} to="/">
 ```
 
-⚠️ However, this strategy suffers from a little limitation: properties collision.
-The component providing the `component` property (e.g. ListItem) might not forward all its properties to the root element (e.g. dense).
-
-### React Router Demo
-
-Here is a demo with [React Router DOM](https://github.com/ReactTraining/react-router):
-
-{{"demo": "pages/guides/composition/ComponentProperty.js"}}
+⚠️ However, this strategy suffers from a limitation: prop collisions.
+The component providing the `component` prop (e.g. ListItem) might not forward all the props (for example dense) to the root element.
 
 ### With TypeScript
 
-You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-component-property).
+You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-component-prop).
+
+## Routing libraries
+
+The integration with third-party routing libraries is achieved with the `component` prop.
+The behavior is identical to the description of the prop above.
+Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router).
+It covers the Button, Link, and List components, you should be able to apply the same strategy with all the components.
+
+### Button
+
+{{"demo": "pages/guides/composition/ButtonRouter.js"}}
+
+### Link
+
+{{"demo": "pages/guides/composition/LinkRouter.js"}}
+
+### List
+
+{{"demo": "pages/guides/composition/ListRouter.js"}}
 
 ## Caveat with refs
 
