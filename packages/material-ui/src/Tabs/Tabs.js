@@ -479,7 +479,7 @@ Tabs.propTypes = {
   /**
    * Determines the color of the indicator.
    */
-  indicatorColor: PropTypes.oneOf(['secondary', 'primary']),
+  indicatorColor: PropTypes.oneOf(['secondary', 'primary', 'error']),
   /**
    * Callback fired when the value changes.
    *
@@ -511,7 +511,7 @@ Tabs.propTypes = {
   /**
    * Determines the color of the `Tab`.
    */
-  textColor: PropTypes.oneOf(['secondary', 'primary', 'inherit']),
+  textColor: PropTypes.oneOf(['secondary', 'primary', 'error', 'inherit']),
   /**
    * The value of the currently selected `Tab`.
    * If you don't want any selected `Tab`, you can set this property to `false`.

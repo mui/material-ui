@@ -18,6 +18,9 @@ export const styles = theme => ({
   colorSecondary: {
     backgroundColor: theme.palette.secondary.main,
   },
+  colorError: {
+    backgroundColor: theme.palette.error.main,
+  },
   vertical: {
     height: '100%',
     width: 2,
@@ -61,7 +64,7 @@ TabIndicator.propTypes = {
    * @ignore
    * The color of the tab indicator.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']).isRequired,
+  color: PropTypes.oneOf(['primary', 'secondary', 'error']).isRequired,
   /**
    * The tabs orientation (layout flow direction).
    */
