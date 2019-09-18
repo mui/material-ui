@@ -17,6 +17,10 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 > **Note:** This version of the text field is no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support it.
 
+## Showcase
+
+{{"demo": "pages/components/text-fields/TextFieldShowcase.js", "hideHeader": "true"}}
+
 ## Outlined
 
 `TextField` supports outlined styling.
