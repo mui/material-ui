@@ -72,6 +72,17 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the root element if `color="error"`. */
+  colorError: {
+    color: theme.palette.error.main,
+    '&:hover': {
+      backgroundColor: fade(theme.palette.error.main, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
+  },
   /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the root element if `size="small"`. */
@@ -164,7 +175,7 @@ IconButton.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'error']),
   /**
    * If `true`, the button will be disabled.
    */
