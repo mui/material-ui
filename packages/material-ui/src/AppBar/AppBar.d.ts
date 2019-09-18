@@ -23,6 +23,7 @@ export type AppBarClassKey =
   | 'positionRelative'
   | 'colorDefault'
   | 'colorPrimary'
-  | 'colorSecondary';
+  | 'colorSecondary'
+  | 'colorError';
 
 export default function AppBar(props: AppBarProps): JSX.Element;

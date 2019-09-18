@@ -33,6 +33,15 @@ describe('<AppBar />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.colorPrimary), true);
     assert.strictEqual(wrapper.hasClass(classes.colorSecondary), false);
+    assert.strictEqual(wrapper.hasClass(classes.colorError), false);
+  });
+
+  it('should render with the root class and error', () => {
+    const wrapper = shallow(<AppBar>Hello World</AppBar>);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.colorPrimary), false);
+    assert.strictEqual(wrapper.hasClass(classes.colorSecondary), false);
+    assert.strictEqual(wrapper.hasClass(classes.colorError), true);
   });
 
   it('should render a primary app bar', () => {
