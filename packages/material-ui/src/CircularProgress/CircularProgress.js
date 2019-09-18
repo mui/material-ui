@@ -27,7 +27,6 @@ export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     display: 'inline-block',
-    lineHeight: 1, // Keep the progress centered
   },
   /* Styles applied to the root element if `variant="static"`. */
   static: {
@@ -46,7 +45,9 @@ export const styles = theme => ({
     color: theme.palette.secondary.main,
   },
   /* Styles applied to the `svg` element. */
-  svg: {},
+  svg: {
+    display: 'block', // Keeps the progress centered
+  },
   /* Styles applied to the `circle` svg path. */
   circle: {
     stroke: 'currentColor',
