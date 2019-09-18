@@ -135,6 +135,7 @@ Link.propTypes = {
     'inherit',
     'primary',
     'secondary',
+    'error',
     'textPrimary',
     'textSecondary',
   ]),
