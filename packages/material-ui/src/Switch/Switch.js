@@ -92,6 +92,25 @@ export const styles = theme => ({
         theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
     },
   },
+  /* Styles applied to the internal SwitchBase component's root element if `color="error"`. */
+  colorError: {
+    '&$checked': {
+      color: theme.palette.error.main,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.error.main, theme.palette.action.hoverOpacity),
+      },
+    },
+    '&$disabled': {
+      color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
+    },
+    '&$checked + $track': {
+      backgroundColor: theme.palette.error.main,
+    },
+    '&$disabled + $track': {
+      backgroundColor:
+        theme.palette.type === 'light' ? theme.palette.common.black : theme.palette.common.white,
+    },
+  },
   /* Styles applied to the root element if `size="small"`. */
   sizeSmall: {
     width: 40,
@@ -200,7 +219,7 @@ Switch.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'default']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'error', 'default']),
   /**
    * @ignore
    */

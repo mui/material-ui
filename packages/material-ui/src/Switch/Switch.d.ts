@@ -5,7 +5,7 @@ import { SwitchBaseProps, SwitchBaseClassKey } from '../internal/SwitchBase';
 export interface SwitchProps
   extends StandardProps<SwitchBaseProps, SwitchClassKey, 'checkedIcon' | 'color' | 'icon'> {
   checkedIcon?: React.ReactNode;
-  color?: 'primary' | 'secondary' | 'default';
+  color?: 'primary' | 'secondary' | 'error' | 'default';
   icon?: React.ReactNode;
   size?: 'small' | 'medium';
 }
@@ -15,6 +15,7 @@ export type SwitchClassKey =
   | 'switchBase'
   | 'colorPrimary'
   | 'colorSecondary'
+  | 'colorError'
   | 'sizeSmall'
   | 'thumb'
   | 'track';
