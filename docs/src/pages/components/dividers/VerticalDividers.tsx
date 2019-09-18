@@ -22,9 +22,9 @@ const useStyles = makeStyles(theme => ({
     },
   },
   divider: {
-    height: 32,
-    width: 1,
-    margin: 4,
+    height: 'auto',
+    alignSelf: 'stretch',
+    margin: theme.spacing(1, 0.5)
   },
 }));
 
@@ -36,7 +36,7 @@ export default function ToggleButtons() {
       <FormatAlignLeftIcon />
       <FormatAlignCenterIcon />
       <FormatAlignRightIcon />
-      <Divider orientation="horizontal" className={classes.divider} />
+      <Divider orientation="vertical" className={classes.divider} />
       <FormatBoldIcon />
       <FormatItalicIcon />
       <FormatUnderlinedIcon />
