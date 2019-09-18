@@ -168,12 +168,7 @@ describe('<Chip />', () => {
 
     it('should render with the root and clickable error class', () => {
       const secondaryWrapper = mount(
-        <Chip
-          className="my-Chip"
-          data-my-prop="woofChip"
-          onClick={handleClick}
-          color="error"
-        />,
+        <Chip className="my-Chip" data-my-prop="woofChip" onClick={handleClick} color="error" />,
       );
       const secondaryChip = secondaryWrapper.find('.my-Chip').hostNodes();
 

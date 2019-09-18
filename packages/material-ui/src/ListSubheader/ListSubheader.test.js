@@ -48,11 +48,7 @@ describe('<ListSubheader />', () => {
 
   it('should display error color', () => {
     const wrapper = shallow(<ListSubheader color="error" />);
-    assert.strictEqual(
-      wrapper.hasClass(classes.colorError),
-      true,
-      'should have the error class',
-    );
+    assert.strictEqual(wrapper.hasClass(classes.colorError), true, 'should have the error class');
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
