@@ -15,6 +15,7 @@ export const styles = theme => {
 
   const backgroundPrimary = getColor(theme.palette.primary.main);
   const backgroundSecondary = getColor(theme.palette.secondary.main);
+  const backgroundError = getColor(theme.palette.error.main);
 
   return {
     /* Styles applied to the root element. */
@@ -30,6 +31,10 @@ export const styles = theme => {
     /* Styles applied to the root & bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`. */
     colorSecondary: {
       backgroundColor: backgroundSecondary,
+    },
+    /* Styles applied to the root & bar2 elements if `color="error"`; bar2 if `variant="buffer"`. */
+    colorError: {
+      backgroundColor: backgroundError,
     },
     /* Styles applied to the root element if `variant="determinate"`. */
     determinate: {},
@@ -63,6 +68,12 @@ export const styles = theme => {
       backgroundSize: '10px 10px',
       backgroundPosition: '0px -23px',
     },
+    /* Styles applied to the additional bar element if `variant="buffer"` & `color="error"`. */
+    dashedColorError: {
+      backgroundImage: `radial-gradient(${backgroundError} 0%, ${backgroundError} 16%, transparent 42%)`,
+      backgroundSize: '10px 10px',
+      backgroundPosition: '0px -23px',
+    },
     /* Styles applied to the layered bar1 & bar2 elements. */
     bar: {
       width: '100%',
@@ -80,6 +91,10 @@ export const styles = theme => {
     /* Styles applied to the bar elements if `color="secondary"`; bar2 if `variant` not "buffer". */
     barColorSecondary: {
       backgroundColor: theme.palette.secondary.main,
+    },
+    /* Styles applied to the bar elements if `color="error"`; bar2 if `variant` not "buffer". */
+    barColorError: {
+      backgroundColor: theme.palette.error.main,
     },
     /* Styles applied to the bar1 element if `variant="indeterminate or query"`. */
     bar1Indeterminate: {
@@ -269,7 +284,7 @@ LinearProgress.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'error']),
   /**
    * The value of the progress indicator for the determinate and buffer variants.
    * Value between 0 and 100.

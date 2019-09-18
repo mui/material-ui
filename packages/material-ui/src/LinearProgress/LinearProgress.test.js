@@ -52,6 +52,13 @@ describe('<LinearProgress />', () => {
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.barColorSecondary), true);
   });
 
+  it('should render for the error color', () => {
+    const wrapper = shallow(<LinearProgress color="error" />);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorError), true);
+    assert.strictEqual(wrapper.childAt(1).hasClass(classes.barColorError), true);
+  });
+
   it('should render with determinate classes for the primary color by default', () => {
     const wrapper = shallow(<LinearProgress value={1} variant="determinate" />);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
@@ -73,6 +80,14 @@ describe('<LinearProgress />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.determinate), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorSecondary), true);
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.bar1Determinate), true);
+  });
+
+  it('should render with determinate classes for the error color', () => {
+    const wrapper = shallow(<LinearProgress color="error" value={1} variant="determinate" />);
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.hasClass(classes.determinate), true);
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.barColorError), true);
     assert.strictEqual(wrapper.childAt(0).hasClass(classes.bar1Determinate), true);
   });
 
@@ -139,6 +154,18 @@ describe('<LinearProgress />', () => {
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.barColorSecondary), true);
     assert.strictEqual(wrapper.childAt(1).hasClass(classes.bar1Buffer), true);
     assert.strictEqual(wrapper.childAt(2).hasClass(classes.colorSecondary), true);
+    assert.strictEqual(wrapper.childAt(2).hasClass(classes.bar2Buffer), true);
+  });
+
+  it('should render with buffer classes for the error color', () => {
+    const wrapper = shallow(
+      <LinearProgress value={1} valueBuffer={1} color="error" variant="buffer" />,
+    );
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+    assert.strictEqual(wrapper.childAt(0).hasClass(classes.dashedColorError), true);
+    assert.strictEqual(wrapper.childAt(1).hasClass(classes.barColorError), true);
+    assert.strictEqual(wrapper.childAt(1).hasClass(classes.bar1Buffer), true);
+    assert.strictEqual(wrapper.childAt(2).hasClass(classes.colorError), true);
     assert.strictEqual(wrapper.childAt(2).hasClass(classes.bar2Buffer), true);
   });
 
