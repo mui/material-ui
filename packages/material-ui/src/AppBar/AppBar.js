@@ -65,8 +65,8 @@ export const styles = theme => {
     },
     /* Styles applied to the root element if `color="error"`. */
     colorError: {
-      backgroundColor: theme.palette.secondary.main,
-      color: theme.palette.secondary.contrastText,
+      backgroundColor: theme.palette.error.main,
+      color: theme.palette.error.contrastText,
     },
   };
 };
