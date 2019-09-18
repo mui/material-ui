@@ -37,7 +37,7 @@ describe('<AppBar />', () => {
   });
 
   it('should render with the root class and error', () => {
-    const wrapper = shallow(<AppBar>Hello World</AppBar>);
+    const wrapper = shallow(<AppBar color="error">Hello World</AppBar>);
     assert.strictEqual(wrapper.hasClass(classes.root), true);
     assert.strictEqual(wrapper.hasClass(classes.colorPrimary), false);
     assert.strictEqual(wrapper.hasClass(classes.colorSecondary), false);
