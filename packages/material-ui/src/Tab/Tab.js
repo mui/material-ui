@@ -67,6 +67,16 @@ export const styles = theme => ({
       color: theme.palette.text.disabled,
     },
   },
+  /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="error"`. */
+  textColorError: {
+    color: theme.palette.text.error,
+    '&$selected': {
+      color: theme.palette.error.main,
+    },
+    '&$disabled': {
+      color: theme.palette.text.disabled,
+    },
+  },
   /* Pseudo-class applied to the root element if `selected={true}` (controlled by the Tabs component). */
   selected: {},
   /* Pseudo-class applied to the root element if `disabled={true}` (controlled by the Tabs component). */
@@ -214,7 +224,7 @@ Tab.propTypes = {
   /**
    * @ignore
    */
-  textColor: PropTypes.oneOf(['secondary', 'primary', 'inherit']),
+  textColor: PropTypes.oneOf(['secondary', 'primary', 'error', 'inherit']),
   /**
    * You can provide your own value. Otherwise, we fallback to the child position index.
    */

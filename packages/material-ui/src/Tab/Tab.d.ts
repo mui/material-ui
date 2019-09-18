@@ -12,7 +12,7 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
     onClick?: React.EventHandler<any>;
     selected?: boolean;
     style?: React.CSSProperties;
-    textColor?: string | 'secondary' | 'primary' | 'inherit';
+    textColor?: string | 'secondary' | 'primary' | 'error' | 'inherit';
     value?: any;
     wrapped?: boolean;
   };
@@ -28,6 +28,7 @@ export type TabClassKey =
   | 'textColorInherit'
   | 'textColorPrimary'
   | 'textColorSecondary'
+  | 'textColorError'
   | 'selected'
   | 'disabled'
   | 'fullWidth'
