@@ -5,7 +5,7 @@ import { SwitchBaseProps, SwitchBaseClassKey } from '../internal/SwitchBase';
 export interface RadioProps
   extends StandardProps<SwitchBaseProps, RadioClassKey, 'checkedIcon' | 'color' | 'icon'> {
   checkedIcon?: React.ReactNode;
-  color?: 'primary' | 'secondary' | 'default';
+  color?: 'primary' | 'secondary' | 'error' | 'default';
   icon?: React.ReactNode;
 }
 

@@ -21,7 +21,7 @@ export interface SliderProps
   'aria-label'?: string;
   'aria-labelledby'?: string;
   'aria-valuetext'?: string;
-  color?: 'primary' | 'secondary';
+  color?: 'primary' | 'secondary' | 'error';
   component?: React.ElementType<React.HTMLAttributes<HTMLSpanElement>>;
   defaultValue?: number | number[];
   disabled?: boolean;
@@ -46,6 +46,7 @@ export type SliderClassKey =
   | 'root'
   | 'colorPrimary'
   | 'colorSecondary'
+  | 'colorError'
   | 'marked'
   | 'vertical'
   | 'rtl'
@@ -55,6 +56,7 @@ export type SliderClassKey =
   | 'thumb'
   | 'thumbColorPrimary'
   | 'thumbColorSecondary'
+  | 'thumbColorError'
   | 'valueLabel'
   | 'mark'
   | 'markActive'

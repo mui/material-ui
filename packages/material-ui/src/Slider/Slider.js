@@ -162,6 +162,10 @@ export const styles = theme => ({
   colorSecondary: {
     color: theme.palette.secondary.main,
   },
+  /* Styles applied to the root element if `color="error"`. */
+  colorError: {
+    color: theme.palette.error.main,
+  },
   /* Styles applied to the root element if `marks` is provided with at least one label. */
   marked: {
     marginBottom: 20,
@@ -255,6 +259,15 @@ export const styles = theme => ({
     },
     '&$active': {
       boxShadow: `0px 0px 0px 14px ${fade(theme.palette.secondary.main, 0.16)}`,
+    },
+  },
+  /* Styles applied to the thumb element if `color="error"`. */
+  thumbColorError: {
+    '&$focusVisible,&:hover': {
+      boxShadow: `0px 0px 0px 8px ${fade(theme.palette.error.main, 0.16)}`,
+    },
+    '&$active': {
+      boxShadow: `0px 0px 0px 14px ${fade(theme.palette.error.main, 0.16)}`,
     },
   },
   /* Pseudo-class applied to the thumb element if it's active. */
@@ -786,7 +799,7 @@ Slider.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'error']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
