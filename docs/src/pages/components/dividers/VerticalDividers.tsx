@@ -10,21 +10,18 @@ import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles(theme => ({
-  toggleContainer: {
-    margin: theme.spacing(2, 0),
+  root: {
     width: 'fit-content',
-    border: '1px solid rgba(0, 0, 0, 0.12)',
-    borderRadius: 4,
+    border: `1px solid ${theme.palette.divider}`,
+    borderRadius: theme.shape.borderRadius,
     backgroundColor: theme.palette.background.paper,
+    color: theme.palette.text.secondary,
     '& svg': {
-      color: 'rgba(0, 0, 0, 0.54)',
       margin: theme.spacing(2),
     },
   },
   divider: {
-    height: 'auto',
-    alignSelf: 'stretch',
-    margin: theme.spacing(1, 0.5)
+    margin: theme.spacing(0, 0.5),
   },
 }));
 
@@ -32,7 +29,7 @@ export default function ToggleButtons() {
   const classes = useStyles();
 
   return (
-    <Grid container alignItems="center" className={classes.toggleContainer}>
+    <Grid container alignItems="center" className={classes.root}>
       <FormatAlignLeftIcon />
       <FormatAlignCenterIcon />
       <FormatAlignRightIcon />
