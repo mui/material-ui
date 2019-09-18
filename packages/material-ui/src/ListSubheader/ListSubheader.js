@@ -19,6 +19,14 @@ export const styles = theme => ({
   colorPrimary: {
     color: theme.palette.primary.main,
   },
+  /* Styles applied to the root element if `color="secondary"`. */
+  colorSecondary: {
+    color: theme.palette.secondary.main,
+  },
+  /* Styles applied to the root element if `color="error"`. */
+  colorError: {
+    color: theme.palette.error.main,
+  },
   /* Styles applied to the root element if `color="inherit"`. */
   colorInherit: {
     color: 'inherit',
@@ -88,7 +96,7 @@ ListSubheader.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['default', 'primary', 'inherit']),
+  color: PropTypes.oneOf(['default', 'primary', 'secondary', 'error', 'inherit']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.

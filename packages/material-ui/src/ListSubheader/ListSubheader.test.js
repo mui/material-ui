@@ -36,6 +36,26 @@ describe('<ListSubheader />', () => {
     assert.strictEqual(wrapper.hasClass(classes.root), true);
   });
 
+  it('should display secondary color', () => {
+    const wrapper = shallow(<ListSubheader color="secondary" />);
+    assert.strictEqual(
+      wrapper.hasClass(classes.colorSecondary),
+      true,
+      'should have the secondary class',
+    );
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+  });
+
+  it('should display error color', () => {
+    const wrapper = shallow(<ListSubheader color="error" />);
+    assert.strictEqual(
+      wrapper.hasClass(classes.colorError),
+      true,
+      'should have the error class',
+    );
+    assert.strictEqual(wrapper.hasClass(classes.root), true);
+  });
+
   it('should display inset class', () => {
     const wrapper = shallow(<ListSubheader inset />);
     assert.strictEqual(wrapper.hasClass(classes.inset), true);
