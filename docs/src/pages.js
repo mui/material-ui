@@ -213,6 +213,7 @@ const pages = [
   {
     pathname: '/blog',
     children: [
+      { pathname: '/blog/august-2019-update' },
       { pathname: '/blog/july-2019-update' },
       { pathname: '/blog/june-2019-update' },
       { pathname: '/blog/may-2019-update' },

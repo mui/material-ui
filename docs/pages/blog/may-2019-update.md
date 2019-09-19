@@ -1,5 +1,5 @@
 ---
-description: Here are the most significant changes in May.
+description: Here are the most significant improvements in May.
 ---
 
 # May 2019 Update
@@ -8,7 +8,7 @@ description: Here are the most significant changes in May.
 
 *June 8, 2019*
 
-Here are the most significant changes in May:
+Here are the most significant improvements in May:
 
 - 🎉 We released Material-UI v4 stable during the React Europe conference.
 You can find the details in our [blog post 📝](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701) and a quick introduction in this [5 minutes talk](https://www.youtube.com/watch?v=m54_CPfbWow).
