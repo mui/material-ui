@@ -210,7 +210,8 @@ function AppFrame(props) {
               data-ga-event-action="language"
             >
               <LanguageIcon />
-              <span className={classes.language}>{t('language')}</span>
+              {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+              <span className={classes.language}>Language</span>
               <ExpandMoreIcon />
             </Button>
           </Tooltip>
