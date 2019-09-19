@@ -209,7 +209,9 @@ function AppFrame(props) {
             >
               <LanguageIcon />
               {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-              <Hidden xsDown implementation="css"><span className={classes.language}>Language</span></Hidden>
+              <Hidden xsDown implementation="css">
+                <span className={classes.language}>Language</span>
+              </Hidden>
               <ExpandMoreIcon />
             </Button>
           </Tooltip>
