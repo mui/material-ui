@@ -3,22 +3,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import NProgress from 'nprogress';
 import Router, { Router as Router2, useRouter } from 'next/router';
 import { withStyles, useTheme } from '@material-ui/core/styles';
+import NProgress from 'nprogress';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import MuiLink from '@material-ui/core/Link';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
-import Tooltip from '@material-ui/core/Tooltip';
-import NoSsr from '@material-ui/core/NoSsr';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu';
+import Tooltip from '@material-ui/core/Tooltip';
+import Button from '@material-ui/core/Button';
+import Hidden from '@material-ui/core/Hidden';
+import NoSsr from '@material-ui/core/NoSsr';
 import LanguageIcon from '@material-ui/icons/Translate';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import MuiLink from '@material-ui/core/Link';
 import ColorsIcon from '@material-ui/icons/InvertColors';
 import {
   GitHub as GithubIcon,
@@ -208,7 +209,7 @@ function AppFrame(props) {
             >
               <LanguageIcon />
               {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-              <span className={classes.language}>Language</span>
+              <Hidden xsDown implementation="css"><span className={classes.language}>Language</span></Hidden>
               <ExpandMoreIcon />
             </Button>
           </Tooltip>
