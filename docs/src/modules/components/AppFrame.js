@@ -97,9 +97,6 @@ const styles = theme => ({
   language: {
     margin: theme.spacing(0, 0.5, 0, 1),
   },
-  iconButton: {
-    marginLeft: theme.spacing(0.5),
-  },
   appBarShift: {
     [theme.breakpoints.up('lg')]: {
       width: 'calc(100% - 240px)',
@@ -260,7 +257,6 @@ function AppFrame(props) {
               href="/customization/color/#color-tool"
               data-ga-event-category="AppBar"
               data-ga-event-action="colors"
-              className={classes.iconButton}
             >
               <ColorsIcon />
             </IconButton>
@@ -272,7 +268,6 @@ function AppFrame(props) {
               aria-label={t('toggleTheme')}
               data-ga-event-category="AppBar"
               data-ga-event-action="dark"
-              className={classes.iconButton}
             >
               {theme.palette.type === 'light' ? <LightbulbOutlineIcon /> : <LightbulbFullIcon />}
             </IconButton>
@@ -284,7 +279,6 @@ function AppFrame(props) {
               aria-label={t('toggleRTL')}
               data-ga-event-category="AppBar"
               data-ga-event-action="rtl"
-              className={classes.iconButton}
             >
               {theme.direction === 'rtl' ? (
                 <FormatTextdirectionLToR />
@@ -302,7 +296,6 @@ function AppFrame(props) {
               aria-label={t('github')}
               data-ga-event-category="AppBar"
               data-ga-event-action="github"
-              className={classes.iconButton}
             >
               <GithubIcon />
             </IconButton>
