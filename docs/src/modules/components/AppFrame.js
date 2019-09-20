@@ -20,6 +20,7 @@ import LanguageIcon from '@material-ui/icons/Translate';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Divider from '@material-ui/core/Divider';
 import ColorsIcon from '@material-ui/icons/InvertColors';
 import {
   GitHub as GithubIcon,
@@ -197,7 +198,7 @@ function AppFrame(props) {
           </IconButton>
           <div className={classes.grow} />
           <AppSearch />
-          <Tooltip title="Change language" enterDelay={300}>
+          <Tooltip title={t('changeLanguage')} enterDelay={300}>
             <Button
               color="inherit"
               aria-owns={languageMenu ? 'language-menu' : undefined}
@@ -210,7 +211,9 @@ function AppFrame(props) {
               <LanguageIcon />
               <Hidden xsDown implementation="css">
                 {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-                <span className={classes.language}>Language</span>
+                <span className={classes.language}>
+                  {LANGUAGES_LABEL.find(language => language.code === userLanguage).text}
+                </span>
               </Hidden>
               <ExpandMoreIcon />
             </Button>
@@ -230,10 +233,13 @@ function AppFrame(props) {
                   key={language.code}
                   selected={userLanguage === language.code}
                   onClick={handleLanguageMenuClose}
+                  lang={language.code}
+                  hreflang={language.code}
                 >
                   {language.text}
                 </MenuItem>
               ))}
+              <Divider />
               <MenuItem
                 component="a"
                 data-no-link="true"
@@ -245,9 +251,11 @@ function AppFrame(props) {
                 rel="noopener nofollow"
                 target="_blank"
                 key={userLanguage}
+                lang={userLanguage}
+                hreflang="en"
                 onClick={handleLanguageMenuClose}
               >
-                {`🌍 ${t('helpToTranslate')}`}
+                {`${t('helpToTranslate')}`}
               </MenuItem>
             </Menu>
           </NoSsr>
