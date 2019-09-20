@@ -104,7 +104,7 @@ Para tornar o componente Box mais útil, estamos construindo uma coleção de fu
 - [positions](/system/positions/#api)
 - [shadows](/system/shadows/#api)
 - [sizing](/system/sizing/#api)
-- [spacing](/system/sizing/#api)
+- [spacing](/system/spacing/#api)
 - [typography](/system/typography/#api)
 
 If you are already using `@material-ui/core`, you can use the [Box component](/components/box/) (using JSS internally):
