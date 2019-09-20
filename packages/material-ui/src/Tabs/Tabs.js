@@ -92,7 +92,15 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     ...other
   } = props;
   const theme = useTheme();
-  const scrollable = variant === 'scrollable';
+
+  const [displayScroll, setDisplayScroll] = React.useState({
+    start: false,
+    end: false,
+  });
+  const scrollButtonsActive = displayScroll.start || displayScroll.end;
+
+  const auto = variant === 'auto';
+  const scrollable = variant === 'scrollable' || (auto && scrollButtonsActive);
   const isRtl = theme.direction === 'rtl';
   const vertical = orientation === 'vertical';
 
@@ -113,10 +121,6 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
 
   const [mounted, setMounted] = React.useState(false);
   const [indicatorStyle, setIndicatorStyle] = React.useState({});
-  const [displayScroll, setDisplayScroll] = React.useState({
-    start: false,
-    end: false,
-  });
   const [scrollerStyle, setScrollerStyle] = React.useState({
     overflow: 'hidden',
     marginBottom: null,
@@ -243,7 +247,6 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       <ScrollbarSize className={classes.scrollable} onChange={handleScrollbarSizeChange} />
     ) : null;
 
-    const scrollButtonsActive = displayScroll.start || displayScroll.end;
     const showScrollButtons =
       scrollable &&
       ((scrollButtons === 'auto' && scrollButtonsActive) ||
@@ -296,7 +299,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   });
 
   const updateScrollButtonState = useEventCallback(() => {
-    if (scrollable && scrollButtons !== 'off') {
+    if ((scrollable || auto) && scrollButtons !== 'off') {
       const { scrollTop, scrollHeight, clientHeight, scrollWidth, clientWidth } = tabsRef.current;
       let showStartScroll;
       let showEndScroll;
@@ -400,7 +403,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
 
     childIndex += 1;
     return React.cloneElement(child, {
-      fullWidth: variant === 'fullWidth',
+      fullWidth: variant === 'fullWidth' || (auto && !scrollButtonsActive),
       indicator: selected && !mounted && indicator,
       selected,
       onChange,
@@ -534,7 +537,7 @@ Tabs.propTypes = {
    *  which should be used for small views, like on mobile.
    *  - `standard` will render the default state.
    */
-  variant: PropTypes.oneOf(['standard', 'scrollable', 'fullWidth']),
+  variant: PropTypes.oneOf(['standard', 'auto', 'scrollable', 'fullWidth']),
 };
 
 export default withStyles(styles, { name: 'MuiTabs' })(Tabs);

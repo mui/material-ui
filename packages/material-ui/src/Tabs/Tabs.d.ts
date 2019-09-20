@@ -15,7 +15,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     TabIndicatorProps?: Partial<React.HTMLAttributes<HTMLDivElement>>;
     textColor?: 'secondary' | 'primary' | 'inherit' | string;
     value: any;
-    variant?: 'standard' | 'scrollable' | 'fullWidth';
+    variant?: 'standard' | 'auto' | 'scrollable' | 'fullWidth';
     width?: string;
   };
   defaultComponent: D;
