@@ -23,18 +23,18 @@ const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
 
   const [focusVisible, setFocusVisible] = React.useState(false);
 
-  function handleBlur() {
+  const handleBlur = () => {
     if (focusVisible) {
       setFocusVisible(false);
       onBlurVisible();
     }
-  }
+  };
 
-  function handleFocus(event) {
+  const handleFocus = event => {
     if (isFocusVisible(event)) {
       setFocusVisible(true);
     }
-  }
+  };
 
   return (
     <button

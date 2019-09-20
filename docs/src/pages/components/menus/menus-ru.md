@@ -1,5 +1,5 @@
 ---
-title: Menu React component
+title: React-компонент Меню
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 ---
 
@@ -7,7 +7,7 @@ components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 
 <p class="description">Меню временно отображают список вариантов.</p>
 
-A [Menu](https://material.io/design/components/menus.html) displays a list of choices on a temporary surface. It appears when the user interacts with a button, or other control.
+A [Menu](https://material.io/design/components/menus.html) displays a list of choices on a temporary surface. Оно появляется когда пользователь взаимодействует с кнопкой или другим элементом управления.
 
 ## Простое меню
 
@@ -41,7 +41,7 @@ The primary responsibility of the `MenuList` component is to handle the focus.
 
 The `MenuItem` is a wrapper around `ListItem` with some additional styles. You can use the same list composition features with the `MenuItem` component:
 
-## Max height menus
+## Меню с максимальной высотой
 
 Если высота меню препятствует отображению всех пунктов меню, меню можно прокручивать внутри.
 

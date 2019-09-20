@@ -21,7 +21,7 @@ You can use it to see what changes are coming and provide better feedback to Mat
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
-Material-UI strictly follows [Semantic Versioning 2.0.0](https://semver.org/).
+Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/).
 Material-UI version numbers have three parts: `major.minor.patch`.
 The version number is incremented based on the level of change included in the release.
 
@@ -49,14 +49,13 @@ In general, you can expect the following release cycle:
 |:-----|:--------|
 | May 2018  ✅ | `@material-ui/core` v1.0.0 |
 | May 2019  ✅ | `@material-ui/core` v4.0.0 |
-| ? ⏳ | `@material-ui/core` v5.0.0 |
+| 2020? ⏳ | `@material-ui/core` v5.0.0 |
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
 ## Support policy
 
-Only the latest version of Material-UI is supported.
-We don't yet have the resources to offer [LTS](https://en.wikipedia.org/wiki/Long-term_support) releases.
+Find details on the [supported versions](/getting-started/support/#supported-versions).
 
 ## Deprecation practices
 

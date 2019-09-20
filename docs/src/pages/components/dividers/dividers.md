@@ -32,3 +32,9 @@ The examples below show two ways of achieving this.
 ## Middle Dividers
 
 {{"demo": "pages/components/dividers/MiddleDividers.js"}}
+
+## Vertical Dividers
+
+You can also render a divider vertically using the `orientation` prop.
+
+{{"demo": "pages/components/dividers/VerticalDividers.js"}}

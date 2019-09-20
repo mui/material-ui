@@ -1,3 +1,5 @@
+/* eslint-disable material-ui/no-hardcoded-labels */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
@@ -6,29 +8,43 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
+import Divider from '@material-ui/core/Divider';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
-  root: {
-    backgroundColor: theme.palette.background.level2,
-  },
   footer: {
     padding: theme.spacing(3, 0),
     [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing(6, 0),
+      padding: theme.spacing(8, 0),
+    },
+  },
+  logo: {
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: theme.spacing(4),
+    '& img': {
+      width: 28,
+      height: 28,
+      marginRight: theme.spacing(1.5),
     },
   },
   list: {
-    margin: 0,
-    paddingLeft: 0,
-    listStyle: 'none',
-  },
-  listItem: {
-    paddingTop: theme.spacing(0.5),
-    paddingBottom: theme.spacing(0.5),
+    marginBottom: theme.spacing(4),
+    '& h3': {
+      fontWeight: theme.typography.fontWeightMedium,
+    },
+    '& ul': {
+      margin: 0,
+      paddingLeft: 0,
+      listStyle: 'none',
+    },
+    '& li': {
+      padding: '6px 0',
+      color: theme.palette.text.secondary,
+    },
   },
   version: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(3),
   },
 });
 
@@ -37,58 +53,84 @@ function HomeFooter(props) {
   const t = useSelector(state => state.options.t);
 
   return (
-    <div className={classes.root}>
+    <React.Fragment>
+      <Divider />
       <Container maxWidth="md">
         <footer className={classes.footer}>
-          <Typography variant="h6" component="h3" gutterBottom>
-            {t('quickLinks')}
-          </Typography>
-          <Typography variant="subtitle1" component="div">
-            <Grid container>
-              <Grid item xs={12} sm={6}>
-                <ul className={classes.list}>
-                  <li className={classes.listItem}>
-                    <Link color="inherit" href="https://github.com/mui-org/material-ui">
-                      GitHub
-                    </Link>
-                  </li>
-                  <li className={classes.listItem}>
-                    <Link color="inherit" href="https://twitter.com/MaterialUI">
-                      Twitter
-                    </Link>
-                  </li>
-                  <li className={classes.listItem}>
-                    <Link
-                      color="inherit"
-                      href="https://github.com/mui-org/material-ui/tree/master/examples"
-                    >
-                      {t('examples')}
-                    </Link>
-                  </li>
-                </ul>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <ul className={classes.list}>
-                  <li className={classes.listItem}>
-                    <Link color="inherit" href="/components/icons">
-                      {t('icons')}
-                    </Link>
-                  </li>
-                  <li className={classes.listItem}>
-                    <Link color="inherit" href="/customization/color">
-                      {t('color')}
-                    </Link>
-                  </li>
-                  <li className={classes.listItem}>
-                    <Link color="inherit" href="/discover-more/team">
-                      {t('team')}
-                    </Link>
-                  </li>
-                </ul>
-              </Grid>
+          <Grid container>
+            <Grid item xs={12} md={3}>
+              <div className={classes.logo}>
+                <img src="/static/images/material-ui-logo.svg" alt="Material-UI Logo" />
+                <Typography color="primary">Material-UI</Typography>
+              </div>
             </Grid>
-          </Typography>
-          <Typography className={classes.version}>
+            <Grid item xs={6} md={3} className={classes.list}>
+              <Typography component="h3" gutterBottom>
+                {t('footerCommunity')}
+              </Typography>
+              <ul>
+                <li>
+                  <Link
+                    color="inherit"
+                    variant="body2"
+                    href="https://github.com/mui-org/material-ui"
+                  >
+                    GitHub
+                  </Link>
+                </li>
+                <li>
+                  <Link color="inherit" variant="body2" href="https://twitter.com/MaterialUI">
+                    Twitter
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    color="inherit"
+                    variant="body2"
+                    href="https://stackoverflow.com/questions/tagged/material-ui"
+                  >
+                    StackOverflow
+                  </Link>
+                </li>
+                <li>
+                  <Link color="inherit" variant="body2" href="/discover-more/team/">
+                    {t('pages./discover-more/team')}
+                  </Link>
+                </li>
+                <li>
+                  <Link color="inherit" variant="body2" href="https://spectrum.chat/material-ui">
+                    Spectrum
+                  </Link>
+                </li>
+              </ul>
+            </Grid>
+            <Grid item xs={6} md={3} className={classes.list}>
+              <Typography component="h3" gutterBottom>
+                {t('footerResources')}
+              </Typography>
+              <ul>
+                <li>
+                  <Link color="inherit" variant="body2" href="/getting-started/support/">
+                    {t('pages./getting-started/support')}
+                  </Link>
+                </li>
+                <li>
+                  <Link color="inherit" variant="body2" href="https://medium.com/material-ui/">
+                    {t('blogTitle')}
+                  </Link>
+                </li>
+                <li>
+                  <Link color="inherit" variant="body2" href="/components/material-icons/">
+                    {t('pages./components/material-icons')}
+                  </Link>
+                </li>
+              </ul>
+            </Grid>
+            <Grid item xs={6} md={3}>
+              <ul className={classes.list} />
+            </Grid>
+          </Grid>
+          <Typography className={classes.version} color="textSecondary" variant="body2">
             <Interpolate
               replacement={{
                 versionNumber: (
@@ -108,10 +150,13 @@ function HomeFooter(props) {
             >
               {t('homeFooterRelease')}
             </Interpolate>
+            {' Copyright © '}
+            {new Date().getFullYear()}
+            {' Material-UI. '}
           </Typography>
         </footer>
       </Container>
-    </div>
+    </React.Fragment>
   );
 }
 

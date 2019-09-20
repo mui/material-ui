@@ -18,9 +18,9 @@ export default function IconTabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
-  function handleChange(event: React.ChangeEvent<{}>, newValue: number) {
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
-  }
+  };
 
   return (
     <Paper square className={classes.root}>

@@ -32,9 +32,9 @@ export default function SimpleFade() {
   const classes = useStyles();
   const [checked, setChecked] = React.useState(false);
 
-  function handleChange() {
+  const handleChange = () => {
     setChecked(prev => !prev);
-  }
+  };
 
   return (
     <div className={classes.root}>

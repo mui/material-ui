@@ -12,6 +12,7 @@ const pages = [
       { pathname: '/getting-started/faq', title: 'FAQs' },
       { pathname: '/getting-started/supported-components' },
       { pathname: '/getting-started/supported-platforms' },
+      { pathname: '/getting-started/support' },
     ],
   },
   {
@@ -204,7 +205,6 @@ const pages = [
       { pathname: '/discover-more/backers', title: 'Sponsors & Backers' },
       { pathname: '/discover-more/vision' },
       { pathname: '/discover-more/team' },
-      { pathname: '/discover-more/community' },
       { pathname: '/discover-more/changelog' },
       { pathname: '/discover-more/languages' },
       { pathname: '/discover-more/governance' },
@@ -213,6 +213,7 @@ const pages = [
   {
     pathname: '/blog',
     children: [
+      { pathname: '/blog/august-2019-update' },
       { pathname: '/blog/july-2019-update' },
       { pathname: '/blog/june-2019-update' },
       { pathname: '/blog/may-2019-update' },

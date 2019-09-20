@@ -83,13 +83,13 @@ const theme = createMuiTheme({
 });
 ```
 
-The computed font size by the browser follows this mathematical equation:
+O tamanho da fonte computada pelo navegador segue esta equação matemática:
 
 ![font-size](/static/images/font-size.gif) <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
-### HTML font size
+### Tamanho da fonte no HTML
 
-You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/). An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
+Você pode querer alterar o tamanho da fonte padrão do elemento `<html>`. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/). An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
 ```js
 const theme = createMuiTheme({
@@ -143,13 +143,13 @@ theme = responsiveFontSizes(theme);
 
 {{"demo": "pages/customization/typography/ResponsiveFontSizes.js"}}
 
-### Fluid font sizes
+### Tamanhos da fonte fluido
 
-To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
+Para ser feito: [#15251](https://github.com/mui-org/material-ui/issues/15251).
 
 ## Variantes
 
-The typography object comes with [13 variants](/components/typography/#component) by default:
+O objeto de tipografia vem com [13 variantes](/components/typography/#component) por padrão:
 
 - h1
 - h2

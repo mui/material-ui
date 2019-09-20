@@ -49,15 +49,15 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
   const [skipped, setSkipped] = React.useState(new Set());
   const steps = getSteps();
 
-  function totalSteps() {
+  const totalSteps = () => {
     return getSteps().length;
-  }
+  };
 
-  function isStepOptional(step) {
+  const isStepOptional = step => {
     return step === 1;
-  }
+  };
 
-  function handleSkip() {
+  const handleSkip = () => {
     if (!isStepOptional(activeStep)) {
       // You probably want to guard against something like this
       // it should never occur unless someone's actively trying to break something.
@@ -70,25 +70,25 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
       newSkipped.add(activeStep);
       return newSkipped;
     });
-  }
+  };
 
-  function skippedSteps() {
+  const skippedSteps = () => {
     return skipped.size;
-  }
+  };
 
-  function completedSteps() {
+  const completedSteps = () => {
     return completed.size;
-  }
+  };
 
-  function allStepsCompleted() {
+  const allStepsCompleted = () => {
     return completedSteps() === totalSteps() - skippedSteps();
-  }
+  };
 
-  function isLastStep() {
+  const isLastStep = () => {
     return activeStep === totalSteps() - 1;
-  }
+  };
 
-  function handleNext() {
+  const handleNext = () => {
     const newActiveStep =
       isLastStep() && !allStepsCompleted()
         ? // It's the last step, but not all steps have been completed
@@ -97,17 +97,17 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
         : activeStep + 1;
 
     setActiveStep(newActiveStep);
-  }
+  };
 
-  function handleBack() {
+  const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
-  }
+  };
 
   const handleStep = step => () => {
     setActiveStep(step);
   };
 
-  function handleComplete() {
+  const handleComplete = () => {
     const newCompleted = new Set(completed);
     newCompleted.add(activeStep);
     setCompleted(newCompleted);
@@ -120,17 +120,17 @@ export default function HorizontalNonLinearAlternativeLabelStepper() {
     if (completed.size !== totalSteps() - skippedSteps()) {
       handleNext();
     }
-  }
+  };
 
-  function handleReset() {
+  const handleReset = () => {
     setActiveStep(0);
     setCompleted(new Set());
     setSkipped(new Set());
-  }
+  };
 
-  function isStepSkipped(step) {
+  const isStepSkipped = step => {
     return skipped.has(step);
-  }
+  };
 
   function isStepComplete(step) {
     return completed.has(step);

@@ -3,12 +3,11 @@
 import React from 'react';
 import kebabCase from 'lodash/kebabCase';
 import { Router as Router2 } from 'next/router';
-import PropTypes from 'prop-types';
 import { getHeaders, getContents } from 'docs/src/modules/utils/parseMarkdown';
 import PageContext from 'docs/src/modules/components/PageContext';
 
-function MarkdownDocsContents(props) {
-  const { children, markdownLocation: markdownLocationProp, markdown } = props;
+export default function useMarkdownDocsContents(options) {
+  const { markdownLocation: markdownLocationProp, markdown } = options;
   const contents = getContents(markdown);
   const headers = getHeaders(markdown);
   const { activePage } = React.useContext(PageContext);
@@ -42,13 +41,5 @@ ${headers.components
   `);
   }
 
-  return children({ contents, markdownLocation });
+  return { contents, markdownLocation };
 }
-
-MarkdownDocsContents.propTypes = {
-  children: PropTypes.func.isRequired,
-  markdown: PropTypes.string.isRequired,
-  markdownLocation: PropTypes.string,
-};
-
-export default MarkdownDocsContents;

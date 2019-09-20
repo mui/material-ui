@@ -20,7 +20,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 - オプションを選択するとすぐにそのオプションが確定され、メニューが閉じます
 - ダイアログの外側に触れるか、戻るを押すと、操作がキャンセルされてダイアログが閉じます。
 
-{{"demo":"pages/components/dialogs/SimpleDialog.js"}}
+{{"demo": "pages/components/dialogs/SimpleDialog.js"}}
 
 ## 通知
 
@@ -93,7 +93,7 @@ function MyComponent() {
 
 確認ダイアログで[キャンセル] をタッチするか[戻る] を押すと、操作がキャンセルされ、変更が破棄されてダイアログが閉じます。
 
-{{"demo":"pages/components/dialogs/ConfirmationDialog.js"}}
+{{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
 ## アクセシビリティ
 

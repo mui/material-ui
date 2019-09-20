@@ -35,21 +35,21 @@ export default function MaxWidthDialog() {
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('sm');
 
-  function handleClickOpen() {
+  const handleClickOpen = () => {
     setOpen(true);
-  }
+  };
 
-  function handleClose() {
+  const handleClose = () => {
     setOpen(false);
-  }
+  };
 
-  function handleMaxWidthChange(event) {
+  const handleMaxWidthChange = event => {
     setMaxWidth(event.target.value);
-  }
+  };
 
-  function handleFullWidthChange(event) {
+  const handleFullWidthChange = event => {
     setFullWidth(event.target.checked);
-  }
+  };
 
   return (
     <React.Fragment>

@@ -56,7 +56,7 @@ export default function CircularIntegration() {
     };
   }, []);
 
-  function handleButtonClick() {
+  const handleButtonClick = () => {
     if (!loading) {
       setSuccess(false);
       setLoading(true);
@@ -65,7 +65,7 @@ export default function CircularIntegration() {
         setLoading(false);
       }, 2000);
     }
-  }
+  };
 
   return (
     <div className={classes.root}>

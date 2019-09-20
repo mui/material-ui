@@ -189,9 +189,9 @@ describe('<InputBase />', () => {
         function MockedValue(props) {
           const { onChange } = props;
 
-          function handleChange(event) {
+          const handleChange = event => {
             onChange({ target: { value: event.target.value } });
-          }
+          };
 
           return <input onChange={handleChange} />;
         }

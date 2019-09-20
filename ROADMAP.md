@@ -4,61 +4,96 @@
 
 ## Methodology
 
-We work on the problems that resonate the most with our users.
-Please **upvote** 👍 the issues you are the most interested in on GitHub.
-Thank you for participating [in our developer survey](https://material-ui.com/blog/2019-developer-survey-results/).
+Material-UI is community driven – issues that resonate most with the community get the most attention.
+Please **upvote** (👍) on GitHub the issues you are most interested in.
+Thank you for participating [in the developer survey](https://material-ui.com/blog/2019-developer-survey-results/).
 
-## Our priorities
+## Priorities
 
-Here are our top priorities, ordered by importance:
+Here are the top priorities:
 
-- 1.0 - **More components**. 🧰 People want more components. This is challenging for us to handle, as building and maintaining a professional component takes an incredible amount of time.
-Everybody underestimates it. As we have a relatively small core team, we are going to try the following strategy:
-  - Identify frequently needed components. We have different resources we can leverage for this: the developer survey answers, GitHub issue upvotes, Algolia search volume, Google search volume, documentation usage volume, npm downloads, etc.
+- 1.0 - **More components**. 🧰 This is challenging to address, as developing a fully-fledged component takes a considerable amount of time.
+ We are going to try the following strategy:
+   - Identify frequently needed components. There are many resources we can leverage for this: the developer survey answers, GitHub issue upvotes, Algolia search volume, Google search volume, documentation usage, npm downloads, etc.
   - Prioritize the creation of frequently needed components.
-  - Encourage the usage of third-party components if they already exist and are well maintained. We can create [a search experience](https://xpvrpr7r4o.codesandbox.io/) for this.
+  - Encourage the usage of third-party components if they already exist and are well maintained.
   - Offer an option to the highly used and well maintained components to move to the official organization: mui-org/x on GitHub, @material-ui/x on npm and x.material-ui.com for the documentation.
 - 0.5 - **Better customization.** 💅 We want to make our component customization intuitive, no matter if you are using global CSS or styled-components:
-  - Improve the documentation.
-  - Better support for styled-components.
-  - Work on the core solution.
-  - Provide [more examples like this](https://mui-treasury.com/components/button).
-- 0.3 - **Better documentation.** 📚 It's a wide topic. We don't know exactly what people want. We will focus our effort in the following areas:
-  - Beginner tutorials & Video lessons.
-  - Templates. They get people started really quickly, we need more of them!
+  - Better support for styled-components: [#6115](https://github.com/mui-org/material-ui/issues/6115).
+  - Allow the use of the Box props in all the core components: [#15561](https://github.com/mui-org/material-ui/issues/15561).
+  - Allow the usage of dynamic theme variants and colors: [#15573](https://github.com/mui-org/material-ui/issues/15573) & [#13875](https://github.com/mui-org/material-ui/issues/13875).
+  - Allow the use of the components without any styles: [#6218](https://github.com/mui-org/material-ui/issues/6218).
+  - Improve the support of custom breakpoints: [#11649](https://github.com/mui-org/material-ui/issues/11649)
+  - Explore the integration with theme-specification, by @jxnblk.
+- 0.3 - **Better documentation.** 📚 This is a broad topic. The focus is on the following areas:
   - Page documentation rating 🥇🥈🥉. We will integrate a rating module in all our documentation pages. This way, we can collect high-quality data points and prioritize the pages that need the most to be improved.
-  - Localisation. Not everybody can read & understand English. The documentation pages are synced with [Crowdin](https://translate.material-ui.com/). They should always be up-to-date.
+  - Templates. They get people started really quickly, we need more of them!
+  - Beginner tutorials & Video lessons.
 - 0.3 - **TypeScript.** 📏 There are two dimensions to this problem:
-  - The documentation. We want to provide a TypeScript variant to most of our demos,
-    which should make it straightforward to use Material-UI with TypeScript. You can help us out in [#14897](https://github.com/mui-org/material-ui/issues/14897).
-  - The definitions. We are **continuously** improving them. We are aware that correctly typing withStyles() is cumbersome, so we encourage you to use [makeStyles()](/styles/basics/#hook-api) instead. It should be much better with this Hook API.
-  The codebase is written in JavaScript, we don't plan on migrating it to TypeScript in the near future. Maybe for v5, we will see.
-- 0.2 - **Performance.** 🚀 React abstraction has a cost. The more components you render, the slower your page will be. You will notice stark differences when rendering a large table or list.
+  - The documentation. We want to provide a TypeScript variant of most of our demos.
+    You can help us out in [#14897](https://github.com/mui-org/material-ui/issues/14897), we have already covered +90% of them.
+  - The definitions. We are **continuously** improving them. For instance, we are working on moving the props descriptions to TypeScript, so you can access them directly from your IDE.
+    The codebase is written in JavaScript, we don't plan on migrating it to TypeScript in the near future. Upvote [#15984](https://github.com/mui-org/material-ui/issues/15984) if you want us to rewrite the core in a future version.
+- 0.3 - **Performance.** 🚀 React abstraction has a cost. The more components you render, the slower your page will be. You will notice stark differences when rendering a large table or list.
 Performance is all about doing less work. We can leverage the following:
-  - Make the core faster. Using our table components is x3 slower than using native table elements.
-    What's the difference? a Material-UI table component creates many **intermediary components**, slowing the rendering.
-    We are working on removing these intermediary components by migrating the codebase from class based components to hook based components.
-    [This will yield a theoretical **+30%** performance gain](https://github.com/mui-org/material-ui/issues/10778#issuecomment-472840548), as well as making the DX much better.
-    Here is the React Dev Tools output for the same node:
-
-    **Before (v3)**
-
-    ![Before](https://pbs.twimg.com/media/D1obANqX4AAAZgJ?format=png&name=360x360)
-
-    **After (v4)**
-
-    ![After](https://pbs.twimg.com/media/D1oZvtsXcAIyAb4?format=png&name=360x360)
+  - Make the core faster.
   - Avoid re-rendering. It's the responsibility of the user to prune the React rendering tree efficiently,
-    as most of our APIs are too low level to implement efficient memoization (React.useMemo, React.PureComponent, React.memo).
+    as most of our APIs are too low level to implement efficient memoization (React.useMemo, React.memo).
     If you find a good opportunity for it, let us know, and we will be happy to work with you on the problem.
-  - Avoid rendering. We are documenting [how to implement virtualization](/components/tables/#virtualized-table) for the Table components. It's important to consider it above 100 items.
-- 0.2 - **Bundle size.** 📦 You can keep track of our progress [following bundlephobia.com report](https://bundlephobia.com/result?p=@material-ui/core@4.0.0-alpha.4).
-It's a continuous effort – v4 is 15% smaller so far, while adding new features.
-We are eager to find new bundle size reduction opportunities.
-  - JSS. Can we reduce the overhead of this module?
-  - Migrating from class components to hooks [helps](https://twitter.com/olivtassinari/status/1106905745264652289).
-  - Popper.js is working [on a smaller v2](https://bundlephobia.com/result?p=popper.js@2.0.0-next.4) version.
-  - We can replace [react-event-listener](https://bundlephobia.com/result?p=react-event-listener@0.6.6) with the hook API.
-  - react-transition-group will remove [react-lifecycles-compat](https://bundlephobia.com/result?p=react-lifecycles-compat@3.0.4).
-- 0.2 - **Material Design Update.** 🎀 The material design specification is evolving, so should we. We have a few open issues about it.
-- 0.1 - **Accessibility.** ♿️ We have relatively few accessibility issues, but we are eager to address them all.
+  - Avoid rendering. We have documented [how to implement virtualization](/components/tables/#virtualized-table) for the Table components. It's important to consider it above 100 items.
+- 0.2 - **Bundle size.** 📦 You can keep track of our progress [following bundlephobia.com report](https://bundlephobia.com/result?p=@material-ui/core).
+It's a continuous effort – v4 was [18% smaller](https://bundlephobia.com/result?p=@material-ui/core@3.9.2) than v3, while adding new features.
+We are eager to find new bundle size reduction opportunities. We hope we can leverage these two in the future:
+  - A JSS to styled-component migration should help. Compare [JSS v10.0.0-alpha.24](https://bundlephobia.com/result?p=react-jss@10.0.0-alpha.24) with [styled-components v5.0.0-beta.8](https://bundlephobia.com/result?p=styled-components@5.0.0-beta.8). We could save ~6 kB gzipped.
+  - Popper.js is working [on a smaller v2](https://bundlephobia.com/result?p=popper.js@2.0.0-next.4) version. We could save ~4 kB gzipped.
+- 0.2 - **Accessibility.** ♿️ We have relatively [few accessibility issues](https://darekkay.com/blog/accessible-ui-frameworks/), but we are eager to address them all. We would appreciate the help of accessibility experts.
+- 0.2 - **Material Design Update.** 🎀 We are relatively up-to-date but the material design specification [is evolving](https://material.io/whats-new/), so should we.
+
+## New components
+
+Here are the components we will work on being supported in the Material-UI ecosystem, no matter if they are from @material-ui/core, a third-party project or a paid source:
+
+- 🧪 In the lab, in progress to move into the core
+- 🛠 Work in progress
+- ⏳ Planning to build
+- ⭐️ At least one part will be paid (non MIT)
+
+| Name | Status |
+|------|--------|
+| Rating | 🧪 |
+| Skeleton | 🧪 |
+| Speed Dial | 🧪 |
+| Toggle Button | 🧪 |
+| Tree View | 🧪 |
+| AutoComplete | 🛠 |
+| ComboBox | 🛠 |
+| MultiSelect | 🛠 |
+| Alert | ⏳ |
+| Carousel | ⏳ |
+| Date Picker range | ⏳ |
+| Dropdown | ⏳ |
+| Dropzone | ⏳ |
+| File Upload | ⏳ |
+| Image | ⏳ |
+| Navbar | ⏳ |
+| Nested Menu | ⏳ |
+| Numeric Input | ⏳ |
+| Pagination | ⏳ |
+| Scrollspy | ⏳ |
+| TopLayout | ⏳ |
+| Calendar | ⏳⭐️ |
+| Charts | ⏳⭐️ |
+| Color picker | ⏳⭐️ |
+| Data Grid | ⏳⭐️ |
+| Gantt | ⏳⭐️ |
+| Gauge | ⏳⭐️ |
+| Masonery | ⏳⭐️ |
+| Pivot Grid | ⏳⭐️ |
+| Rich Text Editor | ⏳⭐️ |
+| Scheduler | ⏳⭐️ |
+| Splitter | ⏳⭐️ |
+| Tree View - Checkbox | ⏳⭐️ |
+| Tree View - Drag & Drop | ⏳⭐️ |
+| TreeSelect | ⏳⭐️ |
+
+> ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.

@@ -123,7 +123,7 @@ const styles = theme => ({
     padding: theme.spacing(1),
   },
   container: {
-    marginBottom: theme.spacing(4),
+    margin: theme.spacing(2, 0, 4),
   },
 });
 
@@ -134,7 +134,7 @@ function Group(props) {
       <Typography gutterBottom component="h2" variant="h5">
         {title}
       </Typography>
-      <Typography gutterBottom>{description}</Typography>
+      <Typography>{description}</Typography>
       <Grid container spacing={2} className={classes.container}>
         {members.map(member => (
           <Grid key={member.name} item xs={12} md={6}>
@@ -149,13 +149,15 @@ function Group(props) {
                 </Grid>
                 <Grid item>
                   <div className={classes.details}>
-                    <Typography component="h3" variant="h5">
+                    <Typography component="h3" variant="h6">
                       {member.name}
                     </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
+                    <Typography variant="body2" color="textSecondary">
                       {member.flag}
                     </Typography>
-                    <Typography color="textSecondary">{member.city}</Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      {member.city}
+                    </Typography>
                     <Grid container>
                       {member.github && (
                         <IconButton

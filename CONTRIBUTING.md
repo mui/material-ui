@@ -14,7 +14,7 @@ When adding new features or modifying existing, please attempt to include tests 
 
 When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab).
 
-## Branch Structure
+## Branch structure
 
 `master` branch represents development as well as release branch for the latest version of Material-UI (v4.x).
 

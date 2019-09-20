@@ -541,10 +541,10 @@ describe('<SelectInput />', () => {
             });
           }, []);
 
-          function handleChange(event) {
+          const handleChange = event => {
             onChange(event);
             clickedValue(event.target.value);
-          }
+          };
 
           return (
             <SelectInput

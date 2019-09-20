@@ -137,13 +137,15 @@ function testRootClass(element, getOptions) {
       return;
     }
 
-    const wrapper = mount(element);
+    const className = randomStringValue();
+    const wrapper = mount(React.cloneElement(element, { className }));
 
     // we established that the root component renders the outermost host previously. We immediately
     // jump to the host component because some components pass the `root` class
     // to the `classes` prop of the root component.
     // https://github.com/mui-org/material-ui/blob/f9896bcd129a1209153106296b3d2487547ba205/packages/material-ui/src/OutlinedInput/OutlinedInput.js#L101
     assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(classes.root), true);
+    assert.strictEqual(findOutermostIntrinsic(wrapper).hasClass(className), true);
   });
 }
 

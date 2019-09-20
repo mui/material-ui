@@ -37,13 +37,13 @@ export default function DialogSelect() {
     setState({ ...state, [name]: Number(event.target.value) });
   };
 
-  function handleClickOpen() {
+  const handleClickOpen = () => {
     setState({ ...state, open: true });
-  }
+  };
 
-  function handleClose() {
+  const handleClose = () => {
     setState({ ...state, open: false });
-  }
+  };
 
   return (
     <div>

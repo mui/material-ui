@@ -28,7 +28,7 @@ This document contains the practices that are followed to provide you with a lea
 
 ## リリース頻度
 
-A regular schedule of releases helps you plan and coordinate your updates with the continuing evolution of Material-UI.
+定期的なリリーススケジュールは、Material-UIの継続的な進化に合わせて更新を計画および調整するのに役立ちます。
 
 一般的に、次のリリースサイクルが期待できます。
 
@@ -40,11 +40,11 @@ A regular schedule of releases helps you plan and coordinate your updates with t
 
 > 免責事項：日付は一般的なガイダンスとして提供されており、必要に応じて高品質のコードの配信を確保するために調整される場合があります。
 
-| Date       | Version                    |
-|:---------- |:-------------------------- |
-| May 2018 ✅ | `@material-ui/core` v1.0.0 |
-| May 2019 ✅ | `@material-ui/core` v4.0.0 |
-| ? ⏳        | `@material-ui/core` v5.0.0 |
+| Date     | Version                    |
+|:-------- |:-------------------------- |
+| 2018年5月✅ | `@material-ui/core` v1.0.0 |
+| 2019年5月✅ | `@material-ui/core` v4.0.0 |
+| ? ⏳      | `@material-ui/core` v5.0.0 |
 
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
@@ -57,14 +57,14 @@ Only the latest version of Material-UI is supported. [ LTSを提供するリソ�
 
 時々**「重大な変更」 ** 、一部のAPIおよび機能のサポートの削除などが必要です。
 
-To make these transitions as easy as possible:
+これらの移行をできるだけ簡単にするには：
 
-- The number of breaking changes is minimized, and migration tools provided when possible.
-- The deprecation policy described below is followed, so that you have time to update your apps to the latest APIs and best practices.
+- 重大な変更の数は最小限に抑えられ、可能であれば移行ツールが提供されます。
+- ここに記載されているサポート終了ポリシーに準拠しているため、アプリを最新のAPIとベストプラクティスに更新する時間があります。
 
-### Deprecation policy
+### 廃止方針
 
-- Deprecated features iare announced n the changelog, and when possible, with warnings at runtime.
-- When a deprecation is announced, recommended update path is provided.
-- Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
-- Peer dependency updates (React) that require changes to your apps are only made in a major release.
+- 廃止された機能は、変更ログでアナウンスします、可能であれば実行時に警告が表示されます。
+- 廃止が発表された時、推奨されるアップデートの仕方が提供されます。
+- 廃止猶予期間中の安定したAPIの既存使用をサポートしているため、その期間中もコードは機能し続けます。
+- アプリの変更を必要とするピア依存の更新（React）は、メジャーリリースでのみ行われます。

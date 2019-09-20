@@ -7,13 +7,13 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 export default function TriggersTooltips() {
   const [open, setOpen] = React.useState(false);
 
-  function handleTooltipClose() {
+  const handleTooltipClose = () => {
     setOpen(false);
-  }
+  };
 
-  function handleTooltipOpen() {
+  const handleTooltipOpen = () => {
     setOpen(true);
-  }
+  };
 
   return (
     <div>

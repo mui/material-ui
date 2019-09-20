@@ -1,5 +1,5 @@
 ---
-description: Here are the most significant changes in June.
+description: Here are the most significant improvements in June.
 ---
 
 # June 2019 Update
@@ -8,7 +8,7 @@ description: Here are the most significant changes in June.
 
 *July 8, 2019*
 
-Here are the most significant changes in June:
+Here are the most significant improvements in June:
 
 - 💄 We have introduced a new [ButtonGroup](/components/buttons/#grouped-buttons) component.
   ![ButtonGroup](/static/blog/june-2019-update/button-group.png)

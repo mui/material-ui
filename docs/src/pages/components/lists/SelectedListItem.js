@@ -20,9 +20,9 @@ export default function SelectedListItem() {
   const classes = useStyles();
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  function handleListItemClick(event, index) {
+  const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
-  }
+  };
 
   return (
     <div className={classes.root}>

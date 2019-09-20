@@ -30,17 +30,17 @@ export default function MenuAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  function handleChange(event) {
+  const handleChange = event => {
     setAuth(event.target.checked);
-  }
+  };
 
-  function handleMenu(event) {
+  const handleMenu = event => {
     setAnchorEl(event.currentTarget);
-  }
+  };
 
-  function handleClose() {
+  const handleClose = () => {
     setAnchorEl(null);
-  }
+  };
 
   return (
     <div className={classes.root}>

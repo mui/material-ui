@@ -27,4 +27,4 @@ components: Container
 <Container fixed>
 ```
 
-{{"demo": "pages/layout/container/SimpleContainer.js", "iframe": true}}
+{{"demo": "pages/components/container/FixedContainer.js", "iframe": true}}

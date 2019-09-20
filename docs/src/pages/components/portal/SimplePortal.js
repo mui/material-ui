@@ -18,9 +18,9 @@ export default function SimplePortal() {
   const container = React.useRef(null);
   const classes = useStyles();
 
-  function handleClick() {
+  const handleClick = () => {
     setShow(!show);
-  }
+  };
 
   return (
     <div>

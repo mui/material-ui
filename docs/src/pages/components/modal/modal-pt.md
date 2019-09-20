@@ -9,9 +9,9 @@ components: Modal
 
 O componente renderiza o conteúdo de seu `children` sobre um componente backdrop. O `Modal` oferece recursos importantes:
 
-- 💄 Manages modal stacking when one-at-a-time just isn't enough.
-- 🔐 Creates a backdrop, for disabling interaction below the modal.
-- 🔐 It disables scrolling of the page content while open.
+- 💄 Gerencia o empilhamento de chamadas quando ter um de cada vez não for suficiente.
+- 🔐 Cria um pano de fundo para desabilitar a interação abaixo do modal.
+- 🔐 Desativa a rolagem do conteúdo da página enquanto estiver aberta.
 - ♿️ Gerencia adequadamente o foco; movendo para o conteúdo modal, e mantendo-o lá até que o modal seja fechado.
 - ♿️ Adiciona as funções ARIA apropriadas automaticamente.
 - 📦 [5 kB gzipado](/size-snapshot).
@@ -33,43 +33,43 @@ Você pode desativar o contorno (muitas vezes azul ou ouro) com a propriedade CS
 
 ## Transições
 
-The open/close state of the modal can be animated with a transition component. This component should respect the following conditions:
+O estado de aberto/fechado do modal pode ser animado com um componente de transição. Este componente deve respeitar as seguintes condições:
 
-- Be a direct child descendent of the modal.
-- Have an `in` prop. This corresponds to the open / close state.
-- Call the `onEnter` callback prop when the enter transition starts.
-- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
+- Seja um filho direto descendente do modal.
+- Tenha uma propriedade `in`. Isso corresponde ao estado de aberto/fechado.
+- Chamar a propriedade de callback `onEnter` quando a transição de entrada iniciar.
+- Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. Esses dois callbacks permitem que o modal desmonte o conteúdo filho quando fechado e seja totalmente transitado.
 
-Modal has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
+O modal possui suporte interno para [react-transition-group](https://github.com/reactjs/react-transition-group).
 
 {{"demo": "pages/components/modal/TransitionsModal.js"}}
 
-Alternatively, you can use [react-spring](https://github.com/react-spring/react-spring).
+Como alternativa, você pode usar [react-spring](https://github.com/react-spring/react-spring).
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 
 ## Acessibilidade
 
-- Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
+- Certifique-se de adicionar `aria-labelledby="id..."`, referenciando o título modal, ao `Modal`. Adicionalmente, você pode dar uma descrição do seu modal com a propriedade `aria-describedby = "id..."` no `Modal`.
 
 ```jsx
 <Modal
-  aria-labelledby="modal-title"
-  aria-describedby="modal-description"
+  aria-labelledby="modal-titulo"
+  aria-describedby="modal-descricao"
 >
-  <h2 id="modal-title">
-    My Title
+  <h2 id="modal-titulo">
+    Meu Título
   </h2>
-  <p id="modal-description">
-    My Description
+  <p id="modal-descricao">
+    Minha Descrição
   </p>
 </Modal>
 ```
 
-- The [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
+- O [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) pode ajudá-lo a definir o foco inicial no elemento mais relevante, com base no seu conteúdo modal.
 
-## Server-side modal
+## Modal do lado do servidor
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to see the modal, you need to disable the portal feature with the `disablePortal` prop:
+React [não suporta](https://github.com/facebook/react/issues/13097) a API [`createPortal()`](https://reactjs.org/docs/portals.html) no servidor. Para ver o modal, você precisa desativar o recurso portal com a propriedade `disablePortal`:
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
