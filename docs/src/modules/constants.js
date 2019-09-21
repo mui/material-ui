@@ -20,35 +20,35 @@ const LANGUAGES_IN_PROGRESS = [...LANGUAGES];
 const LANGUAGES_LABEL = [
   {
     code: 'en',
-    text: '🇺🇸 English',
+    text: 'English',
   },
   {
     code: 'zh',
-    text: '🇨🇳 中文',
+    text: '中文',
   },
   {
     code: 'ru',
-    text: '🇷🇺 Русский',
+    text: 'Русский',
   },
   {
     code: 'pt',
-    text: '🇧🇷 Português',
+    text: 'Português',
   },
   {
     code: 'es',
-    text: '🇪🇸 Español',
+    text: 'Español',
   },
   {
     code: 'fr',
-    text: '🇫🇷 Français',
+    text: 'Français',
   },
   {
     code: 'de',
-    text: '🇩🇪 Deutsch',
+    text: 'Deutsch',
   },
   {
     code: 'ja',
-    text: '🇯🇵 日本語',
+    text: '日本語',
   },
 ];
 

@@ -3,20 +3,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import NProgress from 'nprogress';
 import Router, { Router as Router2, useRouter } from 'next/router';
 import { withStyles, useTheme } from '@material-ui/core/styles';
+import NProgress from 'nprogress';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import MuiLink from '@material-ui/core/Link';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import NoSsr from '@material-ui/core/NoSsr';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu';
+import Tooltip from '@material-ui/core/Tooltip';
+import Button from '@material-ui/core/Button';
+import Hidden from '@material-ui/core/Hidden';
+import NoSsr from '@material-ui/core/NoSsr';
 import LanguageIcon from '@material-ui/icons/Translate';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import MuiLink from '@material-ui/core/Link';
+import Divider from '@material-ui/core/Divider';
 import ColorsIcon from '@material-ui/icons/InvertColors';
 import {
   GitHub as GithubIcon,
@@ -115,7 +119,7 @@ const styles = theme => ({
     boxShadow: 'none',
   },
   language: {
-    margin: theme.spacing(0, 1, 0, 0.5),
+    margin: theme.spacing(0, 0.5, 0, 1),
   },
   appBarShift: {
     [theme.breakpoints.up('lg')]: {
@@ -216,8 +220,8 @@ function AppFrame(props) {
           </IconButton>
           <div className={classes.grow} />
           <DeferredAppSearch />
-          <Tooltip title="Change language" enterDelay={300}>
-            <IconButton
+          <Tooltip title={t('changeLanguage')} enterDelay={300}>
+            <Button
               color="inherit"
               aria-owns={languageMenu ? 'language-menu' : undefined}
               aria-haspopup="true"
@@ -227,9 +231,16 @@ function AppFrame(props) {
               data-ga-event-action="language"
             >
               <LanguageIcon />
-            </IconButton>
+              <Hidden xsDown implementation="css">
+                <span className={classes.language}>
+                  {userLanguage === 'aa'
+                    ? 'Translating'
+                    : LANGUAGES_LABEL.find(language => language.code === userLanguage).text}
+                </span>
+              </Hidden>
+              <ExpandMoreIcon />
+            </Button>
           </Tooltip>
-          <span className={classes.language}>{userLanguage.toUpperCase()}</span>
           <NoSsr>
             <Menu
               id="language-menu"
@@ -245,10 +256,13 @@ function AppFrame(props) {
                   key={language.code}
                   selected={userLanguage === language.code}
                   onClick={handleLanguageMenuClose}
+                  lang={language.code}
+                  hreflang={language.code}
                 >
                   {language.text}
                 </MenuItem>
               ))}
+              <Divider />
               <MenuItem
                 component="a"
                 data-no-link="true"
@@ -260,9 +274,11 @@ function AppFrame(props) {
                 rel="noopener nofollow"
                 target="_blank"
                 key={userLanguage}
+                lang={userLanguage}
+                hreflang="en"
                 onClick={handleLanguageMenuClose}
               >
-                {`🌍 ${t('helpToTranslate')}`}
+                {`${t('helpToTranslate')}`}
               </MenuItem>
             </Menu>
           </NoSsr>
