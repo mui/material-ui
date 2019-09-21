@@ -152,13 +152,12 @@ describe('<Menu />', () => {
   it('should open during the initial mount', () => {
     const wrapper = mount(
       <Menu {...defaultProps} open>
-        <div tabIndex={-1} />
+        <div role="menuitem" tabIndex={-1} />
       </Menu>,
     );
     const popover = wrapper.find(Popover);
     assert.strictEqual(popover.props().open, true);
-    const menuEl = document.querySelector('[data-mui-test="Menu"]');
-    assert.strictEqual(document.activeElement, menuEl);
+    assert.strictEqual(wrapper.find('[role="menuitem"]').props().autoFocus, true);
   });
 
   it('should not focus list if autoFocus=false', () => {
