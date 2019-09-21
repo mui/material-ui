@@ -111,10 +111,10 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       }
 
       if (!icon) {
-        icon = icon || icons.defaultParentIcon;
+        icon = icons.defaultParentIcon;
       }
     } else {
-      icon = icons.defaultEndIcon;
+      icon = endIcon || icons.defaultEndIcon;
     }
   }
 
