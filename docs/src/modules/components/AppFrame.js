@@ -32,7 +32,6 @@ import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR'
 import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
 import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
-import AppSearch from 'docs/src/modules/components/AppSearch';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
 import usePageTitle from 'docs/src/modules/components/usePageTitle';
@@ -54,6 +53,29 @@ Router.onRouteChangeComplete = () => {
 Router.onRouteChangeError = () => {
   NProgress.done();
 };
+
+const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
+function DeferredAppSearch() {
+  const fallback = null;
+
+  return (
+    <React.Fragment>
+      <link
+        rel="preload"
+        href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css"
+        as="style"
+      />
+      {/* Suspense isn't supported for SSR yet */}
+      {typeof window === 'undefined' ? (
+        fallback
+      ) : (
+        <React.Suspense fallback={fallback}>
+          <AppSearch />
+        </React.Suspense>
+      )}
+    </React.Fragment>
+  );
+}
 
 const styles = theme => ({
   root: {
@@ -197,7 +219,7 @@ function AppFrame(props) {
             <MenuIcon />
           </IconButton>
           <div className={classes.grow} />
-          <AppSearch />
+          <DeferredAppSearch />
           <Tooltip title={t('changeLanguage')} enterDelay={300}>
             <Button
               color="inherit"

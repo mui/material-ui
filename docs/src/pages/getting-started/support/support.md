@@ -79,7 +79,6 @@ Accelerate your company’s application development with a secure, long-term sol
 - **Version migration assistance**
 - **Priority fixes**
 - **Support**. Timely support and troubleshooting when you need it most. Get expert help directly from the Material-UI team with guaranteed response times (next-business day).
-- **Access to premium modules**. Datagrid, Charts, Scheduler, Rich Text Editor, Splitter, and more.
 
 For more information, [get a quote](mailto:enterprise@material-ui.com) from our team.
 
