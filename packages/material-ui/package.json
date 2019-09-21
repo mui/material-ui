@@ -42,7 +42,6 @@
     "@material-ui/system": "^4.3.3",
     "@material-ui/types": "^4.1.1",
     "@material-ui/utils": "^4.4.0",
-    "@types/react-transition-group": "^4.2.0",
     "clsx": "^1.0.2",
     "convert-css-length": "^2.0.1",
     "deepmerge": "^4.0.0",
@@ -52,6 +51,9 @@
     "popper.js": "^1.14.1",
     "prop-types": "^15.7.2",
     "react-transition-group": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/react-transition-group": "^4.2.0",
   },
   "sideEffects": false,
   "publishConfig": {
