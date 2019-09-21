@@ -177,7 +177,10 @@ Menu.propTypes = {
    */
   anchorEl: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   /**
-   * If `true` (default), the menu list (possibly a particular item depending on the menu variant) will receive focus on open.
+   * If `true` (Default) will focus the `[role="menu"]` if no focusable child is found. Disabled
+   * children are not focusable. If you set this prop to `false` focus will be placed
+   * on the parent modal container. This has severe accessibility implications
+   * and should only be considered if you manage focus otherwise.
    */
   autoFocus: PropTypes.bool,
   /**
@@ -190,8 +193,10 @@ Menu.propTypes = {
    */
   classes: PropTypes.object.isRequired,
   /**
-   * Same as `autoFocus=false`.
-   * @deprecated Use `autoFocus` instead.
+   * When opening the menu will not focus the active item but the `[role="menu"]`
+   * unless `autoFocus` is also set to `false`. Not using the default means not
+   * following WAI-ARIA authoring practices. Please be considerate about possible
+   * accessibility implications.
    */
   disableAutoFocusItem: PropTypes.bool,
   /**
