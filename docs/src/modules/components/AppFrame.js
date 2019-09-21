@@ -210,9 +210,10 @@ function AppFrame(props) {
             >
               <LanguageIcon />
               <Hidden xsDown implementation="css">
-                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
                 <span className={classes.language}>
-                  {LANGUAGES_LABEL.find(language => language.code === userLanguage).text}
+                  {userLanguage === 'aa'
+                    ? 'Translating'
+                    : LANGUAGES_LABEL.find(language => language.code === userLanguage).text}
                 </span>
               </Hidden>
               <ExpandMoreIcon />
