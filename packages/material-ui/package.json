@@ -53,7 +53,7 @@
     "react-transition-group": "^4.3.0"
   },
   "devDependencies": {
-    "@types/react-transition-group": "^4.2.0",
+    "@types/react-transition-group": "^4.2.0"
   },
   "sideEffects": false,
   "publishConfig": {
