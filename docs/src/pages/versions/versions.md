@@ -43,15 +43,16 @@ In general, you can expect the following release cycle:
 
 ## Release schedule
 
-> Disclaimer: The dates are offered as general guidance and may be adjusted by us when necessary to ensure delivery of a high-quality code.
-
-| Date | Version |
-|:-----|:--------|
-| May 2018  ✅ | `@material-ui/core` v1.0.0 |
-| May 2019  ✅ | `@material-ui/core` v4.0.0 |
-| 2020? ⏳ | `@material-ui/core` v5.0.0 |
+| Date | Version | Status |
+|:-----|:--------|--------|
+| May 2018 | v1.0.0 | Released |
+| Septembre 2018 | v3.0.0 | Released |
+| May 2019 | v4.0.0 | Released |
+| May 2020 | v5.0.0 | ⏳ |
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
+
+> ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.
 
 ## Support policy
 

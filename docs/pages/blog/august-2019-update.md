@@ -27,7 +27,7 @@ Here are the most significant improvements in August:
   ![TypeScript](/static/blog/august-2019-update/typescript.png)
 
 - 🎨 We have worked on seeding https://themes.material-ui.com/.
-- 📖 We have updated our ROADMAP. [Check it out](/discover-more/roadmap/#new-components).
+- 📖 We have updated our ROADMAP. [Check it out](/discover-more/roadmap/).
 
 But this summary is just scratching the surface. We have accepted 193 commits from 74 different contributors. We have changed 5,875 files with 35,101 additions and 14,701 deletions.
 

@@ -11,12 +11,6 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 > **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
 
-## Accessibility
-
-For optimal accessibility we recommend setting `id` and `aria-controls` on the
-`ExpansionPanelSummary`. The `ExpansionPanel` will derive the necessary `aria-labelledby`
-and `id` for the content region of the panel.
-
 ## Simple Expansion Panel
 
 {{"demo": "pages/components/expansion-panels/SimpleExpansionPanel.js"}}
@@ -49,3 +43,11 @@ bottlenecks first and then try out these optimization strategies.
 Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
 
 {{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}
+
+## Accessibility
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
+
+For optimal accessibility we recommend setting `id` and `aria-controls` on the
+`ExpansionPanelSummary`. The `ExpansionPanel` will derive the necessary `aria-labelledby`
+and `id` for the content region of the panel.

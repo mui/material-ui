@@ -43,8 +43,9 @@ renderer.heading = (text, level) => {
 const externs = [
   'https://material.io/',
   'https://getbootstrap.com/',
-  'https://www.amazon.com',
-  'https://materialdesignicons.com',
+  'https://www.amazon.com/',
+  'https://materialdesignicons.com/',
+  'https://www.w3.org/',
 ];
 
 renderer.link = (href, title, text) => {

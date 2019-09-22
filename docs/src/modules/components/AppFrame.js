@@ -235,7 +235,7 @@ function AppFrame(props) {
                 <span className={classes.language}>
                   {userLanguage === 'aa'
                     ? 'Translating'
-                    : LANGUAGES_LABEL.find(language => language.code === userLanguage).text}
+                    : LANGUAGES_LABEL.filter(language => language.code === userLanguage)[0].text}
                 </span>
               </Hidden>
               <ExpandMoreIcon />
