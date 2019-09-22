@@ -90,7 +90,7 @@ export default function TextFieldShowcase() {
   return (
     <Showcase
       variants={variants}
-      variant={selectedVariant}
+      selectedVariant={selectedVariant}
       onVariantChange={setVariant}
       options={options}
       onOptionChange={setOptions}
