@@ -32,7 +32,7 @@ function Languages() {
                   variant="body2"
                   color="secondary"
                   data-no-link="true"
-                  href={`/${language.code === 'en' ? '' : language.code}/`}
+                  href={language.code === 'en' ? '/' : `/${language.code}/`}
                 >
                   Documentation
                 </Link>
