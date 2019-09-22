@@ -1,6 +1,77 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.4.3
+
+Big thanks to the 23 contributors who made this release possible!
+This is a stability release.
+
+###### *Sep 22, 2019*
+
+### `@material-ui/core@v4.4.3`
+
+- [TextField] Handle Chrome autofill (#17436) @croraf
+- [ButtonBase] Fix blurry text issue (#17453) @chibis0v
+- [CircularProgress] Fix centering (#17482) @fiws
+- [Chip] Load the right version of Avatar (#17469) @Maxim-Mazurok
+- [TablePagination] Merge root classes properly (#17467) @DavidHenri008
+- [Box] Fix demo item name (#17523) @Skaronator
+- [Breadcrumbs] Improve API docs (#17468) @eps1lon
+- [Menu] Isolate more integration tests (#17490) @eps1lon
+- [SelectInput] Use `@testing-library` for test (#17390) @eps1lon
+
+### `@material-ui/styles@v4.4.3`
+
+- [styles] Bump jss dependencies to 10.0.0-alpha.25 (#17520) @eps1lon
+- [core] Replace warning with manual console.error (#17404) @eps1lon
+
+### `@material-ui/lab@v4.0.0-alpha.27`
+
+- [TreeItem] Use the ‘endIcon’ prop where appropriate (#17488) @Chocolatl
+- [Skeleton] Make default CSS display mode to block (#17406) @ahtcx
+- [SpeedDial] Rework part of the logic (#17301) @hashwin
+
+### `@material-ui/icons@v4.4.3`
+
+- [docs] Update README.md
+
+### `@material-ui/system@v4.4.3`
+
+- [core] Replace warning with manual console.error (#17404) @eps1lon
+
+### Docs
+
+- [examples] Add a Gatsby Theme example (#17411) @hupe1980
+- [docs] Add a customization example with ToggleButton (#17401) @nrkroeker
+- [docs] Add a note in disabled tooltip (#17421) @konekoya
+- [docs] Add a support page (#17437) @oliviertassinari
+- [docs] Add demo for vertical dividers (#17457) @nrkroeker
+- [docs] Add synonyms for brand icons (#17455) @mbrookes
+- [docs] August Update (#17439) @oliviertassinari
+- [docs] Batch small changes (#17435) @oliviertassinari
+- [docs] CONTRIBUTING.md reword branch structure, remove Build, Yarn Link (#17501) @croraf
+- [docs] Clarify props spread for ListItem when button flag is set (#17466) @rossmmurray
+- [docs] Fix Popper demo link typo (#17522) @mbrookes
+- [docs] Fix a typo in CONTRIBUTING.md (#17400) @konekoya
+- [docs] Fix english language link (#17526) @croraf
+- [docs] Fix heading format in CONTRIBUTING.md (#17460) @paras151
+- [docs] Improve in-site search (#17450) @eps1lon
+- [docs] Improve the documentation covering react-router (#17343) @MelMacaluso
+- [docs] Move BACKERS.md file (#17508) @croraf
+- [docs] Remove Access to premium modules from the support page (#17489) @oliviertassinari
+- [docs] Spelling mistake (#17500) @jehuamanna
+- [docs] Update translations (#17509, #17438) @mbrookes
+- [docs] Use Button for language menu (#17487) @mbrookes
+- [docs] Use Suspense for lazy loading algolia (#17451) @eps1lon
+- [docs] Wrong URL for spacing in PT (#17502) @renatoagds
+
+### Core
+
+- [core] Prevent empty useEffect in production (#17420) @merceyz
+- [core] Replace warning with manual console.error (#17404) @eps1lon
+- [core] Warn when changing between controlled uncontrolled (#17422) @kmhigashioka
+
 ## 4.4.2
+
 ###### *Sep 11, 2019*
 
 Big thanks to the 7 contributors who made this release possible!
