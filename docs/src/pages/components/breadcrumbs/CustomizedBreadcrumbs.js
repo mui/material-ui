@@ -3,7 +3,6 @@ import { emphasize, withStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Chip from '@material-ui/core/Chip';
-import Avatar from '@material-ui/core/Avatar';
 import HomeIcon from '@material-ui/icons/Home';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
@@ -48,11 +47,7 @@ export default function CustomizedBreadcrumbs() {
           component="a"
           href="#"
           label="Home"
-          avatar={
-            <Avatar className={classes.avatar}>
-              <HomeIcon />
-            </Avatar>
-          }
+          icon={<HomeIcon fontSize="small" />}
           onClick={handleClick}
         />
         <StyledBreadcrumb component="a" href="#" label="Catalog" onClick={handleClick} />
