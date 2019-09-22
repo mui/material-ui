@@ -16,7 +16,6 @@ export const styles = theme => ({
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     [theme.breakpoints.up('sm')]: {
-      ...theme.typography.body2,
       minHeight: 'auto',
     },
   },
