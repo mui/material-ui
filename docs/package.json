@@ -68,7 +68,7 @@
     "docsearch.js": "^2.6.3",
     "doctrine": "^3.0.0",
     "downshift": "^3.0.0",
-    "emotion-theming": "^10.0.14",
+    "emotion-theming": "^10.0.19",
     "express": "^4.17.1",
     "fg-loadcss": "^2.0.1",
     "final-form": "^4.18.5",
