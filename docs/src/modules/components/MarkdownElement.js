@@ -239,46 +239,24 @@ const styles = theme => ({
         borderBottom: `1px dotted ${theme.palette.text.hint}`,
       },
     },
-    '& thead': {
-      fontSize: 14,
-      fontWeight: theme.typography.fontWeightMedium,
-      color: theme.palette.text.secondary,
-    },
-    '& tbody': {
-      fontSize: 14,
-      lineHeight: 1.5,
-      color: theme.palette.text.primary,
-    },
     '& td': {
+      ...theme.typography.body2,
       borderBottom: `1px solid ${theme.palette.divider}`,
-      padding: '8px 16px 8px 8px',
-      textAlign: 'left',
-    },
-    '& td:last-child': {
-      paddingRight: 24,
-    },
-    '& td compact': {
-      paddingRight: 24,
+      padding: 16,
+      color: theme.palette.text.primary,
     },
     '& td code': {
       fontSize: 13,
       lineHeight: 1.6,
     },
     '& th': {
+      fontSize: 14,
+      lineHeight: theme.typography.pxToRem(24),
+      fontWeight: theme.typography.fontWeightMedium,
+      color: theme.palette.text.primary,
       whiteSpace: 'pre',
       borderBottom: `1px solid ${theme.palette.divider}`,
-      fontWeight: theme.typography.fontWeightMedium,
-      padding: '0 16px 0 8px',
-      textAlign: 'left',
-    },
-    '& th:last-child': {
-      paddingRight: 24,
-    },
-    '& tr': {
-      height: 48,
-    },
-    '& thead tr': {
-      height: 64,
+      padding: 16,
     },
     '& blockquote': {
       borderLeft: '5px solid #ffe564',

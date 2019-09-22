@@ -22,22 +22,17 @@ export const styles = theme => ({
         : darken(fade(theme.palette.divider, 1), 0.68)
     }`,
     textAlign: 'left',
-    padding: '14px 40px 14px 16px',
-    '&:last-child': {
-      paddingRight: 16,
-    },
+    padding: 16,
   },
   /* Styles applied to the root element if `variant="head"` or `context.table.head`. */
   head: {
-    color: theme.palette.text.secondary,
-    fontSize: theme.typography.pxToRem(12),
-    lineHeight: theme.typography.pxToRem(21),
+    color: theme.palette.text.primary,
+    lineHeight: theme.typography.pxToRem(24),
     fontWeight: theme.typography.fontWeightMedium,
   },
   /* Styles applied to the root element if `variant="body"` or `context.table.body`. */
   body: {
     color: theme.palette.text.primary,
-    fontWeight: theme.typography.fontWeightRegular,
   },
   /* Styles applied to the root element if `variant="footer"` or `context.table.footer`. */
   footer: {
