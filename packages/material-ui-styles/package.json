@@ -47,7 +47,7 @@
     "deepmerge": "^4.0.0",
     "hoist-non-react-statics": "^3.2.1",
     "jss": "10.0.0-alpha.24",
-    "jss-plugin-camel-case": "10.0.0-alpha.24",
+    "jss-plugin-camel-case": "10.0.0-alpha.25",
     "jss-plugin-default-unit": "10.0.0-alpha.24",
     "jss-plugin-global": "10.0.0-alpha.24",
     "jss-plugin-nested": "10.0.0-alpha.24",
