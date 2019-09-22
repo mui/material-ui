@@ -56,18 +56,18 @@ Receive the latest news on Material-UI.
 
 The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the very beginning, and always will be. Developers can ensure Material-UI is the right choice for their React applications through Material-UI’s community maintenance strategy. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
-Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework, while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for Material-UI v4](/guides/migration-v3/).
+Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v4](/guides/migration-v3/).
 The open-source community is always welcome to submit new features and bug fixes as well.
 
 The current status of each Material-UI version is as follows:
 
-- Material-UI v4 (hooks) **[Active]**: Latest version in active development.
-- Material-UI v3 (change supported browsers): Only handle security fixes.
-- Material-UI v2 (never existed).
-- Material-UI v1 (rewrite): Inactive.
-- Material-UI v0.x: Inactive.
+- Material-UI v4 (hooks): ✅ In active development.
+- Material-UI v3 (change supported browsers): ⚠️ Only handle security fixes.
+- ~Material-UI v2 (never existed)~.
+- Material-UI v1 (rewrite): ❌ Inactive.
+- Material-UI v0.x: ❌ Inactive.
 
-For teams and organizations that require additional support for any framework version, Material-UI has [options available](#enterprise).
+For teams and organizations that require additional support for older versions, Material-UI has [options available](#enterprise).
 
 ## Professional support (Premium)
 
@@ -76,9 +76,9 @@ For teams and organizations that require additional support for any framework ve
 Accelerate your company’s application development with a secure, long-term solution that’s optimized for enterprise and backed by Material-UI experts.
 
 - **Long Term version support.** LTS provides developers and organizations with additional stability and reliability in the applications they’re developing, including guaranteed service level agreements (SLAs) and advisory services. Take the time you need before upgrading to the latest active version of Material-UI, or remain confident in your application’s long-term supportability by staying on whichever version you’re most comfortable with. LTS is available as a paid service, it extends to Material-UI v1 implementations and higher.
-- **Version migration assistance**
-- **Priority fixes**
-- **Support**. Timely support and troubleshooting when you need it most. Get expert help directly from the Material-UI team with guaranteed response times (next-business day).
+- **Version migration assistance**.
+- **Priority fixes**.
+- **Priority support**. Timely support and troubleshooting when you need it most. Get expert help directly from the Material-UI team with guaranteed response times (next-business day).
 
 For more information, [get a quote](mailto:enterprise@material-ui.com) from our team.
 

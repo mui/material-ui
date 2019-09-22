@@ -54,9 +54,9 @@ We are eager to find new bundle size reduction opportunities. We hope we can lev
 Here are the components we will work on being supported in the Material-UI ecosystem, no matter if they are from @material-ui/core, a third-party project or a paid source:
 
 - 🧪 In the lab, in progress to move into the core
-- 🛠 Work in progress
+- 🛠 Work in progress, will likely land in the lab
 - ⏳ Planning to build
-- ⭐️ At least one part will be paid (non MIT)
+- ⭐️ We will consider making some of the features paid (non MIT)
 
 | Name | Status |
 |------|--------|
@@ -81,7 +81,7 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Pagination | ⏳ |
 | Scrollspy | ⏳ |
 | TopLayout | ⏳ |
-| Calendar | ⏳⭐️ |
+| Big calendar | ⏳⭐️ |
 | Charts | ⏳⭐️ |
 | Color picker | ⏳⭐️ |
 | Data Grid | ⏳⭐️ |
