@@ -1,11 +1,10 @@
 ### [Versions](https://material-ui.com/versions/)
 
 ## 4.4.3
+###### *Sep 22, 2019*
 
 Big thanks to the 23 contributors who made this release possible!
 This is a stability release.
-
-###### *Sep 22, 2019*
 
 ### `@material-ui/core@v4.4.3`
 
@@ -71,7 +70,6 @@ This is a stability release.
 - [core] Warn when changing between controlled uncontrolled (#17422) @kmhigashioka
 
 ## 4.4.2
-
 ###### *Sep 11, 2019*
 
 Big thanks to the 7 contributors who made this release possible!
