@@ -46,7 +46,7 @@ Please note that `@next` will only point to pre-releases; to get the latest stab
 
 ## Supporting Material-UI
 
-Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible thanks to the support of these awesome [backers](/BACKERS.md). If you'd like to join them, please consider:
+Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible thanks to the support of these awesome [backers](https://material-ui.com/discover-more/backers/). If you'd like to join them, please consider:
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
 - [Become a backer or sponsor on OpenCollective](https://opencollective.com/material-ui).
 
