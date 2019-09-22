@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { capitalize } from '../utils/helpers';
 import withStyles from '../styles/withStyles';
 import '../Button'; // So we don't have any override priority issue.
 
@@ -30,12 +31,16 @@ export const styles = theme => ({
       borderBottomRightRadius: 0,
     },
   },
-  /* Styles applied to the children. */
+  /* Styles applied to the children if variant="text". */
   groupedText: {
     '&:not(:last-child)': {
-      borderRight: `1px solid ${theme.palette.grey[400]}`,
+      borderRight: `1px solid currentColor`,
     },
   },
+  /* Styles applied to the children if variant="outlined" & color="primary". */
+  groupedTextPrimary: {},
+  /* Styles applied to the children if variant="outlined" & color="secondary". */
+  groupedTextSecondary: {},
   /* Styles applied to the children if variant="outlined". */
   groupedOutlined: {
     '&:not(:first-child)': {
@@ -97,20 +102,14 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
     ...other
   } = props;
 
-  const outlined = variant === 'outlined';
-  const contained = variant === 'contained';
-  const primary = color === 'primary';
-  const secondary = color === 'secondary';
-  const buttonClassName = clsx(classes.grouped, {
-    [classes.groupedText]: variant === 'text',
-    [classes.groupedOutlined]: outlined,
-    [classes.groupedOutlinedPrimary]: outlined && primary,
-    [classes.groupedOutlinedSecondary]: outlined && secondary,
-    [classes.groupedContained]: contained,
-    [classes.groupedContainedPrimary]: contained && primary,
-    [classes.groupedContainedSecondary]: contained && secondary,
-    [classes.disabled]: disabled,
-  });
+  const buttonClassName = clsx(
+    classes.grouped,
+    classes[`grouped${capitalize(variant)}`],
+    classes[`grouped${capitalize(variant)}${color !== 'default' ? capitalize(color) : ''}`],
+    {
+      [classes.disabled]: disabled,
+    },
+  );
 
   return (
     <Component
@@ -118,7 +117,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
       className={clsx(
         classes.root,
         {
-          [classes.contained]: contained,
+          [classes.contained]: variant === 'contained',
           [classes.fullWidth]: fullWidth,
         },
         classNameProp,
