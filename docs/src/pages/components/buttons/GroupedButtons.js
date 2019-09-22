@@ -9,7 +9,7 @@ export default function GroupedButtons() {
       <Grid item xs={12} md={6}>
         <Grid container spacing={1} direction="column" alignItems="center">
           <Grid item>
-            <ButtonGroup size="small" aria-label="small outlined button group">
+            <ButtonGroup variant="text" size="small" aria-label="small outlined button group">
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>

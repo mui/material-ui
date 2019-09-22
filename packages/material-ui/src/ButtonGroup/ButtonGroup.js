@@ -30,6 +30,12 @@ export const styles = theme => ({
       borderBottomRightRadius: 0,
     },
   },
+  /* Styles applied to the children. */
+  groupedText: {
+    '&:not(:last-child)': {
+      borderRight: `1px solid ${theme.palette.grey[400]}`,
+    },
+  },
   /* Styles applied to the children if variant="outlined". */
   groupedOutlined: {
     '&:not(:first-child)': {
@@ -96,6 +102,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
   const primary = color === 'primary';
   const secondary = color === 'secondary';
   const buttonClassName = clsx(classes.grouped, {
+    [classes.groupedText]: variant === 'text',
     [classes.groupedOutlined]: outlined,
     [classes.groupedOutlinedPrimary]: outlined && primary,
     [classes.groupedOutlinedSecondary]: outlined && secondary,
@@ -198,7 +205,7 @@ ButtonGroup.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['outlined', 'contained']),
+  variant: PropTypes.oneOf(['text', 'outlined', 'contained']),
 };
 
 export default withStyles(styles, { name: 'MuiButtonGroup' })(ButtonGroup);
