@@ -7,7 +7,7 @@ components: ClickAwayListener
 
 <p class="description">用于检测点击事件是否发生在元素之外。 它可以监听文档中某处发生的点击事件。</p>
 
-- 📦 [1.4kB 已压缩的包](/size-snapshot).
+- 📦 [1.4kB 已压缩的包](/size-snapshot)。
 
 ## 简单的下拉菜单
 

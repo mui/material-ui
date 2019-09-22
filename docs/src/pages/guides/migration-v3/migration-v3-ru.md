@@ -163,10 +163,10 @@ Normalized `value` prop type for input components to use `unknown`. This affects
 
 ```diff
 function MySelect({ children }) {
--  function handleChange(event: any, value: string) {
-+  function handleChange(event: any, value: unknown) {
+- const handleChange = (event: any, value: string) => {
++ const handleChange = (event: any, value: unknown) => {
     // handle value
-  }
+  };
 
   return <Select onChange={handleChange}>{children}</Select>
 }

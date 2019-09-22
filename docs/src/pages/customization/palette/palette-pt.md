@@ -81,18 +81,18 @@ import indigo from '@material-ui/core/colors/indigo';
 import pink from '@material-ui/core/colors/pink';
 import red from '@material-ui/core/colors/red';
 
-// All the following keys are optional, as default values are provided.
+// Todas as chaves a seguir são opcionais, pois os valores padrão são fornecidos.
 const theme = createMuiTheme({
   palette: {
     primary: indigo,
     secondary: pink,
     error: red,
-    // Used by `getContrastText()` to maximize the contrast between the background and
-    // the text.
+    // Usado por `getContrastText ()` para maximizar o contraste entre o segundo plano e
+    // o texto.
     contrastThreshold: 3,
-    // Used to shift a color's luminance by approximately
-    // two indexes within its tonal palette.
-    // E.g., shift from Red 500 to Red 300 or Red 700.
+    // Usado para alterar a luminosidade de uma cor em aproximadamente
+    // dois índices em sua paleta de tons.
+    // Por exemplo, mude de Red 500 para Red 300 ou Red 700.
     tonalOffset: 0.2,
   },
 });
@@ -163,6 +163,6 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/palette/DarkTheme.js"}}
 
-## Default values
+## Valores padrão
 
-You can explore the default values of the palette using [the theme explorer](/customization/default-theme/?expend-path=$.palette) or by opening the dev tools console on this page (`window.theme.palette`).
+Você pode explorar os valores padrão da paleta usando [o explorador de tema](/customization/default-theme/?expend-path=$.palette) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.palette`).

@@ -1,13 +1,15 @@
 # Beispielprojekte
 
-<p class="description">Suchen Sie ein Beispielprojekt, um anzufangen?</p>
+<p class="description">A selection of example projects to get started with.</p>
+
+## Official examples
 
 You can find some example projects in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
 
 - [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
 - [Next.js](https://github.com/mui-org/material-ui/tree/master/examples/nextjs)
-- [Parcel](https://github.com/mui-org/material-ui/tree/master/examples/parcel)
+- [Preact](https://github.com/mui-org/material-ui/tree/master/examples/preact)
 - [CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn)
 - [Plain server-side](https://github.com/mui-org/material-ui/tree/master/examples/ssr)
 - E mais
@@ -16,15 +18,13 @@ Create React App ist ein großartiges Projekt zum Lernen von React. Schauen Sie 
 
 Der Quellcode für diese Dokumentationsseite ist auch im Repository enthalten. Dies ist ein etwas komplexeres Projekt. Schauen Sie sich die Build-Anweisungen im [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) Ordner an.
 
-## Fortgeschrittenere Beispielprojekte
-
-Suchen Sie nach einem fortgeschritteneren Beispielprojekt?
+## More advanced example projects
 
 If you want to start with a more complete and real world example, you could take a look at the [free templates](/getting-started/templates/) or [premium themes & templates](https://themes.material-ui.com/) or:
 
 - [React Most Wanted](https://github.com/TarikHuber/react-most-wanted), which includes:
     
-  - Erstellt mit [Create React App](https://facebook.github.io/create-react-app/)
+  - Created with Create React App
   - Custom Create React App script to start a new project with just a single CLI command
   - Build for Firebase including Authentication using the official Firebase Web Auth UI
   - Routing with React Router including error handling (404) and lazy loading
@@ -35,10 +35,10 @@ If you want to start with a more complete and real world example, you could take
   - Mit Create React App gebootet, funktioniert das gleiche Tool sofort
   - Built on top of Firebase with Authentication, Cloud Firestore, Cloud Functions, Storage, and Performance Monitoring working from the start
   - Robust routing with React Router including error handling
-  - Extensive mobile support with full-screen dialogs and [react-swipeable-views](https://react-swipeable-views.com) for tabs
+  - Extensive mobile support with full-screen dialogs and react-swipeable-views for tabs
 - [Material Sense](https://github.com/alexanmtz/material-sense), welches beeinhaltet:
     
   - Diagramme mit recharts
   - React Router mit einem Navigationsbeispiel
   - Ein Docker-Container mit einem Nginx-Server für den Produktionsaufbau
-  - Erstellt mit [Create React App](https://facebook.github.io/create-react-app/)
+  - Created with Create React App

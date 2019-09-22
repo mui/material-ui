@@ -9,11 +9,11 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 [卡片](https://material.io/design/components/cards.html) 是显示单个主题下内容和操作的容器。
 
-他们应当易于扫描相关的与可操作的信息。 像文本和图像这样的元素，应通过明确指示层次结构的方式进行布局。
+通过卡片，我们应便捷地扫描相关的和可操作的信息。 像文本和图像这样的元素，则应按照清晰的布局来排列，以此呈现结构层次。
 
 ## 简单的卡片
 
-尽管卡片支持多操作、多UI控件和过长的菜单，但请克制使用，切记，卡片只是那些复杂且详细信息的入口。
+尽管卡片支持多操作、多个 UI 控件和一个加长的菜单，但请不要滥用它，切记，卡片只是那些复杂且详细信息的一个入口。
 
 {{"demo": "pages/components/cards/SimpleCard.js"}}
 
@@ -29,15 +29,15 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 {{"demo": "pages/components/cards/MediaCard.js"}}
 
-默认情况下，我们使用混合 `<div>`元素和*背景图片*来显示多媒体元素。 在某些情况下可能会产生一些问题。 例如, 您可能希望显示一个视频或一张响应式的图片。 对于这些用例, 请使用 `component` 属性:
+默认情况下，我们会混合一个 `<div>`元素和一张*背景图片*来显示多媒体元素。 在某些情况下可能会产生一些问题。 例如, 您可能希望显示一个视频或一张响应式的图片。 这样的情况下，请您使用 `component` 属性:
 
 {{"demo": "pages/components/cards/ImgMediaCard.js"}}
 
-> 当 `component="img"` 时，CardMedia会依靠 `object-fit` 进行图像居中。 但 IE 11不支持它。
+> ⚠️ 当 `component="img"` 时，CardMedia 会依靠 `object-fit` 来居中图像。 但 IE 11不支持它。
 
 ## UI 控件
 
-卡片中的补充操作可使用图标、文本和 UI 控件显式调用, 而它们通常被放在卡片的底部。
+我们可以可使用图标、文本和 UI 控件显式来调用卡片中的补充操作，而它们通常被放在卡片的底部。
 
 下面是一个媒体控制卡片的例子。
 

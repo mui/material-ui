@@ -7,10 +7,11 @@ Several Material-UI components utilize `z-index`, employing a default z-index sc
 [这些值](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/zIndex.js)从任意数字开始，足够大和特别来避免冲突。
 
 - mobile stepper（移动设备起步）: 1000
-- app bar（应用栏）：1100
-- drawer（抽屉）：1200
-- modal（浮层）：1300
-- snackbar：1400
-- tooltip（提示）：1500
+- speed dial: 1050
+- app bar: 1100
+- drawer: 1200
+- modal: 1300
+- snackbar: 1400
+- tooltip: 1500
 
 这些值可以自定义。 You will find them in the theme under the [`zIndex`](/customization/default-theme/?expend-path=$.zIndex) key of the theme. Customization of individual values is discouraged; should you change one, you likely need to change them all.

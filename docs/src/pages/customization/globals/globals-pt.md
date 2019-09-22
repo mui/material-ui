@@ -27,7 +27,7 @@ A lista desses pontos de customização de cada componente está documentada na 
 
 ## Propriedades padrão
 
-Você pode alterar as propriedades padrão de todos os componentes de Material-UI. A `props` key is exposed in the `theme` for this use case.
+Você pode alterar as propriedades padrão de todos os componentes de Material-UI. A chave `props` é exposta no `theme` para este caso de uso.
 
 ```js
 const theme = createMuiTheme({

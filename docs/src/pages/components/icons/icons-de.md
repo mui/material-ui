@@ -21,7 +21,7 @@ Das resultierende Symbol kann so wie es ist, oder als untergeordnetes Element f�
 
 ### SVG Material Symbole
 
-Es ist interessant, über die Bausteine zu verfügen, die zum Implementieren von benutzerdefinierten Symbolen erforderlich sind, aber was ist mit den Voreinstellungen? [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) is an npm package that includes the 1,000+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to `SvgIcon` components.
+Es ist interessant, über die Bausteine zu verfügen, die zum Implementieren von benutzerdefinierten Symbolen erforderlich sind, aber was ist mit den Voreinstellungen? [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) is an npm package that includes the 1,000+ official [Material icons](/components/material-icons/) converted to `SvgIcon` components.
 
 <a href="/components/material-icons/">
   <img src="/static/images/icons/icons.png" alt="Offizielle Material Symbole" style="width: 566px" />
@@ -66,7 +66,7 @@ You can import the icons with one of these two options:
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-The safest is option 1 but option 2 can yield the best experience.
+The safest is option 1 but option 2 can yield the best developer experience.
 Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
 The configuration of a Babel plugin is encouraged.
 

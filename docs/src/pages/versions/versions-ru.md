@@ -20,7 +20,7 @@ Stability ensures that reusable components and libraries, tutorials, tools, and 
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
-Material-UI strictly follows [Semantic Versioning 2.0.0](https://semver.org/). Material-UI version numbers have three parts: `major.minor.patch`. The version number is incremented based on the level of change included in the release.
+Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Material-UI version numbers have three parts: `major.minor.patch`. The version number is incremented based on the level of change included in the release.
 
 - **Major releases** contain significant new features, some but minimal developer assistance is expected during the update. When updating to a new major release, you may need to run update scripts, refactor code, run additional tests, and learn new APIs.
 - **Minor releases** contain important new features. Minor releases are fully backward-compatible; no developer assistance is expected during update, but you can optionally modify your apps and libraries to begin using new APIs, features, and capabilities that were added in the release.
@@ -44,14 +44,14 @@ In general, you can expect the following release cycle:
 |:---------- |:-------------------------- |
 | May 2018 ✅ | `@material-ui/core` v1.0.0 |
 | May 2019 ✅ | `@material-ui/core` v4.0.0 |
-| ? ⏳        | `@material-ui/core` v5.0.0 |
+| 2020? ⏳    | `@material-ui/core` v5.0.0 |
 
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
 ## Политика поддержки
 
-Only the latest version of Material-UI is supported. We don't yet have the resources to offer [LTS](https://en.wikipedia.org/wiki/Long-term_support) releases.
+Find details on the [supported versions](/getting-started/support/#supported-versions).
 
 ## Deprecation practices
 

@@ -148,10 +148,10 @@ yarn add @material-ui/styles
 
 ```diff
 function MySelect({ children }) {
--  function handleChange(event: any, value: string) {
-+  function handleChange(event: any, value: unknown) {
-    //处理值
-  }
+- const handleChange = (event: any, value: string) => {
++ const handleChange = (event: any, value: unknown) => {
+    // handle value
+  };
 
   return <Select onChange={handleChange}>{children}</Select>
 }

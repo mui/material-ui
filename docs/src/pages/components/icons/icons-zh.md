@@ -21,7 +21,7 @@ Material-UI 提供了两个组件来渲染系统图标：`SvgIcon` 来渲染 SVG
 
 ### SVG Material 图标
 
-拥有实现自定义图标所需的构成模块很令人感兴趣，但如何实现预设图标呢？ 我们提供[@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons)这样一个单独的 npm 包，其中包含了1000多个已转换为 `SvgIcon` 组件的 [Material 图标](https://material.io/tools/icons/?style=baseline)。
+拥有实现自定义图标所需的构成模块很令人感兴趣，但如何实现预设图标呢？ [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) is an npm package that includes the 1,000+ official [Material icons](/components/material-icons/) converted to `SvgIcon` components.
 
 <a href="/components/material-icons/">
   <img src="/static/images/icons/icons.png" alt="官方 material 图标" style="width: 566px" />
@@ -56,18 +56,17 @@ You can use the [internal search](/components/material-icons/) or [material.io/t
 - 方法 1:
 
 ```jsx
-  ```jsx
-import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
-import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
-```
+  import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
+  import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
+  ```
 
-- 方法 2:
+- Option 2:
 
   ```jsx
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-最安全的方法是“方法1”，不过“方法2”用户体验更佳。
+The safest is option 1 but option 2 can yield the best developer experience.
 Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
 The configuration of a Babel plugin is encouraged.
 

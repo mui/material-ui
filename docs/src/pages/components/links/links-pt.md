@@ -34,8 +34,6 @@ Quando você usa `target="_blank"` com Links, é [recomendado](https://developer
 
 ## Biblioteca de roteamento de terceiros
 
-Um caso comum é executar a navegação apenas no cliente, sem fazer uma ida e volta para buscar .html do servidor. O componente `Link` fornece uma propriedade para lidar com este caso: `component`.
+Um caso de uso comum é executar a navegação apenas no lado do cliente, sem uma ida e volta HTTP ao servidor. O componente `Link` fornece uma propriedade para lidar com este caso: `component`.
 
-{{"demo": "pages/components/links/LinkRouter.js", "defaultCodeOpen": true}}
-
-*Nota: A criação de componentes de link é necessária para impedir a desmontagem inesperada. Você pode ler mais sobre isso no [guia de propriedades de componente](/guides/composition/#component-property).*
+Aqui está um [exemplo de integração com react-router](/guides/composition/#link).

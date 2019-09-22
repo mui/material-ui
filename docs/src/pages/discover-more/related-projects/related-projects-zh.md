@@ -26,10 +26,10 @@ This is a collection of third-party projects that extend Material-UI.
 
 ### Autocomplete（自动补全）
 
-- [material-ui-chip-input](https://mui.wertarbyte.com/#material-ui-chip-input): The chip input is used to allow selecting multiple text values.
+- [material-ui-chip-input](https://mui.wertarbyte.com/#material-ui-chip-input): 此 chip input 用于选择多个文本值的情况。
 - [mui-downshift](https://github.com/techniq/mui-downshift): Thin layer over paypal's downshift to use Material-UI visual components.
-- [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest): A fuzzy-search component for React and Material-UI.
-- [react-select-material-ui](https://github.com/iulian-radu-at/react-select-material-ui): Extend react-select with Material-UI.
+- [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest)：一个用在 React 和 Material-UI 中的模糊搜索的组件。
+- [react-select-material-ui](https://github.com/iulian-radu-at/react-select-material-ui)：使用 Material-UI 的 react-select 的扩展版本。
 
 ### Notifications
 

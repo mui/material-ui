@@ -7,6 +7,7 @@ Several Material-UI components utilize `z-index`, employing a default z-index sc
 [Эти значения](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/zIndex.js) начинаются с произвольного числа, достаточно высокого, чтобы в идеале избежать конфликтов.
 
 - mobile stepper: 1000
+- speed dial: 1050
 - app bar: 1100
 - drawer: 1200
 - modal: 1300

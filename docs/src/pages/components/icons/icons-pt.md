@@ -21,7 +21,7 @@ O ícone resultante pode ser usado como está, ou incluído como filho para outr
 
 ### SVG Material Ícones
 
-É interessante ter as ferramentas necessárias para implementar ícones customizados, mas com quais predefinições? [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) é um pacote npm que inclui mais de 1000 [ícones oficiais da Material](https://material.io/tools/icons/?style=baseline) convertidos para componentes `SvgIcon`.
+É interessante ter as ferramentas necessárias para implementar ícones customizados, mas com quais predefinições? [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) is an npm package that includes the 1,000+ official [Material icons](/components/material-icons/) converted to `SvgIcon` components.
 
 <a href="/components/material-icons/">
   <img src="/static/images/icons/icons.png" alt="Material oficial de ícones" style="width: 566px" />
@@ -66,7 +66,7 @@ Você pode importar os ícones com uma destas duas opções:
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-The safest is option 1 but option 2 can yield the best experience.
+The safest is option 1 but option 2 can yield the best developer experience.
 Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
 The configuration of a Babel plugin is encouraged.
 

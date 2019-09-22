@@ -20,7 +20,7 @@ Stability ensures that reusable components and libraries, tutorials, tools, and 
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
-Material-UI sigue estrictamente [ Versionado semántico 2.0.0](https://semver.org/). Los números en la versión de Material-UI tienen tres partes: ` mayor.menor.parche`. El número de versión se incrementa en base a el nivel de cambio incluido en tal lanzamiento.
+Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Los números en la versión de Material-UI tienen tres partes: ` mayor.menor.parche`. El número de versión se incrementa en base a el nivel de cambio incluido en tal lanzamiento.
 
 - ** Lanzamientos mayores** contienen nuevas prestaciones importantes, se espera alguna o mínima asistencia por parte del desarrollador durante la actualización. Al actualizar a una nueva versión mayor, es posible que debas ejecutar los scripts de actualización, refactorizar código, ejecutar pruebas adicionales, y aprender nuevas API.
 - ** Lanzamientos menores ** contienen nuevas prestaciones importantes. Los lanzamientos menores son totalmente compatibles con versiones anteriores; no se espera asistencia del desarrollador durante la actualización, pero opcionalmente puedes modificar tus aplicaciones y librerias para comenzar a usar nuevas API, prestaciones, y capacidades que se agregaron en ese lanzamiento.
@@ -44,14 +44,14 @@ En general, espera el siguiente ciclo de lanzamiento:
 |:---------- |:-------------------------- |
 | May 2018 ✅ | `@material-ui/core` v1.0.0 |
 | May 2019 ✅ | `@material-ui/core` v4.0.0 |
-| ? ⏳        | `@material-ui/core` v5.0.0 |
+| 2020? ⏳    | `@material-ui/core` v5.0.0 |
 
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
 ## Política de soporte
 
-Only the latest version of Material-UI is supported. Aún no tenemos los recursos para ofrecer lanzamientos [ LTS ](https://en.wikipedia.org/wiki/Long-term_support).
+Find details on the [supported versions](/getting-started/support/#supported-versions).
 
 ## Practicas de deprecación
 

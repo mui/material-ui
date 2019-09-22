@@ -34,8 +34,6 @@ Linkコンポーネントは、 [Typography](/api/typography/) コンポーネ�
 
 ## サードパーティ製ルーティングライブラリ
 
-一般的な使用例の1つは、サーバーとの.htmlラウンドトリップを行わずに、クライアントのみでナビゲーションを実行することです。 `Link` コンポーネントには、このユースケースを処理するためのプロパティが用意されています。：`component`
+One common use case is to perform navigation on the client only, without an HTTP round-trip to the server. `Link` コンポーネントには、このユースケースを処理するためのプロパティが用意されています。：`component`
 
-{{"demo": "pages/components/links/LinkRouter.js", "defaultCodeOpen": true}}
-
-*注：予期しないアンマウントを防ぐために、リンクコンポーネントを作成する必要があります。 You can read more about it in the [component prop guide](/guides/composition/#component-property).*
+Here is an [integration example with react-router](/guides/composition/#link).

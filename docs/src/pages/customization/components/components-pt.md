@@ -85,7 +85,7 @@ Para sobrescrever os estados especiais dos componentes, **você precisa aumentar
 .Button {
   color: black;
 }
-.Button:disabled { /* Increase the specificity */
+.Button:disabled { /* Aumenta a especificidade */
   color: white;
 }
 ```
@@ -100,7 +100,7 @@ Para sobrescrever os estados especiais dos componentes, **você precisa aumentar
 .MenuItem {
   color: black;
 }
-.MenuItem.selected { /* Increase the specificity */
+.MenuItem.selected { /* Aumenta a especificidade */
   color: blue;
 }
 ```
@@ -133,7 +133,7 @@ Em vez de fornecer valores para a propriedade `classes` da API, você pode utili
 .MenuItem {
   color: black;
 }
-.MenuItem.Mui-selected { /* Increase the specificity */
+.MenuItem.Mui-selected { /* Aumenta a especificidade */
   color: blue;
 }
 ```
@@ -235,7 +235,7 @@ As demonstrações desta seção abordam como alterar o tamanho da fonte do bot�
 
 ### Variáveis de tema
 
-You can adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
+Você pode ajustar [as variáveis de configuração do tema](/customization/theming/#theme-configuration-variables).
 
 ```jsx
 const theme = createMuiTheme({
@@ -251,7 +251,7 @@ const theme = createMuiTheme({
 
 ### Sobrescrita do CSS Global
 
-Você também pode customizar todas as instâncias de um componente com CSS. Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable this. É muito semelhante a como você customizaria o Bootstrap.
+Você também pode customizar todas as instâncias de um componente com CSS. Componentes expõe [nomes de classe globais](/styles/advanced/#with-material-ui-core) para habilitar isso. É muito semelhante a como você customizaria o Bootstrap.
 
 ```jsx
 const GlobalCss = withStyles({

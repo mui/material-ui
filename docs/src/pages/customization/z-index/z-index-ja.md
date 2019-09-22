@@ -7,6 +7,7 @@
 [これらの値](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/zIndex.js)は、競合を理想的に回避するのに十分な高さと固有性を持つ任意の数から始まります。
 
 - mobile stepper: 1000
+- speed dial: 1050
 - app bar: 1100
 - drawer: 1200
 - modal: 1300
