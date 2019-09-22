@@ -50,6 +50,8 @@ Continuous sliders allow users to select a value along a subjective range.
 
 ## Accessibility
 
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
+
 The component handles most of the work necessary to make it accessible.
 However, you need to make sure that:
 

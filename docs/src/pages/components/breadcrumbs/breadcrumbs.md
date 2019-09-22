@@ -32,7 +32,13 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
+## Integration with react-router
+
+{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js"}}
+
 ## Accessibility
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#breadcrumb)
 
 Be sure to add a `aria-label` description on the `Breadcrumbs` component.
 
@@ -41,7 +47,3 @@ The accessibility of this component relies on:
 - The set of links is structured using an ordered list (`<ol>` element).
 - To prevent screen reader announcement of the visual separators between links, they are hidden with `aria-hidden`.
 - A nav element labeled with `aria-label` identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it is easy to locate.
-
-## Integration with react-router
-
-{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js"}}

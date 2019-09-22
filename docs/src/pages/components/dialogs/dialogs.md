@@ -102,9 +102,13 @@ Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the ac
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## Accessibility
+## Draggable dialog
 
-Follow the [Modal accessibility section](/components/modal/#accessibility).
+You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable).
+To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component.
+This will make the entire dialog draggable.
+
+{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## Scrolling long content
 
@@ -117,14 +121,6 @@ Try the demo below to see what we mean:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
-## Draggable dialog
+## Accessibility
 
-You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable).
-To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component.
-This will make the entire dialog draggable.
-
-{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
-
-## Performance
-
-Follow the [Modal performance section](/components/modal/#performance).
+Follow the [Modal accessibility section](/components/modal/#accessibility).
