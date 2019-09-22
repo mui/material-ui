@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Showcase from "docs/src/modules/components/Showcase"
-import TextField from "@material-ui/core/TextField";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import VisibilityIcon from "@material-ui/icons/Visibility";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ErrorIcon from "@material-ui/icons/Error";
+import Showcase from 'docs/src/modules/components/Showcase';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ErrorIcon from '@material-ui/icons/Error';
 
 function TextFieldDemo(props) {
   const { variant, options } = props;
-  const [text, setText] = React.useState("");
-  const showLI = options.indexOf("Leading Icon") !== -1;
-  const showTI = options.indexOf("Trailing Icon") !== -1;
+  const [text, setText] = React.useState('');
+  const showLI = options.indexOf('Leading Icon') !== -1;
+  const showTI = options.indexOf('Trailing Icon') !== -1;
 
   const handleTextChange = e => {
     setText(e.target.value);
@@ -28,7 +28,7 @@ function TextFieldDemo(props) {
     </InputAdornment>
   );
 
-  if (options.indexOf("Error Text") !== -1) {
+  if (options.indexOf('Error Text') !== -1) {
     endAdornment = (
       <InputAdornment position="end">
         <ErrorIcon color="error" />
@@ -38,10 +38,10 @@ function TextFieldDemo(props) {
 
   let helperText = null;
 
-  if (options.indexOf("Helper Text") !== -1) {
-    helperText = "Helper Text";
-  } else if (options.indexOf("Error Text") !== -1) {
-    helperText = "Error Text";
+  if (options.indexOf('Helper Text') !== -1) {
+    helperText = 'Helper Text';
+  } else if (options.indexOf('Error Text') !== -1) {
+    helperText = 'Error Text';
   }
 
   return (
@@ -52,11 +52,11 @@ function TextFieldDemo(props) {
       onChange={handleTextChange}
       InputProps={{
         startAdornment: showLI ? startAdornment : null,
-        endAdornment: showTI ? endAdornment : null
+        endAdornment: showTI ? endAdornment : null,
       }}
       key={`${showLI}${showTI}`}
       helperText={helperText}
-      error={options.indexOf("Error Text") !== -1}
+      error={options.indexOf('Error Text') !== -1}
     />
   );
 }
@@ -67,28 +67,24 @@ TextFieldDemo.propTypes = {
 };
 
 export default function TextFieldShowcase() {
-  const variants = ["Filled", "Outlined", "Standard"];
+  const variants = ['Filled', 'Outlined', 'Standard'];
   const [selectedOptions, setOptions] = React.useState([]);
-  const [selectedVariant, setVariant] = React.useState("Filled");
+  const [selectedVariant, setVariant] = React.useState('Filled');
   const options = [
     {
-      title: "Options",
+      title: 'Options',
       options: [
-        { name: "Character Counter", disabled: true },
-        { name: "Leading Icon" },
-        { name: "Trailing Icon" }
-      ]
+        { name: 'Character Counter', disabled: true },
+        { name: 'Leading Icon' },
+        { name: 'Trailing Icon' },
+      ],
     },
     {
-      title: "Assistive Text",
+      title: 'Assistive Text',
       exclusive: true,
-      options: [
-        { name: "None" },
-        { name: "Helper Text" },
-        { name: "Error Text" }
-      ],
-      defaultValue: "None"
-    }
+      options: [{ name: 'None' }, { name: 'Helper Text' }, { name: 'Error Text' }],
+      defaultValue: 'None',
+    },
   ];
 
   return (
@@ -100,7 +96,7 @@ export default function TextFieldShowcase() {
       onOptionChange={setOptions}
       selectedOptions={selectedOptions}
     >
-      <TextFieldDemo variant={selectedVariant} options={selectedOptions} />
+      <TextFieldDemo selectedVariant={selectedVariant} options={selectedOptions} />
     </Showcase>
   );
 }

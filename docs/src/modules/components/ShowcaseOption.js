@@ -1,26 +1,27 @@
-import React from "react";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Radio from "@material-ui/core/Radio";
-import Checkbox from "@material-ui/core/Checkbox";
+import React from 'react';
+import PropTypes from 'prop-types';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Radio from '@material-ui/core/Radio';
+import Checkbox from '@material-ui/core/Checkbox';
 
-export default function ShowcaseOption(props) {
+function ShowcaseOption(props) {
   const {
+    defaultValue,
     exclusive = false,
-    options = [],
-    title,
-    selectedOptions = [],
     handleOptionChange,
-    defaultValue
+    options = [],
+    selectedOptions = [],
+    title,
   } = props;
 
   let render;
 
   if (exclusive) {
     const selectedValue = selectedOptions.filter(
-      option => options.map(opt => opt.name).indexOf(option) !== -1
+      option => options.map(opt => opt.name).indexOf(option) !== -1,
     )[0];
     render = (
       <RadioGroup
@@ -64,3 +65,17 @@ export default function ShowcaseOption(props) {
     </FormControl>
   );
 }
+
+ShowcaseOption.propTypes = {
+  /**
+   * Only works when exclusive={true}.
+   */
+  defaultValue: PropTypes.string,
+  exclusive: PropTypes.bool,
+  handleOptionChange: PropTypes.func,
+  options: PropTypes.array,
+  selectedOptions: PropTypes.array,
+  title: PropTypes.string,
+};
+
+export default ShowcaseOption;
