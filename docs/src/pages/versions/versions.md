@@ -45,9 +45,9 @@ In general, you can expect the following release cycle:
 
 | Date | Version | Status |
 |:-----|:--------|--------|
-| May 2018 | v1.0.0 | Done |
-| Septembre 2018 | v3.0.0 | Done |
-| May 2019 | v4.0.0 | Done |
+| May 2018 | v1.0.0 | Released |
+| Septembre 2018 | v3.0.0 | Released |
+| May 2019 | v4.0.0 | Released |
 | May 2020 | v5.0.0 | ⏳ |
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.

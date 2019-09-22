@@ -45,7 +45,7 @@ const externs = [
   'https://getbootstrap.com/',
   'https://www.amazon.com/',
   'https://materialdesignicons.com/',
-  'https://www.w3.org/'
+  'https://www.w3.org/',
 ];
 
 renderer.link = (href, title, text) => {
