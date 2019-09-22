@@ -11,6 +11,7 @@ import Drawer from "@material-ui/core/Drawer";
 import Typography from "@material-ui/core/Typography";
 import TuneIcon from "@material-ui/icons/Tune";
 import CloseIcon from "@material-ui/icons/Close";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import ShowcaseOption from "./ShowcaseOption";
 
 const useStyles = makeStyles(theme => ({
@@ -63,6 +64,7 @@ const useStyles = makeStyles(theme => ({
     flex: 1
   },
   drawerContent: {
+    width: 200,
     padding: 16,
     "& .MuiTypography-root": {
       fontSize: 14
@@ -77,7 +79,7 @@ const useStyles = makeStyles(theme => ({
 export default function Showcase(props) {
   const {
     variants = [],
-    variant,
+    variant: variantProp,
     onVariantChange,
     children,
     options = [],
@@ -107,13 +109,15 @@ export default function Showcase(props) {
     });
   };
 
+  const showOptions = useMediaQuery(theme => theme.breakpoints.up("md"));
+
   return (
     <Paper className={classes.root}>
-      <Grid container className={classes.containerWrapper}>
-        <Grid item container direction="column" className={classes.container}>
-          <Grid item container className={classes.header}>
+      <Grid container className={classes.containerWrapper} wrap="nowrap">
+        <Grid item container direction="column" className={classes.container} wrap="nowrap" >
+          <Grid item container className={classes.header} wrap="nowrap">
             <Tabs
-              value={variant}
+              value={variantProp}
               onChange={(e, value) => onVariantChange(value)}
               className={classes.tabs}
             >
@@ -121,7 +125,7 @@ export default function Showcase(props) {
                 <Tab key={variant} label={variant} value={variant} />
               ))}
             </Tabs>
-            {!drawerOpen && (
+            {showOptions && !drawerOpen && (
               <IconButton onClick={handleDrawer}>
                 <TuneIcon />
               </IconButton>
@@ -134,12 +138,13 @@ export default function Showcase(props) {
             className={classes.content}
             justify="center"
             alignItems="center"
+            wrap="nowrap"
           >
             {children}
           </Grid>
         </Grid>
-        <Grid item>
-          <Drawer
+        <Grid item wrap="nowrap">
+          {showOptions && <Drawer
             anchor="right"
             variant="permanent"
             open={drawerOpen}
@@ -171,7 +176,7 @@ export default function Showcase(props) {
                 />
               ))}
             </div>
-          </Drawer>
+          </Drawer> }
         </Grid>
       </Grid>
     </Paper>

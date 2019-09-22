@@ -19,7 +19,7 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 ## Showcase
 
-{{"demo": "pages/components/text-fields/TextFieldShowcase.js", "hideHeader": "true"}}
+{{"demo": "pages/components/text-fields/TextFieldShowcase.js"}}
 
 ## Outlined
 
