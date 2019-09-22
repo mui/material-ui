@@ -14,15 +14,11 @@ When adding new features or modifying existing, please attempt to include tests 
 
 When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab).
 
-### Branch structure
+## Branch structure
 
-All stable releases are tagged ([view tags](https://github.com/mui-org/material-ui/tags)).
-At any given time, `master` represents the latest development version of the library.
-Patches or hotfix releases are prepared on an independent branch.
+`master` branch represents development as well as release branch for the latest version of Material-UI (v4.x).
 
-#### `master` is for 4.x
-
-We will do our best to keep `master` in good shape, with tests passing at all times.
+The two other branches (`v0.x` and `v3.x`) are for legacy versions of Material-UI.
 
 ### How to increase the chance of being accepted?
 
@@ -84,11 +80,6 @@ To update the component API documentation (auto generated from component PropTyp
 ```sh
 yarn docs:api
 ```
-
-### Building locally
-
-To use the provided build scripts with yarn you have to install `yarn@^1.9.0`.
-Depending on the package you want to build just run `yarn workspace @material-ui/PACKAGE build`.
 
 ### Coding style
 
@@ -154,34 +145,6 @@ of the TS demo to `docs/scripts/formattedTSDemos.js`. Otherwise our CI will fail
 
 If you are already familiar with TypeScript you can simply write the demo in TypeScript.
 `yarn docs:typescript:formatted` will transpile it down to JavaScript.
-
-## How do I use my local distribution of material-ui in any project?
-
-Sometimes it is good to test your changes in a real world scenario, in order to do that you can install your local distribution of Material-UI in any project with [yarn link](https://yarnpkg.com/lang/en/docs/cli/link/).
-
-First, you have to build your local distribution of Material-UI:
-
-```shell
-# From the root folder of the material-ui project
-cd packages/material-ui
-yarn build
-```
-
-Then, you create a link to your local distribution:
-
-```shell
-cd build
-yarn link
-```
-
-Next, you link your local distribution of Material-UI to any project you want to try your changes:
-
-```shell
-# From the root folder of any project
-yarn link "@material-ui/core"
-```
-
-Now, every time you import `material-ui` in your project, it is going to use your local distribution.
 
 ## Translations
 
