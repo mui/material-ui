@@ -130,7 +130,7 @@
     "typescript-to-proptypes": "^1.3.0",
     "vrtest": "^0.2.0",
     "webpack": "^4.40.2",
-    "webpack-bundle-analyzer": "^3.0.0",
+    "webpack-bundle-analyzer": "^3.5.1",
     "webpack-cli": "^3.3.7",
     "yarn-deduplicate": "^1.1.1"
   },
