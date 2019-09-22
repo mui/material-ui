@@ -52,7 +52,7 @@
     "jss-plugin-global": "10.0.0-alpha.24",
     "jss-plugin-nested": "10.0.0-alpha.24",
     "jss-plugin-props-sort": "10.0.0-alpha.24",
-    "jss-plugin-rule-value-function": "10.0.0-alpha.24",
+    "jss-plugin-rule-value-function": "10.0.0-alpha.25",
     "jss-plugin-vendor-prefixer": "10.0.0-alpha.24",
     "prop-types": "^15.7.2"
   },
