@@ -8,7 +8,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ErrorIcon from '@material-ui/icons/Error';
 
 function TextFieldDemo(props) {
-  const { variant, options } = props;
+  const { selectedVariant, options } = props;
   const [text, setText] = React.useState('');
   const showLI = options.indexOf('Leading Icon') !== -1;
   const showTI = options.indexOf('Trailing Icon') !== -1;
@@ -47,7 +47,7 @@ function TextFieldDemo(props) {
   return (
     <TextField
       label="Label"
-      variant={variant.toLowerCase()}
+      variant={selectedVariant.toLowerCase()}
       value={text}
       onChange={handleTextChange}
       InputProps={{
@@ -63,7 +63,7 @@ function TextFieldDemo(props) {
 
 TextFieldDemo.propTypes = {
   options: PropTypes.array,
-  variant: PropTypes.string,
+  selectedVariant: PropTypes.string,
 };
 
 export default function TextFieldShowcase() {
