@@ -37,7 +37,7 @@ export const styles = {
 
 const Menu = React.forwardRef(function Menu(props, ref) {
   const {
-    autoFocus: autoFocusProp,
+    autoFocus = true,
     children,
     classes,
     disableAutoFocusItem = false,
@@ -53,13 +53,12 @@ const Menu = React.forwardRef(function Menu(props, ref) {
   } = props;
   const theme = useTheme();
 
-  const autoFocus = (autoFocusProp !== undefined ? autoFocusProp : !disableAutoFocusItem) && open;
+  const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
 
   const menuListActionsRef = React.useRef(null);
-  const firstValidItemRef = React.useRef(null);
-  const firstSelectedItemRef = React.useRef(null);
+  const contentAnchorRef = React.useRef(null);
 
-  const getContentAnchorEl = () => firstSelectedItemRef.current || firstValidItemRef.current;
+  const getContentAnchorEl = () => contentAnchorRef.current;
 
   const handleEntering = (element, isAppearing) => {
     if (menuListActionsRef.current) {
@@ -81,13 +80,20 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     }
   };
 
-  let firstValidElementIndex = null;
-  let firstSelectedIndex = null;
-
-  const items = React.Children.map(children, (child, index) => {
+  /**
+   * the index of the item should receive focus
+   * in a `variant="selectedMenu"` it's the first `selected` item
+   * otherwise it's the very first item.
+   */
+  let activeItemIndex = -1;
+  // since we inject focus related props into children we have to do a lookahead
+  // to check if there is a `selected` item. We're looking for the last `selected`
+  // item and use the first valid item as a fallback
+  React.Children.map(children, (child, index) => {
     if (!React.isValidElement(child)) {
-      return null;
+      return;
     }
+
     if (process.env.NODE_ENV !== 'production') {
       if (child.type === React.Fragment) {
         console.error(
@@ -98,42 +104,36 @@ const Menu = React.forwardRef(function Menu(props, ref) {
         );
       }
     }
-    if (firstValidElementIndex === null) {
-      firstValidElementIndex = index;
+
+    if (!child.props.disabled) {
+      if (variant === 'selectedMenu' && child.props.selected) {
+        activeItemIndex = index;
+      } else if (activeItemIndex === -1) {
+        activeItemIndex = index;
+      }
     }
-    let newChildProps = null;
-    if (
-      variant === 'selectedMenu' &&
-      firstSelectedIndex === null &&
-      child.props.selected &&
-      !child.props.disabled
-    ) {
-      firstSelectedIndex = index;
-      newChildProps = {};
-      if (autoFocus) {
+  });
+
+  const items = React.Children.map(children, (child, index) => {
+    if (index === activeItemIndex) {
+      const newChildProps = {};
+      if (autoFocusItem) {
         newChildProps.autoFocus = true;
       }
-      if (child.props.tabIndex === undefined) {
+      if (child.props.tabIndex === undefined && variant === 'selectedMenu') {
         newChildProps.tabIndex = 0;
       }
       newChildProps.ref = instance => {
         // #StrictMode ready
-        firstSelectedItemRef.current = ReactDOM.findDOMNode(instance);
+        contentAnchorRef.current = ReactDOM.findDOMNode(instance);
         setRef(child.ref, instance);
       };
-    } else if (index === firstValidElementIndex) {
-      newChildProps = {
-        ref: instance => {
-          // #StrictMode ready
-          firstValidItemRef.current = ReactDOM.findDOMNode(instance);
-          setRef(child.ref, instance);
-        },
-      };
+
+      if (newChildProps !== null) {
+        return React.cloneElement(child, newChildProps);
+      }
     }
 
-    if (newChildProps !== null) {
-      return React.cloneElement(child, newChildProps);
-    }
     return child;
   });
 
@@ -161,7 +161,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
         data-mui-test="Menu"
         onKeyDown={handleListKeyDown}
         actions={menuListActionsRef}
-        autoFocus={autoFocus && firstSelectedIndex === null}
+        autoFocus={autoFocus && (activeItemIndex === -1 || disableAutoFocusItem)}
         {...MenuListProps}
         className={clsx(classes.list, MenuListProps.className)}
       >
@@ -177,7 +177,10 @@ Menu.propTypes = {
    */
   anchorEl: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   /**
-   * If `true` (default), the menu list (possibly a particular item depending on the menu variant) will receive focus on open.
+   * If `true` (Default) will focus the `[role="menu"]` if no focusable child is found. Disabled
+   * children are not focusable. If you set this prop to `false` focus will be placed
+   * on the parent modal container. This has severe accessibility implications
+   * and should only be considered if you manage focus otherwise.
    */
   autoFocus: PropTypes.bool,
   /**
@@ -190,8 +193,10 @@ Menu.propTypes = {
    */
   classes: PropTypes.object.isRequired,
   /**
-   * Same as `autoFocus=false`.
-   * @deprecated Use `autoFocus` instead.
+   * When opening the menu will not focus the active item but the `[role="menu"]`
+   * unless `autoFocus` is also set to `false`. Not using the default means not
+   * following WAI-ARIA authoring practices. Please be considerate about possible
+   * accessibility implications.
    */
   disableAutoFocusItem: PropTypes.bool,
   /**

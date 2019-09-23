@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { cleanup, createClientRender, within } from 'test/utils/createClientRender';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -51,18 +51,18 @@ describe('<NestedMenu> integration', () => {
     expect(queryAllByRole('menu')).to.have.length(0);
   });
 
-  it('should focus the list as nothing has been selected', () => {
+  it('should focus the first item of the first menu when nothing has been selected', () => {
     const { getByRole } = render(<NestedMenu firstMenuOpen />);
 
     expect(getByRole('menu')).to.have.id('first-menu');
-    expect(getByRole('menu')).to.be.focused;
+    expect(within(getByRole('menu')).getAllByRole('menuitem')[0]).to.be.focused;
   });
 
-  it('should focus the list of second menu', () => {
+  it('should focus the first item of the second menu when nothing has been selected', () => {
     const { getByRole } = render(<NestedMenu secondMenuOpen />);
 
     expect(getByRole('menu')).to.have.id('second-menu');
-    expect(getByRole('menu')).to.be.focused;
+    expect(within(getByRole('menu')).getAllByRole('menuitem')[0]).to.be.focused;
   });
 
   it('should open the first menu after it was closed', () => {
@@ -72,7 +72,7 @@ describe('<NestedMenu> integration', () => {
     setProps({ firstMenuOpen: true });
 
     expect(getByRole('menu')).to.have.id('first-menu');
-    expect(getByRole('menu')).to.be.focused;
+    expect(within(getByRole('menu')).getAllByRole('menuitem')[0]).to.be.focused;
   });
 
   it('should be able to open second menu again', () => {
@@ -82,6 +82,6 @@ describe('<NestedMenu> integration', () => {
     setProps({ secondMenuOpen: true });
 
     expect(getByRole('menu')).to.have.id('second-menu');
-    expect(getByRole('menu')).to.be.focused;
+    expect(within(getByRole('menu')).getAllByRole('menuitem')[0]).to.be.focused;
   });
 });
