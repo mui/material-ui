@@ -58,8 +58,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
     disableDiscovery = false,
     disableSwipeToOpen = disableSwipeToOpenDefault,
     hideBackdrop,
-    hysteresis = 0.55,
-    minFlingVelocity = 400,
+    hysteresis = 0.52,
+    minFlingVelocity = 450,
     ModalProps: { BackdropProps, ...ModalPropsProp } = {},
     onClose,
     onOpen,
@@ -178,7 +178,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       if (Math.abs(swipeInstance.current.velocity) > minFlingVelocity) {
         // Calculate transition duration to match swipe speed
         calculatedDurationRef.current =
-          Math.abs((maxTranslate - currentTranslate) / swipeInstance.current.velocity) * 1000;
+          Math.abs((maxTranslate - currentTranslate) / swipeInstance.current.velocity) * 1000 + 100;
       }
 
       if (openRef.current) {
