@@ -133,7 +133,11 @@ Please read the [changelog](https://github.com/mui-org/material-ui/releases).
 
 ## Roadmap
 
-The future plans and high priority features and enhancements can be found in the [ROADMAP.md](https://material-ui.com/discover-more/roadmap/) file.
+The future plans and high priority features and enhancements can be found in the [roadmap](https://material-ui.com/discover-more/roadmap/) file.
+
+## Governance
+
+Material-UI is an open source project that depends on contributions from the community. How we govern ourselves, how decisions are made, and how someone could engage with the project is described in the [governance](https://material-ui.com/discover-more/governance/).
 
 ## Thanks
 
