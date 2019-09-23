@@ -112,8 +112,10 @@ export const styles = theme => ({
     boxShadow: theme.shadows[2],
     '&:hover': {
       backgroundColor: theme.palette.grey.A100,
+      boxShadow: theme.shadows[4],
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
+        boxShadow: theme.shadows[2],
         backgroundColor: theme.palette.grey[300],
       },
       '&$disabled': {
