@@ -161,7 +161,7 @@ export interface StyleOptions<PropKey, Theme extends object> {
 }
 export function style<PropKey extends string, Theme extends object>(
   options: StyleOptions<PropKey, Theme>,
-): StyleFunction<{ [K in PropKey]: unknown } & { theme: Theme }>;
+): StyleFunction<{ [K in PropKey]?: unknown } & { theme: Theme }>;
 
 // typography.js
 export const fontFamily: SimpleStyleFunction<'fontFamily'>;
