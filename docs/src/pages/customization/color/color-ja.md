@@ -49,7 +49,7 @@ const color = HUE[SHADE];
 
 {{"demo": "pages/customization/color/ColorTool.js", "hideHeader": true}}
 
-カラーサンプルに示されている出力は、[`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme)関数([`MuiThemeProvider`](/customization/theming/#theme-provider)で使用される) に直接貼り付けることができます。
+The output shown in the color sample can be pasted directly into a [`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) function (to be used with [`ThemeProvider`](/customization/theming/#theme-provider)):
 
 ```jsx
 import { createMuiTheme } from '@material-ui/core/styles';

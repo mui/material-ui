@@ -2,11 +2,14 @@
 
 <p class="description">A carefully curated list of libraries that are worth having a look at.</p>
 
-因为 Material-UI 能够解决的问题范围有限，我们尽量会与其他库好好合作。 Feel free to submit a pull request to add another project; it will be accepted if it is suitable.
+Because the scope of problems Material-UI solves is bound, we try to play nicely with other libraries. Feel free to submit a pull request to add another project; it will be accepted if it is suitable.
 
 ## 设计资源
 
-- Material-UI 的[Figma UI 包](https://material.5ly.co/)。
+- **Sketch**: [Material Theme Editor](https://material.io/resources/theme-editor/) for Material Design made by Google.
+- **Figma**: [Figma UI Kit](https://material.5ly.co/) for Material-UI made by Fively Team.
+
+You didn't find the design assets your team is looking for? 请告诉我们吧！
 
 ## Images and illustrations
 
@@ -34,6 +37,16 @@ This is a collection of third-party projects that extend Material-UI.
 ### Notifications
 
 - [notistack](https://github.com/iamhosseindhv/notistack): Makes it easy to display snackbars (so you don't have to deal with open/close state of them).
+
+### Upload
+
+- [material-ui-dropzone](https://github.com/Yuvaleros/material-ui-dropzone): Built on top of react-dropzone.
+
+### Forms（表单）
+
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with formik.
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
+- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui)：一组配合 Final Form 和 Material UI 的封装组件。
 
 ### Carousel
 

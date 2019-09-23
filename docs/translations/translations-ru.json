@@ -2,8 +2,8 @@
   "homeQuickWord": "Несколько слов от наших спонсоров:",
   "helpToTranslate": "Помогите нам с переводом",
   "editWebsiteColors": "Редактировать цветовую гамму сайта",
-  "toggleTheme": "Toggle light / dark theme",
-  "toggleRTL": "Toggle right-to-left / left-to-right",
+  "toggleTheme": "Toggle light/dark theme",
+  "toggleRTL": "Toggle right-to-left/left-to-right",
   "github": "GitHub репозиторий",
   "strapline": "React компоненты для быстрой и легкой веб-разработки. Создайте свой собственный дизайн или начните с Material Design.",
   "getStarted": "Начать",
@@ -216,7 +216,7 @@
     "/components/textarea-autosize": "Textarea Autosize",
     "/components/rating": "Рейтинг",
     "/components/skeleton": "Skeleton",
-    "/components/tree-view": "Tree View",
+    "/components/tree-view": "Иерархическое представление",
     "/customization/density": "Density"
   }
 }

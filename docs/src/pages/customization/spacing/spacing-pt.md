@@ -46,13 +46,13 @@ theme.spacing(2); // = 8
 
 ## Aridade múltipla
 
-O auxiliar ` theme.spacing()` aceita até 4 argumentos. You can use the arguments to reduce the boilerplate. Instead of doing:
+O auxiliar ` theme.spacing()` aceita até 4 argumentos. Você pode usar os argumentos para reduzir o trabalho. Em vez de fazer:
 
 ```js
 padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'
 ```
 
-you can do:
+você pode fazer:
 
 ```js
 padding: theme.spacing(1, 2), // '8px 16px'

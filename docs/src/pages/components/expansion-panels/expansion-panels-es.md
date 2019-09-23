@@ -11,17 +11,13 @@ Un [panel de expansión](https://material.io/archive/guidelines/components/expan
 
 > **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
 
-## Accesibilidad
-
-Para óptima accesibilidad recomendamos establecer `id` y `aria-controls` en `ExpansionPanelSummary`. El `ExpansionPanel` derivará los necesarios `aria-labelledby` y `id` para la región de contenido del panel.
-
-## Panel de expansión simple
+## Simple Expansion Panel
 
 {{"demo": "pages/components/expansion-panels/SimpleExpansionPanel.js"}}
 
-## Acordeón controlado
+## Controlled Accordion
 
-Extiende el comportamiento por defecto del panel para crear un acordeón con el componente `ExpansionPanel`.
+Extend the default panel behavior to create an accordion with the `ExpansionPanel` component.
 
 {{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js"}}
 
@@ -31,12 +27,24 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}
 
-## Rendimiento
+## Performance
 
-The content of ExpansionPanels is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`: `<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />`. As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
+The content of ExpansionPanels is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
 
-## Cabecera secundaria y columnas
+```jsx
+<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />
+```
 
-Múltiples columnas pueden ser usadas para estructurar el contenido, y un texto de ayuda puede ser agregado al panel para asistir al usuario.
+As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
+
+## Secondary heading and Columns
+
+Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
 
 {{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}
+
+## Accesibilidad
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
+
+For optimal accessibility we recommend setting `id` and `aria-controls` on the `ExpansionPanelSummary`. The `ExpansionPanel` will derive the necessary `aria-labelledby` and `id` for the content region of the panel.

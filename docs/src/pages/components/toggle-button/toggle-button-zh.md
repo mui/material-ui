@@ -29,7 +29,7 @@ The `ToggleButtonGroup` will control the selected state of its child buttons whe
 
 {{"demo": "pages/components/toggle-button/CustomizedDividers.js"}}
 
-## 可及性
+## 可访问性
 
 ToggleButtonGroup has `role="group"`. You should provide an accessible label with `arial-label="label"`, `aria-labelledby="id"` or `<label>`.
 

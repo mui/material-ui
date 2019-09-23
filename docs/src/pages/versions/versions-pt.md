@@ -16,7 +16,7 @@ Aqui pode encontrar a versão em desenvolvimento e sua documentação. Poderá u
 
 ## Estratégia de controle de versão
 
-Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around Material-UI to thrive.
+A estabilidade garante que componentes e bibliotecas reutilizáveis, tutoriais, ferramentas e práticas aprendidas não se tornem obsoletos inesperadamente. A estabilidade é essencial para que o ecossistema em torno da Material-UI prospere.
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
@@ -28,43 +28,44 @@ Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Os número
 
 ## Frequência de atualização
 
-A regular schedule of releases helps you plan and coordinate your updates with the continuing evolution of Material-UI.
+Um cronograma regular de lançamentos ajuda você a planejar e coordenar suas atualizações de acordo com a evolução contínua do Material-UI.
 
 Em geral, você pode esperar o seguinte ciclo de lançamento:
 
-- Um lançamento **principal** ocorre a cada 6-12 meses.
+- A **major** release every 12 months.
 - 1-3 ** menor ** lançamentos para cada versão principal.
 - Uma versão **patch** a cada semana (ou imediatamente para um bugfix urgente).
 
 ## Cronograma de lançamento
 
-> Isenção de responsabilidade: As datas são oferecidas como orientação geral e podem ser ajustadas por nós quando necessário para garantir a entrega de um código de alta qualidade.
-
-| Data           | Versão                     |
-|:-------------- |:-------------------------- |
-| Maio de 2018 ✅ | `@material-ui/core` v1.0.0 |
-| Maio de 2019 ✅ | `@material-ui/core` v4.0.0 |
-| 2020? ⏳        | `@material-ui/core` v5.0.0 |
+| Data             | Versão | Situação |
+|:---------------- |:------ | -------- |
+| Maio de 2018     | v1.0.0 | Liberada |
+| Setembro de 2018 | v3.0.0 | Liberada |
+| Maio de 2019     | v4.0.0 | Liberada |
+| Q3 2020          | v5.0.0 | ⏳        |
 
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
+> ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.
+
 ## Política de suporte
 
-Find details on the [supported versions](/getting-started/support/#supported-versions).
+Encontre detalhes nas [versões suportadas](/getting-started/support/#supported-versions).
 
 ## Práticas de substituição
 
 Às vezes, **"alterações significativas"**, tais como a remoção do suporte para selecionar APIs e recursos, são necessários.
 
-To make these transitions as easy as possible:
+Para tornar essas transições o mais fácil possível:
 
 - The number of breaking changes is minimized, and migration tools provided when possible.
 - The deprecation policy described below is followed, so that you have time to update your apps to the latest APIs and best practices.
 
-### Deprecation policy
+### Política de descontinuação
 
-- Deprecated features iare announced n the changelog, and when possible, with warnings at runtime.
+- Deprecated features are announced in the changelog, and when possible, with warnings at runtime.
 - When a deprecation is announced, recommended update path is provided.
 - Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
 - Peer dependency updates (React) that require changes to your apps are only made in a major release.

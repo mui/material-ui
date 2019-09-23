@@ -15,13 +15,15 @@ title: Media queries in React for responsive design
 
 ## 単純なメディアクエリ
 
-フックの最初の引数にメディアクエリを提供する必要があります。 メディアクエリ文字列は、有効なCSSメディアクエリ（例： `'print'`によって指定できます。
+フックの最初の引数にメディアクエリを提供する必要があります。 The media query string can by any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference).
 
 {{"demo": "pages/components/use-media-query/SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
+⚠️ You can't use `'print'` per browsers limitation, e.g. [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
+
 ## Material-UIのブレークポイントヘルパーの使用
 
-Material-UIの [ブレークポイントヘルパー](/customization/breakpoints/) を次のように使用できます。
+You can use Material-UI's [breakpoint helpers](/customization/breakpoints/) as follows:
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';
@@ -37,7 +39,7 @@ function MyComponent() {
 
 {{"demo": "pages/components/use-media-query/ThemeHelper.js"}}
 
-または、コールバック関数を使用して、最初の引数としてテーマを受け入れることもできます。
+Alternatively, you can use a callback function, accepting the theme as a first argument:
 
 ```jsx
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -49,11 +51,11 @@ function MyComponent() {
 }
 ```
 
-既定の**テーマのサポートはありません**。親テーマプロバイダに挿入する必要があります。
+⚠️ There is **no default** theme support, you have to inject it in a parent theme provider.
 
 ## JavaScriptシンタックスを使用する
 
-JavaScriptオブジェクトからメディアクエリ文字列を生成するには、 [json2mq](https://github.com/akiran/json2mq) を使えます。
+You can use [json2mq](https://github.com/akiran/json2mq) to generate media query string from a JavaScript object.
 
 {{"demo": "pages/components/use-media-query/JavaScriptMedia.js", "defaultCodeOpen": true}}
 
@@ -83,7 +85,7 @@ describe('MyTests', () => {
 
 ## サーバーサイドレンダリング
 
-> ⚠️ Server-side rendering and client-side media queries are fundamentally at odds. Be aware of the tradeoff. The support can only be partial.
+> ⚠️サーバー側のレンダリングとクライアント側のメディアクエリは基本的に対立しています。 Be aware of the tradeoff. The support can only be partial.
 
 Try relying on client-side CSS media queries first. For instance, you could use:
 
@@ -106,7 +108,7 @@ Finally, you need to provide an implementation of [matchMedia](https://developer
 import ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
@@ -167,8 +169,8 @@ import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export default function SimpleMediaQuery() {
-  const matches = useMediaQuery('print');
+  const matches = useMediaQuery('(min-width:600px)');
 
-  return <span>{`@media (min-width:600px) matches: ${matches}`}</span>;
+  return <span>{`(min-width:600px) matches: ${matches}`}</span>;
 }
 ```

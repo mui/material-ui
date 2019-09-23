@@ -32,22 +32,23 @@ A regular schedule of releases helps you plan and coordinate your updates with t
 
 En general, espera el siguiente ciclo de lanzamiento:
 
-- A **major** release every 6-12 months.
+- A **major** release every 12 months.
 - 1-3 lanzamiento ** menor ** por cada lanzamiento mayor.
 - Un Lanzamiento de **parche** cada semana (en cualquier momento para la corrección de errores urgente).
 
 ## Calendario de lanzamientos
 
-> Descargo de responsabilidad: Las fechas se ofrecen como orientación general y podriamos ajustarlas cuando sea necesario para garantizar la entrega de un código de alta calidad.
-
-| Fecha      | Versión                    |
-|:---------- |:-------------------------- |
-| May 2018 ✅ | `@material-ui/core` v1.0.0 |
-| May 2019 ✅ | `@material-ui/core` v4.0.0 |
-| 2020? ⏳    | `@material-ui/core` v5.0.0 |
+| Fecha          | Versión | Status   |
+|:-------------- |:------- | -------- |
+| May 2018       | v1.0.0  | Released |
+| Septembre 2018 | v3.0.0  | Released |
+| May 2019       | v4.0.0  | Released |
+| Q3 2020        | v5.0.0  | ⏳        |
 
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
+
+> ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.
 
 ## Política de soporte
 
@@ -64,7 +65,7 @@ To make these transitions as easy as possible:
 
 ### Deprecation policy
 
-- Deprecated features iare announced n the changelog, and when possible, with warnings at runtime.
+- Deprecated features are announced in the changelog, and when possible, with warnings at runtime.
 - When a deprecation is announced, recommended update path is provided.
 - Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
 - Peer dependency updates (React) that require changes to your apps are only made in a major release.

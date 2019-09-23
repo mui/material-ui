@@ -32,22 +32,23 @@ Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Material-U
 
 一般的に、次のリリースサイクルが期待できます。
 
-- **メジャー** 6〜12か月ごとにリリースします。
+- A **major** release every 12 months.
 - 1-3 **マイナー**各メジャーリリースのリリース。
 - **パッチ**毎週リリース（緊急のバグ修正のためいつでも）。
 
 ## リリーススケジュール
 
-> 免責事項：日付は一般的なガイダンスとして提供されており、必要に応じて高品質のコードの配信を確保するために調整される場合があります。
-
-| Date     | Version                    |
-|:-------- |:-------------------------- |
-| 2018年5月✅ | `@material-ui/core` v1.0.0 |
-| 2019年5月✅ | `@material-ui/core` v4.0.0 |
-| 2020? ⏳  | `@material-ui/core` v5.0.0 |
+| Date           | Version | Status   |
+|:-------------- |:------- | -------- |
+| May 2018       | v1.0.0  | Released |
+| Septembre 2018 | v3.0.0  | Released |
+| May 2019       | v4.0.0  | Released |
+| Q3 2020        | v5.0.0  | ⏳        |
 
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
+
+> ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.
 
 ## サポートポリシー
 
@@ -64,7 +65,7 @@ Find details on the [supported versions](/getting-started/support/#supported-ver
 
 ### 廃止方針
 
-- 廃止された機能は、変更ログでアナウンスします、可能であれば実行時に警告が表示されます。
+- Deprecated features are announced in the changelog, and when possible, with warnings at runtime.
 - 廃止が発表された時、推奨されるアップデートの仕方が提供されます。
 - 廃止猶予期間中の安定したAPIの既存使用をサポートしているため、その期間中もコードは機能し続けます。
 - アプリの変更を必要とするピア依存の更新（React）は、メジャーリリースでのみ行われます。

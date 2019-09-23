@@ -7,12 +7,12 @@ components: ClickAwayListener
 
 <p class="description">Detect if a click event happened outside of an element. It listens for clicks that occur somewhere in the document.</p>
 
-- 📦 [1.4 kB gzipped](/size-snapshot).
+- 📦 [1.5 kB gzipped](/size-snapshot).
 
-## Einfaches Dropdown-Menü
+## Beispiel
 
 Wenn Sie beispielsweise ein Dropdown-Menü ausblenden müssen, wenn Personen auf eine andere Stelle auf Ihrer Seite klicken:
 
 {{"demo": "pages/components/click-away-listener/ClickAway.js"}}
 
-Sie können eine erweiterte Demo in dem [Menü Dokumentation Abschnitt](/components/menus/#menulist-composition) finden.
+Notice that the component only accepts one child element. You can find a more advanced demo on the [menu documentation section](/components/menus/#menulist-composition).

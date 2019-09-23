@@ -15,13 +15,15 @@ Algumas das principais características:
 
 ## Consulta de mídia simples
 
-Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. A string de consulta de mídia pode ser feita por qualquer consulta de mídia CSS válida, por exemplo, `'print'`.
+Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. The media query string can by any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference).
 
 {{"demo": "pages/components/use-media-query/SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
+⚠️ You can't use `'print'` per browsers limitation, e.g. [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
+
 ## Usando helpers de ponto de quebra do Material-UI
 
-Você pode usar os [helpers de ponto de quebra](/customization/breakpoints/) do Material-UI da seguinte maneira:
+You can use Material-UI's [breakpoint helpers](/customization/breakpoints/) as follows:
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';
@@ -37,7 +39,7 @@ function MyComponent() {
 
 {{"demo": "pages/components/use-media-query/ThemeHelper.js"}}
 
-Como alternativa, você pode usar uma função de retorno de chamada, aceitando o tema como um primeiro argumento:
+Alternatively, you can use a callback function, accepting the theme as a first argument:
 
 ```jsx
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -49,19 +51,19 @@ function MyComponent() {
 }
 ```
 
-⚠️ Não há **nenhum suporte de tema padrão**, você precisa injetá-lo em um provedor de temas.
+⚠️ There is **no default** theme support, you have to inject it in a parent theme provider.
 
 ## Usando a sintaxe JavaScript
 
-Você pode usar [json2mq](https://github.com/akiran/json2mq) para gerar uma string de consulta de mídia a partir de um objeto JavaScript.
+You can use [json2mq](https://github.com/akiran/json2mq) to generate media query string from a JavaScript object.
 
 {{"demo": "pages/components/use-media-query/JavaScriptMedia.js", "defaultCodeOpen": true}}
 
 ## Testando
 
-Você precisa de uma implementação de [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) em seu ambiente de teste.
+You need an implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) in your test environment.
 
-Por exemplo, [jsdom não suporta ainda](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html). Você deve usar um polyfill para isso. É recomendável usar [css-mediaquery](https://github.com/ericf/css-mediaquery) para emular.
+For instance, [jsdom doesn't support it yet](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html). You should polyfill it. Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it is recommended.
 
 ```js
 import mediaQuery from 'css-mediaquery';
@@ -85,20 +87,20 @@ describe('MeusTestes', () => {
 
 > ⚠️ Renderização do lado servidor e consultas de mídia do lado cliente são fundamentalmente conflitantes. Esteja ciente da escolha. O suporte só pode ser parcial.
 
-Tente confiar em consultas de mídia CSS do lado do cliente primeiro. Por exemplo, você poderia usar:
+Try relying on client-side CSS media queries first. For instance, you could use:
 
 - [`<Box display>`](/system/display/#hiding-elements)
 - [`themes.breakpoints.up(x)`](/customization/breakpoints/#css-media-queries)
 - ou [`<Hidden implementation="css">`](/components/hidden/#css)
 
-Se nenhuma das alternativas acima for uma opção, você poderá continuar lendo esta seção da documentação.
+If none of the above alternatives are an option, you can proceed reading this section of the documentation.
 
-Primeiro, você precisa adivinhar as características da solicitação do cliente, no servidor. Você tem a opção entre usar:
+First, you need to guess the characteristics of the client request, from the server. You have the choice between using:
 
 - **User agent**. Analise a string do user agent do cliente para extrair informações. É recomendável usar [ua-parser-js](https://github.com/faisalman/ua-parser-js) para analisar o user agent.
 - **Client hints**. Leia as dicas que o cliente está enviando para o servidor. Esteja ciente de que esse recurso [não é suportado em qualquer lugar](https://caniuse.com/#search=client%20hint).
 
-Por fim, você precisa fornecer uma implementação de [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) para o `useMediaQuery` com as características adivinhadas anteriormente. É recomendável usar [css-mediaquery](https://github.com/ericf/css-mediaquery) para emular o matchMedia.
+Finally, you need to provide an implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) to the `useMediaQuery` with the previously guessed characteristics. Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate matchMedia is recommended.
 
 Por exemplo:
 
@@ -106,13 +108,13 @@ Por exemplo:
 import ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
   const ssrMatchMedia = query => ({
     matches: mediaQuery.match(query, {
-      // O CSS estimado pelo navegador.
+      // The estimated CSS width of the browser.
       width: deviceType === 'mobile' ? 0 : 1024,
     }),
   });
@@ -138,7 +140,7 @@ function handleRender(req, res) {
 
 ## Migrando de `withWidth()`
 
-O componente de ordem superior `withWidth()` injeta a largura da tela da página. Você pode reproduzir o mesmo comportamento com o hook `useWidth`:
+The `withWidth()` higher-order component injects the screen width of the page. You can reproduce the same behavior with a `useWidth` hook:
 
 {{"demo": "pages/components/use-media-query/UseWidth.js"}}
 
@@ -154,11 +156,11 @@ O componente de ordem superior `withWidth()` injeta a largura da tela da página
   - `options.noSsr` (*Boolean* [opcional]): Padrão é `false`. Para realizar a reconciliação de renderização do lado do servidor, ele precisa renderizar duas vezes. Uma primeira vez sem nada e uma segunda vez com os filhos. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esse sinalizador para `true` se você **não estiver fazendo a renderização do lado do servidor**.
   - `options.ssrMatchMedia` (*Function* [opcional]) Você pode fornecer sua própria implementação de *matchMedia*. Isso é especialmente útil para [suporte de renderização no lado do servidor](#server-side-rendering).
 
-Nota: Você pode alterar as opções padrão usando [`default props`](/customization/globals/#default-props), este recurso pertence ao tema através da chave `MuiUseMediaQuery`.
+Note: You can change the default options using the [`default props`](/customization/globals/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 
 #### Retornos
 
-`matches`: Matches é `true` se o documento coincidir com a consulta de mídia, e `false` quando isso não ocorrer.
+`matches`: Matches is `true` if the document currently matches the media query and `false` when it does not.
 
 #### Exemplos
 
@@ -167,8 +169,8 @@ import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export default function SimpleMediaQuery() {
-  const matches = useMediaQuery('print');
+  const matches = useMediaQuery('(min-width:600px)');
 
-  return <span>{`@media (min-width:600px) matches: ${matches}`}</span>;
+  return <span>{`(min-width:600px) matches: ${matches}`}</span>;
 }
 ```

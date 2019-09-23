@@ -58,7 +58,7 @@ The performance implications of nesting the `ThemeProvider` component are linked
 
 ### `createMuiTheme(options) => theme`
 
-Generate a theme base on the options received.
+Générer un thème basé sur les options reçues.
 
 #### Paramètres
 

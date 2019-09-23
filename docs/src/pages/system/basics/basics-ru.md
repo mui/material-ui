@@ -53,7 +53,7 @@ This Box component now supports new [spacing properties](/system/spacing/#api) a
 
 The component can be styled providing any valid CSS values.
 
-### Theming
+### Темизация
 
 But most of the time, you want to rely on a theme's values to increase the UI consistency. It's preferable to have a predetermined set of padding and color values. Import the theme provider of your styling solution.
 
