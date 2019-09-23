@@ -8,8 +8,6 @@ import MenuItem from '../MenuItem';
 import Input from '../Input';
 import Select from './Select';
 import { spy, stub, useFakeTimers } from 'sinon';
-import OutlinedInput from '../OutlinedInput';
-import FilledInput from '../FilledInput';
 
 describe('<Select />', () => {
   let classes;
@@ -65,7 +63,149 @@ describe('<Select />', () => {
     expect(container.querySelector('input')).to.have.property('value', '10');
   });
 
+  specify('the trigger is in tab order', () => {
+    const { getByRole } = render(
+      <Select open value="">
+        <MenuItem value="">None</MenuItem>
+      </Select>,
+    );
+
+    expect(getByRole('button')).to.have.property('tabIndex', 0);
+  });
+
+  it('should accept null child', () => {
+    render(
+      <Select open value={10}>
+        {null}
+        <MenuItem value={10}>Ten</MenuItem>
+      </Select>,
+    );
+  });
+
+  it('should have an input with [type="hidden"] by default', () => {
+    const { container } = render(
+      <Select value="10">
+        <MenuItem value="10">Ten</MenuItem>
+      </Select>,
+    );
+
+    expect(container.querySelector('input')).to.have.property('type', 'hidden');
+  });
+
+  // TODO: leaky abstraction
+  it('should ignore onBlur the first time the menu is open', () => {
+    // mousedown calls focus while click opens moving the focus to an item
+    // this means the trigger is blurred immediately
+    const handleBlur = spy();
+    const { getByRole, getAllByRole } = render(
+      <Select onBlur={handleBlur} value="">
+        <MenuItem value="">none</MenuItem>
+        <MenuItem value={10}>Ten</MenuItem>
+      </Select>,
+    );
+
+    const trigger = getByRole('button');
+    // simulating user click
+    fireEvent.mouseDown(trigger);
+    trigger.focus();
+    trigger.click();
+
+    expect(handleBlur.callCount).to.equal(0);
+    expect(getByRole('listbox')).to.be.ok;
+
+    act(() => {
+      getAllByRole('option')[0].click();
+    });
+    trigger.blur();
+
+    expect(handleBlur.callCount).to.equal(1);
+  });
+
+  it('options should have a data-value attribute', () => {
+    const { getAllByRole } = render(
+      <Select open value={10}>
+        <MenuItem value={10}>Ten</MenuItem>
+        <MenuItem value={20}>Twenty</MenuItem>
+      </Select>,
+      { baseElement: document.body },
+    );
+
+    expect(getAllByRole('option')[0]).to.have.attribute('data-value', '10');
+    expect(getAllByRole('option')[1]).to.have.attribute('data-value', '20');
+  });
+
+  [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach(key => {
+    it(`should open menu when pressed ${key} key on select`, () => {
+      const { getByRole } = render(
+        <Select value="">
+          <MenuItem value="">none</MenuItem>
+        </Select>,
+      );
+      getByRole('button').focus();
+
+      fireEvent.keyDown(document.activeElement, { key });
+
+      expect(getByRole('listbox')).to.be.ok;
+    });
+  });
+
+  it('should pass "name" as part of the event.target for onBlur', () => {
+    const handleBlur = stub().callsFake(event => event.target.name);
+    const { getByRole } = render(
+      <Select onBlur={handleBlur} name="blur-testing" value="">
+        <MenuItem value="">none</MenuItem>
+      </Select>,
+    );
+    getByRole('button').focus();
+
+    getByRole('button').blur();
+
+    expect(handleBlur.callCount).to.equal(1);
+    expect(handleBlur.firstCall.returnValue).to.equal('blur-testing');
+  });
+
+  it('should call onClose when the backdrop is clicked', () => {
+    const handleClose = spy();
+    const { getByTestId } = render(
+      <Select
+        MenuProps={{ BackdropProps: { 'data-testid': 'backdrop' } }}
+        onClose={handleClose}
+        open
+        value=""
+      >
+        <MenuItem value="">none</MenuItem>
+      </Select>,
+    );
+
+    act(() => {
+      getByTestId('backdrop').click();
+    });
+
+    expect(handleClose.callCount).to.equal(1);
+  });
+
+  it('should focus list if no selection', () => {
+    const { getByRole } = render(<Select value="" autoFocus />);
+
+    act(() => {
+      getByRole('button').click();
+    });
+
+    // TODO not matching WAI-ARIA authoring practices. It should focus the first (or selected) item.
+    expect(getByRole('listbox')).to.be.focused;
+  });
+
   describe('prop: onChange', () => {
+    let clock;
+
+    before(() => {
+      clock = useFakeTimers();
+    });
+
+    after(() => {
+      clock.restore();
+    });
+
     it('should get selected element from arguments', () => {
       const onChangeHandler = spy();
       const { getAllByRole, getByRole } = render(
@@ -78,37 +218,58 @@ describe('<Select />', () => {
       getByRole('button').click();
       getAllByRole('option')[1].click();
 
+      expect(onChangeHandler.calledOnce).to.be.true;
       const selected = onChangeHandler.args[0][1];
       expect(React.isValidElement(selected)).to.equal(true);
     });
   });
 
-  describe('prop: variant', () => {
-    it('Should render a OutlinedInput', () => {
-      const wrapper = mount(
-        <Select
-          value=""
-          variant="outlined"
-          inputProps={{ name: 'age', id: 'outlined-age-simple' }}
-        />,
-      );
-      expect(wrapper.find(OutlinedInput)).to.exist;
-      expect(wrapper.find(OutlinedInput).props()).to.have.property('labelWidth', 0);
-    });
-
-    it('Should render a FilledInput', () => {
-      const wrapper = mount(
-        <Select
-          value=""
-          variant="filled"
-          inputProps={{ name: 'age', id: 'outlined-age-simple' }}
-        />,
-      );
-      expect(wrapper.find(FilledInput)).to.exist;
-    });
-  });
-
   describe('prop: value', () => {
+    it('should select the option based on the number value', () => {
+      const { getAllByRole } = render(
+        <Select open value={20}>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+        { baseElement: document.body },
+      );
+
+      expect(getAllByRole('option')[0]).not.to.have.attribute('aria-selected', 'true');
+      expect(getAllByRole('option')[1]).to.have.attribute('aria-selected', 'true');
+      expect(getAllByRole('option')[2]).not.to.have.attribute('aria-selected', 'true');
+    });
+
+    it('should select the option based on the string value', () => {
+      const { getAllByRole } = render(
+        <Select open value="20">
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+        { baseElement: document.body },
+      );
+
+      expect(getAllByRole('option')[0]).not.to.have.attribute('aria-selected', 'true');
+      expect(getAllByRole('option')[1]).to.have.attribute('aria-selected', 'true');
+      expect(getAllByRole('option')[2]).not.to.have.attribute('aria-selected', 'true');
+    });
+
+    it('should select only the option that matches the object', () => {
+      const obj1 = { id: 1 };
+      const obj2 = { id: 2 };
+      const { getAllByRole } = render(
+        <Select open value={obj1}>
+          <MenuItem value={obj1}>1</MenuItem>
+          <MenuItem value={obj2}>2</MenuItem>
+        </Select>,
+        { baseElement: document.body },
+      );
+
+      expect(getAllByRole('option')[0]).to.have.attribute('aria-selected', 'true');
+      expect(getAllByRole('option')[1]).not.to.have.attribute('aria-selected', 'true');
+    });
+
     it('should be able to use an object', () => {
       const value = {};
       const { getByRole } = render(
@@ -179,6 +340,7 @@ describe('<Select />', () => {
       const { getByRole } = render(<Select open value="none" />);
 
       getByRole('listbox').focus();
+
       expect(getByRole('listbox')).to.be.focused;
     });
 
@@ -204,95 +366,6 @@ describe('<Select />', () => {
       );
 
       expect(getAllByRole('option')[1]).to.have.attribute('aria-selected', 'true');
-    });
-  });
-
-  specify('the trigger is in tab order', () => {
-    const { getByRole } = render(
-      <Select open value="">
-        <MenuItem value="">None</MenuItem>
-      </Select>,
-    );
-
-    expect(getByRole('button')).to.have.property('tabIndex', 0);
-  });
-
-  it('options should have a data-value attribute', () => {
-    const { getAllByRole } = render(
-      <Select open value={10}>
-        <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-      </Select>,
-      { baseElement: document.body },
-    );
-
-    expect(getAllByRole('option')[0]).to.have.attribute('data-value', '10');
-    expect(getAllByRole('option')[1]).to.have.attribute('data-value', '20');
-  });
-
-  it('should accept null child', () => {
-    render(
-      <Select open value={10}>
-        {null}
-        <MenuItem value={10}>Ten</MenuItem>
-      </Select>,
-    );
-  });
-
-  it('should have a input[type="hidden"] by default', () => {
-    const { container } = render(
-      <Select value="10">
-        <MenuItem value="10">Ten</MenuItem>
-      </Select>,
-    );
-
-    expect(container.querySelector('input')).to.have.property('type', 'hidden');
-  });
-
-  describe('prop: value', () => {
-    it('should select the option based on the number value', () => {
-      const { getAllByRole } = render(
-        <Select open value={20}>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>,
-        { baseElement: document.body },
-      );
-
-      expect(getAllByRole('option')[0]).not.to.have.attribute('aria-selected', 'true');
-      expect(getAllByRole('option')[1]).to.have.attribute('aria-selected', 'true');
-      expect(getAllByRole('option')[2]).not.to.have.attribute('aria-selected', 'true');
-    });
-
-    it('should select the option based on the string value', () => {
-      const { getAllByRole } = render(
-        <Select open value="20">
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>,
-        { baseElement: document.body },
-      );
-
-      expect(getAllByRole('option')[0]).not.to.have.attribute('aria-selected', 'true');
-      expect(getAllByRole('option')[1]).to.have.attribute('aria-selected', 'true');
-      expect(getAllByRole('option')[2]).not.to.have.attribute('aria-selected', 'true');
-    });
-
-    it('should select only the option that matches the object', () => {
-      const obj1 = { id: 1 };
-      const obj2 = { id: 2 };
-      const { getAllByRole } = render(
-        <Select open value={obj1}>
-          <MenuItem value={obj1}>1</MenuItem>
-          <MenuItem value={obj2}>2</MenuItem>
-        </Select>,
-        { baseElement: document.body },
-      );
-
-      expect(getAllByRole('option')[0]).to.have.attribute('aria-selected', 'true');
-      expect(getAllByRole('option')[1]).not.to.have.attribute('aria-selected', 'true');
     });
   });
 
@@ -327,12 +400,7 @@ describe('<Select />', () => {
     it('should apply additional props to the Menu component', () => {
       const onEntered = spy();
       const { getByRole } = render(
-        <Select
-          classes={{}}
-          IconComponent="div"
-          MenuProps={{ onEntered, transitionDuration: 100 }}
-          value="10"
-        >
+        <Select MenuProps={{ onEntered, transitionDuration: 100 }} value="10">
           <MenuItem value="10">Ten</MenuItem>
         </Select>,
       );
@@ -354,8 +422,6 @@ describe('<Select />', () => {
     it('should be able to override PaperProps minWidth', () => {
       const { getByTestId } = render(
         <Select
-          classes={{}}
-          IconComponent="div"
           MenuProps={{ PaperProps: { 'data-testid': 'paper', style: { minWidth: 12 } } }}
           open
           value="10"
@@ -371,12 +437,7 @@ describe('<Select />', () => {
   describe('prop: SelectDisplayProps', () => {
     it('should apply additional props to trigger element', () => {
       const { getByRole } = render(
-        <Select
-          classes={{}}
-          IconComponent="div"
-          SelectDisplayProps={{ 'data-test': 'SelectDisplay' }}
-          value="10"
-        >
+        <Select SelectDisplayProps={{ 'data-test': 'SelectDisplay' }} value="10">
           <MenuItem value="10">Ten</MenuItem>
         </Select>,
       );
@@ -413,124 +474,6 @@ describe('<Select />', () => {
     });
   });
 
-  describe('prop: onChange', () => {
-    let clock;
-
-    before(() => {
-      clock = useFakeTimers();
-    });
-
-    after(() => {
-      clock.restore();
-    });
-
-    it('should call onChange when clicking an item', () => {
-      const handleChange = stub().callsFake(event => event.target.value);
-      const { getByRole, getAllByRole, queryByRole } = render(
-        <Select
-          classes={{}}
-          IconComponent="div"
-          MenuProps={{ transitionDuration: 0 }}
-          onChange={handleChange}
-          value=""
-        >
-          <MenuItem value="">none</MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-        </Select>,
-      );
-
-      fireEvent.click(getByRole('button'));
-      fireEvent.click(getAllByRole('option')[1]);
-      act(() => {
-        clock.tick(0);
-      });
-
-      expect(handleChange.calledOnce).to.be.true;
-      expect(handleChange.firstCall.returnValue).to.equal(10);
-      expect(queryByRole('listbox')).to.be.null;
-    });
-
-    it('should ignore onBlur the first time the menu is open', () => {
-      // mousedown calls focus while click opens moving the focus to an item
-      // this means the trigger is blurred immediately
-      const handleBlur = spy();
-      const { getByRole, getAllByRole } = render(
-        <Select onBlur={handleBlur} value="">
-          <MenuItem value="">none</MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-        </Select>,
-      );
-
-      const trigger = getByRole('button');
-      // simulating user click
-      fireEvent.mouseDown(trigger);
-      trigger.focus();
-      trigger.click();
-
-      expect(handleBlur.callCount).to.equal(0);
-      expect(getByRole('listbox')).to.be.ok;
-
-      act(() => {
-        getAllByRole('option')[0].click();
-      });
-      trigger.blur();
-
-      expect(handleBlur.callCount).to.equal(1);
-    });
-
-    it('should pass "name" as part of the event.target for onBlur', () => {
-      const handleBlur = stub().callsFake(event => event.target.name);
-      const { getByRole } = render(
-        <Select classes={{}} IconComponent="div" onBlur={handleBlur} name="blur-testing" value="">
-          <MenuItem value="">none</MenuItem>
-        </Select>,
-      );
-      getByRole('button').focus();
-
-      getByRole('button').blur();
-
-      expect(handleBlur.callCount).to.equal(1);
-      expect(handleBlur.firstCall.returnValue).to.equal('blur-testing');
-    });
-
-    [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach(key => {
-      it(`'should open menu when pressed ${key} key on select`, () => {
-        const { getByRole } = render(
-          <Select value="">
-            <MenuItem value="">none</MenuItem>
-          </Select>,
-        );
-        getByRole('button').focus();
-
-        fireEvent.keyDown(document.activeElement, { key });
-
-        expect(getByRole('listbox')).to.be.ok;
-      });
-    });
-
-    it('should call onClose when the backdrop is clicked', () => {
-      const handleClose = spy();
-      const { getByTestId } = render(
-        <Select
-          classes={{}}
-          IconComponent="div"
-          MenuProps={{ BackdropProps: { 'data-testid': 'backdrop' } }}
-          onClose={handleClose}
-          open
-          value=""
-        >
-          <MenuItem value="">none</MenuItem>
-        </Select>,
-      );
-
-      act(() => {
-        getByTestId('backdrop').click();
-      });
-
-      expect(handleClose.callCount).to.equal(1);
-    });
-  });
-
   describe('prop: open (controlled)', () => {
     let clock;
 
@@ -548,8 +491,6 @@ describe('<Select />', () => {
 
         return (
           <Select
-            classes={{}}
-            IconComponent="div"
             MenuProps={{ transitionDuration: 0 }}
             open={open}
             onClose={() => setOpen(false)}
@@ -596,12 +537,7 @@ describe('<Select />', () => {
   describe('prop: autoWidth', () => {
     it('should take the trigger width into account by default', () => {
       const { getByRole, getByTestId } = render(
-        <Select
-          classes={{}}
-          IconComponent="div"
-          MenuProps={{ PaperProps: { 'data-testid': 'paper' } }}
-          value=""
-        >
+        <Select MenuProps={{ PaperProps: { 'data-testid': 'paper' } }} value="">
           <MenuItem>Only</MenuItem>
         </Select>,
       );
@@ -616,13 +552,7 @@ describe('<Select />', () => {
 
     it('should not take the triger width into account when autoWidth is true', () => {
       const { getByRole, getByTestId } = render(
-        <Select
-          autoWidth
-          classes={{}}
-          IconComponent="div"
-          MenuProps={{ PaperProps: { 'data-testid': 'paper' } }}
-          value=""
-        >
+        <Select autoWidth MenuProps={{ PaperProps: { 'data-testid': 'paper' } }} value="">
           <MenuItem>Only</MenuItem>
         </Select>,
       );
@@ -734,14 +664,7 @@ describe('<Select />', () => {
           };
 
           return (
-            <Select
-              classes={{}}
-              IconComponent="div"
-              multiple
-              name="age"
-              onChange={handleChange}
-              value={values}
-            >
+            <Select multiple name="age" onChange={handleChange} value={values}>
               <MenuItem value={10}>Ten</MenuItem>
               <MenuItem value={20}>Ten</MenuItem>
               <MenuItem value={30}>Ten</MenuItem>
@@ -772,19 +695,6 @@ describe('<Select />', () => {
         expect(onChange.callCount).to.equal(2);
         expect(onChange.secondCall.returnValue).to.deep.equal({ name: 'age', value: [30, 10] });
       });
-    });
-  });
-
-  describe('no selection', () => {
-    it('should focus list if no selection', () => {
-      const { getByRole } = render(<Select value="" autoFocus />);
-
-      act(() => {
-        getByRole('button').click();
-      });
-
-      // TODO not matching WAI-ARIA authoring practices. It should focus the first (or selected) item.
-      expect(getByRole('listbox')).to.be.focused;
     });
   });
 
