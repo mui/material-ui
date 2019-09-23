@@ -373,6 +373,12 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   }
 
   const handleAutoFill = () => {
+    // The change event is correcty triggered when the input is focused.
+    // There is no need to detect autofill.
+    if (fcs.focused) {
+      return;
+    }
+
     // Provide a fake value as Chrome might not let you access it for security reasons.
     checkDirty({ value: 'x' });
   };
