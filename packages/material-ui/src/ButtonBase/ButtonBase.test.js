@@ -396,6 +396,13 @@ describe('<ButtonBase />', () => {
   });
 
   describe('focusRipple', () => {
+    before(function beforeHook() {
+      if (/Version\/10\.\d+\.\d+ Safari/.test(window.navigator.userAgent)) {
+        // browserstack quirk
+        this.skip();
+      }
+    });
+
     it('should pulsate the ripple when focusVisible', () => {
       const { getByRole } = render(
         <ButtonBase
