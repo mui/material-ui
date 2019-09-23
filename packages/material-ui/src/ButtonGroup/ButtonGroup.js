@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { capitalize } from '../utils/helpers';
+import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import '../Button'; // So we don't have any override priority issue.
 
@@ -34,13 +35,23 @@ export const styles = theme => ({
   /* Styles applied to the children if variant="text". */
   groupedText: {
     '&:not(:last-child)': {
-      borderRight: `1px solid currentColor`,
+      borderRight: `1px solid ${
+        theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+      }`,
     },
   },
   /* Styles applied to the children if variant="outlined" & color="primary". */
-  groupedTextPrimary: {},
+  groupedTextPrimary: {
+    '&:not(:last-child)': {
+      borderColor: fade(theme.palette.primary.main, 0.5),
+    },
+  },
   /* Styles applied to the children if variant="outlined" & color="secondary". */
-  groupedTextSecondary: {},
+  groupedTextSecondary: {
+    '&:not(:last-child)': {
+      borderColor: fade(theme.palette.secondary.main, 0.5),
+    },
+  },
   /* Styles applied to the children if variant="outlined". */
   groupedOutlined: {
     '&:not(:first-child)': {
