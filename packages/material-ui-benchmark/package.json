@@ -31,7 +31,7 @@
     "emotion-server": "^10.0.17",
     "nodemod": "^1.5.19",
     "react": "^16.3.0",
-    "react-jss": "^10.0.0-alpha.25",
+    "react-jss": "^10.0.0",
     "styled-system": "^5.1.1"
   }
 }
