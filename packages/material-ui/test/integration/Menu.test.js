@@ -229,7 +229,6 @@ describe('<Menu /> integration', () => {
       const { getAllByRole } = render(
         <OpenMenu variant="selectedMenu">
           <MenuItem />
-          getByRole
           <MenuItem selected tabIndex={2} />
           <MenuItem />
         </OpenMenu>,
