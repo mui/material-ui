@@ -68,7 +68,7 @@ Optionally, you can set the icon color using one of the theme color properties: 
 
 ### Libraries of SVG icons
 
-There are lots of projects out there that provide SVG icons. For example [https://materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 icons. For the wanted icon, check the SVG `path` they provide. Put it as the child of `SvgIcon` component and you will get React component for that icon. 
+There are many projects that provide SVG icons. For example [https://materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 icons. For the wanted icon, copy the SVG `path` they provide, and use it as the child of the `SvgIcon` component. 
 
 NOTE: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) project already wrapped each of these SVG icons with `SvgIcon` component and provides them as React components, so you don't have to do it yourself.
 
