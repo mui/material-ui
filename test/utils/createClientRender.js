@@ -39,11 +39,6 @@ const customQueries = { queryDescriptionOf, getDescriptionOf, findDescriptionOf 
 function clientRender(element, options = {}) {
   const { baseElement, strict = false, wrapper: InnerWrapper = React.Fragment } = options;
 
-  // TODO: remove before merge
-  if (options.disableUnnmount !== undefined) {
-    throw new Error('not implemented anymore');
-  }
-
   const Mode = strict ? React.StrictMode : React.Fragment;
   function Wrapper({ children }) {
     return (
