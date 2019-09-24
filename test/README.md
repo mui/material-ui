@@ -28,7 +28,7 @@ It prepares the test suite and returns a function with the same interface as
 [`render` from `@testing-library/react`](https://testing-library.com/docs/react-testing-library/api#render).
 
 For new test please use `expect` from the BDD testing approach. Prefer to use as expressive [matchers](https://www.chaijs.com/api/bdd/) as possible. This keeps
-the tests and more importantly the message if they fail as expressive as possible.
+the tests readable and more importantly the message if they fail as descriptive as possible.
 
 In addition to the core matchers from `chai` we also use matchers from [`chai-dom`](https://github.com/nathanboktae/chai-dom#readme).
 
