@@ -37,7 +37,7 @@ export type ListItemClassKey =
   | 'selected';
 
 export type ListItemProps<D extends React.ElementType = 'li', P = {}> = OverrideProps<  
-  ListItemTypeMap<{ button?: false }, 'li'> & ListItemTypeMap<{ button?: true }, 'div'>,
+  ListItemTypeMap<{ button?: false }, 'li'> | ListItemTypeMap<{ button?: true }, 'div'>,
   D
 >;
 
