@@ -1984,10 +1984,10 @@
     pretty-format "^24.8.0"
     wait-for-expect "^1.3.0"
 
-"@testing-library/react@^9.1.3":
-  version "9.1.3"
-  resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-9.1.3.tgz#3fb495227322ea36cd817532441dabb552e0d6ce"
-  integrity sha512-qFVo6TsEbpEFpOmKjIxMHDujOKVdvVpcYFcUfJeWBqMO8eja5pN9SZnt6W6AzW3a1MRvRfw3X0Fhx3eXnBJxjA==
+"@testing-library/react@npm:@eps1lon/testing-library-react@^9.1.4":
+  version "9.1.4"
+  resolved "https://registry.yarnpkg.com/@eps1lon/testing-library-react/-/testing-library-react-9.1.4.tgz#3800c8d2039ed523e7e72db3aeece5d73ceefa97"
+  integrity sha512-4tWqyo81+UuXmVYb0LytEkfzEFR6IRKcA59VID0t7YGucR6q/tVfPeZ4xqAY+6lNoCvadmFsTpriByTc4DFO/g==
   dependencies:
     "@babel/runtime" "^7.5.5"
     "@testing-library/dom" "^6.0.0"
