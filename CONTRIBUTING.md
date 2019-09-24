@@ -11,7 +11,7 @@ The two other branches (`v0.x` and `v3.x`) are for legacy versions of Material-U
 ## Getting started
 
 1. Fork the Material-UI repository on GitHub
-2. Clone your fork to your local machine and add upstream remote
+2. Clone the fork to your local machine and add upstream remote
 ```sh
 git clone git@github.com:<yourname>/material-ui.git
 cd material-ui
@@ -24,8 +24,9 @@ git checkout master
 git pull upstream master
 ```
 3. Create a branch `git checkout -b my-topic-branch`
-4. Make your changes, lint, then push to to GitHub with `git push --set-upstream origin my-topic-branch`.
-5. Visit GitHub and make your pull request.
+4. Make changes to the code, using proper [coding-style](#coding-style)
+5. Commit and push to your fork with `git push --set-upstream origin my-topic-branch`
+6. Visit GitHub and make your pull request.
 
 ## Submitting a pull request
 
