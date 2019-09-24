@@ -8,26 +8,6 @@ If you're reading this, you're awesome! Thank you for helping us make this proje
 
 The two other branches (`v0.x` and `v3.x`) are for legacy versions of Material-UI.
 
-## Getting started
-
-1. Fork the Material-UI repository on GitHub
-2. Clone the fork to your local machine and add upstream remote
-```sh
-git clone git@github.com:<yourname>/material-ui.git
-cd material-ui
-git remote add upstream git@github.com:mui-org/material-ui.git
-```
-
-NOTE: If you already have a cloned Material-UI repository make sure to synchronize it with the upstream one:
-```sh
-git checkout master
-git pull upstream master
-```
-3. Create a branch `git checkout -b my-topic-branch`
-4. Make changes to the code, using proper [coding-style](#coding-style)
-5. Commit and push to your fork with `git push --set-upstream origin my-topic-branch`
-6. Visit GitHub and make your pull request.
-
 ## Submitting a pull request
 
 Material-UI is a community project, so pull requests are always welcome, but, before working on a large change, it is best to open an issue first to discuss it with the maintainers.
@@ -60,6 +40,26 @@ We will only accept a pull request for which all tests pass. Make sure the follo
 - If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes.
   See [About TypeScript demos](#about-typescript-demos).
 - The PR title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/#imperative) for a great explanation)
+
+## Getting started
+
+1. Fork the Material-UI repository on GitHub
+2. Clone the fork to your local machine and add upstream remote
+```sh
+git clone git@github.com:<yourname>/material-ui.git
+cd material-ui
+git remote add upstream git@github.com:mui-org/material-ui.git
+```
+
+NOTE: If you already have a cloned Material-UI repository make sure to synchronize it with the upstream one:
+```sh
+git checkout master
+git pull upstream master
+```
+3. Create a branch `git checkout -b my-topic-branch`
+4. Make changes. If you change the code make sure to use proper [coding-style](#coding-style)
+5. Commit and push to your fork with `git push --set-upstream origin my-topic-branch`
+6. Visit GitHub and make your pull request.
 
 ### Testing the documentation site
 
