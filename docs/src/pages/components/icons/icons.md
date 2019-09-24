@@ -49,7 +49,7 @@ Each icon also has a "theme": `Filled` (default), `Outlined`, `Rounded`, `Two to
 - `Two tone` "theme" is exposed as `@material-ui/icons/DeleteTwoTone`,
 - `Sharp` "theme" is exposed as `@material-ui/icons/DeleteSharp`.
 
-NOTE: Material Design specification names the icons using "C style" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). Also note the three exceptions to the naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
+NOTE: The Material Design specification names the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
