@@ -2,6 +2,31 @@
 
 If you're reading this, you're awesome! Thank you for helping us make this project great and being a part of the Material-UI community. Here are a few guidelines that will help you along the way.
 
+## Branch structure
+
+`master` branch represents development as well as release branch for the latest version of Material-UI (v4.x).
+
+The two other branches (`v0.x` and `v3.x`) are for legacy versions of Material-UI.
+
+## Getting started
+
+1. Fork the Material-UI repository on GitHub
+2. Clone your fork to your local machine and add upstream remote
+```sh
+git clone git@github.com:<yourname>/material-ui.git
+cd material-ui
+git remote add upstream git@github.com:mui-org/material-ui.git
+```
+
+NOTE: If you already have a cloned Material-UI repository make sure to synchronize it with the upstream one:
+```sh
+git checkout master
+git pull upstream master
+```
+3. Create a branch `git checkout -b my-topic-branch`
+4. Make your changes, lint, then push to to GitHub with `git push --set-upstream origin my-topic-branch`.
+5. Visit GitHub and make your pull request.
+
 ## Submitting a pull request
 
 Material-UI is a community project, so pull requests are always welcome, but, before working on a large change, it is best to open an issue first to discuss it with the maintainers.
@@ -13,12 +38,6 @@ As with issues, please begin the title with [ComponentName].
 When adding new features or modifying existing, please attempt to include tests to confirm the new behaviour. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/master/test/README.md).
 
 When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab).
-
-## Branch structure
-
-`master` branch represents development as well as release branch for the latest version of Material-UI (v4.x).
-
-The two other branches (`v0.x` and `v3.x`) are for legacy versions of Material-UI.
 
 ### How to increase the chance of being accepted?
 
@@ -40,25 +59,6 @@ We will only accept a pull request for which all tests pass. Make sure the follo
 - If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes.
   See [About TypeScript demos](#about-typescript-demos).
 - The PR title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/#imperative) for a great explanation)
-
-## Getting started
-
-Please create a new branch from an up to date master on your fork. (Note, urgent hotfixes should be branched off the latest stable release rather than master)
-
-1. Fork the Material-UI repository on GitHub
-2. Clone your fork to your local machine `git clone git@github.com:<yourname>/material-ui.git`
-3. Create a branch `git checkout -b my-topic-branch`
-4. Make your changes, lint, then push to to GitHub with `git push --set-upstream origin my-topic-branch`.
-5. Visit GitHub and make your pull request.
-
-If you have an existing local repository, please update it before you start, to minimise the chance of merge conflicts.
-```sh
-git remote add upstream git@github.com:mui-org/material-ui.git
-git checkout master
-git pull upstream master
-git checkout -b my-topic-branch
-yarn
-```
 
 ### Testing the documentation site
 
