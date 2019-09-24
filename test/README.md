@@ -2,19 +2,24 @@
 
 Thanks for writing tests! Here's a quick run-down on our current setup.
 
+## Getting started
+
+1. add a test to `packages/*/src/TheUnitInQuestion/TheUnitInQuestion.test.js` or `packages/*/test/`
+2. run `yarn test:watch`
+3. Implement the tested behavior
+4. Open a PR once the test passes or you want somebody to review your work
+
 ## Tools we use
 
-Please familiarise yourself with these if you plan on contributing! :+1:
-
-- [mocha](https://github.com/mochajs/mocha)
-- [@testing-library/react](https://github.com/testing-library/react)
-- [jsdom](https://github.com/tmpvar/jsdom)
-- [karma](https://github.com/karma-runner/karma)
-- [chai](https://github.com/chaijs/chai)
-- [sinon](https://github.com/sinonjs/sinon)
-- [docker](https://github.com/docker/docker)
+- [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro)
+- [chai](https://www.chaijs.com/)
+- [sinon](https://sinonjs.org/)
+- [mocha](https://mochajs.org/)
+- [karma](https://karma-runner.github.io/latest/index.html)
+- [enzyme](https://airbnb.io/enzyme/) (old tests only)
 - [vrtest](https://github.com/nathanmarks/vrtest)
-- [enzyme](https://github.com/airbnb/enzyme) (old tests only)
+- [docker](https://docs.docker.com/)
+- [jsdom](https://github.com/jsdom/jsdom)
 
 ## Writing Tests
 
@@ -53,7 +58,7 @@ trade-off, mainly completeness vs. speed.
 
 #### Run the core mocha unit/integration test suite.
 
-To run all of the unit tests just run `yarn test:unit`
+To run all of the unit and integration tests just run `yarn test:unit`
 
 If you want to `grep` for certain tests just add `-- -g STRING_TO_GREP` and change STRING_TO_GREP.
 
