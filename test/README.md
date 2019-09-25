@@ -4,8 +4,8 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 
 ## Getting started
 
-1. add a test to `packages/*/src/TheUnitInQuestion/TheUnitInQuestion.test.js` or `packages/*/test/`
-2. run `yarn test:watch`
+1. Add a unit test to `packages/*/src/TheUnitInQuestion/TheUnitInQuestion.test.js` or an integration test `packages/*/test/`.
+2. Run `yarn test:watch`.
 3. Implement the tested behavior
 4. Open a PR once the test passes or you want somebody to review your work
 
@@ -27,27 +27,27 @@ For all unit tests, please use the return value from `test/utils/createClientRen
 It prepares the test suite and returns a function with the same interface as
 [`render` from `@testing-library/react`](https://testing-library.com/docs/react-testing-library/api#render).
 
-For new test please use `expect` from the BDD testing approach. Prefer to use as expressive [matchers](https://www.chaijs.com/api/bdd/) as possible. This keeps
-the tests readable and more importantly the message if they fail as descriptive as possible.
+For new tests please use `expect` from the BDD testing approach. Prefer to use as expressive [matchers](https://www.chaijs.com/api/bdd/) as possible. This keeps
+the tests readable, and, more importantly, the message if they fail as descriptive as possible.
 
 In addition to the core matchers from `chai` we also use matchers from [`chai-dom`](https://github.com/nathanboktae/chai-dom#readme).
 
 Deciding where to put a test is (like naming things) a hard problem:
-* when in doubt put the new test case directly in the unit test for that component e.g. `material-ui/src/Button/Button.test.js`
-* if you test interaction requiring multiple components from the library create a
-new integration test
+* When in doubt put the new test case directly in the unit test file for that component e.g. `material-ui/src/Button/Button.test.js`.
+* If you test interaction requiring multiple components from the library create a
+new integration test.
 * If you find yourself using a lot of `data-testid` attributes or you're accessing
 a lot of styles consider adding a component (that doesn't require any interaction)
 into `test/regressions/tests/` e.g. `test/regressions/tests/List/ListWithSomeStyleProp` 
 
 #### Visual regression tests
 
-We should try to use as many demos from the documentation as possible;
+We try to use as many demos from the documentation as possible;
 however, we can't replace one with the other as they address different needs.
 With the regression tests:
 
-- You might need to test a more complex situation, e.g. a stress test of the grid
-- You might need to test a simpler situation, e.g. a static progress bar
+- You might need to test a more complex situation, e.g. a stress test of the grid.
+- You might need to test a simpler situation, e.g. a static progress bar.
 
 ## Commands
 
@@ -60,7 +60,7 @@ trade-off, mainly completeness vs. speed.
 
 To run all of the unit and integration tests run `yarn test:unit`
 
-If you want to `grep` for certain tests add `-g STRING_TO_GREP` and change STRING_TO_GREP.
+If you want to `grep` for certain tests add `-g STRING_TO_GREP`.
 
 #### Watch the core mocha unit/integration test suite.
 
