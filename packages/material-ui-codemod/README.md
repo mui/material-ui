@@ -19,6 +19,26 @@ APIs.
 
 ## Included Scripts
 
+### v4.0.1 
+
+#### `fast-imports`
+
+Converts all `@material-ui/core` top level imports to direct path imports
+
+```diff
+-import Card, { CardActions, CardContent } from '@material-ui/core';
++import Card from '@material-ui/core/Card';
++import CardMedia from '@material-ui/core/CardMedia';
++import CardHeader from '@material-ui/core/CardHeader';
+```
+
+```sh
+find src -name '*.js' -print | xargs jscodeshift -t node_modules/@material-ui/codemod/lib/v4.0.1/fast-imports.js
+```
+
+Head to https://material-ui.com/guides/minimizing-bundle-size/ to understand when it's useful.
+
+
 ### v4.0.0
 
 #### `theme-spacing-api`
