@@ -512,12 +512,14 @@ describe('<Select />', () => {
       });
       // react-transition-group uses one extra commit for exit to completely remove
       // it from the DOM. but it's at least immediately inaccessible
-      expect(getByRole('listbox', { hidden: true })).to.be.ok;
+      expect(() => getByRole('listbox')).to.to.throw(
+        /Unable to find an accessible element with the role "listbox"/,
+      );
       act(() => {
         clock.tick(0);
       });
 
-      expect(queryByRole('listbox')).to.be.null;
+      expect(queryByRole('listbox', { hidden: true })).to.be.null;
     });
 
     it('should be open when initially true', () => {
