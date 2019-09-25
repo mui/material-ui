@@ -150,6 +150,15 @@ jobs:
           command: |
             DOCKER_TEST_URL=http://$(ip addr show lo | grep "inet\b" | awk '{print $2}' | cut -d/ -f1):3090 yarn test:regressions
             yarn argos
+  benchmark:
+    <<: *defaults
+    steps:
+      - checkout
+      - install_js
+      - run:
+          name: Unit tests with profiler
+          command: |
+            yarn test:unit --reporter test/ProfilerReporter.js
 workflows:
   version: 2
   pipeline:
@@ -173,6 +182,12 @@ workflows:
           requires:
             - checkout
       - test_regressions:
+          requires:
+            - test_unit
+            - test_static
+            - test_types
+            - test_browser
+      - benchmark:
           requires:
             - test_unit
             - test_static

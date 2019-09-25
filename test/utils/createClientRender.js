@@ -27,6 +27,24 @@ const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueri
 const customQueries = { queryDescriptionOf, getDescriptionOf, findDescriptionOf };
 
 /**
+ * Profiles the children if run with --reporter test/ProfilerReporter.js
+ */
+function Profiler({ children }) {
+  const { profilerId: id, profilerOnRender: handleRender } = global;
+
+  if (id === undefined) {
+    return children;
+  }
+
+  return (
+    <React.Profiler id={id} onRender={handleRender}>
+      {children}
+    </React.Profiler>
+  );
+}
+Profiler.propTypes = { children: PropTypes.node };
+
+/**
  *
  * @param {React.ReactElement} element
  * @param {object} [options]
@@ -52,7 +70,9 @@ function clientRender(element, options = {}) {
   function Wrapper({ children }) {
     return (
       <Mode>
-        <InnerWrapper>{children}</InnerWrapper>
+        <Profiler>
+          <InnerWrapper>{children}</InnerWrapper>
+        </Profiler>
       </Mode>
     );
   }
