@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { assert } from 'chai';
 import jscodeshift from 'jscodeshift';
-import transform from './import-path';
+import transform from './fast-imports';
 
 function trim(str) {
   return str ? str.replace(/^\s+|\s+$/, '') : '';
@@ -13,16 +13,16 @@ function read(fileName) {
 }
 
 describe('@material-ui/codemod', () => {
-  describe('v1.0.0', () => {
-    describe('import-path', () => {
+  describe('v4.0.1', () => {
+    describe('fast-imports', () => {
       it('convert path as needed', () => {
         const actual = transform(
-          { source: read('./import-path.test/actual.js') },
+          { source: read('./fast-imports.test/actual.js') },
           { jscodeshift: jscodeshift },
           {},
         );
 
-        const expected = read('./import-path.test/expected.js');
+        const expected = read('./fast-imports.test/expected.js');
 
         assert.strictEqual(
           trim(actual),
@@ -31,21 +31,6 @@ describe('@material-ui/codemod', () => {
         );
       });
 
-      it('should be idempotent', () => {
-        const actual = transform(
-          { source: read('./import-path.test/expected.js') },
-          { jscodeshift: jscodeshift },
-          {},
-        );
-
-        const expected = read('./import-path.test/expected.js');
-
-        assert.strictEqual(
-          trim(actual),
-          trim(expected),
-          'The transformed version should be correct',
-        );
-      });
     });
   });
 });

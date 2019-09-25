@@ -1,5 +1,3 @@
-
-
 const keepSpecifiers = ['withWidth'];
 
 export default function transformer(fileInfo, api, options) {
@@ -27,11 +25,9 @@ export default function transformer(fileInfo, api, options) {
     entryModule = entryModule[1].split('/');
     entryModule = entryModule[entryModule.length - 1];
 
-
-    if(entryModule !== 'core') {
+    if (entryModule !== 'core') {
       return;
     }
-
 
     hasModifications = true;
 
