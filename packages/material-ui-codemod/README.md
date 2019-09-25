@@ -27,9 +27,9 @@ Converts all `@material-ui/core` top level imports to direct path imports
 
 ```diff
 -import Card, { CardActions, CardContent } from '@material-ui/core';
++import CardContent from '@material-ui/core/CardContent';
++import CardActions from '@material-ui/core/CardActions';
 +import Card from '@material-ui/core/Card';
-+import CardMedia from '@material-ui/core/CardMedia';
-+import CardHeader from '@material-ui/core/CardHeader';
 ```
 
 ```sh
