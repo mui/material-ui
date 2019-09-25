@@ -20,7 +20,6 @@ const { EVENT_TEST_BEGIN, EVENT_TEST_END, EVENT_RUN_BEGIN, EVENT_RUN_END } = Moc
  *      - Move to public imports `./Button` -> `@material-ui/core/Button`
  *      - alias `@material-ui/core` to compiled lib or source depending on test environment
  * - move to CI
- * - how to integrate with karma?
  */
 class ProfilerReporter {
   constructor(runner) {

@@ -96,7 +96,31 @@ function clientRender(element, options = {}) {
 }
 
 export function createClientRender(globalOptions = {}) {
-  const { strict: globalStrict } = globalOptions;
+  const { profile = Boolean(process.env.PROFILE_TESTS), strict: globalStrict } = globalOptions;
+
+  if (profile === true) {
+    // implementation of ProfilerReporter for karma tests
+    before(() => {
+      /**
+       * @type {React.ProfilerOnRenderCallback}
+       */
+      global.profilerOnRender = (id, phase, actualDuration, baseDuration) => {
+        // eslint-disable-next-line no-console
+        console.log(id, phase.replace('mount', 'mount '), actualDuration, baseDuration);
+        //                                      ^^^^^^ rightPad to match `update` :)
+      };
+    });
+    after(() => {
+      global.profilerOnRender = undefined;
+    });
+
+    beforeEach(function setProfilerId() {
+      global.profilerId = this.currentTest.fullTitle();
+    });
+    afterEach(() => {
+      global.profilerId = undefined;
+    });
+  }
 
   return function configuredClientRender(element, options = {}) {
     const { strict = globalStrict, ...localOptions } = options;

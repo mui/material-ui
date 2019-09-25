@@ -156,9 +156,15 @@ jobs:
       - checkout
       - install_js
       - run:
-          name: Unit tests with profiler
+          name: Unit tests with profiler in jsdom
           command: |
             yarn test:unit --reporter test/ProfilerReporter.js
+      - run:
+          name: Unit tests with profiler in browser
+          environment:
+            PROFILE_TESTS: true
+          command: |
+            yarn test:karma
 workflows:
   version: 2
   pipeline:
@@ -166,7 +172,7 @@ workflows:
       - checkout:
           filters:
             branches:
-              ignore: 
+              ignore:
                 - l10n
                 - /dependabot\//
       - test_unit:

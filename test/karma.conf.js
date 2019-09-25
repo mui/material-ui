@@ -54,6 +54,7 @@ module.exports = function setKarmaConfig(config) {
         new webpack.DefinePlugin({
           'process.env': {
             NODE_ENV: JSON.stringify('test'),
+            PROFILE_TESTS: JSON.stringify(process.env.PROFILE_TESTS),
           },
         }),
       ],
