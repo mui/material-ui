@@ -4,7 +4,7 @@ import { spy, useFakeTimers } from 'sinon';
 import * as PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createMount, createRender, getClasses } from '@material-ui/core/test-utils';
-import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import Tab from '../Tab';
 import Tabs from './Tabs';
@@ -42,10 +42,6 @@ describe('<Tabs />', () => {
     classes = getClasses(<Tabs value={0} />);
     mount = createMount({ strict: true });
     serverRender = createRender();
-  });
-
-  after(() => {
-    cleanup();
   });
 
   describeConformance(<Tabs value={0} />, () => ({

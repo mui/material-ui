@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { act, cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import FormControl, { useFormControl } from '../FormControl';
 import InputAdornment from '../InputAdornment';
@@ -21,10 +21,6 @@ describe('<InputBase />', () => {
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<InputBase />);
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   describeConformance(<InputBase />, () => ({

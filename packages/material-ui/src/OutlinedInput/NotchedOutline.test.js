@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { getClasses } from '@material-ui/core/test-utils';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import NotchedOutline from './NotchedOutline';
 
@@ -16,10 +16,6 @@ describe('<NotchedOutline />', () => {
 
   before(() => {
     classes = getClasses(<NotchedOutline {...defaultProps} />);
-  });
-
-  after(() => {
-    cleanup();
   });
 
   it('should pass props', () => {

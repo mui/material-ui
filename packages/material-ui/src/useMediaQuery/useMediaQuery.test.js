@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/styles';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { act, cleanup, createClientRender } from 'test/utils/createClientRender';
+import { act, createClientRender } from 'test/utils/createClientRender';
 import { createRender } from '@material-ui/core/test-utils';
 import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
@@ -47,10 +47,6 @@ describe('useMediaQuery', () => {
   beforeEach(() => {
     testReset();
     values = spy();
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   describe('without feature', () => {

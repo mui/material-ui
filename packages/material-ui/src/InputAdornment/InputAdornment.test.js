@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 import Typography from '../Typography';
 import InputAdornment from './InputAdornment';
 import TextField from '../TextField';
@@ -18,10 +18,6 @@ describe('<InputAdornment />', () => {
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<InputAdornment position="start">foo</InputAdornment>);
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   describeConformance(<InputAdornment position="start">foo</InputAdornment>, () => ({

@@ -4,7 +4,7 @@ import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Breadcrumbs from './Breadcrumbs';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 
 describe('<Breadcrumbs />', () => {
   let mount;
@@ -18,10 +18,6 @@ describe('<Breadcrumbs />', () => {
         <span>Hello World</span>
       </Breadcrumbs>,
     );
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   describeConformance(<Breadcrumbs>Conformance?</Breadcrumbs>, () => ({

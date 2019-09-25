@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Slider from './Slider';
 
@@ -34,10 +34,6 @@ describe('<Slider />', () => {
   before(() => {
     classes = getClasses(<Slider value={0} />);
     mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    cleanup();
   });
 
   describeConformance(<Slider value={0} />, () => ({

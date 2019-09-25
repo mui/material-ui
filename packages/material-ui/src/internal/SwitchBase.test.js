@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 import SwitchBase from './SwitchBase';
 import FormControl, { useFormControl } from '../FormControl';
 import IconButton from '../IconButton';
@@ -26,10 +26,6 @@ describe('<SwitchBase />', () => {
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" />);
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   describeConformance(

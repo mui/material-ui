@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 import FormHelperText from './FormHelperText';
 import FormControl from '../FormControl';
 
@@ -14,10 +14,6 @@ describe('<FormHelperText />', () => {
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<FormHelperText />);
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   describeConformance(<FormHelperText />, () => ({

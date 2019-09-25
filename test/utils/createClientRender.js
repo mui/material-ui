@@ -8,7 +8,7 @@ import {
   createEvent,
   fireEvent as rtlFireEvent,
   queries,
-  render,
+  render as testingLibraryRender,
 } from '@testing-library/react/pure';
 
 // holes are *All* selectors which aren't necessary for id selectors
@@ -37,16 +37,7 @@ const customQueries = { queryDescriptionOf, getDescriptionOf, findDescriptionOf 
  * TODO: type return RenderResult in setProps
  */
 function clientRender(element, options = {}) {
-  const {
-    baseElement,
-    disableUnnmount = false,
-    strict = false,
-    wrapper: InnerWrapper = React.Fragment,
-  } = options;
-
-  if (!disableUnnmount) {
-    cleanup();
-  }
+  const { baseElement, strict = false, wrapper: InnerWrapper = React.Fragment } = options;
 
   const Mode = strict ? React.StrictMode : React.Fragment;
   function Wrapper({ children }) {
@@ -58,7 +49,7 @@ function clientRender(element, options = {}) {
   }
   Wrapper.propTypes = { children: PropTypes.node };
 
-  const result = render(element, {
+  const result = testingLibraryRender(element, {
     baseElement,
     queries: { ...queries, ...customQueries },
     wrapper: Wrapper,
@@ -77,6 +68,12 @@ function clientRender(element, options = {}) {
 
 export function createClientRender(globalOptions = {}) {
   const { strict: globalStrict } = globalOptions;
+
+  afterEach(() => {
+    act(() => {
+      cleanup();
+    });
+  });
 
   return function configuredClientRender(element, options = {}) {
     const { strict = globalStrict, ...localOptions } = options;
@@ -112,5 +109,10 @@ const fireEvent = Object.assign(rtlFireEvent, {
 });
 
 export * from '@testing-library/react';
-// in case someone accidentally imports `render`. we want to use a single API
-export { act, cleanup, clientRender as render, fireEvent };
+export { act, cleanup, fireEvent };
+
+export function render() {
+  throw new Error(
+    "Don't use `render` directly. Instead use the return value from `createClientRender`",
+  );
+}

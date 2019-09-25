@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { getClasses, createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { act, cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import MenuItem from '../MenuItem';
 import Input from '../Input';
@@ -18,10 +18,6 @@ describe('<Select />', () => {
     classes = getClasses(<Select />);
     // StrictModeViolation: test uses MenuItem
     mount = createMount({ strict: false });
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   describeConformance(<Select value="none" />, () => ({
