@@ -47,7 +47,7 @@ export const useStyles = makeStyles(
         height: 32,
         userSelect: 'none',
         position: 'absolute',
-        left: `calc(50% - ${size / 2}px)`,
+        left: `calc((100% - ${typeof size === 'number' ? `${size}px` : size}) / 2)`,
         display: 'inline-flex',
         justifyContent: 'center',
         alignItems: 'center',
