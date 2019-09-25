@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 import Checkbox from '../Checkbox';
 import FormControlLabel from './FormControlLabel';
 import FormControl from '../FormControl';
@@ -15,10 +15,6 @@ describe('<FormControlLabel />', () => {
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<FormControlLabel label="Pizza" control={<div />} />);
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   describeConformance(<FormControlLabel label="Pizza" control={<Checkbox />} />, () => ({

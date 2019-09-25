@@ -2,7 +2,7 @@ import React from 'react';
 import { assert, expect } from 'chai';
 import { createMount, createRender, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { act, cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Button from './Button';
 import ButtonBase from '../ButtonBase';
 
@@ -15,10 +15,6 @@ describe('<Button />', () => {
   before(() => {
     mount = createMount({ strict: false });
     classes = getClasses(<Button>Hello World</Button>);
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   describeConformance(<Button>Conformance?</Button>, () => ({

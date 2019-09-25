@@ -4,13 +4,7 @@ import PropTypes from 'prop-types';
 import { getClasses, createMount } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import {
-  act,
-  cleanup,
-  createClientRender,
-  fireEvent,
-  queries,
-} from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent, queries } from 'test/utils/createClientRender';
 import ListItemText from '../ListItemText';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
 import ListItem from './ListItem';
@@ -28,10 +22,6 @@ describe('<ListItem />', () => {
   before(() => {
     classes = getClasses(<ListItem />);
     mount = createMount({ strict: true });
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   describeConformance(<ListItem />, () => ({

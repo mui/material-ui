@@ -8,7 +8,7 @@ import describeConformance from '../test-utils/describeConformance';
 import TouchRipple from './TouchRipple';
 import ButtonBase from './ButtonBase';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { act, cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import * as PropTypes from 'prop-types';
 
 /**
@@ -52,10 +52,6 @@ describe('<ButtonBase />', () => {
     } catch (err) {
       canFireDragEvents = false;
     }
-  });
-
-  after(() => {
-    cleanup();
   });
 
   describeConformance(<ButtonBase />, () => ({

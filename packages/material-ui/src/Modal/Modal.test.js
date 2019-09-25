@@ -3,7 +3,7 @@ import { assert, expect } from 'chai';
 import { useFakeTimers, spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import { ThemeProvider } from '@material-ui/styles';
@@ -25,10 +25,6 @@ describe('<Modal />', () => {
 
   beforeEach(() => {
     document.body.setAttribute('style', savedBodyStyle);
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   after(() => {

@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Modal from '../Modal';
 import Dialog from './Dialog';
 
@@ -48,7 +48,6 @@ describe('<Dialog />', () => {
 
   afterEach(() => {
     clock.restore();
-    cleanup();
   });
 
   describeConformance(<Dialog open>foo</Dialog>, () => ({

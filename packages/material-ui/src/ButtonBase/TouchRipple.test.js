@@ -2,7 +2,7 @@ import React from 'react';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 
@@ -51,7 +51,6 @@ describe('<TouchRipple />', () => {
   });
 
   after(() => {
-    cleanup();
     mount.cleanUp();
   });
 

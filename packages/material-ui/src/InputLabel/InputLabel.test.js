@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 import FormControl from '../FormControl';
 import Input from '../Input';
 import InputLabel from './InputLabel';
@@ -17,10 +17,6 @@ describe('<InputLabel />', () => {
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<InputLabel />);
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   describeConformance(<InputLabel>Foo</InputLabel>, () => ({

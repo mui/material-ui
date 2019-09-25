@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 import OutlinedInput from './OutlinedInput';
 import InputBase from '../InputBase';
 
@@ -14,10 +14,6 @@ describe('<OutlinedInput />', () => {
   before(() => {
     classes = getClasses(<OutlinedInput />);
     mount = createMount({ strict: true });
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   describeConformance(<OutlinedInput labelWidth={0} />, () => ({
