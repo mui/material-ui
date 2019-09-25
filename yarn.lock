@@ -1973,9 +1973,9 @@
     defer-to-connect "^1.0.1"
 
 "@testing-library/dom@^6.0.0":
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-6.1.0.tgz#8d5a954158e81ecd7c994907f4ec240296ed823b"
-  integrity sha512-qivqFvnbVIH3DyArFofEU/jlOhkGIioIemOy9A9M/NQTpPyDDQmtVkAfoB18RKN581f0s/RJMRBbq9WfMIhFTw==
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-6.4.0.tgz#aaf7fceba1272516fc7c5ac0716a24f63ea6cdaa"
+  integrity sha512-uQFwl+mIH9THk9Q9qVZKBgoL/6ahVEQu9bDeOmY5yB8uc62L2Z9eYs0g7zNTdMsg4I0bOdPPMs/sNETYP5+PEw==
   dependencies:
     "@babel/runtime" "^7.5.5"
     "@sheerun/mutationobserver-shim" "^0.3.2"

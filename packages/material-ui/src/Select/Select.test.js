@@ -61,7 +61,7 @@ describe('<Select />', () => {
 
   specify('the trigger is in tab order', () => {
     const { getByRole } = render(
-      <Select open value="">
+      <Select value="">
         <MenuItem value="">None</MenuItem>
       </Select>,
     );
@@ -309,9 +309,11 @@ describe('<Select />', () => {
 
   describe('accessibility', () => {
     it('sets aria-expanded="true" when the listbox is displayed', () => {
+      // since we make the rest of the UI inaccessible when open this doesn't
+      // technically matter. This is only here in case we keep the rest accessible
       const { getByRole } = render(<Select open value="none" />);
 
-      expect(getByRole('button')).to.have.attribute('aria-expanded', 'true');
+      expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'true');
     });
 
     specify('aria-expanded is not present if the listbox isnt displayed', () => {
@@ -508,10 +510,9 @@ describe('<Select />', () => {
       act(() => {
         getByRole('option').click();
       });
-      // react-transition-group uses one extra commit for exit
-      // it is desired that this assertion breaks some day. Current behavior adds
-      // and unnecessary commit artifically slowing down the exit transition
-      expect(getByRole('listbox')).to.be.ok;
+      // react-transition-group uses one extra commit for exit to completely remove
+      // it from the DOM. but it's at least immediately inaccessible
+      expect(getByRole('listbox', { hidden: true })).to.be.ok;
       act(() => {
         clock.tick(0);
       });
@@ -681,9 +682,6 @@ describe('<Select />', () => {
         expect(onChange.callCount).to.equal(1);
         expect(onChange.firstCall.returnValue).to.deep.equal({ name: 'age', value: [30] });
 
-        act(() => {
-          getByRole('button').click();
-        });
         act(() => {
           getAllByRole('option')[0].click();
         });

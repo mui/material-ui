@@ -37,10 +37,7 @@ describe('<Breadcrumbs />', () => {
       </Breadcrumbs>,
     );
 
-    expect(
-      getAllByRole('listitem').filter(item => !item.matches('[aria-hidden="true"]')),
-    ).to.have.length(2);
-
+    expect(getAllByRole('listitem')).to.have.length(2);
     expect(getByRole('list')).to.have.text('first/second');
   });
 
@@ -59,11 +56,9 @@ describe('<Breadcrumbs />', () => {
       </Breadcrumbs>,
     );
 
-    expect(
-      getAllByRole('listitem').filter(item => !item.matches('[aria-hidden="true"]')),
-    ).to.have.length(3);
+    expect(getAllByRole('listitem')).to.have.length(3);
     expect(getByRole('list')).to.have.text('first//ninth');
-    expect(getAllByRole('listitem')[2].querySelector('[data-mui-test="MoreHorizIcon"]')).to.be.ok;
+    expect(getAllByRole('listitem')[1].querySelector('[data-mui-test="MoreHorizIcon"]')).to.be.ok;
   });
 
   it('should expand when `BreadcrumbCollapsed` is clicked', () => {
@@ -83,8 +78,7 @@ describe('<Breadcrumbs />', () => {
 
     getAllByRole('listitem')[2].click();
 
-    const items = getAllByRole('listitem').filter(item => !item.matches('[aria-hidden="true"]'));
-    expect(items).to.have.length(9);
+    expect(getAllByRole('listitem')).to.have.length(3);
   });
 
   describe('warnings', () => {
@@ -105,9 +99,7 @@ describe('<Breadcrumbs />', () => {
           <span>fourth</span>
         </Breadcrumbs>,
       );
-      expect(
-        getAllByRole('listitem').filter(item => !item.matches('[aria-hidden="true"]')),
-      ).to.have.length(4);
+      expect(getAllByRole('listitem')).to.have.length(4);
       expect(getByRole('list')).to.have.text('first/second/third/fourth');
       expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
       expect(consoleErrorMock.args()[0][0]).to.include(
