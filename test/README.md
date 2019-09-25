@@ -33,12 +33,12 @@ the tests readable, and, more importantly, the message if they fail as descripti
 In addition to the core matchers from `chai` we also use matchers from [`chai-dom`](https://github.com/nathanboktae/chai-dom#readme).
 
 Deciding where to put a test is (like naming things) a hard problem:
-* When in doubt put the new test case directly in the unit test file for that component e.g. `material-ui/src/Button/Button.test.js`.
-* If you test interaction requiring multiple components from the library create a
-new integration test.
-* If you find yourself using a lot of `data-testid` attributes or you're accessing
-a lot of styles consider adding a component (that doesn't require any interaction)
-into `test/regressions/tests/` e.g. `test/regressions/tests/List/ListWithSomeStyleProp` 
+
+- When in doubt put the new test case directly in the unit test file for that component e.g. `material-ui/src/Button/Button.test.js`.
+- If your test requires multiple components from the library create a new integration test.
+- If you find yourself using a lot of `data-testid` attributes or you're accessing
+  a lot of styles consider adding a component (that doesn't require any interaction)
+  into `test/regressions/tests/` e.g. `test/regressions/tests/List/ListWithSomeStyleProp`
 
 #### Visual regression tests
 
