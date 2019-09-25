@@ -58,8 +58,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
     disableDiscovery = false,
     disableSwipeToOpen = disableSwipeToOpenDefault,
     hideBackdrop,
-    hysteresis = 0.55,
-    minFlingVelocity = 400,
+    hysteresis = 0.52,
+    minFlingVelocity = 450,
     ModalProps: { BackdropProps, ...ModalPropsProp } = {},
     onClose,
     onOpen,
@@ -84,9 +84,13 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
   const touchDetected = React.useRef(false);
   const openRef = React.useRef(open);
 
+  // Ref for transition duration based on / to match swipe speed
+  const calculatedDurationRef = React.useRef();
+
   // Use a ref so the open value used is always up to date inside useCallback.
   useEnhancedEffect(() => {
     openRef.current = open;
+    calculatedDurationRef.current = null;
   }, [open]);
 
   const setPosition = React.useCallback(
@@ -170,6 +174,12 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       const maxTranslate = getMaxTranslate(horizontal, paperRef.current);
       const currentTranslate = getTranslate(current, startLocation, openRef.current, maxTranslate);
       const translateRatio = currentTranslate / maxTranslate;
+
+      if (Math.abs(swipeInstance.current.velocity) > minFlingVelocity) {
+        // Calculate transition duration to match swipe speed
+        calculatedDurationRef.current =
+          Math.abs((maxTranslate - currentTranslate) / swipeInstance.current.velocity) * 1000;
+      }
 
       if (openRef.current) {
         if (swipeInstance.current.velocity > minFlingVelocity || translateRatio > hysteresis) {
@@ -404,7 +414,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
           ref: handlePaperRef,
         }}
         anchor={anchor}
-        transitionDuration={transitionDuration}
+        transitionDuration={calculatedDurationRef.current || transitionDuration}
         onClose={onClose}
         ref={ref}
         {...other}
