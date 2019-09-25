@@ -1,67 +1,4 @@
-const entryModuleToFlatten = [
-  'BottomNavigation',
-  'BottomNavigationAction',
-  'Card',
-  'CardActions',
-  'CardContent',
-  'CardHeader',
-  'CardMedia',
-  'CircularProgress',
-  'ClickAwayListener',
-  'Collapse',
-  'Dialog',
-  'DialogActions',
-  'DialogContent',
-  'DialogContentText',
-  'DialogTitle',
-  'ExpansionPanel',
-  'ExpansionPanelActions',
-  'ExpansionPanelDetails',
-  'ExpansionPanelSummary',
-  'Fade',
-  'Form',
-  'FormControl',
-  'FormControlLabel',
-  'FormGroup',
-  'FormHelperText',
-  'FormLabel',
-  'GridList',
-  'GridListTile',
-  'Grow',
-  'Input',
-  'InputLabel',
-  'LinearProgress',
-  'List',
-  'ListItem',
-  'ListItemAvatar',
-  'ListItemIcon',
-  'ListItemSecondaryAction',
-  'ListItemText',
-  'ListSubheader',
-  'Menu',
-  'MenuItem',
-  'Progress',
-  'Radio',
-  'RadioGroup',
-  'Slide',
-  'Step',
-  'StepButton',
-  'StepContent',
-  'Stepper',
-  'Stepper',
-  'Tab',
-  'Table',
-  'TableBody',
-  'TableCell',
-  'TableFooter',
-  'TableHead',
-  'TablePagination',
-  'TableRow',
-  'Tabs',
-  'withMobileDialog',
-  'withWidth',
-  'Zoom',
-];
+
 
 const keepSpecifiers = ['withWidth'];
 
@@ -73,7 +10,7 @@ export default function transformer(fileInfo, api, options) {
     trailingComma: true,
   };
 
-  const importModule = options.importModule || '@material-ui/core';
+  const importModule = options.importModule || '@material-ui';
   const targetModule = options.targetModule || '@material-ui/core';
 
   const root = j(fileInfo.source);
@@ -82,7 +19,7 @@ export default function transformer(fileInfo, api, options) {
   root.find(j.ImportDeclaration).forEach(path => {
     const importPath = path.value.source.value;
     let entryModule = importPath.match(importRegExp);
-    console.log(entryModule)
+
     // Remove non-Material-UI imports
     if (!entryModule) {
       return;
@@ -90,10 +27,11 @@ export default function transformer(fileInfo, api, options) {
     entryModule = entryModule[1].split('/');
     entryModule = entryModule[entryModule.length - 1];
 
-    // No need to flatten
-    if (!entryModuleToFlatten.includes(entryModule)) {
+
+    if(entryModule !== 'core') {
       return;
     }
+
 
     hasModifications = true;
 
@@ -109,7 +47,7 @@ export default function transformer(fileInfo, api, options) {
       if (!importedName) {
         const importStatement = j.importDeclaration(
           [j.importDefaultSpecifier(j.identifier(localName))],
-          j.literal(`${targetModule}/${entryModule}`),
+          j.literal(`${targetModule}/${localName}`),
         );
 
         j(path).insertBefore(importStatement);

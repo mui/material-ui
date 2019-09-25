@@ -16,7 +16,7 @@ export default function transformer(fileInfo, api, options) {
   const printOptions = options.printOptions || {
     quote: 'single',
     trailingComma: true,
-  };
+  }; 
 
   const root = j(fileInfo.source);
   const importRegExp = new RegExp(`^${importModule}/([^/]+/)+([^/]+)$`);
