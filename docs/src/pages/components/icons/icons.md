@@ -15,7 +15,7 @@ Material-UI provides icons support in three ways.
 
 ## Material Icons (recommended)
 
-Material Design has standardized over 1,000 commonly needed icons, each in five different "themes" (see below). For each SVG icon we export the respective React component from the `@material-ui/icons` package. You can search the full list of these icons in [Material Icons](/components/material-icons).
+Material Design has standardized over 1,000 commonly needed icons, each in five different "themes" (see below). For each SVG icon we export the respective React component from the `@material-ui/icons` package. You can search the full list of these icons in [Material Icons](/components/material-icons/).
 
 ### Usage
 
