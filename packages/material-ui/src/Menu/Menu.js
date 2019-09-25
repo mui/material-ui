@@ -116,22 +116,13 @@ const Menu = React.forwardRef(function Menu(props, ref) {
 
   const items = React.Children.map(children, (child, index) => {
     if (index === activeItemIndex) {
-      const newChildProps = {};
-      if (autoFocusItem) {
-        newChildProps.autoFocus = true;
-      }
-      if (child.props.tabIndex === undefined && variant === 'selectedMenu') {
-        newChildProps.tabIndex = 0;
-      }
-      newChildProps.ref = instance => {
-        // #StrictMode ready
-        contentAnchorRef.current = ReactDOM.findDOMNode(instance);
-        setRef(child.ref, instance);
-      };
-
-      if (newChildProps !== null) {
-        return React.cloneElement(child, newChildProps);
-      }
+      return React.cloneElement(child, {
+        ref: instance => {
+          // #StrictMode ready
+          contentAnchorRef.current = ReactDOM.findDOMNode(instance);
+          setRef(child.ref, instance);
+        },
+      });
     }
 
     return child;
@@ -162,6 +153,8 @@ const Menu = React.forwardRef(function Menu(props, ref) {
         onKeyDown={handleListKeyDown}
         actions={menuListActionsRef}
         autoFocus={autoFocus && (activeItemIndex === -1 || disableAutoFocusItem)}
+        autoFocusItem={autoFocusItem}
+        variant={variant}
         {...MenuListProps}
         className={clsx(classes.list, MenuListProps.className)}
       >

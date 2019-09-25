@@ -4,8 +4,10 @@ import { ListProps, ListClassKey } from '../List';
 
 export interface MenuListProps extends StandardProps<ListProps, MenuListClassKey, 'onKeyDown'> {
   autoFocus?: boolean;
+  autoFocusItem?: boolean;
   disableListWrap?: boolean;
   onKeyDown?: React.ReactEventHandler<React.KeyboardEvent<any>>;
+  variant?: 'menu' | 'selectedMenu';
 }
 
 export type MenuListClassKey = ListClassKey;

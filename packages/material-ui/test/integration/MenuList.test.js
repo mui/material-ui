@@ -48,10 +48,8 @@ describe('<MenuList> integration', () => {
 
     it('focuses the specified item on mount', () => {
       const { getAllByRole } = render(
-        <MenuList>
-          <MenuItem autoFocus tabIndex={0}>
-            Menu Item 1
-          </MenuItem>
+        <MenuList autoFocusItem>
+          <MenuItem>Menu Item 1</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
         </MenuList>,
@@ -62,10 +60,8 @@ describe('<MenuList> integration', () => {
 
     it('should select the last item when pressing up if the first item is focused', () => {
       const { getAllByRole } = render(
-        <MenuList>
-          <MenuItem autoFocus tabIndex={0}>
-            Menu Item 1
-          </MenuItem>
+        <MenuList autoFocusItem>
+          <MenuItem selected>Menu Item 1</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
         </MenuList>,
@@ -81,10 +77,8 @@ describe('<MenuList> integration', () => {
 
     it('should select the secont item when pressing down if the first item is selected', () => {
       const { getAllByRole } = render(
-        <MenuList>
-          <MenuItem autoFocus tabIndex={0}>
-            Menu Item 1
-          </MenuItem>
+        <MenuList autoFocusItem>
+          <MenuItem selected>Menu Item 1</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
         </MenuList>,
@@ -100,10 +94,8 @@ describe('<MenuList> integration', () => {
 
     it('should still be focused and focusable when going back and forth', () => {
       const { getAllByRole } = render(
-        <MenuList>
-          <MenuItem autoFocus tabIndex={0}>
-            Menu Item 1
-          </MenuItem>
+        <MenuList autoFocusItem>
+          <MenuItem selected>Menu Item 1</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
         </MenuList>,
@@ -121,10 +113,8 @@ describe('<MenuList> integration', () => {
     it('should leave tabIndex on the first item after blur', () => {
       const handleBlur = spy();
       const { getAllByRole } = render(
-        <MenuList onBlur={handleBlur}>
-          <MenuItem autoFocus tabIndex={0}>
-            Menu Item 1
-          </MenuItem>
+        <MenuList autoFocusItem onBlur={handleBlur}>
+          <MenuItem selected>Menu Item 1</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
         </MenuList>,
@@ -144,8 +134,8 @@ describe('<MenuList> integration', () => {
 
     it('can imperatively focus the first item', () => {
       const { getAllByRole } = render(
-        <MenuList>
-          <MenuItem tabIndex={0}>Menu Item 1</MenuItem>
+        <MenuList autoFocusItem>
+          <MenuItem selected>Menu Item 1</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
         </MenuList>,
@@ -161,10 +151,8 @@ describe('<MenuList> integration', () => {
 
     it('down arrow can go to all items while not changing tabIndex', () => {
       const { getAllByRole } = render(
-        <MenuList>
-          <MenuItem autoFocus tabIndex={0}>
-            Menu Item 1
-          </MenuItem>
+        <MenuList autoFocusItem>
+          <MenuItem selected>Menu Item 1</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
         </MenuList>,
@@ -229,9 +217,7 @@ describe('<MenuList> integration', () => {
       const { getAllByRole } = render(
         <MenuList autoFocus>
           <MenuItem>Menu Item 1</MenuItem>
-          <MenuItem selected tabIndex={0}>
-            Menu Item 2
-          </MenuItem>
+          <MenuItem selected>Menu Item 2</MenuItem>
           <MenuItem>Menu Item 3</MenuItem>
         </MenuList>,
       );
@@ -264,38 +250,31 @@ describe('<MenuList> integration', () => {
     });
   });
 
-  specify('menuitems can focus themselves imperatively', () => {
-    function FocusOnMountMenuItem(props) {
-      const listItemRef = React.useRef(null);
-      React.useLayoutEffect(() => {
-        listItemRef.current.focus();
-      }, []);
-      return <MenuItem {...props} ref={listItemRef} tabIndex={0} />;
-    }
-    const { getAllByRole } = render(
-      <MenuList>
-        <MenuItem>Menu Item 1</MenuItem>
-        <MenuItem>Menu Item 2</MenuItem>
-        <FocusOnMountMenuItem>Menu Item 3</FocusOnMountMenuItem>
-        <MenuItem>Menu Item 4</MenuItem>
-      </MenuList>,
-    );
+  specify(
+    'initial focus is controlled by setting the selected prop when `autoFocusItem` is enabled',
+    () => {
+      const { getAllByRole } = render(
+        <MenuList autoFocusItem>
+          <MenuItem>Menu Item 1</MenuItem>
+          <MenuItem>Menu Item 2</MenuItem>
+          <MenuItem selected>Menu Item 3</MenuItem>
+          <MenuItem>Menu Item 4</MenuItem>
+        </MenuList>,
+      );
 
-    expect(getAllByRole('menuitem')[2]).to.be.focused;
-    expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
-    expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', -1);
-    expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', 0);
-    expect(getAllByRole('menuitem')[3]).to.have.property('tabIndex', -1);
-  });
+      expect(getAllByRole('menuitem')[2]).to.be.focused;
+      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', -1);
+      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', 0);
+      expect(getAllByRole('menuitem')[3]).to.have.property('tabIndex', -1);
+    },
+  );
 
-  // broken
   describe('MenuList with disableListWrap', () => {
     it('should not wrap focus with ArrowUp from first', () => {
       const { getAllByRole } = render(
-        <MenuList disableListWrap>
-          <MenuItem autoFocus tabIndex={0}>
-            Menu Item 1
-          </MenuItem>
+        <MenuList autoFocusItem disableListWrap>
+          <MenuItem selected>Menu Item 1</MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
         </MenuList>,
       );
@@ -309,11 +288,9 @@ describe('<MenuList> integration', () => {
 
     it('should not wrap focus with ArrowDown from last', () => {
       const { getAllByRole } = render(
-        <MenuList disableListWrap>
+        <MenuList autoFocusItem disableListWrap>
           <MenuItem>Menu Item 1</MenuItem>
-          <MenuItem autoFocus tabIndex={0}>
-            Menu Item 2
-          </MenuItem>
+          <MenuItem selected>Menu Item 2</MenuItem>
         </MenuList>,
       );
 
