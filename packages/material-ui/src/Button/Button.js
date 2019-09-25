@@ -110,6 +110,18 @@ export const styles = theme => ({
     color: theme.palette.getContrastText(theme.palette.grey[300]),
     backgroundColor: theme.palette.grey[300],
     boxShadow: theme.shadows[2],
+    '&:hover': {
+      backgroundColor: theme.palette.grey.A100,
+      boxShadow: theme.shadows[4],
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        boxShadow: theme.shadows[2],
+        backgroundColor: theme.palette.grey[300],
+      },
+      '&$disabled': {
+        backgroundColor: theme.palette.action.disabledBackground,
+      },
+    },
     '&$focusVisible': {
       boxShadow: theme.shadows[6],
     },
@@ -120,16 +132,6 @@ export const styles = theme => ({
       color: theme.palette.action.disabled,
       boxShadow: theme.shadows[0],
       backgroundColor: theme.palette.action.disabledBackground,
-    },
-    '&:hover': {
-      backgroundColor: theme.palette.grey.A100,
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: theme.palette.grey[300],
-      },
-      '&$disabled': {
-        backgroundColor: theme.palette.action.disabledBackground,
-      },
     },
   },
   /* Styles applied to the root element if `variant="contained"` and `color="primary"`. */

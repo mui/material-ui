@@ -35,6 +35,7 @@ const BootstrapButton = withStyles({
     '&:hover': {
       backgroundColor: '#0069d9',
       borderColor: '#0062cc',
+      boxShadow: 'none',
     },
     '&:active': {
       boxShadow: 'none',
