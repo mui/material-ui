@@ -2,18 +2,52 @@
 
 Thanks for writing tests! Here's a quick run-down on our current setup.
 
+## Getting started
+
+1. Add a unit test to `packages/*/src/TheUnitInQuestion/TheUnitInQuestion.test.js` or an integration test `packages/*/test/`.
+2. Run `yarn test:watch`.
+3. Implement the tested behavior
+4. Open a PR once the test passes or you want somebody to review your work
+
 ## Tools we use
 
-Please familiarise yourself with these if you plan on contributing! :+1:
-
-- [mocha](https://github.com/mochajs/mocha)
-- [enzyme](https://github.com/airbnb/enzyme)
-- [jsdom](https://github.com/tmpvar/jsdom)
-- [karma](https://github.com/karma-runner/karma)
-- [chai](https://github.com/chaijs/chai)
-- [sinon](https://github.com/sinonjs/sinon)
-- [docker](https://github.com/docker/docker)
+- [@testing-library/react](https://testing-library.com/docs/react-testing-library/intro)
+- [chai](https://www.chaijs.com/)
+- [sinon](https://sinonjs.org/)
+- [mocha](https://mochajs.org/)
+- [karma](https://karma-runner.github.io/latest/index.html)
+- [enzyme](https://airbnb.io/enzyme/) (old tests only)
 - [vrtest](https://github.com/nathanmarks/vrtest)
+- [docker](https://docs.docker.com/)
+- [jsdom](https://github.com/jsdom/jsdom)
+
+## Writing Tests
+
+For all unit tests, please use the return value from `test/utils/createClientRender`.
+It prepares the test suite and returns a function with the same interface as
+[`render` from `@testing-library/react`](https://testing-library.com/docs/react-testing-library/api#render).
+
+For new tests please use `expect` from the BDD testing approach. Prefer to use as expressive [matchers](https://www.chaijs.com/api/bdd/) as possible. This keeps
+the tests readable, and, more importantly, the message if they fail as descriptive as possible.
+
+In addition to the core matchers from `chai` we also use matchers from [`chai-dom`](https://github.com/nathanboktae/chai-dom#readme).
+
+Deciding where to put a test is (like naming things) a hard problem:
+
+- When in doubt put the new test case directly in the unit test file for that component e.g. `material-ui/src/Button/Button.test.js`.
+- If your test requires multiple components from the library create a new integration test.
+- If you find yourself using a lot of `data-testid` attributes or you're accessing
+  a lot of styles consider adding a component (that doesn't require any interaction)
+  to `test/regressions/tests/` e.g. `test/regressions/tests/List/ListWithSomeStyleProp`
+
+#### Visual regression tests
+
+We try to use as many demos from the documentation as possible;
+however, we can't replace one with the other as they address different needs.
+With the regression tests:
+
+- You might need to test a more complex situation, e.g. a stress test of the grid.
+- You might need to test a simpler situation, e.g. a static progress bar.
 
 ## Commands
 
@@ -24,27 +58,24 @@ trade-off, mainly completeness vs. speed.
 
 #### Run the core mocha unit/integration test suite.
 
-To run all of the unit tests just run  `yarn test:unit`
+To run all of the unit and integration tests run `yarn test:unit`
 
-If you want to `grep` for certain tests just add `-- -g STRING_TO_GREP` and change STRING_TO_GREP.
+If you want to `grep` for certain tests add `-g STRING_TO_GREP`.
 
 #### Watch the core mocha unit/integration test suite.
 
 `yarn test:watch`
 
 First, we have the **unit test** suite.
-It uses [mocha](https://mochajs.org) and the *shallow* API of [enzyme](https://github.com/airbnb/enzyme) to allow testing the components in isolation.
-It's the fastest approach, and is best suited for testing many combinations.
-Here is an [example](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Menu/Menu.test.js#L27) with the `Menu` component.
+It uses [mocha](https://mochajs.org) and a thin wrapper around `@testing-library/react`.
+Here is an [example](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Dialog/Dialog.test.js#L87) with the `Dialog` component.
 
-Next, we have the **integration** tests.
-We are using the *mount* API of [enzyme](https://github.com/airbnb/enzyme).
-It allows testing the integration of different components using a virtual DOM.
-This virtual DOM is provided by [jsdom](https://github.com/tmpvar/jsdom).
-It's here to make sure components work together.
+Next, we have the **integration** tests. They are mostly used for components that
+act as composite widgets like `Select` or `Menu`.
 Here is an [example](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/test/integration/Menu.test.js#L28) with the `Menu` component.
 
 #### Create HTML coverage reports
+
 `yarn test:coverage:html`
 
 When running this command you should get under `coverage/index.html` a full coverage report in HTML format. This is created using [Istanbul](https://istanbul-js.org)'s HTML reporter and gives good data such as line, branch and function coverage.
@@ -110,20 +141,3 @@ testUrl: process.env.DOCKER_TEST_URL || 'http://10.200.10.1:3090',
 In addition to docker, the visual regression tests depend on either
 [ImageMagick](https://www.imagemagick.org/)
 or [GraphicsMagick](https://www.graphicsmagick.org/) being installed.
-
-## Writing Tests
-
-For all unit tests, please use the [shallow renderer](https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md) from `enzyme` unless the Component being tested requires a DOM. [Here's](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Avatar/Avatar.test.js) a small shallow rendered test to get you started.
-
-If the Component being unit tested requires a DOM, you can use the [mount api](https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md) from `enzyme`. For some operations, you may still need to use the React test utils, but try to use the `enzyme` API as much as possible.
-
-Stick to test assertions such as `assert.strictEqual` and `assert.ok`. This helps keep tests simple and readable.
-
-#### Visual regression tests
-
-We should try to use as many demos from the documentation as possible;
-however, we can't replace one with the other as they address different needs.
-With the regression tests:
-
-- You might need to test a more complex situation, e.g. a stress test of the grid
-- You might need to test a simpler situation, e.g. a static progress bar
