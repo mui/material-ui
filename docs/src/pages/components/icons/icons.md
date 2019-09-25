@@ -11,14 +11,11 @@ Material-UI provides icons support in three ways.
 
 - Standardized Material Design icons are exported as React components from `@material-ui/icons` package (Material Icons).
 - With the `SvgIcon` component as a React wrapper for a custom SVG icon is exported from `@material-ui/core`.
-- With the `Icon` component as a React wrapper for custom Font icons is exported from `@material-ui/core`.
+- With the `Icon` component as a React wrapper for custom font icons is exported from `@material-ui/core`.
 
 ## Material Icons (recommended)
 
-Material Design has standardized over 1,000 commonly needed icons, each in five different "themes" (see below). 
-For each icon we export the respective React component from the `@material-ui/icons` package. 
-Material Icons are based on SVG versions of Material Design icons.
-You can search the full list of these icons in [Material Icons](/components/material-icons).
+Material Design has standardized over 1,000 commonly needed icons, each in five different "themes" (see below). For each icon we export the respective React component from the `@material-ui/icons` package. Material Icons are based on SVG versions of Material Design icons. You can search the full list of these icons in [Material Icons](/components/material-icons).
 
 ### Usage
 
