@@ -58,7 +58,7 @@ git pull upstream master
 ```
 3. Create a branch `git checkout -b my-topic-branch`
 4. Make changes. If you change the code make sure to use proper [coding-style](#coding-style)
-5. Commit and push to your fork with `git push --set-upstream origin my-topic-branch`
+5. Commit and push to your fork with `git push -u origin my-topic-branch`
 6. Visit GitHub and make your pull request.
 
 ### Testing the documentation site
