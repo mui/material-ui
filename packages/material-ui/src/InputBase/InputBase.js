@@ -86,6 +86,7 @@ export const styles = theme => {
       // Make the flex item shrink with Firefox
       minWidth: 0,
       width: '100%', // Fix IE 11 width issue
+      animationName: '$auto-fill-cancel',
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
       '&:-ms-input-placeholder': placeholder, // IE 11
@@ -121,6 +122,9 @@ export const styles = theme => {
       },
     },
     '@keyframes auto-fill': {
+      from: {},
+    },
+    '@keyframes auto-fill-cancel': {
       from: {},
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
@@ -372,9 +376,11 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     };
   }
 
-  const handleAutoFill = () => {
+  const handleAutoFill = event => {
     // Provide a fake value as Chrome might not let you access it for security reasons.
-    checkDirty({ value: 'x' });
+    checkDirty(
+      event.animationName.indexOf('auto-fill-cancel') !== -1 ? inputRef.current : { value: 'x' },
+    );
   };
 
   return (
