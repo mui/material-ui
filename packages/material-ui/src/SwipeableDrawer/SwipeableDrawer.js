@@ -178,7 +178,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       if (Math.abs(swipeInstance.current.velocity) > minFlingVelocity) {
         // Calculate transition duration to match swipe speed
         calculatedDurationRef.current =
-          Math.abs((maxTranslate - currentTranslate) / swipeInstance.current.velocity) * 1000 + 100;
+          Math.abs((maxTranslate - currentTranslate) / swipeInstance.current.velocity) * 1000;
       }
 
       if (openRef.current) {
