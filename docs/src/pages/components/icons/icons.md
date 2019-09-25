@@ -10,13 +10,15 @@ components: Icon, SvgIcon
 Material-UI provides icons support in three ways.
 
 - Standardized Material Design icons are exported as React components from `@material-ui/icons` package (Material Icons).
-- The `SvgIcon` component as a React wrapper for a custom SVG icon is exported from `@material-ui/core`.
-- `Icon` component as a React wrapper for custom Font icons is exported from `@material-ui/core`.
+- With the `SvgIcon` component as a React wrapper for a custom SVG icon is exported from `@material-ui/core`.
+- With the `Icon` component as a React wrapper for custom Font icons is exported from `@material-ui/core`.
 
 ## Material Icons (recommended)
 
-Material Design has standardized over 1,000 commonly needed icons. For each icon we export a respective React component from `@material-ui/icons` package. Material Icons are based on SVG icons. You can search the full list of 
-these icons in [Material Icons](/components/material-icons).
+Material Design has standardized over 1,000 commonly needed icons, each in five different "themes" (see below). 
+For each icon we export the respective React component from the `@material-ui/icons` package. 
+Material Icons are based on SVG versions of Material Design icons.
+You can search the full list of these icons in [Material Icons](/components/material-icons).
 
 ### Usage
 
@@ -43,11 +45,11 @@ The configuration of a Babel plugin is encouraged.
 
 Each icon also has a "theme": `Filled` (default), `Outlined`, `Rounded`, `Two tone` and `Sharp`. If you want to import the icon component with a "theme" different than default, append the "theme" name to the icon name. For example `@material-ui/icons/Delete` icon with:
 
-- `Filled` "theme" (default) is exposed as `@material-ui/icons/Delete`,
-- `Outlined` "theme" is exposed as `@material-ui/icons/DeleteOutlined`,
-- `Rounded` "theme" is exposed as `@material-ui/icons/DeleteRounded`,
-- `Two tone` "theme" is exposed as `@material-ui/icons/DeleteTwoTone`,
-- `Sharp` "theme" is exposed as `@material-ui/icons/DeleteSharp`.
+- `Filled` "theme" (default) is exported as `@material-ui/icons/Delete`,
+- `Outlined` "theme" is exported as `@material-ui/icons/DeleteOutlined`,
+- `Rounded` "theme" is exported as `@material-ui/icons/DeleteRounded`,
+- `Two tone` "theme" is exported as `@material-ui/icons/DeleteTwoTone`,
+- `Sharp` "theme" is exported as `@material-ui/icons/DeleteSharp`.
 
 NOTE: The Material Design specification names the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
 
