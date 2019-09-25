@@ -38,7 +38,7 @@ Deciding where to put a test is (like naming things) a hard problem:
 - If your test requires multiple components from the library create a new integration test.
 - If you find yourself using a lot of `data-testid` attributes or you're accessing
   a lot of styles consider adding a component (that doesn't require any interaction)
-  into `test/regressions/tests/` e.g. `test/regressions/tests/List/ListWithSomeStyleProp`
+  to `test/regressions/tests/` e.g. `test/regressions/tests/List/ListWithSomeStyleProp`
 
 #### Visual regression tests
 
