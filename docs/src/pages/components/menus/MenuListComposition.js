@@ -60,7 +60,7 @@ export default function MenuListComposition() {
             >
               <Paper id="menu-list-grow">
                 <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList>
+                  <MenuList autoFocusItem={open}>
                     <MenuItem onClick={handleClose}>Profile</MenuItem>
                     <MenuItem onClick={handleClose}>My account</MenuItem>
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
