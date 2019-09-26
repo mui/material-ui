@@ -93,7 +93,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
 
   const [labelWidth, setLabelWidth] = React.useState(0);
   const labelRef = React.useRef(null);
-  
+
   const updateOutlinedLabel = React.useCallback(() => {
     if (variant === 'outlined') {
       // #StrictMode ready
