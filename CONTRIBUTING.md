@@ -23,6 +23,7 @@ When submitting a new component, please add it to the [lab](https://github.com/m
 ### How to increase the chance of being accepted?
 
 We will only accept a pull request for which all tests pass. Make sure the following is true:
+
 - The branch is targeted at:
   - `master` for ongoing development.
 - The branch is not behind its target.
@@ -43,23 +44,11 @@ We will only accept a pull request for which all tests pass. Make sure the follo
 
 ## Getting started
 
-1. Fork the Material-UI repository on GitHub
-2. Clone the fork to your local machine and add upstream remote
-```sh
-git clone git@github.com:<yourname>/material-ui.git
-cd material-ui
-git remote add upstream git@github.com:mui-org/material-ui.git
-```
-
-NOTE: If you already have a cloned Material-UI repository make sure to synchronize it with the upstream one:
-```sh
-git checkout master
-git pull upstream master
-```
-3. Create a branch `git checkout -b my-topic-branch`
-4. Make changes. If you change the code make sure to use proper [coding-style](#coding-style)
-5. Commit and push to your fork with `git push -u origin my-topic-branch`
-6. Visit GitHub and make your pull request.
+1. [Fork](https://help.github.com/en/articles/fork-a-repo) the Material-UI repository. A fork is a copy of a repository. It allows you to freely experiment with changes without affecting the original project.
+1. Create a branch `git checkout -b my-topic-branch`.
+1. Make changes. If you change the code make sure to use proper [coding-style](#coding-style).
+1. Commit and push to your fork with `git push -u origin my-topic-branch`.
+1. Visit our GitHub page and [create a pull request](https://help.github.com/en/articles/creating-a-pull-request-from-a-fork).
 
 ### Testing the documentation site
 
