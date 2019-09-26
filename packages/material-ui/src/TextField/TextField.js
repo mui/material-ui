@@ -93,13 +93,18 @@ const TextField = React.forwardRef(function TextField(props, ref) {
 
   const [labelWidth, setLabelWidth] = React.useState(0);
   const labelRef = React.useRef(null);
-  React.useEffect(() => {
+  
+  const updateOutlinedLabel = React.useCallback(() => {
     if (variant === 'outlined') {
       // #StrictMode ready
       const labelNode = ReactDOM.findDOMNode(labelRef.current);
       setLabelWidth(labelNode != null ? labelNode.offsetWidth : 0);
     }
-  }, [variant, required, label]);
+  }, [variant]);
+
+  React.useEffect(() => {
+    updateOutlinedLabel();
+  });
 
   if (process.env.NODE_ENV !== 'production') {
     if (select && !children) {
