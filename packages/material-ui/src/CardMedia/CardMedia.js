@@ -14,6 +14,8 @@ export const styles = {
   /* Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
   media: {
     width: '100%',
+  },
+  img: {
     // ⚠️ object-fit is not supported by IE 11.
     objectFit: 'cover',
   },
@@ -49,6 +51,7 @@ const CardMedia = React.forwardRef(function CardMedia(props, ref) {
         classes.root,
         {
           [classes.media]: isMediaComponent,
+          [classes.img]: ['picture', 'img'].indexOf(Component),
         },
         className,
       )}
