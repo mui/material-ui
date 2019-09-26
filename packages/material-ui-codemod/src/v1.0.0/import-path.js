@@ -82,6 +82,7 @@ export default function transformer(fileInfo, api, options) {
   root.find(j.ImportDeclaration).forEach(path => {
     const importPath = path.value.source.value;
     let entryModule = importPath.match(importRegExp);
+
     // Remove non-Material-UI imports
     if (!entryModule) {
       return;
