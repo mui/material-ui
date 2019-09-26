@@ -7194,7 +7194,7 @@ gitlab@^10.0.1:
     query-string "^6.8.1"
     universal-url "^2.0.0"
 
-glob-gitignore@^1.0.14:
+glob-gitignore@^1.0.11:
   version "1.0.14"
   resolved "https://registry.yarnpkg.com/glob-gitignore/-/glob-gitignore-1.0.14.tgz#8b708cb029e73bd388d22f7f935213aa93a1e7c2"
   integrity sha512-YuAEPqL58bOQDqDF2kMv009rIjSAtPs+WPzyGbwRWK+wD0UWQVRoP34Pz6yJ6ivco65C9tZnaIt0I3JCuQ8NZQ==
