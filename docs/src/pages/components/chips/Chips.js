@@ -31,7 +31,7 @@ export default function Chips() {
     <div className={classes.root}>
       <Chip label="Basic" />
       <Chip label="Disabled" disabled />
-      <Chip avatar={<Avatar>MB</Avatar>} label="Clickable" onClick={handleClick} />
+      <Chip avatar={<Avatar>M</Avatar>} label="Clickable" onClick={handleClick} />
       <Chip
         avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
         label="Deletable"
@@ -51,7 +51,7 @@ export default function Chips() {
       />
       <Chip label="Clickable Link" component="a" href="#chip" clickable />
       <Chip
-        avatar={<Avatar>MB</Avatar>}
+        avatar={<Avatar>M</Avatar>}
         label="Primary clickable"
         clickable
         color="primary"

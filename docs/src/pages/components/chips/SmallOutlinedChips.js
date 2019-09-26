@@ -33,7 +33,7 @@ export default function SmallOutlinedChips() {
       <Chip
         variant="outlined"
         size="small"
-        avatar={<Avatar>MB</Avatar>}
+        avatar={<Avatar>M</Avatar>}
         label="Clickable"
         onClick={handleClick}
       />
@@ -70,7 +70,7 @@ export default function SmallOutlinedChips() {
       <Chip
         variant="outlined"
         size="small"
-        avatar={<Avatar>MB</Avatar>}
+        avatar={<Avatar>M</Avatar>}
         label="Primary clickable"
         clickable
         color="primary"

@@ -32,7 +32,7 @@ export default function SmallChips() {
   return (
     <div className={classes.root}>
       <Chip size="small" label="Basic" />
-      <Chip size="small" avatar={<Avatar>MB</Avatar>} label="Clickable" onClick={handleClick} />
+      <Chip size="small" avatar={<Avatar>M</Avatar>} label="Clickable" onClick={handleClick} />
       <Chip
         size="small"
         avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
@@ -56,7 +56,7 @@ export default function SmallChips() {
       <Chip size="small" label="Clickable Link" component="a" href="#chip" clickable />
       <Chip
         size="small"
-        avatar={<Avatar>MB</Avatar>}
+        avatar={<Avatar>M</Avatar>}
         label="Primary Clickable"
         clickable
         color="primary"

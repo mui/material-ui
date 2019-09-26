@@ -15,6 +15,7 @@ export const styles = theme => ({
     height: 40,
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.pxToRem(20),
+    lineHeight: 1,
     borderRadius: '50%',
     overflow: 'hidden',
     userSelect: 'none',

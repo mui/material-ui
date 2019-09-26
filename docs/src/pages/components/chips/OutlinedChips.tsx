@@ -34,7 +34,7 @@ export default function OutlinedChips() {
       <Chip label="Basic" variant="outlined" />
       <Chip label="Disabled" disabled variant="outlined" />
       <Chip
-        avatar={<Avatar>MB</Avatar>}
+        avatar={<Avatar>M</Avatar>}
         label="Clickable"
         onClick={handleClick}
         variant="outlined"
@@ -61,7 +61,7 @@ export default function OutlinedChips() {
       />
       <Chip label="Clickable link" component="a" href="#chip" clickable variant="outlined" />
       <Chip
-        avatar={<Avatar>MB</Avatar>}
+        avatar={<Avatar>M</Avatar>}
         label="Primary clickable"
         clickable
         color="primary"

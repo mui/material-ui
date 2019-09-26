@@ -285,7 +285,7 @@ const CardMediaTest = () => (
 const ChipsTest = () => (
   <div>
     <Chip label="Basic Chip" />
-    <Chip avatar={<Avatar>MB</Avatar>} label="Clickable Chip" onClick={e => log(e)} />
+    <Chip avatar={<Avatar>M</Avatar>} label="Clickable Chip" onClick={e => log(e)} />
     <Chip avatar={<Avatar src={'image.bmp'} />} label="Deletable Chip" onDelete={e => log(e)} />
     <Chip
       avatar={
