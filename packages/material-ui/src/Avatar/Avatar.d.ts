@@ -4,7 +4,6 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     alt?: string;
-    childrenClassName?: string;
     imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
     sizes?: string;
     src?: string;
