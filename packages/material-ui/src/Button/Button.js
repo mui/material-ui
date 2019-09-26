@@ -187,7 +187,7 @@ const Button = React.forwardRef(function Button(props, ref) {
   const {
     children,
     classes,
-    className: classNameProp,
+    className,
     color = 'default',
     component = 'button',
     disabled = false,
@@ -200,34 +200,20 @@ const Button = React.forwardRef(function Button(props, ref) {
     ...other
   } = props;
 
-  const text = variant === 'text';
-  const outlined = variant === 'outlined';
-  const contained = variant === 'contained';
-  const primary = color === 'primary';
-  const secondary = color === 'secondary';
-  const className = clsx(
-    classes.root,
-    {
-      [classes.text]: text,
-      [classes.textPrimary]: text && primary,
-      [classes.textSecondary]: text && secondary,
-      [classes.outlined]: outlined,
-      [classes.outlinedPrimary]: outlined && primary,
-      [classes.outlinedSecondary]: outlined && secondary,
-      [classes.contained]: contained,
-      [classes.containedPrimary]: contained && primary,
-      [classes.containedSecondary]: contained && secondary,
-      [classes[`size${capitalize(size)}`]]: size !== 'medium',
-      [classes.disabled]: disabled,
-      [classes.fullWidth]: fullWidth,
-      [classes.colorInherit]: color === 'inherit',
-    },
-    classNameProp,
-  );
-
   return (
     <ButtonBase
-      className={className}
+      className={clsx(
+        classes.root,
+        classes[variant],
+        classes[`${variant}${color !== 'default' && color !== 'inherit' ? capitalize(color) : ''}`],
+        {
+          [classes[`size${capitalize(size)}`]]: size !== 'medium',
+          [classes.disabled]: disabled,
+          [classes.fullWidth]: fullWidth,
+          [classes.colorInherit]: color === 'inherit',
+        },
+        className,
+      )}
       component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}

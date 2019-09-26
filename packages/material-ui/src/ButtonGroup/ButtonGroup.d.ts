@@ -10,7 +10,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
     disableRipple?: boolean;
     fullWidth?: boolean;
     size?: 'small' | 'medium' | 'large';
-    variant?: 'outlined' | 'contained';
+    variant?: 'text' | 'outlined' | 'contained';
   };
   defaultComponent: D;
   classKey: ButtonGroupClassKey;
@@ -23,6 +23,9 @@ export type ButtonGroupClassKey =
   | 'contained'
   | 'fullWidth'
   | 'grouped'
+  | 'groupedText'
+  | 'groupedTextPrimary'
+  | 'groupedTextSecondary'
   | 'groupedOutlined'
   | 'groupedOutlinedPrimary'
   | 'groupedOutlinedSecondary'

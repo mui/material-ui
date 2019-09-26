@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { capitalize } from '../utils/helpers';
+import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import '../Button'; // So we don't have any override priority issue.
 
@@ -28,6 +30,26 @@ export const styles = theme => ({
     '&:not(:last-child)': {
       borderTopRightRadius: 0,
       borderBottomRightRadius: 0,
+    },
+  },
+  /* Styles applied to the children if variant="text". */
+  groupedText: {
+    '&:not(:last-child)': {
+      borderRight: `1px solid ${
+        theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+      }`,
+    },
+  },
+  /* Styles applied to the children if variant="outlined" & color="primary". */
+  groupedTextPrimary: {
+    '&:not(:last-child)': {
+      borderColor: fade(theme.palette.primary.main, 0.5),
+    },
+  },
+  /* Styles applied to the children if variant="outlined" & color="secondary". */
+  groupedTextSecondary: {
+    '&:not(:last-child)': {
+      borderColor: fade(theme.palette.secondary.main, 0.5),
     },
   },
   /* Styles applied to the children if variant="outlined". */
@@ -91,19 +113,14 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
     ...other
   } = props;
 
-  const outlined = variant === 'outlined';
-  const contained = variant === 'contained';
-  const primary = color === 'primary';
-  const secondary = color === 'secondary';
-  const buttonClassName = clsx(classes.grouped, {
-    [classes.groupedOutlined]: outlined,
-    [classes.groupedOutlinedPrimary]: outlined && primary,
-    [classes.groupedOutlinedSecondary]: outlined && secondary,
-    [classes.groupedContained]: contained,
-    [classes.groupedContainedPrimary]: contained && primary,
-    [classes.groupedContainedSecondary]: contained && secondary,
-    [classes.disabled]: disabled,
-  });
+  const buttonClassName = clsx(
+    classes.grouped,
+    classes[`grouped${capitalize(variant)}`],
+    classes[`grouped${capitalize(variant)}${color !== 'default' ? capitalize(color) : ''}`],
+    {
+      [classes.disabled]: disabled,
+    },
+  );
 
   return (
     <Component
@@ -111,7 +128,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
       className={clsx(
         classes.root,
         {
-          [classes.contained]: contained,
+          [classes.contained]: variant === 'contained',
           [classes.fullWidth]: fullWidth,
         },
         classNameProp,
@@ -198,7 +215,7 @@ ButtonGroup.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['outlined', 'contained']),
+  variant: PropTypes.oneOf(['text', 'outlined', 'contained']),
 };
 
 export default withStyles(styles, { name: 'MuiButtonGroup' })(ButtonGroup);
