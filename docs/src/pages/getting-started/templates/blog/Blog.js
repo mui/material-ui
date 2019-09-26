@@ -223,7 +223,7 @@ export default function Blog() {
           </Paper>
           {/* End main featured post */}
           {/* Sub featured posts */}
-          <Grid container spacing={4} className={classes.cardGrid}>
+          <Grid container spacing={4}>
             {featuredPosts.map(post => (
               <Grid item key={post.title} xs={12} md={6}>
                 <CardActionArea component="a" href="#">
