@@ -15,7 +15,7 @@ Material-UI provides icons support in three ways.
 
 ## Material Icons (recommended)
 
-Material Design has standardized over 1,000 commonly needed icons, each in five different "themes" (see below). For each SVG icon we export the respective React component from the `@material-ui/icons` package. You can search the full list of these icons in [Material Icons](/components/material-icons/).
+Material Design has standardized over 1,000 commonly needed icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the `@material-ui/icons` package. You can search the full list of these icons in [Material Icons](/components/material-icons/).
 
 ### Usage
 
@@ -55,8 +55,8 @@ NOTE: The Material Design specification names the icons using "snake_case" namin
 ## `SvgIcon`
 
 If you need a custom SVG icon (not available in Material Icons) you should use the `SvgIcon` wrapper.
-The `SvgIcon` component takes the SVG `path` element as its child and converts it to a React component that displays this SVG icon, 
-and allows the icon to be styled and respond to mouse events. SVG elements should be scaled for a 24x24px viewport.
+The `SvgIcon` component takes the SVG `path` element as its child and converts it to a React component that displays this SVG icon, and allows the icon to be styled and respond to mouse events.
+SVG elements should be scaled for a 24x24px viewport.
 
 The resulting icon can be used as is,
 or included as a child for other Material-UI components that use icons.
@@ -67,7 +67,8 @@ Optionally, you can set the icon color using one of the theme color properties: 
 
 ### Libraries of SVG icons
 
-There are many projects that provide SVG icons. For example [https://materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 icons. For the wanted icon, copy the SVG `path` they provide, and use it as the child of the `SvgIcon` component. 
+There are many projects that provide SVG icons. For example [https://materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 icons.
+For the wanted icon, copy the SVG `path` they provide, and use it as the child of the `SvgIcon` component.
 
 NOTE: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has already wrapped each of these SVG icons with the `SvgIcon` component, so you don't have to do it yourself.
 
