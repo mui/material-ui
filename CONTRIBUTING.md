@@ -4,9 +4,17 @@ If you're reading this, you're awesome! Thank you for helping us make this proje
 
 ## Branch structure
 
-`master` branch represents development as well as release branch for the latest version of Material-UI (v4.x).
+The `master` branch represents the development as well as the release branch for the latest version of Material-UI (v4.x).
 
 The two other branches (`v0.x` and `v3.x`) are for legacy versions of Material-UI.
+
+## Getting started
+
+1. [Fork](https://help.github.com/en/articles/fork-a-repo) the Material-UI repository.
+1. Create a branch: `git checkout -b my-topic-branch`.
+1. Make changes. If you change the code make sure to use the proper [coding style](#coding-style).
+1. Commit and push to your fork: `git push -u origin my-topic-branch`.
+1. [Create a pull request](https://help.github.com/en/articles/creating-a-pull-request-from-a-fork).
 
 ## Submitting a pull request
 
@@ -41,14 +49,6 @@ We will only accept a pull request for which all tests pass. Make sure the follo
 - If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes.
   See [About TypeScript demos](#about-typescript-demos).
 - The PR title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/#imperative) for a great explanation)
-
-## Getting started
-
-1. [Fork](https://help.github.com/en/articles/fork-a-repo) the Material-UI repository.
-1. Create a branch `git checkout -b my-topic-branch`.
-1. Make changes. If you change the code make sure to use proper [coding-style](#coding-style).
-1. Commit and push to your fork with `git push -u origin my-topic-branch`.
-1. [Create a pull request](https://help.github.com/en/articles/creating-a-pull-request-from-a-fork).
 
 ### Testing the documentation site
 
