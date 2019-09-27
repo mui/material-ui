@@ -590,10 +590,8 @@ The way that you do that is by passing a `<meta property="csp-nonce" content={no
 
 You must include this header regardless of whether or not SSR is used.
 
-```
+```html
 <head>
-<!-- ... -->
-<meta property="csp-nonce" content="this-is-a-nonce-123" />
-<!-- ... -->
+  <meta property="csp-nonce" content="this-is-a-nonce-123" />
 </head>
 ```
