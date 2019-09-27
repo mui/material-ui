@@ -43,6 +43,7 @@ Any other props supplied will be provided to the root element (native element).
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">MuiCardMedia-root</span> | Styles applied to the root element.
 | <span class="prop-name">media</span> | <span class="prop-name">MuiCardMedia-media</span> | Styles applied to the root element if `component="video, audio, picture, iframe, or img"`.
+| <span class="prop-name">img</span> | <span class="prop-name">MuiCardMedia-img</span> | Styles applied to the root element if `component="picture or img"`.
 
 You can override the style of the component thanks to one of these customization points:
 
