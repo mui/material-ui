@@ -44,11 +44,11 @@ We will only accept a pull request for which all tests pass. Make sure the follo
 
 ## Getting started
 
-1. [Fork](https://help.github.com/en/articles/fork-a-repo) the Material-UI repository. A fork is a copy of a repository. It allows you to freely experiment with changes without affecting the original project.
+1. [Fork](https://help.github.com/en/articles/fork-a-repo) the Material-UI repository.
 1. Create a branch `git checkout -b my-topic-branch`.
 1. Make changes. If you change the code make sure to use proper [coding-style](#coding-style).
 1. Commit and push to your fork with `git push -u origin my-topic-branch`.
-1. Visit our GitHub page and [create a pull request](https://help.github.com/en/articles/creating-a-pull-request-from-a-fork).
+1. [Create a pull request](https://help.github.com/en/articles/creating-a-pull-request-from-a-fork).
 
 ### Testing the documentation site
 
