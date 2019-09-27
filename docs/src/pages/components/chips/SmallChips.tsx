@@ -11,9 +11,9 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       justifyContent: 'center',
       flexWrap: 'wrap',
-    },
-    chip: {
-      margin: theme.spacing(1),
+      '& > *': {
+        margin: theme.spacing(0.5),
+      },
     },
   }),
 );
@@ -31,63 +31,34 @@ export default function SmallChips() {
 
   return (
     <div className={classes.root}>
-      <Chip size="small" label="Basic Chip" className={classes.chip} />
-      <Chip
-        size="small"
-        avatar={<Avatar>MB</Avatar>}
-        label="Clickable Chip"
-        onClick={handleClick}
-        className={classes.chip}
-      />
+      <Chip size="small" label="Basic" />
+      <Chip size="small" avatar={<Avatar>M</Avatar>} label="Clickable" onClick={handleClick} />
       <Chip
         size="small"
         avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
-        label="Deletable Chip"
+        label="Deletable"
         onDelete={handleDelete}
-        className={classes.chip}
-      />
-      <Chip
-        size="small"
-        avatar={
-          <Avatar>
-            <FaceIcon />
-          </Avatar>
-        }
-        label="Clickable Deletable Chip"
-        onClick={handleClick}
-        onDelete={handleDelete}
-        className={classes.chip}
       />
       <Chip
         size="small"
         icon={<FaceIcon />}
-        label="Clickable Deletable Chip"
+        label="Clickable Deletable"
         onClick={handleClick}
         onDelete={handleDelete}
-        className={classes.chip}
       />
       <Chip
         size="small"
-        label="Custom delete icon Chip"
+        label="Custom delete icon"
         onClick={handleClick}
         onDelete={handleDelete}
-        className={classes.chip}
         deleteIcon={<DoneIcon />}
       />
+      <Chip size="small" label="Clickable Link" component="a" href="#chip" clickable />
       <Chip
         size="small"
-        label="Clickable Link Chip"
-        className={classes.chip}
-        component="a"
-        href="#chip"
+        avatar={<Avatar>M</Avatar>}
+        label="Primary Clickable"
         clickable
-      />
-      <Chip
-        size="small"
-        avatar={<Avatar>MB</Avatar>}
-        label="Primary Clickable Chip"
-        clickable
-        className={classes.chip}
         color="primary"
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
@@ -95,38 +66,18 @@ export default function SmallChips() {
       <Chip
         size="small"
         icon={<FaceIcon />}
-        label="Primary Clickable Chip"
+        label="Primary Clickable"
         clickable
-        className={classes.chip}
         color="primary"
         onDelete={handleDelete}
         deleteIcon={<DoneIcon />}
       />
-      <Chip
-        size="small"
-        label="Deletable Primary Chip"
-        onDelete={handleDelete}
-        className={classes.chip}
-        color="primary"
-      />
-      <Chip
-        size="small"
-        avatar={
-          <Avatar>
-            <FaceIcon />
-          </Avatar>
-        }
-        label="Deletable Secondary Chip"
-        onDelete={handleDelete}
-        className={classes.chip}
-        color="secondary"
-      />
+      <Chip size="small" label="Deletable Primary" onDelete={handleDelete} color="primary" />
       <Chip
         size="small"
         icon={<FaceIcon />}
-        label="Deletable Secondary Chip"
+        label="Deletable Secondary"
         onDelete={handleDelete}
-        className={classes.chip}
         color="secondary"
       />
     </div>

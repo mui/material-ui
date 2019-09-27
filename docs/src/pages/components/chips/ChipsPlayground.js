@@ -91,15 +91,9 @@ function ChipsPlayground(props) {
       break;
     case 'letter':
       avatarToCode = 'avatar={<Avatar>FH</Avatar>} ';
-      avatarToPlayground = <Avatar>FH</Avatar>;
+      avatarToPlayground = <Avatar>F</Avatar>;
       break;
     default:
-      avatarToCode = 'avatar={<Avatar><FaceIcon /></Avatar>} ';
-      avatarToPlayground = (
-        <Avatar>
-          <FaceIcon />
-        </Avatar>
-      );
       break;
   }
 
@@ -209,7 +203,6 @@ function ChipsPlayground(props) {
                   <FormControlLabel value="none" control={<Radio />} label="none" />
                   <FormControlLabel value="letter" control={<Radio />} label="letter" />
                   <FormControlLabel value="img" control={<Radio />} label="img" />
-                  <FormControlLabel value="icon" control={<Radio />} label="icon" />
                 </RadioGroup>
               </FormControl>
             </Grid>

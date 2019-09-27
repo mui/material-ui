@@ -15,6 +15,7 @@ export const styles = theme => ({
     height: 40,
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.pxToRem(20),
+    lineHeight: 1,
     borderRadius: '50%',
     overflow: 'hidden',
     userSelect: 'none',
@@ -39,7 +40,6 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
   const {
     alt,
     children: childrenProp,
-    childrenClassName: childrenClassNameProp,
     classes,
     className: classNameProp,
     component: Component = 'div',
@@ -64,10 +64,6 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
         {...imgProps}
       />
     );
-  } else if (childrenClassNameProp && React.isValidElement(childrenProp)) {
-    children = React.cloneElement(childrenProp, {
-      className: clsx(childrenClassNameProp, childrenProp.props.className),
-    });
   } else {
     children = childrenProp;
   }
@@ -104,12 +100,6 @@ Avatar.propTypes = {
    * This can be an element, or just a string.
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   * The className of the child element.
-   * Used by Chip and ListItemIcon to style the Avatar icon.
-   */
-  childrenClassName: PropTypes.string,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.

@@ -63,7 +63,7 @@ describe('<Avatar />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Avatar className="my-avatar" data-my-prop="woofAvatar" childrenClassName="my-children">
+        <Avatar className="my-avatar" data-my-prop="woofAvatar">
           <span className="my-icon-font">icon</span>
         </Avatar>,
       );
@@ -86,10 +86,6 @@ describe('<Avatar />', () => {
     it('should apply the colorDefault class', () => {
       assert.strictEqual(wrapper.hasClass(classes.colorDefault), true);
     });
-
-    it('should apply the childrenClassName class', () => {
-      assert.strictEqual(wrapper.childAt(0).hasClass('my-children'), true);
-    });
   });
 
   describe('svg icon avatar', () => {
@@ -97,7 +93,7 @@ describe('<Avatar />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Avatar className="my-avatar" data-my-prop="woofAvatar" childrenClassName="my-children">
+        <Avatar className="my-avatar" data-my-prop="woofAvatar">
           <CancelIcon />
         </Avatar>,
       );
@@ -116,10 +112,6 @@ describe('<Avatar />', () => {
 
     it('should apply the colorDefault class', () => {
       assert.strictEqual(wrapper.hasClass(classes.colorDefault), true);
-    });
-
-    it('should apply the childrenClassName class', () => {
-      assert.strictEqual(wrapper.childAt(0).hasClass('my-children'), true);
     });
   });
 
