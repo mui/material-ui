@@ -11,10 +11,11 @@ export const styles = {
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
   },
-  /* Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
+  /* Styles applied to the root element if `component="video, audio or iframe"`. */
   media: {
     width: '100%',
   },
+  /* Styles applied to the root element if `component="picture or img"`. */
   img: {
     // ⚠️ object-fit is not supported by IE 11.
     objectFit: 'cover',
@@ -51,7 +52,7 @@ const CardMedia = React.forwardRef(function CardMedia(props, ref) {
         classes.root,
         {
           [classes.media]: isMediaComponent,
-          [classes.img]: ['picture', 'img'].indexOf(Component),
+          [classes.img]: ['picture', 'img'].includes(Component),
         },
         className,
       )}
