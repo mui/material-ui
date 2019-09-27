@@ -584,9 +584,16 @@ If you are using Server-Side Rendering (SSR), you should pass the nonce in the `
 />
 ```
 
-Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags.
-The client-side gets the nonce from a header. You must include this header regardless of whether or not SSR is used.
+Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags.  
 
-```jsx
-<meta property="csp-nonce" content={nonce} />
+The way that you do that is by passing a `<meta property="csp-nonce" content={nonce} />` tag in the `<head>` of your HTML.  JSS then will, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
+
+You must include this header regardless of whether or not SSR is used.
+
+```
+<head>
+<!-- ... -->
+<meta property="csp-nonce" content="this-is-a-nonce-123" />
+<!-- ... -->
+</head>
 ```
