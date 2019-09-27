@@ -52,7 +52,7 @@ const CardMedia = React.forwardRef(function CardMedia(props, ref) {
         classes.root,
         {
           [classes.media]: isMediaComponent,
-          [classes.img]: ['picture', 'img'].includes(Component),
+          [classes.img]: ['picture', 'img'].indexOf(Component) !== -1,
         },
         className,
       )}
