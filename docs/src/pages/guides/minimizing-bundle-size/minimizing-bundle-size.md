@@ -40,13 +40,12 @@ import TextField from '@material-ui/core/TextField';
 instead of top level imports (without a Babel plugin):
 
 ```js
-// 🐌 Slow bootstrap
 import { Button, TextField } from '@material-ui/core';
 ```
 
-This is the option we document in **all** the demos because it requires no configuration.
+This is the option we document in all the demos, since it requires no configuration.
 It is encouraged for library authors extending the components.
-Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
+Head to [Option 2](#option-2) for the approach that yields the best DX and UX tradeoff.
 
 While importing directly in this manner doesn't use the exports in [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public.
 
@@ -71,10 +70,10 @@ import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
 
 ### Option 2
 
-This option provides the best User Experience and Developer Experience:
+This option provides the best User Experience and Developer Experience tradeoff:
 
-- UX: the Babel plugin makes it as fast as the option 1.
-- DX: the syntax reduces the duplication of information. You don't have to duplicate the package name between two imports, you don't have duplicate the module name for each import.
+- UX: The Babel plugin makes it as fast as Option 1.
+- DX: This syntax reduces the duplication of code, requiring only a single import for multiple modules.
 Overall, the code is easier to read, and you are less likely to make a mistake when importing a new module.
 ```js
 import { Button, TextField } from '@material-ui/core';
