@@ -11,7 +11,7 @@ export const styles = {
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
   },
-  /* Styles applied to the root element if `component="video, audio or iframe"`. */
+  /* Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
   media: {
     width: '100%',
   },
