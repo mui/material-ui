@@ -91,7 +91,7 @@ function ChipsPlayground(props) {
       break;
     case 'letter':
       avatarToCode = 'avatar={<Avatar>FH</Avatar>} ';
-       avatarToPlayground = <Avatar>F</Avatar>;
+      avatarToPlayground = <Avatar>F</Avatar>;
       break;
     default:
       break;
