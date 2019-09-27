@@ -45,7 +45,7 @@ import { Button, TextField } from '@material-ui/core';
 
 This is the option we document in all the demos, since it requires no configuration.
 It is encouraged for library authors extending the components.
-Head to [Option 2](#option-2) for the approach that yields the best DX and UX tradeoff.
+Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
 
 While importing directly in this manner doesn't use the exports in [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public.
 
@@ -70,9 +70,10 @@ import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
 
 ### Option 2
 
-This option provides the best User Experience and Developer Experience tradeoff:
+This option provides the best User Experience and Developer Experience:
 
-- UX: The Babel plugin makes it as fast as Option 1.
+- UX: The Babel plugin enables top level tree-shaking even if your bundler doesn't support it.
+- DX: The Babel plugin makes startup time in dev mode as fast as Option 1.
 - DX: This syntax reduces the duplication of code, requiring only a single import for multiple modules.
 Overall, the code is easier to read, and you are less likely to make a mistake when importing a new module.
 ```js
