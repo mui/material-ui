@@ -49,7 +49,7 @@ Esta função realmente não "faz nada" em tempo de execução, é apenas uma fu
 #### Exemplos
 
 ```jsx
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -86,7 +86,7 @@ Vincula uma folha de estilo a um componente de função usando o padrão **hook*
 
 ```jsx
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
   root: {
@@ -169,7 +169,7 @@ Vincula uma folha de estilos, com uma função de componente, usando o padrão d
 
 ```jsx
 import React from 'react';
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/styles';
 
 const MyComponent = styled('div')({
   backgroundColor: 'red',
@@ -344,7 +344,7 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
   </h4>
   
   <pre><code class="jsx">import React from 'react';
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/styles';
 
 export default function MyComponent() {
   const theme = useTheme();
@@ -423,7 +423,7 @@ export default function MyComponent() {
   </h4>
   
   <pre><code class="jsx">import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 
 const styles = {
   root: {
@@ -443,7 +443,7 @@ export default withStyles(styles)(MyComponent);
   </p>
   
   <pre><code class="jsx">import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 
 const styles = {
   root: {
@@ -492,7 +492,7 @@ export default MyComponent
   </h4>
   
   <pre><code class="jsx">import React from 'react';
-import { withTheme } from '@material-ui/core/styles';
+import { withTheme } from '@material-ui/styles';
 
 function MyComponent(props) {
   return &lt;div&gt;{props.theme.direction}&lt;/div&gt;;
