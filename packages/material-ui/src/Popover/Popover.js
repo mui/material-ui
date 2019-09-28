@@ -140,6 +140,27 @@ const Popover = React.forwardRef(function Popover(props, ref) {
           ? resolvedAnchorEl
           : ownerDocument(paperRef.current).body;
       const anchorRect = anchorElement.getBoundingClientRect();
+
+      if (process.env.NODE_ENV !== 'production') {
+        const box = anchorElement.getBoundingClientRect();
+
+        if (
+          process.env.NODE_ENV !== 'test' &&
+          box.top === 0 &&
+          box.left === 0 &&
+          box.right === 0 &&
+          box.bottom === 0
+        ) {
+          console.warn(
+            [
+              'Material-UI: the `anchorEl` prop provided to the component is invalid.',
+              'The anchor element should be part of the document layout.',
+              "Make sure the element is present in the document or that it's not display none.",
+            ].join('\n'),
+          );
+        }
+      }
+
       const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
 
       return {
