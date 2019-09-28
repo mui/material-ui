@@ -28,13 +28,8 @@ If this is an issue for you, you have various options:
 
 ### Option 1
 
-You can use path imports to avoid pulling in unused modules. For instance, instead of:
-
-```js
-import { Button, TextField } from '@material-ui/core';
-```
-
-use:
+You can use path imports to avoid pulling in unused modules.
+For instance, use:
 
 ```js
 // 🚀 Fast
@@ -42,7 +37,13 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 ```
 
-This is the option we document in **all** the demos because it requires no configuration.
+instead of top level imports (without a Babel plugin):
+
+```js
+import { Button, TextField } from '@material-ui/core';
+```
+
+This is the option we document in all the demos, since it requires no configuration.
 It is encouraged for library authors extending the components.
 Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
 
@@ -69,8 +70,17 @@ import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
 
 ### Option 2
 
-This option provides the best DX and UX.
-However, you need to apply the following steps correctly.
+This option provides the best User Experience and Developer Experience:
+
+- UX: The Babel plugin enables top level tree-shaking even if your bundler doesn't support it.
+- DX: The Babel plugin makes startup time in dev mode as fast as Option 1.
+- DX: This syntax reduces the duplication of code, requiring only a single import for multiple modules.
+Overall, the code is easier to read, and you are less likely to make a mistake when importing a new module.
+```js
+import { Button, TextField } from '@material-ui/core';
+```
+
+However, you need to apply the two following steps correctly.
 
 #### 1. Configure Babel
 
@@ -114,7 +124,7 @@ Pick one of the following plugins:
   `yarn add -D babel-plugin-transform-imports`
 
   Create a `.babelrc.js` file in the root directory of your project:
-  
+
   ```js
   const plugins = [
     [
@@ -136,11 +146,11 @@ Pick one of the following plugins:
 
   module.exports = {plugins};
   ```
-  
-If you are using Create React App, you will need to use a couple of projects that let you use `.babelrc` configuration, without ejecting. 
-  
+
+If you are using Create React App, you will need to use a couple of projects that let you use `.babelrc` configuration, without ejecting.
+
   `yarn add -D react-app-rewired customize-cra`
-  
+
   Create a `config-overrides.js` file in the root directory:
 
   ```js
@@ -149,27 +159,27 @@ If you are using Create React App, you will need to use a couple of projects tha
 
   module.exports = override(
     useBabelRc()
-  );  
+  );
   ```
-  
+
   If you wish, `babel-plugin-import` can be configured through `config-overrides.js` instead of `.babelrc` by using this [configuration](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options).
-  
+
   Modify your `package.json` start command:
-  
+
 ```diff
   "scripts": {
 -  "start": "react-scripts start"
 +  "start": "react-app-rewired start"
   }
 ```
-  
+
   Note: You may run into errors like these:
 
   ```
     Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
     Module not found: Can't resolve '@material-ui/core/createStyles' in '/your/project'
   ```
-  
+
   This is because `@material-ui/styles` is re-exported through `core`, but the full import is not allowed.
 
   You have an import like this in your code:
@@ -177,7 +187,7 @@ If you are using Create React App, you will need to use a couple of projects tha
   `import {makeStyles, createStyles} from '@material-ui/core';`
 
   The fix is simple, define the import separately:
-  
+
   `import {makeStyles, createStyles} from '@material-ui/core/styles';`
 
   Enjoy significantly faster start times.
