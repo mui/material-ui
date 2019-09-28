@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled } from '@material-ui/styles';
+import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const MyButton = styled(Button)({
@@ -12,6 +12,6 @@ const MyButton = styled(Button)({
   padding: '0 30px',
 });
 
-export default function StyledComponents() {
-  return <MyButton>Styled Components</MyButton>;
+export default function ScComponent() {
+  return <MyButton>Styled with styled-components API</MyButton>;
 }
