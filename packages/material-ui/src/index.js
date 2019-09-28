@@ -15,6 +15,11 @@ export {
   useTheme,
   withStyles,
   withTheme,
+  ThemeProvider,
+  StylesProvider,
+  jssPreset,
+  ServerStyleSheets,
+  createGenerateClassName,
 } from './styles';
 
 export { default as AppBar } from './AppBar';
