@@ -13,23 +13,11 @@ describe('<Select />', () => {
   let classes;
   let mount;
   const render = createClientRender({ strict: false });
-  let supportsTestingLibraryDebug;
 
   before(() => {
     classes = getClasses(<Select />);
     // StrictModeViolation: test uses MenuItem
     mount = createMount({ strict: false });
-
-    try {
-      Object.entries({});
-      // Node.children is not supported for DocumentFragmen in older Edge versions
-      // it's passed to a function that flattens DOM nodes with Array.from which
-      // throws if passed a nullish type
-      Array.from(document.createDocumentFragment().children);
-      supportsTestingLibraryDebug = true;
-    } catch (error) {
-      supportsTestingLibraryDebug = false;
-    }
   });
 
   describeConformance(<Select value="none" />, () => ({
@@ -524,13 +512,10 @@ describe('<Select />', () => {
       });
       // react-transition-group uses one extra commit for exit to completely remove
       // it from the DOM. but it's at least immediately inaccessible.
-      // In debug helpers don't support older browser so we can only match it correctly
-      // in some browsers
-      expect(() => getByRole('listbox')).to.throw(
-        supportsTestingLibraryDebug
-          ? /Unable to find an accessible element with the role "listbox"/
-          : /.*/,
-      );
+      expect(queryByRole('listbox')).to.be.null;
+      // It's desired that this fails one day. The additional tick required to remove
+      // this from the DOM is not a feature
+      expect(getByRole('listbox', { hidden: true })).to.be.ok;
       act(() => {
         clock.tick(0);
       });
