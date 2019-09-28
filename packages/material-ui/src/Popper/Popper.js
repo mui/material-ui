@@ -103,7 +103,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       const containerWindow = ownerWindow(resolvedAnchorEl);
 
       if (resolvedAnchorEl instanceof containerWindow.Element) {
-        const box = anchorElement.getBoundingClientRect();
+        const box = resolvedAnchorEl.getBoundingClientRect();
 
         if (
           process.env.NODE_ENV !== 'test' &&
