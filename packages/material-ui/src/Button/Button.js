@@ -205,6 +205,18 @@ export const styles = theme => ({
   fullWidth: {
     width: '100%',
   },
+  /* Styles applied to the startIcon element if supplied. */
+  startIcon: {
+    display: 'inherit',
+    marginRight: 8,
+    marginLeft: -4,
+  },
+  /* Styles applied to the endIcon element if supplied. */
+  endIcon: {
+    display: 'inherit',
+    marginRight: -4,
+    marginLeft: 8,
+  },
 });
 
 const Button = React.forwardRef(function Button(props, ref) {
@@ -216,13 +228,18 @@ const Button = React.forwardRef(function Button(props, ref) {
     component = 'button',
     disabled = false,
     disableFocusRipple = false,
+    endIcon: endIconProp,
     focusVisibleClassName,
     fullWidth = false,
     size = 'medium',
+    startIcon: startIconProp,
     type = 'button',
     variant = 'text',
     ...other
   } = props;
+
+  const startIcon = startIconProp && <span className={classes.startIcon}>{startIconProp}</span>;
+  const endIcon = endIconProp && <span className={classes.endIcon}>{endIconProp}</span>;
 
   return (
     <ButtonBase
@@ -247,7 +264,9 @@ const Button = React.forwardRef(function Button(props, ref) {
       type={type}
       {...other}
     >
+      {startIcon}
       <span className={classes.label}>{children}</span>
+      {endIcon}
     </ButtonBase>
   );
 });
@@ -291,6 +310,8 @@ Button.propTypes = {
    * to highlight the element by applying separate styles with the `focusVisibleClassName`.
    */
   disableRipple: PropTypes.bool,
+  /* Element placed after the children. */
+  endIcon: PropTypes.node,
   /**
    * @ignore
    */
@@ -309,6 +330,8 @@ Button.propTypes = {
    * `small` is equivalent to the dense button styling.
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /* Element placed after the children. */
+  startIcon: PropTypes.node,
   /**
    * @ignore
    */
