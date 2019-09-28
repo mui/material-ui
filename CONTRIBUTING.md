@@ -20,7 +20,7 @@ git checkout master
 git pull upstream master
 ```
 
-4. Create a new topic branch: 
+4. Create a new topic branch:
 ```sh
 git checkout -b my-topic-branch
 ```
