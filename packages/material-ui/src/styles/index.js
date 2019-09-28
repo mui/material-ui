@@ -14,4 +14,6 @@ export {
   jssPreset,
   ServerStyleSheets,
   StylesProvider,
+  ThemeProvider as MuiThemeProvider,
+  ThemeProvider,
 } from '@material-ui/styles';

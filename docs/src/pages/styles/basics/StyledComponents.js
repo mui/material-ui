@@ -12,6 +12,6 @@ const MyButton = styled(Button)({
   padding: '0 30px',
 });
 
-export default function ScComponent() {
+export default function StyledComponents() {
   return <MyButton>Styled with styled-components API</MyButton>;
 }

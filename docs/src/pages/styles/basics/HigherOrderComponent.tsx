@@ -14,9 +14,9 @@ const styles = createStyles({
   },
 });
 
-function HocComponent(props: WithStyles<typeof styles>) {
+function HigherOrderComponent(props: WithStyles<typeof styles>) {
   const { classes } = props;
   return <Button className={classes.root}>Styled with HOC API</Button>;
 }
 
-export default withStyles(styles)(HocComponent);
+export default withStyles(styles)(HigherOrderComponent);
