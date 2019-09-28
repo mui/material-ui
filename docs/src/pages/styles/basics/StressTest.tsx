@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider, useTheme, makeStyles, createStyles } from '@material-ui/styles';
+import { ThemeProvider, useTheme, makeStyles, createStyles } from '@material-ui/core/styles';
 
 interface MyTheme {
   color: string;

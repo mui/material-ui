@@ -1,6 +1,6 @@
 # API
 
-<p class="description">The API reference of the @material-ui/styles package.</p>
+<p class="description">The API reference of @material-ui/core/styles.</p>
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -21,7 +21,7 @@ A function which returns [a class name generator function](https://cssinjs.org/j
 
 ```jsx
 import React from 'react';
-import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
+import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'c',
@@ -114,7 +114,7 @@ This is a class helper to handle server-side rendering. [You can follow this gui
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheets } from '@material-ui/core/styles';
 
 const sheets = new ServerStyleSheets();
 const html = ReactDOMServer.renderToString(sheets.collect(<App />));
@@ -222,7 +222,7 @@ It should preferably be used at **the root of your component tree**.
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@material-ui/core/styles';
 
 function App() {
   return (
@@ -250,7 +250,7 @@ It should preferably be used at **the root of your component tree**.
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 const theme = {};
 
