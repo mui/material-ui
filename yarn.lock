@@ -1836,6 +1836,11 @@
     universal-user-agent "^3.0.0"
     url-template "^2.0.8"
 
+"@reach/auto-id@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@reach/auto-id/-/auto-id-0.2.0.tgz#97f9e48fe736aa5c6f4f32cf73c1f19d005f8550"
+  integrity sha512-lVK/svL2HuQdp7jgvlrLkFsUx50Az9chAhxpiPwBqcS83I2pVWvXp98FOcSCCJCV++l115QmzHhFd+ycw1zLBg==
+
 "@sheerun/mutationobserver-shim@^0.3.2":
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@sheerun/mutationobserver-shim/-/mutationobserver-shim-0.3.2.tgz#8013f2af54a2b7d735f71560ff360d3a8176a87b"
@@ -5756,15 +5761,16 @@ download-file-sync@^1.0.4:
   resolved "https://registry.yarnpkg.com/download-file-sync/-/download-file-sync-1.0.4.tgz#d3e3c543f836f41039455b9034c72e355b036019"
   integrity sha1-0+PFQ/g29BA5RVuQNMcuNVsDYBk=
 
-downshift@^3.0.0:
-  version "3.2.12"
-  resolved "https://registry.yarnpkg.com/downshift/-/downshift-3.2.12.tgz#19dc3b38e2d070c814f25d67d3a430e1bd25cf74"
-  integrity sha512-JV8aw9gR324GX1xi85hsHf5bf5Is8n/uLGr8BVReuhDLobIvLVl2I2Oqi0Og5bUvyyHmN9EOGmk2FuXpY9XcNg==
+downshift@^3.3.4:
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/downshift/-/downshift-3.3.4.tgz#959be157e48be2ec2bbc50f184303647fc719026"
+  integrity sha512-3bM11S3p78p/moyJqDPc1j357dm/C+dN+54HKuc526k5etNXvnXyxsb+Ufd2yLL6qK4QZA62DysAgtMCIsKCNA==
   dependencies:
     "@babel/runtime" "^7.4.5"
+    "@reach/auto-id" "^0.2.0"
     compute-scroll-into-view "^1.0.9"
     prop-types "^15.7.2"
-    react-is "^16.8.6"
+    react-is "^16.9.0"
 
 dts-critic@^2.0.0:
   version "2.0.0"
