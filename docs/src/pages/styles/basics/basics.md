@@ -206,7 +206,7 @@ const useStyles = makeStyles(theme => ({
 ## @material-ui/styles vs @material-ui/core/styles
 
 Material-UI styles are powered by the [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) npm package (and JSS).
-This solution is [isolated](https://bundlephobia.com/result?p=@material-ui/styles), it does not know the default Material-UI theme.
+This solution is [isolated](https://bundlephobia.com/result?p=@material-ui/styles), it does not know about the default Material-UI theme.
 It can be used to style React applications that are not using Material-UI framework.
 
 To remove the need for injecting a theme in the React's context **systematically** and to reduce the number of manual installations a developer needs to do, the `@material-ui/styles` modules are re-exported from `@material-ui/core/styles` (with a default theme).
