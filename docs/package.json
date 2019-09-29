@@ -106,7 +106,6 @@
     "react-select": "^3.0.4",
     "react-spring": "^8.0.27",
     "react-swipeable-views": "^0.13.3",
-    "react-test-renderer": "^16.8.5",
     "react-text-mask": "^5.0.2",
     "react-virtualized": "^9.21.1",
     "react-window": "^1.8.5",

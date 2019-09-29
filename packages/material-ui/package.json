@@ -53,6 +53,9 @@
     "prop-types": "^15.7.2",
     "react-transition-group": "^4.3.0"
   },
+  "devDependencies": {
+    "react-test-renderer": "^16.10.1"
+  },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
