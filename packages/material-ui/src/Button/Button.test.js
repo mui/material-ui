@@ -278,7 +278,11 @@ describe('<Button />', () => {
   });
 
   it('should render a button with endIcon', () => {
-    const { getByRole } = render(<Button endIcon={<span>icon</span>}>Hello World</Button>);
+    const { getByRole } = render(
+      <Button disableRipple endIcon={<span>icon</span>}>
+        Hello World
+      </Button>,
+    );
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.root);
