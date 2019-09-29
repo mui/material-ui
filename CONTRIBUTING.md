@@ -13,7 +13,7 @@ cd material-ui
 git remote add upstream git@github.com:mui-org/material-ui.git
 ```
 
-3. **The `master` branch represents the development as well as the release branch for the latest version (v4) of Material-UI.** The other two branches (`v0.x` and `v3.x`) are for legacy versions of Material-UI. Any work you do should be based on the latest upstream `master` branch. So before starting to work on a new topic, always synchronize your local `master` branch with the upstream one:
+3. **The `master` branch represents the development as well as the release branch for the latest version (v4) of Material-UI.** `v0.x` and `v3.x` branches are for legacy versions of Material-UI. Any work you do should be based on the latest upstream `master` branch. So before starting to work on a new topic, always synchronize your local `master` branch with the upstream one:
 
 ```sh
 git checkout master
