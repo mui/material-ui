@@ -53,23 +53,23 @@ import * as colors from './colors';
 
 export { colors };
 export {
+  createGenerateClassName,
   createMuiTheme,
   createStyles,
+  jssPreset,
   makeStyles,
+  MuiThemeProvider,
+  responsiveFontSizes,
+  ServerStyleSheets,
+  styled,
   StyleRulesCallback,
+  StylesProvider,
   Theme,
   useTheme,
   withStyles,
   WithStyles,
   withTheme,
   WithTheme,
-  MuiThemeProvider,
-  responsiveFontSizes,
-  styled,
-  StylesProvider,
-  StylesContext,
-  StylesOptions,
-  StylesProviderProps,
 } from './styles';
 
 export { default as AppBar } from './AppBar';

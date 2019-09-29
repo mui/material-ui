@@ -23,8 +23,8 @@ export {
 export { default as withTheme, WithTheme } from './withTheme';
 export { default as styled, ComponentCreator, StyledProps } from './styled';
 export {
+  createGenerateClassName,
+  jssPreset,
+  ServerStyleSheets,
   StylesProvider,
-  StylesContext,
-  StylesOptions,
-  StylesProviderProps,
 } from '@material-ui/styles';
