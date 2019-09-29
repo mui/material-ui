@@ -40,7 +40,7 @@
     "typescript": "lerna run typescript --parallel"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
+    "@babel/cli": "^7.6.2",
     "@babel/core": "^7.6.0",
     "@babel/node": "^7.6.1",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
