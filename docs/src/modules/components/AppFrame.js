@@ -255,7 +255,7 @@ function AppFrame(props) {
                   selected={userLanguage === language.code}
                   onClick={handleLanguageMenuClose}
                   lang={language.code}
-                  hreflang={language.code}
+                  hrefLang={language.code}
                 >
                   {language.text}
                 </MenuItem>
@@ -273,7 +273,7 @@ function AppFrame(props) {
                 target="_blank"
                 key={userLanguage}
                 lang={userLanguage}
-                hreflang="en"
+                hrefLang="en"
                 onClick={handleLanguageMenuClose}
               >
                 {`${t('helpToTranslate')}`}
