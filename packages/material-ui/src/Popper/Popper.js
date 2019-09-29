@@ -97,6 +97,32 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       setPlacement(data.placement);
     };
 
+    const resolvedAnchorEl = getAnchorEl(anchorEl);
+
+    if (process.env.NODE_ENV !== 'production') {
+      const containerWindow = ownerWindow(resolvedAnchorEl);
+
+      if (resolvedAnchorEl instanceof containerWindow.Element) {
+        const box = resolvedAnchorEl.getBoundingClientRect();
+
+        if (
+          process.env.NODE_ENV !== 'test' &&
+          box.top === 0 &&
+          box.left === 0 &&
+          box.right === 0 &&
+          box.bottom === 0
+        ) {
+          console.warn(
+            [
+              'Material-UI: the `anchorEl` prop provided to the component is invalid.',
+              'The anchor element should be part of the document layout.',
+              "Make sure the element is present in the document or that it's not display none.",
+            ].join('\n'),
+          );
+        }
+      }
+    }
+
     const popper = new PopperJS(getAnchorEl(anchorEl), popperNode, {
       placement: rtlPlacement,
       ...popperOptions,
