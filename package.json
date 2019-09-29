@@ -63,7 +63,7 @@
     "@types/react": "^16.9.2",
     "@types/sinon": "^7.0.13",
     "argos-cli": "^0.1.2",
-    "aws-sdk": "^2.518.0",
+    "aws-sdk": "^2.538.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.0",
