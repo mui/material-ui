@@ -86,16 +86,16 @@ describe('<Menu /> integration', () => {
   });
 
   it('is part of the DOM by default but hidden', () => {
-    const { queryByRole: getByRole } = render(<ButtonMenu />);
+    const { queryByRole } = render(<ButtonMenu />);
 
     // note: this will fail once testing-library ignores inaccessible roles :)
-    expect(getByRole('menu')).to.be.ariaHidden;
+    expect(queryByRole('menu')).to.be.null;
   });
 
   it('does not gain any focus when mounted ', () => {
     const { getByRole } = render(<ButtonMenu />);
 
-    expect(getByRole('menu')).to.not.contain(document.activeElement);
+    expect(getByRole('menu', { hidden: true })).to.not.contain(document.activeElement);
   });
 
   it('should focus the first item on open', () => {
@@ -284,7 +284,7 @@ describe('<Menu /> integration', () => {
     specify('[variant=selectedMenu] focuses nothing when it is closed and mounted', () => {
       const { getByRole } = render(<ButtonMenu selectedIndex={1} variant="selectedMenu" />);
 
-      expect(getByRole('menu')).not.to.contain(document.activeElement);
+      expect(getByRole('menu', { hidden: true })).not.to.contain(document.activeElement);
     });
 
     specify(
@@ -306,7 +306,7 @@ describe('<Menu /> integration', () => {
   });
 
   it('closes the menu when Tabbing while the list is active', () => {
-    const { getByRole } = render(<ButtonMenu />);
+    const { getByRole, queryByRole } = render(<ButtonMenu />);
 
     getByRole('button').focus();
     getByRole('button').click();
@@ -315,11 +315,11 @@ describe('<Menu /> integration', () => {
     // react-transition-group uses one commit per state transition so we need to wait a bit
     clock.tick(0);
 
-    expect(getByRole('menu')).to.be.ariaHidden;
+    expect(queryByRole('menu')).to.be.null;
   });
 
   it('closes the menu when the backdrop is clicked', () => {
-    const { getByRole } = render(<ButtonMenu />);
+    const { getByRole, queryByRole } = render(<ButtonMenu />);
 
     getByRole('button').focus();
     getByRole('button').click();
@@ -327,6 +327,7 @@ describe('<Menu /> integration', () => {
     document.querySelector('[data-mui-test="Backdrop"]').click();
     clock.tick(0);
 
-    expect(getByRole('menu')).to.be.ariaHidden;
+    // TODO use getByRole with hidden and match that it's inaccessible
+    expect(queryByRole('menu')).to.be.null;
   });
 });
