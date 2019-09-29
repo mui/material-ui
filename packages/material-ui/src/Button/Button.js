@@ -310,7 +310,9 @@ Button.propTypes = {
    * to highlight the element by applying separate styles with the `focusVisibleClassName`.
    */
   disableRipple: PropTypes.bool,
-  /* Element placed after the children. */
+  /**
+   * Element placed after the children.
+   */
   endIcon: PropTypes.node,
   /**
    * @ignore
@@ -330,7 +332,9 @@ Button.propTypes = {
    * `small` is equivalent to the dense button styling.
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /* Element placed after the children. */
+  /**
+   * Element placed before the children.
+   */
   startIcon: PropTypes.node,
   /**
    * @ignore
