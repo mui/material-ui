@@ -108,7 +108,7 @@ const fireEvent = Object.assign(rtlFireEvent, {
   },
 });
 
-export * from '@testing-library/react';
+export * from '@testing-library/react/pure';
 export { act, cleanup, fireEvent };
 
 export function render() {
