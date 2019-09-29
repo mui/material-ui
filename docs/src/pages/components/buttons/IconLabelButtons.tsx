@@ -71,7 +71,6 @@ export default function IconLabelButtons() {
       >
         Loading
       </Button>
-
     </div>
   );
 }

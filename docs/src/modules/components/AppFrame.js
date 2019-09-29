@@ -121,9 +121,6 @@ const styles = theme => ({
   appBarHome: {
     boxShadow: 'none',
   },
-  language: {
-    margin: theme.spacing(0, 0.5, 0, 1),
-  },
   appBarShift: {
     [theme.breakpoints.up('lg')]: {
       width: 'calc(100% - 240px)',
@@ -232,16 +229,14 @@ function AppFrame(props) {
               onClick={handleLanguageIconClick}
               data-ga-event-category="AppBar"
               data-ga-event-action="language"
+              startIcon={<LanguageIcon fontSize="small" />}
+              endIcon={<ExpandMoreIcon fontSize="small" />}
             >
-              <LanguageIcon />
               <Hidden xsDown implementation="css">
-                <span className={classes.language}>
-                  {userLanguage === 'aa'
-                    ? 'Translating'
-                    : LANGUAGES_LABEL.filter(language => language.code === userLanguage)[0].text}
-                </span>
+                {userLanguage === 'aa'
+                  ? 'Translating'
+                  : LANGUAGES_LABEL.filter(language => language.code === userLanguage)[0].text}
               </Hidden>
-              <ExpandMoreIcon />
             </Button>
           </Tooltip>
           <NoSsr>
