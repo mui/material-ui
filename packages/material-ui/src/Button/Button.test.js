@@ -267,6 +267,26 @@ describe('<Button />', () => {
     expect(button).to.have.class(classes.containedSizeLarge);
   });
 
+  it('should render a button with startIcon', () => {
+    const { getByRole } = render(<Button startIcon={<span>icon</span>}>Hello World</Button>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.text);
+    expect(button.firstChild).not.to.have.class(classes.endIcon);
+    expect(button.firstChild).to.have.class(classes.startIcon);
+  });
+
+  it('should render a button with endIcon', () => {
+    const { getByRole } = render(<Button endIcon={<span>icon</span>}>Hello World</Button>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.text);
+    expect(button.lastChild).not.to.have.class(classes.startIcon);
+    expect(button.lastChild).to.have.class(classes.endIcon);
+  });
+
   it('should have a ripple by default', () => {
     const { getByRole } = render(
       <Button TouchRippleProps={{ className: 'touch-ripple' }}>Hello World</Button>,
