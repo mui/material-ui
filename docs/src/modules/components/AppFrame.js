@@ -58,6 +58,11 @@ const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch
 function DeferredAppSearch() {
   const fallback = null;
 
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <React.Fragment>
       <link
@@ -66,9 +71,7 @@ function DeferredAppSearch() {
         as="style"
       />
       {/* Suspense isn't supported for SSR yet */}
-      {typeof window === 'undefined' ? (
-        fallback
-      ) : (
+      {mounted && (
         <React.Suspense fallback={fallback}>
           <AppSearch />
         </React.Suspense>
