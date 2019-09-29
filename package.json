@@ -129,7 +129,7 @@
     "typescript": "3.2.4",
     "typescript-to-proptypes": "^1.3.0",
     "vrtest": "^0.2.0",
-    "webpack": "^4.40.2",
+    "webpack": "^4.41.0",
     "webpack-bundle-analyzer": "^3.5.1",
     "webpack-cli": "^3.3.9",
     "yarn-deduplicate": "^1.1.1"
