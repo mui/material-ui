@@ -2143,10 +2143,10 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
   integrity sha512-ce5d3q03Ex0sy4R14722Rmt6MT07Ua+k4FwDfdcToYJcMKNtRVQvJ6JCAPdAmAnbRb6CsX6aYb9m96NGod9uTw==
 
-"@types/react-autosuggest@^9.3.9":
-  version "9.3.10"
-  resolved "https://registry.yarnpkg.com/@types/react-autosuggest/-/react-autosuggest-9.3.10.tgz#2af3a249b1229361ab8a484ebf761d25ffb70b96"
-  integrity sha512-6WjqPxFnBwNSUKwUCDV2R/mK2yKSNMjCJa1K7sPB3Fy+ZKkXDT1PyJA/NcQ7IZ5PPrEap/E88dp6STCKX7QgQA==
+"@types/react-autosuggest@^9.3.11":
+  version "9.3.11"
+  resolved "https://registry.yarnpkg.com/@types/react-autosuggest/-/react-autosuggest-9.3.11.tgz#2b554a4ac350da5bcd50ad368972f2e80e879232"
+  integrity sha512-OY0N0BZ2MiD4W3oTquRvpqYucExiLNgXgu4JkXZ2gKs4lONiS7B+fSotiQnjLdGIy+4sW3tzTvfbQfPgTZGInA==
   dependencies:
     "@types/react" "*"
 
