@@ -60,7 +60,7 @@
     "@types/lodash": "^4.14.138",
     "@types/mocha": "^5.2.7",
     "@types/prettier": "^1.18.0",
-    "@types/react": "^16.9.2",
+    "@types/react": "^16.9.3",
     "@types/sinon": "^7.0.13",
     "argos-cli": "^0.1.2",
     "aws-sdk": "^2.538.0",
