@@ -9,11 +9,11 @@ export type ButtonTypeMap<
   props: P & {
     color?: PropTypes.Color;
     disableFocusRipple?: boolean;
-    endIcon?: React.ReactElement;
+    endIcon?: React.ReactNode;
     fullWidth?: boolean;
     href?: string;
     size?: 'small' | 'medium' | 'large';
-    startIcon?: React.ReactElement;
+    startIcon?: React.ReactNode;
     variant?: 'text' | 'outlined' | 'contained';
   };
   defaultComponent: D;
