@@ -59,7 +59,7 @@
     "clean-css": "^4.1.11",
     "clipboard-copy": "^3.0.0",
     "clsx": "^1.0.2",
-    "core-js": "^2.6.5",
+    "core-js": "^3.2.1",
     "cross-env": "^5.2.1",
     "css-loader": "^3.1.0",
     "css-mediaquery": "^0.1.2",
