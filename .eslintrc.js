@@ -37,10 +37,17 @@ module.exports = {
     'no-constant-condition': 'error',
     // Airbnb use error
     'no-param-reassign': 'off',
+    'prefer-object-spread': 'off',
+    'max-classes-per-file': 'off', // Doesn't matter
+    'react/state-in-constructor': 'off', // Doesn't matter
+    'react/static-property-placement': 'off', // Non compatible with TypeScript classes
+    'react/jsx-props-no-spreading': 'off', // It should
+    'react/jsx-fragments': 'off', // Can't use ref
     'no-prototype-builtins': 'off',
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     'prefer-destructuring': 'off', // Destructuring harm grep potential.
 
+    'jsx-a11y/control-has-associated-label': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/label-has-for': 'off', // deprecated
     'jsx-a11y/no-autofocus': 'off', // We are a library, people do what they want.
@@ -96,7 +103,7 @@ module.exports = {
       },
       rules: {
         // does not work with wildcard imports. Mistakes will throw at runtime anyway
-        'import/named': false,
+        'import/named': 'off',
         // for expect style assertions
         'no-unused-expressions': 'off',
 

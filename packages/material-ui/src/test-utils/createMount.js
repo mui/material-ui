@@ -12,16 +12,6 @@ import { mount as enzymeMount } from 'enzyme';
  */
 // eslint-disable-next-line react/prefer-stateless-function
 class Mode extends React.Component {
-  static propTypes = {
-    /**
-     * this is essentially children. However we can't use children because then
-     * using `wrapper.setProps({ children })` would work differently if this component
-     * would be the root.
-     */
-    __element: PropTypes.element.isRequired,
-    __strict: PropTypes.bool.isRequired,
-  };
-
   render() {
     // Excess props will come from e.g. enzyme setProps
     const { __element, __strict, ...other } = this.props;
@@ -30,6 +20,16 @@ class Mode extends React.Component {
     return <Component>{React.cloneElement(__element, other)}</Component>;
   }
 }
+
+Mode.propTypes = {
+  /**
+   * this is essentially children. However we can't use children because then
+   * using `wrapper.setProps({ children })` would work differently if this component
+   * would be the root.
+   */
+  __element: PropTypes.element.isRequired,
+  __strict: PropTypes.bool.isRequired,
+};
 
 // Generate an enhanced mount function.
 export default function createMount(options = {}) {

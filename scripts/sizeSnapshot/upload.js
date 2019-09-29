@@ -8,6 +8,7 @@ const snapshotDestPath = path.join(workspaceRoot, 'size-snapshot.json');
 
 async function main() {
   function uploadArtifact(artifact, options) {
+    // eslint-disable-next-line no-async-promise-executor
     return new Promise(async (resolve, reject) => {
       const s3 = new aws.S3();
 

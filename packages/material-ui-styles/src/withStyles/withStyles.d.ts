@@ -22,7 +22,7 @@ export interface CSSProperties extends BaseCSSProperties {
 }
 
 export type BaseCreateCSSProperties<Props extends object = {}> = {
-  [P in keyof BaseCSSProperties]: BaseCSSProperties[P] | ((props: Props) => BaseCSSProperties[P])
+  [P in keyof BaseCSSProperties]: BaseCSSProperties[P] | ((props: Props) => BaseCSSProperties[P]);
 };
 
 export interface CreateCSSProperties<Props extends object = {}>

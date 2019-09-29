@@ -13,12 +13,12 @@ describe('utils/getDisplayName.js', () => {
       }
 
       class SomeOtherComponent extends React.Component {
-        static displayName = 'CustomDisplayName';
-
         render() {
           return <div />;
         }
       }
+
+      SomeOtherComponent.displayName = 'CustomDisplayName';
 
       function YetAnotherComponent() {
         return <div />;
