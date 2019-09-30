@@ -264,9 +264,11 @@ const Button = React.forwardRef(function Button(props, ref) {
       type={type}
       {...other}
     >
-      {startIcon}
-      <span className={classes.label}>{children}</span>
-      {endIcon}
+      <span className={classes.label}>
+        {startIcon}
+        {children}
+        {endIcon}
+      </span>
     </ButtonBase>
   );
 });

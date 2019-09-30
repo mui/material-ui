@@ -14,7 +14,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
-import Hidden from '@material-ui/core/Hidden';
+import Box from '@material-ui/core/Box';
 import NoSsr from '@material-ui/core/NoSsr';
 import LanguageIcon from '@material-ui/icons/Translate';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -116,6 +116,13 @@ const styles = theme => ({
     transition: theme.transitions.create('width'),
     '@media print': {
       position: 'absolute',
+    },
+  },
+  language: {
+    margin: theme.spacing(0, 0.5, 0, 1),
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'block',
     },
   },
   appBarHome: {
@@ -229,14 +236,14 @@ function AppFrame(props) {
               onClick={handleLanguageIconClick}
               data-ga-event-category="AppBar"
               data-ga-event-action="language"
-              startIcon={<LanguageIcon fontSize="small" />}
-              endIcon={<ExpandMoreIcon fontSize="small" />}
             >
-              <Hidden xsDown implementation="css">
+              <LanguageIcon />
+              <span className={classes.language}>
                 {userLanguage === 'aa'
                   ? 'Translating'
                   : LANGUAGES_LABEL.filter(language => language.code === userLanguage)[0].text}
-              </Hidden>
+              </span>
+              <ExpandMoreIcon fontSize="small" />
             </Button>
           </Tooltip>
           <NoSsr>
@@ -260,7 +267,9 @@ function AppFrame(props) {
                   {language.text}
                 </MenuItem>
               ))}
-              <Divider />
+              <Box my={1}>
+                <Divider />
+              </Box>
               <MenuItem
                 component="a"
                 data-no-link="true"

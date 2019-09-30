@@ -6,7 +6,6 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import KeyboardVoiceIcon from '@material-ui/icons/KeyboardVoice';
 import Icon from '@material-ui/core/Icon';
 import SaveIcon from '@material-ui/icons/Save';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -23,7 +22,7 @@ export default function IconLabelButtons() {
         variant="contained"
         color="secondary"
         className={classes.button}
-        endIcon={<DeleteIcon fontSize="small" />}
+        startIcon={<DeleteIcon fontSize="small" />}
       >
         Delete
       </Button>
@@ -40,7 +39,7 @@ export default function IconLabelButtons() {
         variant="contained"
         color="default"
         className={classes.button}
-        endIcon={<CloudUploadIcon fontSize="small" />}
+        startIcon={<CloudUploadIcon fontSize="small" />}
       >
         Upload
       </Button>
@@ -60,14 +59,6 @@ export default function IconLabelButtons() {
         startIcon={<SaveIcon fontSize="small" />}
       >
         Save
-      </Button>
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        startIcon={<CircularProgress color="inherit" size={20} />}
-      >
-        Loading
       </Button>
     </div>
   );
