@@ -74,7 +74,6 @@ export default function InputAdornments() {
         InputProps={{
           startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
         }}
-        variant={variant}
       />
       <TextField
         select
@@ -85,7 +84,6 @@ export default function InputAdornments() {
         InputProps={{
           startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
         }}
-        variant={variant}
       >
         {ranges.map(option => (
           <MenuItem key={option.value} value={option.value}>
@@ -102,10 +100,7 @@ export default function InputAdornments() {
           startAdornment={<InputAdornment position="start">$</InputAdornment>}
         />
       </FormControl>
-      <FormControl
-        className={clsx(classes.margin, classes.withoutLabel, classes.textField)}
-        variant={variant}
-      >
+      <FormControl className={clsx(classes.margin, classes.withoutLabel, classes.textField)}>
         <Input
           id="adornment-weight"
           value={values.weight}
@@ -118,7 +113,7 @@ export default function InputAdornments() {
         />
         <FormHelperText id="weight-helper-text">Weight</FormHelperText>
       </FormControl>
-      <FormControl className={clsx(classes.margin, classes.textField)} variant={variant}>
+      <FormControl className={clsx(classes.margin, classes.textField)}>
         <InputLabel htmlFor="adornment-password">Password</InputLabel>
         <Input
           id="adornment-password"
