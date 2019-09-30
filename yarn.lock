@@ -5304,10 +5304,10 @@ data-urls@^1.1.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
-date-fns@^2.0.0-alpha.27, date-fns@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.0.1.tgz#c5f30e31d3294918e6b6a82753a4e719120e203d"
-  integrity sha512-C14oTzTZy8DH1Eq8N78owrCWvf3+cnJw88BTK/N3DYWVxDJuJzPaNdplzYxDYuuXXGvqBcO4Vy5SOrwAooXSWw==
+date-fns@2.1.0, date-fns@^2.0.0-alpha.27:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.1.0.tgz#0d7e806c3cefe14a943532dbf968995ccfd46bd9"
+  integrity sha512-eKeLk3sLCnxB/0PN4t1+zqDtSs4jb4mXRSTZ2okmx/myfWyDqeO4r5nnmA5LClJiCwpuTMeK2v5UQPuE4uMaxA==
 
 date-format@^2.0.0:
   version "2.0.0"
@@ -8893,12 +8893,12 @@ jss-preset-default@10.0.0:
     jss-plugin-template "10.0.0"
     jss-plugin-vendor-prefixer "10.0.0"
 
-jss-rtl@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/jss-rtl/-/jss-rtl-0.2.3.tgz#fe76010d7d1041ca9d61e0011fa71d344ba0b696"
-  integrity sha512-c9yOhTWldABdx+dds0XSXIbUcEWajBv+e7fl3zaiHCwOqbq4QiAdDTw7l4l5nqHAaGV6+33zMoS//KMMGpPA1A==
+jss-rtl@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/jss-rtl/-/jss-rtl-0.3.0.tgz#386961615956f9655bd5e9ec7e9d08bef223e4af"
+  integrity sha512-rg9jJmP1bAyhNOAp+BDZgOP/lMm4+oQ76qGueupDQ68Wq+G+6SGvCZvhIEg8OHSONRWOwFT6skCI+APGi8DgmA==
   dependencies:
-    rtl-css-js "^1.8.0"
+    rtl-css-js "^1.13.1"
 
 jss@10.0.0, jss@^10.0.0:
   version "10.0.0"
@@ -13132,10 +13132,10 @@ rst-selector-parser@^2.2.3:
     lodash.flattendeep "^4.4.0"
     nearley "^2.7.10"
 
-rtl-css-js@^1.8.0:
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.11.0.tgz#a7151930ef9d54656607d754ebb172ddfc9ef836"
-  integrity sha512-YnZ6jWxZxlWlcQAGF9vOmiF9bEmoQmSHE+wsrsiILkdK9HqiRPAIll4SY/QDzbvEu2lB2h62+hfg3TYzjnldbA==
+rtl-css-js@^1.13.1:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/rtl-css-js/-/rtl-css-js-1.13.1.tgz#80deabf6e8f36d6767d495cd3eb60fecb20c67e1"
+  integrity sha512-jgkIDj6Xi25kAEm5oYM3ZMFiOQhpLEcXi2LY/6bVr91cVz73hciHKneL5AMVPxOcks/JuizSaaNsvNRkeAWe3w==
   dependencies:
     "@babel/runtime" "^7.1.2"
 
