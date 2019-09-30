@@ -138,7 +138,7 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
     const button = wrapper.find('button');
-    assert.strictEqual(button.hasClass('MuiButton-sizeSmall'), true);
+    assert.strictEqual(button.hasClass('MuiButton-outlinedSizeSmall'), true);
   });
 
   it('can render a large button', () => {
@@ -148,7 +148,7 @@ describe('<ButtonGroup />', () => {
       </ButtonGroup>,
     );
     const button = wrapper.find('button');
-    assert.strictEqual(button.hasClass('MuiButton-sizeLarge'), true);
+    assert.strictEqual(button.hasClass('MuiButton-outlinedSizeLarge'), true);
   });
 
   it('should have a ripple by default', () => {
