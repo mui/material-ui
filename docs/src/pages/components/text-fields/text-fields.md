@@ -13,25 +13,21 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 The `TextField` wrapper component is a complete form control including a label, input and help text.
 
-{{"demo": "pages/components/text-fields/TextFields.js"}}
-
-> **Note:** This version of the text field is no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support it.
-
 ## Showcase
 
 {{"demo": "pages/components/text-fields/TextFieldShowcase.js"}}
 
-## Outlined
+The `TextField` component can be controlled or uncontrolled
 
-`TextField` supports outlined styling.
+{{"demo": "pages/components/text-fields/UncontrolledTextField.js"}}
 
-{{"demo": "pages/components/text-fields/OutlinedTextFields.js"}}
+## Examples 
 
-## Filled
+`TextField` supports standard, outlined and filled styling.
 
-`TextField` supports filled styling.
+> **Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support it.
 
-{{"demo": "pages/components/text-fields/FilledTextFields.js"}}
+{{"demo": "pages/components/text-fields/TextFields.js"}}
 
 ## Components
 

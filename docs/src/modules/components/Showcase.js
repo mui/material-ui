@@ -10,9 +10,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import Tooltip from '@material-ui/core/Tooltip';
 import TuneIcon from '@material-ui/icons/Tune';
 import CloseIcon from '@material-ui/icons/Close';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import WarningIcon from '@material-ui/icons/Warning';
 import ShowcaseOption from './ShowcaseOption';
 
 const useStyles = makeStyles(theme => ({
@@ -75,6 +77,9 @@ const useStyles = makeStyles(theme => ({
       fontSize: 14,
     },
   },
+  tabWrapper: {
+    flexDirection: 'row',
+  },
 }));
 
 function Showcase(props) {
@@ -122,9 +127,30 @@ function Showcase(props) {
               onChange={(e, value) => onVariantChange(value)}
               className={classes.tabs}
             >
-              {variants.map(variant => (
-                <Tab key={variant} label={variant} value={variant} />
-              ))}
+              {variants.map(variant => {
+                const deprecatedIcon = (
+                  <React.Fragment>
+                    &nbsp;&nbsp;
+                    <Tooltip title="This variant is no longer documented in the Material Design Guidelines">
+                      <WarningIcon size="small" />
+                    </Tooltip>
+                  </React.Fragment>
+                );
+                const label = (
+                  <React.Fragment>
+                    <Typography>{variant.name}</Typography>
+                    {variant.deprecated && deprecatedIcon}
+                  </React.Fragment>
+                );
+                return (
+                  <Tab
+                    classes={{ wrapper: classes.tabWrapper }}
+                    key={variant.name}
+                    label={label}
+                    value={variant.name}
+                  />
+                );
+              })}
             </Tabs>
             {showOptions && !drawerOpen && (
               <IconButton onClick={handleDrawer}>
@@ -144,7 +170,7 @@ function Showcase(props) {
             {children}
           </Grid>
         </Grid>
-        <Grid item wrap="nowrap">
+        <Grid item>
           {showOptions && (
             <Drawer
               anchor="right"

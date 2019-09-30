@@ -67,7 +67,7 @@ TextFieldDemo.propTypes = {
 };
 
 export default function TextFieldShowcase() {
-  const variants = ['Filled', 'Outlined', 'Standard'];
+  const variants = [{ name:'Filled' }, { name: 'Outlined'}, { name: 'Standard', deprecated: true}];
   const [selectedOptions, setOptions] = React.useState([]);
   const [selectedVariant, setVariant] = React.useState('Filled');
   const options = [
