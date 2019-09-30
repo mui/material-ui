@@ -40,6 +40,40 @@ export default function UncontrolledTextField() {
         className={classes.textField}
         margin="normal"
       />
+      <TextField
+        id="filled-name"
+        label="Name"
+        className={classes.textField}
+        value={name}
+        onChange={handleChange}
+        margin="normal"
+        variant="filled"
+      />
+      <TextField
+        id="filled-uncontrolled"
+        label="Uncontrolled"
+        defaultValue="foo"
+        className={classes.textField}
+        margin="normal"
+        variant="filled"
+      />
+      <TextField
+        id="outlined-name"
+        label="Name"
+        className={classes.textField}
+        value={name}
+        onChange={handleChange}
+        margin="normal"
+        variant="outlined"
+      />
+      <TextField
+        id="outlined-uncontrolled"
+        label="Uncontrolled"
+        defaultValue="foo"
+        className={classes.textField}
+        margin="normal"
+        variant="outlined"
+      />
     </form>
   );
 }

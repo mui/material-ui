@@ -99,44 +99,6 @@ export default function TextFields() {
       <Divider />
       <form className={classes.container} noValidate autoComplete="off">
         <TextField
-          required
-          id="standard-required"
-          label="Required"
-          defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
-          variant={variant}
-        />
-        <TextField
-          disabled
-          id="standard-disabled"
-          label="Disabled"
-          defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
-          variant={variant}
-        />
-        <TextField
-          id="standard-password-input"
-          label="Password"
-          className={classes.textField}
-          type="password"
-          autoComplete="current-password"
-          margin="normal"
-          variant={variant}
-        />
-        <TextField
-          id="standard-read-only-input"
-          label="Read Only"
-          defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
-          InputProps={{
-            readOnly: true,
-          }}
-          variant={variant}
-        />
-        <TextField
           id="standard-multiline-flexible"
           label="Multiline"
           multiline
@@ -170,27 +132,6 @@ export default function TextFields() {
           label="Multiline Placeholder"
           placeholder="Placeholder"
           multiline
-          className={classes.textField}
-          margin="normal"
-          variant={variant}
-        />
-        <TextField
-          id="standard-number"
-          label="Number"
-          value={values.age}
-          onChange={handleChange('age')}
-          type="number"
-          className={classes.textField}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          margin="normal"
-          variant={variant}
-        />
-        <TextField
-          id="standard-search"
-          label="Search field"
-          type="search"
           className={classes.textField}
           margin="normal"
           variant={variant}
