@@ -6,6 +6,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     dense?: boolean;
     disablePadding?: boolean;
     subheader?: React.ReactElement;
+    component?: React.ElementType;
   };
   defaultComponent: D;
   classKey: ListClassKey;
