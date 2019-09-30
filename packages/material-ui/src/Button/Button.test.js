@@ -196,7 +196,11 @@ describe('<Button />', () => {
   });
 
   it('should render a small outlined button', () => {
-    const { getByRole } = render(<Button variant="outlined" size="small">Hello World</Button>);
+    const { getByRole } = render(
+      <Button variant="outlined" size="small">
+        Hello World
+      </Button>,
+    );
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.root);
@@ -210,7 +214,11 @@ describe('<Button />', () => {
   });
 
   it('should render a large outlined button', () => {
-    const { getByRole } = render(<Button variant="outlined" size="large">Hello World</Button>);
+    const { getByRole } = render(
+      <Button variant="outlined" size="large">
+        Hello World
+      </Button>,
+    );
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.root);
@@ -224,7 +232,11 @@ describe('<Button />', () => {
   });
 
   it('should render a small contained button', () => {
-    const { getByRole } = render(<Button variant="contained" size="small">Hello World</Button>);
+    const { getByRole } = render(
+      <Button variant="contained" size="small">
+        Hello World
+      </Button>,
+    );
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.root);
@@ -238,7 +250,11 @@ describe('<Button />', () => {
   });
 
   it('should render a large contained button', () => {
-    const { getByRole } = render(<Button variant="contained" size="large">Hello World</Button>);
+    const { getByRole } = render(
+      <Button variant="contained" size="large">
+        Hello World
+      </Button>,
+    );
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.root);
