@@ -109,6 +109,7 @@
     "mocha": "^6.2.0",
     "nyc": "^14.1.1",
     "prettier": "1.17.0",
+    "pretty-bytes": "^5.3.0",
     "prop-types": "^15.7.2",
     "puppeteer": "^1.20.0",
     "react": "^16.10.1",

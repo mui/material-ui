@@ -2,6 +2,7 @@
 // danger has to be the first thing required!
 const { danger, markdown } = require('danger');
 const { exec } = require('child_process');
+const prettyBytes = require('pretty-bytes');
 const { loadComparison } = require('./scripts/sizeSnapshot');
 
 const parsedSizeChangeThreshold = 300;
@@ -75,6 +76,24 @@ function addPercent(change, goodEmoji = '', badEmoji = ':small_red_triangle:') {
   return `+${formatted}% ${badEmoji}`;
 }
 
+function formatDiff(absoluteChange, relativeChange) {
+  if (absoluteChange === 0) {
+    return '--';
+  }
+
+  const trendIcon = absoluteChange < 0 ? '▼' : '▲';
+
+  return `${trendIcon} ${prettyBytes(absoluteChange, { signed: true })} (${addPercent(
+    relativeChange,
+    '',
+    '',
+  )})`;
+}
+
+function computeBundleLabel(bundle) {
+  return bundle.replace(/^@material-ui/, '').replace(/\.esm$/, '');
+}
+
 /**
  * Generates a Markdown table
  * @param {{ label: string, align: 'left' | 'center' | 'right'}[]} headers
@@ -137,22 +156,18 @@ async function run() {
     const detailsTable = generateMDTable(
       [
         { label: 'bundle' },
-        { label: 'parsed diff', align: 'right' },
-        { label: 'gzip diff', align: 'right' },
-        { label: 'prev parsed', align: 'right' },
-        { label: 'current parsed', align: 'right' },
-        { label: 'prev gzip', align: 'right' },
-        { label: 'current gzip', align: 'right' },
+        { label: 'Size Change', align: 'right' },
+        { label: 'Size', align: 'right' },
+        { label: 'Gzip Change', align: 'right' },
+        { label: 'Gzip', align: 'right' },
       ],
       results.map(([bundle, { parsed, gzip }]) => {
         return [
-          bundle,
-          addPercent(parsed.relativeDiff),
-          addPercent(gzip.relativeDiff),
-          parsed.previous.toLocaleString(),
-          parsed.current.toLocaleString(),
-          gzip.previous.toLocaleString(),
-          gzip.current.toLocaleString(),
+          computeBundleLabel(bundle),
+          formatDiff(parsed.absoluteDiff, parsed.relativeDiff),
+          prettyBytes(parsed.current),
+          formatDiff(gzip.absoluteDiff, gzip.relativeDiff),
+          prettyBytes(gzip.current),
         ];
       }),
     );
