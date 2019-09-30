@@ -90,8 +90,11 @@ function formatDiff(absoluteChange, relativeChange) {
   )})`;
 }
 
-function computeBundleLabel(bundle) {
-  return bundle.replace(/^@material-ui/, '').replace(/\.esm$/, '');
+function computeBundleLabel(bundleId) {
+  if (bundleId === 'packages/material-ui/build/umd/material-ui.production.min.js') {
+    return '@material-ui/core[umd]';
+  }
+  return bundleId.replace(/^@material-ui\/core\//, '/core/').replace(/\.esm$/, '');
 }
 
 /**
@@ -161,15 +164,31 @@ async function run() {
         { label: 'Gzip Change', align: 'right' },
         { label: 'Gzip', align: 'right' },
       ],
-      results.map(([bundle, { parsed, gzip }]) => {
-        return [
-          computeBundleLabel(bundle),
-          formatDiff(parsed.absoluteDiff, parsed.relativeDiff),
-          prettyBytes(parsed.current),
-          formatDiff(gzip.absoluteDiff, gzip.relativeDiff),
-          prettyBytes(gzip.current),
-        ];
-      }),
+      results
+        .map(([bundleId, size]) => [computeBundleLabel(bundleId), size])
+        // orderBy(parsedDiff DESC, gzipDiff DESC, name ASC)
+        .sort(([labelA, statsA], [labelB, statsB]) => {
+          const compareParsedDiff = statsB.parsed.absoluteDiff - statsA.parsed.absoluteDiff;
+          const compareGzipDiff = statsB.gzip.absoluteDiff - statsA.gzip.absoluteDiff;
+          const compareName = labelA.localeCompare(labelB);
+
+          if (compareParsedDiff === 0 && compareGzipDiff === 0) {
+            return compareName;
+          }
+          if (compareParsedDiff === 0) {
+            return compareGzipDiff;
+          }
+          return compareParsedDiff;
+        })
+        .map(([label, { parsed, gzip }]) => {
+          return [
+            label,
+            formatDiff(parsed.absoluteDiff, parsed.relativeDiff),
+            prettyBytes(parsed.current),
+            formatDiff(gzip.absoluteDiff, gzip.relativeDiff),
+            prettyBytes(gzip.current),
+          ];
+        }),
     );
 
     const details = `

@@ -23,8 +23,15 @@ async function getSizeLimitBundles() {
 
   const corePackagePath = path.join(workspaceRoot, 'packages/material-ui/build/esm');
   const coreComponents = (await glob(path.join(corePackagePath, '[A-Z]*'))).map(componentPath => {
+    const componentName = path.basename(componentPath);
+    // adjust for legacy names
+    let entryName = componentName;
+    if (componentName === 'Paper') {
+      entryName = '@material-ui/core/Paper.esm';
+    }
+
     return {
-      name: `@material-ui/core/${path.basename(componentPath)}.esm`,
+      name: entryName,
       webpack: true,
       path: path.relative(workspaceRoot, componentPath),
     };
@@ -32,8 +39,10 @@ async function getSizeLimitBundles() {
 
   const labPackagePath = path.join(workspaceRoot, 'packages/material-ui-lab/build/esm');
   const labComponents = (await glob(path.join(labPackagePath, '[A-Z]*'))).map(componentPath => {
+    const componentName = path.basename(componentPath);
+
     return {
-      name: `@material-ui/lab/${path.basename(componentPath)}.esm`,
+      name: componentName,
       webpack: true,
       path: path.relative(workspaceRoot, componentPath),
     };
