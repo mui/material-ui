@@ -63,7 +63,7 @@ export default function TextFields() {
     multiline: 'Controlled',
     currency: 'EUR',
   });
-  const [variant, setVariant] = React.useState('standard');
+  const [variant, setVariant] = React.useState<'standard' | 'outlined' | 'filled'>('standard');
 
   const handleChange = (name: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [name]: event.target.value });
