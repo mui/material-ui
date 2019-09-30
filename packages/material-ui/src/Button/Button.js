@@ -197,6 +197,10 @@ export const styles = theme => ({
     padding: '8px 22px',
     fontSize: theme.typography.pxToRem(15),
   },
+  /* Styles applied to the root element if `size="small"`. */
+  sizeSmall: {},
+  /* Styles applied to the root element if `size="large"`. */
+  sizeLarge: {},
   /* Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: {
     width: '100%',
@@ -228,6 +232,7 @@ const Button = React.forwardRef(function Button(props, ref) {
         classes[`${variant}${color !== 'default' && color !== 'inherit' ? capitalize(color) : ''}`],
         {
           [classes[`${variant}Size${capitalize(size)}`]]: size !== 'medium',
+          [classes[`size${capitalize(size)}`]]: size !== 'medium',
           [classes.disabled]: disabled,
           [classes.fullWidth]: fullWidth,
           [classes.colorInherit]: color === 'inherit',

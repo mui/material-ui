@@ -46,6 +46,8 @@ export type ButtonClassKey =
   | 'outlinedSizeLarge'
   | 'outlinedSizeSmall'
   | 'outlinedSizeLarge'
+  | 'sizeSmall'
+  | 'sizeLarge'
   | 'fullWidth';
 
 export default Button;
