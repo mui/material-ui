@@ -94,23 +94,6 @@ other styles to meet the specification.
 
 ## Limitations
 
-### Shrink
-
-The input label "shrink" state isn't always correct.
-The input label is supposed to shrink as soon as the input is displaying something.
-In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
-
-![shrink](/static/images/text-fields/shrink.png)
-
-To workaround the issue, you can force the "shrink" state of the label.
-```jsx
-<TextField InputLabelProps={{ shrink: true }} />
-```
-or
-```jsx
-<InputLabel shrink>Count</InputLabel>
-```
-
 ### Floating label
 
 The floating label is absolutely positioned, it won't impact the layout of the page.
