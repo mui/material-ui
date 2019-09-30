@@ -28,6 +28,8 @@ async function getSizeLimitBundles() {
     let entryName = componentName;
     if (componentName === 'Paper') {
       entryName = '@material-ui/core/Paper.esm';
+    } else if (['Popper', 'TextArea'].indexOf(componentName) !== -1) {
+      entryName = `@material-ui/core/${componentName}`;
     }
 
     return {
@@ -70,6 +72,11 @@ async function getSizeLimitBundles() {
       path: 'packages/material-ui-system/build/esm/index.js',
     },
     ...coreComponents,
+    {
+      name: '@material-ui/core/useMediaQuery',
+      webpack: true,
+      path: 'packages/material-ui/build/esm/useMediaQuery.js',
+    },
     {
       name: '@material-ui/core/styles/createMuiTheme',
       webpack: true,
