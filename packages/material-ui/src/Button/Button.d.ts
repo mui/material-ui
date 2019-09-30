@@ -44,8 +44,8 @@ export type ButtonClassKey =
   | 'textSizeLarge'
   | 'outlinedSizeSmall'
   | 'outlinedSizeLarge'
-  | 'outlinedSizeSmall'
-  | 'outlinedSizeLarge'
+  | 'containedSizeSmall'
+  | 'containedSizeLarge'
   | 'sizeSmall'
   | 'sizeLarge'
   | 'fullWidth';
