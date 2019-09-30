@@ -42,12 +42,24 @@ export default function ControlledOpenSelect() {
         onChange={event => setAge(event.target.value)}
         select
         className={classes.field}
-        id='age-text-field'
-        label='Age'
-        helperText='TextField implementation'
-        SelectProps={{/* additional props supplied to Select component */}}
-        InputLabelProps={{/* additional props supplied to InputLabel component */}}
-        FormHelperTextProps={{/* additional props supplied to FormHelperText component */}}
+        id="age-text-field"
+        label="Age"
+        helperText="TextField implementation"
+        SelectProps={
+          {
+            /* additional props supplied to Select component */
+          }
+        }
+        InputLabelProps={
+          {
+            /* additional props supplied to InputLabel component */
+          }
+        }
+        FormHelperTextProps={
+          {
+            /* additional props supplied to FormHelperText component */
+          }
+        }
       >
         <MenuItem value={10}>Ten</MenuItem>
         <MenuItem value={20}>Twenty</MenuItem>
