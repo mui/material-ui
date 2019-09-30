@@ -62,13 +62,35 @@ steps:
       artifactName: 'size-snapshot'
       targetPath: 'scripts/sizeSnapshot/build/stats.json'
 
-  - script: |
-      node scripts/sizeSnapshot/upload
+  - task: AmazonWebServices.aws-vsts-tools.S3Upload.S3Upload@1
     displayName: 'persist size snapshot'
     condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
-    env:
-      AWS_ACCESS_KEY_ID: $(AWS_ACCESS_KEY_ID)
-      AWS_SECRET_ACCESS_KEY: $(AWS_SECRET_ACCESS_KEY)
+    inputs:
+      awsCredentials: 's3 artifacts'
+      regionName: 'eu-central-1'
+      bucketName: 'eps1lon-material-ui'
+      sourceFolder: '$(System.DefaultWorkingDirectory)'
+      globExpressions: 'size-snapshot.json'
+      targetFolder: 'artifacts/$(Build.SourceBranchName)/$(Build.SourceVersion)/'
+      filesAcl: 'public-read'
+      contentType: application/json
+      logRequest: true
+      logResponse: true
+
+  - task: AmazonWebServices.aws-vsts-tools.S3Upload.S3Upload@1
+    displayName: 'symlink size-snapshot to latest'
+    condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+    inputs:
+      awsCredentials: 's3 artifacts'
+      regionName: 'eu-central-1'
+      bucketName: 'eps1lon-material-ui'
+      sourceFolder: '$(System.DefaultWorkingDirectory)'
+      globExpressions: 'size-snapshot.json'
+      targetFolder: 'artifacts/$(Build.SourceBranchName)/latest/'
+      filesAcl: 'public-read'
+      contentType: application/json
+      logRequest: true
+      logResponse: true
 
   - script: |
       yarn danger ci
