@@ -16,7 +16,7 @@ Some of the key features:
 ## Simple media query
 
 You should provide a media query to the first argument of the hook.
-The media query string can by any valid CSS media query, e.g. `'print'`.
+The media query string can by any valid CSS media query, e.g. `'prefers-reduced-motion'`.
 
 {{"demo": "pages/components/use-media-query/SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
@@ -86,7 +86,7 @@ describe('MyTests', () => {
 ## Server-side rendering
 
 > ⚠️ Server-side rendering and client-side media queries are fundamentally at odds.
-Be aware of the tradeoff. The support can only be partial.
+> Be aware of the tradeoff. The support can only be partial.
 
 Try relying on client-side CSS media queries first.
 For instance, you could use:
@@ -155,17 +155,18 @@ You can reproduce the same behavior with a `useWidth` hook:
 
 #### Arguments
 
-1. `query` (*String* | *Function*): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
-2. `options` (*Object* [optional]):
-  - `options.defaultMatches` (*Boolean* [optional]):
+1. `query` (_String_ | _Function_): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
+2. `options` (_Object_ [optional]):
+
+- `options.defaultMatches` (_Boolean_ [optional]):
   As `window.matchMedia()` is unavailable on the server,
   we return a default matches during the first mount. The default value is `false`.
-  - `options.noSsr` (*Boolean* [optional]): Defaults to `false`.
+- `options.noSsr` (_Boolean_ [optional]): Defaults to `false`.
   In order to perform the server-side rendering reconciliation, it needs to render twice.
   A first time with nothing and a second time with the children.
   This double pass rendering cycle comes with a drawback. It's slower.
   You can set this flag to `true` if you are **not doing server-side rendering**.
-  - `options.ssrMatchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia*. This especially useful for [server-side rendering support](#server-side-rendering).
+- `options.ssrMatchMedia` (_Function_ [optional]) You can provide your own implementation of _matchMedia_. This especially useful for [server-side rendering support](#server-side-rendering).
 
 Note: You can change the default options using the [`default props`](/customization/globals/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 
@@ -180,8 +181,8 @@ import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export default function SimpleMediaQuery() {
-  const matches = useMediaQuery('print');
+  const matches = useMediaQuery('(prefers-color-scheme: dark)');
 
-  return <span>{`@media (min-width:600px) matches: ${matches}`}</span>;
+  return <span>{`(prefers-color-scheme: dark) matches: ${matches}`}</span>;
 }
 ```
