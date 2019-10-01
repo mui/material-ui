@@ -188,7 +188,7 @@ This button component has a color property that changes its color:
 
 {{"demo": "pages/styles/basics/AdaptingHOC.js"}}
 
-## Stress test
+### Stress test
 
 In the following stress test, you can update the *theme color* and the *background-color property* live:
 
@@ -203,13 +203,12 @@ const useStyles = makeStyles(theme => ({
 
 {{"demo": "pages/styles/basics/StressTest.js"}}
 
-## @material-ui/styles vs @material-ui/core/styles
+## @material-ui/core/styles vs @material-ui/styles
 
-Material-UI styles are powered by the [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) npm package (and JSS).
-This solution is [isolated](https://bundlephobia.com/result?p=@material-ui/styles), it does not know about the default Material-UI theme.
-It can be used to style React applications that are not using Material-UI framework.
+Material-UI's styles are powered by the [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) package, (built with JSS).
+This solution is [isolated](https://bundlephobia.com/result?p=@material-ui/styles). It doesn't have a default theme, and can be used to style React applications that are not using Material-UI components.
 
-To remove the need for injecting a theme in the React's context **systematically** and to reduce the number of manual installations a developer needs to do, the `@material-ui/styles` modules are re-exported from `@material-ui/core/styles` (with a default theme).
+ To reduce the number of packages required when used with Material-UI, and to simplify the imports, `@material-ui/styles` modules are re-exported from `@material-ui/core/styles`. To remove the need to systematically supply a theme, the default Material-UI theme is applied to `makeStyles`, `styled`, and `withStyles`.
 
 For instance:
 
@@ -217,6 +216,6 @@ For instance:
 // Re-export with a default theme
 import { makeStyles } from '@material-ui/core/styles';
 
-// Original module
+// Original module with no default theme
 import { makeStyles } from '@material-ui/styles';
 ```
