@@ -88,7 +88,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
 
       return prevState;
     });
-  }, [setState, rows, rowsMax, props.placeholder]);
+  }, [rows, rowsMax, props.placeholder]);
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
