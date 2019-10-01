@@ -21,6 +21,8 @@ const styles = {
     height: 0,
     top: 0,
     left: 0,
+    // Create a new layer, increase the isolation of the computed values
+    transform: 'translateZ(0)',
   },
 };
 
