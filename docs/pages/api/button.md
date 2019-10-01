@@ -74,6 +74,9 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 | <span class="prop-name">fullWidth</span> | <span class="prop-name">MuiButton-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 | <span class="prop-name">startIcon</span> | <span class="prop-name">MuiButton-startIcon</span> | Styles applied to the startIcon element if supplied.
 | <span class="prop-name">endIcon</span> | <span class="prop-name">MuiButton-endIcon</span> | Styles applied to the endIcon element if supplied.
+| <span class="prop-name">iconSizeSmall</span> | <span class="prop-name">MuiButton-iconSizeSmall</span> | Styles applied to the icon element if supplied and `size="small"`.
+| <span class="prop-name">iconSizeMedium</span> | <span class="prop-name">MuiButton-iconSizeMedium</span> | Styles applied to the icon element if supplied and `size="medium"`.
+| <span class="prop-name">iconSizeLarge</span> | <span class="prop-name">MuiButton-iconSizeLarge</span> | Styles applied to the icon element if supplied and `size="large"`.
 
 You can override the style of the component thanks to one of these customization points:
 

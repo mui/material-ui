@@ -24,7 +24,7 @@ export default function IconLabelButtons() {
         variant="contained"
         color="secondary"
         className={classes.button}
-        startIcon={<DeleteIcon fontSize="small" />}
+        startIcon={<DeleteIcon />}
       >
         Delete
       </Button>
@@ -33,7 +33,7 @@ export default function IconLabelButtons() {
         variant="contained"
         color="primary"
         className={classes.button}
-        endIcon={<Icon fontSize="small">send</Icon>}
+        endIcon={<Icon>send</Icon>}
       >
         Send
       </Button>
@@ -41,7 +41,7 @@ export default function IconLabelButtons() {
         variant="contained"
         color="default"
         className={classes.button}
-        startIcon={<CloudUploadIcon fontSize="small" />}
+        startIcon={<CloudUploadIcon />}
       >
         Upload
       </Button>
@@ -50,16 +50,14 @@ export default function IconLabelButtons() {
         disabled
         color="secondary"
         className={classes.button}
-        startIcon={<KeyboardVoiceIcon fontSize="small" />}
+        startIcon={<KeyboardVoiceIcon />}
       >
         Talk
       </Button>
-      <Button
-        variant="contained"
-        size="small"
-        className={classes.button}
-        startIcon={<SaveIcon fontSize="small" />}
-      >
+      <Button variant="contained" size="small" className={classes.button} startIcon={<SaveIcon />}>
+        Save
+      </Button>
+      <Button variant="contained" size="large" className={classes.button} startIcon={<SaveIcon />}>
         Save
       </Button>
     </div>

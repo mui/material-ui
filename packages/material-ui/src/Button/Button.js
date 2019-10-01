@@ -217,6 +217,24 @@ export const styles = theme => ({
     marginRight: -4,
     marginLeft: 8,
   },
+  /* Styles applied to the icon element if supplied and `size="small"`. */
+  iconSizeSmall: {
+    '& > *:first-child': {
+      fontSize: 18,
+    },
+  },
+  /* Styles applied to the icon element if supplied and `size="medium"`. */
+  iconSizeMedium: {
+    '& > *:first-child': {
+      fontSize: 20,
+    },
+  },
+  /* Styles applied to the icon element if supplied and `size="large"`. */
+  iconSizeLarge: {
+    '& > *:first-child': {
+      fontSize: 22,
+    },
+  },
 });
 
 const Button = React.forwardRef(function Button(props, ref) {
@@ -238,8 +256,16 @@ const Button = React.forwardRef(function Button(props, ref) {
     ...other
   } = props;
 
-  const startIcon = startIconProp && <span className={classes.startIcon}>{startIconProp}</span>;
-  const endIcon = endIconProp && <span className={classes.endIcon}>{endIconProp}</span>;
+  const startIcon = startIconProp && (
+    <span className={clsx(classes.startIcon, classes[`iconSize${capitalize(size)}`])}>
+      {startIconProp}
+    </span>
+  );
+  const endIcon = endIconProp && (
+    <span className={clsx(classes.endIcon, classes[`iconSize${capitalize(size)}`])}>
+      {endIconProp}
+    </span>
+  );
 
   return (
     <ButtonBase
