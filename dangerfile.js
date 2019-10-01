@@ -169,10 +169,12 @@ async function run() {
       ],
       results
         .map(([bundleId, size]) => [computeBundleLabel(bundleId), size])
-        // orderBy(parsedDiff DESC, gzipDiff DESC, name ASC)
+        // orderBy(|parsedDiff| DESC, |gzipDiff| DESC, name ASC)
         .sort(([labelA, statsA], [labelB, statsB]) => {
-          const compareParsedDiff = statsB.parsed.absoluteDiff - statsA.parsed.absoluteDiff;
-          const compareGzipDiff = statsB.gzip.absoluteDiff - statsA.gzip.absoluteDiff;
+          const compareParsedDiff = Math.abs(
+            statsB.parsed.absoluteDiff - statsA.parsed.absoluteDiff,
+          );
+          const compareGzipDiff = Math.abs(statsB.gzip.absoluteDiff - statsA.gzip.absoluteDiff);
           const compareName = labelA.localeCompare(labelB);
 
           if (compareParsedDiff === 0 && compareGzipDiff === 0) {
