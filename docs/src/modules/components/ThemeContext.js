@@ -140,7 +140,7 @@ export function ThemeProvider(props) {
     }
   }, themeInitialOptions);
 
-  const prefersDarkMode = useMediaQuery('@media (prefers-color-scheme: dark)');
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredType = prefersDarkMode ? 'dark' : 'light';
   const { dense, direction, paletteColors, paletteType = preferredType, spacing } = themeOptions;
 
