@@ -100,5 +100,34 @@ describe('<Select> integration', () => {
 
       expect(container.querySelector('[for="age-simple"]')).to.have.class('focused-label');
     });
+
+    it('does not stays in an active state if an open action did not actually open', () => {
+      // test for https://github.com/mui-org/material-ui/issues/17294
+      // we used to set a flag to stop blur propagation when we wanted to open the
+      // select but never considered what happened if the select never opened
+      const { container, getByRole } = render(
+        <FormControl>
+          <InputLabel classes={{ focused: 'focused-label' }} htmlFor="age-simple">
+            Age
+          </InputLabel>
+          <Select inputProps={{ id: 'age' }} open={false} value="">
+            <MenuItem value="">none</MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+          </Select>
+        </FormControl>,
+      );
+
+      getByRole('button').focus();
+
+      expect(container.querySelector('[for="age-simple"]')).to.have.class('focused-label');
+
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+
+      expect(container.querySelector('[for="age-simple"]')).to.have.class('focused-label');
+
+      getByRole('button').blur();
+
+      expect(container.querySelector('[for="age-simple"]')).not.to.have.class('focused-label');
+    });
   });
 });
