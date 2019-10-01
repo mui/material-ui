@@ -40,6 +40,12 @@ export type ButtonClassKey =
   | 'focusVisible'
   | 'disabled'
   | 'colorInherit'
+  | 'textSizeSmall'
+  | 'textSizeLarge'
+  | 'outlinedSizeSmall'
+  | 'outlinedSizeLarge'
+  | 'containedSizeSmall'
+  | 'containedSizeLarge'
   | 'sizeSmall'
   | 'sizeLarge'
   | 'fullWidth';

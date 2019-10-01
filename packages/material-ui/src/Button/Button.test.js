@@ -40,8 +40,12 @@ describe('<Button />', () => {
     expect(button).not.to.have.class(classes.contained);
     expect(button).not.to.have.class(classes.containedPrimary);
     expect(button).not.to.have.class(classes.containedSecondary);
-    expect(button).not.to.have.class(classes.sizeSmall);
-    expect(button).not.to.have.class(classes.sizeLarge);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
   });
 
   it('can render a text primary button', () => {
@@ -163,24 +167,104 @@ describe('<Button />', () => {
     expect(button).to.have.class(classes.containedSecondary);
   });
 
-  it('should render a small button', () => {
+  it('should render a small text button', () => {
     const { getByRole } = render(<Button size="small">Hello World</Button>);
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.text);
-    expect(button).to.have.class(classes.sizeSmall);
-    expect(button).not.to.have.class(classes.sizeLarge);
+    expect(button).to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
   });
 
-  it('should render a large button', () => {
+  it('should render a large text button', () => {
     const { getByRole } = render(<Button size="large">Hello World</Button>);
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.text);
-    expect(button).not.to.have.class(classes.sizeSmall);
-    expect(button).to.have.class(classes.sizeLarge);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
+  });
+
+  it('should render a small outlined button', () => {
+    const { getByRole } = render(
+      <Button variant="outlined" size="small">
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
+  });
+
+  it('should render a large outlined button', () => {
+    const { getByRole } = render(
+      <Button variant="outlined" size="large">
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
+  });
+
+  it('should render a small contained button', () => {
+    const { getByRole } = render(
+      <Button variant="contained" size="small">
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
+  });
+
+  it('should render a large contained button', () => {
+    const { getByRole } = render(
+      <Button variant="contained" size="large">
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).to.have.class(classes.containedSizeLarge);
   });
 
   it('should have a ripple by default', () => {
