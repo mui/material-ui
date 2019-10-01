@@ -102,14 +102,6 @@ function createMuiTheme(options = {}) {
     traverse(muiTheme.overrides);
   }
 
-  if (process.env.NODE_ENV !== 'production') {
-    if (muiTheme.shadows.length !== 25) {
-      console.error(
-        'Material-UI: the shadows array provided to createMuiTheme should support 25 elevations.',
-      );
-    }
-  }
-
   return muiTheme;
 }
 
