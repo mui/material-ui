@@ -55,8 +55,10 @@ export const styles = theme => ({
   /* Styles applied to the children if variant="outlined". */
   groupedOutlined: {
     '&:not(:first-child)': {
-      borderLeftColor: 'transparent',
       marginLeft: -1,
+    },
+    '&:not(:last-child)': {
+      borderRightColor: 'transparent',
     },
   },
   /* Styles applied to the children if variant="outlined" & color="primary". */
