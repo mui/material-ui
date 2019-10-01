@@ -250,7 +250,7 @@ function MarkdownDocs(props) {
                     href={prevPage.pathname}
                     size="large"
                     className={classes.pageLinkButton}
-                    startIcon={<ChevronLeftIcon fontSize="small" />}
+                    startIcon={<ChevronLeftIcon />}
                   >
                     {pageToTitleI18n(prevPage, t)}
                   </Button>
@@ -264,7 +264,7 @@ function MarkdownDocs(props) {
                     href={nextPage.pathname}
                     size="large"
                     className={classes.pageLinkButton}
-                    endIcon={<ChevronRightIcon fontSize="small" />}
+                    endIcon={<ChevronRightIcon />}
                   >
                     {pageToTitleI18n(nextPage, t)}
                   </Button>
