@@ -2,12 +2,16 @@ import * as colors from './colors';
 
 export { colors };
 export {
+  createGenerateClassName,
   createMuiTheme,
   createStyles,
+  jssPreset,
   makeStyles,
   MuiThemeProvider,
   responsiveFontSizes,
+  ServerStyleSheets,
   styled,
+  StylesProvider,
   useTheme,
   withStyles,
   withTheme,
