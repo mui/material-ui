@@ -1,0 +1,51 @@
+# https://dependabot.com/docs/config-file/
+# validate with https://dependabot.com/docs/config-file/validator/
+version: 1
+update_configs:
+  - package_manager: 'javascript'
+    directory: '/'
+    update_schedule: 'weekly'
+    version_requirement_updates: 'auto'
+    default_labels:
+      - 'dependencies'
+      - 'worktree'
+    ignored_updates:
+      - match:
+          # These should be grouped. Maintainer advise: Watch https://github.com/babel/babel
+          # for new releases and file a PR if you got time.
+          dependency_name: '@babel/*'
+      - match:
+          # https://github.com/mui-org/material-ui/pull/17604#issuecomment-536262291
+          dependency_name: 'core-js'
+      - match:
+          # breaks /api routes
+          # can be upgraded once https://github.com/zeit/next.js/issues/8123 is resolved
+          dependency_name: 'next'
+          version_requirement: '9.x'
+      - match:
+          # 1.18 started adding trailing commas only compatible with typescript ^3.4
+          dependency_name: 'prettier'
+      - match:
+          # 2.0 started using ES modules instead of CommonJS modules
+          dependency_name: 'raw-loader'
+      # not ignoring `react`. We'll hijack those PRs and also upgrade the other
+      # packages in the facebook/react repository
+      - match:
+          # should be grouped with `react`
+          dependency_name: 'react-dom'
+      - match:
+          # should be grouped with `react`
+          dependency_name: 'react-is'
+      - match:
+          # should be grouped with `react`
+          dependency_name: 'react-test-renderer'
+      - match:
+          # breaks `yarn size:why`
+          dependency_name: 'size-limit'
+      - match:
+          # https://github.com/mui-org/material-ui/pull/17168#issuecomment-524861427
+          dependency_name: 'tslint'
+          version_requirement: '5.x'
+      - match:
+          # we support typescript ^3.2.2 updating it in the repo might not catch new syntax
+          dependency_name: 'typescript'
