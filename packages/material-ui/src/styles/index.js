@@ -2,7 +2,6 @@ export * from './colorManipulator';
 export { default as createMuiTheme } from './createMuiTheme';
 export { default as createStyles } from './createStyles';
 export { default as makeStyles } from './makeStyles';
-export { default as MuiThemeProvider } from './MuiThemeProvider';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
 export { default as styled } from './styled';
 export * from './transitions';

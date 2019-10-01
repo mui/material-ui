@@ -4,7 +4,7 @@ import { spy, stub, useFakeTimers } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Collapse from './Collapse';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 
 describe('<Collapse />', () => {
@@ -206,11 +206,11 @@ describe('<Collapse />', () => {
 
       const next1 = spy();
       const Test = props => (
-        <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
           <Collapse timeout="auto" onEntered={next1} {...props}>
             <div />
           </Collapse>
-        </MuiThemeProvider>
+        </ThemeProvider>
       );
       const wrapper = mount(<Test />);
 
