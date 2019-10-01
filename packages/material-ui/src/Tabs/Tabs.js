@@ -360,8 +360,9 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     action,
     () => ({
       updateIndicator: updateIndicatorState,
+      updateScrollButtons: updateScrollButtonState,
     }),
-    [updateIndicatorState],
+    [updateIndicatorState, updateScrollButtonState],
   );
 
   const indicator = (
@@ -455,7 +456,7 @@ Tabs.propTypes = {
   /**
    * Callback fired when the component mounts.
    * This is useful when you want to trigger an action programmatically.
-   * It currently only supports `updateIndicator()` action.
+   * It supports two actions: `updateIndicator()` and `updateScrollButtons()`
    *
    * @param {object} actions This object contains all possible actions
    * that can be triggered programmatically.
