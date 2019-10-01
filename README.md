@@ -99,7 +99,7 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
-Yes, it's really all you need to get started as you can see in this live and interactive demo!:
+Yes, it's really all you need to get started as you can see in this live and interactive demo:
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4j7m47vlm4)
 
@@ -124,7 +124,10 @@ You can find complete templates & themes in our [premium themes](https://themes.
 
 ## Contributing
 
-We'd greatly appreciate any [contributions](/CONTRIBUTING.md) you make. :)
+Read our [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to Material-UI.
+
+Notice that contributions go far beyond pull requests and commits.
+Although we love giving you the opportunity to put your stamp on Material-UI, we also are thrilled to receive a variety of [other contributions](https://material-ui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project).
 
 ## Changelog
 
@@ -134,10 +137,6 @@ Please read the [changelog](https://github.com/mui-org/material-ui/releases).
 ## Roadmap
 
 The future plans and high priority features and enhancements can be found in the [roadmap](https://material-ui.com/discover-more/roadmap/) file.
-
-## Governance
-
-Material-UI is an open source project that depends on contributions from the community. The process of governing, decision making and allowing others to engage with the project is provided in the [governance](https://material-ui.com/discover-more/governance/).
 
 ## Thanks
 
@@ -171,9 +170,3 @@ CodeCov allows us to monitor the test coverage.
 
 This project is licensed under the terms of the
 [MIT license](/LICENSE).
-
-## Security
-
-To report a security vulnerability, please use the
-[Tidelift security contact](https://tidelift.com/security).
-Tidelift will coordinate the fix and disclosure.
