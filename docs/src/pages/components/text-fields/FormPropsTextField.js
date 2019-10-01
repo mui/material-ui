@@ -72,6 +72,14 @@ export default function UncontrolledTextField() {
           className={classes.textField}
           margin="normal"
         />
+        <TextField
+          id="standard-helperText"
+          label="Helper text"
+          defaultValue="Default Value"
+          className={classes.textField}
+          helperText="Some important text"
+          margin="normal"
+        />
       </div>
       <div>
         <TextField
@@ -131,6 +139,15 @@ export default function UncontrolledTextField() {
           margin="normal"
           variant="filled"
         />
+        <TextField
+          id="filled-helperText"
+          label="Helper text"
+          defaultValue="Default Value"
+          className={classes.textField}
+          helperText="Some important text"
+          margin="normal"
+          variant="filled"
+        />
       </div>
       <div>
         <TextField
@@ -187,6 +204,15 @@ export default function UncontrolledTextField() {
           label="Search field"
           type="search"
           className={classes.textField}
+          margin="normal"
+          variant="outlined"
+        />
+        <TextField
+          id="outlined-helperText"
+          label="Helper text"
+          defaultValue="Default Value"
+          className={classes.textField}
+          helperText="Some important text"
           margin="normal"
           variant="outlined"
         />

@@ -21,21 +21,50 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 {{"demo": "pages/components/text-fields/TextFieldShowcase.js", "hideHeader":true}}
 
+## Form props
+
+The `TextField` supports standard form attributes e.g. `required`, `readOnly`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
+
+{{"demo": "pages/components/text-fields/FormPropsTextField.js"}}
+
+## Validation
+
+{{"demo": "pages/components/text-fields/ValidationTextField.js"}}
+
+## Multiline
+
+{{"demo": "pages/components/text-fields/MultilineTextField.js"}}
+
+## Icons
+
+There are multiple ways to display an icon with a `TextField`. 
+
+{{"demo": "pages/components/text-fields/InputWithIcon.js"}}
+
+### Input Adornments
+
+The main way is with an `InputAdornment`.
+These can be used to add a prefix, a suffix or an action to an input.
+For instance, you can use an icon button to hide or reveal the password.
+
+{{"demo": "pages/components/text-fields/InputAdornments.js"}}
+
+## Layout
+
+`TextField` and `FormControl` allow the specification of `margin` to alter the vertical spacing of inputs. Using
+`none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will as well as alter
+other styles to meet the specification.
+
+`TextField` and `FormControl` also allow the specification of `fullWidth` which makes the input take up the full width of its container.
+
+{{"demo": "pages/components/text-fields/TextFieldLayout.js"}}
+
+
 ## Uncontrolled vs Controlled
 
 The `TextField` component can be controlled or uncontrolled
 
 {{"demo": "pages/components/text-fields/UncontrolledTextField.js"}}
-
-## Form props
-
-The `TextField` supports standard form attributes e.g. required, readOnly, etc.
-
-{{"demo": "pages/components/text-fields/FormPropsTextField.js"}}
-
-## Material-UI specific props
-
-{{"demo": "pages/components/text-fields/SpecificPropTextFields.js"}}
 
 ## Components
 
@@ -69,36 +98,6 @@ Customization does not stop at CSS, you can use composition to build custom comp
 Below is an example using the [`InputBase`](/api/input-base/) component, inspired by Google Maps.
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js"}}
-
-## Input Adornments
-
-`Input` allows the provision of `InputAdornment`.
-These can be used to add a prefix, a suffix or an action to an input.
-For instance, you can use an icon button to hide or reveal the password.
-
-{{"demo": "pages/components/text-fields/InputAdornments.js"}}
-
-### With icon
-
-Icons can be specified as prepended or appended.
-
-{{"demo": "pages/components/text-fields/InputWithIcon.js"}}
-
-### Filled Input Adornments
-
-{{"demo": "pages/components/text-fields/FilledInputAdornments.js"}}
-
-### Outlined Input Adornments
-
-{{"demo": "pages/components/text-fields/OutlinedInputAdornments.js"}}
-
-## Layout
-
-`TextField`, `FormControl` allow the specification of `margin` to alter the vertical spacing of inputs. Using
-`none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will as well as alter
-other styles to meet the specification.
-
-{{"demo": "pages/components/text-fields/TextFieldMargins.js"}}
 
 ## Limitations
 

@@ -16,11 +16,23 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function TextFieldMargins() {
+export default function TextFieldLayout() {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
+      <TextField
+        id="standard-full-width"
+        label="Label"
+        style={{ margin: 8 }}
+        placeholder="Placeholder"
+        helperText="Full width!"
+        fullWidth
+        margin="normal"
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
       <TextField
         label="None"
         id="margin-none"
