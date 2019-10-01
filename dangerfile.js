@@ -94,6 +94,9 @@ function computeBundleLabel(bundleId) {
   if (bundleId === 'packages/material-ui/build/umd/material-ui.production.min.js') {
     return '@material-ui/core[umd]';
   }
+  if (bundleId === '@material-ui/core/Textarea') {
+    return '/core/TextareaAutosize';
+  }
   return bundleId.replace(/^@material-ui\/core\//, '/core/').replace(/\.esm$/, '');
 }
 

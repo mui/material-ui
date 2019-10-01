@@ -28,7 +28,9 @@ async function getSizeLimitBundles() {
     let entryName = componentName;
     if (componentName === 'Paper') {
       entryName = '@material-ui/core/Paper.esm';
-    } else if (['Popper', 'TextArea'].indexOf(componentName) !== -1) {
+    } else if (componentName === 'TextareaAutosize') {
+      entryName = '@material-ui/core/Textarea';
+    } else if (['Popper'].indexOf(componentName) !== -1) {
       entryName = `@material-ui/core/${componentName}`;
     }
 
