@@ -73,11 +73,6 @@ async function getSizeLimitBundles() {
     },
     ...coreComponents,
     {
-      name: '@material-ui/core/useMediaQuery',
-      webpack: true,
-      path: 'packages/material-ui/build/esm/useMediaQuery.js',
-    },
-    {
       name: '@material-ui/core/styles/createMuiTheme',
       webpack: true,
       path: 'packages/material-ui/build/esm/styles/createMuiTheme.js',
@@ -88,6 +83,11 @@ async function getSizeLimitBundles() {
       path: 'packages/material-ui/build/esm/styles/colorManipulator.js',
     },
     ...labComponents,
+    {
+      name: '@material-ui/core/useMediaQuery',
+      webpack: true,
+      path: 'packages/material-ui/build/esm/useMediaQuery/index.js',
+    },
     {
       // TODO: Is this even a public module?
       // vs https://bundlephobia.com/result?p=react-focus-lock
