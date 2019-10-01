@@ -99,7 +99,7 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
-Yes, it's really all you need to get started as you can see in this live and interactive demo:
+Yes, it's really all you need to get started as you can see in this live and interactive demo!:
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4j7m47vlm4)
 
@@ -124,7 +124,7 @@ You can find complete templates & themes in our [premium themes](https://themes.
 
 ## Contributing
 
-We'd greatly appreciate any [contribution](/CONTRIBUTING.md) you make. :)
+We'd greatly appreciate any [contributions](/CONTRIBUTING.md) you make. :)
 
 ## Changelog
 
@@ -137,7 +137,7 @@ The future plans and high priority features and enhancements can be found in the
 
 ## Governance
 
-Material-UI is an open source project that depends on contributions from the community. How we govern ourselves, how decisions are made, and how someone could engage with the project is described in the [governance](https://material-ui.com/discover-more/governance/).
+Material-UI is an open source project that depends on contributions from the community. The process of governing, decision making and allowing others to engage with the project is provided in the [governance](https://material-ui.com/discover-more/governance/).
 
 ## Thanks
 
