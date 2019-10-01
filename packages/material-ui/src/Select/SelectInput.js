@@ -131,14 +131,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
-  const handleBlur = event => {
-    if (onBlur) {
-      event.persist();
-      event.target = { value, name };
-      onBlur(event);
-    }
-  };
-
   const handleKeyDown = event => {
     if (!readOnly) {
       const validKeys = [
@@ -158,6 +150,15 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   const open = displayNode !== null && (isOpenControlled ? openProp : openState);
+
+  const handleBlur = event => {
+    // if open event.stopImmediatePropagation
+    if (!open && onBlur) {
+      event.persist();
+      event.target = { value, name };
+      onBlur(event);
+    }
+  };
 
   delete other['aria-invalid'];
 
@@ -262,8 +263,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         aria-owns={open ? `menu-${name || ''}` : undefined}
         onKeyDown={handleKeyDown}
         onClick={disabled || readOnly ? null : handleClick}
-        /* prevent focusing  the trigger since we'll open anyway and move focus */
-        onMouseDown={e => e.preventDefault()}
         onBlur={handleBlur}
         onFocus={onFocus}
         // The id can help with end-to-end testing automation.

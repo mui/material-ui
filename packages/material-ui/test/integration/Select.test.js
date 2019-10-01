@@ -1,17 +1,15 @@
 import React from 'react';
 import { expect } from 'chai';
-import { cleanup, createClientRender, wait } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent, wait } from 'test/utils/createClientRender';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Dialog from '@material-ui/core/Dialog';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 
 describe('<Select> integration', () => {
   // StrictModeViolation: uses Fade
   const render = createClientRender({ strict: false });
-
-  afterEach(() => {
-    cleanup();
-  });
 
   describe('with Dialog', () => {
     function SelectAndDialog() {
@@ -75,6 +73,32 @@ describe('<Select> integration', () => {
       await wait(() => expect(queryByRole('listbox')).to.be.null);
       expect(getByRole('button')).to.focused;
       expect(getByRole('button')).to.have.text('Twenty');
+    });
+  });
+
+  describe('with label', () => {
+    // we're somewhat abusing "focus" here. What we're actually interested in is
+    // displaying it as "active". WAI-ARIA authoring practices do not consider the
+    // the trigger part of the widget while a native <select /> will outline the trigger
+    // as well
+    it('is displayed as focused while open', () => {
+      const { container, getByRole } = render(
+        <FormControl>
+          <InputLabel classes={{ focused: 'focused-label' }} htmlFor="age-simple">
+            Age
+          </InputLabel>
+          <Select inputProps={{ id: 'age' }} value="">
+            <MenuItem value="">none</MenuItem>
+            <MenuItem value={10}>Ten</MenuItem>
+          </Select>
+        </FormControl>,
+      );
+
+      const trigger = getByRole('button');
+      trigger.focus();
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+
+      expect(container.querySelector('[for="age-simple"]')).to.have.class('focused-label');
     });
   });
 });

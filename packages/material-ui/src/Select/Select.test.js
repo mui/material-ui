@@ -88,7 +88,7 @@ describe('<Select />', () => {
     expect(container.querySelector('input')).to.have.property('type', 'hidden');
   });
 
-  it('should ignore onBlur the first time the menu is open', () => {
+  it('should ignore onBlur when the menu opens', () => {
     // mousedown calls focus while click opens moving the focus to an item
     // this means the trigger is blurred immediately
     const handleBlur = spy();
@@ -123,7 +123,7 @@ describe('<Select />', () => {
       getAllByRole('option')[0].click();
     });
 
-    expect(handleBlur.callCount).to.equal(1);
+    expect(handleBlur.callCount).to.equal(0);
     expect(queryByRole('listbox')).to.be.null;
   });
 
