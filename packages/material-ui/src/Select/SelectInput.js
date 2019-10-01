@@ -149,6 +149,14 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
+  const handleBlur = event => {
+    if (onBlur) {
+      event.persist();
+      event.target = { value, name };
+      onBlur(event);
+    }
+  };
+
   const open = displayNode !== null && (isOpenControlled ? openProp : openState);
 
   delete other['aria-invalid'];
@@ -256,7 +264,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         onClick={disabled || readOnly ? null : handleClick}
         /* prevent focusing  the trigger since we'll open anyway and move focus */
         onMouseDown={e => e.preventDefault()}
-        onBlur={onBlur}
+        onBlur={handleBlur}
         onFocus={onFocus}
         // The id can help with end-to-end testing automation.
         id={name ? `select-${name}` : undefined}
