@@ -1,8 +1,9 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { stub } from 'sinon';
 import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import { createClientRender } from 'test/utils/createClientRender';
 import MenuList from './MenuList';
 import getScrollbarSize from '../utils/getScrollbarSize';
 import List from '../List';
@@ -19,13 +20,10 @@ function setStyleWidthForJsdomOrBrowser(style, width) {
 
 describe('<MenuList />', () => {
   let mount;
+  const render = createClientRender({ strict: true });
 
   before(() => {
     mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<MenuList />, () => ({
@@ -34,18 +32,20 @@ describe('<MenuList />', () => {
     mount,
     refInstanceof: window.HTMLUListElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
   describe('prop: children', () => {
-    it('should support invalid children', () => {
-      const wrapper = mount(
+    it('should support null children', () => {
+      const { getAllByRole } = render(
         <MenuList>
-          <div />
-          <div />
+          <div role="menuitem" />
+          <div role="menuitem" />
           {null}
         </MenuList>,
       );
-      assert.strictEqual(wrapper.find('div').length, 2);
+
+      expect(getAllByRole('menuitem')).to.have.length(2);
     });
   });
 
@@ -55,91 +55,87 @@ describe('<MenuList />', () => {
     it('should not adjust style when container element height is greater', () => {
       const menuListActionsRef = React.createRef();
       const listRef = React.createRef();
-      mount(
-        <React.Fragment>
-          <MenuList ref={listRef} actions={menuListActionsRef} />
-        </React.Fragment>,
-      );
+      render(<MenuList ref={listRef} actions={menuListActionsRef} />);
       const list = listRef.current;
-      assert.strictEqual(list.style.paddingRight, '');
-      assert.strictEqual(list.style.paddingLeft, '');
-      assert.strictEqual(list.style.width, '');
+
+      expect(list.style).to.have.property('paddingRight', '');
+      expect(list.style).to.have.property('paddingLeft', '');
+      expect(list.style).to.have.property('width', '');
+
       menuListActionsRef.current.adjustStyleForScrollbar(
         { clientHeight: 20 },
         { direction: 'ltr' },
       );
-      assert.strictEqual(list.style.paddingRight, '');
-      assert.strictEqual(list.style.paddingLeft, '');
-      assert.strictEqual(list.style.width, '');
+
+      expect(list.style).to.have.property('paddingRight', '');
+      expect(list.style).to.have.property('paddingLeft', '');
+      expect(list.style).to.have.property('width', '');
     });
 
     it('should adjust style when container element height is less', () => {
       const menuListActionsRef = React.createRef();
       const listRef = React.createRef();
-      mount(
-        <React.Fragment>
-          <MenuList ref={listRef} actions={menuListActionsRef} />
-        </React.Fragment>,
-      );
+      render(<MenuList ref={listRef} actions={menuListActionsRef} />);
       const list = listRef.current;
       setStyleWidthForJsdomOrBrowser(list.style, '');
       stub(list, 'clientHeight').get(() => 11);
-      assert.strictEqual(list.style.paddingRight, '');
-      assert.strictEqual(list.style.paddingLeft, '');
-      assert.strictEqual(list.style.width, '');
+
+      expect(list.style).to.have.property('paddingRight', '');
+      expect(list.style).to.have.property('paddingLeft', '');
+      expect(list.style).to.have.property('width', '');
+
       menuListActionsRef.current.adjustStyleForScrollbar(
         { clientHeight: 10 },
         { direction: 'ltr' },
       );
-      assert.strictEqual(list.style.paddingRight, expectedPadding);
-      assert.strictEqual(list.style.paddingLeft, '');
-      assert.strictEqual(list.style.width, `calc(100% + ${expectedPadding})`);
+
+      expect(list.style).to.have.property('paddingRight', expectedPadding);
+      expect(list.style).to.have.property('paddingLeft', '');
+      expect(list.style).to.have.property('width', `calc(100% + ${expectedPadding})`);
     });
 
     it('should adjust paddingLeft when direction=rtl', () => {
       const menuListActionsRef = React.createRef();
       const listRef = React.createRef();
-      mount(
-        <React.Fragment>
-          <MenuList ref={listRef} actions={menuListActionsRef} />
-        </React.Fragment>,
-      );
+      render(<MenuList ref={listRef} actions={menuListActionsRef} />);
       const list = listRef.current;
       setStyleWidthForJsdomOrBrowser(list.style, '');
       stub(list, 'clientHeight').get(() => 11);
-      assert.strictEqual(list.style.paddingRight, '');
-      assert.strictEqual(list.style.paddingLeft, '');
-      assert.strictEqual(list.style.width, '');
+
+      expect(list.style).to.have.property('paddingRight', '');
+      expect(list.style).to.have.property('paddingLeft', '');
+      expect(list.style).to.have.property('width', '');
+
       menuListActionsRef.current.adjustStyleForScrollbar(
         { clientHeight: 10 },
         { direction: 'rtl' },
       );
-      assert.strictEqual(list.style.paddingRight, '');
-      assert.strictEqual(list.style.paddingLeft, expectedPadding);
-      assert.strictEqual(list.style.width, `calc(100% + ${expectedPadding})`);
+
+      expect(list.style).to.have.property('paddingRight', '');
+      expect(list.style).to.have.property('paddingLeft', expectedPadding);
+      expect(list.style).to.have.property('width', `calc(100% + ${expectedPadding})`);
     });
 
     it('should not adjust styles when width already specified', () => {
       const menuListActionsRef = React.createRef();
       const listRef = React.createRef();
-      mount(
-        <React.Fragment>
-          <MenuList ref={listRef} actions={menuListActionsRef} />
-        </React.Fragment>,
-      );
+      mount(<MenuList ref={listRef} actions={menuListActionsRef} />);
       const list = listRef.current;
       setStyleWidthForJsdomOrBrowser(list.style, '10px');
       Object.defineProperty(list, 'clientHeight', { value: 11 });
-      assert.strictEqual(list.style.paddingRight, '');
-      assert.strictEqual(list.style.paddingLeft, '');
-      assert.strictEqual(list.style.width, '10px');
+
+      expect(list.style).to.have.property('paddingRight', '');
+      expect(list.style).to.have.property('paddingLeft', '');
+      expect(list.style).to.have.property('width', '10px');
+
       menuListActionsRef.current.adjustStyleForScrollbar(
         { clientHeight: 10 },
         { direction: 'rtl' },
       );
-      assert.strictEqual(list.style.paddingRight, '');
-      assert.strictEqual(list.style.paddingLeft, '');
-      assert.strictEqual(list.style.width, '10px');
+
+      expect(list.style).to.have.property('paddingRight', '');
+      expect(list.style).to.have.property('paddingLeft', '');
+      expect(list.style).to.have.property('width', '10px');
     });
   });
 });
