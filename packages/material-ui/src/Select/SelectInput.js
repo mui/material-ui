@@ -131,6 +131,14 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
+  const handleBlur = event => {
+    if (onBlur) {
+      event.persist();
+      event.target = { value, name };
+      onBlur(event);
+    }
+  };
+
   const handleKeyDown = event => {
     if (!readOnly) {
       const validKeys = [
@@ -146,14 +154,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         event.preventDefault();
         update(true, event);
       }
-    }
-  };
-
-  const handleBlur = event => {
-    if (onBlur) {
-      event.persist();
-      event.target = { value, name };
-      onBlur(event);
     }
   };
 
