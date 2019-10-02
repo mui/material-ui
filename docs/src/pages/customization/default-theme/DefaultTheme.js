@@ -54,23 +54,27 @@ function useLabel(value, type) {
   }
 }
 
-const useTreeLabelStyles = makeStyles({
-  objectKey: {
-    color: 'rgb(227, 110, 236)',
-  },
-  objectValue: {},
-  'type-function': {
-    fontStyle: 'italic',
-  },
-  'type-string': {
-    color: 'rgb(233, 63, 59)',
-  },
-  'type-boolean': {
-    color: 'rgb(153, 128, 255);',
-  },
-  'type-number': {
-    color: 'rgb(153, 128, 255);',
-  },
+const useTreeLabelStyles = makeStyles(theme => {
+  const darkMode = theme.palette.type === 'dark';
+
+  return {
+    objectKey: {
+      color: darkMode ? 'rgb(227, 110, 236)' : 'rgb(136, 19, 145)',
+    },
+    objectValue: {},
+    'type-function': {
+      fontStyle: 'italic',
+    },
+    'type-string': {
+      color: darkMode ? 'rgb(233, 63, 59)' : 'rgb(196, 26, 22)',
+    },
+    'type-boolean': {
+      color: darkMode ? 'rgb(153, 128, 255)' : 'rgb(28, 0, 207)',
+    },
+    'type-number': {
+      color: darkMode ? 'rgb(153, 128, 255)' : 'rgb(136, 19, 145)',
+    },
+  };
 });
 
 function TreeLabel({ objectKey, objectValue }) {
@@ -136,13 +140,14 @@ function Inspector(props) {
   const defaultExpanded = React.useMemo(() => {
     return Array.isArray(expandPaths)
       ? expandPaths.map(expandPath => `${keyPrefix}.${expandPath}`)
-      : undefined;
+      : [];
   }, [keyPrefix, expandPaths]);
 
   return (
     <TreeView
       /* expandPaths are only set on the client so we need to remount */
-      key={defaultExpanded}
+      /* we need "semantic equality" here since the array is returned from useMemo which does not have semantic guarantees */
+      key={defaultExpanded.join('')}
       defaultCollapseIcon={<ExpandIcon />}
       defaultExpanded={defaultExpanded}
       defaultExpandIcon={<CollapseIcon />}
