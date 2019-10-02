@@ -38,7 +38,7 @@ export default function createGenerateClassNameHash(options = {}) {
       let themeHash = themeHashCache[styleSheet.options.theme];
       if (!themeHash) {
         themeHash = hash(JSON.stringify(styleSheet.options.theme));
-        themeHashCache[styleSheet.theme] = themeHash;
+        themeHashCache[styleSheet.options.theme] = themeHash;
       }
       const raw = styleSheet.rules.raw[rule.key];
       suffix = hash(`${themeHash}${rule.key}${JSON.stringify(raw)}`);
