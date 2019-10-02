@@ -17,6 +17,7 @@ Here are some highlights ✨:
   </Button>
   ```
 
+- 🔐 Add support for Chrome autofill (#17436, #17552) @croraf
 - 💅 Adjust table styles to match spec (#17388) @kybarg
 - 💅 Adjust menu styles to match spec (#17332) @damir-sirola
 - 💅 Adjust chip styles to match spec (#17584) @oliviertassinari
