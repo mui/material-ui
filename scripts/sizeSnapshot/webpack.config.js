@@ -91,13 +91,6 @@ async function getSizeLimitBundles() {
       path: 'packages/material-ui/build/esm/useMediaQuery/index.js',
     },
     {
-      // TODO: Is this even a public module?
-      // vs https://bundlephobia.com/result?p=react-focus-lock
-      name: '@material-ui/core/TrapFocus',
-      webpack: true,
-      path: 'packages/material-ui/build/esm/Modal/TrapFocus.js',
-    },
-    {
       name: 'docs.main',
       webpack: false,
       path: path.relative(workspaceRoot, main.path),
