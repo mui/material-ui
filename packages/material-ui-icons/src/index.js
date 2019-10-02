@@ -2205,6 +2205,7 @@ export { default as GifOutlined } from './GifOutlined';
 export { default as GifRounded } from './GifRounded';
 export { default as GifSharp } from './GifSharp';
 export { default as GifTwoTone } from './GifTwoTone';
+export { default as GitHub } from './GitHub';
 export { default as GolfCourse } from './GolfCourse';
 export { default as GolfCourseOutlined } from './GolfCourseOutlined';
 export { default as GolfCourseRounded } from './GolfCourseRounded';
