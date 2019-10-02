@@ -1,5 +1,94 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.5.0
+###### *Oct 2, 2019*
+
+Big thanks to the 20 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- 💄 Add startIcon and endIcon props for the button (#17600) @mbrookes
+
+  ```jsx
+  import DeleteIcon from '@material-ui/icons/Delete';
+
+  <Button startIcon={<DeleteIcon />}>
+    Delete
+  </Button>
+  ```
+
+- 💅 Adjust table styles to match spec (#17388) @kybarg
+- 💅 Adjust menu styles to match spec (#17332) @damir-sirola
+- 💅 Adjust chip styles to match spec (#17584) @oliviertassinari
+- And many more 🐛 bug fixes 📚 improvements.
+
+### `@material-ui/core@v4.5.0`
+
+- [theme] Allow an arbitrary number of elevations (#17659) @millnitzluan
+- [ButtonGroup] Fix missing divider if background color is set (#17648) @neon98
+- [ButtonGroup] Support text variant (#17529) @Dhruvi16
+- [Button] Add startIcon / endIcon props (#17600) @mbrookes
+- [Button] Improve horizontal padding (#17640) @mbrookes
+- [Button] Increase elevation on hover when contained (#17537) @eps1lon
+- [CardMedia] Add separate rules for Image components (#17591) @neon98
+- [Chip] Update style to match the specification (#17584) @oliviertassinari
+- [InputBase] Fix remaining issues with Chrome autofill (#17552) @croraf
+- [MenuItem] Update size on desktop to match spec (#17332) @damir-sirola
+- [Menu] Fix menu being focused instead of item when opening (#17506) @eps1lon
+- [Menulist] Add autoFocusItem for initial focus control (#17571) @eps1lon
+- [SwipeableDrawer] Calculate transition duration based on swipe speed (#17533) @dan8f
+- [Table] Adjust table styles to the latest specs (#17388) @kybarg
+- [Tabs] Add new updateScrollButtonState() action (#17649) @neon98
+- [TextareaAutosize] Improve line computation and avoid infinite loop (#17652) @neon98
+
+### `@material-ui/lab@v4.0.0-alpha.28`
+
+- [Slider] Remove from the lab (#17528) @oliviertassinari
+
+  ```diff
+  -import { Slider } from '@material-ui/lab';
+  +import { Slider } from '@material-ui/core';
+  ```
+
+### `@material-ui/system@v4.5.0`
+
+- [system] Fix props being required from `style` function (#17534) @abukurov
+
+### `@material-ui/codemod@v4.5.0`
+
+- [styles] Bump jss dependencies to v10.0.0 stable (#17536) @eps1lon
+
+### `@material-ui/codemod@v4.5.0`
+
+- [codemod] Fix build importing esm version of babel/runtime (#17561) @merceyz
+
+### Docs
+
+- [docs] Batch small fixes (#17527) @oliviertassinari
+- [docs] Fix CHANGELOG format @oliviertassinari
+- [docs] Fix calculation of height for empty rows (#17657) @Teloah
+- [docs] Improve /styles vs /core/styles description (#16473) @bigtone1284
+- [docs] Improve CSP nonce docs (#17594) @johnnyreilly
+- [docs] Improve Contributing.md (#17597) @croraf
+- [docs] Improve bundle size option 2 advantage wording (#17577) @ilanbm
+- [docs] Improve testing readme (#17557) @eps1lon
+- [docs] Move GOVERNANCE.md and ROADMAP.md files from root (#17531) @croraf
+- [docs] Remove already moved SUPPORT.md file (#17525) @croraf
+- [docs] Remove an un-used className in template Blog (#17587) @FeynmanDNA
+- [docs] Reword icons page (#17558) @croraf
+- [examples] Fix CRA start script (#17598) @lychyi
+
+### Core
+
+- [core] Fix missing peer dependency warning (#17632) @eps1lon
+- [core] Re-export all the styles modules from core (#17419) @merceyz
+- [core] Warn if anchor element is not visible (#17599) @eAmin
+- [dependencies] Put dependabot config in vcs (#17651) @eps1lon
+- [test] Bump `@testing-library/dom` (#17573) @eps1lon
+- [test] Isolate each test case using testing-library (#17394) @eps1lon
+- [ci] Use azure aws tasks instead of aws-sdk (#17631) @eps1lon
+- [Select] Make internal tests public (#17538) @eps1lon
+
 ## 4.4.3
 ###### *Sep 22, 2019*
 
