@@ -186,7 +186,7 @@ You can leverage this preference dynamically with the [useMediaQuery](/component
 
 For instance, you can enable the dark mode automatically:
 
-```js
+```jsx
 import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { ThemeProvider } from '@material-ui/core/styles';

@@ -20,6 +20,8 @@ The media query string can by any valid CSS media query, e.g. [`'(prefers-color-
 
 {{"demo": "pages/components/use-media-query/SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
+⚠️ You can't use `'print'` per browsers limitation, e.g. [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
+
 ## Using Material-UI's breakpoint helpers
 
 You can use Material-UI's [breakpoint helpers](/customization/breakpoints/) as follows:
