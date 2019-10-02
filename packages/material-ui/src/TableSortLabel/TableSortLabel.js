@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */

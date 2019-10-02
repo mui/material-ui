@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import { refType } from '@material-ui/utils';
 import Menu from '../Menu/Menu';
 import { isFilled } from '../InputBase/utils';
-import { useForkRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
 
 function areEqualValues(a, b) {
   if (typeof b === 'object' && b !== null) {

@@ -5,7 +5,7 @@ import withStyles from '../styles/withStyles';
 import Popover from '../Popover';
 import MenuList from '../MenuList';
 import ReactDOM from 'react-dom';
-import { setRef } from '../utils/reactHelpers';
+import setRef from '../utils/setRef';
 import useTheme from '../styles/useTheme';
 
 const RTL_ORIGIN = {

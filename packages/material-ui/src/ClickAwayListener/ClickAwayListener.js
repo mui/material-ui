@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import ownerDocument from '../utils/ownerDocument';
-import { useForkRef, setRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
+import setRef from '../utils/setRef';
 import useEventCallback from '../utils/useEventCallback';
 import { elementAcceptingRef, exactProp } from '@material-ui/utils';
 

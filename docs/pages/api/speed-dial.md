@@ -31,7 +31,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">FabProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`Fab`](/api/fab/) element. |
 | <span class="prop-name">hidden</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the SpeedDial will be hidden. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon to display in the SpeedDial Fab. The `SpeedDialIcon` component provides a default Icon with animation. |
-| <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, key: string) => void`<br>*event:* The event source of the callback.<br>*key:* The key pressed. |
+| <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |
 | <span class="prop-name">onOpen</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be open.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |
 | <span class="prop-name required">open&nbsp;*</span> | <span class="prop-type">bool</span> |  | If `true`, the SpeedDial is open. |
 | <span class="prop-name">openIcon</span> | <span class="prop-type">node</span> |  | The icon to display in the SpeedDial Fab when the SpeedDial is open. |

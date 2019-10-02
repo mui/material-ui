@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import LinearProgress from '../LinearProgress';
 
 export const styles = theme => ({

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import debounce from '../utils/debounce';
 import withStyles from '../styles/withStyles';
-import { isMuiElement } from '../utils/reactHelpers';
+import isMuiElement from '../utils/isMuiElement';
 
 export const styles = {
   /* Styles applied to the root element. */
