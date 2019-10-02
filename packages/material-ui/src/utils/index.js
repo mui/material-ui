@@ -1,3 +1,4 @@
+export { default as capitalize } from './capitalize';
 export { default as deprecatedPropType } from './deprecatedPropType';
 export { default as isMuiElement } from './isMuiElement';
 export { default as ownerDocument } from './ownerDocument';

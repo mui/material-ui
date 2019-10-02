@@ -23,7 +23,9 @@ export default function SimplePortal() {
 
   return (
     <div>
-      <button onClick={handleClick}>{show ? 'Unmount children' : 'Mount children'}</button>
+      <button type="button" onClick={handleClick}>
+        {show ? 'Unmount children' : 'Mount children'}
+      </button>
       <div className={classes.alert}>
         It looks like I will render here.
         {show ? (

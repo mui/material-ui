@@ -52,7 +52,7 @@ NOTE: The Material Design specification names the icons using "snake_case" namin
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
-## `SvgIcon`
+## SvgIcon
 
 If you need a custom SVG icon (not available in Material Icons) you should use the `SvgIcon` wrapper.
 The `SvgIcon` component takes the SVG `path` element as its child and converts it to a React component that displays this SVG icon, and allows the icon to be styled and respond to mouse events.
@@ -72,7 +72,7 @@ For the wanted icon, copy the SVG `path` they provide, and use it as the child o
 
 NOTE: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has already wrapped each of these SVG icons with the `SvgIcon` component, so you don't have to do it yourself.
 
-## `Icon` (Font icons)
+## Icon (Font icons)
 
 The `Icon` component will display an icon from any icon font that supports ligatures.
 As a prerequisite, you must include one, such as the
