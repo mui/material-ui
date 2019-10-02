@@ -93,7 +93,7 @@ TreeLabel.propTypes = { objectKey: PropTypes.any, objectValue: PropTypes.any };
 const ObjectContext = React.createContext('$ROOT');
 
 function ObjectTreeItem(props) {
-  const { objectKey, objectValue } = props;
+  const { nodeId, objectValue } = props;
 
   const keyPrefix = React.useContext(ObjectContext);
 
@@ -101,28 +101,33 @@ function ObjectTreeItem(props) {
     (objectValue !== null && typeof objectValue === 'object') ||
     typeof objectValue === 'function'
   ) {
+    const children =
+      Object.keys(objectValue).length === 0
+        ? undefined
+        : Object.keys(objectValue).map(key => {
+            return <ObjectTreeItem key={key} nodeId={key} objectValue={objectValue[key]} />;
+          });
+    // false hierarchy but items must be immediate children with a `nodeId` prop
     return (
-      <TreeItem
-        nodeId={`${keyPrefix}.${objectKey}`}
-        label={<TreeLabel objectKey={objectKey} objectValue={objectValue} />}
-      >
-        <ObjectContext.Provider value={`${keyPrefix}.${objectKey}`}>
-          {Object.keys(objectValue).map(key => {
-            return <ObjectTreeItem key={key} objectKey={key} objectValue={objectValue[key]} />;
-          })}
-        </ObjectContext.Provider>
-      </TreeItem>
+      <ObjectContext.Provider value={`${keyPrefix}.${nodeId}`}>
+        <TreeItem
+          nodeId={`${keyPrefix}.${nodeId}`}
+          label={<TreeLabel objectKey={nodeId} objectValue={objectValue} />}
+        >
+          {children}
+        </TreeItem>
+      </ObjectContext.Provider>
     );
   }
 
   return (
     <TreeItem
-      nodeId={`${keyPrefix}-${objectKey}`}
-      label={<TreeLabel objectKey={objectKey} objectValue={objectValue} />}
+      nodeId={`${keyPrefix}-${nodeId}`}
+      label={<TreeLabel objectKey={nodeId} objectValue={objectValue} />}
     />
   );
 }
-ObjectTreeItem.propTypes = { objectKey: PropTypes.any, objectValue: PropTypes.any };
+ObjectTreeItem.propTypes = { nodeId: PropTypes.any, objectValue: PropTypes.any };
 
 function Inspector(props) {
   const { data, expandPaths } = props;
@@ -143,7 +148,7 @@ function Inspector(props) {
       defaultExpandIcon={<CollapseIcon />}
     >
       {Object.keys(data).map(key => {
-        return <ObjectTreeItem key={key} objectKey={key} objectValue={data[key]} />;
+        return <ObjectTreeItem key={key} nodeId={key} objectValue={data[key]} />;
       })}
     </TreeView>
   );
