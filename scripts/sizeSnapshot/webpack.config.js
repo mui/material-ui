@@ -24,8 +24,8 @@ async function getSizeLimitBundles() {
   const corePackagePath = path.join(workspaceRoot, 'packages/material-ui/build/esm');
   const coreComponents = (await glob(path.join(corePackagePath, '[A-Z]*'))).map(componentPath => {
     const componentName = path.basename(componentPath);
-    // adjust for legacy names
     let entryName = componentName;
+    // adjust for legacy names
     if (componentName === 'Paper') {
       entryName = '@material-ui/core/Paper.esm';
     } else if (componentName === 'TextareaAutosize') {
