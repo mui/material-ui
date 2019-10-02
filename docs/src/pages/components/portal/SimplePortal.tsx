@@ -1,8 +1,19 @@
 import React from 'react';
 import Portal from '@material-ui/core/Portal';
-import Box from '@material-ui/core/Box';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    alert: {
+      padding: theme.spacing(1),
+      margin: theme.spacing(1, 0),
+      border: '1px solid',
+    },
+  }),
+);
 
 export default function SimplePortal() {
+  const classes = useStyles();
   const [show, setShow] = React.useState(false);
   const container = React.useRef(null);
 
@@ -13,15 +24,15 @@ export default function SimplePortal() {
   return (
     <div>
       <button onClick={handleClick}>{show ? 'Unmount children' : 'Mount children'}</button>
-      <Box p={1} m={1} border={1}>
+      <div className={classes.alert}>
         It looks like I will render here.
         {show ? (
           <Portal container={container.current}>
             <span>But I actually render here!</span>
           </Portal>
         ) : null}
-      </Box>
-      <Box p={1} m={1} border={1} ref={container} />
+      </div>
+      <div className={classes.alert} ref={container} />
     </div>
   );
 }
