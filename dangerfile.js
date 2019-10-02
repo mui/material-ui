@@ -95,9 +95,9 @@ function computeBundleLabel(bundleId) {
     return '@material-ui/core[umd]';
   }
   if (bundleId === '@material-ui/core/Textarea') {
-    return '/core/TextareaAutosize';
+    return 'TextareaAutosize';
   }
-  return bundleId.replace(/^@material-ui\/core\//, '/core/').replace(/\.esm$/, '');
+  return bundleId.replace(/^@material-ui\/core\//, '').replace(/\.esm$/, '');
 }
 
 /**
