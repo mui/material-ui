@@ -75,12 +75,6 @@ const styles = theme => ({
     textTransform: 'none',
     fontWeight: theme.typography.fontWeightRegular,
   },
-  chevronLeftIcon: {
-    marginRight: theme.spacing(1),
-  },
-  chevronRightIcon: {
-    marginLeft: theme.spacing(1),
-  },
 });
 
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master/docs/src';
@@ -256,8 +250,8 @@ function MarkdownDocs(props) {
                     href={prevPage.pathname}
                     size="large"
                     className={classes.pageLinkButton}
+                    startIcon={<ChevronLeftIcon />}
                   >
-                    <ChevronLeftIcon fontSize="small" className={classes.chevronLeftIcon} />
                     {pageToTitleI18n(prevPage, t)}
                   </Button>
                 ) : (
@@ -270,9 +264,9 @@ function MarkdownDocs(props) {
                     href={nextPage.pathname}
                     size="large"
                     className={classes.pageLinkButton}
+                    endIcon={<ChevronRightIcon />}
                   >
                     {pageToTitleI18n(nextPage, t)}
-                    <ChevronRightIcon fontSize="small" className={classes.chevronRightIcon} />
                   </Button>
                 )}
               </div>

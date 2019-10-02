@@ -31,9 +31,11 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button will be disabled. |
 | <span class="prop-name">disableFocusRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true. |
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> |  | If `true`, the ripple effect will be disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the `focusVisibleClassName`. |
+| <span class="prop-name">endIcon</span> | <span class="prop-type">node</span> |  | Element placed after the children. |
 | <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button will take up the full width of its container. |
 | <span class="prop-name">href</span> | <span class="prop-type">string</span> |  | The URL to link to when the button is clicked. If defined, an `a` element will be used as the root node. |
 | <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'</span> | <span class="prop-default">'medium'</span> | The size of the button. `small` is equivalent to the dense button styling. |
+| <span class="prop-name">startIcon</span> | <span class="prop-type">node</span> |  | Element placed before the children. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'text'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'contained'</span> | <span class="prop-default">'text'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
@@ -70,6 +72,11 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 | <span class="prop-name">sizeSmall</span> | <span class="prop-name">MuiButton-sizeSmall</span> | Styles applied to the root element if `size="small"`.
 | <span class="prop-name">sizeLarge</span> | <span class="prop-name">MuiButton-sizeLarge</span> | Styles applied to the root element if `size="large"`.
 | <span class="prop-name">fullWidth</span> | <span class="prop-name">MuiButton-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
+| <span class="prop-name">startIcon</span> | <span class="prop-name">MuiButton-startIcon</span> | Styles applied to the startIcon element if supplied.
+| <span class="prop-name">endIcon</span> | <span class="prop-name">MuiButton-endIcon</span> | Styles applied to the endIcon element if supplied.
+| <span class="prop-name">iconSizeSmall</span> | <span class="prop-name">MuiButton-iconSizeSmall</span> | Styles applied to the icon element if supplied and `size="small"`.
+| <span class="prop-name">iconSizeMedium</span> | <span class="prop-name">MuiButton-iconSizeMedium</span> | Styles applied to the icon element if supplied and `size="medium"`.
+| <span class="prop-name">iconSizeLarge</span> | <span class="prop-name">MuiButton-iconSizeLarge</span> | Styles applied to the icon element if supplied and `size="large"`.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -205,6 +205,36 @@ export const styles = theme => ({
   fullWidth: {
     width: '100%',
   },
+  /* Styles applied to the startIcon element if supplied. */
+  startIcon: {
+    display: 'inherit',
+    marginRight: 8,
+    marginLeft: -4,
+  },
+  /* Styles applied to the endIcon element if supplied. */
+  endIcon: {
+    display: 'inherit',
+    marginRight: -4,
+    marginLeft: 8,
+  },
+  /* Styles applied to the icon element if supplied and `size="small"`. */
+  iconSizeSmall: {
+    '& > *:first-child': {
+      fontSize: 18,
+    },
+  },
+  /* Styles applied to the icon element if supplied and `size="medium"`. */
+  iconSizeMedium: {
+    '& > *:first-child': {
+      fontSize: 20,
+    },
+  },
+  /* Styles applied to the icon element if supplied and `size="large"`. */
+  iconSizeLarge: {
+    '& > *:first-child': {
+      fontSize: 22,
+    },
+  },
 });
 
 const Button = React.forwardRef(function Button(props, ref) {
@@ -216,13 +246,26 @@ const Button = React.forwardRef(function Button(props, ref) {
     component = 'button',
     disabled = false,
     disableFocusRipple = false,
+    endIcon: endIconProp,
     focusVisibleClassName,
     fullWidth = false,
     size = 'medium',
+    startIcon: startIconProp,
     type = 'button',
     variant = 'text',
     ...other
   } = props;
+
+  const startIcon = startIconProp && (
+    <span className={clsx(classes.startIcon, classes[`iconSize${capitalize(size)}`])}>
+      {startIconProp}
+    </span>
+  );
+  const endIcon = endIconProp && (
+    <span className={clsx(classes.endIcon, classes[`iconSize${capitalize(size)}`])}>
+      {endIconProp}
+    </span>
+  );
 
   return (
     <ButtonBase
@@ -247,7 +290,11 @@ const Button = React.forwardRef(function Button(props, ref) {
       type={type}
       {...other}
     >
-      <span className={classes.label}>{children}</span>
+      <span className={classes.label}>
+        {startIcon}
+        {children}
+        {endIcon}
+      </span>
     </ButtonBase>
   );
 });
@@ -292,6 +339,10 @@ Button.propTypes = {
    */
   disableRipple: PropTypes.bool,
   /**
+   * Element placed after the children.
+   */
+  endIcon: PropTypes.node,
+  /**
    * @ignore
    */
   focusVisibleClassName: PropTypes.string,
@@ -309,6 +360,10 @@ Button.propTypes = {
    * `small` is equivalent to the dense button styling.
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
+  /**
+   * Element placed before the children.
+   */
+  startIcon: PropTypes.node,
   /**
    * @ignore
    */

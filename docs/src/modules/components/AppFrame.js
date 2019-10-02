@@ -14,7 +14,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
-import Hidden from '@material-ui/core/Hidden';
+import Box from '@material-ui/core/Box';
 import NoSsr from '@material-ui/core/NoSsr';
 import LanguageIcon from '@material-ui/icons/Translate';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -118,11 +118,15 @@ const styles = theme => ({
       position: 'absolute',
     },
   },
-  appBarHome: {
-    boxShadow: 'none',
-  },
   language: {
     margin: theme.spacing(0, 0.5, 0, 1),
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'block',
+    },
+  },
+  appBarHome: {
+    boxShadow: 'none',
   },
   appBarShift: {
     [theme.breakpoints.up('lg')]: {
@@ -234,14 +238,12 @@ function AppFrame(props) {
               data-ga-event-action="language"
             >
               <LanguageIcon />
-              <Hidden xsDown implementation="css">
-                <span className={classes.language}>
-                  {userLanguage === 'aa'
-                    ? 'Translating'
-                    : LANGUAGES_LABEL.filter(language => language.code === userLanguage)[0].text}
-                </span>
-              </Hidden>
-              <ExpandMoreIcon />
+              <span className={classes.language}>
+                {userLanguage === 'aa'
+                  ? 'Translating'
+                  : LANGUAGES_LABEL.filter(language => language.code === userLanguage)[0].text}
+              </span>
+              <ExpandMoreIcon fontSize="small" />
             </Button>
           </Tooltip>
           <NoSsr>
@@ -260,12 +262,14 @@ function AppFrame(props) {
                   selected={userLanguage === language.code}
                   onClick={handleLanguageMenuClose}
                   lang={language.code}
-                  hreflang={language.code}
+                  hrefLang={language.code}
                 >
                   {language.text}
                 </MenuItem>
               ))}
-              <Divider />
+              <Box my={1}>
+                <Divider />
+              </Box>
               <MenuItem
                 component="a"
                 data-no-link="true"
@@ -278,7 +282,7 @@ function AppFrame(props) {
                 target="_blank"
                 key={userLanguage}
                 lang={userLanguage}
-                hreflang="en"
+                hrefLang="en"
                 onClick={handleLanguageMenuClose}
               >
                 {`${t('helpToTranslate')}`}

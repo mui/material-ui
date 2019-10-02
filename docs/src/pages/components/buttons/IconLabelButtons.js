@@ -1,5 +1,4 @@
 import React from 'react';
-import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -12,15 +11,6 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
   },
-  leftIcon: {
-    marginRight: theme.spacing(1),
-  },
-  rightIcon: {
-    marginLeft: theme.spacing(1),
-  },
-  iconSmall: {
-    fontSize: 20,
-  },
 }));
 
 export default function IconLabelButtons() {
@@ -28,25 +18,44 @@ export default function IconLabelButtons() {
 
   return (
     <div>
-      <Button variant="contained" color="secondary" className={classes.button}>
+      <Button
+        variant="contained"
+        color="secondary"
+        className={classes.button}
+        startIcon={<DeleteIcon />}
+      >
         Delete
-        <DeleteIcon className={classes.rightIcon} />
       </Button>
-      <Button variant="contained" color="primary" className={classes.button}>
+      {/* This Button uses a Font Icon, see the installation instructions in the Icon component docs. */}
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.button}
+        endIcon={<Icon>send</Icon>}
+      >
         Send
-        {/* This Button uses a Font Icon, see the installation instructions in the docs. */}
-        <Icon className={classes.rightIcon}>send</Icon>
       </Button>
-      <Button variant="contained" color="default" className={classes.button}>
+      <Button
+        variant="contained"
+        color="default"
+        className={classes.button}
+        startIcon={<CloudUploadIcon />}
+      >
         Upload
-        <CloudUploadIcon className={classes.rightIcon} />
       </Button>
-      <Button variant="contained" disabled color="secondary" className={classes.button}>
-        <KeyboardVoiceIcon className={classes.leftIcon} />
+      <Button
+        variant="contained"
+        disabled
+        color="secondary"
+        className={classes.button}
+        startIcon={<KeyboardVoiceIcon />}
+      >
         Talk
       </Button>
-      <Button variant="contained" size="small" className={classes.button}>
-        <SaveIcon className={clsx(classes.leftIcon, classes.iconSmall)} />
+      <Button variant="contained" size="small" className={classes.button} startIcon={<SaveIcon />}>
+        Save
+      </Button>
+      <Button variant="contained" size="large" className={classes.button} startIcon={<SaveIcon />}>
         Save
       </Button>
     </div>

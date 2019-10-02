@@ -9,9 +9,11 @@ export type ButtonTypeMap<
   props: P & {
     color?: PropTypes.Color;
     disableFocusRipple?: boolean;
+    endIcon?: React.ReactNode;
     fullWidth?: boolean;
     href?: string;
     size?: 'small' | 'medium' | 'large';
+    startIcon?: React.ReactNode;
     variant?: 'text' | 'outlined' | 'contained';
   };
   defaultComponent: D;
@@ -48,6 +50,8 @@ export type ButtonClassKey =
   | 'containedSizeLarge'
   | 'sizeSmall'
   | 'sizeLarge'
-  | 'fullWidth';
+  | 'fullWidth'
+  | 'startIcon'
+  | 'endIcon';
 
 export default Button;
