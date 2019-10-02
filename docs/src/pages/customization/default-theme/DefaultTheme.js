@@ -12,11 +12,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
 /**
- * @type {React.Context<keyof object>}
- */
-const ObjectContext = React.createContext('$ROOT');
-
-/**
  * @param {unknown} value
  */
 function useType(value) {
@@ -92,6 +87,11 @@ function TreeLabel({ objectKey, objectValue }) {
 }
 TreeLabel.propTypes = { objectKey: PropTypes.any, objectValue: PropTypes.any };
 
+/**
+ * @type {React.Context<keyof object>}
+ */
+const ObjectContext = React.createContext('$ROOT');
+
 function ObjectTreeItem(props) {
   const { objectKey, objectValue } = props;
 
@@ -101,25 +101,15 @@ function ObjectTreeItem(props) {
     (objectValue !== null && typeof objectValue === 'object') ||
     typeof objectValue === 'function'
   ) {
-    const children = Object.keys(objectValue).map(key => {
-      return <ObjectTreeItem key={key} objectKey={key} objectValue={objectValue[key]} />;
-    });
-
-    if (objectKey === undefined) {
-      return (
-        <TreeView defaultCollapseIcon={<ExpandIcon />} defaultExpandIcon={<CollapseIcon />}>
-          {children}
-        </TreeView>
-      );
-    }
-
     return (
       <TreeItem
-        nodeId={`${keyPrefix}-${objectKey}`}
+        nodeId={`${keyPrefix}.${objectKey}`}
         label={<TreeLabel objectKey={objectKey} objectValue={objectValue} />}
       >
-        <ObjectContext.Provider value={`${keyPrefix}-${objectKey}`}>
-          {children}
+        <ObjectContext.Provider value={`${keyPrefix}.${objectKey}`}>
+          {Object.keys(objectValue).map(key => {
+            return <ObjectTreeItem key={key} objectKey={key} objectValue={objectValue[key]} />;
+          })}
         </ObjectContext.Provider>
       </TreeItem>
     );
@@ -135,15 +125,34 @@ function ObjectTreeItem(props) {
 ObjectTreeItem.propTypes = { objectKey: PropTypes.any, objectValue: PropTypes.any };
 
 function Inspector(props) {
-  const { data } = props;
+  const { data, expandPaths } = props;
 
-  return <ObjectTreeItem objectValue={data} />;
+  const keyPrefix = React.useContext(ObjectContext);
+  const defaultExpanded = React.useMemo(() => {
+    return Array.isArray(expandPaths)
+      ? expandPaths.map(expandPath => `${keyPrefix}.${expandPath}`)
+      : undefined;
+  }, [keyPrefix, expandPaths]);
+
+  return (
+    <TreeView
+      /* expandPaths are only set on the client so we need to remount */
+      key={defaultExpanded}
+      defaultCollapseIcon={<ExpandIcon />}
+      defaultExpanded={defaultExpanded}
+      defaultExpandIcon={<CollapseIcon />}
+    >
+      {Object.keys(data).map(key => {
+        return <ObjectTreeItem key={key} objectKey={key} objectValue={data[key]} />;
+      })}
+    </TreeView>
+  );
 }
 
 Inspector.propTypes = {
   data: PropTypes.any,
-  /* expandLevel: PropTypes.number,
-  expandPaths: PropTypes.arrayOf(PropTypes.string), */
+  /* expandLevel: PropTypes.number, */
+  expandPaths: PropTypes.arrayOf(PropTypes.string),
 };
 
 const styles = theme => ({
