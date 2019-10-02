@@ -21,6 +21,8 @@ const styles = {
     height: 0,
     top: 0,
     left: 0,
+    // Create a new layer, increase the isolation of the computed values
+    transform: 'translateZ(0)',
   },
 };
 
@@ -86,7 +88,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
 
       return prevState;
     });
-  }, [setState, rows, rowsMax, props.placeholder]);
+  }, [rows, rowsMax, props.placeholder]);
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
