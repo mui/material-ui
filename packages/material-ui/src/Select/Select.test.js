@@ -88,13 +88,21 @@ describe('<Select />', () => {
     expect(container.querySelector('input')).to.have.property('type', 'hidden');
   });
 
-  // TODO: leaky abstraction
-  it('should ignore onBlur the first time the menu is open', () => {
+  it('should ignore onBlur when the menu opens', () => {
     // mousedown calls focus while click opens moving the focus to an item
     // this means the trigger is blurred immediately
     const handleBlur = spy();
-    const { getByRole, getAllByRole } = render(
-      <Select onBlur={handleBlur} value="">
+    const { getByRole, getAllByRole, queryByRole } = render(
+      <Select
+        onBlur={handleBlur}
+        onMouseDown={event => {
+          // simulating certain platforms that focus on mousedown
+          if (event.defaultPrevented === false) {
+            event.currentTarget.focus();
+          }
+        }}
+        value=""
+      >
         <MenuItem value="">none</MenuItem>
         <MenuItem value={10}>Ten</MenuItem>
       </Select>,
@@ -102,19 +110,21 @@ describe('<Select />', () => {
 
     const trigger = getByRole('button');
     // simulating user click
-    fireEvent.mouseDown(trigger);
-    trigger.focus();
-    trigger.click();
+    act(() => {
+      fireEvent.mouseDown(trigger);
+      trigger.click();
+    });
 
     expect(handleBlur.callCount).to.equal(0);
     expect(getByRole('listbox')).to.be.ok;
 
     act(() => {
+      fireEvent.mouseDown(getAllByRole('option')[0]);
       getAllByRole('option')[0].click();
     });
-    trigger.blur();
 
-    expect(handleBlur.callCount).to.equal(1);
+    expect(handleBlur.callCount).to.equal(0);
+    expect(queryByRole('listbox')).to.be.null;
   });
 
   it('options should have a data-value attribute', () => {

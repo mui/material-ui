@@ -55,58 +55,49 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   } = props;
 
   const inputRef = React.useRef(null);
-  const displayRef = React.useRef(null);
-  const ignoreNextBlur = React.useRef(false);
+  const [displayNode, setDisplaNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
   const [openState, setOpenState] = React.useState(false);
-  const [, forceUpdate] = React.useState(0);
   const handleRef = useForkRef(ref, inputRefProp);
 
   React.useImperativeHandle(
     handleRef,
     () => ({
       focus: () => {
-        displayRef.current.focus();
+        displayNode.focus();
       },
       node: inputRef.current,
       value,
     }),
-    [value],
+    [displayNode, value],
   );
 
   React.useEffect(() => {
-    if (isOpenControlled && openProp) {
-      // Focus the display node so the focus is restored on this element once
-      // the menu is closed.
-      displayRef.current.focus();
-      // Rerender with the resolve `displayRef` reference.
-      forceUpdate(n => !n);
+    if (autoFocus && displayNode) {
+      displayNode.focus();
     }
-
-    if (autoFocus) {
-      displayRef.current.focus();
-    }
-  }, [autoFocus, isOpenControlled, openProp]);
+  }, [autoFocus, displayNode]);
 
   const update = (open, event) => {
     if (open) {
       if (onOpen) {
         onOpen(event);
       }
-    } else if (onClose) {
-      onClose(event);
+    } else {
+      displayNode.focus();
+      if (onClose) {
+        onClose(event);
+      }
     }
 
     if (!isOpenControlled) {
-      setMenuMinWidthState(autoWidth ? null : displayRef.current.clientWidth);
+      setMenuMinWidthState(autoWidth ? null : displayNode.clientWidth);
       setOpenState(open);
     }
   };
 
   const handleClick = event => {
-    // Opening the menu is going to blur the. It will be focused back when closed.
-    ignoreNextBlur.current = true;
     update(true, event);
   };
 
@@ -140,21 +131,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
-  const handleBlur = event => {
-    if (ignoreNextBlur.current === true) {
-      // The parent components are relying on the bubbling of the event.
-      event.stopPropagation();
-      ignoreNextBlur.current = false;
-      return;
-    }
-
-    if (onBlur) {
-      event.persist();
-      event.target = { value, name };
-      onBlur(event);
-    }
-  };
-
   const handleKeyDown = event => {
     if (!readOnly) {
       const validKeys = [
@@ -168,14 +144,21 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
       if (validKeys.indexOf(event.key) !== -1) {
         event.preventDefault();
-        // Opening the menu is going to blur the. It will be focused back when closed.
-        ignoreNextBlur.current = true;
         update(true, event);
       }
     }
   };
 
-  const open = isOpenControlled && displayRef.current ? openProp : openState;
+  const open = displayNode !== null && (isOpenControlled ? openProp : openState);
+
+  const handleBlur = event => {
+    // if open event.stopImmediatePropagation
+    if (!open && onBlur) {
+      event.persist();
+      event.target = { value, name };
+      onBlur(event);
+    }
+  };
 
   delete other['aria-invalid'];
 
@@ -247,8 +230,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   // Avoid performing a layout computation in the render method.
   let menuMinWidth = menuMinWidthState;
 
-  if (!autoWidth && isOpenControlled && displayRef.current) {
-    menuMinWidth = displayRef.current.clientWidth;
+  if (!autoWidth && isOpenControlled && displayNode) {
+    menuMinWidth = displayNode.clientWidth;
   }
 
   let tabIndex;
@@ -271,7 +254,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           },
           className,
         )}
-        ref={displayRef}
+        ref={setDisplaNode}
         data-mui-test="SelectDisplay"
         tabIndex={tabIndex}
         role="button"
@@ -279,8 +262,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         aria-haspopup="listbox"
         aria-owns={open ? `menu-${name || ''}` : undefined}
         onKeyDown={handleKeyDown}
-        onBlur={handleBlur}
         onClick={disabled || readOnly ? null : handleClick}
+        onBlur={handleBlur}
         onFocus={onFocus}
         // The id can help with end-to-end testing automation.
         id={name ? `select-${name}` : undefined}
@@ -305,7 +288,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       <IconComponent className={clsx(classes.icon, classes[`icon${capitalize(variant)}`])} />
       <Menu
         id={`menu-${name || ''}`}
-        anchorEl={displayRef.current}
+        anchorEl={displayNode}
         open={open}
         onClose={handleClose}
         {...MenuProps}
