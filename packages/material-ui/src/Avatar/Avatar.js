@@ -39,7 +39,7 @@ export const styles = theme => ({
 const Avatar = React.forwardRef(function Avatar(props, ref) {
   const {
     alt,
-    children,
+    children: childrenProp,
     classes,
     className: classNameProp,
     component: Component = 'div',
@@ -50,7 +50,7 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
     ...other
   } = props;
 
-  let children = children;
+  let children = childrenProp;
   const img = src || srcSet;
 
   if (img) {
