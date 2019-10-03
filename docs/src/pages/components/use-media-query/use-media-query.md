@@ -16,9 +16,11 @@ Some of the key features:
 ## Simple media query
 
 You should provide a media query to the first argument of the hook.
-The media query string can by any valid CSS media query, e.g. `'print'`.
+The media query string can by any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference).
 
 {{"demo": "pages/components/use-media-query/SimpleMediaQuery.js", "defaultCodeOpen": true}}
+
+⚠️ You can't use `'print'` per browsers limitation, e.g. [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
 
 ## Using Material-UI's breakpoint helpers
 
@@ -180,8 +182,8 @@ import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export default function SimpleMediaQuery() {
-  const matches = useMediaQuery('print');
+  const matches = useMediaQuery('(min-width:600px)');
 
-  return <span>{`@media (min-width:600px) matches: ${matches}`}</span>;
+  return <span>{`(min-width:600px) matches: ${matches}`}</span>;
 }
 ```
