@@ -294,7 +294,9 @@ export default function EnhancedTable() {
             className={classes.table}
             aria-labelledby="tableTitle"
             size={dense ? 'small' : 'medium'}
+            aria-label="enhanced table"
           >
+          <caption>enhanced table caption</caption>
             <EnhancedTableHead
               classes={classes}
               numSelected={selected.length}

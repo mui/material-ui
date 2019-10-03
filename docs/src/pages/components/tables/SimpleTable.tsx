@@ -37,7 +37,8 @@ export default function SimpleTable() {
 
   return (
     <Paper className={classes.root}>
-      <Table className={classes.table}>
+      <Table className={classes.table} aria-label="a simple table">
+        <caption>A simple table caption</caption>
         <TableHead>
           <TableRow>
             <TableCell>Dessert (100g serving)</TableCell>
