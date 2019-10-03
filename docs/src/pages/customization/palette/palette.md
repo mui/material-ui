@@ -150,6 +150,7 @@ Note that `contrastThreshold` follows a non-linear curve.
 ## Example
 
 {{"demo": "pages/customization/palette/Palette.js"}}
+{{"demo": "pages/customization/palette/Palette.tsx"}}
 
 ## Color tool
 
