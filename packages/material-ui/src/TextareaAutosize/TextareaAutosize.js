@@ -22,7 +22,7 @@ const styles = {
     top: 0,
     left: 0,
     // Create a new layer, increase the isolation of the computed values
-    transform: 'translateZ(0)',
+    // transform: 'translateZ(0)',
   },
 };
 
@@ -30,12 +30,17 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
   const { onChange, rows, rowsMax, style, value, ...other } = props;
 
   const { current: isControlled } = React.useRef(value != null);
+  const render = React.useRef(0);
+  const update = React.useRef(true);
   const inputRef = React.useRef(null);
   const handleRef = useForkRef(ref, inputRef);
   const shadowRef = React.useRef(null);
   const [state, setState] = React.useState({});
 
   const syncHeight = React.useCallback(() => {
+    if (!update.current) {
+      return;
+    }
     const input = inputRef.current;
     const computedStyle = window.getComputedStyle(input);
 
@@ -73,12 +78,15 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     const overflow = Math.abs(outerHeight - innerHeight) <= 1;
 
     setState(prevState => {
+      update.current = false;
       // Need a large enough different to update the height.
       // This prevents infinite rendering loop.
       if (
-        (outerHeightStyle > 0 &&
-          Math.abs((prevState.outerHeightStyle || 0) - outerHeightStyle) > 1) ||
-        prevState.overflow !== overflow
+        ( 
+          outerHeightStyle > 0 &&
+          Math.abs((prevState.outerHeightStyle || 0) - outerHeightStyle) > 1
+        ) 
+        || prevState.overflow !== overflow
       ) {
         return {
           overflow,
@@ -104,9 +112,15 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
 
   useEnhancedEffect(() => {
     syncHeight();
+
+    if (!update.current) {
+      update.current = true;
+    }
   });
 
   const handleChange = event => {
+    render.current = 0;
+
     if (!isControlled) {
       syncHeight();
     }
