@@ -249,15 +249,13 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (!foundMatch && !multiple && value !== '') {
-        const values = React.Children.toArray(children)
-          .map(child => child.props.value)
-          .filter(val => val !== '');
+        const values = React.Children.toArray(children).map(child => child.props.value);
         console.warn(
           [
-            `Material-UI: you have provided an out-of-range value for the select ${
+            `Material-UI: you have provided an out-of-range value \`${value}\` for the select ${
               name ? `(name="${name}") ` : ''
             }component.`,
-            'Consider providing a value that matches one of the available options.',
+            "Consider providing a value that matches one of the available options or ''.",
             `The available values are ${values.join(', ') || '""'}.`,
           ].join('\n'),
         );

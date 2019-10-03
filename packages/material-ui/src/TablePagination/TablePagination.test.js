@@ -30,7 +30,7 @@ describe('<TablePagination />', () => {
 
   before(() => {
     classes = getClasses(
-      <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={1} />,
+      <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={10} />,
     );
     // StrictModeViolation: uses #html()
     mount = createMount({ strict: false });
@@ -41,7 +41,7 @@ describe('<TablePagination />', () => {
   });
 
   describeConformance(
-    <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={1} />,
+    <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={10} />,
     () => ({
       classes,
       inheritComponent: TableCell,
@@ -57,8 +57,8 @@ describe('<TablePagination />', () => {
       let labelDisplayedRowsCalled = false;
       function labelDisplayedRows({ from, to, count, page }) {
         labelDisplayedRowsCalled = true;
-        assert.strictEqual(from, 6);
-        assert.strictEqual(to, 10);
+        assert.strictEqual(from, 11);
+        assert.strictEqual(to, 20);
         assert.strictEqual(count, 42);
         assert.strictEqual(page, 1);
         return `Page ${page}`;
@@ -73,7 +73,7 @@ describe('<TablePagination />', () => {
                 page={1}
                 onChangePage={noop}
                 onChangeRowsPerPage={noop}
-                rowsPerPage={5}
+                rowsPerPage={10}
                 labelDisplayedRows={labelDisplayedRows}
               />
             </TableRow>
@@ -94,7 +94,7 @@ describe('<TablePagination />', () => {
                 page={0}
                 onChangePage={noop}
                 onChangeRowsPerPage={noop}
-                rowsPerPage={5}
+                rowsPerPage={10}
                 labelRowsPerPage="Zeilen pro Seite:"
               />
             </TableRow>
@@ -110,11 +110,11 @@ describe('<TablePagination />', () => {
           <TableFooter>
             <TableRow>
               <TablePagination
-                count={6}
+                count={11}
                 page={0}
                 onChangePage={noop}
                 onChangeRowsPerPage={noop}
-                rowsPerPage={5}
+                rowsPerPage={10}
               />
             </TableRow>
           </TableFooter>
@@ -133,11 +133,11 @@ describe('<TablePagination />', () => {
           <TableFooter>
             <TableRow>
               <TablePagination
-                count={6}
+                count={11}
                 page={1}
                 onChangePage={noop}
                 onChangeRowsPerPage={noop}
-                rowsPerPage={5}
+                rowsPerPage={10}
               />
             </TableRow>
           </TableFooter>
@@ -157,13 +157,13 @@ describe('<TablePagination />', () => {
           <TableFooter>
             <TableRow>
               <TablePagination
-                count={15}
+                count={30}
                 page={page}
                 onChangePage={(event, nextPage) => {
                   page = nextPage;
                 }}
                 onChangeRowsPerPage={noop}
-                rowsPerPage={5}
+                rowsPerPage={10}
               />
             </TableRow>
           </TableFooter>
@@ -182,13 +182,13 @@ describe('<TablePagination />', () => {
           <TableFooter>
             <TableRow>
               <TablePagination
-                count={15}
+                count={30}
                 page={page}
                 onChangePage={(event, nextPage) => {
                   page = nextPage;
                 }}
                 onChangeRowsPerPage={noop}
-                rowsPerPage={5}
+                rowsPerPage={10}
               />
             </TableRow>
           </TableFooter>
@@ -208,7 +208,7 @@ describe('<TablePagination />', () => {
               <TablePagination
                 count={0}
                 page={0}
-                rowsPerPage={5}
+                rowsPerPage={10}
                 onChangePage={noop}
                 onChangeRowsPerPage={noop}
               />
@@ -266,8 +266,8 @@ describe('<TablePagination />', () => {
             <TableRow>
               <TablePagination
                 page={2}
-                rowsPerPage={5}
-                count={10}
+                count={20}
+                rowsPerPage={10}
                 onChangePage={noop}
                 onChangeRowsPerPage={noop}
               />

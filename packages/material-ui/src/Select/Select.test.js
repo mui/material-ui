@@ -304,7 +304,7 @@ describe('<Select />', () => {
         );
         expect(console.warn.callCount).to.equal(1);
         expect(console.warn.args[0][0]).to.include(
-          'Material-UI: you have provided an out-of-range value for the select component.',
+          'Material-UI: you have provided an out-of-range value `20` for the select component.',
         );
       });
     });
