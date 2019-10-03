@@ -22,7 +22,7 @@ const styles = {
     top: 0,
     left: 0,
     // Create a new layer, increase the isolation of the computed values
-    // transform: 'translateZ(0)',
+    transform: 'translateZ(0)',
   },
 };
 
@@ -30,7 +30,6 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
   const { onChange, rows, rowsMax, style, value, ...other } = props;
 
   const { current: isControlled } = React.useRef(value != null);
-  const render = React.useRef(0);
   const update = React.useRef(true);
   const inputRef = React.useRef(null);
   const handleRef = useForkRef(ref, inputRef);
@@ -119,8 +118,6 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
   });
 
   const handleChange = event => {
-    render.current = 0;
-
     if (!isControlled) {
       syncHeight();
     }
