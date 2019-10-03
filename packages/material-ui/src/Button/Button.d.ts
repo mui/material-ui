@@ -52,6 +52,9 @@ export type ButtonClassKey =
   | 'sizeLarge'
   | 'fullWidth'
   | 'startIcon'
-  | 'endIcon';
+  | 'endIcon'
+  | 'iconSizeSmall'
+  | 'iconSizeMedium'
+  | 'iconSizeLarge';
 
 export default Button;
