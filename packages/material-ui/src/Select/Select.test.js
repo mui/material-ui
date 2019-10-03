@@ -281,6 +281,33 @@ describe('<Select />', () => {
 
       expect(getByRole('button')).to.have.text('Twenty');
     });
+
+    describe('warnings', () => {
+      let consoleWarnContainer = null;
+
+      beforeEach(() => {
+        consoleWarnContainer = console.warn;
+        console.warn = spy();
+      });
+
+      afterEach(() => {
+        console.warn = consoleWarnContainer;
+        consoleWarnContainer = null;
+      });
+
+      it('warns when the value is not present in any option', () => {
+        render(
+          <Select value={20}>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>,
+        );
+        expect(console.warn.callCount).to.equal(1);
+        expect(console.warn.args[0][0]).to.include(
+          'Material-UI: you have provided an out-of-range value for the select component.',
+        );
+      });
+    });
   });
 
   describe('SVG icon', () => {
