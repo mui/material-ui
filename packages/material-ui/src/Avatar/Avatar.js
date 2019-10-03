@@ -39,7 +39,7 @@ export const styles = theme => ({
 const Avatar = React.forwardRef(function Avatar(props, ref) {
   const {
     alt,
-    children: childrenProp,
+    children,
     classes,
     className: classNameProp,
     component: Component = 'div',
@@ -50,22 +50,22 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
     ...other
   } = props;
 
-  let children = null;
   const img = src || srcSet;
 
   if (img) {
     children = (
-      <img
-        alt={alt}
-        src={src}
-        srcSet={srcSet}
-        sizes={sizes}
-        className={classes.img}
-        {...imgProps}
-      />
+      <>
+        <img
+          alt={alt}
+          src={src}
+          srcSet={srcSet}
+          sizes={sizes}
+          className={classes.img}
+          {...imgProps}
+        />
+        {children}
+      </>
     );
-  } else {
-    children = childrenProp;
   }
 
   return (
