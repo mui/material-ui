@@ -50,11 +50,12 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
     ...other
   } = props;
 
+  let children = children;
   const img = src || srcSet;
 
   if (img) {
     children = (
-      <>
+      <React.Fragment>
         <img
           alt={alt}
           src={src}
@@ -64,7 +65,7 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
           {...imgProps}
         />
         {children}
-      </>
+      </React.Fragment>
     );
   }
 
