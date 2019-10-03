@@ -118,6 +118,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       InputMore.notched = InputLabelProps.shrink;
     }
 
+    InputMore.label = `${label}${required ? ' *' : ''}`;
     InputMore.labelWidth = labelWidth;
   }
   if (select) {

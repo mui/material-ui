@@ -33,10 +33,17 @@ export const styles = theme => {
       textAlign: 'left',
       padding: 0,
       lineHeight: '11px',
-      transition: theme.transitions.create('width', {
+      fontSize: '0.75rem',
+      maxWidth: 0,
+      transition: theme.transitions.create('max-width', {
         duration: theme.transitions.duration.shorter,
         easing: theme.transitions.easing.easeOut,
       }),
+      visibility: 'hidden',
+      '& span': {
+        paddingLeft: 4,
+        paddingRight: 6,
+      },
     },
   };
 };
@@ -49,6 +56,7 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
     children,
     classes,
     className,
+    label = '\u200B',
     labelWidth: labelWidthProp,
     notched,
     style,
@@ -62,25 +70,17 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
     <fieldset
       aria-hidden
       style={{
-        [`padding${capitalize(align)}`]: 8 + (notched ? 0 : labelWidth / 2),
+        [`padding${capitalize(align)}`]: 8,
         ...style,
       }}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     >
-      <legend
-        className={classes.legend}
-        style={{
-          // IE 11: fieldset with legend does not render
-          // a border radius. This maintains consistency
-          // by always having a legend rendered
-          width: notched ? labelWidth : 0.01,
-        }}
-      >
+      <legend className={classes.legend} style={{ maxWidth: notched ? '150px' : '0px' }}>
         {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
         {/* eslint-disable-next-line react/no-danger */}
-        <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+        <span>{label}</span>
       </legend>
     </fieldset>
   );
