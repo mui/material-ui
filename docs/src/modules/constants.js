@@ -52,7 +52,10 @@ const LANGUAGES_LABEL = [
   },
 ];
 
+const ENABLE_SCHEDULER_API = true;
+
 module.exports = {
+  ENABLE_SCHEDULER_API,
   CODE_VARIANTS,
   ACTION_TYPES,
   LANGUAGES,

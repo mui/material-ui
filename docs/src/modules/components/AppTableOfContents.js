@@ -1,5 +1,9 @@
 /* eslint-disable react/no-danger */
-
+import {
+  unstable_cancelCallback as cancelCallback,
+  unstable_scheduleCallback as scheduleCallback,
+  unstable_LowPriority as LowPriority,
+} from 'scheduler';
 import React from 'react';
 import PropTypes from 'prop-types';
 import marked from 'marked';
@@ -10,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import textToHash from 'docs/src/modules/utils/textToHash';
 import Link from 'docs/src/modules/components/Link';
+import { ENABLE_SCHEDULER_API } from 'docs/src/modules/constants';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -120,10 +125,30 @@ function getItemsClient(items) {
 const noop = () => {};
 
 function useThrottledOnScroll(callback, delay) {
-  const throttledCallback = React.useMemo(() => (callback ? throttle(callback, delay) : noop), [
-    callback,
-    delay,
-  ]);
+  const throttledCallback = React.useMemo(() => {
+    if (typeof callback !== 'function') {
+      return noop;
+    }
+    if (ENABLE_SCHEDULER_API) {
+      let task = null;
+      const scheduledCallback = (...args) => {
+        // need to cancel the previous one, otherwise we could schedule A then B
+        // then call cancel. Now only B would be cancelled but A still scheduled to run
+        if (task !== null) cancelCallback(task);
+        task = scheduleCallback(LowPriority, () => callback(...args));
+      };
+      scheduledCallback.cancel = () => {
+        if (task !== null) {
+          cancelCallback(task);
+          task = null;
+        }
+      };
+
+      return scheduledCallback;
+    }
+
+    return throttle(callback, delay);
+  }, [callback, delay]);
 
   React.useEffect(() => {
     if (throttledCallback === noop) {
