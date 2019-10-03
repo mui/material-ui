@@ -81,6 +81,19 @@ describe('style', () => {
     });
   });
 
+  it('should fallback to value if theme value is an array and index missing', () => {
+    const output = boxShadow({
+      theme: {
+        shadows: ['none'],
+      },
+      boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2)',
+    });
+
+    assert.deepEqual(output, {
+      boxShadow: '0px 1px 3px 0px rgba(0, 0, 0, 0.2)',
+    });
+  });
+
   const border = style({
     prop: 'border',
     themeKey: 'borders',
