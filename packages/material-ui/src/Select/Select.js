@@ -188,7 +188,7 @@ Select.propTypes = {
    */
   SelectDisplayProps: PropTypes.object,
   /**
-   * The input value.
+   * The input value. Providing an empty string will select no options.
    * This prop is required when the `native` prop is `false` (default).
    */
   value: PropTypes.any,
