@@ -159,13 +159,13 @@ const useToolbarStyles = makeStyles((theme: Theme) =>
     highlight:
       theme.palette.type === 'light'
         ? {
-          color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-        }
+            color: theme.palette.secondary.main,
+            backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+          }
         : {
-          color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark,
-        },
+            color: theme.palette.text.primary,
+            backgroundColor: theme.palette.secondary.dark,
+          },
     spacer: {
       flex: '1 1 100%',
     },
@@ -198,10 +198,10 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
             {numSelected} selected
           </Typography>
         ) : (
-            <Typography variant="h6" id="tableTitle">
-              Nutrition
+          <Typography variant="h6" id="tableTitle">
+            Nutrition
           </Typography>
-          )}
+        )}
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
@@ -212,12 +212,12 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
             </IconButton>
           </Tooltip>
         ) : (
-            <Tooltip title="Filter list">
-              <IconButton aria-label="filter list">
-                <FilterListIcon />
-              </IconButton>
-            </Tooltip>
-          )}
+          <Tooltip title="Filter list">
+            <IconButton aria-label="filter list">
+              <FilterListIcon />
+            </IconButton>
+          </Tooltip>
+        )}
       </div>
     </Toolbar>
   );
