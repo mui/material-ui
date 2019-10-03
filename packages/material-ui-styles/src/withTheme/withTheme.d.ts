@@ -13,6 +13,7 @@ export function withThemeCreator<Theme = DefaultTheme>(
 export interface WithTheme<Theme = DefaultTheme> {
   theme: Theme;
   innerRef?: React.Ref<any>;
+  ref?: React.Ref<any>;
 }
 
 export default function withTheme<
