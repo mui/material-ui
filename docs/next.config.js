@@ -11,7 +11,7 @@ const workspaceRoot = path.join(__dirname, '../');
 /**
  * @type {'legacy' | 'sync' | 'concurrent'}
  */
-const reactMode = 'concurrent';
+const reactMode = 'legacy';
 
 module.exports = withTypescript({
   webpack: (config, options) => {
