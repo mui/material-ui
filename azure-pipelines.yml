@@ -57,11 +57,6 @@ steps:
       yarn size:snapshot
     displayName: 'create a size snapshot'
 
-  - task: PublishPipelineArtifact@0
-    inputs:
-      artifactName: 'size-snapshot'
-      targetPath: 'scripts/sizeSnapshot/build/stats.json'
-
   - task: AmazonWebServices.aws-vsts-tools.S3Upload.S3Upload@1
     displayName: 'persist size snapshot'
     condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
