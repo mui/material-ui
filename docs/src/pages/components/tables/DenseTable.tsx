@@ -42,8 +42,8 @@ export default function DenseTable() {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <Table className={classes.table} size="small" aria-label="a dense table">
-          <caption>A dense table caption</caption>
+        <Table className={classes.table} size="small" aria-label="a dense table" aria-describedby="info">
+          <caption id="info">Table example which has more dense rows using the size small proptery</caption>
           <TableHead>
             <TableRow>
               <TableCell>Dessert (100g serving)</TableCell>

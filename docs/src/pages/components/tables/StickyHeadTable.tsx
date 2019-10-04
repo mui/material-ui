@@ -100,8 +100,8 @@ export default function StickyHeadTable() {
   return (
     <Paper className={classes.root}>
       <div className={classes.tableWrapper}>
-        <Table stickyHeader aria-label="sticky table example">
-          <caption>A sticky table caption</caption>
+        <Table stickyHeader aria-label="sticky table" aria-describedby="info">
+          <caption id="info">A table example which has a sticky header to the top</caption>
           <TableHead>
             <TableRow>
               {columns.map(column => (
