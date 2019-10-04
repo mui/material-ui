@@ -298,8 +298,8 @@ export default function EnhancedTable() {
             aria-describedby="info"
           >
             <caption id="info">
-              Table example which showcases paginations, row selection & sorting 
-              based on column heading selections
+              Table example which showcases paginations, row selection & sorting based on column
+              heading selections
             </caption>
             <EnhancedTableHead
               classes={classes}
