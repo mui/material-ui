@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createMount } from '@material-ui/core/test-utils';
 import { teardown, useIsFocusVisible } from './focusVisible';
-import { useForkRef } from './reactHelpers';
+import useForkRef from './useForkRef';
 
 function dispatchFocusVisible(element) {
   element.ownerDocument.dispatchEvent(new window.Event('keydown'));

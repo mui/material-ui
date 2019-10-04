@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 import getScrollbarSize from '../utils/getScrollbarSize';
-import { useForkRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
 
 function nextItem(list, item, disableListWrap) {
   if (list === item) {

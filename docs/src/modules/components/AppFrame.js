@@ -22,11 +22,9 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
 import ColorsIcon from '@material-ui/icons/InvertColors';
-import {
-  GitHub as GithubIcon,
-  LightbulbOutline as LightbulbOutlineIcon,
-  LightbulbFull as LightbulbFullIcon,
-} from '@material-ui/docs';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import Brightness7Icon from '@material-ui/icons/Brightness7';
+import GitHubIcon from '@material-ui/icons/GitHub';
 import NProgressBar from '@material-ui/docs/NProgressBar';
 import FormatTextdirectionLToR from '@material-ui/icons/FormatTextdirectionLToR';
 import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
@@ -310,7 +308,7 @@ function AppFrame(props) {
               data-ga-event-category="AppBar"
               data-ga-event-action="dark"
             >
-              {theme.palette.type === 'light' ? <LightbulbOutlineIcon /> : <LightbulbFullIcon />}
+              {theme.palette.type === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
             </IconButton>
           </Tooltip>
           <Tooltip title={t('toggleRTL')} enterDelay={300}>
@@ -338,7 +336,7 @@ function AppFrame(props) {
               data-ga-event-category="AppBar"
               data-ga-event-action="github"
             >
-              <GithubIcon />
+              <GitHubIcon />
             </IconButton>
           </Tooltip>
         </Toolbar>

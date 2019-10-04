@@ -10,11 +10,11 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Collapse from '@material-ui/core/Collapse';
 import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
+import GitHubIcon from '@material-ui/icons/GitHub';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
-import { GitHub as GithubIcon } from '@material-ui/docs';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
@@ -309,7 +309,7 @@ function Demo(props) {
                   target="_blank"
                   rel="noopener nofollow"
                 >
-                  <GithubIcon fontSize="small" />
+                  <GitHubIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
               {demoOptions.hideEditButton ? null : (

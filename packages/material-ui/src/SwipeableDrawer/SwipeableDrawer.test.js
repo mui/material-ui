@@ -8,7 +8,7 @@ import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Drawer from '../Drawer';
 import SwipeableDrawer, { reset } from './SwipeableDrawer';
 import SwipeArea from './SwipeArea';
-import { useForkRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
 
 function fireBodyMouseEvent(name, properties = {}) {
   const event = document.createEvent('MouseEvents');
