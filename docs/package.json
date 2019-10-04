@@ -28,6 +28,7 @@
     "@material-ui/icons": "^4.2.1",
     "@material-ui/lab": "^4.0.0-alpha.18",
     "@material-ui/pickers": "^3.2.5",
+    "@material-ui/react-transition-group": "^4.2.0",
     "@material-ui/styles": "^4.1.2",
     "@material-ui/system": "^4.3.0",
     "@material-ui/types": "^4.1.1",
