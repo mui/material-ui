@@ -30,7 +30,7 @@ export default function DialogSelect() {
   });
 
   const handleChange = name => event => {
-    setState({ ...state, [name]: Number(event.target.value) });
+    setState({ ...state, [name]: Number(event.target.value) || '' });
   };
 
   const handleClickOpen = () => {

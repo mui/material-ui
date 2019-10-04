@@ -594,7 +594,7 @@ describe('<InputBase />', () => {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <Select value="a" name="suffix" />
+                <Select value="" name="suffix" />
               </InputAdornment>
             ),
           }}
