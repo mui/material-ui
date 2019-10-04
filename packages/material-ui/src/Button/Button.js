@@ -272,8 +272,8 @@ const Button = React.forwardRef(function Button(props, ref) {
       className={clsx(
         classes.root,
         classes[variant],
-        classes[`${variant}${color !== 'default' && color !== 'inherit' ? capitalize(color) : ''}`],
         {
+          [classes[`${variant}${capitalize(color)}`]]: color !== 'default' && color !== 'inherit',
           [classes[`${variant}Size${capitalize(size)}`]]: size !== 'medium',
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
           [classes.disabled]: disabled,
