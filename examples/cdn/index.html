@@ -19,7 +19,7 @@
 const {
   colors,
   CssBaseline,
-  MuiThemeProvider,
+  ThemeProvider,
   Typography,
   Container,
   makeStyles,
@@ -107,11 +107,11 @@ function App() {
 }
 
 ReactDOM.render(
-  <MuiThemeProvider theme={theme}>
+  <ThemeProvider theme={theme}>
     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
     <CssBaseline />
     <App />
-  </MuiThemeProvider>,
+  </ThemeProvider>,
   document.querySelector('#root'),
 );
     </script>

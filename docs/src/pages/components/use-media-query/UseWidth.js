@@ -1,7 +1,6 @@
 import React from 'react';
-import { ThemeProvider, useTheme } from '@material-ui/styles';
+import { ThemeProvider, useTheme, createMuiTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createMuiTheme } from '@material-ui/core/styles';
 
 /**
  * Be careful using this hook. It only works because the number of

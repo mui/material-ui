@@ -12,6 +12,7 @@ export {
   ServerStyleSheets,
   styled,
   StylesProvider,
+  ThemeProvider,
   useTheme,
   withStyles,
   withTheme,

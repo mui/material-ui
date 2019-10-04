@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const styles = {
@@ -17,7 +17,7 @@ const styles = {
 
 function HigherOrderComponent(props) {
   const { classes } = props;
-  return <Button className={classes.root}>Higher-order component</Button>;
+  return <Button className={classes.root}>Styled with HOC API</Button>;
 }
 
 HigherOrderComponent.propTypes = {

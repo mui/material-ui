@@ -1,13 +1,16 @@
 # Advanced
 
-<p class="description">This section covers more advanced usage of @material-ui/styles.</p>
+<p class="description">This section covers more advanced usage of @material-ui/core/styles.</p>
 
 ## Theming
 
-Add a `ThemeProvider` to the top level of your app to pass the theme down the React component tree. Then, you can access the theme object in style functions.
+Add a `ThemeProvider` to the top level of your app to pass a theme down the React component tree. Then, you can access the theme object in style functions.
+
+> This example creates a new theme. See the [theming section](/customization/theming) for how to customize the default Material-UI theme.
 
 ```jsx
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+import DeepChild from './my_components/DeepChild';
 
 const theme = {
   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -30,8 +33,10 @@ You might need to access the theme variables inside your React components.
 
 #### `useTheme` hook
 
+For use in function components:
+
 ```jsx
-import { useTheme } from '@material-ui/styles';
+import { useTheme } from '@material-ui/core/styles';
 
 function DeepChild() {
   const theme = useTheme();
@@ -43,8 +48,10 @@ function DeepChild() {
 
 #### `withTheme` HOC
 
+For use in class or function components:
+
 ```jsx
-import { withTheme } from '@material-ui/styles';
+import { withTheme } from '@material-ui/core/styles';
 
 function DeepChildRaw(props) {
   return <span>{`spacing ${props.theme.spacing}`}</span>;
@@ -114,7 +121,7 @@ function Parent() {
 
 However, the class names are often non-deterministic. How can a parent component override the style of a nested element?
 
-### withStyles
+### `withStyles`
 
 This is the simplest case. the wrapped component accepts a `classes` prop,
 it simply merges the class names provided with the style sheet.
@@ -136,7 +143,7 @@ function Parent() {
 }
 ```
 
-### makeStyles
+### `makeStyles`
 
 The hook API requires a bit more work. You have to forward the parent props to the hook as a first argument.
 
@@ -182,7 +189,7 @@ Of course, you are free to use additional plugins. Here is an example with the [
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 import rtl from 'jss-rtl'
 
 const jss = create({
@@ -237,7 +244,7 @@ They gain more specificity than any other style tags on your page e.g. CSS modul
 The `StylesProvider` component has an `injectFirst` prop to inject the style tags **first** in the head (less priority):
 
 ```jsx
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree.
@@ -251,7 +258,7 @@ The injection of style tags happens in the **same order** as the `makeStyles` / 
 
 ```jsx
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStylesBase = makeStyles({
   root: {
@@ -298,7 +305,7 @@ The simplest approach is to add an HTML comment to the `<head>` that determines 
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -313,7 +320,7 @@ function App() {
 export default App;
 ```
 
-#### Other HTML element
+#### Other HTML elements
 
 [Create React App](https://github.com/facebook/create-react-app) strips HTML comments when creating the production build.
 To get around this issue, you can provide a DOM element (other than a comment) as the JSS insertion point, for example, a `<noscript>` element:
@@ -327,7 +334,7 @@ To get around this issue, you can provide a DOM element (other than a comment) a
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -349,7 +356,7 @@ To get around this issue, you can use the JavaScript `document.createComment()` 
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const styleNode = document.createComment('jss-insertion-point');
 document.head.insertBefore(styleNode, document.head.firstChild);
@@ -373,7 +380,7 @@ This example returns a string of HTML and inlines the critical CSS required, rig
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheets } from '@material-ui/core/styles';
 
 function render() {
   const sheets = new ServerStyleSheets();
@@ -395,14 +402,14 @@ function render() {
 }
 ```
 
-You can [follow the server side guide](/guides/server-rendering/) for a more detailed example, or read the [`ServerStyleSheets`](/styles/api/#serverstylesheets) API documentation.
+You can [follow the server side guide](/guides/server-rendering/) for a more detailed example, or read the [`ServerStyleSheets` API documentation](/styles/api/#serverstylesheets).
 
 ### Gatsby
 
-There is [an official plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`.
+There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`.
 Refer to the plugin's page for setup and usage instructions.
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
+Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
@@ -416,7 +423,7 @@ The class names are generated by [the class name generator](/styles/api/#createg
 
 ### Default
 
-By default, the class names generated by `@material-ui/styles` are **non-deterministic**; you can't rely on them to stay the same. Let's take the following style as an example:
+By default, the class names generated by `@material-ui/core/styles` are **non-deterministic**; you can't rely on them to stay the same. Let's take the following style as an example:
 
 ```js
 const useStyles = makeStyles({

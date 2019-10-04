@@ -3327,7 +3327,7 @@ Here is an example: https://codesandbox.io/s/vjzn5z4k77.
 ```jsx
 import Button from '@material-ui/core/Button';
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 // Like https://github.com/brunobertolini/styled-by
 const styledBy = (property, mapping) => props => mapping[props[property]];
