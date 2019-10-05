@@ -115,10 +115,7 @@ export default function InputAdornments() {
           }}
           variant="filled"
         />
-        <FormControl
-          className={clsx(classes.margin, classes.textField)}
-          variant="filled"
-        >
+        <FormControl className={clsx(classes.margin, classes.textField)} variant="filled">
           <FilledInput
             id="filled-adornment-weight"
             value={values.weight}
@@ -171,10 +168,7 @@ export default function InputAdornments() {
           }}
           variant="outlined"
         />
-        <FormControl
-          className={clsx(classes.margin, classes.textField)}
-          variant="outlined"
-        >
+        <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
           <OutlinedInput
             id="outlined-adornment-weight"
             value={values.weight}

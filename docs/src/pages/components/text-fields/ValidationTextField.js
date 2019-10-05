@@ -6,7 +6,7 @@ const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -38,7 +38,6 @@ export default function ValidationTextField() {
           className={classes.textField}
           margin="normal"
         />
-
       </div>
       <div>
         <TextField
