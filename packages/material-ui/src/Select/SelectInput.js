@@ -55,7 +55,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   } = props;
 
   const inputRef = React.useRef(null);
-  const [displayNode, setDisplaNode] = React.useState(null);
+  const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
   const [openState, setOpenState] = React.useState(false);
@@ -277,7 +277,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           },
           className,
         )}
-        ref={setDisplaNode}
+        ref={setDisplayNode}
         data-mui-test="SelectDisplay"
         tabIndex={tabIndex}
         role="button"
