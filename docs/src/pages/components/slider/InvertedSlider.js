@@ -6,6 +6,10 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     height: 300,
+    justifyContent: 'space-between',
+  },
+  horizontal: {
+    width: 300,
   },
   margin: {
     width: theme.spacing(3),
@@ -35,20 +39,42 @@ const marks = [
   },
 ];
 
-export default function VerticalSlider() {
+export default function InvertedSlider() {
   const classes = useStyles();
 
   return (
     <React.Fragment>
       <div className={classes.root}>
-        <Slider orientation="vertical" getAriaValueText={valuetext} defaultValue={30} />
-        <div className={classes.margin} />
-        <Slider disabled orientation="vertical" getAriaValueText={valuetext} defaultValue={30} />
+        <div className={classes.horizontal}>
+          <Slider
+            track="inverted"
+            orientation="horizontal"
+            getAriaValueText={valuetext}
+            defaultValue={30}
+            marks={marks}
+          />
+          <Slider
+            track="inverted"
+            orientation="horizontal"
+            getAriaValueText={valuetext}
+            defaultValue={[20, 37]}
+            marks={marks}
+          />
+        </div>
         <div className={classes.margin} />
         <Slider
+          track="inverted"
           orientation="vertical"
-          defaultValue={[20, 37]}
           getAriaValueText={valuetext}
+          defaultValue={30}
+          marks={marks}
+        />
+        <div className={classes.margin} />
+        <Slider
+          track="inverted"
+          orientation="vertical"
+          getAriaValueText={valuetext}
+          defaultValue={[20, 37]}
           marks={marks}
         />
       </div>

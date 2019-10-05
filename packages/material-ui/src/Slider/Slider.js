@@ -181,8 +181,8 @@ export const styles = theme => ({
     width: '100%',
     height: 2,
     borderRadius: 1,
-    backgroundColor: 'currentColor',
-    opacity: 0.38,
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
     '$vertical &': {
       height: '100%',
       width: 2,
@@ -197,6 +197,23 @@ export const styles = theme => ({
     backgroundColor: 'currentColor',
     '$vertical &': {
       width: 2,
+    },
+  },
+  /* Styles applied to the track element if `track={false}`. */
+  trackFalse: {
+    '& $track': {
+      backgroundColor:
+        theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+    },
+  },
+  /* Styles applied to the track element if `track="inverted"`. */
+  inverted: {
+    '& $track': {
+      backgroundColor:
+        theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+    },
+    '& $rail': {
+      backgroundColor: 'currentColor',
     },
   },
   /* Styles applied to the thumb element. */
@@ -318,6 +335,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     onMouseDown,
     orientation = 'horizontal',
     step = 1,
+    track = 'normal',
     ThumbComponent = 'span',
     value: valueProp,
     ValueLabelComponent = ValueLabel,
@@ -679,6 +697,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         {
           [classes.disabled]: disabled,
           [classes.marked]: marks.length > 0 && marks.some(mark => mark.label),
+          [classes.inverted]: track === 'inverted',
+          [classes.trackFalse]: track === false,
           [classes.vertical]: orientation === 'vertical',
         },
         className,
@@ -692,10 +712,16 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       {marks.map(mark => {
         const percent = valueToPercent(mark.value, min, max);
         const style = axisProps[axis].offset(percent);
-        const markActive = range
-          ? mark.value >= values[0] && mark.value <= values[values.length - 1]
-          : mark.value <= values[0];
-
+        let markActive;
+        if (track === false) {
+          markActive = mark.value === values[0];
+        } else {
+          const isMarkActive = range
+            ? mark.value >= values[0] && mark.value <= values[values.length - 1]
+            : mark.value <= values[0];
+          markActive =
+            (isMarkActive && track === 'normal') || (!isMarkActive && track === 'inverted');
+        }
         return (
           <React.Fragment key={mark.value}>
             <span
@@ -885,6 +911,14 @@ Slider.propTypes = {
    * The component used to display the value label.
    */
   ThumbComponent: PropTypes.elementType,
+  /**
+   * The track presentation:
+   *
+   * - `normal` the track will render a bar representing the slider value.
+   * - `inverted` the track will render a bar representing the remaining slider value.
+   * - `false` the track will render without a bar.
+   */
+  track: PropTypes.oneOf([false, 'normal', 'inverted']),
   /**
    * The value of the slider.
    * For ranged sliders, provide an array with two values.

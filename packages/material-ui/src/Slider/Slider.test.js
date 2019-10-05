@@ -256,6 +256,17 @@ describe('<Slider />', () => {
     });
   });
 
+  describe('prop: track', () => {
+    it('should render the track classes for false', () => {
+      const { container } = render(<Slider track={false} value={50} />);
+      expect(container.firstChild).to.have.class(classes.trackFalse);
+    });
+    it('should render the track classes for inverted', () => {
+      const { container } = render(<Slider track="inverted" value={50} />);
+      expect(container.firstChild).to.have.class(classes.inverted);
+    });
+  });
+
   describe('keyboard', () => {
     it('should handle all the keys', () => {
       const { getByRole } = render(<Slider defaultValue={50} />);
