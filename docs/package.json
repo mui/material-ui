@@ -37,7 +37,7 @@
     "@types/json2mq": "^0.2.0",
     "@types/react-autosuggest": "^9.3.11",
     "@types/react-dom": "^16.9.1",
-    "@types/react-router-dom": "^4.3.5",
+    "@types/react-router-dom": "^5.1.0",
     "@types/react-select": "^3.0.4",
     "@types/react-swipeable-views": "^0.13.0",
     "@types/react-text-mask": "^5.4.6",
