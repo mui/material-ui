@@ -1,19 +1,7 @@
 import React from 'react';
+import setRef from './setRef';
 
-export function isMuiElement(element, muiNames) {
-  return React.isValidElement(element) && muiNames.indexOf(element.type.muiName) !== -1;
-}
-
-// TODO: Make it private only in v5
-export function setRef(ref, value) {
-  if (typeof ref === 'function') {
-    ref(value);
-  } else if (ref) {
-    ref.current = value;
-  }
-}
-
-export function useForkRef(refA, refB) {
+export default function useForkRef(refA, refB) {
   /**
    * This will create a new function if the ref props change and are defined.
    * This means react will call the old forkRef with `null` and the new forkRef

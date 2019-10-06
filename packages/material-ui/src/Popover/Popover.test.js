@@ -9,7 +9,7 @@ import Grow from '../Grow';
 import Modal from '../Modal';
 import Paper from '../Paper';
 import Popover, { getOffsetLeft, getOffsetTop } from './Popover';
-import { useForkRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
 
 const mockedAnchorEl = () => {
   const div = document.createElement('div');

@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import PopperJS from 'popper.js';
 import { chainPropTypes, refType } from '@material-ui/utils';
 import Portal from '../Portal';
-import { createChainedFunction } from '../utils/helpers';
-import { setRef, useForkRef } from '../utils/reactHelpers';
+import createChainedFunction from '../utils/createChainedFunction';
+import setRef from '../utils/setRef';
+import useForkRef from '../utils/useForkRef';
 import ownerWindow from '../utils/ownerWindow';
 
 /**

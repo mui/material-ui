@@ -2,7 +2,6 @@ import React from 'react';
 import { withTheme } from '@material-ui/core/styles';
 import withStyles from '@material-ui/core/styles/withStyles';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import MenuItem from '@material-ui/core/MenuItem';
 import Tab from '@material-ui/core/Tab';
 import MuiTabs from '@material-ui/core/Tabs';

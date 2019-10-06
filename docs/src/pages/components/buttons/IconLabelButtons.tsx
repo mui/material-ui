@@ -54,10 +54,22 @@ export default function IconLabelButtons() {
       >
         Talk
       </Button>
-      <Button variant="contained" size="small" className={classes.button} startIcon={<SaveIcon />}>
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        className={classes.button}
+        startIcon={<SaveIcon />}
+      >
         Save
       </Button>
-      <Button variant="contained" size="large" className={classes.button} startIcon={<SaveIcon />}>
+      <Button
+        variant="contained"
+        color="primary"
+        size="large"
+        className={classes.button}
+        startIcon={<SaveIcon />}
+      >
         Save
       </Button>
     </div>

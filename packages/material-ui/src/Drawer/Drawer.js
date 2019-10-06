@@ -6,7 +6,7 @@ import Backdrop from '../Backdrop';
 import withStyles from '../styles/withStyles';
 import Slide from '../Slide';
 import Paper from '../Paper';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import { duration } from '../styles/transitions';
 import useTheme from '../styles/useTheme';
 

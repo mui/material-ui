@@ -40,9 +40,8 @@ export interface SpeedDialProps
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} key The key pressed.
    */
-  onClose?: (event: React.SyntheticEvent<{}>, key: string) => void;
+  onClose?: (event: React.SyntheticEvent<{}>) => void;
   /**
    * Callback fired when the component requests to be open.
    *

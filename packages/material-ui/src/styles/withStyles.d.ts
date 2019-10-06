@@ -27,6 +27,8 @@ export {
 /**
  * Adapter for `StyleRules` from `@material-ui/styles` for backwards compatibility.
  * Order of generic arguments is just reversed.
+ *
+ * TODO: to normalize in v5
  */
 export type StyleRules<
   ClassKey extends string = string,

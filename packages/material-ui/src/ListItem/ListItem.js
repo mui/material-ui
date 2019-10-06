@@ -4,7 +4,8 @@ import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
-import { isMuiElement, useForkRef } from '../utils/reactHelpers';
+import isMuiElement from '../utils/isMuiElement';
+import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 import ReactDOM from 'react-dom';
 

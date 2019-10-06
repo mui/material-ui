@@ -1,16 +1,3 @@
-import * as React from 'react';
-import { StandardProps } from '../';
-
-export type NamedMuiComponent = React.ComponentType & { muiName: string };
-
-export interface NamedMuiElement {
-  type: NamedMuiComponent;
-  props: StandardProps<{}, never>;
-  key: string | number | null;
-}
-
-export function isMuiElement(element: any, muiNames: string[]): element is NamedMuiElement;
-
 /**
  * passes {value} to {ref}
  *
@@ -23,9 +10,7 @@ export function isMuiElement(element: any, muiNames: string[]): element is Named
  *
  * @param ref a ref callback or ref object if anything falsy this is a no-op
  */
-export function setRef<T>(
+export default function setRef<T>(
   ref: React.RefObject<T> | ((instance: T | null) => void) | null | undefined,
   value: T | null,
 ): void;
-
-export function useForkRef<T>(refA: React.Ref<T>, refB: React.Ref<T>): React.Ref<T>;

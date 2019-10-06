@@ -2,21 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import ownerDocument from '../utils/ownerDocument';
-import { useForkRef, setRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
+import setRef from '../utils/setRef';
 import useEventCallback from '../utils/useEventCallback';
 import { elementAcceptingRef, exactProp } from '@material-ui/utils';
-
-function useMountedRef() {
-  const mountedRef = React.useRef(false);
-  React.useEffect(() => {
-    mountedRef.current = true;
-    return () => {
-      mountedRef.current = false;
-    };
-  }, []);
-
-  return mountedRef;
-}
 
 function mapEventPropToEvent(eventProp) {
   return eventProp.substring(2).toLowerCase();
@@ -28,9 +17,16 @@ function mapEventPropToEvent(eventProp) {
  */
 const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref) {
   const { children, mouseEvent = 'onClick', touchEvent = 'onTouchEnd', onClickAway } = props;
-  const mountedRef = useMountedRef();
   const movedRef = React.useRef(false);
   const nodeRef = React.useRef(null);
+  const mountedRef = React.useRef(false);
+
+  React.useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
 
   const handleNodeRef = useForkRef(nodeRef, ref);
   // can be removed once we drop support for non ref forwarding class components
@@ -60,18 +56,18 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
       return;
     }
 
-    const { current: node } = nodeRef;
     // The child might render null.
-    if (!node) {
+    if (!nodeRef.current) {
       return;
     }
 
-    const doc = ownerDocument(node);
+    // Multi window support
+    const doc = ownerDocument(nodeRef.current);
 
     if (
       doc.documentElement &&
       doc.documentElement.contains(event.target) &&
-      !node.contains(event.target)
+      !nodeRef.current.contains(event.target)
     ) {
       onClickAway(event);
     }

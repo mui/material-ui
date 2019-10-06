@@ -4,7 +4,7 @@ import { Transition } from 'react-transition-group';
 import { duration } from '../styles/transitions';
 import useTheme from '../styles/useTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
-import { useForkRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
 
 const styles = {
   entering: {

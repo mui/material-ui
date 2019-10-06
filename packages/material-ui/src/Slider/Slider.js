@@ -7,8 +7,8 @@ import useTheme from '../styles/useTheme';
 import { fade } from '../styles/colorManipulator';
 import { useIsFocusVisible } from '../utils/focusVisible';
 import useEventCallback from '../utils/useEventCallback';
-import { useForkRef } from '../utils/reactHelpers';
-import { capitalize } from '../utils/helpers';
+import useForkRef from '../utils/useForkRef';
+import capitalize from '../utils/capitalize';
 import ValueLabel from './ValueLabel';
 
 function asc(a, b) {

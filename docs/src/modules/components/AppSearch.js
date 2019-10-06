@@ -220,6 +220,7 @@ export default function AppSearch() {
         inputProps={{
           'aria-label': 'Search',
         }}
+        type="search"
         id="docsearch-input"
         inputRef={inputRef}
         classes={{

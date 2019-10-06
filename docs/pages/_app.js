@@ -200,8 +200,13 @@ async function registerServiceWorker() {
 
 // Add the strict mode back once the number of warnings is manageable.
 // We might miss important warnings by keeping the strict mode 🌊🌊🌊.
-const USE_STRICT_MODE = false;
-const ReactMode = USE_STRICT_MODE ? React.StrictMode : React.Fragment;
+const ReactMode =
+  {
+    // createSyncRoot compatible
+    sync: React.StrictMode,
+    // partial createRoot, ConcurrentMode is deprecated
+    concurrent: React.unstable_ConcurrentMode,
+  }[process.env.REACT_MODE] || React.Fragment;
 
 let dependenciesLoaded = false;
 

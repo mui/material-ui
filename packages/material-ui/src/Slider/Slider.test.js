@@ -4,7 +4,7 @@ import { spy, stub } from 'sinon';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Slider from './Slider';
@@ -419,13 +419,13 @@ describe('<Slider />', () => {
   it('should handle RTL', () => {
     const handleChange = spy();
     const { container, getByRole } = render(
-      <MuiThemeProvider
+      <ThemeProvider
         theme={createMuiTheme({
           direction: 'rtl',
         })}
       >
         <Slider value={30} onChange={handleChange} />
-      </MuiThemeProvider>,
+      </ThemeProvider>,
     );
     const thumb = getByRole('slider');
     expect(thumb.style.right).to.equal('30%');

@@ -1,7 +1,7 @@
 import React from 'react';
 import { assert } from 'chai';
 import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import describeConformance from '../test-utils/describeConformance';
 import Slide from '../Slide';
 import Paper from '../Paper';
@@ -245,21 +245,21 @@ describe('<Drawer />', () => {
         direction: 'rtl',
       });
       const wrapper1 = mount(
-        <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
           <Drawer open anchor="left">
             <div />
           </Drawer>
-        </MuiThemeProvider>,
+        </ThemeProvider>,
       );
       // slide direction for left is right, if left is switched to right, we should get left
       assert.strictEqual(wrapper1.find(Slide).props().direction, 'left');
 
       const wrapper2 = mount(
-        <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
           <Drawer open anchor="right">
             <div />
           </Drawer>
-        </MuiThemeProvider>,
+        </ThemeProvider>,
       );
       // slide direction for right is left, if right is switched to left, we should get right
       assert.strictEqual(wrapper2.find(Slide).props().direction, 'right');

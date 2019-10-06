@@ -4,9 +4,9 @@ import clsx from 'clsx';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import withStyles from '../styles/withStyles';
 import { emphasize, fade } from '../styles/colorManipulator';
-import { useForkRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import '../Avatar'; // So we don't have any override priority issue.
 
 export const styles = theme => {

@@ -393,7 +393,6 @@ SpeedDial.propTypes = {
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} key The key pressed.
    */
   onClose: PropTypes.func,
   /**

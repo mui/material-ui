@@ -5,10 +5,11 @@ import clsx from 'clsx';
 import { elementAcceptingRef } from '@material-ui/utils';
 import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import Popper from '../Popper';
-import { useForkRef, setRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
+import setRef from '../utils/setRef';
 import { useIsFocusVisible } from '../utils/focusVisible';
 import useTheme from '../styles/useTheme';
 

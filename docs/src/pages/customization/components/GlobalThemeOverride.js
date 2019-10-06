@@ -1,5 +1,5 @@
 import React from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const theme = createMuiTheme({
@@ -14,8 +14,8 @@ const theme = createMuiTheme({
 
 export default function GlobalThemeOverride() {
   return (
-    <MuiThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
       <Button>font-size: 1rem</Button>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 }

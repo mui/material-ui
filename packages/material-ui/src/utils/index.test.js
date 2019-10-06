@@ -4,10 +4,10 @@ import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { mount } from 'enzyme';
-import { isMuiElement, setRef, useForkRef } from './reactHelpers';
+import { isMuiElement, setRef, useForkRef } from '.';
 import { Input, ListItemSecondaryAction, SvgIcon } from '..';
 
-describe('utils/reactHelpers.js', () => {
+describe('utils/index.js', () => {
   describe('isMuiElement', () => {
     it('should match static muiName property', () => {
       const Component = () => null;

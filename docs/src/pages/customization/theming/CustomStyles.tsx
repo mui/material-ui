@@ -5,8 +5,8 @@ import {
   makeStyles,
   createStyles,
   Theme as AugmentedTheme,
+  ThemeProvider,
 } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
 import { orange } from '@material-ui/core/colors';
 
 declare module '@material-ui/core/styles/createMuiTheme' {
