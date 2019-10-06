@@ -86,7 +86,7 @@
     "material-table": "^1.50.0",
     "material-ui-popup-state": "^1.4.1",
     "next": "8.1.0",
-    "notistack": "^0.8.9",
+    "notistack": "^0.9.3",
     "nprogress": "^0.2.0",
     "postcss": "^7.0.18",
     "prismjs": "^1.17.1",
