@@ -96,7 +96,7 @@
     "react-autosuggest": "^9.4.3",
     "react-docgen": "^5.0.0-beta.1",
     "react-dom": "^16.10.1",
-    "react-draggable": "^3.0.5",
+    "react-draggable": "^4.0.3",
     "react-final-form": "^6.3.0",
     "react-frame-component": "^4.1.1",
     "react-inspector": "^3.0.2",
