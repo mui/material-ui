@@ -12240,9 +12240,9 @@ react-lifecycles-compat@^3.0.4:
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
 react-number-format@^4.0.8:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-4.2.0.tgz#297efac961504b72cdd3fd0c33442302191c52d8"
-  integrity sha512-LJY0+JUEdQG1Taj6qbL1Cd/8CfBn3X4ohBPGewWNRyRAGyxV/+zP02CQrMkCfPh1iXXx6V3oguJcZWXUwpQ3ow==
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/react-number-format/-/react-number-format-4.3.0.tgz#3c6d7c77debad50a121da57a26abd937c9432da6"
+  integrity sha512-IAxm26MVyuiG+CCPlrz4KAOmxi/mVidK/3pIm2796qkfNtfF108QBBOBGLIFFRJQHwdDN/HI0beiAXK6mJM4Lw==
   dependencies:
     prop-types "^15.7.2"
 
