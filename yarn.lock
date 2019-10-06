@@ -9647,6 +9647,13 @@ material-ui-popup-state@^1.4.1:
     "@babel/runtime" "^7.1.5"
     prop-types "^15.0.0"
 
+material-ui-snackbar-provider@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/material-ui-snackbar-provider/-/material-ui-snackbar-provider-1.2.1.tgz#805aa81aa9a3c312ce317777f3780664d91c1d22"
+  integrity sha512-L2I/+7TiWiaG7vDr6t8j8vQNZXcaKOfffMJPjNWQ2BqL/47mnZXOgK8vjoPo64CgjKM2RgVrAgnyLW868961YA==
+  dependencies:
+    prop-types "^15.5.8"
+
 math-expression-evaluator@^1.2.14:
   version "1.2.17"
   resolved "https://registry.yarnpkg.com/math-expression-evaluator/-/math-expression-evaluator-1.2.17.tgz#de819fdbcd84dccd8fae59c6aeb79615b9d266ac"

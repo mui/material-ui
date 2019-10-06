@@ -81,3 +81,12 @@ notistack makes it easy to display snackbars (so you don't have to deal with ope
 It also enables you to stack them on top of one another (although this is discouraged by the specification).
 
 {{"demo": "pages/components/snackbars/IntegrationNotistack.js"}}
+
+### material-ui-snackbar-provider
+
+![stars](https://img.shields.io/github/stars/TeamWertarbyte/material-ui-snackbar-provider.svg?style=social&label=Stars)
+![npm downloads](https://img.shields.io/npm/dm/material-ui-snackbar-provider.svg)
+
+In the following example, we demonstrate how to use [material-ui-snackbar-provider](https://github.com/TeamWertarbyte/material-ui-snackbar-provider). It provides an imperative API to display snackbarsand simplifies implementing undo/redo patterns.
+
+{{"demo": "pages/components/snackbars/IntegrationMaterialUiSnackbarProvider.js"}}

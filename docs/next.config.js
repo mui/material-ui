@@ -61,6 +61,7 @@ module.exports = withTypescript({
           const hasDependencyOnRepoPackages = [
             'notistack',
             'material-table',
+            'material-ui-snackbar-provider',
             '@material-ui/pickers',
           ].includes(request);
 
@@ -93,7 +94,7 @@ module.exports = withTypescript({
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
-            include: /node_modules(\/|\\)(material-table|notistack|@material-ui(\/|\\)pickers)/,
+            include: /node_modules(\/|\\)(material-table|material-ui-snackbar-provider|notistack|@material-ui(\/|\\)pickers)/,
             use: {
               loader: 'babel-loader',
               options: {
