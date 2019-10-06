@@ -35,8 +35,8 @@ export default function SimpleTable() {
 
   return (
     <Paper className={classes.root}>
-      <Table className={classes.table} aria-label="simple table" aria-describedby="info">
-        <caption id="info">A barbone structure table example</caption>
+      <Table className={classes.table} aria-label="simple table">
+        <caption>A barbone structure table example</caption>
         <TableHead>
           <TableRow>
             <TableCell>Dessert (100g serving)</TableCell>

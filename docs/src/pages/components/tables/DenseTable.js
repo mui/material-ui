@@ -44,9 +44,8 @@ export default function DenseTable() {
           className={classes.table}
           size="small"
           aria-label="a dense table"
-          aria-describedby="info"
         >
-          <caption id="info">
+          <caption>
             Table example which has more dense rows using the size small proptery
           </caption>
           <TableHead>

@@ -59,8 +59,8 @@ export default function CustomizedTables() {
 
   return (
     <Paper className={classes.root}>
-      <Table className={classes.table} aria-label="customized table" aria-describedby="info">
-        <caption id="info">
+      <Table className={classes.table} aria-label="customized table">
+        <caption>
           A customized table example which used custom styling of table row and cells
         </caption>
         <TableHead>

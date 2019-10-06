@@ -295,9 +295,8 @@ export default function EnhancedTable() {
             aria-labelledby="tableTitle"
             size={dense ? 'small' : 'medium'}
             aria-label="enhanced table"
-            aria-describedby="info"
           >
-            <caption id="info">
+            <caption>
               Table example which showcases paginations, row selection & sorting based on column
               heading selections
             </caption>

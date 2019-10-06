@@ -142,9 +142,8 @@ export default function CustomPaginationActionsTable() {
         <Table
           className={classes.table}
           aria-label="custom pagination table"
-          aria-describedby="info"
         >
-          <caption id="info">
+          <caption>
             A customized table example which showcases a paginations functionality
           </caption>
           <TableBody>

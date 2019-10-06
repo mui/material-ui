@@ -61,8 +61,8 @@ export default function SpanningTable() {
 
   return (
     <Paper className={classes.root}>
-      <Table className={classes.table} aria-label="spanning table" aria-describedby="info">
-        <caption id="info">
+      <Table className={classes.table} aria-label="spanning table">
+        <caption>
           A table example that showcases spanning rows using rowSpan and colSpan
         </caption>
         <TableHead>
