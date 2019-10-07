@@ -26,6 +26,14 @@ function clamp(value, min, max) {
   return value;
 }
 
+const eventMap = {
+  click: 'click',
+  focus: 'focus',
+  toggle: 'toggle',
+  mouseenter: 'mouseEnter',
+  mouseleave: 'mouseLeave',
+};
+
 const dialRadius = 32;
 const spacingActions = 16;
 
@@ -178,7 +186,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     if (event.key === 'Escape') {
       if (onClose) {
         actions.current[0].focus();
-        onClose(event);
+        onClose(event, 'escapeKeyDown');
       }
       return;
     }
@@ -220,11 +228,12 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
 
     if (onClose) {
       if (event.type === 'blur') {
+        event.persist();
         eventTimer.current = setTimeout(() => {
-          onClose(event);
+          onClose(event, 'blur');
         });
       } else {
-        onClose(event);
+        onClose(event, eventMap[event.type]);
       }
     }
   };
@@ -238,10 +247,10 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
 
     if (open) {
       if (onClose) {
-        onClose(event);
+        onClose(event, eventMap[event.type]);
       }
     } else if (onOpen) {
-      onOpen(event);
+      onOpen(event, eventMap[event.type]);
     }
   };
 
@@ -260,9 +269,10 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     clearTimeout(eventTimer.current);
 
     if (onOpen && !open) {
+      event.persist();
       // Wait for a future focus or click event
       eventTimer.current = setTimeout(() => {
-        onOpen(event);
+        onOpen(event, eventMap[event.type]);
       });
     }
   };
