@@ -4,8 +4,8 @@ import { createStyles, makeStyles } from '@material-ui/core/styles';
 import Button, { ButtonProps } from '@material-ui/core/Button';
 
 interface Props extends ButtonProps {
-  children: React.ReactNode;
-  className: string;
+  children?: React.ReactNode;
+  className?: string;
 }
 
 // We can inject some CSS into the DOM.
