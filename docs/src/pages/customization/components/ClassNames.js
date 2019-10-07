@@ -32,6 +32,5 @@ export default function ClassNames(props) {
 
 ClassNames.propTypes = {
   children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
 };
