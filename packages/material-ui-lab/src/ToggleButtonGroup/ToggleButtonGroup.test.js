@@ -30,6 +30,12 @@ describe('<ToggleButtonGroup />', () => {
     skip: ['componentProp'],
   }));
 
+  it('renders a `group`', () => {
+    const { getByLabelText } = render(<ToggleButtonGroup aria-label="my group" />);
+
+    expect(getByLabelText('my group')).to.have.attribute('role', 'group');
+  });
+
   describe('exclusive', () => {
     it('should render a selected ToggleButton if value is selected', () => {
       const { getByRole } = render(
