@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { green } from '@material-ui/core/colors';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
@@ -17,11 +16,10 @@ const styles = theme => ({
       backgroundColor: green[500],
     },
   },
-});
+}));
 
-function MediaQuery(props) {
-  const { classes } = props;
-
+export default function MediaQuery() {
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <Typography variant="subtitle1">{'down(sm): red'}</Typography>
@@ -30,9 +28,3 @@ function MediaQuery(props) {
     </div>
   );
 }
-
-MediaQuery.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(MediaQuery);
