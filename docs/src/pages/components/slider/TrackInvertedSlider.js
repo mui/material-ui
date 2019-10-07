@@ -1,18 +1,16 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: 250,
-    },
-    margin: {
-      height: theme.spacing(3),
-    },
-  }),
-);
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: 250,
+  },
+  margin: {
+    height: theme.spacing(3),
+  },
+}));
 
 const marks = [
   {
@@ -33,34 +31,34 @@ const marks = [
   },
 ];
 
-function valuetext(value: number) {
+function valuetext(value) {
   return `${value}°C`;
 }
 
-export default function TrackFalseSlider() {
+export default function TrackInvertedSlider() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Typography id="track-false-slider" gutterBottom>
-        Removed track
+      <Typography id="track-inverted-slider" gutterBottom>
+        Inverted track
       </Typography>
       <Slider
-        track={false}
-        aria-labelledby="track-false-slider"
+        track="inverted"
+        aria-labelledby="track-inverted-slider"
         getAriaValueText={valuetext}
         defaultValue={30}
         marks={marks}
       />
       <div className={classes.margin} />
-      <Typography id="track-false-multi-values-slider" gutterBottom>
-        Removed track multi-values
+      <Typography id="track-inverted-range-slider" gutterBottom>
+        Inverted track range
       </Typography>
       <Slider
-        track={false}
-        aria-labelledby="track-false-range-slider"
+        track="inverted"
+        aria-labelledby="track-inverted-range-slider"
         getAriaValueText={valuetext}
-        defaultValue={[20, 37, 50]}
+        defaultValue={[20, 37]}
         marks={marks}
       />
     </div>

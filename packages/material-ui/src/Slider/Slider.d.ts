@@ -36,7 +36,7 @@ export interface SliderProps
   orientation?: 'horizontal' | 'vertical';
   step?: number | null;
   ThumbComponent?: React.ElementType<React.HTMLAttributes<HTMLSpanElement>>;
-  track?: false | 'inverted' | 'normal';
+  track?: 'normal' | false | 'inverted';
   value?: number | number[];
   ValueLabelComponent?: React.ElementType<ValueLabelProps>;
   valueLabelDisplay?: 'on' | 'auto' | 'off';
@@ -54,6 +54,7 @@ export type SliderClassKey =
   | 'rail'
   | 'track'
   | 'trackFalse'
+  | 'trackInverted'
   | 'thumb'
   | 'thumbColorPrimary'
   | 'thumbColorSecondary'
@@ -61,8 +62,7 @@ export type SliderClassKey =
   | 'mark'
   | 'markActive'
   | 'markLabel'
-  | 'markLabelActive'
-  | 'inverted';
+  | 'markLabelActive';
 
 declare const Slider: React.ComponentType<SliderProps>;
 

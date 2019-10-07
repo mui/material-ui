@@ -1,16 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
-    display: 'flex',
     height: 300,
   },
-  margin: {
-    width: theme.spacing(3),
-  },
-}));
+});
 
 function valuetext(value) {
   return `${value}°C`;
@@ -40,14 +37,27 @@ export default function VerticalSlider() {
 
   return (
     <React.Fragment>
+      <Typography id="vertical-slider" gutterBottom>
+        Temperature
+      </Typography>
       <div className={classes.root}>
-        <Slider orientation="vertical" getAriaValueText={valuetext} defaultValue={30} />
-        <div className={classes.margin} />
-        <Slider disabled orientation="vertical" getAriaValueText={valuetext} defaultValue={30} />
-        <div className={classes.margin} />
+        <Slider
+          orientation="vertical"
+          getAriaValueText={valuetext}
+          defaultValue={30}
+          aria-labelledby="vertical-slider"
+        />
+        <Slider
+          disabled
+          orientation="vertical"
+          getAriaValueText={valuetext}
+          defaultValue={30}
+          aria-labelledby="vertical-slider"
+        />
         <Slider
           orientation="vertical"
           defaultValue={[20, 37]}
+          aria-labelledby="vertical-slider"
           getAriaValueText={valuetext}
           marks={marks}
         />

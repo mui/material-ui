@@ -1,24 +1,16 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
-    height: 300,
-    justifyContent: 'space-between',
-  },
-  horizontal: {
-    width: 300,
+    width: 250,
   },
   margin: {
-    width: theme.spacing(3),
+    height: theme.spacing(3),
   },
 }));
-
-function valuetext(value) {
-  return `${value}°C`;
-}
 
 const marks = [
   {
@@ -39,45 +31,36 @@ const marks = [
   },
 ];
 
+function valuetext(value) {
+  return `${value}°C`;
+}
+
 export default function TrackFalseSlider() {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
-      <div className={classes.root}>
-        <div className={classes.horizontal}>
-          <Slider
-            track={false}
-            orientation="horizontal"
-            getAriaValueText={valuetext}
-            defaultValue={30}
-            marks={marks}
-          />
-          <Slider
-            track={false}
-            orientation="horizontal"
-            getAriaValueText={valuetext}
-            defaultValue={[20, 37]}
-            marks={marks}
-          />
-        </div>
-        <div className={classes.margin} />
-        <Slider
-          track={false}
-          orientation="vertical"
-          getAriaValueText={valuetext}
-          defaultValue={30}
-          marks={marks}
-        />
-        <div className={classes.margin} />
-        <Slider
-          track={false}
-          orientation="vertical"
-          getAriaValueText={valuetext}
-          defaultValue={[20, 37]}
-          marks={marks}
-        />
-      </div>
-    </React.Fragment>
+    <div className={classes.root}>
+      <Typography id="track-false-slider" gutterBottom>
+        Removed track
+      </Typography>
+      <Slider
+        track={false}
+        aria-labelledby="track-false-slider"
+        getAriaValueText={valuetext}
+        defaultValue={30}
+        marks={marks}
+      />
+      <div className={classes.margin} />
+      <Typography id="track-false-multi-values-slider" gutterBottom>
+        Removed track multi-values
+      </Typography>
+      <Slider
+        track={false}
+        aria-labelledby="track-false-range-slider"
+        getAriaValueText={valuetext}
+        defaultValue={[20, 37, 50]}
+        marks={marks}
+      />
+    </div>
   );
 }

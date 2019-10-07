@@ -48,17 +48,21 @@ Continuous sliders allow users to select a value along a subjective range.
 
 {{"demo": "pages/components/slider/VerticalSlider.js"}}
 
-## Inverted sliders
+## Track
 
-The track can be inverted, `track={inverted}`.
+The track shows the range available for user selection.
 
-{{"demo": "pages/components/slider/InvertedSlider.js"}}
+### Removed track
 
-## Track false sliders
-
-The track can be turned off, `track={false}`.
+The track can be turned off with `track={false}`.
 
 {{"demo": "pages/components/slider/TrackFalseSlider.js"}}
+
+### Inverted track
+
+The track can be inverted with `track="inverted"`.
+
+{{"demo": "pages/components/slider/TrackInvertedSlider.js"}}
 
 ## Accessibility
 

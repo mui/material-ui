@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
-import { fade } from '../styles/colorManipulator';
+import { fade, lighten, darken } from '../styles/colorManipulator';
 import { useIsFocusVisible } from '../utils/focusVisible';
 import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
@@ -181,8 +181,8 @@ export const styles = theme => ({
     width: '100%',
     height: 2,
     borderRadius: 1,
-    backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+    backgroundColor: 'currentColor',
+    opacity: 0.38,
     '$vertical &': {
       height: '100%',
       width: 2,
@@ -202,18 +202,20 @@ export const styles = theme => ({
   /* Styles applied to the track element if `track={false}`. */
   trackFalse: {
     '& $track': {
-      backgroundColor:
-        theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+      display: 'none',
     },
   },
   /* Styles applied to the track element if `track="inverted"`. */
-  inverted: {
+  trackInverted: {
     '& $track': {
       backgroundColor:
-        theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+        // Same logic as the LinearProgress track color
+        theme.palette.type === 'light'
+          ? lighten(theme.palette.primary.main, 0.62)
+          : darken(theme.palette.primary.main, 0.5),
     },
     '& $rail': {
-      backgroundColor: 'currentColor',
+      opacity: 1,
     },
   },
   /* Styles applied to the thumb element. */
@@ -335,8 +337,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     onMouseDown,
     orientation = 'horizontal',
     step = 1,
-    track = 'normal',
     ThumbComponent = 'span',
+    track = 'normal',
     value: valueProp,
     ValueLabelComponent = ValueLabel,
     valueLabelDisplay = 'off',
@@ -697,9 +699,9 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         {
           [classes.disabled]: disabled,
           [classes.marked]: marks.length > 0 && marks.some(mark => mark.label),
-          [classes.inverted]: track === 'inverted',
-          [classes.trackFalse]: track === false,
           [classes.vertical]: orientation === 'vertical',
+          [classes.trackInverted]: track === 'inverted',
+          [classes.trackFalse]: track === false,
         },
         className,
       )}
@@ -712,9 +714,10 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       {marks.map(mark => {
         const percent = valueToPercent(mark.value, min, max);
         const style = axisProps[axis].offset(percent);
+
         let markActive;
         if (track === false) {
-          markActive = mark.value === values[0];
+          markActive = values.indexOf(mark.value) !== -1;
         } else {
           const isMarkActive = range
             ? mark.value >= values[0] && mark.value <= values[values.length - 1]
@@ -722,6 +725,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
           markActive =
             (isMarkActive && track === 'normal') || (!isMarkActive && track === 'inverted');
         }
+
         return (
           <React.Fragment key={mark.value}>
             <span
@@ -918,7 +922,7 @@ Slider.propTypes = {
    * - `inverted` the track will render a bar representing the remaining slider value.
    * - `false` the track will render without a bar.
    */
-  track: PropTypes.oneOf([false, 'normal', 'inverted']),
+  track: PropTypes.oneOf(['normal', false, 'inverted']),
   /**
    * The value of the slider.
    * For ranged sliders, provide an array with two values.
