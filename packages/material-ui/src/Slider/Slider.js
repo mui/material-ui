@@ -568,11 +568,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const handleMouseEnter = useEventCallback(event => {
     // If the slider was being interacted with but the mouse went off the window
     // and then re-entered while unclicked then end the interaction.
-    //
-    // In Firefox, the event can be triggered when a new DOM node is inserted and hovered.
-    // We need to make sure that the relatedTarget (The EventTarget the pointing device exited from)
-    // is not null (it should be the html element)
-    if (event.buttons === 0 && event.relatedTarget !== null) {
+    if (event.buttons === 0) {
       handleTouchEnd(event);
     }
   });
