@@ -33,5 +33,3 @@ export default function ClassNames(props: Props) {
     </Button>
   );
 }
-
-// export default withStyles(styles)(ClassNames);
