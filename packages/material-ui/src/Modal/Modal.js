@@ -207,10 +207,6 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   const inlineStyle = styles(theme || { zIndex });
   const childProps = {};
-  // FixMe: Always apply document role. Revisit once React Flare is released
-  if (children.role === undefined) {
-    childProps.role = children.role || 'document';
-  }
   if (children.tabIndex === undefined) {
     childProps.tabIndex = children.tabIndex || '-1';
   }
