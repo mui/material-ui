@@ -69,7 +69,7 @@ To make these transitions as easy as possible:
 
 ### Deprecation policy
 
-- Deprecated features iare announced n the changelog, and when possible, with warnings at runtime.
+- Deprecated features are announced in the changelog, and when possible, with warnings at runtime.
 - When a deprecation is announced, recommended update path is provided.
 - Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
 - Peer dependency updates (React) that require changes to your apps are only made in a major release.
