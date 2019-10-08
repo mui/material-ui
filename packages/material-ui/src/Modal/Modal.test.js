@@ -3,7 +3,7 @@ import { assert, expect } from 'chai';
 import { useFakeTimers, spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createClientRender } from 'test/utils/createClientRender';
+import { createClientRender, within } from 'test/utils/createClientRender';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import { ThemeProvider } from '@material-ui/styles';
@@ -232,11 +232,7 @@ describe('<Modal />', () => {
         throw new Error('missing container');
       }
 
-      assert.strictEqual(
-        container2.getAttribute('role'),
-        'document',
-        'should add the document role',
-      );
+      assert.strictEqual(container2.getAttribute('role'), null, 'should not add any role');
       assert.strictEqual(container2.getAttribute('tabindex'), '-1');
     });
   });
@@ -566,7 +562,9 @@ describe('<Modal />', () => {
         function WithRemovableElement({ hideButton = false }) {
           return (
             <Modal open>
-              <div>{!hideButton && <button type="button">I am going to disappear</button>}</div>
+              <div role="dialog">
+                {!hideButton && <button type="button">I am going to disappear</button>}
+              </div>
             </Modal>
           );
         }
@@ -579,15 +577,15 @@ describe('<Modal />', () => {
         };
 
         const { getByRole, setProps } = render(<WithRemovableElement />);
-        expect(getByRole('document')).to.be.focused;
+        expect(getByRole('dialog')).to.be.focused;
 
         getByRole('button').focus();
         expect(getByRole('button')).to.be.focused;
 
         setProps({ hideButton: true });
-        expect(getByRole('document')).to.not.be.focused;
+        expect(getByRole('dialog')).to.not.be.focused;
         clock.tick(500); // wait for the interval check to kick in.
-        expect(getByRole('document')).to.be.focused;
+        expect(getByRole('dialog')).to.be.focused;
       });
     });
   });
@@ -821,12 +819,14 @@ describe('<Modal />', () => {
 
   describe('prop: disablePortal', () => {
     it('should render the content into the parent', () => {
-      const { container } = render(
-        <Modal open disablePortal>
-          <div />
-        </Modal>,
+      const { getByTestId } = render(
+        <div data-testid="parent">
+          <Modal open disablePortal>
+            <div data-testid="child" />
+          </Modal>
+        </div>,
       );
-      expect(container.querySelector('[role="document"]')).to.be.ok;
+      expect(within(getByTestId('parent')).getByTestId('child')).to.be.ok;
     });
   });
 });
