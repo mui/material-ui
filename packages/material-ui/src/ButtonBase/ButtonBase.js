@@ -10,6 +10,9 @@ import NoSsr from '../NoSsr';
 import { useIsFocusVisible } from '../utils/focusVisible';
 import TouchRipple from './TouchRipple';
 
+const ConditionalWrapper = ({ condition, wrapper, children }) =>
+  condition ? wrapper(children) : children;
+
 export const styles = {
   /* Styles applied to the root element. */
   root: {
@@ -37,13 +40,18 @@ export const styles = {
     '&::-moz-focus-inner': {
       borderStyle: 'none', // Remove Firefox dotted outline.
     },
-    '&$disabled': {
-      pointerEvents: 'none', // Disable link interactions
-      cursor: 'default',
+    '&$a$disabled': {
+      display: 'inline-block' /* For IE11/ MS Edge bug */,
+      pointerEvents: 'none',
+      textDecoration: 'none',
     },
   },
+  /* Styles applied to a link. */
+  a: {},
   /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
+  disabled: {
+    cursor: 'not-allowed',
+  },
   /* Pseudo-class applied to the root element if keyboard focused. */
   focusVisible: {},
 };
@@ -256,41 +264,47 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
   const handleRef = useForkRef(handleUserRef, handleOwnRef);
 
   return (
-    <ComponentProp
-      className={clsx(
-        classes.root,
-        {
-          [classes.disabled]: disabled,
-          [classes.focusVisible]: focusVisible,
-          [focusVisibleClassName]: focusVisible,
-        },
-        className,
-      )}
-      onBlur={handleBlur}
-      onClick={onClick}
-      onFocus={handleFocus}
-      onKeyDown={handleKeyDown}
-      onKeyUp={handleKeyUp}
-      onMouseDown={handleMouseDown}
-      onMouseLeave={handleMouseLeave}
-      onMouseUp={handleMouseUp}
-      onDragLeave={handleDragLeave}
-      onTouchEnd={handleTouchEnd}
-      onTouchMove={handleTouchMove}
-      onTouchStart={handleTouchStart}
-      ref={handleRef}
-      tabIndex={disabled ? -1 : tabIndex}
-      {...buttonProps}
-      {...other}
+    <ConditionalWrapper
+      condition={other.href && disabled}
+      wrapper={wrapperChildren => <span className={classes.disabled}>{wrapperChildren}</span>}
     >
-      {children}
-      {!disableRipple && !disabled ? (
-        <NoSsr>
-          {/* TouchRipple is only needed client-side, x2 boost on the server. */}
-          <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
-        </NoSsr>
-      ) : null}
-    </ComponentProp>
+      <ComponentProp
+        className={clsx(
+          classes.root,
+          {
+            [classes.a]: other.href,
+            [classes.disabled]: disabled,
+            [classes.focusVisible]: focusVisible,
+            [focusVisibleClassName]: focusVisible,
+          },
+          className,
+        )}
+        onBlur={handleBlur}
+        onClick={onClick}
+        onFocus={handleFocus}
+        onKeyDown={handleKeyDown}
+        onKeyUp={handleKeyUp}
+        onMouseDown={handleMouseDown}
+        onMouseLeave={handleMouseLeave}
+        onMouseUp={handleMouseUp}
+        onDragLeave={handleDragLeave}
+        onTouchEnd={handleTouchEnd}
+        onTouchMove={handleTouchMove}
+        onTouchStart={handleTouchStart}
+        ref={handleRef}
+        tabIndex={disabled ? -1 : tabIndex}
+        {...buttonProps}
+        {...other}
+      >
+        {children}
+        {!disableRipple && !disabled ? (
+          <NoSsr>
+            {/* TouchRipple is only needed client-side, x2 boost on the server. */}
+            <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
+          </NoSsr>
+        ) : null}
+      </ComponentProp>
+    </ConditionalWrapper>
   );
 });
 
