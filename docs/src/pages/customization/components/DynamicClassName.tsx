@@ -26,7 +26,7 @@ export default function DynamicClassName() {
   const [color, setColor] = React.useState('default');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setColor(event.target.checked ? 'blue' : 'default');    
+    setColor(event.target.checked ? 'blue' : 'default');
   };
 
   return (
