@@ -1,136 +1,118 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  createRender,
-  createMount,
-  findOutermostIntrinsic,
-  getClasses,
-} from '@material-ui/core/test-utils';
-import testRef from '@material-ui/core/test-utils/testRef';
+import { createClientRender } from 'test/utils/createClientRender';
+import { createRender, createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import ToggleButton from './ToggleButton';
 
 describe('<ToggleButton />', () => {
   let mount;
-  let render;
+  let serverRender;
   let classes;
+  const render = createClientRender({ strict: true });
 
   before(() => {
-    // StrictModeViolation: uses simulate
-    mount = createMount({ strict: false });
-    render = createRender();
+    mount = createMount({ strict: true });
+    serverRender = createRender();
     classes = getClasses(<ToggleButton value="classes">Hello World</ToggleButton>);
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
+  describeConformance(<ToggleButton value="X">Hello, World!</ToggleButton>, () => ({
+    after: () => mount.cleanUp(),
+    classes,
+    inheritComponent: ButtonBase,
+    mount,
+    refInstanceof: window.HTMLButtonElement,
+    testComponentPropWith: 'div',
+  }));
 
-  it('does forward refs', () => {
-    testRef(<ToggleButton value="classes">Hello World</ToggleButton>, mount);
-  });
-
-  it('should render a <ButtonBase> element', () => {
-    const wrapper = mount(<ToggleButton value="hello">Hello World</ToggleButton>);
-    assert.strictEqual(wrapper.contains(ButtonBase), true);
-  });
-
-  it('should render the custom className and the root class', () => {
-    const wrapper = mount(
-      <ToggleButton className="test-class-name" value="hello">
+  it('adds the `selected` class to the root element if selected={true}', () => {
+    const { getByTestId } = render(
+      <ToggleButton data-testid="root" selected value="hello">
         Hello World
       </ToggleButton>,
     );
-    const root = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(root.hasClass('test-class-name'), true);
-    assert.strictEqual(root.hasClass(classes.root), true);
+
+    expect(getByTestId('root')).to.have.class(classes.selected);
   });
 
-  it('should render a selected button', () => {
-    const wrapper = mount(
-      <ToggleButton selected value="hello">
-        Hello World
-      </ToggleButton>,
-    );
-    const root = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(root.is(`button.${classes.selected}`), true);
-  });
-
-  it('should render a disabled button', () => {
-    const wrapper = mount(
+  it('should render a disabled button if `distabled={true}`', () => {
+    const { getByRole } = render(
       <ToggleButton disabled value="hello">
         Hello World
       </ToggleButton>,
     );
-    const root = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(root.is('button[disabled]'), true);
+
+    expect(getByRole('button')).to.have.property('disabled', true);
   });
 
-  it('should render a small button', () => {
-    const wrapper = mount(
-      <ToggleButton size="small" value="hello">
+  it('can render a small button', () => {
+    const { getByTestId } = render(
+      <ToggleButton data-testid="root" size="small" value="hello">
         Hello World
       </ToggleButton>,
     );
-    const root = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(root.hasClass(classes.root), true);
-    assert.strictEqual(root.hasClass(classes.sizeSmall), true);
-    assert.strictEqual(root.hasClass(classes.sizeLarge), false);
+
+    const root = getByTestId('root');
+    expect(root).to.have.class(classes.root);
+    expect(root).to.have.class(classes.sizeSmall);
+    expect(root).not.to.have.class(classes.sizeLarge);
   });
 
   it('should render a large button', () => {
-    const wrapper = mount(
-      <ToggleButton size="large" value="hello">
+    const { getByTestId } = render(
+      <ToggleButton data-testid="root" size="large" value="hello">
         Hello World
       </ToggleButton>,
     );
-    const root = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(root.hasClass(classes.root), true);
-    assert.strictEqual(root.hasClass(classes.sizeSmall), false);
-    assert.strictEqual(root.hasClass(classes.sizeLarge), true);
+
+    const root = getByTestId('root');
+    expect(root).to.have.class(classes.root);
+    expect(root).not.to.have.class(classes.sizeSmall);
+    expect(root).to.have.class(classes.sizeLarge);
   });
 
   describe('prop: onChange', () => {
     it('should be called when clicked', () => {
       const handleChange = spy();
-      const wrapper = mount(
+      const { getByRole } = render(
         <ToggleButton value="1" onChange={handleChange}>
           Hello
         </ToggleButton>,
       );
-      const event = {};
-      wrapper.simulate('click', event);
-      assert.strictEqual(handleChange.callCount, 1);
+
+      getByRole('button').click();
+
+      expect(handleChange.callCount).to.equal(1);
     });
 
     it('should be called with the button value', () => {
       const handleChange = spy();
-      const wrapper = mount(
-        <ToggleButton value="one" onChange={handleChange}>
+      const { getByRole } = render(
+        <ToggleButton value="1" onChange={handleChange}>
           Hello
         </ToggleButton>,
       );
-      const event = {};
-      wrapper.simulate('click', event);
-      assert.strictEqual(handleChange.callCount, 1);
-      assert.strictEqual(handleChange.args[0][1], 'one');
+
+      getByRole('button').click();
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('1');
     });
 
     it('should not be called if the click is prevented', () => {
       const handleChange = spy();
-      const wrapper = mount(
+      const { getByRole } = render(
         <ToggleButton value="one" onChange={handleChange} onClick={event => event.preventDefault()}>
           Hello
         </ToggleButton>,
       );
-      const event = {
-        preventDefault: () => {},
-        isDefaultPrevented: () => true,
-      };
 
-      wrapper.simulate('click', event);
-      assert.strictEqual(handleChange.callCount, 0);
+      getByRole('button').click();
+
+      expect(handleChange.callCount).to.equal(0);
     });
   });
 
@@ -141,8 +123,8 @@ describe('<ToggleButton />', () => {
     }
 
     it('should server-side render', () => {
-      const markup = render(<ToggleButton value="hello">Hello World</ToggleButton>);
-      assert.strictEqual(markup.text(), 'Hello World');
+      const markup = serverRender(<ToggleButton value="hello">Hello World</ToggleButton>);
+      expect(markup.text()).to.equal('Hello World');
     });
   });
 });

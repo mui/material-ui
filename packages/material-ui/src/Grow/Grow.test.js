@@ -7,7 +7,7 @@ import Grow from './Grow';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { Transition } from 'react-transition-group';
-import { useForkRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
 
 describe('<Grow />', () => {
   let mount;

@@ -37,7 +37,7 @@ A regular schedule of releases helps you plan and coordinate your updates with t
 
 In general, you can expect the following release cycle:
 
-- A **major** release every 6-12 months.
+- A **major** release every 12 months.
 - 1-3 **minor** releases for each major release.
 - A **patch** release every week (anytime for urgent bugfix).
 
@@ -48,7 +48,7 @@ In general, you can expect the following release cycle:
 | May 2018 | v1.0.0 | Released |
 | Septembre 2018 | v3.0.0 | Released |
 | May 2019 | v4.0.0 | Released |
-| May 2020 | v5.0.0 | ⏳ |
+| Q3 2020 | v5.0.0 | ⏳ |
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
@@ -69,7 +69,7 @@ To make these transitions as easy as possible:
 
 ### Deprecation policy
 
-- Deprecated features iare announced n the changelog, and when possible, with warnings at runtime.
+- Deprecated features are announced in the changelog, and when possible, with warnings at runtime.
 - When a deprecation is announced, recommended update path is provided.
 - Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
 - Peer dependency updates (React) that require changes to your apps are only made in a major release.

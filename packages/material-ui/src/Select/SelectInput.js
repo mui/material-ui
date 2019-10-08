@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import { refType } from '@material-ui/utils';
 import Menu from '../Menu/Menu';
 import { isFilled } from '../InputBase/utils';
-import { useForkRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
 
 function areEqualValues(a, b) {
   if (typeof b === 'object' && b !== null) {
@@ -55,7 +55,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   } = props;
 
   const inputRef = React.useRef(null);
-  const [displayNode, setDisplaNode] = React.useState(null);
+  const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
   const [openState, setOpenState] = React.useState(false);
@@ -166,6 +166,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   let displaySingle;
   const displayMultiple = [];
   let computeDisplay = false;
+  let foundMatch = false;
 
   // No need to display any value if the field is empty.
   if (isFilled(props) || displayEmpty) {
@@ -213,6 +214,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       }
     }
 
+    if (selected) {
+      foundMatch = true;
+    }
+
     return React.cloneElement(child, {
       'aria-selected': selected ? 'true' : undefined,
       onClick: handleItemClick(child),
@@ -222,6 +227,24 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       'data-value': child.props.value, // Instead, we provide it as a data attribute.
     });
   });
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (!foundMatch && !multiple && value !== '') {
+        const values = React.Children.toArray(children).map(child => child.props.value);
+        console.warn(
+          [
+            `Material-UI: you have provided an out-of-range value \`${value}\` for the select ${
+              name ? `(name="${name}") ` : ''
+            }component.`,
+            "Consider providing a value that matches one of the available options or ''.",
+            `The available values are ${values.join(', ') || '""'}.`,
+          ].join('\n'),
+        );
+      }
+    }, [foundMatch, children, multiple, name, value]);
+  }
 
   if (computeDisplay) {
     display = multiple ? displayMultiple.join(', ') : displaySingle;
@@ -254,7 +277,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
           },
           className,
         )}
-        ref={setDisplaNode}
+        ref={setDisplayNode}
         data-mui-test="SelectDisplay"
         tabIndex={tabIndex}
         role="button"

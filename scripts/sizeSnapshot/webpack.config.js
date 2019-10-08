@@ -1,6 +1,10 @@
 const fse = require('fs-extra');
+const globCallback = require('glob');
 const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin');
+const { promisify } = require('util');
+
+const glob = promisify(globCallback);
 
 const workspaceRoot = path.join(__dirname, '..', '..');
 
@@ -17,31 +21,47 @@ async function getSizeLimitBundles() {
     return result;
   }, []);
 
+  const corePackagePath = path.join(workspaceRoot, 'packages/material-ui/build/esm');
+  const coreComponents = (await glob(path.join(corePackagePath, '[A-Z]*'))).map(componentPath => {
+    const componentName = path.basename(componentPath);
+    let entryName = componentName;
+    // adjust for legacy names
+    if (componentName === 'Paper') {
+      entryName = '@material-ui/core/Paper.esm';
+    } else if (componentName === 'TextareaAutosize') {
+      entryName = '@material-ui/core/Textarea';
+    } else if (['Popper'].indexOf(componentName) !== -1) {
+      entryName = `@material-ui/core/${componentName}`;
+    }
+
+    return {
+      name: entryName,
+      webpack: true,
+      path: path.relative(workspaceRoot, componentPath),
+    };
+  });
+
+  const labPackagePath = path.join(workspaceRoot, 'packages/material-ui-lab/build/esm');
+  const labComponents = (await glob(path.join(labPackagePath, '[A-Z]*'))).map(componentPath => {
+    const componentName = path.basename(componentPath);
+
+    return {
+      name: componentName,
+      webpack: true,
+      path: path.relative(workspaceRoot, componentPath),
+    };
+  });
+
   return [
-    {
-      name: '@material-ui/core/Paper',
-      webpack: true,
-      path: 'packages/material-ui/build/Paper/index.js',
-    },
-    {
-      name: '@material-ui/core/Paper.esm',
-      webpack: true,
-      path: 'packages/material-ui/build/esm/Paper/index.js',
-    },
     {
       name: '@material-ui/core',
       webpack: true,
-      path: 'packages/material-ui/build/esm/index.js',
-    },
-    {
-      name: '@material-ui/core/styles/createMuiTheme',
-      webpack: true,
-      path: 'packages/material-ui/build/esm/styles/createMuiTheme.js',
+      path: path.join(path.relative(workspaceRoot, corePackagePath), 'index.js'),
     },
     {
       name: '@material-ui/lab',
       webpack: true,
-      path: 'packages/material-ui-lab/build/esm/index.js',
+      path: path.join(path.relative(workspaceRoot, labPackagePath), 'index.js'),
     },
     {
       name: '@material-ui/styles',
@@ -53,66 +73,22 @@ async function getSizeLimitBundles() {
       webpack: true,
       path: 'packages/material-ui-system/build/esm/index.js',
     },
+    ...coreComponents,
+    {
+      name: '@material-ui/core/styles/createMuiTheme',
+      webpack: true,
+      path: 'packages/material-ui/build/esm/styles/createMuiTheme.js',
+    },
     {
       name: 'colorManipulator',
       webpack: true,
       path: 'packages/material-ui/build/esm/styles/colorManipulator.js',
     },
+    ...labComponents,
     {
-      // why we use esm here: https://github.com/mui-org/material-ui/pull/13391#issuecomment-459692816
-      name: 'Button',
-      webpack: true,
-      path: 'packages/material-ui/build/esm/Button/index.js',
-    },
-    {
-      // vs https://bundlephobia.com/result?p=react-modal
-      // vs https://bundlephobia.com/result?p=@reach/dialog
-      name: 'Modal',
-      webpack: true,
-      path: 'packages/material-ui/build/esm/Modal/index.js',
-    },
-    {
-      // vs https://bundlephobia.com/result?p=react-popper
-      name: '@material-ui/core/Popper',
-      webpack: true,
-      path: 'packages/material-ui/build/esm/Popper/index.js',
-    },
-    {
-      // vs https://bundlephobia.com/result?p=react-responsive
-      // vs https://bundlephobia.com/result?p=react-media
       name: '@material-ui/core/useMediaQuery',
       webpack: true,
       path: 'packages/material-ui/build/esm/useMediaQuery/index.js',
-    },
-    {
-      // vs https://bundlephobia.com/result?p=react-focus-lock
-      name: '@material-ui/core/TrapFocus',
-      webpack: true,
-      path: 'packages/material-ui/build/esm/Modal/TrapFocus.js',
-    },
-    {
-      // vs https://bundlephobia.com/result?p=react-textarea-autosize
-      // vs https://bundlephobia.com/result?p=react-autosize-textarea
-      name: '@material-ui/core/Textarea',
-      webpack: true,
-      path: 'packages/material-ui/build/esm/TextareaAutosize/index.js',
-    },
-    {
-      // vs https://bundlephobia.com/result?p=rc-slider
-      name: 'Slider',
-      webpack: true,
-      path: 'packages/material-ui/build/esm/Slider/index.js',
-    },
-    {
-      name: 'Rating',
-      webpack: true,
-      path: 'packages/material-ui-lab/build/esm/Rating/index.js',
-    },
-    {
-      // vs https://bundlephobia.com/result?p=react-portal
-      name: 'Portal',
-      webpack: true,
-      path: 'packages/material-ui/build/esm/Portal/index.js',
     },
     {
       name: 'docs.main',

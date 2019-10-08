@@ -2,6 +2,7 @@
 // danger has to be the first thing required!
 const { danger, markdown } = require('danger');
 const { exec } = require('child_process');
+const prettyBytes = require('pretty-bytes');
 const { loadComparison } = require('./scripts/sizeSnapshot');
 
 const parsedSizeChangeThreshold = 300;
@@ -75,6 +76,30 @@ function addPercent(change, goodEmoji = '', badEmoji = ':small_red_triangle:') {
   return `+${formatted}% ${badEmoji}`;
 }
 
+function formatDiff(absoluteChange, relativeChange) {
+  if (absoluteChange === 0) {
+    return '--';
+  }
+
+  const trendIcon = absoluteChange < 0 ? '▼' : '▲';
+
+  return `${trendIcon} ${prettyBytes(absoluteChange, { signed: true })} (${addPercent(
+    relativeChange,
+    '',
+    '',
+  )})`;
+}
+
+function computeBundleLabel(bundleId) {
+  if (bundleId === 'packages/material-ui/build/umd/material-ui.production.min.js') {
+    return '@material-ui/core[umd]';
+  }
+  if (bundleId === '@material-ui/core/Textarea') {
+    return 'TextareaAutosize';
+  }
+  return bundleId.replace(/^@material-ui\/core\//, '').replace(/\.esm$/, '');
+}
+
 /**
  * Generates a Markdown table
  * @param {{ label: string, align: 'left' | 'center' | 'right'}[]} headers
@@ -137,24 +162,38 @@ async function run() {
     const detailsTable = generateMDTable(
       [
         { label: 'bundle' },
-        { label: 'parsed diff', align: 'right' },
-        { label: 'gzip diff', align: 'right' },
-        { label: 'prev parsed', align: 'right' },
-        { label: 'current parsed', align: 'right' },
-        { label: 'prev gzip', align: 'right' },
-        { label: 'current gzip', align: 'right' },
+        { label: 'Size Change', align: 'right' },
+        { label: 'Size', align: 'right' },
+        { label: 'Gzip Change', align: 'right' },
+        { label: 'Gzip', align: 'right' },
       ],
-      results.map(([bundle, { parsed, gzip }]) => {
-        return [
-          bundle,
-          addPercent(parsed.relativeDiff),
-          addPercent(gzip.relativeDiff),
-          parsed.previous.toLocaleString(),
-          parsed.current.toLocaleString(),
-          gzip.previous.toLocaleString(),
-          gzip.current.toLocaleString(),
-        ];
-      }),
+      results
+        .map(([bundleId, size]) => [computeBundleLabel(bundleId), size])
+        // orderBy(|parsedDiff| DESC, |gzipDiff| DESC, name ASC)
+        .sort(([labelA, statsA], [labelB, statsB]) => {
+          const compareParsedDiff = Math.abs(
+            statsB.parsed.absoluteDiff - statsA.parsed.absoluteDiff,
+          );
+          const compareGzipDiff = Math.abs(statsB.gzip.absoluteDiff - statsA.gzip.absoluteDiff);
+          const compareName = labelA.localeCompare(labelB);
+
+          if (compareParsedDiff === 0 && compareGzipDiff === 0) {
+            return compareName;
+          }
+          if (compareParsedDiff === 0) {
+            return compareGzipDiff;
+          }
+          return compareParsedDiff;
+        })
+        .map(([label, { parsed, gzip }]) => {
+          return [
+            label,
+            formatDiff(parsed.absoluteDiff, parsed.relativeDiff),
+            prettyBytes(parsed.current),
+            formatDiff(gzip.absoluteDiff, gzip.relativeDiff),
+            prettyBytes(gzip.current),
+          ];
+        }),
     );
 
     const details = `

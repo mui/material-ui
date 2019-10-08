@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
@@ -16,6 +16,5 @@ const useStyles = makeStyles({
 
 export default function Hook() {
   const classes = useStyles();
-
-  return <Button className={classes.root}>Hook</Button>;
+  return <Button className={classes.root}>Styled with Hook API</Button>;
 }

@@ -9,6 +9,8 @@ components: TextareaAutosize
 
 - 📦 [2.1 kB gzipped](/size-snapshot)
 
+The `TextareaAutosize` component automatically adjust the textarea height on keyboard and window resize events.
+
 ## Empty
 
 {{"demo": "pages/components/textarea-autosize/EmptyTextarea.js"}}

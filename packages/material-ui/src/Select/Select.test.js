@@ -20,7 +20,7 @@ describe('<Select />', () => {
     mount = createMount({ strict: false });
   });
 
-  describeConformance(<Select value="none" />, () => ({
+  describeConformance(<Select value="" />, () => ({
     classes,
     inheritComponent: Input,
     mount,
@@ -36,7 +36,7 @@ describe('<Select />', () => {
           inputProps={{
             classes: { root: 'root' },
           }}
-          value="none"
+          value=""
         />,
       );
 
@@ -291,6 +291,33 @@ describe('<Select />', () => {
 
       expect(getByRole('button')).to.have.text('Twenty');
     });
+
+    describe('warnings', () => {
+      let consoleWarnContainer = null;
+
+      beforeEach(() => {
+        consoleWarnContainer = console.warn;
+        console.warn = spy();
+      });
+
+      afterEach(() => {
+        console.warn = consoleWarnContainer;
+        consoleWarnContainer = null;
+      });
+
+      it('warns when the value is not present in any option', () => {
+        render(
+          <Select value={20}>
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>,
+        );
+        expect(console.warn.callCount).to.equal(1);
+        expect(console.warn.args[0][0]).to.include(
+          'Material-UI: you have provided an out-of-range value `20` for the select component.',
+        );
+      });
+    });
   });
 
   describe('SVG icon', () => {
@@ -321,31 +348,31 @@ describe('<Select />', () => {
     it('sets aria-expanded="true" when the listbox is displayed', () => {
       // since we make the rest of the UI inaccessible when open this doesn't
       // technically matter. This is only here in case we keep the rest accessible
-      const { getByRole } = render(<Select open value="none" />);
+      const { getByRole } = render(<Select open value="" />);
 
       expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'true');
     });
 
     specify('aria-expanded is not present if the listbox isnt displayed', () => {
-      const { getByRole } = render(<Select value="none" />);
+      const { getByRole } = render(<Select value="" />);
 
       expect(getByRole('button')).not.to.have.attribute('aria-expanded');
     });
 
     it('indicates that activating the button displays a listbox', () => {
-      const { getByRole } = render(<Select value="none" />);
+      const { getByRole } = render(<Select value="" />);
 
       expect(getByRole('button')).to.have.attribute('aria-haspopup', 'listbox');
     });
 
     it('renders an element with listbox behavior', () => {
-      const { getByRole } = render(<Select open value="none" />);
+      const { getByRole } = render(<Select open value="" />);
 
       expect(getByRole('listbox')).to.be.visible;
     });
 
     specify('the listbox is focusable', () => {
-      const { getByRole } = render(<Select open value="none" />);
+      const { getByRole } = render(<Select open value="" />);
 
       getByRole('listbox').focus();
 
@@ -354,7 +381,7 @@ describe('<Select />', () => {
 
     it('identifies each selectable element containing an option', () => {
       const { getAllByRole } = render(
-        <Select open value="none">
+        <Select open value="">
           <MenuItem value="1">First</MenuItem>
           <MenuItem value="2">Second</MenuItem>
         </Select>,
@@ -720,7 +747,7 @@ describe('<Select />', () => {
     expect(ref.current.node).to.have.property('tagName', 'INPUT');
 
     setProps({
-      value: 20,
+      value: '',
     });
     expect(ref.current.node).to.have.property('tagName', 'INPUT');
   });

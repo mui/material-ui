@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
-import { withStyles, useTheme } from '@material-ui/core/styles';
-import { jssPreset, StylesProvider } from '@material-ui/styles';
+import { withStyles, useTheme, jssPreset, StylesProvider } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import rtl from 'jss-rtl';
 import Frame from 'react-frame-component';

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
 import '../Button'; // So we don't have any override priority issue.

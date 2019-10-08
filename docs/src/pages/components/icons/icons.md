@@ -7,21 +7,19 @@ components: Icon, SvgIcon
 
 <p class="description">Guidance and suggestions for using icons with Material-UI.</p>
 
-Material-UI provides icons support in three ways.
+Material-UI provides icons support in three ways:
 
-- Standardized Material Design icons are exported as React components from `@material-ui/icons` package (Material Icons).
-- With the `SvgIcon` component, a React wrapper for a custom SVG icon, exported from `@material-ui/core`.
-- With the `Icon` component, used to render custom font icons, exported from `@material-ui/core`.
+1. Standardized [Material Design icons](#material-icons) exported as React components (SVG icons).
+1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.
+1. With the [Icon](#icon-font-icons) component, a React wrapper for custom font icons.
 
-## Material Icons (recommended)
+## Material Icons
 
-Material Design has standardized over 1,000 commonly needed icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the `@material-ui/icons` package. You can search the full list of these icons in [Material Icons](/components/material-icons/).
+Material Design has standardized over 1,000 official icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the `@material-ui/icons` package. You can search the full list of these icons in our [built-in search page](/components/material-icons/).
 
 ### Usage
 
-Install `@material-ui/icons`.
-
-Import icons using one of these two options:
+Install `@material-ui/icons`. Import icons using one of these two options:
 
 - Option 1:
 
@@ -36,7 +34,7 @@ Import icons using one of these two options:
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-The safest is option 1 but option 2 can yield the best developer experience.
+The safest is Option 1 but Option 2 can yield the best developer experience.
 Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
 The configuration of a Babel plugin is encouraged.
 
@@ -48,11 +46,11 @@ Each icon also has a "theme": `Filled` (default), `Outlined`, `Rounded`, `Two to
 - `Two tone` "theme" is exported as `@material-ui/icons/DeleteTwoTone`,
 - `Sharp` "theme" is exported as `@material-ui/icons/DeleteSharp`.
 
-NOTE: The Material Design specification names the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
+Note: The Material Design specification names the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
-## `SvgIcon`
+## SvgIcon
 
 If you need a custom SVG icon (not available in Material Icons) you should use the `SvgIcon` wrapper.
 The `SvgIcon` component takes the SVG `path` element as its child and converts it to a React component that displays this SVG icon, and allows the icon to be styled and respond to mouse events.
@@ -65,14 +63,20 @@ Optionally, you can set the icon color using one of the theme color properties: 
 
 {{"demo": "pages/components/icons/SvgIcons.js"}}
 
-### Libraries of SVG icons
+### Libraries
 
-There are many projects that provide SVG icons. For example [https://materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 icons.
+#### Material Design (recommended)
+
+Material Design has standardized over [1,000 official icons](#material-icons).
+
+#### MDI
+
+[materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 icons.
 For the wanted icon, copy the SVG `path` they provide, and use it as the child of the `SvgIcon` component.
 
-NOTE: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has already wrapped each of these SVG icons with the `SvgIcon` component, so you don't have to do it yourself.
+Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has already wrapped each of these SVG icons with the `SvgIcon` component, so you don't have to do it yourself.
 
-## `Icon` (Font icons)
+## Icon (Font icons)
 
 The `Icon` component will display an icon from any icon font that supports ligatures.
 As a prerequisite, you must include one, such as the

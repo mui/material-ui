@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button, { ButtonProps as MuiButtonProps } from '@material-ui/core/Button';
 import { Omit } from '@material-ui/types';
 

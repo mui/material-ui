@@ -1,7 +1,5 @@
 import React from 'react';
 import Portal from '@material-ui/core/Portal';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -10,15 +8,14 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(1),
       margin: theme.spacing(1, 0),
       border: '1px solid',
-      borderColor: theme.palette.text.primary,
     },
   }),
 );
 
 export default function SimplePortal() {
+  const classes = useStyles();
   const [show, setShow] = React.useState(false);
   const container = React.useRef(null);
-  const classes = useStyles();
 
   const handleClick = () => {
     setShow(!show);
@@ -26,12 +23,14 @@ export default function SimplePortal() {
 
   return (
     <div>
-      <Button onClick={handleClick}>{show ? 'Unmount children' : 'Mount children'}</Button>
+      <button type="button" onClick={handleClick}>
+        {show ? 'Unmount children' : 'Mount children'}
+      </button>
       <div className={classes.alert}>
-        <Typography>It looks like I will render here.</Typography>
+        It looks like I will render here.
         {show ? (
           <Portal container={container.current}>
-            <Typography>But I actually render here!</Typography>
+            <span>But I actually render here!</span>
           </Portal>
         ) : null}
       </div>

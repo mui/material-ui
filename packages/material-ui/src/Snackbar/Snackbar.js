@@ -4,7 +4,8 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../ClickAwayListener';
-import { capitalize, createChainedFunction } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
+import createChainedFunction from '../utils/createChainedFunction';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
 

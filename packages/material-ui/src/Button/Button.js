@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -272,8 +272,8 @@ const Button = React.forwardRef(function Button(props, ref) {
       className={clsx(
         classes.root,
         classes[variant],
-        classes[`${variant}${color !== 'default' && color !== 'inherit' ? capitalize(color) : ''}`],
         {
+          [classes[`${variant}${capitalize(color)}`]]: color !== 'default' && color !== 'inherit',
           [classes[`${variant}Size${capitalize(size)}`]]: size !== 'medium',
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
           [classes.disabled]: disabled,

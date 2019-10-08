@@ -53,6 +53,7 @@ function NumberFormatCustom(props) {
         });
       }}
       thousandSeparator
+      isNumericString
       prefix="$"
     />
   );
