@@ -141,11 +141,10 @@ describe('<Dialog />', () => {
   });
 
   describe('backdrop', () => {
-    it('has the document role', () => {
-      // FixMe: should have none. Revisit in React Flare
+    it('does have `role` `none presentation`', () => {
       render(<Dialog open>foo</Dialog>);
 
-      expect(findBackdrop(document.body)).to.have.attribute('role', 'document');
+      expect(findBackdrop(document.body)).to.have.attribute('role', 'none presentation');
     });
 
     it('calls onBackdropClick and onClose when clicked', () => {
