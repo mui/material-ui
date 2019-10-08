@@ -26,14 +26,6 @@ function clamp(value, min, max) {
   return value;
 }
 
-const eventMap = {
-  click: 'click',
-  focus: 'focus',
-  toggle: 'toggle',
-  mouseenter: 'mouseEnter',
-  mouseleave: 'mouseLeave',
-};
-
 const dialRadius = 32;
 const spacingActions = 16;
 
@@ -233,7 +225,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
           onClose(event, 'blur');
         });
       } else {
-        onClose(event, eventMap[event.type]);
+        onClose(event, 'mouseLeave');
       }
     }
   };
@@ -247,10 +239,10 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
 
     if (open) {
       if (onClose) {
-        onClose(event, eventMap[event.type]);
+        onClose(event, 'toggle');
       }
     } else if (onOpen) {
-      onOpen(event, eventMap[event.type]);
+      onOpen(event, 'toggle');
     }
   };
 
@@ -272,6 +264,11 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
       event.persist();
       // Wait for a future focus or click event
       eventTimer.current = setTimeout(() => {
+        const eventMap = {
+          focus: 'focus',
+          mouseenter: 'mouseEnter',
+        };
+
         onOpen(event, eventMap[event.type]);
       });
     }
@@ -403,6 +400,7 @@ SpeedDial.propTypes = {
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be:`"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`.
    */
   onClose: PropTypes.func,
   /**
@@ -425,6 +423,7 @@ SpeedDial.propTypes = {
    * Callback fired when the component requests to be open.
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be:`"toggle"`, `"focus"`, `"mouseEnter"`.
    */
   onOpen: PropTypes.func,
   /**

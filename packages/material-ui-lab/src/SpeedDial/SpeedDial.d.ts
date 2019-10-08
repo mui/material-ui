@@ -4,7 +4,8 @@ import { FabProps } from '@material-ui/core/Fab';
 import { TransitionProps } from 'react-transition-group/Transition';
 import { TransitionHandlerProps } from '@material-ui/core/transitions';
 
-type Reason = 'click' | 'escapeKeyDown' | 'focus' | 'blur' | 'toggle' | 'mouseEnter' | 'mouseLeave';
+export type CloseReason = 'toggle' | 'blur' | 'mouseLeave' | 'escapeKeyDown';
+export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
 
 export interface SpeedDialProps
   extends StandardProps<
@@ -42,14 +43,16 @@ export interface SpeedDialProps
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be:`"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`.
    */
-  onClose?: (event: React.SyntheticEvent<{}>, reason: Reason) => void;
+  onClose?: (event: React.SyntheticEvent<{}>, reason: CloseReason) => void;
   /**
    * Callback fired when the component requests to be open.
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be:`"toggle"`, `"focus"`, `"mouseEnter"`.
    */
-  onOpen?: (event: React.SyntheticEvent<{}>, reason: Reason) => void;
+  onOpen?: (event: React.SyntheticEvent<{}>, reason: OpenReason) => void;
   /**
    * If `true`, the SpeedDial is open.
    */
