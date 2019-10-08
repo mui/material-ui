@@ -134,3 +134,23 @@ Given that many of the interactive components rely on `ButtonBase`, you should b
 able to take advantage of it everywhere.
 
 Here is an [integration example with react-router](/guides/composition/#button).
+
+## Limitations
+
+### Cursor not-allowed
+
+Material-UI's ButtonBase component set `pointer-events: none;` on disabled buttons.
+This tradeoff prevents the usage of a different disabled cursor.
+
+If you wish to use `not-allowed`, you need to remove the pointer event style and to handle these two edge cases:
+
+1. You should prevent the interactions when the button is not implemented with an actual `<button>` element, for instance, a link `<a>` element. You can dodge the issue by specifically targeting the disabled state of the `<button>` element:
+
+```css
+.MuiButtonBase-root:disabled {
+  cursor: not-allowed;
+  pointer-events: auto;
+}
+```
+
+2. You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements)
