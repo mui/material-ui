@@ -70,7 +70,8 @@ export const findClosestEnabledDate = ({
     }
   }
 
-  return null;
+  // fallback to today if no enabled days
+  return utils.date();
 };
 
 export const isYearOnlyView = (views: DatePickerView[]) =>

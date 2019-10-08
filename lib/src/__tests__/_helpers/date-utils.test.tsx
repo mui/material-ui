@@ -5,7 +5,7 @@ describe('findClosestEnabledDate', () => {
   const day18thText = utilsToUse.getDayText(utilsToUse.date('2018-08-18'));
   const only18th = (date: any) => utilsToUse.getDayText(date) !== day18thText;
 
-  it('Should return null if all dates are disabled', () => {
+  it('Should fallback to today if all dates are disabled', () => {
     const result = findClosestEnabledDate({
       date: utilsToUse.date('2000-01-01'),
       minDate: utilsToUse.date('1999-01-01'), // Use close-by min/max dates to reduce the test runtime.
@@ -16,7 +16,7 @@ describe('findClosestEnabledDate', () => {
       disablePast: false,
     });
 
-    expect(result).toBe(null);
+    expect(utilsToUse.isEqual(result, utilsToUse.date()));
   });
 
   it('Should return given date if it is enabled', () => {
@@ -110,7 +110,7 @@ describe('findClosestEnabledDate', () => {
     expect(utilsToUse.isSameDay(result, today)).toBe(true);
   });
 
-  it('Should return null if disablePast+disableFuture and now is invalid', () => {
+  it('Should fallback to today if disablePast+disableFuture and now is invalid', () => {
     const today = utilsToUse.date();
     const result = findClosestEnabledDate({
       date: utilsToUse.date('2000-01-01'),
@@ -122,7 +122,7 @@ describe('findClosestEnabledDate', () => {
       disablePast: true,
     });
 
-    expect(result).toBeNull();
+    expect(utilsToUse.isEqual(result, utilsToUse.date()));
   });
 
   it('Should return minDate if it is after the date and valid', () => {
@@ -181,7 +181,7 @@ describe('findClosestEnabledDate', () => {
     expect(utilsToUse.isSameDay(result, utilsToUse.date('2018-07-18'))).toBe(true);
   });
 
-  it('Should return null if minDate is after maxDate', () => {
+  it('Should fallback to today if minDate is after maxDate', () => {
     const result = findClosestEnabledDate({
       date: utilsToUse.date('2000-01-01'),
       minDate: utilsToUse.date('2000-01-01'),
@@ -192,6 +192,6 @@ describe('findClosestEnabledDate', () => {
       disablePast: false,
     });
 
-    expect(result).toBeNull();
+    expect(utilsToUse.isEqual(result, utilsToUse.date()));
   });
 });
