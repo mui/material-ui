@@ -296,10 +296,6 @@ export default function EnhancedTable() {
             size={dense ? 'small' : 'medium'}
             aria-label="enhanced table"
           >
-            <caption>
-              Table example which showcases paginations, row selection & sorting based on column
-              heading selections
-            </caption>
             <EnhancedTableHead
               classes={classes}
               numSelected={selected.length}

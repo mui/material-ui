@@ -12,6 +12,7 @@ export const styles = theme => ({
     borderCollapse: 'collapse',
     borderSpacing: 0,
     '& caption': {
+      ...theme.typography.body2,
       padding: theme.spacing(2),
       color: theme.palette.text.secondary,
       textAlign: 'left',
