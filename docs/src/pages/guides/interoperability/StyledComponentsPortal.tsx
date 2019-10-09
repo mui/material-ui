@@ -16,7 +16,7 @@ const StyledMenu = styled(({ className, ...props }) => (
   }
 `;
 
-function StyledComponentsPortal() {
+export default function StyledComponentsPortal() {
   const [anchorEl, setAnchorEl] = React.useState<EventTarget | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -60,5 +60,3 @@ function StyledComponentsPortal() {
     </div>
   );
 }
-
-export default StyledComponentsPortal;

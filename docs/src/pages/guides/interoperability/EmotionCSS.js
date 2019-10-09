@@ -2,8 +2,7 @@
 import { jsx, css } from '@emotion/core';
 import Button from '@material-ui/core/Button';
 
-// We just assign them the Button's className attribute
-function EmotionCSS() {
+export default function EmotionCSS() {
   return (
     <div>
       <Button>Material-UI</Button>
@@ -23,5 +22,3 @@ function EmotionCSS() {
     </div>
   );
 }
-
-export default EmotionCSS;

@@ -16,7 +16,7 @@ const StyledButton = styled(({ color, ...other }) => <Button {...other} />)`
   }
 `;
 
-function StyledComponentsDeep() {
+export default function StyledComponentsDeep() {
   return (
     <NoSsr>
       <div>
@@ -26,5 +26,3 @@ function StyledComponentsDeep() {
     </NoSsr>
   );
 }
-
-export default StyledComponentsDeep;
