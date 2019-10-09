@@ -95,7 +95,6 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     elevation = 8,
     getContentAnchorEl,
     marginThreshold = 16,
-    ModalClasses,
     onEnter,
     onEntered,
     onEntering,
@@ -374,7 +373,6 @@ const Popover = React.forwardRef(function Popover(props, ref) {
 
   return (
     <Modal
-      classes={ModalClasses}
       container={container}
       open={open}
       ref={ref}
@@ -517,10 +515,6 @@ Popover.propTypes = {
    * Specifies how close to the edge of the window the popover can appear.
    */
   marginThreshold: PropTypes.number,
-  /**
-   * `classes` prop applied to the [`Modal`](/api/modal/) element.
-   */
-  ModalClasses: PropTypes.object,
   /**
    * Callback fired when the component requests to be closed.
    *

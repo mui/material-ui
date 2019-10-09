@@ -997,7 +997,7 @@ const TransitionTest = () => (
 
 const BackdropTest = () => <Backdrop open onTouchMove={() => {}} />;
 
-const PopoverTest = () => <Popover open ModalClasses={{ root: 'foo', hidden: 'bar' }} />;
+const PopoverTest = () => <Popover open />;
 
 const InputLabelTest = () => (
   <InputLabel
