@@ -62,7 +62,6 @@ const Radio = React.forwardRef(function Radio(props, ref) {
     classes,
     color = 'secondary',
     disabled = false,
-
     name: nameProp,
     onChange: onChangeProp,
     ...other
