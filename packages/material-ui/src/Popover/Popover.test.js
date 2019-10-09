@@ -965,4 +965,17 @@ describe('<Popover />', () => {
       assert.strictEqual(transitionHandler.callCount, 1);
     });
   });
+
+  describe.only('prop: ModalClasses', () => {
+    it('creates a DOM attribute `classes` on the Modal root container', () => {
+      const wrapper = mount(
+        <Popover {...defaultProps} data-testid="modal" ModalClasses={{root: 'modal'}} open>
+          <div />
+        </Popover>,
+      );
+
+      const modal = wrapper.find('div[data-testid="modal"]').instance();
+      assert.strictEqual(modal.getAttribute('classes'), '[object Object]')
+    });
+  });
 });
