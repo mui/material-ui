@@ -116,6 +116,10 @@ Here are some examples of customizing the component. You can learn more about th
 
 👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
 
+## Loading buttons
+
+{{"demo": "pages/components/buttons/LoadingButtons.js"}}
+
 ## Complex Buttons
 
 The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.

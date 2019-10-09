@@ -162,6 +162,12 @@ export const styles = theme => ({
   focusVisible: {},
   /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
+  /* Styles applied to the root element if `loading={true}`. */
+  loading: {
+    pointerEvents: 'none', // Disable link interactions
+    cursor: 'default',
+    opacity: 0.4,
+  },
   /* Styles applied to the root element if `color="inherit"`. */
   colorInherit: {
     color: 'inherit',
@@ -249,6 +255,7 @@ const Button = React.forwardRef(function Button(props, ref) {
     endIcon: endIconProp,
     focusVisibleClassName,
     fullWidth = false,
+    loading = false,
     size = 'medium',
     startIcon: startIconProp,
     type = 'button',
@@ -277,6 +284,7 @@ const Button = React.forwardRef(function Button(props, ref) {
           [classes[`${variant}Size${capitalize(size)}`]]: size !== 'medium',
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
           [classes.disabled]: disabled,
+          [classes.loading]: loading,
           [classes.fullWidth]: fullWidth,
           [classes.colorInherit]: color === 'inherit',
         },
@@ -284,6 +292,7 @@ const Button = React.forwardRef(function Button(props, ref) {
       )}
       component={component}
       disabled={disabled}
+      loading={loading}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
@@ -355,6 +364,10 @@ Button.propTypes = {
    * If defined, an `a` element will be used as the root node.
    */
   href: PropTypes.string,
+  /**
+   * If `true`, the button is in a loading state, interactions are disabled.
+   */
+  loading: PropTypes.bool,
   /**
    * The size of the button.
    * `small` is equivalent to the dense button styling.

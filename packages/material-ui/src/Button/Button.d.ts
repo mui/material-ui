@@ -12,6 +12,7 @@ export type ButtonTypeMap<
     endIcon?: React.ReactNode;
     fullWidth?: boolean;
     href?: string;
+    loading?: boolean;
     size?: 'small' | 'medium' | 'large';
     startIcon?: React.ReactNode;
     variant?: 'text' | 'outlined' | 'contained';

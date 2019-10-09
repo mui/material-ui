@@ -62,11 +62,12 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     classes,
     className,
     component = 'button',
-    disabled = false,
+    disabled: disabledProp = false,
     disableRipple = false,
     disableTouchRipple = false,
     focusRipple = false,
     focusVisibleClassName,
+    loading,
     onBlur,
     onClick,
     onFocus,
@@ -92,6 +93,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     return ReactDOM.findDOMNode(buttonRef.current);
   }
 
+  const disabled = disabledProp || loading;
   const rippleRef = React.useRef(null);
 
   const [focusVisible, setFocusVisible] = React.useState(false);
@@ -260,7 +262,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       className={clsx(
         classes.root,
         {
-          [classes.disabled]: disabled,
+          [classes.disabled]: disabledProp,
           [classes.focusVisible]: focusVisible,
           [focusVisibleClassName]: focusVisible,
         },
@@ -357,6 +359,11 @@ ButtonBase.propTypes = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
+  /**
+   * @ignore
+   * private
+   */
+  loading: PropTypes.bool,
   /**
    * @ignore
    */
