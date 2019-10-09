@@ -28,7 +28,6 @@ export interface PopoverProps
   getContentAnchorEl?: null | ((element: Element) => Element);
   marginThreshold?: number;
   modal?: boolean;
-  ModalClasses?: ModalProps['classes'];
   PaperProps?: Partial<PaperProps>;
   role?: string;
   transformOrigin?: PopoverOrigin;
