@@ -13,4 +13,4 @@ includes the 1,000+ official [Material icons](https://material.io/tools/icons/?s
 
 {{"demo": "pages/components/material-icons/SearchIcons.js", "hideHeader": true}}
 
-Tip: the search supports synonymes, try a search with "hamburger" or "logout".
+ℹ️ The search supports synonyms. Try a search with "hamburger", or "logout".
