@@ -1,9 +1,10 @@
 import React from 'react';
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
 import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import { cleanup, createClientRender } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import PopperJS from 'popper.js';
 import Grow from '../Grow';
@@ -11,6 +12,7 @@ import Popper from './Popper';
 
 describe('<Popper />', () => {
   let mount;
+  const render = createClientRender({ strict: true });
   const defaultProps = {
     anchorEl: () => window.document.createElement('svg'),
     children: <span>Hello World</span>,
@@ -19,6 +21,10 @@ describe('<Popper />', () => {
 
   before(() => {
     mount = createMount({ strict: true });
+  });
+
+  afterEach(() => {
+    cleanup();
   });
 
   after(() => {
@@ -95,6 +101,24 @@ describe('<Popper />', () => {
         assert.strictEqual(renderSpy.callCount, 2);
         assert.strictEqual(renderSpy.args[0][0], test.out);
       });
+    });
+
+    it('should flip placement when edge is reached', () => {
+      const renderSpy = spy();
+      const popperRef = React.createRef();
+      render(
+        <Popper popperRef={popperRef} {...defaultProps} placement="bottom">
+          {({ placement }) => {
+            renderSpy(placement);
+            return null;
+          }}
+        </Popper>,
+      );
+      expect(renderSpy.args).to.deep.equal([['bottom'], ['bottom']]);
+      popperRef.current.options.onUpdate({
+        placement: 'top',
+      });
+      expect(renderSpy.args).to.deep.equal([['bottom'], ['bottom'], ['top'], ['top']]);
     });
   });
 

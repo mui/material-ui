@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 
 export default function DynamicClassName() {
   const classes = useStyles();
-  const [color, setColor] = React.useState('default');
+  const [color, setColor] = React.useState<string>('default');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setColor(event.target.checked ? 'blue' : 'default');

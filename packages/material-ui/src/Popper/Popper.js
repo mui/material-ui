@@ -78,14 +78,9 @@ const Popper = React.forwardRef(function Popper(props, ref) {
    * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
    */
   const [placement, setPlacement] = React.useState(rtlPlacement);
-  if (rtlPlacement !== placement) {
-    setPlacement(rtlPlacement);
-  }
 
   const handleOpen = React.useCallback(() => {
-    const popperNode = tooltipRef.current;
-
-    if (!popperNode || !anchorEl || !open) {
+    if (!tooltipRef.current || !anchorEl || !open) {
       return;
     }
 
@@ -124,7 +119,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       }
     }
 
-    const popper = new PopperJS(getAnchorEl(anchorEl), popperNode, {
+    const popper = new PopperJS(getAnchorEl(anchorEl), tooltipRef.current, {
       placement: rtlPlacement,
       ...popperOptions,
       modifiers: {
@@ -141,6 +136,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       },
       // We could have been using a custom modifier like react-popper is doing.
       // But it seems this is the best public API for this use case.
+      onCreate: createChainedFunction(handlePopperUpdate, popperOptions.onCreate),
       onUpdate: createChainedFunction(handlePopperUpdate, popperOptions.onUpdate),
     });
     handlePopperRefRef.current(popper);

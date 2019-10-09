@@ -43,6 +43,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">orientation</span> | <span class="prop-type">'horizontal'<br>&#124;&nbsp;'vertical'</span> | <span class="prop-default">'horizontal'</span> | The slider orientation. |
 | <span class="prop-name">step</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | The granularity with which the slider can step through values. (A "discrete" slider.) When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop. |
 | <span class="prop-name">ThumbComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used to display the value label. |
+| <span class="prop-name">track</span> | <span class="prop-type">'normal'<br>&#124;&nbsp;false<br>&#124;&nbsp;'inverted'</span> | <span class="prop-default">'normal'</span> | The track presentation:<br>- `normal` the track will render a bar representing the slider value. - `inverted` the track will render a bar representing the remaining slider value. - `false` the track will render without a bar. |
 | <span class="prop-name">value</span> | <span class="prop-type">number<br>&#124;&nbsp;Array<number></span> |  | The value of the slider. For ranged sliders, provide an array with two values. |
 | <span class="prop-name">ValueLabelComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">ValueLabel</span> | The value label component. |
 | <span class="prop-name">valueLabelDisplay</span> | <span class="prop-type">'on'<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;'off'</span> | <span class="prop-default">'off'</span> | Controls when the value label is displayed:<br>- `auto` the value label will display when the thumb is hovered or focused. - `on` will display persistently. - `off` will never display. |
@@ -67,6 +68,8 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
 | <span class="prop-name">rail</span> | <span class="prop-name">MuiSlider-rail</span> | Styles applied to the rail element.
 | <span class="prop-name">track</span> | <span class="prop-name">MuiSlider-track</span> | Styles applied to the track element.
+| <span class="prop-name">trackFalse</span> | <span class="prop-name">MuiSlider-trackFalse</span> | Styles applied to the track element if `track={false}`.
+| <span class="prop-name">trackInverted</span> | <span class="prop-name">MuiSlider-trackInverted</span> | Styles applied to the track element if `track="inverted"`.
 | <span class="prop-name">thumb</span> | <span class="prop-name">MuiSlider-thumb</span> | Styles applied to the thumb element.
 | <span class="prop-name">thumbColorPrimary</span> | <span class="prop-name">MuiSlider-thumbColorPrimary</span> | Styles applied to the thumb element if `color="primary"`.
 | <span class="prop-name">thumbColorSecondary</span> | <span class="prop-name">MuiSlider-thumbColorSecondary</span> | Styles applied to the thumb element if `color="secondary"`.

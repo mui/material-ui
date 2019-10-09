@@ -12,8 +12,6 @@ const style = {
   boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
 };
 
-function InlineStyle() {
+export default function InlineStyle() {
   return <Button style={style}>inline-style</Button>;
 }
-
-export default InlineStyle;
