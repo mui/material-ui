@@ -142,9 +142,9 @@ Here is an [integration example with react-router](/guides/composition/#button).
 Material-UI's ButtonBase component set `pointer-events: none;` on disabled buttons.
 This tradeoff prevents the usage of a different disabled cursor.
 
-If you wish to use `not-allowed`, you need to remove the pointer event style and to handle these two edge cases:
+If you wish to use `not-allowed`, you have two options:
 
-1. You should prevent the interactions when the button is not implemented with an actual `<button>` element, for instance, a link `<a>` element. You can dodge the issue by specifically targeting the disabled state of the `<button>` element:
+1. **CSS only**. You can remove the pointer events style on the disabled state of the `<button>` element:
 
 ```css
 .MuiButtonBase-root:disabled {
@@ -153,4 +153,14 @@ If you wish to use `not-allowed`, you need to remove the pointer event style and
 }
 ```
 
-2. You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements)
+However, you should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements) and the cursor won't change if you render something else than a button element, for instance, a link `<a>` element.
+
+2. **DOM change**. You can wrap the button:
+
+```jsx
+<span style={{ cursor: "not-allowed" }}>
+  <Button component={Link} disabled>disabled</Button>
+</span>
+```
+
+This has the advantage of supporting any element, for instance, a link `<a>` element.
