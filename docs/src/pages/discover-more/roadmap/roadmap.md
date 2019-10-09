@@ -68,7 +68,7 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | AutoComplete | 🛠 |
 | ComboBox | 🛠 |
 | MultiSelect | 🛠 |
-| Date Picker range | 🛠 |
+| Date Picker (& range) | 🛠 |
 | Data Table | 🛠⭐️ |
 | Alert | ⏳ |
 | Carousel | ⏳ |

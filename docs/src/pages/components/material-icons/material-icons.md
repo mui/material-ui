@@ -12,3 +12,5 @@ The following npm package,
 includes the 1,000+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to [`SvgIcon`](/api/svg-icon/) components.
 
 {{"demo": "pages/components/material-icons/SearchIcons.js", "hideHeader": true}}
+
+Tip: the search supports synonymes, try a search with "hamburger" or "logout".
