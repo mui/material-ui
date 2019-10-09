@@ -85,7 +85,7 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Charts | ⏳⭐️ |
 | Color picker | ⏳⭐️ |
 | Data Grid | ⏳⭐️ |
-| Gantt | ⏳⭐️ |
+| Gantt chart | ⏳⭐️ |
 | Gauge | ⏳⭐️ |
 | Masonery | ⏳⭐️ |
 | Pivot Grid | ⏳⭐️ |
