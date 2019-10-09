@@ -139,8 +139,8 @@ Here is an [integration example with react-router](/guides/composition/#button).
 
 ### Cursor not-allowed
 
-Material-UI's ButtonBase component set `pointer-events: none;` on disabled buttons.
-This tradeoff prevents the usage of a different disabled cursor.
+The ButtonBase component sets `pointer-events: none;` on disabled buttons.
+which prevents the appearance of a disabled cursor.
 
 If you wish to use `not-allowed`, you have two options:
 
@@ -153,7 +153,10 @@ If you wish to use `not-allowed`, you have two options:
 }
 ```
 
-However, you should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements) and the cursor won't change if you render something else than a button element, for instance, a link `<a>` element.
+However:
+
+- You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements)
+- The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.
 
 2. **DOM change**. You can wrap the button:
 

@@ -134,7 +134,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
             'A disabled element does not fire events.',
             "Tooltip needs to listen to the child element's events to display the title.",
             '',
-            'Add a simple wrapper element like a `span`.',
+            'Add a simple wrapper element, such as a `span`.',
           ].join('\n'),
         );
       }
