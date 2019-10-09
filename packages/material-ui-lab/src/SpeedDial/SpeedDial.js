@@ -178,7 +178,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     if (event.key === 'Escape') {
       if (onClose) {
         actions.current[0].focus();
-        onClose(event);
+        onClose(event, 'escapeKeyDown');
       }
       return;
     }
@@ -220,11 +220,12 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
 
     if (onClose) {
       if (event.type === 'blur') {
+        event.persist();
         eventTimer.current = setTimeout(() => {
-          onClose(event);
+          onClose(event, 'blur');
         });
       } else {
-        onClose(event);
+        onClose(event, 'mouseLeave');
       }
     }
   };
@@ -238,10 +239,10 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
 
     if (open) {
       if (onClose) {
-        onClose(event);
+        onClose(event, 'toggle');
       }
     } else if (onOpen) {
-      onOpen(event);
+      onOpen(event, 'toggle');
     }
   };
 
@@ -260,9 +261,15 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     clearTimeout(eventTimer.current);
 
     if (onOpen && !open) {
+      event.persist();
       // Wait for a future focus or click event
       eventTimer.current = setTimeout(() => {
-        onOpen(event);
+        const eventMap = {
+          focus: 'focus',
+          mouseenter: 'mouseEnter',
+        };
+
+        onOpen(event, eventMap[event.type]);
       });
     }
   };
@@ -393,6 +400,7 @@ SpeedDial.propTypes = {
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be:`"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`.
    */
   onClose: PropTypes.func,
   /**
@@ -415,6 +423,7 @@ SpeedDial.propTypes = {
    * Callback fired when the component requests to be open.
    *
    * @param {object} event The event source of the callback.
+   * @param {string} reason Can be:`"toggle"`, `"focus"`, `"mouseEnter"`.
    */
   onOpen: PropTypes.func,
   /**
