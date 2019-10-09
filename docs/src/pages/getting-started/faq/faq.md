@@ -66,7 +66,7 @@ const theme = createMuiTheme({
 
 ## How can I disable transitions globally?
 
-You can disable transitions globally by providing the following in your theme:
+If you are using `CssBaseline`, You can disable transitions globally by providing the following in your theme:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -79,8 +79,8 @@ const theme = createMuiTheme({
 });
 ```
 
-Sometimes you will want to enable this behavior conditionally, for instance during testing or on low-end devices,
-in these cases, you can dynamically change the theme value.
+Sometimes you will want to enable this behavior conditionally, for instance during testing or on low-end devices.
+With this method, you can dynamically change the theme value for these cases.
 
 You can go one step further by disabling all the transitions, animations and the ripple effect:
 
@@ -113,6 +113,16 @@ const theme = createMuiTheme({
   },
 });
 ```
+
+If you choose not to use `CssBaseline`, you can still disable transitions and animations by including these CSS rules:
+
+```css
+*, *::before, *::after {
+  transition: 'none !important';
+  animation: 'none !important';
+}
+```
+
 
 ## Do I have to use JSS to style my app?
 
