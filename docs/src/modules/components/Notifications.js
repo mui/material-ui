@@ -4,6 +4,7 @@ import 'isomorphic-fetch';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
+import { useRouter } from 'next/router';
 import Snackbar from '@material-ui/core/Snackbar';
 import sleep from 'modules/waterfall/sleep';
 import { getCookie } from 'docs/src/modules/utils/helpers';
@@ -32,9 +33,9 @@ async function getMessages() {
 }
 
 export default function Notifications() {
-  const mounted = React.useRef(false);
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = React.useState({});
+  const { route } = useRouter();
   const t = useSelector(state => state.options.t);
   const userLanguage = useSelector(state => state.options.userLanguage);
 
@@ -53,10 +54,14 @@ export default function Notifications() {
         return false;
       }
 
+      if (message2.route && message2.route !== route) {
+        return false;
+      }
+
       return true;
     });
 
-    if (unseenMessages.length > 0 && mounted.current) {
+    if (unseenMessages.length > 0) {
       setMessage(unseenMessages[0]);
       setOpen(true);
     }
@@ -68,7 +73,7 @@ export default function Notifications() {
   };
 
   React.useEffect(() => {
-    mounted.current = true;
+    let active = true;
 
     // Prevent search engines from indexing the notification.
     if (/glebot/.test(navigator.userAgent)) {
@@ -77,13 +82,15 @@ export default function Notifications() {
 
     (async () => {
       await getMessages();
-      handleMessage();
+      if (active) {
+        handleMessage();
+      }
     })();
 
     return () => {
-      mounted.current = false;
+      active = false;
     };
-  }, []);
+  }, [route]);
 
   return (
     <Snackbar
