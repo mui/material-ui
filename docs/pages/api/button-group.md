@@ -51,8 +51,8 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">fullWidth</span> | <span class="prop-name">MuiButtonGroup-fullWidth</span> | Styles applied to the root element if fullWidth={true}.
 | <span class="prop-name">grouped</span> | <span class="prop-name">MuiButtonGroup-grouped</span> | Styles applied to the children.
 | <span class="prop-name">groupedText</span> | <span class="prop-name">MuiButtonGroup-groupedText</span> | Styles applied to the children if variant="text".
-| <span class="prop-name">groupedTextPrimary</span> | <span class="prop-name">MuiButtonGroup-groupedTextPrimary</span> | Styles applied to the children if variant="outlined" & color="primary".
-| <span class="prop-name">groupedTextSecondary</span> | <span class="prop-name">MuiButtonGroup-groupedTextSecondary</span> | Styles applied to the children if variant="outlined" & color="secondary".
+| <span class="prop-name">groupedTextPrimary</span> | <span class="prop-name">MuiButtonGroup-groupedTextPrimary</span> | Styles applied to the children if `variant="text"` and `color="primary"`.
+| <span class="prop-name">groupedTextSecondary</span> | <span class="prop-name">MuiButtonGroup-groupedTextSecondary</span> | Styles applied to the children if `variant="text"` and `color="secondary"`.
 | <span class="prop-name">groupedOutlined</span> | <span class="prop-name">MuiButtonGroup-groupedOutlined</span> | Styles applied to the children if variant="outlined".
 | <span class="prop-name">groupedOutlinedPrimary</span> | <span class="prop-name">MuiButtonGroup-groupedOutlinedPrimary</span> | Styles applied to the children if variant="outlined" & color="primary".
 | <span class="prop-name">groupedOutlinedSecondary</span> | <span class="prop-name">MuiButtonGroup-groupedOutlinedSecondary</span> | Styles applied to the children if variant="outlined" & color="secondary".
