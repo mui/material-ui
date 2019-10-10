@@ -8,7 +8,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'hr'> {
     variant?: 'text' | 'rect' | 'circle';
     width?: number | string;
   };
-  defaultComponent: 'div';
+  component: 'div';
   classKey: SkeletonClassKey;
 }
 
@@ -17,7 +17,7 @@ declare const Skeleton: OverridableComponent<SkeletonTypeMap>;
 export type SkeletonClassKey = 'root' | 'text' | 'rect' | 'circle' | 'animate';
 
 export type SkeletonProps<
-  D extends React.ElementType = SkeletonTypeMap['defaultComponent'],
+  D extends React.ElementType = SkeletonTypeMap['component'],
   P = {}
 > = OverrideProps<SkeletonTypeMap<P, D>, D>;
 

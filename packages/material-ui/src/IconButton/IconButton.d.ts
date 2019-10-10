@@ -12,7 +12,7 @@ export type IconButtonTypeMap<
     edge?: 'start' | 'end' | false;
     size?: 'small' | 'medium';
   };
-  defaultComponent: D;
+  component: D;
   classKey: IconButtonClassKey;
 }>;
 
@@ -30,7 +30,7 @@ export type IconButtonClassKey =
   | 'label';
 
 export type IconButtonProps<
-  D extends React.ElementType = IconButtonTypeMap['defaultComponent'],
+  D extends React.ElementType = IconButtonTypeMap['component'],
   P = {}
 > = OverrideProps<IconButtonTypeMap<P, D>, D>;
 

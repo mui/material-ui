@@ -10,16 +10,16 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
     size?: 'small' | 'medium' | 'large';
     variant?: 'round' | 'extended';
   };
-  defaultComponent: D;
+  component: D;
   classKey: FabClassKey;
 }>;
 
 declare const Fab: ExtendButtonBase<FabTypeMap>;
 
-export type FabProps<
-  D extends React.ElementType = FabTypeMap['defaultComponent'],
-  P = {}
-> = OverrideProps<FabTypeMap<P, D>, D>;
+export type FabProps<D extends React.ElementType = FabTypeMap['component'], P = {}> = OverrideProps<
+  FabTypeMap<P, D>,
+  D
+>;
 
 export type FabClassKey =
   | 'root'

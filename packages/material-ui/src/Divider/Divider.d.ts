@@ -7,7 +7,7 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
     orientation?: 'horizontal' | 'vertical';
     variant?: 'fullWidth' | 'inset' | 'middle';
   };
-  defaultComponent: D;
+  component: D;
   classKey: DividerClassKey;
 }
 
@@ -16,7 +16,7 @@ declare const Divider: OverridableComponent<DividerTypeMap>;
 export type DividerClassKey = 'root' | 'absolute' | 'inset' | 'light' | 'middle' | 'vertical';
 
 export type DividerProps<
-  D extends React.ElementType = DividerTypeMap['defaultComponent'],
+  D extends React.ElementType = DividerTypeMap['component'],
   P = {}
 > = OverrideProps<DividerTypeMap<P, D>, D>;
 

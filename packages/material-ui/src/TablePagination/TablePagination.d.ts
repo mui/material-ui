@@ -29,7 +29,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       rowsPerPageOptions?: number[];
       SelectProps?: Partial<SelectProps>;
     };
-  defaultComponent: D;
+  component: D;
   classKey: TablePaginationClassKey;
 }
 

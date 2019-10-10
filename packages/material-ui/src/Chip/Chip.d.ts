@@ -15,7 +15,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
     size?: 'small' | 'medium';
     variant?: 'default' | 'outlined';
   };
-  defaultComponent: D;
+  component: D;
   classKey: ChipClassKey;
 }
 
@@ -54,7 +54,7 @@ export type ChipClassKey =
   | 'deleteIconOutlinedColorSecondary';
 
 export type ChipProps<
-  D extends React.ElementType = ChipTypeMap['defaultComponent'],
+  D extends React.ElementType = ChipTypeMap['component'],
   P = {}
 > = OverrideProps<ChipTypeMap<P, D>, D>;
 

@@ -23,7 +23,7 @@ declare const Foo: OverridableComponent<{
     callbackProp?(b: boolean): void;
     inconsistentProp?: string;
   };
-  defaultComponent: React.ComponentType<{
+  component: React.ComponentType<{
     defaultProp?: boolean;
     defaultCallbackProp?(s: string): void;
   }>;

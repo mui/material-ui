@@ -14,7 +14,7 @@ export type ExpansionPanelSummaryTypeMap<
     IconButtonProps?: Partial<IconButtonProps>;
     onChange?: React.ReactEventHandler<{}>;
   };
-  defaultComponent: D;
+  component: D;
   classKey: ExpansionPanelSummaryClassKey;
 }>;
 
@@ -29,7 +29,7 @@ export type ExpansionPanelSummaryClassKey =
   | 'expandIcon';
 
 export type ExpansionPanelSummaryProps<
-  D extends React.ElementType = ExpansionPanelSummaryTypeMap['defaultComponent'],
+  D extends React.ElementType = ExpansionPanelSummaryTypeMap['component'],
   P = {}
 > = OverrideProps<ExpansionPanelSummaryTypeMap<P, D>, D>;
 

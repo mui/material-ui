@@ -8,7 +8,7 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
     maxItems?: number;
     separator?: React.ReactNode;
   };
-  defaultComponent: D;
+  component: D;
   classKey: BreadcrumbsClassKey;
 }
 
@@ -17,7 +17,7 @@ declare const Breadcrumbs: OverridableComponent<BreadcrumbsTypeMap>;
 export type BreadcrumbsClassKey = 'root' | 'ol' | 'li' | 'separator';
 
 export type BreadcrumbsProps<
-  D extends React.ElementType = BreadcrumbsTypeMap['defaultComponent'],
+  D extends React.ElementType = BreadcrumbsTypeMap['component'],
   P = {}
 > = OverrideProps<BreadcrumbsTypeMap<P, D>, D>;
 

@@ -7,7 +7,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     disablePadding?: boolean;
     subheader?: React.ReactElement;
   };
-  defaultComponent: D;
+  component: D;
   classKey: ListClassKey;
 }
 
@@ -16,7 +16,7 @@ declare const List: OverridableComponent<ListTypeMap>;
 export type ListClassKey = 'root' | 'padding' | 'dense' | 'subheader';
 
 export type ListProps<
-  D extends React.ElementType = ListTypeMap['defaultComponent'],
+  D extends React.ElementType = ListTypeMap['component'],
   P = {}
 > = OverrideProps<ListTypeMap<P, D>, D>;
 

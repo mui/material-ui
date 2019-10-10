@@ -18,7 +18,7 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
     onFocusVisible?: React.FocusEventHandler<any>;
     TouchRippleProps?: Partial<TouchRippleProps>;
   };
-  defaultComponent: D;
+  component: D;
   classKey: ButtonBaseClassKey;
 }
 
@@ -29,7 +29,7 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
  */
 export interface ExtendButtonBaseTypeMap<M extends OverridableTypeMap> {
   props: ButtonBaseTypeMap['props'] & M['props'];
-  defaultComponent: M['defaultComponent'];
+  component: M['component'];
   classKey: M['classKey'];
 }
 
@@ -41,7 +41,7 @@ export type ExtendButtonBase<M extends OverridableTypeMap> = ((
 declare const ButtonBase: ExtendButtonBase<ButtonBaseTypeMap>;
 
 export type ButtonBaseProps<
-  D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
+  D extends React.ElementType = ButtonBaseTypeMap['component'],
   P = {}
 > = OverrideProps<ButtonBaseTypeMap<P, D>, D>;
 

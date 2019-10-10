@@ -30,7 +30,7 @@ export type OverrideProps<
 // prettier-ignore
 export type DefaultComponentProps<M extends OverridableTypeMap> =
   & BaseProps<M>
-  & Omit<React.ComponentPropsWithRef<M['defaultComponent']>, keyof BaseProps<M>>;
+  & Omit<React.ComponentPropsWithRef<M['component']>, keyof BaseProps<M>>;
 
 /**
  * Props defined on the component (+ common material-ui props).
@@ -51,7 +51,7 @@ export interface CommonProps<M extends OverridableTypeMap>
 
 export interface OverridableTypeMap {
   props: {};
-  defaultComponent: React.ElementType;
+  component: React.ElementType;
   classKey: string;
 }
 

@@ -16,18 +16,16 @@ export type StepButtonTypeMap<P, D extends React.ElementType> = ExtendButtonBase
     optional?: React.ReactNode;
     orientation?: Orientation;
   };
-  defaultComponent: D;
+  component: D;
   classKey: StepButtonClasskey;
 }>;
 
-declare const StepButton: ExtendButtonBase<
-  StepButtonTypeMap<{}, ButtonBaseTypeMap['defaultComponent']>
->;
+declare const StepButton: ExtendButtonBase<StepButtonTypeMap<{}, ButtonBaseTypeMap['component']>>;
 
 export type StepButtonClasskey = 'root' | 'vertical' | 'touchRipple';
 
 export type StepButtonProps<
-  D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
+  D extends React.ElementType = ButtonBaseTypeMap['component'],
   P = {}
 > = OverrideProps<StepButtonTypeMap<P, D>, D>;
 

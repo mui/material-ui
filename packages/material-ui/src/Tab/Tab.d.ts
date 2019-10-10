@@ -16,7 +16,7 @@ export type TabTypeMap<P = {}, D extends React.ElementType = 'div'> = ExtendButt
     value?: any;
     wrapped?: boolean;
   };
-  defaultComponent: D;
+  component: D;
   classKey: TabClassKey;
 }>;
 
@@ -34,9 +34,9 @@ export type TabClassKey =
   | 'wrapped'
   | 'wrapper';
 
-export type TabProps<
-  D extends React.ElementType = TabTypeMap['defaultComponent'],
-  P = {}
-> = OverrideProps<TabTypeMap<P, D>, D>;
+export type TabProps<D extends React.ElementType = TabTypeMap['component'], P = {}> = OverrideProps<
+  TabTypeMap<P, D>,
+  D
+>;
 
 export default Tab;

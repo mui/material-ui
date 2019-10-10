@@ -14,14 +14,14 @@ export type ToggleButtonTypeMap<
     selected?: boolean;
     value?: any;
   };
-  defaultComponent: D;
+  component: D;
   classKey: ToggleButtonClassKey;
 }>;
 
 declare const ToggleButton: ExtendButtonBase<ToggleButtonTypeMap>;
 
 export type ToggleButtonProps<
-  D extends React.ElementType = ToggleButtonTypeMap['defaultComponent'],
+  D extends React.ElementType = ToggleButtonTypeMap['component'],
   P = {}
 > = OverrideProps<ToggleButtonTypeMap<P, D>, D>;
 

@@ -15,18 +15,18 @@ export type BottomNavigationActionTypeMap<
     showLabel?: boolean;
     value?: any;
   };
-  defaultComponent: D;
+  component: D;
   classKey: BottomNavigationActionClassKey;
 }>;
 
 declare const BottomNavigationAction: ExtendButtonBase<
-  BottomNavigationActionTypeMap<{}, ButtonBaseTypeMap['defaultComponent']>
+  BottomNavigationActionTypeMap<{}, ButtonBaseTypeMap['component']>
 >;
 
 export type BottomNavigationActionClassKey = 'root' | 'selected' | 'iconOnly' | 'wrapper' | 'label';
 
 export type BottomNavigationActionProps<
-  D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
+  D extends React.ElementType = ButtonBaseTypeMap['component'],
   P = {}
 > = OverrideProps<BottomNavigationActionTypeMap<P, D>, D>;
 

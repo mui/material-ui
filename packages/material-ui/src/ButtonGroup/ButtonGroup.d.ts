@@ -12,7 +12,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
     size?: 'small' | 'medium' | 'large';
     variant?: 'text' | 'outlined' | 'contained';
   };
-  defaultComponent: D;
+  component: D;
   classKey: ButtonGroupClassKey;
 }
 
@@ -34,7 +34,7 @@ export type ButtonGroupClassKey =
   | 'groupedContainedSecondary';
 
 export type ButtonGroupProps<
-  D extends React.ElementType = ButtonGroupTypeMap['defaultComponent'],
+  D extends React.ElementType = ButtonGroupTypeMap['component'],
   P = {}
 > = OverrideProps<ButtonGroupTypeMap<P, D>, D>;
 

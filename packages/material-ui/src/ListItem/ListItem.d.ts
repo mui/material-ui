@@ -16,7 +16,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
     focusVisibleClassName?: string;
     selected?: boolean;
   };
-  defaultComponent: D;
+  component: D;
   classKey: ListItemClassKey;
 }
 

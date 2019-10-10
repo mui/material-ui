@@ -12,7 +12,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
     required?: boolean;
     variant?: 'standard' | 'outlined' | 'filled';
   };
-  defaultComponent: D;
+  component: D;
   classKey: FormControlClassKey;
 }
 
@@ -21,7 +21,7 @@ declare const FormControl: OverridableComponent<FormControlTypeMap>;
 export type FormControlClassKey = 'root' | 'marginNormal' | 'marginDense' | 'fullWidth';
 
 export type FormControlProps<
-  D extends React.ElementType = FormControlTypeMap['defaultComponent'],
+  D extends React.ElementType = FormControlTypeMap['component'],
   P = {}
 > = OverrideProps<FormControlTypeMap<P, D>, D>;
 

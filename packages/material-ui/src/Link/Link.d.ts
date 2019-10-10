@@ -9,7 +9,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
       TypographyClasses?: TypographyProps['classes'];
       underline?: 'none' | 'hover' | 'always';
     };
-  defaultComponent: D;
+  component: D;
   classKey: LinkClassKey;
 }
 
@@ -27,7 +27,7 @@ export type LinkBaseProps = React.AnchorHTMLAttributes<HTMLAnchorElement> &
   Omit<TypographyProps, 'component'>;
 
 export type LinkProps<
-  D extends React.ElementType = LinkTypeMap['defaultComponent'],
+  D extends React.ElementType = LinkTypeMap['component'],
   P = {}
 > = OverrideProps<LinkTypeMap<P, D>, D>;
 

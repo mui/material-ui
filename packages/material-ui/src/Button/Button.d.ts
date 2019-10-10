@@ -16,14 +16,14 @@ export type ButtonTypeMap<
     startIcon?: React.ReactNode;
     variant?: 'text' | 'outlined' | 'contained';
   };
-  defaultComponent: D;
+  component: D;
   classKey: ButtonClassKey;
 }>;
 
 declare const Button: ExtendButtonBase<ButtonTypeMap>;
 
 export type ButtonProps<
-  D extends React.ElementType = ButtonTypeMap['defaultComponent'],
+  D extends React.ElementType = ButtonTypeMap['component'],
   P = {}
 > = OverrideProps<ButtonTypeMap<P, D>, D>;
 

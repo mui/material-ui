@@ -13,7 +13,7 @@ export type TableSortLabelTypeMap<
     hideSortIcon?: boolean;
     IconComponent?: React.ComponentType<SvgIconProps>;
   };
-  defaultComponent: D;
+  component: D;
   classKey: TableSortLabelClassKey;
 }>;
 
@@ -27,7 +27,7 @@ export type TableSortLabelClassKey =
   | 'iconDirectionAsc';
 
 export type TableSortLabelProps<
-  D extends React.ElementType = TableSortLabelTypeMap['defaultComponent'],
+  D extends React.ElementType = TableSortLabelTypeMap['component'],
   P = {}
 > = OverrideProps<TableSortLabelTypeMap<P, D>, D>;
 

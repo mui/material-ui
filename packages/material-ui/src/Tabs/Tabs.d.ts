@@ -18,7 +18,7 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
     variant?: 'standard' | 'scrollable' | 'fullWidth';
     width?: string;
   };
-  defaultComponent: D;
+  component: D;
   classKey: TabsClassKey;
 }
 
@@ -40,7 +40,7 @@ export interface TabsActions {
 }
 
 export type TabsProps<
-  D extends React.ElementType = TabsTypeMap['defaultComponent'],
+  D extends React.ElementType = TabsTypeMap['component'],
   P = {}
 > = OverrideProps<TabsTypeMap<P, D>, D>;
 

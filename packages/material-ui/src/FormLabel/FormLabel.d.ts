@@ -10,7 +10,7 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
       focused?: boolean;
       required?: boolean;
     };
-  defaultComponent: D;
+  component: D;
   classKey: FormLabelClassKey;
 }
 
@@ -28,7 +28,7 @@ export type FormLabelClassKey =
 export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
 
 export type FormLabelProps<
-  D extends React.ElementType = FormLabelTypeMap['defaultComponent'],
+  D extends React.ElementType = FormLabelTypeMap['component'],
   P = {}
 > = OverrideProps<FormLabelTypeMap<P, D>, D>;
 

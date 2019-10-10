@@ -13,12 +13,12 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Omit<
 };
 
 declare const MenuItem: OverridableComponent<
-  MenuItemTypeMap<{ button: false }, MenuItemTypeMap['defaultComponent']>
+  MenuItemTypeMap<{ button: false }, MenuItemTypeMap['component']>
 > &
-  ExtendButtonBase<MenuItemTypeMap<{ button?: true }, MenuItemTypeMap['defaultComponent']>>;
+  ExtendButtonBase<MenuItemTypeMap<{ button?: true }, MenuItemTypeMap['component']>>;
 
 export type MenuItemProps<
-  D extends React.ElementType = MenuItemTypeMap['defaultComponent'],
+  D extends React.ElementType = MenuItemTypeMap['component'],
   P = {}
 > = OverrideProps<MenuItemTypeMap<P, D>, D>;
 

@@ -5,18 +5,18 @@ export type CardActionAreaTypeMap<P, D extends React.ElementType> = ExtendButton
   props: P & {
     focusVisibleClassName?: string;
   };
-  defaultComponent: D;
+  component: D;
   classKey: CardActionAreaClassKey;
 }>;
 
 declare const CardActionArea: ExtendButtonBase<
-  CardActionAreaTypeMap<{}, ButtonBaseTypeMap['defaultComponent']>
+  CardActionAreaTypeMap<{}, ButtonBaseTypeMap['component']>
 >;
 
 export type CardActionAreaClassKey = 'root' | 'focusVisible' | 'focusHighlight';
 
 export type CardActionAreaProps<
-  D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
+  D extends React.ElementType = ButtonBaseTypeMap['component'],
   P = {}
 > = OverrideProps<CardActionAreaTypeMap<P, D>, D>;
 
