@@ -266,7 +266,7 @@ function Demo(props) {
 
   const match = useMediaQuery(theme => theme.breakpoints.up('sm'));
 
-  const renderOnly = demoData.raw.match(/return \(\n(.*)\n {2}\);/s)[1];
+  const renderOnly = demoData.raw.match(/(return \(\n|return )(.*)( {2}\);|;)/s)[2];
   const codeShort = renderOnly.split(/\n/).length <= 20;
 
   return (
