@@ -7,6 +7,7 @@ import { emphasize, fade } from '../styles/colorManipulator';
 import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
+import ButtonBase from '../ButtonBase';
 import '../Avatar'; // So we don't have any override priority issue.
 
 export const styles = theme => {
@@ -272,7 +273,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     className,
     clickable: clickableProp,
     color = 'default',
-    component: Component = 'div',
+    component: Component = ButtonBase,
     deleteIcon: deleteIconProp,
     disabled = false,
     icon: iconProp,
