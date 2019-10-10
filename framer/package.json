@@ -7,13 +7,16 @@
   "author": "Material-UI Team",
   "license": "MIT",
   "private": true,
-  "devDependencies": {
+  "dependencies": {
     "case": "1.6.2",
-    "docs": "^4.0.0"
+    "deepmerge": "^4.0.0",
+    "docs": "^4.0.0",
+    "mustache": "^3.1.0",
+    "react-docgen": "^5.0.0-beta.1"
   },
   "scripts": {
     "build": "yarn build:core && yarn prettier",
-    "build:core": "cross-env BABEL_ENV=development babel-node --config-file ../babel.config.js ./scripts/buildFramer.js ../packages/material-ui/src ./Material-UI.framerfx/code",
+    "build:core": "cross-env BABEL_ENV=test babel-node --config-file ../babel.config.js ./scripts/buildFramer.js ../packages/material-ui/src ./Material-UI.framerfx/code",
     "prettier": "prettier --write --config ../prettier.config.js './**/*.{js,tsx}'"
   }
 }

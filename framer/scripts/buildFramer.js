@@ -20,7 +20,7 @@ const COMPONENTS = [];
 // Read the command-line args
 const args = process.argv;
 const rootDirectory = path.resolve(__dirname, '../../');
-const framerDirectory = path.resolve(rootDirectory, args[3]);
+const framerDirectory = path.resolve(process.cwd(), args[3]);
 
 if (args.length < 4) {
   console.log('\nERROR: syntax: buildFramer source target\n');
@@ -256,7 +256,7 @@ function buildFramer(componentObject) {
 }
 
 function run() {
-  const components = findComponents(path.resolve(rootDirectory, args[2]));
+  const components = findComponents(path.resolve(process.cwd(), args[2]));
 
   components.forEach(component => {
     if (args[4]) {
