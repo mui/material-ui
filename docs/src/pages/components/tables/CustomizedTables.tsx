@@ -59,7 +59,7 @@ export default function CustomizedTables() {
 
   return (
     <Paper className={classes.root}>
-      <Table className={classes.table}>
+      <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell>Dessert (100g serving)</StyledTableCell>

@@ -61,7 +61,7 @@ export default function SpanningTable() {
 
   return (
     <Paper className={classes.root}>
-      <Table className={classes.table}>
+      <Table className={classes.table} aria-label="spanning table">
         <TableHead>
           <TableRow>
             <TableCell>Desc</TableCell>
