@@ -77,6 +77,9 @@ const styles = theme => ({
     },
     justifyContent: 'space-between',
   },
+  headerButtons: {
+    margin: '2px 0',
+  },
   code: {
     display: 'none',
     padding: 0,
@@ -263,135 +266,11 @@ function Demo(props) {
 
   const match = useMediaQuery(theme => theme.breakpoints.up('sm'));
 
+  const renderOnly = demoData.raw.match(/return \(\n(.*)\n {2}\);/s)[1];
+  const codeShort = renderOnly.split(/\n/).length <= 20;
+
   return (
     <div className={classes.root}>
-      <div className={classes.anchorLink} id={`${demoName}.js`} />
-      <div className={classes.anchorLink} id={`${demoName}.tsx`} />
-      {demoOptions.hideHeader ? null : (
-        <div>
-          <div className={classes.header}>
-            <DemoLanguages
-              demo={demo}
-              codeOpen={codeOpen}
-              codeVariant={codeVariant}
-              gaEventCategory={gaCategory}
-              onLanguageClick={handleCodeLanguageClick}
-            />
-            <div>
-              <Tooltip
-                classes={{ popper: classes.tooltip }}
-                key={showSourceHint}
-                open={showSourceHint && match ? true : undefined}
-                PopperProps={{ disablePortal: true }}
-                title={codeOpen ? t('hideSource') : t('showSource')}
-                placement="top"
-              >
-                <IconButton
-                  aria-label={codeOpen ? t('hideSource') : t('showSource')}
-                  data-ga-event-category={gaCategory}
-                  data-ga-event-action="expand"
-                  onClick={handleClickCodeOpen}
-                  color={demoHovered ? 'primary' : 'default'}
-                >
-                  <CodeIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              <Tooltip
-                classes={{ popper: classes.tooltip }}
-                title={t('viewGitHub')}
-                placement="top"
-              >
-                <IconButton
-                  aria-label={t('viewGitHub')}
-                  data-ga-event-category={gaCategory}
-                  data-ga-event-action="github"
-                  href={demoData.githubLocation}
-                  target="_blank"
-                  rel="noopener nofollow"
-                >
-                  <GitHubIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              {demoOptions.hideEditButton ? null : (
-                <Tooltip
-                  classes={{ popper: classes.tooltip }}
-                  title={t('codesandbox')}
-                  placement="top"
-                >
-                  <IconButton
-                    aria-label={t('codesandbox')}
-                    data-ga-event-category={gaCategory}
-                    data-ga-event-action="codesandbox"
-                    onClick={handleClickCodeSandbox}
-                  >
-                    <EditIcon fontSize="small" />
-                  </IconButton>
-                </Tooltip>
-              )}
-              <IconButton
-                onClick={handleClickMore}
-                aria-owns={anchorEl ? 'demo-menu-more' : undefined}
-                aria-haspopup="true"
-                aria-label={t('seeMore')}
-              >
-                <MoreVertIcon fontSize="small" />
-              </IconButton>
-              <Menu
-                id="demo-menu-more"
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleCloseMore}
-                getContentAnchorEl={null}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-              >
-                <MenuItem
-                  data-ga-event-category={gaCategory}
-                  data-ga-event-action="copy"
-                  onClick={handleClickCopy}
-                >
-                  {t('copySource')}
-                </MenuItem>
-                {demoOptions.hideEditButton ? null : (
-                  <MenuItem
-                    data-ga-event-category={gaCategory}
-                    data-ga-event-action="stackblitz"
-                    onClick={handleClickStackBlitz}
-                  >
-                    {t('stackblitz')}
-                  </MenuItem>
-                )}
-                <MenuItem
-                  data-ga-event-category={gaCategory}
-                  data-ga-event-action="copy-js-source-link"
-                  onClick={createHandleCodeSourceLink(`${demoName}.js`)}
-                >
-                  {t('copySourceLinkJS')}
-                </MenuItem>
-                <MenuItem
-                  data-ga-event-category={gaCategory}
-                  data-ga-event-action="copy-ts-source-link"
-                  onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
-                >
-                  {t('copySourceLinkTS')}
-                </MenuItem>
-              </Menu>
-            </div>
-          </div>
-          <Collapse in={codeOpen} unmountOnExit>
-            <MarkdownElement
-              className={classes.code}
-              text={`\`\`\`${demoData.sourceLanguage}\n${demoData.raw}\n\`\`\``}
-            />
-          </Collapse>
-        </div>
-      )}
       <div
         className={clsx(classes.demo, {
           [classes.demoHiddenHeader]: demoOptions.hideHeader,
@@ -407,6 +286,127 @@ function Demo(props) {
           name={demoName}
         />
       </div>
+      <div className={classes.anchorLink} id={`${demoName}.js`} />
+      <div className={classes.anchorLink} id={`${demoName}.tsx`} />
+      {demoOptions.hideHeader ? null : (
+        <div className={classes.header}>
+          <DemoLanguages
+            demo={demo}
+            codeOpen={codeOpen}
+            codeVariant={codeVariant}
+            gaEventCategory={gaCategory}
+            onLanguageClick={handleCodeLanguageClick}
+          />
+          <div className={classes.headerButtons}>
+            <Tooltip
+              classes={{ popper: classes.tooltip }}
+              key={showSourceHint}
+              open={showSourceHint && match ? true : undefined}
+              PopperProps={{ disablePortal: true }}
+              title={codeOpen ? t('hideSource') : t('showSource')}
+              placement="top"
+            >
+              <IconButton
+                aria-label={codeOpen ? t('hideSource') : t('showSource')}
+                data-ga-event-category={gaCategory}
+                data-ga-event-action="expand"
+                onClick={handleClickCodeOpen}
+                color={demoHovered ? 'primary' : 'default'}
+              >
+                <CodeIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip classes={{ popper: classes.tooltip }} title={t('viewGitHub')} placement="top">
+              <IconButton
+                aria-label={t('viewGitHub')}
+                data-ga-event-category={gaCategory}
+                data-ga-event-action="github"
+                href={demoData.githubLocation}
+                target="_blank"
+                rel="noopener nofollow"
+              >
+                <GitHubIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            {demoOptions.hideEditButton ? null : (
+              <Tooltip
+                classes={{ popper: classes.tooltip }}
+                title={t('codesandbox')}
+                placement="top"
+              >
+                <IconButton
+                  aria-label={t('codesandbox')}
+                  data-ga-event-category={gaCategory}
+                  data-ga-event-action="codesandbox"
+                  onClick={handleClickCodeSandbox}
+                >
+                  <EditIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            )}
+            <IconButton
+              onClick={handleClickMore}
+              aria-owns={anchorEl ? 'demo-menu-more' : undefined}
+              aria-haspopup="true"
+              aria-label={t('seeMore')}
+            >
+              <MoreVertIcon fontSize="small" />
+            </IconButton>
+            <Menu
+              id="demo-menu-more"
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleCloseMore}
+              getContentAnchorEl={null}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+            >
+              <MenuItem
+                data-ga-event-category={gaCategory}
+                data-ga-event-action="copy"
+                onClick={handleClickCopy}
+              >
+                {t('copySource')}
+              </MenuItem>
+              {demoOptions.hideEditButton ? null : (
+                <MenuItem
+                  data-ga-event-category={gaCategory}
+                  data-ga-event-action="stackblitz"
+                  onClick={handleClickStackBlitz}
+                >
+                  {t('stackblitz')}
+                </MenuItem>
+              )}
+              <MenuItem
+                data-ga-event-category={gaCategory}
+                data-ga-event-action="copy-js-source-link"
+                onClick={createHandleCodeSourceLink(`${demoName}.js`)}
+              >
+                {t('copySourceLinkJS')}
+              </MenuItem>
+              <MenuItem
+                data-ga-event-category={gaCategory}
+                data-ga-event-action="copy-ts-source-link"
+                onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
+              >
+                {t('copySourceLinkTS')}
+              </MenuItem>
+            </Menu>
+          </div>
+        </div>
+      )}
+      <Collapse in={codeOpen || codeShort} unmountOnExit>
+        <MarkdownElement
+          className={classes.code}
+          text={`\`\`\`${demoData.sourceLanguage}\n${codeOpen ? demoData.raw : renderOnly}\n\`\`\``}
+        />
+      </Collapse>
     </div>
   );
 }
