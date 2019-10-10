@@ -63,6 +63,8 @@ function getAnchorEl(anchorEl) {
 }
 
 export const styles = {
+  /* Styles applied to the root element */
+  root: {},
   /* Styles applied to the `Paper` component. */
   paper: {
     position: 'absolute',
@@ -91,6 +93,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     anchorReference = 'anchorEl',
     children,
     classes,
+    className,
     container: containerProp,
     elevation = 8,
     getContentAnchorEl,
@@ -377,6 +380,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
       open={open}
       ref={ref}
       BackdropProps={{ invisible: true }}
+      className={clsx(classes.root, className)}
       {...other}
     >
       <TransitionComponent
@@ -491,6 +495,10 @@ Popover.propTypes = {
    * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * A node, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
