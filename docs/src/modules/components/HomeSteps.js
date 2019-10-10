@@ -205,7 +205,7 @@ function HomeSteps(props) {
                 className={classes.img}
                 alt="themes"
                 src={`/static/images/themes-${theme.palette.type}.jpg`}
-                loading="lazy"
+                loading="eager"
                 width={500}
                 height={307}
               />
