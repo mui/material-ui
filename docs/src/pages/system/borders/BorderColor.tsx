@@ -16,6 +16,13 @@ export default function BorderColor() {
       <Box borderColor="error.main" {...defaultProps} />
       <Box borderColor="grey.500" {...defaultProps} />
       <Box borderColor="text.primary" {...defaultProps} />
+      <Box
+        borderTopColor="primary.main"
+        borderRightColor="secondary.main"
+        borderBottomColor="error.main"
+        borderLeftColor="grey.500"
+        {...defaultProps}
+      />
     </Box>
   );
 }

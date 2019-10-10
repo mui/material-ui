@@ -12,17 +12,25 @@ type SimpleStyleFunction<PropKey extends keyof any> = StyleFunction<Partial<Reco
 // borders.js
 export const border: SimpleStyleFunction<'border'>;
 export const borderTop: SimpleStyleFunction<'borderTop'>;
+export const borderTopColor: SimpleStyleFunction<'borderTopColor'>;
 export const borderRight: SimpleStyleFunction<'borderRight'>;
+export const borderRightColor: SimpleStyleFunction<'borderRightColor'>;
 export const borderBottom: SimpleStyleFunction<'borderBottom'>;
+export const borderBottomColor: SimpleStyleFunction<'borderBottomColor'>;
 export const borderLeft: SimpleStyleFunction<'borderLeft'>;
+export const borderLeftColor: SimpleStyleFunction<'borderLeftColor'>;
 export const borderColor: SimpleStyleFunction<'borderColor'>;
 export const borderRadius: SimpleStyleFunction<'borderRadius'>;
 export const borders: SimpleStyleFunction<
   | 'border'
   | 'borderTop'
+  | 'borderTopColor'
   | 'borderRight'
+  | 'borderRightColor'
   | 'borderBottom'
+  | 'borderBottomColor'
   | 'borderLeft'
+  | 'borderLeftColor'
   | 'borderColor'
   | 'borderRadius'
 >;
