@@ -36,10 +36,10 @@ export const IconButton: React.SFC<Props> = (props: Props) => {
   const { badgeColor, badgeContent, height, icon, iconTheme, width, ...other } = props;
   const IconBadge =
     badgeContent === '' ? (
-      <Icon icon={icon} />
+      <Icon icon={icon} theme={iconTheme} />
     ) : (
       <MuiBadge badgeContent={badgeContent} color={badgeColor}>
-        <Icon icon={icon} />
+        <Icon icon={icon} theme={iconTheme} />
       </MuiBadge>
     );
 

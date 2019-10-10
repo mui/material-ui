@@ -105,7 +105,7 @@ export const ListItem: React.SFC<Props> = (props: Props) => {
     case 'checkbox':
       primary = (
         <MuiListItemIcon>
-          <MuiCheckbox />
+          <MuiCheckbox edge="start" />
         </MuiListItemIcon>
       );
       break;
@@ -120,21 +120,13 @@ export const ListItem: React.SFC<Props> = (props: Props) => {
       );
       break;
     case 'iconButton':
-      secondary = (
-        <MuiListItemIcon>
-          <IconButton icon={secondaryIcon} />
-        </MuiListItemIcon>
-      );
+      secondary = <IconButton icon={secondaryIcon} edge="end" />;
       break;
     case 'checkbox':
-      secondary = (
-        <MuiListItemIcon>
-          <MuiCheckbox />
-        </MuiListItemIcon>
-      );
+      secondary = <MuiCheckbox edge="end" />;
       break;
     case 'switch':
-      secondary = <MuiSwitch />;
+      secondary = <MuiSwitch edge="end" />;
       break;
   }
 
@@ -146,10 +138,8 @@ export const ListItem: React.SFC<Props> = (props: Props) => {
         primary={label}
         secondary={secondaryLabel ? secondaryLabel : undefined}
       />
-      {/* This causes the text to have a bullet. No idea why! */}
-      {/* <MuiListItemSecondaryAction> */}
-      {secondary}
-      {/* </MuiListItemSecondaryAction>  */}
+      {/* MuiListItemSecondaryAction causes the text to have a bullet. No idea why! */}
+      <MuiListItemSecondaryAction>{secondary}</MuiListItemSecondaryAction>
     </MuiListItem>
   );
 };

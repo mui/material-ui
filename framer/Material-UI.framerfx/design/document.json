@@ -3269,7 +3269,6 @@
               "badgeColor" : "primary",
               "badgeContent" : "9",
               "icon" : "",
-              "invisible" : false,
               "max" : 99,
               "showZero" : false,
               "theme" : "Filled",

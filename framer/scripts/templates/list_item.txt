@@ -35,19 +35,19 @@ const defaultProps: Props =  {
 };
 
 export const «componentName»: React.SFC<Props> = (props: Props) => {
-  const { 
-    height, 
-    imageFile, 
-    imageUrl, 
-    inset, 
-    label, 
-    primaryAction, 
-    primaryIcon, 
-    secondaryAction, 
+  const {
+    height,
+    imageFile,
+    imageUrl,
+    inset,
+    label,
+    primaryAction,
+    primaryIcon,
+    secondaryAction,
     secondaryIcon,
-    secondaryLabel, 
-    width,  
-    ...other 
+    secondaryLabel,
+    width,
+    ...other
   } = props;
 
   let primary = null;
@@ -55,34 +55,44 @@ export const «componentName»: React.SFC<Props> = (props: Props) => {
 
   switch (primaryAction) {
     case 'icon':
-      primary = (<MuiListItemIcon>
-        <Icon icon={primaryIcon} />
-      </MuiListItemIcon>);
+      primary = (
+        <MuiListItemIcon>
+          <Icon icon={primaryIcon} />
+        </MuiListItemIcon>
+      );
       break;
     case 'avatar':
-      primary = (<MuiListItemAvatar><Avatar icon={primaryIcon} imageFile={imageFile} imageUrl={imageUrl}/></MuiListItemAvatar>);
+      primary = (
+        <MuiListItemAvatar>
+          <Avatar icon={primaryIcon} imageFile={imageFile} imageUrl={imageUrl} />
+        </MuiListItemAvatar>
+      );
       break;
     case 'checkbox':
-      primary = (<MuiListItemIcon><MuiCheckbox /></MuiListItemIcon>);
+      primary = (
+        <MuiListItemIcon>
+          <MuiCheckbox edge="start" />
+        </MuiListItemIcon>
+      );
       break;
   }
 
   switch (secondaryAction) {
     case 'icon':
-      secondary = (<MuiListItemIcon>
-        <Icon icon={secondaryIcon} />
-      </MuiListItemIcon>);
+      secondary = (
+        <MuiListItemIcon>
+          <Icon icon={secondaryIcon} />
+        </MuiListItemIcon>
+      );
       break;
     case 'iconButton':
-      secondary = (<MuiListItemIcon>
-        <IconButton icon={secondaryIcon} />
-      </MuiListItemIcon>);
+      secondary = <IconButton icon={secondaryIcon} edge="end" />;
       break;
     case 'checkbox':
-      secondary = (<MuiListItemIcon><MuiCheckbox /></MuiListItemIcon>);
+      secondary = <MuiCheckbox edge="end" />;
       break;
     case 'switch':
-      secondary = (<MuiSwitch />);
+      secondary = <MuiSwitch edge="end" />;
       break;
   }
 
@@ -94,13 +104,11 @@ export const «componentName»: React.SFC<Props> = (props: Props) => {
         primary={label}
         secondary={secondaryLabel ? secondaryLabel : undefined}
       />
-      {/* This causes the text to have a bullet. No idea why! */}
-      {/* <MuiListItemSecondaryAction> */}
-        {secondary}
-      {/* </MuiListItemSecondaryAction>  */}
+      {/* MuiListItemSecondaryAction causes the text to have a bullet. No idea why! */}
+      <MuiListItemSecondaryAction>{secondary}</MuiListItemSecondaryAction>
     </MuiListItem>
   );
-}
+};
 
 «componentName».defaultProps = defaultProps;
 
