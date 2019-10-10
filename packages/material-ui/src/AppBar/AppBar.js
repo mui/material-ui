@@ -18,7 +18,6 @@ export const styles = theme => {
       boxSizing: 'border-box', // Prevent padding issue with the Modal and fixed positioned AppBar.
       zIndex: theme.zIndex.appBar,
       flexShrink: 0,
-      transform: 'translateZ(0)',
     },
     /* Styles applied to the root element if `position="fixed"`. */
     positionFixed: {
@@ -44,6 +43,7 @@ export const styles = theme => {
     /* Styles applied to the root element if `position="static"`. */
     positionStatic: {
       position: 'static',
+      transform: 'translateZ(0)', // Make sure we can see the elevation.
     },
     /* Styles applied to the root element if `position="relative"`. */
     positionRelative: {
