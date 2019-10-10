@@ -21,7 +21,7 @@ const users = [
     class: 'walmart',
   },
   {
-    logo: 'capgemini.svg  ',
+    logo: 'capgemini.svg',
     caption: 'Capgemini',
   },
   {
