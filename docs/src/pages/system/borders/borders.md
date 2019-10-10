@@ -40,6 +40,12 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 <Box borderColor="error.main">…
 <Box borderColor="grey.500">…
 <Box borderColor="text.primary">…
+<Box borderColor="text.primary">…
+<Box borderTopColor="primary.main" 
+  borderRightColor="secondary.main" 
+  borderBottomColor="error.main"
+  borderLeftColor="grey.500"
+/>
 ```
 
 ## Border-radius
@@ -61,9 +67,13 @@ import { borders } from '@material-ui/system';
 | Import name | Prop | CSS property | Theme key |
 |:------------|:-----|:-------------|:----------|
 | `border` | `border` | `border` | `borders` |
-| `borderTop` | `borderTop` | `border-top` | `borders` |
-| `borderLeft` | `borderLeft` | `border-left` | `borders` |
-| `borderRight` | `borderRight` | `border-right` | `borders` |
-| `borderBottom` | `borderBottom` | `border-bottom` | `borders` |
 | `borderColor` | `borderColor` | `border-color` | [`palette`](/customization/default-theme/?expend-path=$.palette) |
+| `borderTop` | `borderTop` | `border-top` | `borders` |
+| `borderTopColor` | `borderTopColor` | `border-top-color` | [`palette`](/customization/default-theme/?expend-path=$.palette) |
+| `borderRight` | `borderRight` | `border-right` | `borders` |
+| `borderRightColor` | `borderRightColor` | `border-right-color` | [`palette`](/customization/default-theme/?expend-path=$.palette) |
+| `borderBottom` | `borderBottom` | `border-bottom` | `borders` |
+| `borderBottomColor` | `borderBottomColor` | `border-bottom-color` | [`palette`](/customization/default-theme/?expend-path=$.palette) |
+| `borderLeft` | `borderLeft` | `border-left` | `borders` |
+| `borderLeftColor` | `borderLeftColor` | `border-left-color` | [`palette`](/customization/default-theme/?expend-path=$.palette) |
 | `borderRadius` | `borderRadius` | `border-radius` | [`shape`](/customization/default-theme/?expend-path=$.shape) |
