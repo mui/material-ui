@@ -66,9 +66,9 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 | <span class="prop-name">textSizeSmall</span> | <span class="prop-name">MuiButton-textSizeSmall</span> | Styles applied to the root element if `size="small"` and `variant="text"`.
 | <span class="prop-name">textSizeLarge</span> | <span class="prop-name">MuiButton-textSizeLarge</span> | Styles applied to the root element if `size="large"` and `variant="text"`.
 | <span class="prop-name">outlinedSizeSmall</span> | <span class="prop-name">MuiButton-outlinedSizeSmall</span> | Styles applied to the root element if `size="small"` and `variant="outlined"`.
-| <span class="prop-name">outlinedSizeLarge</span> | <span class="prop-name">MuiButton-outlinedSizeLarge</span> | Styles applied to the root element if `size="large" && variant="outlined"`.
-| <span class="prop-name">containedSizeSmall</span> | <span class="prop-name">MuiButton-containedSizeSmall</span> | Styles applied to the root element if `size="small" && variant="contained"`.
-| <span class="prop-name">containedSizeLarge</span> | <span class="prop-name">MuiButton-containedSizeLarge</span> | Styles applied to the root element if `size="large" && && variant="contained"`.
+| <span class="prop-name">outlinedSizeLarge</span> | <span class="prop-name">MuiButton-outlinedSizeLarge</span> | Styles applied to the root element if `size="large"` and `variant="outlined"`.
+| <span class="prop-name">containedSizeSmall</span> | <span class="prop-name">MuiButton-containedSizeSmall</span> | Styles applied to the root element if `size="small"` and `variant="contained"`.
+| <span class="prop-name">containedSizeLarge</span> | <span class="prop-name">MuiButton-containedSizeLarge</span> | Styles applied to the root element if `size="large"` and `variant="contained"`.
 | <span class="prop-name">sizeSmall</span> | <span class="prop-name">MuiButton-sizeSmall</span> | Styles applied to the root element if `size="small"`.
 | <span class="prop-name">sizeLarge</span> | <span class="prop-name">MuiButton-sizeLarge</span> | Styles applied to the root element if `size="large"`.
 | <span class="prop-name">fullWidth</span> | <span class="prop-name">MuiButton-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.

@@ -62,19 +62,19 @@ export const styles = theme => ({
     height: 'auto',
     maxHeight: '100%',
   },
-  /* Styles applied to the `Paper` component if `anchor="left"` & `variant` is not "temporary". */
+  /* Styles applied to the `Paper` component if `anchor="left"` and `variant` is not "temporary". */
   paperAnchorDockedLeft: {
     borderRight: `1px solid ${theme.palette.divider}`,
   },
-  /* Styles applied to the `Paper` component if `anchor="top"` & `variant` is not "temporary". */
+  /* Styles applied to the `Paper` component if `anchor="top"` and `variant` is not "temporary". */
   paperAnchorDockedTop: {
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
-  /* Styles applied to the `Paper` component if `anchor="right"` & `variant` is not "temporary". */
+  /* Styles applied to the `Paper` component if `anchor="right"` and `variant` is not "temporary". */
   paperAnchorDockedRight: {
     borderLeft: `1px solid ${theme.palette.divider}`,
   },
-  /* Styles applied to the `Paper` component if `anchor="bottom"` & `variant` is not "temporary". */
+  /* Styles applied to the `Paper` component if `anchor="bottom"` and `variant` is not "temporary". */
   paperAnchorDockedBottom: {
     borderTop: `1px solid ${theme.palette.divider}`,
   },

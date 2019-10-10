@@ -22,11 +22,11 @@ export const styles = theme => {
       overflow: 'hidden',
       height: 4,
     },
-    /* Styles applied to the root & bar2 element if `color="primary"`; bar2 if `variant-"buffer"`. */
+    /* Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant-"buffer"`. */
     colorPrimary: {
       backgroundColor: backgroundPrimary,
     },
-    /* Styles applied to the root & bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`. */
+    /* Styles applied to the root and bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`. */
     colorSecondary: {
       backgroundColor: backgroundSecondary,
     },
@@ -50,19 +50,19 @@ export const styles = theme => {
       width: '100%',
       animation: '$buffer 3s infinite linear',
     },
-    /* Styles applied to the additional bar element if `variant="buffer"` & `color="primary"`. */
+    /* Styles applied to the additional bar element if `variant="buffer"` and `color="primary"`. */
     dashedColorPrimary: {
       backgroundImage: `radial-gradient(${backgroundPrimary} 0%, ${backgroundPrimary} 16%, transparent 42%)`,
       backgroundSize: '10px 10px',
       backgroundPosition: '0px -23px',
     },
-    /* Styles applied to the additional bar element if `variant="buffer"` & `color="secondary"`. */
+    /* Styles applied to the additional bar element if `variant="buffer"` and `color="secondary"`. */
     dashedColorSecondary: {
       backgroundImage: `radial-gradient(${backgroundSecondary} 0%, ${backgroundSecondary} 16%, transparent 42%)`,
       backgroundSize: '10px 10px',
       backgroundPosition: '0px -23px',
     },
-    /* Styles applied to the layered bar1 & bar2 elements. */
+    /* Styles applied to the layered bar1 and bar2 elements. */
     bar: {
       width: '100%',
       position: 'absolute',
