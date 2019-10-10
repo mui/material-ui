@@ -64,7 +64,7 @@ function getAnchorEl(anchorEl) {
 
 export const styles = {
   /* Styles applied to the root element */
-  root : {},
+  root: {},
   /* Styles applied to the `Paper` component. */
   paper: {
     position: 'absolute',
@@ -380,7 +380,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
       open={open}
       ref={ref}
       BackdropProps={{ invisible: true }}
-      className = {clsx(classes.root, className)}
+      className={clsx(classes.root, className)}
       {...other}
     >
       <TransitionComponent
