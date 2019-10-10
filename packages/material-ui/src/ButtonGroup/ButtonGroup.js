@@ -40,13 +40,13 @@ export const styles = theme => ({
       }`,
     },
   },
-  /* Styles applied to the children if variant="outlined" & color="primary". */
+  /* Styles applied to the children if `variant="text"` and `color="primary"`. */
   groupedTextPrimary: {
     '&:not(:last-child)': {
       borderColor: fade(theme.palette.primary.main, 0.5),
     },
   },
-  /* Styles applied to the children if variant="outlined" & color="secondary". */
+  /* Styles applied to the children if `variant="text"` and `color="secondary"`. */
   groupedTextSecondary: {
     '&:not(:last-child)': {
       borderColor: fade(theme.palette.secondary.main, 0.5),
