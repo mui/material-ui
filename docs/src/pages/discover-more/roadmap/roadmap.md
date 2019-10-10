@@ -68,9 +68,10 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | AutoComplete | 🛠 |
 | ComboBox | 🛠 |
 | MultiSelect | 🛠 |
+| Date Picker (& range) | 🛠 |
+| Data Table | 🛠⭐️ |
 | Alert | ⏳ |
 | Carousel | ⏳ |
-| Date Picker range | ⏳ |
 | Dropdown | ⏳ |
 | Dropzone | ⏳ |
 | File Upload | ⏳ |
@@ -84,8 +85,7 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Big calendar | ⏳⭐️ |
 | Charts | ⏳⭐️ |
 | Color picker | ⏳⭐️ |
-| Data Grid | ⏳⭐️ |
-| Gantt | ⏳⭐️ |
+| Gantt chart | ⏳⭐️ |
 | Gauge | ⏳⭐️ |
 | Masonery | ⏳⭐️ |
 | Pivot Grid | ⏳⭐️ |
