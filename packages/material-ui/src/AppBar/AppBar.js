@@ -18,6 +18,7 @@ export const styles = theme => {
       boxSizing: 'border-box', // Prevent padding issue with the Modal and fixed positioned AppBar.
       zIndex: theme.zIndex.appBar,
       flexShrink: 0,
+      transform: 'translateZ(0)',
     },
     /* Styles applied to the root element if `position="fixed"`. */
     positionFixed: {
