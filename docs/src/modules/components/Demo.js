@@ -266,8 +266,20 @@ function Demo(props) {
 
   const match = useMediaQuery(theme => theme.breakpoints.up('sm'));
 
-  const renderOnly = demoData.raw.match(/(return \(\n|return )(.*)( {2}\);|;)/s)[2];
-  const codeShort = renderOnly.split(/\n/).length <= 20;
+  /* regex matches the content of the return statement
+   * `return (\n` or `return `
+   *  everything but not `)`
+   * `  );
+   * }`
+   * or
+   * `;
+   * }`
+   */
+  const jsxOnly = demoData.raw
+    ? demoData.raw.match(/(return \(\n|return )(.*[^)])(\n {2}\);\n}|;\n})/s)[2]
+    : '';
+  const codeLength = jsxOnly.split(/\n/).length;
+  const codeShort = codeLength > 0 && codeLength <= 20;
 
   return (
     <div className={classes.root}>
@@ -404,7 +416,7 @@ function Demo(props) {
       <Collapse in={codeOpen || codeShort} unmountOnExit>
         <MarkdownElement
           className={classes.code}
-          text={`\`\`\`${demoData.sourceLanguage}\n${codeOpen ? demoData.raw : renderOnly}\n\`\`\``}
+          text={`\`\`\`${demoData.sourceLanguage}\n${codeOpen ? demoData.raw : jsxOnly}\n\`\`\``}
         />
       </Collapse>
     </div>
