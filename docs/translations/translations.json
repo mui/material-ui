@@ -80,6 +80,7 @@
   "resetDensity": "Reset density",
   "increaseSpacing": "increase spacing",
   "decreaseSpacing": "decrease spacing",
+  "getProfessionalSupport": "Get Professional Support",
   "pages": {
     "/getting-started": "Getting Started",
     "/getting-started/installation": "Installation",
