@@ -94,7 +94,7 @@ export default function InteractiveList() {
             <List dense={dense}>
               {generate(
                 <ListItem>
-                  <ListItemIcon>
+                  <ListItemIcon secondaryTextEnabled={secondary}>
                     <FolderIcon />
                   </ListItemIcon>
                   <ListItemText
