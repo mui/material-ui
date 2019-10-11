@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-globals */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -192,7 +190,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       [size]: tabMeta ? tabMeta[size] : 0,
     };
 
-    if (isNaN(indicatorStyle[start]) || isNaN(indicatorStyle[size])) {
+    if (Number.isNaN(Number(indicatorStyle[start])) || Number.isNaN(Number(indicatorStyle[size]))) {
       setIndicatorStyle(newIndicatorStyle);
     } else {
       const dStart = Math.abs(indicatorStyle[start] - newIndicatorStyle[start]);

@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-globals */
-
 // Follow https://material.google.com/motion/duration-easing.html#duration-easing-natural-easing-curves
 // to learn the context in which each easing should be used.
 export const easing = {
@@ -32,7 +30,7 @@ export const duration = {
 
 export const formatMs = milliseconds => `${Math.round(milliseconds)}ms`;
 export const isString = value => typeof value === 'string';
-export const isNumber = value => !isNaN(parseFloat(value));
+export const isNumber = value => !Number.isNaN(parseFloat(value));
 
 /**
  * @param {string|Array} props
