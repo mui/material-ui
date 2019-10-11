@@ -1,4 +1,4 @@
-/* eslint-disable react/forbid-foreign-prop-types, no-underscore-dangle */
+/* eslint-disable react/forbid-foreign-prop-types */
 
 import { parse as parseDoctrine } from 'doctrine';
 import * as recast from 'recast';
