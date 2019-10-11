@@ -90,7 +90,6 @@ const styles = theme => ({
     },
     '& pre': {
       overflow: 'auto',
-      paddingTop: theme.spacing(5),
       margin: '0px !important',
       maxHeight: 1000,
     },
