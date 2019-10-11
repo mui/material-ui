@@ -62,6 +62,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     collapseIcon,
     endIcon,
     expandIcon,
+    expandOnReceiveChildren = false,
     icon: iconProp,
     label,
     nodeId,
@@ -93,6 +94,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const nodeRef = React.useRef(null);
   const contentRef = React.useRef(null);
   const handleRef = useForkRef(nodeRef, ref);
+  const childrenRef = React.useRef(children);
 
   let icon = iconProp;
 
@@ -240,6 +242,14 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
   }, [focused]);
 
+  React.useEffect(() => {
+    if (children && !childrenRef.current.length && !expanded && expandOnReceiveChildren) {
+      toggle(nodeId)
+    }
+    childrenRef.current = children;
+
+  }, [children, expandOnReceiveChildren, expanded, nodeId, toggle]);
+
   return (
     <li
       className={clsx(classes.root, className, {
@@ -304,6 +314,10 @@ TreeItem.propTypes = {
    * The icon used to expand the node.
    */
   expandIcon: PropTypes.node,
+  /**
+   * If true, when empty the node will expand automatically on receiving child nodes.
+   */
+  expandOnReceiveChildren: PropTypes.bool,
   /**
    * The icon to display next to the tree node's label.
    */

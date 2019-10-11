@@ -17,6 +17,10 @@ export interface TreeItemProps
    */
   expandIcon?: React.ReactNode;
   /**
+   * If true, when empty the node will expand automatically on receiving child nodes.
+   */
+  expandOnReceiveChildren?: boolean;
+  /**
    * The icon to display next to the tree node's label.
    */
   icon?: React.ReactNode;
