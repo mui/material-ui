@@ -265,9 +265,10 @@ function Demo(props) {
 
   const match = useMediaQuery(theme => theme.breakpoints.up('sm'));
 
-  /* regex matches the content of the return statement
+  /* regex matches the content of the return statement in the default export
+   * `export default.*`
    * `return (\n` or `return `
-   *  everything but not `)`
+   *  everything (not greedy), until:
    * `  );
    * }`
    * or
@@ -275,7 +276,7 @@ function Demo(props) {
    * }`
    */
   const jsxOnly = demoData.raw
-    ? demoData.raw.match(/(return \(\n|return )(.*[^)])(\n {2}\);\n}|;\n})/s)[2]
+    ? demoData.raw.match(/export default .*(return \(\n|return )(.*?)(\n {2}\);\n}|;\n})/s)[2]
     : '';
   const codeLength = jsxOnly.split(/\n/).length;
   const codeShort = codeLength > 0 && codeLength <= 20;
