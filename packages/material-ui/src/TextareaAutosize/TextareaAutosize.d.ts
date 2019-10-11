@@ -6,7 +6,7 @@ export interface TextareaAutosizeProps extends React.TextareaHTMLAttributes<HTML
 
 declare const TextareaAutosize: React.ComponentType<
   TextareaAutosizeProps & {
-    ref?: TextareaAutosizeProps extends { ref?: infer RefType } ? RefType : React.Ref<unknown>;
+    ref?: React.Ref<HTMLTextAreaElement>;
   }
 >;
 
