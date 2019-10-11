@@ -16,13 +16,19 @@ export const styles = theme => ({
   alignItemsFlexStart: {
     marginTop: 8,
   },
+  /* Styles applied to the root element when `ListItemIcon` enables secondary text. */
+  secondaryTextEnabledIconPlacement: {
+    display: 'flex',
+    alignSelf: 'flex-start',
+    marginTop: 6,
+  },
 });
 
 /**
  * A simple wrapper to apply `List` styles to an `Icon` or `SvgIcon`.
  */
 const ListItemIcon = React.forwardRef(function ListItemIcon(props, ref) {
-  const { classes, className, ...other } = props;
+  const { classes, className, secondaryTextEnabled, ...other } = props;
   const context = React.useContext(ListContext);
 
   return (
@@ -30,6 +36,7 @@ const ListItemIcon = React.forwardRef(function ListItemIcon(props, ref) {
       className={clsx(
         classes.root,
         {
+          [classes.secondaryTextEnabledIconPlacement]: secondaryTextEnabled,
           [classes.alignItemsFlexStart]: context.alignItems === 'flex-start',
         },
         className,
@@ -55,6 +62,7 @@ ListItemIcon.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  secondaryTextEnabled: PropTypes.bool,
 };
 
 export default withStyles(styles, { name: 'MuiListItemIcon' })(ListItemIcon);
