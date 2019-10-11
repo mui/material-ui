@@ -43,6 +43,7 @@ export const styles = theme => {
     /* Styles applied to the root element if `position="static"`. */
     positionStatic: {
       position: 'static',
+      transform: 'translateZ(0)', // Make sure we can see the elevation.
     },
     /* Styles applied to the root element if `position="relative"`. */
     positionRelative: {
