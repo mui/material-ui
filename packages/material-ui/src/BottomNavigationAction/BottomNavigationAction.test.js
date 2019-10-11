@@ -26,16 +26,28 @@ describe('<BottomNavigationAction />', () => {
     after: () => mount.cleanUp(),
   }));
 
-  it('adss a `selected` class when selected', () => {
+  it('adds a `selected` class when selected', () => {
     const { getByRole } = render(<BottomNavigationAction selected />);
 
     expect(getByRole('button')).to.have.class(classes.selected);
+  });
+
+  it('should render label with the selected class when selected', () => {
+    const { container } = render(<BottomNavigationAction selected />);
+
+    expect(container.querySelector(`.${classes.label}`)).to.have.class(classes.selected);
   });
 
   it('adds a `iconOnly` class by default', () => {
     const { getByRole } = render(<BottomNavigationAction />);
 
     expect(getByRole('button')).to.have.class(classes.iconOnly);
+  });
+
+  it('should render label with the `iconOnly` class', () => {
+    const { container } = render(<BottomNavigationAction />);
+
+    expect(container.querySelector(`.${classes.label}`)).to.have.class(classes.iconOnly);
   });
 
   it('removes the `iconOnly` class when `selected`', () => {
@@ -54,18 +66,6 @@ describe('<BottomNavigationAction />', () => {
     const { getByRole } = render(<BottomNavigationAction icon={<div data-testid="icon" />} />);
 
     expect(within(getByRole('button')).getByTestId('icon')).to.be.ok;
-  });
-
-  it('should render label with the selected class when selected', () => {
-    const { container } = render(<BottomNavigationAction selected />);
-
-    expect(container.querySelector(`.${classes.label}`)).to.have.class(classes.selected);
-  });
-
-  it('should render label with the `iconOnly` class', () => {
-    const { container } = render(<BottomNavigationAction icon />);
-
-    expect(container.querySelector(`.${classes.label}`)).to.have.class(classes.iconOnly);
   });
 
   describe('prop: onClick', () => {
