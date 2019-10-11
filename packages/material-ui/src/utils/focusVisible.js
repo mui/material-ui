@@ -128,7 +128,7 @@ export function useIsFocusVisible() {
     const node = ReactDOM.findDOMNode(instance);
     if (node != null) {
       if (!node.ownerDocument) {
-        throw new Error(
+        throw new TypeError(
           [
             'Material-UI: the ref forwarding logic is not correct.',
             `An Element is expected but found ${node}.`,
