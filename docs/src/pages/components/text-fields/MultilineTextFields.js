@@ -1,32 +1,25 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: 200,
-    },
-  }),
-);
+const useStyles = makeStyles(theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+}));
 
 export default function MultilineTextFields() {
   const classes = useStyles();
-  const [values, setValues] = React.useState({
-    name: 'Cat in the Hat',
-    age: '',
-    multiline: 'Controlled',
-    currency: 'EUR',
-  });
+  const [value, setValue] = React.useState('Controlled');
 
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value });
+  const handleChange = event => {
+    setValue(event.target.value);
   };
 
   return (
@@ -37,8 +30,8 @@ export default function MultilineTextFields() {
           label="Multiline"
           multiline
           rowsMax="4"
-          value={values.multiline}
-          onChange={handleChange('multiline')}
+          value={value}
+          onChange={handleChange}
           className={classes.textField}
           margin="normal"
         />
@@ -66,8 +59,8 @@ export default function MultilineTextFields() {
           label="Multiline"
           multiline
           rowsMax="4"
-          value={values.multiline}
-          onChange={handleChange('multiline')}
+          value={value}
+          onChange={handleChange}
           className={classes.textField}
           margin="normal"
           variant="filled"
@@ -98,8 +91,8 @@ export default function MultilineTextFields() {
           label="Multiline"
           multiline
           rowsMax="4"
-          value={values.multiline}
-          onChange={handleChange('multiline')}
+          value={value}
+          onChange={handleChange}
           className={classes.textField}
           margin="normal"
           variant="outlined"

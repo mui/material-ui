@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ValidationTextField() {
+export default function ValidationTextFields() {
   const classes = useStyles();
 
   return (

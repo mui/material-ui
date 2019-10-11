@@ -17,19 +17,31 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 > **Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support it.
 
+{{"demo": "pages/components/text-fields/BareTextFields.js"}}
+
 ## Form props
 
 The `TextField` supports standard form attributes e.g. `required`, `readOnly`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
 
-{{"demo": "pages/components/text-fields/FormPropsTextField.js"}}
+{{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
 ## Validation
 
-{{"demo": "pages/components/text-fields/ValidationTextField.js"}}
+The `error` prop toggles the error state for the `TextField`, the `helperText` prop can be used to provide feedback to the user about the error.
+
+{{"demo": "pages/components/text-fields/ValidationTextFields.js"}}
 
 ## Multiline
 
-{{"demo": "pages/components/text-fields/MultilineTextField.js"}}
+The `multiline` prop transforms the `TextField` into a `textarea` or `TextareaAutosize`.
+
+{{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
+
+## Select
+
+The `select` prop transforms the `TextField` into a `Select`.
+
+{{"demo": "pages/components/text-fields/SelectTextFields.js"}}
 
 ## Icons
 
@@ -53,13 +65,13 @@ other styles to meet the specification.
 
 `TextField` and `FormControl` also allow the specification of `fullWidth` which makes the input take up the full width of its container.
 
-{{"demo": "pages/components/text-fields/TextFieldLayout.js"}}
+{{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
 
 ## Uncontrolled vs Controlled
 
 The `TextField` component can be controlled or uncontrolled
 
-{{"demo": "pages/components/text-fields/UncontrolledTextField.js"}}
+{{"demo": "pages/components/text-fields/StateTextFields.js"}}
 
 ## Components
 

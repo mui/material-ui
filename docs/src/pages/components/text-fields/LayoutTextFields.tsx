@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function TextFieldLayout() {
+export default function LayoutTextFields() {
   const classes = useStyles();
 
   return (
