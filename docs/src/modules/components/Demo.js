@@ -275,11 +275,12 @@ function Demo(props) {
    * `;
    * }`
    */
-  const jsxOnly = demoData.raw
-    ? demoData.raw.match(/export default .*(return \(\n|return )(.*?)(\n {2}\);\n}|;\n})/s)[2]
-    : '';
+  let jsxOnly = demoData.raw
+    ? demoData.raw.match(/export default .*(return \(\n|return )(.*?)(\n {2}\);\n}|;\n})/s)
+    : null;
+  jsxOnly = jsxOnly ? jsxOnly[2] : '';
   const codeLength = jsxOnly.split(/\n/).length;
-  const codeShort = codeLength > 0 && codeLength <= 20;
+  const codeShort = jsxOnly !== '' && codeLength <= 20;
 
   return (
     <div className={classes.root}>
