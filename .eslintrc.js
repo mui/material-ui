@@ -113,5 +113,14 @@ module.exports = {
         'mocha/valid-suite-description': 'error',
       },
     },
+    {
+      files: ['docs/src/modules/components/**/*.js'],
+      rules: {
+        'material-ui/no-hardcoded-labels': [
+          'error',
+          { allow: ['Material-UI', 'Twitter', 'GitHub', 'Spectrum', 'StackOverflow'] },
+        ],
+      },
+    },
   ],
 };
