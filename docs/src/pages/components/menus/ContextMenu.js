@@ -9,6 +9,7 @@ export default function ContextMenu() {
     mouseX: null,
     mouseY: null,
   });
+
   const handleClick = event => {
     event.preventDefault();
     setState({
@@ -22,6 +23,7 @@ export default function ContextMenu() {
   const handleClose = () => {
     setState({ ...state, anchorEl: null });
   };
+
   const { mouseX, mouseY, anchorEl } = state;
   return (
     <div onContextMenu={handleClick} style={{ cursor: 'context-menu' }}>
@@ -51,9 +53,10 @@ export default function ContextMenu() {
           horizontal: 'left',
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleClose}>Copy</MenuItem>
+        <MenuItem onClick={handleClose}>Print</MenuItem>
+        <MenuItem onClick={handleClose}>Highlight</MenuItem>
+        <MenuItem onClick={handleClose}>Email</MenuItem>
       </Menu>
     </div>
   );
