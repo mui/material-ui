@@ -67,6 +67,12 @@ Use a different transition.
 
 {{"demo": "pages/components/menus/FadeMenu.js"}}
 
+## Context Menu
+
+The `ContextMenu` wraps the area in which you'd like right-click functionality. Just add the tag `<ContextMenu></ContextMenu>` around the element and your custom context menu will be available anywhere within that element.
+
+{{"demo": "pages/components/menus/ContextMenu.js"}}
+
 ## Complementary projects
 
 For more advanced use cases you might be able to take advantage of:
