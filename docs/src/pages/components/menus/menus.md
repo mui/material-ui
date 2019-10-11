@@ -69,7 +69,7 @@ Use a different transition.
 
 ## Context Menu
 
-The `ContextMenu` wraps the area in which you'd like right-click functionality. Just add the tag `<ContextMenu></ContextMenu>` around the element and your custom context menu will be available anywhere within that element.
+Here is an example of the of Context Menu.
 
 {{"demo": "pages/components/menus/ContextMenu.js"}}
 
