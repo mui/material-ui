@@ -17,10 +17,6 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 > **Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support it.
 
-## Showcase
-
-{{"demo": "pages/components/text-fields/TextFieldShowcase.js", "hideHeader":true}}
-
 ## Form props
 
 The `TextField` supports standard form attributes e.g. `required`, `readOnly`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
@@ -58,7 +54,6 @@ other styles to meet the specification.
 `TextField` and `FormControl` also allow the specification of `fullWidth` which makes the input take up the full width of its container.
 
 {{"demo": "pages/components/text-fields/TextFieldLayout.js"}}
-
 
 ## Uncontrolled vs Controlled
 

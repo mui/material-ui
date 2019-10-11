@@ -1,6 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -16,46 +16,46 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function UncontrolledTextField() {
+export default function ValidationTextField() {
   const classes = useStyles();
-  const [name, setName] = React.useState('Cat in the Hat');
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
-  };
 
   return (
     <form className={classes.container} noValidate autoComplete="off">
       <div>
         <TextField
-          id="standard-name"
-          label="Name"
+          error
+          id="standard-error"
+          label="Error"
+          defaultValue="Hello World"
           className={classes.textField}
-          value={name}
-          onChange={handleChange}
           margin="normal"
         />
         <TextField
-          id="standard-uncontrolled"
-          label="Uncontrolled"
-          defaultValue="foo"
+          error
+          id="standard-error"
+          label="Error"
+          defaultValue="Hello World"
+          helperText="Incorrect entry."
           className={classes.textField}
           margin="normal"
         />
       </div>
       <div>
         <TextField
-          id="filled-name"
-          label="Name"
+          error
+          id="filled-error"
+          label="Error"
+          defaultValue="Hello World"
           className={classes.textField}
-          value={name}
-          onChange={handleChange}
           margin="normal"
           variant="filled"
         />
         <TextField
-          id="filled-uncontrolled"
-          label="Uncontrolled"
-          defaultValue="foo"
+          error
+          id="filled-error"
+          label="Error"
+          defaultValue="Hello World"
+          helperText="Incorrect entry."
           className={classes.textField}
           margin="normal"
           variant="filled"
@@ -63,18 +63,20 @@ export default function UncontrolledTextField() {
       </div>
       <div>
         <TextField
-          id="outlined-name"
-          label="Name"
+          error
+          id="outlined-error"
+          label="Error"
+          defaultValue="Hello World"
           className={classes.textField}
-          value={name}
-          onChange={handleChange}
           margin="normal"
           variant="outlined"
         />
         <TextField
-          id="outlined-uncontrolled"
-          label="Uncontrolled"
-          defaultValue="foo"
+          error
+          id="outlined-error"
+          label="Error"
+          defaultValue="Hello World"
+          helperText="Incorrect entry."
           className={classes.textField}
           margin="normal"
           variant="outlined"
