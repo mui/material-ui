@@ -2,9 +2,8 @@ import React, { useEffect } from 'react';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
 
-const ContextMenu = ({ children }) => {
+const ContextMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mouseX, setMouseX] = React.useState(null);
   const [mouseY, setMouseY] = React.useState(null);
@@ -55,6 +54,4 @@ const ContextMenu = ({ children }) => {
   );
 };
 
-ContextMenu.propTypes = {
-  children: PropTypes.object.isRequired,
-};
+export default ContextMenu;
