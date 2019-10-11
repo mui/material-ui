@@ -24,7 +24,7 @@ export default function ContextMenu() {
   };
   const { mouseX, mouseY, anchorEl } = state;
   return (
-    <div aria-controls="simple-menu" aria-haspopup="true" onContextMenu={handleClick}>
+    <div onContextMenu={handleClick} style={{ cursor: 'context-menu' }}>
       <Typography>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ipsum purus, bibendum sit
         amet vulputate eget, porta semper ligula. Donec bibendum vulputate erat, ac fringilla mi
