@@ -55,10 +55,10 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">paperAnchorRight</span> | <span class="prop-name">MuiDrawer-paperAnchorRight</span> | Styles applied to the `Paper` component if `anchor="right"`.
 | <span class="prop-name">paperAnchorTop</span> | <span class="prop-name">MuiDrawer-paperAnchorTop</span> | Styles applied to the `Paper` component if `anchor="top"`.
 | <span class="prop-name">paperAnchorBottom</span> | <span class="prop-name">MuiDrawer-paperAnchorBottom</span> | Styles applied to the `Paper` component if `anchor="bottom"`.
-| <span class="prop-name">paperAnchorDockedLeft</span> | <span class="prop-name">MuiDrawer-paperAnchorDockedLeft</span> | Styles applied to the `Paper` component if `anchor="left"` & `variant` is not "temporary".
-| <span class="prop-name">paperAnchorDockedTop</span> | <span class="prop-name">MuiDrawer-paperAnchorDockedTop</span> | Styles applied to the `Paper` component if `anchor="top"` & `variant` is not "temporary".
-| <span class="prop-name">paperAnchorDockedRight</span> | <span class="prop-name">MuiDrawer-paperAnchorDockedRight</span> | Styles applied to the `Paper` component if `anchor="right"` & `variant` is not "temporary".
-| <span class="prop-name">paperAnchorDockedBottom</span> | <span class="prop-name">MuiDrawer-paperAnchorDockedBottom</span> | Styles applied to the `Paper` component if `anchor="bottom"` & `variant` is not "temporary".
+| <span class="prop-name">paperAnchorDockedLeft</span> | <span class="prop-name">MuiDrawer-paperAnchorDockedLeft</span> | Styles applied to the `Paper` component if `anchor="left"` and `variant` is not "temporary".
+| <span class="prop-name">paperAnchorDockedTop</span> | <span class="prop-name">MuiDrawer-paperAnchorDockedTop</span> | Styles applied to the `Paper` component if `anchor="top"` and `variant` is not "temporary".
+| <span class="prop-name">paperAnchorDockedRight</span> | <span class="prop-name">MuiDrawer-paperAnchorDockedRight</span> | Styles applied to the `Paper` component if `anchor="right"` and `variant` is not "temporary".
+| <span class="prop-name">paperAnchorDockedBottom</span> | <span class="prop-name">MuiDrawer-paperAnchorDockedBottom</span> | Styles applied to the `Paper` component if `anchor="bottom"` and `variant` is not "temporary".
 | <span class="prop-name">modal</span> | <span class="prop-name">MuiDrawer-modal</span> | Styles applied to the `Modal` component.
 
 You can override the style of the component thanks to one of these customization points:

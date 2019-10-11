@@ -47,18 +47,18 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">MuiButtonGroup-root</span> | Styles applied to the root element.
-| <span class="prop-name">contained</span> | <span class="prop-name">MuiButtonGroup-contained</span> | Styles applied to the root element if variant="contained".
-| <span class="prop-name">fullWidth</span> | <span class="prop-name">MuiButtonGroup-fullWidth</span> | Styles applied to the root element if fullWidth={true}.
+| <span class="prop-name">contained</span> | <span class="prop-name">MuiButtonGroup-contained</span> | Styles applied to the root element if `variant="contained"`.
+| <span class="prop-name">fullWidth</span> | <span class="prop-name">MuiButtonGroup-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 | <span class="prop-name">grouped</span> | <span class="prop-name">MuiButtonGroup-grouped</span> | Styles applied to the children.
-| <span class="prop-name">groupedText</span> | <span class="prop-name">MuiButtonGroup-groupedText</span> | Styles applied to the children if variant="text".
-| <span class="prop-name">groupedTextPrimary</span> | <span class="prop-name">MuiButtonGroup-groupedTextPrimary</span> | Styles applied to the children if variant="outlined" & color="primary".
-| <span class="prop-name">groupedTextSecondary</span> | <span class="prop-name">MuiButtonGroup-groupedTextSecondary</span> | Styles applied to the children if variant="outlined" & color="secondary".
-| <span class="prop-name">groupedOutlined</span> | <span class="prop-name">MuiButtonGroup-groupedOutlined</span> | Styles applied to the children if variant="outlined".
-| <span class="prop-name">groupedOutlinedPrimary</span> | <span class="prop-name">MuiButtonGroup-groupedOutlinedPrimary</span> | Styles applied to the children if variant="outlined" & color="primary".
-| <span class="prop-name">groupedOutlinedSecondary</span> | <span class="prop-name">MuiButtonGroup-groupedOutlinedSecondary</span> | Styles applied to the children if variant="outlined" & color="secondary".
-| <span class="prop-name">groupedContained</span> | <span class="prop-name">MuiButtonGroup-groupedContained</span> | Styles applied to the children if variant="contained".
-| <span class="prop-name">groupedContainedPrimary</span> | <span class="prop-name">MuiButtonGroup-groupedContainedPrimary</span> | Styles applied to the children if variant="contained" & color="primary".
-| <span class="prop-name">groupedContainedSecondary</span> | <span class="prop-name">MuiButtonGroup-groupedContainedSecondary</span> | Styles applied to the children if variant="contained" & color="secondary".
+| <span class="prop-name">groupedText</span> | <span class="prop-name">MuiButtonGroup-groupedText</span> | Styles applied to the children if `variant="text"`.
+| <span class="prop-name">groupedTextPrimary</span> | <span class="prop-name">MuiButtonGroup-groupedTextPrimary</span> | Styles applied to the children if `variant="text"` and `color="primary"`.
+| <span class="prop-name">groupedTextSecondary</span> | <span class="prop-name">MuiButtonGroup-groupedTextSecondary</span> | Styles applied to the children if `variant="text"` and `color="secondary"`.
+| <span class="prop-name">groupedOutlined</span> | <span class="prop-name">MuiButtonGroup-groupedOutlined</span> | Styles applied to the children if `variant="outlined"`.
+| <span class="prop-name">groupedOutlinedPrimary</span> | <span class="prop-name">MuiButtonGroup-groupedOutlinedPrimary</span> | Styles applied to the children if `variant="outlined"` and `color="primary"`.
+| <span class="prop-name">groupedOutlinedSecondary</span> | <span class="prop-name">MuiButtonGroup-groupedOutlinedSecondary</span> | Styles applied to the children if `variant="outlined"` and `color="secondary"`.
+| <span class="prop-name">groupedContained</span> | <span class="prop-name">MuiButtonGroup-groupedContained</span> | Styles applied to the children if `variant="contained"`.
+| <span class="prop-name">groupedContainedPrimary</span> | <span class="prop-name">MuiButtonGroup-groupedContainedPrimary</span> | Styles applied to the children if `variant="contained"` and `color="primary"`.
+| <span class="prop-name">groupedContainedSecondary</span> | <span class="prop-name">MuiButtonGroup-groupedContainedSecondary</span> | Styles applied to the children if `variant="contained"` and `color="secondary"`.
 | <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to child elements if `disabled={true}`.
 
 You can override the style of the component thanks to one of these customization points:
