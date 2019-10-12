@@ -278,9 +278,9 @@ function Demo(props) {
   let jsxOnly = demoData.raw
     ? demoData.raw.match(/export default .*(return \(\n|return )(.*?)(\n {2}\);\n}|;\n})/s)
     : null;
-  jsxOnly = jsxOnly ? jsxOnly[2] : '';
+  jsxOnly = jsxOnly ? jsxOnly[2] : demoData.raw;
   const codeLength = jsxOnly.split(/\n/).length;
-  const codeShort = jsxOnly !== '' && codeLength <= 20;
+  const codeShort = jsxOnly !== demoData.raw && codeLength <= 20;
   let showCodeLabel;
 
   if (codeOpen) {
@@ -425,6 +425,7 @@ function Demo(props) {
         <MarkdownElement
           className={classes.code}
           text={`\`\`\`${demoData.sourceLanguage}\n${codeOpen ? demoData.raw : jsxOnly}\n\`\`\``}
+          // style={{height: codeOpen ?  demoData.raw.split(/\n/).length * 20 + 32 : codeLength * 20 + 32}}
         />
       </Collapse>
     </div>
