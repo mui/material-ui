@@ -19,13 +19,13 @@ components: Popper
 
 ## 简单 Popper
 
-{{"demo": "pages/components/popper/SimplePopper.js" }}
+{{"demo": "pages/components/popper/SimplePopper.js"}}
 
 ## 最小化的 Popper
 
 你可以使用该组件而不需要任何附加依赖。
 
-{{"demo": "pages/components/popper/MinimalPopper.js" }}
+{{"demo": "pages/components/popper/MinimalPopper.js"}}
 
 ## Scroll playground
 

@@ -17,14 +17,6 @@ No entanto, o componente Link possui propriedades padrão diferentes do componen
 - `color="primary"` como o link precisa se destacar.
 - `variant="inherit"` como o link será, na maioria das vezes, usado como filho de um componente Typography.
 
-## Acessibilidade
-
-- Ao fornecer o conteúdo para o link, evite descrições genéricas como "clique aqui" ou "vá para". Em vez disso, use [descrições específicas](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
-- Para a melhor experiência do usuário, os links devem se destacar do texto na página.
-- Se o link não tem um href significativo, [ele deve ser renderizado usando um elemento `<button>`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md).
-
-{{"demo": "pages/components/links/ButtonLink.js"}}
-
 ## Segurança
 
 Quando você usa `target="_blank"` com Links, é [recomendado](https://developers.google.com/web/tools/lighthouse/audits/noopener) sempre definir `rel="noopener"` ou `rel="noreferrer"` quando conectando a conteúdo de terceiros.
@@ -37,3 +29,13 @@ Quando você usa `target="_blank"` com Links, é [recomendado](https://developer
 Um caso de uso comum é executar a navegação apenas no lado do cliente, sem uma ida e volta HTTP ao servidor. O componente `Link` fornece uma propriedade para lidar com este caso: `component`.
 
 Aqui está um [exemplo de integração com react-router](/guides/composition/#link).
+
+## Acessibilidade
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#link)
+
+- Ao fornecer o conteúdo para o link, evite descrições genéricas como "clique aqui" ou "vá para". Em vez disso, use [descrições específicas](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
+- Para a melhor experiência do usuário, os links devem se destacar do texto na página.
+- Se o link não tem um href significativo, [ele deve ser renderizado usando um elemento `<button>`](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md).
+
+{{"demo": "pages/components/links/ButtonLink.js"}}

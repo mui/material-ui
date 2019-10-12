@@ -97,8 +97,8 @@ Si vous êtes **nouveau ou peu familiers avec FlexBox**, nous vous encourageons 
 
 ```jsx
 <Box>Item 1</Box>
-<Box alignSelf="flex-end">Item 1</Box>
-<Box>Item 1</Box>
+<Box alignSelf="flex-end">Item 2</Box>
+<Box>Item 3</Box>
 ```
 
 {{"demo": "pages/system/flexbox/AlignSelf.js"}}

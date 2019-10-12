@@ -62,7 +62,7 @@ Use uma transição diferente.
 
 ## Projetos Complementares
 
-Para usos mais avançados, você pode tirar vantagem com:
+Para caso de usos mais avançados, você é capaz de aproveitar de:
 
 ### PopupState helper
 

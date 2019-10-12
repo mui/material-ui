@@ -15,13 +15,15 @@ Einige der wichtigsten Funktionen:
 
 ## Einfache Medienabfrage
 
-Sie sollten eine Medienabfrage für das erste Argument des Hooks bereitstellen. Die Medienabfragezeichenfolge kann durch jede gültige CSS-Medienabfrage erfolgen, z.B. `'print'`.
+Sie sollten eine Medienabfrage für das erste Argument des Hooks bereitstellen. The media query string can by any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference).
 
 {{"demo": "pages/components/use-media-query/SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
+⚠️ You can't use `'print'` per browsers limitation, e.g. [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
+
 ## Verwenden der Haltepunkt-Helfer der Material-UI
 
-Sie können die Material-UI [Haltepunkt-Helfer](/customization/breakpoints/) wie folgt verwenden:
+You can use Material-UI's [breakpoint helpers](/customization/breakpoints/) as follows:
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';
@@ -106,7 +108,7 @@ For instance:
 import ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
@@ -167,8 +169,8 @@ import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export default function SimpleMediaQuery() {
-  const matches = useMediaQuery('print');
+  const matches = useMediaQuery('(min-width:600px)');
 
-  return <span>{`@media (min-width:600px) matches: ${matches}`}</span>;
+  return <span>{`(min-width:600px) matches: ${matches}`}</span>;
 }
 ```

@@ -31,16 +31,18 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
+## Integration with react-router
+
+{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js"}}
+
 ## Accesibilidad
 
-Asegúrese de agregar una descripción `aria-label` en el componente `Breadcrumbs`.
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#breadcrumb)
+
+Be sure to add a `aria-label` description on the `Breadcrumbs` component.
 
 La accesibilidad de este componente se basa en:
 
 - El conjunto de vínculos está estructurado usando una lista ordenada (elemento `<ol>`).
 - Para prevenir el anuncio del lector de pantalla de los separadores visuales entre los vínculos, se ocultan con `aria-hidden`.
 - Un elemento de navegación con la etiqueta `aria-label` identifica la estructura como un rastro de migas de pan y la convierte en un punto de referencia para que sea fácil de ubicar.
-
-## Integración con react-router
-
-{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js"}}

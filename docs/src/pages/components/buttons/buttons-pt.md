@@ -113,3 +113,36 @@ O botões de texto, botões contidos, botões de ação flutuante e ícone botõ
 Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. O componente `ButtonBase` fornece uma propriedade para lidar com este caso de uso: `componente`. No entanto, para alguns polyfills de foco `ButtonBase` requer o nó DOM do componente fornecido. Isso é obtido anexando-se uma referência ao componente e esperando que o componente envie essa referência para o nó DOM subjacente. Dado que muitos dos componentes interativos dependem do `ButtonBase`, você deve ser capaz de tirar proveito em todos os lugares.
 
 Aqui está um [exemplo de integração com react-router](/guides/composition/#button).
+
+## Limitações
+
+### Cursor não permitido
+
+O componente "ButtonBase" configura `pointer-events: none;` para botões desabilitados. o que evita a aparência de cursor desabilitado.
+
+Se você deseja usar `not-allowed`, você tem duas opções:
+
+1. ** apenas CSS**. Você pode remover o estilo dos eventos do ponteiro no estado "desabilitado" do elemento `<button>` :
+
+```css
+.MuiButtonBase-root:disabled {
+  cursor: not-allowed;
+  pointer-events: auto;
+}
+```
+
+Então:
+
+- Você deve adicionar `eventos-ponteiro: nenhum;` novamente quando você precisa exibir dicas [ ferramentas em elementos desabilitados](/components/tooltips/#disabled-elements)</li> 
+    
+    - O cursor não muda se você renderizar algum outro elemento de botão, por exemplo, um elemento link `<a>`.</ul> 
+    
+    2. ** Alteração no DOM** Você pode encapsular o botão:
+    
+    ```jsx
+    <span style={{ cursor: "not-allowed" }}>
+      <Button component={Link} disabled>disabled</Button>
+    </span>
+    ```
+    
+    This has the advantage of supporting any element, for instance, a link `<a>` element.

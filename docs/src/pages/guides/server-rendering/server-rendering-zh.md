@@ -89,14 +89,14 @@ We then get the CSS from the `sheets` using `sheets.toString()`. We will see how
 import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
+import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
 import App from './App';
 import theme from './theme';
 
 function handleRender(req, res) {
   const sheets = new ServerStyleSheets();
 
-  // 将组件渲染成一个字符串。
+  // Render the component to a string.
   const html = ReactDOMServer.renderToString(
     sheets.collect(
       <ThemeProvider theme={theme}>
@@ -153,7 +153,7 @@ function renderFullPage(html, css) {
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import App from './App';
 import theme from './theme';
 

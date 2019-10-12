@@ -2,11 +2,14 @@
 
 <p class="description">A carefully curated list of libraries that are worth having a look at.</p>
 
-Da der Umfang der Probleme, die Material-UI löst, begrenzt ist, versuchen wir, mit anderen Bibliotheken gut zusammen zu arbeiten. Feel free to submit a pull request to add another project; it will be accepted if it is suitable.
+Because the scope of problems Material-UI solves is bound, we try to play nicely with other libraries. Feel free to submit a pull request to add another project; it will be accepted if it is suitable.
 
 ## Design-Ressourcen
 
-- [Figma UI Kit](https://material.5ly.co/) für Material-UI.
+- **Sketch**: [Material Theme Editor](https://material.io/resources/theme-editor/) for Material Design made by Google.
+- **Figma**: [Figma UI Kit](https://material.5ly.co/) for Material-UI made by Fively Team.
+
+You didn't find the design assets your team is looking for? Lassen Sie es uns wissen!
 
 ## Images and illustrations
 
@@ -34,6 +37,16 @@ This is a collection of third-party projects that extend Material-UI.
 ### Notifications
 
 - [notistack](https://github.com/iamhosseindhv/notistack): Makes it easy to display snackbars (so you don't have to deal with open/close state of them).
+
+### Upload
+
+- [material-ui-dropzone](https://github.com/Yuvaleros/material-ui-dropzone): Built on top of react-dropzone.
+
+### Formulare
+
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with formik.
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
+- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) Eine Reihe von Wrapper-Komponenten, die die Verwendung der Material-Benutzeroberfläche mit Final Form erleichtern.
 
 ### Carousel
 

@@ -10,15 +10,15 @@
 
 ## サンプルプロジェクト
 
-There are [some example projects](/getting-started/example-projects/) available, providing the infrastructure needed to develop and deploy websites in React.
+ReactでWebサイトを開発してデプロイする為に必要なインフラを提供する[いくつかのサンプルプロジェクト](/getting-started/example-projects/)があります。
 
 ## テンプレート
 
-This [selection of basic templates](/getting-started/templates/) will help you get started building your app.
+アプリを作り始めるのに役立つ[基本的なテンプレート](/getting-started/templates/)を用意しています。
 
 ## 推奨する資料
 
-Material-UIを初めて学ぶときは、公式のドキュメントよりもサードパーティのブログ記事や本、動画のコースの方が役に立つかもしれません。 Here are some recommended resources, some of which are free.
+Material-UIを初めて学ぶときは、公式のドキュメントよりもサードパーティのブログ記事や本、動画のコースの方が役に立つかもしれません。 以下はオススメの資料です。中には無料で利用できるものもあります。
 
 ### Gratuit
 

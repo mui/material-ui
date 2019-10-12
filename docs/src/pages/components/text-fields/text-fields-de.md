@@ -43,7 +43,7 @@ Möglicherweise haben Sie auch festgestellt, dass einige native HTML-Eingabeeige
 
 ## Benutzerdefinierte Eingabe
 
-Here are some examples of customizing the component. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier sind einige Beispiele, wie man die Komponente anpassen kann. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -170,6 +170,6 @@ In order for the text field to be accessible, **the input should be linked to th
 
 Für fortgeschrittenere Anwendungsfälle können Ihnen folgende Projekte helfen:
 
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Eine Reihe von Wrapper-Komponenten, die die Verwendung der Material-Benutzeroberfläche mit Redux-Formular erleichtern.
-- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindungen zur Verwendung von Material-UI mit formik.
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with formik.
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
 - [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) Eine Reihe von Wrapper-Komponenten, die die Verwendung der Material-Benutzeroberfläche mit Final Form erleichtern.

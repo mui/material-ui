@@ -170,6 +170,6 @@ In order for the text field to be accessible, **the input should be linked to th
 
 Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti des avantages suivants:
 
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with formik.
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
 - [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) A set of wrapper components to facilitate using Material UI with Final Form.

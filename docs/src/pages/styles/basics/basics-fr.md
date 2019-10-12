@@ -36,7 +36,7 @@ There are 3 possible APIs you can use to generate and apply styles, however they
 
 ```jsx
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
@@ -65,7 +65,7 @@ Note: this only applies to the calling syntax – style definitions still use a 
 
 ```jsx
 import React from 'react';
-import { styled } from '@material-ui/styles';
+import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const MyButton = styled(Button)({
@@ -90,7 +90,7 @@ export default function StyledComponents() {
 ```jsx
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const styles = {
@@ -180,7 +180,7 @@ This button component has a color property that changes its color:
 
 {{"demo": "pages/styles/basics/AdaptingHOC.js"}}
 
-## Stress test
+### Stress test
 
 In the following stress test, you can update the *theme color* and the *background-color property* live:
 
@@ -194,3 +194,21 @@ const useStyles = makeStyles(theme => ({
 ```
 
 {{"demo": "pages/styles/basics/StressTest.js"}}
+
+## @material-ui/core/styles vs @material-ui/styles
+
+Material-UI's styles are powered by the [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) package, (built with JSS). This solution is [isolated](https://bundlephobia.com/result?p=@material-ui/styles). It doesn't have a default theme, and can be used to style React applications that are not using Material-UI components.
+
+To reduce the number of packages to install when using Material-UI, and to simplify the imports, `@material-ui/styles` modules are re-exported from `@material-ui/core/styles`.
+
+To remove the need to systematically supply a theme, the default Material-UI theme is applied to the re-exported `makeStyles`, `styled`, `withTheme`, `useTheme`, and `withStyles` modules.
+
+For instance:
+
+```js
+// Re-export with a default theme
+import { makeStyles } from '@material-ui/core/styles';
+
+// Original module with no default theme
+import { makeStyles } from '@material-ui/styles';
+```

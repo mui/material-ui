@@ -21,9 +21,9 @@ components: Badge
 
 ## Видимость значка
 
-The visibility of badges can be controlled using the `invisible` property.
+Видимость значков можно контролировать с помощью свойства `invisible`.
 
-The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
+Значок автоматически скрывается, когда свойство badgeContent равно нулю. You can override this with the `showZero` property.
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 

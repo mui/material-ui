@@ -7,12 +7,12 @@ components: ClickAwayListener
 
 <p class="description">クリックイベントが要素の外部で発生したかどうかを検出します。 ドキュメント内のどこかで発生したクリックを受信します。</p>
 
-- [1.4 kB gzipped](/size-snapshot).
+- 📦 [1.5 kB gzipped](/size-snapshot).
 
-## Simple menu dropdown
+## 例
 
 たとえば、ユーザーがページの他の場所をクリックしたときにメニューのドロップダウンを非表示にする必要がある場合は、次のようにします。
 
 {{"demo": "pages/components/click-away-listener/ClickAway.js"}}
 
-より高度なデモは、 [menu documentation section](/components/menus/#menulist-composition)にあります。
+Notice that the component only accepts one child element. You can find a more advanced demo on the [menu documentation section](/components/menus/#menulist-composition).

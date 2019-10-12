@@ -32,22 +32,23 @@ A regular schedule of releases helps you plan and coordinate your updates with t
 
 通常情况下, 你可以根据以下的发布周期来预测:
 
-- A **major** release every 6-12 months.
+- A **major** release every 12 months.
 - 每个主版本会附带1-3个向下兼容的**次版本**。
 - 每周会进行**日常**更新 (如果有紧急的 bugfix，则任何时候都可发布)。
 
 ## 发布计划
 
-> 免责声明: 日期作为一般指导提供, 我们可以在必要时调整, 以确保交付高质量的代码。
-
-| 日期         | 版本                         |
-|:---------- |:-------------------------- |
-| May 2018 ✅ | `@material-ui/core` v1.0.0 |
-| May 2019 ✅ | `@material-ui/core` v4.0.0 |
-| 2020? ⏳    | `@material-ui/core` v5.0.0 |
+| 日期             | 版本     | Status   |
+|:-------------- |:------ | -------- |
+| May 2018       | v1.0.0 | Released |
+| Septembre 2018 | v3.0.0 | Released |
+| May 2019       | v4.0.0 | Released |
+| Q3 2020        | v5.0.0 | ⏳        |
 
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
+
+> ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.
 
 ## 支持政策
 
@@ -64,7 +65,7 @@ To make these transitions as easy as possible:
 
 ### Deprecation policy
 
-- Deprecated features iare announced n the changelog, and when possible, with warnings at runtime.
+- Deprecated features are announced in the changelog, and when possible, with warnings at runtime.
 - When a deprecation is announced, recommended update path is provided.
 - Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
 - Peer dependency updates (React) that require changes to your apps are only made in a major release.

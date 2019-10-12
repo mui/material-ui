@@ -57,7 +57,7 @@ components: AppBar, Toolbar, Menu
 
 ### トップへ戻る
 
-A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+スクロール時にフローティングアクションボタンが表示され、ページの上部に簡単に戻ることができます。
 
 {{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
 

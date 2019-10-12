@@ -35,11 +35,17 @@ Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus da
 
 {{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
 
+## When to use
+
+- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Checkboxes vs. Switches (interrupteurs)](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
+
 ## Accessibilité
 
-Tous les contrôles de formulaire doivent avoir des labels, cela vaut également pour les boutons radio, les cases à cocher et les interrupteurs. Dans la plupart des cas, cela se fait en utilisant l'élément `<label>` ([FormControlLabel](/api/form-control-label/)).
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#checkbox)
 
-Lorsqu'un label ne peut pas être utilisé, il est nécessaire d'ajouter un attribut directement au composant input. Dans ce cas, vous pouvez appliquer l'attribut supplémentaire (ex: `aria-label`, `aria-labelledby`, `title`) via la propriété `inputProps`.
+- Tous les contrôles de formulaire doivent avoir des labels, cela vaut également pour les boutons radio, les cases à cocher et les interrupteurs. Dans la plupart des cas, cela se fait en utilisant l'élément `<label>` ([FormControlLabel](/api/form-control-label/)).
+- Lorsqu'un label ne peut pas être utilisé, il est nécessaire d'ajouter un attribut directement au composant input. Dans ce cas, vous pouvez appliquer l'attribut supplémentaire (ex: `aria-label`, `aria-labelledby`, `title`) via la propriété `inputProps`.
 
 ```jsx
 <Checkbox
@@ -47,7 +53,3 @@ Lorsqu'un label ne peut pas être utilisé, il est nécessaire d'ajouter un attr
   inputProps={{ 'aria-label': 'Checkbox A' }}
 />
 ```
-
-## Conseils
-
-- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

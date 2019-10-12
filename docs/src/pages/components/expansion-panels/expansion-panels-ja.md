@@ -11,32 +11,40 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 > **注：** 拡張パネルについては、<a href=「https://material.io/」>Material Design guidelines</a>では説明されていませんが、Material-UIでは引き続きサポートされます。
 
-## アクセシビリティ
-
-最適なアクセシビリティのために、 `ExpansionPanelSummary``id` と `aria-controls` を設定することをお勧めします。 `ExpansionPanel` は、パネルのコンテンツ領域に必要な `aria-labelledby` および `id` を導き出します。
-
 ## Simple Expansion Panel
 
 {{"demo": "pages/components/expansion-panels/SimpleExpansionPanel.js"}}
 
 ## Controlled Accordion
 
-パネルのデフォルトの動作を拡張し、`ExpansionPanel`コンポーネントを使用してアコーディオンを作成します。
+Extend the default panel behavior to create an accordion with the `ExpansionPanel` component.
 
 {{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js"}}
 
-## カスタマイズされた拡張パネル
+## Customized expansion panels
 
 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}
 
-## パフォーマンス
+## Performance
 
-ExpansionPanelsのコンテンツは、パネルが展開されていない場合でもデフォルトでマウントされます。 このデフォルトの動作では、サーバー側のレンダリングとSEOが考慮されています。 パネル内に高価なコンポーネントツリーをレンダリングするか、単に パネルを多数レンダリングする場合は、 `TransitionProps`： `<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />`の `unmountOnExit` 有効にしてこのデフォルトの動作を変更することをお勧めします。 他のパフォーマンス最適化と同様、これは特効薬ではありません。 まずボトルネックを特定してから、これらの最適化戦略を試してください。
+The content of ExpansionPanels is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
 
-## Secondary heading and Columns (第2の見出しと列)
+```jsx
+<ExpansionPanel TransitionProps={{ unmountOnExit: true }} />
+```
 
-コンテンツを構造化するために複数の列を使用することができ、ユーザを支援するためにヘルパーテキストをパネルに追加することができる。
+As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
+
+## Secondary heading and Columns
+
+Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
 
 {{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}
+
+## アクセシビリティ
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
+
+For optimal accessibility we recommend setting `id` and `aria-controls` on the `ExpansionPanelSummary`. The `ExpansionPanel` will derive the necessary `aria-labelledby` and `id` for the content region of the panel.

@@ -95,27 +95,23 @@ function MyComponent() {
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## Доступность
+## Перетаскиваемый диалог
 
-Смотри [раздел доступности модальных окон](/components/modal/#accessibility).
+Вы можете создать перетаскиваемый диалог, используя [react-draggable](https://github.com/mzabriskie/react-draggable). To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. This will make the entire dialog draggable.
+
+{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## Прокрутка длинного контента
 
-Когда диалоги становятся слишком длинными для окна просмотра или устройства пользователя, они их прокручивают.
+When dialogs become too long for the user’s viewport or device, they scroll.
 
 - `scroll = paper` содержимое диалогового окна прокручивается внутри элемента paper.
 - `scroll = body` содержимое диалога прокручивается внутри элемента body.
 
-Попробуйте демо ниже, чтобы увидеть, что мы имеем в виду:
+Try the demo below to see what we mean:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
-## Перетаскиваемый диалог
+## Доступность
 
-Вы можете создать перетаскиваемый диалог, используя [react-draggable](https://github.com/mzabriskie/react-draggable). Для этого вы можете передать импортированный компонент `Draggable` как компонент `PaperComponent` компонента `Dialog`. Это сделает весь диалог перетаскиваемым.
-
-{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
-
-## Производительность
-
-Перейдите в раздел [Modal performance section](/components/modal/#performance).
+Follow the [Modal accessibility section](/components/modal/#accessibility).

@@ -70,7 +70,7 @@ A tooltip can be interactive. It won't close when the user hovers over the toolt
 
 ## Éléments désactivés
 
-Par éléments désactivés par défaut comme `<button>` ne déclenchent pas les interactions utilisateur si un `infobulle` ne sera pas activée sur les événements normaux comme vol stationnaire. Pour recevoir des éléments handicapés, ajoutez un simple élément d'emballage comme un `durée`.
+Par éléments désactivés par défaut comme `<button>` ne déclenchent pas les interactions utilisateur si un `infobulle` ne sera pas activée sur les événements normaux comme vol stationnaire. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 

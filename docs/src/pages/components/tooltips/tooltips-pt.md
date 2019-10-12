@@ -70,7 +70,7 @@ Uma dica pode ser interativa. Ela não será fechada quando o usuário passar po
 
 ## Elementos Desativados
 
-Por padrão os elementos desativados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, omo passar o mouse. Para acomodar elementos desativados, adicione um elemento encapsulador simples como um `span`.
+Por padrão os elementos desativados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, omo passar o mouse. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 

@@ -9,13 +9,13 @@ components: Badge
 
 ## Einfache Badges
 
-Examples of badges containing text, using primary and secondary colors. The badge is applied to its children.
+Beispiele für Text Badges in Primär- und Sekundärfarben. The badge is applied to its children.
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
 ## Customized badges
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Hier sind einige Beispiele, wie man die Komponente anpassen kann. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 

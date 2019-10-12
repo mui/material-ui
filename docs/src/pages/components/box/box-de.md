@@ -6,7 +6,7 @@ title: Box React Komponente
 
 <p class="description">Die Box-Komponente dient als Wrapper-Komponente für die meisten Anforderungen des CSS-Dienstprogramms.</p>
 
-Die Box-Komponenten packt [alle Stilfunktionen](/system/basics/#all-inclusive), die in `@material-ui/system` verfügbar sind. Es wurde mit der Funktion [`styled()`](/styles/api/#styled-style-function-component) von `@material-ui/styles` erstellt.
+Die Box-Komponenten packt [alle Stilfunktionen](/system/basics/#all-inclusive), die in `@material-ui/system` verfügbar sind. It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/core/styles`.
 
 ## Beispiel
 

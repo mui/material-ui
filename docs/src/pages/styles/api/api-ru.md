@@ -1,6 +1,6 @@
 # API
 
-<p class="description">The API reference of the @material-ui/styles package.</p>
+<p class="description">The API reference of @material-ui/core/styles.</p>
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -8,7 +8,7 @@ A function which returns [a class name generator function](https://cssinjs.org/j
 
 #### Аргументы
 
-1. `options` (*Object* [optional]): 
+1. `варианты` (*объекта* [optional]): 
   - `options.disableGlobal` (*Boolean* [optional]): Defaults to `false`. Disable the generation of deterministic class names.
   - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
   - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators in the same document.
@@ -21,7 +21,7 @@ A function which returns [a class name generator function](https://cssinjs.org/j
 
 ```jsx
 import React from 'react';
-import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
+import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'c',
@@ -49,7 +49,7 @@ This function doesn't really "do anything" at runtime, it's just the identity fu
 #### Примеры
 
 ```jsx
-import { makeStyles, createStyles } from '@material-ui/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -72,7 +72,7 @@ Link a style sheet with a function component using the **hook** pattern.
 #### Аргументы
 
 1. `styles` (*Function | Object*): A function generating the styles or a styles object. Это будет связано с компонентом. Use the function signature if you need to have access to the theme. It's provided as the first argument.
-2. `options` (*Object* [optional]): 
+2. `варианты` (*объекта* [optional]): 
   - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
   - `options.name` (*String* [optional]): The name of the style sheet. Полезно для отладки. If the value isn't provided, it will try to fallback to the name of the component.
   - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
@@ -86,7 +86,7 @@ Link a style sheet with a function component using the **hook** pattern.
 
 ```jsx
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
@@ -107,7 +107,7 @@ This is a class helper to handle server-side rendering. [You can follow this gui
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheets } from '@material-ui/core/styles';
 
 const sheets = new ServerStyleSheets();
 const html = ReactDOMServer.renderToString(sheets.collect(<App />));
@@ -154,7 +154,7 @@ Link a style sheet with a function component using the **styled components** pat
 
 1. `Component`: The component that will be wrapped.
 2. `styles` (*Function | Object*): A function generating the styles or a styles object. Это будет связано с компонентом. Use the function signature if you need to have access to the theme. It's provided as property of the first argument.
-3. `options` (*Object* [optional]): 
+3. `варианты` (*объекта* [optional]): 
   - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
   - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
   - `options.name` (*String* [optional]): The name of the style sheet. Полезно для отладки. If the value isn't provided, it will try to fallback to the name of the component.
@@ -169,7 +169,7 @@ Link a style sheet with a function component using the **styled components** pat
 
 ```jsx
 import React from 'react';
-import { styled } from '@material-ui/styles';
+import { styled } from '@material-ui/core/styles';
 
 const MyComponent = styled('div')({
   backgroundColor: 'red',
@@ -225,7 +225,7 @@ It should preferably be used at **the root of your component tree**.
   
   <pre><code class="jsx">import React from 'react';
 import ReactDOM from 'react-dom';
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@material-ui/core/styles';
 
 function App() {
   return (
@@ -310,7 +310,7 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
   
   <pre><code class="jsx">import React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 const theme = {};
 
@@ -344,7 +344,7 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
   </h4>
   
   <pre><code class="jsx">import React from 'react';
-import { useTheme } from '@material-ui/styles';
+import { useTheme } from '@material-ui/core/styles';
 
 export default function MyComponent() {
   const theme = useTheme();
@@ -390,7 +390,7 @@ export default function MyComponent() {
     </li>
     
     <li level="0">
-      <code>options</code> (<em>Object</em> [optional]): <ul spaces="0" level="1" marker="-">
+      <code>варианты</code> (<em>объекта</em> [optional]): <ul spaces="0" level="1" marker="-">
         <li level="1">
           <code>options.defaultTheme</code> (<em>Object</em> [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
         </li>
@@ -423,7 +423,7 @@ export default function MyComponent() {
   </h4>
   
   <pre><code class="jsx">import React from 'react';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   root: {
@@ -443,7 +443,7 @@ export default withStyles(styles)(MyComponent);
   </p>
   
   <pre><code class="jsx">import React from 'react';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   root: {
@@ -492,7 +492,7 @@ export default MyComponent
   </h4>
   
   <pre><code class="jsx">import React from 'react';
-import { withTheme } from '@material-ui/styles';
+import { withTheme } from '@material-ui/core/styles';
 
 function MyComponent(props) {
   return &lt;div&gt;{props.theme.direction}&lt;/div&gt;;
