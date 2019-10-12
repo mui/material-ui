@@ -1,5 +1,98 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.5.1
+###### *Oct 12, 2019*
+
+Big thanks to the 28 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- 📚 Change imports from @material-ui/styles to @material-ui/core/styles (#17447) @mnemanja
+
+  The presence of two almost identical import paths has been a source of confusion: `@material-ui/styles` and `@material-ui/core/styles`.
+  Starting with v4.5.1, the documentation mentions `@material-ui/core/styles` as much as possible.
+
+  ```diff
+  -import { makeStyles } from '@material-ui/styles';
+  +import { makeStyles } from '@material-ui/core/styles';
+  ```
+
+  This change removes the need to install the `@material-ui/styles` package directly.
+  It prevents the duplication of `@material-ui/styles` in bundles and avoids confusion.
+  You can [learn more about the difference](https://material-ui.com/styles/basics/#material-ui-core-styles-vs-material-ui-styles) in the documentation.
+- ♿️ Improve the accessibility of the table and select components (#17696, #17773) @adeelibr, @eps1lon.
+- 📚 Launch a [developer survey](https://www.surveymonkey.com/r/5XHDL76) as a precursor to a major DatePicker enhancement effort.
+- 💄 Add support for different [slider track mode](https://material-ui.com/components/slider/#track) (#17714) @slipmat.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v4.5.1`
+
+- [AppBar] Fix display of elevation with position static (#17819) @sreetej1998
+- [Avatar] Allow to set src and children (#17694) @lcswillems
+- [BottomNavigationAction] Test in StrictMode (#17837) @eps1lon
+- [ButtonBase] Document how to use cursor not-allowed (#17778) @slipmat
+- [Button] Add missing class keys for icon sizing (#17677) @mvestergaard
+- [Button] Fix duplicate class names (#17690) @netochaves
+- [Dialog] Forward the id in example (#17678) @ricsam
+- [Modal] Remove mentions of legacy classes (#17798) @eps1lon
+- [Popover] Add root class (#17817) @jayesh-kaza
+- [Popper] Fix placement update logic (#17781) @hoop71
+- [Portal] Remove redundant circular PortalProps import (#17676) @le0nik
+- [Select] Fix opening select requiring double enter with NVDA (#17773) @eps1lon
+- [Select] Simplify blur logic (#17299) @eps1lon
+- [Select] Add missing y to setDisplaNode (#17716) @sakulstra
+- [Select] Warn for unmatched value (#17691) @asownder95
+- [Slider] Add support for removed and inverted track (#17714) @slipmat
+- [Slider] Fix drag interruption when leaving browser (#17765) @hoop71
+- [Table] Add aria-label & caption in table demos (#17696) @adeelibr
+
+### `@material-ui/icons@v4.5.1`
+
+- [icons] Introduce a new GitHub brand icon
+
+### `@material-ui/lab@v4.0.0-alpha.29`
+
+- [SpeedDial] Pass event and reason to onOpen, onClose (#17783) @lsnch
+
+### `@material-ui/system@v4.5.1`
+
+- [system] Fallback to value if theme's value is an array and index missing (#17661) @stasiukanya
+
+### Docs
+
+- [docs] Add Customization/Components TS demo (#17788) @limatgans
+- [docs] Add Media Query TS demo (#17766) @lksilva
+- [docs] Add TS demos for guides/interoperability (#17804) @limatgans
+- [docs] Add classNames TS demo (#17771) @lksilva
+- [docs] Add component demos in ts (#17790) @lksilva
+- [docs] Add dynamic class name TS demo (#17793) @lksilva
+- [docs] Add useWidth TS demo (#17770) @lksilva
+- [docs] Added TS Demos for component/toggle-button (#17822) @limatgans
+- [docs] Better strict mode switch (#17684) @eps1lon
+- [docs] Change imports from @material-ui/styles to @material-ui/core/styles (#17447) @mnemanja
+- [docs] Extend size-snapshot (#17633) @eps1lon
+- [docs] Fix react-number-format example for FormattedInputs (#17675) @s-yadav
+- [docs] Fix typo (#17698) @Ceejaymar
+- [docs] Fix typo and improve consistency (#17821) @stasiukanya
+- [docs] Fix typo in versions.md (#17782) @raymondsze
+- [docs] Fixed typo in Components/Modal (#17704) @lzhuor
+- [docs] Improve contributing guidelines (#17653) @oliviertassinari
+- [docs] Mentioned CSS required for disabling transitions (#17802) @burtyish
+- [docs] Migrate Globals demo to TypeScript  (#17785) @limatgans
+- [docs] Migrate Palette demo to TypeScript   (#17683) @limatgans
+- [docs] Prepare the DatePicker developer survey notification (#17805) @oliviertassinari
+- [docs] Update "Who's using" (#17830) @mbrookes
+- [docs] Update notification @oliviertassinari
+- [docs] Update useMediaQuery example to avoid confusion with print (#17642) @epeicher
+
+### Core
+
+- [ci] Fix size comparison sort order (#17800) @eps1lon
+- [core] Batch small changes (#17673) @oliviertassinari
+- [core] Batch small changes (#17807) @oliviertassinari
+- [test] Fix test_browser timing out (#17763) @eps1lon
+- [test] Use testing-library for ToggleButton* tests (#17768) @eps1lon
+
 ## 4.5.0
 ###### *Oct 2, 2019*
 
@@ -21,7 +114,7 @@ Here are some highlights ✨:
 - 💅 Adjust table styles to match spec (#17388) @kybarg
 - 💅 Adjust menu styles to match spec (#17332) @damir-sirola
 - 💅 Adjust chip styles to match spec (#17584) @oliviertassinari
-- And many more 🐛 bug fixes 📚 improvements.
+- And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.5.0`
 
@@ -193,7 +286,7 @@ Here are some highlights ✨:
 - 💄 Introduce 10 new brand icons and 61 new official Material Design icons (#17257, #17274) @colemars and @mbrookes.
 - ⚛️ Move a few descriptions of the props to TypeScript (#17300) @merceyz.
   This change allows the IDEs to display the props' descriptions in place, without having to go to the documentation.
-- And many more 🐛 bug fixes 📚 improvements.
+- And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.4.1`
 
@@ -265,7 +358,7 @@ Here are some highlights ✨:
 - ✨ Add fixed Table header Support (#17139) @egerardus.
 - 🌳 Accept any label in TreeView (#17080) @oliviertassinari.
 - 🏝 Add standalone ToggleButton mode (#17187) @simshaun.
-- And many more 🐛 bug fixes 📚 improvements.
+- And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.4.0`
 
@@ -325,7 +418,7 @@ Big thanks to the 22 contributors who made this release possible!
 Here are some highlights ✨:
 
 - 🔍 Introduce a [material icons search](https://material-ui.com/components/material-icons/) (#16956).
-- And many more 🐛 bug fixes 📚 improvements.
+- And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.3.3`
 
@@ -381,7 +474,7 @@ Here are some highlights ✨:
 
 - 🦴 Introduce a new Skeleton component in the lab (#16786).
 - 📦 Reduce bundle size by -10%,-20% of the small helpers like useMediaQuery, Portal, and TextareaAutosize (#16842) @NMinhNguyen.
-- And many more 🐛 bug fixes 📚 improvements.
+- And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.3.2`
 
@@ -505,7 +598,7 @@ Here are some highlights ✨:
 - 💄 Support small switch (#16620) @darkowic.
 
   You can learn more about it following [this URL](https://material-ui.com/components/switches/#sizes).
-- And many more 🐛 bug fixes 📚 improvements.
+- And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.3.0`
 
@@ -604,7 +697,7 @@ Here are some highlights ✨:
 - ⚛️ Fix more strict mode warnings (#16525) @eps1lon.
 - 🐛 Fix menu dense support (#16510) @sumedhan.
 - ⭐️ Introduce a new Rating component in the lab.
-- And many more 🐛 bug fixes 📚 improvements.
+- And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.2.1`
 
@@ -681,7 +774,7 @@ Here are some highlights ✨:
 - 💄 Introduce a new TextareaAutosize component (#16362).
 - ⚛️ Migrate a few components to testing-library.
 - 🚀 Remove two dependencies (react-event-listener and debounce).
-- And many more 🐛 bug fixes 📚 improvements.
+- And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.2.0`
 
@@ -779,7 +872,7 @@ Here are some highlights ✨:
 - 🚀 Reduce the Modal bundle size by -22% (5 kB) (#15839, #16254, #16262).
 - 💄 Remove noise from the material.io generated icons (#16258).
 - ⚛️ Extend StrictMode compatiblity to 25 more components (#16283).
-- And many more 🐛 bug fixes 📚 improvements.
+- And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.1.2`
 
@@ -927,7 +1020,7 @@ Here are some highlights ✨:
 - 📚 Fix the documentation notification spam (#16070).
 - 💄 A new fontWeightBold typography theme value (#16036) @aditya1906.
 - 🚀 Reduce TypeScript compile time when using the icons (#16083) @phryneas.
-- And many more 🐛 bug fixes 📚 improvements.
+- And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.1.0`
 
