@@ -119,6 +119,7 @@ const pages = [
           { pathname: '/components/speed-dial' },
           { pathname: '/components/toggle-button' },
           { pathname: '/components/tree-view' },
+          { pathname: '/components/data-table' },
         ],
       },
     ],
