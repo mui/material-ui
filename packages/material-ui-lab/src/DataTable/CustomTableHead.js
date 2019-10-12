@@ -7,8 +7,9 @@ import TableCell from '@material-ui/core/TableCell';
 const useStyles = makeStyles({
   resizableBar: {
     width: '3px',
-    height: '25px',
+    height: '100%',
     position: 'absolute',
+    top: '0px',
     right: '0px',
     backgroundColor: 'black',
     '&:hover': {
@@ -65,7 +66,7 @@ const CustomTableHead = ({columns}) => {
             style={{width: index === 0 ? width : column.width, position: 'relative'}}
           >
             {column.label}
-            {index === 0 && (<span
+            {index === 0 && (<div
               role='grid'
               tabIndex={0}
               className={classes.resizableBar}
