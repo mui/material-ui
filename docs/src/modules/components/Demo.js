@@ -281,6 +281,13 @@ function Demo(props) {
   jsxOnly = jsxOnly ? jsxOnly[2] : '';
   const codeLength = jsxOnly.split(/\n/).length;
   const codeShort = jsxOnly !== '' && codeLength <= 20;
+  let showCodeLabel;
+
+  if (codeOpen) {
+    showCodeLabel = codeShort ? t('hideFullSource') : t('hideSource')
+  } else {
+    showCodeLabel = codeShort ? t('showFullSource') : t('showSource')
+  }
 
   return (
     <div className={classes.root}>
@@ -316,11 +323,11 @@ function Demo(props) {
               key={showSourceHint}
               open={showSourceHint && match ? true : undefined}
               PopperProps={{ disablePortal: true }}
-              title={codeOpen ? t('hideSource') : t('showSource')}
+              title={showCodeLabel}
               placement="top"
             >
               <IconButton
-                aria-label={codeOpen ? t('hideSource') : t('showSource')}
+                aria-label={showCodeLabel}
                 data-ga-event-category={gaCategory}
                 data-ga-event-action="expand"
                 onClick={handleClickCodeOpen}
