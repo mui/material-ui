@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import { TablePagination } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -12,37 +13,61 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function DataTable({columns, rows, dense}) {
+export default function DataTable({columns, rows, dense, stickyHeader, height, pagination}) {
   const classes = useStyles();
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const presentedRows = pagination ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : rows;
 
   return (
-    <Table className={classes.table} size={dense ? 'small' : 'medium'}>
-      <TableHead>
-        <TableRow>
-          {columns.map((column, index) => (
-            <TableCell
-              key={index}
-              align={index === 0 ? "left" : "right"}
-              style={{width: column.width}}
-            >
-              {column.label}
-            </TableCell>
-          ))}
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {rows.map(row => (
-          <TableRow key={row.name}>
-            <TableCell component="th" scope="row">
-              {row.name}
-            </TableCell>
-            <TableCell align="right">{row.calories}</TableCell>
-            <TableCell align="right">{row.fat}</TableCell>
-            <TableCell align="right">{row.carbs}</TableCell>
-            <TableCell align="right">{row.protein}</TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+    <div>
+      <div style={{height, overflowY: 'scroll'}}>
+        <Table className={classes.table} size={dense ? 'small' : 'medium'} stickyHeader={stickyHeader}>
+          <TableHead>
+            <TableRow>
+              {columns.map((column, index) => (
+                <TableCell
+                  key={column.label}
+                  align={index === 0 ? "left" : "right"}
+                  style={{width: column.width}}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {presentedRows.map(row => (
+              <TableRow key={row.id}>
+                <TableCell component="th" scope="row">
+                  {row.id}
+                </TableCell>
+                <TableCell align="right">{row.name}</TableCell>
+                <TableCell align="right">{row.calories}</TableCell>
+                <TableCell align="right">{row.fat}</TableCell>
+                <TableCell align="right">{row.carbs}</TableCell>
+                <TableCell align="right">{row.protein}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+      {pagination && <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        backIconButtonProps={{
+          'aria-label': 'previous page',
+        }}
+        nextIconButtonProps={{
+          'aria-label': 'next page',
+        }}
+        onChangePage={(e, newPage) => setPage(newPage)}
+        onChangeRowsPerPage={e => setRowsPerPage(e.target.value)}
+      />}
+    </div>
   );
 }

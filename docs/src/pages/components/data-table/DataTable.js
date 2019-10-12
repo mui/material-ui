@@ -11,19 +11,24 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(id, name, calories, fat, carbs, protein) {
+  return { id, name, calories, fat, carbs, protein };
 }
 
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 5.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+const rows = [];
+for (let i = 0; i < 20; i += 1) {
+  rows.push(createData(0 + i*5, 'Frozen yoghurt', 159, 6.0, 24, 5.0));
+  rows.push(createData(1 + i*5, 'Ice cream sandwich', 237, 9.0, 37, 4.3));
+  rows.push(createData(2 + i*5, 'Eclair', 262, 16.0, 24, 6.0));
+  rows.push(createData(3 + i*5, 'Cupcake', 305, 3.7, 67, 4.3));
+  rows.push(createData(4 + i*5, 'Gingerbread', 356, 16.0, 49, 3.9));
+}
 
 const columns = [
+  {
+    label: 'Id',
+    width: '200px',
+  },
   {
     label: 'Dessert (100g serving)',
   },
@@ -54,6 +59,9 @@ export default function DataTableBasic() {
         columns={columns}
         rows={rows}
         dense
+        stickyHeader
+        height='300px'
+        pagination
       />
     </Paper>
   );
