@@ -24,11 +24,25 @@ const rows = [
 ];
 
 const columns = [
-  {label: 'Dessert (100g serving)'},
-  {label: 'Calories'},
-  {label: 'Fat&nbsp;(g)'},
-  {label: 'Carbs&nbsp;(g)'},
-  {label: 'Protein&nbsp;(g)'},
+  {
+    label: 'Dessert (100g serving)',
+  },
+  {
+    label: 'Calories',
+    width: '200px',
+  },
+  {
+    label: 'Fat (g)',
+    width: '200px',
+  },
+  {
+    label: 'Carbs (g)',
+    width: '200px',
+  },
+  {
+    label: 'Protein (g)',
+    width: '200px',
+  },
 ]
 
 export default function DataTableBasic() {

@@ -20,7 +20,13 @@ export default function DataTable({columns, rows}) {
       <TableHead>
         <TableRow>
           {columns.map((column, index) => (
-            <TableCell key={index} align={index === 0 ? "left" : "right"}>{column.label}</TableCell>
+            <TableCell
+              key={index}
+              align={index === 0 ? "left" : "right"}
+              style={{width: column.width}}
+            >
+              {column.label}
+            </TableCell>
           ))}
         </TableRow>
       </TableHead>
