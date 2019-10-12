@@ -69,7 +69,7 @@ Use a different transition.
 
 ## Context Menu
 
-Here is an example of the of Context Menu.
+Here is an example of a context menu. (Right click to open.)
 
 {{"demo": "pages/components/menus/ContextMenu.js"}}
 
