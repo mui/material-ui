@@ -23,12 +23,23 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
+const columns = [
+  {label: 'Dessert (100g serving)'},
+  {label: 'Calories'},
+  {label: 'Fat&nbsp;(g)'},
+  {label: 'Carbs&nbsp;(g)'},
+  {label: 'Protein&nbsp;(g)'},
+]
+
 export default function DataTableBasic() {
   const classes = useStyles();
 
   return (
     <Paper className={classes.root}>
-      <DataTable rows={rows} />
+      <DataTable
+        columns={columns}
+        rows={rows}
+      />
     </Paper>
   );
 }

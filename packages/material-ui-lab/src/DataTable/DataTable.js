@@ -12,18 +12,16 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function DataTable({rows}) {
+export default function DataTable({columns, rows}) {
   const classes = useStyles();
 
   return (
     <Table className={classes.table}>
       <TableHead>
         <TableRow>
-          <TableCell>Dessert (100g serving)</TableCell>
-          <TableCell align="right">Calories</TableCell>
-          <TableCell align="right">Fat&nbsp;(g)</TableCell>
-          <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-          <TableCell align="right">Protein&nbsp;(g)</TableCell>
+          {columns.map((column, index) => (
+            <TableCell key={index} align={index === 0 ? "left" : "right"}>{column.label}</TableCell>
+          ))}
         </TableRow>
       </TableHead>
       <TableBody>
