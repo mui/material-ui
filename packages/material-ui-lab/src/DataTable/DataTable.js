@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
 import { TablePagination } from '@material-ui/core';
+import CustomTableHead from './CustomTableHead';
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -24,19 +24,7 @@ export default function DataTable({columns, rows, dense, stickyHeader, height, p
     <div>
       <div style={{height, overflowY: 'scroll'}}>
         <Table className={classes.table} size={dense ? 'small' : 'medium'} stickyHeader={stickyHeader}>
-          <TableHead>
-            <TableRow>
-              {columns.map((column, index) => (
-                <TableCell
-                  key={column.label}
-                  align={index === 0 ? "left" : "right"}
-                  style={{width: column.width}}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
+          <CustomTableHead columns={columns} />
           <TableBody>
             {presentedRows.map(row => (
               <TableRow key={row.id}>

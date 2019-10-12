@@ -27,26 +27,26 @@ for (let i = 0; i < 20; i += 1) {
 const columns = [
   {
     label: 'Id',
-    width: '200px',
+    width: 200,
   },
   {
     label: 'Dessert (100g serving)',
   },
   {
     label: 'Calories',
-    width: '200px',
+    width: 200,
   },
   {
     label: 'Fat (g)',
-    width: '200px',
+    width: 200,
   },
   {
     label: 'Carbs (g)',
-    width: '200px',
+    width: 200,
   },
   {
     label: 'Protein (g)',
-    width: '200px',
+    width: 200,
   },
 ]
 
