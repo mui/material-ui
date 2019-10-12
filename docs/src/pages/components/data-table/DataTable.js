@@ -53,6 +53,7 @@ export default function DataTableBasic() {
       <DataTable
         columns={columns}
         rows={rows}
+        dense
       />
     </Paper>
   );

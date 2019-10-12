@@ -12,11 +12,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function DataTable({columns, rows}) {
+export default function DataTable({columns, rows, dense}) {
   const classes = useStyles();
 
   return (
-    <Table className={classes.table}>
+    <Table className={classes.table} size={dense ? 'small' : 'medium'}>
       <TableHead>
         <TableRow>
           {columns.map((column, index) => (
