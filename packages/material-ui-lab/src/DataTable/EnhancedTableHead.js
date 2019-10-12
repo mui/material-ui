@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-const CustomTableHead = ({columns}) => {
+const EnhancedTableHead = ({columns}) => {
   const classes = useStyles();
   const [width, setWidth] = useState(columns[0].width);
 
@@ -67,7 +67,6 @@ const CustomTableHead = ({columns}) => {
           >
             {column.label}
             {index === 0 && (<div
-              role='grid'
               tabIndex={0}
               className={classes.resizableBar}
               onMouseDown={handleMouseDown}
@@ -79,4 +78,4 @@ const CustomTableHead = ({columns}) => {
   );
 };
 
-export default CustomTableHead;
+export default EnhancedTableHead;
