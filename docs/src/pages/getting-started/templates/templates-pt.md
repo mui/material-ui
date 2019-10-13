@@ -14,7 +14,7 @@ Seções de cada leiaute são claramente definidas por comentários ou uso de ar
 
 Se, ao usar estes exemplos você faz mudanças ou melhorias que poderiam melhorar a experiência do desenvolvedor, ou você gostaria de contribuir com um exemplo adicional, por favor considere a criação de um [pull request no GitHub](https://github.com/mui-org/material-ui/pulls).
 
-Até agora, temos demonstrações para um painel, página de login, página de inscrição, página de blog, fluxo de check-out, página de álbum, página de preços e uma página de rodapé.
+So far we have demos for a dashboard, sign in page, sign up page, blog page, checkout flow, album page, pricing page, and sticky footer page.
 
 ## Temas Premium
 

@@ -14,7 +14,7 @@ The templates can be combined with one of the [example applications](https://git
 
 If while using these examples you make changes or enhancements that could improve the developer experience, or you would like to contribute an additional example, please consider creating a [pull request on GitHub](https://github.com/mui-org/material-ui/pulls).
 
-So far we have demos for dashboard, sign in page, sign up page, blog page, checkout flow, album page, pricing page, and sticky footer page.
+So far we have demos for a dashboard, sign in page, sign up page, blog page, checkout flow, album page, pricing page, and sticky footer page.
 
 ## Премиум темы
 

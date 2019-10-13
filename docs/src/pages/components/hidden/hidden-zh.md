@@ -5,9 +5,9 @@ components: Hidden
 
 # Hidden
 
-<p class="description">Quickly and responsively toggle the visibility value of components and more with the hidden utilities.</p>
+<p class="description">您可以使用我们的隐藏组件来实现快速并响应式地控制元素的显隐。</p>
 
-除非**明确指定是隐藏的**，所有元素都是可见的。 To ease integration with Material-UI's [responsive breakpoints](/customization/breakpoints/), this component can be used to hide any content, or you can use it in conjunction with the [`Grid`](/components/grid/) component.
+除非**明确指定是隐藏的**，所有元素都是可见的。 为了简化与[响应式断点](/customization/breakpoints/)的集成， 此组件可用于隐藏任何内容，或者您可以将它与我们的[`栅格`](/components/grid/)组件结合使用。
 
 ## 它是如何工作的
 
@@ -35,19 +35,19 @@ mdDown      |                     hide | show
 
 ## 断点 up
 
-使用任何断点 `up` 属性，给定 *子节点* 将被隐藏 *或高于* 的断点。
+使用任何断点 `up` 属性的元素，给定的 *子节点* 将在 *断点以及断点以上* 时被隐藏。
 
 {{"demo": "pages/components/hidden/BreakpointUp.js"}}
 
 ## 断点 down
 
-使用任何断点 `down` 属性，给定 *子节点* 将被隐藏 *或低于* 的断点。
+使用任何断点 `down` 属性的元素，给定 *子节点* 将在 *断点以及断点以下* 时被隐藏 。
 
 {{"demo": "pages/components/hidden/BreakpointDown.js"}}
 
 ## 断点 only
 
-利用断点 `only` 属性，给定 *孩子* 将被隐藏 *在* 指定的断点（多个）。
+利用断点 `only` 属性，给定 *子节点* 将被隐藏 *在* 指定的断点。
 
 `only` 属性可以两种方式使用：
 

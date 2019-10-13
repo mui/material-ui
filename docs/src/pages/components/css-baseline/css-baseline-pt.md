@@ -12,16 +12,14 @@ Você já deve estar familiarizado com [normalize.css](https://github.com/necola
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-function MyApp() {
+export default function MyApp() {
   return (
     <React.Fragment>
       <CssBaseline />
-      {/* O resto de sua aplicação */}
+      {/* The rest of your application */}
     </React.Fragment>
   );
 }
-
-export default MyApp;
 ```
 
 ## Abordagem

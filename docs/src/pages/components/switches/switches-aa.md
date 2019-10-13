@@ -47,9 +47,10 @@ crwdns91984:0crwdne91984:0
 
 ## crwdns102628:0crwdne102628:0
 
-- crwdns102630:0crwdne102630:0 crwdns102632:0crwdne102632:0
-- crwdns102634:0crwdne102634:0 crwdns102636:0crwdne102636:0
+- crwdns103880:0crwdne103880:0 crwdns103882:0crwdne103882:0 crwdns103884:0{{ role: 'switch' }}crwdne103884:0
+- crwdns103886:0crwdne103886:0 crwdns103888:0crwdne103888:0
+- crwdns103890:0crwdne103890:0 crwdns103892:0crwdne103892:0
 
 ```jsx
-crwdns91996:0{{ 'aria-label': 'Switch A' }}crwdne91996:0
+crwdns103894:0{{ 'aria-label': 'Switch A' }}crwdne103894:0
 ```

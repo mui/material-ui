@@ -15,4 +15,4 @@ components: ClickAwayListener
 
 {{"demo": "pages/components/click-away-listener/ClickAway.js"}}
 
-Notice that the component only accepts one child element. You can find a more advanced demo on the [menu documentation section](/components/menus/#menulist-composition).
+Notice that the component only accepts one child element. You can find a more advanced demo on the [Menu documentation section](/components/menus/#menulist-composition).

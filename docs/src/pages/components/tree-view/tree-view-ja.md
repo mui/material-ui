@@ -20,3 +20,9 @@ components: TreeView、TreeItem
 ### Gmailクローン
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}
+
+## アクセシビリティ
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
+
+The component follows the WAI-ARIA best practices.

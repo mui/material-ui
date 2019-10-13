@@ -36,7 +36,7 @@ La experiencia de uso de Material-UI puede mejorar con algunas globales importan
 
 ### Meta tag responsivo
 
-Material-UI es desarrollado primero móvil: una estrategia mediante la cual primero escribimos código para dispositivos móviles y luego ampliamos los componentes proporcionalmente, a medida que sea necesario, utilizando los media queries de CSS. Para asegurar un renderizado adecuado y zoom táctil en todos los dispositivos, añade la meta-etiqueta para vista responsiva en el elemento `<head>`.
+Material-UI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries. Para asegurar un renderizado adecuado y zoom táctil en todos los dispositivos, añade la meta-etiqueta para vista responsiva en el elemento `<head>`.
 
 ```html
 <meta

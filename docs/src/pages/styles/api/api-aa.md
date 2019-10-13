@@ -38,9 +38,9 @@ crwdns97284:0crwdne97284:0
 #### crwdns97286:0crwdne97286:0
 
 ```jsx
-crwdns103452:0{ makeStyles, createStyles }crwdnd103452:0{
+crwdns104094:0{ makeStyles, createStyles }crwdnd104094:0{
     backgroundColor: theme.color.red,
-  }crwdnd103452:0{classes.root}crwdne103452:0
+  }crwdnd104094:0{classes.root}crwdne104094:0
 ```
 
 ## `crwdns97290:0[options]crwdne97290:0`

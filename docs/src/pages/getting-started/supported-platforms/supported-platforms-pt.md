@@ -19,9 +19,9 @@ Because Material-UI supports server-side rendering, it needs to support the late
 
 ### Prefixos CSS
 
-Esteja ciente de que alguns recursos CSS [ exigem ](https://github.com/cssinjs/jss/issues/279) uma etapa adicional de pós-processamento que adiciona prefixos específicos do fornecedor. Estes prefixos são adicionados automaticamente no cliente graças ao [` jss-plugin-vendor-prefixer `](https://www.npmjs.com/package/jss-plugin-vendor-prefixer).
+Be aware that some CSS features [require](https://github.com/cssinjs/jss/issues/279) an additional postprocessing step that adds vendor-specific prefixes. These prefixes are automatically added to the client thanks to [`jss-plugin-vendor-prefixer`](https://www.npmjs.com/package/jss-plugin-vendor-prefixer).
 
-O CSS exibido nesta documentação é processado com [`autoprefixer`](https://www.npmjs.com/package/autoprefixer). Você pode usar [ a implementação encontrada na documentação ](https://github.com/mui-org/material-ui/blob/47aa5aeaec1d4ac2c08fd0e84277d6b91e497557/pages/_document.js#L123) como inspiração. Esteja ciente de que isso tem uma implicação no desempenho da página. Deve ser feito para páginas estáticas, mas precisa ser equilibrado com não fazer nada ao renderizar páginas dinâmicas.
+O CSS exibido nesta documentação é processado com [`autoprefixer`](https://www.npmjs.com/package/autoprefixer). Você pode usar [ a implementação encontrada na documentação ](https://github.com/mui-org/material-ui/blob/47aa5aeaec1d4ac2c08fd0e84277d6b91e497557/pages/_document.js#L123) como inspiração. Esteja ciente de que isso tem uma implicação no desempenho da página. It's a must-do for static pages, but it needs to be put in balance with not doing anything when rendering dynamic pages.
 
 ## React
 

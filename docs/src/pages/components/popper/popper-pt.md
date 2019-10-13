@@ -11,7 +11,7 @@ Algumas características importantes do componente `Popper`:
 
 - 🕷 Popper é baseado na biblioteca de terceiros ([Popper.js](https://github.com/FezVrasta/popper.js)) para um posicionamento perfeito.
 - 💄 É uma API alternativa para react-popper. Visa a simplicidade.
-- 📦 [10 kB gzipped](/size-snapshot) (7 kB do Popper.js).
+- 📦 [10 kB gzipped](/size-snapshot) ([7 kB](https://bundlephobia.com/result?p=popper.js) from Popper.js).
 - O elemento filho [`Portal`](/components/portal/) no corpo do documento, evita problemas de renderização. Você pode desativar esse comportamento com `disablePortal`.
 - O scroll não e bloqueado como ocorre com o componente [`Popover`](/components/popover/). O posicionamento do popper é atualizado com a área disponível no visor.
 - Clicar fora não oculta o componente `Popper`. Se você precisar desse comportamento, você pode usar o componente [`ClickAwayListener`](/components/click-away-listener/) - veja o exemplo na [seção da documentação do menu](/components/menus/#menulist-composition).
@@ -21,29 +21,35 @@ Algumas características importantes do componente `Popper`:
 
 {{"demo": "pages/components/popper/SimplePopper.js"}}
 
-## Popper Minimalista
+## Transições
 
-Você pode usar o componente sem dependências extras.
+The open/close state of the popper can be animated with a render prop child and a transition component. Este componente deve respeitar as seguintes condições:
 
-{{"demo": "pages/components/popper/MinimalPopper.js"}}
+- Be a direct child descendent of the popper.
+- Chamar a propriedade de callback `onEnter` quando a transição de entrada iniciar.
+- Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. These two callbacks allow the popper to unmount the child content when closed and fully transitioned.
 
-## Rolagem - Exemplo interativo
+Popper has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
 
-{{"demo": "pages/components/popper/ScrollPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/popper/TransitionsPopper.js"}}
 
-## Posicionado Popper
+Como alternativa, você pode usar [react-spring](https://github.com/react-spring/react-spring).
+
+{{"demo": "pages/components/popper/SpringPopper.js"}}
+
+## Positioned Popper
 
 {{"demo": "pages/components/popper/PositionedPopper.js"}}
 
-## Popper sem transição
+## Scroll playground
 
-{{"demo": "pages/components/popper/NoTransitionPopper.js"}}
+{{"demo": "pages/components/popper/ScrollPlayground.js", "hideHeader": true}}
 
-## Objeto de referência falsificado
+## Faked reference object
 
-A propriedade `anchorEl` pode ser uma referência a um elemento DOM falso. Você só precisa criar um objeto com o formato [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+The `anchorEl` property can be a reference to a fake DOM element. You just need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
 
-Selecione parte do texto para ver o popper:
+Highlight part of the text to see the popper:
 
 {{"demo": "pages/components/popper/FakedReferencePopper.js"}}
 
@@ -53,6 +59,6 @@ Para usos mais avançados, você pode tirar vantagem com:
 
 ### PopupState helper
 
-Existe um pacote de terceiros [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) que cuida do estado popover para você na maioria dos casos.
+There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper state for you in most cases.
 
 {{"demo": "pages/components/popper/PopperPopupState.js"}}

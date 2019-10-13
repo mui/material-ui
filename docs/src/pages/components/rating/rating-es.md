@@ -1,17 +1,17 @@
 ---
-title: Rating React component
-components: Rating
+title: Componente de React Rating
+components: Calificación
 ---
 
-# Rating
+# Calificación
 
-<p class="description">Ratings provide insight regarding others’ opinions and experiences with a product. Users can also rate products they’ve purchased.</p>
+<p class="description">Las calificaciones proporcionan información sobre las opiniones y experiencias de otros con un producto. Los usuarios también pueden calificar los productos que han comprado.</p>
 
-## Simple ratings
+## Calificaciones simples
 
 {{"demo": "pages/components/rating/SimpleRating.js"}}
 
-## Customized ratings
+## Calificaciones personalizadas
 
 Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 

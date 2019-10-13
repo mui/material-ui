@@ -36,7 +36,7 @@ L'expérience d'utilisation de Material-UI peut être améliorée avec une poign
 
 ### La balise meta responsive design (vue adaptative)
 
-Material-UI est d'abord développé sur mobile, stratégie dans laquelle nous écrivons d'abord du style pour les appareils mobiles, puis mettons à l'échelle les composants à l'aide des media queries CSS. Pour que le rendu et le zoom tactile soient corrects pour tous les périphériques, ajoutez la balise meta viewport à votre élément `<head>`.
+Material-UI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries. Pour que le rendu et le zoom tactile soient corrects pour tous les périphériques, ajoutez la balise meta viewport à votre élément `<head>`.
 
 ```html
 <meta

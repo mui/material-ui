@@ -21,8 +21,8 @@ O componente é projetado para ser usado **diretamente em seus componentes**. Po
 
 ## Exemplo YouTube
 
-{{"demo": "pages/components/skeleton/YouTube.js"}}
+{{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
 ## Exemplo Facebook
 
-{{"demo": "pages/components/skeleton/Facebook.js"}}
+{{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false}}

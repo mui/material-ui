@@ -28,7 +28,7 @@ Material-UI wurde mit Blick auf die [Roboto](https://fonts.google.com/specimen/R
 
 ## Schriftarten-Icons
 
-Um die Font `Symbol` Komponente zu verwenden, müssen Sie zuerst die [Material Symbole Schriftart](https://material.io/tools/icons/) hinzufügen. Hier sind einige [Anweisungen](/components/icons/#font-icons) wie das geht. Zum Beispiel über Google Web Fonts:
+In order to use the font `Icon` component, you must first add the [Material icons](https://material.io/tools/icons/) font. Hier sind einige [Anweisungen](/components/icons/#font-icons) wie das geht. Zum Beispiel über Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />

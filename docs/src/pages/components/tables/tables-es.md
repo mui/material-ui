@@ -51,9 +51,25 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/tables/CustomizedTables.js"}}
 
-## Acción de paginación de tabla personalizada
+### Custom pagination options
 
-El atributo `Action`del componente `TablePagination` permite implementar acciones personalizadas.
+It's possible to customise the options shown in the "Rows per page" select using the `rowsPerPageOptions` prop. You should either provide an array of:
+
+- **numbers**, each number will be used for the option's label and value.
+    
+    ```jsx
+    <TablePagination rowsPerPageOptions={[10, 50]} />
+    ```
+
+- **objects**, the `value` and `label` keys will be used respectively for the value and label of the option (useful for language strings such as 'All').
+    
+    ```jsx
+    <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
+    ```
+
+### Custom pagination actions
+
+The `Action` property of the `TablePagination` component allows the implementation of custom actions.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}
 

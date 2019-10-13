@@ -76,7 +76,7 @@ Acelere o desenvolvimento de aplicativos da sua empresa com uma solução segura
 - **Suporte a versão de longo prazo.** LTS fornece aos desenvolvedores e organizações, estabilidade e confiabilidade adicional nos aplicativos que estão em desenvolvimento, incluindo SLAs (contratos de nível de serviço garantidos) e serviços de consultoria. Aproveite o tempo que você precisa antes de atualizar para a versão ativa mais recente do Material-UI, ou confie no suporte de longo prazo para seu aplicativo, permanecendo na versão com a qual você se sentir mais confortável. O LTS está disponível como um serviço pago, estende-se às implementações do Material-UI v1 e superior.
 - **Assistência de migração de versão**.
 - **Prioridade nas correções**.
-- **Suporte prioritário**. Suporte a tempo e solução de problemas quando você mais precisar. Obtenha ajuda especializada diretamente da equipe do Material-UI com tempos de resposta garantidos (próximo dia útil).
+- **Suporte prioritário**. Suporte a tempo e solução de problemas quando você mais precisar. Get expert help directly from the Material-UI team with guaranteed response times (next business day).
 
 Para mais informações, [obtenha uma cotação](mailto:enterprise@material-ui.com) da nossa equipe.
 
@@ -133,6 +133,6 @@ Tweak Material-UI to meet specific requirements. Give us a summary of your needs
 - Suggest alternatives that might not require Material-UI
 - Decline the work due to timing or relevancy
 
-Note that work must be Material-UI related. We don't accept general React development work. Our contracting price is $300/hour or $2,000/day.
+Note that work must be Material-UI related. We don't accept general React development work. Our contracting price is $300/hour or $1,500/day.
 
 [Send us an email](mailto:custom-work@material-ui.com)

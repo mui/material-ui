@@ -13,7 +13,7 @@ Material-UI doesn't provide a high-level API for solving this problem. You are e
 
 ![stars](https://img.shields.io/github/stars/paypal/downshift.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/downshift.svg)
 
-This example demonstrates how to use [downshift](https://github.com/downshift-js/downshift).
+Этот пример демонстрирует как использовать [downshift](https://github.com/downshift-js/downshift).
 
 The last demo allows the user to clear the input and show a number of options on focus.
 

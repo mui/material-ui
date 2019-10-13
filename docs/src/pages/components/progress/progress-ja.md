@@ -85,7 +85,7 @@ function Progress(props) {
 
 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
-{{"demo": "pages/components/progress/CustomizedProgressBars.js"}}
+{{"demo": "pages/components/progress/CustomizedProgressBars.js", "defaultCodeOpen": false}}
 
 ## 外観の遅延
 

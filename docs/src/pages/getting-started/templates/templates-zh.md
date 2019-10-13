@@ -2,9 +2,9 @@
 title: Free React Templates
 ---
 
-# React Templates
+# React 模板
 
-<p class="description">A selection of basic react templates to help you get started building your app. The collection contains react dashboard, admin, and more.</p>
+<p class="description">一系列基础的 React 模板可以帮助您开始构建应用程序。该集合包含 React 仪表板，后台等。</p>
 
 The templates can be combined with one of the [example applications](https://github.com/mui-org/material-ui/tree/master/examples) to form a complete starter.
 
@@ -12,12 +12,12 @@ Sections of each layout are clearly defined either by comments or use of separat
 
 {{"demo": "pages/getting-started/templates/Templates.js", "hideHeader": true}}
 
-If while using these examples you make changes or enhancements that could improve the developer experience, or you would like to contribute an additional example, please consider creating a [pull request on GitHub](https://github.com/mui-org/material-ui/pulls).
+如果您在使用这些示例时进行了更改或增强以改善开发人员的体验，或者您想提供其他示例，请考虑在GitHub</a>上创建 pull 请求。</p> 
 
-So far we have demos for dashboard, sign in page, sign up page, blog page, checkout flow, album page, pricing page, and sticky footer page.
+So far we have demos for a dashboard, sign in page, sign up page, blog page, checkout flow, album page, pricing page, and sticky footer page.
 
 ## 高级版主题
 
-Looking for something more? You can find complete templates & themes in the <a href="https://themes.material-ui.com/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-link">premium themes section</a>.
+寻找更多？ 您可以在 <a href="https://themes.material-ui.com/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-link">高级主题部分</a>找到完整的模板 & 主题。
 
 <a href="https://themes.material-ui.com/" data-ga-event-category="premium-themes" data-ga-event-action="click" data-ga-event-label="templates-image"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>

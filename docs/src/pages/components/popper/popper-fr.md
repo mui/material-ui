@@ -11,7 +11,7 @@ Some important features of the `Popper` component:
 
 - 🕷 Popper relies on the 3rd party library ([Popper.js](https://github.com/FezVrasta/popper.js)) for perfect positioning.
 - 💄 It's an alternative API to react-popper. It aims for simplicity.
-- 📦 [10 kB gzipped](/size-snapshot) (7 kB from Popper.js).
+- 📦 [10 kB gzipped](/size-snapshot) ([7 kB](https://bundlephobia.com/result?p=popper.js) from Popper.js).
 - The children is [`Portal`](/components/portal/) to the body of the document to avoid rendering problems. You can disable this behavior with `disablePortal`.
 - The scroll isn't blocked like with the [`Popover`](/components/popover/) component. The placement of the popper updates with the available area in the viewport.
 - Clicking away does not hide the `Popper` component. If you need this behavior, you can use [`ClickAwayListener`](/components/click-away-listener/) - see the example in the [menu documentation section](/components/menus/#menulist-composition).
@@ -21,23 +21,29 @@ Some important features of the `Popper` component:
 
 {{"demo": "pages/components/popper/SimplePopper.js"}}
 
-## Minimalist Popper
+## Les transitions
 
-You can use the component with zero extra dependencies.
+The open/close state of the popper can be animated with a render prop child and a transition component. This component should respect the following conditions:
 
-{{"demo": "pages/components/popper/MinimalPopper.js"}}
+- Be a direct child descendent of the popper.
+- Call the `onEnter` callback prop when the enter transition starts.
+- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow the popper to unmount the child content when closed and fully transitioned.
 
-## Scroll playground
+Popper has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
 
-{{"demo": "pages/components/popper/ScrollPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/popper/TransitionsPopper.js"}}
+
+Alternatively, you can use [react-spring](https://github.com/react-spring/react-spring).
+
+{{"demo": "pages/components/popper/SpringPopper.js"}}
 
 ## Positioned Popper
 
 {{"demo": "pages/components/popper/PositionedPopper.js"}}
 
-## Without transition Popper
+## Scroll playground
 
-{{"demo": "pages/components/popper/NoTransitionPopper.js"}}
+{{"demo": "pages/components/popper/ScrollPlayground.js", "hideHeader": true}}
 
 ## Faked reference object
 

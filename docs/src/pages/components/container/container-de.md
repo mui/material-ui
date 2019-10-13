@@ -13,18 +13,18 @@ Während Container geschachtelt werden können, benötigen die meisten Layouts k
 
 Eine Breite des Fluidcontainers wird durch den Wert `maxWidth` begrenzt.
 
+{{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
+
 ```jsx
 <Container maxWidth="sm">
 ```
-
-{{"demo": "pages/components/container/SimpleContainer.js", "iframe": true}}
 
 ## Fixiert
 
 Wenn Sie es vorziehen, für einen festen Satz von Größen zu entwerfen, anstatt zu versuchen, ein vollständig fließendes Ansichtsfenster unterzubringen, können Sie die Eigenschaft `fixed` festlegen. Die maximale Breite stimmt mit der minimalen Breite des aktuellen Haltepunkts überein.
 
+{{"demo": "pages/components/container/FixedContainer.js", "iframe": true, "defaultCodeOpen": false}}
+
 ```jsx
 <Container fixed>
 ```
-
-{{"demo": "pages/components/container/FixedContainer.js", "iframe": true}}

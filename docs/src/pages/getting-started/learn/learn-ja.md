@@ -2,7 +2,7 @@
 
 <p class="description">Material-UIは初めてですか？ 何から始めればいいのかは簡単に分かります。 このガイドを読めばすぐに開始できます。</p>
 
-人々は異なるバックグラウンドと学習スタイルを持ってMaterial-UIにやってきます。 より理論的なアプローチと実用的なアプローチのどちらが好みだったとしても、このセクションが役に立てれば幸いです。 馴染みのないテクノロジーのようにMaterial-UIには学習曲線があります。 練習とある程度の忍耐力があれば、すぐに慣れると思います。
+Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you’ll find this section helpful. 馴染みのないテクノロジーのようにMaterial-UIには学習曲線があります。 練習とある程度の忍耐力があれば、すぐに慣れると思います。
 
 ## 最初の例
 
@@ -38,7 +38,7 @@ Material-UIを初めて学ぶときは、公式のドキュメントよりもサ
   
   - 📹[コースの予告編を見る](https://www.youtube.com/watch?v=hhZ6yFvCWho)
   - 💻[コース](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
-- **React Material-UI Cookbook**: Material-UIを使用したReactアプリケーションにMaterial Designの原則を実装することで、現代的なアプリケーションを構築します。
+- **React Material-UI Cookbook**: Build modern-day applications by implementing Material Design principles in React, using Material-UI.
   
   - 📘 [The book](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
 

@@ -4,15 +4,17 @@
 
 ## Alinhamento do texto
 
+{{"demo": "pages/system/typography/TextAlignment.js", "defaultCodeOpen": false}}
+
 ```jsx
 <Box textAlign="left">…
 <Box textAlign="center">…
 <Box textAlign="right">…
 ```
 
-{{"demo": "pages/system/typography/TextAlignment.js"}}
-
 ## Peso da fonte
+
+{{"demo": "pages/system/typography/FontWeight.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box fontWeight="fontWeightLight">…
@@ -22,9 +24,9 @@
 <Box fontWeight="fontWeightBold">…
 ```
 
-{{"demo": "pages/system/typography/FontWeight.js"}}
-
 ## Tamanho da fonte
+
+{{"demo": "pages/system/typography/FontSize.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box fontSize="fontSize">…
@@ -32,9 +34,9 @@
 <Box fontSize={16}>…
 ```
 
-{{"demo": "pages/system/typography/FontSize.js"}}
-
 ## Estilo da fonte
+
+{{"demo": "pages/system/typography/FontStyle.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box fontStyle="normal">…
@@ -42,34 +44,32 @@
 <Box fontStyle="oblique">…
 ```
 
-{{"demo": "pages/system/typography/FontStyle.js"}}
-
 ## Família da fonte
+
+{{"demo": "pages/system/typography/FontFamily.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box fontFamily="fontFamily">…
 <Box fontFamily="Monospace">…
 ```
 
-{{"demo": "pages/system/typography/FontFamily.js"}}
-
 ## Espaçamento das letras
+
+{{"demo": "pages/system/typography/LetterSpacing.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box letterSpacing={6}>…
 <Box letterSpacing={10}>…
 ```
 
-{{"demo": "pages/system/typography/LetterSpacing.js"}}
-
 ## Altura da linha
+
+{{"demo": "pages/system/typography/LineHeight.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box lineHeight="normal">…
 <Box lineHeight={10}>…
 ```
-
-{{"demo": "pages/system/typography/LineHeight.js"}}
 
 ## API
 

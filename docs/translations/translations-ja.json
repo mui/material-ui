@@ -57,6 +57,8 @@
   "expandAll": "全て展開",
   "showSource": "ソースコード",
   "hideSource": "ソースコードを隠す",
+  "showFullSource": "Show the full source",
+  "hideFullSource": "Hide the full source",
   "viewGitHub": "GitHubでソースコードを見る",
   "codesandbox": "CodeSandboxで編集する",
   "seeMore": "もっと見る",
@@ -80,6 +82,7 @@
   "resetDensity": "密度をリセット",
   "increaseSpacing": "間隔を広げる",
   "decreaseSpacing": "間隔を狭める",
+  "getProfessionalSupport": "Get Professional Support",
   "pages": {
     "/getting-started": "はじめに",
     "/getting-started/installation": "インストール",

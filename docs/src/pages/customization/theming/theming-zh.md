@@ -27,7 +27,7 @@
 
 You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
 
-### Custom variables
+### 自定义变量
 
 When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. 就像这样：
 

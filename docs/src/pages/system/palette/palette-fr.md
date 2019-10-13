@@ -4,6 +4,8 @@
 
 ## Couleur
 
+{{"demo": "pages/system/palette/Color.js", "defaultCodeOpen": false}}
+
 ```jsx
 <Box color="primary.main">…
 <Box color="secondary.main">…
@@ -14,9 +16,9 @@
 <Box color="text.hint">…
 ```
 
-{{"demo": "pages/system/palette/Color.js"}}
-
 ## Background color
+
+{{"demo": "pages/system/palette/BackgroundColor.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box bgcolor="primary.main">…
@@ -27,8 +29,6 @@
 <Box bgcolor="text.disabled">…
 <Box bgcolor="text.hint">…
 ```
-
-{{"demo": "pages/system/palette/BackgroundColor.js"}}
 
 ## API
 

@@ -57,6 +57,8 @@
   "expandAll": "Alles aufklappen",
   "showSource": "Quellcode anzeigen",
   "hideSource": "Quellcode verstecken",
+  "showFullSource": "Show the full source",
+  "hideFullSource": "Hide the full source",
   "viewGitHub": "Den Quellcode auf GitHub anzeigen",
   "codesandbox": "In CodeSandbox bearbeiten",
   "seeMore": "Mehr anzeigen",
@@ -80,6 +82,7 @@
   "resetDensity": "Dichte zurücksetzen",
   "increaseSpacing": "Abstand erhöhen",
   "decreaseSpacing": "Abstand verringern",
+  "getProfessionalSupport": "Get Professional Support",
   "pages": {
     "/getting-started": "Erste Schritte",
     "/getting-started/installation": "Installation",

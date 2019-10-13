@@ -70,21 +70,21 @@ const theme = {
 
 ## Пример
 
+{{"demo": "pages/system/spacing/Demo.js", "defaultCodeOpen": false}}
+
 ```jsx
 <Box p={1}>…
 <Box m={1}>…
 <Box p={2}>…
 ```
 
-{{"demo": "pages/system/spacing/Demo.js"}}
-
 ## Horizontal centering
+
+{{"demo": "pages/system/spacing/HorizontalCentering.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box mx="auto">…
 ```
-
-{{"demo": "pages/system/spacing/HorizontalCentering.js"}}
 
 ## API
 

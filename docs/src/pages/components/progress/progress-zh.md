@@ -85,7 +85,7 @@ function Progress(props) {
 
 以下是自定义组件的一些例子。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
-{{"demo": "pages/components/progress/CustomizedProgressBars.js"}}
+{{"demo": "pages/components/progress/CustomizedProgressBars.js", "defaultCodeOpen": false}}
 
 ## 延时的出现
 

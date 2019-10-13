@@ -28,7 +28,7 @@ Material-UI был разработан на основе шрифта [Roboto](
 
 ## Иконочный шрифт
 
-Для того, чтобы использовать компонент `Icon`, вы должны сначала добавить [Material icons](https://material.io/tools/icons/) шрифт. Вот [некоторые инструкции](/components/icons/#font-icons) как это сделать. Например, через Google Web Fonts:
+In order to use the font `Icon` component, you must first add the [Material icons](https://material.io/tools/icons/) font. Вот [некоторые инструкции](/components/icons/#font-icons) как это сделать. Например, через Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />

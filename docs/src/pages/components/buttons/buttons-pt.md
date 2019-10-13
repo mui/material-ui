@@ -98,7 +98,7 @@ Botões de ícones são comumente encontrados em barras de aplicativos e barras 
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
-{{"demo": "pages/components/buttons/CustomizedButtons.js"}}
+{{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
 👑 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/components/button).
 
@@ -118,7 +118,7 @@ Aqui está um [exemplo de integração com react-router](/guides/composition/#bu
 
 ### Cursor não permitido
 
-O componente "ButtonBase" configura `pointer-events: none;` para botões desabilitados. o que evita a aparência de cursor desabilitado.
+The ButtonBase component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.
 
 Se você deseja usar `not-allowed`, você tem duas opções:
 
@@ -145,4 +145,4 @@ Então:
     </span>
     ```
     
-    This has the advantage of supporting any element, for instance, a link `<a>` element.
+    Isso tem a vantagem de suportar qualquer elemento, por exemplo, um elemento de link `<a>`.

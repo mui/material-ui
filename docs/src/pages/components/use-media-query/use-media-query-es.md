@@ -37,7 +37,7 @@ function MyComponent() {
 }
 ```
 
-{{"demo": "pages/components/use-media-query/ThemeHelper.js"}}
+{{"demo": "pages/components/use-media-query/ThemeHelper.js", "defaultCodeOpen": false}}
 
 Alternatively, you can use a callback function, accepting the theme as a first argument:
 

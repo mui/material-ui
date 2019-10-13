@@ -27,6 +27,12 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}
 
+## Additional actions
+
+In order to put an action such as a `Checkbox` or a button inside of the `ExpansionPanelSummary`, you need to stop the propagation of the focus and click events to prevent the panel from expanding/collapsing when using the action. You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in the label of the parent button that controls the panel expansion.
+
+{{"demo": "pages/components/expansion-panels/ActionsInExpansionPanelSummary.js"}}
+
 ## Performance
 
 The content of ExpansionPanels is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
