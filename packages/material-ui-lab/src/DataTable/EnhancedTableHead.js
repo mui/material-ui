@@ -30,9 +30,9 @@ const EnhancedTableHead = ({columns}) => {
   const originalWidth = useRef();
   const thRef = useRef();
 
-  const handleMouseDown = (e, index) => {
-    console.log('down:', e.pageX, index);
-    e.preventDefault();
+  const handleDragStart = (e, index) => {
+    console.log('dragStart:', e.pageX, index);
+
     originalWidth.current = widths[index];
     targetColumnIndex.current = index;
     originalxOffset.current = e.pageX;
@@ -43,23 +43,18 @@ const EnhancedTableHead = ({columns}) => {
     thRef.current.style.cursor = 'col-resize';
   }
 
-  useEffect(() => {
-    window.onmousemove = (e) => {
-      if (targetColumnIndex.current === undefined) {return;}
-      const diffX = e.pageX - originalxOffset.current;
-      console.log('move, new width:', diffX, originalWidth.current + diffX);
-      setWidths(Object.assign([], widths, {[targetColumnIndex.current]: originalWidth.current + diffX}));
-    }
-  });
+  const handleDrag = e => {
+    const diffX = e.pageX - originalxOffset.current;
+    console.log('move, new width:', diffX, originalWidth.current + diffX);
+    setWidths(Object.assign([], widths, {[targetColumnIndex.current]: originalWidth.current + diffX}));
+  }
 
-  useEffect(() => {
-    window.onmouseup = () => {
-      if (targetColumnIndex.current === undefined) {return;}
-      console.log('up');
-      targetColumnIndex.current = undefined;
-      thRef.current.style.cursor = 'auto';
-    }
-  }, []);
+  const handleDragEnd = (e) => {
+    console.log('dragEnd');
+    if (targetColumnIndex.current === undefined) {return;}
+    targetColumnIndex.current = undefined;
+    thRef.current.style.cursor = 'auto';
+  }
 
   return (
     <TableHead ref={thRef}>
@@ -73,9 +68,12 @@ const EnhancedTableHead = ({columns}) => {
           >
             {column.label}
             {column.resizable && (<div
+              draggable="true"
+              onDragStart={e => handleDragStart(e, index)}
+              onDrag={handleDrag}
+              onDragEnd={handleDragEnd}
               tabIndex={0}
               className={classes.resizableBar}
-              onMouseDown={e => handleMouseDown(e, index)}
             />)}
           </TableCell>
         ))}
