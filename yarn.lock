@@ -46,12 +46,12 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
-"@babel/generator@^7.4.0", "@babel/generator@^7.5.5", "@babel/generator@^7.6.0", "@babel/generator@^7.6.2":
-  version "7.6.2"
-  resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.6.2.tgz#dac8a3c2df118334c2a29ff3446da1636a8f8c03"
-  integrity sha512-j8iHaIW4gGPnViaIHI7e9t/Hl8qLjERI6DcV9kEpAIDJsAOrcnXqRS7t+QbhL76pwbtqP+QCQLL0z1CyVmtjjQ==
+"@babel/generator@^7.4.0", "@babel/generator@^7.6.0", "@babel/generator@^7.6.2":
+  version "7.6.4"
+  resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.6.4.tgz#a4f8437287bf9671b07f483b76e3bb731bc97671"
+  integrity sha512-jsBuXkFoZxk0yWLyGI9llT9oiQ2FeTASmRFE32U+aaDTfoE92t78eroO7PTpU/OrYq38hlcDM6vbfLDaOLy+7w==
   dependencies:
-    "@babel/types" "^7.6.0"
+    "@babel/types" "^7.6.3"
     jsesc "^2.5.1"
     lodash "^4.17.13"
     source-map "^0.5.0"
@@ -856,10 +856,10 @@
     globals "^11.1.0"
     lodash "^4.17.13"
 
-"@babel/types@^7.0.0", "@babel/types@^7.2.0", "@babel/types@^7.3.0", "@babel/types@^7.4.0", "@babel/types@^7.4.4", "@babel/types@^7.5.0", "@babel/types@^7.5.5", "@babel/types@^7.6.0":
-  version "7.6.1"
-  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.6.1.tgz#53abf3308add3ac2a2884d539151c57c4b3ac648"
-  integrity sha512-X7gdiuaCmA0uRjCmRtYJNAVCc/q+5xSgsfKJHqMN4iNLILX39677fJE1O40arPMh0TTtS9ItH67yre6c7k6t0g==
+"@babel/types@^7.0.0", "@babel/types@^7.2.0", "@babel/types@^7.3.0", "@babel/types@^7.4.0", "@babel/types@^7.4.4", "@babel/types@^7.5.0", "@babel/types@^7.5.5", "@babel/types@^7.6.0", "@babel/types@^7.6.1", "@babel/types@^7.6.3":
+  version "7.6.3"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.6.3.tgz#3f07d96f854f98e2fbd45c64b0cb942d11e8ba09"
+  integrity sha512-CqbcpTxMcpuQTMhjI37ZHVgjBkysg5icREQIEZ0eG1yCNwg3oy+5AaLiOKmjsCj6nqOsa6Hf0ObjRVwokb7srA==
   dependencies:
     esutils "^2.0.2"
     lodash "^4.17.13"
@@ -3416,13 +3416,14 @@ babel-plugin-module-resolver@^3.0.0, babel-plugin-module-resolver@^3.2.0:
     resolve "^1.4.0"
 
 babel-plugin-optimize-clsx@^2.3.0, babel-plugin-optimize-clsx@^2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/babel-plugin-optimize-clsx/-/babel-plugin-optimize-clsx-2.4.1.tgz#d0e0c0accdc3f0bc8d5ce48634a0591623a15c90"
-  integrity sha512-lhZPi+oiHIqsQSGTkBGyyv3ysiDFcn1Md6bfnOKbiDcFlH+Kvev0nPbnNmKgwQtMggd9s9Hq0nY20HJ5Wg9xDQ==
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-optimize-clsx/-/babel-plugin-optimize-clsx-2.5.0.tgz#ed7b41b610562fc72bbe6910bccdef4bec7f7f64"
+  integrity sha512-5jP8zpqlGB2hwMpL6Dos+t8IwgG6a0VnQ17ktUNekkVM+Zz4DkPiofpARlY+GjDSQ1wgTCaR5ILn+AUf/GuvKQ==
   dependencies:
-    "@babel/generator" "^7.5.5"
-    "@babel/types" "^7.5.5"
-    lodash "^4.17.14"
+    "@babel/generator" "^7.6.2"
+    "@babel/template" "^7.6.0"
+    "@babel/types" "^7.6.1"
+    lodash "^4.17.15"
     object-hash "^1.3.1"
 
 babel-plugin-preval@^2.0.0:
