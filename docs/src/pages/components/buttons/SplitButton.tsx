@@ -21,7 +21,10 @@ export default function SplitButton() {
     alert(`You clicked ${options[selectedIndex]}`);
   };
 
-  const handleMenuItemClick = (event: React.MouseEvent<HTMLLIElement, MouseEvent>, index: number) => {
+  const handleMenuItemClick = (
+    event: React.MouseEvent<HTMLLIElement, MouseEvent>,
+    index: number,
+  ) => {
     setSelectedIndex(index);
     setOpen(false);
   };
