@@ -3,27 +3,26 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 
+const initialState = {
+  mouseX: null,
+  mouseY: null,
+};
+
 export default function ContextMenu() {
-  const [state, setState] = React.useState({
-    anchorEl: null,
-    mouseX: null,
-    mouseY: null,
-  });
+  const [state, setState] = React.useState(initialState);
 
   const handleClick = event => {
     event.preventDefault();
     setState({
       mouseX: event.clientX - 2,
       mouseY: event.clientY - 4,
-      anchorEl: event.currentTarget,
     });
   };
 
   const handleClose = () => {
-    setState(oldState => ({ ...oldState, anchorEl: null }));
+    setState(initialState);
   };
 
-  const { mouseX, mouseY, anchorEl } = state;
   return (
     <div onContextMenu={handleClick} style={{ cursor: 'context-menu' }}>
       <Typography>
@@ -36,21 +35,11 @@ export default function ContextMenu() {
         lacinia tellus a libero volutpat maximus.
       </Typography>
       <Menu
-        id="context-menu"
-        anchorEl={anchorEl}
         keepMounted
-        open={Boolean(anchorEl)}
+        open={state.mouseY !== null}
         onClose={handleClose}
         anchorReference="anchorPosition"
-        anchorPosition={{ top: mouseY, left: mouseX }}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
+        anchorPosition={{ top: state.mouseY, left: state.mouseX }}
       >
         <MenuItem onClick={handleClose}>Copy</MenuItem>
         <MenuItem onClick={handleClose}>Print</MenuItem>
