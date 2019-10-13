@@ -182,8 +182,19 @@ function AppFrame(props) {
 
     changeTheme({ paletteType });
   };
+
+  // these handlers used to fix issue with RTL tooltip staying open after click
+  const [directionTooltipOpen, setDirectionTooltipOpen] = React.useState(false);
+  const handleDirectionTooltipClose = () => {
+    setDirectionTooltipOpen(false);
+  };
+  const handleDirectionTooltipOpen = () => {
+    setDirectionTooltipOpen(true);
+  };
+
   const handleToggleDirection = () => {
     changeTheme({ direction: theme.direction === 'ltr' ? 'rtl' : 'ltr' });
+    setDirectionTooltipOpen(false);
   };
 
   const router = useRouter();
@@ -311,7 +322,13 @@ function AppFrame(props) {
               {theme.palette.type === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
             </IconButton>
           </Tooltip>
-          <Tooltip title={t('toggleRTL')} enterDelay={300}>
+          <Tooltip
+            title={t('toggleRTL')}
+            enterDelay={300}
+            open={directionTooltipOpen}
+            onOpen={handleDirectionTooltipOpen}
+            onClose={handleDirectionTooltipClose}
+          >
             <IconButton
               color="inherit"
               onClick={handleToggleDirection}
