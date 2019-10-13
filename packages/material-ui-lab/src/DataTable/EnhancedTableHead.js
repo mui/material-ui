@@ -21,6 +21,9 @@ const useStyles = makeStyles({
   },
 });
 
+const img = new Image();
+img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=';
+
 const EnhancedTableHead = ({columns}) => {
   const classes = useStyles();
   const [widths, setWidths] = useState(columns.map(column => column.width));
@@ -32,15 +35,16 @@ const EnhancedTableHead = ({columns}) => {
 
   const handleDragStart = (e, columnIndex) => {
     console.log('dragStart [e.pageX, columnIndex]:', e.pageX, columnIndex);
+    /* remove drag preview image */
+    e.dataTransfer.setDragImage(img, 0, 0);
 
     originalWidth.current = widths[columnIndex];
     targetColumnIndex.current = columnIndex;
     originalxOffset.current = e.pageX;
-    /* having 'col-resize' hover only on resizableBar is not enough because:
-    1. bar position can lag behind mouse
-    2. bar position can be fixed while the cell resizes on the other end
-    So entire th is set with 'col-resize' style */
-    thRef.current.style.cursor = 'col-resize';
+
+    /* don't know how to set cursor to "col-resize" when dragging
+    /* one of the options is to add an overlay with that when dragging
+    */
   }
 
   const handleDrag = e => {
@@ -53,7 +57,6 @@ const EnhancedTableHead = ({columns}) => {
 
   const handleDragEnd = (e) => {
     console.log('dragEnd');
-    thRef.current.style.cursor = 'auto';
   }
 
   return (
