@@ -17,7 +17,7 @@ A fluid container width is bounded by that `maxWidth` property value.
 <Container maxWidth="sm">
 ```
 
-{{"demo": "pages/components/container/SimpleContainer.js", "iframe": true}}
+{{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
 
 ## Fixed
 
@@ -28,4 +28,4 @@ The max-width matches the min-width of the current breakpoint.
 <Container fixed>
 ```
 
-{{"demo": "pages/components/container/FixedContainer.js", "iframe": true}}
+{{"demo": "pages/components/container/FixedContainer.js", "iframe": true}, "defaultCodeOpen": false}
