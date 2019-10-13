@@ -28,25 +28,30 @@ const columns = [
   {
     label: 'Id',
     width: 200,
+    resizable: true,
   },
   {
     label: 'Dessert (100g serving)',
+    width: 300,
+    resizable: true,
   },
   {
     label: 'Calories',
     width: 200,
+    resizable: true,
   },
   {
     label: 'Fat (g)',
-    width: 200,
   },
   {
     label: 'Carbs (g)',
     width: 200,
+    resizable: true,
   },
   {
     label: 'Protein (g)',
     width: 200,
+    resizable: true,
   },
 ]
 
