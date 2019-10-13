@@ -13,7 +13,6 @@ export default function ContextMenu() {
   const handleClick = event => {
     event.preventDefault();
     setState({
-      ...state,
       mouseX: event.clientX - 2,
       mouseY: event.clientY - 4,
       anchorEl: event.currentTarget,
