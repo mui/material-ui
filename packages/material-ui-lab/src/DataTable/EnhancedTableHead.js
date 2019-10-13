@@ -25,16 +25,16 @@ const EnhancedTableHead = ({columns}) => {
   const classes = useStyles();
   const [widths, setWidths] = useState(columns.map(column => column.width));
 
-  const targetColumnIndex = useRef(undefined);
+  const targetColumnIndex = useRef();
   const originalxOffset = useRef();
   const originalWidth = useRef();
   const thRef = useRef();
 
-  const handleDragStart = (e, index) => {
-    console.log('dragStart:', e.pageX, index);
+  const handleDragStart = (e, columnIndex) => {
+    console.log('dragStart [e.pageX, columnIndex]:', e.pageX, columnIndex);
 
-    originalWidth.current = widths[index];
-    targetColumnIndex.current = index;
+    originalWidth.current = widths[columnIndex];
+    targetColumnIndex.current = columnIndex;
     originalxOffset.current = e.pageX;
     /* having 'col-resize' hover only on resizableBar is not enough because:
     1. bar position can lag behind mouse
@@ -44,15 +44,15 @@ const EnhancedTableHead = ({columns}) => {
   }
 
   const handleDrag = e => {
+    if(e.pageX === 0) {return; /* hack */}
     const diffX = e.pageX - originalxOffset.current;
-    console.log('move, new width:', diffX, originalWidth.current + diffX);
-    setWidths(Object.assign([], widths, {[targetColumnIndex.current]: originalWidth.current + diffX}));
+    const newWidth = originalWidth.current + diffX;
+    console.log('drag [e.pageX, originalOffset, diffX, newWidth]:', e.pageX, originalxOffset.current, diffX, newWidth);
+    setWidths(Object.assign([], widths, {[targetColumnIndex.current]: newWidth}));
   }
 
   const handleDragEnd = (e) => {
     console.log('dragEnd');
-    if (targetColumnIndex.current === undefined) {return;}
-    targetColumnIndex.current = undefined;
     thRef.current.style.cursor = 'auto';
   }
 
@@ -72,7 +72,7 @@ const EnhancedTableHead = ({columns}) => {
               onDragStart={e => handleDragStart(e, index)}
               onDrag={handleDrag}
               onDragEnd={handleDragEnd}
-              tabIndex={0}
+              /* tabIndex={0} */
               className={classes.resizableBar}
             />)}
           </TableCell>
