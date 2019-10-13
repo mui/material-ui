@@ -21,7 +21,7 @@ export default function ContextMenu() {
   };
 
   const handleClose = () => {
-    setState({ ...state, anchorEl: null });
+    setState(oldState => ({ ...oldState, anchorEl: null }));
   };
 
   const { mouseX, mouseY, anchorEl } = state;
