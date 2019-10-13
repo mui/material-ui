@@ -51,6 +51,7 @@ const EnhancedTableHead = ({columns}) => {
     if(e.pageX === 0) {return; /* hack */}
     const diffX = e.pageX - originalxOffset.current;
     const newWidth = originalWidth.current + diffX;
+    if (newWidth <= 0) {return;}
     console.log('drag [e.pageX, originalOffset, diffX, newWidth]:', e.pageX, originalxOffset.current, diffX, newWidth);
     setWidths(Object.assign([], widths, {[targetColumnIndex.current]: newWidth}));
   }
