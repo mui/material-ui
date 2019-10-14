@@ -276,7 +276,9 @@ function Demo(props) {
    * }`
    */
   let jsxOnly = demoData.raw
-    ? demoData.raw.match(/export default .*(\n {2}return \(\n|\n {2}return )(.*?)(\n {2}\);\n}|;\n})/s)
+    ? demoData.raw.match(
+        /export default .*(\n {2}return \(\n|\n {2}return )(.*?)(\n {2}\);\n}|;\n})/s,
+      )
     : null;
   jsxOnly = jsxOnly ? jsxOnly[2] : demoData.raw;
   const codeLength = jsxOnly.split(/\n/).length;

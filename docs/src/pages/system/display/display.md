@@ -4,12 +4,16 @@
 
 ## Examples
 
+### Inline
+
 {{"demo": "pages/system/display/Inline.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="div" display="inline">inline</Box>
 <Box component="div" display="inline">inline</Box>
 ```
+
+### Block
 
 {{"demo": "pages/system/display/Block.js", "defaultCodeOpen": false}}
 
