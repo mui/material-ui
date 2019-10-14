@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { createClientRender } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Switch from './Switch';
 
 describe('<Switch />', () => {
@@ -61,7 +61,7 @@ describe('<Switch />', () => {
   });
 
   it('renders a checkbox with the Checked state when checked', () => {
-    const { getByRole } = render(<Switch checked />);
+    const { getByRole } = render(<Switch defaultChecked />);
 
     expect(getByRole('checkbox')).to.have.property('checked', true);
   });
@@ -76,5 +76,15 @@ describe('<Switch />', () => {
     const { getByRole } = render(<Switch readOnly />);
 
     expect(getByRole('checkbox')).to.have.property('readOnly', true);
+  });
+
+  specify('the Checked state changes after change events', () => {
+    const { getByRole } = render(<Switch defaultChecked />);
+
+    // how a user would trigger it
+    getByRole('checkbox').click();
+    fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
+
+    expect(getByRole('checkbox')).to.have.property('checked', false);
   });
 });
