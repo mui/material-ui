@@ -311,7 +311,7 @@ function AppFrame(props) {
               {theme.palette.type === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
             </IconButton>
           </Tooltip>
-          <Tooltip title={t('toggleRTL')} enterDelay={300}>
+          <Tooltip title={t('toggleRTL')} key={theme.direction} enterDelay={300}>
             <IconButton
               color="inherit"
               onClick={handleToggleDirection}
