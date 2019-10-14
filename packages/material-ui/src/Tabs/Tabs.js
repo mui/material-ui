@@ -190,7 +190,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       [size]: tabMeta ? tabMeta[size] : 0,
     };
 
-    if (Number.isNaN(Number(indicatorStyle[start])) || Number.isNaN(Number(indicatorStyle[size]))) {
+    if (isNaN(indicatorStyle[start]) || isNaN(indicatorStyle[size])) {
       setIndicatorStyle(newIndicatorStyle);
     } else {
       const dStart = Math.abs(indicatorStyle[start] - newIndicatorStyle[start]);
