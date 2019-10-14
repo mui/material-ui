@@ -39,7 +39,6 @@ function addHiddenInput(form, name, value) {
 
 const styles = theme => ({
   root: {
-    position: 'relative',
     marginBottom: 40,
     marginLeft: -theme.spacing(2),
     marginRight: -theme.spacing(2),
@@ -50,6 +49,7 @@ const styles = theme => ({
     },
   },
   demo: {
+    position: 'relative',
     outline: 0,
     margin: 'auto',
     borderRadius: theme.shape.borderRadius,
@@ -267,7 +267,7 @@ function Demo(props) {
 
   /* regex matches the content of the return statement in the default export
    * `export default.*`
-   * `return (\n` or `return `
+   * `\n  return (\n` or `\n  return `
    *  everything (not greedy), until:
    * `  );
    * }`
@@ -276,7 +276,7 @@ function Demo(props) {
    * }`
    */
   let jsxOnly = demoData.raw
-    ? demoData.raw.match(/export default .*(return \(\n|return )(.*?)(\n {2}\);\n}|;\n})/s)
+    ? demoData.raw.match(/export default .*(\n {2}return \(\n|\n {2}return )(.*?)(\n {2}\);\n}|;\n})/s)
     : null;
   jsxOnly = jsxOnly ? jsxOnly[2] : demoData.raw;
   const codeLength = jsxOnly.split(/\n/).length;
