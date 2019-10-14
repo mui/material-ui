@@ -97,8 +97,8 @@ export const PageWithContexts: React.SFC<Props> = ({
       sheetsRegistry={pageContext.sheetsRegistry}
       generateClassName={pageContext.generateClassName}
     >
-      <SnackbarProvider maxSnack={3}>
-        <ThemeProvider theme={muiTheme}>
+      <ThemeProvider theme={muiTheme}>
+        <SnackbarProvider maxSnack={3}>
           <MuiPickersUtilsProvider utils={utilsMap[lib]}>
             <ThemeContext.Provider value={theme}>
               <UtilsContext.Provider value={createUtilsService(lib)}>
@@ -114,8 +114,8 @@ export const PageWithContexts: React.SFC<Props> = ({
               </UtilsContext.Provider>
             </ThemeContext.Provider>
           </MuiPickersUtilsProvider>
-        </ThemeProvider>
-      </SnackbarProvider>
+        </SnackbarProvider>
+      </ThemeProvider>
     </StylesProvider>
   );
 };
