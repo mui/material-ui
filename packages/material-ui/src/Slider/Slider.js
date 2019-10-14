@@ -598,6 +598,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     event.preventDefault();
 
     // The slider is going to take care of this interaction. Dibs!
+    /* eslint no-underscore-dangle: 0 */
     event.__MUI_HANDLED__ = true;
 
     const touch = event.changedTouches[0];
