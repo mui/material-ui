@@ -67,7 +67,7 @@ export * from './CircularProgress';
 export { default as ClickAwayListener } from './ClickAwayListener';
 export * from './ClickAwayListener';
 
-export { default as Collapse } from './Collapse';
+export { default as Collapse, FastCollapse } from './Collapse';
 export * from './Collapse';
 
 export { default as Container } from './Container';

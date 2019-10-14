@@ -11,6 +11,7 @@ import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@material-
 import { blue, pink } from '@material-ui/core/colors';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { darkTheme, setPrismTheme } from 'docs/src/modules/components/prism';
+import { FastCollapse } from '@material-ui/core/Collapse';
 
 const languageMap = {
   en: enUS,
@@ -196,6 +197,11 @@ export function ThemeProvider(props) {
             default: paletteType === 'light' ? '#fff' : '#121212',
           },
           ...paletteColors,
+        },
+        props: {
+          MuiExpansionPanel: {
+            TransitionComponent: FastCollapse,
+          },
         },
         spacing,
       },
