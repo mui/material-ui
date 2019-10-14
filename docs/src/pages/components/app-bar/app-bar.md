@@ -45,7 +45,6 @@ You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
 ## Placement
 
-
 When using Appbar `variant="fixed"` you need to have extra space for the content to show below
 & not under. There are 2 ways to do it. Either use `theme.mixins.toolbar` like;
 
