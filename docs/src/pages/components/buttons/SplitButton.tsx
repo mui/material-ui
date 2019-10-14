@@ -14,14 +14,17 @@ const options = ['Create a merge commit', 'Squash and merge', 'Rebase and merge'
 
 export default function SplitButton() {
   const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
+  const anchorRef = React.useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   const handleClick = () => {
     alert(`You clicked ${options[selectedIndex]}`);
   };
 
-  const handleMenuItemClick = (event, index) => {
+  const handleMenuItemClick = (
+    event: React.MouseEvent<HTMLLIElement, MouseEvent>,
+    index: number,
+  ) => {
     setSelectedIndex(index);
     setOpen(false);
   };
@@ -30,8 +33,8 @@ export default function SplitButton() {
     setOpen(prevOpen => !prevOpen);
   };
 
-  const handleClose = event => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+  const handleClose = (event: React.MouseEvent<Document, MouseEvent>) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
       return;
     }
 
