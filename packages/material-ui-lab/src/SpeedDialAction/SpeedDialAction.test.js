@@ -17,7 +17,7 @@ describe('<SpeedDialAction />', () => {
   };
 
   before(() => {
-    // StrictModeViolation: unknown
+    // StrictModeViolation: uses Tooltip
     mount = createMount({ strict: false });
     classes = getClasses(<SpeedDialAction {...defaultProps} />);
   });
