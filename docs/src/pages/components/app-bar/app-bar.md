@@ -60,16 +60,16 @@ const useStyles = makeStyles(theme => ({
 const App = () => {
   const classes = useStyles();
   return (
-    <>
+    <div>
       <Appbar position="fixed"></Appbar>
       <div className={classes.offset}> {/* to accomdate for top white space */}
-    <>
+    </div>
   )
 };
 ```
 
 Or you can append `<Toolbar />` component after `<Appbar />` like shown in the example
-below. To prevent content from hiding behind Appbar.
+below. To prevent content from hiding under Appbar.
 
 ### Hide App Bar
 
