@@ -292,7 +292,7 @@ Dialog.propTypes = {
   fullScreen: PropTypes.bool,
   /**
    * If `true`, the dialog stretches to `maxWidth`.
-   * 
+   *
    * Notice that the dialog width grow is limited by the default margin.
    */
   fullWidth: PropTypes.bool,
