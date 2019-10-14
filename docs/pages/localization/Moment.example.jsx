@@ -1,11 +1,13 @@
+import moment from 'moment';
 import MomentUtils from '@date-io/moment';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import React, { useState, useCallback } from 'react';
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-
 import 'moment/locale/fr';
 import 'moment/locale/ru';
+
+moment.locale('fr'); // it is required to select default locale manually
 
 const localeMap = {
   en: 'en',
@@ -24,15 +26,17 @@ function MomentLocalizationExample() {
   }, []);
 
   const selectLocale = useCallback(locale => {
+    moment.locale(locale);
+
     setLocale(locale);
     setAnchorEl(null);
   }, []);
 
   return (
-    <MuiPickersUtilsProvider utils={MomentUtils} locale={locale}>
+    <MuiPickersUtilsProvider libInstance={moment} utils={MomentUtils} locale={locale}>
       <DatePicker
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
         InputProps={{
           endAdornment: (
             <IconButton
