@@ -59,9 +59,15 @@ describe('<ExpansionPanelSummary />', () => {
     expect(expandButton).to.be.inaccessible;
   });
 
-  it('focusing adds the `focused` class', () => {
+  it('focusing adds the `focused` class if focused visible', () => {
+    // TODO: Rename `focused` -> `focus-visible`
+    // `focused` is a global state which is applied on focus
+    // only here do we constrain it to focus-visible. THe name is also not consistent
+    // with :focus
     const { getByRole } = render(<ExpansionPanelSummary />);
+    fireEvent.mouseDown(document.body); // pointer device
 
+    fireEvent.keyDown(document.activeElement, { key: 'Tab' }); // not actually focusing (yet)
     getByRole('button').focus();
 
     expect(getByRole('button')).to.be.focused;
@@ -70,6 +76,8 @@ describe('<ExpansionPanelSummary />', () => {
 
   it('blur should unset focused state', () => {
     const { getByRole } = render(<ExpansionPanelSummary />);
+    fireEvent.mouseDown(document.body); // pointer device
+    fireEvent.keyDown(document.activeElement, { key: 'Tab' }); // not actually focusing (yet)
     getByRole('button').focus();
 
     getByRole('button').blur();
