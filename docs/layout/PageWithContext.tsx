@@ -8,6 +8,7 @@ import { setPrismTheme } from '../utils/prism';
 import { PageContext } from '../utils/getPageContext';
 import { UtilsContext } from '../_shared/UtilsServiceContext';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { NotificationManager } from 'utils/NotificationManager';
 import { Theme, createMuiTheme, CssBaseline } from '@material-ui/core';
 import { ThemeProvider, jssPreset, StylesProvider } from '@material-ui/styles';
 import { createUtilsService, UtilsLib, utilsMap } from '../utils/utilsService';
@@ -102,6 +103,7 @@ export const PageWithContexts: React.SFC<Props> = ({
             <ThemeContext.Provider value={theme}>
               <UtilsContext.Provider value={createUtilsService(lib)}>
                 <CssBaseline />
+                <NotificationManager />
 
                 <Layout
                   children={children}
