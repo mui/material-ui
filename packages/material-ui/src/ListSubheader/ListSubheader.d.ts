@@ -1,17 +1,19 @@
 import * as React from 'react';
 import { StandardProps } from '..';
-import { OverridableComponent, SimplifiedPropsOf } from '../OverridableComponent';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-declare const ListSubheader: OverridableComponent<{
-  props: React.HTMLAttributes<HTMLDivElement> & {
+export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'> {
+  props: P & {
     color?: 'default' | 'primary' | 'inherit';
     disableGutters?: boolean;
     disableSticky?: boolean;
     inset?: boolean;
   };
-  defaultComponent: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
+  defaultComponent: D;
   classKey: ListSubheaderClassKey;
-}>;
+}
+
+declare const ListSubheader: OverridableComponent<ListSubheaderTypeMap>;
 
 export type ListSubheaderClassKey =
   | 'root'
@@ -21,6 +23,9 @@ export type ListSubheaderClassKey =
   | 'sticky'
   | 'gutters';
 
-export type ListSubheaderProps = SimplifiedPropsOf<typeof ListSubheader>;
+export type ListSubheaderProps<
+  D extends React.ElementType = ListSubheaderTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<ListSubheaderTypeMap<P, D>, D>;
 
 export default ListSubheader;
