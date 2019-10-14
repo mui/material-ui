@@ -143,7 +143,6 @@ const Switch = React.forwardRef(function Switch(props, ref) {
     className,
     color = 'secondary',
     edge = false,
-    inputProps,
     size = 'medium',
     ...other
   } = props;
@@ -171,10 +170,6 @@ const Switch = React.forwardRef(function Switch(props, ref) {
           input: classes.input,
           checked: classes.checked,
           disabled: classes.disabled,
-        }}
-        inputProps={{
-          role: 'switch',
-          ...inputProps,
         }}
         ref={ref}
         {...other}

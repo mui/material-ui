@@ -54,27 +54,27 @@ describe('<Switch />', () => {
     expect(root.childNodes[1]).to.have.class(classes.track);
   });
 
-  it('renders a `role="switch"` with the Off state by default', () => {
+  it('renders a `role="checkbox"` with the Unechecked state by default', () => {
     const { getByRole } = render(<Switch />);
 
-    expect(getByRole('switch')).to.have.property('checked', false);
+    expect(getByRole('checkbox')).to.have.property('checked', false);
   });
 
-  it('renders a switch with the On state when checked', () => {
+  it('renders a checkbox with the Checked state when checked', () => {
     const { getByRole } = render(<Switch checked />);
 
-    expect(getByRole('switch')).to.have.property('checked', true);
+    expect(getByRole('checkbox')).to.have.property('checked', true);
   });
 
   specify('the switch can be disabled', () => {
     const { getByRole } = render(<Switch disabled />);
 
-    expect(getByRole('switch')).to.have.property('disabled', true);
+    expect(getByRole('checkbox')).to.have.property('disabled', true);
   });
 
   specify('the switch can be readonly', () => {
     const { getByRole } = render(<Switch readOnly />);
 
-    expect(getByRole('switch')).to.have.property('readOnly', true);
+    expect(getByRole('checkbox')).to.have.property('readOnly', true);
   });
 });
