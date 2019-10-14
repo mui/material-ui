@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 import React from 'react';
 import kebabCase from 'lodash/kebabCase';
 import { Router as Router2 } from 'next/router';

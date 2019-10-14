@@ -1,10 +1,9 @@
-/* eslint-disable material-ui/no-hardcoded-labels */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Link from 'docs/src/modules/components/Link';
+import { useSelector } from 'react-redux';
 
 const styles = theme => ({
   root: {
@@ -28,6 +27,7 @@ const styles = theme => ({
 
 function HomePro(props) {
   const { classes } = props;
+  const t = useSelector(state => state.options.t);
 
   return (
     <Link
@@ -35,7 +35,7 @@ function HomePro(props) {
       className={classNames(classes.root, 'mui-fixed')}
       href="/getting-started/support/#professional-support-premium"
     >
-      Get Professional Support
+      {t('getProfessionalSupport')}
     </Link>
   );
 }
