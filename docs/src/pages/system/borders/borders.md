@@ -16,7 +16,7 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 <Box borderLeft={1}>…
 ```
 
-{{"demo": "pages/system/borders/BorderAdditive.js"}}
+{{"demo": "pages/system/borders/BorderAdditive.js", "defaultCodeOpen": false}}
 
 ### Subtractive
 
@@ -28,7 +28,7 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 <Box borderLeft={0}>…
 ```
 
-{{"demo": "pages/system/borders/BorderSubtractive.js"}}
+{{"demo": "pages/system/borders/BorderSubtractive.js", "defaultCodeOpen": false}}
 
 ## Border color
 
@@ -40,7 +40,7 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 <Box borderColor="text.primary">…
 ```
 
-{{"demo": "pages/system/borders/BorderColor.js"}}
+{{"demo": "pages/system/borders/BorderColor.js", "defaultCodeOpen": false}}
 
 ## Border-radius
 
@@ -50,7 +50,7 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 <Box borderRadius={16}>…
 ```
 
-{{"demo": "pages/system/borders/BorderRadius.js"}}
+{{"demo": "pages/system/borders/BorderRadius.js", "defaultCodeOpen": false}}
 
 ## API
 

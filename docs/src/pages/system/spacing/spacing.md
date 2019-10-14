@@ -76,7 +76,7 @@ const theme = {
 <Box p={2}>…
 ```
 
-{{"demo": "pages/system/spacing/Demo.js"}}
+{{"demo": "pages/system/spacing/Demo.js", "defaultCodeOpen": false}}
 
 ## Horizontal centering
 
@@ -84,7 +84,7 @@ const theme = {
 <Box mx="auto">…
 ```
 
-{{"demo": "pages/system/spacing/HorizontalCentering.js"}}
+{{"demo": "pages/system/spacing/HorizontalCentering.js", "defaultCodeOpen": false}}
 
 ## API
 

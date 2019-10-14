@@ -12,7 +12,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 <Box display="flex">…
 ```
 
-{{"demo": "pages/system/flexbox/Display.js"}}
+{{"demo": "pages/system/flexbox/Display.js", "defaultCodeOpen": false}}
 
 ### flex-direction
 
@@ -21,7 +21,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 <Box flexDirection="row-reverse">…
 ```
 
-{{"demo": "pages/system/flexbox/FlexDirection.js"}}
+{{"demo": "pages/system/flexbox/FlexDirection.js", "defaultCodeOpen": false}}
 
 ### flex-wrap
 
@@ -30,7 +30,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 <Box flexWrap="wrap">…
 ```
 
-{{"demo": "pages/system/flexbox/FlexWrap.js"}}
+{{"demo": "pages/system/flexbox/FlexWrap.js", "defaultCodeOpen": false}}
 
 ### justify-content
 
@@ -40,7 +40,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 <Box justifyContent="center">…
 ```
 
-{{"demo": "pages/system/flexbox/JustifyContent.js"}}
+{{"demo": "pages/system/flexbox/JustifyContent.js", "defaultCodeOpen": false}}
 
 ### align-items
 
@@ -50,7 +50,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 <Box alignItems="center">…
 ```
 
-{{"demo": "pages/system/flexbox/AlignItems.js"}}
+{{"demo": "pages/system/flexbox/AlignItems.js", "defaultCodeOpen": false}}
 
 ### align-content
 
@@ -59,7 +59,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 <Box alignContent="flex-end">…
 ```
 
-{{"demo": "pages/system/flexbox/AlignContent.js"}}
+{{"demo": "pages/system/flexbox/AlignContent.js", "defaultCodeOpen": false}}
 
 ## Properties for the Children
 
@@ -71,7 +71,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 <Box order={1}>Item 3</Box>
 ```
 
-{{"demo": "pages/system/flexbox/Order.js"}}
+{{"demo": "pages/system/flexbox/Order.js", "defaultCodeOpen": false}}
 
 ### flex-grow
 
@@ -81,7 +81,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 <Box>Item 3</Box>
 ```
 
-{{"demo": "pages/system/flexbox/FlexGrow.js"}}
+{{"demo": "pages/system/flexbox/FlexGrow.js", "defaultCodeOpen": false}}
 
 ### flex-shrink
 
@@ -91,7 +91,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 <Box flexShrink={0}>Item 3</Box>
 ```
 
-{{"demo": "pages/system/flexbox/FlexShrink.js"}}
+{{"demo": "pages/system/flexbox/FlexShrink.js", "defaultCodeOpen": false}}
 
 ### align-self
 
@@ -101,7 +101,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 <Box>Item 3</Box>
 ```
 
-{{"demo": "pages/system/flexbox/AlignSelf.js"}}
+{{"demo": "pages/system/flexbox/AlignSelf.js", "defaultCodeOpen": false}}
 
 ## API
 

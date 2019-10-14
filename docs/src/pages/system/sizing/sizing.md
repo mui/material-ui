@@ -13,7 +13,7 @@ The sizing style functions support different property input type:
 <Box width={1}>   // 100%
 ```
 
-{{"demo": "pages/system/sizing/Values.js"}}
+{{"demo": "pages/system/sizing/Values.js", "defaultCodeOpen": false}}
 
 ## Width
 
@@ -25,7 +25,7 @@ The sizing style functions support different property input type:
 <Box width="auto">…
 ```
 
-{{"demo": "pages/system/sizing/Width.js"}}
+{{"demo": "pages/system/sizing/Width.js", "defaultCodeOpen": false}}
 
 ## Height
 
@@ -36,7 +36,7 @@ The sizing style functions support different property input type:
 <Box height="100%">…
 ```
 
-{{"demo": "pages/system/sizing/Height.js"}}
+{{"demo": "pages/system/sizing/Height.js", "defaultCodeOpen": false}}
 
 ## API
 

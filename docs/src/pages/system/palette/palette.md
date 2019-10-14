@@ -14,7 +14,7 @@
 <Box color="text.hint">…
 ```
 
-{{"demo": "pages/system/palette/Color.js"}}
+{{"demo": "pages/system/palette/Color.js", "defaultCodeOpen": false}}
 
 ## Background color
 
@@ -28,7 +28,7 @@
 <Box bgcolor="text.hint">…
 ```
 
-{{"demo": "pages/system/palette/BackgroundColor.js"}}
+{{"demo": "pages/system/palette/BackgroundColor.js", "defaultCodeOpen": false}}
 
 ## API
 

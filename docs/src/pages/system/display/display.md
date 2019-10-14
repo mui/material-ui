@@ -9,14 +9,14 @@
 <Box component="div" display="inline">inline</Box>
 ```
 
-{{"demo": "pages/system/display/Inline.js"}}
+{{"demo": "pages/system/display/Inline.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="span" display="block">block</Box>
 <Box component="span" display="block">block</Box>
 ```
 
-{{"demo": "pages/system/display/Block.js"}}
+{{"demo": "pages/system/display/Block.js", "defaultCodeOpen": false}}
 
 ## Hiding elements
 
@@ -46,7 +46,7 @@ For faster mobile-friendly development, use responsive display classes for showi
 </Box>
 ```
 
-{{"demo": "pages/system/display/Hiding.js"}}
+{{"demo": "pages/system/display/Hiding.js", "defaultCodeOpen": false}}
 
 ## Display in print
 
@@ -59,7 +59,7 @@ For faster mobile-friendly development, use responsive display classes for showi
 </Box>
 ```
 
-{{"demo": "pages/system/display/Print.js"}}
+{{"demo": "pages/system/display/Print.js", "defaultCodeOpen": false}}
 
 ## Overflow
 
@@ -72,7 +72,7 @@ For faster mobile-friendly development, use responsive display classes for showi
 </Box>
 ```
 
-{{"demo": "pages/system/display/Overflow.js"}}
+{{"demo": "pages/system/display/Overflow.js", "defaultCodeOpen": false}}
 
 ## Text Overflow
 
@@ -85,7 +85,7 @@ For faster mobile-friendly development, use responsive display classes for showi
 </Box>
 ```
 
-{{"demo": "pages/system/display/TextOverflow.js"}}
+{{"demo": "pages/system/display/TextOverflow.js", "defaultCodeOpen": false}}
 
 ## Visibility
 
@@ -98,7 +98,7 @@ For faster mobile-friendly development, use responsive display classes for showi
 </Box>
 ```
 
-{{"demo": "pages/system/display/Visibility.js"}}
+{{"demo": "pages/system/display/Visibility.js", "defaultCodeOpen": false}}
 
 ## White Space
 
@@ -111,7 +111,7 @@ For faster mobile-friendly development, use responsive display classes for showi
 </Box>
 ```
 
-{{"demo": "pages/system/display/WhiteSpace.js"}}
+{{"demo": "pages/system/display/WhiteSpace.js", "defaultCodeOpen": false}}
 
 ## API
 

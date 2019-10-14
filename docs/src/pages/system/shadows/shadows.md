@@ -11,7 +11,7 @@
 <Box boxShadow={3}>…
 ```
 
-{{"demo": "pages/system/shadows/Demo.js"}}
+{{"demo": "pages/system/shadows/Demo.js", "defaultCodeOpen": false}}
 
 ## API
 

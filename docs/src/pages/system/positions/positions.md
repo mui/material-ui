@@ -9,7 +9,7 @@
 <Box zIndex="modal">
 ```
 
-{{"demo": "pages/system/positions/ZIndex.js"}}
+{{"demo": "pages/system/positions/ZIndex.js", "defaultCodeOpen": false}}
 
 ## API
 
