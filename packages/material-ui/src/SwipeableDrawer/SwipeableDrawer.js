@@ -303,7 +303,10 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
   const handleBodyTouchStart = React.useCallback(
     event => {
       // We are not supposed to handle this touch move.
-      if (nodeThatClaimedTheSwipe !== null && nodeThatClaimedTheSwipe !== swipeInstance.current) {
+      if (
+        (nodeThatClaimedTheSwipe !== null && nodeThatClaimedTheSwipe !== swipeInstance.current) ||
+        event.__MUI_HANDLED__
+      ) {
         return;
       }
 

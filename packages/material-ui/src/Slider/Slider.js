@@ -596,6 +596,10 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const handleTouchStart = useEventCallback(event => {
     // Workaround as Safari has partial support for touchAction: 'none'.
     event.preventDefault();
+
+    // The slider is going to take care of this interaction. Dibs!
+    event.__MUI_HANDLED__ = true;
+
     const touch = event.changedTouches[0];
     if (touch != null) {
       // A number that uniquely identifies the current finger in the touch session.
