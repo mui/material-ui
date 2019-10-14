@@ -281,9 +281,13 @@ function Demo(props) {
       )
     : null;
   jsxOnly = jsxOnly ? jsxOnly[2] : demoData.raw;
-  const codeLength = jsxOnly.split(/\n/).length;
+  const leadingSpaces = jsxOnly.match(/^ */)[0].length;
+  jsxOnly = jsxOnly.split(/\n/);
+  const codeLength = jsxOnly.length;
+  jsxOnly = jsxOnly.reduce((acc, line) => `${acc}${line.slice(leadingSpaces)}\n`, '');
   const codeShort =
     demoOptions.defaultCodeOpen !== false && jsxOnly !== demoData.raw && codeLength <= 20;
+
 
   let showCodeLabel;
   if (codeOpen) {
