@@ -24,7 +24,7 @@ A fluid container width is bounded by that `maxWidth` property value.
 If you prefer to design for a fixed set of sizes instead of trying to accommodate a fully fluid viewport, you can set the `fixed` property.
 The max-width matches the min-width of the current breakpoint.
 
-{{"demo": "pages/components/container/FixedContainer.js", "iframe": true}, "defaultCodeOpen": false}}
+{{"demo": "pages/components/container/FixedContainer.js", "iframe": true, "defaultCodeOpen": false}}
 
 ```jsx
 <Container fixed>
