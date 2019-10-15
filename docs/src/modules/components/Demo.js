@@ -288,7 +288,6 @@ function Demo(props) {
   const codeShort =
     demoOptions.defaultCodeOpen !== false && jsxOnly !== demoData.raw && codeLength <= 20;
 
-
   let showCodeLabel;
   if (codeOpen) {
     showCodeLabel = codeShort ? t('hideFullSource') : t('hideSource');
