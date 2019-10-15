@@ -8,12 +8,11 @@ import ButtonBase from '../ButtonBase';
 
 describe('<Button />', () => {
   let mount;
-  // StrictModeViolation uses ButtonBase
-  const render = createClientRender({ strict: false });
+  const render = createClientRender({ strict: true });
   let classes;
 
   before(() => {
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(<Button>Hello World</Button>);
   });
 

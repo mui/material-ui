@@ -1,27 +1,20 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import ExpansionPanelSummary from './ExpansionPanelSummary';
 import ButtonBase from '../ButtonBase';
 
 describe('<ExpansionPanelSummary />', () => {
   let mount;
   let classes;
-
-  function findExpandButton(wrapper) {
-    return wrapper.find('[role="button"]:not([aria-hidden=true])');
-  }
+  const render = createClientRender({ strict: true });
 
   before(() => {
-    // StrictModeViolation: uses simulate
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(<ExpansionPanelSummary />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<ExpansionPanelSummary />, () => ({
@@ -30,96 +23,97 @@ describe('<ExpansionPanelSummary />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
-  it('should render with the content', () => {
-    const wrapper = mount(<ExpansionPanelSummary>The Summary</ExpansionPanelSummary>);
-    const itemsWrap = wrapper.find(`.${classes.content}`);
-    assert.strictEqual(itemsWrap.text(), 'The Summary');
+  it('renders the children inside the .content element', () => {
+    const { container } = render(<ExpansionPanelSummary>The Summary</ExpansionPanelSummary>);
+
+    expect(container.querySelector(`.${classes.content}`)).to.have.text('The Summary');
   });
 
   it('when disabled should have disabled class', () => {
-    const wrapper = mount(<ExpansionPanelSummary disabled />);
-    assert.strictEqual(findExpandButton(wrapper).hasClass(classes.disabled), true);
+    const { getByRole } = render(<ExpansionPanelSummary disabled />);
+
+    expect(getByRole('button')).to.have.class(classes.disabled);
   });
 
-  it('when expanded should have expanded class', () => {
-    const wrapper = mount(<ExpansionPanelSummary expanded />);
-    assert.strictEqual(wrapper.find('[aria-expanded=true]').every(`.${classes.expanded}`), true);
+  it('when expanded adds the expanded class to any button regardless of a11y', () => {
+    const { getAllByRole } = render(<ExpansionPanelSummary expanded expandIcon="expand" />);
+
+    const buttons = getAllByRole('button', { hidden: true });
+    expect(buttons).to.have.length(2);
+    expect(buttons[0]).to.have.class(classes.expanded);
+    expect(buttons[0]).to.have.attribute('aria-expanded', 'true');
+    expect(buttons[0]).not.to.be.inaccessible;
+    expect(buttons[1]).to.have.class(classes.expanded);
+    expect(buttons[1]).to.be.inaccessible;
   });
 
   it('should render with the expand icon and have the expandIcon class', () => {
-    const wrapper = mount(<ExpansionPanelSummary expandIcon={<div>Icon</div>} />);
-    const iconWrap = wrapper.find(`.${classes.expandIcon}`).first();
-    assert.strictEqual(iconWrap.text(), 'Icon');
+    const { getAllByRole } = render(<ExpansionPanelSummary expandIcon={<div>Icon</div>} />);
+
+    const expandButton = getAllByRole('button', { hidden: true })[1];
+    expect(expandButton).to.have.class(classes.expandIcon);
+    expect(expandButton).to.have.text('Icon');
+    expect(expandButton).to.be.inaccessible;
   });
 
-  it('handleFocusVisible() should set focused state', () => {
-    const wrapper = mount(<ExpansionPanelSummary />);
-    wrapper
-      .find(ButtonBase)
-      .props()
-      .onFocusVisible();
-    wrapper.update();
-    assert.strictEqual(findExpandButton(wrapper).hasClass(classes.focused), true);
+  it('focusing adds the `focused` class if focused visible', () => {
+    // TODO: Rename `focused` -> `focus-visible`
+    // `focused` is a global state which is applied on focus
+    // only here do we constrain it to focus-visible. THe name is also not consistent
+    // with :focus
+    const { getByRole } = render(<ExpansionPanelSummary />);
+    fireEvent.mouseDown(document.body); // pointer device
+
+    fireEvent.keyDown(document.activeElement, { key: 'Tab' }); // not actually focusing (yet)
+    getByRole('button').focus();
+
+    expect(getByRole('button')).to.be.focused;
+    expect(getByRole('button')).to.have.class(classes.focused);
   });
 
-  it('handleBlur() should unset focused state', () => {
-    const wrapper = mount(<ExpansionPanelSummary />);
-    wrapper
-      .find(ButtonBase)
-      .props()
-      .onFocusVisible();
-    wrapper.update();
-    wrapper
-      .find(ButtonBase)
-      .props()
-      .onBlur();
-    wrapper.update();
-    assert.strictEqual(findExpandButton(wrapper).hasClass(classes.focused), false);
+  it('blur should unset focused state', () => {
+    const { getByRole } = render(<ExpansionPanelSummary />);
+    fireEvent.mouseDown(document.body); // pointer device
+    fireEvent.keyDown(document.activeElement, { key: 'Tab' }); // not actually focusing (yet)
+    getByRole('button').focus();
+
+    getByRole('button').blur();
+
+    expect(getByRole('button')).not.to.be.focused;
+    expect(getByRole('button')).not.to.have.class(classes.focused);
   });
 
-  describe('event callbacks', () => {
-    it('should fire event callbacks', () => {
-      const events = ['onClick', 'onFocusVisible', 'onBlur'];
+  it('should fire onClick callbacks', () => {
+    const handleClick = spy();
+    const { getByRole } = render(<ExpansionPanelSummary onClick={handleClick} />);
 
-      const handlers = events.reduce((result, n) => {
-        result[n] = spy();
-        return result;
-      }, {});
+    getByRole('button').click();
 
-      const wrapper = mount(<ExpansionPanelSummary {...handlers} />);
-
-      events.forEach(event => {
-        wrapper
-          .find(ButtonBase)
-          .props()
-          [event]({ persist: () => {} });
-        assert.strictEqual(handlers[event].callCount, 1, `should have called the ${event} handler`);
-      });
-    });
+    expect(handleClick.callCount).to.equal(1);
   });
 
-  describe('prop: onChange', () => {
-    it('fires onChange if the summary control is clicked', () => {
-      const handleChange = spy();
-      const wrapper = mount(<ExpansionPanelSummary expanded={false} onChange={handleChange} />);
+  it('calls onChange when clicking', () => {
+    const handleChange = spy();
+    const { getByRole } = render(<ExpansionPanelSummary onChange={handleChange} />);
 
-      const control = findOutermostIntrinsic(wrapper);
-      const eventMock = 'woofExpansionPanelSummary';
-      control.simulate('click', { eventMock });
+    getByRole('button').click();
 
-      assert.strictEqual(handleChange.callCount, 1);
-      assert.strictEqual(handleChange.calledWithMatch({ eventMock }), true);
-    });
+    expect(handleChange.callCount).to.equal(1);
   });
 
-  describe('prop: click', () => {
-    it('should trigger onClick', () => {
-      const handleClick = spy();
-      const wrapper = mount(<ExpansionPanelSummary onClick={handleClick} />);
-      wrapper.simulate('click');
-      assert.strictEqual(handleClick.callCount, 1);
-    });
+  it('calls onFocusVisible if focused visibly', () => {
+    const handleFocusVisible = spy();
+    const { getByRole } = render(<ExpansionPanelSummary onFocusVisible={handleFocusVisible} />);
+    // simulate pointer device
+    fireEvent.mouseDown(document.body);
+
+    // this doesn't actually apply focus like in the browser. we need to move focus manually
+    fireEvent.keyDown(document.body, { key: 'Tab' });
+    getByRole('button').focus();
+
+    expect(handleFocusVisible.callCount).to.equal(1);
   });
 });

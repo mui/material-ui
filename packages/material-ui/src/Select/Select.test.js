@@ -16,7 +16,7 @@ describe('<Select />', () => {
 
   before(() => {
     classes = getClasses(<Select />);
-    // StrictModeViolation: test uses MenuItem
+    // StrictModeViolation: uses Menu
     mount = createMount({ strict: false });
   });
 
