@@ -5,6 +5,7 @@ import { PaperProps } from '../Paper';
 export interface SnackbarContentProps extends StandardProps<PaperProps, SnackbarContentClassKey> {
   action?: React.ReactNode;
   message?: React.ReactNode;
+  role?: string;
 }
 
 export type SnackbarContentClassKey = 'root' | 'message' | 'action';
