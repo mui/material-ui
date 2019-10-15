@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Portal from '@material-ui/core/Portal';
+import Fade from '@material-ui/core/Fade';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
@@ -106,9 +107,7 @@ function MarkdownDocs(props) {
 
   const t = useSelector(state => state.options.t);
   const userLanguage = useSelector(state => state.options.userLanguage);
-  const descriptionRef = React.useCallback(description => {
-    description.classList.add('ad');
-  });
+  const descriptionRef = description => description.classList.add('ad');
 
   let demos;
   let markdown = markdownProp;
