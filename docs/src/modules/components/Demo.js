@@ -268,18 +268,18 @@ function Demo(props) {
   // docs/pages/components/material-icons.js doesn't provide the source
   function jsxOnly(code = demoData.raw || '') {
     /* regex matches the content of the return statement in the default export:
-    *
-    * `export default.*`
-    * `\n  return (\n` or `\n  return `
-    *
-    *  everything (not greedy), until:
-    *
-    * `  );\n}` or `;\n}`
-    *
-    */
+     *
+     * `export default.*`
+     * `\n  return (\n` or `\n  return `
+     *
+     *  everything (not greedy), until:
+     *
+     * `  );\n}` or `;\n}`
+     *
+     */
     let jsx = code.match(
-          /export default .*(\n {2}return \(\n|\n {2}return )(.*?)(\n {2}\);\n}|;\n})/s,
-        )
+      /export default .*(\n {2}return \(\n|\n {2}return )(.*?)(\n {2}\);\n}|;\n})/s,
+    );
     // Just the match, or the full source if no match, so as not to break the Collapse transition.
     jsx = jsx ? jsx[2] : demoData.raw;
     // Number of leading spaces on the first line
@@ -287,7 +287,7 @@ function Demo(props) {
     return jsx.split(/\n/).reduce((acc, line) => `${acc}${line.slice(indentSize)}\n`, '');
   }
 
-  const jsx = jsxOnly()
+  const jsx = jsxOnly();
   const showPreview =
     demoOptions.defaultCodeOpen !== false && jsx !== demoData.raw && jsx.split(/\n/).length <= 20;
 
