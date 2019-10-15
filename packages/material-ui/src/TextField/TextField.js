@@ -120,6 +120,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
   }
 
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
+  const inputLabelId = label && id ? `${id}-label` : undefined;
   const InputComponent = variantComponent[variant];
   const InputElement = (
     <InputComponent
@@ -158,12 +159,19 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       {...other}
     >
       {label && (
-        <InputLabel htmlFor={id} ref={labelRef} {...InputLabelProps}>
+        <InputLabel htmlFor={id} ref={labelRef} id={inputLabelId} {...InputLabelProps}>
           {label}
         </InputLabel>
       )}
       {select ? (
-        <Select aria-describedby={helperTextId} value={value} input={InputElement} {...SelectProps}>
+        <Select
+          aria-describedby={helperTextId}
+          id={id}
+          labelId={inputLabelId}
+          value={value}
+          input={InputElement}
+          {...SelectProps}
+        >
           {children}
         </Select>
       ) : (

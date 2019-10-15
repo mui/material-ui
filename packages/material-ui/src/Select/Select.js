@@ -21,8 +21,10 @@ const Select = React.forwardRef(function Select(props, ref) {
     classes,
     displayEmpty = false,
     IconComponent = ArrowDropDownIcon,
+    id,
     input,
     inputProps,
+    labelId,
     MenuProps,
     multiple = false,
     native = false,
@@ -71,12 +73,13 @@ const Select = React.forwardRef(function Select(props, ref) {
         : {
             autoWidth,
             displayEmpty,
+            labelId,
             MenuProps,
             onClose,
             onOpen,
             open,
             renderValue,
-            SelectDisplayProps,
+            SelectDisplayProps: { id, ...SelectDisplayProps },
           }),
       ...inputProps,
       classes: inputProps
@@ -123,6 +126,10 @@ Select.propTypes = {
    */
   IconComponent: PropTypes.elementType,
   /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
   input: PropTypes.element,
@@ -131,6 +138,11 @@ Select.propTypes = {
    * When `native` is `true`, the attributes are applied on the `select` element.
    */
   inputProps: PropTypes.object,
+  /**
+   * The idea of an element that acts as an additional label. The Select will
+   * be labelled by the additional label and the selected value.
+   */
+  labelId: PropTypes.string,
   /**
    * The label width to be used on OutlinedInput.
    * This prop is required when the `variant` prop is `outlined`.

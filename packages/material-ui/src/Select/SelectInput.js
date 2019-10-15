@@ -31,6 +31,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     className,
     disabled,
     displayEmpty,
+    labelId,
     IconComponent,
     inputRef: inputRefProp,
     MenuProps = {},
@@ -45,7 +46,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     readOnly,
     renderValue,
     required,
-    SelectDisplayProps,
+    SelectDisplayProps = {},
     tabIndex: tabIndexProp,
     // catching `type` from Input which makes no sense for SelectInput
     type,
@@ -264,6 +265,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     tabIndex = disabled ? null : 0;
   }
 
+  const buttonId = SelectDisplayProps.id || (name ? `mui-component-select-${name}` : undefined);
+
   return (
     <React.Fragment>
       <div
@@ -282,15 +285,15 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         tabIndex={tabIndex}
         role="button"
         aria-expanded={open ? 'true' : undefined}
+        aria-labelledby={`${labelId || ''} ${buttonId || ''}`}
         aria-haspopup="listbox"
-        aria-owns={open ? `menu-${name || ''}` : undefined}
         onKeyDown={handleKeyDown}
         onClick={disabled || readOnly ? null : handleClick}
         onBlur={handleBlur}
         onFocus={onFocus}
-        // The id can help with end-to-end testing automation.
-        id={name ? `select-${name}` : undefined}
         {...SelectDisplayProps}
+        // The id is required for proper a11y
+        id={buttonId}
       >
         {/* So the vertical align positioning algorithm kicks in. */}
         {isEmpty(display) ? (
@@ -316,6 +319,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         onClose={handleClose}
         {...MenuProps}
         MenuListProps={{
+          'aria-labelledby': labelId,
           role: 'listbox',
           disableListWrap: true,
           ...MenuProps.MenuListProps,
@@ -375,6 +379,11 @@ SelectInput.propTypes = {
    * Equivalent to `ref`
    */
   inputRef: refType,
+  /**
+   * The idea of an element that acts as an additional label. The Select will
+   * be labelled by the additional label and the selected value.
+   */
+  labelId: PropTypes.string,
   /**
    * Props applied to the [`Menu`](/api/menu/) element.
    */
