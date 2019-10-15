@@ -186,6 +186,7 @@ function MarkdownDocs(props) {
             try {
               demoOptions = JSON.parse(`{${content}}`);
             } catch (err) {
+              console.error('JSON.parse fails with: ', `{${content}}`);
               console.error(err);
               return null;
             }
