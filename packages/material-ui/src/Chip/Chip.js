@@ -7,7 +7,7 @@ import { emphasize, fade } from '../styles/colorManipulator';
 import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
-import ButtonBase from '../ButtonBase';
+import ButtonBase from '../ButtonBase'
 import '../Avatar'; // So we don't have any override priority issue.
 
 export const styles = theme => {
@@ -273,16 +273,15 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     className,
     clickable: clickableProp,
     color = 'default',
-    onClick,
-    onDelete,
-    onKeyDown,
-    onKeyUp,
-    component: Component = (onClick && !onDelete) ? ButtonBase : 'div',
+    component: Component = ButtonBase,
     deleteIcon: deleteIconProp,
     disabled = false,
     icon: iconProp,
     label,
-   
+    onClick,
+    onDelete,
+    onKeyDown,
+    onKeyUp,
     size = 'medium',
     variant = 'default',
     ...other
@@ -409,6 +408,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
         },
         className,
       )}
+      component='div'
       tabIndex={clickable || onDelete ? 0 : undefined}
       onClick={onClick}
       onKeyDown={handleKeyDown}
