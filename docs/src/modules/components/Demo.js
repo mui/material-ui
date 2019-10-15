@@ -265,34 +265,37 @@ function Demo(props) {
 
   const match = useMediaQuery(theme => theme.breakpoints.up('sm'));
 
-  /* regex matches the content of the return statement in the default export
-   * `export default.*`
-   * `\n  return (\n` or `\n  return `
-   *  everything (not greedy), until:
-   * `  );
-   * }`
-   * or
-   * `;
-   * }`
-   */
-  let jsxOnly = demoData.raw
-    ? demoData.raw.match(
-        /export default .*(\n {2}return \(\n|\n {2}return )(.*?)(\n {2}\);\n}|;\n})/s,
-      )
-    : null;
-  jsxOnly = jsxOnly ? jsxOnly[2] : demoData.raw;
-  const leadingSpaces = jsxOnly.match(/^ */)[0].length;
-  jsxOnly = jsxOnly.split(/\n/);
-  const codeLength = jsxOnly.length;
-  jsxOnly = jsxOnly.reduce((acc, line) => `${acc}${line.slice(leadingSpaces)}\n`, '');
-  const codeShort =
-    demoOptions.defaultCodeOpen !== false && jsxOnly !== demoData.raw && codeLength <= 20;
+  // docs/pages/components/material-icons.js doesn't provide the source
+  function jsxOnly(code = demoData.raw || '') {
+    /* regex matches the content of the return statement in the default export:
+    *
+    * `export default.*`
+    * `\n  return (\n` or `\n  return `
+    *
+    *  everything (not greedy), until:
+    *
+    * `  );\n}` or `;\n}`
+    *
+    */
+    let jsx = code.match(
+          /export default .*(\n {2}return \(\n|\n {2}return )(.*?)(\n {2}\);\n}|;\n})/s,
+        )
+    // Just the match, or the full source if no match, so as not to break the Collapse transition.
+    jsx = jsx ? jsx[2] : demoData.raw;
+    // Number of leading spaces on the first line
+    const indentSize = jsx.match(/^ */)[0].length;
+    return jsx.split(/\n/).reduce((acc, line) => `${acc}${line.slice(indentSize)}\n`, '');
+  }
+
+  const jsx = jsxOnly()
+  const showPreview =
+    demoOptions.defaultCodeOpen !== false && jsx !== demoData.raw && jsx.split(/\n/).length <= 20;
 
   let showCodeLabel;
   if (codeOpen) {
-    showCodeLabel = codeShort ? t('hideFullSource') : t('hideSource');
+    showCodeLabel = showPreview ? t('hideFullSource') : t('hideSource');
   } else {
-    showCodeLabel = codeShort ? t('showFullSource') : t('showSource');
+    showCodeLabel = showPreview ? t('showFullSource') : t('showSource');
   }
 
   return (
@@ -427,10 +430,10 @@ function Demo(props) {
           </div>
         </div>
       )}
-      <Collapse in={codeOpen || codeShort} unmountOnExit>
+      <Collapse in={codeOpen || showPreview} unmountOnExit>
         <MarkdownElement
           className={classes.code}
-          text={`\`\`\`${demoData.sourceLanguage}\n${codeOpen ? demoData.raw : jsxOnly}\n\`\`\``}
+          text={`\`\`\`${demoData.sourceLanguage}\n${codeOpen ? demoData.raw : jsx}\n\`\`\``}
         />
       </Collapse>
     </div>
