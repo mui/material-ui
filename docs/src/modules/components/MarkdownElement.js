@@ -158,7 +158,10 @@ const styles = theme => ({
     },
     '& .description': {
       ...theme.typography.h5,
-      margin: '0 0 40px',
+      margin: '0 0 196px',
+    },
+    '& .description.ad': {
+      marginBottom: '40px',
     },
     '& h2': {
       ...theme.typography.h4,

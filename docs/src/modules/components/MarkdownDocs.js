@@ -106,6 +106,9 @@ function MarkdownDocs(props) {
 
   const t = useSelector(state => state.options.t);
   const userLanguage = useSelector(state => state.options.userLanguage);
+  const descriptionRef = React.useCallback(description => {
+    description.classList.add('ad');
+  });
 
   let demos;
   let markdown = markdownProp;
@@ -167,7 +170,7 @@ function MarkdownDocs(props) {
       />
       {disableToc ? null : <AppTableOfContents contents={contents} />}
       {disableAd ? null : (
-        <Portal container={() => document.querySelector('.description')}>
+        <Portal ref={descriptionRef} container={() => document.querySelector('.description')}>
           <Ad />
         </Portal>
       )}
