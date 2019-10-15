@@ -46,17 +46,16 @@ You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 ## Placement
 
 When using Appbar `variant="fixed"` you need to have extra space for the content to show below
-& not under. There are 2 ways to do it. Either use `theme.mixins.toolbar` like;
+and not under. There are 2 ways to do it. Either use `theme.mixins.toolbar` like:
 
 ```jsx
 const useStyles = makeStyles(theme => ({
   offset: {
     ...theme.mixins.toolbar,
-    flexGrow: 1
   }
 }))
 
-const App = () => {
+function App() {
   const classes = useStyles();
   return (
     <div>
@@ -69,6 +68,17 @@ const App = () => {
 
 Or you can append `<Toolbar />` component after `<Appbar />` like shown in the example
 below. To prevent content from hiding under Appbar.
+
+```jsx
+function App() {
+  return (
+    <AppBar position="fixed">
+      {/* AppBar content here */}
+    </AppBar>
+    <Toolbar />
+  );
+}
+```
 
 ### Hide App Bar
 
