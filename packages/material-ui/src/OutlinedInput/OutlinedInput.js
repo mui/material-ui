@@ -34,6 +34,12 @@ export const styles = theme => {
         borderColor: theme.palette.action.disabled,
       },
     },
+    /* Styles applied to the root element if the color is secondary. */
+    colorSecondary: {
+      '&$focused $notchedOutline': {
+        borderColor: theme.palette.secondary.main,
+      },
+    },
     /* Styles applied to the root element if the component is focused. */
     focused: {},
     /* Styles applied to the root element if `disabled={true}`. */
@@ -155,6 +161,10 @@ OutlinedInput.propTypes = {
    * The CSS class name of the wrapper element.
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * The default `input` element value. Use when the component is not controlled.
    */

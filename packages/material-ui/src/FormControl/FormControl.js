@@ -70,6 +70,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     fullWidth = false,
     hiddenLabel = false,
     margin = 'none',
+    color = 'primary',
     required = false,
     variant = 'standard',
     ...other
@@ -155,6 +156,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
   const childContext = {
     adornedStart,
     setAdornedStart,
+    color,
     disabled,
     error,
     filled,
@@ -208,6 +210,10 @@ FormControl.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.

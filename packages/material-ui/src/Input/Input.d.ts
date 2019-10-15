@@ -11,6 +11,7 @@ export type InputClassKey =
   | 'formControl'
   | 'focused'
   | 'disabled'
+  | 'colorSecondary'
   | 'underline'
   | 'error'
   | 'multiline'

@@ -9,6 +9,7 @@ export interface InputBaseProps
   > {
   autoComplete?: string;
   autoFocus?: boolean;
+  color?: 'primary' | 'secondary';
   defaultValue?: unknown;
   disabled?: boolean;
   endAdornment?: React.ReactNode;
@@ -67,6 +68,7 @@ export type InputBaseClassKey =
   | 'marginDense'
   | 'multiline'
   | 'fullWidth'
+  | 'colorSecondary'
   | 'input'
   | 'inputMarginDense'
   | 'inputMultiline'

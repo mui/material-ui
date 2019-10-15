@@ -62,6 +62,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     children,
     classes,
     className,
+    color = 'primary',
     defaultValue,
     error,
     FormHelperTextProps,
@@ -160,6 +161,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       hiddenLabel={hiddenLabel}
       ref={ref}
       required={required}
+      color={color}
       variant={variant}
       {...other}
     >
@@ -215,6 +217,10 @@ TextField.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * The default value of the `input` element.
    */
