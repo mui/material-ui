@@ -43,6 +43,33 @@ A side searchbar.
 
 You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
+## Placement
+
+When using Appbar `variant="fixed"` you need to have extra space for the content to show below
+& not under. There are 2 ways to do it. Either use `theme.mixins.toolbar` like;
+
+```jsx
+const useStyles = makeStyles(theme => ({
+  offset: {
+    ...theme.mixins.toolbar,
+    flexGrow: 1
+  }
+}))
+
+const App = () => {
+  const classes = useStyles();
+  return (
+    <div>
+      <Appbar position="fixed"></Appbar>
+      <div className={classes.offset}> {/* to accomdate for top white space */}
+    </div>
+  )
+};
+```
+
+Or you can append `<Toolbar />` component after `<Appbar />` like shown in the example
+below. To prevent content from hiding under Appbar.
+
 ### Hide App Bar
 
 The app bar hides on scroll down to leave more space for reading.
