@@ -285,7 +285,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         aria-haspopup="listbox"
         aria-owns={open ? `menu-${name || ''}` : undefined}
         onKeyDown={handleKeyDown}
-        onClick={disabled || readOnly ? null : handleClick}
+        onMouseDown={disabled || readOnly ? null : handleClick}
         onBlur={handleBlur}
         onFocus={onFocus}
         // The id can help with end-to-end testing automation.
