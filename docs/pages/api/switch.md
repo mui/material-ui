@@ -52,18 +52,18 @@ Any other props supplied will be provided to the root element ([IconButton](/api
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiSwitch-root</span> | Styles applied to the root element.
-| <span class="prop-name">edgeStart</span> | <span class="prop-name">MuiSwitch-edgeStart</span> | Styles applied to the root element if `edge="start"`.
-| <span class="prop-name">edgeEnd</span> | <span class="prop-name">MuiSwitch-edgeEnd</span> | Styles applied to the root element if `edge="end"`.
-| <span class="prop-name">switchBase</span> | <span class="prop-name">MuiSwitch-switchBase</span> | Styles applied to the internal `SwitchBase` component's `root` class.
-| <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiSwitch-colorPrimary</span> | Styles applied to the internal SwitchBase component's root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiSwitch-colorSecondary</span> | Styles applied to the internal SwitchBase component's root element if `color="secondary"`.
-| <span class="prop-name">sizeSmall</span> | <span class="prop-name">MuiSwitch-sizeSmall</span> | Styles applied to the root element if `size="small"`.
-| <span class="prop-name">checked</span> | <span class="prop-name">Mui-checked</span> | Pseudo-class applied to the internal `SwitchBase` component's `checked` class.
-| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the internal SwitchBase component's disabled class.
-| <span class="prop-name">input</span> | <span class="prop-name">MuiSwitch-input</span> | Styles applied to the internal SwitchBase component's input element.
-| <span class="prop-name">thumb</span> | <span class="prop-name">MuiSwitch-thumb</span> | Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop.
-| <span class="prop-name">track</span> | <span class="prop-name">MuiSwitch-track</span> | Styles applied to the track element.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiSwitch-root</span> | Styles applied to the root element.
+| <span class="prop-name">edgeStart</span> | <span class="prop-name">.MuiSwitch-edgeStart</span> | Styles applied to the root element if `edge="start"`.
+| <span class="prop-name">edgeEnd</span> | <span class="prop-name">.MuiSwitch-edgeEnd</span> | Styles applied to the root element if `edge="end"`.
+| <span class="prop-name">switchBase</span> | <span class="prop-name">.MuiSwitch-switchBase</span> | Styles applied to the internal `SwitchBase` component's `root` class.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiSwitch-colorPrimary</span> | Styles applied to the internal SwitchBase component's root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiSwitch-colorSecondary</span> | Styles applied to the internal SwitchBase component's root element if `color="secondary"`.
+| <span class="prop-name">sizeSmall</span> | <span class="prop-name">.MuiSwitch-sizeSmall</span> | Styles applied to the root element if `size="small"`.
+| <span class="prop-name">checked</span> | <span class="prop-name">.Mui-checked</span> | Pseudo-class applied to the internal `SwitchBase` component's `checked` class.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the internal SwitchBase component's disabled class.
+| <span class="prop-name">input</span> | <span class="prop-name">.MuiSwitch-input</span> | Styles applied to the internal SwitchBase component's input element.
+| <span class="prop-name">thumb</span> | <span class="prop-name">.MuiSwitch-thumb</span> | Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop.
+| <span class="prop-name">track</span> | <span class="prop-name">.MuiSwitch-track</span> | Styles applied to the track element.
 
 You can override the style of the component thanks to one of these customization points:
 

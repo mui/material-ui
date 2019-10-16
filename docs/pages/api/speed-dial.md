@@ -50,14 +50,14 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiSpeedDial-root</span> | Styles applied to the root element.
-| <span class="prop-name">fab</span> | <span class="prop-name">MuiSpeedDial-fab</span> | Styles applied to the Fab component.
-| <span class="prop-name">directionUp</span> | <span class="prop-name">MuiSpeedDial-directionUp</span> | Styles applied to the root if direction="up"
-| <span class="prop-name">directionDown</span> | <span class="prop-name">MuiSpeedDial-directionDown</span> | Styles applied to the root if direction="down"
-| <span class="prop-name">directionLeft</span> | <span class="prop-name">MuiSpeedDial-directionLeft</span> | Styles applied to the root if direction="left"
-| <span class="prop-name">directionRight</span> | <span class="prop-name">MuiSpeedDial-directionRight</span> | Styles applied to the root if direction="right"
-| <span class="prop-name">actions</span> | <span class="prop-name">MuiSpeedDial-actions</span> | Styles applied to the actions (`children` wrapper) element.
-| <span class="prop-name">actionsClosed</span> | <span class="prop-name">MuiSpeedDial-actionsClosed</span> | Styles applied to the actions (`children` wrapper) element if `open={false}`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiSpeedDial-root</span> | Styles applied to the root element.
+| <span class="prop-name">fab</span> | <span class="prop-name">.MuiSpeedDial-fab</span> | Styles applied to the Fab component.
+| <span class="prop-name">directionUp</span> | <span class="prop-name">.MuiSpeedDial-directionUp</span> | Styles applied to the root if direction="up"
+| <span class="prop-name">directionDown</span> | <span class="prop-name">.MuiSpeedDial-directionDown</span> | Styles applied to the root if direction="down"
+| <span class="prop-name">directionLeft</span> | <span class="prop-name">.MuiSpeedDial-directionLeft</span> | Styles applied to the root if direction="left"
+| <span class="prop-name">directionRight</span> | <span class="prop-name">.MuiSpeedDial-directionRight</span> | Styles applied to the root if direction="right"
+| <span class="prop-name">actions</span> | <span class="prop-name">.MuiSpeedDial-actions</span> | Styles applied to the actions (`children` wrapper) element.
+| <span class="prop-name">actionsClosed</span> | <span class="prop-name">.MuiSpeedDial-actionsClosed</span> | Styles applied to the actions (`children` wrapper) element if `open={false}`.
 
 You can override the style of the component thanks to one of these customization points:
 

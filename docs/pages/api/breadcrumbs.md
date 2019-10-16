@@ -43,10 +43,10 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiBreadcrumbs-root</span> | Styles applied to the root element.
-| <span class="prop-name">ol</span> | <span class="prop-name">MuiBreadcrumbs-ol</span> | Styles applied to the ol element.
-| <span class="prop-name">li</span> | <span class="prop-name">MuiBreadcrumbs-li</span> | Styles applied to the li element.
-| <span class="prop-name">separator</span> | <span class="prop-name">MuiBreadcrumbs-separator</span> | Styles applied to the separator element.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiBreadcrumbs-root</span> | Styles applied to the root element.
+| <span class="prop-name">ol</span> | <span class="prop-name">.MuiBreadcrumbs-ol</span> | Styles applied to the ol element.
+| <span class="prop-name">li</span> | <span class="prop-name">.MuiBreadcrumbs-li</span> | Styles applied to the li element.
+| <span class="prop-name">separator</span> | <span class="prop-name">.MuiBreadcrumbs-separator</span> | Styles applied to the separator element.
 
 You can override the style of the component thanks to one of these customization points:
 

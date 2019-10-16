@@ -46,14 +46,14 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiFormHelperText-root</span> | Styles applied to the root element.
-| <span class="prop-name">error</span> | <span class="prop-name">Mui-error</span> | Pseudo-class applied to the root element if `error={true}`.
-| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">marginDense</span> | <span class="prop-name">MuiFormHelperText-marginDense</span> | Styles applied to the root element if `margin="dense"`.
-| <span class="prop-name">contained</span> | <span class="prop-name">MuiFormHelperText-contained</span> | Styles applied to the root element if `variant="filled"` or `variant="outlined"`.
-| <span class="prop-name">focused</span> | <span class="prop-name">Mui-focused</span> | Pseudo-class applied to the root element if `focused={true}`.
-| <span class="prop-name">filled</span> | <span class="prop-name">MuiFormHelperText-filled</span> | Pseudo-class applied to the root element if `filled={true}`.
-| <span class="prop-name">required</span> | <span class="prop-name">Mui-required</span> | Pseudo-class applied to the root element if `required={true}`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiFormHelperText-root</span> | Styles applied to the root element.
+| <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Pseudo-class applied to the root element if `error={true}`.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span class="prop-name">marginDense</span> | <span class="prop-name">.MuiFormHelperText-marginDense</span> | Styles applied to the root element if `margin="dense"`.
+| <span class="prop-name">contained</span> | <span class="prop-name">.MuiFormHelperText-contained</span> | Styles applied to the root element if `variant="filled"` or `variant="outlined"`.
+| <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element if `focused={true}`.
+| <span class="prop-name">filled</span> | <span class="prop-name">.MuiFormHelperText-filled</span> | Pseudo-class applied to the root element if `filled={true}`.
+| <span class="prop-name">required</span> | <span class="prop-name">.Mui-required</span> | Pseudo-class applied to the root element if `required={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

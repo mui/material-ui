@@ -41,33 +41,33 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiPaper-root</span> | Styles applied to the root element.
-| <span class="prop-name">rounded</span> | <span class="prop-name">MuiPaper-rounded</span> | Styles applied to the root element if `square={false}`.
-| <span class="prop-name">elevation0</span> | <span class="prop-name">MuiPaper-elevation0</span> | 
-| <span class="prop-name">elevation1</span> | <span class="prop-name">MuiPaper-elevation1</span> | 
-| <span class="prop-name">elevation2</span> | <span class="prop-name">MuiPaper-elevation2</span> | 
-| <span class="prop-name">elevation3</span> | <span class="prop-name">MuiPaper-elevation3</span> | 
-| <span class="prop-name">elevation4</span> | <span class="prop-name">MuiPaper-elevation4</span> | 
-| <span class="prop-name">elevation5</span> | <span class="prop-name">MuiPaper-elevation5</span> | 
-| <span class="prop-name">elevation6</span> | <span class="prop-name">MuiPaper-elevation6</span> | 
-| <span class="prop-name">elevation7</span> | <span class="prop-name">MuiPaper-elevation7</span> | 
-| <span class="prop-name">elevation8</span> | <span class="prop-name">MuiPaper-elevation8</span> | 
-| <span class="prop-name">elevation9</span> | <span class="prop-name">MuiPaper-elevation9</span> | 
-| <span class="prop-name">elevation10</span> | <span class="prop-name">MuiPaper-elevation10</span> | 
-| <span class="prop-name">elevation11</span> | <span class="prop-name">MuiPaper-elevation11</span> | 
-| <span class="prop-name">elevation12</span> | <span class="prop-name">MuiPaper-elevation12</span> | 
-| <span class="prop-name">elevation13</span> | <span class="prop-name">MuiPaper-elevation13</span> | 
-| <span class="prop-name">elevation14</span> | <span class="prop-name">MuiPaper-elevation14</span> | 
-| <span class="prop-name">elevation15</span> | <span class="prop-name">MuiPaper-elevation15</span> | 
-| <span class="prop-name">elevation16</span> | <span class="prop-name">MuiPaper-elevation16</span> | 
-| <span class="prop-name">elevation17</span> | <span class="prop-name">MuiPaper-elevation17</span> | 
-| <span class="prop-name">elevation18</span> | <span class="prop-name">MuiPaper-elevation18</span> | 
-| <span class="prop-name">elevation19</span> | <span class="prop-name">MuiPaper-elevation19</span> | 
-| <span class="prop-name">elevation20</span> | <span class="prop-name">MuiPaper-elevation20</span> | 
-| <span class="prop-name">elevation21</span> | <span class="prop-name">MuiPaper-elevation21</span> | 
-| <span class="prop-name">elevation22</span> | <span class="prop-name">MuiPaper-elevation22</span> | 
-| <span class="prop-name">elevation23</span> | <span class="prop-name">MuiPaper-elevation23</span> | 
-| <span class="prop-name">elevation24</span> | <span class="prop-name">MuiPaper-elevation24</span> | 
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiPaper-root</span> | Styles applied to the root element.
+| <span class="prop-name">rounded</span> | <span class="prop-name">.MuiPaper-rounded</span> | Styles applied to the root element if `square={false}`.
+| <span class="prop-name">elevation0</span> | <span class="prop-name">.MuiPaper-elevation0</span> | 
+| <span class="prop-name">elevation1</span> | <span class="prop-name">.MuiPaper-elevation1</span> | 
+| <span class="prop-name">elevation2</span> | <span class="prop-name">.MuiPaper-elevation2</span> | 
+| <span class="prop-name">elevation3</span> | <span class="prop-name">.MuiPaper-elevation3</span> | 
+| <span class="prop-name">elevation4</span> | <span class="prop-name">.MuiPaper-elevation4</span> | 
+| <span class="prop-name">elevation5</span> | <span class="prop-name">.MuiPaper-elevation5</span> | 
+| <span class="prop-name">elevation6</span> | <span class="prop-name">.MuiPaper-elevation6</span> | 
+| <span class="prop-name">elevation7</span> | <span class="prop-name">.MuiPaper-elevation7</span> | 
+| <span class="prop-name">elevation8</span> | <span class="prop-name">.MuiPaper-elevation8</span> | 
+| <span class="prop-name">elevation9</span> | <span class="prop-name">.MuiPaper-elevation9</span> | 
+| <span class="prop-name">elevation10</span> | <span class="prop-name">.MuiPaper-elevation10</span> | 
+| <span class="prop-name">elevation11</span> | <span class="prop-name">.MuiPaper-elevation11</span> | 
+| <span class="prop-name">elevation12</span> | <span class="prop-name">.MuiPaper-elevation12</span> | 
+| <span class="prop-name">elevation13</span> | <span class="prop-name">.MuiPaper-elevation13</span> | 
+| <span class="prop-name">elevation14</span> | <span class="prop-name">.MuiPaper-elevation14</span> | 
+| <span class="prop-name">elevation15</span> | <span class="prop-name">.MuiPaper-elevation15</span> | 
+| <span class="prop-name">elevation16</span> | <span class="prop-name">.MuiPaper-elevation16</span> | 
+| <span class="prop-name">elevation17</span> | <span class="prop-name">.MuiPaper-elevation17</span> | 
+| <span class="prop-name">elevation18</span> | <span class="prop-name">.MuiPaper-elevation18</span> | 
+| <span class="prop-name">elevation19</span> | <span class="prop-name">.MuiPaper-elevation19</span> | 
+| <span class="prop-name">elevation20</span> | <span class="prop-name">.MuiPaper-elevation20</span> | 
+| <span class="prop-name">elevation21</span> | <span class="prop-name">.MuiPaper-elevation21</span> | 
+| <span class="prop-name">elevation22</span> | <span class="prop-name">.MuiPaper-elevation22</span> | 
+| <span class="prop-name">elevation23</span> | <span class="prop-name">.MuiPaper-elevation23</span> | 
+| <span class="prop-name">elevation24</span> | <span class="prop-name">.MuiPaper-elevation24</span> | 
 
 You can override the style of the component thanks to one of these customization points:
 

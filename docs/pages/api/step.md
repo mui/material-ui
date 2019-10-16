@@ -41,11 +41,11 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiStep-root</span> | Styles applied to the root element.
-| <span class="prop-name">horizontal</span> | <span class="prop-name">MuiStep-horizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
-| <span class="prop-name">vertical</span> | <span class="prop-name">MuiStep-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
-| <span class="prop-name">alternativeLabel</span> | <span class="prop-name">MuiStep-alternativeLabel</span> | Styles applied to the root element if `alternativeLabel={true}`.
-| <span class="prop-name">completed</span> | <span class="prop-name">MuiStep-completed</span> | Pseudo-class applied to the root element if `completed={true}`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiStep-root</span> | Styles applied to the root element.
+| <span class="prop-name">horizontal</span> | <span class="prop-name">.MuiStep-horizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
+| <span class="prop-name">vertical</span> | <span class="prop-name">.MuiStep-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
+| <span class="prop-name">alternativeLabel</span> | <span class="prop-name">.MuiStep-alternativeLabel</span> | Styles applied to the root element if `alternativeLabel={true}`.
+| <span class="prop-name">completed</span> | <span class="prop-name">.MuiStep-completed</span> | Pseudo-class applied to the root element if `completed={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -44,17 +44,17 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiStepLabel-root</span> | Styles applied to the root element.
-| <span class="prop-name">horizontal</span> | <span class="prop-name">MuiStepLabel-horizontal</span> | Styles applied to the root element if `orientation="horizontal".
-| <span class="prop-name">vertical</span> | <span class="prop-name">MuiStepLabel-vertical</span> | Styles applied to the root element if `orientation="vertical".
-| <span class="prop-name">label</span> | <span class="prop-name">MuiStepLabel-label</span> | Styles applied to the `Typography` component which wraps `children`.
-| <span class="prop-name">active</span> | <span class="prop-name">MuiStepLabel-active</span> | Pseudo-class applied to the `Typography` component if `active={true}`.
-| <span class="prop-name">completed</span> | <span class="prop-name">MuiStepLabel-completed</span> | Pseudo-class applied to the `Typography` component if `completed={true}`.
-| <span class="prop-name">error</span> | <span class="prop-name">Mui-error</span> | Pseudo-class applied to the root element and `Typography` component if `error={true}`.
-| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element and `Typography` component if `disabled={true}`.
-| <span class="prop-name">iconContainer</span> | <span class="prop-name">MuiStepLabel-iconContainer</span> | Styles applied to the `icon` container element.
-| <span class="prop-name">alternativeLabel</span> | <span class="prop-name">MuiStepLabel-alternativeLabel</span> | Pseudo-class applied to the root and icon container and `Typography` if `alternativeLabel={true}`.
-| <span class="prop-name">labelContainer</span> | <span class="prop-name">MuiStepLabel-labelContainer</span> | Styles applied to the container element which wraps `Typography` and `optional`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiStepLabel-root</span> | Styles applied to the root element.
+| <span class="prop-name">horizontal</span> | <span class="prop-name">.MuiStepLabel-horizontal</span> | Styles applied to the root element if `orientation="horizontal".
+| <span class="prop-name">vertical</span> | <span class="prop-name">.MuiStepLabel-vertical</span> | Styles applied to the root element if `orientation="vertical".
+| <span class="prop-name">label</span> | <span class="prop-name">.MuiStepLabel-label</span> | Styles applied to the `Typography` component which wraps `children`.
+| <span class="prop-name">active</span> | <span class="prop-name">.MuiStepLabel-active</span> | Pseudo-class applied to the `Typography` component if `active={true}`.
+| <span class="prop-name">completed</span> | <span class="prop-name">.MuiStepLabel-completed</span> | Pseudo-class applied to the `Typography` component if `completed={true}`.
+| <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Pseudo-class applied to the root element and `Typography` component if `error={true}`.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element and `Typography` component if `disabled={true}`.
+| <span class="prop-name">iconContainer</span> | <span class="prop-name">.MuiStepLabel-iconContainer</span> | Styles applied to the `icon` container element.
+| <span class="prop-name">alternativeLabel</span> | <span class="prop-name">.MuiStepLabel-alternativeLabel</span> | Pseudo-class applied to the root and icon container and `Typography` if `alternativeLabel={true}`.
+| <span class="prop-name">labelContainer</span> | <span class="prop-name">.MuiStepLabel-labelContainer</span> | Styles applied to the container element which wraps `Typography` and `optional`.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -38,7 +38,7 @@ Any other props supplied will be provided to the root element ([Paper](/api/pape
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiCard-root</span> | Styles applied to the root element.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiCard-root</span> | Styles applied to the root element.
 
 You can override the style of the component thanks to one of these customization points:
 
