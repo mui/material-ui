@@ -191,4 +191,26 @@ describe('<ButtonGroup />', () => {
     assert.strictEqual(buttonGroup.hasClass(classes.fullWidth), true);
     assert.strictEqual(button.hasClass('MuiButton-fullWidth'), true);
   });
+
+  it('can render a horizontal group', () => {
+    const wrapper = mount(
+      <ButtonGroup orientation="horizontal">
+        <Button>Hello World</Button>
+      </ButtonGroup>,
+    );
+    const buttonGroup = wrapper.find('div');
+    assert.strictEqual(buttonGroup.hasClass(classes.horizontal), true);
+    assert.strictEqual(buttonGroup.hasClass(classes.vertical), false);
+  });
+
+  it('can render a vertical group', () => {
+    const wrapper = mount(
+      <ButtonGroup orientation="vertical">
+        <Button>Hello World</Button>
+      </ButtonGroup>,
+    );
+    const buttonGroup = wrapper.find('div');
+    assert.strictEqual(buttonGroup.hasClass(classes.vertical), true);
+    assert.strictEqual(buttonGroup.hasClass(classes.horizontal), false);
+  });
 });

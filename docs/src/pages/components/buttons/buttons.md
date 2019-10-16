@@ -56,6 +56,10 @@ The ButtonGroup component can be used to group outlined (the default) or contain
 
 {{"demo": "pages/components/buttons/GroupedButtons.js"}}
 
+## Vertical Grouped Buttons
+
+{{"demo": "pages/components/buttons/VerticalGroupedButtons.js"}}
+
 ## Split Button
 
 ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
