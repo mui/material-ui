@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
-import Typography from '@material-ui/core/Typography';
 import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles((theme: Theme) =>

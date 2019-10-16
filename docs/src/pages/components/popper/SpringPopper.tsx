@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface FadeProps {
-  children: React.ReactElement;
-  in: boolean;
+  children?: React.ReactElement;
+  in?: boolean;
   onEnter?: () => {};
   onExited?: () => {};
 }
@@ -44,7 +44,6 @@ const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, re
   );
 });
 
-
 export default function SpringPopper() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -63,7 +62,7 @@ export default function SpringPopper() {
       </button>
       <Popper id={id} open={open} anchorEl={anchorEl} transition>
         {({ TransitionProps }) => (
-          <Fade {...TransitionProps} timeout={350}>
+          <Fade {...TransitionProps}>
             <div className={classes.paper}>The content of the Popper.</div>
           </Fade>
         )}

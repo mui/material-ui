@@ -53,7 +53,7 @@ export default function SpringPopper() {
       </button>
       <Popper id={id} open={open} anchorEl={anchorEl} transition>
         {({ TransitionProps }) => (
-          <Fade {...TransitionProps} timeout={350}>
+          <Fade {...TransitionProps}>
             <div className={classes.paper}>The content of the Popper.</div>
           </Fade>
         )}
