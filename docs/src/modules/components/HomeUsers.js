@@ -13,34 +13,46 @@ import Typography from '@material-ui/core/Typography';
 const users = [
   {
     logo: 'nasa.svg',
+    logoWidth: 49,
+    logoHeight: 40,
     caption: 'NASA',
   },
   {
     logo: 'walmart-labs.svg',
+    logoWidth: 253,
+    logoHeight: 48,
     caption: 'Walmart Labs',
     class: 'walmart',
   },
   {
     logo: 'capgemini.svg',
+    logoWidth: 180,
+    logoHeight: 40,
     caption: 'Capgemini',
   },
   {
     logo: 'uniqlo.svg',
+    logoWidth: 40,
+    logoHeight: 40,
     caption: 'Uniqlo',
   },
   {
     logo: 'bethesda.svg',
+    logoWidth: 196,
+    logoHeight: 29,
     caption: 'Bethesda',
-    class: 'noDescenders',
   },
   {
     logo: 'jpmorgan.svg',
+    logoWidth: 198,
+    logoHeight: 40,
     caption: 'J.P. Morgan',
   },
   {
     logo: 'shutterstock.svg',
     caption: 'Shutterstock',
-    class: 'noDescenders',
+    logoWidth: 205,
+    logoHeight: 29,
   },
 ];
 
@@ -60,14 +72,9 @@ const styles = theme => ({
   },
   img: {
     margin: theme.spacing(1.5, 3),
-    height: 40,
-  },
-  noDescenders: {
-    height: 29,
   },
   walmart: {
     margin: theme.spacing(1.1, 3, 1.5),
-    height: 48,
   },
 });
 
@@ -93,6 +100,9 @@ function HomeUsers(props) {
                 src={`/static/images/users/${user.logo}`}
                 alt={user.caption}
                 className={clsx(classes.img, classes[user.class])}
+                loading="lazy"
+                width={user.logoWidth}
+                height={user.logoHeight}
               />
             ))}
           </Grid>
