@@ -39,10 +39,27 @@ A side searchbar.
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Placement
+## Fixed placement
 
-When using Appbar `variant="fixed"` you need to have extra space for the content to show below
-and not under. There are 2 ways to do it. Either use `theme.mixins.toolbar` like:
+When you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:
+
+1. You can use `position="sticky"` instead of fixed. ⚠️ sticky is not supported by IE 11.
+2. You can render a second `<Toolbar />` component:
+
+```jsx
+function App() {
+  return (
+    <React.Fragment>
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <Toolbar />
+    </React.Fragment>
+  );
+}
+```
+
+3. You can use `theme.mixins.toolbar` CSS:
 
 ```jsx
 const useStyles = makeStyles(theme => ({
@@ -53,27 +70,13 @@ function App() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <Appbar position="fixed"></Appbar>
-      <div className={classes.offset}> {/* to accomdate for top white space */}
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <div className={classes.offset} />
     </React.Fragment>
   )
 };
-```
-
-Or you can append `<Toolbar />` component after `<Appbar />` like shown in the example
-below. To prevent content from hiding under Appbar.
-
-```jsx
-function App() {
-  return (
-    <React.Fragment>
-      <AppBar position="fixed">
-        {/* AppBar content here */}
-      </AppBar>
-      <Toolbar />
-    </React.Fragment>
-  );
-}
 ```
 
 ## Scrolling
