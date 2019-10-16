@@ -44,7 +44,7 @@ const StyledButton = styled.button`
   }
 `;
 
-function StyledComponentsTheme() {
+export default function StyledComponentsTheme() {
   return (
     <NoSsr>
       <ThemeProvider theme={defaultTheme}>
@@ -53,5 +53,3 @@ function StyledComponentsTheme() {
     </NoSsr>
   );
 }
-
-export default StyledComponentsTheme;
