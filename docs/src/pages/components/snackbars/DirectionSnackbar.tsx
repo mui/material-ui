@@ -47,6 +47,7 @@ export default function DirectionSnackbar() {
         TransitionComponent={transition}
         ContentProps={{
           'aria-describedby': 'message-id',
+          role: 'alert',
         }}
         message={<span id="message-id">I love snacks</span>}
       />

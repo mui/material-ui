@@ -747,6 +747,7 @@ const SnackbarContentTest = () => {
     <div>
       <SnackbarContent message="I love snacks." action={action} />
       <SnackbarContent
+        role="alert"
         message={
           'I love candy. I love cookies. I love cupcakes. \
           I love cheesecake. I love chocolate.'
