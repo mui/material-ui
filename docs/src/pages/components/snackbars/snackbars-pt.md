@@ -76,3 +76,32 @@ Para usos mais avançados, você pode tirar vantagem com:
 No exemplo a seguir, demonstramos como usar [notistack](https://github.com/iamhosseindhv/notistack). O notistack facilita a exibição de snackbars (para que você não tenha que lidar com o estado de abertura / fechamento delas). Também permite empilhá-las umas sobre as outras (embora isso seja desencorajado pela especificação).
 
 {{"demo": "pages/components/snackbars/IntegrationNotistack.js"}}
+
+## Accessibility
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
+
+- Since alerts are not required to receive focus, content authors should not require users to close a Snackbar if the role is set to `alert` through the SnackbarContent `role` prop.
+- If a Snackbar requires focus to close it, then content authors should use the default `role` of `alertdialog`.
+
+```jsx
+<SnackbarContent
+  message="This is a Snackbar message."
+  role="alert"
+/>
+```
+
+```jsx
+<Snackbar
+  ContentProps={{
+    'aria-describedby': 'snackbar-fab-message-id',
+    'role': 'alertdialog',
+  }}
+  message={<span id="snackbar-fab-message-id">Archived</span>}
+  action={
+  <Button color="inherit" size="small">
+    Undo
+  </Button>
+  }
+/>
+```

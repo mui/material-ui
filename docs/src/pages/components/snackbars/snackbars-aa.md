@@ -76,3 +76,32 @@ crwdns91778:0crwdne91778:0
 crwdns91790:0crwdne91790:0 crwdns91792:0crwdne91792:0 crwdns100810:0crwdne100810:0
 
 crwdns91796:0crwdne91796:0
+
+## Accessibility
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
+
+- Since alerts are not required to receive focus, content authors should not require users to close a Snackbar if the role is set to `alert` through the SnackbarContent `role` prop.
+- If a Snackbar requires focus to close it, then content authors should use the default `role` of `alertdialog`.
+
+```jsx
+<SnackbarContent
+  message="This is a Snackbar message."
+  role="alert"
+/>
+```
+
+```jsx
+<Snackbar
+  ContentProps={{
+    'aria-describedby': 'snackbar-fab-message-id',
+    'role': 'alertdialog',
+  }}
+  message={<span id="snackbar-fab-message-id">Archived</span>}
+  action={
+  <Button color="inherit" size="small">
+    Undo
+  </Button>
+  }
+/>
+```
