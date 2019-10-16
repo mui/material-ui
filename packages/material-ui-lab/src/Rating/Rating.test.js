@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { stub } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Rating from './Rating';
 
 describe('<Rating />', () => {
@@ -18,10 +18,6 @@ describe('<Rating />', () => {
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<Rating {...defaultProps} />);
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   after(() => {

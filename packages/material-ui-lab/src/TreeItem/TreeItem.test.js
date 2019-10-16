@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import TreeItem from './TreeItem';
 import TreeView from '../TreeView';
 
@@ -12,10 +12,6 @@ describe('<TreeItem />', () => {
   const render = createClientRender({ strict: false });
   const mount = createMount({ strict: false });
   const classes = getClasses(<TreeItem nodeId="one" label="one" />);
-
-  afterEach(() => {
-    cleanup();
-  });
 
   describeConformance(<TreeItem nodeId="one" label="one" />, () => ({
     classes,
