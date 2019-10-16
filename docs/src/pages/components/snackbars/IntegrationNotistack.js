@@ -11,13 +11,13 @@ function MyApp() {
 
   const handleClickVariant = variant => () => {
     // variant could be success, error, warning, info, or default
-    enqueueSnackbar('This is a warning message!', { variant });
+    enqueueSnackbar('This is a success message!', { variant });
   };
 
   return (
     <React.Fragment>
       <Button onClick={handleClick}>Show snackbar</Button>
-      <Button onClick={handleClickVariant('warning')}>Show warning snackbar</Button>
+      <Button onClick={handleClickVariant('success')}>Show success snackbar</Button>
     </React.Fragment>
   );
 }
