@@ -25,6 +25,7 @@ export default function LongTextSnackbar() {
     <div className={classes.root}>
       <SnackbarContent className={classes.snackbar} message="I love snacks." action={action} />
       <SnackbarContent
+        role="alert"
         className={classes.snackbar}
         message={
           'I love candy. I love cookies. I love cupcakes. \

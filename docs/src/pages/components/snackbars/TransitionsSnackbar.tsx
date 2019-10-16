@@ -45,6 +45,7 @@ export default function TransitionsSnackbar() {
         TransitionComponent={state.Transition}
         ContentProps={{
           'aria-describedby': 'message-id',
+          role: 'alert',
         }}
         message={<span id="message-id">I love snacks</span>}
       />
