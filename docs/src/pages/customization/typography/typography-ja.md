@@ -6,7 +6,7 @@
 
 You can change the font family with the `theme.typography.fontFamily` property.
 
-For instance, this demo use the system font instead of the default Roboto font:
+For instance, this demo uses the system font instead of the default Roboto font:
 
 ```js
 const theme = createMuiTheme({
@@ -147,7 +147,7 @@ theme = responsiveFontSizes(theme);
 
 To be done: [#15251](https://github.com/mui-org/material-ui/issues/15251).
 
-## Variants
+## バリアント
 
 The typography object comes with [13 variants](/components/typography/#component) by default:
 
@@ -158,14 +158,14 @@ The typography object comes with [13 variants](/components/typography/#component
 - h5
 - h6
 - subtitle1
-- subtitle2
+- サブタイトル2
 - body1
 - body2
-- button
-- caption
-- overline
+- ボタン
+- キャプション
+- オーバーライン
 
-Each of these variants can be customized individually:
+これらのバリアントは各々個別にカスタマイズ可能です。
 
 ```js
 const theme = createMuiTheme({
@@ -185,6 +185,6 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/typography/TypographyVariants.js"}}
 
-## Default values
+## デフォルト値
 
 You can explore the default values of the typography using [the theme explorer](/customization/default-theme/?expend-path=$.typography) or by opening the dev tools console on this page (`window.theme.typography`).

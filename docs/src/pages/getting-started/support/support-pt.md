@@ -1,45 +1,45 @@
-# Support
+# Suporte
 
-<p class="description">From community help to premium critical business support, we’re here to help.</p>
+<p class="description">Desde a ajuda da comunidade até o suporte essencial aos negócios, estamos aqui para ajudar.</p>
 
-## Community help
+## Ajuda da comunidade
 
-The community is your first stop for questions and advice about the framework. Welcome to the community!
+A comunidade é sua primeira parada para perguntas e conselhos sobre o framework. Bem-vindo à comunidade!
 
 ### StackOverflow <svg style="width: 24px; fill: currentColor; margin-left: 4px;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.986 21.865v-6.404h2.134V24H1.844v-8.539h2.13v6.404h15.012zM6.111 19.731H16.85v-2.137H6.111v2.137zm.259-4.852l10.48 2.189.451-2.07-10.478-2.187-.453 2.068zm1.359-5.056l9.705 4.53.903-1.95-9.706-4.53-.902 1.936v.014zm2.715-4.785l8.217 6.855 1.359-1.62-8.216-6.853-1.35 1.617-.01.001zM15.751 0l-1.746 1.294 6.405 8.604 1.746-1.294L15.749 0h.002z"></path></svg>
 
-For crowdsourced technical questions from expert Material-UI devs in our community. Also frequented by the Material-UI core team.
+Para questões técnicas colaborativas, conte com o apoio de desenvolvedores de Material-UI especializados em nossa comunidade. Também frequentado pela equipe principal do Material-UI.
 
-[Post a question](https://stackoverflow.com/questions/tagged/material-ui)
+[Poste uma pergunta](https://stackoverflow.com/questions/tagged/material-ui)
 
 ### GitHub <svg style="width: 20px; fill: currentColor; margin-left: 4px;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg>
 
-We use GitHub issues exclusively as a bugs and feature requests tracker. If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported or fixed](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). You can search through existing issues and pull requests to see if someone has reported one similar to yours.
+Usamos issues do GitHub exclusivamente para rastrear bugs e solicitações de recursos. Se você acha que encontrou um bug ou tem uma nova idéia de recurso, comece certificando-se de que ele ainda não foi [relatado ou corrigido](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). Você pode pesquisar nas issues existentes e pull requests para ver se alguém relatou algo semelhante ao seu.
 
-[Open an issue](https://github.com/mui-org/material-ui/issues/new/choose)
+[Abra uma issue](https://github.com/mui-org/material-ui/issues/new/choose)
 
-#### New issue guidelines
+#### Novas diretrizes para issues
 
-- Please follow the issue template.
-- Please begin the title with '[ComponentName]' where appropriate, and use a succinct description that helps others find similar issues. 
+- Por favor, siga o modelo de issue.
+- Comece o título com '[ComponentName]', quando apropriado, e use uma descrição sucinta que ajude outras pessoas a encontrar issues semelhantes. Use o idioma padrão do projeto que é o inglês. 
   - "doesn't work" ❌
   - "[Button] Add support for <some feature>" ✅
-- Please don't group multiple topics in one issue – each should have its own issue instead.
-- Please don't comment "+1" on an issue. It spams the maintainers and doesn't help move the issue forward. Use GitHub reactions instead (👍).
+- Não agrupe vários tópicos em uma issue - cada um deve ter sua própria issue.
+- Por favor, não comente "+1" em uma issue. Isso engana os mantenedores e não ajuda a avançar com a issue. Use as reações do GitHub (👍).
 
 ### Spectrum <svg style="width: 24px; fill: currentColor; margin-left: 0px;" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" preserveAspectRatio="xMidYMid meet"><path d="M6,14.5c0,0.828 0.672,1.5 1.5,1.5l1.5,0c3.866,0 7,3.134 7,7l0,1.5c0,0.828 0.672,1.5 1.5,1.5l7,0c0.828,0 1.5,-0.672 1.5,-1.5l0,-1.5c0,-9.389 -7.611,-17 -17,-17l-1.5,0c-0.828,0 -1.5,0.672 -1.5,1.5l0,7Z"></path></svg>
 
-Chat with the community on Spectrum. If you feel your thread could be a StackOverflow question, go to StackOverflow instead. We lock/delete questions that are better asked on StackOverflow to avoid duplicates.
+Converse com a comunidade no Spectrum. Se você acha que sua thread pode ser uma pergunta do StackOverflow, acesse o StackOverflow. Bloqueamos/excluímos as perguntas que são melhor resolvidas no StackOverflow para evitar duplicatas.
 
-[Start a discussion](https://spectrum.chat/material-ui)
+[Inicie uma discussão](https://spectrum.chat/material-ui)
 
 ### Blog 📝
 
-Stay up to date with the development of the library by following the blog.
+Mantenha-se atualizado com o desenvolvimento da biblioteca seguindo o blog.
 
-[Read the latest posts](https://medium.com/material-ui/)
+[Leia as últimas postagens](https://medium.com/material-ui/)
 
-### Resources 📖
+### Recursos 📖
 
 Novo no Material-UI? É fácil de aprender, se você souber por onde começar!
 
@@ -47,48 +47,48 @@ Novo no Material-UI? É fácil de aprender, se você souber por onde começar!
 
 ### Twitter <svg style="width: 24px; fill: currentColor; margin-left: 4px;" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" /></svg>
 
-Receive the latest news on Material-UI.
+Receba as últimas notícias sobre Material-UI.
 
-[Follow us](https://twitter.com/MaterialUI)
+[Siga-nos](https://twitter.com/MaterialUI)
 
-### Supported versions
+### Versões suportadas
 
-The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the very beginning, and always will be. Developers can ensure Material-UI is the right choice for their React applications through Material-UI’s community maintenance strategy. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
+O Material-UI CE (Community Edition) é 100% de código aberto (MIT) desde o início, e sempre será. Os desenvolvedores podem garantir que Material-UI seja a escolha certa para seus aplicativos React através da estratégia de manutenção da comunidade do Material-UI. A equipe do Material-UI disponibiliza regularmente novos lançamentos, correções de bugs e é muito receptiva às solicitações da comunidade.
 
-Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework, while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for Material-UI v4](/guides/migration-v3/). The open-source community is always welcome to submit new features and bug fixes as well.
+Dada a realidade das restrições de tempo e recursos, bem como o desejo de continuar inovando, com o tempo, torna-se necessário mudar o foco para as versões mais recentes do framework ([nosso cronograma de lançamento](/versions/#release-frequency)), enquanto faz a transição para as versões mais recentes tão suave quanto possível. Incluindo a publicação de guias de migração como [este para a v4](/guides/migration-v3/). A comunidade de código aberto é sempre bem-vinda para enviar novos recursos e correções de erros também.
 
-The current status of each Material-UI version is as follows:
+O status atual de cada versão do Material-UI é o seguinte:
 
-- Material-UI v4 (hooks) **[Active]**: Latest version in active development.
-- Material-UI v3 (change supported browsers): Only handle security fixes.
-- Material-UI v2 (never existed).
-- Material-UI v1 (rewrite): Inactive.
-- Material-UI v0.x: Inactive.
+- Material-UI v4 (hooks): ✅ Em desenvolvimento ativo.
+- Material-UI v3 (alteração de navegadores suportados): ⚠️ Somente correções de segurança.
+- ~Material-UI v2 (nunca existiu)~.
+- Material-UI v1 (reescrita): ❌ Inativa.
+- Material-UI v0.x: ❌ Inativa.
 
-For teams and organizations that require additional support for any framework version, Material-UI has [options available](#enterprise).
+Para equipes e organizações que exigem suporte adicional para versões mais antigas, o Material-UI possui [opções disponíveis](#enterprise).
 
-## Professional support (Premium)
+## Suporte profissional (Premium)
 
 ### Enterprise Edition
 
-Accelerate your company’s application development with a secure, long-term solution that’s optimized for enterprise and backed by Material-UI experts.
+Acelere o desenvolvimento de aplicativos da sua empresa com uma solução segura e de longo prazo otimizada para empresas e apoiada por especialistas em Material-UI.
 
-- **Long Term version support.** LTS provides developers and organizations with additional stability and reliability in the applications they’re developing, including guaranteed service level agreements (SLAs) and advisory services. Take the time you need before upgrading to the latest active version of Material-UI, or remain confident in your application’s long-term supportability by staying on whichever version you’re most comfortable with. LTS is available as a paid service, it extends to Material-UI v1 implementations and higher.
-- **Version migration assistance**
-- **Priority fixes**
-- **Support**. Timely support and troubleshooting when you need it most. Get expert help directly from the Material-UI team with guaranteed response times (next-business day).
+- **Suporte a versão de longo prazo.** LTS fornece aos desenvolvedores e organizações, estabilidade e confiabilidade adicional nos aplicativos que estão em desenvolvimento, incluindo SLAs (contratos de nível de serviço garantidos) e serviços de consultoria. Aproveite o tempo que você precisa antes de atualizar para a versão ativa mais recente do Material-UI, ou confie no suporte de longo prazo para seu aplicativo, permanecendo na versão com a qual você se sentir mais confortável. O LTS está disponível como um serviço pago, estende-se às implementações do Material-UI v1 e superior.
+- **Assistência de migração de versão**.
+- **Prioridade nas correções**.
+- **Suporte prioritário**. Suporte a tempo e solução de problemas quando você mais precisar. Obtenha ajuda especializada diretamente da equipe do Material-UI com tempos de resposta garantidos (próximo dia útil).
 
-For more information, [get a quote](mailto:enterprise@material-ui.com) from our team.
+Para mais informações, [obtenha uma cotação](mailto:enterprise@material-ui.com) da nossa equipe.
 
-### Advisory
+### Assessoria
 
-Supercharge your team’s development with Material-UI Advisory Services:
+Incremente o desenvolvimento de sua equipe com os Serviços de Consultoria do Material-UI:
 
-#### Developer Advisory
+#### Assessoria ao Desenvolvedor
 
-Everything your team needs to make sure you’re using React in the best way as you evaluate and build on Material-UI.
+Tudo o que sua equipe precisa para garantir que você esteja usando o React da melhor maneira ao avaliar e desenvolver com Material-UI.
 
-- A private, dedicated Slack channel with access to our consultants. Get real-time advice, guidance, and feedback when you need it, with live Slack access and direct private chat with Material-UI’s expert technical team.
+- Um canal Slack privado e dedicado, com acesso aos nossos consultores. Get real-time advice, guidance, and feedback when you need it, with live Slack access and direct private chat with Material-UI’s expert technical team.
 - An initial review of your architecture and development workflow.
 - Guidance on best practices that will help you take full advantage of Material-UI and prevent avoidable mistakes.
 

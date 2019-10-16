@@ -1,6 +1,6 @@
 # API
 
-<p class="description">A referência da API do pacote @material-ui/styles.</p>
+<p class="description">The API reference of @material-ui/core/styles.</p>
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -21,7 +21,7 @@ Uma função que retorna [uma função geradora de nome de classe](https://cssin
 
 ```jsx
 import React from 'react';
-import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
+import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'c',
@@ -49,7 +49,7 @@ Esta função realmente não "faz nada" em tempo de execução, é apenas uma fu
 #### Exemplos
 
 ```jsx
-import { makeStyles, createStyles } from '@material-ui/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -86,7 +86,7 @@ Vincula uma folha de estilo a um componente de função usando o padrão **hook*
 
 ```jsx
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   root: {
@@ -107,7 +107,7 @@ Esta é uma classe auxiliar para manipular a renderização do lado do servidor.
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheets } from '@material-ui/core/styles';
 
 const sheets = new ServerStyleSheets();
 const html = ReactDOMServer.renderToString(sheets.collect(<App />));
@@ -169,7 +169,7 @@ Vincula uma folha de estilos, com uma função de componente, usando o padrão d
 
 ```jsx
 import React from 'react';
-import { styled } from '@material-ui/styles';
+import { styled } from '@material-ui/core/styles';
 
 const MyComponent = styled('div')({
   backgroundColor: 'red',
@@ -225,7 +225,7 @@ Deve preferencialmente ser usado na **raiz da sua árvore de componentes**.
   
   <pre><code class="jsx">import React from 'react';
 import ReactDOM from 'react-dom';
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@material-ui/core/styles';
 
 function App() {
   return (
@@ -310,7 +310,7 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
   
   <pre><code class="jsx">import React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 const theme = {};
 
@@ -344,7 +344,7 @@ ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
   </h4>
   
   <pre><code class="jsx">import React from 'react';
-import { useTheme } from '@material-ui/styles';
+import { useTheme } from '@material-ui/core/styles';
 
 export default function MyComponent() {
   const theme = useTheme();
@@ -423,7 +423,7 @@ export default function MyComponent() {
   </h4>
   
   <pre><code class="jsx">import React from 'react';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   root: {
@@ -443,7 +443,7 @@ export default withStyles(styles)(MyComponent);
   </p>
   
   <pre><code class="jsx">import React from 'react';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
   root: {
@@ -492,7 +492,7 @@ export default MyComponent
   </h4>
   
   <pre><code class="jsx">import React from 'react';
-import { withTheme } from '@material-ui/styles';
+import { withTheme } from '@material-ui/core/styles';
 
 function MyComponent(props) {
   return &lt;div&gt;{props.theme.direction}&lt;/div&gt;;

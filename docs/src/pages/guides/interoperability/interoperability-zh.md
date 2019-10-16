@@ -127,10 +127,10 @@ export default function StyledComponents() {
 **请注意：** styled-components 和 JSS 都在 `<head>` 的底部注入其样式表。 若想要 styled-components 的样式在最后加载，我们推荐的最佳方法是更改 [CSS 的注入顺序](/styles/advanced/#css-injection-order)，如下演示：
 
 ```jsx
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* 你的组件树。
+  {/* Your component tree.
       样式化组件可以覆盖 Material-UI 的样式。 */}
 </StylesProvider>
 ```

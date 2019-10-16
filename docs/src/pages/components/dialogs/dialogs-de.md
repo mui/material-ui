@@ -95,27 +95,23 @@ Durch Berühren von „Abbrechen“ in einem Bestätigungsdialogfeld oder durch 
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## Barrierefreiheit
+## Draggable dialog
 
-Folgen Sie dem [Modal Zugänglichkeit Abschnitt](/components/modal/#accessibility).
+You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable). To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. This will make the entire dialog draggable.
+
+{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## Blättern von langen Inhalten
 
-Wenn Dialoge für das Ansichtsfenster oder das Gerät des Benutzers zu lang werden, scrollen diese.
+When dialogs become too long for the user’s viewport or device, they scroll.
 
 - `scroll=paper`: Der Inhalt des Dialogs scrollt innerhalb des Papierelements.
 - `scroll=body`: Der Inhalt des Dialogs scrollt innerhalb des Body-Elements.
 
-Probieren Sie die Demo aus, um zu sehen, was wir meinen:
+Try the demo below to see what we mean:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
-## Ziehbarer Dialog
+## Barrierefreiheit
 
-Sie können einen ziehbaren Dialog erstellen, indem Sie [react-draggable](https://github.com/mzabriskie/react-draggable) nutzen. Dazu können Sie die importierte `Draggable` Komponente als `PaperComponent` der `Dialog` Komponente übergeben. Dadurch wird der gesamte Dialog verschiebbar.
-
-{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
-
-## Performance
-
-Folgen Sie den [Modal Zugänglichkeit Abschnitt](/components/modal/#performance).
+Follow the [Modal accessibility section](/components/modal/#accessibility).

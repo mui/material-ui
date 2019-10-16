@@ -38,7 +38,7 @@ function NestedMenu(props) {
 }
 
 describe('<NestedMenu> integration', () => {
-  // StrictModeViolation: test uses Popover
+  // StrictModeViolation: uses Popover
   const render = createClientRender({ strict: false });
 
   afterEach(() => {

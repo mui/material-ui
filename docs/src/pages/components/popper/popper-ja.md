@@ -19,13 +19,13 @@ components: Popper
 
 ## シンプルポッパー
 
-{{"demo": "pages/components/popper/SimplePopper.js" }}
+{{"demo": "pages/components/popper/SimplePopper.js"}}
 
 ## ミニマリストポッパー
 
 このコンポーネントは、追加の依存関係なしで使用できます。
 
-{{"demo": "pages/components/popper/MinimalPopper.js" }}
+{{"demo": "pages/components/popper/MinimalPopper.js"}}
 
 ## Scroll playground
 

@@ -19,13 +19,13 @@ Algumas características importantes do componente `Popper`:
 
 ## Popper Simples
 
-{{"demo": "pages/components/popper/SimplePopper.js" }}
+{{"demo": "pages/components/popper/SimplePopper.js"}}
 
 ## Popper Minimalista
 
 Você pode usar o componente sem dependências extras.
 
-{{"demo": "pages/components/popper/MinimalPopper.js" }}
+{{"demo": "pages/components/popper/MinimalPopper.js"}}
 
 ## Rolagem - Exemplo interativo
 

@@ -39,8 +39,8 @@ export default function SplitButton() {
   };
 
   return (
-    <Grid container>
-      <Grid item xs={12} align="center">
+    <Grid container direction="column" alignItems="center">
+      <Grid item xs={12}>
         <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
           <Button onClick={handleClick}>{options[selectedIndex]}</Button>
           <Button

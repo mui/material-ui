@@ -16,7 +16,7 @@ components: Modal
 - ♿️適切なARIAロールを自動的に追加します。
 - 📦 [5 kB gzipped](/size-snapshot).
 
-> **用語の注記**。 「モーダル」という用語は「ダイアログ」を意味するために使用されることがありますが、これは誤った呼び名です。 モーダルウィンドウは、UIの一部を説明します。 要素が[アプリケーションの他の部分との対話をブロックする場合](https://en.wikipedia.org/wiki/Modal_window)、その要素はモーダルであると見なされます。
+> **用語の注記**。 「モーダル」という用語は「ダイアログ」を意味するために使用されることがありますが、これは誤った呼び名です。 A modal window describes parts of a UI. 要素が[アプリケーションの他の部分との対話をブロックする場合](https://en.wikipedia.org/wiki/Modal_window)、その要素はモーダルであると見なされます。
 
 モーダルダイアログを作成する場合は、モーダルを直接使用するのではなく、 [ダイアログ](/components/dialogs/) コンポーネントを使用することをお勧めします。 モーダルは、次のコンポーネントによって活用される低レベルの構成要素です。
 
@@ -36,7 +36,7 @@ components: Modal
 The open/close state of the modal can be animated with a transition component. This component should respect the following conditions:
 
 - Be a direct child descendent of the modal.
-- Have an `in` prop. This corresponds to the open / close state.
+- `in`プロパティを持っています。 これは、オープン/クローズ状態に対応します。
 - Call the `onEnter` callback prop when the enter transition starts.
 - Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
 
@@ -48,7 +48,15 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 
+## Server-side modal
+
+React は、サーバー上の [`createPortal（）`](https://reactjs.org/docs/portals.html) APIを[サポートしません。](https://github.com/facebook/react/issues/13097) In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
+
+{{"demo": "pages/components/modal/ServerModal.js"}}
+
 ## アクセシビリティ
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
 - Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
 
@@ -66,10 +74,5 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 </Modal>
 ```
 
-- The [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
-
-## Server-side modal
-
-React は、サーバー上の [`createPortal（）`](https://reactjs.org/docs/portals.html) APIを[サポートしません。](https://github.com/facebook/react/issues/13097) モーダルを表示するには、 `disablePortal` propを使用してポータル機能を無効にする必要があります。
-
-{{"demo": "pages/components/modal/ServerModal.js"}}
+- The [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
+- A modal window overlys on either the primary window or another modal window. Windows under a modal are **inert**. That is, users cannot interact with content outside an active modal window.

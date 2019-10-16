@@ -53,7 +53,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">error</span> | <span class="prop-name">Mui-error</span> | Pseudo-class applied to the root element and `Typography` component if `error={true}`.
 | <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element and `Typography` component if `disabled={true}`.
 | <span class="prop-name">iconContainer</span> | <span class="prop-name">MuiStepLabel-iconContainer</span> | Styles applied to the `icon` container element.
-| <span class="prop-name">alternativeLabel</span> | <span class="prop-name">MuiStepLabel-alternativeLabel</span> | Pseudo-class applied to the root & icon container and `Typography` if `alternativeLabel={true}`.
+| <span class="prop-name">alternativeLabel</span> | <span class="prop-name">MuiStepLabel-alternativeLabel</span> | Pseudo-class applied to the root and icon container and `Typography` if `alternativeLabel={true}`.
 | <span class="prop-name">labelContainer</span> | <span class="prop-name">MuiStepLabel-labelContainer</span> | Styles applied to the container element which wraps `Typography` and `optional`.
 
 You can override the style of the component thanks to one of these customization points:

@@ -40,7 +40,7 @@ export default function DenseTable() {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <Table className={classes.table} size="small">
+        <Table className={classes.table} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
               <TableCell>Dessert (100g serving)</TableCell>

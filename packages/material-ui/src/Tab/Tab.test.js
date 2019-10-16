@@ -20,7 +20,7 @@ describe('<Tab />', () => {
 
   before(() => {
     shallow = createShallow({ dive: true });
-    // StrictModeViolation: uses text()
+    // StrictModeViolation: test uses text()
     mount = createMount({ strict: false });
     classes = getClasses(<Tab textColor="inherit" />);
   });

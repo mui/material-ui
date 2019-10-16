@@ -116,7 +116,7 @@ We have shipped the long-awaited Material-UI v1 stable release. With a new codeb
 Finally, one last thank you to everyone who’s contributed to Material-UI v1.
 I’m so excited at the idea we are making it stable, but rest assured, it’s just the beginning. We will keep working hard on delivering the best possible UI library components.
 
-Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development made possible thanks to the support of these awesome [backers](/discover-more/backers/). If you’d like to join them, please consider:
+Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development helped by the support of these awesome [backers](/discover-more/backers/). If you’d like to join them, please consider:
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
 - [Become a backer or sponsor on OpenCollective](https://opencollective.com/material-ui).
 

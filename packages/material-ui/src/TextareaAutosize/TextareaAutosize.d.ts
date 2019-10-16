@@ -4,6 +4,10 @@ export interface TextareaAutosizeProps extends React.TextareaHTMLAttributes<HTML
   rowsMax?: string | number;
 }
 
-declare const TextareaAutosize: React.ComponentType<TextareaAutosizeProps>;
+declare const TextareaAutosize: React.ComponentType<
+  TextareaAutosizeProps & {
+    ref?: React.Ref<HTMLTextAreaElement>;
+  }
+>;
 
 export default TextareaAutosize;

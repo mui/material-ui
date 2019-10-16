@@ -127,10 +127,10 @@ export default function StyledComponents() {
 **Hinweis:** Sowohl styled-components als auch JSS fügen ihre Stile unten in `<head>` ein. Um sicherzustellen, dass styled-components-Stile zuletzt geladen werden, ändern Sie die [CSS-Injektionsreihenfolge](/styles/advanced/#css-injection-order), wie in der Demo:
 
 ```jsx
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* Dein Komponentenbaum.
+  {/* Your component tree.
       Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben. */}
 </StylesProvider>
 ```

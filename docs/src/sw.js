@@ -1,4 +1,5 @@
 /* eslint-env serviceworker */
+// https://github.com/airbnb/javascript/issues/1632
 /* eslint-disable no-restricted-globals */
 /* global workbox */
 

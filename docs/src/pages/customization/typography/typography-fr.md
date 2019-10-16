@@ -6,7 +6,7 @@
 
 You can change the font family with the `theme.typography.fontFamily` property.
 
-For instance, this demo use the system font instead of the default Roboto font:
+For instance, this demo uses the system font instead of the default Roboto font:
 
 ```js
 const theme = createMuiTheme({

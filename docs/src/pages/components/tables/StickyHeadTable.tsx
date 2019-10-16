@@ -100,7 +100,7 @@ export default function StickyHeadTable() {
   return (
     <Paper className={classes.root}>
       <div className={classes.tableWrapper}>
-        <Table stickyHeader>
+        <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               {columns.map(column => (

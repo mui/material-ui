@@ -50,16 +50,16 @@ Generate an enhanced mount function with the needed context. Please refer to the
 
 ```jsx
 import { createMount } from '@material-ui/core/test-utils';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 describe('<MyComponent />', () => {
   let mount;
 
   function MySuccessButton({ children }) {
     return (
-      <MuiThemeProvider theme={{ success: { main: '#fff' } }}>
+      <ThemeProvider theme={{ success: { main: '#fff' } }}>
         {children}
-      </MuiThemeProvider>
+      </ThemeProvider>
     );
   }
 

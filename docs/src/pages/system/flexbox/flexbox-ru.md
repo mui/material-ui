@@ -2,7 +2,7 @@
 
 <p class="description">Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with a full suite of responsive flexbox utilities.</p>
 
-If you are **new to or unfamiliar with flexbox**, we encourage you to read this [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) guide.
+Если вы **слабо знакомы (или совсем незнакомы) с Flexbox**, мы рекомендуем Вам прочитать это руководство [CSS-трюки Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
 ## Properties for the Parent
 
@@ -97,8 +97,8 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 ```jsx
 <Box>Item 1</Box>
-<Box alignSelf="flex-end">Item 1</Box>
-<Box>Item 1</Box>
+<Box alignSelf="flex-end">Item 2</Box>
+<Box>Item 3</Box>
 ```
 
 {{"demo": "pages/system/flexbox/AlignSelf.js"}}

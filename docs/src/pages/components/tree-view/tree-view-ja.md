@@ -17,6 +17,6 @@ components: TreeView、TreeItem
 
 {{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
 
-### Gmail clone
+### Gmailクローン
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}

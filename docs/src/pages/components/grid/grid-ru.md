@@ -19,7 +19,7 @@ components: Grid
 - Элементы имеют отступы для создания промежутков между отдельными элементами.
 - Существует пять контрольных точек прерывания сетки: xs, sm, md, lg и xl.
 
-If you are **new to or unfamiliar with flexbox**, we encourage you to read this [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) guide.
+Если вы **слабо знакомы (или совсем незнакомы) с Flexbox**, мы рекомендуем Вам прочитать это руководство [CSS-трюки Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
 ## Интервал
 
@@ -31,7 +31,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 ## Адаптивные сетки
 
-Fluid grids use columns that scale and resize content. A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
+Адаптивные сетки используют столбцы, которые меняют свою ширину и масштабируют размер содержимого. Макет с адаптивной сеткой может использовать точки останова (breakpoints), в тех случаях, когда макет должен резко измениться.
 
 ### Базовая сетка
 
@@ -53,7 +53,7 @@ Fluid grids use columns that scale and resize content. A fluid grid’s layout c
 
 ## Авто-разметка
 
-The Auto-layout makes the *items* equitably share the available space. That also means you can set the width of one *item* and the others will automatically resize around it.
+Автоматическая разметка позволяет *элементам* равномерно распределяться по всему доступному пространству. Это также означает, что вы можете установить ширину одного *элемента* и остальные автоматически изменят свои размеры вокруг него.
 
 {{"demo": "pages/components/grid/AutoGrid.js"}}
 
@@ -65,7 +65,7 @@ The Auto-layout makes the *items* equitably share the available space. That also
 
 ## Вложенная сетка
 
-The `container` and `item` properties are two independent booleans. They can be combined.
+Свойства `container` и `item` - это два независимых логических значения. Они могут быть объединены.
 
 > Flex **контейнер** представляет собой блок, созданный элементом с вычисляемым свойством display `flex` или `inline-flex`. Дочерние элементы flex контейнера называются flex **элементы** и размещаются используя flex-модель.
 
@@ -77,7 +77,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### Отрицательный margin
 
-Есть одно ограничение с отрицательным margin, которое мы используем для добавления расстояния между элементами. Появится горизонтальная прокрутка, если отрицательный margin выходит за пределы `<body>`. There are 3 available workarounds:
+Есть одно ограничение с отрицательным margin, которое мы используем для добавления расстояния между элементами. Появится горизонтальная прокрутка, если отрицательный margin выходит за пределы `<body>`. Существует 3 обходных пути, чтобы избежать этого:
 
 1. Не использовать отступы и не реализовывать их в пространстве пользователя. `spacing={0}` (по умолчанию).
 2. Применение внутренних отступов (padding) к родителю с использованием, как минимум, половины значения отступа, имеющегося у дочернего элемента:
@@ -96,14 +96,14 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### white-space: nowrap;
 
-The initial setting on flex items is `min-width: auto`. It's causing a positioning conflict when the children is using `white-space: nowrap;`. You can experience the issue with:
+Первоначальные настройки для flex-элементов (flex items) равны `min-width: auto`. Это вызывает конфликт позиционирования, когда потомки используют `white-space: nowrap;`. Вы можете получить проблему с кодом такого типа:
 
 ```jsx
 <Grid item xs>
   <Typography noWrap>
 ```
 
-In order for the item to stay within the container you need to set `min-width: 0`. In practice, you can set the `zeroMinWidth` property:
+Чтобы элемент оставался в контейнере, необходимо установить `min-width: 0`. На практике вы можете установить свойство `zeroMinWidth`:
 
 ```jsx
 <Grid item xs zeroMinWidth>
@@ -114,10 +114,10 @@ In order for the item to stay within the container you need to set `min-width: 0
 
 ### direction: column | column-reverse
 
-Though the `Grid` component has a `direction` property that allows values of `row`, `row-reverse`, `column`, and `column-reverse`, there are some features that are not supported within `column` and `column-reverse` containers. The properties which define the number of grids the component will use for a given breakpoint (`xs`, `sm`, `md`, `lg`, and `xl`) are focused on controlling width and do **not** have similar effects on height within `column` and `column-reverse` containers. If used within `column` or `column-reverse` containers, these properties may have undesirable effects on the width of the `Grid` elements.
+Хотя компонент `Grid` имеет свойство `direction` которое допускает значения `row`, `row-reverse`, `column`и `column-reverse`, тем не менее, некоторые функции не поддерживаются в контейнерах `column` и `column-reverse`. Свойства, определющие количество сеток, которые компонент будет использовать для данной точки останова (`xs`, `см`, `md`, `lg`и `xl`), ориентированы на управление шириной и оказывают **различное** влияние на height в контейнерах `column` и `column-reverse`. При использовании в контейнерах `column` или `column-reverse`, эти свойства могут оказать нежелательные эффекты на ширину элементов `Grid`.
 
 ## CSS макет сетки
 
-Material-UI doesn't provide any CSS Grid functionality itself, but as seen below you can easily use CSS Grid to layout your pages.
+Material UI сам по себе не предоставляет никакой функциональности CSS Grid, но, как видно ниже, вы можете легко использовать CSS Grid в макете страницы.
 
 {{"demo": "pages/components/grid/CSSGrid.js"}}

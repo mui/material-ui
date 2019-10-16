@@ -1,5 +1,6 @@
 import chai from 'chai';
 import chaiDom from 'chai-dom';
+import { isInaccessible } from '@testing-library/dom';
 import { prettyDOM } from '@testing-library/react';
 
 chai.use(chaiDom);
@@ -46,6 +47,18 @@ chai.use((chaiAPI, utils) => {
       `expected ${utils.elToString(element)} to not be aria-hidden, but ${utils.elToString(
         previousNode,
       )} had aria-hidden="true" instead\n${prettyDOM(previousNode)}`,
+    );
+  });
+
+  chai.Assertion.addProperty('inaccessible', function elementIsAccessible() {
+    const element = utils.flag(this, 'object');
+
+    const inaccessible = isInaccessible(element);
+
+    this.assert(
+      inaccessible === true,
+      `expected ${utils.elToString(element)} to be inaccessible but it was accessible`,
+      `expected ${utils.elToString(element)} to be accessible but it was inaccessible`,
     );
   });
 });

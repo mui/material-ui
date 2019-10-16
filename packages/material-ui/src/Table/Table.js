@@ -4,19 +4,26 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import TableContext from './TableContext';
 
-export const styles = {
+export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     display: 'table',
     width: '100%',
     borderCollapse: 'collapse',
     borderSpacing: 0,
+    '& caption': {
+      ...theme.typography.body2,
+      padding: theme.spacing(2),
+      color: theme.palette.text.secondary,
+      textAlign: 'left',
+      captionSide: 'bottom',
+    },
   },
   /* Styles applied to the root element if `stickyHeader={true}`. */
   stickyHeader: {
     borderCollapse: 'separate',
   },
-};
+});
 
 const Table = React.forwardRef(function Table(props, ref) {
   const {

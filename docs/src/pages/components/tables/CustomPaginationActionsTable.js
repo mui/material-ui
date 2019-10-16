@@ -131,7 +131,7 @@ export default function CustomPaginationActionsTable() {
   return (
     <Paper className={classes.root}>
       <div className={classes.tableWrapper}>
-        <Table className={classes.table}>
+        <Table className={classes.table} aria-label="custom pagination table">
           <TableBody>
             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
               <TableRow key={row.name}>

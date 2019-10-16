@@ -32,7 +32,7 @@ describe('<TablePagination />', () => {
     classes = getClasses(
       <TablePagination count={1} onChangePage={() => {}} page={0} rowsPerPage={10} />,
     );
-    // StrictModeViolation: uses #html()
+    // StrictModeViolation: test uses #html()
     mount = createMount({ strict: false });
   });
 

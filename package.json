@@ -1,10 +1,11 @@
 {
-  "version": "4.5.0",
+  "version": "4.5.1",
   "private": true,
   "scripts": {
     "proptypes": "ts-node --skip-project ./scripts/generateProptypes.ts",
     "deduplicate": "node scripts/deduplicate.js",
     "argos": "argos upload test/regressions/screenshots/chrome --token $ARGOS_TOKEN",
+    "build:codesandbox": "lerna run --parallel --scope \"@material-ui/*\" build",
     "docs:api": "rimraf ./docs/pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui/src ./docs/pages/api && cross-env BABEL_ENV=test babel-node ./docs/scripts/buildApi.js ./packages/material-ui-lab/src ./docs/pages/api",
     "docs:build": "yarn workspace docs build",
     "docs:build-sw": "yarn workspace docs build-sw",
@@ -50,6 +51,7 @@
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.6.2",
+    "@testing-library/dom": "^6.8.1",
     "@testing-library/react": "^9.2.0",
     "@types/chai": "^4.2.3",
     "@types/chai-dom": "^0.0.8",
@@ -77,6 +79,7 @@
     "chai": "^4.1.2",
     "chai-dom": "^1.8.1",
     "compression-webpack-plugin": "^3.0.0",
+    "confusing-browser-globals": "^1.0.9",
     "cross-env": "^6.0.0",
     "danger": "^9.1.8",
     "dtslint": "^0.9.3",

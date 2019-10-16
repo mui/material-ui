@@ -1,5 +1,3 @@
-/* eslint-disable react/forbid-foreign-prop-types, no-underscore-dangle */
-
 import { parse as parseDoctrine } from 'doctrine';
 import * as recast from 'recast';
 import { parse as docgenParse } from 'react-docgen';
@@ -181,6 +179,7 @@ function generatePropType(type) {
       const deprecatedInfo = getDeprecatedInfo(type);
       if (deprecatedInfo !== false) {
         return generatePropType({
+          // eslint-disable-next-line react/forbid-foreign-prop-types
           name: deprecatedInfo.propTypes,
         });
       }

@@ -93,6 +93,7 @@ const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(pr
       onBlur(event);
     }
   };
+  // TODO: Remove in v5 and use onClick in ExpansionPanel.js
   const handleChange = event => {
     if (onChange) {
       onChange(event);

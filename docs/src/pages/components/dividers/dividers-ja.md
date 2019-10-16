@@ -11,7 +11,7 @@ components: Divider
 
 ## List Dividers
 
-The divider renders as an `<hr>` by default. このDOM要素のレンダリングを節約するには、 `ListItem` コンポーネントの `divider` プロパティを使用します。
+区切り線はデフォルトで `<hr>` としてレンダリングされます。 このDOM要素のレンダリングを節約するには、 `ListItem` コンポーネントの `divider` プロパティを使用します。
 
 {{"demo": "pages/components/dividers/ListDividers.js"}}
 

@@ -182,17 +182,17 @@ export const styles = theme => ({
     padding: '3px 9px',
     fontSize: theme.typography.pxToRem(13),
   },
-  /* Styles applied to the root element if `size="large" && variant="outlined"`. */
+  /* Styles applied to the root element if `size="large"` and `variant="outlined"`. */
   outlinedSizeLarge: {
     padding: '7px 21px',
     fontSize: theme.typography.pxToRem(15),
   },
-  /* Styles applied to the root element if `size="small" && variant="contained"`. */
+  /* Styles applied to the root element if `size="small"` and `variant="contained"`. */
   containedSizeSmall: {
     padding: '4px 10px',
     fontSize: theme.typography.pxToRem(13),
   },
-  /* Styles applied to the root element if `size="large" && && variant="contained"`. */
+  /* Styles applied to the root element if `size="large"` and `variant="contained"`. */
   containedSizeLarge: {
     padding: '8px 22px',
     fontSize: theme.typography.pxToRem(15),

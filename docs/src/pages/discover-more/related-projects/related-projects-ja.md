@@ -2,11 +2,14 @@
 
 <p class="description">A carefully curated list of libraries that are worth having a look at.</p>
 
-Because the scope of problems Material-UI solves is limited, we try to play nicely with other libraries. Feel free to submit a pull request to add another project; it will be accepted if it is suitable.
+Because the scope of problems Material-UI solves is bound, we try to play nicely with other libraries. Feel free to submit a pull request to add another project; it will be accepted if it is suitable.
 
 ## Design resources
 
-- [Figma UI Kit](https://material.5ly.co/) for Material-UI.
+- **Sketch**: [Material Theme Editor](https://material.io/resources/theme-editor/) for Material Design made by Google.
+- **Figma**: [Figma UI Kit](https://material.5ly.co/) for Material-UI made by Fively Team.
+
+You didn't find the design assets your team is looking for? ご連絡ください！
 
 ## Images and illustrations
 
@@ -19,7 +22,7 @@ This is a collection of third-party projects that extend Material-UI.
 
 ### Tables
 
-- [material-table](https://github.com/mbrn/material-table): A simple and powerful Datatable for React based on Material-UI Table with some additional features. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
+- [material-table](https://github.com/mbrn/material-table): A simple and powerful Datatable for React based on Material-UI Table with some additional features. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). 参照するといいでしょう。
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
 - [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.
 - [tubular-react](https://github.com/unosquare/tubular-react): A Material-UI table with local or remote data-source. Featuring filtering, sorting, free-text search, export to CSV locally, and aggregations.
@@ -34,6 +37,16 @@ This is a collection of third-party projects that extend Material-UI.
 ### Notifications
 
 - [notistack](https://github.com/iamhosseindhv/notistack): Makes it easy to display snackbars (so you don't have to deal with open/close state of them).
+
+### Upload
+
+- [material-ui-dropzone](https://github.com/Yuvaleros/material-ui-dropzone): Built on top of react-dropzone.
+
+### Form
+
+- [formik-material-ui](https://github.com/stackworx/formik-material-ui) Bindings for using Material-UI with formik.
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) A set of wrapper components to facilitate using Material UI with Redux Form.
+- [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) Final FormでMaterial UIを使いやすくするためのラッパーコンポーネントのセット。
 
 ### Carousel
 
