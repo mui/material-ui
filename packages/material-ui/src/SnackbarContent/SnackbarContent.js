@@ -42,14 +42,7 @@ export const styles = theme => {
 };
 
 const SnackbarContent = React.forwardRef(function SnackbarContent(props, ref) {
-  const {
-    action,
-    classes,
-    className,
-    message,
-    role = 'alertdialog',
-    ...other
-  } = props;
+  const { action, classes, className, message, role = 'alertdialog', ...other } = props;
 
   return (
     <Paper
