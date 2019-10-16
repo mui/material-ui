@@ -31,15 +31,15 @@ A side searchbar.
 
 {{"demo": "pages/components/app-bar/SearchAppBar.js"}}
 
-## Prominent App Bar
+## Dense (desktop only)
+
+{{"demo": "pages/components/app-bar/DenseAppBar.js"}}
+
+## Prominent
 
 A prominent app bar.
 
 {{"demo": "pages/components/app-bar/ProminentAppBar.js"}}
-
-## Dense (desktop only)
-
-{{"demo": "pages/components/app-bar/DenseAppBar.js"}}
 
 ## Bottom App Bar
 
