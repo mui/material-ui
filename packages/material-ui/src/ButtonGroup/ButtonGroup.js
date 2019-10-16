@@ -23,23 +23,9 @@ export const styles = theme => ({
   /* Styles applied to the children. */
   grouped: {
     minWidth: 40,
-    '&:not(:first-child)': {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
-    },
-    '&:not(:last-child)': {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
-    },
   },
   /* Styles applied to the children if `variant="text"`. */
-  groupedText: {
-    '&:not(:last-child)': {
-      borderRight: `1px solid ${
-        theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-      }`,
-    },
-  },
+  groupedText: {},
   /* Styles applied to the children if `variant="text"` and `color="primary"`. */
   groupedTextPrimary: {
     '&:not(:last-child)': {
@@ -53,14 +39,7 @@ export const styles = theme => ({
     },
   },
   /* Styles applied to the children if `variant="outlined"`. */
-  groupedOutlined: {
-    '&:not(:first-child)': {
-      marginLeft: -1,
-    },
-    '&:not(:last-child)': {
-      borderRightColor: 'transparent',
-    },
-  },
+  groupedOutlined: {},
   /* Styles applied to the children if `variant="outlined"` and `color="primary"`. */
   groupedOutlinedPrimary: {
     '&:hover': {
@@ -76,27 +55,107 @@ export const styles = theme => ({
   /* Styles applied to the children if `variant="contained"`. */
   groupedContained: {
     boxShadow: 'none',
-    '&:not(:last-child)': {
-      borderRight: `1px solid ${theme.palette.grey[400]}`,
-      '&$disabled': {
-        borderRight: `1px solid ${theme.palette.action.disabled}`,
+  },
+  /* Styles applied to the children if variant="contained" & color="primary". */
+  groupedContainedPrimary: {},
+  /* Styles applied to the children if variant="contained" & color="secondary". */
+  groupedContainedSecondary: {},
+  /* Pseudo-class applied to child elements if `disabled={true}`. */
+  disabled: {},
+  /* Styles applied to child elements if `orientation={horizontal}`. */
+  horizontal: {
+    minWidth: 40,
+    '& $grouped': {
+      '&:not(:first-child)': {
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+      },
+      '&:not(:last-child)': {
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0,
+      },
+    },
+    '& $groupedText': {
+      '&:not(:last-child)': {
+        borderRight: `1px solid ${
+          theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+        }`,
+      },
+    },
+    '& $groupedOutlined': {
+      '&:not(:first-child)': {
+        marginLeft: -1,
+      },
+      '&:not(:last-child)': {
+        borderRightColor: 'transparent',
+      },
+    },
+    '& $groupedContainedPrimary': {
+      '&:not(:last-child)': {
+        borderRight: `1px solid ${theme.palette.primary.dark}`,
+      },
+    },
+    '& $groupedContainedSecondary': {
+      '&:not(:last-child)': {
+        borderRight: `1px solid ${theme.palette.secondary.dark}`,
+      },
+    },
+    '& $groupedContained': {
+      '&:not(:last-child)': {
+        borderRight: `1px solid ${theme.palette.grey[400]}`,
+        '&$disabled': {
+          borderRight: `1px solid ${theme.palette.action.disabled}`,
+        },
       },
     },
   },
-  /* Styles applied to the children if `variant="contained"` and `color="primary"`. */
-  groupedContainedPrimary: {
-    '&:not(:last-child)': {
-      borderRight: `1px solid ${theme.palette.primary.dark}`,
+  /* Styles applied to child elements if `orientation={vertical}`. */
+  vertical: {
+    flexDirection: 'column',
+    '& $grouped': {
+      '&:not(:first-child)': {
+        borderTopLeftRadius: 0,
+        borderTopRightRadius: 0,
+      },
+      '&:not(:last-child)': {
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
+      },
+    },
+    '& $groupedText': {
+      '&:not(:last-child)': {
+        borderBottom: `1px solid ${
+          theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+        }`,
+      },
+    },
+    '& $groupedOutlined': {
+      '&:not(:first-child)': {
+        marginTop: -1,
+      },
+      '&:not(:last-child)': {
+        borderBottomColor: 'transparent',
+      },
+    },
+    '& $groupedContainedPrimary': {
+      '&:not(:last-child)': {
+        borderBottom: `1px solid ${theme.palette.primary.dark}`,
+      },
+    },
+    '& $groupedContainedSecondary': {
+      '&:not(:last-child)': {
+        borderBottom: `1px solid ${theme.palette.secondary.dark}`,
+      },
+    },
+    '& $groupedContained': {
+      '&:not(:last-child)': {
+        borderBottom: `1px solid ${theme.palette.grey[400]}`,
+        '&$disabled': {
+          borderBottom: `1px solid ${theme.palette.action.disabled}`,
+        },
+      },
     },
   },
-  /* Styles applied to the children if `variant="contained"` and `color="secondary"`. */
-  groupedContainedSecondary: {
-    '&:not(:last-child)': {
-      borderRight: `1px solid ${theme.palette.secondary.dark}`,
-    },
-  },
-  /* Pseudo-class applied to child elements if `disabled={true}`. */
-  disabled: {},
 });
 
 const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
@@ -110,6 +169,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
     disableFocusRipple = false,
     disableRipple = false,
     fullWidth = false,
+    orientation = 'horizontal',
     size = 'medium',
     variant = 'outlined',
     ...other
@@ -132,6 +192,8 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
         {
           [classes.contained]: variant === 'contained',
           [classes.fullWidth]: fullWidth,
+          [classes.horizontal]: orientation === 'horizontal',
+          [classes.vertical]: orientation === 'vertical',
         },
         classNameProp,
       )}
@@ -209,6 +271,10 @@ ButtonGroup.propTypes = {
    * If `true`, the buttons will take up the full width of its container.
    */
   fullWidth: PropTypes.bool,
+  /**
+   * The group orientation.
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The size of the button.
    * `small` is equivalent to the dense button styling.
