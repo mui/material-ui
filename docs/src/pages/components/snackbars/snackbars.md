@@ -104,9 +104,9 @@ It also enables you to stack them on top of one another (although this is discou
   }}
   message={<span id="snackbar-fab-message-id">Archived</span>}
   action={
-  <Button color="inherit" size="small">
-    Undo
-  </Button>
+    <Button color="inherit" size="small">
+      Undo
+    </Button>
   }
 />
 ```
