@@ -9,6 +9,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
     disableFocusRipple?: boolean;
     disableRipple?: boolean;
     fullWidth?: boolean;
+    orientation?: 'horizontal' | 'vertical';
     size?: 'small' | 'medium' | 'large';
     variant?: 'text' | 'outlined' | 'contained';
   };
@@ -31,7 +32,9 @@ export type ButtonGroupClassKey =
   | 'groupedOutlinedSecondary'
   | 'groupedContained'
   | 'groupedContainedPrimary'
-  | 'groupedContainedSecondary';
+  | 'groupedContainedSecondary'
+  | 'horizontal';
+  | 'vertical';
 
 export type ButtonGroupProps<
   D extends React.ElementType = ButtonGroupTypeMap['defaultComponent'],
