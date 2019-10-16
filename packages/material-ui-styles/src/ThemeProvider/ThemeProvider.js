@@ -66,7 +66,7 @@ function ThemeProvider(props) {
 
 ThemeProvider.propTypes = {
   /**
-   * Your component tree
+   * Your component tree.
    */
   children: PropTypes.node.isRequired,
   /**
