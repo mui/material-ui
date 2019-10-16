@@ -39,10 +39,6 @@ A side searchbar.
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Scrolling
-
-You can use the `useScrollTrigger()` hook to respond to user scroll actions.
-
 ## Placement
 
 When using Appbar `variant="fixed"` you need to have extra space for the content to show below
@@ -50,18 +46,16 @@ and not under. There are 2 ways to do it. Either use `theme.mixins.toolbar` like
 
 ```jsx
 const useStyles = makeStyles(theme => ({
-  offset: {
-    ...theme.mixins.toolbar,
-  }
+  offset: theme.mixins.toolbar,
 }))
 
 function App() {
   const classes = useStyles();
   return (
-    <div>
+    <React.Fragment>
       <Appbar position="fixed"></Appbar>
       <div className={classes.offset}> {/* to accomdate for top white space */}
-    </div>
+    </React.Fragment>
   )
 };
 ```
@@ -72,13 +66,19 @@ below. To prevent content from hiding under Appbar.
 ```jsx
 function App() {
   return (
-    <AppBar position="fixed">
-      {/* AppBar content here */}
-    </AppBar>
-    <Toolbar />
+    <React.Fragment>
+      <AppBar position="fixed">
+        {/* AppBar content here */}
+      </AppBar>
+      <Toolbar />
+    </React.Fragment>
   );
 }
 ```
+
+## Scrolling
+
+You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
 ### Hide App Bar
 
