@@ -2,11 +2,13 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const useStyles = makeStyles(theme => ({
-  progress: {
-    margin: theme.spacing(2),
+const useStyles = makeStyles({
+  root: {
+    width: '80%',
+    display: 'flex',
+    justifyContent: 'space-evenly',
   },
-}));
+});
 
 export default function CircularStatic() {
   const classes = useStyles();
@@ -24,13 +26,13 @@ export default function CircularStatic() {
   }, []);
 
   return (
-    <div>
-      <CircularProgress className={classes.progress} variant="static" value={5} />
-      <CircularProgress className={classes.progress} variant="static" value={25} />
-      <CircularProgress className={classes.progress} variant="static" value={50} />
-      <CircularProgress className={classes.progress} variant="static" value={75} />
-      <CircularProgress className={classes.progress} variant="static" value={100} />
-      <CircularProgress className={classes.progress} variant="static" value={completed} />
+    <div className={classes.root}>
+      <CircularProgress variant="static" value={5} />
+      <CircularProgress variant="static" value={25} />
+      <CircularProgress variant="static" value={50} />
+      <CircularProgress variant="static" value={75} />
+      <CircularProgress variant="static" value={100} />
+      <CircularProgress variant="static" value={completed} />
     </div>
   );
 }

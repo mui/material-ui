@@ -1,12 +1,18 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-  },
-});
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      height: theme.spacing(3),
+    },
+  }),
+);
 
 export default function LinearBuffer() {
   const classes = useStyles();
@@ -42,7 +48,6 @@ export default function LinearBuffer() {
   return (
     <div className={classes.root}>
       <LinearProgress variant="buffer" value={completed} valueBuffer={buffer} />
-      <br />
       <LinearProgress color="secondary" variant="buffer" value={completed} valueBuffer={buffer} />
     </div>
   );

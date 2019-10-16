@@ -1,12 +1,18 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-const useStyles = makeStyles({
-  root: {
-    flexGrow: 1,
-  },
-});
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      height: theme.spacing(3),
+    },
+  }),
+);
 
 export default function LinearDeterminate() {
   const classes = useStyles();
@@ -32,7 +38,6 @@ export default function LinearDeterminate() {
   return (
     <div className={classes.root}>
       <LinearProgress variant="determinate" value={completed} />
-      <br />
       <LinearProgress color="secondary" variant="determinate" value={completed} />
     </div>
   );

@@ -2,11 +2,13 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const useStyles = makeStyles(theme => ({
-  progress: {
-    margin: theme.spacing(2),
+const useStyles = makeStyles({
+  root: {
+    width: '30%',
+    display: 'flex',
+    justifyContent: 'space-evenly',
   },
-}));
+});
 
 export default function CircularDeterminate() {
   const classes = useStyles();
@@ -25,14 +27,9 @@ export default function CircularDeterminate() {
   }, []);
 
   return (
-    <div>
-      <CircularProgress className={classes.progress} variant="determinate" value={progress} />
-      <CircularProgress
-        className={classes.progress}
-        variant="determinate"
-        value={progress}
-        color="secondary"
-      />
+    <div className={classes.root}>
+      <CircularProgress variant="determinate" value={progress} />
+      <CircularProgress variant="determinate" value={progress} color="secondary" />
     </div>
   );
 }
