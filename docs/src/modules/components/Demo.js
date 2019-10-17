@@ -19,6 +19,7 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
+import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 
@@ -265,30 +266,7 @@ function Demo(props) {
 
   const match = useMediaQuery(theme => theme.breakpoints.up('sm'));
 
-  // docs/pages/components/material-icons.js doesn't provide the source
-  function jsxOnly(code = demoData.raw || '') {
-    /* regex matches the content of the return statement in the default export:
-     *
-     * `export default.*`
-     * `\n  return (\n` or `\n  return `
-     *
-     *  everything (not greedy), until:
-     *
-     * `  );\n}` or `;\n}`
-     *
-     */
-    let jsx = code.match(
-      /export default .*(\n {2}return \(\n|\n {2}return )(.*?)(\n {2}\);\n}|;\n})/s,
-    );
-    // Just the match, or the full source if no match, so as not to break the Collapse transition.
-    jsx = jsx ? jsx[2] : code;
-    // Number of leading spaces on the first line
-    const indentSize = jsx.match(/^ */)[0].length;
-    // Remove leading spaces from each line
-    return jsx.split(/\n/).reduce((acc, line) => `${acc}${line.slice(indentSize)}\n`, '');
-  }
-
-  const jsx = jsxOnly();
+  const jsx = getJsxPreview(demoData.raw || '');
   const showPreview =
     demoOptions.defaultCodeOpen !== false && jsx !== demoData.raw && jsx.split(/\n/).length <= 20;
 

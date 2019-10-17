@@ -4,11 +4,10 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: theme.spacing(3),
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
   },
 }));
 
@@ -36,7 +35,7 @@ export default function LinearDeterminate() {
   return (
     <div className={classes.root}>
       <LinearProgress variant="determinate" value={completed} />
-      <LinearProgress color="secondary" variant="determinate" value={completed} />
+      <LinearProgress variant="determinate" value={completed} color="secondary" />
     </div>
   );
 }
