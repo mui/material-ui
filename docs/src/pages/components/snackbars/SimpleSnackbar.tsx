@@ -42,6 +42,7 @@ export default function SimpleSnackbar() {
         onClose={handleClose}
         ContentProps={{
           'aria-describedby': 'message-id',
+          role: 'alertdialog',
         }}
         message={<span id="message-id">Note archived</span>}
         action={[

@@ -27,7 +27,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">action</span> | <span class="prop-type">node</span> |  | The action to display. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">message</span> | <span class="prop-type">node</span> |  | The message to display. |
-| <span class="prop-name">role</span> | <span class="prop-type">'alertdialog'<br>&#124;&nbsp;'alert'</span> | <span class="prop-default">'alertdialog'</span> | The role of the SnackbarContent. If the SnackbarContent includes interactive controls, such as a link, "alertdialog" should be used; otherwise use "alert". |
+| <span class="prop-name">role</span> | <span class="prop-type">'alert'<br>&#124;&nbsp;'alertdialog'</span> | <span class="prop-default">'alert'</span> | The role of the SnackbarContent. If the SnackbarContent includes interactive controls, such as a link, "alertdialog" should be used; otherwise use "alert". |
 
 The `ref` is forwarded to the root element.
 

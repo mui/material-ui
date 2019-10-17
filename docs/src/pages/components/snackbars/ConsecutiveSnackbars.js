@@ -66,6 +66,7 @@ export default function ConsecutiveSnackbars() {
         onExited={handleExited}
         ContentProps={{
           'aria-describedby': 'message-id',
+          role: 'alertdialog',
         }}
         message={<span id="message-id">{messageInfo ? messageInfo.message : undefined}</span>}
         action={[

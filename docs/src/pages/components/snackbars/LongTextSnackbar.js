@@ -23,9 +23,13 @@ export default function LongTextSnackbar() {
 
   return (
     <div className={classes.root}>
-      <SnackbarContent className={classes.snackbar} message="I love snacks." action={action} />
       <SnackbarContent
-        role="alert"
+        className={classes.snackbar}
+        message="I love snacks."
+        role="alertdialog"
+        action={action}
+      />
+      <SnackbarContent
         className={classes.snackbar}
         message={
           'I love candy. I love cookies. I love cupcakes. \
@@ -35,6 +39,7 @@ export default function LongTextSnackbar() {
       <SnackbarContent
         className={classes.snackbar}
         message="I love candy. I love cookies. I love cupcakes."
+        role="alertdialog"
         action={action}
       />
       <SnackbarContent
@@ -43,6 +48,7 @@ export default function LongTextSnackbar() {
           'I love candy. I love cookies. I love cupcakes. \
           I love cheesecake. I love chocolate.'
         }
+        role="alertdialog"
         action={action}
       />
     </div>

@@ -745,20 +745,24 @@ const SnackbarContentTest = () => {
   );
   return (
     <div>
-      <SnackbarContent message="I love snacks." action={action} />
+      <SnackbarContent message="I love snacks." role="alertdialog" action={action} />
       <SnackbarContent
-        role="alert"
         message={
           'I love candy. I love cookies. I love cupcakes. \
           I love cheesecake. I love chocolate.'
         }
       />
-      <SnackbarContent message="I love candy. I love cookies. I love cupcakes." action={action} />
+      <SnackbarContent
+        message="I love candy. I love cookies. I love cupcakes."
+        role="alertdialog"
+        action={action}
+      />
       <SnackbarContent
         message={
           'I love candy. I love cookies. I love cupcakes. \
           I love cheesecake. I love chocolate.'
         }
+        role="alertdialog"
         action={action}
       />
     </div>

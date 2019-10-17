@@ -41,7 +41,6 @@ export default function PositionedSnackbar() {
         onClose={handleClose}
         ContentProps={{
           'aria-describedby': 'message-id',
-          role: 'alert',
         }}
         message={<span id="message-id">I love snacks</span>}
       />

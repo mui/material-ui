@@ -64,6 +64,7 @@ export default function FabIntegrationSnackbar() {
           autoHideDuration={4000}
           ContentProps={{
             'aria-describedby': 'snackbar-fab-message-id',
+            role: 'alertdialog',
           }}
           message={<span id="snackbar-fab-message-id">Archived</span>}
           action={

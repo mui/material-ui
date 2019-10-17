@@ -66,7 +66,6 @@ function MySnackbarContentWrapper(props) {
           <CloseIcon className={classes.icon} />
         </IconButton>,
       ]}
-      role="alert"
       {...other}
     />
   );

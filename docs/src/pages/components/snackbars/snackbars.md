@@ -86,8 +86,8 @@ It also enables you to stack them on top of one another (although this is discou
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
 
-- Since alerts are not required to receive focus, content authors should not require users to close a Snackbar if the role is set to `alert` through the SnackbarContent `role` prop.
-- If a Snackbar requires focus to close it, then content authors should use the default `role` of `alertdialog`.
+- Since alerts are not required to receive focus, content authors should not require users to close a Snackbar if the role is set to `alert` through the SnackbarContent `role` prop. This is the default role.
+- If a Snackbar requires focus to close it, then content authors should use the `role` of `alertdialog`.
 
 ```jsx
 <SnackbarContent

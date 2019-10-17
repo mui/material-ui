@@ -42,7 +42,7 @@ export const styles = theme => {
 };
 
 const SnackbarContent = React.forwardRef(function SnackbarContent(props, ref) {
-  const { action, classes, className, message, role = 'alertdialog', ...other } = props;
+  const { action, classes, className, message, role = 'alert', ...other } = props;
 
   return (
     <Paper
@@ -88,7 +88,7 @@ SnackbarContent.propTypes = {
    * includes interactive controls, such as a link, "alertdialog"
    * should be used; otherwise use "alert".
    */
-  role: PropTypes.oneOf(['alertdialog', 'alert']),
+  role: PropTypes.oneOf(['alert', 'alertdialog']),
 };
 
 export default withStyles(styles, { name: 'MuiSnackbarContent' })(SnackbarContent);
