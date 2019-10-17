@@ -167,11 +167,17 @@ function MarkdownDocs(props) {
       />
       {disableToc ? null : <AppTableOfContents contents={contents} />}
       {disableAd ? null : (
-        <Portal container={() => document.querySelector('.description')}>
+        <Portal
+          container={() => {
+            const container = document.querySelector('.description');
+            container.classList.add('ad');
+            return container;
+          }}
+        >
           <Ad />
         </Portal>
       )}
-      <AppContent disableToc={disableToc}>
+      <AppContent disableAd={disableAd} disableToc={disableToc}>
         {!disableEdit ? (
           <div className={classes.header}>
             <EditPage

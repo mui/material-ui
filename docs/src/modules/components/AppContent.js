@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     paddingTop: 80 + 16,
     flex: '1 1 100%',
@@ -21,6 +21,14 @@ const styles = theme => ({
       maxWidth: 'calc(100% - 175px - 240px)',
     },
   },
+  ad: {
+    '& .description': {
+      marginBottom: 196,
+    },
+    '& .description.ad': {
+      marginBottom: 40,
+    },
+  },
   disableToc: {
     [theme.breakpoints.up('sm')]: {
       maxWidth: 'calc(100%)',
@@ -29,17 +37,19 @@ const styles = theme => ({
       maxWidth: 'calc(100% - 240px)',
     },
   },
-});
+}));
 
-function AppContent(props) {
-  const { className, classes, children, disableToc } = props;
+export default function AppContent(props) {
+  const { children, disableAd, disableToc } = props;
+  const classes = useStyles();
 
   return (
     <Container
       component="main"
       id="main-content"
       tabIndex={-1}
-      className={clsx(classes.root, className, {
+      className={clsx(classes.root, {
+        [classes.ad]: !disableAd,
         [classes.disableToc]: disableToc,
       })}
     >
@@ -50,9 +60,6 @@ function AppContent(props) {
 
 AppContent.propTypes = {
   children: PropTypes.node.isRequired,
-  classes: PropTypes.object.isRequired,
-  className: PropTypes.string,
+  disableAd: PropTypes.bool.isRequired,
   disableToc: PropTypes.bool.isRequired,
 };
-
-export default withStyles(styles)(AppContent);
