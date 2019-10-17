@@ -23,11 +23,7 @@ export default function LongTextSnackbar() {
 
   return (
     <div className={classes.root}>
-      <SnackbarContent
-        className={classes.snackbar}
-        message="I love snacks."
-        action={action}
-      />
+      <SnackbarContent className={classes.snackbar} message="I love snacks." action={action} />
       <SnackbarContent
         className={classes.snackbar}
         message={
