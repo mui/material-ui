@@ -9,9 +9,12 @@ const initialState = {
 };
 
 export default function ContextMenu() {
-  const [state, setState] = React.useState(initialState);
+  const [state, setState] = React.useState<{
+    mouseX: null | number;
+    mouseY: null | number;
+  }>(initialState);
 
-  const handleClick = event => {
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
     setState({
       mouseX: event.clientX - 2,
