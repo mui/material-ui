@@ -29,7 +29,7 @@ For Material-UI to work, the `className` values of all components on a page must
 
 To correct this issue, all components on the page need to be initialized such that there is only ever **one class name generator** between them.
 
-You could end up accidentally using two-class name generators in a variety of scenarios:
+You could end up accidentally using two class name generators in a variety of scenarios:
 
 - You accidentally **bundle** two versions of Material-UI. You might have a dependency not correctly setting Material-UI as a peer dependency.
 - You are using `StylesProvider` for a **subset** of your React Tree.
@@ -118,7 +118,7 @@ If you choose not to use it, you can still disable transitions and animations by
 No, it's not required.
 But this dependency comes built in, so carries no additional bundle size overhead.
 
-However, perhaps you're adding some Material-UI components to an app that already uses another styling solution,
+Perhaps, however, you're adding some Material-UI components to an app that already uses another styling solution,
 or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the
 [Style Library Interoperability](/guides/interoperability/) section,
 where we show how simple it is to restyle Material-UI components with alternative style libraries.
@@ -164,7 +164,7 @@ indicating that you can access the DOM element with a ref.
 If you are seeing a warning message in the console like the one below, you probably have several instances of `@material-ui/styles` initialized on the page.
 
 > It looks like there are several instances of `@material-ui/styles` initialized in this application.
-> This may cause theme propagation issues, broken class names, specificity issues, and makes your application bigger without a good reason.
+> This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
 
 ### Possible reasons
 
@@ -176,7 +176,7 @@ There are several common reasons for this to happen:
 
 ### Duplicated module in node_modules
 
-If you think that the issue is in the duplicated @material-ui/styles module somewhere in your dependencies, there are several ways to check this.
+If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this.
 You can use `npm ls @material-ui/styles`, `yarn list @material-ui/styles` or `find -L ./node_modules | grep /@material-ui/styles/package.json` commands in your application folder.
 
 If none of these commands identified the duplication, try analyzing your bundle for multiple instances of @material-ui/styles. You can just check your bundle source, or use a tool like [source-map-explorer](https://github.com/danvk/source-map-explorer) or [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
@@ -249,7 +249,8 @@ If you have several applications running on one page, consider using one @materi
 ## My App doesn't render correctly on the server
 
 If it doesn't work, in 99% of cases it's a configuration issue.
-A missing property, a wrong call order, or a missing component. Server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
+A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup.
+Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
 ### CSS works only on first load then is missing
 
