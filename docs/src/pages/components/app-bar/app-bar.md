@@ -35,6 +35,12 @@ A side searchbar.
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js"}}
 
+## Prominent
+
+A prominent app bar.
+
+{{"demo": "pages/components/app-bar/ProminentAppBar.js"}}
+
 ## Bottom App Bar
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
