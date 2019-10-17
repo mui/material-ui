@@ -266,7 +266,7 @@ function Demo(props) {
 
   const match = useMediaQuery(theme => theme.breakpoints.up('sm'));
 
-  const jsx = getJsxPreview(demoData.raw || '', demoOptions);
+  const jsx = getJsxPreview(demoData.raw || '', demoOptions.defaultCodeOpen);
   const showPreview =
     !demoOptions.hideHeader && jsx !== demoData.raw && jsx.split(/\n/).length <= 20;
 
