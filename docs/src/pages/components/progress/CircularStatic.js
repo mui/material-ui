@@ -2,13 +2,14 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
-    width: '80%',
     display: 'flex',
-    justifyContent: 'space-evenly',
+    '& > * + *': {
+      marginLeft: theme.spacing(2),
+    },
   },
-});
+}));
 
 export default function CircularStatic() {
   const classes = useStyles();
