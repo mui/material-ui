@@ -25,4 +25,4 @@ Tree views can be used to represent a file system navigator displaying folders a
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
 
-The component's accessibility is complete, no assistance is required.
+The component follows the WAI-ARIA best practices.
