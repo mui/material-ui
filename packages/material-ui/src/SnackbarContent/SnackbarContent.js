@@ -84,9 +84,8 @@ SnackbarContent.propTypes = {
    */
   message: PropTypes.node,
   /**
-   * The role of the SnackbarContent. If the SnackbarContent
-   * includes interactive controls, such as a link, "alertdialog"
-   * should be used; otherwise use "alert".
+   * The role of the SnackbarContent. If the Snackbar requires focus
+   * to be closed, the `alertdialog` role should be used instead.
    */
   role: PropTypes.oneOf(['alert', 'alertdialog']),
 };
