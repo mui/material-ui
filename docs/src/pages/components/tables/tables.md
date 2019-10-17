@@ -57,6 +57,9 @@ Here is an example of customizing the component. You can learn more about this i
 The `Action` property of the `TablePagination` component allows the implementation of
 custom actions.
 
+Custom options in the `Rows per page:` menu can be shown by using a JS object with the `label` key denoting the display string, such as `"All"`, and the `value` key defining the number of rows to be shown. The following example demonstrates the same.
+
+
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}
 
 ## Fixed header
