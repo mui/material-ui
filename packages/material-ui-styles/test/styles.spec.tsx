@@ -72,7 +72,8 @@ const ComponentWithTheme = withTheme<Theme, React.FunctionComponent<WithTheme<Th
   ({ theme }: WithTheme<Theme>) => <div>{theme.spacing(1)}</div>,
 );
 
-<ComponentWithTheme />;
+const componentWithThemeRef = React.createRef<HTMLDivElement>();
+<ComponentWithTheme ref={componentWithThemeRef} />;
 
 // withStyles + withTheme
 type AllTheProps = WithTheme<Theme> & WithStyles<typeof styles>;
