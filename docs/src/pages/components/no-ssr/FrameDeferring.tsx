@@ -9,14 +9,14 @@ const useStyles = makeStyles({
   },
 });
 
-function LargeTree() {
-  return (
-    <>
-      {Array.from(new Array(3000)).map((_, index) => (
-        <span key={index}>.</span>
-      ))}
-    </>
-  );
+/**
+ * Changing the return value of this component to `any`
+ * As currently typescript does not support returning array from components
+ *
+ * https://github.com/DefinitelyTyped/DefinitelyTyped/issues/20356
+ */
+function LargeTree(): any {
+  return Array.from(new Array(3000)).map((_, index) => <span key={index}>.</span>);
 }
 
 function FrameDeferring() {
