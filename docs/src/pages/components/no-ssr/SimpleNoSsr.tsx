@@ -1,6 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import { WithStyles } from '@material-ui/styles';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import Button from '@material-ui/core/Button';
 
