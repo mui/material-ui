@@ -208,6 +208,9 @@ const Popper = React.forwardRef(function Popper(props, ref) {
         style={{
           // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
           position: 'fixed',
+          // Fix Popper.js display issue
+          top: 0,
+          left: 0,
         }}
         {...other}
       >
