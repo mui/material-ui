@@ -1,194 +1,175 @@
 import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { Transition } from 'react-transition-group';
 import withStyles from '../styles/withStyles';
-import { duration } from '../styles/transitions';
-import { getTransitionProps } from '../transitions/utils';
-import useTheme from '../styles/useTheme';
+import { duration as durations } from '../styles/transitions';
+import { useForkRef } from '../utils';
 
-export const styles = theme => ({
-  /* Styles applied to the container element. */
-  container: {
-    height: 0,
-    overflow: 'hidden',
-    transition: theme.transitions.create('height'),
-  },
-  /* Styles applied to the container element when the transition has entered. */
-  entered: {
-    height: 'auto',
-    overflow: 'visible',
-  },
-  /* Styles applied to the container element when the transition has exited and `collapsedHeight` != 0px. */
-  hidden: {
-    visibility: 'hidden',
-  },
-  /* Styles applied to the outer wrapper element. */
-  wrapper: {
-    // Hack to get children with a negative margin to not falsify the height computation.
-    display: 'flex',
-  },
-  /* Styles applied to the inner wrapper element. */
-  wrapperInner: {
-    width: '100%',
-  },
-});
+function appendStep({ percentage, step, startY, endY, outerAnimation, innerAnimation }) {
+  const yScale = (startY + (endY - startY) * step).toFixed(5);
+
+  const invScaleY = (1 / yScale).toFixed(5);
+
+  outerAnimation[`${percentage}%`] = {
+    transform: `scaleY(${yScale})`,
+  };
+
+  innerAnimation[`${percentage}%`] = {
+    transform: `scaleY(${invScaleY})`,
+  };
+}
+
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function ease(value, pow = 4) {
+  return 1 - (1 - clamp(value, 0, 1)) ** pow;
+}
+
+export const styles = () => {
+  const duration = durations.standard; // TODO from theme?
+  const frameTime = 1000 / 60;
+  const nFrames = Math.round(duration / frameTime);
+  const percentIncrement = 100 / nFrames;
+
+  const expandWrapperAnimation = {};
+  const expandContentAnimation = {};
+  const collapseWrapperAnimation = {};
+  const collapseContentAnimation = {};
+
+  for (let i = 0; i <= nFrames; i += 1) {
+    const step = ease(i / nFrames).toFixed(5);
+    const percentage = (i * percentIncrement).toFixed(5);
+    const startY = 0; // TODO from props
+    const endY = 1;
+
+    // Expand animation.
+    appendStep({
+      percentage,
+      step,
+      startY,
+      endY,
+      outerAnimation: expandWrapperAnimation,
+      innerAnimation: expandContentAnimation,
+    });
+
+    // Collapse animation.
+    appendStep({
+      percentage,
+      step,
+      startX: 1,
+      startY: 1,
+      endY: 0, // TODO from props
+      outerAnimation: collapseWrapperAnimation,
+      innerAnimation: collapseContentAnimation,
+    });
+  }
+
+  return {
+    '@keyframes expandWrapperAnimation': expandWrapperAnimation,
+    '@keyframes expandContentAnimation': expandContentAnimation,
+    '@keyframes collapseWrapperAnimation': collapseWrapperAnimation,
+    '@keyframes collapseContentAnimation': collapseContentAnimation,
+    wrapper: {
+      animationDuration: duration,
+      animationTimingFunction: 'step-end',
+      contain: 'content',
+      overflow: 'hidden',
+      '&$expanded': {
+        animationName: '$expandWrapperAnimation',
+      },
+      '&$collapsed': {
+        animationName: '$collapseWrapperAnimation',
+      },
+    },
+    content: {
+      animationDuration: duration,
+      animationTimingFunction: 'step-end',
+      '&$expanded': {
+        animationName: '$expandContentAnimation',
+      },
+      '&$collapsed': {
+        animationName: '$collapseContentAnimation',
+      },
+    },
+    expanded: {},
+    collapsed: {},
+  };
+};
 
 /**
- * The Collapse transition is used by the
- * [Vertical Stepper](/components/steppers/#vertical-stepper) StepContent component.
- * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ * Based on https://googlechromelabs.github.io/ui-element-samples/animated-clip/
  */
-const Collapse = React.forwardRef(function Collapse(props, ref) {
-  const {
-    children,
-    classes,
-    className,
-    collapsedHeight = '0px',
-    component: Component = 'div',
-    in: inProp,
-    onEnter,
-    onEntered,
-    onEntering,
-    onExit,
-    onExiting,
-    style,
-    timeout = duration.standard,
-    ...other
-  } = props;
-  const theme = useTheme();
-  const timer = React.useRef();
+const FastCollapse = React.forwardRef(function Collapse(props, ref) {
+  const { children, classes, className, in: expanded, ...other } = props;
+
   const wrapperRef = React.useRef(null);
-  const autoTransitionDuration = React.useRef();
+  const [collapsedScale, setCollapsedScale] = React.useState(Number.EPSILON);
 
   React.useEffect(() => {
-    return () => {
-      clearTimeout(timer.current);
-    };
+    // cant be 0, otherwise content will be scaled up infinitely
+    const collapsedHeight = Number.EPSILON; // TODO from props
+    const expandedHeight = wrapperRef.current.getBoundingClientRect().height;
+
+    // WARNING: possible infinite loop
+    setCollapsedScale(collapsedHeight / expandedHeight);
   }, []);
 
-  const handleEnter = (node, isAppearing) => {
-    node.style.height = collapsedHeight;
-
-    if (onEnter) {
-      onEnter(node, isAppearing);
+  const { wrapperStyle, contentStyle } = React.useMemo(() => {
+    if (expanded) {
+      return {
+        wrapperStyle: {
+          transform: 'scaleY(1)',
+        },
+        contentStyle: {
+          transform: 'scaleY(1)',
+        },
+      };
     }
-  };
 
-  const handleEntering = (node, isAppearing) => {
-    const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
-
-    const { duration: transitionDuration } = getTransitionProps(
-      { style, timeout },
-      {
-        mode: 'enter',
+    const y = collapsedScale;
+    const invY = 1 / y;
+    return {
+      wrapperStyle: {
+        transform: `scaleY(${y})`,
       },
-    );
-
-    if (timeout === 'auto') {
-      const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
-      node.style.transitionDuration = `${duration2}ms`;
-      autoTransitionDuration.current = duration2;
-    } else {
-      node.style.transitionDuration =
-        typeof transitionDuration === 'string' ? transitionDuration : `${transitionDuration}ms`;
-    }
-
-    node.style.height = `${wrapperHeight}px`;
-
-    if (onEntering) {
-      onEntering(node, isAppearing);
-    }
-  };
-
-  const handleEntered = (node, isAppearing) => {
-    node.style.height = 'auto';
-
-    if (onEntered) {
-      onEntered(node, isAppearing);
-    }
-  };
-
-  const handleExit = node => {
-    const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
-    node.style.height = `${wrapperHeight}px`;
-
-    if (onExit) {
-      onExit(node);
-    }
-  };
-
-  const handleExiting = node => {
-    const wrapperHeight = wrapperRef.current ? wrapperRef.current.clientHeight : 0;
-
-    const { duration: transitionDuration } = getTransitionProps(
-      { style, timeout },
-      {
-        mode: 'exit',
+      contentStyle: {
+        transform: `scaleY(${invY})`,
       },
-    );
+    };
+  }, [collapsedScale, expanded]);
 
-    if (timeout === 'auto') {
-      const duration2 = theme.transitions.getAutoHeightDuration(wrapperHeight);
-      node.style.transitionDuration = `${duration2}ms`;
-      autoTransitionDuration.current = duration2;
-    } else {
-      node.style.transitionDuration =
-        typeof transitionDuration === 'string' ? transitionDuration : `${transitionDuration}ms`;
-    }
-
-    node.style.height = collapsedHeight;
-
-    if (onExiting) {
-      onExiting(node);
-    }
-  };
-
-  const addEndListener = (_, next) => {
-    if (timeout === 'auto') {
-      timer.current = setTimeout(next, autoTransitionDuration.current || 0);
-    }
-  };
+  const handleRef = useForkRef(ref, wrapperRef);
 
   return (
-    <Transition
-      in={inProp}
-      onEnter={handleEnter}
-      onEntered={handleEntered}
-      onEntering={handleEntering}
-      onExit={handleExit}
-      onExiting={handleExiting}
-      addEndListener={addEndListener}
-      timeout={timeout === 'auto' ? null : timeout}
+    <div
+      className={clsx(
+        classes.wrapper,
+        {
+          [classes.collapsed]: !expanded,
+          [classes.expanded]: expanded,
+        },
+        className,
+      )}
+      ref={handleRef}
+      style={wrapperStyle}
       {...other}
     >
-      {(state, childProps) => (
-        <Component
-          className={clsx(
-            classes.container,
-            {
-              [classes.entered]: state === 'entered',
-              [classes.hidden]: state === 'exited' && !inProp && collapsedHeight === '0px',
-            },
-            className,
-          )}
-          style={{
-            minHeight: collapsedHeight,
-            ...style,
-          }}
-          ref={ref}
-          {...childProps}
-        >
-          <div className={classes.wrapper} ref={wrapperRef}>
-            <div className={classes.wrapperInner}>{children}</div>
-          </div>
-        </Component>
-      )}
-    </Transition>
+      <div
+        className={clsx(classes.content, {
+          [classes.collapsed]: !expanded,
+          [classes.expanded]: expanded,
+        })}
+        style={contentStyle}
+      >
+        {children}
+      </div>
+    </div>
   );
 });
 
-Collapse.propTypes = {
+FastCollapse.propTypes = {
   /**
    * The content node to be collapsed.
    */
@@ -203,55 +184,9 @@ Collapse.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The height of the container when collapsed.
-   */
-  collapsedHeight: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * If `true`, the component will transition in.
    */
   in: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  onEnter: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onEntered: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onEntering: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onExit: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onExiting: PropTypes.func,
-  /**
-   * @ignore
-   */
-  style: PropTypes.object,
-  /**
-   * The duration for the transition, in milliseconds.
-   * You may specify a single timeout for all transitions, or individually with an object.
-   *
-   * Set to 'auto' to automatically calculate transition time based on height.
-   */
-  timeout: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
-    PropTypes.oneOf(['auto']),
-  ]),
 };
 
-Collapse.muiSupportAuto = true;
-
-export default withStyles(styles, { name: 'MuiCollapse' })(Collapse);
+export default withStyles(styles, { name: 'MuiFastCollapse' })(FastCollapse);

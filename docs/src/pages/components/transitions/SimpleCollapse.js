@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
 import Paper from '@material-ui/core/Paper';
-import Collapse from '@material-ui/core/Collapse';
+import Collapse, { FastCollapse } from '@material-ui/core/Collapse';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const useStyles = makeStyles(theme => ({
@@ -55,6 +55,13 @@ export default function SimpleCollapse() {
             </svg>
           </Paper>
         </Collapse>
+        <FastCollapse in={checked}>
+          <Paper elevation={4} className={classes.paper}>
+            <svg className={classes.svg}>
+              <polygon points="0,100 50,00, 100,100" className={classes.polygon} />
+            </svg>
+          </Paper>
+        </FastCollapse>
       </div>
     </div>
   );
