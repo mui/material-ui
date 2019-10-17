@@ -192,7 +192,7 @@ Select.propTypes = {
    * This prop is required when the `native` prop is `false` (default).
    * Set to an empty string `''` if you don't want any of the available options to be selected.
    *
-   * ⚠️Value comparison to each option is a reference equality check "===", different object types will never be equal.
+   * ⚠ If the value is an object it must have reference equality with an option in order to display it.
    */
   value: PropTypes.any,
   /**
