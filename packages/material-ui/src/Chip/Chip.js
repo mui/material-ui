@@ -7,7 +7,7 @@ import { emphasize, fade } from '../styles/colorManipulator';
 import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
-import ButtonBase from '../ButtonBase'
+import ButtonBase from '../ButtonBase';
 import '../Avatar'; // So we don't have any override priority issue.
 
 export const styles = theme => {
@@ -68,7 +68,6 @@ export const styles = theme => {
       },
       '&:active': {
         boxShadow: theme.shadows[1],
-        backgroundColor: emphasize(backgroundColor, 0.12),
       },
     },
     /* Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`. */
@@ -76,17 +75,11 @@ export const styles = theme => {
       '&:hover, &:focus': {
         backgroundColor: emphasize(theme.palette.primary.main, 0.08),
       },
-      '&:active': {
-        backgroundColor: emphasize(theme.palette.primary.main, 0.12),
-      },
     },
     /* Styles applied to the root element if `onClick` and `color="secondary"` is defined or `clickable={true}`. */
     clickableColorSecondary: {
       '&:hover, &:focus': {
         backgroundColor: emphasize(theme.palette.secondary.main, 0.08),
-      },
-      '&:active': {
-        backgroundColor: emphasize(theme.palette.secondary.main, 0.12),
       },
     },
     /* Styles applied to the root element if `onDelete` is defined. */
@@ -273,7 +266,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     className,
     clickable: clickableProp,
     color = 'default',
-    component: Component = ButtonBase,
+    component: ComponentProp,
     deleteIcon: deleteIconProp,
     disabled = false,
     icon: iconProp,
@@ -324,9 +317,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     }
 
     const key = event.key;
-    if (onClick && (key === ' ' || key === 'Enter')) {
-      onClick(event);
-    } else if (onDelete && (key === 'Backspace' || key === 'Delete')) {
+    if (onDelete && (key === 'Backspace' || key === 'Delete')) {
       onDelete(event);
     } else if (key === 'Escape' && chipRef.current) {
       chipRef.current.blur();
@@ -335,6 +326,9 @@ const Chip = React.forwardRef(function Chip(props, ref) {
 
   const clickable = clickableProp !== false && onClick ? true : clickableProp;
   const small = size === 'small';
+
+  const Component = ComponentProp || (clickable ? ButtonBase : 'div');
+  const moreProps = Component === ButtonBase ? { component: 'div' } : {};
 
   let deleteIcon = null;
   if (onDelete) {
@@ -408,12 +402,12 @@ const Chip = React.forwardRef(function Chip(props, ref) {
         },
         className,
       )}
-      component='div'
       tabIndex={clickable || onDelete ? 0 : undefined}
       onClick={onClick}
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={handleRef}
+      {...moreProps}
       {...other}
     >
       {avatar || icon}
