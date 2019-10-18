@@ -45,36 +45,49 @@ A prominent app bar.
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Scrolling
+## Fixed placement
 
-You can use the `useScrollTrigger()` hook to respond to user scroll actions.
+When you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:
 
-## Placement
+1. You can use `position="sticky"` instead of fixed. ⚠️ sticky is not supported by IE 11.
+2. You can render a second `<Toolbar />` component:
 
-When using Appbar `variant="fixed"` you need to have extra space for the content to show below
-& not under. There are 2 ways to do it. Either use `theme.mixins.toolbar` like;
+```jsx
+function App() {
+  return (
+    <React.Fragment>
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <Toolbar />
+    </React.Fragment>
+  );
+}
+```
+
+3. You can use `theme.mixins.toolbar` CSS:
 
 ```jsx
 const useStyles = makeStyles(theme => ({
-  offset: {
-    ...theme.mixins.toolbar,
-    flexGrow: 1
-  }
+  offset: theme.mixins.toolbar,
 }))
 
-const App = () => {
+function App() {
   const classes = useStyles();
   return (
-    <div>
-      <Appbar position="fixed"></Appbar>
-      <div className={classes.offset}> {/* to accomdate for top white space */}
-    </div>
+    <React.Fragment>
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <div className={classes.offset} />
+    </React.Fragment>
   )
 };
 ```
 
-Or you can append `<Toolbar />` component after `<Appbar />` like shown in the example
-below. To prevent content from hiding under Appbar.
+## Scrolling
+
+You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
 ### Hide App Bar
 
