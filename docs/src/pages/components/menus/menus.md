@@ -67,6 +67,12 @@ Use a different transition.
 
 {{"demo": "pages/components/menus/FadeMenu.js"}}
 
+## Context menu
+
+Here is an example of a context menu. (Right click to open.)
+
+{{"demo": "pages/components/menus/ContextMenu.js"}}
+
 ## Complementary projects
 
 For more advanced use cases you might be able to take advantage of:
