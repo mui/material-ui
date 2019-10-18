@@ -1,32 +1,18 @@
 import React from 'react';
-import { withStyles, WithStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
-import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 
-const styles = (theme: any) => ({
-  button: {
-    display: 'block',
-    margin: theme.spacing(2),
-  },
-});
-
-export interface iProps extends WithStyles<typeof styles> {}
-
-function SimpleNoSsr(props: iProps) {
-  const { classes } = props;
-
+export default function SimpleNoSsr() {
   return (
     <div>
-      <Button className={classes.button} variant="contained" color="primary">
-        Server & Client
-      </Button>
+      <Box p={2} bgcolor="primary.main" color="primary.contrastText">
+        Server and Client
+      </Box>
       <NoSsr>
-        <Button className={classes.button} variant="contained" color="secondary">
+        <Box p={2} bgcolor="secondary.main" color="primary.contrastText">
           Client only
-        </Button>
+        </Box>
       </NoSsr>
     </div>
   );
 }
-
-export default withStyles(styles)(SimpleNoSsr);

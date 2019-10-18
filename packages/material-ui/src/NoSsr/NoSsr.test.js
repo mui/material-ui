@@ -52,13 +52,18 @@ describe('<NoSsr />', () => {
   });
 
   describe('prop: defer', () => {
-    it('should defer the rendering', () => {
+    it('should defer the rendering', done => {
       const wrapper = mount(
         <NoSsr defer>
           <span id="client-only">Hello</span>
         </NoSsr>,
       );
-      assert.strictEqual(wrapper.find('#client-only').exists(), true);
+      assert.strictEqual(wrapper.find('#client-only').exists(), false);
+      setTimeout(() => {
+        wrapper.update();
+        assert.strictEqual(wrapper.find('#client-only').exists(), true);
+        done();
+      }, 300);
     });
   });
 });
