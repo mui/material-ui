@@ -54,4 +54,11 @@ describe('<SnackbarContent />', () => {
       assert.strictEqual(wrapper.childAt(0).contains(message), true);
     });
   });
+
+  describe('prop: role', () => {
+    it('should render the role', () => {
+      const wrapper = shallow(<SnackbarContent message="message" role="alert" />);
+      assert.strictEqual(wrapper.props().role, 'alert');
+    });
+  });
 });
