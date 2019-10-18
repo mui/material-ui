@@ -2,7 +2,7 @@ import React from 'react';
 import AppTheme from 'docs/src/modules/components/AppTheme';
 import Paperbase from 'docs/src/pages/premium-themes/paperbase/Paperbase';
 
-function Page() {
+export default function Page() {
   return (
     <AppTheme
       title="Paperbase theme - Material-UI"
@@ -13,5 +13,3 @@ function Page() {
     </AppTheme>
   );
 }
-
-export default Page;

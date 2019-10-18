@@ -4,7 +4,7 @@ import { spy, useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
 import { createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import PopperJS from 'popper.js';
 import Grow from '../Grow';
@@ -21,10 +21,6 @@ describe('<Popper />', () => {
 
   before(() => {
     mount = createMount({ strict: true });
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   after(() => {

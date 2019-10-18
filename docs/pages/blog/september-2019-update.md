@@ -22,7 +22,7 @@ Here are the most significant improvements in September:
   </Button>
   ```
 
-- 🔐 Add support for Chrome autofill. The `InputBase` component detects Chrome autofill events and update the label position accordingly.
+- 🔐 Add support for Chrome autofill. The `InputBase` component detects Chrome autofill events and updates the label position accordingly.
 
   ![Autofill](/static/blog/september-2019-update/autofill.png)
 
@@ -61,10 +61,10 @@ But this summary is just scratching the surface. We have accepted 199 commits fr
 
 - 📅 We will start to work on a [major upgrade](https://github.com/mui-org/material-ui-pickers/issues/1293) of the date/time picker components.
 
-- 🧮 We will work on providing ready to use Data Table component.
+- 🧮 We will start to work on a Data Table component.
 ⭐️ Notice that the advanced features of the data grid will be paid, behind an enterprise subscription. This is an effort part of [our roadmap](/discover-more/roadmap/) to answer enterprise needs.
 
-- ❓ Want something in specific? Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues), the number of 👍 matters to us.
+- ❓ Do you want something in specific? Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues), the number of 👍 matters to us.
 
 <hr />
 

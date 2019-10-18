@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
-import { createClientRender, fireEvent, cleanup } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 
 describe('<MenuList> integration', () => {
   const render = createClientRender({ strict: true });
@@ -14,10 +14,6 @@ describe('<MenuList> integration', () => {
     // the same component tree (-TrackCommitCountMenuItem) in isolation in browserstack
     return;
   }
-
-  afterEach(() => {
-    cleanup();
-  });
 
   specify('the MenuItems have the `menuitem` role', () => {
     const { getAllByRole } = render(

@@ -45,16 +45,16 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiTab-root</span> | Styles applied to the root element.
-| <span class="prop-name">labelIcon</span> | <span class="prop-name">MuiTab-labelIcon</span> | Styles applied to the root element if both `icon` and `label` are provided.
-| <span class="prop-name">textColorInherit</span> | <span class="prop-name">MuiTab-textColorInherit</span> | Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="inherit"`.
-| <span class="prop-name">textColorPrimary</span> | <span class="prop-name">MuiTab-textColorPrimary</span> | Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="primary"`.
-| <span class="prop-name">textColorSecondary</span> | <span class="prop-name">MuiTab-textColorSecondary</span> | Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="secondary"`.
-| <span class="prop-name">selected</span> | <span class="prop-name">Mui-selected</span> | Pseudo-class applied to the root element if `selected={true}` (controlled by the Tabs component).
-| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}` (controlled by the Tabs component).
-| <span class="prop-name">fullWidth</span> | <span class="prop-name">MuiTab-fullWidth</span> | Styles applied to the root element if `fullWidth={true}` (controlled by the Tabs component).
-| <span class="prop-name">wrapped</span> | <span class="prop-name">MuiTab-wrapped</span> | Styles applied to the root element if `wrapped={true}`.
-| <span class="prop-name">wrapper</span> | <span class="prop-name">MuiTab-wrapper</span> | Styles applied to the `icon` and `label`'s wrapper element.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiTab-root</span> | Styles applied to the root element.
+| <span class="prop-name">labelIcon</span> | <span class="prop-name">.MuiTab-labelIcon</span> | Styles applied to the root element if both `icon` and `label` are provided.
+| <span class="prop-name">textColorInherit</span> | <span class="prop-name">.MuiTab-textColorInherit</span> | Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="inherit"`.
+| <span class="prop-name">textColorPrimary</span> | <span class="prop-name">.MuiTab-textColorPrimary</span> | Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="primary"`.
+| <span class="prop-name">textColorSecondary</span> | <span class="prop-name">.MuiTab-textColorSecondary</span> | Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="secondary"`.
+| <span class="prop-name">selected</span> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the root element if `selected={true}` (controlled by the Tabs component).
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}` (controlled by the Tabs component).
+| <span class="prop-name">fullWidth</span> | <span class="prop-name">.MuiTab-fullWidth</span> | Styles applied to the root element if `fullWidth={true}` (controlled by the Tabs component).
+| <span class="prop-name">wrapped</span> | <span class="prop-name">.MuiTab-wrapped</span> | Styles applied to the root element if `wrapped={true}`.
+| <span class="prop-name">wrapper</span> | <span class="prop-name">.MuiTab-wrapper</span> | Styles applied to the `icon` and `label`'s wrapper element.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -41,13 +41,13 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiContainer-root</span> | Styles applied to the root element.
-| <span class="prop-name">fixed</span> | <span class="prop-name">MuiContainer-fixed</span> | Styles applied to the root element if `fixed={true}`.
-| <span class="prop-name">maxWidthXs</span> | <span class="prop-name">MuiContainer-maxWidthXs</span> | Styles applied to the root element if `maxWidth="xs"`.
-| <span class="prop-name">maxWidthSm</span> | <span class="prop-name">MuiContainer-maxWidthSm</span> | Styles applied to the root element if `maxWidth="sm"`.
-| <span class="prop-name">maxWidthMd</span> | <span class="prop-name">MuiContainer-maxWidthMd</span> | Styles applied to the root element if `maxWidth="md"`.
-| <span class="prop-name">maxWidthLg</span> | <span class="prop-name">MuiContainer-maxWidthLg</span> | Styles applied to the root element if `maxWidth="lg"`.
-| <span class="prop-name">maxWidthXl</span> | <span class="prop-name">MuiContainer-maxWidthXl</span> | Styles applied to the root element if `maxWidth="xl"`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiContainer-root</span> | Styles applied to the root element.
+| <span class="prop-name">fixed</span> | <span class="prop-name">.MuiContainer-fixed</span> | Styles applied to the root element if `fixed={true}`.
+| <span class="prop-name">maxWidthXs</span> | <span class="prop-name">.MuiContainer-maxWidthXs</span> | Styles applied to the root element if `maxWidth="xs"`.
+| <span class="prop-name">maxWidthSm</span> | <span class="prop-name">.MuiContainer-maxWidthSm</span> | Styles applied to the root element if `maxWidth="sm"`.
+| <span class="prop-name">maxWidthMd</span> | <span class="prop-name">.MuiContainer-maxWidthMd</span> | Styles applied to the root element if `maxWidth="md"`.
+| <span class="prop-name">maxWidthLg</span> | <span class="prop-name">.MuiContainer-maxWidthLg</span> | Styles applied to the root element if `maxWidth="lg"`.
+| <span class="prop-name">maxWidthXl</span> | <span class="prop-name">.MuiContainer-maxWidthXl</span> | Styles applied to the root element if `maxWidth="xl"`.
 
 You can override the style of the component thanks to one of these customization points:
 

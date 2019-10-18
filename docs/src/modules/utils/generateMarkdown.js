@@ -340,7 +340,7 @@ function generateClasses(reactAPI) {
     text += reactAPI.styles.classes
       .map(
         styleRule =>
-          `| <span class="prop-name">${styleRule}</span> | <span class="prop-name">${
+          `| <span class="prop-name">${styleRule}</span> | <span class="prop-name">.${
             reactAPI.styles.globalClasses[styleRule]
           }</span> | ${
             reactAPI.styles.descriptions[styleRule]

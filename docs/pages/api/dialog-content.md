@@ -39,8 +39,8 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiDialogContent-root</span> | Styles applied to the root element.
-| <span class="prop-name">dividers</span> | <span class="prop-name">MuiDialogContent-dividers</span> | Styles applied to the root element if `dividers={true}`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiDialogContent-root</span> | Styles applied to the root element.
+| <span class="prop-name">dividers</span> | <span class="prop-name">.MuiDialogContent-dividers</span> | Styles applied to the root element if `dividers={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

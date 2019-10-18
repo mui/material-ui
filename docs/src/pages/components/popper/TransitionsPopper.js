@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
+import Fade from '@material-ui/core/Fade';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -10,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SimplePopper() {
+export default function TransitionsPopper() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -19,15 +20,19 @@ export default function SimplePopper() {
   };
 
   const open = Boolean(anchorEl);
-  const id = open ? 'simple-popper' : undefined;
+  const id = open ? 'transitions-popper' : undefined;
 
   return (
     <div>
       <button aria-describedby={id} type="button" onClick={handleClick}>
         Toggle Popper
       </button>
-      <Popper id={id} open={open} anchorEl={anchorEl}>
-        <div className={classes.paper}>The content of the Popper.</div>
+      <Popper id={id} open={open} anchorEl={anchorEl} transition>
+        {({ TransitionProps }) => (
+          <Fade {...TransitionProps} timeout={350}>
+            <div className={classes.paper}>The content of the Popper.</div>
+          </Fade>
+        )}
       </Popper>
     </div>
   );

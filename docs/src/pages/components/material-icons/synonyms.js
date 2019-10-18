@@ -254,7 +254,7 @@ const synonyms = {
   ExposurePlus2: 'plus',
   Extension: 'extended item jigsaw piece puzzle shape',
   Face: 'avatar eyes human person profile thumbnail user',
-  FaceBook: 'brand logo social',
+  Facebook: 'brand logo social',
   FastFood: 'burger drink',
   FastForward: 'control music speed time video',
   FastRewind: 'control music speed time video',

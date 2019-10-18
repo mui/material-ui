@@ -43,12 +43,12 @@ Any other props supplied will be provided to the root element ([Typography](/api
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiLink-root</span> | Styles applied to the root element.
-| <span class="prop-name">underlineNone</span> | <span class="prop-name">MuiLink-underlineNone</span> | Styles applied to the root element if `underline="none"`.
-| <span class="prop-name">underlineHover</span> | <span class="prop-name">MuiLink-underlineHover</span> | Styles applied to the root element if `underline="hover"`.
-| <span class="prop-name">underlineAlways</span> | <span class="prop-name">MuiLink-underlineAlways</span> | Styles applied to the root element if `underline="always"`.
-| <span class="prop-name">button</span> | <span class="prop-name">MuiLink-button</span> | Styles applied to the root element if `component="button"`.
-| <span class="prop-name">focusVisible</span> | <span class="prop-name">Mui-focusVisible</span> | Pseudo-class applied to the root element if the link is keyboard focused.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiLink-root</span> | Styles applied to the root element.
+| <span class="prop-name">underlineNone</span> | <span class="prop-name">.MuiLink-underlineNone</span> | Styles applied to the root element if `underline="none"`.
+| <span class="prop-name">underlineHover</span> | <span class="prop-name">.MuiLink-underlineHover</span> | Styles applied to the root element if `underline="hover"`.
+| <span class="prop-name">underlineAlways</span> | <span class="prop-name">.MuiLink-underlineAlways</span> | Styles applied to the root element if `underline="always"`.
+| <span class="prop-name">button</span> | <span class="prop-name">.MuiLink-button</span> | Styles applied to the root element if `component="button"`.
+| <span class="prop-name">focusVisible</span> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the root element if the link is keyboard focused.
 
 You can override the style of the component thanks to one of these customization points:
 

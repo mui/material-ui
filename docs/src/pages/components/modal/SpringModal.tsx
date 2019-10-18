@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface FadeProps {
-  children: React.ReactElement;
+  children?: React.ReactElement;
   in: boolean;
   onEnter?: () => {};
   onExited?: () => {};

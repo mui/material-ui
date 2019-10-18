@@ -138,6 +138,6 @@ Tweak Material-UI to meet specific requirements. Give us a summary of your needs
 
 Note that work must be Material-UI related.
 We don't accept general React development work.
-Our contracting price is $300/hour or $2,000/day.
+Our contracting price is $300/hour or $1,500/day.
 
 [Send us an email](mailto:custom-work@material-ui.com)

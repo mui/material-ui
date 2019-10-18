@@ -6,7 +6,7 @@ import { useFakeTimers } from 'sinon';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 
 const options = [
   'Show some love to Material-UI',
@@ -83,7 +83,6 @@ describe('<Menu /> integration', () => {
 
   afterEach(() => {
     clock.restore();
-    cleanup();
   });
 
   it('is part of the DOM by default but hidden', () => {

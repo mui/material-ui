@@ -44,15 +44,15 @@ Any other props supplied will be provided to the root element ([Input](/api/inpu
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiNativeSelect-root</span> | Styles applied to the select component `root` class.
-| <span class="prop-name">select</span> | <span class="prop-name">MuiNativeSelect-select</span> | Styles applied to the select component `select` class.
-| <span class="prop-name">filled</span> | <span class="prop-name">MuiNativeSelect-filled</span> | Styles applied to the select component if `variant="filled"`.
-| <span class="prop-name">outlined</span> | <span class="prop-name">MuiNativeSelect-outlined</span> | Styles applied to the select component if `variant="outlined"`.
-| <span class="prop-name">selectMenu</span> | <span class="prop-name">MuiNativeSelect-selectMenu</span> | Styles applied to the select component `selectMenu` class.
-| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the select component `disabled` class.
-| <span class="prop-name">icon</span> | <span class="prop-name">MuiNativeSelect-icon</span> | Styles applied to the icon component.
-| <span class="prop-name">iconFilled</span> | <span class="prop-name">MuiNativeSelect-iconFilled</span> | Styles applied to the icon component if `variant="filled"`.
-| <span class="prop-name">iconOutlined</span> | <span class="prop-name">MuiNativeSelect-iconOutlined</span> | Styles applied to the icon component if `variant="outlined"`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiNativeSelect-root</span> | Styles applied to the select component `root` class.
+| <span class="prop-name">select</span> | <span class="prop-name">.MuiNativeSelect-select</span> | Styles applied to the select component `select` class.
+| <span class="prop-name">filled</span> | <span class="prop-name">.MuiNativeSelect-filled</span> | Styles applied to the select component if `variant="filled"`.
+| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiNativeSelect-outlined</span> | Styles applied to the select component if `variant="outlined"`.
+| <span class="prop-name">selectMenu</span> | <span class="prop-name">.MuiNativeSelect-selectMenu</span> | Styles applied to the select component `selectMenu` class.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the select component `disabled` class.
+| <span class="prop-name">icon</span> | <span class="prop-name">.MuiNativeSelect-icon</span> | Styles applied to the icon component.
+| <span class="prop-name">iconFilled</span> | <span class="prop-name">.MuiNativeSelect-iconFilled</span> | Styles applied to the icon component if `variant="filled"`.
+| <span class="prop-name">iconOutlined</span> | <span class="prop-name">.MuiNativeSelect-iconOutlined</span> | Styles applied to the icon component if `variant="outlined"`.
 
 You can override the style of the component thanks to one of these customization points:
 

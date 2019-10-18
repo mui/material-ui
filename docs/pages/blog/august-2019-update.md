@@ -37,7 +37,7 @@ But this summary is just scratching the surface. We have accepted 193 commits fr
 
 - 🔍 We will keep working on providing ready to use autocomplete, combo box, and multi-select components. We announced it last month but have made little progress so far due to focusing on fixing bugs in existing components. Let's make it happen!
 
-- ❓ Want something in specific? Please upvote our GitHub issues, the number of 👍 matters to us.
+- ❓ Do you want something in specific? Please upvote our GitHub issues, the number of 👍 matters to us.
 
 <hr />
 

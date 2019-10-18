@@ -40,15 +40,15 @@ Any other props supplied will be provided to the root element ([Paper](/api/pape
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiAppBar-root</span> | Styles applied to the root element.
-| <span class="prop-name">positionFixed</span> | <span class="prop-name">MuiAppBar-positionFixed</span> | Styles applied to the root element if `position="fixed"`.
-| <span class="prop-name">positionAbsolute</span> | <span class="prop-name">MuiAppBar-positionAbsolute</span> | Styles applied to the root element if `position="absolute"`.
-| <span class="prop-name">positionSticky</span> | <span class="prop-name">MuiAppBar-positionSticky</span> | Styles applied to the root element if `position="sticky"`.
-| <span class="prop-name">positionStatic</span> | <span class="prop-name">MuiAppBar-positionStatic</span> | Styles applied to the root element if `position="static"`.
-| <span class="prop-name">positionRelative</span> | <span class="prop-name">MuiAppBar-positionRelative</span> | Styles applied to the root element if `position="relative"`.
-| <span class="prop-name">colorDefault</span> | <span class="prop-name">MuiAppBar-colorDefault</span> | Styles applied to the root element if `color="default"`.
-| <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiAppBar-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiAppBar-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiAppBar-root</span> | Styles applied to the root element.
+| <span class="prop-name">positionFixed</span> | <span class="prop-name">.MuiAppBar-positionFixed</span> | Styles applied to the root element if `position="fixed"`.
+| <span class="prop-name">positionAbsolute</span> | <span class="prop-name">.MuiAppBar-positionAbsolute</span> | Styles applied to the root element if `position="absolute"`.
+| <span class="prop-name">positionSticky</span> | <span class="prop-name">.MuiAppBar-positionSticky</span> | Styles applied to the root element if `position="sticky"`.
+| <span class="prop-name">positionStatic</span> | <span class="prop-name">.MuiAppBar-positionStatic</span> | Styles applied to the root element if `position="static"`.
+| <span class="prop-name">positionRelative</span> | <span class="prop-name">.MuiAppBar-positionRelative</span> | Styles applied to the root element if `position="relative"`.
+| <span class="prop-name">colorDefault</span> | <span class="prop-name">.MuiAppBar-colorDefault</span> | Styles applied to the root element if `color="default"`.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiAppBar-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiAppBar-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 
 You can override the style of the component thanks to one of these customization points:
 
