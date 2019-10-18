@@ -19,7 +19,7 @@ When including tools, they should be placed directly above or below the table.
 
 ## Structure
 
-A data table contains a header row at the top that lists column names, followed by rows for data.
+A data table can contain one or more header rows at the top, followed by rows for data. The header row lists column names of the table.
 
 Checkboxes should accompany each row if the user needs to select or manipulate data.
 
