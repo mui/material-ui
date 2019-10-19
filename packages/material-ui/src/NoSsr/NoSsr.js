@@ -19,7 +19,6 @@ const useEnhancedEffect =
 function NoSsr(props) {
   const { children, defer = false, fallback = null } = props;
   const [mountedState, setMountedState] = React.useState(false);
-  const mounted = React.useRef();
 
   useEnhancedEffect(() => {
     if (!defer) {
@@ -29,31 +28,8 @@ function NoSsr(props) {
 
   React.useEffect(() => {
     if (defer) {
-      mounted.current = true;
-      // Wondering why we use two RAFs? Check this video out:
-      // https://www.youtube.com/watch?v=cCOL7MC4Pl0
-      //
-      // The useEffect() method is called after the DOM nodes are inserted.
-      // The UI might not have rendering the changes. We request a frame.
-      requestAnimationFrame(() => {
-        // The browser should be about to render the DOM nodes
-        // that React committed at this point.
-        // We don't want to interrupt. Let's wait the next frame.
-        requestAnimationFrame(() => {
-          // The UI is up-to-date at this point.
-          // We can continue rendering the children.
-          if (mounted.current) {
-            setMountedState(true);
-          }
-        });
-      });
-
-      return () => {
-        mounted.current = false;
-      };
+      setMountedState(true);
     }
-
-    return undefined;
   }, [defer]);
 
   // We need the Fragment here to force react-docgen to recognise NoSsr as a component.
