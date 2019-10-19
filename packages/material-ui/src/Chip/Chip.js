@@ -406,6 +406,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
         },
         className,
       )}
+      aria-disabled={disabled ? true : undefined}
       tabIndex={clickable || onDelete ? 0 : undefined}
       onClick={onClick}
       onKeyDown={handleKeyDown}

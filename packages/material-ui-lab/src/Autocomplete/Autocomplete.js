@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/role-has-required-aria-props */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/jsx-no-duplicate-props */
+/* eslint-disable no-constant-condition */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -38,7 +39,7 @@ const styles = theme => ({
     },
   },
   inputRootFilled: {
-    paddingTop: 18,
+    paddingTop: 21,
     '& $inputInput': {
       paddingTop: 10,
     },
@@ -101,11 +102,16 @@ const styles = theme => ({
     '&$selected': {
       backgroundColor: theme.palette.action.selected,
     },
+    '&$disabled': {
+      opacity: 0.5,
+      pointerEvents: 'none',
+    },
     '&:active': {
       backgroundColor: theme.palette.action.selected,
     },
   },
   selected: {},
+  disabled: {},
   loading: {
     ...theme.typography.body1,
     color: theme.palette.text.secondary,
@@ -187,6 +193,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     filterOptions = defaultFilterOptions,
     filterSelectedOptions = false,
     freeSolo = false,
+    getOptionDisabled,
     getOptionLabel = x => x,
     groupBy,
     id: idProp,
@@ -235,7 +242,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const [focusedValue, setFocusedValue] = React.useState('input');
+  const [focusedTag, setFocusedTag] = React.useState(-1);
   const defaultHighlighted = autoHightlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
   const selectedIndexRef = React.useRef(-1);
@@ -266,11 +273,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     }
 
     const option = paperRef.current.querySelector(`[data-option-index="${index}"]`);
-
-    if (!option) {
-      return;
-    }
-
     option.setAttribute('data-focus', 'true');
 
     // Scroll active descendant into view.
@@ -336,23 +338,54 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
 
   popupOpen = freeSolo && filteredOptions.length === 0 ? false : popupOpen;
 
-  const focusFocusedValue = useEventCallback(focusedValue2 => {
-    if (focusedValue2 === 'input') {
+  const focusTag = useEventCallback(tagToFocus => {
+    if (tagToFocus === -1) {
       inputRef.current.focus();
     } else {
-      anchorEl.querySelector(`[data-value-index="${focusedValue2}"]`).focus();
+      anchorEl.querySelector(`[data-tag-index="${tagToFocus}"]`).focus();
     }
   });
 
-  // Ensure the focusedValue is never inconsistent
+  // Ensure the focusedTag is never inconsistent
   React.useEffect(() => {
-    if (multiple && focusedValue > value.length - 1) {
-      setFocusedValue('input');
-      focusFocusedValue('input');
+    if (multiple && focusedTag > value.length - 1) {
+      setFocusedTag(-1);
+      focusTag(-1);
     }
-  }, [value, multiple, focusedValue, focusFocusedValue]);
+  }, [value, multiple, focusedTag, focusTag]);
 
-  const changeHighlightedIndex = diff => {
+  function validOptionIndex(index, direction) {
+    if (!paperRef.current || index === -1) {
+      return -1;
+    }
+
+    let nextFocus = index;
+
+    while (true) {
+      // Out of range
+      if (
+        (direction === 'next' && nextFocus === filteredOptions.length) ||
+        (direction === 'previous' && nextFocus === -1)
+      ) {
+        return -1;
+      }
+
+      const option = paperRef.current.querySelector(`[data-option-index="${nextFocus}"]`);
+
+      // Same logic as MenuList.js
+      if (
+        !option.hasAttribute('tabindex') ||
+        option.disabled ||
+        option.getAttribute('aria-disabled') === 'true'
+      ) {
+        nextFocus += direction === 'next' ? 1 : -1;
+      } else {
+        return nextFocus;
+      }
+    }
+  }
+
+  const changeHighlightedIndex = (diff, direction) => {
     if (!popupOpen) {
       return;
     }
@@ -401,18 +434,29 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
       return newIndex;
     };
 
-    const nextIndex = getNextIndex();
+    const nextIndex = validOptionIndex(getNextIndex(), direction);
     setHighlightedIndex(nextIndex);
     selectedIndexRef.current = nextIndex;
 
     if (autoComplete && diff !== 'reset') {
-      inputRef.current.value =
-        nextIndex === -1 ? inputValue : getOptionLabel(filteredOptions[nextIndex]);
+      if (nextIndex === -1) {
+        inputRef.current.value = inputValue;
+      } else {
+        const option = getOptionLabel(filteredOptions[nextIndex]);
+        inputRef.current.value = option;
+
+        // The portion of the selected suggestion that has not been typed by the user,
+        // a completion string, appears inline after the input cursor in the textbox.
+        const index = option.toLowerCase().indexOf(inputValue.toLowerCase());
+        if (index === 0 && inputValue.length > 0) {
+          inputRef.current.setSelectionRange(inputValue.length, option.length);
+        }
+      }
     }
   };
 
   React.useEffect(() => {
-    changeHighlightedIndex('reset');
+    changeHighlightedIndex('reset', 'next');
   }, [filteredOptions.length]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleOpen = event => {
@@ -479,33 +523,66 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     selectedIndexRef.current = -1;
   };
 
-  const handleFocusedValue = (event, direction) => {
+  function validTagIndex(index, direction) {
+    if (index === -1) {
+      return -1;
+    }
+
+    let nextFocus = index;
+
+    while (true) {
+      // Out of range
+      if (
+        (direction === 'next' && nextFocus === value.length) ||
+        (direction === 'previous' && nextFocus === -1)
+      ) {
+        return -1;
+      }
+
+      const option = anchorEl.querySelector(`[data-tag-index="${nextFocus}"]`);
+
+      // Same logic as MenuList.js
+      if (
+        !option.hasAttribute('tabindex') ||
+        option.disabled ||
+        option.getAttribute('aria-disabled') === 'true'
+      ) {
+        nextFocus += direction === 'next' ? 1 : -1;
+      } else {
+        return nextFocus;
+      }
+    }
+  }
+
+  const handleFocusTag = (event, direction) => {
     if (!multiple) {
       return;
     }
 
     handleClose(event);
 
-    let nextValue = focusedValue;
+    let nextTag = focusedTag;
 
-    if (focusedValue === 'input') {
+    if (focusedTag === -1) {
       if (inputValue === '' && direction === 'previous') {
-        nextValue = value.length - 1;
+        nextTag = value.length - 1;
       }
     } else {
-      nextValue += direction === 'next' ? 1 : -1;
+      nextTag += direction === 'next' ? 1 : -1;
 
-      if (nextValue === value.length) {
-        nextValue = 'input';
+      if (nextTag < 0) {
+        nextTag = 0;
       }
 
-      if (nextValue < 0) {
-        nextValue = 0;
+      if (nextTag === value.length) {
+        nextTag = -1;
       }
     }
 
-    setFocusedValue(nextValue);
-    focusFocusedValue(nextValue);
+    nextTag = validTagIndex(nextTag, direction);
+
+    setFocusedTag(nextTag);
+    focusTag(nextTag);
   };
 
   const handleClear = event => {
@@ -522,57 +599,57 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     }
 
     if (['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
-      setFocusedValue('input');
-      focusFocusedValue('input');
+      setFocusedTag(-1);
+      focusTag(-1);
     }
 
     switch (event.key) {
       case 'Home':
         // Prevent scroll of the page
         event.preventDefault();
-        changeHighlightedIndex('start');
+        changeHighlightedIndex('start', 'next');
         break;
       case 'End':
         // Prevent scroll of the page
         event.preventDefault();
-        changeHighlightedIndex('end');
+        changeHighlightedIndex('end', 'previous');
         break;
       case 'PageUp':
         // Prevent scroll of the page
         event.preventDefault();
-        changeHighlightedIndex(-pageSize);
+        changeHighlightedIndex(-pageSize, 'previous');
         handleOpen(event);
         break;
       case 'PageDown':
         // Prevent scroll of the page
         event.preventDefault();
-        changeHighlightedIndex(pageSize);
+        changeHighlightedIndex(pageSize, 'next');
         handleOpen(event);
         break;
       case 'ArrowDown':
         // Prevent cursor move
         event.preventDefault();
-        changeHighlightedIndex(1);
+        changeHighlightedIndex(1, 'next');
         handleOpen(event);
         break;
       case 'ArrowUp':
         // Prevent cursor move
         event.preventDefault();
-        changeHighlightedIndex(-1);
+        changeHighlightedIndex(-1, 'previous');
         handleOpen(event);
         break;
       case 'ArrowLeft':
-        handleFocusedValue(event, 'previous');
+        handleFocusTag(event, 'previous');
         break;
       case 'ArrowRight':
-        handleFocusedValue(event, 'next');
+        handleFocusTag(event, 'next');
         break;
       case 'Enter':
         if (highlightedIndexRef.current !== -1) {
           // We don't want to validate the form.
           event.preventDefault();
           selectNewValue(event, filteredOptions[highlightedIndexRef.current]);
-        } else if (freeSolo) {
+        } else if (freeSolo && inputValue !== '') {
           selectNewValue(event, inputValue);
         }
         break;
@@ -587,7 +664,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
         break;
       case 'Backspace':
         if (multiple && inputValue === '' && value.length > 0) {
-          const index = focusedValue === 'input' ? value.length - 1 : focusedValue;
+          const index = focusedTag === -1 ? value.length - 1 : focusedTag;
           const newValue = [...value];
           newValue.splice(index, 1);
           handleValue(event, newValue);
@@ -673,7 +750,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   };
 
   const handleChipDelete = event => {
-    const index = Number(event.currentTarget.getAttribute('data-value-index'));
+    const index = Number(event.currentTarget.getAttribute('data-tag-index'));
     const newValue = [...value];
     newValue.splice(index, 1);
     handleValue(event, newValue);
@@ -702,7 +779,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
       startAdornment = value.map((option, index) => (
         <Chip
           key={index}
-          data-value-index={index}
+          data-tag-index={index}
           tabIndex={-1}
           label={getOptionLabel(option)}
           {...valueProps}
@@ -746,6 +823,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
 
   const renderListOption = (option, index) => {
     const selected = multiple ? value.indexOf(option) !== -1 : value === option;
+    const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
+
     return (
       <li
         tabIndex={-1}
@@ -756,7 +835,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
         data-option-index={index}
         className={clsx(classes.option, {
           [classes.selected]: selected,
+          [classes.disabled]: disabled,
         })}
+        aria-disabled={disabled}
         aria-selected={selected}
         key={index}
       >
@@ -843,7 +924,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
         }}
         inputProps={{
           className: clsx(classes.inputInput, {
-            [classes.inputInputFocused]: focusedValue === 'input',
+            [classes.inputInputFocused]: focusedTag === -1,
           }),
           'aria-autocomplete': autoComplete ? 'both' : 'list',
           'aria-controls': `${id}-listbox`,
@@ -980,6 +1061,10 @@ Autocomplete.propTypes = {
    * If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
    */
   freeSolo: PropTypes.bool,
+  /**
+   * Used to determine the disabled state for a given option.
+   */
+  getOptionDisabled: PropTypes.func,
   /**
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).

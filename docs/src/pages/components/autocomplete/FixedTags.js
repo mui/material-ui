@@ -16,7 +16,7 @@ export default function FixedTags() {
           <Chip
             key={index}
             disabled={index === 0}
-            data-value-index={index === 0 ? null : index}
+            data-tag-index={index}
             tabIndex={-1}
             label={option.title}
             className={className}

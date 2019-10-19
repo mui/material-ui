@@ -28,7 +28,7 @@ export default function GmailTags() {
         return value.map((option, index) => (
           <Chip
             key={index}
-            data-value-index={index}
+            data-tag-index={index}
             tabIndex={-1}
             label={option.title}
             className={className}

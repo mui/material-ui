@@ -16,7 +16,6 @@ export default function Grouped() {
     <Autocomplete
       options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
       groupBy={option => option.firstLetter}
-      debug
       getOptionLabel={option => option.title}
       style={{ width: 300 }}
       TextFieldProps={{

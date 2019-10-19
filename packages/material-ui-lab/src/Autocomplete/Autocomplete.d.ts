@@ -58,6 +58,7 @@ export interface AutocompleteProps
   filterOptions?: (options: any[], state: FilterOptionsState) => any[];
   filterSelectedOptions?: boolean;
   freeSolo?: boolean;
+  getOptionDisabled?: (option: any) => boolean;
   getOptionLabel?: (option: any) => string;
   groupBy?: (option: any) => string;
   id?: string;

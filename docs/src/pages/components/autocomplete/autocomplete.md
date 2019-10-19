@@ -40,6 +40,10 @@ Set `freeSolo` to true so the textbox can contain any arbitrary value.
 
 {{"demo": "pages/components/autocomplete/Grouped.js"}}
 
+## Disabled options
+
+{{"demo": "pages/components/autocomplete/DisabledOptions.js"}}
+
 ## `useAutocomplete?`
 
 WIP: to extract the core logic of the component into as simple reusable API.
@@ -66,6 +70,8 @@ Also knowned as tags, the user is allowed to enter more than 1 value.
 {{"demo": "pages/components/autocomplete/Tags.js"}}
 
 ### Fixed options
+
+In the event that you need to lock certain tag so that they can't be removed in the interface, you can set the chips disabled.
 
 {{"demo": "pages/components/autocomplete/FixedTags.js"}}
 

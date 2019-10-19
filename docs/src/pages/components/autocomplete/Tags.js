@@ -43,7 +43,7 @@ export default function Tags() {
             <Chip
               key={index}
               variant="outlined"
-              data-value-index={index}
+              data-tag-index={index}
               tabIndex={-1}
               label={option}
               className={className}
