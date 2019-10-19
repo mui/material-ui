@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   },
 });
 
-function LargeTree() {
+function LargeTree(): any {
   return Array.from(new Array(5000)).map((_, index) => <span key={index}>.</span>);
 }
 
