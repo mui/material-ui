@@ -262,7 +262,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       let startLocation = horizontalSwipe
         ? swipeInstance.current.startX
         : swipeInstance.current.startY;
-      if (open) {
+      if (open && !swipeInstance.current.paperHit) {
         startLocation = Math.min(startLocation, maxTranslate);
       }
 
@@ -272,6 +272,22 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
         openRef.current,
         maxTranslate,
       );
+
+      if (open) {
+        const paperHit = horizontalSwipe ? currentX < maxTranslate : currentY < maxTranslate;
+        if (!swipeInstance.current.paperHit) {
+          if (paperHit) {
+            swipeInstance.current.paperHit = true;
+            swipeInstance.current.startX = currentX;
+            swipeInstance.current.startY = currentY;
+          } else {
+            return;
+          }
+        } else if (translate === 0) {
+          swipeInstance.current.startX = currentX;
+          swipeInstance.current.startY = currentY;
+        }
+      }
 
       if (swipeInstance.current.lastTranslate === null) {
         swipeInstance.current.lastTranslate = translate;
@@ -350,6 +366,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       swipeInstance.current.velocity = 0;
       swipeInstance.current.lastTime = null;
       swipeInstance.current.lastTranslate = null;
+      swipeInstance.current.paperHit = false;
 
       touchDetected.current = true;
     },
