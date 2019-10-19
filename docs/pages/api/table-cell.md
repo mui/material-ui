@@ -45,18 +45,18 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiTableCell-root</span> | Styles applied to the root element.
-| <span class="prop-name">head</span> | <span class="prop-name">MuiTableCell-head</span> | Styles applied to the root element if `variant="head"` or `context.table.head`.
-| <span class="prop-name">body</span> | <span class="prop-name">MuiTableCell-body</span> | Styles applied to the root element if `variant="body"` or `context.table.body`.
-| <span class="prop-name">footer</span> | <span class="prop-name">MuiTableCell-footer</span> | Styles applied to the root element if `variant="footer"` or `context.table.footer`.
-| <span class="prop-name">sizeSmall</span> | <span class="prop-name">MuiTableCell-sizeSmall</span> | Styles applied to the root element if `size="small"`.
-| <span class="prop-name">paddingCheckbox</span> | <span class="prop-name">MuiTableCell-paddingCheckbox</span> | Styles applied to the root element if `padding="checkbox"`.
-| <span class="prop-name">paddingNone</span> | <span class="prop-name">MuiTableCell-paddingNone</span> | Styles applied to the root element if `padding="none"`.
-| <span class="prop-name">alignLeft</span> | <span class="prop-name">MuiTableCell-alignLeft</span> | Styles applied to the root element if `align="left"`.
-| <span class="prop-name">alignCenter</span> | <span class="prop-name">MuiTableCell-alignCenter</span> | Styles applied to the root element if `align="center"`.
-| <span class="prop-name">alignRight</span> | <span class="prop-name">MuiTableCell-alignRight</span> | Styles applied to the root element if `align="right"`.
-| <span class="prop-name">alignJustify</span> | <span class="prop-name">MuiTableCell-alignJustify</span> | Styles applied to the root element if `align="justify"`.
-| <span class="prop-name">stickyHeader</span> | <span class="prop-name">MuiTableCell-stickyHeader</span> | Styles applied to the root element if `context.table.stickyHeader={true}`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiTableCell-root</span> | Styles applied to the root element.
+| <span class="prop-name">head</span> | <span class="prop-name">.MuiTableCell-head</span> | Styles applied to the root element if `variant="head"` or `context.table.head`.
+| <span class="prop-name">body</span> | <span class="prop-name">.MuiTableCell-body</span> | Styles applied to the root element if `variant="body"` or `context.table.body`.
+| <span class="prop-name">footer</span> | <span class="prop-name">.MuiTableCell-footer</span> | Styles applied to the root element if `variant="footer"` or `context.table.footer`.
+| <span class="prop-name">sizeSmall</span> | <span class="prop-name">.MuiTableCell-sizeSmall</span> | Styles applied to the root element if `size="small"`.
+| <span class="prop-name">paddingCheckbox</span> | <span class="prop-name">.MuiTableCell-paddingCheckbox</span> | Styles applied to the root element if `padding="checkbox"`.
+| <span class="prop-name">paddingNone</span> | <span class="prop-name">.MuiTableCell-paddingNone</span> | Styles applied to the root element if `padding="none"`.
+| <span class="prop-name">alignLeft</span> | <span class="prop-name">.MuiTableCell-alignLeft</span> | Styles applied to the root element if `align="left"`.
+| <span class="prop-name">alignCenter</span> | <span class="prop-name">.MuiTableCell-alignCenter</span> | Styles applied to the root element if `align="center"`.
+| <span class="prop-name">alignRight</span> | <span class="prop-name">.MuiTableCell-alignRight</span> | Styles applied to the root element if `align="right"`.
+| <span class="prop-name">alignJustify</span> | <span class="prop-name">.MuiTableCell-alignJustify</span> | Styles applied to the root element if `align="justify"`.
+| <span class="prop-name">stickyHeader</span> | <span class="prop-name">.MuiTableCell-stickyHeader</span> | Styles applied to the root element if `context.table.stickyHeader={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

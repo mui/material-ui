@@ -1,13 +1,16 @@
 # Avancé
 
-<p class="description">This section covers more advanced usage of @material-ui/styles.</p>
+<p class="description">This section covers more advanced usage of @material-ui/core/styles.</p>
 
 ## Theming
 
-Add a `ThemeProvider` to the top level of your app to pass the theme down the React component tree. Then, you can access the theme object in style functions.
+Add a `ThemeProvider` to the top level of your app to pass a theme down the React component tree. Then, you can access the theme object in style functions.
+
+> This example creates a new theme. See the [theming section](/customization/theming) for how to customize the default Material-UI theme.
 
 ```jsx
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+import DeepChild from './my_components/DeepChild';
 
 const theme = {
   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -30,8 +33,10 @@ You might need to access the theme variables inside your React components.
 
 #### `useTheme` hook
 
+For use in function components:
+
 ```jsx
-import { useTheme } from '@material-ui/styles';
+import { useTheme } from '@material-ui/core/styles';
 
 function DeepChild() {
   const theme = useTheme();
@@ -43,8 +48,10 @@ function DeepChild() {
 
 #### `withTheme` HOC
 
+For use in class or function components:
+
 ```jsx
-import { withTheme } from '@material-ui/styles';
+import { withTheme } from '@material-ui/core/styles';
 
 function DeepChildRaw(props) {
   return <span>{`spacing ${props.theme.spacing}`}</span>;
@@ -110,7 +117,7 @@ function Parent() {
 
 However, the class names are often non-deterministic. How can a parent component override the style of a nested element?
 
-### withStyles
+### `withStyles`
 
 This is the simplest case. the wrapped component accepts a `classes` prop, it simply merges the class names provided with the style sheet.
 
@@ -131,7 +138,7 @@ function Parent() {
 }
 ```
 
-### makeStyles
+### `makeStyles`
 
 The hook API requires a bit more work. You have to forward the parent props to the hook as a first argument.
 
@@ -175,7 +182,7 @@ Of course, you are free to use additional plugins. Here is an example with the [
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 import rtl from 'jss-rtl'
 
 const jss = create({
@@ -227,7 +234,7 @@ By default, the style tags are injected **last** in the `<head>` element of the 
 The `StylesProvider` component has an `injectFirst` prop to inject the style tags **first** in the head (less priority):
 
 ```jsx
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree.
@@ -241,7 +248,7 @@ The injection of style tags happens in the **same order** as the `makeStyles` / 
 
 ```jsx
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStylesBase = makeStyles({
   root: {
@@ -287,7 +294,7 @@ The simplest approach is to add an HTML comment to the `<head>` that determines 
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -302,7 +309,7 @@ function App() {
 export default App;
 ```
 
-#### Other HTML element
+#### Other HTML elements
 
 [Create React App](https://github.com/facebook/create-react-app) strips HTML comments when creating the production build. To get around this issue, you can provide a DOM element (other than a comment) as the JSS insertion point, for example, a `<noscript>` element:
 
@@ -315,7 +322,7 @@ export default App;
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -336,7 +343,7 @@ codesandbox.io prevents access to the `<head>` element. To get around this issue
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const styleNode = document.createComment('jss-insertion-point');
 document.head.insertBefore(styleNode, document.head.firstChild);
@@ -360,7 +367,7 @@ This example returns a string of HTML and inlines the critical CSS required, rig
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheets } from '@material-ui/core/styles';
 
 function render() {
   const sheets = new ServerStyleSheets();
@@ -382,13 +389,13 @@ function render() {
 }
 ```
 
-You can [follow the server side guide](/guides/server-rendering/) for a more detailed example, or read the [`ServerStyleSheets`](/styles/api/#serverstylesheets) API documentation.
+You can [follow the server side guide](/guides/server-rendering/) for a more detailed example, or read the [`ServerStyleSheets` API documentation](/styles/api/#serverstylesheets).
 
 ### Gatsby
 
-There is [an official plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Refer to the plugin's page for setup and usage instructions.
+There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Refer to the plugin's page for setup and usage instructions.
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
+Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
@@ -402,7 +409,7 @@ The class names are generated by [the class name generator](/styles/api/#createg
 
 ### Default
 
-By default, the class names generated by `@material-ui/styles` are **non-deterministic**; you can't rely on them to stay the same. Let's take the following style as an example:
+By default, the class names generated by `@material-ui/core/styles` are **non-deterministic**; you can't rely on them to stay the same. Let's take the following style as an example:
 
 ```js
 const useStyles = makeStyles({
@@ -522,7 +529,7 @@ JSS uses feature detection to apply the correct prefixes. [Don't be surprised](h
 
 ### Qu'est-ce que le CSP et en quoi est-ce utile ?
 
-Fondamentalement, CSP atténue les attaques XSS (Cross-Site Scripting) en obligeant les développeurs à ajouter aux listes blanches les sources de leurs ressources. Cette liste est renvoyée en tant qu'en-tête du serveur. Par exemple, disons que vous avez un site hébergé à ` https://example.com ` l'en-tête CSP ` default-src: 'self'; ` autorisera toutes les requêtes à destination de ` https://example.com/* ` et refusera tous les autres. Si une section de votre site Web est vulnérable au XSS dans laquelle une entrée d'utilisateur non échappée est affichée, un attaquant pourrait saisir quelque chose du genre :
+Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring developers to whitelist the sources their assets are retrieved from. This list is returned as a header from the server. For instance, say you have a site hosted at `https://example.com` the CSP header `default-src: 'self';` will allow all assets that are located at `https://example.com/*` and deny all others. If there is a section of your website that is vulnerable to XSS where unescaped user input is displayed, an attacker could input something like:
 
 ```html
 <script>
@@ -530,15 +537,15 @@ Fondamentalement, CSP atténue les attaques XSS (Cross-Site Scripting) en oblige
 </script>
 ```
 
-Cette vulnérabilité permettrait à l'attaquant d'exécuter n'importe quoi. Cependant, avec un en-tête CSP sécurisé, le navigateur ne chargera pas ce script.
+This vulnerability would allow the attacker to execute anything. However, with a secure CSP header, the browser will not load this script.
 
 You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
 
 ### Comment met-on en place un CSP?
 
-Pour utiliser CSP avec Material-UI (et JSS), vous devez utiliser un "nonce". A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS a un [ excellent tutoriel ](https://github.com/cssinjs/jss/blob/master/docs/csp.md) comment y parvenir avec Express et React Helmet. Pour un aperçu de base, continuez à lire.
+In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
 
-Un nonce CSP est une chaîne codée en Base 64. Vous pouvez en générer un comme ceci:
+A CSP nonce is a Base 64 encoded string. You can generate one like this:
 
 ```js
 import uuidv4 from 'uuid/v4';
@@ -546,7 +553,7 @@ import uuidv4 from 'uuid/v4';
 const nonce = new Buffer(uuidv4()).toString('base64');
 ```
 
-It is very important that you use UUID version 4, as it generates an **unpredictable** string. Vous appliquez ensuite ce nonce à l'en-tête CSP. Un en-tête CSP pourrait ressembler à ceci avec le nonce appliqué:
+It is very important that you use UUID version 4, as it generates an **unpredictable** string. You then apply this nonce to the CSP header. A CSP header might look like this with the nonce applied:
 
 ```js
 header('Content-Security-Policy')
@@ -563,8 +570,14 @@ If you are using Server-Side Rendering (SSR), you should pass the nonce in the `
 />
 ```
 
-Ensuite, vous devez transmettre ce nonce à JSS afin qu’il puisse l’ajouter aux balises `<style>` suivantes. The client-side gets the nonce from a header. Vous devez inclure cet en-tête, que le SSR soit utilisé ou non.
+Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags.
 
-```jsx
-<meta property="csp-nonce" content={nonce} />
+The way that you do this is by passing a `<meta property="csp-nonce" content={nonce} />` tag in the `<head>` of your HTML. JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
+
+You must include this header regardless of whether or not SSR is used. Here is an example of what a fictional header could look like:
+
+```html
+<head>
+  <meta property="csp-nonce" content="this-is-a-nonce-123" />
+</head>
 ```

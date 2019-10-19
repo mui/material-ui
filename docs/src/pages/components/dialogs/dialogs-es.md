@@ -95,27 +95,23 @@ Al tocar "Cancelar" en un cuadro de diálogo de confirmación, o al presionar At
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## Accesibilidad
+## Draggable dialog
 
-Sigue la [Sección de accesibilidad de Modal](/components/modal/#accessibility).
+You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable). To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. This will make the entire dialog draggable.
+
+{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## Desplazando contenido largo
 
-Cuando los diálogos se vuelven demasiado largos para la ventana o el dispositivo del usuario, se desplazan.
+When dialogs become too long for the user’s viewport or device, they scroll.
 
 - `scroll=paper` el contenido del diálogo se desplaza dentro del elemento Paper.
 - `scroll=body` el contenido del diálogo se desplaza dentro del elemento body.
 
-Prueba la demostración de abajo para ver lo que queremos decir:
+Try the demo below to see what we mean:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
-## Diálogo arrastrable
+## Accesibilidad
 
-Puede crear un cuadro de diálogo arrastrable utilizando [react-draggable](https://github.com/mzabriskie/react-draggable). Para hacerlo, puede pasar el componente importado `Draggable` como `PaperComponent` del componente `Dialog`. Esto hará que todo el diálogo se pueda arrastrar.
-
-{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
-
-## Rendimiento
-
-Sigue la [Sección de rendimiento de Modal](/components/modal/#performance).
+Follow the [Modal accessibility section](/components/modal/#accessibility).

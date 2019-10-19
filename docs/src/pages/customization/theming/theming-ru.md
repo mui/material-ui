@@ -1,22 +1,22 @@
-# Theming
+# Темизация
 
 <p class="description">Настройте Material-UI с помощью вашего шаблона. Вы можете изменить цвета, типографику и многое другое.</p>
 
 В шаблоне указывается цвет компонентов, темнота поверхностей, уровень тени, соответствующая непрозрачность чернильных элементов и т. д.
 
-Themes let you apply a consistent tone to your app. It allows you to **customize all design aspects** of your project in order to meet the specific needs of your business or brand.
+Шаблоны позволяют оформить ваше приложение в соответствующем стиле. Они **позволяют настроить все аспекты дизайна** вашего проекта, в соответствии с конкретными потребностями вашего бизнеса или бренда.
 
-To promote greater consistency between apps, light and dark theme types are available to choose from. By default, components use the light theme type.
+Для достижения согласованности в оформлении приложений, вам доступны темы двух типов: светлые и темные. По умолчанию компоненты используют темы светлого типа.
 
-## Theme provider
+## Провайдер темы
 
-If you wish to customize the theme, you need to use the `ThemeProvider` component in order to inject a theme into your application. However, this is optional; Material-UI components come with a default theme.
+Если вы хотите настроить тему, вам нужно использовать компонент `ThemeProvider`, чтобы добавить тему в ваше приложение. Однако это необязательно; компоненты Material-UI поставляются с базовой темой, по умолчанию.
 
-`ThemeProvider` relies on the context feature of React to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize. You can learn more about this in [the API section](/styles/api/#themeprovider).
+`ThemeProvider` использует контекст React для передачи темы дочерним компонентам, поэтому вам нужно убедиться, что `ThemeProvider` является родительским по отношению к компонентам, которые вы собираетесь темизировать. Вы можете узнать больше об этом в [ разделе API](/styles/api/#themeprovider).
 
-## Theme configuration variables
+## Переменные конфигурации темы
 
-Changing the theme configuration variables is the most effective way to match Material-UI to your needs. The following sections cover the most important theme variables:
+Изменение переменных конфигурации темы (theme configuration variables) — наиболее эффективный способ настройки Material-UI под ваши потребности. В следующих разделах рассматриваются наиболее важные переменные темы:
 
 - [Палитра](/customization/palette/)
 - [Оформление текста](/customization/typography/)
@@ -25,29 +25,29 @@ Changing the theme configuration variables is the most effective way to match Ma
 - [z-index](/customization/z-index/)
 - [Глобальная настройка](/customization/globals/)
 
-You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
+Вы можете проверить [ раздел "тема по умолчанию" (default theme) ](/customization/default-theme/) для просмотра полной информации о default theme.
 
-### Custom variables
+### Пользовательские переменные
 
-When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. For instance:
+При использовании темы Material-UI с [styling solution](/styles/basics/) или [ любым другим подходом](/guides/interoperability/#themeprovider), бывает удобным добавить в тему дополнительные переменные, которые вы сможете использовать везде. For instance:
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
-## Accessing the theme in a component
+## Доступ к теме в компоненте
 
-You [can access](/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
+Вы [можете получить доступ](/styles/advanced/#accessing-the-theme-in-a-component) к переменным темы внутри ваших React-компонент.
 
-## Nesting the theme
+## Вложенность тем
 
-[You can nest](/styles/advanced/#theme-nesting) multiple theme providers.
+[ Вы можете вкладывать](/styles/advanced/#theme-nesting) несколько theme providers друг в друга.
 
 {{"demo": "pages/customization/theming/ThemeNesting.js"}}
 
-The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
+Внутренняя тема переопределит вашу **внешнюю тему**. Вы можете расширить внешнюю тему, предоставив функцию:
 
 {{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
-### A note on performance
+### Примечание о производительности
 
 The performance implications of nesting the `ThemeProvider` component are linked to JSS's work behind the scenes. The main point to understand is that the injected CSS is cached with the following tuple `(styles, theme)`.
 
@@ -93,7 +93,7 @@ Generate responsive typography settings based on the options received.
 #### Аргументы
 
 1. `theme` (*Object*): The theme object to enhance.
-2. `options` (*Object* [optional]):
+2. `варианты` (*объекта* [optional]):
 
 - `breakpoints` (*Array<String>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
 - `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line heights are preserved and align to Material Design's 4px line height grid. This requires a unitless line height in the theme's styles.

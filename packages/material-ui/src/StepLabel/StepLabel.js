@@ -57,7 +57,7 @@ export const styles = theme => ({
       paddingRight: 0,
     },
   },
-  /* Pseudo-class applied to the root & icon container and `Typography` if `alternativeLabel={true}`. */
+  /* Pseudo-class applied to the root and icon container and `Typography` if `alternativeLabel={true}`. */
   alternativeLabel: {},
   /* Styles applied to the container element which wraps `Typography` and `optional`. */
   labelContainer: {

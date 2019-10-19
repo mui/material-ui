@@ -15,13 +15,15 @@ Some of the key features:
 
 ## Простой медиа-запрос
 
-Вы должны предоставить медиа-запросу первый аргумент хука. Строка медиа-запроса может быть любым допустимым значением медиа-запросом CSS, например, `'print'`.
+Вы должны предоставить медиа-запросу первый аргумент хука. The media query string can by any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference).
 
 {{"demo": "pages/components/use-media-query/SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
+⚠️ You can't use `'print'` per browsers limitation, e.g. [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
+
 ## Использование помощников точек перелома Material-UI
 
-Вы можете использовать [помощников точек перелома Material-UI](/customization/breakpoints/) следующим образом:
+You can use Material-UI's [breakpoint helpers](/customization/breakpoints/) as follows:
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';
@@ -106,7 +108,7 @@ For instance:
 import ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
@@ -149,7 +151,7 @@ The `withWidth()` higher-order component injects the screen width of the page. Y
 #### Аргументы
 
 1. `query` (*String* | *Function*): A string representing the media query to handle or a callback function accepting the theme (in the context) that returns a string.
-2. `options` (*Object* [optional]): 
+2. `варианты` (*объекта* [optional]): 
   - `options.defaultMatches` (*Boolean* [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. The default value is `false`.
   - `options.noSsr` (*Boolean* [optional]): Defaults to `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. It's slower. You can set this flag to `true` if you are **not doing server-side rendering**.
   - `options.ssrMatchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia*. This especially useful for [server-side rendering support](#server-side-rendering).
@@ -167,8 +169,8 @@ import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export default function SimpleMediaQuery() {
-  const matches = useMediaQuery('print');
+  const matches = useMediaQuery('(min-width:600px)');
 
-  return <span>{`@media (min-width:600px) matches: ${matches}`}</span>;
+  return <span>{`(min-width:600px) matches: ${matches}`}</span>;
 }
 ```

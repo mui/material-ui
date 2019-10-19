@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 import React from 'react';
 import NextHead from 'next/head';
 import { Router as Router2, useRouter } from 'next/router';

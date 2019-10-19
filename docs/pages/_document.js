@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-
 import React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
 import Document, { Head, Main, NextScript } from 'next/document';
@@ -30,7 +28,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const GOOGLE_ID = process.env.NODE_ENV === 'production' ? 'UA-106598593-2' : 'UA-106598593-3';
 
-class MyDocument extends Document {
+export default class MyDocument extends Document {
   render() {
     const { canonical, userLanguage } = this.props;
 
@@ -154,5 +152,3 @@ MyDocument.getInitialProps = async ctx => {
     ),
   };
 };
-
-export default MyDocument;

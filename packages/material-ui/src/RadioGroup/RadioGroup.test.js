@@ -13,7 +13,7 @@ describe('<RadioGroup />', () => {
   let mount;
 
   before(() => {
-    // StrictModeViolation: uses #simulate
+    // StrictModeViolation: test uses #simulate
     mount = createMount({ strict: false });
   });
 

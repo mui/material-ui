@@ -1,3 +1,4 @@
+const confusingBrowserGlobals = require('confusing-browser-globals');
 const path = require('path');
 
 module.exports = {
@@ -38,6 +39,11 @@ module.exports = {
     // Airbnb use error
     'no-param-reassign': 'off',
     'no-prototype-builtins': 'off',
+    // Airbnb restricts isNaN and isFinite which are necessary for IE 11
+    // we have to be disciplined about the usage and ensure the Number type for its
+    // arguments
+    'no-restricted-globals': ['error'].concat(confusingBrowserGlobals),
+    'no-underscore-dangle': ['error', { allow: ['_rewriteUrlForNextExport'] }],
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     'prefer-destructuring': 'off', // Destructuring harm grep potential.
 
@@ -111,6 +117,15 @@ module.exports = {
         'mocha/no-skipped-tests': 'error',
         'mocha/no-top-level-hooks': 'error',
         'mocha/valid-suite-description': 'error',
+      },
+    },
+    {
+      files: ['docs/src/modules/components/**/*.js'],
+      rules: {
+        'material-ui/no-hardcoded-labels': [
+          'error',
+          { allow: ['Material-UI', 'Twitter', 'GitHub', 'Spectrum', 'StackOverflow'] },
+        ],
       },
     },
   ],

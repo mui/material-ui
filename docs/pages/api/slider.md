@@ -60,26 +60,26 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiSlider-root</span> | Styles applied to the root element.
-| <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiSlider-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiSlider-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
-| <span class="prop-name">marked</span> | <span class="prop-name">MuiSlider-marked</span> | Styles applied to the root element if `marks` is provided with at least one label.
-| <span class="prop-name">vertical</span> | <span class="prop-name">MuiSlider-vertical</span> | Pseudo-class applied to the root element if `orientation="vertical"`.
-| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">rail</span> | <span class="prop-name">MuiSlider-rail</span> | Styles applied to the rail element.
-| <span class="prop-name">track</span> | <span class="prop-name">MuiSlider-track</span> | Styles applied to the track element.
-| <span class="prop-name">trackFalse</span> | <span class="prop-name">MuiSlider-trackFalse</span> | Styles applied to the track element if `track={false}`.
-| <span class="prop-name">trackInverted</span> | <span class="prop-name">MuiSlider-trackInverted</span> | Styles applied to the track element if `track="inverted"`.
-| <span class="prop-name">thumb</span> | <span class="prop-name">MuiSlider-thumb</span> | Styles applied to the thumb element.
-| <span class="prop-name">thumbColorPrimary</span> | <span class="prop-name">MuiSlider-thumbColorPrimary</span> | Styles applied to the thumb element if `color="primary"`.
-| <span class="prop-name">thumbColorSecondary</span> | <span class="prop-name">MuiSlider-thumbColorSecondary</span> | Styles applied to the thumb element if `color="secondary"`.
-| <span class="prop-name">active</span> | <span class="prop-name">MuiSlider-active</span> | Pseudo-class applied to the thumb element if it's active.
-| <span class="prop-name">focusVisible</span> | <span class="prop-name">Mui-focusVisible</span> | Pseudo-class applied to the thumb element if keyboard focused.
-| <span class="prop-name">valueLabel</span> | <span class="prop-name">MuiSlider-valueLabel</span> | Styles applied to the thumb label element.
-| <span class="prop-name">mark</span> | <span class="prop-name">MuiSlider-mark</span> | Styles applied to the mark element.
-| <span class="prop-name">markActive</span> | <span class="prop-name">MuiSlider-markActive</span> | Styles applied to the mark element if active (depending on the value).
-| <span class="prop-name">markLabel</span> | <span class="prop-name">MuiSlider-markLabel</span> | Styles applied to the mark label element.
-| <span class="prop-name">markLabelActive</span> | <span class="prop-name">MuiSlider-markLabelActive</span> | Styles applied to the mark label element if active (depending on the value).
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiSlider-root</span> | Styles applied to the root element.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiSlider-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiSlider-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">marked</span> | <span class="prop-name">.MuiSlider-marked</span> | Styles applied to the root element if `marks` is provided with at least one label.
+| <span class="prop-name">vertical</span> | <span class="prop-name">.MuiSlider-vertical</span> | Pseudo-class applied to the root element if `orientation="vertical"`.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span class="prop-name">rail</span> | <span class="prop-name">.MuiSlider-rail</span> | Styles applied to the rail element.
+| <span class="prop-name">track</span> | <span class="prop-name">.MuiSlider-track</span> | Styles applied to the track element.
+| <span class="prop-name">trackFalse</span> | <span class="prop-name">.MuiSlider-trackFalse</span> | Styles applied to the track element if `track={false}`.
+| <span class="prop-name">trackInverted</span> | <span class="prop-name">.MuiSlider-trackInverted</span> | Styles applied to the track element if `track="inverted"`.
+| <span class="prop-name">thumb</span> | <span class="prop-name">.MuiSlider-thumb</span> | Styles applied to the thumb element.
+| <span class="prop-name">thumbColorPrimary</span> | <span class="prop-name">.MuiSlider-thumbColorPrimary</span> | Styles applied to the thumb element if `color="primary"`.
+| <span class="prop-name">thumbColorSecondary</span> | <span class="prop-name">.MuiSlider-thumbColorSecondary</span> | Styles applied to the thumb element if `color="secondary"`.
+| <span class="prop-name">active</span> | <span class="prop-name">.MuiSlider-active</span> | Pseudo-class applied to the thumb element if it's active.
+| <span class="prop-name">focusVisible</span> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the thumb element if keyboard focused.
+| <span class="prop-name">valueLabel</span> | <span class="prop-name">.MuiSlider-valueLabel</span> | Styles applied to the thumb label element.
+| <span class="prop-name">mark</span> | <span class="prop-name">.MuiSlider-mark</span> | Styles applied to the mark element.
+| <span class="prop-name">markActive</span> | <span class="prop-name">.MuiSlider-markActive</span> | Styles applied to the mark element if active (depending on the value).
+| <span class="prop-name">markLabel</span> | <span class="prop-name">.MuiSlider-markLabel</span> | Styles applied to the mark label element.
+| <span class="prop-name">markLabelActive</span> | <span class="prop-name">.MuiSlider-markLabelActive</span> | Styles applied to the mark label element if active (depending on the value).
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -41,15 +41,15 @@ components: AppBar, Toolbar, Menu
 
 ## Прокрутка
 
-You can use the `useScrollTrigger()` hook to respond to user scroll actions.
+Вы можете использовать hook `useScrollTrigger()` для ответа на действия пользователя по прокрутке.
 
 ### Скрытие панели навигации
 
-The app bar hides on scroll down to leave more space for reading.
+Панель приложения прячется на прокрутите вниз, чтобы оставить больше места для чтения.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
 
-### Elevate App Bar
+### Поднять Панель Приложения
 
 Панель приложения поднимается при прокрутке, сообщая, что пользователь находится не в верхней части страницы.
 
@@ -61,11 +61,11 @@ The app bar hides on scroll down to leave more space for reading.
 
 {{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
 
-### `useScrollTrigger([options]) => trigger`
+### `useScrollTrigger ([options]) => триггер`
 
 #### Аргументы
 
-1. `options` (*Object* [optional]):
+1. `варианты` (*объекта* [optional]):
 
 - `options.disableHysteresis` (*Boolean* [optional]): Defaults to `false`. Disable the hysteresis. Игнорирование направления прокрутки когда определено `trigger` значение.
 - `options.target` (*Node* [optional]): По умолчанию `window`.

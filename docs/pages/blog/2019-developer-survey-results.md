@@ -326,4 +326,4 @@ If you want to continue to influence our roadmap, please upvote 👍 the issues 
 
 <hr />
 
-Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development made possible thanks to the support of these awesome [backers](https://material-ui.com/discover-more/backers/). Please join them ✨.
+Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development helped by the support of these awesome [backers](https://material-ui.com/discover-more/backers/). Please join them ✨.

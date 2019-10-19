@@ -33,11 +33,16 @@ Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf de
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
+## When to use
+
+- [Kontrollkästchen vs. Optionsfeld (Radio Buttons)](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+
 ## Barrierefreiheit
 
-Alle Formularsteuerelemente sollten Beschriftungen haben. Dazu gehören Optionsfelder, Kontrollkästchen und Schalter. In den meisten Fällen wird dazu das Element `<label>` ([FormControlLabel](/api/form-control-label/)) verwendet.
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#radiobutton)
 
-Wenn ein Label nicht verwendet werden kann, muss der Eingabekomponente ein Attribut direkt hinzugefügt werden. In diesem Fall können Sie das zusätzliche Attribut (z. B. `aria-label`, `aria-labelby`, `title`) über die Eigenschaft `inputProps` anwenden.
+- Alle Formularsteuerelemente sollten Beschriftungen haben. Dazu gehören Optionsfelder, Kontrollkästchen und Schalter. In den meisten Fällen wird dazu das Element `<label>` ([FormControlLabel](/api/form-control-label/)) verwendet.
+- Wenn ein Label nicht verwendet werden kann, muss der Eingabekomponente ein Attribut direkt hinzugefügt werden. In diesem Fall können Sie das zusätzliche Attribut (z. B. `aria-label`, `aria-labelby`, `title`) über die Eigenschaft `inputProps` anwenden.
 
 ```jsx
 <RadioButton
@@ -45,7 +50,3 @@ Wenn ein Label nicht verwendet werden kann, muss der Eingabekomponente ein Attri
   inputProps={{ 'aria-label': 'Radio A' }}
 />
 ```
-
-## Anleitung
-
-- [Kontrollkästchen vs. Optionsfeld (Radio Buttons)](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

@@ -1,4 +1,5 @@
-/* eslint-disable no-script-url */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
@@ -10,21 +11,19 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-// This resolves to nothing and doesn't affect browser history
-const dudUrl = 'javascript:;';
-
 export default function Links() {
   const classes = useStyles();
+  const preventDefault = event => event.preventDefault();
 
   return (
     <Typography>
-      <Link href={dudUrl} className={classes.link}>
+      <Link href="#" onClick={preventDefault} className={classes.link}>
         Link
       </Link>
-      <Link href={dudUrl} color="inherit" className={classes.link}>
+      <Link href="#" onClick={preventDefault} color="inherit" className={classes.link}>
         {'color="inherit"'}
       </Link>
-      <Link href={dudUrl} variant="body2" className={classes.link}>
+      <Link href="#" onClick={preventDefault} variant="body2" className={classes.link}>
         {'variant="body2"'}
       </Link>
     </Typography>

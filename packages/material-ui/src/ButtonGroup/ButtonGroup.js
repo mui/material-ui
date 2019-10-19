@@ -12,11 +12,11 @@ export const styles = theme => ({
     display: 'inline-flex',
     borderRadius: theme.shape.borderRadius,
   },
-  /* Styles applied to the root element if variant="contained". */
+  /* Styles applied to the root element if `variant="contained"`. */
   contained: {
     boxShadow: theme.shadows[2],
   },
-  /* Styles applied to the root element if fullWidth={true}. */
+  /* Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: {
     width: '100%',
   },
@@ -32,7 +32,7 @@ export const styles = theme => ({
       borderBottomRightRadius: 0,
     },
   },
-  /* Styles applied to the children if variant="text". */
+  /* Styles applied to the children if `variant="text"`. */
   groupedText: {
     '&:not(:last-child)': {
       borderRight: `1px solid ${
@@ -40,19 +40,19 @@ export const styles = theme => ({
       }`,
     },
   },
-  /* Styles applied to the children if variant="outlined" & color="primary". */
+  /* Styles applied to the children if `variant="text"` and `color="primary"`. */
   groupedTextPrimary: {
     '&:not(:last-child)': {
       borderColor: fade(theme.palette.primary.main, 0.5),
     },
   },
-  /* Styles applied to the children if variant="outlined" & color="secondary". */
+  /* Styles applied to the children if `variant="text"` and `color="secondary"`. */
   groupedTextSecondary: {
     '&:not(:last-child)': {
       borderColor: fade(theme.palette.secondary.main, 0.5),
     },
   },
-  /* Styles applied to the children if variant="outlined". */
+  /* Styles applied to the children if `variant="outlined"`. */
   groupedOutlined: {
     '&:not(:first-child)': {
       marginLeft: -1,
@@ -61,19 +61,19 @@ export const styles = theme => ({
       borderRightColor: 'transparent',
     },
   },
-  /* Styles applied to the children if variant="outlined" & color="primary". */
+  /* Styles applied to the children if `variant="outlined"` and `color="primary"`. */
   groupedOutlinedPrimary: {
     '&:hover': {
       borderColor: theme.palette.primary.main,
     },
   },
-  /* Styles applied to the children if variant="outlined" & color="secondary". */
+  /* Styles applied to the children if `variant="outlined"` and `color="secondary"`. */
   groupedOutlinedSecondary: {
     '&:hover': {
       borderColor: theme.palette.secondary.main,
     },
   },
-  /* Styles applied to the children if variant="contained". */
+  /* Styles applied to the children if `variant="contained"`. */
   groupedContained: {
     boxShadow: 'none',
     '&:not(:last-child)': {
@@ -83,13 +83,13 @@ export const styles = theme => ({
       },
     },
   },
-  /* Styles applied to the children if variant="contained" & color="primary". */
+  /* Styles applied to the children if `variant="contained"` and `color="primary"`. */
   groupedContainedPrimary: {
     '&:not(:last-child)': {
       borderRight: `1px solid ${theme.palette.primary.dark}`,
     },
   },
-  /* Styles applied to the children if variant="contained" & color="secondary". */
+  /* Styles applied to the children if `variant="contained"` and `color="secondary"`. */
   groupedContainedSecondary: {
     '&:not(:last-child)': {
       borderRight: `1px solid ${theme.palette.secondary.dark}`,

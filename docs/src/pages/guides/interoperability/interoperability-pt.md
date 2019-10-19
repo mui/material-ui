@@ -14,7 +14,7 @@ Este guia tem como objetivo documentar as alternativas mais populares, mas você
 
 ## CSS puro
 
-Nothing fancy, just plain old CSS.
+Nada extravagante, simplesmente o bom e velho CSS.
 
 **PlainCssButton.css**
 
@@ -40,7 +40,7 @@ export default function PlainCssButton() {
   return (
     <div>
       <Button>Material-UI</Button>
-      <Button className="button">Plain CSS</Button>
+      <Button className="button">CSS puro</Button>
     </div>
   );
 }
@@ -91,7 +91,7 @@ export default function GlobalCssButton() {
 
 ![estrelas](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
 
-The `styled()` method works perfectly on all of the components.
+O método `styled()` funciona perfeitamente em todos os componentes.
 
 ```jsx
 import React from 'react';
@@ -127,10 +127,10 @@ export default function StyledComponents() {
 **Nota:** Ambos, styled-components e JSS injetam seus estilos na parte inferior do `<head>`. A melhor abordagem para garantir que os estilos do styled-components sejam carregados por último, é alterar [a ordem de injeção do CSS](/styles/advanced/#css-injection-order), como na demonstração:
 
 ```jsx
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* Sua árvore de componentes.
+  {/* Your component tree.
       Componentes com estilo podem sobrescrever os estilos de Material-UI. */}
 </StylesProvider>
 ```

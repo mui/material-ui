@@ -21,7 +21,7 @@ Da die Benutzererfahrung auf mobilen Geräten durch die native Auswahl der Platt
 
 ## Benutzerdefinierte Auswahl
 
-Here are some examples of customizing the component. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier sind einige Beispiele, wie man die Komponente anpassen kann. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 Der erste Schritt besteht darin, die `InputBase` Komponente zu formatieren. Anschließend können Sie es entweder direkt als Textfeld verwenden oder der Eigenschaft select `input` zuweisen, um ein Feld `select` zu erhalten.
 

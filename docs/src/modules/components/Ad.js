@@ -10,7 +10,7 @@ import AdCarbon from 'docs/src/modules/components/AdCarbon';
 const styles = theme => ({
   root: {
     position: 'relative',
-    minHeight: 116,
+    minHeight: 124,
     maxWidth: 345,
     display: 'block',
     marginTop: theme.spacing(4),

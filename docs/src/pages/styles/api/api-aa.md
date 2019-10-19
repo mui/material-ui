@@ -1,6 +1,6 @@
 # crwdns97238:0crwdne97238:0
 
-<p class="description">crwdns97240:0crwdne97240:0</p>
+<p class="description">crwdns103448:0crwdne103448:0</p>
 
 ## `crwdns97242:0[options]crwdne97242:0`
 
@@ -20,7 +20,7 @@ crwdns97266:0crwdne97266:0
 #### crwdns97268:0crwdne97268:0
 
 ```jsx
-crwdns97270:0{ StylesProvider, createGenerateClassName }crwdnd97270:0{generateClassName}crwdne97270:0
+crwdns103450:0{ StylesProvider, createGenerateClassName }crwdnd103450:0{generateClassName}crwdne103450:0
 ```
 
 ## `crwdns97272:0crwdne97272:0`
@@ -38,9 +38,9 @@ crwdns97284:0crwdne97284:0
 #### crwdns97286:0crwdne97286:0
 
 ```jsx
-crwdns97288:0{ makeStyles, createStyles }crwdnd97288:0{
+crwdns103452:0{ makeStyles, createStyles }crwdnd103452:0{
     backgroundColor: theme.color.red,
-  }crwdnd97288:0{classes.root}crwdne97288:0
+  }crwdnd103452:0{classes.root}crwdne103452:0
 ```
 
 ## `crwdns97290:0[options]crwdne97290:0`
@@ -63,7 +63,7 @@ crwdns97324:0crwdne97324:0 crwdns97326:0crwdne97326:0 crwdns97328:0crwdne97328:0
 #### crwdns97332:0crwdne97332:0
 
 ```jsx
-crwdns97334:0{ makeStyles }crwdnd97334:0{classes.root}crwdne97334:0
+crwdns103454:0{ makeStyles }crwdnd103454:0{classes.root}crwdne103454:0
 ```
 
 ## `crwdns97336:0crwdne97336:0`
@@ -71,7 +71,7 @@ crwdns97334:0{ makeStyles }crwdnd97334:0{classes.root}crwdne97334:0
 crwdns97338:0crwdne97338:0 crwdns101420:0crwdne101420:0
 
 ```jsx
-crwdns97342:0{ ServerStyleSheets }crwdnd97342:0${cssString}crwdnd97342:0${html}crwdne97342:0
+crwdns103456:0{ ServerStyleSheets }crwdnd103456:0${cssString}crwdnd103456:0${html}crwdne103456:0
 ```
 
 ### `crwdns97344:0[options]crwdne97344:0`
@@ -118,9 +118,9 @@ crwdns97408:0crwdne97408:0
 #### crwdns97410:0crwdne97410:0
 
 ```jsx
-crwdns97412:0{ styled }crwdnd97412:0{
+crwdns103458:0{ styled }crwdnd103458:0{
   theme
-}crwdne97412:0
+}crwdne103458:0
 ```
 
 ## `crwdns97414:0crwdne97414:0`
@@ -156,7 +156,7 @@ crwdns97420:0crwdne97420:0
     crwdns97478:0crwdne97478:0
   </h4>
   
-  <pre><code class="jsx">crwdns97480:0{ StylesProvider }crwdnd97480:0{jss}crwdne97480:0
+  <pre><code class="jsx">crwdns103460:0{ StylesProvider }crwdnd103460:0{jss}crwdne103460:0
 </code></pre>
   
   <h2>
@@ -231,7 +231,7 @@ crwdns97420:0crwdne97420:0
     crwdns97512:0crwdne97512:0
   </h4>
   
-  <pre><code class="jsx">crwdns97514:0{ ThemeProvider }crwdnd97514:0{theme}crwdne97514:0
+  <pre><code class="jsx">crwdns103462:0{ ThemeProvider }crwdnd103462:0{theme}crwdne103462:0
 </code></pre>
   
   <h2>
@@ -254,7 +254,7 @@ crwdns97420:0crwdne97420:0
     crwdns97524:0crwdne97524:0
   </h4>
   
-  <pre><code class="jsx">crwdns97526:0{ useTheme }crwdnd97526:0${theme.spacing}crwdne97526:0
+  <pre><code class="jsx">crwdns103464:0{ useTheme }crwdnd103464:0${theme.spacing}crwdne103464:0
 </code></pre>
   
   <h2>
@@ -326,18 +326,18 @@ crwdns97420:0crwdne97420:0
     crwdns97586:0crwdne97586:0
   </h4>
   
-  <pre><code class="jsx">crwdns100460:0{ withStyles }crwdnd100460:0{
+  <pre><code class="jsx">crwdns103466:0{ withStyles }crwdnd103466:0{
     backgroundColor: 'red',
-  }crwdnd100460:0{props.classes.root}crwdne100460:0
+  }crwdnd103466:0{props.classes.root}crwdne103466:0
 </code></pre>
   
   <p>
     crwdns97590:0crwdne97590:0
   </p>
   
-  <pre><code class="jsx">crwdns97592:0{ withStyles }crwdnd97592:0{
+  <pre><code class="jsx">crwdns103468:0{ withStyles }crwdnd103468:0{
     backgroundColor: 'red',
-  }crwdnd97592:0{this.props.classes.root}crwdne97592:0
+  }crwdnd103468:0{this.props.classes.root}crwdne103468:0
 </code></pre>
   
   <h2>
@@ -370,5 +370,5 @@ crwdns97420:0crwdne97420:0
     crwdns97608:0crwdne97608:0
   </h4>
   
-  <pre><code class="jsx">crwdns97610:0{ withTheme }crwdnd97610:0{props.theme.direction}crwdne97610:0
+  <pre><code class="jsx">crwdns103470:0{ withTheme }crwdnd103470:0{props.theme.direction}crwdne103470:0
 </code></pre>

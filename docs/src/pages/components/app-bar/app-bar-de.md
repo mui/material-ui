@@ -11,37 +11,37 @@ Die [obere App-Bar](https://material.io/design/components/app-bars-top.html) lie
 
 Sie kann in eine kontextabhängige Aktionsleiste verwandelt, oder als Navigationsleiste verwendet werden.
 
-## Simple App Bar
+## Einfache App-Bar
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
 
-## App Bar with a primary search field
+## App-Bar mit einem Hauptsuchfeld
 
 A primary searchbar.
 
 {{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
 
-## App Bar with menu
+## App-Bar mit Menü
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js"}}
 
 ## App Bar with search field
 
-A side searchbar.
+Ein seitliches Suchfeld.
 
 {{"demo": "pages/components/app-bar/SearchAppBar.js"}}
 
-## Dense (desktop only)
+## Kompakt (nur für Desktop)
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js"}}
 
-## Bottom App Bar
+## Untere App-Bar
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Scrolling
+## Scrollen
 
-You can use the `useScrollTrigger()` hook to respond to user scroll actions.
+Sie können den Hook `useScrollTrigger ()`, um auf Bildlauf Aktionen zu reagieren.
 
 ### App-Bar verstecken
 
@@ -73,7 +73,7 @@ A floating action buttons appears on scroll to make it easy to get back to the t
 
 #### Rückgabewerte
 
-`trigger`: Does the scroll position match the criteria?
+`trigger`: Entspricht die Bildlauf Position den Kriterien?
 
 #### Beispiele
 

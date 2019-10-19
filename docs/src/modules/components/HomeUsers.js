@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
@@ -11,28 +12,47 @@ import Typography from '@material-ui/core/Typography';
 
 const users = [
   {
-    logo: 'nasa.png',
+    logo: 'nasa.svg',
+    logoWidth: 49,
+    logoHeight: 40,
     caption: 'NASA',
   },
   {
-    logo: 'walmart-labs.png',
+    logo: 'walmart-labs.svg',
+    logoWidth: 253,
+    logoHeight: 48,
     caption: 'Walmart Labs',
+    class: 'walmart',
   },
   {
-    logo: 'capgemini.png',
+    logo: 'capgemini.svg',
+    logoWidth: 180,
+    logoHeight: 40,
     caption: 'Capgemini',
   },
   {
-    logo: 'uniqlo.png',
+    logo: 'uniqlo.svg',
+    logoWidth: 40,
+    logoHeight: 40,
     caption: 'Uniqlo',
   },
   {
-    logo: 'bethesda.png',
+    logo: 'bethesda.svg',
+    logoWidth: 196,
+    logoHeight: 29,
     caption: 'Bethesda',
   },
   {
-    logo: 'jpmorgan.png',
+    logo: 'jpmorgan.svg',
+    logoWidth: 198,
+    logoHeight: 40,
     caption: 'J.P. Morgan',
+  },
+  {
+    logo: 'shutterstock.svg',
+    caption: 'Shutterstock',
+    logoWidth: 205,
+    logoHeight: 29,
   },
 ];
 
@@ -51,7 +71,10 @@ const styles = theme => ({
     marginBottom: theme.spacing(5),
   },
   img: {
-    margin: '12px 24px',
+    margin: theme.spacing(1.5, 3),
+  },
+  walmart: {
+    margin: theme.spacing(1.1, 3, 1.5),
   },
 });
 
@@ -76,7 +99,10 @@ function HomeUsers(props) {
                 key={user.caption}
                 src={`/static/images/users/${user.logo}`}
                 alt={user.caption}
-                className={classes.img}
+                className={clsx(classes.img, classes[user.class])}
+                loading="lazy"
+                width={user.logoWidth}
+                height={user.logoHeight}
               />
             ))}
           </Grid>

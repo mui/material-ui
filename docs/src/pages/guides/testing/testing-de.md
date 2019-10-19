@@ -50,16 +50,16 @@ Generate an enhanced mount function with the needed context. Please refer to the
 
 ```jsx
 import { createMount } from '@material-ui/core/test-utils';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 describe('<MyComponent />', () => {
   let mount;
 
   function MySuccessButton({ children }) {
     return (
-      <MuiThemeProvider theme={{ success: { main: '#fff' } }}>
+      <ThemeProvider theme={{ success: { main: '#fff' } }}>
         {children}
-      </MuiThemeProvider>
+      </ThemeProvider>
     );
   }
 
@@ -98,14 +98,14 @@ Generate an enhanced shallow function with the needed context. Please refer to t
 ```jsx
 importiere { createShallow } aus '@ material-ui / core / test-utils';
 
-beschreiben ('<0 />', () =&gt; {
+beschreiben ('<0 />', () => {
   sei flach;
 
-  vor (()) =&gt; {// Dies ist Mocha; in Jest verwende beforeAll
+  vor (()) => {// Dies ist Mocha; in Jest verwende beforeAll
     shallow = createShallow ();
   });
 
-  es ('sollte funktionieren', () =&gt; {
+  es ('sollte funktionieren', () => {
     const wrapper = shallow (<0 />);
   });
 });

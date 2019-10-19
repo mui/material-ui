@@ -19,13 +19,13 @@ Some important features of the `Popper` component:
 
 ## Simple Popper
 
-{{"demo": "pages/components/popper/SimplePopper.js" }}
+{{"demo": "pages/components/popper/SimplePopper.js"}}
 
 ## Minimalist Popper
 
 You can use the component with zero extra dependencies.
 
-{{"demo": "pages/components/popper/MinimalPopper.js" }}
+{{"demo": "pages/components/popper/MinimalPopper.js"}}
 
 ## Scroll playground
 

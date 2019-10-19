@@ -77,7 +77,7 @@ No exemplo a seguir, nós demonstramos como usar [react-virtualized](https://git
 
 ## Projetos Complementares
 
-Para usos mais avançados, você pode tirar vantagem com:
+Para caso de usos mais avançados, você é capaz de aproveitar de:
 
 ### material-table
 
@@ -92,3 +92,13 @@ Para usos mais avançados, você pode tirar vantagem com:
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) Uma grade de dados para Material-UI com paginação, ordenação, filtragem, agrupamento e funções de edição.([Com licenciamento de uso pago](https://js.devexpress.com/licensing/)).
 - [mui-datatables](https://github.com/gregnb/mui-datatables): Tabelas de dados responsivas para Material-UI com filtro, ordenação, pesquisa e muito mais.
 - [tubular-react](https://github.com/unosquare/tubular-react): Uma tabela de Material-UI com fonte de dados local ou remota. Com filtragem, classificação, pesquisa de texto livre, exportação para CSV localmente e agregações.
+
+## Acessibilidade
+
+(WAI tutorial: https://www.w3.org/WAI/tutorials/tables/)
+
+### Caption
+
+A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it’s about and decide if they want to read it.
+
+{{"demo": "pages/components/tables/AcccessibleTable.js"}}

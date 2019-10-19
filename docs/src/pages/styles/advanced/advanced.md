@@ -196,15 +196,13 @@ const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
 });
 
-function App() {
+export default function App() {
   return (
     <StylesProvider jss={jss}>
       ...
     </StylesProvider>
   );
 }
-
-export default App;
 ```
 
 ## String templates
@@ -313,11 +311,9 @@ const jss = create({
   insertionPoint: 'jss-insertion-point',
 });
 
-function App() {
+export default function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
-
-export default App;
 ```
 
 #### Other HTML elements
@@ -342,11 +338,9 @@ const jss = create({
   insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
-function App() {
+export default function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
-
-export default App;
 ```
 
 #### JS createComment
@@ -367,11 +361,9 @@ const jss = create({
   insertionPoint: 'jss-insertion-point',
 });
 
-function App() {
+export default function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
-
-export default App;
 ```
 
 ## Server-side rendering
@@ -591,7 +583,7 @@ If you are using Server-Side Rendering (SSR), you should pass the nonce in the `
 />
 ```
 
-Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags.  
+Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags.
 
 The way that you do this is by passing a `<meta property="csp-nonce" content={nonce} />` tag in the `<head>` of your HTML.  JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
 

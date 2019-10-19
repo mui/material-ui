@@ -47,21 +47,21 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiBadge-root</span> | Styles applied to the root element.
-| <span class="prop-name">badge</span> | <span class="prop-name">MuiBadge-badge</span> | Styles applied to the badge `span` element.
-| <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiBadge-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiBadge-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
-| <span class="prop-name">colorError</span> | <span class="prop-name">MuiBadge-colorError</span> | Styles applied to the root element if `color="error"`.
-| <span class="prop-name">dot</span> | <span class="prop-name">MuiBadge-dot</span> | Styles applied to the root element if `variant="dot"`.
-| <span class="prop-name">anchorOriginTopRightRectangle</span> | <span class="prop-name">MuiBadge-anchorOriginTopRightRectangle</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangle"`.
-| <span class="prop-name">anchorOriginBottomRightRectangle</span> | <span class="prop-name">MuiBadge-anchorOriginBottomRightRectangle</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangle"`.
-| <span class="prop-name">anchorOriginTopLeftRectangle</span> | <span class="prop-name">MuiBadge-anchorOriginTopLeftRectangle</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangle"`.
-| <span class="prop-name">anchorOriginBottomLeftRectangle</span> | <span class="prop-name">MuiBadge-anchorOriginBottomLeftRectangle</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangle"`.
-| <span class="prop-name">anchorOriginTopRightCircle</span> | <span class="prop-name">MuiBadge-anchorOriginTopRightCircle</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circle"`.
-| <span class="prop-name">anchorOriginBottomRightCircle</span> | <span class="prop-name">MuiBadge-anchorOriginBottomRightCircle</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circle"`.
-| <span class="prop-name">anchorOriginTopLeftCircle</span> | <span class="prop-name">MuiBadge-anchorOriginTopLeftCircle</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circle"`.
-| <span class="prop-name">anchorOriginBottomLeftCircle</span> | <span class="prop-name">MuiBadge-anchorOriginBottomLeftCircle</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circle"`.
-| <span class="prop-name">invisible</span> | <span class="prop-name">MuiBadge-invisible</span> | Pseudo-class to the badge `span` element if `invisible={true}`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiBadge-root</span> | Styles applied to the root element.
+| <span class="prop-name">badge</span> | <span class="prop-name">.MuiBadge-badge</span> | Styles applied to the badge `span` element.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiBadge-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiBadge-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">colorError</span> | <span class="prop-name">.MuiBadge-colorError</span> | Styles applied to the root element if `color="error"`.
+| <span class="prop-name">dot</span> | <span class="prop-name">.MuiBadge-dot</span> | Styles applied to the root element if `variant="dot"`.
+| <span class="prop-name">anchorOriginTopRightRectangle</span> | <span class="prop-name">.MuiBadge-anchorOriginTopRightRectangle</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangle"`.
+| <span class="prop-name">anchorOriginBottomRightRectangle</span> | <span class="prop-name">.MuiBadge-anchorOriginBottomRightRectangle</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangle"`.
+| <span class="prop-name">anchorOriginTopLeftRectangle</span> | <span class="prop-name">.MuiBadge-anchorOriginTopLeftRectangle</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangle"`.
+| <span class="prop-name">anchorOriginBottomLeftRectangle</span> | <span class="prop-name">.MuiBadge-anchorOriginBottomLeftRectangle</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangle"`.
+| <span class="prop-name">anchorOriginTopRightCircle</span> | <span class="prop-name">.MuiBadge-anchorOriginTopRightCircle</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circle"`.
+| <span class="prop-name">anchorOriginBottomRightCircle</span> | <span class="prop-name">.MuiBadge-anchorOriginBottomRightCircle</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circle"`.
+| <span class="prop-name">anchorOriginTopLeftCircle</span> | <span class="prop-name">.MuiBadge-anchorOriginTopLeftCircle</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circle"`.
+| <span class="prop-name">anchorOriginBottomLeftCircle</span> | <span class="prop-name">.MuiBadge-anchorOriginBottomLeftCircle</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circle"`.
+| <span class="prop-name">invisible</span> | <span class="prop-name">.MuiBadge-invisible</span> | Pseudo-class to the badge `span` element if `invisible={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

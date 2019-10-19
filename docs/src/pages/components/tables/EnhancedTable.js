@@ -140,14 +140,8 @@ const useToolbarStyles = makeStyles(theme => ({
           color: theme.palette.text.primary,
           backgroundColor: theme.palette.secondary.dark,
         },
-  spacer: {
-    flex: '1 1 100%',
-  },
-  actions: {
-    color: theme.palette.text.secondary,
-  },
   title: {
-    flex: '0 0 auto',
+    flex: '1 1 100%',
   },
 }));
 
@@ -161,33 +155,29 @@ const EnhancedTableToolbar = props => {
         [classes.highlight]: numSelected > 0,
       })}
     >
-      <div className={classes.title}>
-        {numSelected > 0 ? (
-          <Typography color="inherit" variant="subtitle1">
-            {numSelected} selected
-          </Typography>
-        ) : (
-          <Typography variant="h6" id="tableTitle">
-            Nutrition
-          </Typography>
-        )}
-      </div>
-      <div className={classes.spacer} />
-      <div className={classes.actions}>
-        {numSelected > 0 ? (
-          <Tooltip title="Delete">
-            <IconButton aria-label="delete">
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Tooltip title="Filter list">
-            <IconButton aria-label="filter list">
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
-        )}
-      </div>
+      {numSelected > 0 ? (
+        <Typography className={classes.title} color="inherit" variant="subtitle1">
+          {numSelected} selected
+        </Typography>
+      ) : (
+        <Typography className={classes.title} variant="h6" id="tableTitle">
+          Nutrition
+        </Typography>
+      )}
+
+      {numSelected > 0 ? (
+        <Tooltip title="Delete">
+          <IconButton aria-label="delete">
+            <DeleteIcon />
+          </IconButton>
+        </Tooltip>
+      ) : (
+        <Tooltip title="Filter list">
+          <IconButton aria-label="filter list">
+            <FilterListIcon />
+          </IconButton>
+        </Tooltip>
+      )}
     </Toolbar>
   );
 };
@@ -273,7 +263,7 @@ export default function EnhancedTable() {
   };
 
   const handleChangeRowsPerPage = event => {
-    setRowsPerPage(+event.target.value);
+    setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 

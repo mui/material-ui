@@ -55,11 +55,7 @@ describe('withStyles', () => {
       const StyledTarget = withStyles({})(TargetComponent);
 
       const ref = React.createRef();
-      mount(
-        <React.Fragment>
-          <StyledTarget ref={ref} />
-        </React.Fragment>,
-      );
+      mount(<StyledTarget ref={ref} />);
       assert.instanceOf(ref.current, TargetComponent);
     });
 
@@ -69,11 +65,7 @@ describe('withStyles', () => {
       );
 
       const ref = React.createRef();
-      mount(
-        <React.Fragment>
-          <StyledTarget ref={ref} />
-        </React.Fragment>,
-      );
+      mount(<StyledTarget ref={ref} />);
       assert.strictEqual(ref.current.nodeName, 'DIV');
     });
 

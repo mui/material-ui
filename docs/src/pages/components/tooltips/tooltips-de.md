@@ -21,7 +21,7 @@ The `Tooltip` has 12 **placements** choice. They don’t have directional arrows
 
 ## Benutzerdefinierte Tooltips
 
-Here are some examples of customizing the component. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier sind einige Beispiele, wie man die Komponente anpassen kann. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
@@ -70,7 +70,7 @@ A tooltip can be interactive. It won't close when the user hovers over the toolt
 
 ## Deaktivierte Elemente
 
-Standardmäßig lösen deaktivierte Elemente wie `<button>` keine Benutzerinteraktionen aus, sodass ein `Tooltip` bei normalen Ereignissen wie Hover nicht aktiviert wird. Fügen Sie ein einfaches Wrapper-Element wie eine `span` hinzu, um deaktivierte Elemente aufzunehmen.
+Standardmäßig lösen deaktivierte Elemente wie `<button>` keine Benutzerinteraktionen aus, sodass ein `Tooltip` bei normalen Ereignissen wie Hover nicht aktiviert wird. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 

@@ -2,7 +2,7 @@
 
 <p class="description">Support Material-UI’s development through donations.</p>
 
-Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible thanks to the support of these awesome backers. If you'd like to join them, please consider:
+Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development helped by the support of these awesome backers. If you'd like to join them, please consider:
 
 - [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
 - [Become a backer or sponsor on OpenCollective](https://opencollective.com/material-ui).
@@ -73,7 +73,7 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 | Antonio Seveso | Ali Akhavan | Bruno Winck | Alessandro Annini | Victor Irzak |
 | Manuel U Grullon | Skaronator | Peter James | Vincz | Micah Davidson |
 | Nelson Batalha | Daniel Woss | Michael Staub | Scott Fortmann-Roe | Markus Wüstenberg |
-| Anthony Mezzolesta | Julien Vallini | Johan Eliasson | Tomasz Szkodziński |
+| Anthony Mezzolesta | Julien Vallini | Johan Eliasson | Tomasz Szkodziński | Joseph Dillman |
 
 via [OpenCollective](https://opencollective.com/material-ui)
 

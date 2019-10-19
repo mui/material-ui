@@ -52,7 +52,7 @@ ButtonGroupコンポーネントは、アウトラインボタン（デフォル
 
 ## Split Button
 
-ButtonGroupは分割ボタンの作成にも使用できます。 The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
+ButtonGroupは分割ボタンの作成にも使用できます。 この例のようにドロップダウンでボタンの動作を変更することも、関連する動作をすぐに起動するために使用することもできます。
 
 {{"demo": "pages/components/buttons/SplitButton.js"}}
 
@@ -110,6 +110,38 @@ FABを使用するのは、それが画面の主なアクションを提示す�
 
 ## サードパーティ製ルーティングライブラリ
 
-One common use case is to use the button to trigger navigation to a new page. `ButtonBase` コンポーネントは、このユースケースを処理するためのプロパティを提供します 。 108/5000 ただし、特定のフォーカスについては` ButtonBase `には提供されているDOMノードが必要です。 これは、refをコンポーネントに添付し、 コンポーネントがこのrefを基になるDOMノードに転送することを期待することによって実現されます。 Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
+一般的な使用例の1つは、ボタンを使用して新しいページへのナビゲーションを開始することです。 `ButtonBase` コンポーネントは、このユースケースを処理するためのプロパティを提供します 。 108/5000 ただし、特定のフォーカスについては` ButtonBase `には提供されているDOMノードが必要です。 これは、refをコンポーネントに添付し、 コンポーネントがこのrefを基になるDOMノードに転送することを期待することによって実現されます。 Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
-Here is an [integration example with react-router](/guides/composition/#button).
+こちらは [react-routerとの統合例](/guides/composition/#button).
+
+## 制限事項
+
+### Cursor not-allowed
+
+The ButtonBase component sets `pointer-events: none;` on disabled buttons. which prevents the appearance of a disabled cursor.
+
+If you wish to use `not-allowed`, you have two options:
+
+1. **CSS only**. You can remove the pointer events style on the disabled state of the `<button>` element:
+
+```css
+.MuiButtonBase-root:disabled {
+  cursor: not-allowed;
+  pointer-events: auto;
+}
+```
+
+However:
+
+- You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements)
+- The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.
+
+2. **DOM change**. You can wrap the button:
+
+```jsx
+<span style={{ cursor: "not-allowed" }}>
+  <Button component={Link} disabled>disabled</Button>
+</span>
+```
+
+This has the advantage of supporting any element, for instance, a link `<a>` element.

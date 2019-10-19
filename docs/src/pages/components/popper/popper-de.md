@@ -19,13 +19,13 @@ Einige wichtige Funktionen der `Popper` Komponente:
 
 ## Einfacher Popper
 
-{{"demo": "pages/components/popper/SimplePopper.js" }}
+{{"demo": "pages/components/popper/SimplePopper.js"}}
 
 ## Minimalistischer Popper
 
 Sie können die Komponente ohne zusätzliche Abhängigkeiten verwenden.
 
-{{"demo": "pages/components/popper/MinimalPopper.js" }}
+{{"demo": "pages/components/popper/MinimalPopper.js"}}
 
 ## Blätter Spielplatz
 

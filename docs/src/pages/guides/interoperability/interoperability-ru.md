@@ -127,7 +127,7 @@ export default function StyledComponents() {
 **Note:** Both styled-components and JSS inject their styles at the bottom of the `<head>`. The best approach to ensuring styled-components styles are loaded last is to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo:
 
 ```jsx
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree.

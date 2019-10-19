@@ -2,7 +2,6 @@
 import React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import rerender from 'test/utils/rerender';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import TouchRipple from './TouchRipple';
@@ -754,25 +753,6 @@ describe('<ButtonBase />', () => {
       buttonActionsRef.current.focusVisible();
       expect(getByText('Hello')).to.be.focused;
       expect(getByText('Hello')).to.match('.focusVisible');
-    });
-  });
-
-  describe('rerender', () => {
-    beforeEach(() => {
-      rerender.spy();
-    });
-
-    afterEach(() => {
-      rerender.reset();
-    });
-
-    it('should not rerender the TouchRipple', () => {
-      const wrapper = render(<ButtonBase>foo</ButtonBase>);
-      wrapper.setProps({
-        children: 'bar',
-      });
-
-      expect(rerender.updates.filter(update => update.displayName !== 'NoSsr')).to.have.lengthOf(1);
     });
   });
 

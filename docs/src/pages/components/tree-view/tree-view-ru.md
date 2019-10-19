@@ -3,20 +3,20 @@ title: Tree View React component
 components: TreeView, TreeItem
 ---
 
-# Tree View
+# Иерархическое представление
 
-<p class="description">A tree view widget presents a hierarchical list.</p>
+<p class="description">Виджет Иерархического представления представляет собой иерархический список.</p>
 
-Tree views can be used to represent a file system navigator displaying folders and files, an item representing a folder can be expanded to reveal the contents of the folder, which may be files, folders, or both.
+Иерархические представления могут использоваться для того чтобы показать структуру файловой системы. Каждый элемент может быть раскрыт, чтобы показать содержание папки, в которой могут быть файлы, папки или и то и другое.
 
-{{"demo": "pages/components/tree-view/FileSystemNavigator.js"}}
+{{"demo": "pages/components/tree-view/FileSystemNavigator.js"}
 
 ## Customized tree view
 
-### Custom icons, border and animation
+### Пользовательские иконки, границы и анимации
 
-{{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
+{{"demo": "pages/components/tree-view/CustomizedTreeView.js"}
 
-### Gmail clone
+### Gmail клон
 
-{{"demo": "pages/components/tree-view/GmailTreeView.js"}}
+{{"demo": "pages / components / tree-view / GmailTreeView.js"}}

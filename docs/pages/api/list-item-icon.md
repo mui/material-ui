@@ -38,8 +38,8 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiListItemIcon-root</span> | Styles applied to the root element.
-| <span class="prop-name">alignItemsFlexStart</span> | <span class="prop-name">MuiListItemIcon-alignItemsFlexStart</span> | Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiListItemIcon-root</span> | Styles applied to the root element.
+| <span class="prop-name">alignItemsFlexStart</span> | <span class="prop-name">.MuiListItemIcon-alignItemsFlexStart</span> | Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`.
 
 You can override the style of the component thanks to one of these customization points:
 

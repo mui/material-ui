@@ -15,9 +15,11 @@ title: React中的媒体查询用于响应式设计
 
 ## 简单的媒体查询
 
-您应该为挂钩的第一个参数提供媒体查询。 媒体查询字符串可以由任何有效的CSS媒体查询，如 `'print'`。
+您应该为挂钩的第一个参数提供媒体查询。 The media query string can by any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference).
 
 {{"demo": "pages/components/use-media-query/SimpleMediaQuery.js", "defaultCodeOpen": true}}
+
+⚠️ You can't use `'print'` per browsers limitation, e.g. [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398).
 
 ## 使用Material-UI的断点助手
 
@@ -106,7 +108,7 @@ Finally, you need to provide an implementation of [matchMedia](https://developer
 import ReactDOMServer from 'react-dom/server';
 import parser from 'ua-parser-js';
 import mediaQuery from 'css-mediaquery';
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 function handleRender(req, res) {
   const deviceType = parser(req.headers['user-agent']).device.type || 'desktop';
@@ -167,8 +169,8 @@ import React from 'react';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 export default function SimpleMediaQuery() {
-  const matches = useMediaQuery('print');
+  const matches = useMediaQuery('(min-width:600px)');
 
-  return <span>{`@media (min-width:600px) matches: ${matches}`}</span>;
+  return <span>{`(min-width:600px) matches: ${matches}`}</span>;
 }
 ```

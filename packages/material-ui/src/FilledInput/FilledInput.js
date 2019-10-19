@@ -106,6 +106,12 @@ export const styles = theme => {
     /* Styles applied to the `input` element. */
     input: {
       padding: '27px 12px 10px',
+      '&:-webkit-autofill': {
+        WebkitBoxShadow: theme.palette.type === 'dark' ? '0 0 0 100px #266798 inset' : null,
+        WebkitTextFillColor: theme.palette.type === 'dark' ? '#fff' : null,
+        borderTopLeftRadius: 'inherit',
+        borderTopRightRadius: 'inherit',
+      },
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense: {

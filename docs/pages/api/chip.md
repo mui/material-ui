@@ -49,36 +49,36 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiChip-root</span> | Styles applied to the root element.
-| <span class="prop-name">sizeSmall</span> | <span class="prop-name">MuiChip-sizeSmall</span> | Styles applied to the root element if `size="small"`.
-| <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiChip-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiChip-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
-| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">clickable</span> | <span class="prop-name">MuiChip-clickable</span> | Styles applied to the root element if `onClick` is defined or `clickable={true}`.
-| <span class="prop-name">clickableColorPrimary</span> | <span class="prop-name">MuiChip-clickableColorPrimary</span> | Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`.
-| <span class="prop-name">clickableColorSecondary</span> | <span class="prop-name">MuiChip-clickableColorSecondary</span> | Styles applied to the root element if `onClick` and `color="secondary"` is defined or `clickable={true}`.
-| <span class="prop-name">deletable</span> | <span class="prop-name">MuiChip-deletable</span> | Styles applied to the root element if `onDelete` is defined.
-| <span class="prop-name">deletableColorPrimary</span> | <span class="prop-name">MuiChip-deletableColorPrimary</span> | Styles applied to the root element if `onDelete` and `color="primary"` is defined.
-| <span class="prop-name">deletableColorSecondary</span> | <span class="prop-name">MuiChip-deletableColorSecondary</span> | Styles applied to the root element if `onDelete` and `color="secondary"` is defined.
-| <span class="prop-name">outlined</span> | <span class="prop-name">MuiChip-outlined</span> | Styles applied to the root element if `variant="outlined"`.
-| <span class="prop-name">outlinedPrimary</span> | <span class="prop-name">MuiChip-outlinedPrimary</span> | Styles applied to the root element if `variant="outlined"` and `color="primary"`.
-| <span class="prop-name">outlinedSecondary</span> | <span class="prop-name">MuiChip-outlinedSecondary</span> | Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
-| <span class="prop-name">avatar</span> | <span class="prop-name">MuiChip-avatar</span> | Styles applied to the `avatar` element.
-| <span class="prop-name">avatarSmall</span> | <span class="prop-name">MuiChip-avatarSmall</span> | 
-| <span class="prop-name">avatarColorPrimary</span> | <span class="prop-name">MuiChip-avatarColorPrimary</span> | Styles applied to the `avatar` element if `color="primary"`.
-| <span class="prop-name">avatarColorSecondary</span> | <span class="prop-name">MuiChip-avatarColorSecondary</span> | Styles applied to the `avatar` element if `color="secondary"`.
-| <span class="prop-name">icon</span> | <span class="prop-name">MuiChip-icon</span> | Styles applied to the `icon` element.
-| <span class="prop-name">iconSmall</span> | <span class="prop-name">MuiChip-iconSmall</span> | Styles applied to the `icon` element if `size="small"`.
-| <span class="prop-name">iconColorPrimary</span> | <span class="prop-name">MuiChip-iconColorPrimary</span> | Styles applied to the `icon` element if `color="primary"`.
-| <span class="prop-name">iconColorSecondary</span> | <span class="prop-name">MuiChip-iconColorSecondary</span> | Styles applied to the `icon` element if `color="secondary"`.
-| <span class="prop-name">label</span> | <span class="prop-name">MuiChip-label</span> | Styles applied to the label `span` element`.
-| <span class="prop-name">labelSmall</span> | <span class="prop-name">MuiChip-labelSmall</span> | 
-| <span class="prop-name">deleteIcon</span> | <span class="prop-name">MuiChip-deleteIcon</span> | Styles applied to the `deleteIcon` element.
-| <span class="prop-name">deleteIconSmall</span> | <span class="prop-name">MuiChip-deleteIconSmall</span> | Styles applied to the `deleteIcon` element if `size="small"`.
-| <span class="prop-name">deleteIconColorPrimary</span> | <span class="prop-name">MuiChip-deleteIconColorPrimary</span> | Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`.
-| <span class="prop-name">deleteIconColorSecondary</span> | <span class="prop-name">MuiChip-deleteIconColorSecondary</span> | Styles applied to the deleteIcon element if `color="secondary"` and `variant="default"`.
-| <span class="prop-name">deleteIconOutlinedColorPrimary</span> | <span class="prop-name">MuiChip-deleteIconOutlinedColorPrimary</span> | Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`.
-| <span class="prop-name">deleteIconOutlinedColorSecondary</span> | <span class="prop-name">MuiChip-deleteIconOutlinedColorSecondary</span> | Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiChip-root</span> | Styles applied to the root element.
+| <span class="prop-name">sizeSmall</span> | <span class="prop-name">.MuiChip-sizeSmall</span> | Styles applied to the root element if `size="small"`.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiChip-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiChip-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span class="prop-name">clickable</span> | <span class="prop-name">.MuiChip-clickable</span> | Styles applied to the root element if `onClick` is defined or `clickable={true}`.
+| <span class="prop-name">clickableColorPrimary</span> | <span class="prop-name">.MuiChip-clickableColorPrimary</span> | Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`.
+| <span class="prop-name">clickableColorSecondary</span> | <span class="prop-name">.MuiChip-clickableColorSecondary</span> | Styles applied to the root element if `onClick` and `color="secondary"` is defined or `clickable={true}`.
+| <span class="prop-name">deletable</span> | <span class="prop-name">.MuiChip-deletable</span> | Styles applied to the root element if `onDelete` is defined.
+| <span class="prop-name">deletableColorPrimary</span> | <span class="prop-name">.MuiChip-deletableColorPrimary</span> | Styles applied to the root element if `onDelete` and `color="primary"` is defined.
+| <span class="prop-name">deletableColorSecondary</span> | <span class="prop-name">.MuiChip-deletableColorSecondary</span> | Styles applied to the root element if `onDelete` and `color="secondary"` is defined.
+| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiChip-outlined</span> | Styles applied to the root element if `variant="outlined"`.
+| <span class="prop-name">outlinedPrimary</span> | <span class="prop-name">.MuiChip-outlinedPrimary</span> | Styles applied to the root element if `variant="outlined"` and `color="primary"`.
+| <span class="prop-name">outlinedSecondary</span> | <span class="prop-name">.MuiChip-outlinedSecondary</span> | Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
+| <span class="prop-name">avatar</span> | <span class="prop-name">.MuiChip-avatar</span> | Styles applied to the `avatar` element.
+| <span class="prop-name">avatarSmall</span> | <span class="prop-name">.MuiChip-avatarSmall</span> | 
+| <span class="prop-name">avatarColorPrimary</span> | <span class="prop-name">.MuiChip-avatarColorPrimary</span> | Styles applied to the `avatar` element if `color="primary"`.
+| <span class="prop-name">avatarColorSecondary</span> | <span class="prop-name">.MuiChip-avatarColorSecondary</span> | Styles applied to the `avatar` element if `color="secondary"`.
+| <span class="prop-name">icon</span> | <span class="prop-name">.MuiChip-icon</span> | Styles applied to the `icon` element.
+| <span class="prop-name">iconSmall</span> | <span class="prop-name">.MuiChip-iconSmall</span> | Styles applied to the `icon` element if `size="small"`.
+| <span class="prop-name">iconColorPrimary</span> | <span class="prop-name">.MuiChip-iconColorPrimary</span> | Styles applied to the `icon` element if `color="primary"`.
+| <span class="prop-name">iconColorSecondary</span> | <span class="prop-name">.MuiChip-iconColorSecondary</span> | Styles applied to the `icon` element if `color="secondary"`.
+| <span class="prop-name">label</span> | <span class="prop-name">.MuiChip-label</span> | Styles applied to the label `span` element`.
+| <span class="prop-name">labelSmall</span> | <span class="prop-name">.MuiChip-labelSmall</span> | 
+| <span class="prop-name">deleteIcon</span> | <span class="prop-name">.MuiChip-deleteIcon</span> | Styles applied to the `deleteIcon` element.
+| <span class="prop-name">deleteIconSmall</span> | <span class="prop-name">.MuiChip-deleteIconSmall</span> | Styles applied to the `deleteIcon` element if `size="small"`.
+| <span class="prop-name">deleteIconColorPrimary</span> | <span class="prop-name">.MuiChip-deleteIconColorPrimary</span> | Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`.
+| <span class="prop-name">deleteIconColorSecondary</span> | <span class="prop-name">.MuiChip-deleteIconColorSecondary</span> | Styles applied to the deleteIcon element if `color="secondary"` and `variant="default"`.
+| <span class="prop-name">deleteIconOutlinedColorPrimary</span> | <span class="prop-name">.MuiChip-deleteIconOutlinedColorPrimary</span> | Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`.
+| <span class="prop-name">deleteIconOutlinedColorSecondary</span> | <span class="prop-name">.MuiChip-deleteIconOutlinedColorSecondary</span> | Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`.
 
 You can override the style of the component thanks to one of these customization points:
 

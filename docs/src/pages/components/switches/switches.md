@@ -51,13 +51,14 @@ You can change the placement of the label:
 
 ## Accessibility
 
+- It will render an element with the `checkbox` role not `switch` role since this
+  role isn't widely supported yet. Please test first if assistive technology of your
+  target audience supports this role properly. Then you can change the role with
+  `<Switch inputProps={{ role: 'switch' }}>`
 - All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
 - When a label can't be used, it's necessary to add an attribute directly to the input component.
-In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
+  In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
 
 ```jsx
-<Switch
-  value="checkedA"
-  inputProps={{ 'aria-label': 'Switch A' }}
-/>
+<Switch value="checkedA" inputProps={{ 'aria-label': 'Switch A' }} />
 ```

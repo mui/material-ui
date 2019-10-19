@@ -33,11 +33,16 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
-## 可及性
+## When to use
 
-所有表单控件都应该带有标签，而这包括了单选按钮，复选框和开关。 在大多数情况下，这是通过使用一个 `<label>` 元素（[FormControlLabel](/api/form-control-label/)）实现的。
+- [复选框 对比 单选按钮](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 
-如果无法使用标签，则必须直接在输入组件中添加属性。 在这种情况下，可以应用附加的属性（例如 `arial-label`， `aria-labelledby`， `title`）经由 `inputProps` 属性。
+## 可访问性
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#radiobutton)
+
+- 所有表单控件都应该带有标签，而这包括了单选按钮，复选框和开关。 在大多数情况下，这是通过使用一个 `<label>` 元素（[FormControlLabel](/api/form-control-label/)）实现的。
+- 如果无法使用标签，则必须直接在输入组件中添加属性。 在这种情况下，可以应用附加的属性（例如 `arial-label`， `aria-labelledby`， `title`）经由 `inputProps` 属性。
 
 ```jsx
 <RadioButton
@@ -45,7 +50,3 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
   inputProps={{ 'aria-label': 'Radio A' }}
 />
 ```
-
-## 指导
-
-- [复选框 对比 单选按钮](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

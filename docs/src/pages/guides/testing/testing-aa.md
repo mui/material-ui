@@ -49,7 +49,7 @@ crwdns101390:0crwdne101390:0
 #### crwdns96680:0crwdne96680:0
 
 ```jsx
-crwdns96682:0{ createMount }crwdnd96682:0{ MuiThemeProvider }crwdnd96682:0{ children }crwdnd96682:0{ main: '#fff' }crwdnd96682:0{children}crwdne96682:0
+crwdns103446:0{ createMount }crwdnd103446:0{ ThemeProvider }crwdnd103446:0{ children }crwdnd103446:0{ main: '#fff' }crwdnd103446:0{children}crwdne103446:0
 ```
 
 ### `crwdns96684:0[options]crwdne96684:0`

@@ -45,15 +45,15 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiSvgIcon-root</span> | Styles applied to the root element.
-| <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiSvgIcon-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiSvgIcon-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
-| <span class="prop-name">colorAction</span> | <span class="prop-name">MuiSvgIcon-colorAction</span> | Styles applied to the root element if `color="action"`.
-| <span class="prop-name">colorError</span> | <span class="prop-name">MuiSvgIcon-colorError</span> | Styles applied to the root element if `color="error"`.
-| <span class="prop-name">colorDisabled</span> | <span class="prop-name">MuiSvgIcon-colorDisabled</span> | Styles applied to the root element if `color="disabled"`.
-| <span class="prop-name">fontSizeInherit</span> | <span class="prop-name">MuiSvgIcon-fontSizeInherit</span> | Styles applied to the root element if `fontSize="inherit"`.
-| <span class="prop-name">fontSizeSmall</span> | <span class="prop-name">MuiSvgIcon-fontSizeSmall</span> | Styles applied to the root element if `fontSize="small"`.
-| <span class="prop-name">fontSizeLarge</span> | <span class="prop-name">MuiSvgIcon-fontSizeLarge</span> | Styles applied to the root element if `fontSize="large"`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiSvgIcon-root</span> | Styles applied to the root element.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiSvgIcon-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiSvgIcon-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">colorAction</span> | <span class="prop-name">.MuiSvgIcon-colorAction</span> | Styles applied to the root element if `color="action"`.
+| <span class="prop-name">colorError</span> | <span class="prop-name">.MuiSvgIcon-colorError</span> | Styles applied to the root element if `color="error"`.
+| <span class="prop-name">colorDisabled</span> | <span class="prop-name">.MuiSvgIcon-colorDisabled</span> | Styles applied to the root element if `color="disabled"`.
+| <span class="prop-name">fontSizeInherit</span> | <span class="prop-name">.MuiSvgIcon-fontSizeInherit</span> | Styles applied to the root element if `fontSize="inherit"`.
+| <span class="prop-name">fontSizeSmall</span> | <span class="prop-name">.MuiSvgIcon-fontSizeSmall</span> | Styles applied to the root element if `fontSize="small"`.
+| <span class="prop-name">fontSizeLarge</span> | <span class="prop-name">.MuiSvgIcon-fontSizeLarge</span> | Styles applied to the root element if `fontSize="large"`.
 
 You can override the style of the component thanks to one of these customization points:
 

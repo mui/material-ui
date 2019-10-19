@@ -43,12 +43,12 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiToggleButton-root</span> | Styles applied to the root element.
-| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">selected</span> | <span class="prop-name">Mui-selected</span> | Pseudo-class applied to the root element if `selected={true}`.
-| <span class="prop-name">label</span> | <span class="prop-name">MuiToggleButton-label</span> | Styles applied to the `label` wrapper element.
-| <span class="prop-name">sizeSmall</span> | <span class="prop-name">MuiToggleButton-sizeSmall</span> | Styles applied to the root element if `size="small"`.
-| <span class="prop-name">sizeLarge</span> | <span class="prop-name">MuiToggleButton-sizeLarge</span> | Styles applied to the root element if `size="large"`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiToggleButton-root</span> | Styles applied to the root element.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span class="prop-name">selected</span> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the root element if `selected={true}`.
+| <span class="prop-name">label</span> | <span class="prop-name">.MuiToggleButton-label</span> | Styles applied to the `label` wrapper element.
+| <span class="prop-name">sizeSmall</span> | <span class="prop-name">.MuiToggleButton-sizeSmall</span> | Styles applied to the root element if `size="small"`.
+| <span class="prop-name">sizeLarge</span> | <span class="prop-name">.MuiToggleButton-sizeLarge</span> | Styles applied to the root element if `size="large"`.
 
 You can override the style of the component thanks to one of these customization points:
 

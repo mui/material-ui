@@ -65,9 +65,9 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Speed Dial | 🧪 |
 | Toggle Button | 🧪 |
 | Tree View | 🧪 |
-| AutoComplete | 🛠 |
-| ComboBox | 🛠 |
-| MultiSelect | 🛠 |
+| Autocomplete | 🛠 |
+| Combo Box | 🛠 |
+| Multiselect | 🛠 |
 | Date Picker (& range) | 🛠 |
 | Data Table | 🛠⭐️ |
 | Alert | ⏳ |
@@ -82,10 +82,10 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Pagination | ⏳ |
 | Scrollspy | ⏳ |
 | TopLayout | ⏳ |
-| Big calendar | ⏳⭐️ |
+| Big Calendar | ⏳⭐️ |
 | Charts | ⏳⭐️ |
-| Color picker | ⏳⭐️ |
-| Gantt chart | ⏳⭐️ |
+| Color Picker | ⏳⭐️ |
+| Gantt Chart | ⏳⭐️ |
 | Gauge | ⏳⭐️ |
 | Masonery | ⏳⭐️ |
 | Pivot Grid | ⏳⭐️ |

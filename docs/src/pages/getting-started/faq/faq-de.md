@@ -13,7 +13,8 @@ There are many ways to support Material-UI:
 - **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) or chat with the community on [Spectrum](https://spectrum.chat/material-ui) (notice that the core team gives priority to StackOverflow over Spectrum).
 - **Make changes happen**. 
   - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
-  - Reviewing and commenting on [existing pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
+  - Reviewing and commenting on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
+  - Help [translate](https://translate.material-ui.com) the documentation.
   - Fixing bugs, adding features, and [improving our documentation](https://github.com/mui-org/material-ui/tree/master/docs) by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
 - **Support us financially on [OpenCollective](https://opencollective.com/material-ui)**. If you use Material-UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.
 
@@ -57,7 +58,7 @@ const theme = createMuiTheme({
 
 ## How can I disable transitions globally?
 
-You can disable transitions globally by providing the following in your theme:
+Material-UI uses the same theme helper for creating all its transitions. So you can disable all the transitions by overriding the helper in your theme:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -70,18 +71,14 @@ const theme = createMuiTheme({
 });
 ```
 
-Sometimes you will want to enable this behavior conditionally, for instance during testing or on low-end devices, in these cases, you can dynamically change the theme value.
+It can be useful to disable transitions during visual testing or to improve performance on low-end devices.
 
-You can go one step further by disabling all the transitions, animations and the ripple effect:
+You can go one step further by disabling all the transitions and animations effect:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
-  transitions: {
-    // So we have `transition: none;` everywhere
-    create: () => 'none',
-  },
   overrides: {
     // Name of the component ⚛️
     MuiCssBaseline: {
@@ -94,14 +91,16 @@ const theme = createMuiTheme({
       },
     },
   },
-  props: {
-    // Name of the component ⚛️
-    MuiButtonBase: {
-      // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application!
-    },
-  },
 });
+```
+
+Notice that the usage of `CssBaseline` is required for the above approach to work. If you choose not to use it, you can still disable transitions and animations by including these CSS rules:
+
+```css
+*, *::before, *::after {
+  transition: 'none !important';
+  animation: 'none !important';
+}
 ```
 
 ## Do I have to use JSS to style my app?
@@ -128,12 +127,12 @@ We detail the [integration with third-party routing libraries](/guides/compositi
 All Material-UI components that should render something in the DOM forward their ref to the underlying DOM component. This means that you can get DOM elements by reading the ref attached to Material-UI components:
 
 ```jsx
-// oder eine Ref-Setter-Funktion
-const ref = React.createRef ();
-// Rendern
-<0 />;
-// Verwendung
-const Element = ref.current;
+// or a ref setter function
+const ref = React.createRef();
+// render
+<Button ref={ref} />;
+// usage
+const element = ref.current;
 ```
 
 If you're not sure if the Material-UI component in question forwards its ref you can check the API documentation under "Props" e.g. the [Button API](/api/button/#props) includes
@@ -241,17 +240,17 @@ The styling solution relies on a cache, the *sheets manager*, to only inject the
 *example of fix:*
 
 ```diff
-- // Eine Sheet Instanz erstellen.
+-// Create a sheets instance.
 -const sheets = new ServerStyleSheets();
 
 function handleRender(req, res) {
 
-+ // Eine Sheet Instanz erstellen.
++ // Create a sheets instance.
 + const sheets = new ServerStyleSheets();
 
   //…
 
-  // Rendern des Komponenten als String.
+  // Render the component to a string.
   const html = ReactDOMServer.renderToString(
 ```
 
@@ -268,17 +267,17 @@ The class names value relies on the concept of [class name generator](/styles/ad
 *example of fix:*
 
 ```diff
-- // Erstellen Sie einen neuen Klassennamengenerator.
+-// Create a new class name generator.
 -const generateClassName = createGenerateClassName();
 
 function handleRender(req, res) {
 
-+ // Erstellt einen neuen Klassennamengenerator.
++ // Create a new class name generator.
 + const generateClassName = createGenerateClassName();
 
   //…
 
-  // Render der Komponente als String.
+  // Render the component to a string.
   const html = ReactDOMServer.renderToString(
 ```
 

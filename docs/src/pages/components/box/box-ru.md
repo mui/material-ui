@@ -6,7 +6,7 @@ title: Box React component
 
 <p class="description">Box компонент используется как обертка компонента для большинства CSS utility.</p>
 
-The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`. It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/styles`.
+The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`. It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/core/styles`.
 
 ## Пример
 

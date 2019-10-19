@@ -107,7 +107,7 @@ Para tornar o componente Box mais útil, estamos construindo uma coleção de fu
 - [spacing](/system/spacing/#api)
 - [typography](/system/typography/#api)
 
-If you are already using `@material-ui/core`, you can use the [Box component](/components/box/) (using JSS internally):
+Se você já estiver usando `@material-ui/core`, poderá usar o componente [Box](/components/box/) (usando JSS internamente):
 
 ```jsx
 import Box from '@material-ui/core/Box';
@@ -190,7 +190,7 @@ const theme = {
 
 ### Colocação
 
-If you want to group the breakpoint values, you can use the `breakpoints()` helper.
+Se você quiser agrupar valores de ponto de quebra, você pode usar o utilitário `breakpoints()`.
 
 ```jsx
 import { compose, spacing, palette, breakpoints } from '@material-ui/system';
@@ -232,7 +232,7 @@ const Box = styled.div`
 
 Use esta função utilitária para criar sua própria função de estilo.
 
-Not all CSS properties are supported. É possível que você queira suportar novas. Também é possível que você queira alterar o prefixo do caminho do tema.
+Nem todas as propriedades CSS são suportadas. É possível que você queira suportar novas. Também é possível que você queira alterar o prefixo do caminho do tema.
 
 #### Argumentos
 
@@ -248,7 +248,7 @@ Not all CSS properties are supported. É possível que você queira suportar nov
 
 #### Exemplos
 
-You can create a component that supports some CSS grid properties like `grid-gap`. By supplying `spacing` as the `themeKey` you can reuse logic enabling the behavior we see in other spacing properties like `padding`.
+Você pode criar um componente que suporte algumas propriedades CSS na grade, como um `grid-gap`. Fornecendo `spacing` como `themeKey`, você pode reutilizar a lógica, permitindo o comportamento que vemos em outras propriedades de espaçamento, como `padding`.
 
 ```jsx
 import styled from 'styled-components';
@@ -264,7 +264,7 @@ const Grid = styled(Box)`${gridGap}`;
 const example = <Grid display="grid" gridGap={[2, 3]}>...</Grid>;
 ```
 
-You can also customize the prop name by adding both a `prop` and `cssProperty` and transform the value by adding a `transform` function.
+Você também pode customizar o nome da propriedade adicionando ambos, `prop` e `cssProperty` e transformando o valor, adicionando uma função `transform`.
 
 ```jsx
 import styled from 'styled-components';
@@ -316,7 +316,7 @@ A função auxiliar `style()` também pode ser usada para mapear propriedades pa
 
 ## Propriedade CSS
 
-If you want to support custom CSS values, you can use the `css()` helper. Ele irá processar a propriedade `css`.
+Se você quiser suportar valores customizados de CSS, você pode usar o utilitário `css()`. Ele irá processar a propriedade `css`.
 
 {{"demo": "pages/system/basics/CssProp.js", "defaultCodeOpen": true}}
 
@@ -336,7 +336,7 @@ Na prática, um componente do Box pode poupar muito tempo. Neste exemplo, demons
 
 - [Tachyons](https://tachyons.io/) foi uma das primeiras bibliotecas CSS (2014) a promover o [padrão de CSS atômico](https://css-tricks.com/lets-define-exactly-atomic-css/) (ou CSS funcional).
 - Tachyons foi mais tarde (2017) seguido por [Tailwind CSS](https://tailwindcss.com/). Eles tornaram o CSS atômico mais popular.
-- [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) introduziu lentamente nomes de classes atômicas em v2, v3 e v4. The way they group their "Helper classes" was used as inspiration.
+- [Twitter Bootstrap](https://getbootstrap.com/docs/4.1/utilities/borders/) introduziu lentamente nomes de classes atômicas em v2, v3 e v4. A forma como agrupam suas "Classes auxiliares" foi usada como inspiração.
 - No mundo React, [Styled System](https://github.com/jxnblk/styled-system) foi um dos primeiros (2017) a promover as funções de estilo. Ele pode ser usado como um componente genérico do Box, substituindo os auxiliares CSS atômicos, bem como os auxiliares para escrever novos componentes.
 - Grandes empresas como Pinterest, GitHub e Segment.io estão usando a mesma abordagem em diferentes gostos: 
   - [Evergreen Box](https://evergreen.segment.com/components/layout-primitives/)

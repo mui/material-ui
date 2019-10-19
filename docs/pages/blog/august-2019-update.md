@@ -37,8 +37,8 @@ But this summary is just scratching the surface. We have accepted 193 commits fr
 
 - 🔍 We will keep working on providing ready to use autocomplete, combo box, and multi-select components. We announced it last month but have made little progress so far due to focusing on fixing bugs in existing components. Let's make it happen!
 
-- ❓ Want something in specific? Please upvote our GitHub issues, the number of 👍 matters to us.
+- ❓ Do you want something in specific? Please upvote our GitHub issues, the number of 👍 matters to us.
 
 <hr />
 
-Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development made possible thanks to the support of these awesome [backers](/discover-more/backers/). Please join them ✨.
+Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development helped by the support of these awesome [backers](/discover-more/backers/). Please join them ✨.

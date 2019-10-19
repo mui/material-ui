@@ -37,7 +37,7 @@ Este exemplo demonstra como usar [react-autosuggest](https://github.com/moroshko
 
 ## Projetos Complementares
 
-Para usos mais avançados, você pode tirar vantagem com:
+Para caso de usos mais avançados, você é capaz de aproveitar de:
 
 - [material-ui-chip-input](https://mui.wertarbyte.com/#material-ui-chip-input): O componente chip e usado no input para permitir a seleção de múltiplos valores de texto.
 - [mui-downshift](https://github.com/techniq/mui-downshift) Uma camada fina sobre o downshift do paypal para usar componentes visuais do Material-UI.

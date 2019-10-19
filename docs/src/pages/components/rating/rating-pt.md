@@ -37,6 +37,8 @@ Gosta de avaliações maiores ou menores? Use a propriedade `size`.
 
 ## Acessibilidade
 
+(WAI tutorial: https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating)
+
 A acessibilidade neste componente conta com:
 
 - Um grupo de botões é usado com seus campos visualmente ocultos. Ele contém seis botões de opção, um para cada estrela e outro para 0 estrelas, que é marcado por padrão. Certifique-se de que você está fornecendo uma propriedade `name`, que é exclusivo para o formulário principal.

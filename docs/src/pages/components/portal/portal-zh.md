@@ -9,10 +9,12 @@ components: Portal
 
 - 📦 [1.3 kB gzipped](/size-snapshot)
 
-Portal 组件的子节点将被添加到指定的 `容器` 中。
+The children of the portal component will be appended to the `container` specified. The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components.
 
-The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components. 在服务端，内容不会被渲染。 You have to wait for the client-side hydration to see the children.
-
-## 简单的 Portal 示例
+## 示例
 
 {{"demo": "pages/components/portal/SimplePortal.js"}}
+
+## Server-side
+
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. You have to wait for the client-side hydration to see the children.
