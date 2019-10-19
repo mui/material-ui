@@ -43,9 +43,7 @@ export default function ServerModal() {
       >
         <div className={classes.paper}>
           <h2 id="server-modal-title">Server-side modal</h2>
-          <p id="server-modal-description">
-            You can disable the JavaScript, you will still see me.
-          </p>
+          <p id="server-modal-description">If you disable JavaScript, you will still see me.</p>
         </div>
       </Modal>
     </div>

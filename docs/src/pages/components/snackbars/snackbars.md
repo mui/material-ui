@@ -80,7 +80,7 @@ We demonstrate how to use [notistack](https://github.com/iamhosseindhv/notistack
 notistack has an **imperative API** that makes it easy to display toasts (so you don't have to deal with open/close state of them).
 It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design specification).
 
-{{"demo": "pages/components/snackbars/IntegrationNotistack.js"}}
+{{"demo": "pages/components/snackbars/IntegrationNotistack.js", "defaultCodeOpen": false}}
 
 ## Accessibility
 

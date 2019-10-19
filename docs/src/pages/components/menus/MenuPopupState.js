@@ -4,7 +4,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
 
-function MenuPopupState() {
+export default function MenuPopupState() {
   return (
     <PopupState variant="popover" popupId="demo-popup-menu">
       {popupState => (
@@ -21,5 +21,3 @@ function MenuPopupState() {
     </PopupState>
   );
 }
-
-export default MenuPopupState;
