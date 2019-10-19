@@ -32,10 +32,10 @@ Material-UI is available as an [npm package](https://www.npmjs.com/package/@mate
 **[Stable channel v4](https://material-ui.com/)**
 ```sh
 // with npm
-npm install @material-ui/core
+npm install @material-ui/core --save
 
 // with yarn
-yarn add @material-ui/core
+yarn add @material-ui/core --save
 ```
 
 **[v3.x](https://v3.material-ui.com/)** ([Migration from v3 to v4](https://material-ui.com/guides/migration-v3/))
