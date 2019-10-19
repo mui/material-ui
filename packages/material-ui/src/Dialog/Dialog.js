@@ -225,6 +225,7 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
         onExit={onExit}
         onExiting={onExiting}
         onExited={onExited}
+        tabIndex={children.props.tabIndex}                        
         role="none presentation"
         {...TransitionProps}
       >
