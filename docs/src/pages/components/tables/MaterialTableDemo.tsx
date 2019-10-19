@@ -1,8 +1,20 @@
 import React from 'react';
-import MaterialTable from 'material-table';
+import MaterialTable, { Column } from 'material-table';
+
+interface Row {
+  name: string;
+  surname: string;
+  birthYear: number;
+  birthCity: number;
+}
+
+interface TableState {
+  columns: Array<Column<Row>>;
+  data: Row[];
+}
 
 export default function MaterialTableDemo() {
-  const [state, setState] = React.useState({
+  const [state, setState] = React.useState<TableState>({
     columns: [
       { title: 'Name', field: 'name' },
       { title: 'Surname', field: 'surname' },
