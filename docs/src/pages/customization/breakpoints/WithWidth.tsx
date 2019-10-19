@@ -1,15 +1,17 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import withWidth from '@material-ui/core/withWidth';
 import Typography from '@material-ui/core/Typography';
+import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 
-const components = {
+type TagName = 'em' | 'u' | 'del';
+
+const components: Partial<Record<Breakpoint, TagName>> = {
   sm: 'em',
   md: 'u',
   lg: 'del',
 };
 
-function WithWidth(props) {
+function WithWidth(props: { width: Breakpoint }) {
   const { width } = props;
   const Component = components[width] || 'span';
 
@@ -19,9 +21,5 @@ function WithWidth(props) {
     </Typography>
   );
 }
-
-WithWidth.propTypes = {
-  width: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs']).isRequired,
-};
 
 export default withWidth()(WithWidth);
