@@ -2143,9 +2143,9 @@
   integrity sha512-ce5d3q03Ex0sy4R14722Rmt6MT07Ua+k4FwDfdcToYJcMKNtRVQvJ6JCAPdAmAnbRb6CsX6aYb9m96NGod9uTw==
 
 "@types/react-autosuggest@^9.3.11":
-  version "9.3.11"
-  resolved "https://registry.yarnpkg.com/@types/react-autosuggest/-/react-autosuggest-9.3.11.tgz#2b554a4ac350da5bcd50ad368972f2e80e879232"
-  integrity sha512-OY0N0BZ2MiD4W3oTquRvpqYucExiLNgXgu4JkXZ2gKs4lONiS7B+fSotiQnjLdGIy+4sW3tzTvfbQfPgTZGInA==
+  version "9.3.12"
+  resolved "https://registry.yarnpkg.com/@types/react-autosuggest/-/react-autosuggest-9.3.12.tgz#20a66e61c6a284365b7e0819eb1cc41d19ac59b8"
+  integrity sha512-kegsFSBEYvIPbkw8LF7XdCw/Qtbxj2QWWZctER5uE4cF29Ii/2/ZCEz2s4F5m+hcUrMCC4fs97kN8T2ES1JmBg==
   dependencies:
     "@types/react" "*"
 
