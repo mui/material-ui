@@ -442,12 +442,20 @@ describe('<SwipeableDrawer />', () => {
         </div>,
       );
 
-      fireSwipeAreaMouseEvent(wrapper.find(SwipeableDrawer).at(0), 'touchstart', {
-        touches: [{ pageX: 0, clientY: 0 }],
-      });
-      fireSwipeAreaMouseEvent(wrapper.find(SwipeableDrawer).at(1), 'touchstart', {
-        touches: [{ pageX: 0, clientY: 0 }],
-      });
+      // use the same event object for both touch start events, one would propagate to the other swipe area in the browser
+      const touchStartEvent = fireSwipeAreaMouseEvent(
+        wrapper.find(SwipeableDrawer).at(0),
+        'touchstart',
+        {
+          touches: [{ pageX: 0, clientY: 0 }],
+        },
+      );
+      wrapper
+        .find(SwipeableDrawer)
+        .at(1)
+        .find(SwipeArea)
+        .getDOMNode()
+        .dispatchEvent(touchStartEvent);
       fireBodyMouseEvent('touchmove', { touches: [{ pageX: 20, clientY: 0 }] });
       fireBodyMouseEvent('touchmove', { touches: [{ pageX: 180, clientY: 0 }] });
       fireBodyMouseEvent('touchend', { changedTouches: [{ pageX: 180, clientY: 0 }] });
