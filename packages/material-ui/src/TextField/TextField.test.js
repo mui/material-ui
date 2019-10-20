@@ -136,7 +136,7 @@ describe('<TextField />', () => {
       expect(select.querySelectorAll('option')).to.have.lengthOf(2);
     });
 
-    it('fills renders a combobox with the appropriate accessible name', () => {
+    it('renders a combobox with the appropriate accessible name', () => {
       const { getByRole } = render(
         <TextField select id="my-select" label="Release: " value="stable">
           <MenuItem value="alpha">Alpha</MenuItem>
@@ -153,6 +153,18 @@ describe('<TextField />', () => {
       // this whitespace is ok since actual AT will only use so called "flat strings"
       // https://w3c.github.io/accname/#mapping_additional_nd_te
       expect(label).to.equal(' Release:  Stable');
+    });
+
+    it('creates an input[hidden] that has no accessible properties', () => {
+      const { container } = render(
+        <TextField select id="my-select" label="Release: " value="stable">
+          <MenuItem value="stable">Stable</MenuItem>
+        </TextField>,
+      );
+
+      const input = container.querySelector('input[type="hidden"]');
+      expect(input).not.to.have.attribute('id');
+      expect(input).not.to.have.attribute('aria-describedby');
     });
   });
 });

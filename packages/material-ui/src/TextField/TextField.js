@@ -118,6 +118,11 @@ const TextField = React.forwardRef(function TextField(props, ref) {
 
     InputMore.labelWidth = labelWidth;
   }
+  if (select) {
+    // unset defaults from textbox inputs
+    InputMore.id = undefined;
+    InputMore['aria-describedby'] = undefined;
+  }
 
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
   const inputLabelId = label && id ? `${id}-label` : undefined;
