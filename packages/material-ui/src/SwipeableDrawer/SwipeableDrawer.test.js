@@ -6,7 +6,7 @@ import describeConformance from '@material-ui/core/test-utils/describeConformanc
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Drawer from '../Drawer';
-import SwipeableDrawer, { reset } from './SwipeableDrawer';
+import SwipeableDrawer from './SwipeableDrawer';
 import SwipeArea from './SwipeArea';
 import useForkRef from '../utils/useForkRef';
 
@@ -147,7 +147,6 @@ describe('<SwipeableDrawer />', () => {
     });
 
     afterEach(() => {
-      reset();
       if (wrapper.length > 0) {
         wrapper.unmount();
       }

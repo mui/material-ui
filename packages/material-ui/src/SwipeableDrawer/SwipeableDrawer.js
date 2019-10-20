@@ -14,11 +14,6 @@ import SwipeArea from './SwipeArea';
 // trigger a native scroll.
 const UNCERTAINTY_THRESHOLD = 3; // px
 
-// Exported for test purposes.
-export function reset() {
-  // TODO drop this function
-}
-
 function calculateCurrentX(anchor, touches) {
   return anchor === 'right' ? document.body.offsetWidth - touches[0].pageX : touches[0].pageX;
 }
