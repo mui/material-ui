@@ -15,18 +15,21 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import Chip from '@material-ui/core/Chip';
-import { useEventCallback, capitalize } from '@material-ui/core/utils';
+import { setRef, useEventCallback, capitalize } from '@material-ui/core/utils';
 import CloseIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 
-const styles = theme => ({
+export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     '&:hover $clearIndicatorDirty, &$focused $clearIndicatorDirty': {
       visibility: 'visible',
     },
   },
+  /* Pseudo-class applied to the root element if focused. */
   focused: {},
-  chip: {
+  /* Styles applied to the tag elements, e.g. the chips. */
+  tag: {
     margin: theme.spacing(0.5),
   },
   inputRoot: {
@@ -54,6 +57,7 @@ const styles = theme => ({
   inputInputFocused: {
     opacity: 1,
   },
+  /* Styles applied to the clear indictator. */
   clearIndicator: {
     marginRight: -2,
     padding: 4,
@@ -61,6 +65,7 @@ const styles = theme => ({
     visibility: 'hidden',
   },
   clearIndicatorDirty: {},
+  /* Styles applied to the popup indictator. */
   popupIndicator: {
     padding: 2,
     marginRight: -2,
@@ -69,9 +74,11 @@ const styles = theme => ({
   popupIndicatorOpen: {
     transform: 'rotate(180deg)',
   },
-  popper: {
+  /* Styles applied to the popup element. */
+  popup: {
     zIndex: 1,
   },
+  /* Styles applied to the `Paper` component. */
   paper: {
     margin: '4px 0',
     '& > ul': {
@@ -79,6 +86,7 @@ const styles = theme => ({
       overflow: 'auto',
     },
   },
+  /* Styles applied to the option elements. */
   option: {
     ...theme.typography.body1,
     minHeight: 48,
@@ -96,11 +104,11 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       minHeight: 'auto',
     },
-    '&[data-focus="true"]': {
-      backgroundColor: theme.palette.action.hover,
-    },
     '&$selected': {
       backgroundColor: theme.palette.action.selected,
+    },
+    '&[data-focus="true"]': {
+      backgroundColor: theme.palette.action.hover,
     },
     '&$disabled': {
       opacity: 0.5,
@@ -110,22 +118,28 @@ const styles = theme => ({
       backgroundColor: theme.palette.action.selected,
     },
   },
+  /* Pseudo-class applied to the option element if selected. */
   selected: {},
+  /* Pseudo-class applied to the option element if disabled. */
   disabled: {},
+  /* Styles applied to the loading wrapper. */
   loading: {
     ...theme.typography.body1,
     color: theme.palette.text.secondary,
     padding: '14px 16px',
   },
+  /* Styles applied to the no option wrapper. */
   noOptions: {
     ...theme.typography.body1,
     color: theme.palette.text.secondary,
     padding: '14px 16px',
   },
+  /* Styles applied to the group's label elements. */
   groupLabel: {
     backgroundColor: theme.palette.background.paper,
     top: -8,
   },
+  /* Styles applied to the group's ul elements. */
   groupUl: {
     padding: 0,
   },
@@ -198,7 +212,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     groupBy,
     id: idProp,
     includeInputInList = false,
-    ListComponent = List,
+    ListboxComponent = List,
     loading = false,
     loadingText = 'Loading…',
     multiple = false,
@@ -208,6 +222,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     onOpen,
     open: openProp,
     options = [],
+    PopupComponent = Popper,
     renderGroup: renderGroupProp,
     renderOption: renderOptionProp,
     renderValue,
@@ -756,7 +771,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     handleValue(event, newValue);
   };
 
-  const handlePopupRef = useEventCallback(node => {
+  const handlePaperRef = useEventCallback(node => {
+    setRef(paperRef, node);
+
     if (!node) {
       return;
     }
@@ -770,11 +787,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   if (multiple && value.length > 0) {
     const valueProps = {
       onDelete: handleChipDelete,
-      className: classes.chip,
+      className: classes.tag,
     };
 
     if (renderValue) {
-      startAdornment = renderValue(value, { ...valueProps, focused });
+      startAdornment = renderValue(value, { ...valueProps });
     } else {
       startAdornment = value.map((option, index) => (
         <Chip
@@ -904,6 +921,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   <CloseIcon fontSize="small" />
                 </IconButton>
               )}
+
               {freeSolo ? null : (
                 <IconButton
                   tabIndex={-1}
@@ -936,29 +954,25 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           ...TextFieldProps.inputProps,
         }}
       />
-      <Popper
-        className={classes.popper}
-        ref={handlePopupRef}
+      <PopupComponent
+        className={classes.popup}
         popperRef={popperRef}
         anchorEl={anchorEl}
         open={popupOpen}
         role="presentation"
         id={`${id}-popup`}
+        style={{
+          width: anchorEl ? anchorEl.clientWidth : null,
+        }}
       >
         {popupOpen ? (
-          <Paper
-            ref={paperRef}
-            style={{
-              width: anchorEl ? anchorEl.clientWidth : null,
-            }}
-            className={classes.paper}
-          >
+          <Paper ref={handlePaperRef} className={classes.paper}>
             {loading ? <div className={classes.loading}>{loadingText}</div> : null}
             {groupedOptions.length === 0 && !freeSolo && !loading ? (
               <div className={classes.noOptions}>{noOptionsText}</div>
             ) : null}
             {groupedOptions.length > 0 ? (
-              <ListComponent
+              <ListboxComponent
                 role="listbox"
                 id={`${id}-listbox`}
                 aria-labelledby={`${id}-label`}
@@ -978,18 +992,22 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
 
                   return renderListOption(option, index);
                 })}
-              </ListComponent>
+              </ListboxComponent>
             ) : null}
           </Paper>
         ) : (
           <div />
         )}
-      </Popper>
+      </PopupComponent>
     </div>
   );
 });
 
 Autocomplete.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
   /**
    * If `true`, the portion of the selected suggestion that has not been typed by the user,
    * known as the completion string, appears inline after the input cursor in the textbox.
@@ -1010,7 +1028,7 @@ Autocomplete.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -1088,9 +1106,9 @@ Autocomplete.propTypes = {
    */
   includeInputInList: PropTypes.bool,
   /**
-   * The component used for the ul element.
+   * The component used to render the listbox.
    */
-  ListComponent: PropTypes.elementType,
+  ListboxComponent: PropTypes.elementType,
   /**
    * If `true`, the component is in a loading state.
    */
@@ -1122,10 +1140,6 @@ Autocomplete.propTypes = {
    */
   onClose: PropTypes.func,
   /**
-   * Callback fired when the input value changes.
-   */
-  onInputChange: PropTypes.func,
-  /**
    * Callback fired when the popup requests to be opened.
    * Use in controlled mode (see open).
    *
@@ -1140,6 +1154,10 @@ Autocomplete.propTypes = {
    * Array of options.
    */
   options: PropTypes.array,
+  /**
+   * The component used to render the popup.
+   */
+  PopupComponent: PropTypes.elementType,
   /**
    * Render the group.
    *
@@ -1172,4 +1190,4 @@ Autocomplete.propTypes = {
   value: PropTypes.any,
 };
 
-export default withStyles(styles)(Autocomplete);
+export default withStyles(styles, { name: 'MuiAutocomplete' })(Autocomplete);

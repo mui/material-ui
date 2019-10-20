@@ -78,15 +78,10 @@ In the event that you need to lock certain tag so that they can't be removed in 
 ### Checkboxes
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
-*replicate the multi-select demos we already have for the select component*
-
-### Gmail send to
-
-{{"demo": "pages/components/autocomplete/GmailTags.js"}}
 
 ### GitHub label
 
-WIP: implement the *gmail label box*.
+{{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 
 ## Highlights
 
@@ -119,6 +114,8 @@ const filterOptions = createFilterOptions({
   matchFrom: 'start',
   stringify: option => option.title,
 });
+
+<Autocomplete filterOptions={filterOptions} />
 ```
 
 {{"demo": "pages/components/autocomplete/Filter.js"}}
@@ -130,6 +127,8 @@ import matchSorter from 'match-sorter';
 
 const filterOptions = (options, { inputValue }) =>
   matchSorter(options, inputValue);
+
+<Autocomplete filterOptions={filterOptions} />
 ```
 
 ## Virtualization
@@ -143,5 +142,4 @@ Search within 10,000 randomly generated options. The list is virtualized thanks 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 
 We encourage the usage of a label for the textbox.
-No further assistance should be required.
-The component implements the WAI-ARIA accessibility recommendations.
+The component implements the WAI-ARIA Authoring Practices.

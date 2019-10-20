@@ -205,14 +205,15 @@ const Popper = React.forwardRef(function Popper(props, ref) {
       <div
         ref={handleRef}
         role="tooltip"
+        {...other}
         style={{
           // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
           position: 'fixed',
           // Fix Popper.js display issue
           top: 0,
           left: 0,
+          ...other.style,
         }}
-        {...other}
       >
         {typeof children === 'function' ? children(childProps) : children}
       </div>

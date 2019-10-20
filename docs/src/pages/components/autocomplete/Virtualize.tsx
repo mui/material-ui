@@ -19,7 +19,7 @@ function renderRow(props: ListChildComponentProps) {
 }
 
 // Adapter for react-window
-function ListComponent(props: React.HTMLAttributes<HTMLElement>) {
+function ListboxComponent(props: React.HTMLAttributes<HTMLElement>) {
   const { children, ...other } = props;
   const smUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'));
   const itemCount = Array.isArray(children) ? children.length : 0;
@@ -59,7 +59,7 @@ export default function Virtualize() {
     <Autocomplete
       style={{ width: 300 }}
       disableListWrap
-      ListComponent={ListComponent}
+      ListboxComponent={ListboxComponent}
       TextFieldProps={{ label: '10,000 options', variant: 'outlined', fullWidth: true }}
       options={Array.from(new Array(10000)).map(() => random(Math.ceil(Math.random() * 18)))}
     />
