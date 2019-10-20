@@ -34,9 +34,11 @@ export default function MaterialTableDemo() {
           new Promise(resolve => {
             setTimeout(() => {
               resolve();
-              const data = [...state.data];
-              data.push(newData);
-              setState({ ...state, data });
+              setState(prevState => {
+                const data = [...prevState.data];
+                data.push(newData);
+                return { ...prevState, data };
+              });
             }, 600);
           }),
         onRowUpdate: (newData, oldData) =>
@@ -44,9 +46,11 @@ export default function MaterialTableDemo() {
             setTimeout(() => {
               resolve();
               if (oldData) {
-                const data = [...state.data];
-                data[data.indexOf(oldData)] = newData;
-                setState({ ...state, data });
+                setState(prevState => {
+                  const data = [...prevState.data];
+                  data[data.indexOf(oldData)] = newData;
+                  return { ...prevState, data };
+                });
               }
             }, 600);
           }),
@@ -54,9 +58,11 @@ export default function MaterialTableDemo() {
           new Promise(resolve => {
             setTimeout(() => {
               resolve();
-              const data = [...state.data];
-              data.splice(data.indexOf(oldData), 1);
-              setState({ ...state, data });
+              setState(prevState => {
+                const data = [...prevState.data];
+                data.splice(data.indexOf(oldData), 1);
+                return { ...prevState, data };
+              });
             }, 600);
           }),
       }}
