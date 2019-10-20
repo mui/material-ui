@@ -57,6 +57,8 @@
   "expandAll": "Expand all",
   "showSource": "Show the source",
   "hideSource": "Hide the source",
+  "showFullSource": "Show the full source",
+  "hideFullSource": "Hide the full source",
   "viewGitHub": "View the source on GitHub",
   "codesandbox": "Edit in CodeSandbox",
   "seeMore": "See more",

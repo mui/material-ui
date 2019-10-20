@@ -41,15 +41,15 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiIcon-root</span> | Styles applied to the root element.
-| <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiIcon-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiIcon-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
-| <span class="prop-name">colorAction</span> | <span class="prop-name">MuiIcon-colorAction</span> | Styles applied to the root element if `color="action"`.
-| <span class="prop-name">colorError</span> | <span class="prop-name">MuiIcon-colorError</span> | Styles applied to the root element if `color="error"`.
-| <span class="prop-name">colorDisabled</span> | <span class="prop-name">MuiIcon-colorDisabled</span> | Styles applied to the root element if `color="disabled"`.
-| <span class="prop-name">fontSizeInherit</span> | <span class="prop-name">MuiIcon-fontSizeInherit</span> | 
-| <span class="prop-name">fontSizeSmall</span> | <span class="prop-name">MuiIcon-fontSizeSmall</span> | Styles applied to the root element if `fontSize="small"`.
-| <span class="prop-name">fontSizeLarge</span> | <span class="prop-name">MuiIcon-fontSizeLarge</span> | Styles applied to the root element if `fontSize="large"`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiIcon-root</span> | Styles applied to the root element.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiIcon-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiIcon-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">colorAction</span> | <span class="prop-name">.MuiIcon-colorAction</span> | Styles applied to the root element if `color="action"`.
+| <span class="prop-name">colorError</span> | <span class="prop-name">.MuiIcon-colorError</span> | Styles applied to the root element if `color="error"`.
+| <span class="prop-name">colorDisabled</span> | <span class="prop-name">.MuiIcon-colorDisabled</span> | Styles applied to the root element if `color="disabled"`.
+| <span class="prop-name">fontSizeInherit</span> | <span class="prop-name">.MuiIcon-fontSizeInherit</span> | 
+| <span class="prop-name">fontSizeSmall</span> | <span class="prop-name">.MuiIcon-fontSizeSmall</span> | Styles applied to the root element if `fontSize="small"`.
+| <span class="prop-name">fontSizeLarge</span> | <span class="prop-name">.MuiIcon-fontSizeLarge</span> | Styles applied to the root element if `fontSize="large"`.
 
 You can override the style of the component thanks to one of these customization points:
 

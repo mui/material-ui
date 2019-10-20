@@ -34,7 +34,7 @@ function getStepContent(stepIndex: number) {
     case 2:
       return 'This is the bit I really care about!';
     default:
-      return 'Uknown stepIndex';
+      return 'Unknown stepIndex';
   }
 }
 

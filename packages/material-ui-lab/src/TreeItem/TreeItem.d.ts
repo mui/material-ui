@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
-import { TransitionProps } from '@material-ui/core/transitions/transition';
+import { TransitionProps } from '@material-ui/core/transitions';
 
 export interface TreeItemProps
   extends StandardProps<React.HTMLAttributes<HTMLLIElement>, TreeItemClassKey> {

@@ -66,7 +66,8 @@ export const styles = theme => ({
   },
 });
 
-const defaultLabelDisplayedRows = ({ from, to, count }) => `${from}-${to} of ${count}`;
+const defaultLabelDisplayedRows = ({ from, to, count }) =>
+  `${from}-${to === -1 ? count : to} of ${count}`;
 const defaultRowsPerPageOptions = [10, 25, 50, 100];
 
 /**
@@ -125,9 +126,9 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
               <MenuItemComponent
                 className={classes.menuItem}
                 key={rowsPerPageOption}
-                value={rowsPerPageOption}
+                value={rowsPerPageOption.value ? rowsPerPageOption.value : rowsPerPageOption}
               >
-                {rowsPerPageOption}
+                {rowsPerPageOption.label ? rowsPerPageOption.label : rowsPerPageOption}
               </MenuItemComponent>
             ))}
           </Select>

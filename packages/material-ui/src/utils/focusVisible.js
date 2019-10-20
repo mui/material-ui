@@ -47,7 +47,17 @@ function focusTriggersKeyboardModality(node) {
   return false;
 }
 
-function handleKeyDown() {
+/**
+ * Keep track of our keyboard modality state with `hadKeyboardEvent`.
+ * If the most recent user interaction was via the keyboard;
+ * and the key press did not include a meta, alt/option, or control key;
+ * then the modality is keyboard. Otherwise, the modality is not keyboard.
+ * @param {KeyboardEvent} event
+ */
+function handleKeyDown(event) {
+  if (event.metaKey || event.altKey || event.ctrlKey) {
+    return;
+  }
   hadKeyboardEvent = true;
 }
 
@@ -57,7 +67,6 @@ function handleKeyDown() {
  * This avoids the situation where a user presses a key on an already focused
  * element, and then clicks on a different element, focusing it with a
  * pointing device, while we still think we're in keyboard modality.
- * @param {Event} e
  */
 function handlePointerDown() {
   hadKeyboardEvent = false;
@@ -119,7 +128,6 @@ function handleBlurVisible() {
   window.clearTimeout(hadFocusVisibleRecentlyTimeout);
   hadFocusVisibleRecentlyTimeout = window.setTimeout(() => {
     hadFocusVisibleRecently = false;
-    window.clearTimeout(hadFocusVisibleRecentlyTimeout);
   }, 100);
 }
 

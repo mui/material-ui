@@ -22,8 +22,8 @@ For instance:
 
 ## YouTube example
 
-{{"demo": "pages/components/skeleton/YouTube.js"}}
+{{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
 ## Facebook example
 
-{{"demo": "pages/components/skeleton/Facebook.js"}}
+{{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false}}

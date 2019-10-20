@@ -26,7 +26,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       onChangeRowsPerPage?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
       page: number;
       rowsPerPage: number;
-      rowsPerPageOptions?: number[];
+      rowsPerPageOptions?: Array<number | { value: number; label: string }>;
       SelectProps?: Partial<SelectProps>;
     };
   defaultComponent: D;

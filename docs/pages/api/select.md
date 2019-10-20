@@ -41,7 +41,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">open</span> | <span class="prop-type">bool</span> |  | Control `select` open state. You can only use it when the `native` prop is `false` (default). |
 | <span class="prop-name">renderValue</span> | <span class="prop-type">func</span> |  | Render the selected value. You can only use it when the `native` prop is `false` (default).<br><br>**Signature:**<br>`function(value: any) => ReactElement`<br>*value:* The `value` provided to the component. |
 | <span class="prop-name">SelectDisplayProps</span> | <span class="prop-type">object</span> |  | Props applied to the clickable div element. |
-| <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The input value. Providing an empty string will select no options. This prop is required when the `native` prop is `false` (default). Set to an empty string `''` if you don't want any of the available options to be selected. |
+| <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The input value. Providing an empty string will select no options. This prop is required when the `native` prop is `false` (default). Set to an empty string `''` if you don't want any of the available options to be selected.<br>If the value is an object it must have reference equality with the option in order to be selected. If the value is not an object, the string representation must match with the string representation of the option in order to be selected. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'standard'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'filled'</span> | <span class="prop-default">'standard'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
@@ -55,15 +55,15 @@ Any other props supplied will be provided to the root element ([Input](/api/inpu
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiSelect-root</span> | Styles applied to the select component `root` class.
-| <span class="prop-name">select</span> | <span class="prop-name">MuiSelect-select</span> | Styles applied to the select component `select` class.
-| <span class="prop-name">filled</span> | <span class="prop-name">MuiSelect-filled</span> | Styles applied to the select component if `variant="filled"`.
-| <span class="prop-name">outlined</span> | <span class="prop-name">MuiSelect-outlined</span> | Styles applied to the select component if `variant="outlined"`.
-| <span class="prop-name">selectMenu</span> | <span class="prop-name">MuiSelect-selectMenu</span> | Styles applied to the select component `selectMenu` class.
-| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the select component `disabled` class.
-| <span class="prop-name">icon</span> | <span class="prop-name">MuiSelect-icon</span> | Styles applied to the icon component.
-| <span class="prop-name">iconFilled</span> | <span class="prop-name">MuiSelect-iconFilled</span> | Styles applied to the icon component if `variant="filled"`.
-| <span class="prop-name">iconOutlined</span> | <span class="prop-name">MuiSelect-iconOutlined</span> | Styles applied to the icon component if `variant="outlined"`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiSelect-root</span> | Styles applied to the select component `root` class.
+| <span class="prop-name">select</span> | <span class="prop-name">.MuiSelect-select</span> | Styles applied to the select component `select` class.
+| <span class="prop-name">filled</span> | <span class="prop-name">.MuiSelect-filled</span> | Styles applied to the select component if `variant="filled"`.
+| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiSelect-outlined</span> | Styles applied to the select component if `variant="outlined"`.
+| <span class="prop-name">selectMenu</span> | <span class="prop-name">.MuiSelect-selectMenu</span> | Styles applied to the select component `selectMenu` class.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the select component `disabled` class.
+| <span class="prop-name">icon</span> | <span class="prop-name">.MuiSelect-icon</span> | Styles applied to the icon component.
+| <span class="prop-name">iconFilled</span> | <span class="prop-name">.MuiSelect-iconFilled</span> | Styles applied to the icon component if `variant="filled"`.
+| <span class="prop-name">iconOutlined</span> | <span class="prop-name">.MuiSelect-iconOutlined</span> | Styles applied to the icon component if `variant="outlined"`.
 
 You can override the style of the component thanks to one of these customization points:
 

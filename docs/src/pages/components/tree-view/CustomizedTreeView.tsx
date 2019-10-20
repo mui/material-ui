@@ -5,7 +5,7 @@ import TreeView from '@material-ui/lab/TreeView';
 import TreeItem, { TreeItemProps } from '@material-ui/lab/TreeItem';
 import Collapse from '@material-ui/core/Collapse';
 import { useSpring, animated } from 'react-spring';
-import { TransitionProps } from '@material-ui/core/transitions/transition';
+import { TransitionProps } from '@material-ui/core/transitions';
 
 function MinusSquare(props: SvgIconProps) {
   return (

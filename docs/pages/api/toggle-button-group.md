@@ -42,10 +42,10 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiToggleButtonGroup-root</span> | Styles applied to the root element.
-| <span class="prop-name">grouped</span> | <span class="prop-name">MuiToggleButtonGroup-grouped</span> | Styles applied to the children.
-| <span class="prop-name">groupedSizeSmall</span> | <span class="prop-name">MuiToggleButtonGroup-groupedSizeSmall</span> | Styles applied to the children if `size="small"`.
-| <span class="prop-name">groupedSizeLarge</span> | <span class="prop-name">MuiToggleButtonGroup-groupedSizeLarge</span> | Styles applied to the children if `size="large"`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiToggleButtonGroup-root</span> | Styles applied to the root element.
+| <span class="prop-name">grouped</span> | <span class="prop-name">.MuiToggleButtonGroup-grouped</span> | Styles applied to the children.
+| <span class="prop-name">groupedSizeSmall</span> | <span class="prop-name">.MuiToggleButtonGroup-groupedSizeSmall</span> | Styles applied to the children if `size="small"`.
+| <span class="prop-name">groupedSizeLarge</span> | <span class="prop-name">.MuiToggleButtonGroup-groupedSizeLarge</span> | Styles applied to the children if `size="large"`.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -39,7 +39,7 @@ Material-UI usage experience can be improved with a handful of important globals
 
 ### Responsive meta tag
 
-Material-UI is developed mobile first, a strategy in which we first write code for mobile devices and then scale up components as necessary using CSS media queries.
+Material-UI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries.
 To ensure proper rendering and touch zooming for all devices, add the responsive viewport meta tag to your `<head>` element.
 
 ```html

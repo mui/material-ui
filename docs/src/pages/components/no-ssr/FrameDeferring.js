@@ -4,16 +4,17 @@ import NoSsr from '@material-ui/core/NoSsr';
 
 const useStyles = makeStyles({
   container: {
-    maxWidth: 300,
-    wordBreak: 'break-all',
+    width: 300,
+    display: 'flex',
+    flexWrap: 'wrap',
   },
 });
 
 function LargeTree() {
-  return Array.from(new Array(3000)).map((_, index) => <span key={index}>.</span>);
+  return Array.from(new Array(5000)).map((_, index) => <span key={index}>.</span>);
 }
 
-function FrameDeferring() {
+export default function FrameDeferring() {
   const classes = useStyles();
   const [state, setState] = React.useState({ open: false, defer: false });
 
@@ -30,6 +31,7 @@ function FrameDeferring() {
       >
         {'Render NoSsr defer="false"'}
       </button>
+      <br />
       <button
         type="button"
         onClick={() =>
@@ -41,17 +43,19 @@ function FrameDeferring() {
       >
         {'Render NoSsr defer="true"'}
       </button>
-      {state.open ? (
-        <div className={classes.container}>
-          <span>Outside NoSsr</span>
-          <NoSsr defer={state.defer}>
-            ....Inside NoSsr
-            <LargeTree />
-          </NoSsr>
-        </div>
-      ) : null}
+      <br />
+      <br />
+      <div className={classes.container}>
+        {state.open ? (
+          <React.Fragment>
+            <div>Outside NoSsr</div>
+            <NoSsr defer={state.defer}>
+              .....Inside NoSsr
+              <LargeTree />
+            </NoSsr>
+          </React.Fragment>
+        ) : null}
+      </div>
     </div>
   );
 }
-
-export default FrameDeferring;

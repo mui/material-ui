@@ -44,7 +44,6 @@ export default function SimpleModal() {
 
   return (
     <div>
-      <p>Click to get the full Modal experience!</p>
       <button type="button" onClick={handleOpen}>
         Open Modal
       </button>

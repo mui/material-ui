@@ -2038,7 +2038,7 @@ Here are some highlights ✨:
   The new logic closes the Modal even if `event.preventDefault()` is called on the key down escape event.
   `event.preventDefault()` is meant to stop default behaviors like clicking a checkbox to check it, hitting a button to submit a form, and hitting left arrow to move the cursor in a text input etc.
   Only special HTML elements have these default behaviors.
-  People should use `event.stopPropagation()` if they don't want to trigger a `onClose` event on the modal.
+  You should use `event.stopPropagation()` if you don't want to trigger an `onClose` event on the modal.
 
 #### Changes
 
@@ -4556,7 +4556,7 @@ It's also introducing a new component: Popper, an abstraction on top of [Popper.
 
 - Add color selector (#12053) @mbrookes
 
-People can now dynamically change the theme of the whole documentation.
+You can now dynamically change the theme of the whole documentation site.
 
 - Add a new toggle buttons component (#10144) @phallguy
 - And many more bug fixes and documentation improvements.
@@ -5099,8 +5099,8 @@ Here are some highlights ✨:
 
 #### Motivation
 
-1. It's a simple pattern to learn. People won't need to go back and forth with the documentation to learn the import paths 💭.
-2. People bundle size will decrease 🚀.
+1. It's a simple pattern to learn. You won't need to go back and forth in the documentation to learn the import paths 💭.
+2. Your application bundle size will decrease 🚀.
 3. In an ideal world, we would import everything from the root module and tree sharking would be taken care of for us. This change doesn't matter in this world ☮️.
 ```jsx
 import {
@@ -8633,7 +8633,7 @@ Big thanks to the 8 contributors who made this release possible.
 
 - [core] Normalize the API (#7099) @oliviertassinari
 Reduce degree of freedom of the API with the color property. That's a tradeoff between correctness and verbosity.
-People should be able to recover from that breaking change quite easily as react is going to throw warnings. For instance:
+You should be able to recover from this breaking change quite easily, as React will throw warnings. For instance:
 ```diff
 -<Button contrast primary>Login</Button>
 +<Button color="contrast">Login</Button>
@@ -9169,7 +9169,7 @@ As always, we are keeping the [documentation](https://material-ui.com) up to dat
 ###### *Jan 28, 2017*
 
 This is the first public alpha release. It's still work in progress.
-People will be able to start giving us feedback with this release.
+You will be able to start giving us feedback with this release.
 Please keep in mind that [semver](https://docs.npmjs.com/getting-started/semantic-versioning) won't be respected between pre-releases.
 In other words, the API will change if we need to.
 

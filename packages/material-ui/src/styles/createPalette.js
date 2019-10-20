@@ -119,16 +119,14 @@ export default function createPalette(palette) {
 
     if (process.env.NODE_ENV !== 'production') {
       const contrast = getContrastRatio(background, contrastText);
-      if (process.env.NODE_ENV !== 'production') {
-        if (contrast < 3) {
-          console.error(
-            [
-              `Material-UI: the contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`,
-              'falls below the WACG recommended absolute minimum contrast ratio of 3:1.',
-              'https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast',
-            ].join('\n'),
-          );
-        }
+      if (contrast < 3) {
+        console.error(
+          [
+            `Material-UI: the contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`,
+            'falls below the WACG recommended absolute minimum contrast ratio of 3:1.',
+            'https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast',
+          ].join('\n'),
+        );
       }
     }
 

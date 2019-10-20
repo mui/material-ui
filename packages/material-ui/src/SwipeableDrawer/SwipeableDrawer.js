@@ -439,6 +439,10 @@ SwipeableDrawer.propTypes = {
    */
   anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),
   /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+  /**
    * Disable the backdrop transition.
    * This can improve the FPS on low-end devices.
    */
