@@ -171,7 +171,8 @@ function OverridesTheme() {
 // withTheme
 const ComponentWithTheme = withTheme(({ theme }: WithTheme) => <div>{theme.spacing(1)}</div>);
 
-<ComponentWithTheme />;
+const componentWithThemeRef = React.createRef<HTMLDivElement>();
+<ComponentWithTheme ref={componentWithThemeRef} />;
 
 // withStyles + withTheme
 type AllTheProps = WithTheme & WithStyles<typeof styles>;
