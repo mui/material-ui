@@ -2971,9 +2971,9 @@ arg@^4.1.0:
   integrity sha512-SlmP3fEA88MBv0PypnXZ8ZfJhwmDeIE3SP71j37AiXQBXYosPV0x6uISAaHYSlSVhmHOVkomen0tbGk6Anlebw==
 
 argos-cli@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/argos-cli/-/argos-cli-0.1.2.tgz#6c249d333934c237ca6e46ffdde36df49eed49d6"
-  integrity sha512-n5WeqAliBgHvgJYIZvEwR47hZmM/NfY8c7MnD1CGxd729LU/7pL/jkY1nREMlww8IRTMR5+aK0n72qv0FsuIeQ==
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/argos-cli/-/argos-cli-0.1.3.tgz#347c392a46d7a486d6765829bdfa8aa87fb61e09"
+  integrity sha512-7bF42cO+tlOJt1L7FiWdU4QRspKO55kQCI28TCuIxi5TAx9uQu1AQsxC8ejtHm73JvJ5pROnikHj8ISPJz+tpw==
   dependencies:
     chalk "^2.4.2"
     commander "^3.0.1"
