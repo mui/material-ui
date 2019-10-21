@@ -28,11 +28,11 @@ describe('<SnackbarContent />', () => {
   describe('prop: action', () => {
     it('should render the action', () => {
       const action = <span>action</span>;
-      const { container, getByText } = render(
-        <SnackbarContent message="message" action={action} />,
+      const { container } = render(
+        <SnackbarContent message="message" data-testid="action" action={action} />,
       );
       expect(container.querySelector(`.${classes.action}`)).to.have.class(classes.action);
-      expect(getByText('action')).to.have.property('nodeName', 'SPAN');
+      expect(container.querySelector(`.${classes.action}`)).to.contain('span')
     });
 
     it('should render an array of elements', () => {
@@ -55,7 +55,14 @@ describe('<SnackbarContent />', () => {
   });
 
   describe('prop: role', () => {
-    it('should render the role', () => {
+    it('renders the default role', () => {
+      const { getByRole } = render(
+        <SnackbarContent message="alert message" />,
+      );
+      expect(getByRole('alert')).to.have.text('alert message');
+    });
+
+    it('can override the role', () => {
       const { queryByRole } = render(
         <SnackbarContent message="alertdialog message" role="alertdialog" />,
       );
