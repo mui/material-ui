@@ -32,11 +32,7 @@ describe('<SnackbarContent />', () => {
         <SnackbarContent message="message" data-testid="action" action={action} />,
       );
       expect(container.querySelector(`.${classes.action}`)).to.have.class(classes.action);
-<<<<<<< HEAD
       expect(container.querySelector(`.${classes.action}`)).to.contain('span');
-=======
-      expect(container.querySelector(`.${classes.action}`)).to.contain('span')
->>>>>>> c543ea11d7c9617639544f082601c3c7d6dc7cf4
     });
 
     it('should render an array of elements', () => {
@@ -60,13 +56,7 @@ describe('<SnackbarContent />', () => {
 
   describe('prop: role', () => {
     it('renders the default role', () => {
-<<<<<<< HEAD
       const { getByRole } = render(<SnackbarContent message="alert message" />);
-=======
-      const { getByRole } = render(
-        <SnackbarContent message="alert message" />,
-      );
->>>>>>> c543ea11d7c9617639544f082601c3c7d6dc7cf4
       expect(getByRole('alert')).to.have.text('alert message');
     });
 
