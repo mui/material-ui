@@ -1,10 +1,5 @@
-import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
+import { deepmerge } from '@material-ui/utils';
 import noopTheme from './noopTheme';
-
-// Support for the jss-expand plugin.
-function arrayMerge(destination, source) {
-  return source;
-}
 
 function getStylesCreator(stylesOrCreator) {
   const themingEnabled = typeof stylesOrCreator === 'function';
@@ -60,9 +55,7 @@ function getStylesCreator(stylesOrCreator) {
           }
         }
 
-        stylesWithOverrides[key] = deepmerge(stylesWithOverrides[key], overrides[key], {
-          arrayMerge,
-        });
+        stylesWithOverrides[key] = deepmerge(stylesWithOverrides[key], overrides[key]);
       });
 
       return stylesWithOverrides;

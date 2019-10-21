@@ -65,7 +65,6 @@
     "css-loader": "^3.1.0",
     "css-mediaquery": "^0.1.2",
     "date-fns": "2.5.1",
-    "deepmerge": "^4.0.0",
     "docsearch.js": "^2.6.3",
     "doctrine": "^3.0.0",
     "downshift": "^3.3.4",

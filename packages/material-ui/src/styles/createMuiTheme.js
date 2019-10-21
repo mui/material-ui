@@ -1,5 +1,4 @@
-import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
-import isPlainObject from 'is-plain-object';
+import { deepmerge } from '@material-ui/utils';
 import createBreakpoints from './createBreakpoints';
 import createMixins from './createMixins';
 import createPalette from './createPalette';
@@ -42,9 +41,6 @@ function createMuiTheme(options = {}) {
         zIndex,
       },
       other,
-      {
-        isMergeableObject: isPlainObject,
-      },
     ),
   };
 
