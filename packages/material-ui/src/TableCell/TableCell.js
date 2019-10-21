@@ -210,6 +210,10 @@ TableCell.propTypes = {
    * By default, the TableHead, TableBody or TableFooter parent component set the value.
    */
   variant: PropTypes.oneOf(['head', 'body', 'footer']),
+  /**
+   * Specifies the number of columns a cell should span
+   */
+  colSpan: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
 
 export default withStyles(styles, { name: 'MuiTableCell' })(TableCell);
