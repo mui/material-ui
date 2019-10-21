@@ -16,16 +16,13 @@ describe('<SnackbarContent />', () => {
     classes = getClasses(<SnackbarContent message="message" />);
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<SnackbarContent message="conform?" />, () => ({
     classes,
     inheritComponent: Paper,
     mount,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
   describe('prop: action', () => {
@@ -52,8 +49,8 @@ describe('<SnackbarContent />', () => {
   describe('prop: message', () => {
     it('should render the message', () => {
       const message = 'message prop text';
-      const { getAllByRole } = render(<SnackbarContent message={<span>{message}</span>} />);
-      expect(getAllByRole('alert')[1]).to.have.text(message);
+      const { getByRole } = render(<SnackbarContent message={<span>{message}</span>} />);
+      expect(getByRole('alert')).to.have.text(message);
     });
   });
 
