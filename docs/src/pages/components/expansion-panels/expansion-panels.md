@@ -28,6 +28,16 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}
 
+## Adding actions inside the expansion panel summary
+
+If you would like to put an action such as a `Checkbox` or a `Button` inside of the `ExpansionPanelSummary`, you will
+need to remember to stop the propagation of the focus and click events of the action in order to prevent the panel from
+expanding/collapsing when using the action.
+You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in
+the label of the parent button that controls the panel expansion.
+
+{{"demo": "pages/components/expansion-panels/ActionsInExpansionPanelSummary.js"}}
+
 ## Performance
 
 The content of ExpansionPanels is mounted by default even if the panel is not expanded.
