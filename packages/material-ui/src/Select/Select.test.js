@@ -197,7 +197,7 @@ describe('<Select />', () => {
     const { getByRole } = render(<Select value="" autoFocus />);
 
     act(() => {
-      getByRole('button').click();
+      fireEvent.mouseDown(getByRole('button'));
     });
 
     // TODO not matching WAI-ARIA authoring practices. It should focus the first (or selected) item.
@@ -224,7 +224,7 @@ describe('<Select />', () => {
           <MenuItem value="2" />
         </Select>,
       );
-      getByRole('button').click();
+      fireEvent.mouseDown(getByRole('button'));
       getAllByRole('option')[1].click();
 
       expect(onChangeHandler.calledOnce).to.be.true;
@@ -514,7 +514,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      fireEvent.click(getByRole('button'));
+      fireEvent.mouseDown(getByRole('button'));
       act(() => {
         clock.tick(99);
       });
@@ -613,7 +613,7 @@ describe('<Select />', () => {
       const { getByRole, queryByRole } = render(<ControlledWrapper />);
 
       act(() => {
-        getByRole('button').click();
+        fireEvent.mouseDown(getByRole('button'));
       });
 
       expect(getByRole('listbox')).to.be.ok;
@@ -655,7 +655,7 @@ describe('<Select />', () => {
       stub(button, 'clientWidth').get(() => 14);
 
       act(() => {
-        button.click();
+        fireEvent.mouseDown(button);
       });
 
       expect(getByTestId('paper').style).to.have.property('minWidth', '14px');
@@ -671,7 +671,7 @@ describe('<Select />', () => {
       stub(button, 'clientWidth').get(() => 14);
 
       act(() => {
-        button.click();
+        fireEvent.mouseDown(button);
       });
 
       expect(getByTestId('paper').style).to.have.property('minWidth', '');
@@ -794,7 +794,7 @@ describe('<Select />', () => {
         });
         const { getByRole, getAllByRole } = render(<ControlledSelectInput onChange={onChange} />);
 
-        fireEvent.click(getByRole('button'));
+        fireEvent.mouseDown(getByRole('button'));
         const options = getAllByRole('option');
         fireEvent.click(options[2]);
 
