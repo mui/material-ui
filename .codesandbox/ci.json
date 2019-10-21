@@ -20,5 +20,6 @@
     "react",
     "github/mui-org/material-ui/tree/master/examples/create-react-app",
     "github/mui-org/material-ui/tree/master/examples/create-react-app-with-typescript"
-  ]
+  ],
+  "silent": true
 }
