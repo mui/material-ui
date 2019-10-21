@@ -6,7 +6,7 @@
 
 <div align="center">
 
-[React](https://reactjs.org/) components that implement [Google's Material Design](https://www.google.com/design/spec/material-design/introduction.html).
+[React](https://reactjs.org/) components that implement [Google's Material Design](https://material.io/design/introduction/).
 
 [![npm package](https://img.shields.io/npm/v/@material-ui/core/latest.svg)](https://www.npmjs.com/package/@material-ui/core)
 [![npm downloads](https://img.shields.io/npm/dm/@material-ui/core.svg)](https://www.npmjs.com/package/@material-ui/core)
