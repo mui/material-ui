@@ -39,21 +39,19 @@ describe('<ExpansionPanelSummary />', () => {
   });
 
   it('when expanded adds the expanded class to any button regardless of a11y', () => {
-    const { getAllByRole } = render(<ExpansionPanelSummary expanded expandIcon="expand" />);
+    const { container } = render(<ExpansionPanelSummary expanded expandIcon="expand" />);
 
-    const buttons = getAllByRole('button', { hidden: true });
-    expect(buttons).to.have.length(2);
-    expect(buttons[0]).to.have.class(classes.expanded);
-    expect(buttons[0]).to.have.attribute('aria-expanded', 'true');
-    expect(buttons[0]).not.to.be.inaccessible;
-    expect(buttons[1]).to.have.class(classes.expanded);
-    expect(buttons[1]).to.be.inaccessible;
+    expect(container.firstChild).to.have.class(classes.expanded);
+    expect(container.firstChild).to.have.attribute('aria-expanded', 'true');
+    expect(container.firstChild).not.to.be.inaccessible;
+    expect(container.querySelector(`.${classes.expandIcon}`)).to.have.class(classes.expanded);
+    expect(container.querySelector(`.${classes.expandIcon}`)).to.be.inaccessible;
   });
 
   it('should render with the expand icon and have the expandIcon class', () => {
-    const { getAllByRole } = render(<ExpansionPanelSummary expandIcon={<div>Icon</div>} />);
+    const { container } = render(<ExpansionPanelSummary expandIcon={<div>Icon</div>} />);
 
-    const expandButton = getAllByRole('button', { hidden: true })[1];
+    const expandButton = container.querySelector(`.${classes.expandIcon}`);
     expect(expandButton).to.have.class(classes.expandIcon);
     expect(expandButton).to.have.text('Icon');
     expect(expandButton).to.be.inaccessible;

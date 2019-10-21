@@ -8,15 +8,11 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     width: '100%',
   },
-  details: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary,
-  },
-}));
+});
 
 export default function ActionsInExpansionPanelSummary() {
   const classes = useStyles();
@@ -27,8 +23,8 @@ export default function ActionsInExpansionPanelSummary() {
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-label="Expand"
-          aria-controls="panel1a-content"
-          id="panel1a-header"
+          aria-controls="additional-actions1-content"
+          id="additional-actions1-header"
         >
           <FormControlLabel
             aria-label="Acknowledge"
@@ -39,7 +35,7 @@ export default function ActionsInExpansionPanelSummary() {
           />
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Typography className={classes.details}>
+          <Typography color="textSecondary">
             The click event of the nested action will propagate up and expand the panel unless you
             explicitly stop it.
           </Typography>
@@ -49,8 +45,8 @@ export default function ActionsInExpansionPanelSummary() {
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-label="Expand"
-          aria-controls="panel2a-content"
-          id="panel2a-header"
+          aria-controls="additional-actions2-content"
+          id="additional-actions2-header"
         >
           <FormControlLabel
             aria-label="Acknowledge"
@@ -61,7 +57,7 @@ export default function ActionsInExpansionPanelSummary() {
           />
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Typography className={classes.details}>
+          <Typography color="textSecondary">
             The focus event of the nested action will propagate up and also focus the expansion
             panel unless you explicitly stop it.
           </Typography>
@@ -71,8 +67,8 @@ export default function ActionsInExpansionPanelSummary() {
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-label="Expand"
-          aria-controls="panel3a-content"
-          id="panel3a-header"
+          aria-controls="additional-actions3-content"
+          id="additional-actions3-header"
         >
           <FormControlLabel
             aria-label="Acknowledge"
@@ -83,7 +79,7 @@ export default function ActionsInExpansionPanelSummary() {
           />
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Typography className={classes.details}>
+          <Typography color="textSecondary">
             If you forget to put an aria-label on the nested action, the label of the action will
             also be included in the label of the parent button that controls the panel expansion.
           </Typography>

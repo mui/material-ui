@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/aria-role */
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -128,13 +129,13 @@ const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(pr
       <div className={clsx(classes.content, { [classes.expanded]: expanded })}>{children}</div>
       {expandIcon && (
         <IconButton
-          disabled={disabled}
           className={clsx(classes.expandIcon, {
             [classes.expanded]: expanded,
           })}
           edge="end"
           component="div"
-          tabIndex={-1}
+          tabIndex={null}
+          role={null}
           aria-hidden
           {...IconButtonProps}
         >
