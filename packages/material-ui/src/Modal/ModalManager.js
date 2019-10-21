@@ -59,34 +59,45 @@ function findIndexOf(containerInfo, callback) {
 }
 
 function handleContainer(containerInfo, props) {
-  const restoreStyle = {};
-  const style = {};
+  const restoreStyle = [];
   const restorePaddings = [];
+  const container = containerInfo.container;
   let fixedNodes;
 
-  if (!props.disableScrollLock) {
-    restoreStyle.overflow = containerInfo.container.style.overflow;
-    restoreStyle['padding-right'] = containerInfo.container.style.paddingRight;
-    style.overflow = 'hidden';
-
-    if (isOverflowing(containerInfo.container)) {
-      const scrollbarSize = getScrollbarSize();
-
-      // Use computed style, here to get the real padding to add our scrollbar width.
-      style['padding-right'] = `${getPaddingRight(containerInfo.container) + scrollbarSize}px`;
-
-      // .mui-fixed is a global helper.
-      fixedNodes = ownerDocument(containerInfo.container).querySelectorAll('.mui-fixed');
-      [].forEach.call(fixedNodes, node => {
-        restorePaddings.push(node.style.paddingRight);
-        node.style.paddingRight = `${getPaddingRight(node) + scrollbarSize}px`;
+  if (!props.disableScrollLock && isOverflowing(container)) {
+    const parent = container.parentElement;
+    if (parent.nodeName === 'HTML') {
+      restoreStyle.push({
+        value: parent.style.overflow,
+        key: 'overflow',
+        el: parent,
       });
+      parent.style.overflow = 'hidden';
     }
-  }
+    restoreStyle.push({
+      value: container.style.overflow,
+      key: 'overflow',
+      el: container,
+    });
+    restoreStyle.push({
+      value: container.style.paddingRight,
+      key: 'padding-right',
+      el: container,
+    });
+    container.style.overflow = 'hidden';
 
-  Object.keys(style).forEach(key => {
-    containerInfo.container.style[key] = style[key];
-  });
+    const scrollbarSize = getScrollbarSize();
+
+    // Use computed style, here to get the real padding to add our scrollbar width.
+    container.style['padding-right'] = `${getPaddingRight(container) + scrollbarSize}px`;
+
+    // .mui-fixed is a global helper.
+    fixedNodes = ownerDocument(container).querySelectorAll('.mui-fixed');
+    [].forEach.call(fixedNodes, node => {
+      restorePaddings.push(node.style.paddingRight);
+      node.style.paddingRight = `${getPaddingRight(node) + scrollbarSize}px`;
+    });
+  }
 
   const restore = () => {
     if (fixedNodes) {
@@ -99,11 +110,11 @@ function handleContainer(containerInfo, props) {
       });
     }
 
-    Object.keys(restoreStyle).forEach(key => {
-      if (restoreStyle[key]) {
-        containerInfo.container.style.setProperty(key, restoreStyle[key]);
+    restoreStyle.forEach(({ value, el, key }) => {
+      if (value) {
+        el.style.setProperty(key, value);
       } else {
-        containerInfo.container.style.removeProperty(key);
+        el.style.removeProperty(key);
       }
     });
   };
