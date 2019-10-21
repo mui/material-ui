@@ -49,8 +49,18 @@ describe('<Modal />', () => {
   );
 
   describe('props', () => {
+    let container;
+
+    before(() => {
+      container = document.createElement('div');
+      document.body.appendChild(container);
+    });
+
+    after(() => {
+      document.body.removeChild(container);
+    });
+
     it('should consume theme default props', () => {
-      const container = document.createElement('div');
       const theme = createMuiTheme({ props: { MuiModal: { container } } });
       mount(
         <ThemeProvider theme={theme}>
@@ -620,11 +630,11 @@ describe('<Modal />', () => {
       };
 
       const wrapper = mount(<TestCase open={false} />);
-      assert.strictEqual(document.body.style.overflow, '');
+      assert.strictEqual(document.body.parentNode.style.overflow, '');
       wrapper.setProps({ open: true });
-      assert.strictEqual(document.body.style.overflow, 'hidden');
+      assert.strictEqual(document.body.parentNode.style.overflow, 'hidden');
       wrapper.setProps({ open: false });
-      assert.strictEqual(document.body.style.overflow, '');
+      assert.strictEqual(document.body.parentNode.style.overflow, '');
     });
 
     it('should open and close with Transitions', done => {
@@ -649,17 +659,17 @@ describe('<Modal />', () => {
 
       let wrapper;
       const onEntered = () => {
-        assert.strictEqual(document.body.style.overflow, 'hidden');
+        assert.strictEqual(document.body.parentNode.style.overflow, 'hidden');
         wrapper.setProps({ open: false });
       };
 
       const onExited = () => {
-        assert.strictEqual(document.body.style.overflow, '');
+        assert.strictEqual(document.body.parentNode.style.overflow, '');
         done();
       };
 
       wrapper = mount(<TestCase onEntered={onEntered} onExited={onExited} open={false} />);
-      assert.strictEqual(document.body.style.overflow, '');
+      assert.strictEqual(document.body.parentNode.style.overflow, '');
       wrapper.setProps({ open: true });
     });
   });
@@ -711,23 +721,23 @@ describe('<Modal />', () => {
 
       let wrapper;
       const onEntered = () => {
-        assert.strictEqual(document.body.style.overflow, 'hidden');
+        assert.strictEqual(document.body.parentNode.style.overflow, 'hidden');
         wrapper.setProps({ open: false });
       };
 
       const onExited = () => {
-        assert.strictEqual(document.body.style.overflow, '');
+        assert.strictEqual(document.body.parentNode.style.overflow, '');
         done();
       };
 
       const onExiting = () => {
-        assert.strictEqual(document.body.style.overflow, 'hidden');
+        assert.strictEqual(document.body.parentNode.style.overflow, 'hidden');
       };
 
       wrapper = mount(
         <TestCase onEntered={onEntered} onExiting={onExiting} onExited={onExited} open={false} />,
       );
-      assert.strictEqual(document.body.style.overflow, '');
+      assert.strictEqual(document.body.parentNode.style.overflow, '');
       wrapper.setProps({ open: true });
     });
 
@@ -754,23 +764,23 @@ describe('<Modal />', () => {
 
       let wrapper;
       const onEntered = () => {
-        assert.strictEqual(document.body.style.overflow, 'hidden');
+        assert.strictEqual(document.body.parentNode.style.overflow, 'hidden');
         wrapper.setProps({ open: false });
       };
 
       const onExited = () => {
-        assert.strictEqual(document.body.style.overflow, '');
+        assert.strictEqual(document.body.parentNode.style.overflow, '');
         done();
       };
 
       const onExiting = () => {
-        assert.strictEqual(document.body.style.overflow, '');
+        assert.strictEqual(document.body.parentNode.style.overflow, '');
       };
 
       wrapper = mount(
         <TestCase onEntered={onEntered} onExiting={onExiting} onExited={onExited} open={false} />,
       );
-      assert.strictEqual(document.body.style.overflow, '');
+      assert.strictEqual(document.body.parentNode.style.overflow, '');
       wrapper.setProps({ open: true });
     });
   });

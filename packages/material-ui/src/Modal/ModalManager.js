@@ -2,13 +2,12 @@ import getScrollbarSize from '../utils/getScrollbarSize';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 
-// Do we have a vertical scrollbar?
+// Is a vertical scrollbar displayed?
 function isOverflowing(container) {
   const doc = ownerDocument(container);
 
   if (doc.body === container) {
-    const win = ownerWindow(doc);
-    return win.innerWidth > doc.documentElement.clientWidth;
+    return ownerWindow(doc).innerWidth > doc.documentElement.clientWidth;
   }
 
   return container.scrollHeight > container.clientHeight;
@@ -26,24 +25,19 @@ function getPaddingRight(node) {
   return parseInt(window.getComputedStyle(node)['padding-right'], 10) || 0;
 }
 
-const BLACKLIST = ['template', 'script', 'style'];
-
-function isHideable(node) {
-  return node.nodeType === 1 && BLACKLIST.indexOf(node.tagName.toLowerCase()) === -1;
-}
-
-function siblings(container, mount, currentNode, nodesToExclude, callback) {
-  const blacklist = [mount, currentNode, ...nodesToExclude];
+function ariaHiddenSiblings(container, mountNode, currentNode, nodesToExclude = [], show) {
+  const blacklist = [mountNode, currentNode, ...nodesToExclude];
+  const blacklistTagNames = ['TEMPLATE', 'SCRIPT', 'STYLE'];
 
   [].forEach.call(container.children, node => {
-    if (blacklist.indexOf(node) === -1 && isHideable(node)) {
-      callback(node);
+    if (
+      node.nodeType === 1 &&
+      blacklist.indexOf(node) === -1 &&
+      blacklistTagNames.indexOf(node.tagName) === -1
+    ) {
+      ariaHidden(node, show);
     }
   });
-}
-
-function ariaHiddenSiblings(container, mountNode, currentNode, nodesToExclude = [], show) {
-  siblings(container, mountNode, currentNode, nodesToExclude, node => ariaHidden(node, show));
 }
 
 function findIndexOf(containerInfo, callback) {
@@ -64,39 +58,42 @@ function handleContainer(containerInfo, props) {
   const container = containerInfo.container;
   let fixedNodes;
 
-  if (!props.disableScrollLock && isOverflowing(container)) {
+  if (!props.disableScrollLock) {
+    const overflowing = isOverflowing(container);
+
+    // Improve Gatsby support
+    // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
     const parent = container.parentElement;
-    if (parent.nodeName === 'HTML') {
-      restoreStyle.push({
-        value: parent.style.overflow,
-        key: 'overflow',
-        el: parent,
-      });
-      parent.style.overflow = 'hidden';
-    }
+    const scrollContainer = parent.nodeName === 'HTML' ? parent : container;
+
     restoreStyle.push({
-      value: container.style.overflow,
+      value: scrollContainer.style.overflow,
       key: 'overflow',
-      el: container,
+      el: scrollContainer,
     });
-    restoreStyle.push({
-      value: container.style.paddingRight,
-      key: 'padding-right',
-      el: container,
-    });
-    container.style.overflow = 'hidden';
 
-    const scrollbarSize = getScrollbarSize();
+    // Block the scroll even if no scrollbar is visible to account for mobile keyboard
+    // screensize shrink.
+    scrollContainer.style.overflow = 'hidden';
 
-    // Use computed style, here to get the real padding to add our scrollbar width.
-    container.style['padding-right'] = `${getPaddingRight(container) + scrollbarSize}px`;
+    if (overflowing) {
+      const scrollbarSize = getScrollbarSize();
 
-    // .mui-fixed is a global helper.
-    fixedNodes = ownerDocument(container).querySelectorAll('.mui-fixed');
-    [].forEach.call(fixedNodes, node => {
-      restorePaddings.push(node.style.paddingRight);
-      node.style.paddingRight = `${getPaddingRight(node) + scrollbarSize}px`;
-    });
+      restoreStyle.push({
+        value: container.style.paddingRight,
+        key: 'padding-right',
+        el: container,
+      });
+      // Use computed style, here to get the real padding to add our scrollbar width.
+      container.style['padding-right'] = `${getPaddingRight(container) + scrollbarSize}px`;
+
+      // .mui-fixed is a global helper.
+      fixedNodes = ownerDocument(container).querySelectorAll('.mui-fixed');
+      [].forEach.call(fixedNodes, node => {
+        restorePaddings.push(node.style.paddingRight);
+        node.style.paddingRight = `${getPaddingRight(node) + scrollbarSize}px`;
+      });
+    }
   }
 
   const restore = () => {
@@ -241,6 +238,6 @@ export default class ModalManager {
   }
 
   isTopModal(modal) {
-    return !!this.modals.length && this.modals[this.modals.length - 1] === modal;
+    return this.modals.length > 0 && this.modals[this.modals.length - 1] === modal;
   }
 }
