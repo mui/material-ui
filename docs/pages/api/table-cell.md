@@ -33,6 +33,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'</span> |  | Specify the size of the cell. By default, the Table parent component set the value (`medium`). |
 | <span class="prop-name">sortDirection</span> | <span class="prop-type">'asc'<br>&#124;&nbsp;'desc'<br>&#124;&nbsp;false</span> |  | Set aria-sort direction. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'head'<br>&#124;&nbsp;'body'<br>&#124;&nbsp;'footer'</span> |  | Specify the cell type. By default, the TableHead, TableBody or TableFooter parent component set the value. |
+| <span class="prop-name">colSpan</span> | <span class="prop-type">number</span> | | Specifies the number of columns a cell should span. |
 
 The `ref` is forwarded to the root element.
 
