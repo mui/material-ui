@@ -521,4 +521,25 @@ describe('<Slider />', () => {
     expect(getAllByRole('slider')[0]).to.have.attribute('aria-label', 'Label 0');
     expect(getAllByRole('slider')[1]).to.have.attribute('aria-label', 'Label 1');
   });
+
+  describe('prop: ValueLabelComponent', () => {
+    it('receives the formatted value', () => {
+      function ValueLabelComponent(props) {
+        const { value } = props;
+        return <span data-testid="value-label">{value}</span>;
+      }
+      ValueLabelComponent.propTypes = { value: PropTypes.string };
+
+      const { getByTestId } = render(
+        <Slider
+          value={10}
+          ValueLabelComponent={ValueLabelComponent}
+          valueLabelDisplay="on"
+          valueLabelFormat={n => n.toString(2)}
+        />,
+      );
+
+      expect(getByTestId('value-label')).to.have.text('1010');
+    });
+  });
 });
