@@ -13,17 +13,9 @@ const defaultProps: Props =  {
 «& defaultProps»
 };
 
-const style: React.CSSProperties = {
-«& style»
-};
-
 export const «componentName»: React.SFC<Props> = (props: Props) => {
   const { width, height, ...other } = props;
-  return (
-    <div style={style}>
-      <Mui«componentName» {...other} />
-    </div>
-  )
+  return <Mui«componentName» {...other} />;
 }
 
 «componentName».defaultProps = defaultProps;

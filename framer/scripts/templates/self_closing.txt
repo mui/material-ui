@@ -19,9 +19,7 @@ export const «componentName»: React.SFC<Props> = (props: Props) => {
 «& style»
   };
 
-  return (
-    <Mui«componentName» style={style} {...other} />
-  )
+  return <Mui«componentName» style={style} {...other} />;
 }
 
 «componentName».defaultProps = defaultProps;

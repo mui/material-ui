@@ -25,20 +25,12 @@ const defaultProps: Props = {
   step: 1,
   valueLabelDisplay: 'off',
   width: 160,
-  height: 40,
-};
-
-const style: React.CSSProperties = {
-  padding: '8px 20px',
+  height: 24,
 };
 
 export const Slider: React.SFC<Props> = (props: Props) => {
   const { width, height, ...other } = props;
-  return (
-    <div style={style}>
-      <MuiSlider {...other} />
-    </div>
-  );
+  return <MuiSlider {...other} />;
 };
 
 Slider.defaultProps = defaultProps;
