@@ -67,7 +67,7 @@ Optionally, you can set the icon color using one of the theme color properties: 
 
 #### Material Design (recommended)
 
-Material Design has standardized over [1,000 official icons](#material-icons).
+Material Design has standardized over [1,000 official icons](/components/material-icons/).
 
 #### MDI
 
