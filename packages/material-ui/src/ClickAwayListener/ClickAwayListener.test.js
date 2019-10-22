@@ -77,13 +77,13 @@ describe('<ClickAwayListener />', () => {
         </ClickAwayListener>,
       );
       const preventDefault = event => event.preventDefault();
-      window.document.body.addEventListener('click', preventDefault);
+      document.body.addEventListener('click', preventDefault);
 
       const event = new window.Event('click', { view: window, bubbles: true, cancelable: true });
-      window.document.body.dispatchEvent(event);
+      document.body.dispatchEvent(event);
       assert.strictEqual(handleClickAway.callCount, 0);
 
-      window.document.body.removeEventListener('click', preventDefault);
+      document.body.removeEventListener('click', preventDefault);
     });
   });
 

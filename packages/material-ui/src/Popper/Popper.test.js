@@ -14,7 +14,7 @@ describe('<Popper />', () => {
   let mount;
   const render = createClientRender({ strict: true });
   const defaultProps = {
-    anchorEl: () => window.document.createElement('svg'),
+    anchorEl: () => document.createElement('svg'),
     children: <span>Hello World</span>,
     open: true,
   };

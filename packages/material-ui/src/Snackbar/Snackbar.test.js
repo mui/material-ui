@@ -38,7 +38,7 @@ describe('<Snackbar />', () => {
       mount(<Snackbar open onClose={handleClose} message="message" />);
 
       const event = new window.Event('click', { view: window, bubbles: true, cancelable: true });
-      window.document.body.dispatchEvent(event);
+      document.body.dispatchEvent(event);
 
       assert.strictEqual(handleClose.callCount, 1);
       assert.deepEqual(handleClose.args[0], [event, 'clickaway']);

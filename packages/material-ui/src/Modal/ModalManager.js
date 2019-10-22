@@ -2,13 +2,12 @@ import getScrollbarSize from '../utils/getScrollbarSize';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 
-// Do we have a vertical scrollbar?
+// Is a vertical scrollbar displayed?
 function isOverflowing(container) {
   const doc = ownerDocument(container);
 
   if (doc.body === container) {
-    const win = ownerWindow(doc);
-    return win.innerWidth > doc.documentElement.clientWidth;
+    return ownerWindow(doc).innerWidth > doc.documentElement.clientWidth;
   }
 
   return container.scrollHeight > container.clientHeight;
@@ -26,24 +25,19 @@ function getPaddingRight(node) {
   return parseInt(window.getComputedStyle(node)['padding-right'], 10) || 0;
 }
 
-const BLACKLIST = ['template', 'script', 'style'];
-
-function isHideable(node) {
-  return node.nodeType === 1 && BLACKLIST.indexOf(node.tagName.toLowerCase()) === -1;
-}
-
-function siblings(container, mount, currentNode, nodesToExclude, callback) {
-  const blacklist = [mount, currentNode, ...nodesToExclude];
+function ariaHiddenSiblings(container, mountNode, currentNode, nodesToExclude = [], show) {
+  const blacklist = [mountNode, currentNode, ...nodesToExclude];
+  const blacklistTagNames = ['TEMPLATE', 'SCRIPT', 'STYLE'];
 
   [].forEach.call(container.children, node => {
-    if (blacklist.indexOf(node) === -1 && isHideable(node)) {
-      callback(node);
+    if (
+      node.nodeType === 1 &&
+      blacklist.indexOf(node) === -1 &&
+      blacklistTagNames.indexOf(node.tagName) === -1
+    ) {
+      ariaHidden(node, show);
     }
   });
-}
-
-function ariaHiddenSiblings(container, mountNode, currentNode, nodesToExclude = [], show) {
-  siblings(container, mountNode, currentNode, nodesToExclude, node => ariaHidden(node, show));
 }
 
 function findIndexOf(containerInfo, callback) {
@@ -59,34 +53,48 @@ function findIndexOf(containerInfo, callback) {
 }
 
 function handleContainer(containerInfo, props) {
-  const restoreStyle = {};
-  const style = {};
+  const restoreStyle = [];
   const restorePaddings = [];
+  const container = containerInfo.container;
   let fixedNodes;
 
   if (!props.disableScrollLock) {
-    restoreStyle.overflow = containerInfo.container.style.overflow;
-    restoreStyle['padding-right'] = containerInfo.container.style.paddingRight;
-    style.overflow = 'hidden';
+    const overflowing = isOverflowing(container);
 
-    if (isOverflowing(containerInfo.container)) {
+    // Improve Gatsby support
+    // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
+    const parent = container.parentElement;
+    const scrollContainer = parent.nodeName === 'HTML' ? parent : container;
+
+    restoreStyle.push({
+      value: scrollContainer.style.overflow,
+      key: 'overflow',
+      el: scrollContainer,
+    });
+
+    // Block the scroll even if no scrollbar is visible to account for mobile keyboard
+    // screensize shrink.
+    scrollContainer.style.overflow = 'hidden';
+
+    if (overflowing) {
       const scrollbarSize = getScrollbarSize();
 
+      restoreStyle.push({
+        value: container.style.paddingRight,
+        key: 'padding-right',
+        el: container,
+      });
       // Use computed style, here to get the real padding to add our scrollbar width.
-      style['padding-right'] = `${getPaddingRight(containerInfo.container) + scrollbarSize}px`;
+      container.style['padding-right'] = `${getPaddingRight(container) + scrollbarSize}px`;
 
       // .mui-fixed is a global helper.
-      fixedNodes = ownerDocument(containerInfo.container).querySelectorAll('.mui-fixed');
+      fixedNodes = ownerDocument(container).querySelectorAll('.mui-fixed');
       [].forEach.call(fixedNodes, node => {
         restorePaddings.push(node.style.paddingRight);
         node.style.paddingRight = `${getPaddingRight(node) + scrollbarSize}px`;
       });
     }
   }
-
-  Object.keys(style).forEach(key => {
-    containerInfo.container.style[key] = style[key];
-  });
 
   const restore = () => {
     if (fixedNodes) {
@@ -99,11 +107,11 @@ function handleContainer(containerInfo, props) {
       });
     }
 
-    Object.keys(restoreStyle).forEach(key => {
-      if (restoreStyle[key]) {
-        containerInfo.container.style.setProperty(key, restoreStyle[key]);
+    restoreStyle.forEach(({ value, el, key }) => {
+      if (value) {
+        el.style.setProperty(key, value);
       } else {
-        containerInfo.container.style.removeProperty(key);
+        el.style.removeProperty(key);
       }
     });
   };
@@ -230,6 +238,6 @@ export default class ModalManager {
   }
 
   isTopModal(modal) {
-    return !!this.modals.length && this.modals[this.modals.length - 1] === modal;
+    return this.modals.length > 0 && this.modals[this.modals.length - 1] === modal;
   }
 }

@@ -336,7 +336,7 @@ describe('<Popover />', () => {
     before(() => {
       openPopover = anchorOrigin => {
         if (!anchorEl) {
-          anchorEl = window.document.createElement('div');
+          anchorEl = document.createElement('div');
         }
 
         const css = (element, styles) => {
@@ -352,7 +352,7 @@ describe('<Popover />', () => {
           top: '100px',
           left: '100px',
         });
-        window.document.body.appendChild(anchorEl);
+        document.body.appendChild(anchorEl);
 
         return new Promise(resolve => {
           const component = (
@@ -362,7 +362,7 @@ describe('<Popover />', () => {
               anchorOrigin={anchorOrigin}
               transitionDuration={0}
               onEntered={() => {
-                popoverEl = window.document.querySelector('[data-mui-test="Popover"]');
+                popoverEl = document.querySelector('[data-mui-test="Popover"]');
                 resolve();
               }}
             >
@@ -392,7 +392,7 @@ describe('<Popover />', () => {
 
     after(() => {
       if (anchorEl) {
-        window.document.body.removeChild(anchorEl);
+        document.body.removeChild(anchorEl);
       }
     });
 
@@ -449,7 +449,7 @@ describe('<Popover />', () => {
 
     it('should pass through container prop if container and anchorEl props are provided', () => {
       const container = document.createElement('div');
-      const wrapper2 = mount(<Popover anchorEl={anchorEl} container={container} open />);
+      const wrapper2 = mount(<Popover anchorEl={anchorEl} container={container} open={false} />);
 
       assert.strictEqual(wrapper2.find(Modal).props().container, container);
     });
@@ -458,7 +458,7 @@ describe('<Popover />', () => {
       await openPopover(undefined);
       assert.strictEqual(
         wrapper.find(Modal).props().container,
-        window.document.body,
+        document.body,
         "should use anchorEl's parent body as Modal container",
       );
     });
@@ -516,7 +516,7 @@ describe('<Popover />', () => {
               anchorOrigin={anchorOrigin}
               transitionDuration={0}
               onEntered={() => {
-                popoverEl = window.document.querySelector('[data-mui-test="Popover"]');
+                popoverEl = document.querySelector('[data-mui-test="Popover"]');
                 resolve();
               }}
             >
@@ -568,7 +568,7 @@ describe('<Popover />', () => {
               anchorReference="none"
               transitionDuration={0}
               onEntered={() => {
-                popoverEl = window.document.querySelector('[data-mui-test="Popover"]');
+                popoverEl = document.querySelector('[data-mui-test="Popover"]');
                 resolve();
               }}
               PaperProps={{
