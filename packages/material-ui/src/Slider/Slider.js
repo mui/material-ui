@@ -757,8 +757,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             className={classes.valueLabel}
             value={
               typeof valueLabelFormat === 'function'
-              ? valueLabelFormat(value, index)
-              : valueLabelFormat
+                ? valueLabelFormat(value, index)
+                : valueLabelFormat
             }
             index={index}
             open={open === index || active === index || valueLabelDisplay === 'on'}
