@@ -18,7 +18,8 @@ import { TableCell } from '@material-ui/core';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
-
+The component renders a `<th>` element when the parent context is a header
+or otherwise a `<td>` element.
 
 ## Props
 
