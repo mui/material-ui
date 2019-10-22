@@ -1,0 +1,32 @@
+diff --git a/node_modules/pretty-format/build-es5/index.js b/node_modules/pretty-format/build-es5/index.js
+index 6cf8a4a..2bb0f19 100644
+--- a/node_modules/pretty-format/build-es5/index.js
++++ b/node_modules/pretty-format/build-es5/index.js
+@@ -2112,7 +2112,8 @@ var toString = Object.prototype.toString;
+ var toISOString = Date.prototype.toISOString;
+ var errorToString = Error.prototype.toString;
+ var regExpToString = RegExp.prototype.toString;
+-var symbolToString = Symbol.prototype.toString;
++var symbolToString = typeof Symbol === "function" ? Symbol.prototype.toString : function () {return String(this)};
++
+ /**
+  * Explicitly comparing typeof constructor to function avoids undefined as name
+  * when mock identity-obj-proxy returns the key as the value for any key.
+@@ -2533,7 +2534,7 @@ var _collections = __webpack_require__(/*! ../collections */ "./packages/pretty-
+  * This source code is licensed under the MIT license found in the
+  * LICENSE file in the root directory of this source tree.
+  */
+-var asymmetricMatcher = Symbol.for('jest.asymmetricMatcher');
++var asymmetricMatcher = typeof Symbol === "function" && Symbol.for ? Symbol.for('jest.asymmetricMatcher') : 1267621;
+ var SPACE = ' ';
+ 
+ var serialize = function serialize(val, config, indentation, depth, refs, printer) {
+@@ -3112,7 +3113,7 @@ var _markup = __webpack_require__(/*! ./lib/markup */ "./packages/pretty-format/
+  * LICENSE file in the root directory of this source tree.
+  */
+ // Child can be `number` in Stack renderer but not in Fiber renderer.
+-var testSymbol = Symbol.for('react.test.json');
++var testSymbol = typeof Symbol === "function" && Symbol.for ? Symbol.for('react.test.json') : 245830487;
+ 
+ var getPropKeys = function getPropKeys(object) {
+   var props = object.props;
