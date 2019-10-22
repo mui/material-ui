@@ -315,6 +315,8 @@ export const styles = theme => ({
   },
 });
 
+const Forward = ({ children }) => children;
+
 const Slider = React.forwardRef(function Slider(props, ref) {
   const {
     'aria-label': ariaLabel,
@@ -340,7 +342,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     ThumbComponent = 'span',
     track = 'normal',
     value: valueProp,
-    ValueLabelComponent = ValueLabel,
+    ValueLabelComponent: ValueLabelComponentProp = ValueLabel,
     valueLabelDisplay = 'off',
     valueLabelFormat = Identity,
     ...other
@@ -745,6 +747,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       {values.map((value, index) => {
         const percent = valueToPercent(value, min, max);
         const style = axisProps[axis].offset(percent);
+        const ValueLabelComponent = valueLabelDisplay === 'off' ? Forward : ValueLabelComponentProp;
 
         return (
           <ValueLabelComponent
@@ -752,9 +755,13 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             valueLabelFormat={valueLabelFormat}
             valueLabelDisplay={valueLabelDisplay}
             className={classes.valueLabel}
-            value={value}
+            value={
+              typeof valueLabelFormat === 'function'
+              ? valueLabelFormat(value, index)
+              : valueLabelFormat
+            }
             index={index}
-            open={open === index || active === index}
+            open={open === index || active === index || valueLabelDisplay === 'on'}
             disabled={disabled}
           >
             <ThumbComponent

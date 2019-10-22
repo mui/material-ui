@@ -45,20 +45,7 @@ const styles = theme => ({
  * @ignore - internal component.
  */
 function ValueLabel(props) {
-  const {
-    children,
-    classes,
-    className,
-    index,
-    open,
-    value,
-    valueLabelDisplay,
-    valueLabelFormat,
-  } = props;
-
-  if (valueLabelDisplay === 'off') {
-    return children;
-  }
+  const { children, classes, className, open, value } = props;
 
   return React.cloneElement(
     children,
@@ -66,18 +53,14 @@ function ValueLabel(props) {
       className: clsx(
         children.props.className,
         {
-          [classes.open]: open || valueLabelDisplay === 'on',
+          [classes.open]: open,
         },
         classes.thumb,
       ),
     },
     <span className={clsx(classes.offset, className)}>
       <span className={classes.circle}>
-        <span className={classes.label}>
-          {typeof valueLabelFormat === 'function'
-            ? valueLabelFormat(value, index)
-            : valueLabelFormat}
-        </span>
+        <span className={classes.label}>{value}</span>
       </span>
     </span>,
   );
