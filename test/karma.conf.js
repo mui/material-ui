@@ -104,7 +104,7 @@ module.exports = function setKarmaConfig(config) {
         'BrowserStack_Firefox',
         'BrowserStack_Safari',
         'BrowserStack_Edge',
-        'BrowserStack_IE'
+        'BrowserStack_IE',
       ]),
       plugins: baseConfig.plugins.concat(['karma-browserstack-launcher']),
       customLaunchers: Object.assign({}, baseConfig.customLaunchers, {
