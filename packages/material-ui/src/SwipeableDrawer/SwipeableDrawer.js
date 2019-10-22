@@ -36,6 +36,83 @@ function getTranslate(currentTranslate, startLocation, open, maxTranslate) {
   );
 }
 
+function getDomTreeShapes(element, rootNode) {
+  // adapted from https://github.com/oliviertassinari/react-swipeable-views/blob/7666de1dba253b896911adf2790ce51467670856/packages/react-swipeable-views/src/SwipeableViews.js#L129
+  let domTreeShapes = [];
+
+  while (element && element !== rootNode) {
+    const style = window.getComputedStyle(element);
+
+    if (
+      // Ignore the scroll children if the element is absolute positioned.
+      style.getPropertyValue('position') === 'absolute' ||
+      // Ignore the scroll children if the element has an overflowX hidden
+      style.getPropertyValue('overflow-x') === 'hidden'
+    ) {
+      domTreeShapes = [];
+    } else if (
+      (element.clientWidth > 0 && element.scrollWidth > element.clientWidth) ||
+      (element.clientHeight > 0 && element.scrollHeight > element.clientHeight)
+    ) {
+      // Ignore the nodes that have no width.
+      // Keep elements with a scroll
+      domTreeShapes.push({
+        element,
+        scrollWidth: element.scrollWidth,
+        scrollHeight: element.scrollHeight,
+        clientWidth: element.clientWidth,
+        clientHeight: element.clientHeight,
+        scrollLeft: element.scrollLeft,
+        scrollTop: element.scrollTop,
+      });
+    }
+
+    element = element.parentNode;
+  }
+
+  return domTreeShapes;
+}
+
+function findNativeHandler({ domTreeShapes, start, current, anchor }) {
+  // adapted from https://github.com/oliviertassinari/react-swipeable-views/blob/7666de1dba253b896911adf2790ce51467670856/packages/react-swipeable-views/src/SwipeableViews.js#L175
+
+  const axisProperties = {
+    scrollPosition: {
+      x: 'scrollLeft',
+      y: 'scrollTop',
+    },
+    scrollLength: {
+      x: 'scrollWidth',
+      y: 'scrollHeight',
+    },
+    clientLength: {
+      x: 'clientWidth',
+      y: 'clientHeight',
+    },
+  };
+
+  return domTreeShapes.some(shape => {
+    // Determine if we are going backward or forward.
+    let goingForward = current >= start;
+    if (anchor === 'top' || anchor === 'left') {
+      goingForward = !goingForward;
+    }
+    const axis = anchor === 'left' || anchor === 'right' ? 'x' : 'y';
+    const scrollPosition = shape[axisProperties.scrollPosition[axis]];
+
+    const areNotAtStart = scrollPosition > 0;
+    const areNotAtEnd =
+      scrollPosition + shape[axisProperties.clientLength[axis]] <
+      shape[axisProperties.scrollLength[axis]];
+
+    if ((goingForward && areNotAtEnd) || (!goingForward && areNotAtStart)) {
+      return true;
+    }
+
+    return false;
+  });
+}
+
 const disableSwipeToOpenDefault =
   typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 const transitionDurationDefault = { enter: duration.enteringScreen, exit: duration.leavingScreen };
@@ -200,6 +277,19 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
 
     const currentX = calculateCurrentX(anchorRtl, event.touches);
     const currentY = calculateCurrentY(anchorRtl, event.touches);
+
+    if (open && paperRef.current.contains(event.target)) {
+      const domTreeShapes = getDomTreeShapes(event.target, paperRef.current);
+      const hasFoundNativeHandler = findNativeHandler({
+        domTreeShapes,
+        start: horizontalSwipe ? swipeInstance.current.startX : swipeInstance.current.startY,
+        current: horizontalSwipe ? currentX : currentY,
+        anchor,
+      });
+      if (hasFoundNativeHandler) {
+        return;
+      }
+    }
 
     // We don't know yet.
     if (swipeInstance.current.isSwiping == null) {
