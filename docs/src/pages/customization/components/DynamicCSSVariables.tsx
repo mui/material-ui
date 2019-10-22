@@ -20,19 +20,19 @@ const blue = {
   '--background-start': '#2196F3',
   '--background-end': '#21CBF3',
   '--box-shadow': 'rgba(33, 203, 243, .3)',
-};
+} as React.CSSProperties;
 
 const defaultColor = {
   '--background-start': '#FE6B8B',
   '--background-end': '#FF8E53',
   '--box-shadow': 'rgba(255, 105, 135, .3)',
-};
+} as React.CSSProperties;
 
 export default function DynamicCSSVariables() {
   const classes = useStyles();
   const [color, setColor] = React.useState(defaultColor);
 
-  const handleChange = event => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setColor(event.target.checked ? blue : defaultColor);
   };
 
