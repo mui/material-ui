@@ -13,18 +13,53 @@ function omit(input, fields) {
   return output;
 }
 
+function createEmptyBreakpointObject(breakpoints) {
+  const breakpointsInOrder = breakpoints.keys.reduce((acc, key) => {
+    const breakpointStyleKey = breakpoints.up(key);
+    return {
+      ...acc,
+      [breakpointStyleKey]: {},
+    };
+  }, {});
+  return breakpointsInOrder;
+}
+
+function removeUnusedBreakpoints(breakpointKeys, output) {
+  return breakpointKeys.reduce(
+    (acc, key) => {
+      const breakpointOutput = acc[key];
+      const isBreakpointUnused =
+        Object.keys(breakpointOutput).length === 0 && breakpointOutput.constructor === Object;
+      if (isBreakpointUnused) {
+        delete acc[key];
+      }
+      return acc;
+    },
+    { ...output },
+  );
+}
+
+const mergeBreakpointsInOrder = (breakpoints, output) => {
+  const emptyBreakpoints = createEmptyBreakpointObject(breakpoints);
+  const mergedOutput = [emptyBreakpoints, ...output].reduce((prev, next) => merge(prev, next), {});
+  return removeUnusedBreakpoints(Object.keys(emptyBreakpoints), mergedOutput);
+};
+
 function css(styleFunction) {
   const newStyleFunction = props => {
     const output = styleFunction(props);
-
     if (props.css) {
+      const styleWithCss = styleFunction({ theme: props.theme, ...props.css });
+      const mergedStyleWithCss = mergeBreakpointsInOrder(props.theme.breakpoints, [
+        output,
+        styleWithCss,
+      ]);
       return {
-        ...merge(output, styleFunction({ theme: props.theme, ...props.css })),
+        ...mergedStyleWithCss,
         ...omit(props.css, [styleFunction.filterProps]),
       };
     }
-
-    return output;
+    return mergeBreakpointsInOrder(props.theme.breakpoints, [output]);
   };
 
   newStyleFunction.propTypes =
