@@ -17,3 +17,4 @@
 /tmp
 build
 node_modules
+/vendor
