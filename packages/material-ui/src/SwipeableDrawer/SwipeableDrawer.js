@@ -313,6 +313,15 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       return;
     }
 
+    // At least one element clogs the drawer interaction zone.
+    if (
+      open &&
+      !backdropRef.current.contains(event.target) &&
+      !paperRef.current.contains(event.target)
+    ) {
+      return;
+    }
+
     const anchorRtl = getAnchor(theme, anchor);
     const horizontalSwipe = isHorizontal(anchor);
 
