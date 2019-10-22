@@ -72,7 +72,7 @@ function Header(props: HeaderProps) {
               </Link>
             </Grid>
             <Grid item>
-              <Tooltip title="Alerts • No alters">
+              <Tooltip title="Alerts • No alerts">
                 <IconButton color="inherit">
                   <NotificationsIcon />
                 </IconButton>
