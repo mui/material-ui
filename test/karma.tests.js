@@ -11,6 +11,8 @@ import 'core-js/es6/symbol';
 import './utils/performance';
 import './utils/init';
 
+console.log(Number.isNaN.toString());
+
 const integrationContext = require.context(
   '../packages/material-ui/test/integration',
   true,
