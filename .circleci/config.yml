@@ -29,7 +29,7 @@ commands:
           command: |
             node scripts/use-react-dist-tag
             # log a patch for maintainers who want to check out this change
-            git diff --patch
+            git diff HEAD
       - restore_cache:
           keys:
             - v2-yarn-sha-{{ checksum "yarn.lock" }}
