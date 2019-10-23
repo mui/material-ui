@@ -1,0 +1,17 @@
+diff --git a/node_modules/wait-for-expect/lib/index.js b/node_modules/wait-for-expect/lib/index.js
+index 3984921..0221132 100644
+--- a/node_modules/wait-for-expect/lib/index.js
++++ b/node_modules/wait-for-expect/lib/index.js
+@@ -55,9 +55,9 @@ var waitForExpect = function waitForExpect(expectation) {
+   });
+ };
+ 
+-var _default = Object.assign(waitForExpect, {
+-  defaults: defaults
+-});
++waitForExpect.defaults = defaults;
++
++var _default = waitForExpect;
+ 
+ exports.default = _default;
+ module.exports = exports.default;

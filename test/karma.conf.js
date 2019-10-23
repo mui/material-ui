@@ -91,7 +91,7 @@ module.exports = function setKarmaConfig(config) {
         flags: ['--no-sandbox'],
       },
     },
-    singleRun: Boolean(process.env.CI),
+    singleRun: false,
   };
 
   let newConfig = baseConfig;
@@ -99,13 +99,7 @@ module.exports = function setKarmaConfig(config) {
   if (browserStack.accessKey) {
     newConfig = Object.assign({}, baseConfig, {
       browserStack,
-      browsers: baseConfig.browsers.concat([
-        'BrowserStack_Chrome',
-        'BrowserStack_Firefox',
-        'BrowserStack_Safari',
-        'BrowserStack_Edge',
-        'BrowserStack_IE',
-      ]),
+      browsers: ['BrowserStack_IE'],
       plugins: baseConfig.plugins.concat(['karma-browserstack-launcher']),
       customLaunchers: Object.assign({}, baseConfig.customLaunchers, {
         BrowserStack_Chrome: {
