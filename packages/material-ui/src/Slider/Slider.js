@@ -183,7 +183,7 @@ export const styles = theme => ({
     borderRadius: 1,
     backgroundColor: 'currentColor',
     opacity: 0.38,
-    '$vertical &': {
+    '&$vertical': {
       height: '100%',
       width: 2,
     },
@@ -195,7 +195,7 @@ export const styles = theme => ({
     height: 2,
     borderRadius: 1,
     backgroundColor: 'currentColor',
-    '$vertical &': {
+    '& $vertical': {
       width: 2,
     },
   },
@@ -244,7 +244,7 @@ export const styles = theme => ({
     '&$active': {
       boxShadow: `0px 0px 0px 14px ${fade(theme.palette.primary.main, 0.16)}`,
     },
-    '$disabled &': {
+    '& $disabled': {
       pointerEvents: 'none',
       width: 8,
       height: 8,
@@ -254,11 +254,11 @@ export const styles = theme => ({
         boxShadow: 'none',
       },
     },
-    '$vertical &': {
+    '& $vertical': {
       marginLeft: -5,
       marginBottom: -6,
     },
-    '$vertical$disabled &': {
+    '& $vertical$disabled': {
       marginLeft: -3,
       marginBottom: -4,
     },
@@ -303,7 +303,7 @@ export const styles = theme => ({
     top: 22,
     transform: 'translateX(-50%)',
     whiteSpace: 'nowrap',
-    '$vertical &': {
+    '& $vertical': {
       top: 'auto',
       left: 22,
       transform: 'translateY(50%)',
