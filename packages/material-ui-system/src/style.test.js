@@ -132,7 +132,7 @@ describe('style', () => {
     });
   });
 
-  const unstableBorder = style({
+  const borderWithColor = style({
     prop: 'border',
     transform: (value, { theme, getPath }) => {
       const [width, borderStyle, color] = value.split(' ');
@@ -140,8 +140,8 @@ describe('style', () => {
     },
   });
 
-  it('should support unstableTransforms of the prop correctly', () => {
-    const output1 = unstableBorder({
+  it('should support transform of the color correctly', () => {
+    const output1 = borderWithColor({
       theme: {
         palette: {
           testColor: 'green',
