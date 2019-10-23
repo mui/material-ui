@@ -193,6 +193,13 @@ workflows:
             - test_types
             - test_browser
   react-next:
+    triggers:
+      - schedule:
+          cron: '0 0 * * *'
+          filters:
+            branches:
+              only:
+                - master
     jobs:
       - test_unit:
           react-dist-tag: next
