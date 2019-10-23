@@ -825,6 +825,14 @@
     core-js "^2.6.5"
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime-corejs3@^7.6.3":
+  version "7.6.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs3/-/runtime-corejs3-7.6.3.tgz#a2b2b7ceea6ecb37ff822d293a312f1f00c29b84"
+  integrity sha512-933SXHQr7apa95F+3IqkBne8mqOnu1kDh6dnSddC07aW/R51WsOVD7MSczJ6DRpq/L8KLll7TFDxmt30pft44w==
+  dependencies:
+    core-js-pure "^3.0.0"
+    regenerator-runtime "^0.13.2"
+
 "@babel/runtime@7.0.0", "@babel/runtime@7.1.2", "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.1.5", "@babel/runtime@^7.2.0", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.2", "@babel/runtime@^7.4.4", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.0", "@babel/runtime@^7.6.2":
   version "7.6.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.6.2.tgz#c3d6e41b304ef10dcf13777a33e7694ec4a9a6dd"
@@ -2985,8 +2993,13 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
-aria-query@3.0.0, aria-query@^3.0.0, "aria-query@file:vendor/aria-query":
-  version "0.0.0"
+aria-query@3.0.0, aria-query@^3.0.0, "aria-query@file:vendor/aria-query-3.0.0.tgz":
+  version "3.0.0"
+  resolved "file:vendor/aria-query-3.0.0.tgz#682948aaa29492b12f3e3bd1c2d22074c3ab1700"
+  dependencies:
+    "@babel/runtime-corejs3" "^7.6.3"
+    ast-types-flow "0.0.7"
+    commander "^2.11.0"
 
 arr-diff@^4.0.0:
   version "4.0.0"
@@ -4458,10 +4471,10 @@ commander@2.9.0, commander@~2.9.0:
   dependencies:
     graceful-readlink ">= 1.0.0"
 
-commander@^2.10.0, commander@^2.12.1, commander@^2.18.0, commander@^2.19.0, commander@^2.20.0, commander@^2.8.1, commander@^2.9.0, commander@~2.20.0:
-  version "2.20.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.0.tgz#d58bb2b5c1ee8f87b0d340027e9e94e222c5a422"
-  integrity sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ==
+commander@^2.10.0, commander@^2.11.0, commander@^2.12.1, commander@^2.18.0, commander@^2.19.0, commander@^2.20.0, commander@^2.8.1, commander@^2.9.0, commander@~2.20.0:
+  version "2.20.3"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
+  integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
 
 commander@^3.0.1:
   version "3.0.1"
@@ -4792,6 +4805,11 @@ core-js-pure@3.1.4:
   version "3.1.4"
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.1.4.tgz#5fa17dc77002a169a3566cc48dc774d2e13e3769"
   integrity sha512-uJ4Z7iPNwiu1foygbcZYJsJs1jiXrTTCvxfLDXNhI/I+NHbSIEyr548y4fcsCEyWY0XgfAG/qqaunJ1SThHenA==
+
+core-js-pure@^3.0.0:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.3.3.tgz#c6a796e371782394ffb60d82ff67e0e073070093"
+  integrity sha512-sBLE90LngoFYwhLsy5ftt+WWxkQnMufRsn2uyYxJxW73SkvAlxonAdZARimkKrK1c+w01eX9r19vA/J5KMtqfA==
 
 core-js@^1.0.0:
   version "1.2.7"
