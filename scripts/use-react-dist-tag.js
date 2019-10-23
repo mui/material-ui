@@ -1,5 +1,12 @@
 /* eslint-disable no-console */
-// WARNING: This script can only use built-in modules
+/**
+ * Given an environment variable called `REACT_DIST_TAG` fetch the corresponding
+ * version and make sure this version is used throughout the repository.
+ *
+ * If you work on this file:
+ * WARNING: This script can only use built-in modules since it has to run before
+ * `yarn install`
+ */
 const childProcess = require('child_process');
 const fs = require('fs');
 const path = require('path');
@@ -38,8 +45,6 @@ async function main(distTag) {
   });
 
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
-
-  console.log(`Applied version '${version}' via 'resolutions' field`);
 }
 
 main(process.env.REACT_DIST_TAG).catch(error => {
