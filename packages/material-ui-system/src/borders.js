@@ -1,7 +1,7 @@
 import style from './style';
 import compose from './compose';
 
-function getBorder({ value, theme, getPath }) {
+function getBorder(value, { theme, getPath }) {
   if (typeof value === 'number') {
     return `${value}px solid`;
   }
@@ -20,32 +20,27 @@ function getBorder({ value, theme, getPath }) {
 
 export const border = style({
   prop: 'border',
-  themeKey: 'borders',
-  unstableTransform: getBorder,
+  transform: getBorder,
 });
 
 export const borderTop = style({
   prop: 'borderTop',
-  themeKey: 'borders',
-  unstableTransform: getBorder,
+  transform: getBorder,
 });
 
 export const borderRight = style({
   prop: 'borderRight',
-  themeKey: 'borders',
-  unstableTransform: getBorder,
+  transform: getBorder,
 });
 
 export const borderBottom = style({
   prop: 'borderBottom',
-  themeKey: 'borders',
-  unstableTransform: getBorder,
+  transform: getBorder,
 });
 
 export const borderLeft = style({
   prop: 'borderLeft',
-  themeKey: 'borders',
-  unstableTransform: getBorder,
+  transform: getBorder,
 });
 
 export const borderColor = style({

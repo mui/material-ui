@@ -10,7 +10,7 @@ function getPath(obj, path) {
 }
 
 function style(options) {
-  const { prop, cssProperty = options.prop, themeKey, transform, unstableTransform } = options;
+  const { prop, cssProperty = options.prop, themeKey, transform } = options;
 
   const fn = props => {
     if (props[prop] == null) {
@@ -23,9 +23,7 @@ function style(options) {
     const styleFromPropValue = propValueFinal => {
       let value;
 
-      if (unstableTransform) {
-        value = unstableTransform({ value: propValueFinal, theme, getPath });
-      } else if (typeof themeMapping === 'function') {
+      if (typeof themeMapping === 'function') {
         value = themeMapping(propValueFinal);
       } else if (Array.isArray(themeMapping)) {
         value = themeMapping[propValueFinal] || propValueFinal;
@@ -33,7 +31,7 @@ function style(options) {
         value = getPath(themeMapping, propValueFinal) || propValueFinal;
 
         if (transform) {
-          value = transform(value);
+          value = transform(value, { theme, getPath });
         }
       }
 

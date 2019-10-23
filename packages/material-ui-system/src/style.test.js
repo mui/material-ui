@@ -134,7 +134,7 @@ describe('style', () => {
 
   const unstableBorder = style({
     prop: 'border',
-    unstableTransform: ({ value, theme, getPath }) => {
+    transform: (value, { theme, getPath }) => {
       const [width, borderStyle, color] = value.split(' ');
       return `${width}px ${borderStyle} ${getPath(theme, `palette.${color}`)}`;
     },
