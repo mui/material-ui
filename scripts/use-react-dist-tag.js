@@ -9,6 +9,7 @@
  */
 const childProcess = require('child_process');
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const { promisify } = require('util');
 
@@ -44,7 +45,8 @@ async function main(distTag) {
     packageJson.resolutions[reactPackageName] = version;
   });
 
-  fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+  // CircleCI seemingly times out if it has a newline diff at the end
+  fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}${os.EOL}`);
 }
 
 main(process.env.REACT_DIST_TAG).catch(error => {
