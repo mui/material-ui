@@ -752,9 +752,13 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             valueLabelFormat={valueLabelFormat}
             valueLabelDisplay={valueLabelDisplay}
             className={classes.valueLabel}
-            value={value}
+            value={
+              typeof valueLabelFormat === 'function'
+                ? valueLabelFormat(value, index)
+                : valueLabelFormat
+            }
             index={index}
-            open={open === index || active === index}
+            open={open === index || active === index || valueLabelDisplay === 'on'}
             disabled={disabled}
           >
             <ThumbComponent
