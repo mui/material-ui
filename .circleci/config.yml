@@ -7,6 +7,7 @@ defaults: &defaults
       type: string
       default: stable
   environment:
+    # expose it globally otherwise we have to thread it from each job to the install command
     REACT_DIST_TAG: << parameters.react-dist-tag >>
   working_directory: /tmp/material-ui
   docker:
@@ -22,15 +23,10 @@ defaults: &defaults
 
 commands:
   install_js:
-    parameters:
-      react-dist-tag:
-        description: The dist-tag of react to be used
-        type: string
-        default: stable
     steps:
       - run:
           name: Resolve react version
-          command: node scripts/use-react-dist-tag $REACT_DIST_TAG
+          command: node scripts/use-react-dist-tag
       - restore_cache:
           keys:
             - v2-yarn-sha-{{ checksum "yarn.lock" }}
