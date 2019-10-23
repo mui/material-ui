@@ -183,7 +183,7 @@ export const styles = theme => ({
     borderRadius: 1,
     backgroundColor: 'currentColor',
     opacity: 0.38,
-    '&$vertical': {
+    '& $vertical': {
       height: '100%',
       width: 2,
     },
