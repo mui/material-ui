@@ -1,6 +1,11 @@
 version: 2.1
 
 defaults: &defaults
+  parameters:
+    react-dist-tag:
+      description: The dist-tag of react to be used
+      type: string
+      default: stable
   working_directory: /tmp/material-ui
   docker:
     - image: circleci/node:8.15
@@ -17,13 +22,13 @@ commands:
   install_js:
     parameters:
       react-dist-tag:
-        description: 'The dist-tag of react to be used'
+        description: The dist-tag of react to be used
         type: string
-        default: 'stable'
+        default: stable
     steps:
       - run:
-        name: Resolve react version
-        command: node scripts/use-react-dist-tag << parameters.react-dist-tag >>
+          name: Resolve react version
+          command: node scripts/use-react-dist-tag << parameters.react-dist-tag >>
       - restore_cache:
           keys:
             - v2-yarn-sha-{{ checksum "yarn.lock" }}
@@ -187,7 +192,8 @@ workflows:
             - test_types
             - test_browser
   react-next:
-    - test_unit:
-      react-version: next
-    - test_browser:
-      react-version: next
+    jobs:
+      - test_unit:
+          react-dist-tag: next
+      - test_browser:
+          react-dist-tag: next
