@@ -6,6 +6,8 @@ defaults: &defaults
       description: The dist-tag of react to be used
       type: string
       default: stable
+  environment:
+    REACT_DIST_TAG: << parameters.react-dist-tag >>
   working_directory: /tmp/material-ui
   docker:
     - image: circleci/node:8.15
@@ -28,7 +30,7 @@ commands:
     steps:
       - run:
           name: Resolve react version
-          command: node scripts/use-react-dist-tag << parameters.react-dist-tag >>
+          command: node scripts/use-react-dist-tag $REACT_DIST_TAG
       - restore_cache:
           keys:
             - v2-yarn-sha-{{ checksum "yarn.lock" }}
