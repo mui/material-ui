@@ -1,66 +1,55 @@
 import style from './style';
 import compose from './compose';
 
-function getBorder(value) {
-  if (typeof value !== 'number') {
-    return value;
+function getBorder({ value, theme, getPath }) {
+  if (typeof value === 'number') {
+    return `${value}px solid`;
   }
-
-  return `${value}px solid`;
+  const [width, stroke = 'solid', themeColor] = value.split(' ');
+  let widthNum = parseInt(width, 10);
+  if (isNaN(widthNum)) {
+    widthNum = getPath(theme, `borders.${width}`);
+  }
+  let borderColor;
+  if (themeColor) {
+    borderColor = getPath(theme, `palette.${themeColor}`);
+    return [`${widthNum}px ${stroke}`, borderColor].join(' ');
+  }
+  return [`${widthNum}px ${stroke}`].join(' ');
 }
 
 export const border = style({
   prop: 'border',
   themeKey: 'borders',
-  transform: getBorder,
+  unstableTransform: getBorder,
 });
 
 export const borderTop = style({
   prop: 'borderTop',
   themeKey: 'borders',
-  transform: getBorder,
+  unstableTransform: getBorder,
 });
 
 export const borderRight = style({
   prop: 'borderRight',
   themeKey: 'borders',
-  transform: getBorder,
+  unstableTransform: getBorder,
 });
 
 export const borderBottom = style({
   prop: 'borderBottom',
   themeKey: 'borders',
-  transform: getBorder,
+  unstableTransform: getBorder,
 });
 
 export const borderLeft = style({
   prop: 'borderLeft',
   themeKey: 'borders',
-  transform: getBorder,
+  unstableTransform: getBorder,
 });
 
 export const borderColor = style({
   prop: 'borderColor',
-  themeKey: 'palette',
-});
-
-export const borderTopColor = style({
-  prop: 'borderTopColor',
-  themeKey: 'palette',
-});
-
-export const borderRightColor = style({
-  prop: 'borderRightColor',
-  themeKey: 'palette',
-});
-
-export const borderBottomColor = style({
-  prop: 'borderBottomColor',
-  themeKey: 'palette',
-});
-
-export const borderLeftColor = style({
-  prop: 'borderLeftColor',
   themeKey: 'palette',
 });
 
@@ -76,10 +65,6 @@ const borders = compose(
   borderBottom,
   borderLeft,
   borderColor,
-  borderTopColor,
-  borderRightColor,
-  borderBottomColor,
-  borderLeftColor,
   borderRadius,
 );
 

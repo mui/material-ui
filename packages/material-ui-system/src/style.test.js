@@ -131,4 +131,26 @@ describe('style', () => {
       border: '4px solid',
     });
   });
+
+  const unstableBorder = style({
+    prop: 'border',
+    unstableTransform: ({ value, theme, getPath }) => {
+      const [width, borderStyle, color] = value.split(' ');
+      return `${width}px ${borderStyle} ${getPath(theme, `palette.${color}`)}`;
+    },
+  });
+
+  it('should support unstableTransforms of the prop correctly', () => {
+    const output1 = unstableBorder({
+      theme: {
+        palette: {
+          testColor: 'green',
+        },
+      },
+      border: '1 dotted testColor',
+    });
+    assert.deepEqual(output1, {
+      border: '1px dotted green',
+    });
+  });
 });

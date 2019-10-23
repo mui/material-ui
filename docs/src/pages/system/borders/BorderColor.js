@@ -11,18 +11,13 @@ const defaultProps = {
 export default function BorderColor() {
   return (
     <Box display="flex" justifyContent="center">
-      <Box borderColor="primary.main" {...defaultProps} />
-      <Box borderColor="secondary.main" {...defaultProps} />
-      <Box borderColor="error.main" {...defaultProps} />
-      <Box borderColor="grey.500" {...defaultProps} />
-      <Box borderColor="text.primary" {...defaultProps} />
-      <Box
-        borderTopColor="primary.main"
-        borderRightColor="secondary.main"
-        borderBottomColor="error.main"
-        borderLeftColor="grey.500"
-        {...defaultProps}
-      />
+      <Box {...defaultProps} borderColor="primary.main" />
+      <Box {...defaultProps} borderColor="secondary.main" />
+      <Box {...defaultProps} borderColor="error.main" />
+      <Box {...defaultProps} borderColor="grey.500" />
+      <Box {...defaultProps} borderColor="text.primary" />
+      <Box {...defaultProps} border="2 dotted secondary.main" />
+      <Box {...defaultProps} border="2 solid secondary.main" borderRight="2 dotted primary.main" />
     </Box>
   );
 }
