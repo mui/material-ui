@@ -15,7 +15,15 @@ defaults: &defaults
 
 commands:
   install_js:
+    parameters:
+      react-dist-tag:
+        description: 'The dist-tag of react to be used'
+        type: string
+        default: 'stable'
     steps:
+      - run:
+        name: Resolve react version
+        command: node scripts/use-react-dist-tag << parameters.react-dist-tag >>
       - restore_cache:
           keys:
             - v2-yarn-sha-{{ checksum "yarn.lock" }}
@@ -157,7 +165,7 @@ workflows:
       - checkout:
           filters:
             branches:
-              ignore: 
+              ignore:
                 - l10n
                 - /dependabot\//
       - test_unit:
@@ -178,3 +186,8 @@ workflows:
             - test_static
             - test_types
             - test_browser
+  react-next:
+    - test_unit:
+      react-version: next
+    - test_browser:
+      react-version: next
