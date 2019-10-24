@@ -122,6 +122,11 @@ Check out our [documentation website](https://material-ui.com/).
 
 You can find complete templates & themes in our [premium themes](https://themes.material-ui.com/) section.
 
+## Design Resources
+
+* **Sketch**: [Material Theme Editor](https://material.io/resources/theme-editor/) for Material Design made by Google.
+* **Figma**: [Figma UI Kit](https://material.5ly.co/) for Material-UI made by Fively Team.
+
 ## Contributing
 
 Read our [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to Material-UI.
