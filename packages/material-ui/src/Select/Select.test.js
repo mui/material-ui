@@ -408,6 +408,74 @@ describe('<Select />', () => {
 
       expect(getAllByRole('option')[1]).to.have.attribute('aria-selected', 'true');
     });
+
+    it('it will fallback to its content for the accessible name when it has no name', () => {
+      const { getByRole } = render(<Select value="" />);
+
+      expect(getByRole('button')).to.have.attribute('aria-labelledby', ' ');
+    });
+
+    it('is labelled by itself when it has a name', () => {
+      const { getByRole } = render(<Select name="select" value="" />);
+
+      expect(getByRole('button')).to.have.attribute(
+        'aria-labelledby',
+        ` ${getByRole('button').getAttribute('id')}`,
+      );
+    });
+
+    it('is labelled by itself when it has an id which is preferred over name', () => {
+      const { getAllByRole } = render(
+        <React.Fragment>
+          <span id="select-1-label">Chose first option:</span>
+          <Select id="select-1" labelId="select-1-label" name="select" value="" />
+          <span id="select-2-label">Chose second option:</span>
+          <Select id="select-2" labelId="select-2-label" name="select" value="" />
+        </React.Fragment>,
+      );
+
+      const triggers = getAllByRole('button');
+
+      expect(triggers[0]).to.have.attribute(
+        'aria-labelledby',
+        `select-1-label ${triggers[0].getAttribute('id')}`,
+      );
+      expect(triggers[1]).to.have.attribute(
+        'aria-labelledby',
+        `select-2-label ${triggers[1].getAttribute('id')}`,
+      );
+    });
+
+    it('can be labelled by an additional element if its id is provided in `labelId`', () => {
+      const { getByRole } = render(
+        <React.Fragment>
+          <span id="select-label">Choose one:</span>
+          <Select labelId="select-label" name="select" value="" />
+        </React.Fragment>,
+      );
+
+      expect(getByRole('button')).to.have.attribute(
+        'aria-labelledby',
+        `select-label ${getByRole('button').getAttribute('id')}`,
+      );
+    });
+
+    specify('the list of options is not labelled by default', () => {
+      const { getByRole } = render(<Select open value="" />);
+
+      expect(getByRole('listbox')).not.to.have.attribute('aria-labelledby');
+    });
+
+    specify('the list of options can be labelled by providing `labelId`', () => {
+      const { getByRole } = render(
+        <React.Fragment>
+          <span id="select-label">Choose one:</span>
+          <Select labelId="select-label" open value="" />
+        </React.Fragment>,
+      );
+
+      expect(getByRole('listbox')).to.have.attribute('aria-labelledby', 'select-label');
+    });
   });
 
   describe('prop: readOnly', () => {
@@ -796,7 +864,7 @@ describe('<Select />', () => {
     it('should have select-`name` id when name is provided', () => {
       const { getByRole } = render(<Select name="foo" value="" />);
 
-      expect(getByRole('button')).to.have.attribute('id', 'select-foo');
+      expect(getByRole('button')).to.have.attribute('id', 'mui-component-select-foo');
     });
   });
 });

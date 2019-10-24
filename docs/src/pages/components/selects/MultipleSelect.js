@@ -88,12 +88,14 @@ export default function MultipleSelect() {
   return (
     <div className={classes.root}>
       <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="select-multiple">Name</InputLabel>
+        <InputLabel id="demo-mutiple-name-label">Name</InputLabel>
         <Select
+          labelId="demo-mutiple-name-label"
+          id="demo-mutiple-name"
           multiple
           value={personName}
           onChange={handleChange}
-          input={<Input id="select-multiple" />}
+          input={<Input />}
           MenuProps={MenuProps}
         >
           {names.map(name => (
@@ -104,12 +106,14 @@ export default function MultipleSelect() {
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="select-multiple-checkbox">Tag</InputLabel>
+        <InputLabel id="demo-mutiple-checkbox-label">Tag</InputLabel>
         <Select
+          labelId="demo-mutiple-checkbox-label"
+          id="demo-mutiple-checkbox"
           multiple
           value={personName}
           onChange={handleChange}
-          input={<Input id="select-multiple-checkbox" />}
+          input={<Input />}
           renderValue={selected => selected.join(', ')}
           MenuProps={MenuProps}
         >
@@ -122,8 +126,10 @@ export default function MultipleSelect() {
         </Select>
       </FormControl>
       <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="select-multiple-chip">Chip</InputLabel>
+        <InputLabel id="demo-mutiple-chip-label">Chip</InputLabel>
         <Select
+          labelId="demo-mutiple-chip-label"
+          id="demo-mutiple-chip"
           multiple
           value={personName}
           onChange={handleChange}
@@ -150,7 +156,7 @@ export default function MultipleSelect() {
           displayEmpty
           value={personName}
           onChange={handleChange}
-          input={<Input id="select-multiple-placeholder" />}
+          input={<Input />}
           renderValue={selected => {
             if (selected.length === 0) {
               return <em>Placeholder</em>;

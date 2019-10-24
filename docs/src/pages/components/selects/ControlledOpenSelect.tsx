@@ -42,17 +42,15 @@ export default function ControlledOpenSelect() {
         Open the select
       </Button>
       <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="demo-controlled-open-select">Age</InputLabel>
+        <InputLabel id="demo-controlled-open-select-label">Age</InputLabel>
         <Select
+          labelId="demo-controlled-open-select-label"
+          id="demo-controlled-open-select"
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
           value={age}
           onChange={handleChange}
-          inputProps={{
-            name: 'age',
-            id: 'demo-controlled-open-select',
-          }}
         >
           <MenuItem value="">
             <em>None</em>
