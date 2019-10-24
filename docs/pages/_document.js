@@ -150,7 +150,7 @@ MyDocument.getInitialProps = async ctx => {
         key="jss-server-side"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: css }}
-      />
+      />,
     ],
   };
 };
