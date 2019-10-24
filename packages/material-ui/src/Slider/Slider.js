@@ -145,6 +145,7 @@ export const styles = theme => ({
     // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
     '&$disabled': {
+      pointerEvents: 'none',
       cursor: 'default',
       color: theme.palette.grey[400],
     },
@@ -172,7 +173,7 @@ export const styles = theme => ({
   },
   /* Pseudo-class applied to the root element if `orientation="vertical"`. */
   vertical: {},
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root and thumb element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the rail element. */
   rail: {
@@ -244,8 +245,7 @@ export const styles = theme => ({
     '&$active': {
       boxShadow: `0px 0px 0px 14px ${fade(theme.palette.primary.main, 0.16)}`,
     },
-    '$disabled &': {
-      pointerEvents: 'none',
+    '&$disabled': {
       width: 8,
       height: 8,
       marginLeft: -4,
@@ -258,7 +258,7 @@ export const styles = theme => ({
       marginLeft: -5,
       marginBottom: -6,
     },
-    '$vertical$disabled &': {
+    '$vertical &$disabled': {
       marginLeft: -3,
       marginBottom: -4,
     },
@@ -617,10 +617,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   });
 
   React.useEffect(() => {
-    if (disabled) {
-      return () => {};
-    }
-
     const { current: slider } = sliderRef;
     slider.addEventListener('touchstart', handleTouchStart);
 
@@ -632,7 +628,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       document.body.removeEventListener('touchmove', handleTouchMove);
       document.body.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [disabled, handleMouseEnter, handleTouchEnd, handleTouchMove, handleTouchStart]);
+  }, [handleMouseEnter, handleTouchEnd, handleTouchMove, handleTouchStart]);
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -656,10 +652,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const handleMouseDown = useEventCallback(event => {
     if (onMouseDown) {
       onMouseDown(event);
-    }
-
-    if (disabled) {
-      return;
     }
 
     event.preventDefault();
@@ -764,6 +756,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             <ThumbComponent
               className={clsx(classes.thumb, classes[`thumbColor${capitalize(color)}`], {
                 [classes.active]: active === index,
+                [classes.disabled]: disabled,
                 [classes.focusVisible]: focusVisible === index,
               })}
               tabIndex={disabled ? null : 0}
