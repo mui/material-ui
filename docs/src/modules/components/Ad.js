@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import AdCodeFund from 'docs/src/modules/components/AdCodeFund';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
+import AdScaffoldHub from 'docs/src/modules/components/AdScaffoldHub';
 
 const styles = theme => ({
   root: {
@@ -56,7 +57,11 @@ function Ad(props) {
   const [adblock, setAdblock] = React.useState(null);
 
   const checkAdblock = React.useCallback((attempt = 1) => {
-    if (document.querySelector('.cf-wrapper') || document.querySelector('#carbonads')) {
+    if (
+      document.querySelector('.cf-wrapper') ||
+      document.querySelector('#carbonads') ||
+      document.querySelector('#scaffoldhub')
+    ) {
       setAdblock(false);
       return;
     }
@@ -87,9 +92,17 @@ function Ad(props) {
     return <span className={classes.root}>{getAdblock(classes, t)}</span>;
   }
 
+  let randomAd = <AdCarbon />;
+
+  if (random < 0.03) {
+    randomAd = <AdScaffoldHub />;
+  } else if (random >= 0.6) {
+    randomAd = <AdCodeFund />;
+  }
+
   return (
     <span className={classes.root}>
-      {random >= 0.6 ? <AdCodeFund /> : <AdCarbon />}
+      {randomAd}
       {adblock === true ? getAdblock(classes, t) : null}
     </span>
   );
