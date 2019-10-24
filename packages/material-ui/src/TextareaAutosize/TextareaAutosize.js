@@ -134,7 +134,6 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
         {...other}
       />
       <textarea
-        aria-hidden
         aria-label="hidden input"
         className={props.className}
         readOnly
