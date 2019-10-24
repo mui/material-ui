@@ -114,24 +114,25 @@ describe('<Menu /> integration', () => {
     const button = getByLabelText('open menu');
     button.focus();
     button.click();
+    const menuitems = getAllByRole('menuitem');
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(getAllByRole('menuitem')[1]).to.be.focused;
+    expect(menuitems[1]).to.be.focused;
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-    expect(getAllByRole('menuitem')[0]).to.be.focused;
+    expect(menuitems[0]).to.be.focused;
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-    expect(getAllByRole('menuitem')[2]).to.be.focused;
+    expect(menuitems[2]).to.be.focused;
 
     fireEvent.keyDown(document.activeElement, { key: 'Home' });
-    expect(getAllByRole('menuitem')[0]).to.be.focused;
+    expect(menuitems[0]).to.be.focused;
 
     fireEvent.keyDown(document.activeElement, { key: 'End' });
-    expect(getAllByRole('menuitem')[2]).to.be.focused;
+    expect(menuitems[2]).to.be.focused;
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
-    expect(getAllByRole('menuitem')[2], 'no change on unassociated keys').to.be.focused;
+    expect(menuitems[2], 'no change on unassociated keys').to.be.focused;
   });
 
   it('focuses the selected item when opening', () => {
@@ -157,11 +158,12 @@ describe('<Menu /> integration', () => {
           <MenuItem />
         </OpenMenu>,
       );
+      const menuitems = getAllByRole('menuitem');
 
-      expect(getAllByRole('menuitem')[0]).to.be.focused;
-      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
-      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', -1);
-      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
+      expect(menuitems[0]).to.be.focused;
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
     specify('[variant=selectedMenu] will focus the first item if nothing is selected', () => {
@@ -172,11 +174,12 @@ describe('<Menu /> integration', () => {
           <MenuItem />
         </OpenMenu>,
       );
+      const menuitems = getAllByRole('menuitem');
 
-      expect(getAllByRole('menuitem')[0]).to.be.focused;
-      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', 0);
-      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', -1);
-      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
+      expect(menuitems[0]).to.be.focused;
+      expect(menuitems[0]).to.have.property('tabIndex', 0);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
     // no case for variant=selectedMenu
@@ -188,11 +191,12 @@ describe('<Menu /> integration', () => {
           <MenuItem autoFocus />
         </OpenMenu>,
       );
+      const menuitems = getAllByRole('menuitem');
 
-      expect(getAllByRole('menuitem')[2]).to.be.focused;
-      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
-      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', -1);
-      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.be.focused;
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
     specify('[variant=menu] ignores `selected` on `MenuItem`', () => {
@@ -203,11 +207,12 @@ describe('<Menu /> integration', () => {
           <MenuItem />
         </OpenMenu>,
       );
+      const menuitems = getAllByRole('menuitem');
 
-      expect(getAllByRole('menuitem')[0]).to.be.focused;
-      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
-      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', -1);
-      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
+      expect(menuitems[0]).to.be.focused;
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', -1);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
     specify('[variant=selectedMenu] focuses the `selected` `MenuItem`', () => {
@@ -218,11 +223,12 @@ describe('<Menu /> integration', () => {
           <MenuItem />
         </OpenMenu>,
       );
+      const menuitems = getAllByRole('menuitem');
 
-      expect(getAllByRole('menuitem')[1]).to.be.focused;
-      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
-      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', 0);
-      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.be.focused;
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', 0);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
     specify('[variant=selectedMenu] allows overriding `tabIndex` on `MenuItem`', () => {
@@ -233,11 +239,12 @@ describe('<Menu /> integration', () => {
           <MenuItem />
         </OpenMenu>,
       );
+      const menuitems = getAllByRole('menuitem');
 
-      expect(getAllByRole('menuitem')[1]).to.be.focused;
-      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
-      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', 2);
-      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.be.focused;
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', 2);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
     // falling back to the menu immediately so that we don't have to come up
@@ -254,12 +261,13 @@ describe('<Menu /> integration', () => {
             <MenuItem />
           </OpenMenu>,
         );
+        const menuitems = getAllByRole('menuitem');
 
-        expect(getAllByRole('menuitem')[1]).to.be.focused;
-        expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
-        expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', 0);
-        expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
-        expect(getAllByRole('menuitem')[3]).to.have.property('tabIndex', -1);
+        expect(menuitems[1]).to.be.focused;
+        expect(menuitems[0]).to.have.property('tabIndex', -1);
+        expect(menuitems[1]).to.have.property('tabIndex', 0);
+        expect(menuitems[2]).to.have.property('tabIndex', -1);
+        expect(menuitems[3]).to.have.property('tabIndex', -1);
       },
     );
 
@@ -274,11 +282,12 @@ describe('<Menu /> integration', () => {
           <MenuItem />
         </OpenMenu>,
       );
+      const menuitems = getAllByRole('menuitem');
 
       expect(getByTestId('Paper')).to.be.focused;
-      expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
-      expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', 0);
-      expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
+      expect(menuitems[0]).to.have.property('tabIndex', -1);
+      expect(menuitems[1]).to.have.property('tabIndex', 0);
+      expect(menuitems[2]).to.have.property('tabIndex', -1);
     });
 
     specify('[variant=selectedMenu] focuses nothing when it is closed and mounted', () => {
@@ -296,11 +305,12 @@ describe('<Menu /> integration', () => {
 
         getByRole('button').focus();
         getByRole('button').click();
+        const menuitems = getAllByRole('menuitem');
 
-        expect(getAllByRole('menuitem')[1]).to.be.focused;
-        expect(getAllByRole('menuitem')[0]).to.have.property('tabIndex', -1);
-        expect(getAllByRole('menuitem')[1]).to.have.property('tabIndex', 0);
-        expect(getAllByRole('menuitem')[2]).to.have.property('tabIndex', -1);
+        expect(menuitems[1]).to.be.focused;
+        expect(menuitems[0]).to.have.property('tabIndex', -1);
+        expect(menuitems[1]).to.have.property('tabIndex', 0);
+        expect(menuitems[2]).to.have.property('tabIndex', -1);
       },
     );
   });
@@ -320,9 +330,10 @@ describe('<Menu /> integration', () => {
 
   it('closes the menu when the backdrop is clicked', () => {
     const { getByRole, queryByRole } = render(<ButtonMenu />);
+    const button = getByRole('button');
 
-    getByRole('button').focus();
-    getByRole('button').click();
+    button.focus();
+    button.click();
 
     document.querySelector('[data-mui-test="Backdrop"]').click();
     clock.tick(0);

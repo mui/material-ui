@@ -439,14 +439,15 @@ describe('<InputBase />', () => {
         </FormControl>,
       );
       expect(getByTestId('label')).to.have.text('filled: false');
+      const textbox = getByRole('textbox');
 
-      fireEvent.change(getByRole('textbox'), { target: { value: 'material' } });
+      fireEvent.change(textbox, { target: { value: 'material' } });
       expect(getByTestId('label')).to.have.text('filled: true');
 
-      fireEvent.change(getByRole('textbox'), { target: { value: '0' } });
+      fireEvent.change(textbox, { target: { value: '0' } });
       expect(getByTestId('label')).to.have.text('filled: true');
 
-      fireEvent.change(getByRole('textbox'), { target: { value: '' } });
+      fireEvent.change(textbox, { target: { value: '' } });
       expect(getByTestId('label')).to.have.text('filled: false');
     });
 
