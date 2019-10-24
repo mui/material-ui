@@ -62,24 +62,26 @@ describe('<ExpansionPanelSummary />', () => {
     // with :focus
     const { getByRole } = render(<ExpansionPanelSummary />);
     fireEvent.mouseDown(document.body); // pointer device
+    const button = getByRole('button');
 
     fireEvent.keyDown(document.activeElement, { key: 'Tab' }); // not actually focusing (yet)
-    getByRole('button').focus();
+    button.focus();
 
-    expect(getByRole('button')).to.be.focused;
-    expect(getByRole('button')).to.have.class(classes.focused);
+    expect(button).to.be.focused;
+    expect(button).to.have.class(classes.focused);
   });
 
   it('blur should unset focused state', () => {
     const { getByRole } = render(<ExpansionPanelSummary />);
     fireEvent.mouseDown(document.body); // pointer device
     fireEvent.keyDown(document.activeElement, { key: 'Tab' }); // not actually focusing (yet)
-    getByRole('button').focus();
+    const button = getByRole('button');
+    button.focus();
 
-    getByRole('button').blur();
+    button.blur();
 
-    expect(getByRole('button')).not.to.be.focused;
-    expect(getByRole('button')).not.to.have.class(classes.focused);
+    expect(button).not.to.be.focused;
+    expect(button).not.to.have.class(classes.focused);
   });
 
   it('should fire onClick callbacks', () => {

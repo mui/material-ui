@@ -544,8 +544,10 @@ describe('<ButtonBase />', () => {
           Hello
         </ButtonBase>,
       );
-      expect(getByRole('button')).not.to.have.attribute('disabled');
-      expect(getByRole('button')).to.have.attribute('aria-disabled', 'true');
+      const button = getByRole('button');
+
+      expect(button).not.to.have.attribute('disabled');
+      expect(button).to.have.attribute('aria-disabled', 'true');
     });
   });
 

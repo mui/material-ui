@@ -68,8 +68,9 @@ describe('<ToggleButtonGroup />', () => {
         </ToggleButtonGroup>,
       );
 
-      expect(getAllByRole('button')[0]).to.have.attribute('aria-pressed', 'true');
-      expect(getAllByRole('button')[1]).to.have.attribute('aria-pressed', 'false');
+      const buttons = getAllByRole('button');
+      expect(buttons[0]).to.have.attribute('aria-pressed', 'true');
+      expect(buttons[1]).to.have.attribute('aria-pressed', 'false');
     });
   });
 

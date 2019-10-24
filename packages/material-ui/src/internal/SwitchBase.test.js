@@ -165,21 +165,22 @@ describe('<SwitchBase />', () => {
         defaultChecked
       />,
     );
+    const checkbox = getByRole('checkbox');
 
     expect(container.firstChild).to.have.class(classes.checked);
-    expect(getByRole('checkbox')).to.have.property('checked', true);
+    expect(checkbox).to.have.property('checked', true);
     expect(getByTestId('checked-icon')).to.be.ok;
 
-    getByRole('checkbox').click();
+    checkbox.click();
 
     expect(container.firstChild).not.to.have.class(classes.checked);
-    expect(getByRole('checkbox')).to.have.property('checked', false);
+    expect(checkbox).to.have.property('checked', false);
     expect(getByTestId('unchecked-icon')).to.be.ok;
 
-    getByRole('checkbox').click();
+    checkbox.click();
 
     expect(container.firstChild).to.have.class(classes.checked);
-    expect(getByRole('checkbox')).to.have.property('checked', true);
+    expect(checkbox).to.have.property('checked', true);
     expect(getByTestId('checked-icon')).to.be.ok;
   });
 
@@ -335,13 +336,14 @@ describe('<SwitchBase />', () => {
           />
         </FormControl>,
       );
+      const checkbox = getByRole('checkbox');
 
-      getByRole('checkbox').focus();
+      checkbox.focus();
 
       expect(getByTestId('focus-monitor')).to.have.text('focused: true');
       expect(handleFocus.callCount).to.equal(1);
 
-      getByRole('checkbox').blur();
+      checkbox.blur();
 
       expect(getByTestId('focus-monitor')).to.have.text('focused: false');
       expect(handleBlur.callCount).to.equal(1);

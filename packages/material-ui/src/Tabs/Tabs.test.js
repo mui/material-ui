@@ -575,8 +575,9 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      const tablistContainer = getByRole('tablist').parentNode;
-      const tab = getByRole('tablist').children[0];
+      const tablist = getByRole('tablist');
+      const tablistContainer = tablist.parentNode;
+      const tab = tablist.children[0];
 
       Object.defineProperty(tablistContainer, 'clientWidth', { value: 120 });
       Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
@@ -616,8 +617,9 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      const tablistContainer = getByRole('tablist').parentNode;
-      const tab = getByRole('tablist').children[1];
+      const tablist = getByRole('tablist');
+      const tablistContainer = tablist.parentNode;
+      const tab = tablist.children[1];
 
       Object.defineProperty(tablistContainer, 'clientHeight', { value: 100 });
       Object.defineProperty(tablistContainer, 'scrollHeight', { value: 100 });

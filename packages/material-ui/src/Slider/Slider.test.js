@@ -165,8 +165,7 @@ describe('<Slider />', () => {
   describe('range', () => {
     it('should support keyboard', () => {
       const { getAllByRole } = render(<Slider defaultValue={[20, 30]} />);
-      const thumb1 = getAllByRole('slider')[0];
-      const thumb2 = getAllByRole('slider')[1];
+      const [thumb1, thumb2] = getAllByRole('slider');
 
       thumb1.focus();
       fireEvent.keyDown(document.activeElement, {
@@ -509,17 +508,19 @@ describe('<Slider />', () => {
     const { getAllByRole } = render(
       <Slider value={[20, 50]} getAriaValueText={getAriaValueText} />,
     );
+    const sliders = getAllByRole('slider');
 
-    expect(getAllByRole('slider')[0]).to.have.attribute('aria-valuetext', '20°C');
-    expect(getAllByRole('slider')[1]).to.have.attribute('aria-valuetext', '50°C');
+    expect(sliders[0]).to.have.attribute('aria-valuetext', '20°C');
+    expect(sliders[1]).to.have.attribute('aria-valuetext', '50°C');
   });
 
   it('should support getAriaLabel', () => {
     const getAriaLabel = index => `Label ${index}`;
     const { getAllByRole } = render(<Slider value={[20, 50]} getAriaLabel={getAriaLabel} />);
+    const sliders = getAllByRole('slider');
 
-    expect(getAllByRole('slider')[0]).to.have.attribute('aria-label', 'Label 0');
-    expect(getAllByRole('slider')[1]).to.have.attribute('aria-label', 'Label 1');
+    expect(sliders[0]).to.have.attribute('aria-label', 'Label 0');
+    expect(sliders[1]).to.have.attribute('aria-label', 'Label 1');
   });
 
   describe('prop: ValueLabelComponent', () => {
