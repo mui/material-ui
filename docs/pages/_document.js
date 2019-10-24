@@ -143,12 +143,14 @@ MyDocument.getInitialProps = async ctx => {
     ...initialProps,
     canonical: pathnameToLanguage(ctx.req.url).canonical,
     userLanguage: ctx.query.userLanguage || 'en',
-    styles: (
+    styles: [
+      ...initialProps.styles,
       <style
         id="jss-server-side"
+        key="jss-server-side"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: css }}
-      />
-    ),
+      />,
+    ],
   };
 };

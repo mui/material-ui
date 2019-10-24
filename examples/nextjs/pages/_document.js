@@ -3,7 +3,7 @@ import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/styles';
 import theme from '../src/theme';
 
-class MyDocument extends Document {
+export default class MyDocument extends Document {
   render() {
     return (
       <html lang="en">
@@ -66,13 +66,6 @@ MyDocument.getInitialProps = async ctx => {
   return {
     ...initialProps,
     // Styles fragment is rendered after the app and page rendering finish.
-    styles: [
-      <React.Fragment key="styles">
-        {initialProps.styles}
-        {sheets.getStyleElement()}
-      </React.Fragment>,
-    ],
+    styles: [...initialProps.styles, sheets.getStyleElement()],
   };
 };
-
-export default MyDocument;
