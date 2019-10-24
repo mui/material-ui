@@ -1971,10 +1971,9 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@testing-library/dom@^6.3.0", "@testing-library/dom@^6.8.1":
-  version "6.8.1"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-6.8.1.tgz#47b4e0cc0742302fc9d122ac43010e6fc60bee65"
-  integrity sha512-b+Q4wryafqsSTFBV14cc5xqhN/OVB9oMeUQvZwy1kVx+kdqs4zQAcyvCsFkdcqx7NxibWpUN/fBIUaqyAEhitw==
+"@testing-library/dom@^6.3.0", "@testing-library/dom@^6.8.1", "@testing-library/dom@https://pkg.csb.dev/testing-library/dom-testing-library/commit/4499bf22/@testing-library/dom":
+  version "0.0.0-semantically-released"
+  resolved "https://pkg.csb.dev/testing-library/dom-testing-library/commit/4499bf22/@testing-library/dom#907e3b1acb3a405d20a18023a893328affc0823d"
   dependencies:
     "@babel/runtime" "^7.6.2"
     "@sheerun/mutationobserver-shim" "^0.3.2"
