@@ -17,13 +17,8 @@ class PatreonSponsors extends Component {
 
     return (
       <List className={classes.patronList}>
-        {patrons.map(patron => (
-          <a
-            className={classes.link}
-            key={patron.full_name}
-            href={patron.url}
-            rel="noopenner noreferrer"
-          >
+        {patrons.map((patron, key) => (
+          <a className={classes.link} key={key} href={patron.url} rel="noopenner noreferrer">
             <ListItem button>
               <Avatar className={classes.avatar} alt={patron.full_name} src={patron.image_url} />
               <ListItemText primary={patron.full_name} secondary={patron.email} />
