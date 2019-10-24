@@ -65,7 +65,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiSlider-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 | <span class="prop-name">marked</span> | <span class="prop-name">.MuiSlider-marked</span> | Styles applied to the root element if `marks` is provided with at least one label.
 | <span class="prop-name">vertical</span> | <span class="prop-name">.MuiSlider-vertical</span> | Pseudo-class applied to the root element if `orientation="vertical"`.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root and thumb element if `disabled={true}`.
 | <span class="prop-name">rail</span> | <span class="prop-name">.MuiSlider-rail</span> | Styles applied to the rail element.
 | <span class="prop-name">track</span> | <span class="prop-name">.MuiSlider-track</span> | Styles applied to the track element.
 | <span class="prop-name">trackFalse</span> | <span class="prop-name">.MuiSlider-trackFalse</span> | Styles applied to the track element if `track={false}`.
