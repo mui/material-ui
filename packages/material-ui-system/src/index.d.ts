@@ -81,6 +81,41 @@ export const flexbox: SimpleStyleFunction<
 >;
 export type FlexboxProps = PropsFor<typeof flexbox>;
 
+export const gridcontainer: SimpleStyleFunction<
+  | 'gridTemplateColumns'
+  | 'gridTemplateRows'
+  | 'gridTemplateAreas'
+  | 'gridTemplate'
+  | 'gridColumnGap'
+  | 'gridRowGap'
+  | 'gridGap'
+  | 'justifyItems'
+  | 'alignItems'
+  | 'placeItems'
+  | 'justifyContent'
+  | 'alignContent'
+  | 'placeContent'
+  | 'gridAutoColumns'
+  | 'gridAutoRows'
+  | 'gridAutoFlow'
+  | 'grid'
+>;
+export type GridcontainerProps = PropsFor<typeof gridcontainer>;
+
+export const griditem: SimpleStyleFunction<
+  | 'gridColumnStart'
+  | 'gridColumnEnd'
+  | 'gridRowStart'
+  | 'gridRowEnd'
+  | 'gridColumn'
+  | 'gridRow'
+  | 'gridArea'
+  | 'justifySelf'
+  | 'alignSelf'
+  | 'placeSelf'
+>;
+export type GriditemProps = PropsFor<typeof griditem>;
+
 // palette.js
 export const color: SimpleStyleFunction<'color'>;
 export const bgcolor: SimpleStyleFunction<'bgcolor'>;
