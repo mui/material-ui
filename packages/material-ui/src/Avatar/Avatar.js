@@ -93,10 +93,7 @@ Avatar.propTypes = {
    */
   alt: PropTypes.string,
   /**
-   * Used to render icon or text elements inside the Avatar.
-   * `src` and `alt` props will not be used and no `img` will
-   * be rendered by default.
-   *
+   * Used to render icon or text elements inside the Avatar if `src` is not set.
    * This can be an element, or just a string.
    */
   children: PropTypes.node,

@@ -58,6 +58,39 @@ describe('<Avatar />', () => {
     });
   });
 
+  describe('image avatar with unrendered children', () => {
+    it('should render a div containing an img, not children', () => {
+      const wrapper = shallow(
+        <Avatar
+          className="my-avatar"
+          src="something.jpg"
+          alt="Hello World!"
+          data-my-prop="woofAvatar"
+        >
+          MB
+        </Avatar>,
+      );
+      assert.strictEqual(wrapper.name(), 'div');
+      assert.strictEqual(wrapper.childAt(0).name(), 'img');
+      assert.strictEqual(wrapper.hasClass(classes.root), true);
+      assert.strictEqual(wrapper.hasClass('my-avatar'), true);
+      assert.strictEqual(wrapper.props()['data-my-prop'], 'woofAvatar');
+      assert.strictEqual(wrapper.hasClass(classes.colorDefault), false);
+      assert.strictEqual(wrapper.childAt(0).text(), '');
+      assert.strictEqual(wrapper.childAt(1).length, 0);
+      const img = wrapper.childAt(0);
+      assert.strictEqual(img.hasClass(classes.img), true);
+      assert.strictEqual(img.props().alt, 'Hello World!');
+      assert.strictEqual(img.props().src, 'something.jpg');
+    });
+
+    it('should be able to add more props to the image', () => {
+      const onError = () => {};
+      const wrapper = shallow(<Avatar src="something.jpg" imgProps={{ onError }} />);
+      assert.strictEqual(wrapper.childAt(0).props().onError, onError);
+    });
+  });
+
   describe('font icon avatar', () => {
     let wrapper;
 
