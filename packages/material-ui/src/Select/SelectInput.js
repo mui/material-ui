@@ -127,7 +127,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       }
 
       event.persist();
-      Object.defineProperty(event, "target", {writable: true, value: { value: newValue, name }});
+      Object.defineProperty(event, 'target', { writable: true, value: { value: newValue, name } });
       onChange(event, child);
     }
   };
@@ -156,7 +156,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     // if open event.stopImmediatePropagation
     if (!open && onBlur) {
       event.persist();
-      Object.defineProperty(event, "target", {writable: true, value: { value, name }});
+      Object.defineProperty(event, 'target', { writable: true, value: { value, name } });
       onBlur(event);
     }
   };
