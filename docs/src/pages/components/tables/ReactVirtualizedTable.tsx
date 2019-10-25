@@ -11,11 +11,11 @@ declare module '@material-ui/core/styles/withStyles' {
     /*
      * Used to control if the rule-set should be affected by rtl transformation
      */
-    flip?: boolean,
+    flip?: boolean;
     /*
      * Specifies the text direction/writing direction within a block-level element
      */
-    direction?: string,
+    direction?: string | undefined;
   }
 }
 
