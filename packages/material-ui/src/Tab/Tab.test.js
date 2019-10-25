@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { act, createClientRender } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Tab from './Tab';
 import ButtonBase from '../ButtonBase';
 
@@ -45,8 +45,12 @@ describe('<Tab />', () => {
     const { container, getByRole } = render(
       <Tab TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />,
     );
+    // simulate pointer device
+    fireEvent.pointerDown(document.body);
 
     act(() => {
+      fireEvent.keyDown(document.activeElement, { key: 'Tab' });
+      // jsdom doesn't actually support tab focus, we need to do it manually
       getByRole('tab').focus();
     });
 
@@ -57,8 +61,12 @@ describe('<Tab />', () => {
     const { container, getByRole } = render(
       <Tab disableFocusRipple TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />,
     );
+    // simulate pointer device
+    fireEvent.pointerDown(document.body);
 
     act(() => {
+      fireEvent.keyDown(document.activeElement, { key: 'Tab' });
+      // jsdom doesn't actually support tab focus, we need to do it manually
       getByRole('tab').focus();
     });
 
