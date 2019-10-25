@@ -35,7 +35,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     checked: checkedProp,
     checkedIcon,
     classes,
-    className: classNameProp,
+    className,
     defaultChecked,
     disabled: disabledProp,
     icon,
@@ -110,7 +110,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
           [classes.checked]: checked,
           [classes.disabled]: disabled,
         },
-        classNameProp,
+        className,
       )}
       disabled={disabled}
       tabIndex={null}

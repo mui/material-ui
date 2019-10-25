@@ -30,7 +30,7 @@ export const styles = theme => {
 const Paper = React.forwardRef(function Paper(props, ref) {
   const {
     classes,
-    className: classNameProp,
+    className,
     component: Component = 'div',
     square = false,
     elevation = 1,
@@ -45,16 +45,20 @@ const Paper = React.forwardRef(function Paper(props, ref) {
     }
   }
 
-  const className = clsx(
-    classes.root,
-    classes[`elevation${elevation}`],
-    {
-      [classes.rounded]: !square,
-    },
-    classNameProp,
+  return (
+    <Component
+      className={clsx(
+        classes.root,
+        classes[`elevation${elevation}`],
+        {
+          [classes.rounded]: !square,
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    />
   );
-
-  return <Component className={className} ref={ref} {...other} />;
 });
 
 Paper.propTypes = {

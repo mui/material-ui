@@ -167,7 +167,7 @@ export const styles = theme => {
 const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   const {
     classes,
-    className: classNameProp,
+    className,
     color = 'primary',
     value,
     valueBuffer,
@@ -220,7 +220,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
           [classes.buffer]: variant === 'buffer',
           [classes.query]: variant === 'query',
         },
-        classNameProp,
+        className,
       )}
       role="progressbar"
       {...rootProps}

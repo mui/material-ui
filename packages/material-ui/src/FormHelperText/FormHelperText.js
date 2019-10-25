@@ -45,7 +45,7 @@ export const styles = theme => ({
 const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
   const {
     classes,
-    className: classNameProp,
+    className,
     component: Component = 'p',
     disabled,
     error,
@@ -77,7 +77,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
           [classes.focused]: fcs.focused,
           [classes.required]: fcs.required,
         },
-        classNameProp,
+        className,
       )}
       ref={ref}
       {...other}

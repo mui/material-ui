@@ -61,7 +61,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     autoFocus,
     children,
     classes,
-    className: classNameProp,
+    className,
     defaultValue,
     error,
     FormHelperTextProps,
@@ -154,7 +154,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
 
   return (
     <FormControl
-      className={clsx(classes.root, classNameProp)}
+      className={clsx(classes.root, className)}
       error={error}
       fullWidth={fullWidth}
       hiddenLabel={hiddenLabel}

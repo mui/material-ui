@@ -103,7 +103,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
   const {
     children,
     classes,
-    className: classNameProp,
+    className,
     color = 'default',
     component: Component = 'div',
     disabled = false,
@@ -133,7 +133,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
           [classes.contained]: variant === 'contained',
           [classes.fullWidth]: fullWidth,
         },
-        classNameProp,
+        className,
       )}
       ref={ref}
       {...other}

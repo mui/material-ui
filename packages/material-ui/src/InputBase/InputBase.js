@@ -169,7 +169,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     autoComplete,
     autoFocus,
     classes,
-    className: classNameProp,
+    className,
     defaultValue,
     disabled,
     endAdornment,
@@ -398,7 +398,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           [classes.adornedStart]: startAdornment,
           [classes.adornedEnd]: endAdornment,
         },
-        classNameProp,
+        className,
       )}
       onClick={handleClick}
       ref={ref}
