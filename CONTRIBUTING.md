@@ -64,7 +64,7 @@ The core team is monitoring for Pull Requests. We will review your Pull Request 
 
 ### How to increase the chance of being accepted?
 
-We run a serious of checks automatically when a PR is opened (CI). If you're not
+We run a series of checks automatically when a PR is opened (CI). If you're not
 sure you can always open a PR and the GitHub UI will display a serious of checks
 that will run. If one of them fails check out the section about [Checks and how to fix them](#checksfix).
 
