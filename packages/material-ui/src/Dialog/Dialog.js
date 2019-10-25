@@ -168,6 +168,8 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
     TransitionComponent = Fade,
     transitionDuration = defaultTransitionDuration,
     TransitionProps,
+    'aria-describedby': ariaDescribedby,
+    'aria-labelledby': ariaLabelledby,
     ...other
   } = props;
 
@@ -240,6 +242,8 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
           <PaperComponent
             elevation={24}
             role="dialog"
+            aria-describedby={ariaDescribedby}
+            aria-labelledby={ariaLabelledby}
             {...PaperProps}
             className={clsx(
               classes.paper,
@@ -261,6 +265,14 @@ const Dialog = React.forwardRef(function Dialog(props, ref) {
 });
 
 Dialog.propTypes = {
+  /**
+   * The id(s) of the element(s) that describe the dialog.
+   */
+  'aria-describedby': PropTypes.string,
+  /**
+   * The id(s) of the element(s) that label the dialog.
+   */
+  'aria-labelledby': PropTypes.string,
   /**
    * @ignore
    */
