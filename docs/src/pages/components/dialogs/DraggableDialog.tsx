@@ -48,7 +48,7 @@ export default function DraggableDialog() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button autoFocus onClick={handleClose} color="primary">
             Cancel
           </Button>
           <Button onClick={handleClose} color="primary">

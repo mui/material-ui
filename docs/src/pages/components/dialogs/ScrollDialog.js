@@ -19,6 +19,14 @@ export default function ScrollDialog() {
     setOpen(false);
   };
 
+  const descriptionElementRef = React.useRef(null);
+  React.useEffect(() => {
+    const { current: descriptionElement } = descriptionElementRef;
+    if (descriptionElement !== null) {
+      descriptionElement.focus();
+    }
+  }, [open]);
+
   return (
     <div>
       <Button onClick={handleClickOpen('paper')}>scroll=paper</Button>
@@ -28,10 +36,15 @@ export default function ScrollDialog() {
         onClose={handleClose}
         scroll={scroll}
         aria-labelledby="scroll-dialog-title"
+        aria-describedby="scroll-dialog-description"
       >
         <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
         <DialogContent dividers={scroll === 'paper'}>
-          <DialogContentText>
+          <DialogContentText
+            id="scroll-dialog-description"
+            ref={descriptionElementRef}
+            tabIndex={-1}
+          >
             {[...new Array(50)]
               .map(
                 () => `Cras mattis consectetur purus sit amet fermentum.

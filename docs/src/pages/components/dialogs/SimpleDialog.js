@@ -49,7 +49,7 @@ function SimpleDialog(props) {
           </ListItem>
         ))}
 
-        <ListItem button onClick={() => handleListItemClick('addAccount')}>
+        <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
           <ListItemAvatar>
             <Avatar>
               <AddIcon />

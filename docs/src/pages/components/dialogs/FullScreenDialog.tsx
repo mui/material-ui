@@ -56,7 +56,7 @@ export default function FullScreenDialog() {
             <Typography variant="h6" className={classes.title}>
               Sound
             </Typography>
-            <Button color="inherit" onClick={handleClose}>
+            <Button autoFocus color="inherit" onClick={handleClose}>
               save
             </Button>
           </Toolbar>
