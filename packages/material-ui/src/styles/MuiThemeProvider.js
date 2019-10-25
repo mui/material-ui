@@ -1,6 +1,11 @@
 import React from 'react';
 import { ThemeProvider } from '@material-ui/styles';
 
+/**
+ * @ignore - internal component.
+ *
+ * TODO v5: remove
+ */
 export default function MuiThemeProvider(props) {
   if (process.env.NODE_ENV !== 'production') {
     console.error(
