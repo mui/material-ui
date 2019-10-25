@@ -64,8 +64,8 @@ The core team is monitoring for Pull Requests. We will review your Pull Request 
 
 ### How to increase the chance of being accepted?
 
-We run a series of checks automatically when a PR is opened (CI). If you're not
-sure you can always open a PR and the GitHub UI will display a serious of checks
+We run a series of checks automatically when a Pull Request is opened (CI). If you're not
+sure you can always open a Pull Request and the GitHub UI will display a serious of checks
 that will run. If one of them fails check out the section about [Checks and how to fix them](#checksfix).
 
 Make sure the following is true:
@@ -98,7 +98,7 @@ section gives an overview what each check is responsible for.
 ##### ci/codesandbox
 
 This task should not fail in isolation. It creates codesandboxes that use the version
-of Material-UI that was built from this PR. Use it to test more complex scenarios.
+of Material-UI that was built from this Pull Request. Use it to test more complex scenarios.
 
 ##### ci/circleci: checkout
 
@@ -130,7 +130,7 @@ are evaluated in another step.
 ##### argos
 
 Evaluates the screenshots taken in `test/regressions/tests` and fails if it detects
-differences. This doesn't necessarily mean your PR will be rejected as a failure
+differences. This doesn't necessarily mean your Pull Request will be rejected as a failure
 might be intended. Clicking on _Details_ will show you the differences.
 
 #### ci/circleci: test_types
