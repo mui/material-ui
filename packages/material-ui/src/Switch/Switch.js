@@ -60,6 +60,9 @@ export const styles = theme => ({
       color: theme.palette.primary.main,
       '&:hover': {
         backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
       },
     },
     '&$disabled': {
@@ -79,6 +82,9 @@ export const styles = theme => ({
       color: theme.palette.secondary.main,
       '&:hover': {
         backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
       },
     },
     '&$disabled': {
