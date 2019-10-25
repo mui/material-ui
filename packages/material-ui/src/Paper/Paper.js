@@ -36,9 +36,10 @@ const Paper = React.forwardRef(function Paper(props, ref) {
     elevation = 1,
     ...other
   } = props;
-  const theme = useTheme();
 
   if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const theme = useTheme();
     if (!theme.shadows[elevation]) {
       console.error(`Material-UI: this elevation \`${elevation}\` is not implemented.`);
     }
