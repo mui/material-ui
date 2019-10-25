@@ -1,5 +1,4 @@
 /* eslint-disable no-nested-ternary */
-
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';

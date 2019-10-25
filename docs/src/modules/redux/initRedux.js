@@ -1,5 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import optionsReducer from 'docs/src/modules/redux/optionsReducer';
 

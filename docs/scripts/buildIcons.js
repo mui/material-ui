@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 const path = require('path');
 const gm = require('gm');
 

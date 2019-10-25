@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 import 'isomorphic-fetch';
 import fse from 'fs-extra';
 import path from 'path';

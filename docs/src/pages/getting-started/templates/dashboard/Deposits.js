@@ -1,5 +1,4 @@
 /* eslint-disable no-script-url */
-
 import React from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
