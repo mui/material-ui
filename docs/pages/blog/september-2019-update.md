@@ -64,7 +64,7 @@ But this summary is just scratching the surface. We have accepted 199 commits fr
 - 🧮 We will start to work on a Data Table component.
 ⭐️ Notice that the advanced features of the data grid will be paid, behind an enterprise subscription. This is an effort part of [our roadmap](/discover-more/roadmap/) to answer enterprise needs.
 
-- ❓ Do you want something in specific? Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues), the number of 👍 matters to us.
+- ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
 
 <hr />
 

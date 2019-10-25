@@ -33,6 +33,8 @@ But this summary is just scratching the surface. We have accepted 198 commits fr
   You can already [preview it](https://deploy-preview-16455--material-ui.netlify.com/components/rating/).
   ![Rating](/static/blog/june-2019-update/rating.png)
 
+- ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
+
 <hr />
 
 Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development helped by the support of these awesome [backers](/discover-more/backers/). Please join them ✨.
