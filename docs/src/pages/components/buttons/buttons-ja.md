@@ -98,7 +98,7 @@ FABを使用するのは、それが画面の主なアクションを提示す�
 
 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
-{{"demo": "pages/components/buttons/CustomizedButtons.js"}}
+{{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
 👑 インスピレーションを求めているなら, [MUI Treasury's customization examples](https://mui-treasury.com/components/button)を確認できます。
 
@@ -118,7 +118,7 @@ FABを使用するのは、それが画面の主なアクションを提示す�
 
 ### Cursor not-allowed
 
-The ButtonBase component sets `pointer-events: none;` on disabled buttons. which prevents the appearance of a disabled cursor.
+The ButtonBase component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.
 
 If you wish to use `not-allowed`, you have two options:
 

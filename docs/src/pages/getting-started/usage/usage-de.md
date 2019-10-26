@@ -36,7 +36,7 @@ Die Nutzungserfahrung mit der Material-UI kann mit einer Vielzahl wichtiger Glob
 
 ### Responsiver meta-tag
 
-Material-UI wurde zuerst für Mobilgeräte entwickelt. Bei dieser Strategie schreiben wir zunächst Code für mobile Geräte und skalieren dann Komponenten nach Bedarf mithilfe sogenannter CSS media queries. Um eine korrektes Darstellen und Zoomen durch Berührungen für alle Geräte sicherzustellen, fügen Sie den auch viewport meta tag genannten responsiven Tag zu Ihrem `<head>`-Element.
+Material-UI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries. Um eine korrektes Darstellen und Zoomen durch Berührungen für alle Geräte sicherzustellen, fügen Sie den auch viewport meta tag genannten responsiven Tag zu Ihrem `<head>`-Element.
 
 ```html
 <meta

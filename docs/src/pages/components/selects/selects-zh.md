@@ -48,3 +48,24 @@ Like with the single selection, you can pull out the new value by accessing `eve
 ## 文本输入框
 
 `TextField` 包装器组件是一个完整的表单控件，它包括了标签、输入和帮助文本。 您可以在本节中找到具有[select模式](/components/text-fields/#textfield)的示例
+
+## 可访问性
+
+To properly label your `Select` input you need an extra element with an `id` that contains a label. That `id` needs to match the `labelId` of the `Select` e.g.
+
+```jsx
+<InputLabel id="label">Age</InputLabel>
+<Select labelId="label" id="select" value="20">
+  <MenuItem value="10">Twenty</MenuItem>
+  <MenuItem value="20">Twenty</MenuItem>
+</Select>
+```
+
+Alternatively a `TextField` with an `id` and `label` creates the proper markup and ids for you:
+
+```jsx
+<TextField id="select" label="Age" value="20">
+  <MenuItem value="10">Twenty</MenuItem>
+  <MenuItem value="20">Twenty</MenuItem>
+</TextField>
+```

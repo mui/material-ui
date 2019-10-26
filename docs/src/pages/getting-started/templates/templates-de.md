@@ -14,7 +14,7 @@ Abschnitte jedes Layouts sind entweder durch Kommentare oder die Verwendung sepa
 
 Wenn Sie während Sie die Beispiele verwenden Änderungen oder Verbesserungen vornehmen, die die Entwickler Erfahrung verbessern könnte, oder Sie mögen ein weiteres Beispiel dazu beitragen, denken Sie doch über einen [ Pull-Request auf GitHub](https://github.com/mui-org/material-ui/pulls) nach.
 
-So far we have demos for dashboard, sign in page, sign up page, blog page, checkout flow, album page, pricing page, and sticky footer page.
+So far we have demos for a dashboard, sign in page, sign up page, blog page, checkout flow, album page, pricing page, and sticky footer page.
 
 ## Premium-Themes
 

@@ -98,7 +98,7 @@ ButtonGroup 也可用于创建分割按钮。 下拉列表可以用于更改按�
 
 以下是自定义组件的一些例子。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
-{{"demo": "pages/components/buttons/CustomizedButtons.js"}}
+{{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
 👑如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/components/button)。
 
@@ -110,19 +110,19 @@ ButtonGroup 也可用于创建分割按钮。 下拉列表可以用于更改按�
 
 ## Third-party routing library（第三方路由库）
 
-One common use case is to use the button to trigger navigation to a new page. `ButtonBase` 组件提供了一个处理此用例的属性：`component`。 然而，对于一些特定的 `ButtonBase` 填补方案，我们则需提供组件的 DOM 节点。 在组件上附加一个 ref，并且预期此组件能够将这个 ref 传递到下层 DOM 节点，通过这样的方法可以实现。 鉴于我们的许多交互式组件都依赖于 `ButtonBase`，您可以在任何情况都能受益于它。
+一个常见的用例是使用按钮触发导航到新页面的操作。 `ButtonBase` 组件提供了一个处理此用例的属性：`component`。 然而，对于一些特定的 `ButtonBase` 填补方案，我们则需提供组件的 DOM 节点。 在组件上附加一个 ref，并且预期此组件能够将这个 ref 传递到下层 DOM 节点，通过这样的方法可以实现。 鉴于我们的许多交互式组件都依赖于 `ButtonBase`，您可以在任何情况都能受益于它。
 
-Here is an [integration example with react-router](/guides/composition/#button).
+这有一个[与 react-router 交互的例子](/guides/composition/#button)。
 
 ## 局限性
 
-### Cursor not-allowed
+### Cursor（鼠标悬浮）禁用
 
-The ButtonBase component sets `pointer-events: none;` on disabled buttons. which prevents the appearance of a disabled cursor.
+The ButtonBase component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.
 
-If you wish to use `not-allowed`, you have two options:
+若您希望使用 `not-allowed`， 您有以下两种选择：
 
-1. **CSS only**. You can remove the pointer events style on the disabled state of the `<button>` element:
+1. **CSS only**。 您可以移除作用在 `<button>` 元素上的指针事件的样式：
 
 ```css
 .MuiButtonBase-root:disabled {
@@ -131,12 +131,12 @@ If you wish to use `not-allowed`, you have two options:
 }
 ```
 
-However:
+然而：
 
-- You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements)
-- The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.
+- 若您仍旧需要在[禁用的元素上展示提示工具](/components/tooltips/#disabled-elements)，您需要恢复 `pointer-events: none;`。
+- 若您加载除了一个 button 元素之外的元素， 例如，一个链接 `<a>` 元素，指针是不会改变的。
 
-2. **DOM change**. You can wrap the button:
+2. **改变 DOM**。 您可以这样封装按钮：
 
 ```jsx
 <span style={{ cursor: "not-allowed" }}>
@@ -144,4 +144,4 @@ However:
 </span>
 ```
 
-This has the advantage of supporting any element, for instance, a link `<a>` element.
+这个方法能支持任何元素，例如，一个 `<a>` 元素。

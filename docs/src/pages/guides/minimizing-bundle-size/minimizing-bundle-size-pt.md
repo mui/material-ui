@@ -63,7 +63,6 @@ This option provides the best User Experience and Developer Experience:
 - UX: The Babel plugin enables top level tree-shaking even if your bundler doesn't support it.
 - DX: The Babel plugin makes startup time in dev mode as fast as Option 1.
 - DX: This syntax reduces the duplication of code, requiring only a single import for multiple modules. Overall, the code is easier to read, and you are less likely to make a mistake when importing a new module.
-
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
@@ -75,12 +74,12 @@ However, you need to apply the two following steps correctly.
 Pick one of the following plugins:
 
 - [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) with the following configuration:
-    
-    `yarn add -D babel-plugin-import`
-    
-    Create a `.babelrc.js` file in the root directory of your project:
 
-```js
+  `yarn add -D babel-plugin-import`
+
+  Create a `.babelrc.js` file in the root directory of your project:
+
+  ```js
   const plugins = [
     [
       'babel-plugin-import',
@@ -161,35 +160,34 @@ If you are using Create React App, you will need to use a couple of projects tha
   }
 ```
 
-    Note: You may run into errors like these:
-    
+  Note: You may run into errors like these:
 
-        Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
-        Module not found: Can't resolve '@material-ui/core/createStyles' in '/your/project'
-      ```
-    
-      This is because `@material-ui/styles` is re-exported through `core`, but the full import is not allowed.
-    
-      You have an import like this in your code:
-    
-      `import {makeStyles, createStyles} from '@material-ui/core';`
-    
-      The fix is simple, define the import separately:
-    
-      `import {makeStyles, createStyles} from '@material-ui/core/styles';`
-    
-      Enjoy significantly faster start times.
-    
-    #### 2. Convert all your imports
-    
-    Finally, you can convert your exisiting codebase to this option with this [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) codemod.
-    It will perform the following diffs:
-    
-    ```diff
-    -import Button from '@material-ui/core/Button';
-    -import TextField from '@material-ui/core/TextField';
-    +import { Button, TextField } from '@material-ui/core';
-    
+  ```
+    Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
+    Module not found: Can't resolve '@material-ui/core/createStyles' in '/your/project'
+  ```
+
+  This is because `@material-ui/styles` is re-exported through `core`, but the full import is not allowed.
+
+  You have an import like this in your code:
+
+  `import {makeStyles, createStyles} from '@material-ui/core';`
+
+  The fix is simple, define the import separately:
+
+  `import {makeStyles, createStyles} from '@material-ui/core/styles';`
+
+  Enjoy significantly faster start times.
+
+#### 2. Convert all your imports
+
+Finally, you can convert your exisiting codebase to this option with this [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) codemod. It will perform the following diffs:
+
+```diff
+-import Button from '@material-ui/core/Button';
+-import TextField from '@material-ui/core/TextField';
++import { Button, TextField } from '@material-ui/core';
+```
 
 ## ECMAScript
 

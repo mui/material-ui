@@ -63,7 +63,7 @@ Left and right scroll buttons will never be presented. All scrolling must be ini
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js"}}
 
-## Customized tabs
+## 自定义选项卡
 
 以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
@@ -71,7 +71,7 @@ Left and right scroll buttons will never be presented. All scrolling must be ini
 
 👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/tabs).
 
-## Vertical tabs
+## 垂直选项卡
 
 {{"demo": "pages/components/tabs/VerticalTabs.js"}}
 

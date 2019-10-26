@@ -31,15 +31,15 @@ components: Breadcrumbs, Link, Typography
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
-## Integration with react-router
+## 与 react-router 的交互
 
 {{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js"}}
 
-## 可访问性
+## 可及性
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#breadcrumb)
 
-Be sure to add a `aria-label` description on the `Breadcrumbs` component.
+请确保在`面包屑导航`上加上一个对于 `aria-label` 的描述。
 
 这个组件的可访问性依赖于：
 

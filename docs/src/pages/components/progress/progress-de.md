@@ -85,7 +85,7 @@ function Progress(props) {
 
 Hier sind einige Beispiele, wie man die Komponente anpassen kann. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
-{{"demo": "pages/components/progress/CustomizedProgressBars.js"}}
+{{"demo": "pages/components/progress/CustomizedProgressBars.js", "defaultCodeOpen": false}}
 
 ## Erscheinung verzögern
 

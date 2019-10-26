@@ -4,9 +4,9 @@ title: React Box（分组）组件
 
 # Box（分组）
 
-<p class="description">Box 组件充当大多数 CSS 实用程序所需求的包装器组件。</p>
+<p class="description">对于大多数 CSS 实用程序来说，Box 组件能够作为一个包装组件来使用。</p>
 
-在`@material-ui/system`中，您可以找到所述 Box 组件包的 [所有样式的功能](/system/basics/#all-inclusive)。 It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/core/styles`.
+在`@material-ui/system`中，您可以找到所述 Box 组件包的 [所有样式的功能](/system/basics/#all-inclusive)。 它是通过 `@material-ui/core/styles` 中的 [`styled()`](/styles/api/#styled-style-function-component) 函数来创建的。
 
 ## 示例
 

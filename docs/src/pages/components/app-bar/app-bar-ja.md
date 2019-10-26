@@ -35,29 +35,75 @@ components: AppBar, Toolbar, Menu
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js"}}
 
-## 下部アプリバー
+## Prominent
+
+A prominent app bar.
+
+{{"demo": "pages/components/app-bar/ProminentAppBar.js"}}
+
+## Bottom App Bar
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## スクロール
+## Fixed placement
 
-`useScrollTrigger()` hookを使用して、ユーザーのスクロールアクションに 対応できます。
+When you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:
+
+1. You can use `position="sticky"` instead of fixed. ⚠️ sticky is not supported by IE 11.
+2. You can render a second `<Toolbar />` component:
+
+```jsx
+function App() {
+  return (
+    <React.Fragment>
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <Toolbar />
+    </React.Fragment>
+  );
+}
+```
+
+3. You can use `theme.mixins.toolbar` CSS:
+
+```jsx
+const useStyles = makeStyles(theme => ({
+  offset: theme.mixins.toolbar,
+}))
+
+function App() {
+  const classes = useStyles();
+  return (
+    <React.Fragment>
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <div className={classes.offset} />
+    </React.Fragment>
+  )
+};
+```
+
+## Scrolling
+
+You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
 ### App Barを隠す
 
-アプリバーは下にスクロールすると非表示になり、読み込めるスペースが増えます。
+The app bar hides on scroll down to leave more space for reading.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### App Barを固定する
 
-アプリバーはスクロール時に上昇し、ユーザーがページの上部にいないことを伝えます。
+The app bar elevates on scroll to communicate that the user is not at the top of the page.
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### トップへ戻る
 
-スクロール時にフローティングアクションボタンが表示され、ページの上部に簡単に戻ることができます。
+A floating action buttons appears on scroll to make it easy to get back to the top of the page.
 
 {{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
 
@@ -73,7 +119,7 @@ components: AppBar, Toolbar, Menu
 
 #### 戻り値
 
-` trigger `：スクロール位置が基準に合っているのか
+`trigger`: Does the scroll position match the criteria?
 
 #### 例
 

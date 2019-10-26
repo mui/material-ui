@@ -85,7 +85,7 @@ function Progress(props) {
 
 Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/components/progress/CustomizedProgressBars.js"}}
+{{"demo": "pages/components/progress/CustomizedProgressBars.js", "defaultCodeOpen": false}}
 
 ## Delaying appearance
 

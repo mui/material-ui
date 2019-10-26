@@ -20,3 +20,9 @@ Tree views can be used to represent a file system navigator displaying folders a
 ### Gmail clone
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}
+
+## Barrierefreiheit
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
+
+The component follows the WAI-ARIA best practices.

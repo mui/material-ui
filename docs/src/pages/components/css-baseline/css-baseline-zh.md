@@ -6,13 +6,13 @@ components: CssBaseline
 
 <p class="description">Material-UI 提供了一个 CssBaseline 组件，用于启动一个优雅、一致且简单的基线。</p>
 
-您可能对 [normailize.css](https://github.com/necolas/normalize.css)比较熟悉，它是 一个HTML 元素和样式规范化的属性的集合。
+您可能对 [normailize.css](https://github.com/necolas/normalize.css)比较熟悉，而这是一个 HTML 元素和样式规范化的属性的集合。
 
 ```jsx
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-function MyApp() {
+export default function MyApp() {
   return (
     <React.Fragment>
       <CssBaseline />
@@ -20,18 +20,16 @@ function MyApp() {
     </React.Fragment>
   );
 }
-
-export default MyApp;
 ```
 
 ## 方法
 
 ### 页面
 
-我们更新了 `<html>` 和 `<body>` 元素，这样将提供更好的页面范围的默认设置。 更具体地说：
+我们更新了 `<html>` 和 `<body>` 元素，这样能够更好地设置页面范围的默认设置。 具体来说：
 
-- 删除所有浏览器中的边距。
-- 默认使用 Material Design 的背景颜色。 在标准设备上，它使用 [`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background)，而在打印设备上，它则使用一个白色的背景色。
+- 所有浏览器中的边距将会被删除。
+- Material Design 的背景颜色会默认地被应用。 标准设备采用 [`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background)，而打印设备上会采用白色的背景色。
 
 ### 布局
 

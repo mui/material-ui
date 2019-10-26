@@ -68,15 +68,13 @@ const theme = {
   },
 };
 
-function App() {
+export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      {/* Kinder*/}
+      {/* children */}
     </ThemeProvider>
   )
 }
-
-export default App
 ```
 
 Jetzt können Sie einen Abstandsmultiplikatorwert angeben:

@@ -1,14 +1,14 @@
 ---
-title: Material Icons
-components: Icon, SvgIcon
+title: Icônes Material Ui
+components: Icones, SvgIcon
 ---
 
-# Material Icons
+# Icônes Material Ui
 
-<p class="description">1,000+ React Material icons ready to use from the official website.</p>
+<p class="description">Plus de 1000 Icônes Material conçues pour React sont disponibles depuis le site officiel.</p>
 
-The following npm package, [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons), includes the 1,000+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to [`SvgIcon`](/api/svg-icon/) components.
+Le package [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) inclut plus de 1000 [Icones Material Ui](https://material.io/tools/icons/?style=baseline) officielles converties en composants [`SvgIcon`](/api/svg-icon/).
 
 {{"demo": "pages/components/material-icons/SearchIcons.js", "hideHeader": true}}
 
-ℹ️ The search supports synonyms. Try searching for "hamburger", or "logout".
+La recherche inclut les synonymes. Essayez de chercher "hamburger" ou "déconnexion".

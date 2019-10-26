@@ -20,7 +20,7 @@ O código-fonte deste site de documentação também está incluído no reposit�
 
 ## Projetos de exemplo mais avançados
 
-Se você deseja começar com um exemplo mais completo e real, pode dar uma olhada nos [modelos gratuitos](/getting-started/templates/) ou [temas premium & modelos](https://themes.material-ui.com/) ou:
+If you want to start with a more complete and real-world example, you could take a look at the [free templates](/getting-started/templates/) or [premium themes & templates](https://themes.material-ui.com/) or:
 
 - [React Most Wanted](https://github.com/TarikHuber/react-most-wanted), which includes:
     
@@ -28,7 +28,7 @@ Se você deseja começar com um exemplo mais completo e real, pode dar uma olhad
   - Custom Create React App script to start a new project with just a single CLI command
   - Build for Firebase including Authentication using the official Firebase Web Auth UI
   - Routing with React Router including error handling (404) and lazy loading
-  - All PWA features included (SW, Notifications, deffered installation prompt and more)
+  - All PWA features included (SW, Notifications, deferred installation prompt and more)
   - Optimized and scalable performance (all ~100 points on Lighthouse)
 - [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
     

@@ -15,4 +15,4 @@ Por exemplo, se você precisar ocultar um menu quando as pessoas clicarem em qua
 
 {{"demo": "pages/components/click-away-listener/ClickAway.js"}}
 
-Observe que o componente aceita apenas um elemento filho. You can find a more advanced demo on the [menu documentation section](/components/menus/#menulist-composition).
+Observe que o componente aceita apenas um elemento filho. You can find a more advanced demo on the [Menu documentation section](/components/menus/#menulist-composition).

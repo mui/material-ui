@@ -26,12 +26,12 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 警告框是一种紧急中断的行为，用以将某一情况通知用户，并需要确认。
 
-大多数警报不需要标题。 他们通过以下两种方式总结了一两句话的决定：
+大多数警报不需要标题。 删繁就简，总而言之：
 
 - 问一个问题（例如："是否删除此对话？”）
 - 发表一个和动作按钮相关的声明
 
-仅在高风险情况下使用标题栏警报，例如可能丢失连接。 用户应该能够仅根据标题和按钮文本来理解选择。
+请仅在高风险情况下使用标题栏警报，考虑到可能丢失连接。 用户应该能够单凭标题和按钮文本来理解所有的选项。
 
 如果需要加上标题请:
 
@@ -40,7 +40,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
-## 过渡动画
+## Transitions（过渡动画）
 
 当然你也可以换掉过渡效果，下面的示例使用了 ` Slide（幻灯片）`。
 
@@ -95,23 +95,23 @@ function MyComponent() {
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## Draggable dialog
+## 可拖动的对话框
 
-You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable). To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. This will make the entire dialog draggable.
+您可以通过 [react-draggable](https://github.com/mzabriskie/react-draggable) 来创建一个可拖动的对话框。 您可以将需要导入的 `Draggable` 组件作为 `Dialog` 组件的 `PaperComponent` 来传入。 这样一来，您可以拖动整个对话框。
 
 {{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## 长内容滚动
 
-When dialogs become too long for the user’s viewport or device, they scroll.
+考虑到用户有不同的视图大小，并且使用不同的设备，对话框会变得太长，这样的情况下，对话框是可滚动的。
 
 - `scroll=paper` 可以使对话框的内容在 paper 元素中滚动。
 - `scroll=body` 可以使对话框的内容在 body 元素内滚动。
 
-Try the demo below to see what we mean:
+请看一下下面的例子，这会帮助您加深理解：
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
 ## 可访问性
 
-Follow the [Modal accessibility section](/components/modal/#accessibility).
+请参考[模态框可及性的部分](/components/modal/#accessibility)。

@@ -1,8 +1,8 @@
-# Support
+# 支持
 
 <p class="description">From community help to premium critical business support, we’re here to help.</p>
 
-## Community help
+## 社区帮助
 
 The community is your first stop for questions and advice about the framework. Welcome to the community!
 
@@ -39,7 +39,7 @@ Stay up to date with the development of the library by following the blog.
 
 [Read the latest posts](https://medium.com/material-ui/)
 
-### Resources 📖
+### 资源📖
 
 您是第一次接触 Material-UI 吗? 如果你知道从哪里开始, 就很容易学会!
 
@@ -51,7 +51,7 @@ Receive the latest news on Material-UI.
 
 [Follow us](https://twitter.com/MaterialUI)
 
-### Supported versions
+### 支持的版本
 
 The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the very beginning, and always will be. Developers can ensure Material-UI is the right choice for their React applications through Material-UI’s community maintenance strategy. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
@@ -67,24 +67,24 @@ The current status of each Material-UI version is as follows:
 
 For teams and organizations that require additional support for older versions, Material-UI has [options available](#enterprise).
 
-## Professional support (Premium)
+## 专业支持(高级)
 
-### Enterprise Edition
+### 企业版本
 
 Accelerate your company’s application development with a secure, long-term solution that’s optimized for enterprise and backed by Material-UI experts.
 
 - **Long Term version support.** LTS provides developers and organizations with additional stability and reliability in the applications they’re developing, including guaranteed service level agreements (SLAs) and advisory services. Take the time you need before upgrading to the latest active version of Material-UI, or remain confident in your application’s long-term supportability by staying on whichever version you’re most comfortable with. LTS is available as a paid service, it extends to Material-UI v1 implementations and higher.
 - **Version migration assistance**.
 - **Priority fixes**.
-- **Priority support**. Timely support and troubleshooting when you need it most. Get expert help directly from the Material-UI team with guaranteed response times (next-business day).
+- **Priority support**. Timely support and troubleshooting when you need it most. Get expert help directly from the Material-UI team with guaranteed response times (next business day).
 
 For more information, [get a quote](mailto:enterprise@material-ui.com) from our team.
 
-### Advisory
+### 咨询
 
 Supercharge your team’s development with Material-UI Advisory Services:
 
-#### Developer Advisory
+#### 开发者咨询
 
 Everything your team needs to make sure you’re using React in the best way as you evaluate and build on Material-UI.
 
@@ -94,7 +94,7 @@ Everything your team needs to make sure you’re using React in the best way as 
 
 [Get a quote](mailto:advisory@material-ui.com)
 
-#### Enterprise Advisory
+#### 企业咨询
 
 A complete support package, for teams using Material-UI for critical business applications and organizations deploying Material-UI across multiple teams.
 
@@ -125,14 +125,14 @@ The end result? All of the capabilities you expect from commercial-grade softwar
 
 [Request a demo](https://tidelift.com/subscription/request-a-demo?utm_source=material_ui&utm_medium=referral&utm_campaign=enterprise)
 
-### Custom work 🛠
+### 定制工作🛠
 
-Tweak Material-UI to meet specific requirements. Give us a summary of your needs; We'll help you if I can. We might:
+调整Material-UI以满足特定要求。 给我们您的需求摘要；如果可以的话，我们会帮助您。 我们可能：
 
-- Give you an estimate of time and price if the work is straightforward
-- Suggest alternatives that might not require Material-UI
-- Decline the work due to timing or relevancy
+- 如果工作简单明了，会给您估计时间和价格
+- 建议可能不需要 Material-UI 的替代方法
+- 由于时间或相关性而拒绝合作
 
-Note that work must be Material-UI related. We don't accept general React development work. Our contracting price is $300/hour or $2,000/day.
+请注意，工作必须与 Material-UI 相关。 我们不接受一般的 React 开发工作。 Our contracting price is $300/hour or $1,500/day.
 
-[Send us an email](mailto:custom-work@material-ui.com)
+[给我们发送电子邮件](mailto:custom-work@material-ui.com)

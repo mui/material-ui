@@ -31,4 +31,4 @@ Cet exemple illustre une grid list défilante horizontale d'images. Les listes d
 
 Cet exemple montre des tuiles , en utilisant les `rows` et `cols`props pour ajuster la taille de la tuile, et le `padding` prop pour ajuster l'espacement. Les tuiles ont une barre de titre personnalisée, placée en haut et avec un dégradé personnalisé `titleBackground`. L'action secondaire `IconButton` est positionnée sur la gauche.
 
-{{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true}}
+{{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true, "defaultCodeOpen": false}}

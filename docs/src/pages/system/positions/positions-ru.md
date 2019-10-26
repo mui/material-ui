@@ -4,12 +4,12 @@
 
 ## z-index
 
+{{"demo": "pages/system/positions/ZIndex.js", "defaultCodeOpen": false}}
+
 ```jsx
 <Box zIndex="tooltip">
 <Box zIndex="modal">
 ```
-
-{{"demo": "pages/system/positions/ZIndex.js"}}
 
 ## API
 

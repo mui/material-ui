@@ -63,7 +63,7 @@ To make these transitions as easy as possible:
 - The number of breaking changes is minimized, and migration tools provided when possible.
 - The deprecation policy described below is followed, so that you have time to update your apps to the latest APIs and best practices.
 
-### Deprecation policy
+### 弃用原则
 
 - Deprecated features are announced in the changelog, and when possible, with warnings at runtime.
 - When a deprecation is announced, recommended update path is provided.

@@ -58,21 +58,21 @@ React [não suporta](https://github.com/facebook/react/issues/13097) a API [`cre
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
-- Certifique-se de adicionar `aria-labelledby="id..."`, referenciando o título modal, ao `Modal`. Adicionalmente, você pode dar uma descrição do seu modal com a propriedade `aria-describedby = "id..."` no `Modal`.
+- Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
+    
+    ```jsx
+    <Modal
+    aria-labelledby="modal-title"
+    aria-describedby="modal-description"
+    >
+    <h2 id="modal-title">
+      My Title
+    </h2>
+    <p id="modal-description">
+      My Description
+    </p>
+    </Modal>
+    ```
 
-```jsx
-<Modal
-  aria-labelledby="modal-titulo"
-  aria-describedby="modal-descricao"
->
-  <h2 id="modal-titulo">
-    Meu Título
-  </h2>
-  <p id="modal-descricao">
-    Minha Descrição
-  </p>
-</Modal>
-```
-
-- O [WAI-ARIA authoring practices ](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) pode ajudá-lo a definir o foco inicial no elemento mais relevante, com base no seu conteúdo modal.
-- Uma janela modal sobrepõe a janela principal ou outra janela modal. As janelas sob um modal são **inertes**. Ou seja, os usuários não podem interagir com o conteúdo fora de uma janela modal ativa.
+- The [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
+- A modal window overlys on either the primary window or another modal window. Windows under a modal are **inert**. That is, users cannot interact with content outside an active modal window.

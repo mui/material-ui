@@ -33,7 +33,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
+{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
 
 ## Бесплатно
 

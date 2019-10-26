@@ -33,7 +33,7 @@ Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus da
 
 {{"demo": "pages/components/radio-buttons/CustomizedRadios.js"}}
 
-## When to use
+## Quand les utiliser
 
 - [Checkboxes vs. Cases d’option](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 

@@ -14,7 +14,7 @@ This guide aims to document the most popular alternatives, but you should find t
 
 ## Plain CSS
 
-Nothing fancy, just plain old CSS.
+Nothing fancy, plain old CSS.
 
 **PlainCssButton.css**
 
@@ -96,32 +96,7 @@ XPath: /pre[4]/code
 
 The `styled()` method works perfectly on all of the components.
 
-```jsx
-import React from 'react';
-import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
-
-const StyledButton = styled(Button)`
-  background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
-  border-radius: 3px;
-  border: 0;
-  color: white;
-  height: 48px;
-  padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, .3);
-`;
-
-export default function StyledComponents() {
-  return (
-    <div>
-      <Button>Material-UI</Button>
-      <StyledButton>Styled Components</StyledButton>
-    </div>
-  );
-}
-```
-
-{{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/StyledComponents.js", "defaultCodeOpen": true}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/k553lz1qrv)
 
@@ -138,7 +113,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 </StylesProvider>
 ```
 
-Another approach is to use the `&&` characters in styled-components to [bump up specificity](https://www.styled-components.com/docs/advanced#issues-with-specificity) by repeating the class name. You should avoid the usage of `!important`.
+Another approach is to use the `&&` characters in styled-components to [bump up specificity](https://www.styled-components.com/docs/advanced#issues-with-specificity) by repeating the class name. Avoid the usage of `!important`.
 
 ### Deeper elements
 
@@ -146,35 +121,7 @@ If you attempt to style a Drawer with variant permanent, you will likely need to
 
 The following example overrides the `label` style of `Button` in addition to the custom styles on the button itself. It also works around [this styled-components issue](https://github.com/styled-components/styled-components/issues/439) by "consuming" properties that should not be passed on to the underlying component.
 
-```jsx
-import React from 'react';
-import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
-
-const StyledButton = styled(({ color, ...other }) => <Button {...other} />)`
-  background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
-  border: 0;
-  color: white;
-  height: 48px;
-  padding: 0 30px;
-  box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
-
-  & .MuiButton-label {
-    color: ${props => props.color};
-  }
-`;
-
-export default function StyledComponentsDeep() {
-  return (
-    <div>
-      <Button>Material-UI</Button>
-      <StyledButton color="papayawhip">Styled Components</StyledButton>
-    </div>
-  );
-}
-```
-
-{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "defaultCodeOpen": true}}
 
 The above demo relies on the [default `classes` values](/styles/advanced/#with-material-ui-core) but you can provide your own class name: `.label`.
 
@@ -291,35 +238,7 @@ export default function CssModulesButton() {
 
 Emotion's **css()** method works seamlessly with Material-UI.
 
-```jsx
-/** @jsx jsx */
-import { jsx, css } from '@emotion/core';
-import Button from '@material-ui/core/Button';
-
-// Just assign them the Button's className attribute
-export default function EmotionButton() {
-  return (
-    <div>
-      <Button>Material-UI</Button>
-      <Button
-        css={css`
-          background: linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%);
-          border-radius: 3px;
-          border: 0;
-          color: white;
-          height: 48px;
-          padding: 0 30px;
-          box-shadow: 0 3px 5px 2px rgba(255, 105, 135, 0.3);
-        `}
-      >
-        Emotion
-      </Button>
-    </div>
-  );
-}
-```
-
-{{"demo": "pages/guides/interoperability/EmotionCSS.js", "hideHeader": true}}
+{{"demo": "pages/guides/interoperability/EmotionCSS.js", "defaultCodeOpen": true}}
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/yw93kl7y0j)
 
@@ -370,39 +289,3 @@ export default injectSheet(styles)(ReactJssButton);
 ```
 
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/24kllqxvmp)
-
-## Glamor
-
-![Stars](https://img.shields.io/github/stars/threepointone/glamor.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/glamor.svg?)
-
-A good way to apply styles with Glamor is using the **css()** function and then **classnames** to get them as strings:
-
-```jsx
-import React from 'react';
-import { css } from 'glamor';
-import Button from '@material-ui/core/Button';
-
-const buttonStyles = {
-  background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-  borderRadius: 3,
-  border: 0,
-  color: "white",
-  height: 48,
-  padding: "0 30px",
-  boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .30)"
-};
-
-// Then we just assign them the Button's className attribute
-export default function GlamorButton() {
-  return (
-    <div>
-      <Button>Material-UI</Button>
-      <Button {...css(buttonStyles)}>Glamor</Button>
-    </div>
-  );
-}
-```
-
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/vp2znmj40)
-
-**Note:** Both Glamor and JSS inject their styles at the bottom of the `<head>`. If you don't want to mark style attributes with **!important**, you need to change [the CSS injection order](/styles/advanced/#css-injection-order), as in the demo.

@@ -57,6 +57,8 @@
   "expandAll": "Развернуть все",
   "showSource": "Показать исходник",
   "hideSource": "Скрыть исходник",
+  "showFullSource": "Show the full source",
+  "hideFullSource": "Hide the full source",
   "viewGitHub": "Посмотреть исходник на GitHub",
   "codesandbox": "Редактировать в CodeSandbox",
   "seeMore": "Ещё",
@@ -80,6 +82,7 @@
   "resetDensity": "Reset density",
   "increaseSpacing": "increase spacing",
   "decreaseSpacing": "decrease spacing",
+  "getProfessionalSupport": "Get Professional Support",
   "pages": {
     "/getting-started": "Приступая к работе",
     "/getting-started/installation": "Инструкция по установке",

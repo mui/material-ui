@@ -20,7 +20,7 @@ Create React AppはReactを学ぶのに良いプロジェクトです。 どの�
 
 ## More advanced example projects
 
-If you want to start with a more complete and real world example, you could take a look at the [free templates](/getting-started/templates/) or [premium themes & templates](https://themes.material-ui.com/) or:
+If you want to start with a more complete and real-world example, you could take a look at the [free templates](/getting-started/templates/) or [premium themes & templates](https://themes.material-ui.com/) or:
 
 - [React Most Wanted](https://github.com/TarikHuber/react-most-wanted), which includes:
     
@@ -28,7 +28,7 @@ If you want to start with a more complete and real world example, you could take
   - 単一のCLIコマンドで新しいプロジェクトを開始するカスタムCreate React Appスクリプト
   - 公式のFirebase Web Auth UIを使用した認証を含むFirebase用のビルド
   - エラー処理（404）および遅延ロードを含むReact Routerによるルーティング
-  - すべてのPWA機能が含まれています（SW、通知、遅延インストールプロンプトなど）
+  - All PWA features included (SW, Notifications, deferred installation prompt and more)
   - 最適化されたスケーラブルなパフォーマンス（すべてLighthouseで最大100ポイント）
 - [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
     

@@ -14,7 +14,7 @@ Las secciones de cada diseño están claramente definidas, ya sea por comentario
 
 Si al usar estos ejemplos realizas cambios o mejoras que podrían mejorar la experiencia del desarrollador, o deseas contribuir con un ejemplo adicional, considera crear una pull request [en GitHub](https://github.com/mui-org/material-ui/pulls).
 
-Hasta ahora tenemos demostraciones para el panel de control, página de inicio de sesión, página de registro, página de blog, flujo de pago, página de álbum, página de precios y la el pie de página adhesivo.
+So far we have demos for a dashboard, sign in page, sign up page, blog page, checkout flow, album page, pricing page, and sticky footer page.
 
 ## Temas Premium
 

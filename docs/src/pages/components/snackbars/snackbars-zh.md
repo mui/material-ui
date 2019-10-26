@@ -73,6 +73,35 @@ Snackbars contain a single line of text directly related to the operation perfor
 
 ![评星](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/notistack.svg)
 
-在下面的示例中, 我们演示如何使用 [notistack](https://github.com/iamhosseindhv/notistack)。 notistack 可以很容易地显示消息条（因此您不必处理它们的打开/关闭状态）。 It also enables you to stack them on top of one another (although this is discouraged by the specification).
+We demonstrate how to use [notistack](https://github.com/iamhosseindhv/notistack). notistack has an **imperative API** that makes it easy to display toasts (so you don't have to deal with open/close state of them). It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design specification).
 
-{{"demo": "pages/components/snackbars/IntegrationNotistack.js"}}
+{{"demo": "pages/components/snackbars/IntegrationNotistack.js", "defaultCodeOpen": false}}
+
+## 可访问性
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
+
+- Since alerts are not required to receive focus, content authors should not require users to close a Snackbar if the role is set to `alert` through the SnackbarContent `role` prop. This is the default role.
+- If a Snackbar requires focus to close it, then content authors should use the `role` of `alertdialog`.
+
+```jsx
+<SnackbarContent
+  message="This is a Snackbar message."
+  role="alert"
+/>
+```
+
+```jsx
+<Snackbar
+  ContentProps={{
+    'aria-describedby': 'snackbar-fab-message-id',
+    'role': 'alertdialog',
+  }}
+  message={<span id="snackbar-fab-message-id">Archived</span>}
+  action={
+    <Button color="inherit" size="small">
+      Undo
+    </Button>
+  }
+/>
+```

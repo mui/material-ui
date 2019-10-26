@@ -85,7 +85,7 @@ export default function StyledComponents() {
 
 {{"demo": "pages/styles/basics/StyledComponents.js"}}
 
-### Higher-order component API
+### 高阶组件API
 
 ```jsx
 import React from 'react';

@@ -4,19 +4,23 @@
 
 ## 例子
 
+### Inline
+
+{{"demo": "pages/system/display/Inline.js", "defaultCodeOpen": false}}
+
 ```jsx
 <Box component="div" display="inline">inline</Box>
 <Box component="div" display="inline">inline</Box>
 ```
 
-{{"demo": "pages/system/display/Inline.js"}}
+### Block
+
+{{"demo": "pages/system/display/Block.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="span" display="block">block</Box>
 <Box component="span" display="block">block</Box>
 ```
-
-{{"demo": "pages/system/display/Block.js"}}
 
 ## 隐藏元素
 
@@ -37,6 +41,8 @@
 | 仅在xl上可见  | `display={{ xs: 'none', xl: 'block' }}`              |
 
 
+{{"demo": "pages/system/display/Hiding.js", "defaultCodeOpen": false}}
+
 ```jsx
 <Box display={{ xs: 'block', md: 'none' }}>
   隐藏在比md宽的屏幕上
@@ -46,9 +52,9 @@
 </Box>
 ```
 
-{{"demo": "pages/system/display/Hiding.js"}}
-
 ## 显示在打印中
+
+{{"demo": "pages/system/display/Print.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box display="block" displayPrint="none">
@@ -59,9 +65,9 @@
 </Box>
 ```
 
-{{"demo": "pages/system/display/Print.js"}}
-
 ## Overflow
+
+{{"demo": "pages/system/display/Overflow.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="div" overflow="hidden">
@@ -72,9 +78,9 @@
 </Box>
 ```
 
-{{"demo": "pages/system/display/Overflow.js"}}
-
 ## Text Overflow
+
+{{"demo": "pages/system/display/TextOverflow.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="div" textOverflow="clip">
@@ -85,9 +91,9 @@
 </Box>
 ```
 
-{{"demo": "pages/system/display/TextOverflow.js"}}
-
 ## Visibility
+
+{{"demo": "pages/system/display/Visibility.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="div" visibility="visible">
@@ -98,9 +104,9 @@
 </Box>
 ```
 
-{{"demo": "pages/system/display/Visibility.js"}}
-
 ## White Space
+
+{{"demo": "pages/system/display/WhiteSpace.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="div" whiteSpace="nowrap">
@@ -110,8 +116,6 @@
   White Space Normal
 </Box>
 ```
-
-{{"demo": "pages/system/display/WhiteSpace.js"}}
 
 ## API
 

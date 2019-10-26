@@ -44,7 +44,7 @@ Los botones delineados también son una alternativa de menos énfasis que los bo
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
-## Grouped Buttons
+## Botones Agrupados
 
 The ButtonGroup component can be used to group outlined (the default) or contained buttons.
 
@@ -76,7 +76,7 @@ La transición Zoom se puede usar para lograr esto. Ten en cuenta que ya que las
 
 ## Tamaños
 
-Fancy larger or smaller buttons? Use the `size` property.
+Botones más grandes o más pequeños? Usa la propiedad `size`.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
@@ -98,7 +98,7 @@ Los iconos son también apropiados para botones toggle que permiten marcar o des
 
 Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/components/buttons/CustomizedButtons.js"}}
+{{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
 👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
 
@@ -118,7 +118,7 @@ Here is an [integration example with react-router](/guides/composition/#button).
 
 ### Cursor not-allowed
 
-The ButtonBase component sets `pointer-events: none;` on disabled buttons. which prevents the appearance of a disabled cursor.
+The ButtonBase component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.
 
 If you wish to use `not-allowed`, you have two options:
 
@@ -144,4 +144,4 @@ However:
 </span>
 ```
 
-This has the advantage of supporting any element, for instance, a link `<a>` element.
+Este tiene la ventaja de permitir cualquier elemento, por ejemplo un enlace `<a>`<a></0>.</p>

@@ -25,7 +25,7 @@ If you are creating a modal dialog, you probably want to use the [Dialog](/compo
 - [Menu](/components/menus/)
 - [Popover](/components/popover/)
 
-## Simple modal
+## Modal simple
 
 {{"demo": "pages/components/modal/SimpleModal.js"}}
 
@@ -33,9 +33,9 @@ Notice that you can disable the outline (often blue or gold) with the `outline: 
 
 ## Transiciones
 
-The open/close state of the modal can be animated with a transition component. This component should respect the following conditions:
+The open/close state of the modal can be animated with a transition component. Este componente debe respetar las siguientes condiciones:
 
-- Be a direct child descendent of the modal.
+- Ser un hijo directo del modal.
 - Have an `in` prop. This corresponds to the open / close state.
 - Call the `onEnter` callback prop when the enter transition starts.
 - Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow the modal to unmount the child content when closed and fully transitioned.
@@ -44,7 +44,7 @@ Modal has built-in support for [react-transition-group](https://github.com/react
 
 {{"demo": "pages/components/modal/TransitionsModal.js"}}
 
-Alternatively, you can use [react-spring](https://github.com/react-spring/react-spring).
+Como alternativa, puedes usar [react-spring](https://github.com/react-spring/react-spring).
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 
@@ -59,20 +59,20 @@ React [doesn't support](https://github.com/facebook/react/issues/13097) the [`cr
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
 - Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
-
-```jsx
-<Modal
-  aria-labelledby="modal-title"
-  aria-describedby="modal-description"
->
-  <h2 id="modal-title">
-    My Title
-  </h2>
-  <p id="modal-description">
-    My Description
-  </p>
-</Modal>
-```
+    
+    ```jsx
+    <Modal
+    aria-labelledby="modal-title"
+    aria-describedby="modal-description"
+    >
+    <h2 id="modal-title">
+      My Title
+    </h2>
+    <p id="modal-description">
+      My Description
+    </p>
+    </Modal>
+    ```
 
 - The [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
 - A modal window overlys on either the primary window or another modal window. Windows under a modal are **inert**. That is, users cannot interact with content outside an active modal window.

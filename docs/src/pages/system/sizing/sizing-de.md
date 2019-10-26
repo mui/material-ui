@@ -6,6 +6,8 @@
 
 Die Größenstilfunktionen unterstützen verschiedene Eigenschafteneingabetypen:
 
+{{"demo": "pages/system/sizing/Values.js", "defaultCodeOpen": false}}
+
 ```jsx
 <Box width={1/4}> // Números em [0,1] são multiplicados por 100 e convertido em % valores.
 <Box width={300}> // Números são convertidos em valores de pixel.
@@ -13,9 +15,9 @@ Die Größenstilfunktionen unterstützen verschiedene Eigenschafteneingabetypen:
 <Box width={1}>   // 100%
 ```
 
-{{"demo": "pages/system/sizing/Values.js"}}
-
 ## Breite
+
+{{"demo": "pages/system/sizing/Width.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box width="25%">…
@@ -25,9 +27,9 @@ Die Größenstilfunktionen unterstützen verschiedene Eigenschafteneingabetypen:
 <Box width="auto">…
 ```
 
-{{"demo": "pages/system/sizing/Width.js"}}
-
 ## Höhe
+
+{{"demo": "pages/system/sizing/Height.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box height="25%">…
@@ -35,8 +37,6 @@ Die Größenstilfunktionen unterstützen verschiedene Eigenschafteneingabetypen:
 <Box height="75%">…
 <Box height="100%">…
 ```
-
-{{"demo": "pages/system/sizing/Height.js"}}
 
 ## API
 

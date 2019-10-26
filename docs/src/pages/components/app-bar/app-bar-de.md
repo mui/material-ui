@@ -35,13 +35,59 @@ Ein seitliches Suchfeld.
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js"}}
 
-## Untere App-Bar
+## Prominent
+
+A prominent app bar.
+
+{{"demo": "pages/components/app-bar/ProminentAppBar.js"}}
+
+## Bottom App Bar
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Scrollen
+## Fixed placement
 
-Sie können den Hook `useScrollTrigger ()`, um auf Bildlauf Aktionen zu reagieren.
+When you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:
+
+1. You can use `position="sticky"` instead of fixed. ⚠️ sticky is not supported by IE 11.
+2. You can render a second `<Toolbar />` component:
+
+```jsx
+function App() {
+  return (
+    <React.Fragment>
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <Toolbar />
+    </React.Fragment>
+  );
+}
+```
+
+3. You can use `theme.mixins.toolbar` CSS:
+
+```jsx
+const useStyles = makeStyles(theme => ({
+  offset: theme.mixins.toolbar,
+}))
+
+function App() {
+  const classes = useStyles();
+  return (
+    <React.Fragment>
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <div className={classes.offset} />
+    </React.Fragment>
+  )
+};
+```
+
+## Scrolling
+
+You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
 ### App-Bar verstecken
 
@@ -73,7 +119,7 @@ A floating action buttons appears on scroll to make it easy to get back to the t
 
 #### Rückgabewerte
 
-`trigger`: Entspricht die Bildlauf Position den Kriterien?
+`trigger`: Does the scroll position match the criteria?
 
 #### Beispiele
 

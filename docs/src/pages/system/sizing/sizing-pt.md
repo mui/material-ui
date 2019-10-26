@@ -6,6 +6,8 @@
 
 As funções de estilo de dimensionamento suportam diferentes tipos de entrada de propriedade:
 
+{{"demo": "pages/system/sizing/Values.js", "defaultCodeOpen": false}}
+
 ```jsx
 <Box width={1/4}> // Números em [0,1] são multiplicados por 100 e convertido em % valores.
 <Box width={300}> // Números são convertidos em valores de pixel.
@@ -13,9 +15,9 @@ As funções de estilo de dimensionamento suportam diferentes tipos de entrada d
 <Box width={1}>   // 100%
 ```
 
-{{"demo": "pages/system/sizing/Values.js"}}
-
 ## Largura
+
+{{"demo": "pages/system/sizing/Width.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box width="25%">…
@@ -25,9 +27,9 @@ As funções de estilo de dimensionamento suportam diferentes tipos de entrada d
 <Box width="auto">…
 ```
 
-{{"demo": "pages/system/sizing/Width.js"}}
-
 ## Altura
+
+{{"demo": "pages/system/sizing/Height.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box height="25%">…
@@ -35,8 +37,6 @@ As funções de estilo de dimensionamento suportam diferentes tipos de entrada d
 <Box height="75%">…
 <Box height="100%">…
 ```
-
-{{"demo": "pages/system/sizing/Height.js"}}
 
 ## API
 

@@ -51,11 +51,27 @@ Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus da
 
 {{"demo": "pages/components/tables/CustomizedTable.js"}}
 
-## Action de pagination de table personnalisée
+### Custom pagination options
 
-La propriété `Action` du composant `TablePagination` permet l'implémentation d'actions personnalisées.
+It's possible to customise the options shown in the "Rows per page" select using the `rowsPerPageOptions` prop. You should either provide an array of:
 
-{{"démo": "pages/components/tables/CustomPaginationActionsTable.js"}}
+- **numbers**, each number will be used for the option's label and value.
+    
+    ```jsx
+    <TablePagination rowsPerPageOptions={[10, 50]} />
+    ```
+
+- **objects**, the `value` and `label` keys will be used respectively for the value and label of the option (useful for language strings such as 'All').
+    
+    ```jsx
+    <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
+    ```
+
+### Custom pagination actions
+
+The `Action` property of the `TablePagination` component allows the implementation of custom actions.
+
+{{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}
 
 ## Fixed header
 
@@ -77,7 +93,7 @@ In the following example, we demonstrate how to use [react-virtualized](https://
 
 ## Projets complémentaires
 
-Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti des avantages suivants:
+Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti des projects suivants:
 
 ### material-table
 
