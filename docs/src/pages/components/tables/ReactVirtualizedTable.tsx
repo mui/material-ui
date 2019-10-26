@@ -12,10 +12,6 @@ declare module '@material-ui/core/styles/withStyles' {
      * Used to control if the rule-set should be affected by rtl transformation
      */
     flip?: boolean;
-    /*
-     * Specifies the text direction/writing direction within a block-level element
-     */
-    direction?: string | undefined;
   }
 }
 
@@ -29,9 +25,6 @@ const styles = (theme: Theme) =>
     table: {
       // temporary right-to-left patch, waiting for
       // https://github.com/bvaughn/react-virtualized/issues/454
-      '& .ReactVirtualized__Grid': {
-        direction: 'inherit !important',
-      },
       '& .ReactVirtualized__Table__headerRow': {
         flip: false,
         paddingRight: theme.direction === 'rtl' ? '0px !important' : undefined,
@@ -129,6 +122,9 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
             height={height}
             width={width}
             rowHeight={rowHeight!}
+            gridStyle={{
+              direction: 'inherit',
+            }}
             headerHeight={headerHeight!}
             className={classes.table}
             {...tableProps}
