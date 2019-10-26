@@ -64,9 +64,9 @@ The core team is monitoring for Pull Requests. We will review your Pull Request 
 
 ### How to increase the chance of being accepted?
 
-We run a series of checks automatically when a Pull Request is opened (CI). If you're not
-sure you can always open a Pull Request and the GitHub UI will display a serious of checks
-that will run. If one of them fails check out the section about [Checks and how to fix them](#checksfix).
+CI runs a series of checks automatically when a Pull Request is opened. If you're not
+sure if you changes will pass, you can always open a Pull Request and the GitHub UI will display  a summary of
+the results. If one of them fails check out the section [Checks and how to fix them](#checksfix).
 
 Make sure the following is true:
 
@@ -102,12 +102,12 @@ of Material-UI that was built from this Pull Request. Use it to test more comple
 
 ##### ci/circleci: checkout
 
-A preflight check to see if the dependencies and lockfile is ok. Running `yarn`
+A preflight check to see if the dependencies and lockfile are ok. Running `yarn`
 and `yarn deduplicate` should fix most of the issues.
 
 ##### ci/circleci: test_static
 
-Checks code format and lints the repository. The log of the failed build should explain
+Checks code format, and lints the repository. The log of the failed build should explain
 how to fix the issues.
 
 ##### ci/circleci: test_unit-1
@@ -124,7 +124,7 @@ should fail locally as well. If other browsers failed debugging might be trickie
 ##### ci/circleci: test_regression-1
 
 Renders tests in `test/regressions/tests` and makes screenshots. This step shouldn't
-fail if the others pass. Otherwise a maintainer will take a look. The screenshots
+fail if the others pass. Otherwise, a maintainer will take a look. The screenshots
 are evaluated in another step.
 
 ##### argos
@@ -139,23 +139,23 @@ Typechecks the repository. The log of the failed build should list all issues.
 
 ##### deploy/netlify
 
-Renders a preview of our docs with your changes if it succeeds. Otherwise `yarn docs:build`
+Renders a preview of the docs with your changes if it succeeds. Otherwise `yarn docs:build`
 or `yarn docs:export` usually fail locally as well.
 
 ##### mui-org.material-ui (Azure Pipelines)
 
 This task is mostly responsible for monitoring the bundle size. It will only report
-the size and not fail if it exceeds a certain threshold. If it fails there's usually
+the size if the change exceeds a certain threshold. If it fails there's usually
 something wrong with the how the packages or docs were built.
 
 #### codecov/project
 
-Monitors coverage of our tests. A reduction in coverage isn't necessarily bad but
-it's always appreciated if we can improve it.
+Monitors coverage of the tests. A reduction in coverage isn't necessarily bad but
+it's always appreciated if it can be improved.
 
 #### Misc
 
-There are various other checks done by netlify to check integrity of our docs. Click
+There are various other checks done by Netlify to check the integrity of our docs. Click
 on _Details_ to find out more about them.
 
 ### Testing the documentation site
@@ -229,7 +229,7 @@ about translations](#translations).
 
 Material-UI documents how to use this library with TypeScript.
 
-If you are familiar with that language, write the demo in TypeScript, and only, in a \*.tsx file.
+If you are familiar with this language, write the demo in TypeScript, and only, in a \*.tsx file.
 When you're done run `yarn docs:typescript:formatted` to automatically create the JavaScript version.
 
 If you are no familiar with that language, write the demo in JavaScript, a core contributor might help you to migrate it to TypeScript.
