@@ -91,7 +91,7 @@ export default function CustomizedDialogs() {
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button autoFocus onClick={handleClose} color="primary">
             Save changes
           </Button>
         </DialogActions>

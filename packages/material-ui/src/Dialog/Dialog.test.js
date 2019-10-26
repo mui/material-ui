@@ -264,4 +264,20 @@ describe('<Dialog />', () => {
       expect(getByTestId('paper')).to.have.class('custom-paper-class');
     });
   });
+
+  describe('a11y', () => {
+    it('can be labelled by another element', () => {
+      const { getByRole } = render(
+        <Dialog open aria-labelledby="dialog-title">
+          <h1 id="dialog-title">Choose either one</h1>
+          <div>Actually you cant</div>
+        </Dialog>,
+      );
+
+      const dialog = getByRole('dialog');
+      expect(dialog).to.have.attr('aria-labelledby', 'dialog-title');
+      const label = document.getElementById(dialog.getAttribute('aria-labelledby'));
+      expect(label).to.have.text('Choose either one');
+    });
+  });
 });

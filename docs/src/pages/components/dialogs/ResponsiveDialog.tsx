@@ -40,7 +40,7 @@ export default function ResponsiveDialog() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button autoFocus onClick={handleClose} color="primary">
             Disagree
           </Button>
           <Button onClick={handleClose} color="primary" autoFocus>
