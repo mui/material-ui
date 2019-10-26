@@ -87,7 +87,7 @@ const NullPaper = React.forwardRef(function NullPaper(props, ref) {
   return <div tabIndex={-1} ref={ref} />;
 });
 
-describe.only('<SwipeableDrawer />', () => {
+describe('<SwipeableDrawer />', () => {
   let mount;
 
   before(() => {
@@ -268,6 +268,7 @@ describe.only('<SwipeableDrawer />', () => {
           // simulate close swipe that doesn't swipe far enough
           const handleClose = spy();
           wrapper.setProps({ open: true, onClose: handleClose });
+          wrapper.update();
           fireMouseEvent('touchstart', wrapper.find(FakePaper), {
             touches: [params.closeTouches[0]],
           });
@@ -351,6 +352,7 @@ describe.only('<SwipeableDrawer />', () => {
         open: true,
         onClose: handleClose,
       });
+      wrapper.update();
       fireMouseEvent('touchstart', wrapper.find(FakePaper), {
         touches: [{ pageX: 250, clientY: 0 }],
       });
