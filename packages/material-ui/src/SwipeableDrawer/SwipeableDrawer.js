@@ -37,7 +37,7 @@ function getTranslate(currentTranslate, startLocation, open, maxTranslate) {
 }
 
 function getDomTreeShapes(element, rootNode) {
-  // adapted from https://github.com/oliviertassinari/react-swipeable-views/blob/7666de1dba253b896911adf2790ce51467670856/packages/react-swipeable-views/src/SwipeableViews.js#L129
+  // Adapted from https://github.com/oliviertassinari/react-swipeable-views/blob/7666de1dba253b896911adf2790ce51467670856/packages/react-swipeable-views/src/SwipeableViews.js#L129
   let domTreeShapes = [];
 
   while (element && element !== rootNode) {
@@ -56,15 +56,7 @@ function getDomTreeShapes(element, rootNode) {
     ) {
       // Ignore the nodes that have no width.
       // Keep elements with a scroll
-      domTreeShapes.push({
-        element,
-        scrollWidth: element.scrollWidth,
-        scrollHeight: element.scrollHeight,
-        clientWidth: element.clientWidth,
-        clientHeight: element.clientHeight,
-        scrollLeft: element.scrollLeft,
-        scrollTop: element.scrollTop,
-      });
+      domTreeShapes.push(element);
     }
 
     element = element.parentNode;
@@ -74,8 +66,7 @@ function getDomTreeShapes(element, rootNode) {
 }
 
 function findNativeHandler({ domTreeShapes, start, current, anchor }) {
-  // adapted from https://github.com/oliviertassinari/react-swipeable-views/blob/7666de1dba253b896911adf2790ce51467670856/packages/react-swipeable-views/src/SwipeableViews.js#L175
-
+  // Adapted from https://github.com/oliviertassinari/react-swipeable-views/blob/7666de1dba253b896911adf2790ce51467670856/packages/react-swipeable-views/src/SwipeableViews.js#L175
   const axisProperties = {
     scrollPosition: {
       x: 'scrollLeft',
