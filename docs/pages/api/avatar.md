@@ -25,7 +25,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">alt</span> | <span class="prop-type">string</span> |  | Used in combination with `src` or `srcSet` to provide an alt attribute for the rendered `img` element. |
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Used to render icon or text elements inside the Avatar. `src` and `alt` props will not be used and no `img` will be rendered by default.<br>This can be an element, or just a string. |
+| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Used to render icon or text elements inside the Avatar if `src` is not set. This can be an element, or just a string. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">imgProps</span> | <span class="prop-type">object</span> |  | Attributes applied to the `img` element if the component is used to display an image. |
