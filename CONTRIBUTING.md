@@ -97,7 +97,7 @@ section gives an overview what each check is responsible for.
 
 ##### ci/codesandbox
 
-This task should not fail in isolation. It creates codesandboxes that use the version
+This task should not fail in isolation. It creates multiple sandboxes on CodeSandbox.com that use the version
 of Material-UI that was built from this Pull Request. Use it to test more complex scenarios.
 
 ##### ci/circleci: checkout
