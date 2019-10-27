@@ -64,12 +64,16 @@ The core team is monitoring for Pull Requests. We will review your Pull Request 
 
 ### How to increase the chance of being accepted?
 
+CI runs a series of checks automatically when a Pull Request is opened. If you're not
+sure if you changes will pass, you can always open a Pull Request and the GitHub UI will display a summary of
+the results. If one of them fails check out the section [Checks and how to fix them](#checksfix).
+
 Make sure the following is true:
 
 - The branch is targeted at `master` for ongoing development. We do our best to keep `master` in good shape, with all tests passing. Code that lands in `master` must be compatible with the latest stable release. It may contain additional features, but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
 - If a feature is being added:
-   - If the result was already achievable with the core library, explain why this feature needs to be added to the core.
-   - If this is a common use case, consider adding an example to the documentation.
+  - If the result was already achievable with the core library, explain why this feature needs to be added to the core.
+  - If this is a common use case, consider adding an example to the documentation.
 - When adding new features or modifying existing, please include tests to confirm the new behavior. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/master/test/README.md).
 - If props were added or prop types were changed, the TypeScript declarations were updated.
 - When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab).
@@ -84,6 +88,75 @@ Because we will only merge a Pull Request for which all tests pass. The followin
 - If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes.
   See [About TypeScript demos](#about-typescript-demos).
 - The Pull Request title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/#imperative) for a great explanation)
+
+#### Checks and how to fix them
+
+If any of the checks fails click on the _Details_
+link and review the logs of the build to find out why it failed. The following
+section gives an overview what each check is responsible for.
+
+##### ci/codesandbox
+
+This task should not fail in isolation. It creates multiple sandboxes on CodeSandbox.com that use the version
+of Material-UI that was built from this Pull Request. Use it to test more complex scenarios.
+
+##### ci/circleci: checkout
+
+A preflight check to see if the dependencies and lockfile are ok. Running `yarn`
+and `yarn deduplicate` should fix most of the issues.
+
+##### ci/circleci: test_static
+
+Checks code format, and lints the repository. The log of the failed build should explain
+how to fix the issues.
+
+##### ci/circleci: test_unit-1
+
+Runs the unit tests in a `jsdom` environment. If this fails then `yarn test:unit`
+should fail locally as well. You can narrow the scope of tests run with `yarn test:unit --grep ComponentName`.
+
+##### ci/circleci: test_browser-1
+
+Runs the unit tests in multiple browsers (via Browserstack). The log of the failed
+build should list which browsers failed. If Chrome failed then `yarn test:karma`
+should fail locally as well. If other browsers failed debugging might be trickier.
+
+##### ci/circleci: test_regression-1
+
+Renders tests in `test/regressions/tests` and makes screenshots. This step shouldn't
+fail if the others pass. Otherwise, a maintainer will take a look. The screenshots
+are evaluated in another step.
+
+##### argos
+
+Evaluates the screenshots taken in `test/regressions/tests` and fails if it detects
+differences. This doesn't necessarily mean your Pull Request will be rejected as a failure
+might be intended. Clicking on _Details_ will show you the differences.
+
+#### ci/circleci: test_types
+
+Typechecks the repository. The log of the failed build should list all issues.
+
+##### deploy/netlify
+
+Renders a preview of the docs with your changes if it succeeds. Otherwise `yarn docs:build`
+or `yarn docs:export` usually fail locally as well.
+
+##### mui-org.material-ui (Azure Pipelines)
+
+This task is mostly responsible for monitoring the bundle size. It will only report
+the size if the change exceeds a certain threshold. If it fails there's usually
+something wrong with the how the packages or docs were built.
+
+#### codecov/project
+
+Monitors coverage of the tests. A reduction in coverage isn't necessarily bad but
+it's always appreciated if it can be improved.
+
+#### Misc
+
+There are various other checks done by Netlify to check the integrity of our docs. Click
+on _Details_ to find out more about them.
 
 ### Testing the documentation site
 
@@ -106,6 +179,7 @@ Tests can be run with `yarn test`.
 ### Updating the component API documentation
 
 To update the component API documentation (auto-generated from component PropTypes comments), run:
+
 ```sh
 yarn docs:api
 ```
@@ -155,7 +229,7 @@ about translations](#translations).
 
 Material-UI documents how to use this library with TypeScript.
 
-If you are familiar with that language, write the demo in TypeScript, and only, in a *.tsx file.
+If you are familiar with this language, write the demo in TypeScript, and only, in a \*.tsx file.
 When you're done run `yarn docs:typescript:formatted` to automatically create the JavaScript version.
 
 If you are no familiar with that language, write the demo in JavaScript, a core contributor might help you to migrate it to TypeScript.
