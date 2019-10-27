@@ -157,7 +157,7 @@ export interface StyleOptions<PropKey, Theme extends object> {
    * dot access in `Theme`
    */
   themeKey?: string;
-  transform?: (cssValue: unknown) => number | string;
+  transform?: (cssValue: unknown) => number | string | React.CSSProperties;
 }
 export function style<PropKey extends string, Theme extends object>(
   options: StyleOptions<PropKey, Theme>,
