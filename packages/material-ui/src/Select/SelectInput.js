@@ -127,7 +127,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       }
 
       event.persist();
-      event.target = { value: newValue, name };
+      // Preact support, target is read only property on a native event.
+      Object.defineProperty(event, 'target', { writable: true, value: { value: newValue, name } });
       onChange(event, child);
     }
   };
@@ -156,7 +157,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     // if open event.stopImmediatePropagation
     if (!open && onBlur) {
       event.persist();
-      event.target = { value, name };
+      // Preact support, target is read only property on a native event.
+      Object.defineProperty(event, 'target', { writable: true, value: { value, name } });
       onBlur(event);
     }
   };
