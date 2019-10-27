@@ -1,5 +1,4 @@
 /* eslint-disable no-use-before-define */
-
 import React from 'react';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -38,7 +37,7 @@ export default function Tags() {
         options={top100Films.map(option => option.title)}
         defaultValue={[top100Films[13].title]}
         freeSolo
-        renderValue={(value: string[], { className, onDelete }) =>
+        renderTags={(value: string[], { className, onDelete }) =>
           value.map((option: string, index: number) => (
             <Chip
               key={index}

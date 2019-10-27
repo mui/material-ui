@@ -1,5 +1,4 @@
 /* eslint-disable no-use-before-define */
-
 import React from 'react';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -11,7 +10,7 @@ export default function FixedTags() {
       options={top100Films}
       getOptionLabel={(option: FilmOptionType) => option.title}
       defaultValue={[top100Films[6], top100Films[13]]}
-      renderValue={(value: FilmOptionType[], { className, onDelete }) =>
+      renderTags={(value: FilmOptionType[], { className, onDelete }) =>
         value.map((option: FilmOptionType, index: number) => (
           <Chip
             key={index}

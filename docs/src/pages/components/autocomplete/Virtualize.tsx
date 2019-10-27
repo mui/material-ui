@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
-import { Theme } from '@material-ui/core/styles';
 
 function renderRow(props: ListChildComponentProps) {
   const { data, index, style } = props;
@@ -19,29 +20,38 @@ function renderRow(props: ListChildComponentProps) {
 }
 
 // Adapter for react-window
-function ListboxComponent(props: React.HTMLAttributes<HTMLElement>) {
-  const { children, ...other } = props;
-  const smUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'));
-  const itemCount = Array.isArray(children) ? children.length : 0;
-  const itemSize = smUp ? 36 : 48;
+const ListboxComponent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLElement>>(
+  function ListboxComponent(props, ref) {
+    const { children, ...other } = props;
+    const smUp = useMediaQuery((theme: Theme) => theme.breakpoints.up('sm'));
+    const itemCount = Array.isArray(children) ? children.length : 0;
+    const itemSize = smUp ? 36 : 48;
 
-  return (
-    <div {...other}>
-      <FixedSizeList
-        style={{ padding: 0, height: Math.min(8, itemCount) * itemSize, maxHeight: 'auto' }}
-        itemData={children}
-        height={250}
-        width="100%"
-        outerElementType="ul"
-        itemSize={itemSize}
-        overscanCount={5}
-        itemCount={itemCount}
-      >
-        {renderRow}
-      </FixedSizeList>
-    </div>
-  );
-}
+    const outerElementType = React.useMemo(() => {
+      return React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+        (props2, ref2) => <div ref={ref2} {...props2} {...other} />,
+      );
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+    return (
+      <div ref={ref}>
+        <FixedSizeList
+          style={{ padding: 0, height: Math.min(8, itemCount) * itemSize, maxHeight: 'auto' }}
+          itemData={children}
+          height={250}
+          width="100%"
+          outerElementType={outerElementType}
+          innerElementType="ul"
+          itemSize={itemSize}
+          overscanCount={5}
+          itemCount={itemCount}
+        >
+          {renderRow}
+        </FixedSizeList>
+      </div>
+    );
+  },
+);
 
 function random(length: number) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -54,11 +64,23 @@ function random(length: number) {
   return result;
 }
 
+const useStyles = makeStyles({
+  listbox: {
+    '& ul': {
+      padding: 0,
+      margin: 0,
+    },
+  },
+});
+
 export default function Virtualize() {
+  const classes = useStyles();
+
   return (
     <Autocomplete
       style={{ width: 300 }}
       disableListWrap
+      classes={classes}
       ListboxComponent={ListboxComponent}
       TextFieldProps={{ label: '10,000 options', variant: 'outlined', fullWidth: true }}
       options={Array.from(new Array(10000)).map(() => random(Math.ceil(Math.random() * 18)))}

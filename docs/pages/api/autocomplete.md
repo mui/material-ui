@@ -35,7 +35,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">disableCloseOnSelect</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the popup won't close when a value is selected. |
 | <span class="prop-name">disableListWrap</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list box in the popup will not wrap focus. |
 | <span class="prop-name">disableOpenOnFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the popup won't open on input focus. |
-| <span class="prop-name">filterOptions</span> | <span class="prop-type">func</span> | <span class="prop-default">createFilterOptions()</span> | A filter function that determins the options that are eligible.<br><br>**Signature:**<br>`function(options: any, state: object) => boolean`<br>*options:* The options to render.<br>*state:* The state of the component. |
+| <span class="prop-name">filterOptions</span> | <span class="prop-type">func</span> |  | A filter function that determins the options that are eligible.<br><br>**Signature:**<br>`function(options: any, state: object) => boolean`<br>*options:* The options to render.<br>*state:* The state of the component. |
 | <span class="prop-name">filterSelectedOptions</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, hide the selected options from the list box. |
 | <span class="prop-name">freeSolo</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options. |
 | <span class="prop-name">getOptionDisabled</span> | <span class="prop-type">func</span> |  | Used to determine the disabled state for a given option. |
@@ -43,7 +43,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">groupBy</span> | <span class="prop-type">func</span> |  | If provided, the options will be grouped under the returned string. The groupBy value is also used as the text for group headings when `renderGroup` is not provided.<br><br>**Signature:**<br>`function(options: any) => string`<br>*options:* The option to group. |
 | <span class="prop-name">id</span> | <span class="prop-type">string</span> |  | This prop is used to help implement the accessibility logic. If you don't provide this prop. It falls back to a randomly generated id. |
 | <span class="prop-name">includeInputInList</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the highlight can move to the input. |
-| <span class="prop-name">ListboxComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">List</span> | The component used to render the listbox. |
+| <span class="prop-name">ListboxComponent</span> | <span class="prop-type">element type</span> | <span class="prop-default">'ul'</span> | The component used to render the listbox.<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
 | <span class="prop-name">loading</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the component is in a loading state. |
 | <span class="prop-name">loadingText</span> | <span class="prop-type">node</span> | <span class="prop-default">'Loading…'</span> | Text to display when in a loading state. |
 | <span class="prop-name">multiple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If true, `value` must be an array and the menu will support multiple selections. |
@@ -53,10 +53,11 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">onOpen</span> | <span class="prop-type">func</span> |  | Callback fired when the popup requests to be opened. Use in controlled mode (see open).<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |
 | <span class="prop-name">open</span> | <span class="prop-type">bool</span> |  | Control the popup` open state. |
 | <span class="prop-name">options</span> | <span class="prop-type">array</span> | <span class="prop-default">[]</span> | Array of options. |
+| <span class="prop-name">PaperComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Paper</span> | The component used to render the body of the popup. |
 | <span class="prop-name">PopupComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Popper</span> | The component used to render the popup. |
 | <span class="prop-name">renderGroup</span> | <span class="prop-type">func</span> |  | Render the group.<br><br>**Signature:**<br>`function(option: any) => ReactNode`<br>*option:* The group to render. |
 | <span class="prop-name">renderOption</span> | <span class="prop-type">func</span> |  | Render the option, use `getOptionLabel` by default.<br><br>**Signature:**<br>`function(option: any, state: object) => ReactNode`<br>*option:* The option to render.<br>*state:* The state of the component. |
-| <span class="prop-name">renderValue</span> | <span class="prop-type">func</span> |  | Render the selected value.<br><br>**Signature:**<br>`function(value: any) => ReactNode`<br>*value:* The `value` provided to the component. |
+| <span class="prop-name">renderTags</span> | <span class="prop-type">func</span> |  | Render the selected value.<br><br>**Signature:**<br>`function(value: any) => ReactNode`<br>*value:* The `value` provided to the component. |
 | <span class="prop-name">TextFieldProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`TextField`](/api/text-field/) element. |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The input value. |
 
@@ -74,20 +75,19 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiAutocomplete-root</span> | Styles applied to the root element.
 | <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element if focused.
 | <span class="prop-name">tag</span> | <span class="prop-name">.MuiAutocomplete-tag</span> | Styles applied to the tag elements, e.g. the chips.
-| <span class="prop-name">inputRoot</span> | <span class="prop-name">.MuiAutocomplete-inputRoot</span> | 
-| <span class="prop-name">inputRootOutlined</span> | <span class="prop-name">.MuiAutocomplete-inputRootOutlined</span> | 
-| <span class="prop-name">inputRootFilled</span> | <span class="prop-name">.MuiAutocomplete-inputRootFilled</span> | 
-| <span class="prop-name">inputInput</span> | <span class="prop-name">.MuiAutocomplete-inputInput</span> | 
-| <span class="prop-name">inputInputFocused</span> | <span class="prop-name">.MuiAutocomplete-inputInputFocused</span> | 
+| <span class="prop-name">inputRoot</span> | <span class="prop-name">.MuiAutocomplete-inputRoot</span> | Styles applied to the Input element.
+| <span class="prop-name">inputRootOutlined</span> | <span class="prop-name">.MuiAutocomplete-inputRootOutlined</span> | Styles applied to the Input element if `variant="outlined"`.
+| <span class="prop-name">inputRootFilled</span> | <span class="prop-name">.MuiAutocomplete-inputRootFilled</span> | Styles applied to the Input element if `variant="filled"`.
+| <span class="prop-name">input</span> | <span class="prop-name">.MuiAutocomplete-input</span> | Styles applied to the input element.
+| <span class="prop-name">inputFocused</span> | <span class="prop-name">.MuiAutocomplete-inputFocused</span> | Styles applied to the input element if tag focused.
 | <span class="prop-name">clearIndicator</span> | <span class="prop-name">.MuiAutocomplete-clearIndicator</span> | Styles applied to the clear indictator.
-| <span class="prop-name">clearIndicatorDirty</span> | <span class="prop-name">.MuiAutocomplete-clearIndicatorDirty</span> | 
+| <span class="prop-name">clearIndicatorDirty</span> | <span class="prop-name">.MuiAutocomplete-clearIndicatorDirty</span> | Styles applied to the clear indictator if the input is dirty.
 | <span class="prop-name">popupIndicator</span> | <span class="prop-name">.MuiAutocomplete-popupIndicator</span> | Styles applied to the popup indictator.
-| <span class="prop-name">popupIndicatorOpen</span> | <span class="prop-name">.MuiAutocomplete-popupIndicatorOpen</span> | 
+| <span class="prop-name">popupIndicatorOpen</span> | <span class="prop-name">.MuiAutocomplete-popupIndicatorOpen</span> | Styles applied to the popup indictator if the popup is open.
 | <span class="prop-name">popup</span> | <span class="prop-name">.MuiAutocomplete-popup</span> | Styles applied to the popup element.
 | <span class="prop-name">paper</span> | <span class="prop-name">.MuiAutocomplete-paper</span> | Styles applied to the `Paper` component.
+| <span class="prop-name">listbox</span> | <span class="prop-name">.MuiAutocomplete-listbox</span> | Styles applied to the `listbox` component.
 | <span class="prop-name">option</span> | <span class="prop-name">.MuiAutocomplete-option</span> | Styles applied to the option elements.
-| <span class="prop-name">selected</span> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the option element if selected.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the option element if disabled.
 | <span class="prop-name">loading</span> | <span class="prop-name">.MuiAutocomplete-loading</span> | Styles applied to the loading wrapper.
 | <span class="prop-name">noOptions</span> | <span class="prop-name">.MuiAutocomplete-noOptions</span> | Styles applied to the no option wrapper.
 | <span class="prop-name">groupLabel</span> | <span class="prop-name">.MuiAutocomplete-groupLabel</span> | Styles applied to the group's label elements.

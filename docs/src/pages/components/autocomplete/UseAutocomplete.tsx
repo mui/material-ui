@@ -1,84 +1,58 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import useAutocomplete from '@material-ui/lab/useAutocomplete';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-export default function Playground() {
-  const defaultProps = {
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    input: {
+      width: 200,
+    },
+    listbox: {
+      width: 200,
+      margin: 0,
+      padding: 0,
+      position: 'absolute',
+      listStyle: 'none',
+      backgroundColor: theme.palette.background.paper,
+      overflow: 'auto',
+      maxHeight: 200,
+      border: '1px solid rgba(0,0,0,.25)',
+      '& [data-focus="true"]': {
+        backgroundColor: '#4a8df6',
+        color: 'white',
+        cursor: 'pointer',
+      },
+    },
+  }),
+);
+
+export default function UseAutocomplete() {
+  const classes = useStyles();
+  const {
+    getRootProps,
+    getInputProps,
+    getInputLabelProps,
+    getListboxProps,
+    getOptionProps,
+    groupedOptions,
+  } = useAutocomplete({
     options: top100Films,
     getOptionLabel: option => option.title,
-  };
-
-  const flatProps = {
-    options: top100Films.map(option => option.title),
-  };
-
-  const [value, setValue] = React.useState(null);
+  });
 
   return (
-    <div style={{ width: 300 }}>
-      <Autocomplete
-        {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'debug' }}
-        debug
-      />
-      <Autocomplete
-        {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'disableCloseOnSelect' }}
-        disableCloseOnSelect
-      />
-      <Autocomplete
-        {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'clearOnEscape' }}
-        clearOnEscape
-      />
-      <Autocomplete
-        {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'disableClearable' }}
-        disableClearable
-      />
-      <Autocomplete
-        {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'includeInputInList' }}
-        includeInputInList
-      />
-      <Autocomplete
-        {...flatProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'flat' }}
-      />
-      <Autocomplete
-        {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'controlled' }}
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-      />
-      <Autocomplete
-        {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'autoComplete' }}
-        autoComplete
-        includeInputInList
-      />
-      <Autocomplete
-        {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'disableListWrap' }}
-        disableListWrap
-      />
-      <Autocomplete
-        {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'disableOpenOnFocus' }}
-        disableOpenOnFocus
-      />
-      <Autocomplete
-        {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'autoHightlight' }}
-        autoHightlight
-      />
-      <Autocomplete
-        {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'autoSelect' }}
-        autoSelect
-      />
+    <div {...getRootProps()}>
+      <label {...getInputLabelProps()}>useAutocomplete</label>
+      <br />
+      <input className={classes.input} {...getInputProps()} />
+      {groupedOptions.length > 0 ? (
+        <ul className={classes.listbox} {...getListboxProps()}>
+          {groupedOptions.map((option, index) => (
+            <li {...getOptionProps({ option, index })}>{option.title}</li>
+          ))}
+        </ul>
+      ) : null}
     </div>
   );
 }

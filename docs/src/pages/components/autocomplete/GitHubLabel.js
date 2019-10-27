@@ -89,14 +89,13 @@ const useStyles = makeStyles(theme => ({
     color: '#586069',
     fontSize: 12,
     padding: 8,
-    '&$selected': {
+    '&[aria-selected="true"]': {
       backgroundColor: 'transparent',
     },
     '&[data-focus="true"]': {
       backgroundColor: theme.palette.action.hover,
     },
   },
-  selected: {},
   iconSelected: {
     width: 17,
     height: 17,
@@ -182,11 +181,10 @@ export default function GitHubLabel() {
           onClose={handleClose}
           multiple
           classes={{
+            clearIndicator: classes.indicator,
+            popupIndicator: classes.indicator,
             paper: classes.paper,
             option: classes.option,
-            selected: classes.selected,
-            popupIndicator: classes.indicator,
-            clearIndicator: classes.indicator,
           }}
           value={pendingValue}
           onChange={(event, newValue) => {
@@ -194,7 +192,7 @@ export default function GitHubLabel() {
           }}
           disableCloseOnSelect
           PopupComponent={Popup}
-          renderValue={() => null}
+          renderTags={() => null}
           noOptionsText="No labels"
           renderOption={(option, { selected }) => (
             <React.Fragment>
@@ -215,6 +213,7 @@ export default function GitHubLabel() {
             </React.Fragment>
           )}
           options={[...labels].sort((a, b) => {
+            // Display the selected labels first.
             let ai = value.indexOf(a);
             ai = ai === -1 ? value.length + labels.indexOf(a) : ai;
             let bi = value.indexOf(b);

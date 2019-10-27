@@ -1,5 +1,4 @@
 /* eslint-disable no-use-before-define */
-
 import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
@@ -11,7 +10,7 @@ export default function ComboBox() {
       style={{ width: 300 }}
       TextFieldProps={{
         label: 'Combo box',
-        variant: 'outlined',
+        variant: 'base',
         fullWidth: true,
         inputProps: {
           autoComplete: 'disabled', // disable autocomplete and autofill

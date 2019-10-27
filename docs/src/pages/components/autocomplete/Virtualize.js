@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import PropTypes from 'prop-types';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { makeStyles } from '@material-ui/core/styles';
 import { FixedSizeList } from 'react-window';
 
 function renderRow(props) {
@@ -19,20 +20,25 @@ function renderRow(props) {
 }
 
 // Adapter for react-window
-function ListboxComponent(props) {
+const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
   const { children, ...other } = props;
   const smUp = useMediaQuery(theme => theme.breakpoints.up('sm'));
   const itemCount = Array.isArray(children) ? children.length : 0;
   const itemSize = smUp ? 36 : 48;
 
+  const outerElementType = React.useMemo(() => {
+    return React.forwardRef((props2, ref2) => <div ref={ref2} {...props2} {...other} />);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
-    <div {...other}>
+    <div ref={ref}>
       <FixedSizeList
         style={{ padding: 0, height: Math.min(8, itemCount) * itemSize, maxHeight: 'auto' }}
         itemData={children}
         height={250}
         width="100%"
-        outerElementType="ul"
+        outerElementType={outerElementType}
+        innerElementType="ul"
         itemSize={itemSize}
         overscanCount={5}
         itemCount={itemCount}
@@ -41,11 +47,7 @@ function ListboxComponent(props) {
       </FixedSizeList>
     </div>
   );
-}
-
-ListboxComponent.propTypes = {
-  children: PropTypes.node,
-};
+});
 
 function random(length) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -58,11 +60,23 @@ function random(length) {
   return result;
 }
 
+const useStyles = makeStyles({
+  listbox: {
+    '& ul': {
+      padding: 0,
+      margin: 0,
+    },
+  },
+});
+
 export default function Virtualize() {
+  const classes = useStyles();
+
   return (
     <Autocomplete
       style={{ width: 300 }}
       disableListWrap
+      classes={classes}
       ListboxComponent={ListboxComponent}
       TextFieldProps={{ label: '10,000 options', variant: 'outlined', fullWidth: true }}
       options={Array.from(new Array(10000)).map(() => random(Math.ceil(Math.random() * 18)))}

@@ -44,9 +44,18 @@ Set `freeSolo` to true so the textbox can contain any arbitrary value.
 
 {{"demo": "pages/components/autocomplete/DisabledOptions.js"}}
 
-## `useAutocomplete?`
+## `useAutocomplete`
 
-WIP: to extract the core logic of the component into as simple reusable API.
+For advanced customization use cases, we expose a `useAutocomplete()` hook.
+It accepts almost the same options as the Autocomplete component minor all the props
+related to the rendering of JSX.
+The Autocomplete component uses this hook internally.
+
+```jsx
+import useAutocomplete from '@material-ui/lab/useAutocomplete';
+```
+
+{{"demo": "pages/components/autocomplete/UseAutocomplete.js", "defaultCodeOpen": false}}
 
 ## Customized autocomplete
 
@@ -118,7 +127,7 @@ const filterOptions = createFilterOptions({
 <Autocomplete filterOptions={filterOptions} />
 ```
 
-{{"demo": "pages/components/autocomplete/Filter.js"}}
+{{"demo": "pages/components/autocomplete/Filter.js", "defaultCodeOpen": false}}
 
 For richer filtering mechanisms, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). For instance:
 
@@ -142,4 +151,4 @@ Search within 10,000 randomly generated options. The list is virtualized thanks 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 
 We encourage the usage of a label for the textbox.
-The component implements the WAI-ARIA Authoring Practices.
+The component implements the WAI-ARIA authoring practices.
