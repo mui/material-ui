@@ -12,6 +12,14 @@ const styles = theme => ({
     alignItems: 'center',
     boxSizing: 'border-box',
   },
+  table: {
+    // temporary right-to-left patch, waiting for
+    // https://github.com/bvaughn/react-virtualized/issues/454
+    '& .ReactVirtualized__Table__headerRow': {
+      flip: false,
+      paddingRight: theme.direction === 'rtl' ? '0px !important' : undefined,
+    },
+  },
   tableRow: {
     cursor: 'pointer',
   },
@@ -84,7 +92,11 @@ class MuiVirtualizedTable extends React.PureComponent {
             height={height}
             width={width}
             rowHeight={rowHeight}
+            gridStyle={{
+              direction: 'inherit',
+            }}
             headerHeight={headerHeight}
+            className={classes.table}
             {...tableProps}
             rowClassName={this.getRowClassName}
           >
