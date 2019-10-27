@@ -52,7 +52,7 @@
     "react-transition-group": "^4.3.0"
   },
   "devDependencies": {
-    "react-test-renderer": "^16.10.1"
+    "react-test-renderer": "^16.11.0"
   },
   "sideEffects": false,
   "publishConfig": {
