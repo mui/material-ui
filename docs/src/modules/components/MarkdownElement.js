@@ -100,15 +100,15 @@ const markedOptions = {
         break;
     }
 
-    if (!prismLanguage) {
-      if (language) {
-        throw new Error(`unsuppored language: "${language}", "${code}"`);
-      } else {
-        prismLanguage = prism.languages.jsx;
-      }
+    if (!prismLanguage && language) {
+      throw new Error(`unsuppored language: "${language}", "${code}"`);
     }
 
-    return prism.highlight(code, prismLanguage);
+    if (prismLanguage) {
+      return prism.highlight(code, prismLanguage);
+    }
+
+    return code;
   },
   renderer,
 };
@@ -142,7 +142,7 @@ const styles = theme => ({
       fontSize: 14,
       borderRadius: 2,
     },
-    '& code[class*="language-"]': {
+    '& pre > code': {
       backgroundColor: '#333',
       color: '#fff',
     },
