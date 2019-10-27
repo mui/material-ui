@@ -23,7 +23,6 @@ describe('<Tab />', () => {
     inheritComponent: ButtonBase,
     mount,
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentProp'],
     after: () => mount.cleanUp(),
   }));
 
