@@ -3,6 +3,19 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
+  '@global': {
+    '#scaffoldhub': {
+      '& a': {
+        textDecoration: 'none',
+      },
+      '& .shPoweredBy': {
+        marginTop: 16,
+        display: 'block',
+        ...theme.typography.caption,
+        color: theme.palette.text.secondary,
+      },
+    },
+  },
   root: {
     display: 'block',
     float: 'left',
@@ -20,15 +33,6 @@ const useStyles = makeStyles(theme => ({
     display: 'block',
     ...theme.typography.body2,
     color: theme.palette.text.primary,
-  },
-  poweredBy: {
-    display: 'block',
-    ...theme.typography.caption,
-    color: theme.palette.text.secondary,
-  },
-  link: {
-    marginTop: 16,
-    display: 'block',
   },
 }));
 
@@ -54,10 +58,8 @@ export default function AdScaffoldHub() {
           <b>ScaffoldHub</b> - Automate building your full-stack Material-UI web-app.
         </span>
       </a>
-      <a href="/" className={classes.link}>
-        <span className={classes.poweredBy}>
-          <em>ethical</em> ad by Material-UI
-        </span>
+      <a href="/" className="shPoweredBy">
+        <em>ethical</em> ad by Material-UI
       </a>
     </span>
   );
