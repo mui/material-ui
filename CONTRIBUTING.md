@@ -65,7 +65,7 @@ The core team is monitoring for Pull Requests. We will review your Pull Request 
 ### How to increase the chance of being accepted?
 
 CI runs a series of checks automatically when a Pull Request is opened. If you're not
-sure if you changes will pass, you can always open a Pull Request and the GitHub UI will display  a summary of
+sure if you changes will pass, you can always open a Pull Request and the GitHub UI will display a summary of
 the results. If one of them fails check out the section [Checks and how to fix them](#checksfix).
 
 Make sure the following is true:
@@ -113,7 +113,7 @@ how to fix the issues.
 ##### ci/circleci: test_unit-1
 
 Runs the unit tests in a `jsdom` environment. If this fails then `yarn test:unit`
-should fail locally as well.
+should fail locally as well. You can narrow the scope of tests run with `yarn test:unit --grep ComponentName`.
 
 ##### ci/circleci: test_browser-1
 
