@@ -92,7 +92,7 @@ Because we will only merge a Pull Request for which all tests pass. The followin
 #### Checks and how to fix them
 
 If any of the checks fails click on the _Details_
-link and checkout the logs of the build to find out why it failed. The following
+link and review the logs of the build to find out why it failed. The following
 section gives an overview what each check is responsible for.
 
 ##### ci/codesandbox
