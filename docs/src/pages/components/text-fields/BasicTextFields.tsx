@@ -16,37 +16,34 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function BareTextFields() {
+export default function BasicTextFields() {
   const classes = useStyles();
 
   return (
     <form className={classes.container} noValidate autoComplete="off">
       <div>
         <TextField
-          id="standard-bare"
+          id="standard-basic"
           className={classes.textField}
-          defaultValue="Bare"
+          label="Standard"
           margin="normal"
-          inputProps={{ 'aria-label': 'bare' }}
         />
       </div>
       <div>
         <TextField
-          id="filled-bare"
+          id="filled-basic"
           className={classes.textField}
-          defaultValue="Bare"
+          label="Filled"
           margin="normal"
-          inputProps={{ 'aria-label': 'bare' }}
           variant="filled"
         />
       </div>
       <div>
         <TextField
-          id="outlined-bare"
+          id="outlined-basic"
           className={classes.textField}
-          defaultValue="Bare"
+          label="Outlined"
           margin="normal"
-          inputProps={{ 'aria-label': 'bare' }}
           variant="outlined"
         />
       </div>

@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function BareTextFields() {
+export default function BasicTextFields() {
   const classes = useStyles();
 
   return (

@@ -13,39 +13,39 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 The `TextField` wrapper component is a complete form control including a label, input and help text.
 
-`TextField` supports standard, outlined and filled styling.
+It supports standard, outlined and filled styling.
+
+{{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 
 > **Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support it.
 
-{{"demo": "pages/components/text-fields/BareTextFields.js"}}
-
 ## Form props
 
-The `TextField` supports standard form attributes e.g. `required`, `readOnly`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
+Standard form attributes are supported e.g. `required`, `readOnly`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
 ## Validation
 
-The `error` prop toggles the error state for the `TextField`, the `helperText` prop can be used to provide feedback to the user about the error.
+The `error` prop toggles the error state, the `helperText` prop can then be used to provide feedback to the user about the error.
 
 {{"demo": "pages/components/text-fields/ValidationTextFields.js"}}
 
 ## Multiline
 
-The `multiline` prop transforms the `TextField` into a `textarea` or `TextareaAutosize`.
+The `multiline` prop transforms the text field into a [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) or a [TextareaAutosize](/components/textarea-autosize/).
 
 {{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
 
 ## Select
 
-The `select` prop transforms the `TextField` into a `Select`.
+The `select` prop makes the text field use the [Select](/components/selects/) component internally.
 
 {{"demo": "pages/components/text-fields/SelectTextFields.js"}}
 
 ## Icons
 
-There are multiple ways to display an icon with a `TextField`. 
+There are multiple ways to display an icon with a text field. 
 
 {{"demo": "pages/components/text-fields/InputWithIcon.js"}}
 
@@ -59,17 +59,17 @@ For instance, you can use an icon button to hide or reveal the password.
 
 ## Layout
 
-`TextField` and `FormControl` allow the specification of `margin` to alter the vertical spacing of inputs. Using
-`none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will as well as alter
-other styles to meet the specification.
+`margin` can be used to alter the vertical spacing of inputs.
+Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will.
+`dense` and `normal` alter other styles to meet the specification.
 
-`TextField` and `FormControl` also allow the specification of `fullWidth` which makes the input take up the full width of its container.
+`fullWidth` can be used to make the input take up the full width of its container.
 
 {{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
 
 ## Uncontrolled vs Controlled
 
-The `TextField` component can be controlled or uncontrolled
+The component can be controlled or uncontrolled
 
 {{"demo": "pages/components/text-fields/StateTextFields.js"}}
 
