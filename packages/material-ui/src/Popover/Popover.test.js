@@ -53,7 +53,7 @@ describe('<Popover />', () => {
   let classes;
   const defaultProps = {
     open: false,
-    anchorEl: () => document.createElement('svg'),
+    anchorEl: () => document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
   };
 
   before(() => {
@@ -713,7 +713,9 @@ describe('<Popover />', () => {
 
   [0, 18, 16].forEach(marginThreshold => {
     describe(`positioning when \`marginThreshold=${marginThreshold}\``, () => {
-      function generateElementStyle(anchorEl = document.createElement('svg')) {
+      function generateElementStyle(
+        anchorEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+      ) {
         const handleEntering = spy();
         mount(
           <Popover
