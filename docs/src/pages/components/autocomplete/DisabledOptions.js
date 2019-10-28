@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 
 export default function DisabledOptions() {
   return (
@@ -8,14 +9,18 @@ export default function DisabledOptions() {
       options={timeSlots}
       getOptionDisabled={option => option === timeSlots[0] || option === timeSlots[2]}
       style={{ width: 300 }}
-      TextFieldProps={{
-        label: 'Disabled options',
-        variant: 'outlined',
-        fullWidth: true,
-        inputProps: {
-          autoComplete: 'disabled', // disable autocomplete and autofill
-        },
-      }}
+      renderInput={params => (
+        <TextField
+          {...params}
+          label="Disabled options"
+          variant="outlined"
+          fullWidth
+          inputProps={{
+            ...params.inputProps,
+            autoComplete: 'disabled', // disable autocomplete and autofill
+          }}
+        />
+      )}
     />
   );
 }

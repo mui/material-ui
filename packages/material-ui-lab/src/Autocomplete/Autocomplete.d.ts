@@ -26,6 +26,17 @@ export interface RenderGroupParams {
   children: React.ReactNode;
 }
 
+export interface RenderInputParams {
+  ref: React.Ref<any>;
+  InputLabelProps: object;
+  InputProps: {
+    className: string;
+    startAdornment: React.ReactNode;
+    endAdornment: React.ReactNode;
+  };
+  inputProps: object;
+}
+
 export interface AutocompleteProps
   extends UseAutocompleteProps,
     StandardProps<
@@ -64,6 +75,13 @@ export interface AutocompleteProps
    * @returns {ReactNode}
    */
   renderGroup?: (params: RenderGroupParams) => React.ReactNode;
+  /**
+   * Render the input.
+   *
+   * @param {object} params
+   * @returns {ReactNode}
+   */
+  renderInput: (params: RenderInputParams) => React.ReactNode;
   /**
    * Render the option, use `getOptionLabel` by default.
    *

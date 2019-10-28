@@ -1,7 +1,3 @@
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
-/* eslint-disable jsx-a11y/role-has-required-aria-props */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable no-constant-condition */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -238,9 +234,10 @@ export default function useAutocomplete(props) {
 
       // Same logic as MenuList.js
       if (
-        !option.hasAttribute('tabindex') ||
-        option.disabled ||
-        option.getAttribute('aria-disabled') === 'true'
+        option &&
+        (!option.hasAttribute('tabindex') ||
+          option.disabled ||
+          option.getAttribute('aria-disabled') === 'true')
       ) {
         nextFocus += direction === 'next' ? 1 : -1;
       } else {
@@ -407,9 +404,10 @@ export default function useAutocomplete(props) {
 
       // Same logic as MenuList.js
       if (
-        !option.hasAttribute('tabindex') ||
-        option.disabled ||
-        option.getAttribute('aria-disabled') === 'true'
+        option &&
+        (!option.hasAttribute('tabindex') ||
+          option.disabled ||
+          option.getAttribute('aria-disabled') === 'true')
       ) {
         nextFocus += direction === 'next' ? 1 : -1;
       } else {
@@ -642,6 +640,9 @@ export default function useAutocomplete(props) {
       'aria-expanded': popupOpen,
       onKeyDown: handleKeyDown,
     }),
+    getInputLabelProps: () => ({
+      id: `${id}-label`,
+    }),
     getInputProps: () => ({
       id,
       value: inputValue,
@@ -650,15 +651,12 @@ export default function useAutocomplete(props) {
       onChange: handleInputChange,
       'aria-autocomplete': autoComplete ? 'both' : 'list',
       'aria-controls': `${id}-listbox`,
-      // Disable browser's suggestion that might overlap with the popup.
-      autoComplete: 'off',
+      // autoComplete: 'off', // Disable browser's suggestion that might overlap with the popup.
+      autoComplete: 'disabled', // disable autocomplete and autofill
       ref: inputRef,
       autoCorrect: 'off',
       autoCapitalize: 'none',
       spellCheck: 'false',
-    }),
-    getInputLabelProps: () => ({
-      id: `${id}-label`,
     }),
     getClearProps: () => ({
       tabIndex: -1,

@@ -4,6 +4,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles } from '@material-ui/core/styles';
 import { FixedSizeList } from 'react-window';
+import TextField from '@material-ui/core/TextField';
 
 function renderRow(props) {
   const { data, index, style } = props;
@@ -78,8 +79,10 @@ export default function Virtualize() {
       disableListWrap
       classes={classes}
       ListboxComponent={ListboxComponent}
-      TextFieldProps={{ label: '10,000 options', variant: 'outlined', fullWidth: true }}
       options={Array.from(new Array(10000)).map(() => random(Math.ceil(Math.random() * 18)))}
+      renderInput={params => (
+        <TextField {...params} variant="outlined" label="10,000 options" fullWidth />
+      )}
     />
   );
 }

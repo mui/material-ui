@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 
 export default function ComboBox() {
   return (
@@ -8,14 +9,9 @@ export default function ComboBox() {
       options={top100Films}
       getOptionLabel={option => option.title}
       style={{ width: 300 }}
-      TextFieldProps={{
-        label: 'Combo box',
-        variant: 'outlined',
-        fullWidth: true,
-        inputProps: {
-          autoComplete: 'disabled', // disable autocomplete and autofill
-        },
-      }}
+      renderInput={params => (
+        <TextField {...params} label="Combo box" variant="outlined" fullWidth />
+      )}
     />
   );
 }

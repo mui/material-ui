@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
 import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 
 const filterOptions = createFilterOptions({
   matchFrom: 'start',
@@ -14,7 +15,9 @@ export default function Filter() {
       getOptionLabel={option => option.title}
       filterOptions={filterOptions}
       style={{ width: 300 }}
-      TextFieldProps={{ label: 'Custom filter', variant: 'outlined', fullWidth: true }}
+      renderInput={params => (
+        <TextField {...params} label="Custom filter" variant="outlined" fullWidth />
+      )}
     />
   );
 }

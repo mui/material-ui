@@ -9,9 +9,12 @@ describe('<Autocomplete />', () => {
   let mount;
   let classes;
   // const render = createClientRender({ strict: true });
+  const defaultProps = {
+    renderInput: () => null,
+  };
 
   before(() => {
-    classes = getClasses(<Autocomplete />);
+    classes = getClasses(<Autocomplete {...defaultProps} />);
     mount = createMount({ strict: true });
   });
 
@@ -19,7 +22,7 @@ describe('<Autocomplete />', () => {
     cleanup();
   });
 
-  describeConformance(<Autocomplete />, () => ({
+  describeConformance(<Autocomplete {...defaultProps} />, () => ({
     classes,
     inheritComponent: 'div',
     mount,

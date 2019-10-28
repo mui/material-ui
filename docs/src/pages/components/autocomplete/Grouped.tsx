@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 
 export default function Grouped() {
   const options = top100Films.map(option => {
@@ -17,14 +18,9 @@ export default function Grouped() {
       groupBy={(option: FilmOptionType) => option.firstLetter}
       getOptionLabel={(option: FilmOptionType) => option.title}
       style={{ width: 300 }}
-      TextFieldProps={{
-        label: 'With categories',
-        variant: 'outlined',
-        fullWidth: true,
-        inputProps: {
-          autoComplete: 'disabled', // disable autocomplete and autofill
-        },
-      }}
+      renderInput={params => (
+        <TextField {...params} label="With categories" variant="outlined" fullWidth />
+      )}
     />
   );
 }

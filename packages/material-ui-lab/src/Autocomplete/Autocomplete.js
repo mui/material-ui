@@ -1,20 +1,12 @@
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
-/* eslint-disable jsx-a11y/role-has-required-aria-props */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/jsx-no-duplicate-props */
-/* eslint-disable no-constant-condition */
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementTypeAcceptingRef } from '@material-ui/utils';
 import { withStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
-import TextField from '@material-ui/core/TextField';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import Chip from '@material-ui/core/Chip';
-import { capitalize } from '@material-ui/core/utils';
 import CloseIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
@@ -37,19 +29,17 @@ export const styles = theme => ({
   /* Styles applied to the Input element. */
   inputRoot: {
     flexWrap: 'wrap',
-  },
-  /* Styles applied to the Input element if `variant="outlined"`. */
-  inputRootOutlined: {
-    padding: 8,
-    '& $input': {
-      padding: '10.5px 6px',
+    '&[class*="MuiOutlinedInput-root"]': {
+      padding: 8,
+      '& $input': {
+        padding: '10.5px 6px',
+      },
     },
-  },
-  /* Styles applied to the Input element if `variant="filled"`. */
-  inputRootFilled: {
-    paddingTop: 21,
-    '& $input': {
-      paddingTop: 10,
+    '&[class*="MuiFilledInput-root"]': {
+      paddingTop: 21,
+      '& $input': {
+        paddingTop: 10,
+      },
     },
   },
   /* Styles applied to the input element. */
@@ -89,6 +79,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the `Paper` component. */
   paper: {
+    ...theme.typography.body1,
     margin: '4px 0',
     '& > ul': {
       maxHeight: '40vh',
@@ -102,9 +93,18 @@ export const styles = theme => ({
     padding: '8px 0px',
     position: 'relative',
   },
+  /* Styles applied to the loading wrapper. */
+  loading: {
+    color: theme.palette.text.secondary,
+    padding: '14px 16px',
+  },
+  /* Styles applied to the no option wrapper. */
+  noOptions: {
+    color: theme.palette.text.secondary,
+    padding: '14px 16px',
+  },
   /* Styles applied to the option elements. */
   option: {
-    ...theme.typography.body1,
     minHeight: 48,
     display: 'flex',
     justifyContent: 'flex-start',
@@ -133,18 +133,6 @@ export const styles = theme => ({
     '&:active': {
       backgroundColor: theme.palette.action.selected,
     },
-  },
-  /* Styles applied to the loading wrapper. */
-  loading: {
-    ...theme.typography.body1,
-    color: theme.palette.text.secondary,
-    padding: '14px 16px',
-  },
-  /* Styles applied to the no option wrapper. */
-  noOptions: {
-    ...theme.typography.body1,
-    color: theme.palette.text.secondary,
-    padding: '14px 16px',
   },
   /* Styles applied to the group's label elements. */
   groupLabel: {
@@ -193,9 +181,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     PaperComponent = Paper,
     PopupComponent = Popper,
     renderGroup: renderGroupProp,
+    renderInput,
     renderOption: renderOptionProp,
     renderTags,
-    TextFieldProps: { InputProps = {}, ...TextFieldProps } = {},
     value: valueProp,
     ...other
   } = props;
@@ -218,7 +206,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     getPopupProps,
     getListboxProps,
     getOptionProps,
-    id,
     value,
     dirty,
     popupOpen,
@@ -291,23 +278,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
       {...getRootProps()}
       {...other}
     >
-      <TextField
-        id={id}
-        {...TextFieldProps}
-        ref={setAnchorEl}
-        InputLabelProps={{
-          ...getInputLabelProps(),
-          ...TextFieldProps.InputLabelProps,
-        }}
-        InputProps={{
-          className: clsx(classes.inputRoot, {
-            [classes[`inputRoot${capitalize(TextFieldProps.variant)}`]]: TextFieldProps.variant,
-          }),
+      {renderInput({
+        ref: setAnchorEl,
+        InputLabelProps: getInputLabelProps(),
+        InputProps: {
+          className: classes.inputRoot,
           startAdornment,
-          ...InputProps,
           endAdornment: (
             <React.Fragment>
-              {InputProps.endAdornment}
               {disableClearable ? null : (
                 <IconButton
                   {...getClearProps()}
@@ -333,15 +311,15 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
               )}
             </React.Fragment>
           ),
-        }}
-        inputProps={{
+        },
+        inputProps: {
           className: clsx(classes.input, {
             [classes.inputFocused]: focusedTag === -1,
           }),
           ...getInputProps(),
-          ...TextFieldProps.inputProps,
-        }}
-      />
+        },
+      })}
+
       {popupOpen && anchorEl ? (
         <PopupComponent
           className={classes.popup}
@@ -485,7 +463,7 @@ Autocomplete.propTypes = {
   /**
    * The component used to render the listbox.
    */
-  ListboxComponent: elementTypeAcceptingRef,
+  ListboxComponent: PropTypes.elementType,
   /**
    * If `true`, the component is in a loading state.
    */
@@ -547,6 +525,13 @@ Autocomplete.propTypes = {
    */
   renderGroup: PropTypes.func,
   /**
+   * Render the input.
+   *
+   * @param {object} params
+   * @returns {ReactNode}
+   */
+  renderInput: PropTypes.func.isRequired,
+  /**
    * Render the option, use `getOptionLabel` by default.
    *
    * @param {any} option The option to render.
@@ -561,10 +546,6 @@ Autocomplete.propTypes = {
    * @returns {ReactNode}
    */
   renderTags: PropTypes.func,
-  /**
-   * Props applied to the [`TextField`](/api/text-field/) element.
-   */
-  TextFieldProps: PropTypes.object,
   /**
    * The input value.
    */

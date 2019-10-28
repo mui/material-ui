@@ -1,6 +1,7 @@
 // *https://www.registers.service.gov.uk/registers/country/use-the-api*
 import 'isomorphic-fetch';
 import React from 'react';
+import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -60,14 +61,23 @@ export default function Asynchronous() {
       getOptionLabel={option => option.name}
       options={options}
       loading={loading}
-      TextFieldProps={{
-        InputProps: {
-          endAdornment: loading ? <CircularProgress color="inherit" size={20} /> : null,
-        },
-        label: 'Asynchronous',
-        variant: 'outlined',
-        fullWidth: true,
-      }}
+      renderInput={params => (
+        <TextField
+          {...params}
+          label="Asynchronous"
+          fullWidth
+          variant="outlined"
+          InputProps={{
+            ...params.InputProps,
+            endAdornment: (
+              <React.Fragment>
+                {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                {params.InputProps.endAdornment}
+              </React.Fragment>
+            ),
+          }}
+        />
+      )}
     />
   );
 }

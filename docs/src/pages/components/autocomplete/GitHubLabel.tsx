@@ -1,12 +1,13 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
-import { useTheme, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { useTheme, fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CloseIcon from '@material-ui/icons/Close';
 import DoneIcon from '@material-ui/icons/Done';
 import Autocomplete, { PopupProps } from '@material-ui/lab/Autocomplete';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import InputBase from '@material-ui/core/InputBase';
 
 function Popup(props: PopupProps) {
   const { popperRef, anchorEl, open, ...other } = props;
@@ -17,14 +18,15 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: 221,
+      fontSize: 13,
     },
     button: {
+      fontSize: 13,
       width: '100%',
       textAlign: 'left',
       paddingBottom: 8,
       color: '#586069',
       fontWeight: 600,
-      fontSize: 12,
       '&:hover,&:focus': {
         color: '#0366d6',
       },
@@ -40,7 +42,6 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: 3,
       height: 20,
       padding: '.15em 4px',
-      fontSize: 12,
       fontWeight: 600,
       lineHeight: '15px',
       borderRadius: 2,
@@ -52,30 +53,41 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: 3,
       width: 300,
       zIndex: 1,
-      fontSize: 12,
+      fontSize: 13,
       color: '#586069',
     },
     header: {
-      background: '#f6f8fa',
+      backgroundColor: '#f6f8fa',
       borderBottom: '1px solid #e1e4e8',
       padding: '8px 10px',
       fontWeight: 600,
     },
-    textField: {
+    inputBase: {
+      backgroundColor: '#f6f8fa',
       padding: 10,
+      width: '100%',
       borderBottom: '1px solid #dfe2e5',
-    },
-    indicator: {
-      display: 'none',
+      '& input': {
+        borderRadius: 4,
+        backgroundColor: theme.palette.common.white,
+        padding: 8,
+        transition: theme.transitions.create(['border-color', 'box-shadow']),
+        border: '1px solid #ced4da',
+        fontSize: 14,
+        '&:focus': {
+          boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
+          borderColor: theme.palette.primary.main,
+        },
+      },
     },
     paper: {
       boxShadow: 'none',
       margin: 0,
+      color: '#586069',
+      fontSize: 13,
     },
     option: {
       alignItems: 'flex-start',
-      color: '#586069',
-      fontSize: 12,
       padding: 8,
       '&[aria-selected="true"]': {
         backgroundColor: 'transparent',
@@ -170,8 +182,6 @@ export default function GitHubLabel() {
           onClose={handleClose}
           multiple
           classes={{
-            clearIndicator: classes.indicator,
-            popupIndicator: classes.indicator,
             paper: classes.paper,
             option: classes.option,
           }}
@@ -210,11 +220,14 @@ export default function GitHubLabel() {
             return ai - bi;
           })}
           getOptionLabel={(option: LabelType) => option.name}
-          TextFieldProps={{
-            fullWidth: true,
-            className: classes.textField,
-            autoFocus: true,
-          }}
+          renderInput={params => (
+            <InputBase
+              ref={params.ref}
+              inputProps={params.inputProps}
+              autoFocus
+              className={classes.inputBase}
+            />
+          )}
         />
       </Popper>
     </React.Fragment>

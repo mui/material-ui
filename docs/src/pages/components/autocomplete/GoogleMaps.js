@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import parse from 'autosuggest-highlight/parse';
 import throttle from 'lodash/throttle';
+import TextField from '@material-ui/core/TextField';
 
 function loadScript(src, position, id) {
   if (!position) {
@@ -94,12 +95,15 @@ export default function GoogleMaps() {
       includeInputInList
       freeSolo
       disableOpenOnFocus
-      TextFieldProps={{
-        label: 'Add a location',
-        variant: 'outlined',
-        fullWidth: true,
-        onChange: handleChange,
-      }}
+      renderInput={params => (
+        <TextField
+          {...params}
+          label="Add a location"
+          variant="outlined"
+          fullWidth
+          onChange={handleChange}
+        />
+      )}
       renderOption={option => {
         const matches = option.structured_formatting.main_text_matched_substrings;
         const parts = parse(

@@ -55,11 +55,15 @@ The Autocomplete component uses this hook internally.
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
 ```
 
+- 📦 [4 kB gzipped](/size-snapshot).
+
 {{"demo": "pages/components/autocomplete/UseAutocomplete.js", "defaultCodeOpen": false}}
 
-## Customized autocomplete
+### Customized useAutocomplete
 
 WIP: to implement [this design](https://www.behance.net/gallery/27997595/Multi-select-dropdown-tags-field-with-search).
+
+Head to [Customized Autocomplete](#customized-autocomplete) for a customization example with the Autocomplete component instead of the hook.
 
 ## Asynchronous requests
 
@@ -88,7 +92,9 @@ In the event that you need to lock certain tag so that they can't be removed in 
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
 
-### GitHub label
+## Customized Autocomplete
+
+This demo reproduces the GitHub's label picker:
 
 {{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 

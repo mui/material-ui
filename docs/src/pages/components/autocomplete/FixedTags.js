@@ -2,6 +2,7 @@
 import React from 'react';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 
 export default function FixedTags() {
   return (
@@ -24,12 +25,15 @@ export default function FixedTags() {
         ))
       }
       style={{ width: 500 }}
-      TextFieldProps={{
-        label: 'Fixed tag',
-        variant: 'outlined',
-        placeholder: 'Favorites',
-        fullWidth: true,
-      }}
+      renderInput={params => (
+        <TextField
+          {...params}
+          label="Fixed tag"
+          variant="outlined"
+          placeholder="Favorites"
+          fullWidth
+        />
+      )}
     />
   );
 }

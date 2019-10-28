@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
 // ISO 3166-1 alpha-2
@@ -39,14 +40,18 @@ export default function CountrySelect() {
           {option.label} ({option.code}) +{option.phone}
         </React.Fragment>
       )}
-      TextFieldProps={{
-        label: 'Choose a country',
-        variant: 'outlined',
-        fullWidth: true,
-        inputProps: {
-          autoComplete: 'disabled', // disable autocomplete and autofill
-        },
-      }}
+      renderInput={params => (
+        <TextField
+          {...params}
+          label="Choose a country"
+          variant="outlined"
+          fullWidth
+          inputProps={{
+            ...params.inputProps,
+            autoComplete: 'disabled', // disable autocomplete and autofill
+          }}
+        />
+      )}
     />
   );
 }

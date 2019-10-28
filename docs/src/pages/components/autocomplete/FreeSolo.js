@@ -1,31 +1,32 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 
 export default function FreeSolo() {
   return (
     <div style={{ width: 300 }}>
       <Autocomplete
-        options={top100Films.map(option => option.title)}
-        TextFieldProps={{
-          margin: 'normal',
-          variant: 'outlined',
-          label: 'freeSolo',
-          fullWidth: true,
-        }}
         freeSolo
+        options={top100Films.map(option => option.title)}
+        renderInput={params => (
+          <TextField {...params} label="freeSolo" margin="normal" variant="outlined" fullWidth />
+        )}
       />
       <Autocomplete
-        options={top100Films.map(option => option.title)}
-        TextFieldProps={{
-          margin: 'normal',
-          variant: 'outlined',
-          label: 'Search input',
-          fullWidth: true,
-          InputProps: { type: 'search' },
-        }}
-        disableClearable
         freeSolo
+        disableClearable
+        options={top100Films.map(option => option.title)}
+        renderInput={params => (
+          <TextField
+            {...params}
+            label="Search input"
+            margin="normal"
+            variant="outlined"
+            fullWidth
+            InputProps={{ ...params.InputProps, type: 'search' }}
+          />
+        )}
       />
     </div>
   );

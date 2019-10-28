@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 
 export default function Playground() {
   const defaultProps = {
@@ -16,66 +17,86 @@ export default function Playground() {
     <div style={{ width: 300 }}>
       <Autocomplete
         {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'debug' }}
         debug
+        renderInput={params => <TextField {...params} label="debug" margin="normal" fullWidth />}
       />
       <Autocomplete
         {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'disableCloseOnSelect' }}
         disableCloseOnSelect
+        renderInput={params => (
+          <TextField {...params} label="disableCloseOnSelect" margin="normal" fullWidth />
+        )}
       />
       <Autocomplete
         {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'clearOnEscape' }}
         clearOnEscape
+        renderInput={params => (
+          <TextField {...params} label="clearOnEscape" margin="normal" fullWidth />
+        )}
       />
       <Autocomplete
         {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'disableClearable' }}
         disableClearable
+        renderInput={params => (
+          <TextField {...params} label="disableClearable" margin="normal" fullWidth />
+        )}
       />
       <Autocomplete
         {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'includeInputInList' }}
         includeInputInList
+        renderInput={params => (
+          <TextField {...params} label="includeInputInList" margin="normal" fullWidth />
+        )}
       />
       <Autocomplete
         {...flatProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'flat' }}
+        renderInput={params => <TextField {...params} label="flat" margin="normal" fullWidth />}
       />
       <Autocomplete
         {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'controlled' }}
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
+        renderInput={params => (
+          <TextField {...params} label="controlled" margin="normal" fullWidth />
+        )}
       />
       <Autocomplete
         {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'autoComplete' }}
         autoComplete
         includeInputInList
+        renderInput={params => (
+          <TextField {...params} label="autoComplete" margin="normal" fullWidth />
+        )}
       />
       <Autocomplete
         {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'disableListWrap' }}
         disableListWrap
+        renderInput={params => (
+          <TextField {...params} label="disableListWrap" margin="normal" fullWidth />
+        )}
       />
       <Autocomplete
         {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'disableOpenOnFocus' }}
         disableOpenOnFocus
+        renderInput={params => (
+          <TextField {...params} label="disableOpenOnFocus" margin="normal" fullWidth />
+        )}
       />
       <Autocomplete
         {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'autoHightlight' }}
         autoHightlight
+        renderInput={params => (
+          <TextField {...params} label="autoHightlight" margin="normal" fullWidth />
+        )}
       />
       <Autocomplete
         {...defaultProps}
-        TextFieldProps={{ fullWidth: true, margin: 'normal', label: 'autoSelect' }}
         autoSelect
+        renderInput={params => (
+          <TextField {...params} label="autoSelect" margin="normal" fullWidth />
+        )}
       />
     </div>
   );

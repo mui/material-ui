@@ -3,6 +3,7 @@ import React from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
+import TextField from '@material-ui/core/TextField';
 
 export default function Highlights() {
   return (
@@ -10,12 +11,9 @@ export default function Highlights() {
       style={{ width: 300 }}
       options={top100Films}
       getOptionLabel={(option: FilmOptionType) => option.title}
-      TextFieldProps={{
-        label: 'Highlights',
-        margin: 'normal',
-        variant: 'outlined',
-        fullWidth: true,
-      }}
+      renderInput={params => (
+        <TextField {...params} label="Highlights" variant="outlined" fullWidth margin="normal" />
+      )}
       renderOption={(option, { inputValue }) => {
         const matches = match(option.title, inputValue);
         const parts = parse(option.title, matches);

@@ -2,6 +2,7 @@
 import React from 'react';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import TextField from '@material-ui/core/TextField';
 
 export default function Tags() {
   return (
@@ -11,12 +12,16 @@ export default function Tags() {
         options={top100Films}
         getOptionLabel={(option: FilmOptionType) => option.title}
         defaultValue={[top100Films[13]]}
-        TextFieldProps={{
-          margin: 'normal',
-          label: 'Multiple values',
-          placeholder: 'Favorites',
-          fullWidth: true,
-        }}
+        renderInput={params => (
+          <TextField
+            {...params}
+            variant="standard"
+            label="Multiple values"
+            placeholder="Favorites"
+            margin="normal"
+            fullWidth
+          />
+        )}
       />
       <Autocomplete
         multiple
@@ -24,13 +29,16 @@ export default function Tags() {
         getOptionLabel={(option: FilmOptionType) => option.title}
         defaultValue={[top100Films[13]]}
         filterSelectedOptions
-        TextFieldProps={{
-          margin: 'normal',
-          variant: 'outlined',
-          label: 'filterSelectedOptions',
-          placeholder: 'Favorites',
-          fullWidth: true,
-        }}
+        renderInput={params => (
+          <TextField
+            {...params}
+            variant="outlined"
+            label="filterSelectedOptions"
+            placeholder="Favorites"
+            margin="normal"
+            fullWidth
+          />
+        )}
       />
       <Autocomplete
         multiple
@@ -50,13 +58,16 @@ export default function Tags() {
             />
           ))
         }
-        TextFieldProps={{
-          margin: 'normal',
-          label: 'freeSolo',
-          variant: 'filled',
-          placeholder: 'Favorites',
-          fullWidth: true,
-        }}
+        renderInput={params => (
+          <TextField
+            {...params}
+            variant="filled"
+            label="freeSolo"
+            placeholder="Favorites"
+            margin="normal"
+            fullWidth
+          />
+        )}
       />
     </div>
   );
