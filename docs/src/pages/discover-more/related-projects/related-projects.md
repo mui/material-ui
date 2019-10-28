@@ -70,7 +70,7 @@ They support many different use cases (editable, filtering, grouping, sorting, s
 
 ### Charts
 
-- [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/): A charts for Material-UI that visualizes data using a variety of series types, including bar, line, area, scatter, pie, and more ([paid license](https://js.devexpress.com/licensing/)).
+- [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/): Charts for Material-UI that visualizes data using a variety of series types, including bar, line, area, scatter, pie, and more ([paid license](https://js.devexpress.com/licensing/)).
 
 ## Theming
 
