@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/styles",
-  "version": "4.5.0",
+  "version": "4.5.2",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Styles - The styling solution of Material-UI.",
@@ -41,7 +41,7 @@
     "@babel/runtime": "^7.4.4",
     "@emotion/hash": "^0.7.1",
     "@material-ui/types": "^4.1.1",
-    "@material-ui/utils": "^4.1.0",
+    "@material-ui/utils": "^4.5.2",
     "clsx": "^1.0.2",
     "csstype": "^2.5.2",
     "hoist-non-react-statics": "^3.2.1",

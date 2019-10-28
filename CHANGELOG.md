@@ -1,5 +1,114 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.5.2
+###### *Oct 28, 2019*
+
+Big thanks to the 48 contributors who made this release possible!
+
+Here are some highlights ✨:
+
+- 🔍 Introduce a new Autocomplete component in the lab to support the autocomplete, combobox and multi-select use cases (#17037) @dreamsinspace.
+
+  This [new component](https://material-ui.com/components/autocomplete/) will replaces the [third-party integration examples](https://material-ui.com/components/integrated-autocomplete/) once it graduate from the lab to the core.
+  It was one of the [most requested features](https://twitter.com/MaterialUI/status/1148901411180163073) (by number of 👍 on the corresponding issue).
+
+- 📚 Show the JSX by default for small examples (#17831) @mbrookes.
+- ♿️ Improve Gatsby's Modal support (#17972) @sreetej1998.
+- 🐛 Better support Preact (#18027) @glromeo.
+- 💅 Improve Chrome autofill dark theme support (#17863) @MAkerboom.
+- 📚 Add new context menu demo (#17839) @SarthakC.
+
+### `@material-ui/core@v4.5.2`
+
+- [Avatar] Revert #17694, correct the API docs, add tests (#18026) @mbrookes
+- [Checkbox] Add TS demo for FormControlLabelPosition (#17964) @burtyish
+- [Dialog] Fix labelledby and describedby placement (#18032) @eps1lon
+- [Dialog] Reduce margins (#17867) @rahulkotha18
+- [ExpansionPanelSummary] Test in StrictMode  (#17873) @eps1lon
+- [FormControlLabel] Add missing CSS class keys to TS (#17963) @itayyehezkel
+- [Link] Warn when using plain function component in `component` (#17825) @Nikhil-Pavan-Sai
+- [ListSubheader] Reduce specificity of typescript type (#17715) @sakulstra
+- [Menu] Add new context menu demo (#17839) @SarthakC
+- [Modal] Fix tabIndex customization (#17939) @Cyrus-d
+- [Modal] Improve Gatsby support (#17972) @sreetej1998
+- [Popper] Revert position fix (#17914) @rahulkotha18
+- [Select] Add labelId to implement proper labelling (#17892) @eps1lon
+- [Select] Better support Preact (#18027) @glromeo
+- [Select] Document how values are compared (#17912) @DustinRobison
+- [Slider] Apply the disabled pseudo class on the thumb too (#18011) @hoop71
+- [Slider] Format value passed to ValueLabelComponent (#17985) @hoop71
+- [SnackbarContent] Convert unit tests to @testing-library/react (#17942) @emilyuhde
+- [Snackbar] Change default role from 'alertdialog' to 'alert' (#17897) @emilyuhde
+- [SwipeableDrawer] Change close swipe behavior and fix touch bug (#17941) @leMaik
+- [Switch] Fix hover style on mobile (#18034) @SarthakC
+- [Tab] Run tests in StrictMode (#18037) @eps1lon
+- [TablePagination] Support display of all rows (#17885) @SarthakC
+- [Table] Demo multiple group headers (#17933) @rayy-lo
+- [Table] Fix sticky header interaction with checkboxes (#17968) @Lavoaster
+- [Table] Improve RTL virtualized demo support (#18038) @FabianKielmann
+- [TextField] Improve Chrome autofill dark theme support (#17863) @MAkerboom
+- [TextareaAutoSize] Add ref prop (#17835) @Tarun047
+
+### `@material-ui/styles@v4.5.2`
+
+- [styles] Allow ref on withTheme components in TS (#17695) @ianschmitz
+
+### `@material-ui/system@v4.5.2`
+
+- [system] Support style.transform return React.CSSProperties (#18030) @yoyooyooo
+
+### `@material-ui/lab@v4.0.0-alpha.30`
+
+- [Autocomplete] Introduce new component (#17037) @dreamsinspace
+
+### Docs
+
+- [docs] Add TS demo for DynamicCSS (#17994) @netochaves
+- [docs] Add TS demo for DynamicCSSVariables (#17983) @netochaves
+- [docs] Add TS demo for MaterialTable (#17938) @schapka
+- [docs] Add TS demo for WithWidth (#17930) @burtyish
+- [docs] Add TS demos for SimpleNoSsr and FrameDeferring (#17913) @ganes1410
+- [docs] Add TS demos for SplitButton in components/buttons (#17862) @rahmatrhd
+- [docs] Add demo for actions in ExpansionPanelSummary (#17969) @ayliao
+- [docs] Add demo for prominent app bar (#17894) @burtyish
+- [docs] Add notification about the date picker survey @oliviertassinari
+- [docs] Clarify aria role of Switch (#17870) @eps1lon
+- [docs] Document mui-rff (#17943) @lookfirst
+- [docs] Explain checks in Contributing (#18033) @eps1lon
+- [docs] Fix "Unknown" typo (#17911) @qmertesdorf-terratrue
+- [docs] Fix RTL-toggle tooltip bug in app bar (#17865) @flurmbo
+- [docs] Fix a typo while reading the doc :) (#18040) @daemonsy
+- [docs] Fix grammar in docs (#17889) @DDDDDanica
+- [docs] Fix typo in Paperbase theme (#17984) @DavidMoraisFerreira
+- [docs] Fix typos and grammar in getting started (#17880) @tonyjmartinez
+- [docs] Improve TabelCell description (#17979) @uxitten
+- [docs] Improve fixed app bar placement section (#17896) @adeelibr
+- [docs] Lazy load landing page images (#17827) @eps1lon
+- [docs] Optimize images (#18025) @MichaelDeBoey
+- [docs] Prevent layout shift when rendering ads (#17893) @Janpot
+- [docs] README: change material design link to use material.io (#17967) @RDIL
+- [docs] Remove unused styles in EnhancedTable demo  (#17902) @FeynmanDNA
+- [docs] Replace negative actions from fab examples (#17926) @nuragic
+- [docs] September 2019 Update (#17852) @oliviertassinari
+- [docs] Show the JSX by default for small examples (#17831) @mbrookes
+- [docs] Update the translations (#18042) @mbrookes
+- [docs] Workaround next.js AMP support limitation (#18020) @fbnklmnvds
+- [docs] document use of theme.mixins.toolbar & <Toolbar /> when using Appbar variant fixed (#17878) @adeelibr
+
+### Core
+
+- [core] Batch small changes (#17910) @oliviertassinari
+- [core] Custom deepmerge implementation (#17982) @oliviertassinari
+- [core] Ignore meta, ctrl and alt in keyboard modality detection (#17924) @adeelibr
+- [core] Reduce eslint-disables (#17841) @eps1lon
+- [core] Remove redundant production check (#17929) @ellisio
+- [test] Add codesandbox CI config (#17874) @eps1lon
+- [test] Add silent option to CodeSandbox CI config (#18024) @CompuIves
+- [test] Only build component packages for codesandbox  (#17976) @eps1lon
+- [test] Reduce ByRole calls (#18015) @eps1lon
+- [test] Run tests periodically with `react@next` (#18008) @eps1lon
+- [test] Use Performance implementation of vendors (#18073) @eps1lon
+
 ## 4.5.1
 ###### *Oct 12, 2019*
 

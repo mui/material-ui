@@ -65,9 +65,9 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Speed Dial | 🧪 |
 | Toggle Button | 🧪 |
 | Tree View | 🧪 |
-| Autocomplete | 🛠 |
-| Combo Box | 🛠 |
-| Multiselect | 🛠 |
+| Autocomplete | 🧪 |
+| Combo Box | 🧪 |
+| Multiselect | 🧪 |
 | Date Picker (& range) | 🛠 |
 | Data Table | 🛠⭐️ |
 | Alert | ⏳ |
