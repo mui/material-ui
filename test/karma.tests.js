@@ -7,16 +7,23 @@ import 'core-js/modules/es6.array.from';
 // testing related libraries. It's dangerous to polyfill it but better than not
 // testing at all
 import 'core-js/es6/symbol';
+// required for babels asyncToGenerator
+import 'core-js/es6/promise';
 
 import './utils/performance';
 import './utils/init';
 
-const integrationContext = require.context(
+if (!Element.prototype.matches) {
+  Element.prototype.matches =
+    Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+}
+
+/* const integrationContext = require.context(
   '../packages/material-ui/test/integration',
   true,
   /\.test\.js$/,
 );
-integrationContext.keys().forEach(integrationContext);
+integrationContext.keys().forEach(integrationContext); */
 
 const unitContext = require.context('../packages/material-ui/src/', true, /\.test\.js$/);
 unitContext.keys().forEach(unitContext);
