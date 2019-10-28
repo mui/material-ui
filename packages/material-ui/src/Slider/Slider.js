@@ -236,6 +236,15 @@ export const styles = theme => ({
     transition: theme.transitions.create(['box-shadow'], {
       duration: theme.transitions.duration.shortest,
     }),
+    '&::after': {
+      position: 'absolute',
+      content: '""',
+      // reach 48px touch target (2 * 18 + thumb circumference)
+      left: -18,
+      top: -18,
+      right: -18,
+      bottom: -18,
+    },
     '&$focusVisible,&:hover': {
       boxShadow: `0px 0px 0px 8px ${fade(theme.palette.primary.main, 0.16)}`,
       '@media (hover: none)': {
