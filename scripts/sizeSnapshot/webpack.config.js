@@ -86,6 +86,11 @@ async function getSizeLimitBundles() {
     },
     ...labComponents,
     {
+      name: 'useAutocomplete',
+      webpack: true,
+      path: 'packages/material-ui-lab/build/esm/useAutocomplete/index.js',
+    },
+    {
       name: '@material-ui/core/useMediaQuery',
       webpack: true,
       path: 'packages/material-ui/build/esm/useMediaQuery/index.js',

@@ -115,6 +115,10 @@ Select.propTypes = {
    */
   classes: PropTypes.object.isRequired,
   /**
+   * The default element value. Use when the component is not controlled.
+   */
+  defaultValue: PropTypes.any,
+  /**
    * If `true`, a value is displayed even if no items are selected.
    *
    * In order to display a meaningful value, a function should be passed to the `renderValue` prop which returns the value to be displayed when no items are selected.
@@ -191,8 +195,8 @@ Select.propTypes = {
    * Render the selected value.
    * You can only use it when the `native` prop is `false` (default).
    *
-   * @param {*} value The `value` provided to the component.
-   * @returns {ReactElement}
+   * @param {any} value The `value` provided to the component.
+   * @returns {ReactNode}
    */
   renderValue: PropTypes.func,
   /**

@@ -51,6 +51,7 @@ Any other props supplied will be provided to the root element ([Input](/api/inpu
 | <span class="prop-name">selectMenu</span> | <span class="prop-name">.MuiNativeSelect-selectMenu</span> | Styles applied to the select component `selectMenu` class.
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the select component `disabled` class.
 | <span class="prop-name">icon</span> | <span class="prop-name">.MuiNativeSelect-icon</span> | Styles applied to the icon component.
+| <span class="prop-name">iconOpen</span> | <span class="prop-name">.MuiNativeSelect-iconOpen</span> | Styles applied to the icon component if the popup is open.
 | <span class="prop-name">iconFilled</span> | <span class="prop-name">.MuiNativeSelect-iconFilled</span> | Styles applied to the icon component if `variant="filled"`.
 | <span class="prop-name">iconOutlined</span> | <span class="prop-name">.MuiNativeSelect-iconOutlined</span> | Styles applied to the icon component if `variant="outlined"`.
 

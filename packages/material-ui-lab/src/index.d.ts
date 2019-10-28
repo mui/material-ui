@@ -1,3 +1,4 @@
+export { default as Autocomplete } from './Autocomplete';
 export { default as Rating } from './Rating';
 export { default as Skeleton } from './Skeleton';
 export { default as SpeedDial } from './SpeedDial';
@@ -7,3 +8,4 @@ export { default as ToggleButton } from './ToggleButton';
 export { default as ToggleButtonGroup } from './ToggleButtonGroup';
 export { default as TreeView } from './TreeView';
 export { default as TreeItem } from './TreeItem';
+export { default as useAutocomplete, createFilterOptions } from './useAutocomplete';

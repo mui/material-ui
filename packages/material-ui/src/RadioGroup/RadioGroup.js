@@ -9,10 +9,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
   const rootRef = React.useRef(null);
   const { current: isControlled } = React.useRef(valueProp != null);
   const [valueState, setValue] = React.useState(() => {
-    if (!isControlled) {
-      return props.defaultValue;
-    }
-    return null;
+    return !isControlled ? props.defaultValue : null;
   });
 
   React.useImperativeHandle(

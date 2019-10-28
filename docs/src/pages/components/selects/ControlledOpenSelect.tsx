@@ -37,7 +37,7 @@ export default function ControlledOpenSelect() {
   };
 
   return (
-    <form autoComplete="off">
+    <div>
       <Button className={classes.button} onClick={handleOpen}>
         Open the select
       </Button>
@@ -60,6 +60,6 @@ export default function ControlledOpenSelect() {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-    </form>
+    </div>
   );
 }

@@ -79,7 +79,6 @@ If that's not sufficient, you can check the [implementation of the component](ht
 
 ## Demos
 
-- [Autocomplete](/components/autocomplete/)
 - [Cards](/components/cards/)
 - [Paper](/components/paper/)
 

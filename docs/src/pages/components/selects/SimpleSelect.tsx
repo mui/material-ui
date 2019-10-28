@@ -8,10 +8,6 @@ import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
     formControl: {
       margin: theme.spacing(1),
       minWidth: 120,
@@ -37,7 +33,7 @@ export default function SimpleSelect() {
   };
 
   return (
-    <form className={classes.root} autoComplete="off">
+    <div>
       <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-label">Age</InputLabel>
         <Select
@@ -235,6 +231,6 @@ export default function SimpleSelect() {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-    </form>
+    </div>
   );
 }

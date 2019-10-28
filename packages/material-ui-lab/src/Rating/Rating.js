@@ -35,7 +35,7 @@ export const styles = theme => ({
     color: '#ffb400',
     cursor: 'pointer',
     '&$disabled': {
-      opacity: 0.4,
+      opacity: 0.5,
       pointerEvents: 'none',
     },
     '&$focusVisible $iconActive': {

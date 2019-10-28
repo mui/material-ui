@@ -1,1 +1,2 @@
-export { default, NProgressBarProps } from './NProgressBar';
+export { default } from './NProgressBar';
+export * from './NProgressBar';

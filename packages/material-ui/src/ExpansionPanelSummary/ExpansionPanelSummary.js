@@ -30,11 +30,11 @@ export const styles = theme => {
         opacity: 0.38,
       },
     },
-    /* Styles applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`. */
+    /* Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`. */
     expanded: {},
-    /* Styles applied to the root and children wrapper elements when focused. */
+    /* Pseudo-class applied to the root element if `focused={true}`. */
     focused: {},
-    /* Styles applied to the root element if `disabled={true}`. */
+    /* Pseudo-class applied to the root element if `disabled={true}`. */
     disabled: {},
     /* Styles applied to the children wrapper element. */
     content: {

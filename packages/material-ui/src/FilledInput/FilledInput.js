@@ -79,9 +79,9 @@ export const styles = theme => {
         borderBottomStyle: 'dotted',
       },
     },
-    /* Styles applied to the root element if the component is focused. */
+    /* Pseudo-class applied to the root element if the component is focused. */
     focused: {},
-    /* Styles applied to the root element if `disabled={true}`. */
+    /* Pseudo-class applied to the root element if `disabled={true}`. */
     disabled: {},
     /* Styles applied to the root element if `startAdornment` is provided. */
     adornedStart: {

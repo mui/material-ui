@@ -177,7 +177,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     fullWidth = false,
     id,
     inputComponent = 'input',
-    inputProps: { className: inputPropsClassName, ...inputPropsProp } = {},
+    inputProps: inputPropsProp = {},
     inputRef: inputRefProp,
     margin,
     multiline = false,
@@ -196,10 +196,11 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     select = false,
     startAdornment,
     type = 'text',
-    value,
+    value: valueProp,
     ...other
   } = props;
 
+  const value = inputPropsProp.value != null ? inputPropsProp.value : valueProp;
   const { current: isControlled } = React.useRef(value != null);
 
   const inputRef = React.useRef();
@@ -285,6 +286,9 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     if (onFocus) {
       onFocus(event);
     }
+    if (inputPropsProp.onFocus) {
+      inputPropsProp.onFocus(event);
+    }
 
     if (muiFormControl && muiFormControl.onFocus) {
       muiFormControl.onFocus(event);
@@ -296,6 +300,9 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const handleBlur = event => {
     if (onBlur) {
       onBlur(event);
+    }
+    if (inputPropsProp.onBlur) {
+      inputPropsProp.onBlur(event);
     }
 
     if (muiFormControl && muiFormControl.onBlur) {
@@ -319,6 +326,10 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       checkDirty({
         value: element.value,
       });
+    }
+
+    if (inputPropsProp.onChange) {
+      inputPropsProp.onChange(event);
     }
 
     // Perform in the willUpdate
@@ -383,6 +394,12 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     );
   };
 
+  React.useEffect(() => {
+    if (muiFormControl) {
+      muiFormControl.setAdornedStart(Boolean(startAdornment));
+    }
+  }, [muiFormControl, startAdornment]);
+
   return (
     <div
       className={clsx(
@@ -411,6 +428,19 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           aria-describedby={ariaDescribedby}
           autoComplete={autoComplete}
           autoFocus={autoFocus}
+          defaultValue={defaultValue}
+          disabled={fcs.disabled}
+          id={id}
+          onAnimationStart={handleAutoFill}
+          name={name}
+          placeholder={placeholder}
+          readOnly={readOnly}
+          required={fcs.required}
+          rows={rows}
+          value={value}
+          onKeyDown={onKeyDown}
+          onKeyUp={onKeyUp}
+          {...inputProps}
           className={clsx(
             classes.input,
             {
@@ -423,24 +453,11 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
               [classes.inputAdornedStart]: startAdornment,
               [classes.inputAdornedEnd]: endAdornment,
             },
-            inputPropsClassName,
+            inputPropsProp.className,
           )}
-          defaultValue={defaultValue}
-          disabled={fcs.disabled}
-          id={id}
-          onAnimationStart={handleAutoFill}
-          name={name}
           onBlur={handleBlur}
           onChange={handleChange}
           onFocus={handleFocus}
-          onKeyDown={onKeyDown}
-          onKeyUp={onKeyUp}
-          placeholder={placeholder}
-          readOnly={readOnly}
-          required={fcs.required}
-          rows={rows}
-          value={value}
-          {...inputProps}
         />
       </FormControlContext.Provider>
       {endAdornment}

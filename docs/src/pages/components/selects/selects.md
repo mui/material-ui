@@ -53,6 +53,12 @@ While it's discouraged by the Material Design specification, you can use a selec
 
 The `TextField` wrapper component is a complete form control including a label, input and help text. You can find an example with the select mode [in this section](/components/text-fields/#textfield).
 
+## Grouping
+
+Display categories with the `ListSubheader` component or the native `<optgroup>` element.
+
+{{"demo": "pages/components/selects/GroupedSelect.js"}}
+
 ## Accessibility
 
 To properly label your `Select` input you need an extra element with an `id` that contains a label.

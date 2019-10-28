@@ -123,7 +123,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
         eventCallback(event);
       }
 
-      const ignore = event.defaultPrevented || skipRippleAction;
+      const ignore = skipRippleAction;
       if (!ignore && rippleRef.current) {
         rippleRef.current[rippleAction](event);
       }

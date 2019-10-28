@@ -41,9 +41,9 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiExpansionPanelSummary-root</span> | Styles applied to the root element.
-| <span class="prop-name">expanded</span> | <span class="prop-name">.Mui-expanded</span> | Styles applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.
-| <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Styles applied to the root and children wrapper elements when focused.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">expanded</span> | <span class="prop-name">.Mui-expanded</span> | Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.
+| <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element if `focused={true}`.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
 | <span class="prop-name">content</span> | <span class="prop-name">.MuiExpansionPanelSummary-content</span> | Styles applied to the children wrapper element.
 | <span class="prop-name">expandIcon</span> | <span class="prop-name">.MuiExpansionPanelSummary-expandIcon</span> | Styles applied to the `IconButton` component when `expandIcon` is supplied.
 
