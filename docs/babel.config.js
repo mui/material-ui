@@ -23,19 +23,7 @@ const alias = {
 };
 
 module.exports = {
-  presets: [
-    [
-      'next/babel',
-      {
-        'transform-runtime': {
-          // unset from next.js
-          // otherwise hides possible compat issues if this option isn't used (default)
-          corejs: false,
-        },
-      },
-    ],
-    '@zeit/next-typescript/babel',
-  ],
+  presets: ['next/babel', '@zeit/next-typescript/babel'],
   plugins: [
     'babel-plugin-optimize-clsx',
     // for IE 11 support
