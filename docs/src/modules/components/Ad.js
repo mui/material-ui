@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
+import { getCookie } from 'docs/src/modules/utils/helpers';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import AdCodeFund from 'docs/src/modules/components/AdCodeFund';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
 import AdScaffoldHub from 'docs/src/modules/components/AdScaffoldHub';
+import AdThemes from 'docs/src/modules/components/AdThemes';
 
 const styles = theme => ({
   root: {
@@ -24,10 +26,21 @@ const styles = theme => ({
   },
 });
 
+function getAdblockCount() {
+  const seen = getCookie('adblockCount');
+  return seen === '' ? 0 : parseInt(seen, 10);
+}
+
 function getAdblock(classes, t) {
   if (/Googlebot/.test(navigator.userAgent)) {
     return null;
   }
+
+  if (getAdblockCount() >= 2) {
+    return Math.random() < 0.5 ? <AdScaffoldHub /> : <AdThemes />;
+  }
+
+  document.cookie = `adblockCount=${getAdblockCount() + 1};path=/`;
 
   return (
     <Paper component="span" elevation={0} className={classes.paper}>
@@ -60,7 +73,7 @@ function Ad(props) {
     if (
       document.querySelector('.cf-wrapper') ||
       document.querySelector('#carbonads') ||
-      document.querySelector('#scaffoldhub')
+      document.querySelector('#nativead')
     ) {
       setAdblock(false);
       return;
@@ -96,7 +109,7 @@ function Ad(props) {
 
   if (random < 0.03) {
     randomAd = <AdScaffoldHub />;
-  } else if (random >= 0.6) {
+  } else if (random < 0.6) {
     randomAd = <AdCodeFund />;
   }
 

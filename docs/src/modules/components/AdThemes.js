@@ -8,9 +8,9 @@ const useStyles = makeStyles(theme => ({
       '& a': {
         textDecoration: 'none',
       },
-      '& .shPoweredBy': {
+      '& .ptPoweredBy': {
         display: 'block',
-        marginTop: 16,
+        marginTop: 4,
         ...theme.typography.caption,
         color: theme.palette.text.secondary,
       },
@@ -36,29 +36,31 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function AdScaffoldHub() {
+export default function AdThemes() {
   const classes = useStyles();
   return (
     <span className={classes.root} id="nativead">
       <a
-        href="https://scaffoldhub.io/?partner=1"
+        href="https://themes.material-ui.com/"
         // eslint-disable-next-line react/jsx-no-target-blank
         target="_blank"
         rel="noopener"
-        data-ga-event-category="scaffoldhub"
+        data-ga-event-category="themes"
         data-ga-event-action="click"
         data-ga-event-label="ad"
       >
         <img
           className={classes.image}
-          src="/static/images/ads/scaffoldhub.png"
-          alt="ScaffoldHub Logo"
+          src="/static/images/ads/themes.png"
+          alt="Screenshot of an example premium theme"
         />
         <span className={classes.text}>
-          <b>ScaffoldHub</b> - Automate building your full-stack Material-UI web-app.
+          <b>Premium Themes</b>
+          <br />
+          Kickstart your application development with a ready-made theme.
         </span>
       </a>
-      <a href="/" className="shPoweredBy">
+      <a href="/" className="ptPoweredBy">
         <em>ethical</em> ad by Material-UI
       </a>
     </span>
