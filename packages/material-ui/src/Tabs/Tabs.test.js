@@ -3,8 +3,9 @@ import { expect, assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import * as PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createMount, createRender, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import createServerRender from 'test/utils/createServerRender';
 import describeConformance from '../test-utils/describeConformance';
 import Tab from '../Tab';
 import Tabs from './Tabs';
@@ -36,12 +37,10 @@ describe('<Tabs />', () => {
   let mount;
   let classes;
   const render = createClientRender({ strict: true });
-  let serverRender;
 
   before(() => {
     classes = getClasses(<Tabs value={0} />);
     mount = createMount({ strict: true });
-    serverRender = createRender();
   });
 
   describeConformance(<Tabs value={0} />, () => ({
@@ -159,17 +158,6 @@ describe('<Tabs />', () => {
           </Tabs>,
         );
         expect(container.querySelector(`.${classes.indicator}`).style.width).to.equal('0px');
-      });
-
-      it('should let the selected <Tab /> render the indicator server-side', () => {
-        const markup = serverRender(
-          <Tabs value={1}>
-            <Tab />
-            <Tab />
-          </Tabs>,
-        );
-        const indicator = markup.find(`button > .${classes.indicator}`);
-        expect(indicator).to.have.lengthOf(1);
       });
 
       it('should render the indicator', () => {
@@ -646,6 +634,21 @@ describe('<Tabs />', () => {
       style = container.querySelector(`.${classes.indicator}`).style;
       expect(style.top).to.equal('60px');
       expect(style.height).to.equal('50px');
+    });
+  });
+
+  describe('server-side render', () => {
+    const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
+
+    it('should let the selected <Tab /> render the indicator server-side', () => {
+      const markup = serverRender(
+        <Tabs value={1}>
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+      const indicator = markup.find(`button > .${classes.indicator}`);
+      expect(indicator).to.have.lengthOf(1);
     });
   });
 });
