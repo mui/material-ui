@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import ExpansionPanel from '../ExpansionPanel';
 import ExpansionPanelSummary from './ExpansionPanelSummary';
 import ButtonBase from '../ButtonBase';
 
@@ -13,6 +14,7 @@ describe('<ExpansionPanelSummary />', () => {
   const render = createClientRender({ strict: true });
 
   before(() => {
+    // requires mocking the TransitionComponent of `ExpansionPanel`
     mount = createMount({ strict: true });
     classes = getClasses(<ExpansionPanelSummary />);
   });
@@ -33,13 +35,21 @@ describe('<ExpansionPanelSummary />', () => {
   });
 
   it('when disabled should have disabled class', () => {
-    const { getByRole } = render(<ExpansionPanelSummary disabled />);
+    const { getByRole } = render(
+      <ExpansionPanel disabled TransitionComponent={({ children }) => children}>
+        <ExpansionPanelSummary />
+      </ExpansionPanel>,
+    );
 
     expect(getByRole('button')).to.have.class(classes.disabled);
   });
 
   it('when expanded adds the expanded class to the button and expandIcon', () => {
-    const { container, getByRole } = render(<ExpansionPanelSummary expanded expandIcon="expand" />);
+    const { container, getByRole } = render(
+      <ExpansionPanel expanded TransitionComponent={({ children }) => children}>
+        <ExpansionPanelSummary expandIcon="expand" />
+      </ExpansionPanel>,
+    );
 
     const button = getByRole('button');
     expect(button).to.have.class(classes.expanded);
@@ -93,9 +103,13 @@ describe('<ExpansionPanelSummary />', () => {
     expect(handleClick.callCount).to.equal(1);
   });
 
-  it('calls onChange when clicking', () => {
+  it('fires onChange of the ExpansionPanel if clicked', () => {
     const handleChange = spy();
-    const { getByRole } = render(<ExpansionPanelSummary onChange={handleChange} />);
+    const { getByRole } = render(
+      <ExpansionPanel onChange={handleChange} TransitionComponent={({ children }) => children}>
+        <ExpansionPanelSummary />
+      </ExpansionPanel>,
+    );
 
     getByRole('button').click();
 
