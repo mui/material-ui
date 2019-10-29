@@ -52,6 +52,7 @@ If you want to start with a more complete and real-world example, you could take
   - Created with Create React App
 
 ### Paid
+
 - [ScaffoldHub](https://scaffoldhub.io/?partner=1):
 
   - Build your complete application with this online tool
@@ -60,4 +61,3 @@ If you want to start with a more complete and real-world example, you could take
   - Model your database and application with the intuitive GUI
   - Generate your application, including a complete scaffolded backend
   - Preview your application online, and download the generated code
-

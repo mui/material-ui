@@ -7,8 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import AdCodeFund from 'docs/src/modules/components/AdCodeFund';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
-import AdScaffoldHub from 'docs/src/modules/components/AdScaffoldHub';
-import AdThemes from 'docs/src/modules/components/AdThemes';
+import AdInHouse from 'docs/src/modules/components/AdInHouse';
 
 const styles = theme => ({
   root: {
@@ -32,16 +31,6 @@ function getAdblockCount() {
 }
 
 function getAdblock(classes, t) {
-  if (/Googlebot/.test(navigator.userAgent)) {
-    return null;
-  }
-
-  if (getAdblockCount() >= 2) {
-    return Math.random() < 0.5 ? <AdScaffoldHub /> : <AdThemes />;
-  }
-
-  document.cookie = `adblockCount=${getAdblockCount() + 1};path=/`;
-
   return (
     <Paper component="span" elevation={0} className={classes.paper}>
       <Typography variant="body2" display="block" component="span" gutterBottom>
@@ -62,6 +51,22 @@ function getAdblock(classes, t) {
 
 const disable = process.env.NODE_ENV !== 'production' && process.env.ENABLE_AD !== 'true';
 
+const inHouses = [
+  {
+    name: 'scaffoldhub',
+    link: 'https://scaffoldhub.io/?partner=1',
+    img: '/static/in-house/scaffoldhub.png',
+    description: '<b>ScaffoldHub</b> - Automate building your full-stack Material-UI web-app.',
+  },
+  {
+    name: 'themes',
+    link: 'https://themes.material-ui.com/',
+    img: '/static/in-house/themes.png',
+    description:
+      '<b>Premium Themes</b><br />Kickstart your application development with a ready-made theme.',
+  },
+];
+
 function Ad(props) {
   const { classes } = props;
   const { current: random } = React.useRef(Math.random());
@@ -73,7 +78,7 @@ function Ad(props) {
     if (
       document.querySelector('.cf-wrapper') ||
       document.querySelector('#carbonads') ||
-      document.querySelector('#nativead')
+      document.querySelector('#in-house')
     ) {
       setAdblock(false);
       return;
@@ -83,6 +88,8 @@ function Ad(props) {
       timerAdblock.current = setTimeout(() => {
         checkAdblock(attempt + 1);
       }, 500);
+    } else {
+      document.cookie = `adblockCount=${getAdblockCount() + 1};path=/`;
     }
 
     if (attempt > 6) {
@@ -101,24 +108,38 @@ function Ad(props) {
     };
   }, [checkAdblock]);
 
+  // Hide the content to google bot.
+  if (/Googlebot/.test(navigator.userAgent)) {
+    return null;
+  }
+
   if (disable) {
     return <span className={classes.root}>{getAdblock(classes, t)}</span>;
   }
 
-  let randomAd = <AdCarbon />;
-
-  if (random < 0.03) {
-    randomAd = <AdScaffoldHub />;
-  } else if (random < 0.6) {
-    randomAd = <AdCodeFund />;
+  if (getAdblockCount() >= 2) {
+    return (
+      <span className={classes.root} style={{ minHeight: 'auto' }}>
+        <AdInHouse ad={inHouses[Math.round((inHouses.length - 1) * Math.random())]} />
+      </span>
+    );
   }
 
-  return (
-    <span className={classes.root}>
-      {randomAd}
-      {adblock === true ? getAdblock(classes, t) : null}
-    </span>
-  );
+  if (adblock === true) {
+    return <span className={classes.root}>{getAdblock(classes, t)}</span>;
+  }
+
+  let randomAd;
+
+  if (random < 0.6) {
+    randomAd = <AdCodeFund />;
+  } else if (random < 0.63) {
+    randomAd = <AdInHouse ad={inHouses[0]} />;
+  } else {
+    randomAd = <AdCarbon />;
+  }
+
+  return <span className={classes.root}>{randomAd}</span>;
 }
 
 Ad.propTypes = {
