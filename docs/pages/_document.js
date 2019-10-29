@@ -144,7 +144,7 @@ MyDocument.getInitialProps = async ctx => {
     canonical: pathnameToLanguage(ctx.req.url).canonical,
     userLanguage: ctx.query.userLanguage || 'en',
     styles: [
-      ...initialProps.styles,
+      ...React.Children.toArray(initialProps.styles),
       <style
         id="jss-server-side"
         key="jss-server-side"
