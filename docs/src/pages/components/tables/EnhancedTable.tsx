@@ -82,14 +82,14 @@ function getSorting<K extends keyof any>(
   return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
 }
 
-interface headCell {
+interface HeadCell {
   disablePadding: boolean;
   id: keyof Data;
   label: string;
   numeric: boolean;
 }
 
-const headCells: headCell[] = [
+const headCells: HeadCell[] = [
   { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
   { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
   { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
