@@ -102,9 +102,9 @@ const markedOptions = {
 
     if (!prismLanguage) {
       if (process.env.NODE_ENV === 'production') {
-        console.error(`unsuppored language: "${language}", "${code}"`);
+        console.error(`unsupported language: "${language}", "${code}"`);
       } else {
-        throw new Error(`unsuppored language: "${language}", "${code}"`);
+        throw new Error(`unsupported language: "${language}", "${code}"`);
       }
     }
 
