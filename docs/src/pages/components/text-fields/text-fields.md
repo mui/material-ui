@@ -13,21 +13,65 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 The `TextField` wrapper component is a complete form control including a label, input and help text.
 
-{{"demo": "pages/components/text-fields/TextFields.js"}}
+It supports standard, outlined and filled styling.
 
-> **Note:** This version of the text field is no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support it.
+{{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 
-## Outlined
+> **Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support it.
 
-`TextField` supports outlined styling.
+## Form props
 
-{{"demo": "pages/components/text-fields/OutlinedTextFields.js"}}
+Standard form attributes are supported e.g. `required`, `readOnly`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
 
-## Filled
+{{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
-`TextField` supports filled styling.
+## Validation
 
-{{"demo": "pages/components/text-fields/FilledTextFields.js"}}
+The `error` prop toggles the error state, the `helperText` prop can then be used to provide feedback to the user about the error.
+
+{{"demo": "pages/components/text-fields/ValidationTextFields.js"}}
+
+## Multiline
+
+The `multiline` prop transforms the text field into a [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) or a [TextareaAutosize](/components/textarea-autosize/).
+
+{{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
+
+## Select
+
+The `select` prop makes the text field use the [Select](/components/selects/) component internally.
+
+{{"demo": "pages/components/text-fields/SelectTextFields.js"}}
+
+## Icons
+
+There are multiple ways to display an icon with a text field. 
+
+{{"demo": "pages/components/text-fields/InputWithIcon.js"}}
+
+### Input Adornments
+
+The main way is with an `InputAdornment`.
+These can be used to add a prefix, a suffix or an action to an input.
+For instance, you can use an icon button to hide or reveal the password.
+
+{{"demo": "pages/components/text-fields/InputAdornments.js"}}
+
+## Layout
+
+`margin` can be used to alter the vertical spacing of inputs.
+Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will.
+`dense` and `normal` alter other styles to meet the specification.
+
+`fullWidth` can be used to make the input take up the full width of its container.
+
+{{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
+
+## Uncontrolled vs Controlled
+
+The component can be controlled or uncontrolled
+
+{{"demo": "pages/components/text-fields/StateTextFields.js"}}
 
 ## Components
 
@@ -61,36 +105,6 @@ Customization does not stop at CSS, you can use composition to build custom comp
 Below is an example using the [`InputBase`](/api/input-base/) component, inspired by Google Maps.
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js"}}
-
-## Input Adornments
-
-`Input` allows the provision of `InputAdornment`.
-These can be used to add a prefix, a suffix or an action to an input.
-For instance, you can use an icon button to hide or reveal the password.
-
-{{"demo": "pages/components/text-fields/InputAdornments.js"}}
-
-### With icon
-
-Icons can be specified as prepended or appended.
-
-{{"demo": "pages/components/text-fields/InputWithIcon.js"}}
-
-### Filled Input Adornments
-
-{{"demo": "pages/components/text-fields/FilledInputAdornments.js"}}
-
-### Outlined Input Adornments
-
-{{"demo": "pages/components/text-fields/OutlinedInputAdornments.js"}}
-
-## Layout
-
-`TextField`, `FormControl` allow the specification of `margin` to alter the vertical spacing of inputs. Using
-`none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will as well as alter
-other styles to meet the specification.
-
-{{"demo": "pages/components/text-fields/TextFieldMargins.js"}}
 
 ## Limitations
 
