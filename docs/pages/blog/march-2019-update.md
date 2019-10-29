@@ -35,6 +35,7 @@ Don't worry, it's almost over! We will focus on providing more components once w
   - TypeScript demo variants.
   - Migration from Classes to Hooks, removal of unnecessary internal components.
   - Removal of `findDOMNode()`, support of `StrictMode`, forward of references.
+- ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
 
 <hr />
 

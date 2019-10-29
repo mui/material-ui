@@ -51,7 +51,7 @@ const StepConnector = React.forwardRef(function StepConnector(props, ref) {
     active,
     alternativeLabel = false,
     classes,
-    className: classNameProp,
+    className,
     completed,
     disabled,
     index,
@@ -70,7 +70,7 @@ const StepConnector = React.forwardRef(function StepConnector(props, ref) {
           [classes.completed]: completed,
           [classes.disabled]: disabled,
         },
-        classNameProp,
+        className,
       )}
       ref={ref}
       {...other}

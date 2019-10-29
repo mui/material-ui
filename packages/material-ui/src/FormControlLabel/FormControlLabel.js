@@ -57,7 +57,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(props, ref) 
   const {
     checked,
     classes,
-    className: classNameProp,
+    className,
     control,
     disabled: disabledProp,
     inputRef,
@@ -95,7 +95,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(props, ref) 
           [classes[`labelPlacement${capitalize(labelPlacement)}`]]: labelPlacement !== 'end',
           [classes.disabled]: disabled,
         },
-        classNameProp,
+        className,
       )}
       ref={ref}
       {...other}

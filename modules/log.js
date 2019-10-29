@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 // https://github.com/trentm/node-bunyan#levels
 const logTypes = {
   // Detail on regular operation.

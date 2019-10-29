@@ -30,30 +30,35 @@ export const styles = theme => {
 const Paper = React.forwardRef(function Paper(props, ref) {
   const {
     classes,
-    className: classNameProp,
+    className,
     component: Component = 'div',
     square = false,
     elevation = 1,
     ...other
   } = props;
-  const theme = useTheme();
 
   if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const theme = useTheme();
     if (!theme.shadows[elevation]) {
       console.error(`Material-UI: this elevation \`${elevation}\` is not implemented.`);
     }
   }
 
-  const className = clsx(
-    classes.root,
-    classes[`elevation${elevation}`],
-    {
-      [classes.rounded]: !square,
-    },
-    classNameProp,
+  return (
+    <Component
+      className={clsx(
+        classes.root,
+        classes[`elevation${elevation}`],
+        {
+          [classes.rounded]: !square,
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    />
   );
-
-  return <Component className={className} ref={ref} {...other} />;
 });
 
 Paper.propTypes = {

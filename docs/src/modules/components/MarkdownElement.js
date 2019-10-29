@@ -46,6 +46,7 @@ const externs = [
   'https://www.amazon.com/',
   'https://materialdesignicons.com/',
   'https://www.w3.org/',
+  'https://devexpress.github.io/',
 ];
 
 renderer.link = (href, title, text) => {

@@ -1,5 +1,4 @@
 /* eslint-disable react/no-danger, react-hooks/exhaustive-deps */
-
 import 'isomorphic-fetch';
 import React from 'react';
 import { useSelector } from 'react-redux';

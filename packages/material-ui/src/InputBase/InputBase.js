@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -169,7 +168,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     autoComplete,
     autoFocus,
     classes,
-    className: classNameProp,
+    className,
     defaultValue,
     disabled,
     endAdornment,
@@ -415,7 +414,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           [classes.adornedStart]: startAdornment,
           [classes.adornedEnd]: endAdornment,
         },
-        classNameProp,
+        className,
       )}
       onClick={handleClick}
       ref={ref}

@@ -33,6 +33,11 @@ const backers = [
     alt: 'blokt',
     title: 'Leading Cryptocurrency News',
   },
+  {
+    href: 'https://www.crosswordsolver.com',
+    alt: 'crosswordsolver',
+    title: 'Crossword Puzzle Solver',
+  },
 ];
 
 const styles = theme => ({

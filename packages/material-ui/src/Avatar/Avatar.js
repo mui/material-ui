@@ -41,7 +41,7 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
     alt,
     children: childrenProp,
     classes,
-    className: classNameProp,
+    className,
     component: Component = 'div',
     imgProps,
     sizes,
@@ -76,7 +76,7 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
         {
           [classes.colorDefault]: !img,
         },
-        classNameProp,
+        className,
       )}
       ref={ref}
       {...other}

@@ -34,21 +34,12 @@ const Stepper = React.forwardRef(function Stepper(props, ref) {
     alternativeLabel = false,
     children,
     classes,
-    className: classNameProp,
+    className,
     connector: connectorProp = defaultConnector,
     nonLinear = false,
     orientation = 'horizontal',
     ...other
   } = props;
-
-  const className = clsx(
-    classes.root,
-    classes[orientation],
-    {
-      [classes.alternativeLabel]: alternativeLabel,
-    },
-    classNameProp,
-  );
 
   const connector = React.isValidElement(connectorProp)
     ? React.cloneElement(connectorProp, { orientation })
@@ -90,7 +81,20 @@ const Stepper = React.forwardRef(function Stepper(props, ref) {
   });
 
   return (
-    <Paper square elevation={0} className={className} ref={ref} {...other}>
+    <Paper
+      square
+      elevation={0}
+      className={clsx(
+        classes.root,
+        classes[orientation],
+        {
+          [classes.alternativeLabel]: alternativeLabel,
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    >
       {steps}
     </Paper>
   );

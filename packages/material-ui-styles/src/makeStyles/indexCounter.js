@@ -1,5 +1,4 @@
 /* eslint-disable import/prefer-default-export */
-
 // Global index counter to preserve source order.
 // We create the style sheet during at the creation of the component,
 // children are handled after the parents, so the order of style elements would be parent->child.

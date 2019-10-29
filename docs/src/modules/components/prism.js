@@ -1,5 +1,4 @@
 /* eslint-disable import/no-mutable-exports, global-require */
-
 import prism from 'prismjs';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-diff';

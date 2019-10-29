@@ -1,5 +1,6 @@
 export interface ZIndex {
   mobileStepper: number;
+  speedDial: number;
   appBar: number;
   drawer: number;
   modal: number;

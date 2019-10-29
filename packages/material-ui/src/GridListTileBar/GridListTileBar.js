@@ -72,7 +72,7 @@ const GridListTileBar = React.forwardRef(function GridListTileBar(props, ref) {
     actionIcon,
     actionPosition = 'right',
     classes,
-    className: classNameProp,
+    className,
     subtitle,
     title,
     titlePosition = 'bottom',
@@ -80,25 +80,27 @@ const GridListTileBar = React.forwardRef(function GridListTileBar(props, ref) {
   } = props;
 
   const actionPos = actionIcon && actionPosition;
-  const className = clsx(
-    classes.root,
-    {
-      [classes.titlePositionBottom]: titlePosition === 'bottom',
-      [classes.titlePositionTop]: titlePosition === 'top',
-      [classes.rootSubtitle]: subtitle,
-    },
-    classNameProp,
-  );
-
-  // Remove the margin between the title / subtitle wrapper, and the Action Icon
-  const titleWrapClassName = clsx(classes.titleWrap, {
-    [classes.titleWrapActionPosLeft]: actionPos === 'left',
-    [classes.titleWrapActionPosRight]: actionPos === 'right',
-  });
 
   return (
-    <div className={className} ref={ref} {...other}>
-      <div className={titleWrapClassName}>
+    <div
+      className={clsx(
+        classes.root,
+        {
+          [classes.titlePositionBottom]: titlePosition === 'bottom',
+          [classes.titlePositionTop]: titlePosition === 'top',
+          [classes.rootSubtitle]: subtitle,
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    >
+      <div
+        className={clsx(classes.titleWrap, {
+          [classes.titleWrapActionPosLeft]: actionPos === 'left',
+          [classes.titleWrapActionPosRight]: actionPos === 'right',
+        })}
+      >
         <div className={classes.title}>{title}</div>
         {subtitle ? <div className={classes.subtitle}>{subtitle}</div> : null}
       </div>

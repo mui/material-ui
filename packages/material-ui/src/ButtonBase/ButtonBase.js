@@ -301,6 +301,8 @@ ButtonBase.propTypes = {
    */
   action: refType,
   /**
+   * @ignore
+   *
    * Use that prop to pass a ref to the native button component.
    * @deprecated Use `ref` instead.
    */
