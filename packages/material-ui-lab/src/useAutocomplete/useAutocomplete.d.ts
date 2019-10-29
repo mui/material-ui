@@ -66,11 +66,11 @@ export interface UseAutocompleteProps {
    */
   disableOpenOnFocus?: boolean;
   /**
-   * A filter function that determins the options that are eligible.
+   * A filter function that determines the options that are eligible.
    *
-   * @param {any} options The options to render.
+   * @param {any[]} options The options to render.
    * @param {object} state The state of the component.
-   * @returns {boolean}
+   * @returns {any[]}
    */
   filterOptions?: (options: any[], state: FilterOptionsState) => any[];
   /**
