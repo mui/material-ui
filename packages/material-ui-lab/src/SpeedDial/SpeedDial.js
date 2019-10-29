@@ -34,6 +34,7 @@ export const styles = theme => ({
   root: {
     zIndex: theme.zIndex.speedDial,
     display: 'flex',
+    alignItems: 'center',
     pointerEvents: 'none',
   },
   /* Styles applied to the Fab component. */
