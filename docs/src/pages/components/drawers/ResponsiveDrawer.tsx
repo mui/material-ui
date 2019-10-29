@@ -30,9 +30,9 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     appBar: {
-      marginLeft: drawerWidth,
       [theme.breakpoints.up('sm')]: {
         width: `calc(100% - ${drawerWidth}px)`,
+        marginLeft: drawerWidth,
       },
     },
     menuButton: {
