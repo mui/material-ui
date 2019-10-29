@@ -419,11 +419,11 @@ Autocomplete.propTypes = {
    */
   disableOpenOnFocus: PropTypes.bool,
   /**
-   * A filter function that determins the options that are eligible.
+   * A filter function that determines the options that are eligible.
    *
-   * @param {any} options The options to render.
+   * @param {any[]} options The options to render.
    * @param {object} state The state of the component.
-   * @returns {boolean}
+   * @returns {any[]}
    */
   filterOptions: PropTypes.func,
   /**
