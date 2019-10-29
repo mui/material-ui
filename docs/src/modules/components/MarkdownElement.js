@@ -100,15 +100,15 @@ const markedOptions = {
         break;
     }
 
-    if (!prismLanguage && language) {
-      throw new Error(`unsuppored language: "${language}", "${code}"`);
+    if (!prismLanguage) {
+      if (process.env.NODE_ENV === 'production') {
+        console.error(`unsuppored language: "${language}", "${code}"`);
+      } else {
+        throw new Error(`unsuppored language: "${language}", "${code}"`);
+      }
     }
 
-    if (prismLanguage) {
-      return prism.highlight(code, prismLanguage);
-    }
-
-    return code;
+    return prism.highlight(code, prismLanguage);
   },
   renderer,
 };
@@ -142,7 +142,7 @@ const styles = theme => ({
       fontSize: 14,
       borderRadius: 2,
     },
-    '& pre > code': {
+    '& code[class*="language-"]': {
       backgroundColor: '#333',
       color: '#fff',
     },
