@@ -20,6 +20,11 @@ we allow such pattern.
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
+## Text Fields
+
+The `TextField` wrapper component is a complete form control including a label, input and help text.
+You can find an example with the select mode [in this section](/components/text-fields/#select).
+
 ## Customized selects
 
 Here are some examples of customizing the component. You can learn more about this in the
@@ -48,10 +53,6 @@ Like with the single selection, you can pull out the new value by accessing `eve
 While it's discouraged by the Material Design specification, you can use a select inside a dialog.
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
-
-## Text Fields
-
-The `TextField` wrapper component is a complete form control including a label, input and help text. You can find an example with the select mode [in this section](/components/text-fields/#textfield).
 
 ## Grouping
 
