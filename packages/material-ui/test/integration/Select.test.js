@@ -54,7 +54,6 @@ describe('<Select> integration', () => {
 
     it('should focus the selected item', () => {
       const { getByTestId, getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
-      expect(getByRole('button')).to.have.text('Ten');
 
       const trigger = getByRole('button');
       // Let's open the select component
@@ -75,9 +74,11 @@ describe('<Select> integration', () => {
 
     it('should be able to change the selected item', () => {
       const { getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
-      expect(getByRole('button')).to.have.text('Ten');
 
       const trigger = getByRole('button');
+      // basically this is a combined query getByRole('button', { name: 'Ten' })
+      // but we arent' there yet
+      expect(trigger).to.have.text('Ten');
       // Let's open the select component
       // in the browser user click also focuses
       trigger.focus();
