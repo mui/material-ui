@@ -2,20 +2,19 @@ import React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createClientRender } from 'test/utils/createClientRender';
-import { createRender, createMount, getClasses } from '@material-ui/core/test-utils';
+import createServerRender from 'test/utils/createServerRender';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import ToggleButton from './ToggleButton';
 
 describe('<ToggleButton />', () => {
   let mount;
-  let serverRender;
   let classes;
   const render = createClientRender({ strict: true });
 
   before(() => {
     mount = createMount({ strict: true });
-    serverRender = createRender();
     classes = getClasses(<ToggleButton value="classes">Hello World</ToggleButton>);
   });
 
@@ -121,6 +120,8 @@ describe('<ToggleButton />', () => {
     if (!/jsdom/.test(window.navigator.userAgent)) {
       return;
     }
+
+    const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
 
     it('should server-side render', () => {
       const markup = serverRender(<ToggleButton value="hello">Hello World</ToggleButton>);
