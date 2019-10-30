@@ -9,12 +9,12 @@
     "userLanguage": "zh"
   },
   {
-    "id": 44,
-    "text": "<a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://twitter.com/MaterialUI/status/1179314080139612160\">Material-UI v4.5.0 is out 🎉</a>"
-  },
-  {
     "id": 45,
     "text": "We plan to significantly improve the date picker. <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://www.surveymonkey.com/r/5XHDL76\">Share your thoughts in our survey!</a>",
     "route": "/components/pickers"
+  },
+  {
+    "id": 46,
+    "text": "<a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://twitter.com/MaterialUI/status/1189292678032306176\">Material-UI v4.5.2 is out 🎉</a>"
   }
 ]
