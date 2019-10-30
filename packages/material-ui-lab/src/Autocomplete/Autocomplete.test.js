@@ -10,16 +10,13 @@ describe('<Autocomplete />', () => {
   let mount;
   let classes;
   const render = createClientRender({ strict: true });
-  const defaultProps = {
-    renderInput: params => <TextField {...params} label="defaultProps" />,
-  };
 
   before(() => {
-    classes = getClasses(<Autocomplete {...defaultProps} />);
+    classes = getClasses(<Autocomplete renderInput={() => null} />);
     mount = createMount({ strict: true });
   });
 
-  describeConformance(<Autocomplete {...defaultProps} />, () => ({
+  describeConformance(<Autocomplete renderInput={() => null} />, () => ({
     classes,
     inheritComponent: 'div',
     mount,
@@ -30,7 +27,9 @@ describe('<Autocomplete />', () => {
 
   describe('combobox', () => {
     it('should clear the input when blur', () => {
-      const { container } = render(<Autocomplete {...defaultProps} />);
+      const { container } = render(
+        <Autocomplete renderInput={params => <TextField {...params} />} />,
+      );
       const input = container.querySelector('input');
       input.focus();
       fireEvent.change(input, { target: { value: 'a' } });
@@ -42,7 +41,9 @@ describe('<Autocomplete />', () => {
 
   describe('multiple', () => {
     it('should not crash', () => {
-      const { container } = render(<Autocomplete {...defaultProps} multiple />);
+      const { container } = render(
+        <Autocomplete renderInput={params => <TextField {...params} />} multiple />,
+      );
       const input = container.querySelector('input');
       input.focus();
       document.activeElement.blur();
