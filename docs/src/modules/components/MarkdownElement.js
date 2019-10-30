@@ -101,10 +101,10 @@ const markedOptions = {
     }
 
     if (!prismLanguage) {
-      if (process.env.NODE_ENV === 'production') {
-        console.error(`unsupported language: "${language}", "${code}"`);
-      } else {
+      if (language) {
         throw new Error(`unsupported language: "${language}", "${code}"`);
+      } else {
+        prismLanguage = prism.languages.jsx;
       }
     }
 
