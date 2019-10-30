@@ -5,6 +5,7 @@ import loadScript from 'docs/src/modules/utils/loadScript';
 const styles = theme => ({
   '@global': {
     '#cf': {
+      display: 'block',
       overflow: 'hidden',
       backgroundColor: theme.palette.background.level2,
       padding: `${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${theme.spacing(
@@ -19,7 +20,7 @@ const styles = theme => ({
       '& img': {
         verticalAlign: 'middle',
       },
-      '& a': {
+      '& a, & a:hover': {
         color: theme.palette.text.primary,
         textDecoration: 'none',
       },
