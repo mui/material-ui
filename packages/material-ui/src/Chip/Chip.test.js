@@ -423,8 +423,8 @@ describe('<Chip />', () => {
           key: ' ',
         };
         wrapper.find('div').simulate('keyDown', spaceKeyDown);
-        assert.strictEqual(preventDefaultSpy.callCount, 1);
-        assert.strictEqual(onClickSpy.callCount, 0);
+        assert.strictEqual(preventDefaultSpy.callCount, 2);
+        assert.strictEqual(onClickSpy.callCount, 1);
 
         const spaceKeyUp = {
           key: ' ',
@@ -441,8 +441,8 @@ describe('<Chip />', () => {
           key: 'Enter',
         };
         wrapper.find('div').simulate('keyDown', enterKeyDown);
-        assert.strictEqual(preventDefaultSpy.callCount, 1);
-        assert.strictEqual(onClickSpy.callCount, 0);
+        assert.strictEqual(preventDefaultSpy.callCount, 2);
+        assert.strictEqual(onClickSpy.callCount, 1);
 
         const enterKeyUp = {
           key: 'Enter',
