@@ -6,18 +6,26 @@ import describeConformance from '@material-ui/core/test-utils/describeConformanc
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Drawer from '../Drawer';
-import SwipeableDrawer from './SwipeableDrawer';
+import SwipeableDrawer, { reset } from './SwipeableDrawer';
 import SwipeArea from './SwipeArea';
 import useForkRef from '../utils/useForkRef';
 
-function fireBodyMouseEvent(name, properties = {}) {
+function fireMouseEvent(name, element, properties = {}) {
   const event = document.createEvent('MouseEvents');
   event.initEvent(name, true, true);
   Object.keys(properties).forEach(key => {
     event[key] = properties[key];
   });
-  document.body.dispatchEvent(event);
+  if (element.dispatchEvent) {
+    element.dispatchEvent(event);
+  } else {
+    element.getDOMNode().dispatchEvent(event);
+  }
   return event;
+}
+
+function fireBodyMouseEvent(name, properties = {}) {
+  return fireMouseEvent(name, document.body, properties);
 }
 
 function fireSwipeAreaMouseEvent(wrapper, name, properties = {}) {
@@ -147,6 +155,7 @@ describe('<SwipeableDrawer />', () => {
     });
 
     afterEach(() => {
+      reset();
       if (wrapper.length > 0) {
         wrapper.unmount();
       }
@@ -236,7 +245,9 @@ describe('<SwipeableDrawer />', () => {
 
           const handleClose = spy();
           wrapper.setProps({ open: true, onClose: handleClose });
-          fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [params.closeTouches[0]] });
+          fireMouseEvent('touchstart', wrapper.find(FakePaper), {
+            touches: [params.closeTouches[0]],
+          });
           fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[1]] });
           fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[2]] });
           fireBodyMouseEvent('touchend', { changedTouches: [params.closeTouches[2]] });
@@ -257,7 +268,10 @@ describe('<SwipeableDrawer />', () => {
           // simulate close swipe that doesn't swipe far enough
           const handleClose = spy();
           wrapper.setProps({ open: true, onClose: handleClose });
-          fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [params.closeTouches[0]] });
+          wrapper.update();
+          fireMouseEvent('touchstart', wrapper.find(FakePaper), {
+            touches: [params.closeTouches[0]],
+          });
           fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[1]] });
           fireBodyMouseEvent('touchend', { changedTouches: [params.closeTouches[1]] });
           assert.strictEqual(handleClose.callCount, 0);
@@ -338,7 +352,10 @@ describe('<SwipeableDrawer />', () => {
         open: true,
         onClose: handleClose,
       });
-      fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [{ pageX: 250, clientY: 0 }] });
+      wrapper.update();
+      fireMouseEvent('touchstart', wrapper.find(FakePaper), {
+        touches: [{ pageX: 250, clientY: 0 }],
+      });
       fireBodyMouseEvent('touchmove', { touches: [{ pageX: 180, clientY: 0 }] });
       wrapper.setProps({
         open: false,
@@ -410,7 +427,9 @@ describe('<SwipeableDrawer />', () => {
       // simulate close swipe
       wrapper.setProps({ disableSwipeToOpen: true });
       assert.strictEqual(wrapper.find('[role="presentation"]').exists(), true);
-      fireBodyMouseEvent('touchstart', { touches: [{ pageX: 250, clientY: 0 }] });
+      fireMouseEvent('touchstart', wrapper.find(FakePaper), {
+        touches: [{ pageX: 250, clientY: 0 }],
+      });
       fireBodyMouseEvent('touchmove', { touches: [{ pageX: 150, clientY: 0 }] });
       fireBodyMouseEvent('touchend', { changedTouches: [{ pageX: 10, clientY: 0 }] });
       assert.strictEqual(handleClose.callCount, 1);

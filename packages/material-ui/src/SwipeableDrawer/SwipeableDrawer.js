@@ -14,6 +14,16 @@ import SwipeArea from './SwipeArea';
 // trigger a native scroll.
 const UNCERTAINTY_THRESHOLD = 3; // px
 
+// We can only have one node at the time claiming ownership for handling the swipe.
+// Otherwise, the UX would be confusing.
+// That's why we use a singleton here.
+let nodeThatClaimedTheSwipe = null;
+
+// Exported for test purposes.
+export function reset() {
+  nodeThatClaimedTheSwipe = null;
+}
+
 function calculateCurrentX(anchor, touches) {
   return anchor === 'right' ? document.body.offsetWidth - touches[0].pageX : touches[0].pageX;
 }
@@ -34,6 +44,74 @@ function getTranslate(currentTranslate, startLocation, open, maxTranslate) {
     ),
     maxTranslate,
   );
+}
+
+function getDomTreeShapes(element, rootNode) {
+  // Adapted from https://github.com/oliviertassinari/react-swipeable-views/blob/7666de1dba253b896911adf2790ce51467670856/packages/react-swipeable-views/src/SwipeableViews.js#L129
+  let domTreeShapes = [];
+
+  while (element && element !== rootNode) {
+    const style = window.getComputedStyle(element);
+
+    if (
+      // Ignore the scroll children if the element is absolute positioned.
+      style.getPropertyValue('position') === 'absolute' ||
+      // Ignore the scroll children if the element has an overflowX hidden
+      style.getPropertyValue('overflow-x') === 'hidden'
+    ) {
+      domTreeShapes = [];
+    } else if (
+      (element.clientWidth > 0 && element.scrollWidth > element.clientWidth) ||
+      (element.clientHeight > 0 && element.scrollHeight > element.clientHeight)
+    ) {
+      // Ignore the nodes that have no width.
+      // Keep elements with a scroll
+      domTreeShapes.push(element);
+    }
+
+    element = element.parentNode;
+  }
+
+  return domTreeShapes;
+}
+
+function findNativeHandler({ domTreeShapes, start, current, anchor }) {
+  // Adapted from https://github.com/oliviertassinari/react-swipeable-views/blob/7666de1dba253b896911adf2790ce51467670856/packages/react-swipeable-views/src/SwipeableViews.js#L175
+  const axisProperties = {
+    scrollPosition: {
+      x: 'scrollLeft',
+      y: 'scrollTop',
+    },
+    scrollLength: {
+      x: 'scrollWidth',
+      y: 'scrollHeight',
+    },
+    clientLength: {
+      x: 'clientWidth',
+      y: 'clientHeight',
+    },
+  };
+
+  return domTreeShapes.some(shape => {
+    // Determine if we are going backward or forward.
+    let goingForward = current >= start;
+    if (anchor === 'top' || anchor === 'left') {
+      goingForward = !goingForward;
+    }
+    const axis = anchor === 'left' || anchor === 'right' ? 'x' : 'y';
+    const scrollPosition = shape[axisProperties.scrollPosition[axis]];
+
+    const areNotAtStart = scrollPosition > 0;
+    const areNotAtEnd =
+      scrollPosition + shape[axisProperties.clientLength[axis]] <
+      shape[axisProperties.scrollLength[axis]];
+
+    if ((goingForward && areNotAtEnd) || (!goingForward && areNotAtStart)) {
+      return shape;
+    }
+
+    return null;
+  });
 }
 
 const disableSwipeToOpenDefault =
@@ -135,6 +213,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
     if (!touchDetected.current) {
       return;
     }
+    nodeThatClaimedTheSwipe = null;
     touchDetected.current = false;
     setMaybeSwiping(false);
 
@@ -195,11 +274,31 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       return;
     }
 
+    // We are not supposed to handle this touch move because the swipe was started in a scrollable container in the drawer
+    if (nodeThatClaimedTheSwipe != null && nodeThatClaimedTheSwipe !== swipeInstance.current) {
+      return;
+    }
+
     const anchorRtl = getAnchor(theme, anchor);
     const horizontalSwipe = isHorizontal(anchor);
 
     const currentX = calculateCurrentX(anchorRtl, event.touches);
     const currentY = calculateCurrentY(anchorRtl, event.touches);
+
+    if (open && paperRef.current.contains(event.target) && nodeThatClaimedTheSwipe == null) {
+      const domTreeShapes = getDomTreeShapes(event.target, paperRef.current);
+      const nativeHandler = findNativeHandler({
+        domTreeShapes,
+        start: horizontalSwipe ? swipeInstance.current.startX : swipeInstance.current.startY,
+        current: horizontalSwipe ? currentX : currentY,
+        anchor,
+      });
+      if (nativeHandler) {
+        nodeThatClaimedTheSwipe = nativeHandler;
+        return;
+      }
+      nodeThatClaimedTheSwipe = swipeInstance.current;
+    }
 
     // We don't know yet.
     if (swipeInstance.current.isSwiping == null) {
@@ -313,6 +412,15 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
       return;
     }
 
+    // At least one element clogs the drawer interaction zone.
+    if (
+      open &&
+      !backdropRef.current.contains(event.target) &&
+      !paperRef.current.contains(event.target)
+    ) {
+      return;
+    }
+
     const anchorRtl = getAnchor(theme, anchor);
     const horizontalSwipe = isHorizontal(anchor);
 
@@ -333,6 +441,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
     }
 
     event.muiHandled = true;
+    nodeThatClaimedTheSwipe = null;
     swipeInstance.current.startX = currentX;
     swipeInstance.current.startY = currentY;
 
@@ -371,6 +480,16 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
 
     return undefined;
   }, [variant, handleBodyTouchStart, handleBodyTouchMove, handleBodyTouchEnd]);
+
+  React.useEffect(
+    () => () => {
+      // We need to release the lock.
+      if (nodeThatClaimedTheSwipe === swipeInstance.current) {
+        nodeThatClaimedTheSwipe = null;
+      }
+    },
+    [],
+  );
 
   React.useEffect(() => {
     if (!open) {
