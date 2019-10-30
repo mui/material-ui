@@ -4,6 +4,7 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'> {
   props: P &
     FormLabelBaseProps & {
+      color?: 'primary' | 'secondary';
       disabled?: boolean;
       error?: boolean;
       filled?: boolean;
@@ -18,6 +19,7 @@ declare const FormLabel: OverridableComponent<FormLabelTypeMap>;
 
 export type FormLabelClassKey =
   | 'root'
+  | 'colorSecondary'
   | 'focused'
   | 'disabled'
   | 'error'

@@ -30,6 +30,7 @@ It contains a load of style reset and some state logic.
 | <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` element will be focused during the first mount. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">className</span> | <span class="prop-type">string</span> |  | The CSS class name of the wrapper element. |
+| <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'</span> |  | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">defaultValue</span> | <span class="prop-type">any</span> |  | The default `input` element value. Use when the component is not controlled. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` element will be disabled. |
 | <span class="prop-name">endAdornment</span> | <span class="prop-type">node</span> |  | End `InputAdornment` for this component. |
@@ -73,6 +74,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Styles applied to the root element if `error={true}`.
 | <span class="prop-name">marginDense</span> | <span class="prop-name">.MuiInputBase-marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
 | <span class="prop-name">multiline</span> | <span class="prop-name">.MuiInputBase-multiline</span> | Styles applied to the root element if `multiline={true}`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiInputBase-colorSecondary</span> | Styles applied to the root element if the color is secondary.
 | <span class="prop-name">fullWidth</span> | <span class="prop-name">.MuiInputBase-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 | <span class="prop-name">input</span> | <span class="prop-name">.MuiInputBase-input</span> | Styles applied to the `input` element.
 | <span class="prop-name">inputMarginDense</span> | <span class="prop-name">.MuiInputBase-inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.

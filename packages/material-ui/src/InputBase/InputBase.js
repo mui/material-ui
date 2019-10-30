@@ -6,6 +6,7 @@ import { refType } from '@material-ui/utils';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
 import withStyles from '../styles/withStyles';
+import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
 import TextareaAutosize from '../TextareaAutosize';
 import { isFilled } from './utils';
@@ -65,6 +66,8 @@ export const styles = theme => {
         paddingTop: 4 - 1,
       },
     },
+    /* Styles applied to the root element if the color is secondary. */
+    colorSecondary: {},
     /* Styles applied to the root element if `fullWidth={true}`. */
     fullWidth: {
       width: '100%',
@@ -169,6 +172,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     autoFocus,
     classes,
     className,
+    color,
     defaultValue,
     disabled,
     endAdornment,
@@ -237,7 +241,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['disabled', 'error', 'hiddenLabel', 'margin', 'required', 'filled'],
+    states: ['color', 'disabled', 'error', 'hiddenLabel', 'margin', 'required', 'filled'],
   });
   fcs.focused = muiFormControl ? muiFormControl.focused : focused;
 
@@ -403,6 +407,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     <div
       className={clsx(
         classes.root,
+        classes[`color${capitalize(fcs.color || 'primary')}`],
         {
           [classes.disabled]: fcs.disabled,
           [classes.error]: fcs.error,
@@ -494,6 +499,10 @@ InputBase.propTypes = {
    * The CSS class name of the wrapper element.
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * The default `input` element value. Use when the component is not controlled.
    */
