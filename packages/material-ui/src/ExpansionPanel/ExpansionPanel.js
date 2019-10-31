@@ -5,7 +5,7 @@ import { chainPropTypes } from '@material-ui/utils';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
-import Context from './Context';
+import ExpansionPanelContext from './ExpansionPanelContext';
 
 export const styles = theme => {
   const transition = {
@@ -151,7 +151,9 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
       square={square}
       {...other}
     >
-      <Context.Provider value={contextValue}>{summary}</Context.Provider>
+      <ExpansionPanelContext.Provider value={contextValue}>
+        {summary}
+      </ExpansionPanelContext.Provider>
       <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
         <div aria-labelledby={summary.props.id} id={summary.props['aria-controls']} role="region">
           {children}

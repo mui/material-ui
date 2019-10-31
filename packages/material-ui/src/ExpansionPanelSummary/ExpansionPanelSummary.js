@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import ButtonBase from '../ButtonBase';
 import IconButton from '../IconButton';
 import withStyles from '../styles/withStyles';
-import ExpansionPanelContext from '../ExpansionPanel/Context';
+import ExpansionPanelContext from '../ExpansionPanel/ExpansionPanelContext';
 
 export const styles = theme => {
   const transition = {
