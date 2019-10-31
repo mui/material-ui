@@ -163,14 +163,19 @@ export default function useAutocomplete(props) {
   const [focused, setFocused] = React.useState(false);
 
   const resetInputValue = useEventCallback(newValue => {
-    setInputValue(newValue != null ? getOptionLabel(newValue) : '');
+    let newInputValue;
+    if (multiple) {
+      newInputValue = '';
+    } else {
+      newInputValue = newValue != null ? getOptionLabel(newValue) : '';
+    }
+
+    setInputValue(newInputValue);
   });
 
   React.useEffect(() => {
-    if (!multiple) {
-      resetInputValue(value);
-    }
-  }, [value, multiple, resetInputValue]);
+    resetInputValue(value);
+  }, [value, resetInputValue]);
 
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [openState, setOpenState] = React.useState(false);
@@ -375,11 +380,7 @@ export default function useAutocomplete(props) {
       handleClose(event);
     }
 
-    if (multiple) {
-      setInputValue('');
-    } else {
-      setInputValue(getOptionLabel(newValue));
-    }
+    resetInputValue(newValue);
 
     selectedIndexRef.current = -1;
   };
@@ -550,7 +551,7 @@ export default function useAutocomplete(props) {
     if (autoSelect && selectedIndexRef.current !== -1) {
       handleValue(event, filteredOptions[selectedIndexRef.current]);
     } else if (!freeSolo) {
-      setInputValue((value && getOptionLabel(value)) || '');
+      resetInputValue(value);
     }
 
     handleClose(event);
