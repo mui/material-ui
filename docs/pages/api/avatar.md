@@ -32,6 +32,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">sizes</span> | <span class="prop-type">string</span> |  | The `sizes` attribute for the `img` element. |
 | <span class="prop-name">src</span> | <span class="prop-type">string</span> |  | The `src` attribute for the `img` element. |
 | <span class="prop-name">srcSet</span> | <span class="prop-type">string</span> |  | The `srcSet` attribute for the `img` element. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'round'<br>&#124;&nbsp;'square'</span> | <span class="prop-default">'round'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
 
@@ -47,6 +48,8 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiAvatar-root</span> | Styles applied to the root element.
 | <span class="prop-name">colorDefault</span> | <span class="prop-name">.MuiAvatar-colorDefault</span> | Styles applied to the root element if there are children and not `src` or `srcSet`.
 | <span class="prop-name">img</span> | <span class="prop-name">.MuiAvatar-img</span> | Styles applied to the img element if either `src` or `srcSet` is defined.
+| <span class="prop-name">round</span> | <span class="prop-name">.MuiAvatar-round</span> | Styles applied to the root element if `variant="round"`.
+| <span class="prop-name">square</span> | <span class="prop-name">.MuiAvatar-square</span> | Styles applied to the root element if `variant="square"`.
 
 You can override the style of the component thanks to one of these customization points:
 

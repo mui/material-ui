@@ -24,3 +24,9 @@ Avatars containing simple characters can be created by passing your string as `c
 Icon avatars are created by passing an icon as `children`.
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
+
+## Square avatars
+
+Do you need square avatars? Use the `variant` property.
+
+{{"demo": "pages/components/avatars/SquareAvatars.js"}}
