@@ -5,6 +5,7 @@ import { chainPropTypes } from '@material-ui/utils';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
+import ExpansionPanelContext from './ExpansionPanelContext';
 
 export const styles = theme => {
   const transition = {
@@ -115,17 +116,25 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
     }, [expandedProp, isControlled]);
   }
 
-  const handleChange = event => {
-    if (!isControlled) {
-      setExpandedState(!expanded);
-    }
+  const handleChange = React.useCallback(
+    event => {
+      if (!isControlled) {
+        setExpandedState(!expanded);
+      }
 
-    if (onChange) {
-      onChange(event, !expanded);
-    }
-  };
+      if (onChange) {
+        onChange(event, !expanded);
+      }
+    },
+    [expanded, isControlled, onChange],
+  );
 
   const [summary, ...children] = React.Children.toArray(childrenProp);
+  const contextValue = React.useMemo(() => ({ expanded, disabled, toggle: handleChange }), [
+    expanded,
+    disabled,
+    handleChange,
+  ]);
 
   return (
     <Paper
@@ -142,11 +151,9 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
       square={square}
       {...other}
     >
-      {React.cloneElement(summary, {
-        disabled,
-        expanded,
-        onChange: handleChange,
-      })}
+      <ExpansionPanelContext.Provider value={contextValue}>
+        {summary}
+      </ExpansionPanelContext.Provider>
       <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
         <div aria-labelledby={summary.props.id} id={summary.props['aria-controls']} role="region">
           {children}
