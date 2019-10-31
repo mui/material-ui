@@ -210,12 +210,18 @@ export const styles = theme => ({
     display: 'inherit',
     marginRight: 8,
     marginLeft: -4,
+    '&$iconSizeSmall': {
+      marginLeft: -2,
+    },
   },
   /* Styles applied to the endIcon element if supplied. */
   endIcon: {
     display: 'inherit',
     marginRight: -4,
     marginLeft: 8,
+    '&$iconSizeSmall': {
+      marginRight: -2,
+    },
   },
   /* Styles applied to the icon element if supplied and `size="small"`. */
   iconSizeSmall: {
