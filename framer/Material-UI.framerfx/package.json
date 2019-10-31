@@ -2,7 +2,7 @@
   "name": "material-ui-framer",
   "private": true,
   "author": "Material-UI Team",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Material-UI Framer components",
   "keywords": [
     "react",
@@ -20,7 +20,7 @@
   },
   "homepage": "http://material-ui.com/",
   "framer": {
-    "id": "3F74BF71-F09C-44B2-A63C-493DA9321497"
+    "id": "3F74BF71-F09C-44B2-A63C-493DA9321498"
   },
   "dependencies": {
     "@material-ui/core": "^4.5.0",

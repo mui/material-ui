@@ -47,7 +47,7 @@ export class MediaCard extends React.Component<Props> {
     title: 'Material Improvement',
     subtitle: 'by Laura Philips',
     body:
-      'Discover how Material-UI became the leading, the leading React Material Design component library.',
+      "Discover how Material-UI, the leading React Material Design component library, can help to improve your users' experience.",
     icon1: 'share',
     icon2: 'more_vert',
   };
