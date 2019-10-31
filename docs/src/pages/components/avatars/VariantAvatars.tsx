@@ -21,13 +21,13 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ImageAvatars() {
+export default function VariantAvatars() {
   const classes = useStyles();
 
   return (
     <Grid container justify="center" alignItems="center">
       <Avatar
-        variant="square"
+        variant="circle"
         alt="Remy Sharp"
         src="/static/images/avatar/1.jpg"
         className={classes.avatar}
@@ -35,7 +35,7 @@ export default function ImageAvatars() {
       <Avatar variant="square" className={classes.orangeAvatar}>
         N
       </Avatar>
-      <Avatar variant="square" className={classes.greenAvatar}>
+      <Avatar variant="round" className={classes.greenAvatar}>
         <AssignmentIcon />
       </Avatar>
     </Grid>

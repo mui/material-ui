@@ -25,8 +25,8 @@ Icon avatars are created by passing an icon as `children`.
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
 
-## Square avatars
+## Variants
 
-Do you need square avatars? Use the `variant` property.
+Do you need square or rounded avatars? Use the `variant` prop.
 
-{{"demo": "pages/components/avatars/SquareAvatars.js"}}
+{{"demo": "pages/components/avatars/VariantAvatars.js"}}

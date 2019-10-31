@@ -16,6 +16,7 @@ export const styles = theme => ({
     fontFamily: theme.typography.fontFamily,
     fontSize: theme.typography.pxToRem(20),
     lineHeight: 1,
+    borderRadius: '50%',
     overflow: 'hidden',
     userSelect: 'none',
   },
@@ -25,6 +26,16 @@ export const styles = theme => ({
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
   },
+  /* Styles applied to the root element if `variant="circle"`. */
+  circle: {},
+  /* Styles applied to the root element if `variant="round"`. */
+  round: {
+    borderRadius: theme.shape.borderRadius,
+  },
+  /* Styles applied to the root element if `variant="square"`. */
+  square: {
+    borderRadius: 0,
+  },
   /* Styles applied to the img element if either `src` or `srcSet` is defined. */
   img: {
     width: '100%',
@@ -32,14 +43,6 @@ export const styles = theme => ({
     textAlign: 'center',
     // Handle non-square image. The property isn't supported by IE 11.
     objectFit: 'cover',
-  },
-  /* Styles applied to the root element if `variant="round"`. */
-  round: {
-    borderRadius: '50%',
-  },
-  /* Styles applied to the root element if `variant="square"`. */
-  square: {
-    borderRadius: 0,
   },
 });
 
@@ -54,7 +57,7 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
     sizes,
     src,
     srcSet,
-    variant = 'round',
+    variant = 'circle',
     ...other
   } = props;
 
@@ -140,7 +143,7 @@ Avatar.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['round', 'square']),
+  variant: PropTypes.oneOf(['circle', 'round', 'square']),
 };
 
 export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);
