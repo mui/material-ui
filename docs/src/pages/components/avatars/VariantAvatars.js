@@ -35,7 +35,7 @@ export default function VariantAvatars() {
       <Avatar variant="square" className={classes.orangeAvatar}>
         N
       </Avatar>
-      <Avatar variant="round" className={classes.greenAvatar}>
+      <Avatar variant="rounded" className={classes.greenAvatar}>
         <AssignmentIcon />
       </Avatar>
     </Grid>

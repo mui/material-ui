@@ -28,8 +28,8 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `variant="circle"`. */
   circle: {},
-  /* Styles applied to the root element if `variant="round"`. */
-  round: {
+  /* Styles applied to the root element if `variant="rounded"`. */
+  rounded: {
     borderRadius: theme.shape.borderRadius,
   },
   /* Styles applied to the root element if `variant="square"`. */
@@ -143,7 +143,7 @@ Avatar.propTypes = {
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['circle', 'round', 'square']),
+  variant: PropTypes.oneOf(['circle', 'rounded', 'square']),
 };
 
 export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);
