@@ -332,7 +332,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     }
 
     if (inputPropsProp.onChange) {
-      inputPropsProp.onChange(event);
+      inputPropsProp.onChange(event, ...args);
     }
 
     // Perform in the willUpdate

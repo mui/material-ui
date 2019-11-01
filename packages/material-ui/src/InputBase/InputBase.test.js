@@ -558,6 +558,43 @@ describe('<InputBase />', () => {
     });
   });
 
+  describe('prop: inputComponent with prop: inputProps', () => {
+    it('should call onChange inputProp callback with all params sent from custom inputComponent', () => {
+      const INPUT_VALUE = 'material';
+      const OUTPUT_VALUE = 'test';
+
+      function MyInputBase(props) {
+        const { inputRef, onChange, ...other } = props;
+
+        const handleChange = e => {
+          onChange(e.target.value, OUTPUT_VALUE);
+        };
+
+        return <input ref={inputRef} onChange={handleChange} {...other} />;
+      }
+
+      MyInputBase.propTypes = {
+        inputRef: PropTypes.func.isRequired,
+        onChange: PropTypes.func.isRequired,
+      };
+
+      let outputArguments;
+      function parentHandleChange(...args) {
+        outputArguments = args;
+      }
+
+      const { getByRole } = render(
+        <InputBase inputComponent={MyInputBase} inputProps={{ onChange: parentHandleChange }} />,
+      );
+      const textbox = getByRole('textbox');
+      fireEvent.change(textbox, { target: { value: INPUT_VALUE } });
+
+      expect(outputArguments.length).to.equal(2);
+      expect(outputArguments[0]).to.equal(INPUT_VALUE);
+      expect(outputArguments[1]).to.equal(OUTPUT_VALUE);
+    });
+  });
+
   describe('prop: startAdornment, prop: endAdornment', () => {
     it('should render adornment before input', () => {
       const { getByTestId } = render(
