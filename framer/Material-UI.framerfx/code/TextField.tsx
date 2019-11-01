@@ -20,9 +20,13 @@ interface Props {
 }
 
 const defaultProps: Props = {
+  autoFocus: false,
+  disabled: false,
+  error: false,
   fullWidth: true,
   helperText: '',
   label: 'TextField',
+  multiline: false,
   required: false,
   variant: 'standard',
   width: 280,
