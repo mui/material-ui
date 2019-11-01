@@ -14,6 +14,7 @@ export const styles = theme => {
     /* Styles applied to the root element. */
     root: {
       position: 'relative',
+      borderRadius: theme.shape.borderRadius,
       '&:hover $notchedOutline': {
         borderColor: theme.palette.text.primary,
       },
@@ -74,7 +75,7 @@ export const styles = theme => {
       '&:-webkit-autofill': {
         WebkitBoxShadow: theme.palette.type === 'dark' ? '0 0 0 100px #266798 inset' : null,
         WebkitTextFillColor: theme.palette.type === 'dark' ? '#fff' : null,
-        borderRadius: theme.shape.borderRadius,
+        borderRadius: 'inherit',
       },
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
