@@ -131,7 +131,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
       if (registeredInput.current) {
         console.error(
           [
-            'Material-UI: there are multiple InputBase components inside a FromControl.',
+            'Material-UI: there are multiple InputBase components inside a FormControl.',
             'This is not supported. It might cause infinite rendering loops.',
             'Only use one InputBase.',
           ].join('\n'),
