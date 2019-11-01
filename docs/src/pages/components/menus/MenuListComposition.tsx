@@ -65,21 +65,21 @@ export default function MenuListComposition() {
       <div>
         <Button
           ref={anchorRef}
-          aria-controls="menu-list-grow"
+          aria-controls={open ? 'menu-list-grow' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
         >
           Toggle Menu Grow
         </Button>
-        <Popper open={open} anchorEl={anchorRef.current} transition disablePortal>
+        <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
             <Grow
               {...TransitionProps}
               style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
             >
-              <Paper id="menu-list-grow">
+              <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList autoFocusItem={open} onKeyDown={handleListKeyDown}>
+                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                     <MenuItem onClick={handleClose}>Profile</MenuItem>
                     <MenuItem onClick={handleClose}>My account</MenuItem>
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
