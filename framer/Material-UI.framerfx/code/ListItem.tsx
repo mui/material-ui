@@ -43,7 +43,7 @@ interface Props {
   primaryIcon?: string;
   imageFile?: string;
   imageUrl?: string;
-  secondaryAction?: 'none' | 'icon' | 'iconButton' | 'checkbox' | 'switch';
+  secondaryAction?: 'none' | 'iconButton' | 'checkbox' | 'switch';
   secondaryIcon?: string;
 }
 
@@ -112,13 +112,6 @@ export const ListItem: React.SFC<Props> = (props: Props) => {
   }
 
   switch (secondaryAction) {
-    case 'icon':
-      secondary = (
-        <MuiListItemIcon>
-          <Icon icon={secondaryIcon} />
-        </MuiListItemIcon>
-      );
-      break;
     case 'iconButton':
       secondary = <IconButton icon={secondaryIcon} edge="end" />;
       break;
@@ -139,7 +132,9 @@ export const ListItem: React.SFC<Props> = (props: Props) => {
         secondary={secondaryLabel ? secondaryLabel : undefined}
       />
       {/* MuiListItemSecondaryAction causes the text to have a bullet. No idea why! */}
-      <MuiListItemSecondaryAction>{secondary}</MuiListItemSecondaryAction>
+      {/* <MuiListItemSecondaryAction> */}
+      {secondary}
+      {/* </MuiListItemSecondaryAction> */}
     </MuiListItem>
   );
 };
@@ -225,7 +220,7 @@ addPropertyControls(ListItem, {
   secondaryAction: {
     type: ControlType.Enum,
     title: 'Secondary action',
-    options: ['none', 'icon', 'iconButton', 'checkbox', 'switch'],
+    options: ['none', 'iconButton', 'checkbox', 'switch'],
   },
   secondaryIcon: {
     type: ControlType.String,

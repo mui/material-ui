@@ -78,13 +78,6 @@ export const «componentName»: React.SFC<Props> = (props: Props) => {
   }
 
   switch (secondaryAction) {
-    case 'icon':
-      secondary = (
-        <MuiListItemIcon>
-          <Icon icon={secondaryIcon} />
-        </MuiListItemIcon>
-      );
-      break;
     case 'iconButton':
       secondary = <IconButton icon={secondaryIcon} edge="end" />;
       break;
@@ -105,7 +98,9 @@ export const «componentName»: React.SFC<Props> = (props: Props) => {
         secondary={secondaryLabel ? secondaryLabel : undefined}
       />
       {/* MuiListItemSecondaryAction causes the text to have a bullet. No idea why! */}
-      <MuiListItemSecondaryAction>{secondary}</MuiListItemSecondaryAction>
+      {/* <MuiListItemSecondaryAction> */}
+      {secondary}
+      {/* </MuiListItemSecondaryAction> */}
     </MuiListItem>
   );
 };

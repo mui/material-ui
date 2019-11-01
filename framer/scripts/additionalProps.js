@@ -251,7 +251,6 @@ const additionalProps = component => {
         name: 'enum',
         value: [
           { value: "'none'" },
-          { value: "'icon'" },
           { value: "'iconButton'" },
           { value: "'checkbox'" },
           { value: "'switch'" },

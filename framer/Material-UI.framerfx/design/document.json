@@ -3879,7 +3879,7 @@
         "fillImagePixelWidth" : null,
         "fillImageResize" : "fill",
         "fillType" : "color",
-        "height" : 683,
+        "height" : 604,
         "heightType" : 0,
         "id" : "OkSNSUKKs",
         "intrinsicHeight" : null,
@@ -3900,9 +3900,9 @@
         "radiusTopRight" : 0,
         "right" : null,
         "rotation" : 0,
-        "top" : -1291,
+        "top" : -1254,
         "visible" : true,
-        "width" : 848,
+        "width" : 804,
         "widthType" : 0
       },
       {
@@ -4911,7 +4911,7 @@
               "label" : "Primary label",
               "primaryAction" : "checkbox",
               "primaryIcon" : "star",
-              "secondaryAction" : "icon",
+              "secondaryAction" : "iconButton",
               "secondaryIcon" : "star",
               "secondaryLabel" : "",
               "selected" : false
@@ -5694,7 +5694,7 @@
             "codeComponentProps" : {
               "action1" : "View",
               "action2" : "",
-              "body" : "Discover how Material-UI, the leading React Material Design component library, can help to improve the user experience.",
+              "body" : "Discover how Material-UI, the leading React Material Design component library, can help to improve your users' experience.",
               "icon1" : "share",
               "icon2" : "more_vert",
               "imageFile" : "design\/assets\/blue_sky_blue_water-2560x1600.jpg",
