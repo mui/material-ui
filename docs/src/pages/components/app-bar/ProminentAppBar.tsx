@@ -45,10 +45,10 @@ export default function ProminentAppBar() {
           <Typography className={classes.title} variant="h5" noWrap>
             Material-UI
           </Typography>
-          <IconButton color="inherit">
+          <IconButton aria-label="search" color="inherit">
             <SearchIcon />
           </IconButton>
-          <IconButton edge="end" color="inherit">
+          <IconButton aria-label="display more actions" edge="end" color="inherit">
             <MoreIcon />
           </IconButton>
         </Toolbar>
