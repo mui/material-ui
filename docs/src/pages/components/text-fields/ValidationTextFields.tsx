@@ -32,7 +32,7 @@ export default function ValidationTextFields() {
         />
         <TextField
           error
-          id="standard-error"
+          id="standard-error-helper-text"
           label="Error"
           defaultValue="Hello World"
           helperText="Incorrect entry."
@@ -52,7 +52,7 @@ export default function ValidationTextFields() {
         />
         <TextField
           error
-          id="filled-error"
+          id="filled-error-helper-text"
           label="Error"
           defaultValue="Hello World"
           helperText="Incorrect entry."
@@ -73,7 +73,7 @@ export default function ValidationTextFields() {
         />
         <TextField
           error
-          id="outlined-error"
+          id="outlined-error-helper-text"
           label="Error"
           defaultValue="Hello World"
           helperText="Incorrect entry."
