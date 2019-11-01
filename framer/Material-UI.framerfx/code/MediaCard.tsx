@@ -43,7 +43,7 @@ export class MediaCard extends React.Component<Props> {
     height: 230,
     action1: 'View',
     imageFile: '',
-    imageUrl: 'https://source.unsplash.com/random/320x180',
+    imageUrl: 'https://picsum.photos/320/180',
     title: 'Material Improvement',
     subtitle: 'by Laura Philips',
     body:
