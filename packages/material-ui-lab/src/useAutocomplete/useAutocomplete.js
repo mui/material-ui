@@ -51,7 +51,7 @@ const pageSize = 5;
 export default function useAutocomplete(props) {
   const {
     autoComplete = false,
-    autoHightlight = false,
+    autoHighlight = false,
     autoSelect = false,
     clearOnEscape = false,
     debug = false,
@@ -98,7 +98,7 @@ export default function useAutocomplete(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const [focusedTag, setFocusedTag] = React.useState(-1);
-  const defaultHighlighted = autoHightlight ? 0 : -1;
+  const defaultHighlighted = autoHighlight ? 0 : -1;
   const highlightedIndexRef = React.useRef(defaultHighlighted);
   const selectedIndexRef = React.useRef(-1);
 
@@ -727,7 +727,7 @@ useAutocomplete.propTypes = {
   /**
    * If `true`, the first option is automatically highlighted.
    */
-  autoHightlight: PropTypes.bool,
+  autoHighlight: PropTypes.bool,
   /**
    * If `true`, the selected option becomes the value of the input
    * when the Autocomplete loses focus unless the user chooses

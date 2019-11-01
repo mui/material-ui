@@ -32,7 +32,7 @@ export default function CountrySelect() {
       classes={{
         option: classes.option,
       }}
-      autoHightlight
+      autoHighlight
       getOptionLabel={(option: CountryType) => option.label}
       renderOption={(option: CountryType) => (
         <React.Fragment>
