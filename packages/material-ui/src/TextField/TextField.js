@@ -182,8 +182,8 @@ const TextField = React.forwardRef(function TextField(props, ref) {
           {children}
         </Select>
       ) : (
-          InputElement
-        )}
+        InputElement
+      )}
       {helperText && (
         <FormHelperText id={helperTextId} {...FormHelperTextProps}>
           {helperText}
