@@ -579,8 +579,8 @@ describe('<InputBase />', () => {
       };
 
       let outputArguments;
-      function parentHandleChange() {
-        outputArguments = arguments;
+      function parentHandleChange(...args) {
+        outputArguments = args;
       }
 
       const { getByRole } = render(
