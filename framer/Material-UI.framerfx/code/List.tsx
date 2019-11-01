@@ -25,6 +25,7 @@ interface Props {
 const defaultProps: Props = {
   alignItems: 'center',
   autoFocus: false,
+  dense: false,
   disabled: false,
   disableGutters: false,
   divider: false,
