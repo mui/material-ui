@@ -121,7 +121,9 @@ const TextField = React.forwardRef(function TextField(props, ref) {
   }
   if (select) {
     // unset defaults from textbox inputs
-    InputMore.id = undefined;
+    if (!SelectProps || !SelectProps.native) {
+      InputMore.id = undefined;
+    }
     InputMore['aria-describedby'] = undefined;
   }
 
