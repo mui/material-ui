@@ -46,14 +46,16 @@ export default function SplitButton() {
           <Button
             color="primary"
             size="small"
-            aria-owns={open ? 'menu-list-grow' : undefined}
-            aria-haspopup="true"
+            aria-controls={open ? 'split-button-menu' : undefined}
+            aria-expanded={open ? 'true' : undefined}
+            aria-label="select merge strategy"
+            aria-haspopup="menu"
             onClick={handleToggle}
           >
             <ArrowDropDownIcon />
           </Button>
         </ButtonGroup>
-        <Popper open={open} anchorEl={anchorRef.current} transition disablePortal>
+        <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
           {({ TransitionProps, placement }) => (
             <Grow
               {...TransitionProps}
@@ -61,9 +63,9 @@ export default function SplitButton() {
                 transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
               }}
             >
-              <Paper id="menu-list-grow">
+              <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
-                  <MenuList>
+                  <MenuList id="split-button-menu">
                     {options.map((option, index) => (
                       <MenuItem
                         key={option}
