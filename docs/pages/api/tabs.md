@@ -50,17 +50,17 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiTabs-root</span> | Styles applied to the root element.
-| <span class="prop-name">vertical</span> | <span class="prop-name">MuiTabs-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
-| <span class="prop-name">flexContainer</span> | <span class="prop-name">MuiTabs-flexContainer</span> | Styles applied to the flex container element.
-| <span class="prop-name">flexContainerVertical</span> | <span class="prop-name">MuiTabs-flexContainerVertical</span> | Styles applied to the flex container element if `orientation="vertical"`.
-| <span class="prop-name">centered</span> | <span class="prop-name">MuiTabs-centered</span> | Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`.
-| <span class="prop-name">scroller</span> | <span class="prop-name">MuiTabs-scroller</span> | Styles applied to the tablist element.
-| <span class="prop-name">fixed</span> | <span class="prop-name">MuiTabs-fixed</span> | Styles applied to the tablist element if `!variant="scrollable"`.
-| <span class="prop-name">scrollable</span> | <span class="prop-name">MuiTabs-scrollable</span> | Styles applied to the tablist element if `variant="scrollable"`.
-| <span class="prop-name">scrollButtons</span> | <span class="prop-name">MuiTabs-scrollButtons</span> | Styles applied to the `ScrollButtonComponent` component.
-| <span class="prop-name">scrollButtonsDesktop</span> | <span class="prop-name">MuiTabs-scrollButtonsDesktop</span> | Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"` or scrollButtons="desktop"`.
-| <span class="prop-name">indicator</span> | <span class="prop-name">MuiTabs-indicator</span> | Styles applied to the `TabIndicator` component.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiTabs-root</span> | Styles applied to the root element.
+| <span class="prop-name">vertical</span> | <span class="prop-name">.MuiTabs-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
+| <span class="prop-name">flexContainer</span> | <span class="prop-name">.MuiTabs-flexContainer</span> | Styles applied to the flex container element.
+| <span class="prop-name">flexContainerVertical</span> | <span class="prop-name">.MuiTabs-flexContainerVertical</span> | Styles applied to the flex container element if `orientation="vertical"`.
+| <span class="prop-name">centered</span> | <span class="prop-name">.MuiTabs-centered</span> | Styles applied to the flex container element if `centered={true}` & `!variant="scrollable"`.
+| <span class="prop-name">scroller</span> | <span class="prop-name">.MuiTabs-scroller</span> | Styles applied to the tablist element.
+| <span class="prop-name">fixed</span> | <span class="prop-name">.MuiTabs-fixed</span> | Styles applied to the tablist element if `!variant="scrollable"`.
+| <span class="prop-name">scrollable</span> | <span class="prop-name">.MuiTabs-scrollable</span> | Styles applied to the tablist element if `variant="scrollable"`.
+| <span class="prop-name">scrollButtons</span> | <span class="prop-name">.MuiTabs-scrollButtons</span> | Styles applied to the `ScrollButtonComponent` component.
+| <span class="prop-name">scrollButtonsDesktop</span> | <span class="prop-name">.MuiTabs-scrollButtonsDesktop</span> | Styles applied to the `ScrollButtonComponent` component if `scrollButtons="auto"` or scrollButtons="desktop"`.
+| <span class="prop-name">indicator</span> | <span class="prop-name">.MuiTabs-indicator</span> | Styles applied to the `TabIndicator` component.
 
 You can override the style of the component thanks to one of these customization points:
 

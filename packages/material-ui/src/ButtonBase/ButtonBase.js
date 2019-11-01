@@ -123,7 +123,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
         eventCallback(event);
       }
 
-      const ignore = event.defaultPrevented || skipRippleAction;
+      const ignore = skipRippleAction;
       if (!ignore && rippleRef.current) {
         rippleRef.current[rippleAction](event);
       }
@@ -301,6 +301,8 @@ ButtonBase.propTypes = {
    */
   action: refType,
   /**
+   * @ignore
+   *
    * Use that prop to pass a ref to the native button component.
    * @deprecated Use `ref` instead.
    */

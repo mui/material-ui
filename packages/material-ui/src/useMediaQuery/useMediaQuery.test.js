@@ -6,7 +6,7 @@ import { act, createClientRender } from 'test/utils/createClientRender';
 import { createRender } from '@material-ui/core/test-utils';
 import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { spy, stub } from 'sinon';
 import useMediaQuery, { testReset } from './useMediaQuery';
 
 function createMatchMedia(width, ref) {
@@ -69,7 +69,21 @@ describe('useMediaQuery', () => {
 
     beforeEach(() => {
       matchMediaInstances = [];
-      window.matchMedia = createMatchMedia(1200, matchMediaInstances);
+      const fakeMatchMedia = createMatchMedia(1200, matchMediaInstances);
+      // can't stub non-existent properties with sinon
+      // jsdom does not implement window.matchMedia
+      if (window.matchMedia === undefined) {
+        window.matchMedia = fakeMatchMedia;
+        window.matchMedia.restore = () => {
+          delete window.matchMedia;
+        };
+      } else {
+        stub(window, 'matchMedia').callsFake(fakeMatchMedia);
+      }
+    });
+
+    afterEach(() => {
+      window.matchMedia.restore();
     });
 
     describe('option: defaultMatches', () => {

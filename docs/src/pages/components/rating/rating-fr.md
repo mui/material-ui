@@ -37,6 +37,8 @@ Fancy larger or smaller ratings? Use the `size` prop.
 
 ## Accessibilité
 
+(WAI tutorial: https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating)
+
 L'accessibilité de ce composant repose sur les points suivants :
 
 - A radio group is used with its fields visually hidden. It contains six radio buttons, one for each star and another for 0 stars, which is checked by default. Make sure you are providing a `name` prop that is unique to the parent form.

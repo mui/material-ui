@@ -57,7 +57,7 @@ export const styles = theme => ({
       paddingRight: 0,
     },
   },
-  /* Pseudo-class applied to the root & icon container and `Typography` if `alternativeLabel={true}`. */
+  /* Pseudo-class applied to the root and icon container and `Typography` if `alternativeLabel={true}`. */
   alternativeLabel: {},
   /* Styles applied to the container element which wraps `Typography` and `optional`. */
   labelContainer: {
@@ -71,7 +71,7 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
     alternativeLabel = false,
     children,
     classes,
-    className: classNameProp,
+    className,
     completed = false,
     disabled = false,
     error = false,
@@ -100,7 +100,7 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
           [classes.alternativeLabel]: alternativeLabel,
           [classes.error]: error,
         },
-        classNameProp,
+        className,
       )}
       ref={ref}
       {...other}

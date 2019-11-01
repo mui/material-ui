@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 import path from 'path';
 import fse from 'fs-extra';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';

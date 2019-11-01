@@ -1,6 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
-import { createClientRender, fireEvent, wait } from 'test/utils/createClientRender';
+import { useFakeTimers } from 'sinon';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Dialog from '@material-ui/core/Dialog';
@@ -39,40 +40,60 @@ describe('<Select> integration', () => {
       );
     }
 
-    it('should focus the selected item', async () => {
+    /**
+     * @type {ReturnType<typeof useFakeTimers>}
+     */
+    let clock;
+    beforeEach(() => {
+      clock = useFakeTimers();
+    });
+
+    afterEach(() => {
+      clock.restore();
+    });
+
+    it('should focus the selected item', () => {
       const { getByTestId, getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
 
+      const trigger = getByRole('button');
       // Let's open the select component
       // in the browser user click also focuses
-      getByRole('button').focus();
-      getByRole('button').click();
+      trigger.focus();
+      trigger.click();
 
-      expect(getAllByRole('option')[1]).to.be.focused;
+      const options = getAllByRole('option');
+      expect(options[1]).to.be.focused;
 
       // Now, let's close the select component
       getByTestId('select-backdrop').click();
+      clock.tick(0);
 
-      await wait(() => expect(queryByRole('listbox')).to.be.null);
-      expect(getByRole('button')).to.focused;
+      expect(queryByRole('listbox')).to.be.null;
+      expect(trigger).to.focused;
     });
 
-    it('should be able to change the selected item', async () => {
+    it('should be able to change the selected item', () => {
       const { getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
-      expect(getByRole('button')).to.have.text('Ten');
 
+      const trigger = getByRole('button');
+      // basically this is a combined query getByRole('button', { name: 'Ten' })
+      // but we arent' there yet
+      expect(trigger).to.have.text('Ten');
       // Let's open the select component
       // in the browser user click also focuses
-      getByRole('button').focus();
-      getByRole('button').click();
+      trigger.focus();
+      trigger.click();
 
-      expect(getAllByRole('option')[1]).to.be.focused;
+      const options = getAllByRole('option');
+      expect(options[1]).to.be.focused;
 
       // Now, let's close the select component
-      getAllByRole('option')[2].click();
+      options[2].click();
+      clock.tick(0);
 
-      await wait(() => expect(queryByRole('listbox')).to.be.null);
-      expect(getByRole('button')).to.focused;
-      expect(getByRole('button')).to.have.text('Twenty');
+      expect(queryByRole('listbox')).to.be.null;
+      expect(trigger).to.focused;
+      expect(trigger).to.have.text('Twenty');
     });
   });
 

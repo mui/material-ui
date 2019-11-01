@@ -143,6 +143,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     const currentFocus = ownerDocument(list).activeElement;
 
     if (key === 'ArrowDown') {
+      // Prevent scroll of the page
       event.preventDefault();
       moveFocus(list, currentFocus, disableListWrap, nextItem);
     } else if (key === 'ArrowUp') {

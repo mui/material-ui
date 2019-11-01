@@ -10,3 +10,5 @@ components: Icon, SvgIcon
 The following npm package, [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons), includes the 1,000+ official [Material icons](https://material.io/tools/icons/?style=baseline) converted to [`SvgIcon`](/api/svg-icon/) components.
 
 {{"demo": "pages/components/material-icons/SearchIcons.js", "hideHeader": true}}
+
+ℹ️ The search supports synonyms. Try searching for "hamburger", or "logout".

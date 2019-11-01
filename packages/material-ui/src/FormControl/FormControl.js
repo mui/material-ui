@@ -74,7 +74,8 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     variant = 'standard',
     ...other
   } = props;
-  const [adornedStart] = React.useState(() => {
+
+  const [adornedStart, setAdornedStart] = React.useState(() => {
     // We need to iterate through the children and find the Input in order
     // to fully support server-side rendering.
     let initialAdornedStart = false;
@@ -153,6 +154,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
 
   const childContext = {
     adornedStart,
+    setAdornedStart,
     disabled,
     error,
     filled,

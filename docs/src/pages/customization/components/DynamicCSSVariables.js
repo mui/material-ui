@@ -16,12 +16,24 @@ const useStyles = makeStyles({
   },
 });
 
+const blue = {
+  '--background-start': '#2196F3',
+  '--background-end': '#21CBF3',
+  '--box-shadow': 'rgba(33, 203, 243, .3)',
+};
+
+const defaultColor = {
+  '--background-start': '#FE6B8B',
+  '--background-end': '#FF8E53',
+  '--box-shadow': 'rgba(255, 105, 135, .3)',
+};
+
 export default function DynamicCSSVariables() {
   const classes = useStyles();
-  const [color, setColor] = React.useState('default');
+  const [color, setColor] = React.useState(defaultColor);
 
   const handleChange = event => {
-    setColor(event.target.checked ? 'blue' : 'default');
+    setColor(event.target.checked ? blue : defaultColor);
   };
 
   return (
@@ -29,7 +41,7 @@ export default function DynamicCSSVariables() {
       <FormControlLabel
         control={
           <Switch
-            checked={color === 'blue'}
+            checked={color === blue}
             onChange={handleChange}
             color="primary"
             value="dynamic-class-name"
@@ -37,22 +49,7 @@ export default function DynamicCSSVariables() {
         }
         label="Blue"
       />
-      <Button
-        className={classes.button}
-        style={
-          color === 'blue'
-            ? {
-                '--background-start': '#2196F3',
-                '--background-end': '#21CBF3',
-                '--box-shadow': 'rgba(33, 203, 243, .3)',
-              }
-            : {
-                '--background-start': '#FE6B8B',
-                '--background-end': '#FF8E53',
-                '--box-shadow': 'rgba(255, 105, 135, .3)',
-              }
-        }
-      >
+      <Button className={classes.button} style={color}>
         {'CSS variables'}
       </Button>
     </React.Fragment>

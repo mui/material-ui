@@ -1,6 +1,14 @@
 version: 2.1
 
 defaults: &defaults
+  parameters:
+    react-dist-tag:
+      description: The dist-tag of react to be used
+      type: string
+      default: stable
+  environment:
+    # expose it globally otherwise we have to thread it from each job to the install command
+    REACT_DIST_TAG: << parameters.react-dist-tag >>
   working_directory: /tmp/material-ui
   docker:
     - image: circleci/node:8.15
@@ -16,6 +24,12 @@ defaults: &defaults
 commands:
   install_js:
     steps:
+      - run:
+          name: Resolve react version
+          command: |
+            node scripts/use-react-dist-tag
+            # log a patch for maintainers who want to check out this change
+            git diff HEAD
       - restore_cache:
           keys:
             - v2-yarn-sha-{{ checksum "yarn.lock" }}
@@ -157,7 +171,7 @@ workflows:
       - checkout:
           filters:
             branches:
-              ignore: 
+              ignore:
                 - l10n
                 - /dependabot\//
       - test_unit:
@@ -178,3 +192,21 @@ workflows:
             - test_static
             - test_types
             - test_browser
+  react-next:
+    triggers:
+      - schedule:
+          cron: '0 0 * * *'
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - test_unit:
+          react-dist-tag: next
+      - test_browser:
+          react-dist-tag: next
+      - test_regressions:
+          requires:
+            - test_unit
+            - test_browser
+          react-dist-tag: next

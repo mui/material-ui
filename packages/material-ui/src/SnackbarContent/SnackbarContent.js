@@ -42,7 +42,7 @@ export const styles = theme => {
 };
 
 const SnackbarContent = React.forwardRef(function SnackbarContent(props, ref) {
-  const { action, classes, className, message, ...other } = props;
+  const { action, classes, className, message, role = 'alert', ...other } = props;
 
   return (
     <Paper
@@ -52,7 +52,7 @@ const SnackbarContent = React.forwardRef(function SnackbarContent(props, ref) {
         body1: 'div',
         body2: 'div',
       }}
-      role="alertdialog"
+      role={role}
       square
       elevation={6}
       className={clsx(classes.root, className)}
@@ -83,6 +83,11 @@ SnackbarContent.propTypes = {
    * The message to display.
    */
   message: PropTypes.node,
+  /**
+   * The role of the SnackbarContent. If the Snackbar requires focus
+   * to be closed, the `alertdialog` role should be used instead.
+   */
+  role: PropTypes.oneOf(['alert', 'alertdialog']),
 };
 
 export default withStyles(styles, { name: 'MuiSnackbarContent' })(SnackbarContent);

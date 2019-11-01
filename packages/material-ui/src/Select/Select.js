@@ -21,8 +21,10 @@ const Select = React.forwardRef(function Select(props, ref) {
     classes,
     displayEmpty = false,
     IconComponent = ArrowDropDownIcon,
+    id,
     input,
     inputProps,
+    labelId,
     MenuProps,
     multiple = false,
     native = false,
@@ -71,12 +73,13 @@ const Select = React.forwardRef(function Select(props, ref) {
         : {
             autoWidth,
             displayEmpty,
+            labelId,
             MenuProps,
             onClose,
             onOpen,
             open,
             renderValue,
-            SelectDisplayProps,
+            SelectDisplayProps: { id, ...SelectDisplayProps },
           }),
       ...inputProps,
       classes: inputProps
@@ -112,6 +115,10 @@ Select.propTypes = {
    */
   classes: PropTypes.object.isRequired,
   /**
+   * The default element value. Use when the component is not controlled.
+   */
+  defaultValue: PropTypes.any,
+  /**
    * If `true`, a value is displayed even if no items are selected.
    *
    * In order to display a meaningful value, a function should be passed to the `renderValue` prop which returns the value to be displayed when no items are selected.
@@ -123,6 +130,10 @@ Select.propTypes = {
    */
   IconComponent: PropTypes.elementType,
   /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
    * An `Input` element; does not have to be a material-ui specific `Input`.
    */
   input: PropTypes.element,
@@ -131,6 +142,11 @@ Select.propTypes = {
    * When `native` is `true`, the attributes are applied on the `select` element.
    */
   inputProps: PropTypes.object,
+  /**
+   * The idea of an element that acts as an additional label. The Select will
+   * be labelled by the additional label and the selected value.
+   */
+  labelId: PropTypes.string,
   /**
    * The label width to be used on OutlinedInput.
    * This prop is required when the `variant` prop is `outlined`.
@@ -179,8 +195,8 @@ Select.propTypes = {
    * Render the selected value.
    * You can only use it when the `native` prop is `false` (default).
    *
-   * @param {*} value The `value` provided to the component.
-   * @returns {ReactElement}
+   * @param {any} value The `value` provided to the component.
+   * @returns {ReactNode}
    */
   renderValue: PropTypes.func,
   /**
@@ -191,6 +207,9 @@ Select.propTypes = {
    * The input value. Providing an empty string will select no options.
    * This prop is required when the `native` prop is `false` (default).
    * Set to an empty string `''` if you don't want any of the available options to be selected.
+   *
+   * If the value is an object it must have reference equality with the option in order to be selected.
+   * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
    */
   value: PropTypes.any,
   /**

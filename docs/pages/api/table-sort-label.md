@@ -42,11 +42,11 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiTableSortLabel-root</span> | Styles applied to the root element.
-| <span class="prop-name">active</span> | <span class="prop-name">MuiTableSortLabel-active</span> | Pseudo-class applied to the root element if `active={true}`.
-| <span class="prop-name">icon</span> | <span class="prop-name">MuiTableSortLabel-icon</span> | Styles applied to the icon component.
-| <span class="prop-name">iconDirectionDesc</span> | <span class="prop-name">MuiTableSortLabel-iconDirectionDesc</span> | Styles applied to the icon component if `direction="desc"`.
-| <span class="prop-name">iconDirectionAsc</span> | <span class="prop-name">MuiTableSortLabel-iconDirectionAsc</span> | Styles applied to the icon component if `direction="asc"`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiTableSortLabel-root</span> | Styles applied to the root element.
+| <span class="prop-name">active</span> | <span class="prop-name">.MuiTableSortLabel-active</span> | Pseudo-class applied to the root element if `active={true}`.
+| <span class="prop-name">icon</span> | <span class="prop-name">.MuiTableSortLabel-icon</span> | Styles applied to the icon component.
+| <span class="prop-name">iconDirectionDesc</span> | <span class="prop-name">.MuiTableSortLabel-iconDirectionDesc</span> | Styles applied to the icon component if `direction="desc"`.
+| <span class="prop-name">iconDirectionAsc</span> | <span class="prop-name">.MuiTableSortLabel-iconDirectionAsc</span> | Styles applied to the icon component if `direction="asc"`.
 
 You can override the style of the component thanks to one of these customization points:
 

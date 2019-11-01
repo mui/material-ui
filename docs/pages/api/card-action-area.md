@@ -38,9 +38,9 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiCardActionArea-root</span> | Styles applied to the root element.
-| <span class="prop-name">focusVisible</span> | <span class="prop-name">Mui-focusVisible</span> | Pseudo-class applied to the ButtonBase root element if the action area is keyboard focused.
-| <span class="prop-name">focusHighlight</span> | <span class="prop-name">MuiCardActionArea-focusHighlight</span> | Styles applied to the overlay that covers the action area when it is keyboard focused.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiCardActionArea-root</span> | Styles applied to the root element.
+| <span class="prop-name">focusVisible</span> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the ButtonBase root element if the action area is keyboard focused.
+| <span class="prop-name">focusHighlight</span> | <span class="prop-name">.MuiCardActionArea-focusHighlight</span> | Styles applied to the overlay that covers the action area when it is keyboard focused.
 
 You can override the style of the component thanks to one of these customization points:
 

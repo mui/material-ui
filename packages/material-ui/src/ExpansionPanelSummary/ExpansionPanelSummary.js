@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/aria-role */
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -29,11 +30,11 @@ export const styles = theme => {
         opacity: 0.38,
       },
     },
-    /* Styles applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`. */
+    /* Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`. */
     expanded: {},
-    /* Styles applied to the root and children wrapper elements when focused. */
+    /* Pseudo-class applied to the root element if `focused={true}`. */
     focused: {},
-    /* Styles applied to the root element if `disabled={true}`. */
+    /* Pseudo-class applied to the root element if `disabled={true}`. */
     disabled: {},
     /* Styles applied to the children wrapper element. */
     content: {
@@ -93,6 +94,7 @@ const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(pr
       onBlur(event);
     }
   };
+  // TODO: Remove in v5 and use onClick in ExpansionPanel.js
   const handleChange = event => {
     if (onChange) {
       onChange(event);
@@ -127,13 +129,13 @@ const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(pr
       <div className={clsx(classes.content, { [classes.expanded]: expanded })}>{children}</div>
       {expandIcon && (
         <IconButton
-          disabled={disabled}
           className={clsx(classes.expandIcon, {
             [classes.expanded]: expanded,
           })}
           edge="end"
           component="div"
-          tabIndex={-1}
+          tabIndex={null}
+          role={null}
           aria-hidden
           {...IconButtonProps}
         >

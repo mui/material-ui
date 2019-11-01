@@ -58,6 +58,20 @@ describe('<Avatar />', () => {
     });
   });
 
+  describe('image avatar with unrendered children', () => {
+    it('should render a div containing an img, not children', () => {
+      const wrapper = mount(<Avatar src="something.jpg">MB</Avatar>);
+      assert.strictEqual(wrapper.find('img').length, 1);
+      assert.strictEqual(wrapper.text(), '');
+    });
+
+    it('should be able to add more props to the image', () => {
+      const onError = () => {};
+      const wrapper = mount(<Avatar src="something.jpg" imgProps={{ onError }} />);
+      assert.strictEqual(wrapper.find('img').props().onError, onError);
+    });
+  });
+
   describe('font icon avatar', () => {
     let wrapper;
 

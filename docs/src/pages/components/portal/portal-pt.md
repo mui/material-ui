@@ -9,10 +9,12 @@ components: Portal
 
 - 📦 [1.3 kB gzipado](/size-snapshot)
 
-O filho do componente portal será adicionado ao `container` especificado.
+The children of the portal component will be appended to the `container` specified. The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components.
 
-O componente é usado internamente pelos componentes [`Modal`](/components/modal/) e [`Popper`](/components/popper/). No servidor, o conteúdo não será renderizado. Você deve esperar pelo lado do cliente fazer a hidratação para ver o filho.
-
-## Portal Simples
+## Exemplo
 
 {{"demo": "pages/components/portal/SimplePortal.js"}}
+
+## Server-side
+
+React [não suporta](https://github.com/facebook/react/issues/13097) a API [`createPortal()`](https://reactjs.org/docs/portals.html) no servidor. You have to wait for the client-side hydration to see the children.

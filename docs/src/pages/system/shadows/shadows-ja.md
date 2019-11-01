@@ -4,14 +4,14 @@
 
 ## 例
 
+{{"demo": "pages/system/shadows/Demo.js", "defaultCodeOpen": false}}
+
 ```jsx
 <Box boxShadow={0}>…
 <Box boxShadow={1}>…
 <Box boxShadow={2}>…
 <Box boxShadow={3}>…
 ```
-
-{{"demo": "pages/system/shadows/Demo.js"}}
 
 ## API
 

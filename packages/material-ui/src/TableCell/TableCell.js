@@ -96,11 +96,15 @@ export const styles = theme => ({
     position: 'sticky',
     top: 0,
     left: 0,
-    zIndex: 1,
+    zIndex: 2,
     backgroundColor: theme.palette.background.default,
   },
 });
 
+/**
+ * The component renders a `<th>` element when the parent context is a header
+ * or otherwise a `<td>` element.
+ */
 const TableCell = React.forwardRef(function TableCell(props, ref) {
   const {
     align = 'inherit',

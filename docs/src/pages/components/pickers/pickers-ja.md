@@ -3,7 +3,7 @@ title: Date picker, Time picker React components
 components: TextField
 ---
 
-# Date / Time pickers
+# 日付＆時間ピッカー
 
 <p class="description">Date pickers and Time pickers provide a simple way to select a single value from a pre-determined set.</p>
 

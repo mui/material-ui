@@ -1,6 +1,7 @@
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { assert } from 'chai';
+import { stub } from 'sinon';
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 import mediaQuery from 'css-mediaquery';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
@@ -48,7 +49,21 @@ describe('withWidth', () => {
   beforeEach(() => {
     matchMediaInstances = [];
     testReset();
-    window.matchMedia = createMatchMedia(1200, matchMediaInstances);
+    const fakeMatchMedia = createMatchMedia(1200, matchMediaInstances);
+    // can't stub non-existent properties with sinon
+    // jsdom does not implement window.matchMedia
+    if (window.matchMedia === undefined) {
+      window.matchMedia = fakeMatchMedia;
+      window.matchMedia.restore = () => {
+        delete window.matchMedia;
+      };
+    } else {
+      stub(window, 'matchMedia').callsFake(fakeMatchMedia);
+    }
+  });
+
+  afterEach(() => {
+    window.matchMedia.restore();
   });
 
   after(() => {

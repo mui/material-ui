@@ -2,7 +2,7 @@
 
 <p class="description">Neu bei der Material-UI? Es ist leichter zu lernen, wenn Sie wissen, wo Sie anfangen sollen! Diese Anleitung hilft Ihnen, schnell loszulegen.</p>
 
-Menschen kommen aus unterschiedlichen Bereichen und mit unterschiedlichen Lernstilen zu Material-UI. Egal, ob Sie einen eher theoretischen oder praktischen Ansatz bevorzugen, wir hoffen, Sie finden diesen Abschnitt hilfreich. Wie jede unbekannte Technologie hat Material-UI eine Lernkurve. Mit etwas Übung und Geduld werden Sie bald den Dreh raus haben.
+Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you’ll find this section helpful. Wie jede unbekannte Technologie hat Material-UI eine Lernkurve. Mit etwas Übung und Geduld werden Sie bald den Dreh raus haben.
 
 ## Erstes Beispiel
 
@@ -38,7 +38,7 @@ Wenn Sie das erste Mal die Material-UI lernen, finden Sie möglicherweise Blogbe
   
   - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
   - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
-- **React Material-UI Cookbook**: Build modern day application by implementing Material Design principles in React applications using Material-UI.
+- **React Material-UI Cookbook**: Build modern-day applications by implementing Material Design principles in React, using Material-UI.
   
   - 📘 [The book](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
 

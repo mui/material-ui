@@ -31,4 +31,4 @@ components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 
 此示例演示了“精选的”瓷砖效果 ，使用 `rows` 和 `cols` props 来调整磁贴的大小，并使用 `padding` 属性来调整间距。 瓷砖有一个位于顶部的自定义标题栏，并带有自定义渐变的 `titleBackground `。 而辅助操作的 `IconButton` 则位于左侧。
 
-{{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true}}
+{{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true, "defaultCodeOpen": false}}

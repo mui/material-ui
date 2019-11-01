@@ -4,8 +4,11 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    progress: {
-      margin: theme.spacing(2),
+    root: {
+      display: 'flex',
+      '& > * + *': {
+        marginLeft: theme.spacing(2),
+      },
     },
   }),
 );
@@ -27,14 +30,9 @@ export default function CircularDeterminate() {
   }, []);
 
   return (
-    <div>
-      <CircularProgress className={classes.progress} variant="determinate" value={progress} />
-      <CircularProgress
-        className={classes.progress}
-        variant="determinate"
-        value={progress}
-        color="secondary"
-      />
+    <div className={classes.root}>
+      <CircularProgress variant="determinate" value={progress} />
+      <CircularProgress variant="determinate" value={progress} color="secondary" />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import deepmerge from 'deepmerge'; // < 1kb payload overhead when lodash/merge is > 3kb.
+import { deepmerge } from '@material-ui/utils';
 
 function merge(acc, item) {
   if (!item) {

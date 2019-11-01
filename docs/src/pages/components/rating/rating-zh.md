@@ -37,6 +37,8 @@ Fancy larger or smaller ratings? Use the `size` prop.
 
 ## 可访问性
 
+(WAI tutorial: https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating)
+
 这个组件的可访问性依赖于：
 
 - A radio group is used with its fields visually hidden. It contains six radio buttons, one for each star and another for 0 stars, which is checked by default. Make sure you are providing a `name` prop that is unique to the parent form.

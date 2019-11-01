@@ -34,7 +34,7 @@ const StepButton = React.forwardRef(function StepButton(props, ref) {
     alternativeLabel,
     children,
     classes,
-    className: classNameProp,
+    className,
     completed,
     disabled,
     icon,
@@ -63,7 +63,7 @@ const StepButton = React.forwardRef(function StepButton(props, ref) {
     <ButtonBase
       disabled={disabled}
       TouchRippleProps={{ className: classes.touchRipple }}
-      className={clsx(classes.root, classes[orientation], classNameProp)}
+      className={clsx(classes.root, classes[orientation], className)}
       ref={ref}
       {...other}
     >

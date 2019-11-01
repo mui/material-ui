@@ -13,18 +13,18 @@ Enquanto os containers podem ser aninhados, a maioria dos leiautes não necessit
 
 A largura de um container fluído é limitada pelo valor da propriedade `maxWidth`.
 
+{{"demo": "pages/components/container/SimpleContainer.js", "iframe": true, "defaultCodeOpen": false}}
+
 ```jsx
 <Container maxWidth="sm">
 ```
-
-{{"demo": "pages/components/container/SimpleContainer.js", "iframe": true}}
 
 ## Fixo
 
 Se você preferir projetar um conjunto fixo de tamanhos em vez de tentar acomodar em uma visualização totalmente fluída, você pode definir a propriedade `fixed`. A largura máxima corresponde à largura mínima do ponto de interrupção atual.
 
+{{"demo": "pages/components/container/FixedContainer.js", "iframe": true, "defaultCodeOpen": false}}
+
 ```jsx
 <Container fixed>
 ```
-
-{{"demo": "pages/components/container/FixedContainer.js", "iframe": true}}

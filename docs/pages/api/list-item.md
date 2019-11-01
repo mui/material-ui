@@ -49,17 +49,17 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiListItem-root</span> | Styles applied to the (normally root) `component` element. May be wrapped by a `container`.
-| <span class="prop-name">container</span> | <span class="prop-name">MuiListItem-container</span> | Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`.
-| <span class="prop-name">focusVisible</span> | <span class="prop-name">Mui-focusVisible</span> | Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`.
-| <span class="prop-name">dense</span> | <span class="prop-name">MuiListItem-dense</span> | Styles applied to the `component` element if dense.
-| <span class="prop-name">alignItemsFlexStart</span> | <span class="prop-name">MuiListItem-alignItemsFlexStart</span> | Styles applied to the `component` element if `alignItems="flex-start"`.
-| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the inner `component` element if `disabled={true}`.
-| <span class="prop-name">divider</span> | <span class="prop-name">MuiListItem-divider</span> | Styles applied to the inner `component` element if `divider={true}`.
-| <span class="prop-name">gutters</span> | <span class="prop-name">MuiListItem-gutters</span> | Styles applied to the inner `component` element if `disableGutters={false}`.
-| <span class="prop-name">button</span> | <span class="prop-name">MuiListItem-button</span> | Styles applied to the inner `component` element if `button={true}`.
-| <span class="prop-name">secondaryAction</span> | <span class="prop-name">MuiListItem-secondaryAction</span> | Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`.
-| <span class="prop-name">selected</span> | <span class="prop-name">Mui-selected</span> | Pseudo-class applied to the root element if `selected={true}`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiListItem-root</span> | Styles applied to the (normally root) `component` element. May be wrapped by a `container`.
+| <span class="prop-name">container</span> | <span class="prop-name">.MuiListItem-container</span> | Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`.
+| <span class="prop-name">focusVisible</span> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`.
+| <span class="prop-name">dense</span> | <span class="prop-name">.MuiListItem-dense</span> | Styles applied to the `component` element if dense.
+| <span class="prop-name">alignItemsFlexStart</span> | <span class="prop-name">.MuiListItem-alignItemsFlexStart</span> | Styles applied to the `component` element if `alignItems="flex-start"`.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the inner `component` element if `disabled={true}`.
+| <span class="prop-name">divider</span> | <span class="prop-name">.MuiListItem-divider</span> | Styles applied to the inner `component` element if `divider={true}`.
+| <span class="prop-name">gutters</span> | <span class="prop-name">.MuiListItem-gutters</span> | Styles applied to the inner `component` element if `disableGutters={false}`.
+| <span class="prop-name">button</span> | <span class="prop-name">.MuiListItem-button</span> | Styles applied to the inner `component` element if `button={true}`.
+| <span class="prop-name">secondaryAction</span> | <span class="prop-name">.MuiListItem-secondaryAction</span> | Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`.
+| <span class="prop-name">selected</span> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the root element if `selected={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

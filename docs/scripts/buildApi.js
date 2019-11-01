@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 import { mkdir, readFileSync, writeFileSync } from 'fs';
 import { getLineFeed } from './helpers';
 import path from 'path';

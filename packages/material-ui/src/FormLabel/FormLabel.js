@@ -44,7 +44,7 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
   const {
     children,
     classes,
-    className: classNameProp,
+    className,
     component: Component = 'label',
     disabled,
     error,
@@ -72,7 +72,7 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
           [classes.focused]: fcs.focused,
           [classes.required]: fcs.required,
         },
-        classNameProp,
+        className,
       )}
       ref={ref}
       {...other}

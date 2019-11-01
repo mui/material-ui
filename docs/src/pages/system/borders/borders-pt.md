@@ -8,6 +8,8 @@ Use os utilitários de borda para adicionar ou remover as bordas de um elemento.
 
 ### Adicionando
 
+{{"demo": "pages/system/borders/BorderAdditive.js", "defaultCodeOpen": false}}
+
 ```jsx
 <Box border={1}>…
 <Box borderTop={1}>…
@@ -16,9 +18,9 @@ Use os utilitários de borda para adicionar ou remover as bordas de um elemento.
 <Box borderLeft={1}>…
 ```
 
-{{"demo": "pages/system/borders/BorderAdditive.js"}}
-
 ### Removendo
+
+{{"demo": "pages/system/borders/BorderSubtractive.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box border={0}>…
@@ -28,9 +30,9 @@ Use os utilitários de borda para adicionar ou remover as bordas de um elemento.
 <Box borderLeft={0}>…
 ```
 
-{{"demo": "pages/system/borders/BorderSubtractive.js"}}
-
 ## Cor da Borda
+
+{{"demo": "pages/system/borders/BorderColor.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box borderColor="primary.main">…
@@ -40,17 +42,15 @@ Use os utilitários de borda para adicionar ou remover as bordas de um elemento.
 <Box borderColor="text.primary">…
 ```
 
-{{"demo": "pages/system/borders/BorderColor.js"}}
-
 ## Border-radius
+
+{{"demo": "pages/system/borders/BorderRadius.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box borderRadius="50%">…
 <Box borderRadius="borderRadius">…
 <Box borderRadius={16}>…
 ```
-
-{{"demo": "pages/system/borders/BorderRadius.js"}}
 
 ## API
 

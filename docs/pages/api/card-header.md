@@ -45,12 +45,12 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiCardHeader-root</span> | Styles applied to the root element.
-| <span class="prop-name">avatar</span> | <span class="prop-name">MuiCardHeader-avatar</span> | Styles applied to the avatar element.
-| <span class="prop-name">action</span> | <span class="prop-name">MuiCardHeader-action</span> | Styles applied to the action element.
-| <span class="prop-name">content</span> | <span class="prop-name">MuiCardHeader-content</span> | Styles applied to the content wrapper element.
-| <span class="prop-name">title</span> | <span class="prop-name">MuiCardHeader-title</span> | Styles applied to the title Typography element.
-| <span class="prop-name">subheader</span> | <span class="prop-name">MuiCardHeader-subheader</span> | Styles applied to the subheader Typography element.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiCardHeader-root</span> | Styles applied to the root element.
+| <span class="prop-name">avatar</span> | <span class="prop-name">.MuiCardHeader-avatar</span> | Styles applied to the avatar element.
+| <span class="prop-name">action</span> | <span class="prop-name">.MuiCardHeader-action</span> | Styles applied to the action element.
+| <span class="prop-name">content</span> | <span class="prop-name">.MuiCardHeader-content</span> | Styles applied to the content wrapper element.
+| <span class="prop-name">title</span> | <span class="prop-name">.MuiCardHeader-title</span> | Styles applied to the title Typography element.
+| <span class="prop-name">subheader</span> | <span class="prop-name">.MuiCardHeader-subheader</span> | Styles applied to the subheader Typography element.
 
 You can override the style of the component thanks to one of these customization points:
 

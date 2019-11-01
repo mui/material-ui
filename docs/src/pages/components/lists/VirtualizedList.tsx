@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function Row(props: ListChildComponentProps) {
+function renderRow(props: ListChildComponentProps) {
   const { index, style } = props;
 
   return (
@@ -31,7 +31,7 @@ export default function VirtualizedList() {
   return (
     <div className={classes.root}>
       <FixedSizeList height={400} width={360} itemSize={46} itemCount={200}>
-        {Row}
+        {renderRow}
       </FixedSizeList>
     </div>
   );

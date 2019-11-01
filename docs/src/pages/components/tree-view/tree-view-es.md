@@ -3,7 +3,7 @@ title: Tree View React component
 components: TreeView, TreeItem
 ---
 
-# Tree View
+# Vista de arbol
 
 <p class="description">A tree view widget presents a hierarchical list.</p>
 
@@ -20,3 +20,9 @@ Tree views can be used to represent a file system navigator displaying folders a
 ### Gmail clone
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}
+
+## Accesibilidad
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
+
+The component follows the WAI-ARIA best practices.

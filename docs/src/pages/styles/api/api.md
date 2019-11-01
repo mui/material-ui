@@ -59,12 +59,10 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
 }));
 
-function MyComponent {
+export default function MyComponent {
   const classes = useStyles();
   return <div className={classes.root} />;
 }
-
-export default MyComponent;
 ```
 
 ## `makeStyles(styles, [options]) => hook`

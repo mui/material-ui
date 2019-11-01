@@ -36,4 +36,4 @@ This example demonstrates "featured" tiles, using the `rows` and `cols` props to
 The tiles have a customized titlebar, positioned at the top and with a custom gradient `titleBackground`.
 The secondary action `IconButton` is positioned on the left.
 
-{{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true}}
+{{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true, "defaultCodeOpen": false}}

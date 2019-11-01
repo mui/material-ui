@@ -56,9 +56,10 @@ describe('<Breadcrumbs />', () => {
       </Breadcrumbs>,
     );
 
-    expect(getAllByRole('listitem')).to.have.length(3);
+    const listitems = getAllByRole('listitem');
+    expect(listitems).to.have.length(3);
     expect(getByRole('list')).to.have.text('first//ninth');
-    expect(getAllByRole('listitem')[1].querySelector('[data-mui-test="MoreHorizIcon"]')).to.be.ok;
+    expect(listitems[1].querySelector('[data-mui-test="MoreHorizIcon"]')).to.be.ok;
   });
 
   it('should expand when `BreadcrumbCollapsed` is clicked', () => {

@@ -1,30 +1,25 @@
 import React from 'react';
-import { assert } from 'chai';
-import clsx from 'clsx';
-import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import SwitchBase from '../internal/SwitchBase';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Switch from './Switch';
 
 describe('<Switch />', () => {
   let mount;
-  let shallow;
   let classes;
+  const render = createClientRender({ strict: true });
 
   before(() => {
     mount = createMount({ strict: true });
-    shallow = createShallow({ untilSelector: 'span' });
     classes = getClasses(<Switch />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<Switch />, () => ({
     mount,
     only: ['refForwarding'],
     refInstanceof: window.HTMLSpanElement,
+    after: () => mount.cleanUp(),
   }));
 
   /* TODO Switch violates root component
@@ -38,35 +33,58 @@ describe('<Switch />', () => {
 
   describe('styleSheet', () => {
     it('should have the classes required for SwitchBase', () => {
-      assert.strictEqual(typeof classes.root, 'string');
-      assert.strictEqual(typeof classes.checked, 'string');
-      assert.strictEqual(typeof classes.disabled, 'string');
+      expect(classes).to.include.all.keys(['root', 'checked', 'disabled']);
     });
   });
 
-  describe('default Switch export', () => {
-    let wrapper;
+  specify('should render an .thumb element inside the .switchBase element', () => {
+    const { container } = render(
+      <Switch classes={{ thumb: 'thumb', switchBase: 'switch-base' }} />,
+    );
 
-    beforeEach(() => {
-      wrapper = shallow(<Switch className="foo" />);
-    });
+    expect(container.querySelector('.switch-base .thumb')).to.be.ok;
+  });
 
-    it('should render SwitchBase with a custom span icon with the thumb class', () => {
-      const switchBase = wrapper.childAt(0);
-      assert.strictEqual(switchBase.type(), SwitchBase);
-      assert.strictEqual(switchBase.props().icon.type, 'span');
-      assert.strictEqual(switchBase.props().icon.props.className, classes.thumb);
-      assert.strictEqual(switchBase.props().checkedIcon.type, 'span');
-      assert.strictEqual(
-        switchBase.props().checkedIcon.props.className,
-        clsx(classes.thumb, classes.thumbChecked),
-      );
-    });
+  it('should render the track as the 2nd child', () => {
+    const {
+      container: { firstChild: root },
+    } = render(<Switch />);
 
-    it('should render the track as the 2nd child', () => {
-      const track = wrapper.childAt(1);
-      assert.strictEqual(track.name(), 'span');
-      assert.strictEqual(track.hasClass(classes.track), true);
-    });
+    expect(root.childNodes[1]).to.have.property('tagName', 'SPAN');
+    expect(root.childNodes[1]).to.have.class(classes.track);
+  });
+
+  it('renders a `role="checkbox"` with the Unechecked state by default', () => {
+    const { getByRole } = render(<Switch />);
+
+    expect(getByRole('checkbox')).to.have.property('checked', false);
+  });
+
+  it('renders a checkbox with the Checked state when checked', () => {
+    const { getByRole } = render(<Switch defaultChecked />);
+
+    expect(getByRole('checkbox')).to.have.property('checked', true);
+  });
+
+  specify('the switch can be disabled', () => {
+    const { getByRole } = render(<Switch disabled />);
+
+    expect(getByRole('checkbox')).to.have.property('disabled', true);
+  });
+
+  specify('the switch can be readonly', () => {
+    const { getByRole } = render(<Switch readOnly />);
+
+    expect(getByRole('checkbox')).to.have.property('readOnly', true);
+  });
+
+  specify('the Checked state changes after change events', () => {
+    const { getByRole } = render(<Switch defaultChecked />);
+
+    // how a user would trigger it
+    getByRole('checkbox').click();
+    fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
+
+    expect(getByRole('checkbox')).to.have.property('checked', false);
   });
 });

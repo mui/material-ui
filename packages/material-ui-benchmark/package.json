@@ -30,8 +30,8 @@
     "emotion": "^10.0.17",
     "emotion-server": "^10.0.17",
     "nodemod": "^1.5.19",
-    "react": "^16.10.1",
-    "react-dom": "^16.10.1",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-jss": "^10.0.0",
     "styled-system": "^5.1.2"
   }

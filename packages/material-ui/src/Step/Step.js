@@ -28,7 +28,7 @@ const Step = React.forwardRef(function Step(props, ref) {
     alternativeLabel,
     children,
     classes,
-    className: classNameProp,
+    className,
     completed = false,
     connector,
     disabled = false,
@@ -38,18 +38,20 @@ const Step = React.forwardRef(function Step(props, ref) {
     ...other
   } = props;
 
-  const className = clsx(
-    classes.root,
-    classes[orientation],
-    {
-      [classes.alternativeLabel]: alternativeLabel,
-      [classes.completed]: completed,
-    },
-    classNameProp,
-  );
-
   return (
-    <div className={className} ref={ref} {...other}>
+    <div
+      className={clsx(
+        classes.root,
+        classes[orientation],
+        {
+          [classes.alternativeLabel]: alternativeLabel,
+          [classes.completed]: completed,
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    >
       {connector &&
         alternativeLabel &&
         index !== 0 &&

@@ -31,8 +31,8 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">FabProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`Fab`](/api/fab/) element. |
 | <span class="prop-name">hidden</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the SpeedDial will be hidden. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon to display in the SpeedDial Fab. The `SpeedDialIcon` component provides a default Icon with animation. |
-| <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |
-| <span class="prop-name">onOpen</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be open.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |
+| <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback.<br>*reason:* Can be:`"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`. |
+| <span class="prop-name">onOpen</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be open.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback.<br>*reason:* Can be:`"toggle"`, `"focus"`, `"mouseEnter"`. |
 | <span class="prop-name required">open&nbsp;*</span> | <span class="prop-type">bool</span> |  | If `true`, the SpeedDial is open. |
 | <span class="prop-name">openIcon</span> | <span class="prop-type">node</span> |  | The icon to display in the SpeedDial Fab when the SpeedDial is open. |
 | <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Zoom</span> | The component used for the transition. |
@@ -50,14 +50,14 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiSpeedDial-root</span> | Styles applied to the root element.
-| <span class="prop-name">fab</span> | <span class="prop-name">MuiSpeedDial-fab</span> | Styles applied to the Fab component.
-| <span class="prop-name">directionUp</span> | <span class="prop-name">MuiSpeedDial-directionUp</span> | Styles applied to the root if direction="up"
-| <span class="prop-name">directionDown</span> | <span class="prop-name">MuiSpeedDial-directionDown</span> | Styles applied to the root if direction="down"
-| <span class="prop-name">directionLeft</span> | <span class="prop-name">MuiSpeedDial-directionLeft</span> | Styles applied to the root if direction="left"
-| <span class="prop-name">directionRight</span> | <span class="prop-name">MuiSpeedDial-directionRight</span> | Styles applied to the root if direction="right"
-| <span class="prop-name">actions</span> | <span class="prop-name">MuiSpeedDial-actions</span> | Styles applied to the actions (`children` wrapper) element.
-| <span class="prop-name">actionsClosed</span> | <span class="prop-name">MuiSpeedDial-actionsClosed</span> | Styles applied to the actions (`children` wrapper) element if `open={false}`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiSpeedDial-root</span> | Styles applied to the root element.
+| <span class="prop-name">fab</span> | <span class="prop-name">.MuiSpeedDial-fab</span> | Styles applied to the Fab component.
+| <span class="prop-name">directionUp</span> | <span class="prop-name">.MuiSpeedDial-directionUp</span> | Styles applied to the root if direction="up"
+| <span class="prop-name">directionDown</span> | <span class="prop-name">.MuiSpeedDial-directionDown</span> | Styles applied to the root if direction="down"
+| <span class="prop-name">directionLeft</span> | <span class="prop-name">.MuiSpeedDial-directionLeft</span> | Styles applied to the root if direction="left"
+| <span class="prop-name">directionRight</span> | <span class="prop-name">.MuiSpeedDial-directionRight</span> | Styles applied to the root if direction="right"
+| <span class="prop-name">actions</span> | <span class="prop-name">.MuiSpeedDial-actions</span> | Styles applied to the actions (`children` wrapper) element.
+| <span class="prop-name">actionsClosed</span> | <span class="prop-name">.MuiSpeedDial-actionsClosed</span> | Styles applied to the actions (`children` wrapper) element if `open={false}`.
 
 You can override the style of the component thanks to one of these customization points:
 

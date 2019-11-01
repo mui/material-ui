@@ -31,7 +31,13 @@ components: Breadcrumbs, Link, Typography
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
+## Интеграция с react-router
+
+{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js"}}
+
 ## Доступность
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#breadcrumb)
 
 Убедитесь что добавили `aria-label` в описание `Breadcrumbs` компонента.
 
@@ -40,7 +46,3 @@ components: Breadcrumbs, Link, Typography
 - Набор ссылок структурирован с использованием упорядоченного списка (элемент`<ol>`).
 - Для того, чтобы программа чтения с экрана не объявляла визуальные разделители между ссылками, они скрыты с `aria-hidden`.
 - Элемент навигации, помеченный `aria-label` идентифицирует структуру как "след" хлебной крошки и делает ее навигационным ориентиром, чтобы ее можно было легко найти.
-
-## Интеграция с react-router
-
-{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js"}}

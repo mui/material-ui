@@ -30,23 +30,27 @@ export const styles = theme => ({
 const Toolbar = React.forwardRef(function Toolbar(props, ref) {
   const {
     classes,
-    className: classNameProp,
+    className,
     component: Component = 'div',
     disableGutters = false,
     variant = 'regular',
     ...other
   } = props;
 
-  const className = clsx(
-    classes.root,
-    classes[variant],
-    {
-      [classes.gutters]: !disableGutters,
-    },
-    classNameProp,
+  return (
+    <Component
+      className={clsx(
+        classes.root,
+        classes[variant],
+        {
+          [classes.gutters]: !disableGutters,
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    />
   );
-
-  return <Component className={className} ref={ref} {...other} />;
 });
 
 Toolbar.propTypes = {

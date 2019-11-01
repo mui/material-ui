@@ -1,25 +1,20 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
+import { createClientRender, within } from 'test/utils/createClientRender';
 import ButtonBase from '../ButtonBase';
-import Icon from '../Icon';
 import BottomNavigationAction from './BottomNavigationAction';
 
 describe('<BottomNavigationAction />', () => {
   let mount;
   let classes;
-  const icon = <Icon>restore</Icon>;
+  const render = createClientRender({ strict: true });
 
   before(() => {
-    // StrictModeViolation: uses simulate
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(<BottomNavigationAction />);
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<BottomNavigationAction />, () => ({
@@ -28,81 +23,59 @@ describe('<BottomNavigationAction />', () => {
     mount,
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
-  it('should render a ButtonBase', () => {
-    const wrapper = mount(<BottomNavigationAction icon={icon} />);
-    const root = wrapper.find(`.${classes.root}`).first();
-    assert.strictEqual(root.exists(), true);
-    assert.strictEqual(root.type(), ButtonBase);
+  it('adds a `selected` class when selected', () => {
+    const { getByRole } = render(<BottomNavigationAction selected />);
+
+    expect(getByRole('button')).to.have.class(classes.selected);
   });
 
-  it('should render with the user and root classes', () => {
-    const wrapper = mount(
-      <BottomNavigationAction className="woofBottomNavigationAction" icon={icon} />,
-    );
-    const root = wrapper.find(`.${classes.root}.woofBottomNavigationAction`).first();
-    assert.strictEqual(root.exists(), true);
-    assert.strictEqual(root.hasClass('woofBottomNavigationAction'), true);
+  it('should render label with the selected class when selected', () => {
+    const { container } = render(<BottomNavigationAction selected />);
+
+    expect(container.querySelector(`.${classes.label}`)).to.have.class(classes.selected);
   });
 
-  it('should render with the selected and root classes', () => {
-    const wrapper = mount(<BottomNavigationAction icon={icon} selected />);
-    const root = wrapper.find(`.${classes.root}`).first();
-    assert.strictEqual(root.exists(), true);
-    assert.strictEqual(root.hasClass(classes.selected), true);
+  it('adds a `iconOnly` class by default', () => {
+    const { getByRole } = render(<BottomNavigationAction />);
+
+    expect(getByRole('button')).to.have.class(classes.iconOnly);
   });
 
-  it('should render with the selectedIconOnly and root classes', () => {
-    const wrapper = mount(<BottomNavigationAction icon={icon} showLabel={false} />);
-    const root = findOutermostIntrinsic(wrapper);
-    assert.strictEqual(root.hasClass(classes.root), true);
-    assert.strictEqual(root.hasClass(classes.iconOnly), true);
+  it('should render label with the `iconOnly` class', () => {
+    const { container } = render(<BottomNavigationAction />);
+
+    expect(container.querySelector(`.${classes.label}`)).to.have.class(classes.iconOnly);
   });
 
-  it('should render icon', () => {
-    const wrapper = mount(<BottomNavigationAction icon={icon} />);
-    assert.strictEqual(wrapper.contains(icon), true);
+  it('removes the `iconOnly` class when `selected`', () => {
+    const { getByRole } = render(<BottomNavigationAction selected />);
+
+    expect(getByRole('button')).not.to.have.class(classes.iconOnly);
   });
 
-  it('should render label with the selected class', () => {
-    const wrapper = mount(<BottomNavigationAction icon={icon} selected />);
-    const labelWrapper = wrapper.find(`.${classes.label}`).first();
-    assert.strictEqual(labelWrapper.exists(), true);
-    assert.strictEqual(labelWrapper.hasClass(classes.selected), true);
+  it('removes the `iconOnly` class when `showLabel`', () => {
+    const { getByRole } = render(<BottomNavigationAction showLabel />);
+
+    expect(getByRole('button')).not.to.have.class(classes.iconOnly);
   });
 
-  it('should render label with the iconOnly class', () => {
-    const wrapper = mount(<BottomNavigationAction icon={icon} showLabel={false} />);
-    const labelWrapper = wrapper.find(`.${classes.label}`).first();
-    assert.strictEqual(labelWrapper.exists(), true);
-    assert.strictEqual(labelWrapper.hasClass(classes.iconOnly), true);
-  });
+  it('should render the passed `icon`', () => {
+    const { getByRole } = render(<BottomNavigationAction icon={<div data-testid="icon" />} />);
 
-  it('should not render an Icon if icon is not provided', () => {
-    const wrapper = mount(<BottomNavigationAction />);
-    assert.strictEqual(wrapper.find(Icon).exists(), false);
+    expect(within(getByRole('button')).getByTestId('icon')).to.be.ok;
   });
 
   describe('prop: onClick', () => {
     it('should be called when a click is triggered', () => {
       const handleClick = spy();
-      const wrapper = mount(
-        <BottomNavigationAction icon="book" onClick={handleClick} value="foo" />,
-      );
-      wrapper.simulate('click', 'bar');
-      assert.strictEqual(handleClick.callCount, 1);
-    });
-  });
+      const { getByRole } = render(<BottomNavigationAction onClick={handleClick} />);
 
-  describe('prop: onChange', () => {
-    it('should be called when a click is triggered', () => {
-      const handleChange = spy();
-      const wrapper = mount(
-        <BottomNavigationAction icon="book" onChange={handleChange} value="foo" />,
-      );
-      wrapper.simulate('click', 'bar');
-      assert.strictEqual(handleChange.callCount, 1);
+      getByRole('button').click();
+
+      expect(handleClick.callCount).to.equal(1);
     });
   });
 });

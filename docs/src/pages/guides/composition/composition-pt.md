@@ -4,7 +4,7 @@
 
 ## Encapsulando componentes
 
-Para fornecer o máximo de flexibilidade e desempenho, precisamos de uma maneira de conhecer a natureza dos elementos filhos que um componente recebe. To solve this problem we tag some of the components with a `muiName` static property when needed.
+Para fornecer o máximo de flexibilidade e desempenho, precisamos de uma maneira de conhecer a natureza dos elementos filhos que um componente recebe. Para resolver esse problema, identificamos alguns dos componentes com uma propriedade estática `muiName` quando necessário.
 
 Você pode, no entanto, precisar encapsular um componente para melhorá-lo, que pode entrar em conflito com a solução `muiName`. Se você encapsular um componente, verifique se este tem um conjunto de propriedades estáticas.
 
@@ -19,9 +19,9 @@ WrappedIcon.muiName = Icon.muiName;
 
 {{"demo": "pages/guides/composition/Composition.js"}}
 
-## Component prop
+## Propriedade Componente
 
-Material-UI allows you to change the root element that will be rendered via a prop called `component`.
+Material-UI permite que você altere o elemento raiz que será renderizado por meio de uma propriedade chamada `component`.
 
 ### Como é que funciona?
 
@@ -31,7 +31,7 @@ O componente será renderizado assim:
 return React.createElement(props.component, props)
 ```
 
-Por exemplo, por padrão um componente `List` irá renderizar um elemento `<ul>`. This can be changed by passing a [React component](https://reactjs.org/docs/components-and-props.html#function-and-class-components) to the `component` prop. The following example will render the `List` component with a `<nav>` element as root element instead:
+Por exemplo, por padrão um componente `List` irá renderizar um elemento `<ul>`. Isso pode ser alterado passando um [componente React](https://reactjs.org/docs/components-and-props.html#function-and-class-components) para a propriedade `component`. O exemplo a seguir irá renderizar o componente `List` como um elemento `<nav>` como raiz:
 
 ```jsx
 <List component="nav">
@@ -44,7 +44,7 @@ Por exemplo, por padrão um componente `List` irá renderizar um elemento `<ul>`
 </List>
 ```
 
-This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libraries, such as your favorite routing or forms library. Mas também **vem com uma pequena advertência!**
+Esse padrão é muito poderoso e permite uma grande flexibilidade, além de uma maneira de interoperar com outras bibliotecas, como a sua biblioteca de formulários ou roteamento favorita. Mas também **vem com uma pequena advertência!**
 
 ### Advertência com o uso de funções em linha
 
@@ -116,7 +116,7 @@ import { Link } from 'react-router-dom';
 
 You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-component-prop).
 
-## Routing libraries
+## Bibliotecas de roteamento
 
 The integration with third-party routing libraries is achieved with the `component` prop. The behavior is identical to the description of the prop above. Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router). It covers the Button, Link, and List components, you should be able to apply the same strategy with all the components.
 
@@ -132,7 +132,7 @@ The integration with third-party routing libraries is achieved with the `compone
 
 {{"demo": "pages/guides/composition/ListRouter.js"}}
 
-## Caveat with refs
+## Advertência com refs
 
 This section covers caveats when using a custom component as `children` or for the `component` prop.
 

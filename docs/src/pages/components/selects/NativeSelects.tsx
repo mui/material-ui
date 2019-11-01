@@ -8,10 +8,6 @@ import NativeSelect from '@material-ui/core/NativeSelect';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
     formControl: {
       margin: theme.spacing(1),
       minWidth: 120,
@@ -45,7 +41,7 @@ export default function NativeSelects() {
   };
 
   return (
-    <div className={classes.root}>
+    <div>
       <FormControl className={classes.formControl}>
         <InputLabel htmlFor="age-native-simple">Age</InputLabel>
         <Select

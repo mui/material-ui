@@ -2,8 +2,8 @@
   "homeQuickWord": "Несколько слов от наших спонсоров:",
   "helpToTranslate": "Помогите нам с переводом",
   "editWebsiteColors": "Редактировать цветовую гамму сайта",
-  "toggleTheme": "Toggle light / dark theme",
-  "toggleRTL": "Toggle right-to-left / left-to-right",
+  "toggleTheme": "Toggle light/dark theme",
+  "toggleRTL": "Toggle right-to-left/left-to-right",
   "github": "GitHub репозиторий",
   "strapline": "React компоненты для быстрой и легкой веб-разработки. Создайте свой собственный дизайн или начните с Material Design.",
   "getStarted": "Начать",
@@ -57,6 +57,8 @@
   "expandAll": "Развернуть все",
   "showSource": "Показать исходник",
   "hideSource": "Скрыть исходник",
+  "showFullSource": "Show the full source",
+  "hideFullSource": "Hide the full source",
   "viewGitHub": "Посмотреть исходник на GitHub",
   "codesandbox": "Редактировать в CodeSandbox",
   "seeMore": "Ещё",
@@ -80,6 +82,7 @@
   "resetDensity": "Reset density",
   "increaseSpacing": "increase spacing",
   "decreaseSpacing": "decrease spacing",
+  "getProfessionalSupport": "Get Professional Support",
   "pages": {
     "/getting-started": "Приступая к работе",
     "/getting-started/installation": "Инструкция по установке",
@@ -216,7 +219,7 @@
     "/components/textarea-autosize": "Textarea Autosize",
     "/components/rating": "Рейтинг",
     "/components/skeleton": "Skeleton",
-    "/components/tree-view": "Tree View",
+    "/components/tree-view": "Иерархическое представление",
     "/customization/density": "Density"
   }
 }

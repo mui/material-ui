@@ -63,21 +63,21 @@ Any other props supplied will be provided to the root element ([InputBase](/api/
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiOutlinedInput-root</span> | Styles applied to the root element.
-| <span class="prop-name">focused</span> | <span class="prop-name">Mui-focused</span> | Styles applied to the root element if the component is focused.
-| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Styles applied to the root element if `disabled={true}`.
-| <span class="prop-name">adornedStart</span> | <span class="prop-name">MuiOutlinedInput-adornedStart</span> | Styles applied to the root element if `startAdornment` is provided.
-| <span class="prop-name">adornedEnd</span> | <span class="prop-name">MuiOutlinedInput-adornedEnd</span> | Styles applied to the root element if `endAdornment` is provided.
-| <span class="prop-name">error</span> | <span class="prop-name">Mui-error</span> | Styles applied to the root element if `error={true}`.
-| <span class="prop-name">marginDense</span> | <span class="prop-name">MuiOutlinedInput-marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
-| <span class="prop-name">multiline</span> | <span class="prop-name">MuiOutlinedInput-multiline</span> | Styles applied to the root element if `multiline={true}`.
-| <span class="prop-name">notchedOutline</span> | <span class="prop-name">MuiOutlinedInput-notchedOutline</span> | Styles applied to the `NotchedOutline` element.
-| <span class="prop-name">input</span> | <span class="prop-name">MuiOutlinedInput-input</span> | Styles applied to the `input` element.
-| <span class="prop-name">inputMarginDense</span> | <span class="prop-name">MuiOutlinedInput-inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
-| <span class="prop-name">inputSelect</span> | <span class="prop-name">MuiOutlinedInput-inputSelect</span> | Styles applied to the `input` element if `select={true}`.
-| <span class="prop-name">inputMultiline</span> | <span class="prop-name">MuiOutlinedInput-inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
-| <span class="prop-name">inputAdornedStart</span> | <span class="prop-name">MuiOutlinedInput-inputAdornedStart</span> | Styles applied to the `input` element if `startAdornment` is provided.
-| <span class="prop-name">inputAdornedEnd</span> | <span class="prop-name">MuiOutlinedInput-inputAdornedEnd</span> | Styles applied to the `input` element if `endAdornment` is provided.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiOutlinedInput-root</span> | Styles applied to the root element.
+| <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Styles applied to the root element if the component is focused.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">adornedStart</span> | <span class="prop-name">.MuiOutlinedInput-adornedStart</span> | Styles applied to the root element if `startAdornment` is provided.
+| <span class="prop-name">adornedEnd</span> | <span class="prop-name">.MuiOutlinedInput-adornedEnd</span> | Styles applied to the root element if `endAdornment` is provided.
+| <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Styles applied to the root element if `error={true}`.
+| <span class="prop-name">marginDense</span> | <span class="prop-name">.MuiOutlinedInput-marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
+| <span class="prop-name">multiline</span> | <span class="prop-name">.MuiOutlinedInput-multiline</span> | Styles applied to the root element if `multiline={true}`.
+| <span class="prop-name">notchedOutline</span> | <span class="prop-name">.MuiOutlinedInput-notchedOutline</span> | Styles applied to the `NotchedOutline` element.
+| <span class="prop-name">input</span> | <span class="prop-name">.MuiOutlinedInput-input</span> | Styles applied to the `input` element.
+| <span class="prop-name">inputMarginDense</span> | <span class="prop-name">.MuiOutlinedInput-inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
+| <span class="prop-name">inputSelect</span> | <span class="prop-name">.MuiOutlinedInput-inputSelect</span> | Styles applied to the `input` element if `select={true}`.
+| <span class="prop-name">inputMultiline</span> | <span class="prop-name">.MuiOutlinedInput-inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
+| <span class="prop-name">inputAdornedStart</span> | <span class="prop-name">.MuiOutlinedInput-inputAdornedStart</span> | Styles applied to the `input` element if `startAdornment` is provided.
+| <span class="prop-name">inputAdornedEnd</span> | <span class="prop-name">.MuiOutlinedInput-inputAdornedEnd</span> | Styles applied to the `input` element if `endAdornment` is provided.
 
 You can override the style of the component thanks to one of these customization points:
 

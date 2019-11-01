@@ -68,7 +68,9 @@ const theme = {
 <Box mx="auto" /> // margin-left: auto; margin-right: auto;
 ```
 
-## Example
+## Ejemplo
+
+{{"demo": "pages/system/spacing/Demo.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box p={1}>…
@@ -76,15 +78,13 @@ const theme = {
 <Box p={2}>…
 ```
 
-{{"demo": "pages/system/spacing/Demo.js"}}
-
 ## Horizontal centering
+
+{{"demo": "pages/system/spacing/HorizontalCentering.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box mx="auto">…
 ```
-
-{{"demo": "pages/system/spacing/HorizontalCentering.js"}}
 
 ## API
 

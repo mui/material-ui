@@ -14,7 +14,7 @@ title: Free React Templates
 
 これらのサンプルを使用している間に、開発者のエクスペリエンスを改善する可能性のある変更や拡張を行ったり、追加のサンプルを提供したい場合は、GitHub</a>で<a href=「https://github.com/mui-org/material-ui/pulls」>プルリクエストを作成することを検討してください。
 
-今のところ、ダッシュボード、サインインページ、サインアップページ、ブログページ、チェックアウトフロー、アルバムページ、価格ページ、スティッキーフッターページのデモがあります。
+So far we have demos for a dashboard, sign in page, sign up page, blog page, checkout flow, album page, pricing page, and sticky footer page.
 
 ## プレミアムテーマ
 

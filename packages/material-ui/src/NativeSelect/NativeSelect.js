@@ -65,6 +65,10 @@ export const styles = theme => ({
     color: theme.palette.action.active,
     pointerEvents: 'none', // Don't block pointer events on the select under the icon.
   },
+  /* Styles applied to the icon component if the popup is open. */
+  iconOpen: {
+    transform: 'rotate(180deg)',
+  },
   /* Styles applied to the icon component if `variant="filled"`. */
   iconFilled: {
     right: 7,

@@ -21,8 +21,8 @@ components: Skeleton
 
 ## YouTubeの例
 
-{{"demo": "pages/components/skeleton/YouTube.js"}}
+{{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
 ## Facebookの例
 
-{{"demo": "pages/components/skeleton/Facebook.js"}}
+{{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false}}

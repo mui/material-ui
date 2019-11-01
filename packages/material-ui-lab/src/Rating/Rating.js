@@ -35,7 +35,7 @@ export const styles = theme => ({
     color: '#ffb400',
     cursor: 'pointer',
     '&$disabled': {
-      opacity: 0.4,
+      opacity: 0.5,
       pointerEvents: 'none',
     },
     '&$focusVisible $iconActive': {
@@ -354,20 +354,20 @@ const Rating = React.forwardRef(function Rating(props, ref) {
               })}
             >
               {items.map(($, indexDecimal) => {
-                const itemDeciamlValue = roundValueToPrecision(
+                const itemDecimalValue = roundValueToPrecision(
                   itemValue - 1 + (indexDecimal + 1) * precision,
                   precision,
                 );
 
                 return item(
                   {
-                    value: itemDeciamlValue,
+                    value: itemDecimalValue,
                     style:
                       items.length - 1 === indexDecimal
                         ? {}
                         : {
                             width:
-                              itemDeciamlValue === value
+                              itemDecimalValue === value
                                 ? `${(indexDecimal + 1) * precision * 100}%`
                                 : '0%',
                             overflow: 'hidden',
@@ -376,10 +376,10 @@ const Rating = React.forwardRef(function Rating(props, ref) {
                           },
                   },
                   {
-                    filled: itemDeciamlValue <= value,
-                    hover: itemDeciamlValue <= hover,
-                    focus: itemDeciamlValue <= focus,
-                    checked: itemDeciamlValue === valueProp,
+                    filled: itemDecimalValue <= value,
+                    hover: itemDecimalValue <= hover,
+                    focus: itemDecimalValue <= focus,
+                    checked: itemDecimalValue === valueProp,
                   },
                 );
               })}

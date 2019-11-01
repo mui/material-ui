@@ -46,6 +46,7 @@ const externs = [
   'https://www.amazon.com/',
   'https://materialdesignicons.com/',
   'https://www.w3.org/',
+  'https://devexpress.github.io/',
 ];
 
 renderer.link = (href, title, text) => {
@@ -100,10 +101,10 @@ const markedOptions = {
     }
 
     if (!prismLanguage) {
-      if (language) {
-        throw new Error(`unsuppored language: "${language}", "${code}"`);
+      if (process.env.NODE_ENV === 'production') {
+        console.error(`unsupported language: "${language}", "${code}"`);
       } else {
-        prismLanguage = prism.languages.jsx;
+        throw new Error(`unsupported language: "${language}", "${code}"`);
       }
     }
 

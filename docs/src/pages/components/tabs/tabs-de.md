@@ -15,9 +15,9 @@ Ein einfaches Beispiel ohne Verzierungen.
 
 {{"demo": "pages/components/tabs/SimpleTabs.js"}}
 
-### Umwickelte Tabs
+### Umbrechen von Tab Beschriftungen
 
-Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow and the text will not be visible.
+Lange Beschriftungen werden automatisch umgebrochen. Zu lange Beschriftungen sind allerdings nicht sichtbar und werden abgeschnitten (`overflow`).
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
 
@@ -47,7 +47,7 @@ Die Eigenschaft `centered` sollte für kleinere Ansichten verwendet werden.
 
 ### Automatische Scroll-Tasten
 
-Left and right scroll buttons will automatically be presented on desktop and hidden on mobile. (based on viewport width)
+Bildlauftasten werden auf der linken und rechten Seite angezeigt, wenn der Tab breiter als der viewport ist. Auf mobilen Endgeräten werden diese Buttons nicht angezeigt. (based on viewport width)
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonAuto.js"}}
 
@@ -71,13 +71,13 @@ Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf de
 
 👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/tabs).
 
-## Vertical tabs
+## Vertikale Tabs
 
 {{"demo": "pages/components/tabs/VerticalTabs.js"}}
 
 ## Nav-Tabs
 
-By default tabs use a `button` element, but you can provide your own custom tag or component. Here's an example of implementing tabbed navigation:
+Standardmäßig verwenden Registerkarten als `Button-` Element dargestellt, Sie können jedoch Ihr eigenes benutzerdefiniertes Tag oder Ihre eigene Komponente definieren. Here's an example of implementing tabbed navigation:
 
 {{"demo": "pages/components/tabs/NavTabs.js"}}
 

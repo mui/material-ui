@@ -66,11 +66,7 @@ describe('withTheme', () => {
       const ThemedTarget = withTheme(TargetComponent);
 
       const ref = React.createRef();
-      mount(
-        <React.Fragment>
-          <ThemedTarget ref={ref} />
-        </React.Fragment>,
-      );
+      mount(<ThemedTarget ref={ref} />);
 
       assert.instanceOf(ref.current, TargetComponent);
     });
@@ -81,11 +77,7 @@ describe('withTheme', () => {
       );
 
       const ref = React.createRef();
-      mount(
-        <React.Fragment>
-          <ThemedTarget ref={ref} />
-        </React.Fragment>,
-      );
+      mount(<ThemedTarget ref={ref} />);
 
       assert.strictEqual(ref.current.nodeName, 'DIV');
     });
@@ -103,11 +95,7 @@ describe('withTheme', () => {
       it('is deprecated', () => {
         const ThemedDiv = withTheme('div');
 
-        mount(
-          <React.Fragment>
-            <ThemedDiv innerRef={React.createRef()} />
-          </React.Fragment>,
-        );
+        mount(<ThemedDiv innerRef={React.createRef()} />);
 
         assert.strictEqual(consoleErrorMock.callCount(), 1);
         assert.include(

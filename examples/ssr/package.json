@@ -9,7 +9,6 @@
     "@babel/preset-env": "latest",
     "@babel/preset-react": "latest",
     "@material-ui/core": "latest",
-    "@material-ui/styles": "latest",
     "babel-loader": "latest",
     "cross-env": "latest",
     "express": "latest",

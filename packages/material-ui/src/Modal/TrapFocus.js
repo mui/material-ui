@@ -1,5 +1,4 @@
 /* eslint-disable consistent-return, jsx-a11y/no-noninteractive-tabindex */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';

@@ -44,13 +44,13 @@ Any other props supplied will be provided to the root element ([Tooltip](/api/to
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">fab</span> | <span class="prop-name">MuiSpeedDialAction-fab</span> | Styles applied to the Fab component.
-| <span class="prop-name">fabClosed</span> | <span class="prop-name">MuiSpeedDialAction-fabClosed</span> | Styles applied to the Fab component if `open={false}`.
-| <span class="prop-name">staticTooltip</span> | <span class="prop-name">MuiSpeedDialAction-staticTooltip</span> | Styles applied to the root element if `tooltipOpen={true}`.
-| <span class="prop-name">staticTooltipClosed</span> | <span class="prop-name">MuiSpeedDialAction-staticTooltipClosed</span> | Styles applied to the root element if `tooltipOpen={true}` and `open={false}`.
-| <span class="prop-name">staticTooltipLabel</span> | <span class="prop-name">MuiSpeedDialAction-staticTooltipLabel</span> | Styles applied to the static tooltip label if `tooltipOpen={true}`.
-| <span class="prop-name">tooltipPlacementLeft</span> | <span class="prop-name">MuiSpeedDialAction-tooltipPlacementLeft</span> | Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="left"``
-| <span class="prop-name">tooltipPlacementRight</span> | <span class="prop-name">MuiSpeedDialAction-tooltipPlacementRight</span> | Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="right"``
+| <span class="prop-name">fab</span> | <span class="prop-name">.MuiSpeedDialAction-fab</span> | Styles applied to the Fab component.
+| <span class="prop-name">fabClosed</span> | <span class="prop-name">.MuiSpeedDialAction-fabClosed</span> | Styles applied to the Fab component if `open={false}`.
+| <span class="prop-name">staticTooltip</span> | <span class="prop-name">.MuiSpeedDialAction-staticTooltip</span> | Styles applied to the root element if `tooltipOpen={true}`.
+| <span class="prop-name">staticTooltipClosed</span> | <span class="prop-name">.MuiSpeedDialAction-staticTooltipClosed</span> | Styles applied to the root element if `tooltipOpen={true}` and `open={false}`.
+| <span class="prop-name">staticTooltipLabel</span> | <span class="prop-name">.MuiSpeedDialAction-staticTooltipLabel</span> | Styles applied to the static tooltip label if `tooltipOpen={true}`.
+| <span class="prop-name">tooltipPlacementLeft</span> | <span class="prop-name">.MuiSpeedDialAction-tooltipPlacementLeft</span> | Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="left"``
+| <span class="prop-name">tooltipPlacementRight</span> | <span class="prop-name">.MuiSpeedDialAction-tooltipPlacementRight</span> | Styles applied to the root if `tooltipOpen={true}` and `tooltipPlacement="right"``
 
 You can override the style of the component thanks to one of these customization points:
 

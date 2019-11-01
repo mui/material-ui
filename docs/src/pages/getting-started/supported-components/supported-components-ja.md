@@ -2,7 +2,7 @@
 
 <p class="description">以下は、Material Designコンポーネントと機能のリストです。 Material-UIで現在サポートされているものは✓が表示されています。</p>
 
-私たちはガイドラインに従うように努めています ( ガイドラインが矛盾する点に常識を適用する) が、全てのコンポーネント、または全てのコンポーネントの機能をサポートするわけではありません。強力なユーザーインターフェイスとエクスペリエンスを作成する為の構成要素を提供します。
+While we strive to follow the guidelines where practical (applying common sense where guidelines contradict - a more common occurrence than one might expect), we do not expect to support every component, nor every feature of every component, but rather to provide the building blocks to allow developers to create compelling user interfaces and experiences.
 
 ここで強調表示されていないコンポーネントまたは機能のサポートを追加したい場合は、関連する[GitHub Issue](https://github.com/mui-org/material-ui/issues)を探す、または、プルリクエストを送信する前にアプローチを議論するための新しいIssueを作成してください。
 
@@ -73,9 +73,9 @@
   - **[Checkbox](https://material.io/design/components/selection-controls.html#checkboxes) ✓**
   - **[Radio button](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
-- **[Sliders](https://material.io/design/components/sliders.html) ~** ([Lab](/components/about-the-lab/)) 
+- **[Sliders](https://material.io/design/components/sliders.html) ✓** 
   - **[Continuous](https://material.io/design/components/sliders.html#continuous-slider) ✓**
-  - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ~**
+  - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ✓**
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)
 - **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legacy Material v1*) 
   - **[List](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**

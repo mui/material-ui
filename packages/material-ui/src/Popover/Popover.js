@@ -63,6 +63,8 @@ function getAnchorEl(anchorEl) {
 }
 
 export const styles = {
+  /* Styles applied to the root element */
+  root: {},
   /* Styles applied to the `Paper` component. */
   paper: {
     position: 'absolute',
@@ -91,11 +93,11 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     anchorReference = 'anchorEl',
     children,
     classes,
+    className,
     container: containerProp,
     elevation = 8,
     getContentAnchorEl,
     marginThreshold = 16,
-    ModalClasses,
     onEnter,
     onEntered,
     onEntering,
@@ -374,11 +376,11 @@ const Popover = React.forwardRef(function Popover(props, ref) {
 
   return (
     <Modal
-      classes={ModalClasses}
       container={container}
       open={open}
       ref={ref}
       BackdropProps={{ invisible: true }}
+      className={clsx(classes.root, className)}
       {...other}
     >
       <TransitionComponent
@@ -494,6 +496,10 @@ Popover.propTypes = {
    */
   classes: PropTypes.object.isRequired,
   /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
    * A node, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
    * By default, it uses the body of the anchorEl's top-level document object,
@@ -517,10 +523,6 @@ Popover.propTypes = {
    * Specifies how close to the edge of the window the popover can appear.
    */
   marginThreshold: PropTypes.number,
-  /**
-   * `classes` prop applied to the [`Modal`](/api/modal/) element.
-   */
-  ModalClasses: PropTypes.object,
   /**
    * Callback fired when the component requests to be closed.
    *

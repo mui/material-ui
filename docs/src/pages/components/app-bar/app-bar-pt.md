@@ -35,29 +35,75 @@ Uma barra de pesquisa na lateral.
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js"}}
 
-## Barra de Aplicativos inferior
+## Proeminente
+
+Uma barra de aplicativos proeminente.
+
+{{"demo": "pages/components/app-bar/ProminentAppBar.js"}}
+
+## Barra de Aplicativos Inferior
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Rolagem
+## Local de filtros
 
-Você pode usar o hook `useScrollTrigger()` para responder às ações de rolagem do usuário.
+Quando você renderiza a posição da barra de apps fixa, a dimensão do elemento não afeta o resto da página. Isso pode fazer com que parte do seu conteúdo fique invisível, atrás da barra de aplicativos. Aqui estão 3 soluções possíveis:
+
+1. Você pode usar `posição="sticky"` ao invés de fixed. ⚠️ sticky não é suportado pelo IE 11.
+2. You can render a second `<Toolbar />` component:
+
+```jsx
+function App() {
+  return (
+    <React.Fragment>
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <Toolbar />
+    </React.Fragment>
+  );
+}
+```
+
+3. You can use `theme.mixins.toolbar` CSS:
+
+```jsx
+const useStyles = makeStyles(theme => ({
+  offset: theme.mixins.toolbar,
+}))
+
+function App() {
+  const classes = useStyles();
+  return (
+    <React.Fragment>
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <div className={classes.offset} />
+    </React.Fragment>
+  )
+};
+```
+
+## Scrolling
+
+You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
 ### Barra de Aplicativos oculta
 
-A barra de aplicativos se oculta na rolagem para baixo, deixando mais espaço para leitura.
+The app bar hides on scroll down to leave more space for reading.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### Barra de aplicativos elevada
 
-A barra de aplicativos eleva-se na rolagem para comunicar que o usuário não está na parte superior da página.
+The app bar elevates on scroll to communicate that the user is not at the top of the page.
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### Voltar ao topo
 
-Um botão de ação flutuante aparece na rolagem para facilitar o retorno ao topo da página.
+A floating action buttons appears on scroll to make it easy to get back to the top of the page.
 
 {{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
 
@@ -73,7 +119,7 @@ Um botão de ação flutuante aparece na rolagem para facilitar o retorno ao top
 
 #### Retornos
 
-`trigger`: A posição de rolagem corresponde aos critérios?
+`trigger`: Does the scroll position match the criteria?
 
 #### Exemplos
 

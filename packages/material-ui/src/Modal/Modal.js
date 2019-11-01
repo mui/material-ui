@@ -207,8 +207,8 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   const inlineStyle = styles(theme || { zIndex });
   const childProps = {};
-  if (children.tabIndex === undefined) {
-    childProps.tabIndex = children.tabIndex || '-1';
+  if (children.props.tabIndex === undefined) {
+    childProps.tabIndex = children.props.tabIndex || '-1';
   }
 
   // It's a Transition like component

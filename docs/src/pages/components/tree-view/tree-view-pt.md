@@ -20,3 +20,9 @@ As visualizações em árvore podem ser usadas para representar um navegador do 
 ### Clone do Gmail
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}
+
+## Acessibilidade
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
+
+The component follows the WAI-ARIA best practices.

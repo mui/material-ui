@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import capitalize from '../utils/capitalize';
 import withStyles from '../styles/withStyles';
+import { elementTypeAcceptingRef } from '@material-ui/utils';
 import { useIsFocusVisible } from '../utils/focusVisible';
 import useForkRef from '../utils/useForkRef';
 import Typography from '../Typography';
@@ -142,7 +143,7 @@ Link.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.elementType,
+  component: elementTypeAcceptingRef,
   /**
    * @ignore
    */

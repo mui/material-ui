@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
-import { fade } from '../styles/colorManipulator';
+import { fade, lighten, darken } from '../styles/colorManipulator';
 import { useIsFocusVisible } from '../utils/focusVisible';
 import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
@@ -145,6 +145,7 @@ export const styles = theme => ({
     // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
     '&$disabled': {
+      pointerEvents: 'none',
       cursor: 'default',
       color: theme.palette.grey[400],
     },
@@ -172,7 +173,7 @@ export const styles = theme => ({
   },
   /* Pseudo-class applied to the root element if `orientation="vertical"`. */
   vertical: {},
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root and thumb element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the rail element. */
   rail: {
@@ -197,6 +198,25 @@ export const styles = theme => ({
     backgroundColor: 'currentColor',
     '$vertical &': {
       width: 2,
+    },
+  },
+  /* Styles applied to the track element if `track={false}`. */
+  trackFalse: {
+    '& $track': {
+      display: 'none',
+    },
+  },
+  /* Styles applied to the track element if `track="inverted"`. */
+  trackInverted: {
+    '& $track': {
+      backgroundColor:
+        // Same logic as the LinearProgress track color
+        theme.palette.type === 'light'
+          ? lighten(theme.palette.primary.main, 0.62)
+          : darken(theme.palette.primary.main, 0.5),
+    },
+    '& $rail': {
+      opacity: 1,
     },
   },
   /* Styles applied to the thumb element. */
@@ -225,8 +245,7 @@ export const styles = theme => ({
     '&$active': {
       boxShadow: `0px 0px 0px 14px ${fade(theme.palette.primary.main, 0.16)}`,
     },
-    '$disabled &': {
-      pointerEvents: 'none',
+    '&$disabled': {
       width: 8,
       height: 8,
       marginLeft: -4,
@@ -239,7 +258,7 @@ export const styles = theme => ({
       marginLeft: -5,
       marginBottom: -6,
     },
-    '$vertical$disabled &': {
+    '$vertical &$disabled': {
       marginLeft: -3,
       marginBottom: -4,
     },
@@ -319,6 +338,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     orientation = 'horizontal',
     step = 1,
     ThumbComponent = 'span',
+    track = 'normal',
     value: valueProp,
     ValueLabelComponent = ValueLabel,
     valueLabelDisplay = 'off',
@@ -424,6 +444,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         return;
     }
 
+    // Prevent scroll of the page
     event.preventDefault();
 
     if (step) {
@@ -597,10 +618,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   });
 
   React.useEffect(() => {
-    if (disabled) {
-      return () => {};
-    }
-
     const { current: slider } = sliderRef;
     slider.addEventListener('touchstart', handleTouchStart);
 
@@ -612,7 +629,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       document.body.removeEventListener('touchmove', handleTouchMove);
       document.body.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [disabled, handleMouseEnter, handleTouchEnd, handleTouchMove, handleTouchStart]);
+  }, [handleMouseEnter, handleTouchEnd, handleTouchMove, handleTouchStart]);
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -636,10 +653,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const handleMouseDown = useEventCallback(event => {
     if (onMouseDown) {
       onMouseDown(event);
-    }
-
-    if (disabled) {
-      return;
     }
 
     event.preventDefault();
@@ -676,6 +689,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
           [classes.disabled]: disabled,
           [classes.marked]: marks.length > 0 && marks.some(mark => mark.label),
           [classes.vertical]: orientation === 'vertical',
+          [classes.trackInverted]: track === 'inverted',
+          [classes.trackFalse]: track === false,
         },
         className,
       )}
@@ -688,9 +703,17 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       {marks.map(mark => {
         const percent = valueToPercent(mark.value, min, max);
         const style = axisProps[axis].offset(percent);
-        const markActive = range
-          ? mark.value >= values[0] && mark.value <= values[values.length - 1]
-          : mark.value <= values[0];
+
+        let markActive;
+        if (track === false) {
+          markActive = values.indexOf(mark.value) !== -1;
+        } else {
+          const isMarkActive = range
+            ? mark.value >= values[0] && mark.value <= values[values.length - 1]
+            : mark.value <= values[0];
+          markActive =
+            (isMarkActive && track === 'normal') || (!isMarkActive && track === 'inverted');
+        }
 
         return (
           <React.Fragment key={mark.value}>
@@ -722,14 +745,19 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             valueLabelFormat={valueLabelFormat}
             valueLabelDisplay={valueLabelDisplay}
             className={classes.valueLabel}
-            value={value}
+            value={
+              typeof valueLabelFormat === 'function'
+                ? valueLabelFormat(value, index)
+                : valueLabelFormat
+            }
             index={index}
-            open={open === index || active === index}
+            open={open === index || active === index || valueLabelDisplay === 'on'}
             disabled={disabled}
           >
             <ThumbComponent
               className={clsx(classes.thumb, classes[`thumbColor${capitalize(color)}`], {
                 [classes.active]: active === index,
+                [classes.disabled]: disabled,
                 [classes.focusVisible]: focusVisible === index,
               })}
               tabIndex={disabled ? null : 0}
@@ -881,6 +909,14 @@ Slider.propTypes = {
    * The component used to display the value label.
    */
   ThumbComponent: PropTypes.elementType,
+  /**
+   * The track presentation:
+   *
+   * - `normal` the track will render a bar representing the slider value.
+   * - `inverted` the track will render a bar representing the remaining slider value.
+   * - `false` the track will render without a bar.
+   */
+  track: PropTypes.oneOf(['normal', false, 'inverted']),
   /**
    * The value of the slider.
    * For ranged sliders, provide an array with two values.

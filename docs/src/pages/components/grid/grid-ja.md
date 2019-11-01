@@ -13,7 +13,7 @@ components: Grid
 
 グリッドシステムは `Grid` コンポーネントで実装されています。
 
-- 高い柔軟性のために [CSSのFlexible Boxモジュール](https://www. w3. org/TR/css-flexbox-1/) を使用します。
+- 高い柔軟性のために [CSSのFlexible Boxモジュール](https://www.w3.org/TR/css-flexbox-1/) を使用します。
 - レイアウトには* containers * と * items*の2種類あります 。
 - アイテムの幅はパーセンテージで設定されているので、それらは常に親要素に対して流動的でサイズが決まっています。
 - アイテムには、個々のアイテム間の間隔を空けるための余白があります。
@@ -114,7 +114,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 ### direction: column | column-reverse
 
-`Grid`コンポーネントは`row`, `row-reverse`, `column`, `column-reverse`のいずれかの値を持つ`direction`プロパティを持っています。 しかし、` column `および` column-reverse `コンテナではサポートされていない機能がいくつかあります。 コンポーネントは、所与のブレークポイントに使用するグリッドの数定義するプロパティ （`Xs`、 `、Sm`、 `Md`、 `Lg`、及び `Xl`）幅の制御に焦点を当てている と実行 しない ` column ` および ` column-reverse` コンテナ内の高さにも同様の影響があります。 ` column ` または `column-reverse` コンテナ内で使用された場合、これらのプロパティは `Grid` 要素の幅に望ましくない影響を与える可能性があります。
+`Grid`コンポーネントは`row`, `row-reverse`, `column`, `column-reverse`のいずれかの値を持つ`direction`プロパティを持っています。 しかし、` column `および` column-reverse `コンテナではサポートされていない機能がいくつかあります。 コンポーネントは、所与のブレークポイントに使用するグリッドの数定義するプロパティ （`Xs`、 `Sm`、 `Md`、 `Lg`、及び `Xl`）幅の制御に焦点を当てている と実行 しない ` column ` および ` column-reverse` コンテナ内の高さにも同様の影響があります。 ` column ` または `column-reverse` コンテナ内で使用された場合、これらのプロパティは `Grid` 要素の幅に望ましくない影響を与える可能性があります。
 
 ## CSS Grid Layout
 

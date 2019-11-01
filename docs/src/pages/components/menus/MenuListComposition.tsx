@@ -71,7 +71,7 @@ export default function MenuListComposition() {
         >
           Toggle Menu Grow
         </Button>
-        <Popper open={open} anchorEl={anchorRef.current} keepMounted transition disablePortal>
+        <Popper open={open} anchorEl={anchorRef.current} transition disablePortal>
           {({ TransitionProps, placement }) => (
             <Grow
               {...TransitionProps}

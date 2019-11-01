@@ -1,19 +1,19 @@
 import React from 'react';
-import { assert, expect } from 'chai';
-import { createMount, createRender, getClasses } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import createServerRender from 'test/utils/createServerRender';
 import Button from './Button';
 import ButtonBase from '../ButtonBase';
 
 describe('<Button />', () => {
   let mount;
-  // StrictModeViolation uses ButtonBase
-  const render = createClientRender({ strict: false });
+  const render = createClientRender({ strict: true });
   let classes;
 
   before(() => {
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(<Button>Hello World</Button>);
   });
 
@@ -345,19 +345,16 @@ describe('<Button />', () => {
   });
 
   describe('server-side', () => {
-    let serverRender;
     // Only run the test on node.
     if (!/jsdom/.test(window.navigator.userAgent)) {
       return;
     }
 
-    before(() => {
-      serverRender = createRender();
-    });
+    const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
 
     it('should server-side render', () => {
       const markup = serverRender(<Button>Hello World</Button>);
-      assert.strictEqual(markup.text(), 'Hello World');
+      expect(markup.text()).to.equal('Hello World');
     });
   });
 });

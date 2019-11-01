@@ -2,7 +2,7 @@
 
 <p class="description">您是第一次接触 Material-UI 吗? 如果你知道从哪里开始, 就很容易学会! 而接下来的教程将帮助你快速入门。</p>
 
-学习 Material-UI 的人们有着不同背景和不同学习方法。 无论您是喜欢更理论还是实践的学习方法，我们都希望本节对您有所帮助。 与任何新技术一样，Material-UI 的确有一个学习曲线。 有了练习和耐心, 你很快就会掌握其中的诀窍。
+Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you’ll find this section helpful. 与任何新技术一样，Material-UI 的确有一个学习曲线。 有了练习和耐心, 你很快就会掌握其中的诀窍。
 
 ## 第一个例子
 
@@ -10,15 +10,15 @@
 
 ## 范例项目
 
-There are [some example projects](/getting-started/example-projects/) available, providing the infrastructure needed to develop and deploy websites in React.
+我们在 React 上托管了[一些范例项目](/getting-started/example-projects/)，他们都提供了开发和部署网站必要的架构。
 
-## Templates
+## 模板
 
-This [selection of basic templates](/getting-started/templates/) will help you get started building your app.
+我们提供了一个 [可供选择的基本页面布局](/getting-started/templates/) 来帮助您开始构建您的应用程序。
 
 ## 推荐资源
 
-首次学习 Material-UI 时，您可能会发现一些第三方博客文章，书籍和视频课程反而会比官方文档更有帮助。 Here are some recommended resources, some of which are free.
+首次学习 Material-UI 时，您可能会发现一些第三方博客文章，书籍和视频课程反而会比官方文档更有帮助。 以下是一些推荐资源，其中一些是免费的。
 
 ### 免费的资源
 
@@ -38,7 +38,7 @@ This [selection of basic templates](/getting-started/templates/) will help you g
   
   - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
   - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
-- **React Material-UI Cookbook**: Build modern day application by implementing Material Design principles in React applications using Material-UI.
+- **React Material-UI Cookbook**: Build modern-day applications by implementing Material Design principles in React, using Material-UI.
   
   - 📘 [The book](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
 

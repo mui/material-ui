@@ -36,7 +36,7 @@ A experiência de uso com o Material-UI pode ser melhorada com um punhado de con
 
 ### Meta tag para responsividade
 
-O Material-UI é desenvolvido primeiro em dispositivos móveis, uma estratégia na qual primeiro escrevemos código para dispositivos móveis e, em seguida, dimensionamos componentes conforme necessário, usando consultas de mídia CSS. Para garantir a renderização adequada e o zoom de toque para todos os dispositivos, adicione a meta tag de visualização responsiva ao seu elemento `<head>`.
+Material-UI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries. Para garantir a renderização adequada e o zoom de toque para todos os dispositivos, adicione a meta tag de visualização responsiva ao seu elemento `<head>`.
 
 ```html
 <meta
@@ -58,5 +58,5 @@ Esta documentação sempre reflete a última versão estável do Material-UI. Vo
 Agora que você tem uma ideia da configuração básica, é hora de aprender mais sobre:
 
 - Como aplicar [a fonte e a tipografia do Material Design](/components/typography/).
-- How to take advantage of the [theming solution](/customization/theming/).
+- Como tirar proveito da [solução de tema](/customization/theming/).
 - Como [sobrescrever](/customization/components/) o visual e a aparência dos componentes.

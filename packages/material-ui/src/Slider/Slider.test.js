@@ -165,8 +165,7 @@ describe('<Slider />', () => {
   describe('range', () => {
     it('should support keyboard', () => {
       const { getAllByRole } = render(<Slider defaultValue={[20, 30]} />);
-      const thumb1 = getAllByRole('slider')[0];
-      const thumb2 = getAllByRole('slider')[1];
+      const [thumb1, thumb2] = getAllByRole('slider');
 
       thumb1.focus();
       fireEvent.keyDown(document.activeElement, {
@@ -253,6 +252,18 @@ describe('<Slider />', () => {
       const { container, getByRole } = render(<Slider disabled value={0} />);
       expect(container.firstChild).to.have.class(classes.disabled);
       expect(getByRole('slider')).to.not.have.attribute('tabIndex');
+    });
+  });
+
+  describe('prop: track', () => {
+    it('should render the track classes for false', () => {
+      const { container } = render(<Slider track={false} value={50} />);
+      expect(container.firstChild).to.have.class(classes.trackFalse);
+    });
+
+    it('should render the track classes for inverted', () => {
+      const { container } = render(<Slider track="inverted" value={50} />);
+      expect(container.firstChild).to.have.class(classes.trackInverted);
     });
   });
 
@@ -497,16 +508,39 @@ describe('<Slider />', () => {
     const { getAllByRole } = render(
       <Slider value={[20, 50]} getAriaValueText={getAriaValueText} />,
     );
+    const sliders = getAllByRole('slider');
 
-    expect(getAllByRole('slider')[0]).to.have.attribute('aria-valuetext', '20°C');
-    expect(getAllByRole('slider')[1]).to.have.attribute('aria-valuetext', '50°C');
+    expect(sliders[0]).to.have.attribute('aria-valuetext', '20°C');
+    expect(sliders[1]).to.have.attribute('aria-valuetext', '50°C');
   });
 
   it('should support getAriaLabel', () => {
     const getAriaLabel = index => `Label ${index}`;
     const { getAllByRole } = render(<Slider value={[20, 50]} getAriaLabel={getAriaLabel} />);
+    const sliders = getAllByRole('slider');
 
-    expect(getAllByRole('slider')[0]).to.have.attribute('aria-label', 'Label 0');
-    expect(getAllByRole('slider')[1]).to.have.attribute('aria-label', 'Label 1');
+    expect(sliders[0]).to.have.attribute('aria-label', 'Label 0');
+    expect(sliders[1]).to.have.attribute('aria-label', 'Label 1');
+  });
+
+  describe('prop: ValueLabelComponent', () => {
+    it('receives the formatted value', () => {
+      function ValueLabelComponent(props) {
+        const { value } = props;
+        return <span data-testid="value-label">{value}</span>;
+      }
+      ValueLabelComponent.propTypes = { value: PropTypes.string };
+
+      const { getByTestId } = render(
+        <Slider
+          value={10}
+          ValueLabelComponent={ValueLabelComponent}
+          valueLabelDisplay="on"
+          valueLabelFormat={n => n.toString(2)}
+        />,
+      );
+
+      expect(getByTestId('value-label')).to.have.text('1010');
+    });
   });
 });
