@@ -60,15 +60,18 @@ describe('<Autocomplete />', () => {
 
       const combobox = getByRole('combobox');
       expect(combobox).to.have.attribute('aria-expanded', 'false');
-      // reflected aria-haspopup is `listbox`. it should have it by default but
-      // don't have sufficient AT infra to verify
-      expect(combobox).to.have.attribute('aria-haspopup', 'listbox');
+      // reflected aria-haspopup is `listbox`
+      // this assertion can fail if the value is `listbox`
+      expect(combobox).not.to.have.attribute('aria-haspopup');
 
       const textbox = getByRole('textbox');
       expect(combobox).to.contain(textbox);
       // reflected aria-multiline has to be false i.e. not present or false
       expect(textbox).not.to.have.attribute('aria-multiline');
-      expect(textbox).to.have.attribute('aria-autocomplete', 'true');
+      expect(textbox).to.have.attribute('aria-autocomplete', 'list');
+      expect(textbox, 'no option is focused when openened').not.to.have.attribute(
+        'aria-activedescendant',
+      );
 
       // popup is not only inaccessible but not in the DOM
       const popup = queryByRole('listbox', { hidden: true });
