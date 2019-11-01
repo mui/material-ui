@@ -58,6 +58,7 @@ function StyledCheckbox(props: CheckboxProps) {
       color="default"
       checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
       icon={<span className={classes.icon} />}
+      inputProps={{ 'aria-label': 'decorative checkbox' }}
       {...props}
     />
   );
