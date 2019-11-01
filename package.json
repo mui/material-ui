@@ -111,6 +111,8 @@
     "lerna": "^3.16.4",
     "mocha": "^6.2.0",
     "nyc": "^14.1.1",
+    "patch-package": "^6.2.0",
+    "postinstall-postinstall": "^2.0.0",
     "prettier": "1.17.0",
     "pretty-bytes": "^5.3.0",
     "prop-types": "^15.7.2",
