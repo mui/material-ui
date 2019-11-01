@@ -149,7 +149,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   /* eslint-disable no-unused-vars */
   const {
     autoComplete = false,
-    autoHightlight = false,
+    autoHighlight = false,
     autoSelect = false,
     classes,
     className,
@@ -372,7 +372,7 @@ Autocomplete.propTypes = {
   /**
    * If `true`, the first option is automatically highlighted.
    */
-  autoHightlight: PropTypes.bool,
+  autoHighlight: PropTypes.bool,
   /**
    * If `true`, the selected option becomes the value of the input
    * when the Autocomplete loses focus unless the user chooses

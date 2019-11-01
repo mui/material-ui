@@ -28,7 +28,7 @@ export interface UseAutocompleteProps {
   /**
    * If `true`, the first option is automatically highlighted.
    */
-  autoHightlight?: boolean;
+  autoHighlight?: boolean;
   /**
    * If `true`, the selected option becomes the value of the input
    * when the Autocomplete loses focus unless the user chooses

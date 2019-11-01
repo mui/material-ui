@@ -88,9 +88,9 @@ export default function Playground() {
       />
       <Autocomplete
         {...defaultProps}
-        autoHightlight
+        autoHighlight
         renderInput={params => (
-          <TextField {...params} label="autoHightlight" margin="normal" fullWidth />
+          <TextField {...params} label="autoHighlight" margin="normal" fullWidth />
         )}
       />
       <Autocomplete
