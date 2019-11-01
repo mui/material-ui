@@ -19,7 +19,7 @@ export const styles = theme => {
       margin: 0,
       padding: 0,
       pointerEvents: 'none',
-      borderRadius: theme.shape.borderRadius,
+      borderRadius: 'inherit',
       borderStyle: 'solid',
       borderWidth: 1,
       // Match the Input Label
