@@ -309,7 +309,7 @@ function AppWrapper(props) {
       <Container>
         <NextHead>
           {fonts.map(font => (
-            <link rel="stylesheet" href={font} key={font} />
+            <link rel="preload" as="font" href={font} key={font} />
           ))}
         </NextHead>
         <ReduxProvider store={redux}>

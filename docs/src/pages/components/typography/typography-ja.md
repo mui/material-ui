@@ -17,7 +17,7 @@ components: タイポグラフィ
 以下に、CDNからRobotoフォントをロードするために使用されるリンクマークアップのサンプルを示します。
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+<link rel="preload" as="font" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 ```
 
 ## Install with npm

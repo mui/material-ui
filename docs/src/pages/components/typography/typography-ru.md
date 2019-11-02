@@ -17,7 +17,7 @@ The *Roboto* font will **not** be automatically loaded by Material-UI. The devel
 Shown below is a sample link markup used to load the Roboto font from a CDN:
 
 ```html
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+<link rel="preload" as="font" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 ```
 
 ## Install with npm
