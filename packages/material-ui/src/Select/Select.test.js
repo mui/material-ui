@@ -196,9 +196,7 @@ describe('<Select />', () => {
   it('should focus list if no selection', () => {
     const { getByRole } = render(<Select value="" autoFocus />);
 
-    act(() => {
-      fireEvent.mouseDown(getByRole('button'));
-    });
+    fireEvent.mouseDown(getByRole('button'));
 
     // TODO not matching WAI-ARIA authoring practices. It should focus the first (or selected) item.
     expect(getByRole('listbox')).to.have.focus;
@@ -612,9 +610,7 @@ describe('<Select />', () => {
       }
       const { getByRole, queryByRole } = render(<ControlledWrapper />);
 
-      act(() => {
-        fireEvent.mouseDown(getByRole('button'));
-      });
+      fireEvent.mouseDown(getByRole('button'));
 
       expect(getByRole('listbox')).to.be.ok;
 
@@ -654,9 +650,7 @@ describe('<Select />', () => {
       const button = getByRole('button');
       stub(button, 'clientWidth').get(() => 14);
 
-      act(() => {
-        fireEvent.mouseDown(button);
-      });
+      fireEvent.mouseDown(button);
 
       expect(getByTestId('paper').style).to.have.property('minWidth', '14px');
     });
@@ -670,9 +664,7 @@ describe('<Select />', () => {
       const button = getByRole('button');
       stub(button, 'clientWidth').get(() => 14);
 
-      act(() => {
-        fireEvent.mouseDown(button);
-      });
+      fireEvent.mouseDown(button);
 
       expect(getByTestId('paper').style).to.have.property('minWidth', '');
     });
