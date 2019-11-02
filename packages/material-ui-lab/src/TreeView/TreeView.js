@@ -56,7 +56,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     if (arrayDiff(prevChildIds.current, childIds)) {
       nodeMap.current[-1] = { parent: null, children: childIds };
 
-      (childIds || []).forEach((id, index) => {
+      childIds.forEach((id, index) => {
         if (index === 0) {
           firstNode.current = id;
           setTabable(id);
@@ -264,7 +264,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const addNodeToNodeMap = (id, childrenIds) => {
     const currentMap = nodeMap.current[id];
     nodeMap.current[id] = { ...currentMap, children: childrenIds, id };
-    (childrenIds || []).forEach(childId => {
+    childrenIds.forEach(childId => {
       const currentChildMap = nodeMap.current[childId];
       nodeMap.current[childId] = { ...currentChildMap, parent: id, id: childId };
     });
