@@ -44,7 +44,7 @@ We know the ease of use is a critical part of user acquisition. The more user we
 - **Onboarding**. We have reduced the onboarding friction as much as possible. We know the onboarding is a critical step for user acquisition. The onboarding friction comes in different flavors:
 We have reduced the number of installation steps needed. It should be as simple as 1. npm install @material-ui/core and 2. import Button from '@material-ui/core/Button'; . We don’t ask for polyfill, custom webpack plugin or any specific build tool. The usage of MuiThemeProvider is no longer mandatory.
 
-- **Examples**. We are hosting [example projects](https://github.com/mui-org/material-ui/tree/master/examples) with the most popular solutions to start a project: [create-react-app](https://github.com/facebook/create-react-app), [Next.js](https://github.com/zeit/next.js), [Gatsby](https://github.com/gatsbyjs/gatsby), CDN and [Parcel](https://github.com/parcel-bundler/parcel).
+- **Examples**. We are hosting [example projects](https://github.com/mui-org/material-ui/tree/master/examples) with the most popular solutions to start a project: [create-react-app](https://github.com/facebook/create-react-app), [Next.js](https://github.com/zeit/next.js), [Gatsby](https://github.com/gatsbyjs/gatsby), and CDN.
 
 - **Isolation**. Our components now work in isolation. You should be able to use a single Material-UI component in an existing codebase without any side effect. No global CSS override needed, no bundle size bloat.
 
