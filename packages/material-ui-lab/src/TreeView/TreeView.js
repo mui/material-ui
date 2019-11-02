@@ -275,7 +275,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     if (map) {
       if (map.parent) {
         const parentMap = nodeMap.current[map.parent];
-        if (parentMap.children) {
+        if (parentMap && parentMap.children) {
           const parentChildren = parentMap.children.filter(c => c !== id);
           nodeMap.current[map.parent] = { ...parentMap, children: parentChildren };
         }
