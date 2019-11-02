@@ -49,7 +49,7 @@ export default function AdInHouse(props) {
         href={ad.link}
         // eslint-disable-next-line react/jsx-no-target-blank
         target="_blank"
-        rel="nofollow noopener"
+        rel="noopener sponsored"
         data-ga-event-category="in-house-ad"
         data-ga-event-action="click"
         data-ga-event-label={ad.name}

@@ -134,11 +134,11 @@ export default function AppFooter() {
           <Grid item>
             <Typography variant="caption">
               {'Icons made by '}
-              <Link href="https://www.freepik.com" rel="nofollow" title="Freepik">
+              <Link href="https://www.freepik.com" rel="sponsored" title="Freepik">
                 Freepik
               </Link>
               {' from '}
-              <Link href="https://www.flaticon.com" rel="nofollow" title="Flaticon">
+              <Link href="https://www.flaticon.com" rel="sponsored" title="Flaticon">
                 www.flaticon.com
               </Link>
               {' is licensed by '}
