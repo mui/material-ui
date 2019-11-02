@@ -81,7 +81,8 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     focusPreviousNode,
     handleFirstChars,
     handleLeftArrow,
-    handleNodeMap,
+    addNodeToNodeMap,
+    removeNodeFromNodeMap,
     icons: contextIcons,
     isExpanded,
     isFocused,
@@ -223,10 +224,19 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
   React.useEffect(() => {
     const childIds = React.Children.map(children, child => child.props.nodeId);
-    if (handleNodeMap) {
-      handleNodeMap(nodeId, childIds);
+    if (addNodeToNodeMap) {
+      addNodeToNodeMap(nodeId, childIds);
     }
-  }, [children, nodeId, handleNodeMap]);
+  }, [children, nodeId, addNodeToNodeMap]);
+
+  React.useEffect(() => {
+    if (removeNodeFromNodeMap) {
+      return () => {
+        removeNodeFromNodeMap(nodeId);
+      };
+    }
+    return undefined;
+  }, [nodeId, removeNodeFromNodeMap]);
 
   React.useEffect(() => {
     if (handleFirstChars && label) {
