@@ -607,8 +607,7 @@ export default function useAutocomplete(props) {
     selectNewValue(event, filteredOptions[highlightedIndexRef.current]);
   };
 
-  const handleTagDelete = event => {
-    const index = Number(event.currentTarget.getAttribute('data-tag-index'));
+  const handleTagDelete = index => event => {
     const newValue = [...value];
     newValue.splice(index, 1);
     handleValue(event, newValue);
@@ -699,8 +698,9 @@ export default function useAutocomplete(props) {
         event.preventDefault();
       },
     }),
-    getTagProps: () => ({
-      onDelete: handleTagDelete,
+    getTagProps: ({ index }) => ({
+      'data-tag-index': index,
+      onDelete: handleTagDelete(index),
     }),
     getListboxProps: () => ({
       role: 'listbox',
