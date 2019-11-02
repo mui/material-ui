@@ -27,6 +27,9 @@ type NeverIsValid = IsEmptyInterface<never>;
 // $ExpectType false
 type UnknownIsValid = IsEmptyInterface<unknown>;
 
+// $ExpectType false
+type OptionalIsValid = IsEmptyInterface<{x?: number}>;
+
 const noop = () => {};
 // $ExpectType false
 type FunctionIsValid = IsEmptyInterface<typeof noop>;
