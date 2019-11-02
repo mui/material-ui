@@ -13,17 +13,6 @@
  */
 const appList = [
   {
-    title: 'TagSpaces',
-    description:
-      'TagSpaces is an offline, open source, file manager.' +
-      'It helps organizing your files and folders with tags and colors.',
-    image: 'tagspaces.png',
-    link: 'https://www.tagspaces.org/',
-    source: 'https://github.com/tagspaces/tagspaces',
-    stars: 1824,
-    dateAdded: '2019-11-01',
-  },
-  {
     title: 'QuintoAndar',
     description:
       'QuintoAndar is a company that uses technology and ' +
@@ -626,6 +615,17 @@ const appList = [
     link: 'https://learnseeker.sg/',
     image: 'learnseeker.jpg',
     dateAdded: '2019-03-26',
+  },
+  {
+    title: 'TagSpaces',
+    description:
+      'TagSpaces is an offline, open source, file manager.' +
+      'It helps organizing your files and folders with tags and colors.',
+    image: 'tagspaces.jpg',
+    link: 'https://www.tagspaces.org/',
+    source: 'https://github.com/tagspaces/tagspaces',
+    stars: 1824,
+    dateAdded: '2019-11-01',
   },
 ];
 
