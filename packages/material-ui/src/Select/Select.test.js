@@ -107,17 +107,21 @@ describe('<Select />', () => {
         <MenuItem value={10}>Ten</MenuItem>
       </Select>,
     );
-
     const trigger = getByRole('button');
-    // simulating user mouse down event
 
-    fireEvent.mouseDown(trigger);
+    // simulating user click
+    act(() => {
+      fireEvent.mouseDown(trigger);
+      trigger.click();
+    });
 
     expect(handleBlur.callCount).to.equal(0);
     expect(getByRole('listbox')).to.be.ok;
 
     act(() => {
-      getAllByRole('option')[0].click();
+      const options = getAllByRole('option');
+      fireEvent.mouseDown(options[0]);
+      options[0].click();
     });
 
     expect(handleBlur.callCount).to.equal(0);
@@ -132,9 +136,10 @@ describe('<Select />', () => {
       </Select>,
       { baseElement: document.body },
     );
+    const options = getAllByRole('option');
 
-    expect(getAllByRole('option')[0]).to.have.attribute('data-value', '10');
-    expect(getAllByRole('option')[1]).to.have.attribute('data-value', '20');
+    expect(options[0]).to.have.attribute('data-value', '10');
+    expect(options[1]).to.have.attribute('data-value', '20');
   });
 
   [' ', 'ArrowUp', 'ArrowDown', 'Enter'].forEach(key => {
@@ -159,9 +164,10 @@ describe('<Select />', () => {
         <MenuItem value="">none</MenuItem>
       </Select>,
     );
-    getByRole('button').focus();
+    const button = getByRole('button');
+    button.focus();
 
-    getByRole('button').blur();
+    button.blur();
 
     expect(handleBlur.callCount).to.equal(1);
     expect(handleBlur.firstCall.returnValue).to.equal('blur-testing');
@@ -191,7 +197,7 @@ describe('<Select />', () => {
     const { getByRole } = render(<Select value="" autoFocus />);
 
     act(() => {
-      getByRole('button').click();
+      fireEvent.mouseDown(getByRole('button'));
     });
 
     // TODO not matching WAI-ARIA authoring practices. It should focus the first (or selected) item.
@@ -218,7 +224,7 @@ describe('<Select />', () => {
           <MenuItem value="2" />
         </Select>,
       );
-      getByRole('button').click();
+      fireEvent.mouseDown(getByRole('button'));
       getAllByRole('option')[1].click();
 
       expect(onChangeHandler.calledOnce).to.be.true;
@@ -237,10 +243,11 @@ describe('<Select />', () => {
         </Select>,
         { baseElement: document.body },
       );
+      const options = getAllByRole('option');
 
-      expect(getAllByRole('option')[0]).not.to.have.attribute('aria-selected', 'true');
-      expect(getAllByRole('option')[1]).to.have.attribute('aria-selected', 'true');
-      expect(getAllByRole('option')[2]).not.to.have.attribute('aria-selected', 'true');
+      expect(options[0]).not.to.have.attribute('aria-selected', 'true');
+      expect(options[1]).to.have.attribute('aria-selected', 'true');
+      expect(options[2]).not.to.have.attribute('aria-selected', 'true');
     });
 
     it('should select the option based on the string value', () => {
@@ -252,10 +259,11 @@ describe('<Select />', () => {
         </Select>,
         { baseElement: document.body },
       );
+      const options = getAllByRole('option');
 
-      expect(getAllByRole('option')[0]).not.to.have.attribute('aria-selected', 'true');
-      expect(getAllByRole('option')[1]).to.have.attribute('aria-selected', 'true');
-      expect(getAllByRole('option')[2]).not.to.have.attribute('aria-selected', 'true');
+      expect(options[0]).not.to.have.attribute('aria-selected', 'true');
+      expect(options[1]).to.have.attribute('aria-selected', 'true');
+      expect(options[2]).not.to.have.attribute('aria-selected', 'true');
     });
 
     it('should select only the option that matches the object', () => {
@@ -268,9 +276,10 @@ describe('<Select />', () => {
         </Select>,
         { baseElement: document.body },
       );
+      const options = getAllByRole('option');
 
-      expect(getAllByRole('option')[0]).to.have.attribute('aria-selected', 'true');
-      expect(getAllByRole('option')[1]).not.to.have.attribute('aria-selected', 'true');
+      expect(options[0]).to.have.attribute('aria-selected', 'true');
+      expect(options[1]).not.to.have.attribute('aria-selected', 'true');
     });
 
     it('should be able to use an object', () => {
@@ -399,6 +408,74 @@ describe('<Select />', () => {
 
       expect(getAllByRole('option')[1]).to.have.attribute('aria-selected', 'true');
     });
+
+    it('it will fallback to its content for the accessible name when it has no name', () => {
+      const { getByRole } = render(<Select value="" />);
+
+      expect(getByRole('button')).to.have.attribute('aria-labelledby', ' ');
+    });
+
+    it('is labelled by itself when it has a name', () => {
+      const { getByRole } = render(<Select name="select" value="" />);
+
+      expect(getByRole('button')).to.have.attribute(
+        'aria-labelledby',
+        ` ${getByRole('button').getAttribute('id')}`,
+      );
+    });
+
+    it('is labelled by itself when it has an id which is preferred over name', () => {
+      const { getAllByRole } = render(
+        <React.Fragment>
+          <span id="select-1-label">Chose first option:</span>
+          <Select id="select-1" labelId="select-1-label" name="select" value="" />
+          <span id="select-2-label">Chose second option:</span>
+          <Select id="select-2" labelId="select-2-label" name="select" value="" />
+        </React.Fragment>,
+      );
+
+      const triggers = getAllByRole('button');
+
+      expect(triggers[0]).to.have.attribute(
+        'aria-labelledby',
+        `select-1-label ${triggers[0].getAttribute('id')}`,
+      );
+      expect(triggers[1]).to.have.attribute(
+        'aria-labelledby',
+        `select-2-label ${triggers[1].getAttribute('id')}`,
+      );
+    });
+
+    it('can be labelled by an additional element if its id is provided in `labelId`', () => {
+      const { getByRole } = render(
+        <React.Fragment>
+          <span id="select-label">Choose one:</span>
+          <Select labelId="select-label" name="select" value="" />
+        </React.Fragment>,
+      );
+
+      expect(getByRole('button')).to.have.attribute(
+        'aria-labelledby',
+        `select-label ${getByRole('button').getAttribute('id')}`,
+      );
+    });
+
+    specify('the list of options is not labelled by default', () => {
+      const { getByRole } = render(<Select open value="" />);
+
+      expect(getByRole('listbox')).not.to.have.attribute('aria-labelledby');
+    });
+
+    specify('the list of options can be labelled by providing `labelId`', () => {
+      const { getByRole } = render(
+        <React.Fragment>
+          <span id="select-label">Choose one:</span>
+          <Select labelId="select-label" open value="" />
+        </React.Fragment>,
+      );
+
+      expect(getByRole('listbox')).to.have.attribute('aria-labelledby', 'select-label');
+    });
   });
 
   describe('prop: readOnly', () => {
@@ -437,7 +514,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      fireEvent.click(getByRole('button'));
+      fireEvent.mouseDown(getByRole('button'));
       act(() => {
         clock.tick(99);
       });
@@ -536,7 +613,7 @@ describe('<Select />', () => {
       const { getByRole, queryByRole } = render(<ControlledWrapper />);
 
       act(() => {
-        getByRole('button').click();
+        fireEvent.mouseDown(getByRole('button'));
       });
 
       expect(getByRole('listbox')).to.be.ok;
@@ -574,10 +651,11 @@ describe('<Select />', () => {
           <MenuItem>Only</MenuItem>
         </Select>,
       );
-      stub(getByRole('button'), 'clientWidth').get(() => 14);
+      const button = getByRole('button');
+      stub(button, 'clientWidth').get(() => 14);
 
       act(() => {
-        getByRole('button').click();
+        fireEvent.mouseDown(button);
       });
 
       expect(getByTestId('paper').style).to.have.property('minWidth', '14px');
@@ -589,10 +667,11 @@ describe('<Select />', () => {
           <MenuItem>Only</MenuItem>
         </Select>,
       );
-      stub(getByRole('button'), 'clientWidth').get(() => 14);
+      const button = getByRole('button');
+      stub(button, 'clientWidth').get(() => 14);
 
       act(() => {
-        getByRole('button').click();
+        fireEvent.mouseDown(button);
       });
 
       expect(getByTestId('paper').style).to.have.property('minWidth', '');
@@ -608,11 +687,12 @@ describe('<Select />', () => {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>,
       );
+      const options = getAllByRole('option');
 
       expect(container.querySelector('input')).to.have.property('value', '10,30');
-      expect(getAllByRole('option')[0]).to.have.attribute('aria-selected', 'true');
-      expect(getAllByRole('option')[1]).not.to.have.attribute('aria-selected', 'true');
-      expect(getAllByRole('option')[2]).to.have.attribute('aria-selected', 'true');
+      expect(options[0]).to.have.attribute('aria-selected', 'true');
+      expect(options[1]).not.to.have.attribute('aria-selected', 'true');
+      expect(options[2]).to.have.attribute('aria-selected', 'true');
     });
 
     it('selects value based on their stringified equality when theyre not objects', () => {
@@ -623,10 +703,11 @@ describe('<Select />', () => {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>,
       );
+      const options = getAllByRole('option');
 
-      expect(getAllByRole('option')[0]).to.have.attribute('aria-selected', 'true');
-      expect(getAllByRole('option')[1]).to.have.attribute('aria-selected', 'true');
-      expect(getAllByRole('option')[2]).not.to.have.attribute('aria-selected', 'true');
+      expect(options[0]).to.have.attribute('aria-selected', 'true');
+      expect(options[1]).to.have.attribute('aria-selected', 'true');
+      expect(options[2]).not.to.have.attribute('aria-selected', 'true');
     });
 
     it('selects values based on strict equlity if theyre objects', () => {
@@ -640,10 +721,11 @@ describe('<Select />', () => {
           <MenuItem value={obj3}>ID: 3</MenuItem>
         </Select>,
       );
+      const options = getAllByRole('option');
 
-      expect(getAllByRole('option')[0]).to.have.attribute('aria-selected', 'true');
-      expect(getAllByRole('option')[1]).not.to.have.attribute('aria-selected', 'true');
-      expect(getAllByRole('option')[2]).to.have.attribute('aria-selected', 'true');
+      expect(options[0]).to.have.attribute('aria-selected', 'true');
+      expect(options[1]).not.to.have.attribute('aria-selected', 'true');
+      expect(options[2]).to.have.attribute('aria-selected', 'true');
     });
 
     describe('errors', () => {
@@ -712,14 +794,15 @@ describe('<Select />', () => {
         });
         const { getByRole, getAllByRole } = render(<ControlledSelectInput onChange={onChange} />);
 
-        fireEvent.click(getByRole('button'));
-        fireEvent.click(getAllByRole('option')[2]);
+        fireEvent.mouseDown(getByRole('button'));
+        const options = getAllByRole('option');
+        fireEvent.click(options[2]);
 
         expect(onChange.callCount).to.equal(1);
         expect(onChange.firstCall.returnValue).to.deep.equal({ name: 'age', value: [30] });
 
         act(() => {
-          getAllByRole('option')[0].click();
+          options[0].click();
         });
 
         expect(onChange.callCount).to.equal(2);
