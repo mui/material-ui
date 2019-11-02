@@ -8,7 +8,11 @@ import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
 import ButtonBase from '../ButtonBase';
-import '../Avatar'; // So we don't have any override priority issue.
+import Avatar from '../Avatar';
+
+// Force a side effect so we don't have any override priority issue.
+// eslint-disable-next-line no-unused-expressions
+Avatar.styles;
 
 export const styles = theme => {
   const backgroundColor =
