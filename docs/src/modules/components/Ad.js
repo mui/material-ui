@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import { getCookie } from 'docs/src/modules/utils/helpers';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import AdCodeFund from 'docs/src/modules/components/AdCodeFund';
