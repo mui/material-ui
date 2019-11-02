@@ -275,8 +275,10 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     if (map) {
       if (map.parent) {
         const parentMap = nodeMap.current[map.parent];
-        const parentChildren = parentMap.children.filter(c => c !== id);
-        nodeMap.current[map.parent] = { ...parentMap, children: parentChildren };
+        if (parentMap.children) {
+          const parentChildren = parentMap.children.filter(c => c !== id);
+          nodeMap.current[map.parent] = { ...parentMap, children: parentChildren };
+        }
       }
 
       delete nodeMap.current[id];
