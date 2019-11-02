@@ -25,11 +25,6 @@ const styles = theme => ({
   },
 });
 
-function getAdblockCount() {
-  const seen = getCookie('adblockCount');
-  return seen === '' ? 0 : parseInt(seen, 10);
-}
-
 function getAdblock(classes, t) {
   return (
     <Paper component="span" elevation={0} className={classes.paper}>
@@ -70,16 +65,22 @@ const inHouses = [
 function Ad(props) {
   const { classes } = props;
   const { current: random } = React.useRef(Math.random());
-  const timerAdblock = React.useRef();
   const t = useSelector(state => state.options.t);
+
+  const timerAdblock = React.useRef();
   const [adblock, setAdblock] = React.useState(null);
+  const [carbonOut, setCarbonOut] = React.useState(null);
 
   const checkAdblock = React.useCallback((attempt = 1) => {
-    if (
-      document.querySelector('.cf-wrapper') ||
-      document.querySelector('#carbonads') ||
-      document.querySelector('#in-house')
-    ) {
+    if (document.querySelector('.cf-wrapper') || document.querySelector('#carbonads')) {
+      if (
+        document.querySelector('#carbonads a') &&
+        document.querySelector('#carbonads a').getAttribute('href') ===
+          'https://material-ui-next.com/discover-more/backers'
+      ) {
+        setCarbonOut(true);
+      }
+
       setAdblock(false);
       return;
     }
@@ -88,8 +89,6 @@ function Ad(props) {
       timerAdblock.current = setTimeout(() => {
         checkAdblock(attempt + 1);
       }, 500);
-    } else {
-      document.cookie = `adblockCount=${getAdblockCount() + 1};path=/`;
     }
 
     if (attempt > 6) {
@@ -113,33 +112,34 @@ function Ad(props) {
     return null;
   }
 
+  let children;
+
+  if (adblock) {
+    children = <AdInHouse ad={inHouses[Math.round((inHouses.length - 1) * random)]} />;
+  }
+
   if (disable) {
-    return <span className={classes.root}>{getAdblock(classes, t)}</span>;
+    children = getAdblock(classes, t);
   }
 
-  if (getAdblockCount() >= 2) {
-    return (
-      <span className={classes.root} style={{ minHeight: 'auto' }}>
-        <AdInHouse ad={inHouses[Math.round((inHouses.length - 1) * Math.random())]} />
-      </span>
-    );
+  if (!children) {
+    if (random >= 0.6) {
+      children = <AdCodeFund />;
+    } else if (!carbonOut) {
+      children = <AdCarbon />;
+    } else {
+      children = <AdInHouse ad={inHouses[Math.round((inHouses.length - 1) * random)]} />;
+    }
   }
 
-  if (adblock === true) {
-    return <span className={classes.root}>{getAdblock(classes, t)}</span>;
-  }
-
-  let randomAd;
-
-  if (random < 0.6) {
-    randomAd = <AdCodeFund />;
-  } else if (random < 0.63) {
-    randomAd = <AdInHouse ad={inHouses[0]} />;
-  } else {
-    randomAd = <AdCarbon />;
-  }
-
-  return <span className={classes.root}>{randomAd}</span>;
+  return (
+    <span
+      className={classes.root}
+      style={{ minHeight: children.type === 'AdInHouse' ? 'auto' : null }}
+    >
+      {children}
+    </span>
+  );
 }
 
 Ad.propTypes = {
