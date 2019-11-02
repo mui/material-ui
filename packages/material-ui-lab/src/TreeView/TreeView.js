@@ -52,7 +52,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const prevChildIds = React.useRef([]);
   React.useEffect(() => {
-    const childIds = React.Children.map(children, child => child.props.nodeId);
+    const childIds = React.Children.map(children, child => child.props.nodeId) || [];
     if (arrayDiff(prevChildIds.current, childIds)) {
       nodeMap.current[-1] = { parent: null, children: childIds };
 
