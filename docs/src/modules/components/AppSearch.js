@@ -125,7 +125,7 @@ export default function AppSearch() {
     );
 
     return () => {
-      styleNode.parentElement.removeChild(styleNode);
+      styleNode.parentNode.removeChild(styleNode);
     };
   }, []);
 
@@ -183,7 +183,7 @@ export default function AppSearch() {
         const selectedOptionNode = document.getElementById(
           combobox.getAttribute('aria-activedescendant'),
         );
-        const listboxNode = document.querySelector('.ds-suggestions').parentElement;
+        const listboxNode = document.querySelector('.ds-suggestions').parentNode;
 
         if (selectedOptionNode === null || listboxNode === null) {
           if (process.env.NODE_ENV !== 'production') {

@@ -121,7 +121,7 @@ export default function ScrollPlayground() {
       return;
     }
 
-    const container = element.parentElement;
+    const container = element.parentNode;
     container.scrollTop = element.clientHeight / 4;
     container.scrollLeft = element.clientWidth / 4;
   };

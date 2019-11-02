@@ -115,7 +115,7 @@ export default function useAutocomplete(props) {
       prev.removeAttribute('data-focus');
     }
 
-    const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
+    const listboxNode = listboxRef.current.parentNode.querySelector('[role="listbox"]');
 
     // "No results"
     if (!listboxNode) {
