@@ -148,7 +148,12 @@ function AppDrawer(props) {
             Material-UI
           </Link>
           {process.env.LIB_VERSION ? (
-            <Link color="textSecondary" variant="caption" href="/versions" onClick={onClose}>
+            <Link
+              color="textSecondary"
+              variant="caption"
+              href="https://material-ui.com/versions/"
+              onClick={onClose}
+            >
               {`v${process.env.LIB_VERSION}`}
             </Link>
           ) : null}

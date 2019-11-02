@@ -35,4 +35,4 @@ It's a must-do for static pages, but it needs to be put in balance with not doin
 ## React
 
 Material-UI supports the most recent versions of React, starting with ^16.8.0 (the one with the hooks).
-Have a look at the older [versions](/versions/) for backward compatibility.
+Have a look at the older [versions](https://material-ui.com/versions/) for backward compatibility.

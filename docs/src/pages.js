@@ -232,7 +232,7 @@ const pages = [
       },
     ],
   },
-  { pathname: '/versions', displayNav: false },
+  { pathname: 'https://material-ui.com/versions', displayNav: false },
   { pathname: '/', displayNav: false, title: false },
 ];
 
