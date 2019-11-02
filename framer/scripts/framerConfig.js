@@ -190,8 +190,8 @@ export const componentSettings = {
     },
     template: 'self_closing.txt',
   },
-  MuiThemeProvider: {
-    ignoredProps: ['disableStylesGeneration', 'options', 'sheetsManager', 'theme'],
+  ThemeProvider: {
+    ignoredProps: ['theme'],
     propValues: {
       paletteType: 'light',
       primary: "'#3f51b5'",
@@ -248,7 +248,7 @@ export const componentSettings = {
     template: 'slider.txt',
   },
   SnackbarContent: {
-    ignoredProps: ['action'],
+    ignoredProps: ['action', 'role'],
     propValues: {
       width: 568,
       height: 48,

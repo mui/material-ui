@@ -1,42 +1,39 @@
 {{=« »=}}
 import * as React from 'react';
-import { PropertyControls, ControlType } from 'framer';
+import { addPropertyControls, ControlType } from 'framer';
 // tslint:disable-next-line: ban-ts-ignore
 // @ts-ignore
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-// Define type of property
 interface Props {
 «& tsInterface»
 }
 
-export class Theme extends React.Component<Props> {
-  // Set default properties
-  static defaultProps = {
+const defaultProps: Props =  {
 «& defaultProps»
-  };
+};
 
-  // Items shown in property panel
-  static propertyControls: PropertyControls<Props> = {
-«& propertyControls»
-  };
+export const Theme: React.SFC<Props> = (props: Props) => {
+  const { children, error, paletteType, primary, secondary, ...other } = props;
 
-  render() {
-    const { children, error, paletteType, primary, secondary, ...other } = this.props;
+  const theme = createMuiTheme({
+      palette: {
+        type: paletteType,
+        primary: { main: primary },
+        secondary: { main: secondary },
+        error: { main: error },
+      },
+  });
 
-    const theme = createMuiTheme({
-       palette: {
-         type: paletteType,
-         primary: { main: primary },
-         secondary: { main: secondary },
-         error: { main: error },
-       },
-    });
-
-    return (
-      <MuiThemeProvider theme={theme}>
-        {children}
-      </MuiThemeProvider>
-    );
-  }
+  return (
+    <MuiThemeProvider theme={theme} {...other}>
+      {children}
+    </MuiThemeProvider>
+  );
 }
+
+Theme.defaultProps = defaultProps;
+
+addPropertyControls(Theme, {
+«& propertyControls»
+});

@@ -11,11 +11,11 @@ import { findComponents } from 'docs/src/modules/utils/find';
 import { componentSettings, ignoredControls } from './framerConfig';
 import additionalProps from './additionalProps';
 
-// const DEBUG = true;
+const DEBUG = true;
 
 // Component(s) to update
 // Use Empty array for all, or one or more components selectively. `['Button', 'CircularProgress']`
-const COMPONENTS = [];
+const COMPONENTS = ['ThemeProvider'];
 
 // Read the command-line args
 const args = process.argv;
@@ -23,7 +23,7 @@ const rootDirectory = path.resolve(__dirname, '../../');
 const framerDirectory = path.resolve(process.cwd(), args[3]);
 
 if (args.length < 4) {
-  console.log('\nERROR: syntax: buildFramer source target\n');
+  console.log('\nERROR: syntax: buildFramer source-dir target-dir [ComponentName]\n');
   process.exit();
 }
 
@@ -233,12 +233,6 @@ function buildFramer(componentObject) {
     }
   }
 
-  // Only convert components with settings
-  if (!Object.keys(componentSettings).includes(reactAPI.name)) {
-    return;
-  }
-
-  // console.log('PROPS:\n', reactAPI.props, '\nADDITIONAL:\n', additionalProps(reactAPI.name));
   // Add additional props, if the template values exist for this component
   if (componentSettings[reactAPI.name].propValues) {
     reactAPI.props = deepmerge(reactAPI.props, additionalProps(reactAPI.name));
@@ -263,8 +257,8 @@ function run() {
       if (args[4] === path.parse(component.filename).name) {
         buildFramer(component);
       }
-    } else {
-      // console.log('Building Framer X component for', component);
+      // Only convert components with settings
+    } else if (Object.keys(componentSettings).includes(path.parse(component.filename).name)) {
       buildFramer(component);
     }
   });
