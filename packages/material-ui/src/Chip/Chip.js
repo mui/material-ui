@@ -49,15 +49,15 @@ export const styles = theme => {
         color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
         fontSize: theme.typography.pxToRem(12),
       },
-      '&$colorPrimary $avatar': {
+      '& $avatarColorPrimary': {
         color: theme.palette.primary.contrastText,
         backgroundColor: theme.palette.primary.dark,
       },
-      '&$colorSecondary $avatar': {
+      '& $avatarColorSecondary': {
         color: theme.palette.secondary.contrastText,
         backgroundColor: theme.palette.secondary.dark,
       },
-      '&$sizeSmall $avatar': {
+      '& $avatarSmall': {
         marginLeft: 4,
         marginRight: -4,
         width: 18,
@@ -170,6 +170,7 @@ export const styles = theme => {
     // TODO remove in V5
     /* Styles applied to the `avatar` element. */
     avatar: {},
+    /* Styles applied to the `avatar` element is `size="small"`. */
     avatarSmall: {},
     /* Styles applied to the `avatar` element if `color="primary"`. */
     avatarColorPrimary: {},
