@@ -104,7 +104,10 @@ export default function useAutocomplete(props) {
 
   function setHighlightedIndex(index, mouse = false) {
     highlightedIndexRef.current = index;
-    inputRef.current.setAttribute('aria-activedescendant', `${id}-option-${index}`);
+    // does the index exist?
+    if (index !== -1) {
+      inputRef.current.setAttribute('aria-activedescendant', `${id}-option-${index}`);
+    }
 
     if (!listboxRef.current) {
       return;
@@ -650,8 +653,11 @@ export default function useAutocomplete(props) {
       onBlur: handleBlur,
       onFocus: handleFocus,
       onChange: handleInputChange,
+      // if open then this is handled imperativeley so don't let react override
+      // only have an opinion about this when closed
+      'aria-activedescendant': popupOpen ? undefined : null,
       'aria-autocomplete': autoComplete ? 'both' : 'list',
-      'aria-controls': `${id}-listbox`,
+      'aria-controls': `${id}-popup`,
       // autoComplete: 'off', // Disable browser's suggestion that might overlap with the popup.
       autoComplete: 'disabled', // disable autocomplete and autofill
       ref: inputRef,
@@ -678,11 +684,10 @@ export default function useAutocomplete(props) {
     }),
     getPopupProps: () => ({
       role: 'presentation',
-      id: `${id}-popup`,
     }),
     getListboxProps: () => ({
       role: 'listbox',
-      id: `${id}-listbox`,
+      id: `${id}-popup`,
       'aria-labelledby': `${id}-label`,
       ref: handleListboxRef,
       onMouseDown: event => {
