@@ -52,7 +52,7 @@ function getScrollParent(parent, child) {
   let scrollTop = 0;
 
   while (element && element !== parent) {
-    element = element.parentNode;
+    element = element.parentElement;
     scrollTop += element.scrollTop;
   }
   return scrollTop;

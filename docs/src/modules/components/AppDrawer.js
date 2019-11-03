@@ -19,7 +19,7 @@ function PersistScroll(props) {
   const rootRef = React.useRef();
 
   React.useEffect(() => {
-    const parent = rootRef.current ? rootRef.current.parentNode : null;
+    const parent = rootRef.current ? rootRef.current.parentElement : null;
     const activeElement = document.querySelector('.drawer-active');
 
     if (!parent || !activeElement || !activeElement.scrollIntoView) {

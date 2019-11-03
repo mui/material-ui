@@ -63,7 +63,7 @@ function handleContainer(containerInfo, props) {
 
     // Improve Gatsby support
     // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
-    const parent = container.parentNode;
+    const parent = container.parentElement;
     const scrollContainer = parent.nodeName === 'HTML' ? parent : container;
 
     restoreStyle.push({

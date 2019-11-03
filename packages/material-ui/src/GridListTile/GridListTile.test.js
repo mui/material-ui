@@ -73,7 +73,7 @@ describe('<GridListTile />', () => {
         complete: true,
         width: 16,
         height: 9,
-        parentNode: { offsetWidth: 4, offsetHeight: 3 },
+        parentElement: { offsetWidth: 4, offsetHeight: 3 },
         classList: { remove: spy(), add: spy() },
         removeEventListener: () => {},
       };
@@ -89,7 +89,7 @@ describe('<GridListTile />', () => {
         complete: true,
         width: 4,
         height: 3,
-        parentNode: { offsetWidth: 16, offsetHeight: 9 },
+        parentElement: { offsetWidth: 16, offsetHeight: 9 },
         classList: { remove: spy(), add: spy() },
         removeEventListener: () => {},
       };
@@ -117,7 +117,7 @@ describe('<GridListTile />', () => {
         complete: true,
         width: 4,
         height: 3,
-        parentNode: { offsetWidth: 16, offsetHeight: 9 },
+        parentElement: { offsetWidth: 16, offsetHeight: 9 },
         classList: { remove: spy(), add: spy() },
         removeEventListener: () => {},
       };

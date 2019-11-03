@@ -38,7 +38,7 @@ chai.use((chaiAPI, utils) => {
     ) {
       ariaHidden = currentNode.getAttribute('aria-hidden') === 'true';
       previousNode = currentNode;
-      currentNode = currentNode.parentNode;
+      currentNode = currentNode.parentElement;
     }
 
     this.assert(

@@ -27,7 +27,7 @@ function handleClick(event) {
       break;
     }
 
-    element = element.parentNode;
+    element = element.parentElement;
   }
 }
 
