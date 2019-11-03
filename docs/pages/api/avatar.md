@@ -32,7 +32,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">sizes</span> | <span class="prop-type">string</span> |  | The `sizes` attribute for the `img` element. |
 | <span class="prop-name">src</span> | <span class="prop-type">string</span> |  | The `src` attribute for the `img` element. |
 | <span class="prop-name">srcSet</span> | <span class="prop-type">string</span> |  | The `srcSet` attribute for the `img` element. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'circle'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'</span> | <span class="prop-default">'circle'</span> | The variant to use. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'circle'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'</span> | <span class="prop-default">'circle'</span> | The shape of the avatar. |
 
 The `ref` is forwarded to the root element.
 

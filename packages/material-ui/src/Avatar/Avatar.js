@@ -141,7 +141,7 @@ Avatar.propTypes = {
    */
   srcSet: PropTypes.string,
   /**
-   * The variant to use.
+   * The shape of the avatar.
    */
   variant: PropTypes.oneOf(['circle', 'rounded', 'square']),
 };
