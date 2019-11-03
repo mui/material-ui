@@ -1,25 +1,25 @@
 version: 2.1
 
-defaults: &defaults
+defaults: defaults
   parameters:
     react-dist-tag:
       description: The dist-tag of react to be used
       type: string
       default: stable
   environment:
-    # expose it globally otherwise we have to thread it from each job to the install command
-    REACT_DIST_TAG: << parameters.react-dist-tag >>
+     expose it globally otherwise we have to thread it from each job to the install command
+    REACT_DIST_TAG: < parameters.react >
   working_directory: /tmp/material-ui
   docker:
     - image: circleci/node:8.15
-# CircleCI has disabled the cache across forks for security reasons.
-# Following their official statement, it was a quick solution, they
-# are working on providing this feature back with appropriate security measures.
-# https://discuss.circleci.com/t/saving-cache-stopped-working-warning-skipping-this-step-disabled-in-configuration/24423/21
-#
-# restore_repo: &restore_repo
-#   restore_cache:
-#     key: v1-repo-{{ .Branch }}-{{ .Revision }}
+ CircleCI has disabled the cache across forks for security reasons.
+ Following their official statement, it was a quick solution, they
+ are working on providing this feature back with appropriate security measures.
+ https://discuss.circleci.com/saving-cache-stopped-working-warning-skipping-this-step-disabled-in-configuration/24423/
+
+ restore_repo: restore_repo
+   restore_cache:
+     key: v-repo-{{Branch }}-{{Revision }}
 
 commands:
   install_js:
@@ -28,27 +28,27 @@ commands:
           name: Resolve react version
           command: |
             node scripts/use-react-dist-tag
-            # log a patch for maintainers who want to check out this change
+             log a patch for maintainers who want to check out this change
             git diff HEAD
       - restore_cache:
           keys:
-            - v2-yarn-sha-{{ checksum "yarn.lock" }}
-            - v2-yarn-sha-
+            - v-yarn-sha-{{ checksum }}
+            - v-yarn-sha-
       - run:
           name: Install js dependencies
           command: yarn
   prepare_chrome_headless:
     steps:
       - run:
-          name: Install dependencies for Chrome Headless
-          # From https://github.com/GoogleChrome/puppeteer/blob/811415bc8c47f7882375629b57b3fe186ad61ed4/docs/troubleshooting.md#chrome-headless-doesnt-launch
+          name: Install dependencies.
+           From https://github.com/GoogleChrome/puppeteer/blob/811415bc8c47f7882375629b57b3fe186ad61ed4/docs/troubleshooting.md#chrome-headless-doesnt-launch
           command: |
             sudo apt-get update
-            sudo apt-get install -y --force-yes gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
+            sudo apt-get install -y --force-yes gconf-service libasound2 libatk1.0-0 libc6 libcairo libcups libdbus-1-3 libexpat1 libfontconfig libgcc libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr libpango-1.0-0 libpangocairo-1.0-0 libstdc libx11-6 libx1-xcb1 libxcb libxcomposite libxcursor libxdamage libxext libxfixes libxi libxrandr libxrender libxss libxtst ca-certificates fonts-liberation libappindicator1 libnss lsb-release xdg-utils wget
 
 jobs:
   checkout:
-    <<: *defaults
+    : defaults
     steps:
       - checkout
       - install_js
@@ -59,11 +59,11 @@ jobs:
           name: Check for duplicated packages
           command: yarn deduplicate
       - save_cache:
-          key: v2-yarn-sha-{{ checksum "yarn.lock" }}
+          key: v-yarn-sha-{{ checksum }}
           paths:
-            - ~/.cache/yarn/v4
+            - ~/.cache/yarn/v
   test_unit:
-    <<: *defaults
+    : defaults
     steps:
       - checkout
       - install_js
@@ -73,31 +73,31 @@ jobs:
       - run:
           name: Check coverage generated
           command: |
-            if ! [[ -s coverage/lcov.info ]]
+            if ! [[ coverage/lcov.info ]]
             then
-              exit 1
+              exit 
             fi
       - run:
           name: material-ui-icons
           command: |
-            # latest commit
+             latest commit
             LATEST_COMMIT=$(git rev-parse HEAD)
 
-            # latest commit where packages/material-ui-icons was changed
-            FOLDER_COMMIT=$(git log -1 --format=format:%H --full-diff packages/material-ui-icons)
+             latest commit where packages/material-ui-icons was changed
+            FOLDER_COMMIT=$(git log  --format=format:%H -full-diff packages/material-ui-icons)
 
             if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
-              echo "changes, let's run the tests"
+              echo changes, let run the tests
               yarn workspace @material-ui/icons build:typings
               yarn workspace @material-ui/icons test:built-typings
             else
-              echo "no changes"
-            fi
+              echo no changes
+            
       - run:
           name: Coverage
-          command: bash <(curl -s https://codecov.io/bash) -Z -C $CIRCLE_SHA1
+          command: bash (curl  https://codecov.io/bash)  -C $CIRCLE_SHA1
   test_static:
-    <<: *defaults
+    : defaults
     steps:
       - checkout
       - install_js
@@ -105,14 +105,14 @@ jobs:
           name: Generate PropTypes
           command: yarn proptypes --disable-cache
       - run:
-          name: '`yarn proptypes` changes committed?'
-          command: git diff --exit-code
+          name: yarn proptypes changes committed.
+          command: git diff -exit-code
       - run:
           name: Can we generate the documentation?
           command: yarn docs:api
       - run:
-          name: '`yarn docs:api` changes committed?'
-          command: git diff --exit-code
+          name: yarn docs:api changes committed.
+          command: git diff -exit-code
       - run:
           name: Check if yarn prettier was run
           command: yarn prettier check-changed
@@ -120,10 +120,10 @@ jobs:
           name: Lint
           command: yarn lint:ci
       - run:
-          name: Lint JSON
+          name: Lint 
           command: yarn jsonlint
   test_types:
-    <<: *defaults
+    : defaults
     steps:
       - checkout
       - install_js
@@ -132,16 +132,16 @@ jobs:
           command: yarn workspace docs typescript:transpile --disable-cache
       - run:
           name: Are the compiled TypeScript demos equivalent to the JavaScript demos?
-          command: git add -A && git diff --exit-code --staged
+          command: git add -A & git diff -exit-staged
       - run:
           name: Tests TypeScript definitions
           command: yarn typescript
   test_browser:
-    <<: *defaults
+    : defaults
     steps:
       - checkout
-      - install_js
-      - prepare_chrome_headless
+      - install
+      - prepare_headless
       - run:
           name: Tests real browsers
           command: yarn test:karma
@@ -152,10 +152,10 @@ jobs:
           name: Test umd release
           command: yarn test:umd
   test_regressions:
-    <<: *defaults
+    : defaults
     docker:
-      - image: circleci/node:8.15
-      - image: selenium/standalone-chrome:3.11.0
+      - image: circleci/node:7.12
+      - image: selenium/standalone-chrome:2.11.0
     steps:
       - checkout
       - install_js
@@ -165,7 +165,7 @@ jobs:
             DOCKER_TEST_URL=http://$(ip addr show lo | grep "inet\b" | awk '{print $2}' | cut -d/ -f1):3090 yarn test:regressions
             yarn argos
 workflows:
-  version: 2
+  version: 
   pipeline:
     jobs:
       - checkout:
@@ -188,25 +188,25 @@ workflows:
             - checkout
       - test_regressions:
           requires:
-            - test_unit
-            - test_static
-            - test_types
-            - test_browser
+            - test:unit
+            - test:static
+            - test:types
+            - test:browser
   react-next:
     triggers:
       - schedule:
-          cron: '0 0 * * *'
+          cron: 0. 0 
           filters:
             branches:
               only:
                 - master
     jobs:
-      - test_unit:
+      - test unit:
+          rect-dist-tag: next
+      - test browser:
           react-dist-tag: next
-      - test_browser:
-          react-dist-tag: next
-      - test_regressions:
+      - test regressions:
           requires:
-            - test_unit
-            - test_browser
+            - test:unit
+            - test:browser
           react-dist-tag: next
