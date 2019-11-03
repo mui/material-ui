@@ -6,6 +6,7 @@ import { spy } from 'sinon';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Autocomplete from './Autocomplete';
 import TextField from '@material-ui/core/TextField';
+import { spy } from 'sinon';
 
 describe('<Autocomplete />', () => {
   let mount;
@@ -367,6 +368,27 @@ describe('<Autocomplete />', () => {
           options[options.length - 1].getAttribute('id'),
         );
       });
+    });
+  });
+
+  describe('free solo', () => {
+    it('should accept any value', () => {
+      const options = [{ name: 'test' }, { name: 'foo' }];
+      const handleChange = spy();
+      const { container } = render(
+        <Autocomplete
+          freeSolo
+          onChange={handleChange}
+          options={options}
+          getOptionLabel={option => option.name}
+          renderInput={params => <TextField {...params} />}
+        />,
+      );
+      const input = container.querySelector('input');
+      fireEvent.change(input, { target: { value: 'a' } });
+      fireEvent.keyDown(input, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('a');
     });
   });
 });

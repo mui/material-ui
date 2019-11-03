@@ -171,6 +171,8 @@ export default function useAutocomplete(props) {
     let newInputValue;
     if (multiple) {
       newInputValue = '';
+    } else if (freeSolo && typeof newValue === 'string') {
+      newInputValue = newValue;
     } else {
       newInputValue = newValue != null ? getOptionLabel(newValue) : '';
     }
