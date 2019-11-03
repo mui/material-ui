@@ -170,7 +170,7 @@ export const styles = theme => {
     // TODO remove in V5
     /* Styles applied to the `avatar` element. */
     avatar: {},
-    /* Styles applied to the `avatar` element is `size="small"`. */
+    /* Styles applied to the `avatar` element if `size="small"`. */
     avatarSmall: {},
     /* Styles applied to the `avatar` element if `color="primary"`. */
     avatarColorPrimary: {},
