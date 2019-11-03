@@ -283,7 +283,7 @@ export default function useAutocomplete(props) {
           return -1;
         }
 
-        if (disableListWrap || Math.abs(diff) > 1) {
+        if ((disableListWrap && highlightedIndexRef.current !== -1) || Math.abs(diff) > 1) {
           return 0;
         }
 

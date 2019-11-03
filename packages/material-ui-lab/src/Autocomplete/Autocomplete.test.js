@@ -326,7 +326,7 @@ describe('<Autocomplete />', () => {
         );
       });
 
-      it('focuses the first item when pressing Up when no option is active', () => {
+      it('focuses the last item when pressing Up when no option is active', () => {
         const { getAllByRole, getByRole } = render(
           <Autocomplete
             disableListWrap
@@ -340,7 +340,10 @@ describe('<Autocomplete />', () => {
         const textbox = getByRole('textbox');
         const options = getAllByRole('option');
         expect(textbox).to.be.focused;
-        expect(textbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id'));
+        expect(textbox).to.have.attribute(
+          'aria-activedescendant',
+          options[options.length - 1].getAttribute('id'),
+        );
       });
 
       it('keeps focus on the last item if focus is on the last item and pressing Down', () => {
