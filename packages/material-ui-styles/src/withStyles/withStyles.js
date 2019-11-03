@@ -91,6 +91,11 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
     }),
   };
 
+  // The wrapper receives only user supplied props, which could be a subset of
+  // the actual props Component might receive due to merging with defaultProps.
+  // So copying it here would give us the same result in the wrapper as well.
+  WithStyles.defaultProps = Component.defaultProps;
+
   if (process.env.NODE_ENV !== 'production') {
     WithStyles.displayName = `WithStyles(${getDisplayName(Component)})`;
   }
