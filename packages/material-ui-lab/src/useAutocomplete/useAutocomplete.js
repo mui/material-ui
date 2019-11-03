@@ -105,7 +105,9 @@ export default function useAutocomplete(props) {
   function setHighlightedIndex(index, mouse = false) {
     highlightedIndexRef.current = index;
     // does the index exist?
-    if (index !== -1) {
+    if (index === -1) {
+      inputRef.current.removeAttribute('aria-activedescendant');
+    } else {
       inputRef.current.setAttribute('aria-activedescendant', `${id}-option-${index}`);
     }
 
@@ -281,7 +283,7 @@ export default function useAutocomplete(props) {
           return -1;
         }
 
-        if (disableListWrap || Math.abs(diff) > 1) {
+        if ((disableListWrap && highlightedIndexRef.current !== -1) || Math.abs(diff) > 1) {
           return 0;
         }
 

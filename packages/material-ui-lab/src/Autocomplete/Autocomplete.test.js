@@ -230,4 +230,143 @@ describe('<Autocomplete />', () => {
       );
     });
   });
+
+  describe('wrapping behavior', () => {
+    it('wraps around when navigating the list by default', () => {
+      const { getAllByRole, getByRole } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={params => <TextField autoFocus {...params} />}
+        />,
+      );
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+      const textbox = getByRole('textbox');
+      const options = getAllByRole('option');
+      expect(textbox).to.be.focused;
+      expect(textbox).to.have.attribute(
+        'aria-activedescendant',
+        options[options.length - 1].getAttribute('id'),
+      );
+    });
+
+    it('selects the first item if on the last item and pressing up by default', () => {
+      const { getAllByRole, getByRole } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={params => <TextField autoFocus {...params} />}
+        />,
+      );
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+      const options = getAllByRole('option');
+      const textbox = getByRole('textbox');
+      expect(textbox).to.be.focused;
+      expect(textbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id'));
+    });
+
+    describe('prop: inlcudeInputInList', () => {
+      it('considers the textbox the predessor of the first option when pressing Up', () => {
+        const { getByRole } = render(
+          <Autocomplete
+            includeInputInList
+            options={['one', 'two', 'three']}
+            renderInput={params => <TextField autoFocus {...params} />}
+          />,
+        );
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+        const textbox = getByRole('textbox');
+        expect(textbox).to.be.focused;
+        expect(textbox).not.to.have.attribute('aria-activedescendant');
+      });
+
+      it('considers the textbox the successor of the last option when pressing Down', () => {
+        const { getByRole } = render(
+          <Autocomplete
+            includeInputInList
+            options={['one', 'two', 'three']}
+            renderInput={params => <TextField autoFocus {...params} />}
+          />,
+        );
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+        const textbox = getByRole('textbox');
+        expect(textbox).to.be.focused;
+        expect(textbox).not.to.have.attribute('aria-activedescendant');
+      });
+    });
+
+    describe('prop: disableListWrap', () => {
+      it('keeps focus on the first item if focus is on the first item and pressing Up', () => {
+        const { getAllByRole, getByRole } = render(
+          <Autocomplete
+            disableListWrap
+            options={['one', 'two', 'three']}
+            renderInput={params => <TextField autoFocus {...params} />}
+          />,
+        );
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+        const textbox = getByRole('textbox');
+        expect(textbox).to.be.focused;
+        expect(textbox).to.have.attribute(
+          'aria-activedescendant',
+          getAllByRole('option')[0].getAttribute('id'),
+        );
+      });
+
+      it('focuses the last item when pressing Up when no option is active', () => {
+        const { getAllByRole, getByRole } = render(
+          <Autocomplete
+            disableListWrap
+            options={['one', 'two', 'three']}
+            renderInput={params => <TextField autoFocus {...params} />}
+          />,
+        );
+
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+
+        const textbox = getByRole('textbox');
+        const options = getAllByRole('option');
+        expect(textbox).to.be.focused;
+        expect(textbox).to.have.attribute(
+          'aria-activedescendant',
+          options[options.length - 1].getAttribute('id'),
+        );
+      });
+
+      it('keeps focus on the last item if focus is on the last item and pressing Down', () => {
+        const { getAllByRole, getByRole } = render(
+          <Autocomplete
+            disableListWrap
+            options={['one', 'two', 'three']}
+            renderInput={params => <TextField autoFocus {...params} />}
+          />,
+        );
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+        fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+        const textbox = getByRole('textbox');
+        const options = getAllByRole('option');
+        expect(textbox).to.be.focused;
+        expect(textbox).to.have.attribute(
+          'aria-activedescendant',
+          options[options.length - 1].getAttribute('id'),
+        );
+      });
+    });
+  });
 });
