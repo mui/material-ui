@@ -74,7 +74,7 @@ describe('<TreeView />', () => {
       fireEvent.click(getByText('outer'));
 
       expect(handleNodeToggle.callCount).to.equal(1);
-      expect(handleNodeToggle.args[0][0]).to.equal('1');
+      expect(handleNodeToggle.args[0][0]).to.deep.equal(['1']);
       expect(handleNodeToggle.args[0][1]).to.equal(true);
     });
   });

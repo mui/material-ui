@@ -35,16 +35,20 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     defaultExpanded = defaultExpandedDefault,
     defaultExpandIcon,
     defaultParentIcon,
+    expanded: expandedProp,
     onNodeToggle,
     ...other
   } = props;
-  const [expanded, setExpanded] = React.useState(defaultExpanded);
+  const { current: isControlled } = React.useRef(expandedProp !== undefined);
+  const [expandedState, setExpandedState] = React.useState(defaultExpanded);
   const [tabable, setTabable] = React.useState(null);
   const [focused, setFocused] = React.useState(null);
   const firstNode = React.useRef(null);
 
   const nodeMap = React.useRef({});
   const firstCharMap = React.useRef({});
+
+  const expanded = isControlled ? expandedProp : expandedState;
 
   const isExpanded = React.useCallback(id => expanded.indexOf(id) !== -1, [expanded]);
   const isTabable = id => tabable === id;
@@ -157,11 +161,10 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   };
 
   const toggle = (value = focused) => {
-    setExpanded(prevExpanded => {
-      let newExpanded;
-
-      if (prevExpanded.indexOf(value) !== -1) {
-        newExpanded = prevExpanded.filter(id => id !== value);
+    let newExpanded;
+    if (isControlled) {
+      if (expandedProp.indexOf(value) !== -1) {
+        newExpanded = expandedProp.filter(id => id !== value);
         setTabable(oldTabable => {
           const map = nodeMap.current[oldTabable];
           if (oldTabable && (map && map.parent ? map.parent.id : null) === value) {
@@ -170,15 +173,34 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
           return oldTabable;
         });
       } else {
-        newExpanded = [value, ...prevExpanded];
+        newExpanded = [value, ...expandedProp];
       }
 
       if (onNodeToggle) {
-        onNodeToggle(value, newExpanded.indexOf(value) !== -1);
+        onNodeToggle([value], newExpanded.indexOf(value) !== -1);
       }
+    } else {
+      setExpandedState(prevExpanded => {
+        if (prevExpanded.indexOf(value) !== -1) {
+          newExpanded = prevExpanded.filter(id => id !== value);
+          setTabable(oldTabable => {
+            const map = nodeMap.current[oldTabable];
+            if (oldTabable && (map && map.parent ? map.parent.id : null) === value) {
+              return value;
+            }
+            return oldTabable;
+          });
+        } else {
+          newExpanded = [value, ...prevExpanded];
+        }
 
-      return newExpanded;
-    });
+        if (onNodeToggle) {
+          onNodeToggle([value], newExpanded.indexOf(value) !== -1);
+        }
+
+        return newExpanded;
+      });
+    }
   };
 
   const expandAllSiblings = id => {
@@ -192,7 +214,11 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       const topLevelNodes = nodeMap.current[-1].children;
       diff = topLevelNodes.filter(node => !isExpanded(node));
     }
-    setExpanded(oldExpanded => [...oldExpanded, ...diff]);
+    if (isControlled) {
+      onNodeToggle([...expandedProp, ...diff], true);
+    } else {
+      setExpandedState(oldExpanded => [...oldExpanded, ...diff]);
+    }
   };
 
   const handleLeftArrow = (id, event) => {
@@ -345,7 +371,7 @@ TreeView.propTypes = {
    */
   defaultEndIcon: PropTypes.node,
   /**
-   * Expanded node ids.
+   * Expanded node ids. (Uncontrolled)
    */
   defaultExpanded: PropTypes.arrayOf(PropTypes.string),
   /**
@@ -358,10 +384,14 @@ TreeView.propTypes = {
    */
   defaultParentIcon: PropTypes.node,
   /**
-   * Callback fired when a `TreeItem` is expanded/collapsed.
+   * Expanded node ids. (Controlled)
+   */
+  expanded: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * Callback fired when tree items are expanded/collapsed.
    *
-   * @param {string} nodeId The id of the toggled node.
-   * @param {boolean} expanded The node status - If `true` the node was expanded. If `false` the node was collapsed.
+   * @param {array} nodeIds The ids of the toggled nodes.
+   * @param {boolean} expanded The nodes' status - If `true` the nodes were expanded. If `false` the node were collapsed.
    */
   onNodeToggle: PropTypes.func,
 };
