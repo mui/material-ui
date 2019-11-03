@@ -75,7 +75,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the popup element. */
   popup: {
-    zIndex: 1,
+    zIndex: theme.zIndex.modal,
   },
   /* Styles applied to the `Paper` component. */
   paper: {
