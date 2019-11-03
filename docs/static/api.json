@@ -138,103 +138,6 @@
         "/components/app-bar"
       ]
     },
-    "Backdrop": {
-      "description": "",
-      "methods": [],
-      "props": {
-        "children": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "The content of the component."
-        },
-        "classes": {
-          "type": {
-            "name": "object"
-          },
-          "required": false,
-          "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details."
-        },
-        "className": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "@ignore"
-        },
-        "invisible": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "If `true`, the backdrop is invisible.\nIt can be used when rendering a popover or a custom select component.",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          }
-        },
-        "open": {
-          "type": {
-            "name": "bool"
-          },
-          "required": true,
-          "description": "If `true`, the backdrop is open."
-        },
-        "transitionDuration": {
-          "type": {
-            "name": "union",
-            "value": [
-              {
-                "name": "number"
-              },
-              {
-                "name": "shape",
-                "value": {
-                  "appear": {
-                    "name": "number",
-                    "required": false
-                  },
-                  "enter": {
-                    "name": "number",
-                    "required": false
-                  },
-                  "exit": {
-                    "name": "number",
-                    "required": false
-                  }
-                }
-              }
-            ]
-          },
-          "required": false,
-          "description": "The duration for the transition, in milliseconds.\nYou may specify a single timeout for all transitions, or individually with an object."
-        }
-      },
-      "name": "Backdrop",
-      "styles": {
-        "classes": [
-          "root",
-          "invisible"
-        ],
-        "name": "MuiBackdrop",
-        "descriptions": {
-          "root": "Styles applied to the root element.",
-          "invisible": "Styles applied to the root element if `invisible={true}`."
-        },
-        "globalClasses": {
-          "root": "MuiBackdrop-root",
-          "invisible": "MuiBackdrop-invisible"
-        }
-      },
-      "src": "import React from 'react';\nimport PropTypes from 'prop-types';\nimport clsx from 'clsx';\nimport withStyles from '../styles/withStyles';\nimport Fade from '../Fade';\n\nexport const styles = {\n  /* Styles applied to the root element. */\n  root: {\n    zIndex: -1,\n    position: 'fixed',\n    display: 'flex',\n    alignItems: 'center',\n    justifyContent: 'center',\n    right: 0,\n    bottom: 0,\n    top: 0,\n    left: 0,\n    backgroundColor: 'rgba(0, 0, 0, 0.5)',\n    // Remove grey highlight\n    WebkitTapHighlightColor: 'transparent',\n    // Disable scroll capabilities.\n    touchAction: 'none',\n  },\n  /* Styles applied to the root element if `invisible={true}`. */\n  invisible: {\n    backgroundColor: 'transparent',\n  },\n};\n\nconst Backdrop = React.forwardRef(function Backdrop(props, ref) {\n  const {\n    children,\n    classes,\n    className,\n    invisible = false,\n    open,\n    transitionDuration,\n    ...other\n  } = props;\n\n  return (\n    <Fade in={open} timeout={transitionDuration} {...other}>\n      <div\n        data-mui-test=\"Backdrop\"\n        className={clsx(\n          classes.root,\n          {\n            [classes.invisible]: invisible,\n          },\n          className,\n        )}\n        aria-hidden\n        ref={ref}\n      >\n        {children}\n      </div>\n    </Fade>\n  );\n});\n\nBackdrop.propTypes = {\n  // ----------------------------- Warning --------------------------------\n  // | These PropTypes are generated from the TypeScript type definitions |\n  // |     To update them edit the d.ts file and run \"yarn proptypes\"     |\n  // ----------------------------------------------------------------------\n  /**\n   * The content of the component.\n   */\n  children: PropTypes.node,\n  /**\n   * Override or extend the styles applied to the component.\n   * See [CSS API](#css) below for more details.\n   */\n  classes: PropTypes.object,\n  /**\n   * @ignore\n   */\n  className: PropTypes.string,\n  /**\n   * If `true`, the backdrop is invisible.\n   * It can be used when rendering a popover or a custom select component.\n   */\n  invisible: PropTypes.bool,\n  /**\n   * If `true`, the backdrop is open.\n   */\n  open: PropTypes.bool.isRequired,\n  /**\n   * The duration for the transition, in milliseconds.\n   * You may specify a single timeout for all transitions, or individually with an object.\n   */\n  transitionDuration: PropTypes.oneOfType([\n    PropTypes.number,\n    PropTypes.shape({\n      appear: PropTypes.number,\n      enter: PropTypes.number,\n      exit: PropTypes.number,\n    }),\n  ]),\n};\n\nexport default withStyles(styles, { name: 'MuiBackdrop' })(Backdrop);\n",
-      "spread": true,
-      "EOL": "\n",
-      "forwardsRefTo": "HTMLDivElement",
-      "filename": "/packages/material-ui/src/Backdrop/Backdrop.js",
-      "inheritance": null,
-      "usedInPages": []
-    },
     "Avatar": {
       "description": "",
       "methods": [],
@@ -335,6 +238,103 @@
       "usedInPages": [
         "/components/avatars"
       ]
+    },
+    "Backdrop": {
+      "description": "",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "The content of the component."
+        },
+        "classes": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details."
+        },
+        "className": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "@ignore"
+        },
+        "invisible": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "If `true`, the backdrop is invisible.\nIt can be used when rendering a popover or a custom select component.",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          }
+        },
+        "open": {
+          "type": {
+            "name": "bool"
+          },
+          "required": true,
+          "description": "If `true`, the backdrop is open."
+        },
+        "transitionDuration": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "number"
+              },
+              {
+                "name": "shape",
+                "value": {
+                  "appear": {
+                    "name": "number",
+                    "required": false
+                  },
+                  "enter": {
+                    "name": "number",
+                    "required": false
+                  },
+                  "exit": {
+                    "name": "number",
+                    "required": false
+                  }
+                }
+              }
+            ]
+          },
+          "required": false,
+          "description": "The duration for the transition, in milliseconds.\nYou may specify a single timeout for all transitions, or individually with an object."
+        }
+      },
+      "name": "Backdrop",
+      "styles": {
+        "classes": [
+          "root",
+          "invisible"
+        ],
+        "name": "MuiBackdrop",
+        "descriptions": {
+          "root": "Styles applied to the root element.",
+          "invisible": "Styles applied to the root element if `invisible={true}`."
+        },
+        "globalClasses": {
+          "root": "MuiBackdrop-root",
+          "invisible": "MuiBackdrop-invisible"
+        }
+      },
+      "src": "import React from 'react';\nimport PropTypes from 'prop-types';\nimport clsx from 'clsx';\nimport withStyles from '../styles/withStyles';\nimport Fade from '../Fade';\n\nexport const styles = {\n  /* Styles applied to the root element. */\n  root: {\n    zIndex: -1,\n    position: 'fixed',\n    display: 'flex',\n    alignItems: 'center',\n    justifyContent: 'center',\n    right: 0,\n    bottom: 0,\n    top: 0,\n    left: 0,\n    backgroundColor: 'rgba(0, 0, 0, 0.5)',\n    // Remove grey highlight\n    WebkitTapHighlightColor: 'transparent',\n    // Disable scroll capabilities.\n    touchAction: 'none',\n  },\n  /* Styles applied to the root element if `invisible={true}`. */\n  invisible: {\n    backgroundColor: 'transparent',\n  },\n};\n\nconst Backdrop = React.forwardRef(function Backdrop(props, ref) {\n  const {\n    children,\n    classes,\n    className,\n    invisible = false,\n    open,\n    transitionDuration,\n    ...other\n  } = props;\n\n  return (\n    <Fade in={open} timeout={transitionDuration} {...other}>\n      <div\n        data-mui-test=\"Backdrop\"\n        className={clsx(\n          classes.root,\n          {\n            [classes.invisible]: invisible,\n          },\n          className,\n        )}\n        aria-hidden\n        ref={ref}\n      >\n        {children}\n      </div>\n    </Fade>\n  );\n});\n\nBackdrop.propTypes = {\n  // ----------------------------- Warning --------------------------------\n  // | These PropTypes are generated from the TypeScript type definitions |\n  // |     To update them edit the d.ts file and run \"yarn proptypes\"     |\n  // ----------------------------------------------------------------------\n  /**\n   * The content of the component.\n   */\n  children: PropTypes.node,\n  /**\n   * Override or extend the styles applied to the component.\n   * See [CSS API](#css) below for more details.\n   */\n  classes: PropTypes.object,\n  /**\n   * @ignore\n   */\n  className: PropTypes.string,\n  /**\n   * If `true`, the backdrop is invisible.\n   * It can be used when rendering a popover or a custom select component.\n   */\n  invisible: PropTypes.bool,\n  /**\n   * If `true`, the backdrop is open.\n   */\n  open: PropTypes.bool.isRequired,\n  /**\n   * The duration for the transition, in milliseconds.\n   * You may specify a single timeout for all transitions, or individually with an object.\n   */\n  transitionDuration: PropTypes.oneOfType([\n    PropTypes.number,\n    PropTypes.shape({\n      appear: PropTypes.number,\n      enter: PropTypes.number,\n      exit: PropTypes.number,\n    }),\n  ]),\n};\n\nexport default withStyles(styles, { name: 'MuiBackdrop' })(Backdrop);\n",
+      "spread": true,
+      "EOL": "\n",
+      "forwardsRefTo": "HTMLDivElement",
+      "filename": "/packages/material-ui/src/Backdrop/Backdrop.js",
+      "inheritance": null,
+      "usedInPages": []
     },
     "Badge": {
       "description": "",

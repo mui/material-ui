@@ -152,7 +152,7 @@ async function buildComponentApi(componentObject) {
 }
 
 async function run() {
-  const outputPath = path.resolve(__dirname, '../pages/api.json');
+  const outputPath = path.resolve(__dirname, '../static/api.json');
   const pagesMarkdown = findPagesMarkdown().map(markdown => {
     const markdownSource = readFileSync(markdown.filename, 'utf8');
     return {
