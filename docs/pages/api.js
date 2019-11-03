@@ -1,14 +1,147 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import fetch from 'isomorphic-fetch';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContent from 'docs/src/modules/components/AppContent';
 import Head from 'docs/src/modules/components/Head';
+import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
+import clsx from 'clsx';
+
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
+const PATH_REPLACE_REGEX = /\\/g;
+const PATH_SEPARATOR = '/';
+const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map(language => `-${language}.md`);
+
+function normalizePath(path) {
+  return path.replace(PATH_REPLACE_REGEX, PATH_SEPARATOR);
+}
+
+function ComponentImport(props) {
+  const { api } = props;
+
+  const source = normalizePath(api.filename)
+    // determine the published package name
+    .replace(
+      /\/packages\/material-ui(-(.+?))?\/src/,
+      (match, dash, pkg) => `@material-ui/${pkg || 'core'}`,
+    )
+    // convert things like `/Table/Table.js` to ``
+    .replace(/\/([^/]+)\/\1\.js$/, '');
+
+  return (
+    <React.Fragment>
+      <h2>Import</h2>
+      <pre>
+        <code>
+          import {api.name} from '{source}/{api.name}'; <br />
+          {'//'} or <br />
+          import {'{'} {api.name} {'}'} from '{source}';
+        </code>
+      </pre>
+    </React.Fragment>
+  );
+}
+
+ComponentImport.propTypes = { api: PropTypes.object.isRequired };
+
+/**
+ * TODO
+ */
+function PropDescription(props) {
+  const { description, type } = props;
+
+  if (description === null) {
+    return "This prop doesn't have a description. Please file an issue";
+  }
+
+  return null;
+}
+
+PropDescription.propTypes = { description: PropTypes.string };
+
+/**
+ * TODO
+ */
+function PropType(props) {
+  const { type } = props;
+
+  return null;
+}
+
+PropType.propTypes = { type: PropTypes.object.isRequired };
+
+function ComponentProp(props) {
+  const { name, prop } = props;
+
+  // injected by withStyles
+  const required = name === 'classes' ? false : prop.required;
+
+  const type = prop.type;
+  const defaultValue = prop.defaultValue ? prop.defaultValue.value.replace(/\r*\n/g, '') : null;
+  const description = prop.description;
+
+  return (
+    <tr>
+      {/* TODO: entangle the custom required logic */}
+      <td className={clsx('prop-name', { required })}>
+        {name}
+        {required && '&nbsp;*'}
+      </td>
+      <td className="prop-type">
+        <PropType type={type} />
+      </td>
+      <td className="prop-default">{defaultValue}</td>
+      <td>
+        <PropDescription description={description} type={type} />
+      </td>
+    </tr>
+  );
+}
+
+ComponentProp.propTypes = { name: PropTypes.string.isRequired, prop: PropTypes.object.isRequired };
+
+function ComponentProps(props) {
+  const { propsApi } = props;
+
+  return (
+    <React.Fragment>
+      <h2>Props</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Default</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Object.keys(propsApi).map(propName => {
+            return <ComponentProp key={propName} name={propName} prop={propsApi[propName]} />;
+          })}
+        </tbody>
+      </table>
+    </React.Fragment>
+  );
+}
+
+ComponentProps.propTypes = { propsApi: PropTypes.object.isRequired };
 
 function ComponentApi(props) {
+  const { api } = props;
+
   return (
     <React.Fragment>
       {/* TODO: component name + desc */}
       <Head description="API for AppBar component" title="AppBar API - Material-UI" />
+      <h1>{api.name} API</h1>
+      <p className="description">
+        The API documentation of the {api.name} React component. Learn more about the props and the
+        CSS customization points.
+      </p>
+      <ComponentImport api={api} />
+      <p>{api.description}</p>
+      <ComponentProps propsApi={api.props} />
     </React.Fragment>
   );
 }
@@ -27,7 +160,7 @@ function Index() {
 }
 
 function ApiPage(props) {
-  const { api, componentSlug } = props;
+  const { api } = props;
 
   // TODO suggestions if slug given but API not found
   const content = api === undefined ? <Index /> : <ComponentApi api={api} />;
@@ -39,13 +172,37 @@ function ApiPage(props) {
   );
 }
 
+function kebapToCamelCase(kebapCased) {
+  return kebapCased.replace(/-([a-z])/g, g => {
+    return g[1].toUpperCase();
+  });
+}
+
+function uppercaseFirst(string) {
+  return string[0].toUpperCase() + string.slice(1);
+}
+
 ApiPage.getInitialProps = async ({ ctx }) => {
-  const { query } = ctx;
-  return { api: {}, componentSlug: query.component };
+  const { query, req } = ctx;
+  const componentId = uppercaseFirst(kebapToCamelCase(query.component));
+  const relativeApiUrl = '/static/api.json';
+  // https://github.com/zeit/next.js/issues/1213#issuecomment-280978022
+  const apiUrl = process.browser
+    ? relativeApiUrl
+    : `${req.protocol}://${req.get('Host')}${relativeApiUrl}`;
+
+  try {
+    const apiResponse = await fetch(apiUrl);
+    const api = await apiResponse.json();
+
+    return { api: api.components[componentId] };
+  } catch (error) {
+    return {};
+  }
 };
 
 ApiPage.propTypes = {
-  componentSlug: PropTypes.string,
+  api: PropTypes.object,
 };
 
 export default ApiPage;

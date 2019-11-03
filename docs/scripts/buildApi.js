@@ -3,9 +3,10 @@ import { readFileSync } from 'fs';
 import { writeJSON } from 'fs-extra';
 import { getLineFeed } from './helpers';
 import path from 'path';
-import kebabCase from 'lodash/kebabCase';
+import * as _ from 'lodash';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import muiDefaultPropsHandler from '../src/modules/utils/defaultPropsHandler';
+import propJsdocHandler from '../src/modules/utils/propJsdocHandler';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
 import parseTest from '../src/modules/utils/parseTest';
@@ -42,7 +43,7 @@ function getInheritance(testInfo, src) {
       break;
 
     default:
-      pathname = `/api/${kebabCase(inheritedComponentName)}`;
+      pathname = `/api/${_.kebabCase(inheritedComponentName)}`;
       break;
   }
 
@@ -121,14 +122,27 @@ async function buildComponentApi(componentObject) {
 
   let reactAPI;
   try {
-    reactAPI = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
-      filename: componentObject.filename,
-    });
+    reactAPI = docgenParse(
+      src,
+      null,
+      defaultHandlers.concat(muiDefaultPropsHandler, propJsdocHandler),
+      {
+        filename: componentObject.filename,
+      },
+    );
   } catch (err) {
     console.log('Error parsing src for', componentObject.filename);
     throw err;
   }
 
+  reactAPI.props = _.mapValues(
+    _.omitBy(reactAPI.props, descriptor => {
+      return descriptor.ignore;
+    }),
+    ({ ignore, ...descriptor }) => {
+      return descriptor;
+    },
+  );
   reactAPI.name = name;
   reactAPI.styles = styles;
   reactAPI.src = src;
