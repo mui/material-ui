@@ -29,9 +29,23 @@ addTeardown({
 async function run() {
   await nextApp.prepare();
   const app = express();
+  // TODO use nextjs-dynamic-routes
   app.get('*', (req, res) => {
     const parsedUrl = url.parse(req.url, true);
     let { pathname } = parsedUrl;
+
+    if (pathname.startsWith('/api')) {
+      // $0/$1/$2
+      // /api/:component/:rest
+      const [, , component, ...rest] = pathname.split('/');
+      nextApp.render(req, res, '/api', {
+        component,
+        rest,
+        ...parsedUrl.query,
+      });
+      return;
+    }
+
     const { userLanguage, canonical } = pathnameToLanguage(pathname);
 
     if (userLanguage !== 'en') {
