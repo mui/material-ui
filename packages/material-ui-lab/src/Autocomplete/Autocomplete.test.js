@@ -6,7 +6,6 @@ import { spy } from 'sinon';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Autocomplete from './Autocomplete';
 import TextField from '@material-ui/core/TextField';
-import { spy } from 'sinon';
 
 describe('<Autocomplete />', () => {
   let mount;
