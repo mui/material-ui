@@ -8,9 +8,15 @@ import TreeView from './TreeView';
 import TreeItem from '../TreeItem';
 
 describe('<TreeView />', () => {
+  let classes;
+  let mount;
+  // StrictModeViolation: test uses TreeItem
   const render = createClientRender({ strict: false });
-  const mount = createMount({ strict: false });
-  const classes = getClasses(<TreeView />);
+
+  before(() => {
+    mount = createMount({ strict: true });
+    classes = getClasses(<TreeView />);
+  });
 
   describeConformance(<TreeView />, () => ({
     classes,
