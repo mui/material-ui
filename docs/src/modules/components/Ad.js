@@ -19,6 +19,7 @@ const styles = theme => ({
   },
   paper: {
     padding: theme.spacing(1.5),
+    border: `2px solid ${theme.palette.primary.main}`,
     backgroundColor: theme.palette.background.level2,
     display: 'block',
   },
@@ -106,19 +107,22 @@ function Ad(props) {
     };
   }, [checkAdblock]);
 
-  // Hide the content to google bot.
-  if (/Googlebot/.test(navigator.userAgent)) {
-    return null;
-  }
-
   let children;
+  let minHeight;
+
+  // Hide the content to google bot.
+  if (/Googlebot/.test(navigator.userAgent) || disable) {
+    children = <span />;
+  }
 
   if (adblock) {
-    children = <AdInHouse ad={inHouses[Math.round((inHouses.length - 1) * random)]} />;
-  }
+    minHeight = 'auto';
 
-  if (disable) {
-    children = getAdblock(classes, t);
+    if (random >= 0.8) {
+      children = getAdblock(classes, t);
+    } else {
+      children = <AdInHouse ad={inHouses[Math.round((inHouses.length - 1) * random)]} />;
+    }
   }
 
   if (!children) {
@@ -128,14 +132,12 @@ function Ad(props) {
       children = <AdCarbon />;
     } else {
       children = <AdInHouse ad={inHouses[Math.round((inHouses.length - 1) * random)]} />;
+      minHeight = 'auto';
     }
   }
 
   return (
-    <span
-      className={classes.root}
-      style={{ minHeight: children.type === 'AdInHouse' ? 'auto' : null }}
-    >
+    <span className={classes.root} style={{ minHeight }}>
       {children}
     </span>
   );
