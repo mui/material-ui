@@ -8,11 +8,6 @@ import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
 import ButtonBase from '../ButtonBase';
-import Avatar from '../Avatar';
-
-// Force a side effect so we don't have any override priority issue.
-// eslint-disable-next-line no-unused-expressions
-Avatar.styles;
 
 export const styles = theme => {
   const backgroundColor =
@@ -45,6 +40,29 @@ export const styles = theme => {
       '&$disabled': {
         opacity: 0.5,
         pointerEvents: 'none',
+      },
+      '& $avatar': {
+        marginLeft: 5,
+        marginRight: -6,
+        width: 24,
+        height: 24,
+        color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
+        fontSize: theme.typography.pxToRem(12),
+      },
+      '&$colorPrimary $avatar': {
+        color: theme.palette.primary.contrastText,
+        backgroundColor: theme.palette.primary.dark,
+      },
+      '&$colorSecondary $avatar': {
+        color: theme.palette.secondary.contrastText,
+        backgroundColor: theme.palette.secondary.dark,
+      },
+      '&$sizeSmall $avatar': {
+        marginLeft: 4,
+        marginRight: -4,
+        width: 18,
+        height: 18,
+        fontSize: theme.typography.pxToRem(10),
       },
     },
     /* Styles applied to the root element if `size="small"`. */
@@ -149,32 +167,14 @@ export const styles = theme => {
         backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       },
     },
+    // TODO remove in V5
     /* Styles applied to the `avatar` element. */
-    avatar: {
-      marginLeft: 5,
-      marginRight: -6,
-      width: 24,
-      height: 24,
-      color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
-      fontSize: theme.typography.pxToRem(12),
-    },
-    avatarSmall: {
-      marginLeft: 4,
-      marginRight: -4,
-      width: 18,
-      height: 18,
-      fontSize: theme.typography.pxToRem(10),
-    },
+    avatar: {},
+    avatarSmall: {},
     /* Styles applied to the `avatar` element if `color="primary"`. */
-    avatarColorPrimary: {
-      color: theme.palette.primary.contrastText,
-      backgroundColor: theme.palette.primary.dark,
-    },
+    avatarColorPrimary: {},
     /* Styles applied to the `avatar` element if `color="secondary"`. */
-    avatarColorSecondary: {
-      color: theme.palette.secondary.contrastText,
-      backgroundColor: theme.palette.secondary.dark,
-    },
+    avatarColorSecondary: {},
     /* Styles applied to the `icon` element. */
     icon: {
       color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
