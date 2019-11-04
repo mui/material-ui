@@ -27,6 +27,38 @@ describe('<TreeView />', () => {
     after: () => mount.cleanUp(),
   }));
 
+  it('should not error when component state changes', () => {
+    function MyComponent() {
+      const [, setState] = React.useState(1);
+
+      return (
+        <TreeView>
+          <TreeItem
+            nodeId="one"
+            label="one"
+            data-testid="one"
+            onFocus={() => {
+              setState(Math.random);
+            }}
+          >
+            <TreeItem nodeId="two" label="two" data-testid="two" />
+          </TreeItem>
+        </TreeView>
+      );
+    }
+
+    const { getByText, getByTestId } = render(<MyComponent />);
+
+    fireEvent.click(getByText('one'));
+    expect(getByTestId('one')).to.be.focused;
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+    expect(getByTestId('two')).to.be.focused;
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+    expect(getByTestId('one')).to.be.focused;
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+    expect(getByTestId('two')).to.be.focused;
+  });
+
   describe('onNodeToggle', () => {
     it('should be called when a parent node is clicked', () => {
       const handleNodeToggle = spy();

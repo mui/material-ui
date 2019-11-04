@@ -13,6 +13,16 @@ export const styles = {
   },
 };
 
+function arrayDiff(arr1, arr2) {
+  if (arr1.length !== arr2.length) return true;
+
+  for (let i = 0; i < arr1.length; i += 1) {
+    if (arr1[i] !== arr2[i]) return true;
+  }
+
+  return false;
+}
+
 const defaultExpandedDefault = [];
 
 const TreeView = React.forwardRef(function TreeView(props, ref) {
@@ -40,18 +50,21 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const isTabable = id => tabable === id;
   const isFocused = id => focused === id;
 
+  const prevChildIds = React.useRef([]);
   React.useEffect(() => {
-    nodeMap.current = {};
-    const childIds = React.Children.map(children, child => child.props.nodeId);
-    nodeMap.current[-1] = { parent: null, children: childIds };
+    const childIds = React.Children.map(children, child => child.props.nodeId) || [];
+    if (arrayDiff(prevChildIds.current, childIds)) {
+      nodeMap.current[-1] = { parent: null, children: childIds };
 
-    (childIds || []).forEach((id, index) => {
-      if (index === 0) {
-        firstNode.current = id;
-        setTabable(id);
-      }
-      nodeMap.current[id] = { parent: null };
-    });
+      childIds.forEach((id, index) => {
+        if (index === 0) {
+          firstNode.current = id;
+          setTabable(id);
+        }
+        nodeMap.current[id] = { parent: null };
+      });
+      prevChildIds.current = childIds;
+    }
   }, [children]);
 
   const getLastNode = React.useCallback(
@@ -248,13 +261,28 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
   };
 
-  const handleNodeMap = (id, childrenIds) => {
+  const addNodeToNodeMap = (id, childrenIds) => {
     const currentMap = nodeMap.current[id];
     nodeMap.current[id] = { ...currentMap, children: childrenIds, id };
-    (childrenIds || []).forEach(childId => {
+    childrenIds.forEach(childId => {
       const currentChildMap = nodeMap.current[childId];
       nodeMap.current[childId] = { ...currentChildMap, parent: id, id: childId };
     });
+  };
+
+  const removeNodeFromNodeMap = id => {
+    const map = nodeMap.current[id];
+    if (map) {
+      if (map.parent) {
+        const parentMap = nodeMap.current[map.parent];
+        if (parentMap && parentMap.children) {
+          const parentChildren = parentMap.children.filter(c => c !== id);
+          nodeMap.current[map.parent] = { ...parentMap, children: parentChildren };
+        }
+      }
+
+      delete nodeMap.current[id];
+    }
   };
 
   const handleFirstChars = (id, firstChar) => {
@@ -272,7 +300,8 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         focusPreviousNode,
         handleFirstChars,
         handleLeftArrow,
-        handleNodeMap,
+        addNodeToNodeMap,
+        removeNodeFromNodeMap,
         icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
         isExpanded,
         isFocused,
