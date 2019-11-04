@@ -52,7 +52,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.6.2",
     "@testing-library/dom": "^6.8.1",
-    "@testing-library/react": "^9.2.0",
+    "@testing-library/react": "^9.3.2",
     "@types/chai": "^4.2.3",
     "@types/chai-dom": "^0.0.8",
     "@types/enzyme": "^3.10.3",
