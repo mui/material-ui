@@ -158,6 +158,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     defaultValue,
     disableClearable = false,
     disableCloseOnSelect = false,
+    disabled = false,
     disableListWrap = false,
     disableOpenOnFocus = false,
     filterOptions,
@@ -284,9 +285,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
         InputProps: {
           className: classes.inputRoot,
           startAdornment,
+          disabled,
           endAdornment: (
             <React.Fragment>
-              {disableClearable ? null : (
+              {disableClearable || disabled ? null : (
                 <IconButton
                   {...getClearProps()}
                   title="Clear"
@@ -301,6 +303,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
               {freeSolo ? null : (
                 <IconButton
                   {...getPopupIndicatorProps()}
+                  disabled={disabled}
                   title={popupOpen ? 'Close popup' : 'Open popup'}
                   className={clsx(classes.popupIndicator, {
                     [classes.popupIndicatorOpen]: popupOpen,
@@ -410,6 +413,10 @@ Autocomplete.propTypes = {
    * If `true`, the popup won't close when a value is selected.
    */
   disableCloseOnSelect: PropTypes.bool,
+  /**
+   * If `true`, the input will be disabled.
+   */
+  disabled: PropTypes.bool,
   /**
    * If `true`, the list box in the popup will not wrap focus.
    */

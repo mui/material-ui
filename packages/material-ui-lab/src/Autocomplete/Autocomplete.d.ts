@@ -45,6 +45,10 @@ export interface AutocompleteProps
       'defaultValue' | 'onChange' | 'children'
     > {
   /**
+   * If `true`, the input will be disabled.
+   */
+  disabled?: boolean;
+  /**
    * The component used to render the listbox.
    */
   ListboxComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
