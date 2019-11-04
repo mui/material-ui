@@ -34,7 +34,6 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `disableSticky={false}`. */
   sticky: {
-    position: 'sticky',
     top: 0,
     zIndex: 1,
     backgroundColor: 'inherit',
