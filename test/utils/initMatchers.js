@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiDom from 'chai-dom';
 import { isInaccessible } from '@testing-library/dom';
-import { prettyDOM } from '@testing-library/react';
+import { prettyDOM } from '@testing-library/react/pure';
 
 chai.use(chaiDom);
 chai.use((chaiAPI, utils) => {
