@@ -171,8 +171,26 @@ export default function useAutocomplete(props) {
     let newInputValue;
     if (multiple) {
       newInputValue = '';
+    } else if (newValue == null) {
+      newInputValue = '';
     } else {
-      newInputValue = newValue != null ? getOptionLabel(newValue) : '';
+      const optionLabel = getOptionLabel(newValue);
+
+      if (process.env.NODE_ENV !== 'production') {
+        if (typeof optionLabel !== 'string') {
+          console.error(
+            [
+              'Material-UI: the `getOptionLabel` method of useAutocomplete do not handle the options correctly.',
+              `The component expect a string but received ${typeof optionLabel}.`,
+              `For the input option: ${JSON.stringify(
+                newValue,
+              )}, \`getOptionLabel\` returns: ${newInputValue}.`,
+            ].join('\n'),
+          );
+        }
+      }
+
+      newInputValue = typeof optionLabel === 'string' ? optionLabel : '';
     }
 
     setInputValue(newInputValue);

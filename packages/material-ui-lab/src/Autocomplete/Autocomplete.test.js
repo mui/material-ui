@@ -2,6 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { spy } from 'sinon';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Autocomplete from './Autocomplete';
@@ -367,6 +368,38 @@ describe('<Autocomplete />', () => {
           options[options.length - 1].getAttribute('id'),
         );
       });
+    });
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('warn if getOptionLabel do not return a string', () => {
+      const handleChange = spy();
+      const { container } = render(
+        <Autocomplete
+          freeSolo
+          onChange={handleChange}
+          options={[{ name: 'test' }, { name: 'foo' }]}
+          getOptionLabel={option => option.name}
+          renderInput={params => <TextField {...params} />}
+        />,
+      );
+      const input = container.querySelector('input');
+      fireEvent.change(input, { target: { value: 'a' } });
+      fireEvent.keyDown(input, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('a');
+      expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
+      expect(consoleErrorMock.args()[0][0]).to.include(
+        'For the input option: "a", `getOptionLabel` returns: undefined',
+      );
     });
   });
 });
