@@ -29,11 +29,6 @@ const backers = [
     title: 'Call-Em-All - The easy way to message your group',
   },
   {
-    href: 'https://blokt.com',
-    alt: 'blokt',
-    title: 'Leading Cryptocurrency News',
-  },
-  {
     href: 'https://www.crosswordsolver.com',
     alt: 'crosswordsolver',
     title: 'Crossword Puzzle Solver',

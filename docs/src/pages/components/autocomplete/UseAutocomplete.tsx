@@ -18,10 +18,14 @@ const useStyles = makeStyles((theme: Theme) =>
       overflow: 'auto',
       maxHeight: 200,
       border: '1px solid rgba(0,0,0,.25)',
-      '& [data-focus="true"]': {
+      '& li[data-focus="true"]': {
         backgroundColor: '#4a8df6',
         color: 'white',
         cursor: 'pointer',
+      },
+      '& li:active': {
+        backgroundColor: '#2977f5',
+        color: 'white',
       },
     },
   }),

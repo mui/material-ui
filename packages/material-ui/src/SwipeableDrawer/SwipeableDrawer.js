@@ -69,7 +69,7 @@ function getDomTreeShapes(element, rootNode) {
       domTreeShapes.push(element);
     }
 
-    element = element.parentNode;
+    element = element.parentElement;
   }
 
   return domTreeShapes;

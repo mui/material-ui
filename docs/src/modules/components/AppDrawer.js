@@ -19,7 +19,7 @@ function PersistScroll(props) {
   const rootRef = React.useRef();
 
   React.useEffect(() => {
-    const parent = rootRef.current ? rootRef.current.parentNode : null;
+    const parent = rootRef.current ? rootRef.current.parentElement : null;
     const activeElement = document.querySelector('.drawer-active');
 
     if (!parent || !activeElement || !activeElement.scrollIntoView) {
@@ -148,7 +148,12 @@ function AppDrawer(props) {
             Material-UI
           </Link>
           {process.env.LIB_VERSION ? (
-            <Link color="textSecondary" variant="caption" href="/versions" onClick={onClose}>
+            <Link
+              color="textSecondary"
+              variant="caption"
+              href="https://material-ui.com/versions/"
+              onClick={onClose}
+            >
               {`v${process.env.LIB_VERSION}`}
             </Link>
           ) : null}

@@ -166,19 +166,19 @@ describe('<Portal />', () => {
     }
 
     const wrapper = mount(<ContainerTest />);
-    assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'SPAN', 'c');
+    assert.strictEqual(document.querySelector('#test3').parentElement.nodeName, 'SPAN', 'c');
     wrapper.setProps({
       containerElement: true,
     });
-    assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'SPAN', 'a');
+    assert.strictEqual(document.querySelector('#test3').parentElement.nodeName, 'SPAN', 'a');
     wrapper.setProps({
       disablePortal: false,
     });
-    assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'STRONG', 'c');
+    assert.strictEqual(document.querySelector('#test3').parentElement.nodeName, 'STRONG', 'c');
     wrapper.setProps({
       containerElement: false,
     });
-    assert.strictEqual(document.querySelector('#test3').parentNode.nodeName, 'BODY', 'b');
+    assert.strictEqual(document.querySelector('#test3').parentElement.nodeName, 'BODY', 'b');
   });
 
   it('should call onRendered', () => {

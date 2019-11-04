@@ -39,7 +39,10 @@ const fit = (imgEl, classes) => {
     return;
   }
 
-  if (imgEl.width / imgEl.height > imgEl.parentNode.offsetWidth / imgEl.parentNode.offsetHeight) {
+  if (
+    imgEl.width / imgEl.height >
+    imgEl.parentElement.offsetWidth / imgEl.parentElement.offsetHeight
+  ) {
     imgEl.classList.remove(...classes.imgFullWidth.split(' '));
     imgEl.classList.add(...classes.imgFullHeight.split(' '));
   } else {

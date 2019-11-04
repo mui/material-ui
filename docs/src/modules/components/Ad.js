@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
-import { getCookie } from 'docs/src/modules/utils/helpers';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import AdCodeFund from 'docs/src/modules/components/AdCodeFund';
@@ -20,15 +19,11 @@ const styles = theme => ({
   },
   paper: {
     padding: theme.spacing(1.5),
+    border: `2px solid ${theme.palette.primary.main}`,
     backgroundColor: theme.palette.background.level2,
     display: 'block',
   },
 });
-
-function getAdblockCount() {
-  const seen = getCookie('adblockCount');
-  return seen === '' ? 0 : parseInt(seen, 10);
-}
 
 function getAdblock(classes, t) {
   return (
@@ -70,16 +65,22 @@ const inHouses = [
 function Ad(props) {
   const { classes } = props;
   const { current: random } = React.useRef(Math.random());
-  const timerAdblock = React.useRef();
   const t = useSelector(state => state.options.t);
+
+  const timerAdblock = React.useRef();
   const [adblock, setAdblock] = React.useState(null);
+  const [carbonOut, setCarbonOut] = React.useState(null);
 
   const checkAdblock = React.useCallback((attempt = 1) => {
-    if (
-      document.querySelector('.cf-wrapper') ||
-      document.querySelector('#carbonads') ||
-      document.querySelector('#in-house')
-    ) {
+    if (document.querySelector('.cf-wrapper') || document.querySelector('#carbonads')) {
+      if (
+        document.querySelector('#carbonads a') &&
+        document.querySelector('#carbonads a').getAttribute('href') ===
+          'https://material-ui-next.com/discover-more/backers'
+      ) {
+        setCarbonOut(true);
+      }
+
       setAdblock(false);
       return;
     }
@@ -88,8 +89,6 @@ function Ad(props) {
       timerAdblock.current = setTimeout(() => {
         checkAdblock(attempt + 1);
       }, 500);
-    } else {
-      document.cookie = `adblockCount=${getAdblockCount() + 1};path=/`;
     }
 
     if (attempt > 6) {
@@ -108,38 +107,40 @@ function Ad(props) {
     };
   }, [checkAdblock]);
 
+  let children;
+  let minHeight;
+
   // Hide the content to google bot.
-  if (/Googlebot/.test(navigator.userAgent)) {
-    return null;
+  if (/Googlebot/.test(navigator.userAgent) || disable) {
+    children = <span />;
   }
 
-  if (disable) {
-    return <span className={classes.root}>{getAdblock(classes, t)}</span>;
+  if (adblock) {
+    minHeight = 'auto';
+
+    if (random >= 0.8) {
+      children = getAdblock(classes, t);
+    } else {
+      children = <AdInHouse ad={inHouses[Math.round((inHouses.length - 1) * random)]} />;
+    }
   }
 
-  if (getAdblockCount() >= 2) {
-    return (
-      <span className={classes.root} style={{ minHeight: 'auto' }}>
-        <AdInHouse ad={inHouses[Math.round((inHouses.length - 1) * Math.random())]} />
-      </span>
-    );
+  if (!children) {
+    if (random >= 0.6) {
+      children = <AdCodeFund />;
+    } else if (!carbonOut) {
+      children = <AdCarbon />;
+    } else {
+      children = <AdInHouse ad={inHouses[Math.round((inHouses.length - 1) * random)]} />;
+      minHeight = 'auto';
+    }
   }
 
-  if (adblock === true) {
-    return <span className={classes.root}>{getAdblock(classes, t)}</span>;
-  }
-
-  let randomAd;
-
-  if (random < 0.6) {
-    randomAd = <AdCodeFund />;
-  } else if (random < 0.63) {
-    randomAd = <AdInHouse ad={inHouses[0]} />;
-  } else {
-    randomAd = <AdCarbon />;
-  }
-
-  return <span className={classes.root}>{randomAd}</span>;
+  return (
+    <span className={classes.root} style={{ minHeight }}>
+      {children}
+    </span>
+  );
 }
 
 Ad.propTypes = {

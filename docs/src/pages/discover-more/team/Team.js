@@ -45,13 +45,6 @@ const activeCore = [
     flag: 'Core Team',
     city: 'Hannover, Germany',
   },
-  {
-    name: 'Tom Crockett',
-    github: 'pelotom',
-    twitter: 'pelotom',
-    flag: 'Core Team',
-    city: 'Los Angeles, California, US',
-  },
 ];
 
 const emeriti = [
@@ -87,6 +80,13 @@ const emeriti = [
     github: 'kgregory',
     flag: 'Core Team',
     city: 'New Jersey, US',
+  },
+  {
+    name: 'Tom Crockett',
+    github: 'pelotom',
+    twitter: 'pelotom',
+    flag: 'Core Team',
+    city: 'Los Angeles, California, US',
   },
 ];
 
