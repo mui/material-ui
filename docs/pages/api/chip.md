@@ -64,7 +64,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">outlinedPrimary</span> | <span class="prop-name">.MuiChip-outlinedPrimary</span> | Styles applied to the root element if `variant="outlined"` and `color="primary"`.
 | <span class="prop-name">outlinedSecondary</span> | <span class="prop-name">.MuiChip-outlinedSecondary</span> | Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
 | <span class="prop-name">avatar</span> | <span class="prop-name">.MuiChip-avatar</span> | Styles applied to the `avatar` element.
-| <span class="prop-name">avatarSmall</span> | <span class="prop-name">.MuiChip-avatarSmall</span> | 
+| <span class="prop-name">avatarSmall</span> | <span class="prop-name">.MuiChip-avatarSmall</span> | Styles applied to the `avatar` element if `size="small"`.
 | <span class="prop-name">avatarColorPrimary</span> | <span class="prop-name">.MuiChip-avatarColorPrimary</span> | Styles applied to the `avatar` element if `color="primary"`.
 | <span class="prop-name">avatarColorSecondary</span> | <span class="prop-name">.MuiChip-avatarColorSecondary</span> | Styles applied to the `avatar` element if `color="secondary"`.
 | <span class="prop-name">icon</span> | <span class="prop-name">.MuiChip-icon</span> | Styles applied to the `icon` element.
