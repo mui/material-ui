@@ -281,11 +281,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     >
       {renderInput({
         ref: setAnchorEl,
+        disabled,
         InputLabelProps: getInputLabelProps(),
         InputProps: {
           className: classes.inputRoot,
           startAdornment,
-          disabled,
           endAdornment: (
             <React.Fragment>
               {disableClearable || disabled ? null : (
@@ -319,6 +319,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           className: clsx(classes.input, {
             [classes.inputFocused]: focusedTag === -1,
           }),
+          disabled,
           ...getInputProps(),
         },
       })}
