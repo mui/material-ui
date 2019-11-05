@@ -154,6 +154,14 @@ export const styles = theme => ({
       height: '100%',
       padding: '0 11px',
     },
+    // The primary input mechanism of the device includes a pointing device of limited accuracy.
+    '@media (pointer: coarse)': {
+      // Reach 42px touch target, about ~8mm on screen.
+      padding: '20px 0',
+      '&$vertical': {
+        padding: '0 20px',
+      },
+    },
   },
   /* Styles applied to the root element if `color="primary"`. */
   colorPrimary: {
