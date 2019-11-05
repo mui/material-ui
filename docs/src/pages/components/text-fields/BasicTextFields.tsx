@@ -25,7 +25,7 @@ export default function BasicTextFields() {
         <TextField
           id="standard-basic"
           className={classes.textField}
-          label="Standard"
+          label="Standard primary"
           margin="normal"
         />
       </div>
@@ -33,7 +33,7 @@ export default function BasicTextFields() {
         <TextField
           id="filled-basic"
           className={classes.textField}
-          label="Filled"
+          label="Filled primary"
           margin="normal"
           variant="filled"
         />
@@ -42,9 +42,38 @@ export default function BasicTextFields() {
         <TextField
           id="outlined-basic"
           className={classes.textField}
-          label="Outlined"
+          label="Outlined primary"
           margin="normal"
           variant="outlined"
+        />
+      </div>
+      <div>
+        <TextField
+          id="standard-basic"
+          className={classes.textField}
+          label="Standard secondary"
+          margin="normal"
+          color="secondary"
+        />
+      </div>
+      <div>
+        <TextField
+          id="filled-basic"
+          className={classes.textField}
+          label="Filled secondary"
+          margin="normal"
+          variant="filled"
+          color="secondary"
+        />
+      </div>
+      <div>
+        <TextField
+          id="outlined-basic"
+          className={classes.textField}
+          label="Outlined secondary"
+          margin="normal"
+          variant="outlined"
+          color="secondary"
         />
       </div>
     </form>
