@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import TreeView from './TreeView';
 import TreeItem from '../TreeItem';
 
@@ -26,6 +27,43 @@ describe('<TreeView />', () => {
     skip: ['componentProp'],
     after: () => mount.cleanUp(),
   }));
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should warn when switching from controlled to uncontrolled', () => {
+      const { setProps } = render(
+        <TreeView expanded={[]}>
+          <TreeItem nodeId="1" label="one" />
+        </TreeView>,
+      );
+
+      setProps({ expanded: undefined });
+      expect(consoleErrorMock.args()[0][0]).to.include(
+        'A component is changing a controlled TreeView to be uncontrolled.',
+      );
+    });
+  });
+
+  it('should be able to be controlled', () => {
+    const { getByTestId, setProps } = render(
+      <TreeView expanded={['1']}>
+        <TreeItem nodeId="1" label="one" data-testid="one">
+          <TreeItem nodeId="2" label="two" />
+        </TreeItem>
+      </TreeView>,
+    );
+
+    expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
+    setProps({ expanded: [] });
+    expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
+  });
 
   it('should not error when component state changes', () => {
     function MyComponent() {

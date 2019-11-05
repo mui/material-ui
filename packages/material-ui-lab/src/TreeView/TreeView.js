@@ -39,20 +39,16 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     onNodeToggle,
     ...other
   } = props;
-  const { current: isControlled } = React.useRef(expandedProp !== undefined);
   const [expandedState, setExpandedState] = React.useState(defaultExpanded);
   const [tabable, setTabable] = React.useState(null);
   const [focused, setFocused] = React.useState(null);
-  const firstNode = React.useRef(null);
 
+  const firstNode = React.useRef(null);
   const nodeMap = React.useRef({});
   const firstCharMap = React.useRef({});
 
-  const expanded = isControlled ? expandedProp : expandedState;
-
-  const isExpanded = React.useCallback(id => expanded.indexOf(id) !== -1, [expanded]);
-  const isTabable = id => tabable === id;
-  const isFocused = id => focused === id;
+  const { current: isControlled } = React.useRef(expandedProp !== undefined);
+  const expanded = (isControlled ? expandedProp : expandedState) || [];
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -62,10 +58,10 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
           [
             `Material-UI: A component is changing ${
               isControlled ? 'a ' : 'an un'
-            }controlled Select to be ${isControlled ? 'un' : ''}controlled.`,
+            }controlled TreeView to be ${isControlled ? 'un' : ''}controlled.`,
             'Elements should not switch from uncontrolled to controlled (or vice versa).',
             'Decide between using a controlled or uncontrolled Select ' +
-              'element for the lifetime of the component.',
+            'element for the lifetime of the component.',
             'More info: https://fb.me/react-controlled-components',
           ].join('\n'),
         );
@@ -89,6 +85,10 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       prevChildIds.current = childIds;
     }
   }, [children]);
+
+  const isExpanded = React.useCallback(id => expanded.indexOf(id) !== -1, [expanded]);
+  const isTabable = id => tabable === id;
+  const isFocused = id => focused === id;
 
   const getLastNode = React.useCallback(
     id => {
