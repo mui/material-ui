@@ -1,5 +1,85 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.6.0
+###### *Nov 5, 2019*
+
+Big thanks to the 26 contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- 🔍 8 patches on the Autocomplete component that was released last week.
+
+The positive feedback we had this early version of the component is encouraging.
+Developers should be able to rely on it in production within a couple of weeks (from a bug perspective).
+We will take more time to stabilize the API, a couple of months.
+
+- 📚 Split the TextField demos into smaller demos (#17483) @joshwooding
+- 💄 Add a color prop to the TextField (#17891) @ValentinH
+- 💄 Add square and rounded variant to the Avatar (#18116) @mattdotam
+- 🐛 Fix Chip <> Avatar rendering issue (#18156)
+
+By chance, it's the third year in a row we release on november 5th.
+The number of contributors involved, for a similar one-week period, has grown from 12 contributors (2017) to 16 contributors (2018) to 26 contributors (2019).
+We are proud of the community. Let's keep this trend going 🚀.
+
+### `@material-ui/core@v4.6.0`
+
+- [Avatar] Add square variant and documentation (#18116) @mattdotam
+- [Button] Fix horizontal padding on small button with icon (#18118) @vkasraj
+- [Chip] Add ripple when clickable (#17829) @Tarun047
+- [Chip] Fix Avatar CSS issue (#18156) @oliviertassinari
+- [Drawer] Improve "ResponsiveDrawer" demo (#18045) @gorjan-mishevski
+- [ExpansionPanel] Use context instead of cloneElement (#18085) @eps1lon
+- [InputBase] Fix onChange event handler callback of inputProps (#18131) @sjsingh85
+- [OutlinedInput] Simplify customizations (#18127) @gregjoeval
+- [Slider] Improve UX for pointing device with limited accuracy (#18174) @oliviertassinari
+- [Slider] Increase hover hitbox for thumb (#18074) @eps1lon
+- [SwipeableDrawer] Only trigger a swipe when appropriate (#17993) @leMaik
+- [TextField] Add support for "secondary" color (#17891) @ValentinH
+- [TextField] Fix label not being associated with native select (#18141) @eps1lon
+- [TextField] Fix typo in FromControl warning (#18129) @xuanvan229
+- [types] Fix IsEmptyInterface with optional members (#18148) @amcasey
+- [types] Simplify some of the conditional types (#18128) @amcasey
+
+### `@material-ui/styles@v4.6.0`
+
+- [styles] Fix props based styles callback not including defaultProps (#18125) @salmanm
+
+### `@material-ui/lab@v4.0.0-alpha.31`
+
+- [Autocomplete] Add disabled prop (#18195) @m4theushw
+- [Autocomplete] Fix aria-controls and aria-activedescendant (#18142) @eps1lon
+- [Autocomplete] Fix crash with freeSolo and rich options (#18161) @oziniak
+- [Autocomplete] Fix disableListWrapp affecting initial focus (#18162) @eps1lon
+- [Autocomplete] Fix display in modal (#18160) @oliviertassinari
+- [Autocomplete] Fix multiple blur/focus crash (#18117) @itayyehezkel
+- [Autocomplete] Fix typo + types (#18096) @NaridaL
+- [Autocomplete] Rename autoHightlight prop to autoHighlight (#18137) @tkanzakic
+- [TreeView] Change when node map is built (#18154) @joshwooding
+- [SpeedDial] Fix fab items alignment (#18084) @itayyehezkel
+
+### Docs
+
+- [docs] Add ScaffoldHub to ads and example projects (#18071) @mbrookes
+- [docs] Add TagSpaces to the showcase (#18144) @uggrock
+- [docs] Add warning disabled button in Safari (#18072) @itayyehezkel
+- [docs] Break up TextField demos (#17483) @joshwooding
+- [docs] Fix typo (#18090) @mtsmfm
+- [docs] Fix various a11y issues reported by lighthouse (#18146) @eps1lon
+- [docs] Force usage of block language (#18069) @mtsmfm
+- [docs] Improve TypeScript support of Next.js examples (#18088) @Tokenyet
+- [docs] Move "TextField" section higher in the "Selects" page (#17643) @croraf
+- [docs] Rename interface headCell to HeadCell (#18093) @EngMoathOmar
+- [docs] Update notification v4.5.2 @oliviertassinari
+
+### Core
+
+- [test] Build all `@material-ui/*` packages for Codesandbox CI (#18100) @eps1lon
+- [test] Fix tests failing on subsequent runs in watchmode (#18076) @eps1lon
+- [test] Fix tests polluting DOM (#18163) @eps1lon
+- [core] Batch small changes (#18041) @oliviertassinari
+- [core] Batch small changes (#18155) @oliviertassinari
+
 ## 4.5.2
 ###### *Oct 28, 2019*
 
