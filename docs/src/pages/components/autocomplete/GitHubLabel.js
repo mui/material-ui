@@ -1,6 +1,5 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useTheme, fade, makeStyles } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -9,23 +8,6 @@ import DoneIcon from '@material-ui/icons/Done';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import InputBase from '@material-ui/core/InputBase';
-
-function Popup(props) {
-  const { popperRef, anchorEl, open, ...other } = props;
-  return <div {...other} />;
-}
-
-Popup.propTypes = {
-  anchorEl: PropTypes.object,
-  open: PropTypes.bool.isRequired,
-  popperRef: PropTypes.oneOfType([
-    PropTypes.oneOf([null]),
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.any.isRequired,
-    }),
-  ]).isRequired,
-};
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -201,7 +183,7 @@ export default function GitHubLabel() {
             setPendingValue(newValue);
           }}
           disableCloseOnSelect
-          PopupComponent={Popup}
+          disablePortal
           renderTags={() => null}
           noOptionsText="No labels"
           renderOption={(option, { selected }) => (

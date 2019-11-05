@@ -658,7 +658,7 @@ export default function useAutocomplete(props) {
   }
 
   return {
-    getRootProps: () => ({
+    getComboboxProps: () => ({
       'aria-owns': popupOpen ? `${id}-popup` : null,
       role: 'combobox',
       'aria-expanded': popupOpen,
@@ -701,9 +701,6 @@ export default function useAutocomplete(props) {
     }),
     getTagProps: () => ({
       onDelete: handleTagDelete,
-    }),
-    getPopupProps: () => ({
-      role: 'presentation',
     }),
     getListboxProps: () => ({
       role: 'listbox',

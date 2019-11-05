@@ -73,9 +73,13 @@ export const styles = theme => ({
   popupIndicatorOpen: {
     transform: 'rotate(180deg)',
   },
-  /* Styles applied to the popup element. */
-  popup: {
+  /* Styles applied to the popper element. */
+  popper: {
     zIndex: theme.zIndex.modal,
+  },
+  /* Styles applied to the popper element if `disablePortal={true}`. */
+  popperDisablePortal: {
+    position: 'absolute',
   },
   /* Styles applied to the `Paper` component. */
   paper: {
@@ -145,6 +149,12 @@ export const styles = theme => ({
   },
 });
 
+function DisablePortal(props) {
+  // eslint-disable-next-line react/prop-types
+  const { popperRef, anchorEl, open, ...other } = props;
+  return <div {...other} />;
+}
+
 const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   /* eslint-disable no-unused-vars */
   const {
@@ -161,6 +171,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     disabled = false,
     disableListWrap = false,
     disableOpenOnFocus = false,
+    disablePortal = false,
     filterOptions,
     filterSelectedOptions = false,
     freeSolo = false,
@@ -180,7 +191,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     open,
     options = [],
     PaperComponent = Paper,
-    PopupComponent = Popper,
+    PopperComponent: PopperComponentProp = Popper,
     renderGroup: renderGroupProp,
     renderInput,
     renderOption: renderOptionProp,
@@ -196,15 +207,15 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
       popperRef.current.update();
     }
   });
+  const PopperComponent = disablePortal ? DisablePortal : PopperComponentProp;
 
   const {
-    getRootProps,
+    getComboboxProps,
     getInputProps,
     getInputLabelProps,
     getPopupIndicatorProps,
     getClearProps,
     getTagProps,
-    getPopupProps,
     getListboxProps,
     getOptionProps,
     value,
@@ -267,73 +278,76 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   };
 
   return (
-    <div
-      ref={ref}
-      className={clsx(
-        classes.root,
-        {
-          [classes.focused]: focused,
-        },
-        className,
-      )}
-      {...getRootProps()}
-      {...other}
-    >
-      {renderInput({
-        ref: setAnchorEl,
-        disabled,
-        InputLabelProps: getInputLabelProps(),
-        InputProps: {
-          className: classes.inputRoot,
-          startAdornment,
-          endAdornment: (
-            <React.Fragment>
-              {disableClearable || disabled ? null : (
-                <IconButton
-                  {...getClearProps()}
-                  title="Clear"
-                  className={clsx(classes.clearIndicator, {
-                    [classes.clearIndicatorDirty]: dirty,
-                  })}
-                >
-                  <CloseIcon fontSize="small" />
-                </IconButton>
-              )}
-
-              {freeSolo ? null : (
-                <IconButton
-                  {...getPopupIndicatorProps()}
-                  disabled={disabled}
-                  title={popupOpen ? 'Close popup' : 'Open popup'}
-                  className={clsx(classes.popupIndicator, {
-                    [classes.popupIndicatorOpen]: popupOpen,
-                  })}
-                >
-                  <ArrowDropDownIcon />
-                </IconButton>
-              )}
-            </React.Fragment>
-          ),
-        },
-        inputProps: {
-          className: clsx(classes.input, {
-            [classes.inputFocused]: focusedTag === -1,
-          }),
+    <React.Fragment>
+      <div
+        ref={ref}
+        className={clsx(
+          classes.root,
+          {
+            [classes.focused]: focused,
+          },
+          className,
+        )}
+        {...getComboboxProps()}
+        {...other}
+      >
+        {renderInput({
+          ref: setAnchorEl,
           disabled,
-          ...getInputProps(),
-        },
-      })}
+          InputLabelProps: getInputLabelProps(),
+          InputProps: {
+            className: classes.inputRoot,
+            startAdornment,
+            endAdornment: (
+              <React.Fragment>
+                {disableClearable || disabled ? null : (
+                  <IconButton
+                    {...getClearProps()}
+                    title="Clear"
+                    className={clsx(classes.clearIndicator, {
+                      [classes.clearIndicatorDirty]: dirty,
+                    })}
+                  >
+                    <CloseIcon fontSize="small" />
+                  </IconButton>
+                )}
 
+                {freeSolo ? null : (
+                  <IconButton
+                    {...getPopupIndicatorProps()}
+                    disabled={disabled}
+                    title={popupOpen ? 'Close popup' : 'Open popup'}
+                    className={clsx(classes.popupIndicator, {
+                      [classes.popupIndicatorOpen]: popupOpen,
+                    })}
+                  >
+                    <ArrowDropDownIcon />
+                  </IconButton>
+                )}
+              </React.Fragment>
+            ),
+          },
+          inputProps: {
+            className: clsx(classes.input, {
+              [classes.inputFocused]: focusedTag === -1,
+            }),
+            disabled,
+            ...getInputProps(),
+          },
+        })}
+      </div>
       {popupOpen && anchorEl ? (
-        <PopupComponent
-          className={classes.popup}
+        <PopperComponent
+          className={clsx(classes.popper, {
+            [classes.popperDisablePortal]: disablePortal,
+          })}
           style={{
             width: anchorEl ? anchorEl.clientWidth : null,
           }}
+          role="presentation"
           popperRef={popperRef}
           anchorEl={anchorEl}
           open
-          {...getPopupProps()}
         >
           <PaperComponent className={classes.paper}>
             {loading ? <div className={classes.loading}>{loadingText}</div> : null}
@@ -356,9 +370,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
               </ListboxComponent>
             ) : null}
           </PaperComponent>
-        </PopupComponent>
+        </PopperComponent>
       ) : null}
-    </div>
+    </React.Fragment>
   );
 });
 
@@ -426,6 +440,11 @@ Autocomplete.propTypes = {
    * If `true`, the popup won't open on input focus.
    */
   disableOpenOnFocus: PropTypes.bool,
+  /**
+   * Disable the portal behavior.
+   * The children stay within it's parent DOM hierarchy.
+   */
+  disablePortal: PropTypes.bool,
   /**
    * A filter function that determines the options that are eligible.
    *
@@ -522,9 +541,9 @@ Autocomplete.propTypes = {
    */
   PaperComponent: PropTypes.elementType,
   /**
-   * The component used to render the popup.
+   * The component used to position the popup.
    */
-  PopupComponent: PropTypes.elementType,
+  PopperComponent: PropTypes.elementType,
   /**
    * Render the group.
    *
@@ -555,7 +574,7 @@ Autocomplete.propTypes = {
    */
   renderTags: PropTypes.func,
   /**
-   * The input value.
+   * The value of the autocomplete.
    */
   value: PropTypes.any,
 };

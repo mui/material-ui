@@ -5,6 +5,9 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    root: {
+      position: 'relative',
+    },
     input: {
       width: 200,
     },
@@ -34,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function UseAutocomplete() {
   const classes = useStyles();
   const {
-    getRootProps,
+    getComboboxProps,
     getInputProps,
     getInputLabelProps,
     getListboxProps,
@@ -46,10 +49,12 @@ export default function UseAutocomplete() {
   });
 
   return (
-    <div {...getRootProps()}>
-      <label {...getInputLabelProps()}>useAutocomplete</label>
-      <br />
-      <input className={classes.input} {...getInputProps()} />
+    <div className={classes.root}>
+      <div {...getComboboxProps()}>
+        <label {...getInputLabelProps()}>useAutocomplete</label>
+        <br />
+        <input className={classes.input} {...getInputProps()} />
+      </div>
       {groupedOptions.length > 0 ? (
         <ul className={classes.listbox} {...getListboxProps()}>
           {groupedOptions.map((option, index) => (

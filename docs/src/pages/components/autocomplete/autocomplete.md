@@ -152,6 +152,13 @@ Search within 10,000 randomly generated options. The list is virtualized thanks 
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
+## Limitations
+
+### iOS VoiceOver
+
+VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well.
+You can work around the issue with the `disablePortal` prop.
+
 ## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
