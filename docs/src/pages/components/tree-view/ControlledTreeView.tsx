@@ -15,9 +15,9 @@ const useStyles = makeStyles({
 
 export default function ControlledTreeView() {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState([]);
+  const [expanded, setExpanded] = React.useState<string[]>([]);
 
-  const handleChange = (nodes, expand) => {
+  const handleChange = (nodes: string[], expand: boolean) => {
     if (expand) {
       setExpanded(old => [...old, ...nodes]);
     } else {
