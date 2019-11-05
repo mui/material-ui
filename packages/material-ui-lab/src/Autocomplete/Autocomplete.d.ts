@@ -113,6 +113,14 @@ export interface AutocompleteProps
    * @returns {ReactNode}
    */
   renderTags?: (value: any, getTagProps: GetTagProps) => React.ReactNode;
+  /**
+   * Titles to display when hovering the arrow or clear buttons.
+   */
+  titles?: {
+    openPopup: string;
+    closePopup: string;
+    clearPopup: string;
+  };
 }
 
 export type AutocompleteClassKey =

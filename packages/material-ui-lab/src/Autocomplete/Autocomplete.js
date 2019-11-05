@@ -200,6 +200,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     renderInput,
     renderOption: renderOptionProp,
     renderTags,
+    titles = {
+      openPopup: 'Open popup',
+      closePopup: 'Close popup',
+      clearPopup: 'Clear',
+    },
     value: valueProp,
     ...other
   } = props;
@@ -596,7 +601,19 @@ Autocomplete.propTypes = {
    */
   renderTags: PropTypes.func,
   /**
+<<<<<<< HEAD
    * The value of the autocomplete.
+=======
+   * Titles to display when hovering the arrow or clear buttons.
+   */
+  titles: PropTypes.shape({
+    clearPopup: PropTypes.string.isRequired,
+    closePopup: PropTypes.string.isRequired,
+    openPopup: PropTypes.string.isRequired,
+  }),
+  /**
+   * The input value.
+>>>>>>> Add new props to accept custom titles for Autocomplete buttons
    */
   value: PropTypes.any,
 };
