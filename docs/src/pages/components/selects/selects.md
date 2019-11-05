@@ -68,7 +68,7 @@ That `id` needs to match the `labelId` of the `Select` e.g.
 ```jsx
 <InputLabel id="label">Age</InputLabel>
 <Select labelId="label" id="select" value="20">
-  <MenuItem value="10">Twenty</MenuItem>
+  <MenuItem value="10">Ten</MenuItem>
   <MenuItem value="20">Twenty</MenuItem>
 </Select>
 ```
@@ -78,7 +78,7 @@ ids for you:
 
 ```jsx
 <TextField id="select" label="Age" value="20">
-  <MenuItem value="10">Twenty</MenuItem>
+  <MenuItem value="10">Ten</MenuItem>
   <MenuItem value="20">Twenty</MenuItem>
 </TextField>
 ```
