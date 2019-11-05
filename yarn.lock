@@ -2119,6 +2119,11 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.5.tgz#e19436e7f8e9b4601005d73673b6dc4784ffcc2f"
   integrity sha512-9fq4jZVhPNW8r+UYKnxF1e2HkDWOWKM5bC2/7c9wPV835I0aOrVbS/Hw/pWPk2uKrNXQqg9Z959Kz+IYDd5p3w==
 
+"@types/parse5@^5.0.2":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@types/parse5/-/parse5-5.0.2.tgz#a877a4658f8238c8266faef300ae41c84d72ec8a"
+  integrity sha512-BOl+6KDs4ItndUWUFchy3aEqGdHhw0BC4Uu+qoDonN/f0rbUnJbm71Ulj8Tt9jLFRaAxPLKvdS1bBLfx1qXR9g==
+
 "@types/parsimmon@^1.3.0":
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/@types/parsimmon/-/parsimmon-1.10.0.tgz#ffb81cb023ff435a41d4710a29ab23c561dc9fdf"
@@ -2133,6 +2138,11 @@
   version "20.0.1"
   resolved "https://registry.yarnpkg.com/@types/pretty-format/-/pretty-format-20.0.1.tgz#7ce03b403887b087701a2b4534464f48ce7b2f48"
   integrity sha512-Oh7wnvVUCtVIWnCHQWe9qDZKn0fGyk5AMq99jXml0x39K59P+z9qe31CNRtop9TceCpS7NmoK+J9eGeCnyFgnw==
+
+"@types/prismjs@^1.16.0":
+  version "1.16.0"
+  resolved "https://registry.yarnpkg.com/@types/prismjs/-/prismjs-1.16.0.tgz#4328c9f65698e59f4feade8f4e5d928c748fd643"
+  integrity sha512-mEyuziLrfDCQ4juQP1k706BUU/c8OGn/ZFl69AXXY6dStHClKX4P+N8+rhqpul1vRDA2VOygzMRSJJZHyDEOfw==
 
 "@types/prop-types@*":
   version "15.7.1"
@@ -10528,10 +10538,14 @@ node-releases@^1.1.38:
   dependencies:
     semver "^6.3.0"
 
-nodemod@^1.5.19:
-  version "1.5.19"
-  resolved "https://registry.yarnpkg.com/nodemod/-/nodemod-1.5.19.tgz#eb9a1866bb7250ea3f804e7715661aa7559800e1"
-  integrity sha1-65oYZrtyUOo/gE53FWYap1WYAOE=
+nodemod@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/nodemod/-/nodemod-2.1.4.tgz#ed8b998291dbee5d243f4caa78d31e3213990a6d"
+  integrity sha512-eHOckVGZczhUsl+6tbnPCrYrgfdBX1Fs9kVdZtkqErjJPqE1UDwfE0dQmUab6q+yKdMOMHpsGyIgSHWOfvbjgw==
+  dependencies:
+    "@types/parse5" "^5.0.2"
+    "@types/prismjs" "^1.16.0"
+    tslib "^1.10.0"
 
 nomnom@^1.5.x:
   version "1.8.1"
@@ -14628,7 +14642,7 @@ ts-node@^8.3.0:
     source-map-support "^0.5.6"
     yn "^3.0.0"
 
-tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
+tslib@^1.10.0, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
   integrity sha512-qOebF53frne81cf0S9B41ByenJ3/IuH8yJKngAX35CmiZySA0khhkovshKK+jGCaMnVomla7gVlIcc3EvKPbTQ==
