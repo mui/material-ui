@@ -574,7 +574,7 @@ export default function useAutocomplete(props) {
     if (autoSelect && selectedIndexRef.current !== -1) {
       handleValue(event, filteredOptions[selectedIndexRef.current]);
     } else if (!freeSolo) {
-      resetInputValue(value);
+      resetInputValue('');
     }
 
     handleClose(event);
