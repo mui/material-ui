@@ -33,6 +33,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">defaultValue</span> | <span class="prop-type">any</span> |  | The default input value. Use when the component is not controlled. |
 | <span class="prop-name">disableClearable</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the input can't be cleared. |
 | <span class="prop-name">disableCloseOnSelect</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the popup won't close when a value is selected. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the input will be disabled. |
 | <span class="prop-name">disableListWrap</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list box in the popup will not wrap focus. |
 | <span class="prop-name">disableOpenOnFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the popup won't open on input focus. |
 | <span class="prop-name">filterOptions</span> | <span class="prop-type">func</span> |  | A filter function that determines the options that are eligible.<br><br>**Signature:**<br>`function(options: undefined, state: object) => undefined`<br>*options:* The options to render.<br>*state:* The state of the component. |

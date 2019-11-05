@@ -369,6 +369,41 @@ describe('<Autocomplete />', () => {
         );
       });
     });
+
+    describe('prop: disabled', () => {
+      it('should disable the input', () => {
+        const { container } = render(
+          <Autocomplete
+            disabled
+            options={['one', 'two', 'three']}
+            renderInput={params => <TextField {...params} />}
+          />,
+        );
+        expect(container.querySelector('input').disabled).to.be.true;
+      });
+
+      it('should disable the popup button', () => {
+        const { queryByTitle } = render(
+          <Autocomplete
+            disabled
+            options={['one', 'two', 'three']}
+            renderInput={params => <TextField {...params} />}
+          />,
+        );
+        expect(queryByTitle('Open popup').disabled).to.be.true;
+      });
+
+      it('should not render the clear button', () => {
+        const { queryByTitle } = render(
+          <Autocomplete
+            disabled
+            options={['one', 'two', 'three']}
+            renderInput={params => <TextField {...params} />}
+          />,
+        );
+        expect(queryByTitle('Clear')).to.be.null;
+      });
+    });
   });
 
   describe('warnings', () => {

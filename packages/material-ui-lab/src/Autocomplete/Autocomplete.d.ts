@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
-import { TextFieldProps } from '@material-ui/core/TextField';
 import { UseAutocompleteProps, CreateFilterOptions } from '../useAutocomplete';
 
 export interface PopupProps extends React.HTMLAttributes<HTMLElement> {
@@ -28,6 +27,7 @@ export interface RenderGroupParams {
 
 export interface RenderInputParams {
   ref: React.Ref<any>;
+  disabled: boolean;
   InputLabelProps: object;
   InputProps: {
     className: string;
@@ -44,6 +44,10 @@ export interface AutocompleteProps
       AutocompleteClassKey,
       'defaultValue' | 'onChange' | 'children'
     > {
+  /**
+   * If `true`, the input will be disabled.
+   */
+  disabled?: boolean;
   /**
    * The component used to render the listbox.
    */
@@ -97,10 +101,6 @@ export interface AutocompleteProps
    * @returns {ReactNode}
    */
   renderTags?: (value: any, state: RenderValueState) => React.ReactNode;
-  /**
-   * Props applied to the [`TextField`](/api/text-field/) element.
-   */
-  TextFieldProps?: TextFieldProps;
 }
 
 export type AutocompleteClassKey =
