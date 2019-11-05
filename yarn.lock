@@ -10385,11 +10385,6 @@ node-releases@^1.1.38:
   dependencies:
     semver "^6.3.0"
 
-nodemod@^1.5.19:
-  version "1.5.19"
-  resolved "https://registry.yarnpkg.com/nodemod/-/nodemod-1.5.19.tgz#eb9a1866bb7250ea3f804e7715661aa7559800e1"
-  integrity sha1-65oYZrtyUOo/gE53FWYap1WYAOE=
-
 nomnom@^1.5.x:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/nomnom/-/nomnom-1.8.1.tgz#2151f722472ba79e50a76fc125bb8c8f2e4dc2a7"
