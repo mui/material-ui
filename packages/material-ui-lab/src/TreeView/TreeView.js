@@ -54,6 +54,25 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const isTabable = id => tabable === id;
   const isFocused = id => focused === id;
 
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (isControlled !== (expandedProp != null)) {
+        console.error(
+          [
+            `Material-UI: A component is changing ${
+              isControlled ? 'a ' : 'an un'
+            }controlled Select to be ${isControlled ? 'un' : ''}controlled.`,
+            'Elements should not switch from uncontrolled to controlled (or vice versa).',
+            'Decide between using a controlled or uncontrolled Select ' +
+              'element for the lifetime of the component.',
+            'More info: https://fb.me/react-controlled-components',
+          ].join('\n'),
+        );
+      }
+    }, [expandedProp, isControlled]);
+  }
+
   const prevChildIds = React.useRef([]);
   React.useEffect(() => {
     const childIds = React.Children.map(children, child => child.props.nodeId) || [];
