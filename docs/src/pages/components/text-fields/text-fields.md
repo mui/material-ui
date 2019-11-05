@@ -94,6 +94,12 @@ The component takes care of the most used properties, then it's up to the user t
 
 {{"demo": "pages/components/text-fields/Inputs.js"}}
 
+## Color
+
+The `color` prop changes the highlight color of the text field.
+
+{{"demo": "pages/components/text-fields/ColorTextFields.js"}}
+
 ## Customized inputs
 
 Here are some examples of customizing the component. You can learn more about this in the
