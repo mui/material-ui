@@ -82,7 +82,7 @@
     "confusing-browser-globals": "^1.0.9",
     "cross-env": "^6.0.0",
     "danger": "^9.1.8",
-    "dtslint": "^0.9.3",
+    "dtslint": "^1.0.2",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint": "^5.9.0",

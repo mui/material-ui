@@ -5516,18 +5516,18 @@ define-property@^2.0.2:
     is-descriptor "^1.0.2"
     isobject "^3.0.1"
 
-definitelytyped-header-parser@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/definitelytyped-header-parser/-/definitelytyped-header-parser-1.2.0.tgz#f21374b8a18fabcd3ba4b008a0bcbc9db2b7b4c4"
-  integrity sha512-xpg8uu/2YD/reaVsZV4oJ4g7UDYFqQGWvT1W9Tsj6q4VtWBSaig38Qgah0ZMnQGF9kAsAim08EXDO1nSi0+Nog==
+definitelytyped-header-parser@3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/definitelytyped-header-parser/-/definitelytyped-header-parser-3.7.2.tgz#a5b2ec9521762910e870477b01ce9feca06d9fb7"
+  integrity sha512-nlkiv+QLlRSc3C3qAbusWPaBiyPLldwRFnrxvoxjdZHvHbIh2+U09qdmzzWV35Rs/I3MMhcoWRcVUi3M1G935Q==
   dependencies:
     "@types/parsimmon" "^1.3.0"
     parsimmon "^1.2.0"
 
-definitelytyped-header-parser@^3.7.2:
-  version "3.7.2"
-  resolved "https://registry.yarnpkg.com/definitelytyped-header-parser/-/definitelytyped-header-parser-3.7.2.tgz#a5b2ec9521762910e870477b01ce9feca06d9fb7"
-  integrity sha512-nlkiv+QLlRSc3C3qAbusWPaBiyPLldwRFnrxvoxjdZHvHbIh2+U09qdmzzWV35Rs/I3MMhcoWRcVUi3M1G935Q==
+definitelytyped-header-parser@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/definitelytyped-header-parser/-/definitelytyped-header-parser-1.2.0.tgz#f21374b8a18fabcd3ba4b008a0bcbc9db2b7b4c4"
+  integrity sha512-xpg8uu/2YD/reaVsZV4oJ4g7UDYFqQGWvT1W9Tsj6q4VtWBSaig38Qgah0ZMnQGF9kAsAim08EXDO1nSi0+Nog==
   dependencies:
     "@types/parsimmon" "^1.3.0"
     parsimmon "^1.2.0"
@@ -5820,12 +5820,12 @@ dts-critic@^2.2.0:
     semver "^6.2.0"
     yargs "^12.0.5"
 
-dtslint@^0.9.3:
-  version "0.9.9"
-  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-0.9.9.tgz#27e861da27520758b3ab07e61c5db5b6b05fba95"
-  integrity sha512-rSeyOPBcLRsMR7MXSVTU4SIgPQdBGDLjiivTlxOzPFUYUsOTYWBkJ69pxtZU4M0j6eaCJMC3MnEKfr9fqYASTQ==
+dtslint@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-1.0.2.tgz#45757e071fd7ad1118fcc650bc068ad997aeff8b"
+  integrity sha512-DumNrKbecCJuLgbkCMT2GOBf9GSpArcv+Mbd/xzdj5muSHQOpruudeVVEBo0r6veHxrg3g3jCAA2EqnhH1MybQ==
   dependencies:
-    definitelytyped-header-parser "^3.7.2"
+    definitelytyped-header-parser "3.7.2"
     dts-critic "^2.2.0"
     fs-extra "^6.0.1"
     request "^2.88.0"
