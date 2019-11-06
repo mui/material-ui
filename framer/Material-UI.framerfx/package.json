@@ -1,6 +1,5 @@
 {
 	"name": "@framer/material-ui.material-ui",
-	"private": true,
 	"author": "Material-UI Team",
 	"version": "1.0.0",
 	"description": "Material-UI Framer components",
@@ -26,7 +25,7 @@
 		"react": "^16.8.0"
 	},
 	"framer": {
-		"id": "1821e3d7-3ea8-4b8e-a33b-1d5296b3c6c7",
-		"displayName": "Material-UI"
+		"displayName": "Material-UI",
+		"id": "782bb5b9-336e-4307-af36-8a9b1420594c"
 	}
 }
