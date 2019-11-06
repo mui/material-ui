@@ -7,7 +7,7 @@ import CollapseIcon from '@material-ui/icons/ChevronRight';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
 import clsx from 'clsx';
-import { withStyles, createMuiTheme } from '@material-ui/core/styles';
+import { makeStyles, withStyles, createMuiTheme, lighten } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
@@ -77,6 +77,19 @@ function ObjectEntryLabel({ objectKey, objectValue }) {
 }
 ObjectEntryLabel.propTypes = { objectKey: PropTypes.any, objectValue: PropTypes.any };
 
+const useObjectEntryStyles = makeStyles({
+  treeItem: {
+    '&:focus > $treeItemContent': {
+      backgroundColor: lighten('#333', 0.3),
+    },
+  },
+  treeItemContent: {
+    '&:hover': {
+      backgroundColor: lighten('#333', 0.1),
+    },
+  },
+});
+
 function ObjectEntry(props) {
   const { nodeId, objectKey, objectValue } = props;
 
@@ -102,8 +115,11 @@ function ObjectEntry(props) {
           });
   }
 
+  const classes = useObjectEntryStyles();
+
   return (
     <TreeItem
+      classes={{ root: classes.treeItem, content: classes.treeItemContent }}
       nodeId={nodeId}
       label={<ObjectEntryLabel objectKey={objectKey} objectValue={objectValue} />}
     >
