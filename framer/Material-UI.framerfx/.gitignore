@@ -6,3 +6,4 @@ yarn-error.log
 .yarnrc
 .framer-lock
 canvas.tsx
+dist

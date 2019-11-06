@@ -3714,6 +3714,7 @@
               "min" : 0,
               "orientation" : "horizontal",
               "step" : 1,
+              "track" : "normal",
               "valueLabelDisplay" : "off"
             },
             "codeOverrideEnabled" : false,
@@ -5276,7 +5277,7 @@
           "icon1" : "share",
           "icon2" : "more_vert",
           "imageFile" : "",
-          "imageUrl" : "https:\/\/picsum.photos\/200\/300",
+          "imageUrl" : "https:\/\/source.unsplash.com\/random\/320x180?www",
           "subtitle" : "by Laura Philips",
           "title" : "Material Improvement"
         },
@@ -5839,8 +5840,9 @@
               "max" : 100,
               "min" : 0,
               "orientation" : "horizontal",
-              "step" : 0,
-              "valueLabelDisplay" : "auto"
+              "step" : 1,
+              "track" : "normal",
+              "valueLabelDisplay" : "off"
             },
             "codeOverrideEnabled" : false,
             "constraintsLocked" : false,
@@ -5858,7 +5860,7 @@
             "fillType" : "color",
             "height" : 24,
             "heightType" : 0,
-            "id" : "VChcSqrlC",
+            "id" : "ddt2Dw_RN",
             "intrinsicHeight" : 24,
             "intrinsicWidth" : 160,
             "left" : null,

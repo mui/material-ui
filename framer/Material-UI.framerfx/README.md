@@ -15,11 +15,11 @@ The following components are currently supported:
 - Chip
 - Circular progress
 - Floating action button (Fab)
-- Icon (all 1100+ Material Icons in 5 variants)
-- Icon button
+- Icon (all 1100+ Material Icons in 5 themes, plus social icons)
+- Icon button (with optional badge)
 - Linear progress
 - List
-- List item (with some layout issues)
+- List item
 - Media card
 - Paper
 - Radio
@@ -37,14 +37,14 @@ The following components are currently supported:
 ### Icons
 
 Icons can be specified using either snake_case (as documented on material.io),
-or PascalCase, as [documented in the Material-UI documentation](https://material-ui.com/components/material-icons/).
+or PascalCase, as used in [the Material-UI documentation](https://material-ui.com/components/material-icons/).
 Simply type the icon name in the appropriate property control.
 
 The icon theme can be chosen from the related select field.
 
 ### Children
 
-Where a component accepts a variety of children (such as Avatar) these can be configured through Framer property controls.
+Where a component (such as Avatar) accepts a variety of child types, these can be configured through Framer property controls.
 If multiple options are supplied, they take the following priority:
 
 - Local image

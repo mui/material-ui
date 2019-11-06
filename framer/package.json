@@ -1,7 +1,7 @@
 {
   "name": "framer",
   "version": "1.0.0",
-  "description": "Material-UI for Framer X",
+  "description": "Builds Material-UI for Framer X",
   "main": "index.js",
   "repository": "https://github.com/mui-org/material-ui",
   "author": "Material-UI Team",

@@ -11,11 +11,11 @@ import { findComponents } from 'docs/src/modules/utils/find';
 import { componentSettings, ignoredControls } from './framerConfig';
 import additionalProps from './additionalProps';
 
-const DEBUG = true;
+// const DEBUG = true;
 
 // Component(s) to update
 // Use Empty array for all, or one or more components selectively. `['Button', 'CircularProgress']`
-const COMPONENTS = ['ThemeProvider'];
+const COMPONENTS = [];
 
 // Read the command-line args
 const args = process.argv;
