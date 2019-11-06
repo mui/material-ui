@@ -1,0 +1,42 @@
+---
+description: Here are the most significant improvements in October.
+---
+
+# October 2019 Update
+
+**Olivier Tassinari**
+
+*November 6, 2019*
+
+Here are the most significant improvements in October:
+
+- 🔍 We have introduced a new autocomplete, combo box, and multi-select components [in the lab](/components/autocomplete/).
+
+  ![combobox](/static/blog/september-2019-update/combobox.png)
+
+  <p class="blog-description">Combo box (limited options)</p>
+
+- 📚 We have changed the demos to automatically inline a small preview when possible.
+
+  ![combobox](/static/blog/october-2019-update/preview.png)
+
+- ♿️ We have fixed 9 accessibility issues ([#18141](https://github.com/mui-org/material-ui/pull/18141), [#18142](https://github.com/mui-org/material-ui/pull/18142), [#17972](https://github.com/mui-org/material-ui/pull/17972), [#18146](https://github.com/mui-org/material-ui/pull/18146), [#17939](https://github.com/mui-org/material-ui/pull/17939), [#17892](https://github.com/mui-org/material-ui/pull/17892), [#17897](https://github.com/mui-org/material-ui/pull/17897), [#17870](https://github.com/mui-org/material-ui/pull/17870), [#18204](https://github.com/mui-org/material-ui/pull/18204)).
+
+- 📦 We have introduced [codesandbox-ci](https://ci.codesandbox.io/status/mui-org/material-ui/pr/18238). It can be useful when you want to live on the edge. For instance, you might want to rely on an unreleased commit that contains a bug fix.
+
+But this summary is just scratching the surface. We have accepted 182 commits from 68 different contributors. We have changed 1,157 files with 31,312 additions and 9,771 deletions.
+
+## Our roadmap intent for November
+
+*(We'll do our best, no guarantee!)*
+
+- 📅 We will start to work on a [major upgrade](https://github.com/mui-org/material-ui-pickers/issues/1293) of the date/time picker components.
+
+- 🧮 We will start to work on a data table component. The core will be be open-source. The advanced features of the data grid will be behind an enterprise subscription ⭐️.
+This is an effort [of our roadmap](/discover-more/roadmap/) to better answer enterprise needs.
+
+- ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
+
+<hr />
+
+Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development helped by the support of these awesome [backers](/discover-more/backers/). Please join them ✨.
