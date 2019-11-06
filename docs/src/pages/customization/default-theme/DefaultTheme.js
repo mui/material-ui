@@ -77,7 +77,7 @@ const useTreeLabelStyles = makeStyles(theme => {
   };
 });
 
-function TreeLabel({ objectKey, objectValue }) {
+function ObjectEntryLabel({ objectKey, objectValue }) {
   const type = useType(objectValue);
   const label = useLabel(objectValue, type);
   const classes = useTreeLabelStyles();
@@ -89,9 +89,9 @@ function TreeLabel({ objectKey, objectValue }) {
     </React.Fragment>
   );
 }
-TreeLabel.propTypes = { objectKey: PropTypes.any, objectValue: PropTypes.any };
+ObjectEntryLabel.propTypes = { objectKey: PropTypes.any, objectValue: PropTypes.any };
 
-function ObjectTreeItem(props) {
+function ObjectEntry(props) {
   const { nodeId, objectKey, objectValue } = props;
 
   const keyPrefix = nodeId;
@@ -106,7 +106,7 @@ function ObjectTreeItem(props) {
         ? undefined
         : Object.keys(objectValue).map(key => {
             return (
-              <ObjectTreeItem
+              <ObjectEntry
                 key={key}
                 nodeId={`${keyPrefix}.${key}`}
                 objectKey={key}
@@ -117,12 +117,15 @@ function ObjectTreeItem(props) {
   }
 
   return (
-    <TreeItem nodeId={nodeId} label={<TreeLabel objectKey={objectKey} objectValue={objectValue} />}>
+    <TreeItem
+      nodeId={nodeId}
+      label={<ObjectEntryLabel objectKey={objectKey} objectValue={objectValue} />}
+    >
       {children}
     </TreeItem>
   );
 }
-ObjectTreeItem.propTypes = {
+ObjectEntry.propTypes = {
   nodeId: PropTypes.string.isRequired,
   objectKey: PropTypes.any.isRequired,
   objectValue: PropTypes.any,
@@ -149,7 +152,7 @@ function Inspector(props) {
     >
       {Object.keys(data).map(key => {
         return (
-          <ObjectTreeItem
+          <ObjectEntry
             key={key}
             nodeId={`${keyPrefix}.${key}`}
             objectKey={key}
