@@ -33,7 +33,7 @@ But this summary is just scratching the surface. We have accepted 182 commits fr
 - 📅 We will start to work on a [major upgrade](https://github.com/mui-org/material-ui-pickers/issues/1293) of the date/time picker components.
 
 - 🧮 We will start to work on a data table component. The core will be be open-source. The advanced features of the data grid will be behind an enterprise subscription ⭐️.
-This is an effort [of our roadmap](/discover-more/roadmap/) to better answer enterprise needs.
+This is an effort [of our roadmap](/discover-more/roadmap/) to better answer enterprise needs. To get a rough idea of what's coming, you can read: https://uxdesign.cc/design-better-data-tables-4ecc99d23356.
 
 - ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
 
