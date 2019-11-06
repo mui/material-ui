@@ -527,7 +527,7 @@ export default function useAutocomplete(props) {
         handleFocusTag(event, 'next');
         break;
       case 'Enter':
-        if (highlightedIndexRef.current !== -1) {
+        if (highlightedIndexRef.current !== -1 && popupOpen) {
           // We don't want to validate the form.
           event.preventDefault();
           selectNewValue(event, filteredOptions[highlightedIndexRef.current]);
