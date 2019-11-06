@@ -1,74 +1,173 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
-import Chip from '@material-ui/core/Chip';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import useAutocomplete from '@material-ui/lab/useAutocomplete';
+import CheckIcon from '@material-ui/icons/Check';
+import CloseIcon from '@material-ui/icons/Close';
+import styled from 'styled-components';
 
-export default function Tags() {
+const Label = styled('label')`
+  padding: 0 0 4px;
+  line-height: 1.5;
+  display: block;
+`;
+
+const InputWrapper = styled('div')`
+  width: 300px;
+  border: 1px solid #d9d9d9;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 1px;
+  display: flex;
+  flex-wrap: wrap;
+
+  &:hover {
+    border-color: #40a9ff;
+  }
+
+  &.focused {
+    border-color: #40a9ff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  }
+
+  & input {
+    font-size: 14px;
+    line-height: 26px;
+    padding: 2px 6px;
+    flex-grow: 1;
+    border: 0;
+    outline: 0;
+  }
+`;
+
+const Tag = styled(({ label, onDelete, ...props }) => (
+  <div {...props}>
+    <span>{label}</span>
+    <CloseIcon onClick={onDelete} />
+  </div>
+))`
+  display: flex;
+  align-items: center;
+  height: 24px;
+  margin: 2px;
+  line-height: 22px;
+  background-color: #fafafa;
+  border: 1px solid #e8e8e8;
+  border-radius: 2px;
+  box-sizing: content-box;
+  padding: 0 4px 0 10px;
+  outline: 0;
+  overflow: hidden;
+
+  &:focus {
+    border-color: #40a9ff;
+    background-color: #e6f7ff;
+  }
+
+  & span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  & svg {
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px;
+  }
+`;
+
+const Listbox = styled('ul')`
+  width: 300px;
+  margin: 0;
+  margin-top: 2px;
+  padding: 0;
+  position: absolute;
+  list-style: none;
+  background-color: #fff;
+  overflow: auto;
+  max-height: 250px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1;
+
+  & li {
+    padding: 5px 12px;
+    display: flex;
+
+    & span {
+      flex-grow: 1;
+    }
+
+    & svg {
+      color: transparent;
+    }
+  }
+
+  & li[aria-selected='true'] {
+    background-color: #fafafa;
+    font-weight: 600;
+
+    & svg {
+      color: #1890ff;
+    }
+  }
+
+  & li[data-focus='true'] {
+    background-color: #e6f7ff;
+    cursor: pointer;
+
+    & svg {
+      color: #000;
+    }
+  }
+`;
+
+export default function CustomizedHook() {
+  const {
+    getComboboxProps,
+    getInputLabelProps,
+    getInputProps,
+    getTagProps,
+    getListboxProps,
+    getOptionProps,
+    groupedOptions,
+    value,
+    focused,
+    setAnchorEl,
+  } = useAutocomplete({
+    multiple: true,
+    options: top100Films,
+    getOptionLabel: option => option.title,
+  });
+
   return (
-    <div style={{ width: 500 }}>
-      <Autocomplete
-        multiple
-        options={top100Films}
-        getOptionLabel={option => option.title}
-        defaultValue={[top100Films[13]]}
-        renderInput={params => (
-          <TextField
-            {...params}
-            variant="standard"
-            label="Multiple values"
-            placeholder="Favorites"
-            margin="normal"
-            fullWidth
-          />
-        )}
-      />
-      <Autocomplete
-        multiple
-        options={top100Films}
-        getOptionLabel={option => option.title}
-        defaultValue={[top100Films[13]]}
-        filterSelectedOptions
-        renderInput={params => (
-          <TextField
-            {...params}
-            variant="outlined"
-            label="filterSelectedOptions"
-            placeholder="Favorites"
-            margin="normal"
-            fullWidth
-          />
-        )}
-      />
-      <Autocomplete
-        multiple
-        options={top100Films.map(option => option.title)}
-        defaultValue={[top100Films[13].title]}
-        freeSolo
-        renderTags={(value, { className, onDelete }) =>
-          value.map((option, index) => (
-            <Chip
+    <div>
+      <div {...getComboboxProps()}>
+        <Label {...getInputLabelProps()}>Customized hook</Label>
+        <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
+          {value.map((option, index) => (
+            <Tag
               key={index}
-              variant="outlined"
               data-tag-index={index}
               tabIndex={-1}
-              label={option}
-              className={className}
-              onDelete={onDelete}
+              label={option.title}
+              {...getTagProps()}
             />
-          ))
-        }
-        renderInput={params => (
-          <TextField
-            {...params}
-            variant="filled"
-            label="freeSolo"
-            placeholder="Favorites"
-            margin="normal"
-            fullWidth
-          />
-        )}
-      />
+          ))}
+
+          <input {...getInputProps()} />
+        </InputWrapper>
+      </div>
+      {groupedOptions.length > 0 ? (
+        <Listbox {...getListboxProps()}>
+          {groupedOptions.map((option, index) => (
+            <li {...getOptionProps({ option, index })}>
+              <span>{option.title}</span>
+              <CheckIcon fontSize="small" />
+            </li>
+          ))}
+        </Listbox>
+      ) : null}
     </div>
   );
 }
