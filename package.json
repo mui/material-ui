@@ -115,7 +115,7 @@
     "prettier": "1.17.0",
     "pretty-bytes": "^5.3.0",
     "prop-types": "^15.7.2",
-    "puppeteer": "^1.20.0",
+    "puppeteer": "^2.0.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "rimraf": "^3.0.0",
