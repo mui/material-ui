@@ -24,10 +24,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@emotion/core": "^10.0.17",
-    "@emotion/styled": "^10.0.17",
+    "@emotion/core": "^10.0.22",
+    "@emotion/styled": "^10.0.23",
     "benchmark": "^2.1.4",
-    "emotion": "^10.0.17",
+    "emotion": "^10.0.23",
     "emotion-server": "^10.0.17",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
