@@ -5,12 +5,13 @@ import TextField from '@material-ui/core/TextField';
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
+    '& > *': {
+      width: 200,
+      marginTop: theme.spacing(2),
+    },
+    '& > * + *': {
+      marginLeft: theme.spacing(2),
+    },
   },
 }));
 
@@ -19,35 +20,19 @@ export default function ColorTextField() {
 
   return (
     <form className={classes.container} noValidate autoComplete="off">
-      <div>
-        <TextField
-          id="standard-basic"
-          className={classes.textField}
-          label="Standard secondary"
-          margin="normal"
-          color="secondary"
-        />
-      </div>
-      <div>
-        <TextField
-          id="filled-basic"
-          className={classes.textField}
-          label="Filled secondary"
-          margin="normal"
-          variant="filled"
-          color="secondary"
-        />
-      </div>
-      <div>
-        <TextField
-          id="outlined-basic"
-          className={classes.textField}
-          label="Outlined secondary"
-          margin="normal"
-          variant="outlined"
-          color="secondary"
-        />
-      </div>
+      <TextField id="standard-secondary" label="Standard secondary" color="secondary" />
+      <TextField
+        id="filled-secondary"
+        label="Filled secondary"
+        variant="filled"
+        color="secondary"
+      />
+      <TextField
+        id="outlined-secondary"
+        label="Outlined secondary"
+        variant="outlined"
+        color="secondary"
+      />
     </form>
   );
 }
