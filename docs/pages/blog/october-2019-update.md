@@ -10,7 +10,7 @@ description: Here are the most significant improvements in October.
 
 Here are the most significant improvements in October:
 
-- 🔍 We have introduced a new autocomplete, combo box, and multi-select components [in the lab](/components/autocomplete/).
+- 🔍 We have introduced a new autocomplete / combo box / multi-select component [in the lab](/components/autocomplete/).
 
   ![combobox](/static/blog/september-2019-update/combobox.png)
 
