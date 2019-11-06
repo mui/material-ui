@@ -145,7 +145,7 @@ export interface UseAutocompleteProps {
    */
   options?: any[];
   /**
-   * The input value.
+   * The value of the autocomplete.
    */
   value?: any;
 }
@@ -153,13 +153,12 @@ export interface UseAutocompleteProps {
 export default function useAutocomplete(
   props: UseAutocompleteProps,
 ): {
-  getRootProps: () => {};
+  getComboboxProps: () => {};
   getInputProps: () => {};
   getInputLabelProps: () => {};
   getClearProps: () => {};
   getPopupIndicatorProps: () => {};
   getTagProps: () => {};
-  getPopupProps: () => {};
   getListboxProps: () => {};
   getOptionProps: ({ option, index }: { option: any; index: number }) => {};
   id: string;

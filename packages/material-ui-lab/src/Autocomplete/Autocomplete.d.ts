@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 import { UseAutocompleteProps, CreateFilterOptions } from '../useAutocomplete';
 
-export interface PopupProps extends React.HTMLAttributes<HTMLElement> {
+export interface PopperProps extends React.HTMLAttributes<HTMLElement> {
   anchorEl?: HTMLElement;
   open: boolean;
   popperRef: React.Ref<unknown>;
@@ -49,6 +49,11 @@ export interface AutocompleteProps
    */
   disabled?: boolean;
   /**
+   * Disable the portal behavior.
+   * The children stay within it's parent DOM hierarchy.
+   */
+  disablePortal?: boolean;
+  /**
    * The component used to render the listbox.
    */
   ListboxComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
@@ -69,9 +74,9 @@ export interface AutocompleteProps
    */
   PaperComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
   /**
-   * The component used to render the popup.
+   * The component used to position the popup.
    */
-  PopupComponent?: React.ComponentType<PopupProps>;
+  PopperComponent?: React.ComponentType<PopperProps>;
   /**
    * Render the group.
    *

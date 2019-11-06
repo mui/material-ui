@@ -5,14 +5,9 @@ import Popper from '@material-ui/core/Popper';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CloseIcon from '@material-ui/icons/Close';
 import DoneIcon from '@material-ui/icons/Done';
-import Autocomplete, { PopupProps } from '@material-ui/lab/Autocomplete';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import InputBase from '@material-ui/core/InputBase';
-
-function Popup(props: PopupProps) {
-  const { popperRef, anchorEl, open, ...other } = props;
-  return <div {...other} />;
-}
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -190,7 +185,7 @@ export default function GitHubLabel() {
             setPendingValue(newValue);
           }}
           disableCloseOnSelect
-          PopupComponent={Popup}
+          disablePortal
           renderTags={() => null}
           noOptionsText="No labels"
           renderOption={(option: LabelType, { selected }) => (

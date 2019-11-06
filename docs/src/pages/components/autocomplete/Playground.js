@@ -105,6 +105,13 @@ export default function Playground() {
         disabled
         renderInput={params => <TextField {...params} label="disabled" margin="normal" fullWidth />}
       />
+      <Autocomplete
+        {...defaultProps}
+        disablePortal
+        renderInput={params => (
+          <TextField {...params} label="disablePortal" margin="normal" fullWidth />
+        )}
+      />
     </div>
   );
 }
