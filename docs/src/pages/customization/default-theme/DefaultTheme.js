@@ -140,23 +140,23 @@ function Inspector(props) {
       ? expandPaths.map(expandPath => `${keyPrefix}.${expandPath}`)
       : [];
   }, [keyPrefix, expandPaths]);
+  // for default*  to take effect we need to remount
+  const key = React.useMemo(() => defaultExpanded.join(''), [defaultExpanded]);
 
   return (
     <TreeView
-      /* expandPaths are only set on the client so we need to remount */
-      /* we need "semantic equality" here since the array is returned from useMemo which does not have semantic guarantees */
-      key={defaultExpanded.join('')}
+      key={key}
       defaultCollapseIcon={<ExpandIcon />}
       defaultExpanded={defaultExpanded}
       defaultExpandIcon={<CollapseIcon />}
     >
-      {Object.keys(data).map(key => {
+      {Object.keys(data).map(objectKey => {
         return (
           <ObjectEntry
-            key={key}
-            nodeId={`${keyPrefix}.${key}`}
-            objectKey={key}
-            objectValue={data[key]}
+            key={objectKey}
+            nodeId={`${keyPrefix}.${objectKey}`}
+            objectKey={objectKey}
+            objectValue={data[objectKey]}
           />
         );
       })}
@@ -166,7 +166,6 @@ function Inspector(props) {
 
 Inspector.propTypes = {
   data: PropTypes.any,
-  /* expandLevel: PropTypes.number, */
   expandPaths: PropTypes.arrayOf(PropTypes.string),
 };
 
@@ -184,9 +183,32 @@ const styles = theme => ({
   },
 });
 
+function computeNodeIds(object, prefix) {
+  if ((object !== null && typeof object === 'object') || typeof object === 'function') {
+    const ids = [];
+    Object.keys(object).forEach(key => {
+      ids.push(`${prefix}${key}`, ...computeNodeIds(object[key], `${prefix}${key}.`));
+    });
+
+    return ids;
+  }
+  return [];
+}
+
+function useNodeIdsLazy(object) {
+  const [allNodeIds, setAllNodeIds] = React.useState([]);
+  // technically we want to compute them lazily until we need them (expand all)
+  // yielding is good enough. technically we want to schedule the computation
+  // with low pri  and upgrade the priority later
+  React.useEffect(() => {
+    setAllNodeIds(computeNodeIds(object, ''));
+  }, [object]);
+
+  return allNodeIds;
+}
+
 function DefaultTheme(props) {
   const { classes } = props;
-  const docsTheme = useTheme();
   const [checked, setChecked] = React.useState(false);
   const [expandPaths, setExpandPaths] = React.useState(null);
   const t = useSelector(state => state.options.t);
@@ -208,12 +230,17 @@ function DefaultTheme(props) {
     );
   }, []);
 
-  const theme = createMuiTheme({
-    palette: {
-      type: docsTheme.palette.type,
-    },
-    direction: docsTheme.direction,
-  });
+  const theme = useTheme();
+  const data = React.useMemo(createMuiTheme, []);
+
+  const allNodeIds = useNodeIdsLazy(data);
+  React.useDebugValue(allNodeIds);
+  React.useEffect(() => {
+    if (checked) {
+      // in case during the event handler allNodeIds wasn't computed yet
+      setExpandPaths(allNodeIds);
+    }
+  }, [checked, allNodeIds]);
 
   return (
     <div className={classes.root}>
@@ -222,8 +249,13 @@ function DefaultTheme(props) {
         control={
           <Switch
             checked={checked}
-            onChange={(event, value) => {
-              setChecked(value);
+            onChange={(event, newChecked) => {
+              setChecked(newChecked);
+              if (newChecked) {
+                setExpandPaths(allNodeIds);
+              } else {
+                setExpandPaths([]);
+              }
             }}
           />
         }
@@ -231,10 +263,9 @@ function DefaultTheme(props) {
       />
       <Inspector
         theme={theme.palette.type === 'light' ? 'chromeLight' : 'chromeDark'}
-        data={theme}
+        data={data}
         expandPaths={expandPaths}
         expandLevel={checked ? 100 : 1}
-        key={`${checked}-${theme.palette.type}`} // Remount
       />
     </div>
   );
