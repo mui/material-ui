@@ -4,7 +4,11 @@ import clsx from 'clsx';
 import capitalize from '../utils/capitalize';
 import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
-import '../Button'; // So we don't have any override priority issue.
+import Button from '../Button';
+
+// Force a side effect so we don't have any override priority issue.
+// eslint-disable-next-line no-unused-expressions
+Button.styles;
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
