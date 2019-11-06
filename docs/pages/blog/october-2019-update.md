@@ -16,7 +16,7 @@ Here are the most significant improvements in October:
 
   <p class="blog-description">Combo box (limited options)</p>
 
-- 📚 We have changed the demos to automatically inline a small preview when possible.
+- 📚 We have changed the demos to automatically inline a small code preview when possible.
 
   ![combobox](/static/blog/october-2019-update/preview.png)
 
