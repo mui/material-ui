@@ -96,11 +96,12 @@ function ObjectTreeItem(props) {
 
   const keyPrefix = nodeId;
 
+  let children = null;
   if (
     (objectValue !== null && typeof objectValue === 'object') ||
     typeof objectValue === 'function'
   ) {
-    const children =
+    children =
       Object.keys(objectValue).length === 0
         ? undefined
         : Object.keys(objectValue).map(key => {
@@ -113,22 +114,12 @@ function ObjectTreeItem(props) {
               />
             );
           });
-    // false hierarchy but items must be immediate children with a `nodeId` prop
-    return (
-      <TreeItem
-        nodeId={nodeId}
-        label={<TreeLabel objectKey={objectKey} objectValue={objectValue} />}
-      >
-        {children}
-      </TreeItem>
-    );
   }
 
   return (
-    <TreeItem
-      nodeId={nodeId}
-      label={<TreeLabel objectKey={objectKey} objectValue={objectValue} />}
-    />
+    <TreeItem nodeId={nodeId} label={<TreeLabel objectKey={objectKey} objectValue={objectValue} />}>
+      {children}
+    </TreeItem>
   );
 }
 ObjectTreeItem.propTypes = {
