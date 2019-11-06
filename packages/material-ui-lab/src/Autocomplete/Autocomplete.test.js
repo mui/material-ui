@@ -421,7 +421,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           freeSolo
           onChange={handleChange}
-          options={[{ name: 'test' }, { name: 'foo' }]}
+          options={[{ name: 'one' }, { name: 'two ' }]}
           getOptionLabel={option => option.name}
           renderInput={params => <TextField {...params} />}
         />,
@@ -435,6 +435,49 @@ describe('<Autocomplete />', () => {
       expect(consoleErrorMock.args()[0][0]).to.include(
         'For the input option: "a", `getOptionLabel` returns: undefined',
       );
+    });
+  });
+
+  describe('enter', () => {
+    it('select a single value when enter is pressed', () => {
+      const handleChange = spy();
+      const { container } = render(
+        <Autocomplete
+          onChange={handleChange}
+          options={['one', 'two  ']}
+          renderInput={params => <TextField {...params} />}
+        />,
+      );
+      const input = container.querySelector('input');
+      fireEvent.keyDown(input, { key: 'ArrowDown' });
+      fireEvent.keyDown(input, { key: 'ArrowDown' });
+      fireEvent.keyDown(input, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('one');
+      fireEvent.keyDown(input, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+    });
+
+    it('select multiple value when enter is pressed', () => {
+      const handleChange = spy();
+      const options = [{ name: 'one' }, { name: 'two ' }];
+      const { container } = render(
+        <Autocomplete
+          multiple
+          onChange={handleChange}
+          options={options}
+          getOptionLabel={option => option.name}
+          renderInput={params => <TextField {...params} />}
+        />,
+      );
+      const input = container.querySelector('input');
+      fireEvent.keyDown(input, { key: 'ArrowDown' });
+      fireEvent.keyDown(input, { key: 'ArrowDown' });
+      fireEvent.keyDown(input, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
+      fireEvent.keyDown(input, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
     });
   });
 });
