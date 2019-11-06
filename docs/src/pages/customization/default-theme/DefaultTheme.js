@@ -7,7 +7,7 @@ import CollapseIcon from '@material-ui/icons/ChevronRight';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
 import clsx from 'clsx';
-import { makeStyles, withStyles, createMuiTheme, useTheme } from '@material-ui/core/styles';
+import { withStyles, createMuiTheme } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
@@ -54,38 +54,24 @@ function useLabel(value, type) {
   }
 }
 
-const useTreeLabelStyles = makeStyles(theme => {
-  const darkMode = theme.palette.type === 'dark';
-
-  return {
-    objectKey: {
-      color: darkMode ? 'rgb(227, 110, 236)' : 'rgb(136, 19, 145)',
-    },
-    objectValue: {},
-    'type-function': {
-      fontStyle: 'italic',
-    },
-    'type-string': {
-      color: darkMode ? 'rgb(233, 63, 59)' : 'rgb(196, 26, 22)',
-    },
-    'type-boolean': {
-      color: darkMode ? 'rgb(153, 128, 255)' : 'rgb(28, 0, 207)',
-    },
-    'type-number': {
-      color: darkMode ? 'rgb(153, 128, 255)' : 'rgb(136, 19, 145)',
-    },
-  };
-});
+function useTokenType(type) {
+  switch (type) {
+    case 'object':
+    case 'array':
+      return 'comment';
+    default:
+      return type;
+  }
+}
 
 function ObjectEntryLabel({ objectKey, objectValue }) {
   const type = useType(objectValue);
   const label = useLabel(objectValue, type);
-  const classes = useTreeLabelStyles();
+  const tokenType = useTokenType(type);
 
   return (
     <React.Fragment>
-      <span className={classes.objectKey}>{objectKey}: </span>
-      <span className={clsx(classes.objectValue, classes[`type-${type}`])}>{label}</span>
+      {objectKey}: <span className={clsx('token', tokenType)}>{label}</span>
     </React.Fragment>
   );
 }
@@ -171,10 +157,12 @@ Inspector.propTypes = {
 
 const styles = theme => ({
   root: {
+    backgroundColor: '#333',
+    borderRadius: 4,
+    color: '#fff',
+    display: 'block',
     padding: theme.spacing(2),
     paddingTop: 0,
-    // Match <Inspector /> default theme.
-    backgroundColor: theme.palette.type === 'light' ? theme.palette.common.white : '#242424',
     minHeight: theme.spacing(40),
     width: '100%',
   },
@@ -230,7 +218,6 @@ function DefaultTheme(props) {
     );
   }, []);
 
-  const theme = useTheme();
   const data = React.useMemo(createMuiTheme, []);
 
   const allNodeIds = useNodeIdsLazy(data);
@@ -261,12 +248,7 @@ function DefaultTheme(props) {
         }
         label={t('expandAll')}
       />
-      <Inspector
-        theme={theme.palette.type === 'light' ? 'chromeLight' : 'chromeDark'}
-        data={data}
-        expandPaths={expandPaths}
-        expandLevel={checked ? 100 : 1}
-      />
+      <Inspector data={data} expandPaths={expandPaths} expandLevel={checked ? 100 : 1} />
     </div>
   );
 }
