@@ -45,7 +45,7 @@ The `select` prop makes the text field use the [Select](/components/selects/) co
 
 ## Icons
 
-There are multiple ways to display an icon with a text field. 
+There are multiple ways to display an icon with a text field.
 
 {{"demo": "pages/components/text-fields/InputWithIcon.js"}}
 
@@ -96,7 +96,7 @@ The component takes care of the most used properties, then it's up to the user t
 
 ## Color
 
-The `color` prop changes the highlight color of the text field.
+The `color` prop changes the highlight color of the text field when focused.
 
 {{"demo": "pages/components/text-fields/ColorTextFields.js"}}
 
