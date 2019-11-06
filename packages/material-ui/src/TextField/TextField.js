@@ -58,15 +58,16 @@ export const styles = {
 const TextField = React.forwardRef(function TextField(props, ref) {
   const {
     autoComplete,
-    autoFocus,
+    autoFocus = false,
     children,
     classes,
     className,
     color = 'primary',
     defaultValue,
-    error,
+    disabled = false,
+    error = false,
     FormHelperTextProps,
-    fullWidth,
+    fullWidth = false,
     helperText,
     hiddenLabel,
     id,
@@ -75,7 +76,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     InputProps,
     inputRef,
     label,
-    multiline,
+    multiline = false,
     name,
     onBlur,
     onChange,
@@ -158,6 +159,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
   return (
     <FormControl
       className={clsx(classes.root, className)}
+      disabled={disabled}
       error={error}
       fullWidth={fullWidth}
       hiddenLabel={hiddenLabel}

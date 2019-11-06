@@ -148,6 +148,7 @@ const Switch = React.forwardRef(function Switch(props, ref) {
     classes,
     className,
     color = 'secondary',
+    disabled = false,
     edge = false,
     size = 'medium',
     ...other
@@ -178,6 +179,7 @@ const Switch = React.forwardRef(function Switch(props, ref) {
           disabled: classes.disabled,
         }}
         ref={ref}
+        disabled={disabled}
         {...other}
       />
       <span className={classes.track} />

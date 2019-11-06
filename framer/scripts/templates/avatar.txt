@@ -1,0 +1,43 @@
+{{=« »=}}
+import * as React from 'react';
+import { addPropertyControls, ControlType } from 'framer';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import Mui«componentName» from '@material-ui/core/«componentName»';
+import { Icon } from './Icon';
+
+interface Props {
+«& tsInterface»
+}
+
+const defaultProps: Props =  {
+«& defaultProps»
+};
+
+export const «componentName»: React.SFC<Props> = (props: Props) => {
+  const {
+    backgroundColor,
+    height,
+    icon,
+    imageFile,
+    imageUrl,
+    label,
+    textColor,
+    width,
+    ...other
+  } = props;
+
+  return imageFile || imageUrl ? (
+    <Mui«componentName» src={imageFile || imageUrl} style={{ height, width }} {...other} />
+  ) : (
+    <Mui«componentName» style={{ color: textColor, backgroundColor, height, width }} {...other}>
+      {icon === '' ? label : <Icon icon={icon} />}
+    </Mui«componentName»>
+  );
+}
+
+«componentName».defaultProps = defaultProps;
+
+addPropertyControls(«componentName», {
+«& propertyControls»
+});

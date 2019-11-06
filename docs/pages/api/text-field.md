@@ -54,14 +54,14 @@ For advanced cases, please look at the source of TextField by clicking on the
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">autoComplete</span> | <span class="prop-type">string</span> |  | This prop helps users to fill forms faster, especially on mobile devices. The name can be confusing, as it's more like an autofill. You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill). |
-| <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` element will be focused during the first mount. |
+| <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the `input` element will be focused during the first mount. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'primary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">defaultValue</span> | <span class="prop-type">any</span> |  | The default value of the `input` element. |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` element will be disabled. |
-| <span class="prop-name">error</span> | <span class="prop-type">bool</span> |  | If `true`, the label will be displayed in an error state. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the `input` element will be disabled. |
+| <span class="prop-name">error</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the label will be displayed in an error state. |
 | <span class="prop-name">FormHelperTextProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`FormHelperText`](/api/form-helper-text/) element. |
-| <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> |  | If `true`, the input will take up the full width of its container. |
+| <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the input will take up the full width of its container. |
 | <span class="prop-name">helperText</span> | <span class="prop-type">node</span> |  | The helper text content. |
 | <span class="prop-name">id</span> | <span class="prop-type">string</span> |  | The id of the `input` element. Use this prop to make `label` and `helperText` accessible for screen readers. |
 | <span class="prop-name">InputLabelProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`InputLabel`](/api/input-label/) element. |
@@ -70,7 +70,7 @@ For advanced cases, please look at the source of TextField by clicking on the
 | <span class="prop-name">inputRef</span> | <span class="prop-type">ref</span> |  | Pass a ref to the `input` element. |
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The label content. |
 | <span class="prop-name">margin</span> | <span class="prop-type">'none'<br>&#124;&nbsp;'dense'<br>&#124;&nbsp;'normal'</span> |  | If `dense` or `normal`, will adjust vertical spacing of this and contained components. |
-| <span class="prop-name">multiline</span> | <span class="prop-type">bool</span> |  | If `true`, a textarea element will be rendered instead of an input. |
+| <span class="prop-name">multiline</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, a textarea element will be rendered instead of an input. |
 | <span class="prop-name">name</span> | <span class="prop-type">string</span> |  | Name attribute of the `input` element. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the value is changed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value` (string). |
 | <span class="prop-name">placeholder</span> | <span class="prop-type">string</span> |  | The short hint displayed in the input before the user enters a value. |

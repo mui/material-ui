@@ -64,6 +64,7 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
     checkedIcon = defaultCheckedIcon,
     classes,
     color = 'secondary',
+    disabled = false,
     icon = defaultIcon,
     indeterminate = false,
     indeterminateIcon = defaultIndeterminateIcon,
@@ -89,6 +90,7 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
       }}
       icon={indeterminate ? indeterminateIcon : icon}
       ref={ref}
+      disabled={disabled}
       {...other}
     />
   );

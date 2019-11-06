@@ -20,6 +20,7 @@
     "docs:typescript:check": "yarn workspace docs typescript",
     "docs:typescript:formatted": "yarn workspace docs typescript:transpile",
     "docs:mdicons:synonyms": "babel-node --config-file ./babel.config.js ./docs/scripts/updateIconSynonyms",
+    "framer:build": "yarn workspace framer build",
     "jsonlint": "yarn --silent jsonlint:files | xargs -n1 jsonlint -q -c && echo \"jsonlint: no lint errors\"",
     "jsonlint:files": "find . -name \"*.json\" | grep -v -f .eslintignore",
     "lint": "eslint . --cache --report-unused-disable-directives",
@@ -163,7 +164,8 @@
   },
   "workspaces": [
     "packages/*",
-    "docs"
+    "docs",
+    "framer"
   ],
   "dependencies": {}
 }

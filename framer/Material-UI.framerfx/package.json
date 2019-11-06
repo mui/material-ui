@@ -1,0 +1,31 @@
+{
+	"name": "@framer/material-ui.material-ui",
+	"author": "Material-UI Team",
+	"version": "1.0.0",
+	"description": "Material-UI Framer components",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mui-org/material-ui.git"
+	},
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/mui-org/material-ui/issues"
+	},
+	"homepage": "http://material-ui.com/",
+	"devDependencies": {
+		"@types/react": "^16.8"
+	},
+	"dependencies": {
+		"@material-ui/core": "^4.5.0",
+		"@material-ui/icons": "^4.4.0",
+		"naming-style": "^1.0.0"
+	},
+	"peerDependencies": {
+		"framer": "^1",
+		"react": "^16.8.0"
+	},
+	"framer": {
+		"displayName": "Material-UI",
+		"id": "782bb5b9-336e-4307-af36-8a9b1420594c"
+	}
+}

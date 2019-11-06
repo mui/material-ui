@@ -1,0 +1,9 @@
+build
+.backups
+.cache
+.project.log
+yarn-error.log
+.yarnrc
+.framer-lock
+canvas.tsx
+dist
