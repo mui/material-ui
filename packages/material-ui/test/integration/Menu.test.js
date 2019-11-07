@@ -86,10 +86,9 @@ describe('<Menu /> integration', () => {
   });
 
   it('is part of the DOM by default but hidden', () => {
-    const { queryByRole } = render(<ButtonMenu />);
+    const { getByRole } = render(<ButtonMenu />);
 
-    // note: this will fail once testing-library ignores inaccessible roles :)
-    expect(queryByRole('menu')).to.be.null;
+    expect(getByRole('menu', { hidden: true })).to.be.inaccessible;
   });
 
   it('does not gain any focus when mounted ', () => {

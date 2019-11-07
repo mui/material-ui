@@ -623,10 +623,9 @@ describe('<Select />', () => {
       });
       // react-transition-group uses one extra commit for exit to completely remove
       // it from the DOM. but it's at least immediately inaccessible.
-      expect(queryByRole('listbox')).to.be.null;
       // It's desired that this fails one day. The additional tick required to remove
       // this from the DOM is not a feature
-      expect(getByRole('listbox', { hidden: true })).to.be.ok;
+      expect(getByRole('listbox', { hidden: true })).to.be.inaccessible;
       act(() => {
         clock.tick(0);
       });
