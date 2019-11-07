@@ -867,4 +867,23 @@ describe('<Select />', () => {
       expect(getByRole('button')).to.have.attribute('id', 'mui-component-select-foo');
     });
   });
+
+  describe('prop: native', () => {
+    it('renders a <select />', () => {
+      const { container } = render(<Select native />);
+
+      expect(container.querySelector('select')).not.to.be.null;
+    });
+
+    it('can be labelled with a <label />', () => {
+      const { getByLabelText } = render(
+        <React.Fragment>
+          <label htmlFor="select">A select</label>
+          <Select id="select" native />
+        </React.Fragment>,
+      );
+
+      expect(getByLabelText('A select')).to.have.property('tagName', 'SELECT');
+    });
+  });
 });
