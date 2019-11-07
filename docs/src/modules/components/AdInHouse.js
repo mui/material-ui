@@ -43,7 +43,7 @@ export default function AdInHouse(props) {
   const { ad } = props;
   const classes = useStyles();
   return (
-    <span className={classes.root} id="in-house">
+    <span className={classes.root}>
       <a
         className={classes.link}
         href={ad.link}
