@@ -1,10 +1,10 @@
 import { deepmerge } from '@material-ui/utils';
+import common from '../colors/common';
+import grey from '../colors/grey';
 import indigo from '../colors/indigo';
 import pink from '../colors/pink';
-import grey from '../colors/grey';
 import red from '../colors/red';
-import common from '../colors/common';
-import { getContrastRatio, darken, lighten } from './colorManipulator';
+import { darken, getContrastRatio, lighten } from './colorManipulator';
 
 export const light = {
   // The colors used to style the text.
@@ -196,9 +196,6 @@ export default function createPalette(palette) {
       ...types[type],
     },
     other,
-    {
-      clone: false, // No need to clone deep
-    },
   );
 
   return paletteOutput;

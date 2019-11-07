@@ -1,7 +1,7 @@
 import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { indigo, pink, deepOrange, green, red } from '../colors';
-import { lighten, darken } from './colorManipulator';
+import { deepOrange, green, indigo, pink, red } from '../colors';
+import { darken, lighten } from './colorManipulator';
 import createPalette, { dark, light } from './createPalette';
 
 describe('createPalette()', () => {
@@ -431,5 +431,12 @@ describe('createPalette()', () => {
         },
       );
     });
+  });
+
+  it('should create a palette with unique object references', () => {
+    const redPalette = createPalette({ background: { paper: 'red' } });
+    const bluePalette = createPalette({ background: { paper: 'blue' } });
+    assert.notStrictEqual(redPalette, bluePalette);
+    assert.notStrictEqual(redPalette.background, bluePalette.background);
   });
 });
