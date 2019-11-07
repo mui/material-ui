@@ -432,6 +432,7 @@ describe('createPalette()', () => {
       );
     });
   });
+
   it('should create a palette with unique object references', () => {
     const redPalette = createPalette({ background: { paper: 'red' } });
     const bluePalette = createPalette({ background: { paper: 'blue' } });
