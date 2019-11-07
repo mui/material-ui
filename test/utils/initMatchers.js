@@ -6,7 +6,8 @@ import { prettyDOM } from '@testing-library/react/pure';
 chai.use(chaiDom);
 chai.use((chaiAPI, utils) => {
   // better diff view for expect(element).to.equal(document.activeElement)
-  chai.Assertion.addProperty('focused', function elementIsFocused() {
+  // use as `.to.have.focus` to match `toHaveFocus` from `jest-dom`
+  chai.Assertion.addProperty('focus', function elementIsFocused() {
     const element = utils.flag(this, 'object');
 
     this.assert(

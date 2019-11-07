@@ -589,15 +589,15 @@ describe('<Modal />', () => {
         const { getByRole, setProps } = render(<WithRemovableElement />);
         const dialog = getByRole('dialog');
         const toggleButton = getByRole('button');
-        expect(dialog).to.be.focused;
+        expect(dialog).to.have.focus;
 
         toggleButton.focus();
-        expect(toggleButton).to.be.focused;
+        expect(toggleButton).to.have.focus;
 
         setProps({ hideButton: true });
-        expect(dialog).to.not.be.focused;
+        expect(dialog).not.to.have.focus;
         clock.tick(500); // wait for the interval check to kick in.
-        expect(dialog).to.be.focused;
+        expect(dialog).to.have.focus;
       });
     });
   });

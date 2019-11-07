@@ -15,6 +15,6 @@ declare namespace Chai {
     /**
      * checks if the element is focused
      */
-    focused: Assertion;
+    focus: Assertion;
   }
 }
