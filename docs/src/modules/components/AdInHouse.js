@@ -15,6 +15,8 @@ const useStyles = makeStyles(theme => ({
     '& $imageWrapper': {
       float: 'left',
       marginLeft: -130,
+      width: 130,
+      height: 100,
       marginRight: theme.spacing(1.5),
     },
     '& img': {

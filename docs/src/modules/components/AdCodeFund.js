@@ -15,6 +15,8 @@ const styles = theme => ({
       '& .cf-img-wrapper.cf-img-wrapper': {
         float: 'left',
         marginLeft: -130,
+        width: 130,
+        height: 100,
         marginRight: theme.spacing(1.5),
       },
       '& img': {
