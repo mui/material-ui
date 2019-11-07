@@ -97,7 +97,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
   let icon = iconProp;
 
-  const expandable = Boolean(children);
+  const expandable = Boolean(Array.isArray(children) ? children.length : children);
   const expanded = isExpanded ? isExpanded(nodeId) : false;
   const focused = isFocused ? isFocused(nodeId) : false;
   const tabable = isTabable ? isTabable(nodeId) : false;

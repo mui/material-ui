@@ -65,6 +65,9 @@ describe('<TreeItem />', () => {
         <TreeItem nodeId="3" label="3" data-testid="3">
           <TreeItem nodeId="4" label="4" data-testid="4" />
         </TreeItem>
+        <TreeItem nodeId="7" label="7" data-testid="7">
+            {[]}
+        </TreeItem>
       </TreeView>,
     );
 
@@ -85,6 +88,9 @@ describe('<TreeItem />', () => {
     expect(getIcon('6'))
       .attribute('data-test')
       .to.equal('endIcon');
+    expect(getIcon('7'))
+      .attribute('data-test')
+      .to.equal('defaultEndIcon');
   });
 
   it('should not call onClick when children are clicked', () => {
