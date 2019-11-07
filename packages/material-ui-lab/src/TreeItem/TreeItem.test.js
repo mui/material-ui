@@ -66,7 +66,7 @@ describe('<TreeItem />', () => {
           <TreeItem nodeId="4" label="4" data-testid="4" />
         </TreeItem>
         <TreeItem nodeId="7" label="7" data-testid="7">
-            {[]}
+          {[]}
         </TreeItem>
       </TreeView>,
     );
