@@ -433,7 +433,7 @@ describe('createPalette()', () => {
       );
     });
   });
-  it('should create a theme with unique object references', () => {
+  it('should create a palette with unique object references', () => {
     const redPalette = createPalette({ background: { paper: 'red' } });
     const bluePalette = createPalette({ background: { paper: 'blue' } });
     assert.notStrictEqual(redPalette, bluePalette);
