@@ -1,9 +1,9 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
+import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
-import TextField from '@material-ui/core/TextField';
 
 export default function Highlights() {
   return (

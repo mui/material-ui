@@ -42,7 +42,6 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: 2,
     },
     popper: {
-      backgroundColor: theme.palette.background.paper,
       border: '1px solid rgba(27,31,35,.15)',
       boxShadow: '0 3px 12px rgba(27,31,35,.15)',
       borderRadius: 3,
@@ -50,15 +49,14 @@ const useStyles = makeStyles((theme: Theme) =>
       zIndex: 1,
       fontSize: 13,
       color: '#586069',
+      backgroundColor: '#f6f8fa',
     },
     header: {
-      backgroundColor: '#f6f8fa',
       borderBottom: '1px solid #e1e4e8',
       padding: '8px 10px',
       fontWeight: 600,
     },
     inputBase: {
-      backgroundColor: '#f6f8fa',
       padding: 10,
       width: '100%',
       borderBottom: '1px solid #dfe2e5',
@@ -90,6 +88,9 @@ const useStyles = makeStyles((theme: Theme) =>
       '&[data-focus="true"]': {
         backgroundColor: theme.palette.action.hover,
       },
+    },
+    popperDisablePortal: {
+      position: 'relative',
     },
     iconSelected: {
       width: 17,
@@ -176,9 +177,11 @@ export default function GitHubLabel() {
           open
           onClose={handleClose}
           multiple
+          debug
           classes={{
             paper: classes.paper,
             option: classes.option,
+            popperDisablePortal: classes.popperDisablePortal,
           }}
           value={pendingValue}
           onChange={(event, newValue) => {

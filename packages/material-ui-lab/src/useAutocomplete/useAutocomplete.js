@@ -731,7 +731,7 @@ export default function useAutocomplete(props) {
     value,
     dirty,
     popupOpen,
-    focused,
+    focused: focused || focusedTag !== -1,
     anchorEl,
     setAnchorEl,
     focusedTag,

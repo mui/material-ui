@@ -4,8 +4,8 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    position: 'relative',
+  label: {
+    display: 'block',
   },
   input: {
     width: 200,
@@ -14,6 +14,7 @@ const useStyles = makeStyles(theme => ({
     width: 200,
     margin: 0,
     padding: 0,
+    zIndex: 1,
     position: 'absolute',
     listStyle: 'none',
     backgroundColor: theme.palette.background.paper,
@@ -36,8 +37,8 @@ export default function UseAutocomplete() {
   const classes = useStyles();
   const {
     getComboboxProps,
-    getInputProps,
     getInputLabelProps,
+    getInputProps,
     getListboxProps,
     getOptionProps,
     groupedOptions,
@@ -47,10 +48,11 @@ export default function UseAutocomplete() {
   });
 
   return (
-    <div className={classes.root}>
+    <div>
       <div {...getComboboxProps()}>
-        <label {...getInputLabelProps()}>useAutocomplete</label>
-        <br />
+        <label className={classes.label} {...getInputLabelProps()}>
+          useAutocomplete
+        </label>
         <input className={classes.input} {...getInputProps()} />
       </div>
       {groupedOptions.length > 0 ? (
