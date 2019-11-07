@@ -60,6 +60,13 @@ const inHouses = [
     description:
       '<b>Premium Themes</b><br />Kickstart your application development with a ready-made theme.',
   },
+  {
+    name: 'tidelift',
+    link: 'https://tidelift.com/subscription/managed-open-source-survey?utm_source=material_ui&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
+    img: '/static/in-house/tidelift.png',
+    description:
+      '<b>Material-UI for enterprise</b><br />Available in the Tidelift Subscription. Reduce risk, and improve code health.',
+  },
 ];
 
 function Ad(props) {
