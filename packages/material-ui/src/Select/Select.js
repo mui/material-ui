@@ -69,7 +69,7 @@ const Select = React.forwardRef(function Select(props, ref) {
       type: undefined, // We render a select. We can ignore the type provided by the `Input`.
       multiple,
       ...(native
-        ? {}
+        ? { id }
         : {
             autoWidth,
             displayEmpty,
