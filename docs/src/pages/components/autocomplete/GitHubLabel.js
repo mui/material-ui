@@ -79,6 +79,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: 13,
   },
   option: {
+    minHeight: 'auto',
     alignItems: 'flex-start',
     padding: 8,
     '&[aria-selected="true"]': {

@@ -55,7 +55,8 @@ const inHouses = [
   },
   {
     name: 'themes',
-    link: 'https://themes.material-ui.com/?utm_source=material_ui&utm_medium=referral&utm_campaign=in-house',
+    link:
+      'https://themes.material-ui.com/?utm_source=material_ui&utm_medium=referral&utm_campaign=in-house',
     img: '/static/in-house/themes.png',
     description:
       '<b>Premium Themes</b><br />Kickstart your application development with a ready-made theme.',
