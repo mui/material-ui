@@ -1,5 +1,4 @@
 import { deepmerge } from '@material-ui/utils';
-
 import common from '../colors/common';
 import grey from '../colors/grey';
 import indigo from '../colors/indigo';

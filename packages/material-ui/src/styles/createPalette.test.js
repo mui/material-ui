@@ -1,6 +1,5 @@
 import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-
 import { deepOrange, green, indigo, pink, red } from '../colors';
 import { darken, lighten } from './colorManipulator';
 import createPalette, { dark, light } from './createPalette';
