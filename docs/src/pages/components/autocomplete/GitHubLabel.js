@@ -175,7 +175,6 @@ export default function GitHubLabel() {
           open
           onClose={handleClose}
           multiple
-          debug
           classes={{
             paper: classes.paper,
             option: classes.option,
