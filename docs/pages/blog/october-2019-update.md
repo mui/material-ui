@@ -18,7 +18,7 @@ Here are the most significant improvements in October:
 
 - 📚 We have changed the demos to automatically inline a small code preview when possible.
 
-  ![combobox](/static/blog/october-2019-update/preview.png)
+  ![code preview](/static/blog/october-2019-update/preview.png)
 
 - ♿️ We have fixed 9 accessibility issues ([#18141](https://github.com/mui-org/material-ui/pull/18141), [#18142](https://github.com/mui-org/material-ui/pull/18142), [#17972](https://github.com/mui-org/material-ui/pull/17972), [#18146](https://github.com/mui-org/material-ui/pull/18146), [#17939](https://github.com/mui-org/material-ui/pull/17939), [#17892](https://github.com/mui-org/material-ui/pull/17892), [#17897](https://github.com/mui-org/material-ui/pull/17897), [#17870](https://github.com/mui-org/material-ui/pull/17870), [#18204](https://github.com/mui-org/material-ui/pull/18204)).
 
