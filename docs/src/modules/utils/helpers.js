@@ -123,6 +123,10 @@ function getDependencies(raw, options = {}) {
     deps.typescript = 'latest';
   }
 
+  if (deps['@material-ui/lab'] && !deps['@material-ui/core']) {
+    deps['@material-ui/core'] = 'latest';
+  }
+
   return deps;
 }
 
