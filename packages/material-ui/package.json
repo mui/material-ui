@@ -20,6 +20,10 @@
     "url": "https://github.com/mui-org/material-ui/issues"
   },
   "homepage": "https://material-ui.com/",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/material-ui"
+  },
   "scripts": {
     "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:umd && yarn build:copy-files",
     "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel --config-file ../../babel.config.js ./src --out-dir ./build --ignore \"**/*.test.js\"",
