@@ -164,6 +164,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     classes,
     className,
     clearOnEscape = false,
+    CloseIconComponent,
     debug = false,
     defaultValue,
     disableClearable = false,
