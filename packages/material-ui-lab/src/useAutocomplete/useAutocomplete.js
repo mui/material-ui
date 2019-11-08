@@ -699,7 +699,9 @@ export default function useAutocomplete(props) {
       },
     }),
     getTagProps: ({ index }) => ({
+      key: index,
       'data-tag-index': index,
+      tabIndex: -1,
       onDelete: handleTagDelete(index),
     }),
     getListboxProps: () => ({
@@ -716,9 +718,9 @@ export default function useAutocomplete(props) {
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
       return {
+        key: index,
         tabIndex: -1,
         role: 'option',
-        key: index,
         id: `${id}-option-${index}`,
         onMouseOver: handleOptionMouseOver,
         onClick: handleOptionClick,

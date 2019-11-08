@@ -11,17 +11,9 @@ export default function FixedTags() {
       options={top100Films}
       getOptionLabel={option => option.title}
       defaultValue={[top100Films[6], top100Films[13]]}
-      renderTags={(value, { className, onDelete }) =>
+      renderTags={(value, getTagProps) =>
         value.map((option, index) => (
-          <Chip
-            key={index}
-            disabled={index === 0}
-            data-tag-index={index}
-            tabIndex={-1}
-            label={option.title}
-            className={className}
-            onDelete={onDelete}
-          />
+          <Chip disabled={index === 0} label={option.title} {...getTagProps({ index })} />
         ))
       }
       style={{ width: 500 }}

@@ -158,7 +158,7 @@ export default function useAutocomplete(
   getInputLabelProps: () => {};
   getClearProps: () => {};
   getPopupIndicatorProps: () => {};
-  getTagProps: () => {};
+  getTagProps: ({ index }: { index: number }) => {};
   getListboxProps: () => {};
   getOptionProps: ({ option, index }: { option: any; index: number }) => {};
   id: string;

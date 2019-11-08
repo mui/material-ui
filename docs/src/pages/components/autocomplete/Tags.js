@@ -45,17 +45,9 @@ export default function Tags() {
         options={top100Films.map(option => option.title)}
         defaultValue={[top100Films[13].title]}
         freeSolo
-        renderTags={(value, { className, onDelete }) =>
+        renderTags={(value, getTagProps) =>
           value.map((option, index) => (
-            <Chip
-              key={index}
-              variant="outlined"
-              data-tag-index={index}
-              tabIndex={-1}
-              label={option}
-              className={className}
-              onDelete={onDelete}
-            />
+            <Chip variant="outlined" label={option} {...getTagProps({ index })} />
           ))
         }
         renderInput={params => (

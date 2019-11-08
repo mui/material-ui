@@ -15,10 +15,7 @@ export interface RenderOptionState {
   selected: boolean;
 }
 
-export interface RenderValueState {
-  className: string;
-  onDelete: () => {};
-}
+export type GetTagProps = ({ index }: { index: number }) => {};
 
 export interface RenderGroupParams {
   key: string;
@@ -103,9 +100,10 @@ export interface AutocompleteProps
    * Render the selected value.
    *
    * @param {any} value The `value` provided to the component.
+   * @param {function} getTagProps A tag props getter.
    * @returns {ReactNode}
    */
-  renderTags?: (value: any, state: RenderValueState) => React.ReactNode;
+  renderTags?: (value: any, getTagProps: GetTagProps) => React.ReactNode;
 }
 
 export type AutocompleteClassKey =
