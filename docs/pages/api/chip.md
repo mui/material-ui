@@ -60,6 +60,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">deletable</span> | <span class="prop-name">.MuiChip-deletable</span> | Styles applied to the root element if `onDelete` is defined.
 | <span class="prop-name">deletableColorPrimary</span> | <span class="prop-name">.MuiChip-deletableColorPrimary</span> | Styles applied to the root element if `onDelete` and `color="primary"` is defined.
 | <span class="prop-name">deletableColorSecondary</span> | <span class="prop-name">.MuiChip-deletableColorSecondary</span> | Styles applied to the root element if `onDelete` and `color="secondary"` is defined.
+| <span class="prop-name">deleteIconButton</span> | <span class="prop-name">.MuiChip-deleteIconButton</span> | 
 | <span class="prop-name">outlined</span> | <span class="prop-name">.MuiChip-outlined</span> | Styles applied to the root element if `variant="outlined"`.
 | <span class="prop-name">outlinedPrimary</span> | <span class="prop-name">.MuiChip-outlinedPrimary</span> | Styles applied to the root element if `variant="outlined"` and `color="primary"`.
 | <span class="prop-name">outlinedSecondary</span> | <span class="prop-name">.MuiChip-outlinedSecondary</span> | Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
