@@ -1,7 +1,7 @@
-/* eslint-disable material-ui/no-hardcoded-labels */
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 
@@ -36,10 +36,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function DiamondSponsors() {
   const classes = useStyles();
+  const t = useSelector(state => state.options.t);
+
   return (
     <Box mx={3} my={2} className={classes.root}>
       <Typography variant="caption" color="textSecondary" display="block">
-        Diamond Sponsors
+        {t('diamondSponsors')}
       </Typography>
       <a
         className={classes.placeholder}
