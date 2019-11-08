@@ -79,10 +79,11 @@ describe('<Chip />', () => {
       expect(button).to.have.text('My Chip');
     });
 
-    it.skip('should apply user value of tabIndex', () => {
+    it('should apply user value of tabIndex', () => {
+      // eslint-disable-next-line jsx-a11y/tabindex-no-positive
       const { getByRole } = render(<Chip label="My Chip" onClick={() => {}} tabIndex={5} />);
 
-      expect(getByRole('button')).to.have.property('tabIndex', 0);
+      expect(getByRole('button')).to.have.property('tabIndex', 5);
     });
 
     it('should render with the root and clickable class', () => {
