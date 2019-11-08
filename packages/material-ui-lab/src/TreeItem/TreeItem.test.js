@@ -87,6 +87,20 @@ describe('<TreeItem />', () => {
       .to.equal('endIcon');
   });
 
+  it('should treat an empty array equally to no children', () => {
+    const { getByTestId } = render(
+      <TreeView defaultExpanded={['1']}>
+        <TreeItem nodeId="1" label="1" data-testid="1">
+          <TreeItem nodeId="2" label="2" data-testid="2">
+            {[]}
+          </TreeItem>
+        </TreeItem>
+      </TreeView>,
+    );
+
+    expect(getByTestId('2')).to.not.have.attribute('aria-expanded');
+  });
+
   it('should not call onClick when children are clicked', () => {
     const handleClick = spy();
 
