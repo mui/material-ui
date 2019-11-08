@@ -129,8 +129,6 @@ export const styles = theme => {
       padding: 0,
       '& $deleteIcon': {
         margin: 0,
-        width: 18.3,
-        height: 18.3,
       },
     },
     /* Styles applied to the root element if `variant="outlined"`. */
@@ -350,11 +348,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
           onClick={handleDeleteIconClick}
           tabIndex={clickable ? -1 : 0}
         >
-          <CancelIcon
-            className={clsx(classes.deleteIcon, customClasses)}
-            viewBox="2 2 20 20"
-            preserveAspectRatio="none"
-          />
+          <CancelIcon className={clsx(classes.deleteIcon, customClasses)} />
         </IconButton>
       );
   }
