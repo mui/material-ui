@@ -164,7 +164,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     classes,
     className,
     clearOnEscape = false,
-    CloseIconComponent,
+    CloseIconComponent = IconButton,
     debug = false,
     defaultValue,
     disableClearable = false,
@@ -193,7 +193,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     options = [],
     PaperComponent = Paper,
     PopperComponent: PopperComponentProp = Popper,
-    PopupIconComponent,
+    PopupIconComponent = IconButton,
     renderGroup: renderGroupProp,
     renderInput,
     renderOption: renderOptionProp,
@@ -248,22 +248,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     }
   }
 
-  let arrowDropDownIcon;
-
-  if (PopupIconComponent) {
-    arrowDropDownIcon = PopupIconComponent;
-  } else {
-    arrowDropDownIcon = <ArrowDropDownIcon />;
-  }
-
-  let closeIcon;
-
-  if (CloseIconComponent) {
-    closeIcon = CloseIconComponent;
-  } else {
-    closeIcon = <CloseIcon fontSize="small" />;
-  }
-
   const defaultRenderGroup = params => (
     <li key={params.key}>
       <ListSubheader className={classes.groupLabel} component="div">
@@ -313,19 +297,19 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
             endAdornment: (
               <React.Fragment>
                 {disableClearable || disabled ? null : (
-                  <IconButton
+                  <CloseIconComponent
                     {...getClearProps()}
                     title="Clear"
                     className={clsx(classes.clearIndicator, {
                       [classes.clearIndicatorDirty]: dirty,
                     })}
                   >
-                    {closeIcon}
-                  </IconButton>
+                    <CloseIcon fontSize="small" />
+                  </CloseIconComponent>
                 )}
 
                 {freeSolo ? null : (
-                  <IconButton
+                  <PopupIconComponent
                     {...getPopupIndicatorProps()}
                     disabled={disabled}
                     title={popupOpen ? 'Close popup' : 'Open popup'}
@@ -333,8 +317,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                       [classes.popupIndicatorOpen]: popupOpen,
                     })}
                   >
-                    {arrowDropDownIcon}
-                  </IconButton>
+                    <ArrowDropDownIcon />
+                  </PopupIconComponent>
                 )}
               </React.Fragment>
             ),
@@ -423,7 +407,7 @@ Autocomplete.propTypes = {
    */
   clearOnEscape: PropTypes.bool,
   /**
-   * `Icon` to be displayed instead of the default `CloseIcon`.
+   * The component used for the close icon.
    */
   CloseIconComponent: PropTypes.elementType,
   /**
@@ -561,7 +545,7 @@ Autocomplete.propTypes = {
    */
   PopperComponent: PropTypes.elementType,
   /**
-   * `Icon` to be displayed instead of the default `ArrowDropDownIcon`.
+   * The component used for the popop indicator icon.
    */
   PopupIconComponent: PropTypes.elementType,
   /**

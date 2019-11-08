@@ -42,7 +42,7 @@ export interface AutocompleteProps
       'defaultValue' | 'onChange' | 'children'
     > {
   /**
-   * `Icon` to be displayed instead of the default `CloseIcon`.
+   * The component used for the close icon.
    */
   CloseIconComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
   /**
@@ -79,7 +79,7 @@ export interface AutocompleteProps
    */
   PopperComponent?: React.ComponentType<PopperProps>;
   /**
-   * `Icon` to be displayed instead of the default `ArrowDropDownIcon`.
+   * The component used for the popop indicator icon.
    */
   PopupIconComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
   /**
