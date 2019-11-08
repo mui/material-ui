@@ -537,9 +537,15 @@ export default function useAutocomplete(props) {
         break;
       case 'Escape':
         if (popupOpen) {
+          // Avoid Opera to exit fullscreen mode.
+          event.preventDefault();
+          // Avoid the Modal to handle the event.
           event.stopPropagation();
           handleClose(event);
-        } else if (clearOnEscape) {
+        } else if (clearOnEscape && inputValue !== '') {
+          // Avoid Opera to exit fullscreen mode.
+          event.preventDefault();
+          // Avoid the Modal to handle the event.
           event.stopPropagation();
           handleClear(event);
         }
