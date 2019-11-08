@@ -32,7 +32,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">defaultExpandIcon</span> | <span class="prop-type">node</span> |  | The default icon used to expand the node. |
 | <span class="prop-name">defaultParentIcon</span> | <span class="prop-type">node</span> |  | The default icon displayed next to a parent node. This is applied to all parent nodes and can be overridden by the TreeItem `icon` prop. |
 | <span class="prop-name">expanded</span> | <span class="prop-type">Array<string></span> |  | Expanded node ids. (Controlled) |
-| <span class="prop-name">onNodeToggle</span> | <span class="prop-type">func</span> |  | Callback fired when tree items are expanded/collapsed.<br><br>**Signature:**<br>`function(nodeIds: array, expanded: boolean) => void`<br>*nodeIds:* The ids of the toggled nodes.<br>*expanded:* The nodes' status - If `true` the nodes were expanded. If `false` the node were collapsed. |
+| <span class="prop-name">onNodeToggle</span> | <span class="prop-type">func</span> |  | Callback fired when tree items are expanded/collapsed.<br><br>**Signature:**<br>`function(event: object, nodeIds: array) => void`<br>*event:* The event source of the callback<br>*nodeIds:* The ids of the expanded nodes. |
 
 The `ref` is forwarded to the root element.
 
