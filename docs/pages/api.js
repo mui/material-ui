@@ -60,12 +60,23 @@ function PropDescription(props) {
 PropDescription.propTypes = { description: PropTypes.string };
 
 /**
- * TODO
+ * TODO custom, arrayOf, instanceOf, shape, union, enum
  */
 function PropType(props) {
   const { type } = props;
 
-  return null;
+  switch (type.name) {
+    case 'arrayOf':
+      return (
+        <React.Fragment>
+          Array{'<'}
+          <PropType type={type.value} />
+          {'>'}
+        </React.Fragment>
+      );
+    default:
+      return type.name;
+  }
 }
 
 PropType.propTypes = { type: PropTypes.object.isRequired };
