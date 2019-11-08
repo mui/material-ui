@@ -192,6 +192,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     options = [],
     PaperComponent = Paper,
     PopperComponent: PopperComponentProp = Popper,
+    PopupIconComponent,
     renderGroup: renderGroupProp,
     renderInput,
     renderOption: renderOptionProp,
@@ -252,6 +253,22 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     }
   }
 
+  let ArrowDropDownIcon;
+
+  if (PopupIconComponent) {
+    ArrowDropDownIcon = PopupIconComponent;
+  } else {
+    ArrowDropDownIcon = <ArrowDropDownIcon />;
+  }
+
+  let CloseIcon;
+
+  if(CloseIconComponent) {
+    CloseIcon = CloseIconComponent;
+  } else {
+    CloseIcon = <CloseIcon fontSize="small" />;
+  }
+
   const defaultRenderGroup = params => (
     <li key={params.key}>
       <ListSubheader className={classes.groupLabel} component="div">
@@ -308,7 +325,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                       [classes.clearIndicatorDirty]: dirty,
                     })}
                   >
-                    <CloseIcon fontSize="small" />
+                    {CloseIcon}
                   </IconButton>
                 )}
 
@@ -321,7 +338,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                       [classes.popupIndicatorOpen]: popupOpen,
                     })}
                   >
-                    <ArrowDropDownIcon />
+                    {ArrowDropDownIcon}
                   </IconButton>
                 )}
               </React.Fragment>
@@ -410,6 +427,10 @@ Autocomplete.propTypes = {
    * If `true`, clear all values when the user presses escape and the popup is closed.
    */
   clearOnEscape: PropTypes.bool,
+  /**
+   * `Icon` to be displayed instead of the default `CloseIcon`.
+   */
+  CloseIconComponent: PropTypes.node,
   /**
    * If `true`, the popup will ignore the blur event if the input if filled.
    * You can inspect the popup markup with your browser tools.
@@ -544,6 +565,10 @@ Autocomplete.propTypes = {
    * The component used to position the popup.
    */
   PopperComponent: PropTypes.elementType,
+  /**
+   * `Icon` to be displayed instead of the default `ArrowDropDownIcon`.
+   */
+  PopupIconComponent: PropTypes.node,
   /**
    * Render the group.
    *

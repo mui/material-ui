@@ -45,6 +45,10 @@ export interface AutocompleteProps
       'defaultValue' | 'onChange' | 'children'
     > {
   /**
+   * `Icon` to be displayed instead of the default `CloseIcon`.
+   */
+  CloseIconComponent?: React.ReactNode;
+  /**
    * If `true`, the input will be disabled.
    */
   disabled?: boolean;
@@ -77,6 +81,10 @@ export interface AutocompleteProps
    * The component used to position the popup.
    */
   PopperComponent?: React.ComponentType<PopperProps>;
+  /**
+   * `Icon` to be displayed instead of the default `ArrowDropDownIcon`.
+   */
+  PopupIconComponent?: React.ReactNode;
   /**
    * Render the group.
    *
