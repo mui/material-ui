@@ -336,8 +336,11 @@ const Chip = React.forwardRef(function Chip(props, ref) {
         })
       ) : (
         <CancelIcon
+          aria-hidden={null}
           className={clsx(classes.deleteIcon, customClasses)}
           onClick={handleDeleteIconClick}
+          role="button"
+          tabIndex={clickable ? -1 : 0}
         />
       );
   }
@@ -373,7 +376,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
 
   return (
     <Component
-      role={clickable || onDelete ? 'button' : undefined}
+      role={clickable ? 'button' : undefined}
       className={clsx(
         classes.root,
         {
@@ -391,7 +394,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
         className,
       )}
       aria-disabled={disabled ? true : undefined}
-      tabIndex={clickable || onDelete ? 0 : undefined}
+      tabIndex={clickable ? 0 : undefined}
       onClick={onClick}
       onKeyUp={handleKeyUp}
       ref={handleRef}

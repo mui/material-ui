@@ -133,7 +133,7 @@ describe('<Chip />', () => {
 
   describe('deletable Avatar chip', () => {
     it('should render a button in tab order with the avatar', () => {
-      const { getAllByRole } = render(
+      const { container, getByRole } = render(
         <Chip
           avatar={<Avatar id="avatar">MB</Avatar>}
           label="Text Avatar Chip"
@@ -141,12 +141,11 @@ describe('<Chip />', () => {
         />,
       );
 
-      const chip = getAllByRole('button')[0];
-      expect(chip).to.have.property('tabIndex', 0);
-      expect(chip.querySelector('#avatar')).to.be.ok;
+      expect(getByRole('button')).to.have.property('tabIndex', 0);
+      expect(container.querySelector('#avatar')).to.be.ok;
     });
 
-    it.skip('should render an extra nested button out of tab order for deletion', () => {
+    it('should render an extra nested button out of tab order for deletion', () => {
       const { getAllByRole } = render(
         <Chip
           avatar={<Avatar id="avatar">MB</Avatar>}
@@ -161,7 +160,7 @@ describe('<Chip />', () => {
       // TODO how's the accessible name? do we need one?
     });
 
-    it.skip('fires onDelete when clicking the delete button', () => {
+    it('fires onDelete when clicking the delete button', () => {
       const handleDelete = spy();
       const { getByRole } = render(
         <Chip
@@ -172,12 +171,12 @@ describe('<Chip />', () => {
       );
       const deleteButton = getByRole('button');
 
-      deleteButton.click();
+      fireEvent.click(deleteButton);
 
       expect(handleDelete.callCount).to.equal(1);
     });
 
-    it.skip('should stop propagation when clicking the delete button', () => {
+    it('should stop propagation when clicking the delete button', () => {
       const handleClick = spy();
       const { getAllByRole } = render(
         <Chip
@@ -189,7 +188,7 @@ describe('<Chip />', () => {
       );
       const deleteButton = getAllByRole('button')[1];
 
-      deleteButton.click();
+      fireEvent.click(deleteButton);
 
       expect(handleClick.callCount).to.equal(0);
     });
@@ -347,8 +346,8 @@ describe('<Chip />', () => {
     describe('prop: onDelete', () => {
       it('should call onDelete `backspace` is released', () => {
         const handleDelete = spy();
-        const { getByRole } = render(<Chip onClick={() => {}} onDelete={handleDelete} />);
-        const chip = getByRole('button');
+        const { getAllByRole } = render(<Chip onClick={() => {}} onDelete={handleDelete} />);
+        const chip = getAllByRole('button')[0];
         chip.focus();
 
         fireEvent.keyUp(document.activeElement, { key: 'Backspace' });
