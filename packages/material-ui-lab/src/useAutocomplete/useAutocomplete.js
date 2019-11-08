@@ -728,6 +728,7 @@ export default function useAutocomplete(props) {
       };
     },
     id,
+    inputValue,
     value,
     dirty,
     popupOpen,

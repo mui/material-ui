@@ -162,6 +162,7 @@ export default function useAutocomplete(
   getListboxProps: () => {};
   getOptionProps: ({ option, index }: { option: any; index: number }) => {};
   id: string;
+  inputValue: string;
   value: any;
   dirty: boolean;
   popupOpen: boolean;
