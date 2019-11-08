@@ -49,7 +49,7 @@ describe('<TreeItem />', () => {
     const icon = <div data-test="icon" />;
     const endIcon = <div data-test="endIcon" />;
 
-    const { getByTestId } = render(
+    const { getByTestId, getByRole, getByText } = render(
       <TreeView
         defaultEndIcon={defaultEndIcon}
         defaultExpandIcon={defaultExpandIcon}
@@ -88,9 +88,7 @@ describe('<TreeItem />', () => {
     expect(getIcon('6'))
       .attribute('data-test')
       .to.equal('endIcon');
-    expect(getIcon('7'))
-      .attribute('data-test')
-      .to.equal('defaultEndIcon');
+    expect(getByTestId('7')).to.not.have.attribute('aria-expanded');
   });
 
   it('should not call onClick when children are clicked', () => {
