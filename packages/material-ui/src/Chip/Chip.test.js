@@ -341,32 +341,36 @@ describe('<Chip />', () => {
     });
 
     describe('prop: onDelete', () => {
-      it('should call onDelete `backspace` is released', () => {
-        const handleDelete = spy();
-        const { getAllByRole } = render(<Chip onClick={() => {}} onDelete={handleDelete} />);
-        const chip = getAllByRole('button')[0];
-        chip.focus();
+      ['Backspace', 'Delete'].forEach(key => {
+        it(`should call onDelete '${key}' is released`, () => {
+          const handleDelete = spy();
+          const { getAllByRole } = render(<Chip onClick={() => {}} onDelete={handleDelete} />);
+          const chip = getAllByRole('button')[0];
+          chip.focus();
 
-        fireEvent.keyUp(document.activeElement, { key: 'Backspace' });
+          fireEvent.keyUp(document.activeElement, { key });
 
-        expect(handleDelete.callCount).to.equal(1);
+          expect(handleDelete.callCount).to.equal(1);
+        });
       });
     });
 
     describe('with children that generate events', () => {
-      it('should not call onDelete for child event', () => {
-        const handleDelete = spy();
-        const handleKeyUp = spy();
-        render(
-          <Chip
-            onDelete={handleDelete}
-            label={<input autoFocus className="child-input" onKeyUp={handleKeyUp} />}
-          />,
-        );
+      ['Backspace', 'Delete'].forEach(key => {
+        it(`should not call onDelete for child keyup event when '${key}' is released`, () => {
+          const handleDelete = spy();
+          const handleKeyUp = spy();
+          render(
+            <Chip
+              onDelete={handleDelete}
+              label={<input autoFocus className="child-input" onKeyUp={handleKeyUp} />}
+            />,
+          );
 
-        fireEvent.keyUp(document.activeElement, { key: 'Backspace' });
-        expect(handleKeyUp.callCount).to.equal(1);
-        expect(handleDelete.callCount).to.equal(0);
+          fireEvent.keyUp(document.activeElement, { key });
+          expect(handleKeyUp.callCount).to.equal(1);
+          expect(handleDelete.callCount).to.equal(0);
+        });
       });
 
       it('should not call onClick for child event when `space` is released', () => {
