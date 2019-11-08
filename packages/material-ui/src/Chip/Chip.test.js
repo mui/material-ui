@@ -321,7 +321,8 @@ describe('<Chip />', () => {
       expect(chip).not.to.to.have.focus;
     });
 
-    it.skip('should call onClick when `space` is released ', () => {
+
+    it('should call onClick when `space` is released ', () => {
       const handleClick = spy();
       const { getByRole } = render(<Chip onClick={handleClick} />);
       const chip = getByRole('button');

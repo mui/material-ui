@@ -8,6 +8,7 @@ import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
 import ButtonBase from '../ButtonBase';
+import IconButton from '../IconButton';
 
 export const styles = theme => {
   const backgroundColor =
@@ -121,6 +122,15 @@ export const styles = theme => {
     deletableColorSecondary: {
       '&:focus': {
         backgroundColor: emphasize(theme.palette.secondary.main, 0.2),
+      },
+    },
+    deleteIconButton: {
+      marginRight: 6,
+      padding: 0,
+      '& $deleteIcon': {
+        margin: 0,
+        width: 18.3,
+        height: 18.3,
       },
     },
     /* Styles applied to the root element if `variant="outlined"`. */
@@ -318,7 +328,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   const Component = ComponentProp || (clickable ? ButtonBase : 'div');
   const moreProps = Component === ButtonBase ? { component: 'div' } : {};
 
-  let deleteIcon = null;
+  let deleteButton = null;
   if (onDelete) {
     const customClasses = clsx({
       [classes.deleteIconSmall]: small,
@@ -328,20 +338,24 @@ const Chip = React.forwardRef(function Chip(props, ref) {
         color !== 'default' && variant === 'outlined',
     });
 
-    deleteIcon =
+    deleteButton =
       deleteIconProp && React.isValidElement(deleteIconProp) ? (
         React.cloneElement(deleteIconProp, {
           className: clsx(deleteIconProp.props.className, classes.deleteIcon, customClasses),
           onClick: handleDeleteIconClick,
         })
       ) : (
-        <CancelIcon
-          aria-hidden={null}
-          className={clsx(classes.deleteIcon, customClasses)}
+        <IconButton
+          className={classes.deleteIconButton}
           onClick={handleDeleteIconClick}
-          role="button"
           tabIndex={clickable ? -1 : 0}
-        />
+        >
+          <CancelIcon
+            className={clsx(classes.deleteIcon, customClasses)}
+            viewBox="2 2 20 20"
+            preserveAspectRatio="none"
+          />
+        </IconButton>
       );
   }
 
@@ -409,7 +423,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
       >
         {label}
       </span>
-      {deleteIcon}
+      {deleteButton}
     </Component>
   );
 });
