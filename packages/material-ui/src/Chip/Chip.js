@@ -345,6 +345,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
       ) : (
         <IconButton
           className={classes.deleteIconButton}
+          onMouseDown={event => event.stopPropagation()}
           onClick={handleDeleteIconClick}
           tabIndex={clickable ? -1 : 0}
         >

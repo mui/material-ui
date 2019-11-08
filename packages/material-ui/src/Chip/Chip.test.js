@@ -131,6 +131,18 @@ describe('<Chip />', () => {
     });
   });
 
+  describe('deleteable and clickable', () => {
+    it('should render an extra nested button out of tab order for deletion', () => {
+      const { getAllByRole } = render(
+        <Chip label="Text Chip" onClick={() => {}} onDelete={() => {}} />,
+      );
+
+      const deleteButton = getAllByRole('button')[1];
+      expect(deleteButton).to.have.property('tabIndex', -1);
+      // TODO how's the accessible name? do we need one?
+    });
+  });
+
   describe('deletable Avatar chip', () => {
     it('should render a button in tab order with the avatar', () => {
       const { container, getByRole } = render(
@@ -144,22 +156,6 @@ describe('<Chip />', () => {
       expect(getByRole('button')).to.have.property('tabIndex', 0);
       expect(container.querySelector('#avatar')).to.be.ok;
     });
-
-    it('should render an extra nested button out of tab order for deletion', () => {
-      const { getAllByRole } = render(
-        <Chip
-          avatar={<Avatar id="avatar">MB</Avatar>}
-          label="Text Avatar Chip"
-          onClick={() => {}}
-          onDelete={() => {}}
-        />,
-      );
-
-      const deleteButton = getAllByRole('button')[1];
-      expect(deleteButton).to.have.property('tabIndex', -1);
-      // TODO how's the accessible name? do we need one?
-    });
-
     it('fires onDelete when clicking the delete button', () => {
       const handleDelete = spy();
       const { getByRole } = render(
