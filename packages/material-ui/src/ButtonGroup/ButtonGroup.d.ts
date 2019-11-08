@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { PropTypes } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
@@ -31,7 +32,8 @@ export type ButtonGroupClassKey =
   | 'groupedOutlinedSecondary'
   | 'groupedContained'
   | 'groupedContainedPrimary'
-  | 'groupedContainedSecondary';
+  | 'groupedContainedSecondary'
+  | 'disabled';
 
 export type ButtonGroupProps<
   D extends React.ElementType = ButtonGroupTypeMap['defaultComponent'],
