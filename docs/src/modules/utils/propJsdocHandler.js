@@ -10,6 +10,6 @@ export default function propJsdocHandler(documentation, componentDefinition) {
     });
 
     descriptor.description = parsed.description;
-    descriptor.ignore = parsed.tags.find(tag => tag.title === 'ignore') !== undefined;
+    descriptor.tags = parsed.tags;
   });
 }

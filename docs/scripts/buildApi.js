@@ -137,9 +137,10 @@ async function buildComponentApi(componentObject) {
 
   reactAPI.props = _.mapValues(
     _.omitBy(reactAPI.props, descriptor => {
-      return descriptor.ignore;
+      const hasIgnoreTag = descriptor.tags.find(tag => tag.title === 'ignore') !== undefined;
+      return hasIgnoreTag;
     }),
-    ({ ignore, ...descriptor }) => {
+    ({ ...descriptor }) => {
       return descriptor;
     },
   );
