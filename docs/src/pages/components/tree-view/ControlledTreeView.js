@@ -17,12 +17,8 @@ export default function ControlledTreeView() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState([]);
 
-  const handleChange = (nodes, expand) => {
-    if (expand) {
-      setExpanded(old => [...old, ...nodes]);
-    } else {
-      setExpanded(old => old.filter(node => nodes.indexOf(node) === -1));
-    }
+  const handleChange = (event, nodes) => {
+    setExpanded(nodes);
   };
 
   return (

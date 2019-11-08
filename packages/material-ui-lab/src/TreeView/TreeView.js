@@ -179,50 +179,31 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     focus(lastNode);
   };
 
-  const toggle = (value = focused) => {
+  const toggle = (event, value = focused) => {
     let newExpanded;
-    if (isControlled) {
-      if (expandedProp.indexOf(value) !== -1) {
-        newExpanded = expandedProp.filter(id => id !== value);
-        setTabable(oldTabable => {
-          const map = nodeMap.current[oldTabable];
-          if (oldTabable && (map && map.parent ? map.parent.id : null) === value) {
-            return value;
-          }
-          return oldTabable;
-        });
-      } else {
-        newExpanded = [value, ...expandedProp];
-      }
-
-      if (onNodeToggle) {
-        onNodeToggle([value], newExpanded.indexOf(value) !== -1);
-      }
-    } else {
-      setExpandedState(prevExpanded => {
-        if (prevExpanded.indexOf(value) !== -1) {
-          newExpanded = prevExpanded.filter(id => id !== value);
-          setTabable(oldTabable => {
-            const map = nodeMap.current[oldTabable];
-            if (oldTabable && (map && map.parent ? map.parent.id : null) === value) {
-              return value;
-            }
-            return oldTabable;
-          });
-        } else {
-          newExpanded = [value, ...prevExpanded];
+    if (expanded.indexOf(value) !== -1) {
+      newExpanded = expanded.filter(id => id !== value);
+      setTabable(oldTabable => {
+        const map = nodeMap.current[oldTabable];
+        if (oldTabable && (map && map.parent ? map.parent.id : null) === value) {
+          return value;
         }
-
-        if (onNodeToggle) {
-          onNodeToggle([value], newExpanded.indexOf(value) !== -1);
-        }
-
-        return newExpanded;
+        return oldTabable;
       });
+    } else {
+      newExpanded = [value, ...expanded];
+    }
+
+    if (onNodeToggle) {
+      onNodeToggle(event, newExpanded);
+    }
+
+    if (!isControlled) {
+      setExpandedState(newExpanded);
     }
   };
 
-  const expandAllSiblings = id => {
+  const expandAllSiblings = (event, id) => {
     const map = nodeMap.current[id];
     const parent = nodeMap.current[map.parent];
 
@@ -233,17 +214,21 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       const topLevelNodes = nodeMap.current[-1].children;
       diff = topLevelNodes.filter(node => !isExpanded(node));
     }
-    if (isControlled) {
-      onNodeToggle([...expandedProp, ...diff], true);
-    } else {
-      setExpandedState(oldExpanded => [...oldExpanded, ...diff]);
+    const newExpanded = [...expanded, ...diff];
+
+    if (!isControlled) {
+      setExpandedState(newExpanded);
+    }
+
+    if (onNodeToggle) {
+      onNodeToggle(event, newExpanded);
     }
   };
 
   const handleLeftArrow = (id, event) => {
     let flag = false;
     if (isExpanded(id)) {
-      toggle(id);
+      toggle(event, id);
       flag = true;
     } else {
       const parent = nodeMap.current[id].parent;

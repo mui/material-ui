@@ -52,17 +52,29 @@ describe('<TreeView />', () => {
   });
 
   it('should be able to be controlled', () => {
-    const { getByTestId, setProps } = render(
-      <TreeView expanded={['1']}>
-        <TreeItem nodeId="1" label="one" data-testid="one">
-          <TreeItem nodeId="2" label="two" />
-        </TreeItem>
-      </TreeView>,
-    );
+    function MyComponent() {
+      const [expandedState, setExpandedState] = React.useState([]);
+      const handleNodeToggle = (event, nodes) => {
+        setExpandedState(nodes);
+      };
+      return (
+        <TreeView expanded={expandedState} onNodeToggle={handleNodeToggle}>
+          <TreeItem nodeId="1" label="one" data-testid="one">
+            <TreeItem nodeId="2" label="two" />
+          </TreeItem>
+        </TreeView>
+      );
+    }
 
-    expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
-    setProps({ expanded: [] });
+    const { getByTestId, getByText } = render(<MyComponent />);
+
     expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
+    fireEvent.click(getByText('one'));
+    expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
+    fireEvent.click(getByText('one'));
+    expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
+    fireEvent.keyDown(document.activeElement, { key: '*' });
+    expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
   });
 
   it('should not error when component state changes', () => {
@@ -112,8 +124,7 @@ describe('<TreeView />', () => {
       fireEvent.click(getByText('outer'));
 
       expect(handleNodeToggle.callCount).to.equal(1);
-      expect(handleNodeToggle.args[0][0]).to.deep.equal(['1']);
-      expect(handleNodeToggle.args[0][1]).to.equal(true);
+      expect(handleNodeToggle.args[0][1]).to.deep.equal(['1']);
     });
   });
 
