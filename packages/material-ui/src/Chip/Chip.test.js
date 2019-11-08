@@ -287,6 +287,17 @@ describe('<Chip />', () => {
       expect(icon).to.have.class(classes.deleteIcon);
       expect(icon).to.have.class(classes.deleteIconColorSecondary);
     });
+
+    it('accepts a custom icon', () => {
+      const handleDelete = spy();
+      const { container } = render(
+        <Chip label="Custom delete icon Chip" onDelete={handleDelete} deleteIcon={<CheckBox />} />,
+      );
+
+      fireEvent.click(container.querySelector('svg[data-mui-test="CheckBoxIcon"]'));
+
+      expect(handleDelete.callCount).to.equal(1);
+    });
   });
 
   describe('reacts to keyboard chip', () => {
