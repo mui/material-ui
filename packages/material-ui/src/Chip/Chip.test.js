@@ -388,7 +388,7 @@ describe('<Chip />', () => {
         expect(handleKeyUp.callCount).to.equal(1);
       });
 
-      it.skip('should not call onClick for child event when `enter` is pressed', () => {
+      it('should not call onClick for child event when `enter` is pressed', () => {
         const handleClick = spy();
         const handleKeyDown = spy();
         render(
@@ -400,8 +400,8 @@ describe('<Chip />', () => {
 
         fireEvent.keyDown(document.activeElement, { key: 'Enter' });
 
-        expect(handleClick.callCount).to.equal(1);
-        expect(handleKeyDown.callCount).to.equal(0);
+        expect(handleClick.callCount).to.equal(0);
+        expect(handleKeyDown.callCount).to.equal(1);
       });
     });
   });
