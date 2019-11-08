@@ -394,8 +394,8 @@ TreeView.propTypes = {
   /**
    * Callback fired when tree items are expanded/collapsed.
    *
-   * @param {array} nodeIds The ids of the toggled nodes.
-   * @param {boolean} expanded The nodes' status - If `true` the nodes were expanded. If `false` the node were collapsed.
+   * @param {object} event The event source of the callback
+   * @param {array} nodeIds The ids of the expanded nodes.
    */
   onNodeToggle: PropTypes.func,
 };
