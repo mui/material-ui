@@ -2,10 +2,7 @@ import React from 'react';
 import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -18,26 +15,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
-
-interface TextMaskCustomProps {
-  inputRef: (ref: HTMLInputElement | null) => void;
-}
-
-function TextMaskCustom(props: TextMaskCustomProps) {
-  const { inputRef, ...other } = props;
-
-  return (
-    <MaskedInput
-      {...other}
-      ref={(ref: any) => {
-        inputRef(ref ? ref.inputElement : null);
-      }}
-      mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
-      placeholderChar={'\u2000'}
-      showMask
-    />
-  );
-}
 
 interface NumberFormatCustomProps {
   inputRef: (instance: NumberFormat | null) => void;
@@ -86,15 +63,22 @@ export default function FormattedInputs() {
 
   return (
     <div className={classes.container}>
-      <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
-        <Input
-          value={values.textmask}
-          onChange={handleChange('textmask')}
-          id="formatted-text-mask-input"
-          inputComponent={TextMaskCustom as any}
-        />
-      </FormControl>
+      <MaskedInput
+        mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+        placeholderChar={'\u2000'}
+        showMask
+        value={values.textmask}
+        onChange={handleChange('textmask')}
+        render={(ref: any, props: any) => (
+          <TextField
+            label="react-text-mask"
+            inputProps={{
+              ref,
+              ...props,
+            }}
+          />
+        )}
+      />
       <TextField
         className={classes.formControl}
         label="react-number-format"
