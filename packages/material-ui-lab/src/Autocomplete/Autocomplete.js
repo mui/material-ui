@@ -248,20 +248,20 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     }
   }
 
-  let ArrowDropDown;
+  let arrowDropDownIcon;
 
   if (PopupIconComponent) {
-    ArrowDropDown = PopupIconComponent;
+    arrowDropDownIcon = PopupIconComponent;
   } else {
-    ArrowDropDown = <ArrowDropDownIcon />;
+    arrowDropDownIcon = <ArrowDropDownIcon />;
   }
 
-  let Close;
+  let closeIcon;
 
-  if(CloseIconComponent) {
-    Close = CloseIconComponent;
+  if (CloseIconComponent) {
+    closeIcon = CloseIconComponent;
   } else {
-    Close = <CloseIcon fontSize="small" />;
+    closeIcon = <CloseIcon fontSize="small" />;
   }
 
   const defaultRenderGroup = params => (
@@ -320,7 +320,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                       [classes.clearIndicatorDirty]: dirty,
                     })}
                   >
-                    {Close}
+                    {closeIcon}
                   </IconButton>
                 )}
 
@@ -333,7 +333,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                       [classes.popupIndicatorOpen]: popupOpen,
                     })}
                   >
-                    {ArrowDropDown}
+                    {arrowDropDownIcon}
                   </IconButton>
                 )}
               </React.Fragment>
