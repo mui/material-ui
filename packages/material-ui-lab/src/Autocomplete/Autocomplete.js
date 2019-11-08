@@ -248,20 +248,20 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     }
   }
 
-  let ArrowDropDownIcon;
+  let ArrowDropDown;
 
   if (PopupIconComponent) {
-    ArrowDropDownIcon = PopupIconComponent;
+    ArrowDropDown = PopupIconComponent;
   } else {
-    ArrowDropDownIcon = <ArrowDropDownIcon />;
+    ArrowDropDown = <ArrowDropDownIcon />;
   }
 
-  let CloseIcon;
+  let Close;
 
   if(CloseIconComponent) {
-    CloseIcon = CloseIconComponent;
+    Close = CloseIconComponent;
   } else {
-    CloseIcon = <CloseIcon fontSize="small" />;
+    Close = <CloseIcon fontSize="small" />;
   }
 
   const defaultRenderGroup = params => (
@@ -320,7 +320,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                       [classes.clearIndicatorDirty]: dirty,
                     })}
                   >
-                    {CloseIcon}
+                    {Close}
                   </IconButton>
                 )}
 
@@ -333,7 +333,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                       [classes.popupIndicatorOpen]: popupOpen,
                     })}
                   >
-                    {ArrowDropDownIcon}
+                    {ArrowDropDown}
                   </IconButton>
                 )}
               </React.Fragment>
@@ -425,7 +425,7 @@ Autocomplete.propTypes = {
   /**
    * `Icon` to be displayed instead of the default `CloseIcon`.
    */
-  CloseIconComponent: PropTypes.node,
+  CloseIconComponent: PropTypes.elementType,
   /**
    * If `true`, the popup will ignore the blur event if the input if filled.
    * You can inspect the popup markup with your browser tools.
@@ -563,7 +563,7 @@ Autocomplete.propTypes = {
   /**
    * `Icon` to be displayed instead of the default `ArrowDropDownIcon`.
    */
-  PopupIconComponent: PropTypes.node,
+  PopupIconComponent: PropTypes.elementType,
   /**
    * Render the group.
    *

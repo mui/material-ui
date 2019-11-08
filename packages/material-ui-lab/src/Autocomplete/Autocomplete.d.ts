@@ -44,7 +44,7 @@ export interface AutocompleteProps
   /**
    * `Icon` to be displayed instead of the default `CloseIcon`.
    */
-  CloseIconComponent?: React.ReactNode;
+  CloseIconComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
   /**
    * If `true`, the input will be disabled.
    */
@@ -81,7 +81,7 @@ export interface AutocompleteProps
   /**
    * `Icon` to be displayed instead of the default `ArrowDropDownIcon`.
    */
-  PopupIconComponent?: React.ReactNode;
+  PopupIconComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
   /**
    * Render the group.
    *
