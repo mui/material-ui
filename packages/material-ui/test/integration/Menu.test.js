@@ -86,10 +86,9 @@ describe('<Menu /> integration', () => {
   });
 
   it('is part of the DOM by default but hidden', () => {
-    const { queryByRole } = render(<ButtonMenu />);
+    const { getByRole } = render(<ButtonMenu />);
 
-    // note: this will fail once testing-library ignores inaccessible roles :)
-    expect(queryByRole('menu')).to.be.null;
+    expect(getByRole('menu', { hidden: true })).to.be.inaccessible;
   });
 
   it('does not gain any focus when mounted ', () => {
@@ -105,7 +104,7 @@ describe('<Menu /> integration', () => {
     button.focus();
     button.click();
 
-    expect(getAllByRole('menuitem')[0]).to.be.focused;
+    expect(getAllByRole('menuitem')[0]).to.have.focus;
   });
 
   it('changes focus according to keyboard navigation', () => {
@@ -117,22 +116,22 @@ describe('<Menu /> integration', () => {
     const menuitems = getAllByRole('menuitem');
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(menuitems[1]).to.be.focused;
+    expect(menuitems[1]).to.have.focus;
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-    expect(menuitems[0]).to.be.focused;
+    expect(menuitems[0]).to.have.focus;
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-    expect(menuitems[2]).to.be.focused;
+    expect(menuitems[2]).to.have.focus;
 
     fireEvent.keyDown(document.activeElement, { key: 'Home' });
-    expect(menuitems[0]).to.be.focused;
+    expect(menuitems[0]).to.have.focus;
 
     fireEvent.keyDown(document.activeElement, { key: 'End' });
-    expect(menuitems[2]).to.be.focused;
+    expect(menuitems[2]).to.have.focus;
 
     fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
-    expect(menuitems[2], 'no change on unassociated keys').to.be.focused;
+    expect(menuitems[2], 'no change on unassociated keys').to.have.focus;
   });
 
   it('focuses the selected item when opening', () => {
@@ -142,7 +141,7 @@ describe('<Menu /> integration', () => {
     button.focus();
     button.click();
 
-    expect(getAllByRole('menuitem')[2]).to.be.focused;
+    expect(getAllByRole('menuitem')[2]).to.have.focus;
   });
 
   describe('Menu variant differences', () => {
@@ -160,7 +159,7 @@ describe('<Menu /> integration', () => {
       );
       const menuitems = getAllByRole('menuitem');
 
-      expect(menuitems[0]).to.be.focused;
+      expect(menuitems[0]).to.have.focus;
       expect(menuitems[0]).to.have.property('tabIndex', -1);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
@@ -176,7 +175,7 @@ describe('<Menu /> integration', () => {
       );
       const menuitems = getAllByRole('menuitem');
 
-      expect(menuitems[0]).to.be.focused;
+      expect(menuitems[0]).to.have.focus;
       expect(menuitems[0]).to.have.property('tabIndex', 0);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
@@ -193,7 +192,7 @@ describe('<Menu /> integration', () => {
       );
       const menuitems = getAllByRole('menuitem');
 
-      expect(menuitems[2]).to.be.focused;
+      expect(menuitems[2]).to.have.focus;
       expect(menuitems[0]).to.have.property('tabIndex', -1);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
@@ -209,7 +208,7 @@ describe('<Menu /> integration', () => {
       );
       const menuitems = getAllByRole('menuitem');
 
-      expect(menuitems[0]).to.be.focused;
+      expect(menuitems[0]).to.have.focus;
       expect(menuitems[0]).to.have.property('tabIndex', -1);
       expect(menuitems[1]).to.have.property('tabIndex', -1);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
@@ -225,7 +224,7 @@ describe('<Menu /> integration', () => {
       );
       const menuitems = getAllByRole('menuitem');
 
-      expect(menuitems[1]).to.be.focused;
+      expect(menuitems[1]).to.have.focus;
       expect(menuitems[0]).to.have.property('tabIndex', -1);
       expect(menuitems[1]).to.have.property('tabIndex', 0);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
@@ -241,7 +240,7 @@ describe('<Menu /> integration', () => {
       );
       const menuitems = getAllByRole('menuitem');
 
-      expect(menuitems[1]).to.be.focused;
+      expect(menuitems[1]).to.have.focus;
       expect(menuitems[0]).to.have.property('tabIndex', -1);
       expect(menuitems[1]).to.have.property('tabIndex', 2);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
@@ -263,7 +262,7 @@ describe('<Menu /> integration', () => {
         );
         const menuitems = getAllByRole('menuitem');
 
-        expect(menuitems[1]).to.be.focused;
+        expect(menuitems[1]).to.have.focus;
         expect(menuitems[0]).to.have.property('tabIndex', -1);
         expect(menuitems[1]).to.have.property('tabIndex', 0);
         expect(menuitems[2]).to.have.property('tabIndex', -1);
@@ -284,7 +283,7 @@ describe('<Menu /> integration', () => {
       );
       const menuitems = getAllByRole('menuitem');
 
-      expect(getByTestId('Paper')).to.be.focused;
+      expect(getByTestId('Paper')).to.have.focus;
       expect(menuitems[0]).to.have.property('tabIndex', -1);
       expect(menuitems[1]).to.have.property('tabIndex', 0);
       expect(menuitems[2]).to.have.property('tabIndex', -1);
@@ -307,7 +306,7 @@ describe('<Menu /> integration', () => {
         getByRole('button').click();
         const menuitems = getAllByRole('menuitem');
 
-        expect(menuitems[1]).to.be.focused;
+        expect(menuitems[1]).to.have.focus;
         expect(menuitems[0]).to.have.property('tabIndex', -1);
         expect(menuitems[1]).to.have.property('tabIndex', 0);
         expect(menuitems[2]).to.have.property('tabIndex', -1);

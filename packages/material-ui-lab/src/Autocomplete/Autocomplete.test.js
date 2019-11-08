@@ -246,7 +246,7 @@ describe('<Autocomplete />', () => {
 
       const textbox = getByRole('textbox');
       const options = getAllByRole('option');
-      expect(textbox).to.be.focused;
+      expect(textbox).to.have.focus;
       expect(textbox).to.have.attribute(
         'aria-activedescendant',
         options[options.length - 1].getAttribute('id'),
@@ -266,7 +266,7 @@ describe('<Autocomplete />', () => {
 
       const options = getAllByRole('option');
       const textbox = getByRole('textbox');
-      expect(textbox).to.be.focused;
+      expect(textbox).to.have.focus;
       expect(textbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id'));
     });
 
@@ -284,7 +284,7 @@ describe('<Autocomplete />', () => {
         fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
 
         const textbox = getByRole('textbox');
-        expect(textbox).to.be.focused;
+        expect(textbox).to.have.focus;
         expect(textbox).not.to.have.attribute('aria-activedescendant');
       });
 
@@ -301,7 +301,7 @@ describe('<Autocomplete />', () => {
         fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
 
         const textbox = getByRole('textbox');
-        expect(textbox).to.be.focused;
+        expect(textbox).to.have.focus;
         expect(textbox).not.to.have.attribute('aria-activedescendant');
       });
     });
@@ -320,7 +320,7 @@ describe('<Autocomplete />', () => {
         fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
 
         const textbox = getByRole('textbox');
-        expect(textbox).to.be.focused;
+        expect(textbox).to.have.focus;
         expect(textbox).to.have.attribute(
           'aria-activedescendant',
           getAllByRole('option')[0].getAttribute('id'),
@@ -340,7 +340,7 @@ describe('<Autocomplete />', () => {
 
         const textbox = getByRole('textbox');
         const options = getAllByRole('option');
-        expect(textbox).to.be.focused;
+        expect(textbox).to.have.focus;
         expect(textbox).to.have.attribute(
           'aria-activedescendant',
           options[options.length - 1].getAttribute('id'),
@@ -362,7 +362,7 @@ describe('<Autocomplete />', () => {
 
         const textbox = getByRole('textbox');
         const options = getAllByRole('option');
-        expect(textbox).to.be.focused;
+        expect(textbox).to.have.focus;
         expect(textbox).to.have.attribute(
           'aria-activedescendant',
           options[options.length - 1].getAttribute('id'),

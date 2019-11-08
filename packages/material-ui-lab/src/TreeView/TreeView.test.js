@@ -50,13 +50,13 @@ describe('<TreeView />', () => {
     const { getByText, getByTestId } = render(<MyComponent />);
 
     fireEvent.click(getByText('one'));
-    expect(getByTestId('one')).to.be.focused;
+    expect(getByTestId('one')).to.have.focus;
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(getByTestId('two')).to.be.focused;
+    expect(getByTestId('two')).to.have.focus;
     fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-    expect(getByTestId('one')).to.be.focused;
+    expect(getByTestId('one')).to.have.focus;
     fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-    expect(getByTestId('two')).to.be.focused;
+    expect(getByTestId('two')).to.have.focus;
   });
 
   describe('onNodeToggle', () => {

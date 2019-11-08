@@ -201,7 +201,7 @@ describe('<Select />', () => {
     });
 
     // TODO not matching WAI-ARIA authoring practices. It should focus the first (or selected) item.
-    expect(getByRole('listbox')).to.be.focused;
+    expect(getByRole('listbox')).to.have.focus;
   });
 
   describe('prop: onChange', () => {
@@ -382,7 +382,7 @@ describe('<Select />', () => {
 
       getByRole('listbox').focus();
 
-      expect(getByRole('listbox')).to.be.focused;
+      expect(getByRole('listbox')).to.have.focus;
     });
 
     it('identifies each selectable element containing an option', () => {
@@ -623,10 +623,9 @@ describe('<Select />', () => {
       });
       // react-transition-group uses one extra commit for exit to completely remove
       // it from the DOM. but it's at least immediately inaccessible.
-      expect(queryByRole('listbox')).to.be.null;
       // It's desired that this fails one day. The additional tick required to remove
       // this from the DOM is not a feature
-      expect(getByRole('listbox', { hidden: true })).to.be.ok;
+      expect(getByRole('listbox', { hidden: true })).to.be.inaccessible;
       act(() => {
         clock.tick(0);
       });
@@ -816,7 +815,7 @@ describe('<Select />', () => {
     it('should focus select after Select did mount', () => {
       const { getByRole } = render(<Select value="" autoFocus />);
 
-      expect(getByRole('button')).to.be.focused;
+      expect(getByRole('button')).to.have.focus;
     });
   });
 
@@ -850,7 +849,7 @@ describe('<Select />', () => {
         ref.current.focus();
       });
 
-      expect(getByRole('button')).to.be.focused;
+      expect(getByRole('button')).to.have.focus;
     });
   });
 

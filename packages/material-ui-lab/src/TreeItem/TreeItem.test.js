@@ -207,12 +207,12 @@ describe('<TreeItem />', () => {
         );
 
         getByTestId('start').focus();
-        expect(getByTestId('start')).to.be.focused;
+        expect(getByTestId('start')).to.have.focus;
 
         fireEvent.keyDown(document.activeElement, { key: 'Tab' });
         getByTestId('one').focus();
 
-        expect(getByTestId('one')).to.be.focused;
+        expect(getByTestId('one')).to.have.focus;
       });
 
       it('should focus the selected node if a node is selected before the tree receives focus', () => {
@@ -229,15 +229,15 @@ describe('<TreeItem />', () => {
         );
 
         fireEvent.click(getByText('two'));
-        expect(getByTestId('two')).to.be.focused;
+        expect(getByTestId('two')).to.have.focus;
 
         getByTestId('start').focus();
-        expect(getByTestId('start')).to.be.focused;
+        expect(getByTestId('start')).to.have.focus;
 
         fireEvent.keyDown(document.activeElement, { key: 'Tab' });
         getByTestId('two').focus();
 
-        expect(getByTestId('two')).to.be.focused;
+        expect(getByTestId('two')).to.have.focus;
       });
     });
 
@@ -255,7 +255,7 @@ describe('<TreeItem />', () => {
         getByTestId('one').focus();
         fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
-        expect(getByTestId('one')).to.be.focused;
+        expect(getByTestId('one')).to.have.focus;
       });
 
       it('should move focus to the first child if focus is on an open node', () => {
@@ -270,7 +270,7 @@ describe('<TreeItem />', () => {
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
         getByTestId('one').focus();
         fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
-        expect(getByTestId('two')).to.be.focused;
+        expect(getByTestId('two')).to.have.focus;
       });
 
       it('should do nothing if focus is on an end node', () => {
@@ -283,9 +283,9 @@ describe('<TreeItem />', () => {
         );
 
         fireEvent.click(getByText('two'));
-        expect(getByTestId('two')).to.be.focused;
+        expect(getByTestId('two')).to.have.focus;
         fireEvent.keyDown(document.activeElement, { key: 'ArrowRight' });
-        expect(getByTestId('two')).to.be.focused;
+        expect(getByTestId('two')).to.have.focus;
       });
     });
 
@@ -304,7 +304,7 @@ describe('<TreeItem />', () => {
         getByTestId('one').focus();
         fireEvent.keyDown(document.activeElement, { key: 'ArrowLeft' });
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
-        expect(getByTestId('one')).to.be.focused;
+        expect(getByTestId('one')).to.have.focus;
       });
 
       it("should move focus to the node's parent node if focus is on a child node that is an end node", () => {
@@ -319,7 +319,7 @@ describe('<TreeItem />', () => {
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
         fireEvent.click(getByText('two'));
         fireEvent.keyDown(document.activeElement, { key: 'ArrowLeft' });
-        expect(getByTestId('one')).to.be.focused;
+        expect(getByTestId('one')).to.have.focus;
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
       });
 
@@ -341,7 +341,7 @@ describe('<TreeItem />', () => {
         fireEvent.click(getByText('two'));
         expect(getByTestId('two')).to.have.attribute('aria-expanded', 'false');
         fireEvent.keyDown(document.activeElement, { key: 'ArrowLeft' });
-        expect(getByTestId('one')).to.be.focused;
+        expect(getByTestId('one')).to.have.focus;
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
       });
 
@@ -357,7 +357,7 @@ describe('<TreeItem />', () => {
         getByTestId('one').focus();
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
         fireEvent.keyDown(document.activeElement, { key: 'ArrowLeft' });
-        expect(getByTestId('one')).to.be.focused;
+        expect(getByTestId('one')).to.have.focus;
       });
 
       it('should do nothing if focus is on a root node that is an end node', () => {
@@ -369,7 +369,7 @@ describe('<TreeItem />', () => {
 
         getByTestId('one').focus();
         fireEvent.keyDown(document.activeElement, { key: 'ArrowLeft' });
-        expect(getByTestId('one')).to.be.focused;
+        expect(getByTestId('one')).to.have.focus;
       });
     });
 
@@ -384,7 +384,7 @@ describe('<TreeItem />', () => {
 
         getByTestId('one').focus();
         fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-        expect(getByTestId('two')).to.be.focused;
+        expect(getByTestId('two')).to.have.focus;
       });
 
       it('moves focus to a nested node', () => {
@@ -399,7 +399,7 @@ describe('<TreeItem />', () => {
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
         getByTestId('one').focus();
         fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-        expect(getByTestId('two')).to.be.focused;
+        expect(getByTestId('two')).to.have.focus;
       });
 
       it("moves focus to a parent's sibling", () => {
@@ -414,9 +414,9 @@ describe('<TreeItem />', () => {
 
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
         fireEvent.click(getByText('two'));
-        expect(getByTestId('two')).to.be.focused;
+        expect(getByTestId('two')).to.have.focus;
         fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
-        expect(getByTestId('three')).to.be.focused;
+        expect(getByTestId('three')).to.have.focus;
       });
     });
 
@@ -430,9 +430,9 @@ describe('<TreeItem />', () => {
         );
 
         fireEvent.click(getByText('two'));
-        expect(getByTestId('two')).to.be.focused;
+        expect(getByTestId('two')).to.have.focus;
         fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-        expect(getByTestId('one')).to.be.focused;
+        expect(getByTestId('one')).to.have.focus;
       });
 
       it('moves focus to a parent', () => {
@@ -446,9 +446,9 @@ describe('<TreeItem />', () => {
 
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
         fireEvent.click(getByText('two'));
-        expect(getByTestId('two')).to.be.focused;
+        expect(getByTestId('two')).to.have.focus;
         fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-        expect(getByTestId('one')).to.be.focused;
+        expect(getByTestId('one')).to.have.focus;
       });
 
       it("moves focus to a sibling's child", () => {
@@ -463,9 +463,9 @@ describe('<TreeItem />', () => {
 
         expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
         fireEvent.click(getByText('three'));
-        expect(getByTestId('three')).to.be.focused;
+        expect(getByTestId('three')).to.have.focus;
         fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
-        expect(getByTestId('two')).to.be.focused;
+        expect(getByTestId('two')).to.have.focus;
       });
     });
 
@@ -481,9 +481,9 @@ describe('<TreeItem />', () => {
         );
 
         fireEvent.click(getByText('four'));
-        expect(getByTestId('four')).to.be.focused;
+        expect(getByTestId('four')).to.have.focus;
         fireEvent.keyDown(document.activeElement, { key: 'Home' });
-        expect(getByTestId('one')).to.be.focused;
+        expect(getByTestId('one')).to.have.focus;
       });
     });
 
@@ -499,9 +499,9 @@ describe('<TreeItem />', () => {
         );
 
         getByTestId('one').focus();
-        expect(getByTestId('one')).to.be.focused;
+        expect(getByTestId('one')).to.have.focus;
         fireEvent.keyDown(document.activeElement, { key: 'End' });
-        expect(getByTestId('four')).to.be.focused;
+        expect(getByTestId('four')).to.have.focus;
       });
 
       it('moves focus to the last node in the tree with expanded items', () => {
@@ -519,9 +519,9 @@ describe('<TreeItem />', () => {
         );
 
         getByTestId('one').focus();
-        expect(getByTestId('one')).to.be.focused;
+        expect(getByTestId('one')).to.have.focus;
         fireEvent.keyDown(document.activeElement, { key: 'End' });
-        expect(getByTestId('six')).to.be.focused;
+        expect(getByTestId('six')).to.have.focus;
       });
     });
 
@@ -569,15 +569,15 @@ describe('<TreeItem />', () => {
         );
 
         getByTestId('one').focus();
-        expect(getByTestId('one')).to.be.focused;
+        expect(getByTestId('one')).to.have.focus;
         fireEvent.keyDown(document.activeElement, { key: 't' });
-        expect(getByTestId('two')).to.be.focused;
+        expect(getByTestId('two')).to.have.focus;
 
         fireEvent.keyDown(document.activeElement, { key: 'f' });
-        expect(getByTestId('four')).to.be.focused;
+        expect(getByTestId('four')).to.have.focus;
 
         fireEvent.keyDown(document.activeElement, { key: 'o' });
-        expect(getByTestId('one')).to.be.focused;
+        expect(getByTestId('one')).to.have.focus;
       });
 
       it('moves focus to the next node with the same starting character', () => {
@@ -591,15 +591,15 @@ describe('<TreeItem />', () => {
         );
 
         getByTestId('one').focus();
-        expect(getByTestId('one')).to.be.focused;
+        expect(getByTestId('one')).to.have.focus;
         fireEvent.keyDown(document.activeElement, { key: 't' });
-        expect(getByTestId('two')).to.be.focused;
+        expect(getByTestId('two')).to.have.focus;
 
         fireEvent.keyDown(document.activeElement, { key: 't' });
-        expect(getByTestId('three')).to.be.focused;
+        expect(getByTestId('three')).to.have.focus;
 
         fireEvent.keyDown(document.activeElement, { key: 't' });
-        expect(getByTestId('two')).to.be.focused;
+        expect(getByTestId('two')).to.have.focus;
       });
     });
 
