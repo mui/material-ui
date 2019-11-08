@@ -49,7 +49,7 @@ describe('<TreeItem />', () => {
     const icon = <div data-test="icon" />;
     const endIcon = <div data-test="endIcon" />;
 
-    const { getByTestId, getByRole, getByText } = render(
+    const { getByTestId } = render(
       <TreeView
         defaultEndIcon={defaultEndIcon}
         defaultExpandIcon={defaultExpandIcon}
