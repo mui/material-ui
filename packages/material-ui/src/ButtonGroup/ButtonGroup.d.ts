@@ -31,7 +31,8 @@ export type ButtonGroupClassKey =
   | 'groupedOutlinedSecondary'
   | 'groupedContained'
   | 'groupedContainedPrimary'
-  | 'groupedContainedSecondary';
+  | 'groupedContainedSecondary'
+  | 'disabled';
 
 export type ButtonGroupProps<
   D extends React.ElementType = ButtonGroupTypeMap['defaultComponent'],
