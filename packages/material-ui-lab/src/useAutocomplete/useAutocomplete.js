@@ -93,6 +93,7 @@ export default function useAutocomplete(props) {
     }
   });
 
+  const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
   const listboxRef = React.useRef(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -531,6 +532,14 @@ export default function useAutocomplete(props) {
           // We don't want to validate the form.
           event.preventDefault();
           selectNewValue(event, filteredOptions[highlightedIndexRef.current]);
+
+          // Move the selection to the end.
+          if (autoComplete) {
+            inputRef.current.setSelectionRange(
+              inputRef.current.value.length,
+              inputRef.current.value.length,
+            );
+          }
         } else if (freeSolo && inputValue !== '') {
           selectNewValue(event, inputValue);
         }
@@ -572,6 +581,7 @@ export default function useAutocomplete(props) {
 
   const handleBlur = event => {
     setFocused(false);
+    firstFocus.current = true;
 
     if (debug && inputValue !== '') {
       return;
@@ -640,6 +650,30 @@ export default function useAutocomplete(props) {
     }
   };
 
+  const handleMouseDown = event => {
+    if (event.target.nodeName !== 'INPUT') {
+      // Prevent blur
+      event.preventDefault();
+    }
+  };
+
+  const handleClick = () => {
+    if (
+      firstFocus.current &&
+      inputRef.current.selectionEnd - inputRef.current.selectionStart === 0
+    ) {
+      inputRef.current.select();
+    }
+
+    firstFocus.current = false;
+  };
+
+  const handleInputMouseDown = () => {
+    if (inputValue === '') {
+      handlePopupIndicator();
+    }
+  };
+
   let dirty = freeSolo && inputValue.length > 0;
   dirty = dirty || (multiple ? value.length > 0 : value !== null);
 
@@ -663,11 +697,13 @@ export default function useAutocomplete(props) {
   }
 
   return {
-    getComboboxProps: () => ({
+    getRootProps: () => ({
       'aria-owns': popupOpen ? `${id}-popup` : null,
       role: 'combobox',
       'aria-expanded': popupOpen,
       onKeyDown: handleKeyDown,
+      onMouseDown: handleMouseDown,
+      onClick: handleClick,
     }),
     getInputLabelProps: () => ({
       id: `${id}-label`,
@@ -678,6 +714,7 @@ export default function useAutocomplete(props) {
       onBlur: handleBlur,
       onFocus: handleFocus,
       onChange: handleInputChange,
+      onMouseDown: handleInputMouseDown,
       // if open then this is handled imperativeley so don't let react override
       // only have an opinion about this when closed
       'aria-activedescendant': popupOpen ? undefined : null,
@@ -693,16 +730,10 @@ export default function useAutocomplete(props) {
     getClearProps: () => ({
       tabIndex: -1,
       onClick: handleClear,
-      onMouseDown: event => {
-        event.preventDefault();
-      },
     }),
     getPopupIndicatorProps: () => ({
       tabIndex: -1,
       onClick: handlePopupIndicator,
-      onMouseDown: event => {
-        event.preventDefault();
-      },
     }),
     getTagProps: ({ index }) => ({
       key: index,
@@ -716,6 +747,7 @@ export default function useAutocomplete(props) {
       'aria-labelledby': `${id}-label`,
       ref: handleListboxRef,
       onMouseDown: event => {
+        // Prevent blur
         event.preventDefault();
       },
     }),

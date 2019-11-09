@@ -124,7 +124,7 @@ const Listbox = styled('ul')`
 
 export default function CustomizedHook() {
   const {
-    getComboboxProps,
+    getRootProps,
     getInputLabelProps,
     getInputProps,
     getTagProps,
@@ -143,7 +143,7 @@ export default function CustomizedHook() {
 
   return (
     <div>
-      <div {...getComboboxProps()}>
+      <div {...getRootProps()}>
         <Label {...getInputLabelProps()}>Customized hook</Label>
         <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
           {value.map((option, index) => (

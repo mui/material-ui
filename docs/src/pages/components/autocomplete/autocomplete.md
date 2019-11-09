@@ -55,7 +55,7 @@ The Autocomplete component uses this hook internally.
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
 ```
 
-- 📦 [4 kB gzipped](/size-snapshot).
+- 📦 [4.5 kB gzipped](/size-snapshot).
 
 {{"demo": "pages/components/autocomplete/UseAutocomplete.js", "defaultCodeOpen": false}}
 

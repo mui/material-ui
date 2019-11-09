@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function UseAutocomplete() {
   const classes = useStyles();
   const {
-    getComboboxProps,
+    getRootProps,
     getInputLabelProps,
     getInputProps,
     getListboxProps,
@@ -51,7 +51,7 @@ export default function UseAutocomplete() {
 
   return (
     <div>
-      <div {...getComboboxProps()}>
+      <div {...getRootProps()}>
         <label className={classes.label} {...getInputLabelProps()}>
           useAutocomplete
         </label>

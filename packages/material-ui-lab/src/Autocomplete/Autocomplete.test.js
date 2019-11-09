@@ -497,4 +497,56 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
     });
   });
+
+  describe('prop: autoComplete', () => {
+    it('add a completion string', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          autoComplete
+          options={['one', 'two']}
+          renderInput={params => <TextField autoFocus {...params} />}
+        />,
+      );
+      const textbox = getByRole('textbox');
+      fireEvent.change(textbox, { target: { value: 'O' } });
+      expect(textbox.value).to.equal('O');
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(textbox.value).to.equal('one');
+      expect(textbox.selectionStart).to.equal(1);
+      expect(textbox.selectionEnd).to.equal(3);
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+      expect(textbox.value).to.equal('one');
+      expect(textbox.selectionStart).to.equal(3);
+      expect(textbox.selectionEnd).to.equal(3);
+    });
+  });
+
+  describe('click input', () => {
+    it('toggles if empty', () => {
+      const { getByRole } = render(
+        <Autocomplete options={['one', 'two']} renderInput={params => <TextField {...params} />} />,
+      );
+      const textbox = getByRole('textbox');
+      const combobox = getByRole('combobox');
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      fireEvent.mouseDown(textbox);
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+      fireEvent.mouseDown(textbox);
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+    });
+
+    it('selects all the first time', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          value="one"
+          options={['one', 'two']}
+          renderInput={params => <TextField {...params} />}
+        />,
+      );
+      const textbox = getByRole('textbox');
+      fireEvent.click(textbox);
+      expect(textbox.selectionStart).to.equal(0);
+      expect(textbox.selectionEnd).to.equal(3);
+    });
+  });
 });
