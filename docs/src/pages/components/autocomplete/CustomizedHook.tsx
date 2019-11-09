@@ -146,13 +146,7 @@ export default function CustomizedHook() {
         <Label {...getInputLabelProps()}>Customized hook</Label>
         <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
           {value.map((option: FilmOptionType, index: number) => (
-            <Tag
-              key={index}
-              data-tag-index={index}
-              tabIndex={-1}
-              label={option.title}
-              {...getTagProps()}
-            />
+            <Tag label={option.title} {...getTagProps({ index })} />
           ))}
           <input {...getInputProps()} />
         </InputWrapper>

@@ -51,6 +51,23 @@ describe('<Autocomplete />', () => {
       document.activeElement.blur();
       input.focus();
     });
+
+    it('should remove the last option', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      const { container } = render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={params => <TextField {...params} />}
+          multiple
+        />,
+      );
+      fireEvent.click(container.querySelectorAll('svg[data-mui-test="CancelIcon"]')[1]);
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
+    });
   });
 
   describe('WAI-ARIA conforming markup', () => {

@@ -613,8 +613,7 @@ export default function useAutocomplete(props) {
     selectNewValue(event, filteredOptions[highlightedIndexRef.current]);
   };
 
-  const handleTagDelete = event => {
-    const index = Number(event.currentTarget.getAttribute('data-tag-index'));
+  const handleTagDelete = index => event => {
     const newValue = [...value];
     newValue.splice(index, 1);
     handleValue(event, newValue);
@@ -705,8 +704,11 @@ export default function useAutocomplete(props) {
         event.preventDefault();
       },
     }),
-    getTagProps: () => ({
-      onDelete: handleTagDelete,
+    getTagProps: ({ index }) => ({
+      key: index,
+      'data-tag-index': index,
+      tabIndex: -1,
+      onDelete: handleTagDelete(index),
     }),
     getListboxProps: () => ({
       role: 'listbox',
@@ -722,9 +724,9 @@ export default function useAutocomplete(props) {
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
       return {
+        key: index,
         tabIndex: -1,
         role: 'option',
-        key: index,
         id: `${id}-option-${index}`,
         onMouseOver: handleOptionMouseOver,
         onClick: handleOptionClick,

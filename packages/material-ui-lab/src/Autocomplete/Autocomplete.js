@@ -232,22 +232,16 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   let startAdornment;
 
   if (multiple && value.length > 0) {
-    const tagProps = {
-      ...getTagProps(),
+    const getCustomizedTagProps = params => ({
       className: classes.tag,
-    };
+      ...getTagProps(params),
+    });
 
     if (renderTags) {
-      startAdornment = renderTags(value, tagProps);
+      startAdornment = renderTags(value, getCustomizedTagProps);
     } else {
       startAdornment = value.map((option, index) => (
-        <Chip
-          key={index}
-          data-tag-index={index}
-          tabIndex={-1}
-          label={getOptionLabel(option)}
-          {...tagProps}
-        />
+        <Chip label={getOptionLabel(option)} {...getCustomizedTagProps({ index })} />
       ));
     }
   }
@@ -570,6 +564,7 @@ Autocomplete.propTypes = {
    * Render the selected value.
    *
    * @param {any} value The `value` provided to the component.
+   * @param {function} getTagProps A tag props getter.
    * @returns {ReactNode}
    */
   renderTags: PropTypes.func,
