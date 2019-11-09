@@ -6,6 +6,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 export default function ComboBox() {
   return (
     <Autocomplete
+      id="combo-box-demo"
       options={top100Films}
       getOptionLabel={(option: FilmOptionType) => option.title}
       style={{ width: 300 }}

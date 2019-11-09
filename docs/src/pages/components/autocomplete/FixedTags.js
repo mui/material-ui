@@ -8,6 +8,7 @@ export default function FixedTags() {
   return (
     <Autocomplete
       multiple
+      id="fixed-tags-demo"
       options={top100Films}
       getOptionLabel={option => option.title}
       defaultValue={[top100Films[6], top100Films[13]]}

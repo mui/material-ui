@@ -19,11 +19,13 @@ export default function Playground() {
     <div style={{ width: 300 }}>
       <Autocomplete
         {...defaultProps}
+        id="debug"
         debug
         renderInput={params => <TextField {...params} label="debug" margin="normal" fullWidth />}
       />
       <Autocomplete
         {...defaultProps}
+        id="disable-close-on-select"
         disableCloseOnSelect
         renderInput={params => (
           <TextField {...params} label="disableCloseOnSelect" margin="normal" fullWidth />
@@ -31,6 +33,7 @@ export default function Playground() {
       />
       <Autocomplete
         {...defaultProps}
+        id="clear-on-escape"
         clearOnEscape
         renderInput={params => (
           <TextField {...params} label="clearOnEscape" margin="normal" fullWidth />
@@ -38,6 +41,7 @@ export default function Playground() {
       />
       <Autocomplete
         {...defaultProps}
+        id="disable-clearable"
         disableClearable
         renderInput={params => (
           <TextField {...params} label="disableClearable" margin="normal" fullWidth />
@@ -45,6 +49,7 @@ export default function Playground() {
       />
       <Autocomplete
         {...defaultProps}
+        id="include-input-in-list"
         includeInputInList
         renderInput={params => (
           <TextField {...params} label="includeInputInList" margin="normal" fullWidth />
@@ -52,10 +57,12 @@ export default function Playground() {
       />
       <Autocomplete
         {...flatProps}
+        id="flat-demo"
         renderInput={params => <TextField {...params} label="flat" margin="normal" fullWidth />}
       />
       <Autocomplete
         {...defaultProps}
+        id="controlled-demo"
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
@@ -66,6 +73,7 @@ export default function Playground() {
       />
       <Autocomplete
         {...defaultProps}
+        id="auto-complete"
         autoComplete
         includeInputInList
         renderInput={params => (
@@ -74,6 +82,7 @@ export default function Playground() {
       />
       <Autocomplete
         {...defaultProps}
+        id="disable-list-wrap"
         disableListWrap
         renderInput={params => (
           <TextField {...params} label="disableListWrap" margin="normal" fullWidth />
@@ -81,6 +90,7 @@ export default function Playground() {
       />
       <Autocomplete
         {...defaultProps}
+        id="disable-open-on-focus"
         disableOpenOnFocus
         renderInput={params => (
           <TextField {...params} label="disableOpenOnFocus" margin="normal" fullWidth />
@@ -88,6 +98,7 @@ export default function Playground() {
       />
       <Autocomplete
         {...defaultProps}
+        id="auto-highlight"
         autoHighlight
         renderInput={params => (
           <TextField {...params} label="autoHighlight" margin="normal" fullWidth />
@@ -95,6 +106,7 @@ export default function Playground() {
       />
       <Autocomplete
         {...defaultProps}
+        id="auto-select"
         autoSelect
         renderInput={params => (
           <TextField {...params} label="autoSelect" margin="normal" fullWidth />
@@ -102,11 +114,13 @@ export default function Playground() {
       />
       <Autocomplete
         {...defaultProps}
+        id="disabled"
         disabled
         renderInput={params => <TextField {...params} label="disabled" margin="normal" fullWidth />}
       />
       <Autocomplete
         {...defaultProps}
+        id="disable-portal"
         disablePortal
         renderInput={params => (
           <TextField {...params} label="disablePortal" margin="normal" fullWidth />

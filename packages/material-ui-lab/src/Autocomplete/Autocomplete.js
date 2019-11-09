@@ -224,6 +224,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     getOptionProps,
     value,
     dirty,
+    id,
     popupOpen,
     focused,
     focusedTag,
@@ -290,6 +291,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
         {...other}
       >
         {renderInput({
+          id,
           disabled,
           InputLabelProps: getInputLabelProps(),
           InputProps: {
@@ -301,6 +303,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                 {disableClearable || disabled ? null : (
                   <IconButton
                     {...getClearProps()}
+                    aria-label="Clear"
                     title="Clear"
                     className={clsx(classes.clearIndicator, {
                       [classes.clearIndicatorDirty]: dirty,
@@ -314,6 +317,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   <IconButton
                     {...getPopupIndicatorProps()}
                     disabled={disabled}
+                    aria-label={popupOpen ? 'Close popup' : 'Open popup'}
                     title={popupOpen ? 'Close popup' : 'Open popup'}
                     className={clsx(classes.popupIndicator, {
                       [classes.popupIndicatorOpen]: popupOpen,

@@ -720,6 +720,7 @@ export default function useAutocomplete(props) {
     }),
     getInputLabelProps: () => ({
       id: `${id}-label`,
+      htmlFor: id,
     }),
     getInputProps: () => ({
       id,
@@ -732,11 +733,11 @@ export default function useAutocomplete(props) {
       // only have an opinion about this when closed
       'aria-activedescendant': popupOpen ? undefined : null,
       'aria-autocomplete': autoComplete ? 'both' : 'list',
-      'aria-controls': `${id}-popup`,
-      // autoComplete: 'off', // Disable browser's suggestion that might overlap with the popup.
-      autoComplete: 'disabled', // disable autocomplete and autofill
+      'aria-controls': popupOpen ? `${id}-popup` : null,
+      // Disable browser's suggestion that might overlap with the popup.
+      // (autocomplete and autofill)
+      autoComplete: 'disabled',
       ref: inputRef,
-      autoCorrect: 'off',
       autoCapitalize: 'none',
       spellCheck: 'false',
     }),

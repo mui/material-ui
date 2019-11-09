@@ -23,6 +23,7 @@ export interface RenderGroupParams {
 }
 
 export interface RenderInputParams {
+  id: string;
   disabled: boolean;
   InputLabelProps: object;
   InputProps: {

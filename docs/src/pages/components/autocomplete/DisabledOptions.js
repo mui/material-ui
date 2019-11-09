@@ -6,6 +6,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 export default function DisabledOptions() {
   return (
     <Autocomplete
+      id="disabled-options-demo"
       options={timeSlots}
       getOptionDisabled={option => option === timeSlots[0] || option === timeSlots[2]}
       style={{ width: 300 }}
