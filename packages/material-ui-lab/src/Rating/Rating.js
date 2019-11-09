@@ -148,7 +148,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     ...other
   } = props;
 
-  
   const [defaultName, setDefaultName] = React.useState();
   const name = nameProp || defaultName;
   React.useEffect(() => {
