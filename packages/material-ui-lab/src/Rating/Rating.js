@@ -136,7 +136,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     icon = defaultIcon,
     IconContainerComponent = IconContainer,
     max = 5,
-    name,
+    name: nameProp,
     onChange,
     onChangeActive,
     onMouseLeave,
@@ -147,6 +147,16 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     value: valueProp2 = null,
     ...other
   } = props;
+
+  
+  const [defaultName, setDefaultName] = React.useState();
+  const name = nameProp || defaultName;
+  React.useEffect(() => {
+    // Fallback to this default id when possible.
+    // Use the random value for client-side rendering only.
+    // We can't use it server-side.
+    setDefaultName(`mui-rating-${Math.round(Math.random() * 1e5)}`);
+  }, []);
 
   const valueProp = roundValueToPrecision(valueProp2, precision);
   const theme = useTheme();
