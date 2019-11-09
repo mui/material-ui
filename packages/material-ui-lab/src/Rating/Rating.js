@@ -64,6 +64,7 @@ export const styles = theme => ({
     clip: 'rect(0 0 0 0)',
     height: 1,
     margin: -1,
+    color: '#000',
     overflow: 'hidden',
     padding: 0,
     position: 'absolute',

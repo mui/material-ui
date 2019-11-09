@@ -44,6 +44,7 @@ export default function DiamondSponsors() {
         {t('diamondSponsors')}
       </Typography>
       <a
+        aria-label={t('diamondSponsors')}
         className={classes.placeholder}
         rel="noopener noreferrer"
         target="_blank"
