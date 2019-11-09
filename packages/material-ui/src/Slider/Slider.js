@@ -325,6 +325,12 @@ export const styles = theme => ({
       left: 22,
       transform: 'translateY(50%)',
     },
+    '@media (pointer: coarse)': {
+      top: 40,
+      '$vertical &': {
+        left: 31,
+      },
+    },
   },
   /* Styles applied to the mark label element if active (depending on the value). */
   markLabelActive: {

@@ -80,6 +80,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: 13,
     },
     option: {
+      minHeight: 'auto',
       alignItems: 'flex-start',
       padding: 8,
       '&[aria-selected="true"]': {
@@ -177,7 +178,6 @@ export default function GitHubLabel() {
           open
           onClose={handleClose}
           multiple
-          debug
           classes={{
             paper: classes.paper,
             option: classes.option,

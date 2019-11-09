@@ -55,10 +55,19 @@ const inHouses = [
   },
   {
     name: 'themes',
-    link: 'https://themes.material-ui.com/',
+    link:
+      'https://themes.material-ui.com/?utm_source=material_ui&utm_medium=referral&utm_campaign=in-house',
     img: '/static/in-house/themes.png',
     description:
       '<b>Premium Themes</b><br />Kickstart your application development with a ready-made theme.',
+  },
+  {
+    name: 'tidelift',
+    link:
+      'https://tidelift.com/subscription/managed-open-source-survey?utm_source=material_ui&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
+    img: '/static/in-house/tidelift.png',
+    description:
+      '<b>Material-UI for enterprise</b><br />Available in the Tidelift Subscription. Reduce risk, and improve code health.',
   },
 ];
 
@@ -70,6 +79,7 @@ function Ad(props) {
   const timerAdblock = React.useRef();
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
+  const [codeFundOut, setCodeFundOut] = React.useState(null);
 
   const checkAdblock = React.useCallback((attempt = 1) => {
     if (document.querySelector('.cf-wrapper') || document.querySelector('#carbonads')) {
@@ -107,6 +117,18 @@ function Ad(props) {
     };
   }, [checkAdblock]);
 
+  React.useEffect(() => {
+    const handler = event => {
+      if (event.detail.status === 'no-advertiser') {
+        setCodeFundOut(true);
+      }
+    };
+    window.addEventListener('codefund', handler);
+    return () => {
+      window.removeEventListener('codefund', handler);
+    };
+  }, []);
+
   let children;
   let minHeight;
 
@@ -126,13 +148,13 @@ function Ad(props) {
   }
 
   if (!children) {
-    if (random >= 0.6) {
-      children = <AdCodeFund />;
-    } else if (!carbonOut) {
-      children = <AdCarbon />;
-    } else {
+    if (carbonOut || codeFundOut) {
       children = <AdInHouse ad={inHouses[Math.round((inHouses.length - 1) * random)]} />;
       minHeight = 'auto';
+    } else if (random >= 0.5) {
+      children = <AdCodeFund />;
+    } else {
+      children = <AdCarbon />;
     }
   }
 

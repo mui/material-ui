@@ -15,6 +15,8 @@ const useStyles = makeStyles(theme => ({
     '& $imageWrapper': {
       float: 'left',
       marginLeft: -130,
+      width: 130,
+      height: 100,
       marginRight: theme.spacing(1.5),
     },
     '& img': {
@@ -43,7 +45,7 @@ export default function AdInHouse(props) {
   const { ad } = props;
   const classes = useStyles();
   return (
-    <span className={classes.root} id="in-house">
+    <span className={classes.root}>
       <a
         className={classes.link}
         href={ad.link}

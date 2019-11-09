@@ -63,7 +63,7 @@ import useAutocomplete from '@material-ui/lab/useAutocomplete';
 
 {{"demo": "pages/components/autocomplete/CustomizedHook.js"}}
 
-Head to [Customized Autocomplete](#customized-autocomplete) for a customization example with the Autocomplete component instead of the hook.
+Head to the [Customized Autocomplete](#customized-autocomplete) section for a customization example with the `Autocomplete` component instead of the hook.
 
 ## Asynchronous requests
 
@@ -72,9 +72,12 @@ Head to [Customized Autocomplete](#customized-autocomplete) for a customization 
 ### Google Maps place
 
 A customized UI for Google Maps Places Autocomplete.
-For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) API.
 
 {{"demo": "pages/components/autocomplete/GoogleMaps.js"}}
+
+For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) API.
+
+> ⚠️ Before you can start using the Google Maps JavaScript API, you must sign up and create a billing account.
 
 ## Multiple values
 
@@ -98,13 +101,15 @@ This demo reproduces the GitHub's label picker:
 
 {{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 
+Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
+
 ## Highlights
 
 The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
 
 {{"demo": "pages/components/autocomplete/Highlights.js"}}
 
-## Customer filter
+## Custom filter
 
 The component exposes a factory to create a filter method that can provided to the `filerOption` prop.
 You can use it to change the default option filter behavior.
@@ -135,7 +140,9 @@ const filterOptions = createFilterOptions({
 
 {{"demo": "pages/components/autocomplete/Filter.js", "defaultCodeOpen": false}}
 
-For richer filtering mechanisms, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). For instance:
+### Advanced
+
+For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). For instance:
 
 ```jsx
 import matchSorter from 'match-sorter';

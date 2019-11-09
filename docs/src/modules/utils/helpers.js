@@ -71,8 +71,17 @@ function addTypeDeps(deps) {
 
     deps[`@types/${resolvedName}`] = 'latest';
   });
+}
 
-  return deps;
+function includePeerDependencies(deps, versions) {
+  Object.assign(deps, {
+    'react-dom': versions['react-dom'],
+    react: versions.react,
+  });
+
+  if (deps['@material-ui/lab'] && !deps['@material-ui/core']) {
+    deps['@material-ui/core'] = versions['@material-ui/core'];
+  }
 }
 
 /**
@@ -84,11 +93,11 @@ function addTypeDeps(deps) {
  */
 function getDependencies(raw, options = {}) {
   const { codeLanguage = CODE_VARIANTS.JS, reactVersion = 'latest' } = options;
-  const deps = {
+
+  const deps = {};
+  const versions = {
     'react-dom': reactVersion,
     react: reactVersion,
-  };
-  const versions = {
     '@material-ui/core': 'latest',
     '@material-ui/icons': 'latest',
     '@material-ui/lab': 'latest',
@@ -99,6 +108,7 @@ function getDependencies(raw, options = {}) {
     jss: 'next',
     'jss-plugin-template': 'next',
   };
+
   const re = /^import\s'([^']+)'|import\s[\s\S]*?\sfrom\s+'([^']+)/gm;
   let m;
   // eslint-disable-next-line no-cond-assign
@@ -117,6 +127,8 @@ function getDependencies(raw, options = {}) {
       deps[name] = versions[name] ? versions[name] : 'latest';
     }
   }
+
+  includePeerDependencies(deps, versions);
 
   if (codeLanguage === CODE_VARIANTS.TS) {
     addTypeDeps(deps);

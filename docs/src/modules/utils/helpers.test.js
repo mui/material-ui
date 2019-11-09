@@ -121,4 +121,17 @@ import {
       'react-dom': 'latest',
     });
   });
+
+  it('should include core if lab present', () => {
+    const source = `
+import lab from '@material-ui/lab';
+    `;
+
+    assert.deepEqual(getDependencies(source), {
+      '@material-ui/core': 'latest',
+      '@material-ui/lab': 'latest',
+      react: 'latest',
+      'react-dom': 'latest',
+    });
+  });
 });
