@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 import TreeView from './TreeView';
 import TreeItem from '../TreeItem';
 
@@ -26,6 +27,55 @@ describe('<TreeView />', () => {
     skip: ['componentProp'],
     after: () => mount.cleanUp(),
   }));
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('should warn when switching from controlled to uncontrolled', () => {
+      const { setProps } = render(
+        <TreeView expanded={[]}>
+          <TreeItem nodeId="1" label="one" />
+        </TreeView>,
+      );
+
+      setProps({ expanded: undefined });
+      expect(consoleErrorMock.args()[0][0]).to.include(
+        'A component is changing a controlled TreeView to be uncontrolled.',
+      );
+    });
+  });
+
+  it('should be able to be controlled', () => {
+    function MyComponent() {
+      const [expandedState, setExpandedState] = React.useState([]);
+      const handleNodeToggle = (event, nodes) => {
+        setExpandedState(nodes);
+      };
+      return (
+        <TreeView expanded={expandedState} onNodeToggle={handleNodeToggle}>
+          <TreeItem nodeId="1" label="one" data-testid="one">
+            <TreeItem nodeId="2" label="two" />
+          </TreeItem>
+        </TreeView>
+      );
+    }
+
+    const { getByTestId, getByText } = render(<MyComponent />);
+
+    expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
+    fireEvent.click(getByText('one'));
+    expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
+    fireEvent.click(getByText('one'));
+    expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
+    fireEvent.keyDown(document.activeElement, { key: '*' });
+    expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
+  });
 
   it('should not error when component state changes', () => {
     function MyComponent() {
@@ -74,8 +124,7 @@ describe('<TreeView />', () => {
       fireEvent.click(getByText('outer'));
 
       expect(handleNodeToggle.callCount).to.equal(1);
-      expect(handleNodeToggle.args[0][0]).to.equal('1');
-      expect(handleNodeToggle.args[0][1]).to.equal(true);
+      expect(handleNodeToggle.args[0][1]).to.deep.equal(['1']);
     });
   });
 

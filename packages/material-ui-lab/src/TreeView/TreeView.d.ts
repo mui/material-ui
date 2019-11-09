@@ -13,7 +13,7 @@ export interface TreeViewProps
    */
   defaultEndIcon?: React.ReactNode;
   /**
-   * Expanded node ids.
+   * Expanded node ids. (Uncontrolled)
    */
   defaultExpanded?: string[];
   /**
@@ -26,12 +26,16 @@ export interface TreeViewProps
    */
   defaultParentIcon?: React.ReactNode;
   /**
-   * Callback fired when a `TreeItem` is expanded/collapsed.
-   *
-   * @param {string} nodeId The id of the toggled node.
-   * @param {boolean} expanded The node status - If `true` the node was expanded. If `false` the node was collapsed.
+   * Expanded node ids. (Controlled)
    */
-  onNodeToggle?: (nodeId: string, expanded: boolean) => void;
+  expanded?: string[];
+  /**
+   * Callback fired when tree items are expanded/collapsed.
+   *
+   * @param {object} event The event source of the callback
+   * @param {array} nodeIds The ids of the expanded nodes.
+   */
+  onNodeToggle?: (event: React.ChangeEvent<{}>, nodeIds: string[]) => void;
 }
 
 export type TreeViewClassKey = 'root';
