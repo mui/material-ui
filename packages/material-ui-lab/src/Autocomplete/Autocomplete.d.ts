@@ -42,9 +42,9 @@ export interface AutocompleteProps
       'defaultValue' | 'onChange' | 'children'
     > {
   /**
-   * The component used for the close icon.
+   * The icon to display in place of the default close icon.
    */
-  CloseIconComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
+  closeIcon?: React.ReactNode;
   /**
    * If `true`, the input will be disabled.
    */
@@ -79,9 +79,9 @@ export interface AutocompleteProps
    */
   PopperComponent?: React.ComponentType<PopperProps>;
   /**
-   * The component used for the popop indicator icon.
+   * The icon to display in place of the default popup icon.
    */
-  PopupIconComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
+  popupIcon?: React.ReactNode;
   /**
    * Render the group.
    *

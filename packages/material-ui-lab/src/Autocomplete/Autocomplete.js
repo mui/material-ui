@@ -164,7 +164,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     classes,
     className,
     clearOnEscape = false,
-    CloseIconComponent = IconButton,
+    closeIcon = <CloseIcon fontSize="small" />,
     debug = false,
     defaultValue,
     disableClearable = false,
@@ -193,7 +193,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     options = [],
     PaperComponent = Paper,
     PopperComponent: PopperComponentProp = Popper,
-    PopupIconComponent = IconButton,
+    popupIcon = <ArrowDropDownIcon />,
     renderGroup: renderGroupProp,
     renderInput,
     renderOption: renderOptionProp,
@@ -297,19 +297,19 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
             endAdornment: (
               <React.Fragment>
                 {disableClearable || disabled ? null : (
-                  <CloseIconComponent
+                  <IconButton
                     {...getClearProps()}
                     title="Clear"
                     className={clsx(classes.clearIndicator, {
                       [classes.clearIndicatorDirty]: dirty,
                     })}
                   >
-                    <CloseIcon fontSize="small" />
-                  </CloseIconComponent>
+                    {closeIcon}
+                  </IconButton>
                 )}
 
                 {freeSolo ? null : (
-                  <PopupIconComponent
+                  <IconButton
                     {...getPopupIndicatorProps()}
                     disabled={disabled}
                     title={popupOpen ? 'Close popup' : 'Open popup'}
@@ -317,8 +317,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                       [classes.popupIndicatorOpen]: popupOpen,
                     })}
                   >
-                    <ArrowDropDownIcon />
-                  </PopupIconComponent>
+                    {popupIcon}
+                  </IconButton>
                 )}
               </React.Fragment>
             ),
@@ -407,9 +407,9 @@ Autocomplete.propTypes = {
    */
   clearOnEscape: PropTypes.bool,
   /**
-   * The component used for the close icon.
+   * The icon to display in place of the default close icon.
    */
-  CloseIconComponent: PropTypes.elementType,
+  closeIcon: PropTypes.node,
   /**
    * If `true`, the popup will ignore the blur event if the input if filled.
    * You can inspect the popup markup with your browser tools.
@@ -545,9 +545,9 @@ Autocomplete.propTypes = {
    */
   PopperComponent: PropTypes.elementType,
   /**
-   * The component used for the popop indicator icon.
+   * The icon to display in place of the default popup icon.
    */
-  PopupIconComponent: PropTypes.elementType,
+  popupIcon: PropTypes.node,
   /**
    * Render the group.
    *
