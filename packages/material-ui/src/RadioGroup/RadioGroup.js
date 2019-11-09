@@ -7,28 +7,10 @@ import RadioGroupContext from './RadioGroupContext';
 const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
   const { actions, children, name, value: valueProp, onChange, ...other } = props;
   const rootRef = React.useRef(null);
+
   const { current: isControlled } = React.useRef(valueProp != null);
-  const [valueState, setValue] = React.useState(() => {
-    return !isControlled ? props.defaultValue : null;
-  });
-
-  React.useImperativeHandle(
-    actions,
-    () => ({
-      focus: () => {
-        let input = rootRef.current.querySelector('input:not(:disabled):checked');
-
-        if (!input) {
-          input = rootRef.current.querySelector('input:not(:disabled)');
-        }
-
-        if (input) {
-          input.focus();
-        }
-      },
-    }),
-    [],
-  );
+  const [valueState, setValue] = React.useState(props.defaultValue);
+  const value = isControlled ? valueProp : valueState;
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -49,7 +31,25 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
     }, [valueProp, isControlled]);
   }
 
-  const value = isControlled ? valueProp : valueState;
+  React.useImperativeHandle(
+    actions,
+    () => ({
+      focus: () => {
+        let input = rootRef.current.querySelector('input:not(:disabled):checked');
+
+        if (!input) {
+          input = rootRef.current.querySelector('input:not(:disabled)');
+        }
+
+        if (input) {
+          input.focus();
+        }
+      },
+    }),
+    [],
+  );
+
+  const handleRef = useForkRef(ref, rootRef);
 
   const handleChange = event => {
     if (!isControlled) {
@@ -60,14 +60,13 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
       onChange(event, event.target.value);
     }
   };
-  const context = { name, onChange: handleChange, value };
-
-  const handleRef = useForkRef(ref, rootRef);
 
   return (
-    <FormGroup role="radiogroup" ref={handleRef} {...other}>
-      <RadioGroupContext.Provider value={context}>{children}</RadioGroupContext.Provider>
-    </FormGroup>
+    <RadioGroupContext.Provider value={{ name, onChange: handleChange, value }}>
+      <FormGroup role="radiogroup" ref={handleRef} {...other}>
+        {children}
+      </FormGroup>
+    </RadioGroupContext.Provider>
   );
 });
 

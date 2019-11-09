@@ -549,4 +549,34 @@ describe('<Autocomplete />', () => {
       expect(textbox.selectionEnd).to.equal(3);
     });
   });
+
+  describe('controlled input', () => {
+    it('controls the input value', () => {
+      const handleChange = spy();
+      function MyComponent() {
+        const [, setInputValue] = React.useState('');
+        const handleInputChange = (event, value) => {
+          handleChange(value);
+          setInputValue(value);
+        };
+        return (
+          <Autocomplete
+            inputValue=""
+            onInputChange={handleInputChange}
+            renderInput={params => <TextField autoFocus {...params} />}
+          />
+        );
+      }
+
+      const { getByRole } = render(<MyComponent />);
+
+      const textbox = getByRole('textbox');
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][0]).to.equal('');
+      fireEvent.change(textbox, { target: { value: 'a' } });
+      expect(handleChange.callCount).to.equal(2);
+      expect(handleChange.args[1][0]).to.equal('a');
+      expect(textbox.value).to.equal('');
+    });
+  });
 });
