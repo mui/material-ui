@@ -220,7 +220,7 @@ export default function GitHubLabel() {
           getOptionLabel={(option: LabelType) => option.name}
           renderInput={params => (
             <InputBase
-              ref={params.ref}
+              ref={params.InputProps.ref}
               inputProps={params.inputProps}
               autoFocus
               className={classes.inputBase}
