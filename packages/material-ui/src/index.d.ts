@@ -74,6 +74,9 @@ export {
   WithTheme,
 } from './styles';
 
+export * from './styles/colorManipulator';
+export * from './styles/transitions';
+
 export { default as AppBar } from './AppBar';
 export { default as Avatar } from './Avatar';
 export { default as Backdrop } from './Backdrop';
@@ -112,7 +115,7 @@ export { default as ExpansionPanelSummary } from './ExpansionPanelSummary';
 export { default as Fab } from './Fab';
 export { default as Fade } from './Fade';
 export { default as FilledInput } from './FilledInput';
-export { default as FormControl } from './FormControl';
+export { default as FormControl, useFormControl } from './FormControl';
 export { default as FormControlLabel } from './FormControlLabel';
 export { default as FormGroup } from './FormGroup';
 export { default as FormHelperText } from './FormHelperText';
