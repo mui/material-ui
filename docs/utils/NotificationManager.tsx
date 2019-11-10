@@ -4,6 +4,11 @@ import notifications from '../notifications.json';
 import { useSnackbar } from 'notistack';
 import { makeStyles } from '@material-ui/core';
 
+interface Notification {
+  id: string;
+  title: string;
+}
+
 const useStyles = makeStyles({
   notificationContainer: {
     '& > p': {
@@ -26,7 +31,7 @@ export function useNotification() {
       localStorage.getItem('viewedNotifications') || '[]'
     );
 
-    const notificationToShow = notifications.find(
+    const notificationToShow = (notifications as Notification[]).find(
       notification => !viewedNotifications.some(viewedId => viewedId === notification.id)
     );
 
