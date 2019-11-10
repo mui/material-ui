@@ -19,7 +19,7 @@ export default function SwitchesGroup() {
 
   return (
     <FormControl component="fieldset">
-      <FormLabel component="legend">Assign responsibility</FormLabel>
+      <FormLabel noFocus component="legend">Assign responsibility</FormLabel>
       <FormGroup>
         <FormControlLabel
           control={<Switch checked={state.gilad} onChange={handleChange('gilad')} value="gilad" />}
