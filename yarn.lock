@@ -5505,10 +5505,10 @@ define-property@^2.0.2:
     is-descriptor "^1.0.2"
     isobject "^3.0.1"
 
-definitelytyped-header-parser@3.7.2:
-  version "3.7.2"
-  resolved "https://registry.yarnpkg.com/definitelytyped-header-parser/-/definitelytyped-header-parser-3.7.2.tgz#a5b2ec9521762910e870477b01ce9feca06d9fb7"
-  integrity sha512-nlkiv+QLlRSc3C3qAbusWPaBiyPLldwRFnrxvoxjdZHvHbIh2+U09qdmzzWV35Rs/I3MMhcoWRcVUi3M1G935Q==
+definitelytyped-header-parser@3.8.1:
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/definitelytyped-header-parser/-/definitelytyped-header-parser-3.8.1.tgz#b24d83c03c8f2a09918aab241861d5bea2dd0b10"
+  integrity sha512-+uZhvbiVrNUHY1v3wlmnrWY3+jd4o8rLEho93CHrghbSzTixK5o7QdL66Rb2hmW/9nikGAarn1mBRhRyKKfyzQ==
   dependencies:
     "@types/parsimmon" "^1.3.0"
     parsimmon "^1.2.0"
@@ -5809,12 +5809,12 @@ dts-critic@^2.2.0:
     semver "^6.2.0"
     yargs "^12.0.5"
 
-dtslint@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-1.0.2.tgz#45757e071fd7ad1118fcc650bc068ad997aeff8b"
-  integrity sha512-DumNrKbecCJuLgbkCMT2GOBf9GSpArcv+Mbd/xzdj5muSHQOpruudeVVEBo0r6veHxrg3g3jCAA2EqnhH1MybQ==
+dtslint@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-2.0.0.tgz#bd36bffe91a9f2e8ada1711bf891fca82e05fb51"
+  integrity sha512-UVRzX7ghhA2uoS0UIPJf3MkiUWZvK05a/AG4gqQ5pIjz1YM4wgVC+y1aXcXT+CSLTK1nm/9j+MBaDq+l4YBDVQ==
   dependencies:
-    definitelytyped-header-parser "3.7.2"
+    definitelytyped-header-parser "3.8.1"
     dts-critic "^2.2.0"
     fs-extra "^6.0.1"
     request "^2.88.0"
