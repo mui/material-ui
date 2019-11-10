@@ -215,7 +215,6 @@ const styles = theme => ({
     },
     '& table': {
       width: '100%',
-      display: 'block',
       overflowX: 'auto',
       WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
       borderCollapse: 'collapse',

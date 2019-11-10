@@ -47,6 +47,14 @@ export interface AutocompleteProps
    */
   closeIcon?: React.ReactNode;
   /**
+   * Text label for the clear icon button.
+   */
+  clearText?: string;
+  /**
+   * Text label for the close popup icon button.
+   */
+  closeText?: string;
+  /**
    * If `true`, the input will be disabled.
    */
   disabled?: boolean;
@@ -71,6 +79,10 @@ export interface AutocompleteProps
    * Text to display when there are no options.
    */
   noOptionsText?: React.ReactNode;
+  /**
+   * Text label for the open popup icon button.
+   */
+  openText?: string;
   /**
    * The component used to render the body of the popup.
    */
@@ -113,14 +125,6 @@ export interface AutocompleteProps
    * @returns {ReactNode}
    */
   renderTags?: (value: any, getTagProps: GetTagProps) => React.ReactNode;
-  /**
-   * Titles to display when hovering the arrow or clear buttons.
-   */
-  titles?: {
-    openPopup: string;
-    closePopup: string;
-    clearPopup: string;
-  };
 }
 
 export type AutocompleteClassKey =

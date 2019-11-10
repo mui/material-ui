@@ -164,7 +164,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     classes,
     className,
     clearOnEscape = false,
+    clearText = 'Clear',
     closeIcon = <CloseIcon fontSize="small" />,
+    closeText = 'Close',
     debug = false,
     defaultValue,
     disableClearable = false,
@@ -192,6 +194,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     onInputChange,
     onOpen,
     open,
+    openText = 'Open',
     options = [],
     PaperComponent = Paper,
     PopperComponent: PopperComponentProp = Popper,
@@ -200,11 +203,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     renderInput,
     renderOption: renderOptionProp,
     renderTags,
-    titles = {
-      openPopup: 'Open popup',
-      closePopup: 'Close popup',
-      clearPopup: 'Clear',
-    },
     value: valueProp,
     ...other
   } = props;
@@ -308,8 +306,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                 {disableClearable || disabled ? null : (
                   <IconButton
                     {...getClearProps()}
-                    aria-label="Clear"
-                    title="Clear"
+                    aria-label={clearText}
+                    title={clearText}
                     className={clsx(classes.clearIndicator, {
                       [classes.clearIndicatorDirty]: dirty,
                     })}
@@ -322,8 +320,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   <IconButton
                     {...getPopupIndicatorProps()}
                     disabled={disabled}
-                    aria-label={popupOpen ? 'Close popup' : 'Open popup'}
-                    title={popupOpen ? 'Close popup' : 'Open popup'}
+                    aria-label={popupOpen ? closeText : openText}
+                    title={popupOpen ? closeText : openText}
                     className={clsx(classes.popupIndicator, {
                       [classes.popupIndicatorOpen]: popupOpen,
                     })}
@@ -418,9 +416,17 @@ Autocomplete.propTypes = {
    */
   clearOnEscape: PropTypes.bool,
   /**
+   * Text label for the clear icon button.
+   */
+  clearText: PropTypes.string,
+  /**
    * The icon to display in place of the default close icon.
    */
   closeIcon: PropTypes.node,
+  /**
+   * Text label for the close popup icon button.
+   */
+  closeText: PropTypes.string,
   /**
    * If `true`, the popup will ignore the blur event if the input if filled.
    * You can inspect the popup markup with your browser tools.
@@ -555,6 +561,10 @@ Autocomplete.propTypes = {
    */
   open: PropTypes.bool,
   /**
+   * Text label for the open popup icon button.
+   */
+  openText: PropTypes.string,
+  /**
    * Array of options.
    */
   options: PropTypes.array,
@@ -601,19 +611,7 @@ Autocomplete.propTypes = {
    */
   renderTags: PropTypes.func,
   /**
-<<<<<<< HEAD
    * The value of the autocomplete.
-=======
-   * Titles to display when hovering the arrow or clear buttons.
-   */
-  titles: PropTypes.shape({
-    clearPopup: PropTypes.string.isRequired,
-    closePopup: PropTypes.string.isRequired,
-    openPopup: PropTypes.string.isRequired,
-  }),
-  /**
-   * The input value.
->>>>>>> Add new props to accept custom titles for Autocomplete buttons
    */
   value: PropTypes.any,
 };
