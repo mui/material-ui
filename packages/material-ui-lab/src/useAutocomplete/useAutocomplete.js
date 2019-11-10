@@ -173,7 +173,7 @@ export default function useAutocomplete(props) {
 
   const [focused, setFocused] = React.useState(false);
 
-  const resetInputValue = useEventCallback(newValue => {
+  const resetInputValue = useEventCallback((event, newValue) => {
     let newInputValue;
     if (multiple) {
       newInputValue = '';
@@ -202,12 +202,12 @@ export default function useAutocomplete(props) {
     setInputValue(newInputValue);
 
     if (onInputChange) {
-      onInputChange(null, newInputValue);
+      onInputChange(event, newInputValue);
     }
   });
 
   React.useEffect(() => {
-    resetInputValue(value);
+    resetInputValue(null, value);
   }, [value, resetInputValue]);
 
   const { current: isOpenControlled } = React.useRef(openProp != null);
@@ -413,7 +413,7 @@ export default function useAutocomplete(props) {
       handleClose(event);
     }
 
-    resetInputValue(newValue);
+    resetInputValue(event, newValue);
 
     selectedIndexRef.current = -1;
   };
@@ -599,7 +599,7 @@ export default function useAutocomplete(props) {
     if (autoSelect && selectedIndexRef.current !== -1) {
       handleValue(event, filteredOptions[selectedIndexRef.current]);
     } else if (!freeSolo) {
-      resetInputValue(value);
+      resetInputValue(event, value);
     }
 
     handleClose(event);
