@@ -164,6 +164,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     classes,
     className,
     clearOnEscape = false,
+    closeIcon = <CloseIcon fontSize="small" />,
     debug = false,
     defaultValue,
     disableClearable = false,
@@ -192,6 +193,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     options = [],
     PaperComponent = Paper,
     PopperComponent: PopperComponentProp = Popper,
+    popupIcon = <ArrowDropDownIcon />,
     renderGroup: renderGroupProp,
     renderInput,
     renderOption: renderOptionProp,
@@ -302,7 +304,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                       [classes.clearIndicatorDirty]: dirty,
                     })}
                   >
-                    <CloseIcon fontSize="small" />
+                    {closeIcon}
                   </IconButton>
                 )}
 
@@ -315,7 +317,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                       [classes.popupIndicatorOpen]: popupOpen,
                     })}
                   >
-                    <ArrowDropDownIcon />
+                    {popupIcon}
                   </IconButton>
                 )}
               </React.Fragment>
@@ -404,6 +406,10 @@ Autocomplete.propTypes = {
    * If `true`, clear all values when the user presses escape and the popup is closed.
    */
   clearOnEscape: PropTypes.bool,
+  /**
+   * The icon to display in place of the default close icon.
+   */
+  closeIcon: PropTypes.node,
   /**
    * If `true`, the popup will ignore the blur event if the input if filled.
    * You can inspect the popup markup with your browser tools.
@@ -538,6 +544,10 @@ Autocomplete.propTypes = {
    * The component used to position the popup.
    */
   PopperComponent: PropTypes.elementType,
+  /**
+   * The icon to display in place of the default popup icon.
+   */
+  popupIcon: PropTypes.node,
   /**
    * Render the group.
    *
