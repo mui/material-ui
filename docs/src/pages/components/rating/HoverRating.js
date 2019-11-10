@@ -23,7 +23,7 @@ function IconContainer(props) {
   const { value, ...other } = props;
   return (
     <Tooltip title={labels[value] || ''}>
-      <div {...other} />
+      <span {...other} />
     </Tooltip>
   );
 }
