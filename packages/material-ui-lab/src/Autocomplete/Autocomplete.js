@@ -210,7 +210,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   const PopperComponent = disablePortal ? DisablePortal : PopperComponentProp;
 
   const {
-    getComboboxProps,
+    getRootProps,
     getInputProps,
     getInputLabelProps,
     getPopupIndicatorProps,
@@ -282,7 +282,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           },
           className,
         )}
-        {...getComboboxProps()}
+        {...getRootProps()}
         {...other}
       >
         {renderInput({

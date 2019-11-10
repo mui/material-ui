@@ -153,7 +153,7 @@ export interface UseAutocompleteProps {
 export default function useAutocomplete(
   props: UseAutocompleteProps,
 ): {
-  getComboboxProps: () => {};
+  getRootProps: () => {};
   getInputProps: () => {};
   getInputLabelProps: () => {};
   getClearProps: () => {};
