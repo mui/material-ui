@@ -277,7 +277,6 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     label,
     onClick,
     onDelete,
-    onKeyDown,
     onKeyUp,
     size = 'medium',
     variant = 'default',
@@ -292,21 +291,6 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     event.stopPropagation();
     if (onDelete) {
       onDelete(event);
-    }
-  };
-
-  const handleKeyDown = event => {
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
-
-    // Ignore events from children of `Chip`.
-    if (event.currentTarget !== event.target) {
-      return;
-    }
-
-    if ([' ', 'Enter', 'Backspace', 'Delete', 'Escape'].indexOf(event.key) !== -1) {
-      event.preventDefault();
     }
   };
 
@@ -409,7 +393,6 @@ const Chip = React.forwardRef(function Chip(props, ref) {
       aria-disabled={disabled ? true : undefined}
       tabIndex={clickable || onDelete ? 0 : undefined}
       onClick={onClick}
-      onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={handleRef}
       {...moreProps}
