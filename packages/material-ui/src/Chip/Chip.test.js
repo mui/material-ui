@@ -423,7 +423,7 @@ describe('<Chip />', () => {
           key: ' ',
         };
         wrapper.find('div').simulate('keyDown', spaceKeyDown);
-        assert.strictEqual(preventDefaultSpy.callCount, 2);
+        assert.strictEqual(preventDefaultSpy.callCount, 1);
         assert.strictEqual(onClickSpy.callCount, 1);
 
         const spaceKeyUp = {

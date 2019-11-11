@@ -182,6 +182,11 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     }
   });
 
+  const isNonNativeButton = () => {
+    const button = getButtonNode();
+    return component && component !== 'button' && !(button.tagName === 'A' && button.href);
+  };
+
   /**
    * IE 11 shim for https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat
    */
@@ -206,15 +211,8 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
       onKeyDown(event);
     }
 
-    const button = getButtonNode();
     // Keyboard accessibility for non interactive elements
-    if (
-      event.target === event.currentTarget &&
-      component &&
-      component !== 'button' &&
-      (event.key === ' ' || event.key === 'Enter') &&
-      !(button.tagName === 'A' && button.href)
-    ) {
+    if (event.target === event.currentTarget && isNonNativeButton() && event.key === 'Enter') {
       event.preventDefault();
       if (onClick) {
         onClick(event);
@@ -231,6 +229,14 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     }
     if (onKeyUp) {
       onKeyUp(event);
+    }
+
+    // Keyboard accessibility for non interactive elements
+    if (event.target === event.currentTarget && isNonNativeButton() && event.key === ' ') {
+      event.preventDefault();
+      if (onClick) {
+        onClick(event);
+      }
     }
   });
 
