@@ -464,7 +464,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
 Tooltip.propTypes = {
   /**
-   * Adds an arrow to the tooltip
+   * Adds an arrow to the tooltip.
    */
   arrow: PropTypes.bool,
   /**
