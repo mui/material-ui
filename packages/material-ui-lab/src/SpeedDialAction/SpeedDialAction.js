@@ -80,7 +80,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
     classes,
     className,
     delay = 0,
-    FabProps,
+    FabProps = {},
     icon,
     id,
     open,
@@ -101,21 +101,18 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
     setTooltipOpen(true);
   };
 
-  const transitionStyle = { transitionDelay: `${delay}ms` };
-
-  if (FabProps && FabProps.style) {
-    FabProps.style.transitionDelay = `${delay}ms`;
-  }
-
   const fab = (
     <Fab
       size="small"
       className={clsx(classes.fab, !open && classes.fabClosed, className)}
       tabIndex={-1}
       role="menuitem"
-      style={transitionStyle}
       aria-describedby={`${id}-label`}
       {...FabProps}
+      style={{
+        transitionDelay: `${delay}ms`,
+        ...FabProps.style,
+      }}
     >
       {icon}
     </Fab>
