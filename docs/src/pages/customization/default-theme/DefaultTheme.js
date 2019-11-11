@@ -149,6 +149,7 @@ function Inspector(props) {
     <TreeView
       key={key}
       defaultCollapseIcon={<ExpandIcon />}
+      defaultEndIcon={<div style={{ width: 24 }} />}
       defaultExpanded={defaultExpanded}
       defaultExpandIcon={<CollapseIcon />}
     >
