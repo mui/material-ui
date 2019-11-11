@@ -687,9 +687,9 @@ describe('<ButtonBase />', () => {
             Hello
           </ButtonBase>,
         );
-
         const button = getByRole('button');
         button.focus();
+
         fireEvent.keyDown(document.activeElement || document.body, {
           key: ' ',
         });
@@ -697,6 +697,59 @@ describe('<ButtonBase />', () => {
         expect(onClickSpy.calledOnce).to.equal(true);
         // defaultPrevented?
         expect(onClickSpy.returnValues[0]).to.equal(true);
+      });
+
+      it('calls onClick when Enter is pressed on the element', () => {
+        const onClickSpy = spy(event => event.defaultPrevented);
+        const { getByRole } = render(
+          <ButtonBase onClick={onClickSpy} component="div">
+            Hello
+          </ButtonBase>,
+        );
+        const button = getByRole('button');
+        button.focus();
+
+        fireEvent.keyDown(document.activeElement || document.body, {
+          key: 'Enter',
+        });
+
+        expect(onClickSpy.calledOnce).to.equal(true);
+        // defaultPrevented?
+        expect(onClickSpy.returnValues[0]).to.equal(true);
+      });
+
+      it('does not call onClick if Enter was pressed on a child', () => {
+        const onClickSpy = spy(event => event.defaultPrevented);
+        const onKeyDownSpy = spy();
+        render(
+          <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDownSpy} component="div">
+            <input autoFocus type="text" />
+          </ButtonBase>,
+        );
+
+        fireEvent.keyDown(document.activeElement, {
+          key: 'Enter',
+        });
+
+        expect(onKeyDownSpy.callCount).to.equal(1);
+        expect(onClickSpy.callCount).to.equal(0);
+      });
+
+      it('does not call onClick if Space was pressed on a child', () => {
+        const onClickSpy = spy(event => event.defaultPrevented);
+        const onKeyDownSpy = spy();
+        render(
+          <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDownSpy} component="div">
+            <input autoFocus type="text" />
+          </ButtonBase>,
+        );
+
+        fireEvent.keyDown(document.activeElement, {
+          key: ' ',
+        });
+
+        expect(onKeyDownSpy.callCount).to.equal(1);
+        expect(onClickSpy.callCount).to.equal(0);
       });
 
       it('prevents default with an anchor and empty href', () => {
