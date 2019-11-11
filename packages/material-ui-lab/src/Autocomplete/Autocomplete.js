@@ -288,10 +288,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
         {...other}
       >
         {renderInput({
-          ref: setAnchorEl,
           disabled,
           InputLabelProps: getInputLabelProps(),
           InputProps: {
+            ref: setAnchorEl,
             className: classes.inputRoot,
             startAdornment,
             endAdornment: (

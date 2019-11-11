@@ -23,10 +23,10 @@ export interface RenderGroupParams {
 }
 
 export interface RenderInputParams {
-  ref: React.Ref<any>;
   disabled: boolean;
   InputLabelProps: object;
   InputProps: {
+    ref: React.Ref<any>;
     className: string;
     startAdornment: React.ReactNode;
     endAdornment: React.ReactNode;
