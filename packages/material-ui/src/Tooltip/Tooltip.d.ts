@@ -31,6 +31,7 @@ export interface TooltipProps
     | 'top-end'
     | 'top-start'
     | 'top';
+  arrow?: boolean;
   PopperProps?: Partial<PopperProps>;
   title: React.ReactNode;
   TransitionComponent?: React.ComponentType<TransitionProps>;

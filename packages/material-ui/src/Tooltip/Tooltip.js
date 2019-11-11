@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import { elementAcceptingRef } from '@material-ui/utils';
 import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
+import arrowGenerator from '../utils/arrowGenerator';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import Popper from '../Popper';
@@ -28,6 +29,8 @@ export const styles = theme => ({
   popperInteractive: {
     pointerEvents: 'auto',
   },
+  /* Styles applied to the Popper component if `arrow={true}`. */
+  popperArrow: arrowGenerator(theme.palette.grey[700]),
   /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
     backgroundColor: fade(theme.palette.grey[700], 0.9),
@@ -40,6 +43,24 @@ export const styles = theme => ({
     maxWidth: 300,
     wordWrap: 'break-word',
     fontWeight: theme.typography.fontWeightMedium,
+  },
+  /* Styles applied to the tooltip (label wrapper) element if `arrow={true}`. */
+  tooltipArrow: {
+    position: 'relative',
+    margin: '0',
+  },
+  /* Styles applies to the arrow element.*/
+  arrow: {
+    position: 'absolute',
+    fontSize: 6,
+    '&::before': {
+      content: '""',
+      margin: 'auto',
+      display: 'block',
+      width: 0,
+      height: 0,
+      borderStyle: 'solid',
+    },
   },
   /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
   touch: {
@@ -103,6 +124,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     title,
     TransitionComponent = Grow,
     TransitionProps,
+    arrow = false,
     ...other
   } = props;
   const theme = useTheme();
@@ -110,6 +132,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const [openState, setOpenState] = React.useState(false);
   const [, forceUpdate] = React.useState(0);
   const [childNode, setChildNode] = React.useState();
+  const [arrowRef, setArrowRef] = React.useState(null);
   const ignoreNonTouchEvents = React.useRef(false);
   const { current: isControlled } = React.useRef(openProp != null);
   const defaultId = React.useRef();
@@ -395,12 +418,21 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       <Popper
         className={clsx(classes.popper, {
           [classes.popperInteractive]: interactive,
+          [classes.popperArrow]: arrow,
         })}
         placement={placement}
         anchorEl={childNode}
         open={childNode ? open : false}
         id={childrenProps['aria-describedby']}
         transition
+        popperOptions={{
+          modifiers: {
+            arrow: {
+              enabled: Boolean(arrowRef),
+              element: arrowRef,
+            },
+          },
+        }}
         {...interactiveWrapperListeners}
         {...PopperProps}
       >
@@ -415,11 +447,13 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
                 classes.tooltip,
                 {
                   [classes.touch]: ignoreNonTouchEvents.current,
+                  [classes.tooltipArrow]: arrow,
                 },
                 classes[`tooltipPlacement${capitalize(placementInner.split('-')[0])}`],
               )}
             >
               {title}
+              {arrow ? <span className={classes.arrow} ref={setArrowRef} /> : null}
             </div>
           </TransitionComponent>
         )}

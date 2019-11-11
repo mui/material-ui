@@ -20,6 +20,12 @@ They don’t have directional arrows; instead, they rely on motion emanating fro
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
+## Arrow Tooltips
+
+You can use the `arrow` prop to give your tooltip an arrow indicating which element it refers to.
+
+{{"demo": "pages/components/tooltips/ArrowTooltips.js"}}
+
 ## Customized tooltips
 
 Here are some examples of customizing the component. You can learn more about this in the
