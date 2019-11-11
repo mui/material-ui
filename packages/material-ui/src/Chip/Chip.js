@@ -8,7 +8,6 @@ import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
 import ButtonBase from '../ButtonBase';
-import IconButton from '../IconButton';
 
 export const styles = theme => {
   const backgroundColor =
@@ -125,9 +124,13 @@ export const styles = theme => {
       },
     },
     deleteIconButton: {
-      marginRight: 6,
-      padding: 0,
+      borderRadius: 10,
+      margin: 0,
+      marginLeft: -4.33,
+      marginRight: 6.67,
       '& $deleteIcon': {
+        width: 18.33,
+        height: 18.33,
         margin: 0,
       },
     },
@@ -343,14 +346,14 @@ const Chip = React.forwardRef(function Chip(props, ref) {
           onClick: handleDeleteIconClick,
         })
       ) : (
-        <IconButton
+        <ButtonBase
           className={classes.deleteIconButton}
           onMouseDown={event => event.stopPropagation()}
           onClick={handleDeleteIconClick}
           tabIndex={clickable ? -1 : 0}
         >
-          <CancelIcon className={clsx(classes.deleteIcon, customClasses)} />
-        </IconButton>
+          <CancelIcon className={clsx(classes.deleteIcon, customClasses)} viewBox="2 2 20 20" />
+        </ButtonBase>
       );
   }
 
