@@ -47,7 +47,7 @@ function ChipsPlayground(props) {
   };
 
   const handleDeleteExample = () => {
-    alert('You clicked the delete icon.');
+    console.info('You clicked the delete icon.');
   };
 
   const colorToCode = color !== 'default' ? `color="${color}" ` : '';

@@ -27,11 +27,6 @@ export default function ChipsArray() {
   ]);
 
   const handleDelete = chipToDelete => () => {
-    if (chipToDelete.label === 'React') {
-      alert('Why would you want to delete React?! :)');
-      return;
-    }
-
     setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key));
   };
 
@@ -49,7 +44,7 @@ export default function ChipsArray() {
             key={data.key}
             icon={icon}
             label={data.label}
-            onDelete={handleDelete(data)}
+            onDelete={data.label === 'React' ? undefined : handleDelete(data)}
             className={classes.chip}
           />
         );
