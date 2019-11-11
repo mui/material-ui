@@ -720,8 +720,9 @@ describe('<ButtonBase />', () => {
 
       it('does not call onClick if Enter was pressed on a child', () => {
         const onClickSpy = spy(event => event.defaultPrevented);
+        const onKeyDownSpy = spy();
         render(
-          <ButtonBase onClick={onClickSpy} component="div">
+          <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDownSpy} component="div">
             <input autoFocus type="text" />
           </ButtonBase>,
         );
@@ -730,13 +731,15 @@ describe('<ButtonBase />', () => {
           key: 'Enter',
         });
 
+        expect(onKeyDownSpy.callCount).to.equal(1);
         expect(onClickSpy.callCount).to.equal(0);
       });
 
       it('does not call onClick if Space was pressed on a child', () => {
         const onClickSpy = spy(event => event.defaultPrevented);
+        const onKeyDownSpy = spy();
         render(
-          <ButtonBase onClick={onClickSpy} component="div">
+          <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDownSpy} component="div">
             <input autoFocus type="text" />
           </ButtonBase>,
         );
@@ -745,6 +748,7 @@ describe('<ButtonBase />', () => {
           key: ' ',
         });
 
+        expect(onKeyDownSpy.callCount).to.equal(1);
         expect(onClickSpy.callCount).to.equal(0);
       });
 
