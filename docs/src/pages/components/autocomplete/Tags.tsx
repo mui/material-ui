@@ -9,6 +9,7 @@ export default function Tags() {
     <div style={{ width: 500 }}>
       <Autocomplete
         multiple
+        id="tags-standard"
         options={top100Films}
         getOptionLabel={(option: FilmOptionType) => option.title}
         defaultValue={[top100Films[13]]}
@@ -25,6 +26,7 @@ export default function Tags() {
       />
       <Autocomplete
         multiple
+        id="tags-outlined"
         options={top100Films}
         getOptionLabel={(option: FilmOptionType) => option.title}
         defaultValue={[top100Films[13]]}
@@ -42,6 +44,7 @@ export default function Tags() {
       />
       <Autocomplete
         multiple
+        id="tags-filled"
         options={top100Films.map(option => option.title)}
         defaultValue={[top100Films[13].title]}
         freeSolo

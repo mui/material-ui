@@ -14,6 +14,7 @@ export default function Grouped() {
 
   return (
     <Autocomplete
+      id="grouped-demo"
       options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
       groupBy={(option: FilmOptionType) => option.firstLetter}
       getOptionLabel={(option: FilmOptionType) => option.title}

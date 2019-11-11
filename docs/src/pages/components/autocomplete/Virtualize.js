@@ -75,6 +75,7 @@ export default function Virtualize() {
 
   return (
     <Autocomplete
+      id="virtualize-demo"
       style={{ width: 300 }}
       disableListWrap
       classes={classes}

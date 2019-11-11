@@ -145,3 +145,8 @@ pre[class*="language-"] {
 .token.deleted {
   color: rgb(252, 146, 158);
 }
+
+.token.boolean,
+.token.number {
+  color: #b78eff;
+}

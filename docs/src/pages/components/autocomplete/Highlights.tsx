@@ -8,6 +8,7 @@ import match from 'autosuggest-highlight/match';
 export default function Highlights() {
   return (
     <Autocomplete
+      id="highlights-demo"
       style={{ width: 300 }}
       options={top100Films}
       getOptionLabel={(option: FilmOptionType) => option.title}

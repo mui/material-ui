@@ -7,6 +7,7 @@ export default function FreeSolo() {
   return (
     <div style={{ width: 300 }}>
       <Autocomplete
+        id="free-solo-demo"
         freeSolo
         options={top100Films.map(option => option.title)}
         renderInput={params => (
@@ -15,6 +16,7 @@ export default function FreeSolo() {
       />
       <Autocomplete
         freeSolo
+        id="free-solo-2-demo"
         disableClearable
         options={top100Films.map(option => option.title)}
         renderInput={params => (
