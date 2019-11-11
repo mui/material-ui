@@ -384,6 +384,36 @@ describe('<Chip />', () => {
         });
       });
 
+      it(`should not call onClick for child keyup event when 'Space' is released`, () => {
+        const handleClick = spy();
+        const handleKeyUp = spy();
+        render(
+          <Chip
+            onClick={handleClick}
+            label={<input autoFocus className="child-input" onKeyUp={handleKeyUp} />}
+          />,
+        );
+
+        fireEvent.keyUp(document.activeElement, { key: ' ' });
+        expect(handleKeyUp.callCount).to.equal(1);
+        expect(handleClick.callCount).to.equal(0);
+      });
+
+      it(`should not call onClick for child keydown event when 'Enter' is pressed`, () => {
+        const handleClick = spy();
+        const handleKeyDown = spy();
+        render(
+          <Chip
+            onClick={handleClick}
+            label={<input autoFocus className="child-input" onKeyDown={handleKeyDown} />}
+          />,
+        );
+
+        fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+        expect(handleKeyDown.callCount).to.equal(1);
+        expect(handleClick.callCount).to.equal(0);
+      });
+
       it('should not call onClick for child event when `space` is released', () => {
         const handleClick = spy();
         const handleKeyUp = spy();
