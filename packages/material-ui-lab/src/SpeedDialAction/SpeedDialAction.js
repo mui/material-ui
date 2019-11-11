@@ -100,7 +100,7 @@ const SpeedDialAction = React.forwardRef(function SpeedDialAction(props, ref) {
   const handleTooltipOpen = () => {
     setTooltipOpen(true);
   };
-  
+
   const transitionStyle = { transitionDelay: `${delay}ms` };
 
   const fab = (
