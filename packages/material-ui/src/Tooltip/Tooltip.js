@@ -49,7 +49,7 @@ export const styles = theme => ({
     position: 'relative',
     margin: '0',
   },
-  /* Styles applies to the arrow element.*/
+  /* Styles applies to the arrow element. */
   arrow: {
     position: 'absolute',
     fontSize: 6,
@@ -463,6 +463,10 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 });
 
 Tooltip.propTypes = {
+  /**
+   * Adds an arrow to the tooltip
+   */
+  arrow: PropTypes.bool,
   /**
    * Tooltip reference element.
    */
