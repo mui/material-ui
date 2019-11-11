@@ -80,14 +80,13 @@ ObjectEntryLabel.propTypes = { objectKey: PropTypes.any, objectValue: PropTypes.
 const useObjectEntryStyles = makeStyles({
   treeItem: {
     '&:focus > $treeItemContent': {
-      backgroundColor: 'inherit',
+      backgroundColor: lighten('#333', 0.08),
       outline: `2px dashed ${lighten('#333', 0.3)}`,
     },
   },
   treeItemContent: {
     '&:hover': {
-      backgroundColor: 'inherit',
-      outline: `1px dashed ${lighten('#333', 0.3)}`,
+      backgroundColor: lighten('#333', 0.08),
     },
   },
 });
