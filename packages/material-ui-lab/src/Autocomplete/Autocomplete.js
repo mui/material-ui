@@ -181,6 +181,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     groupBy,
     id: idProp,
     includeInputInList = false,
+    inputValue: inputValueProp,
     ListboxComponent = 'ul',
     loading = false,
     loadingText = 'Loading…',
@@ -188,6 +189,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     noOptionsText = 'No options',
     onChange,
     onClose,
+    onInputChange,
     onOpen,
     open,
     options = [],
@@ -488,6 +490,10 @@ Autocomplete.propTypes = {
    */
   includeInputInList: PropTypes.bool,
   /**
+   * The input value.
+   */
+  inputValue: PropTypes.string,
+  /**
    * The component used to render the listbox.
    */
   ListboxComponent: PropTypes.elementType,
@@ -521,6 +527,13 @@ Autocomplete.propTypes = {
    * @param {object} event The event source of the callback.
    */
   onClose: PropTypes.func,
+  /**
+   * Callback fired when the input value changes.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {string} value
+   */
+  onInputChange: PropTypes.func,
   /**
    * Callback fired when the popup requests to be opened.
    * Use in controlled mode (see open).

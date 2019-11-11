@@ -108,6 +108,10 @@ export interface UseAutocompleteProps {
    */
   includeInputInList?: boolean;
   /**
+   * The input value.
+   */
+  inputValue?: string;
+  /**
    * If true, `value` must be an array and the menu will support multiple selections.
    */
   multiple?: boolean;
@@ -127,8 +131,11 @@ export interface UseAutocompleteProps {
   onClose?: (event: React.ChangeEvent<{}>) => void;
   /**
    * Callback fired when the input value changes.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {string} value
    */
-  onInputChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onInputChange?: (event: React.ChangeEvent<{}>, value: any) => void;
   /**
    * Callback fired when the popup requests to be opened.
    * Use in controlled mode (see open).

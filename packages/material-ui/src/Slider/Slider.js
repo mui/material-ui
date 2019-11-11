@@ -369,15 +369,36 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     ...other
   } = props;
   const theme = useTheme();
-  const { current: isControlled } = React.useRef(valueProp != null);
   const touchId = React.useRef();
   // We can't use the :active browser pseudo-classes.
   // - The active state isn't triggered when clicking on the rail.
   // - The active state isn't transfered when inversing a range slider.
   const [active, setActive] = React.useState(-1);
   const [open, setOpen] = React.useState(-1);
+
+  const { current: isControlled } = React.useRef(valueProp != null);
   const [valueState, setValueState] = React.useState(defaultValue);
   const valueDerived = isControlled ? valueProp : valueState;
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (isControlled !== (valueProp != null)) {
+        console.error(
+          [
+            `Material-UI: A component is changing ${
+              isControlled ? 'a ' : 'an un'
+            }controlled Slider to be ${isControlled ? 'un' : ''}controlled.`,
+            'Elements should not switch from uncontrolled to controlled (or vice versa).',
+            'Decide between using a controlled or uncontrolled Slider ' +
+              'element for the lifetime of the component.',
+            'More info: https://fb.me/react-controlled-components',
+          ].join('\n'),
+        );
+      }
+    }, [valueProp, isControlled]);
+  }
+
   const range = Array.isArray(valueDerived);
   const instanceRef = React.useRef();
   let values = range ? [...valueDerived].sort(asc) : [valueDerived];

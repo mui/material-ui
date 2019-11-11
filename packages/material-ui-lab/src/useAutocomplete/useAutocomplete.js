@@ -68,10 +68,12 @@ export default function useAutocomplete(props) {
     groupBy,
     id: idProp,
     includeInputInList = false,
+    inputValue: inputValueProp,
     multiple = false,
     onChange,
     onClose,
     onOpen,
+    onInputChange,
     open: openProp,
     options = [],
     value: valueProp,
@@ -165,10 +167,13 @@ export default function useAutocomplete(props) {
   });
   const value = isControlled ? valueProp : valueState;
 
-  const [inputValue, setInputValue] = React.useState('');
+  const { current: isInputValueControlled } = React.useRef(inputValueProp != null);
+  const [inputValueState, setInputValue] = React.useState('');
+  const inputValue = isInputValueControlled ? inputValueProp : inputValueState;
+
   const [focused, setFocused] = React.useState(false);
 
-  const resetInputValue = useEventCallback(newValue => {
+  const resetInputValue = useEventCallback((event, newValue) => {
     let newInputValue;
     if (multiple) {
       newInputValue = '';
@@ -195,10 +200,14 @@ export default function useAutocomplete(props) {
     }
 
     setInputValue(newInputValue);
+
+    if (onInputChange) {
+      onInputChange(event, newInputValue);
+    }
   });
 
   React.useEffect(() => {
-    resetInputValue(value);
+    resetInputValue(null, value);
   }, [value, resetInputValue]);
 
   const { current: isOpenControlled } = React.useRef(openProp != null);
@@ -404,7 +413,7 @@ export default function useAutocomplete(props) {
       handleClose(event);
     }
 
-    resetInputValue(newValue);
+    resetInputValue(event, newValue);
 
     selectedIndexRef.current = -1;
   };
@@ -590,7 +599,7 @@ export default function useAutocomplete(props) {
     if (autoSelect && selectedIndexRef.current !== -1) {
       handleValue(event, filteredOptions[selectedIndexRef.current]);
     } else if (!freeSolo) {
-      resetInputValue(value);
+      resetInputValue(event, value);
     }
 
     handleClose(event);
@@ -612,6 +621,10 @@ export default function useAutocomplete(props) {
     }
 
     setInputValue(newValue);
+
+    if (onInputChange) {
+      onInputChange(event, newValue);
+    }
   };
 
   const handleOptionMouseOver = event => {

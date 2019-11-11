@@ -107,16 +107,37 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   } = props;
   const theme = useTheme();
 
-  const [openState, setOpenState] = React.useState(false);
   const [, forceUpdate] = React.useState(0);
   const [childNode, setChildNode] = React.useState();
   const ignoreNonTouchEvents = React.useRef(false);
-  const { current: isControlled } = React.useRef(openProp != null);
   const defaultId = React.useRef();
   const closeTimer = React.useRef();
   const enterTimer = React.useRef();
   const leaveTimer = React.useRef();
   const touchTimer = React.useRef();
+
+  const { current: isControlled } = React.useRef(openProp != null);
+  const [openState, setOpenState] = React.useState(false);
+  let open = isControlled ? openProp : openState;
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (isControlled !== (openProp != null)) {
+        console.error(
+          [
+            `Material-UI: A component is changing ${
+              isControlled ? 'a ' : 'an un'
+            }controlled Tooltip to be ${isControlled ? 'un' : ''}controlled.`,
+            'Elements should not switch from uncontrolled to controlled (or vice versa).',
+            'Decide between using a controlled or uncontrolled Tooltip ' +
+              'element for the lifetime of the component.',
+            'More info: https://fb.me/react-controlled-components',
+          ].join('\n'),
+        );
+      }
+    }, [openProp, isControlled]);
+  }
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -164,30 +185,11 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     };
   }, []);
 
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (isControlled !== (openProp != null)) {
-        console.error(
-          [
-            `Material-UI: A component is changing ${
-              isControlled ? 'a ' : 'an un'
-            }controlled Tooltip to be ${isControlled ? 'un' : ''}controlled.`,
-            'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled Tooltip ' +
-              'element for the lifetime of the component.',
-            'More info: https://fb.me/react-controlled-components',
-          ].join('\n'),
-        );
-      }
-    }, [openProp, isControlled]);
-  }
-
   const handleOpen = event => {
     // The mouseover event will trigger for every nested element in the tooltip.
     // We can skip rerendering when the tooltip is already open.
     // We are using the mouseover event instead of the mouseenter event to fix a hide/show issue.
-    if (!isControlled && !openState) {
+    if (!isControlled) {
       setOpenState(true);
     }
 
@@ -332,8 +334,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     [handleFocusRef],
   );
   const handleRef = useForkRef(children.ref, handleOwnRef);
-
-  let open = isControlled ? openProp : openState;
 
   // There is no point in displaying an empty tooltip.
   if (title === '') {

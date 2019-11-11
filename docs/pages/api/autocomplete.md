@@ -46,6 +46,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">groupBy</span> | <span class="prop-type">func</span> |  | If provided, the options will be grouped under the returned string. The groupBy value is also used as the text for group headings when `renderGroup` is not provided.<br><br>**Signature:**<br>`function(options: any) => string`<br>*options:* The option to group. |
 | <span class="prop-name">id</span> | <span class="prop-type">string</span> |  | This prop is used to help implement the accessibility logic. If you don't provide this prop. It falls back to a randomly generated id. |
 | <span class="prop-name">includeInputInList</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the highlight can move to the input. |
+| <span class="prop-name">inputValue</span> | <span class="prop-type">string</span> |  | The input value. |
 | <span class="prop-name">ListboxComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'ul'</span> | The component used to render the listbox. |
 | <span class="prop-name">loading</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the component is in a loading state. |
 | <span class="prop-name">loadingText</span> | <span class="prop-type">node</span> | <span class="prop-default">'Loading…'</span> | Text to display when in a loading state. |
@@ -53,6 +54,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">noOptionsText</span> | <span class="prop-type">node</span> | <span class="prop-default">'No options'</span> | Text to display when there are no options. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the value changes.<br><br>**Signature:**<br>`function(event: object, value: any) => void`<br>*event:* The event source of the callback<br>*value:* null |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the popup requests to be closed. Use in controlled mode (see open).<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |
+| <span class="prop-name">onInputChange</span> | <span class="prop-type">func</span> |  | Callback fired when the input value changes.<br><br>**Signature:**<br>`function(event: object, value: string) => void`<br>*event:* The event source of the callback.<br>*value:* null |
 | <span class="prop-name">onOpen</span> | <span class="prop-type">func</span> |  | Callback fired when the popup requests to be opened. Use in controlled mode (see open).<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |
 | <span class="prop-name">open</span> | <span class="prop-type">bool</span> |  | Control the popup` open state. |
 | <span class="prop-name">options</span> | <span class="prop-type">array</span> | <span class="prop-default">[]</span> | Array of options. |

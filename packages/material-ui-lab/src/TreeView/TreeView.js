@@ -39,7 +39,6 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     onNodeToggle,
     ...other
   } = props;
-  const [expandedState, setExpandedState] = React.useState(defaultExpanded);
   const [tabable, setTabable] = React.useState(null);
   const [focused, setFocused] = React.useState(null);
 
@@ -48,7 +47,8 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const firstCharMap = React.useRef({});
 
   const { current: isControlled } = React.useRef(expandedProp !== undefined);
-  const expanded = (isControlled ? expandedProp : expandedState) || [];
+  const [expandedState, setExpandedState] = React.useState(defaultExpanded);
+  const expanded = (isControlled ? expandedProp : expandedState) || defaultExpandedDefault;
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
