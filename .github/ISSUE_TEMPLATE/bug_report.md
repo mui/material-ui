@@ -18,6 +18,7 @@ assignees: ''
 | -------------------- | ------- |
 | @material-ui/pickers |         |
 | material-ui          |         |
+| TypeScript           |         |
 | React                |         |
 | Browser              |         |
 | Peer library         |         | <!-- date-fns, luxon or moment and version  --> |
