@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   event.preventDefault();
-  alert('You clicked a breadcrumb.');
+  console.info('You clicked a breadcrumb.');
 }
 
 export default function CustomSeparator() {

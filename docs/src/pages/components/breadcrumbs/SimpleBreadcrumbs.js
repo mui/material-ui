@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 
 function handleClick(event) {
   event.preventDefault();
-  alert('You clicked a breadcrumb.');
+  console.info('You clicked a breadcrumb.');
 }
 
 export default function SimpleBreadcrumbs() {

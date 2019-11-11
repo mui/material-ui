@@ -18,7 +18,7 @@ export default function SplitButton() {
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   const handleClick = () => {
-    alert(`You clicked ${options[selectedIndex]}`);
+    console.info(`You clicked ${options[selectedIndex]}`);
   };
 
   const handleMenuItemClick = (

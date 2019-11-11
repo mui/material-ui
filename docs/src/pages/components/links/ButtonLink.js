@@ -8,7 +8,7 @@ export default function ButtonLink() {
       component="button"
       variant="body2"
       onClick={() => {
-        alert("I'm a button.");
+        console.info("I'm a button.");
       }}
     >
       Button Link

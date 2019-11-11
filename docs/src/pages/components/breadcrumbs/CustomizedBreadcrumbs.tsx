@@ -24,7 +24,7 @@ const StyledBreadcrumb = withStyles((theme: Theme) => ({
 
 function handleClick(event: React.MouseEvent<Element, MouseEvent>) {
   event.preventDefault();
-  alert('You clicked a breadcrumb.');
+  console.info('You clicked a breadcrumb.');
 }
 
 const useStyles = makeStyles((theme: Theme) =>
