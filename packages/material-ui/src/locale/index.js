@@ -4,7 +4,7 @@ export const deDE = {
       backIconButtonText: 'Nächste Seite',
       labelRowsPerPage: 'Zeilen pro Seite:',
       labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} of ${count}`,
-      nextIconButtonText: 'Siguiente página',
+      nextIconButtonText: 'Nächste Seite',
     },
     MuiRating: {
       getLabelText: value => `${value} ${value !== 1 ? 'Sterne' : 'Star'}`,
