@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import { elementAcceptingRef } from '@material-ui/utils';
 import { fade } from '../styles/colorManipulator';
 import withStyles from '../styles/withStyles';
-import arrowGenerator from '../utils/arrowGenerator';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import Popper from '../Popper';
@@ -16,6 +15,53 @@ import useTheme from '../styles/useTheme';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
+}
+
+function arrowGenerator() {
+  return {
+    '&[x-placement*="bottom"] $arrow': {
+      top: 0,
+      left: 0,
+      marginTop: '-0.95em',
+      width: '2em',
+      height: '1em',
+      '&::before': {
+        borderWidth: '0 1em 1em 1em',
+        borderColor: `transparent transparent currentcolor transparent`,
+      },
+    },
+    '&[x-placement*="top"] $arrow': {
+      bottom: 0,
+      left: 0,
+      marginBottom: '-0.95em',
+      width: '2em',
+      height: '1em',
+      '&::before': {
+        borderWidth: '1em 1em 0 1em',
+        borderColor: `currentcolor transparent transparent transparent`,
+      },
+    },
+    '&[x-placement*="right"] $arrow': {
+      left: 0,
+      marginLeft: '-0.95em',
+      height: '2em',
+      width: '1em',
+      '&::before': {
+        borderWidth: '1em 1em 1em 0',
+        borderColor: `transparent currentcolor transparent transparent`,
+      },
+    },
+    '&[x-placement*="left"] $arrow': {
+      right: 0,
+      marginRight: '-0.95em',
+      height: '2em',
+      width: '1em',
+      '&::before': {
+        borderWidth: '1em 0 1em 1em',
+        borderColor: `transparent transparent transparent currentcolor`,
+      },
+    },
+  };
 }
 
 export const styles = theme => ({
@@ -30,7 +76,7 @@ export const styles = theme => ({
     pointerEvents: 'auto',
   },
   /* Styles applied to the Popper component if `arrow={true}`. */
-  popperArrow: arrowGenerator(theme.palette.grey[700]),
+  popperArrow: arrowGenerator(),
   /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
     backgroundColor: fade(theme.palette.grey[700], 0.9),
@@ -49,10 +95,11 @@ export const styles = theme => ({
     position: 'relative',
     margin: '0',
   },
-  /* Styles applies to the arrow element. */
+  /* Styles applied to the arrow element. */
   arrow: {
     position: 'absolute',
     fontSize: 6,
+    color: fade(theme.palette.grey[700], 0.9),
     '&::before': {
       content: '""',
       margin: 'auto',
@@ -105,6 +152,7 @@ export const styles = theme => ({
 
 const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const {
+    arrow = false,
     children,
     classes,
     disableFocusListener = false,
@@ -124,7 +172,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     title,
     TransitionComponent = Grow,
     TransitionProps,
-    arrow = false,
     ...other
   } = props;
   const theme = useTheme();
@@ -464,7 +511,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
 Tooltip.propTypes = {
   /**
-   * Adds an arrow to the tooltip.
+   * If true, adds an arrow to the tooltip.
    */
   arrow: PropTypes.bool,
   /**
