@@ -3,7 +3,7 @@ export const deDE = {
     MuiTablePagination: {
       backIconButtonText: 'Nächste Seite',
       labelRowsPerPage: 'Zeilen pro Seite:',
-      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} of ${count}`,
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} von ${count}`,
       nextIconButtonText: 'Nächste Seite',
     },
     MuiRating: {
