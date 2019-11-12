@@ -51,7 +51,7 @@ Material-UI bietet eine optionale [CssBaseline](/components/css-baseline/)-Kompo
 
 ## Versionierte Dokumentation
 
-Diese Dokumentation benutzt immer die neueste stabile Version von Material-UI. Ältere Versionen der Dokumentation finden Sie auf einer [separaten Seite](/versions/).
+Diese Dokumentation benutzt immer die neueste stabile Version von Material-UI. You can find older versions of the documentation on a [separate page](https://material-ui.com/versions/).
 
 ## Nächste Schritte
 

@@ -24,3 +24,9 @@ Des avatars contenant des caractères simples peuvent être créés en transmett
 Les avatars d'icônes sont créés en transmettant une icône à `enfant`.
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
+
+## Variants
+
+If you need square or rounded avatars, use the `variant` prop.
+
+{{"demo": "pages/components/avatars/VariantAvatars.js"}}

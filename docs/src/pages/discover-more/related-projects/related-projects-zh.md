@@ -16,7 +16,7 @@ You didn't find the design assets your team is looking for? 请告诉我们吧�
 - [Unsplash](https://unsplash.com): 📷 A great resource for finding beautiful, high-resolution, free photos that you can use in your projects.
 - [unDraw](https://undraw.co/): 📐 Like Unsplash but for amazing vector illustrations.
 
-## 组件
+## Components（组件）
 
 This is a collection of third-party projects that extend Material-UI.
 
@@ -26,13 +26,6 @@ This is a collection of third-party projects that extend Material-UI.
 - [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
 - [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.
 - [tubular-react](https://github.com/unosquare/tubular-react): A Material-UI table with local or remote data-source. Featuring filtering, sorting, free-text search, export to CSV locally, and aggregations.
-
-### Autocomplete（自动补全）
-
-- [material-ui-chip-input](https://mui.wertarbyte.com/#material-ui-chip-input): 此 chip input 用于选择多个文本值的情况。
-- [mui-downshift](https://github.com/techniq/mui-downshift): Thin layer over paypal's downshift to use Material-UI visual components.
-- [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest)：一个用在 React 和 Material-UI 中的模糊搜索的组件。
-- [react-select-material-ui](https://github.com/iulian-radu-at/react-select-material-ui)：使用 Material-UI 的 react-select 的扩展版本。
 
 ### Notifications
 

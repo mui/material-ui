@@ -51,7 +51,7 @@ Material-UI fournit un composant [CssBaseline](/components/css-baseline/) facult
 
 ## Documentation versionnée
 
-Cette documentation reflète toujours la dernière version stable de Material-UI. Vous pouvez trouver les anciennes versions de la documentation sur une [page séparée](/versions/).
+Cette documentation reflète toujours la dernière version stable de Material-UI. You can find older versions of the documentation on a [separate page](https://material-ui.com/versions/).
 
 ## Etapes suivantes
 

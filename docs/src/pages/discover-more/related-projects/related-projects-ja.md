@@ -27,13 +27,6 @@ This is a collection of third-party projects that extend Material-UI.
 - [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.
 - [tubular-react](https://github.com/unosquare/tubular-react): A Material-UI table with local or remote data-source. Featuring filtering, sorting, free-text search, export to CSV locally, and aggregations.
 
-### Autocomplete
-
-- [material-ui-chip-input](https://mui.wertarbyte.com/#material-ui-chip-input)：チップ入力を使用して、複数のテキスト値を選択できます。
-- [mui-downshift](https://github.com/techniq/mui-downshift): Thin layer over paypal's downshift to use Material-UI visual components.
-- [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest)：ReactおよびMaterial-UIのファジー検索コンポーネント。
-- [react-select-material-ui](https://github.com/iulian-radu-at/react-select-material-ui)：Material-UIでreact-selectを拡張します。
-
 ### Notifications
 
 - [notistack](https://github.com/iamhosseindhv/notistack): Makes it easy to display snackbars (so you don't have to deal with open/close state of them).

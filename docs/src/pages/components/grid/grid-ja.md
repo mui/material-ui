@@ -17,7 +17,7 @@ components: Grid
 - レイアウトには* containers * と * items*の2種類あります 。
 - アイテムの幅はパーセンテージで設定されているので、それらは常に親要素に対して流動的でサイズが決まっています。
 - アイテムには、個々のアイテム間の間隔を空けるための余白があります。
-- Xs、sm、md、lg、およびxlの5つのグリッドブレークポイントがあります。
+- xs、sm、md、lg、およびxlの5つのグリッドブレークポイントがあります。
 
 **flexboxに不慣れ**な場合、 [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) を読むことをおすすめします。
 

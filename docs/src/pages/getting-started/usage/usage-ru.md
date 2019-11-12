@@ -36,7 +36,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ### Responsive meta tag
 
-Material-UI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries. Чтобы обеспечить правильный рендеринг и масштабирование касанием для всех устройств, добавьте метатег реагирующего окна просмотра в элемент 
+Material-UI разработан используя подход Mobile First, согласно которому мы сначала пишем код для мобильных устройств, затем мастштабируем компоненты по мере необходимости, используя медиа-запросы CSS. Чтобы обеспечить правильный рендеринг и масштабирование касанием для всех устройств, добавьте метатег реагирующего окна просмотра в элемент 
 
 <head>
   .</p> 
@@ -52,33 +52,33 @@ Material-UI is developed mobile-first, a strategy in which we first write code f
   </h3>
   
   <p>
-    Material-UI provides an optional <a href="/components/css-baseline/">CssBaseline</a> component. It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
+    Material-UI предоставляет опциональный компонент <a href="/components/css-baseline/">CssBaseline</a>. Он исправляет некоторые несоответствия между браузерами и устройствами, обеспечивая несколько более упорядоченный сброс стилей HTML элементов.
   </p>
   
   <h2>
-    Versioned Documentation
+    Версионная документация
   </h2>
   
   <p>
-    This documentation always reflects the latest stable version of Material-UI. You can find older versions of the documentation on a <a href="/versions/">separate page</a>.
+    Данная документация всегда отражает последнюю стабильную версию Material-UI. You can find older versions of the documentation on a <a href="https://material-ui.com/versions/">separate page</a>.
   </p>
   
   <h2>
-    Next steps
+    Дальнейшие шаги
   </h2>
   
   <p>
-    Now that you have an idea of the basic setup, it's time to learn more about:
+    Теперь, когда у вас есть представление о базовых настройках, можно узнать больше:
   </p>
   
   <ul spaces="0" level="0" marker="-">
     <li level="0">
-      How to provide <a href="/components/typography/">the Material Design font and typography</a>.
+      Как предоставить <a href="/components/typography/">шрифт и оформление Material Design</a>.
     </li>
     <li level="0">
-      How to take advantage of the <a href="/customization/theming/">theming solution</a>.
+      Как воспользоваться <a href="/customization/theming/">механизмом тем</a>.
     </li>
     <li level="0">
-      How to <a href="/customization/components/">override</a> the look and feel of the components.
+      Как <a href="/customization/components/">переопределить</a> внешний вид компонентов.
     </li>
   </ul>

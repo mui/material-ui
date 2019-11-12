@@ -28,24 +28,19 @@
 
 それぞれのクラスのリスト コンポーネントについては、コンポーネントAPIページの**CSS section**および**rule name column**を参照してください。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 文 または、[browser dev tools](#using-the-dev-tools)を使用することもできます。
 
-この例では、`withStyles()`</code></code>も使用していますが、ここでは、`ClassesNesting(上記参照) は<code>Button`の`classes propを使用して、
-オーバーライドするクラスの<strong>名</strong>を適用するCSSクラス名(スタイルルール)</strong>にマップするオブジェクトを提供します(values)。
-コンポーネントの既存のクラスは引き続き注入されるため、必要なのは特定のスタイルを指定することだけです。
-追加またはオーバーライドします。</p>
+この例では、`withStyles()`も使用していますが、ここでは、`ClassesNesting`(上記参照) は`Button`の`classes` prop を使用して、 オーバーライドするクラスの**名**を適用するCSSクラス名(スタイルルール) にマップするオブジェクトを提供します(values)。 コンポーネントの既存のクラスは引き続き注入されるため、必要なのは特定のスタイルを指定することだけです。 追加またはオーバーライドします。
 
-<p>Notice that in addition to the button styling, the button label's capitalization has been changed:</p>
+Notice that in addition to the button styling, the button label's capitalization has been changed:
 
-<p>{{"demo": "pages/customization/components/ClassesNesting.js"}}</p>
+{{"demo": "pages/customization/components/ClassesNesting.js"}}
 
-<h3>グローバルクラス名でスタイルをオーバーライドする</h3>
+### グローバルクラス名でスタイルをオーバーライドする
 
-<p><a href="/styles/advanced/#with-material-ui-core">このセクションに従ってください</a> 。</p>
+[このセクションに従ってください](/styles/advanced/#with-material-ui-core) 。
 
-<h3>開発ツール(dev tools) を使用する</h3>
+### 開発ツール(dev tools) を使用する
 
-<p>ブラウザ開発ツールを使えば、時間を大幅に節約できます。
-Material-UIのクラス名は、開発モードでは<a href="/styles/advanced/#class-names"> a simple patternに従います</a>。
-<code>Mui[component name]-[style rule name]-[UUID]`。
+ブラウザ開発ツールを使えば、時間を大幅に節約できます。 Material-UIのクラス名は、開発モードでは[ a simple patternに従います](/styles/advanced/#class-names)。 `Mui[component name]-[style rule name]-[UUID]`。
 
 上記のデモに戻りましょう。 ボタン・ラベルを上書きする方法は?
 

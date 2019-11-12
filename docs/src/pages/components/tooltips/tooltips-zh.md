@@ -72,6 +72,8 @@ A tooltip can be interactive. It won't close when the user hovers over the toolt
 
 默认情况下，`<Button>`等disabled的元素不会触发用户交互，因此`Tooltip`不会在hover等正常事件上激活显示。 To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
+> ⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
+
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
 > If you're not wrapping a Material-UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property *pointer-events: none;* to your element when disabled:

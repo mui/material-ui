@@ -8,4 +8,4 @@ Material-UI is maintained by a small group of invaluable core contributors, with
 
 Machen Sie mit in der Entwicklung von Material-UI indem Sie ein [ Problem melden](https://github.com/mui-org/material-ui/issues/new) oder eine Pull-Anfrage absenden. Read the [contributing guidelines](https://github.com/mui-org/material-ui/blob/master/CONTRIBUTING.md) for information on how we develop.
 
-[Treten Sie der Material-UI-Community bei!](/discover-more/community/)
+[Join and support the project!](/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project)

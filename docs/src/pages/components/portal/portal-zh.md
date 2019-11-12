@@ -15,6 +15,6 @@ The children of the portal component will be appended to the `container` specifi
 
 {{"demo": "pages/components/portal/SimplePortal.js"}}
 
-## Server-side
+## 服务器端
 
 React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. You have to wait for the client-side hydration to see the children.

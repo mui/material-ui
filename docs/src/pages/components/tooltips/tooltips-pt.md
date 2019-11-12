@@ -72,9 +72,11 @@ Uma dica pode ser interativa. Ela não será fechada quando o usuário passar po
 
 Por padrão os elementos desativados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, omo passar o mouse. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
+> ⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
+
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
-> Se você não estiver manipulando com um componente Material-UI que herde de `ButtonBase`, por exemplo, um elemento `<button>` nativo, você também deve adicionar a propriedade CSS *pointer-events: none;* ao seu elemento quando desativado:
+> If you're not wrapping a Material-UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property *pointer-events: none;* to your element when disabled:
 
 ```jsx
 <Tooltip title="Você não tem permissão para esta tarefa">

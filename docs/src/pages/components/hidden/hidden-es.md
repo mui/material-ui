@@ -5,13 +5,13 @@ components: Hidden
 
 # Hidden
 
-<p class="description">Quickly and responsively toggle the visibility value of components and more with the hidden utilities.</p>
+<p class="description">Hidden: Cambia rápida y de manera responsiva el valor de visibilidad de los componentes y más con nuestras utilidades ocultas.</p>
 
-All elements are visible unless **they are explicitly hidden**. To ease integration with Material-UI's [responsive breakpoints](/customization/breakpoints/), this component can be used to hide any content, or you can use it in conjunction with the [`Grid`](/components/grid/) component.
+Todos los elementos son visibles a menos que **estén explícitamente ocultos**. Para facilitar la integración con [interrupción responsivas](/customization/breakpoints/) de Material-UI, éste componente se puede usar para ocultar cualquier contenido, o puede usarlo junto con el componente [`Grid`](/components/grid/).
 
 ## Cómo funciona
 
-Hidden works with a range of breakpoints e.g. `xsUp` or `mdDown`, or one or more breakpoints e.g. `only='sm'` or `only={['md', 'xl']}`. Ranges and individual breakpoints can be used simultaneously to achieve very customized behavior. The ranges are inclusive of the specified breakpoints.
+Hidden funciona con un rango de puntos de interrupción, por ejemplo, `xsUp` o `mdDown`, o uno o más puntos de interrupción, por ejemplo, `only = 'sm'` o `only = {['md', 'xl']}`. Los rangos y los puntos de interrupción individuales se pueden usar simultáneamente para lograr un comportamiento muy personalizado. Los rangos son inclusivas de los puntos de interrupción.
 
 ```js
 innerWidth  |xs      sm       md       lg       xl
@@ -23,7 +23,7 @@ mdDown      |                     hide | show
 
 ```
 
-## Implementations
+## Implementación
 
 ### js
 

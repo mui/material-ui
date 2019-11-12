@@ -24,3 +24,9 @@ components: Avatar
 Аватары значков создаются путем передачи значка как `children`.
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
+
+## Variants
+
+If you need square or rounded avatars, use the `variant` prop.
+
+{{"demo": "pages/components/avatars/VariantAvatars.js"}}

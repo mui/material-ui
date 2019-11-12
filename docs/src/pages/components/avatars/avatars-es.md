@@ -24,3 +24,9 @@ Los avatares que contienen letras simples pueden crearse pasando su cadena como 
 Los avatares de íconos son creados pasando un ícono como `children`.
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
+
+## Variants
+
+If you need square or rounded avatars, use the `variant` prop.
+
+{{"demo": "pages/components/avatars/VariantAvatars.js"}}

@@ -24,3 +24,9 @@ Avatares com letras podem ser criados passando sua string como `children`.
 Avatares com ícones são criados passando o ícone como `children`.
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
+
+## Variantes
+
+If you need square or rounded avatars, use the `variant` prop.
+
+{{"demo": "pages/components/avatars/VariantAvatars.js"}}

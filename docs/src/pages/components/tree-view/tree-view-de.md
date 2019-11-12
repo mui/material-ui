@@ -17,6 +17,12 @@ Tree views can be used to represent a file system navigator displaying folders a
 
 {{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
 
+### Controlled
+
+The tree view also offers a controlled API.
+
+{{"demo": "pages/components/tree-view/ControlledTreeView.js"}}
+
 ### Gmail clone
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}
@@ -25,4 +31,4 @@ Tree views can be used to represent a file system navigator displaying folders a
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
 
-The component follows the WAI-ARIA best practices.
+The component follows the WAI-ARIA authoring practices.

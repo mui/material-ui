@@ -72,6 +72,8 @@ function MyComponent(props) {
 
 デフォルトでは無効になっている要素`<button>`はユーザーの操作をトリガーしないため、 `Tooltip`は、ホバーなどの通常のイベントでアクティブになりません。 To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
+> ⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
+
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
 > If you're not wrapping a Material-UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property *pointer-events: none;* to your element when disabled:

@@ -2,7 +2,7 @@
 title: Free React Templates
 ---
 
-# React Templates
+# React шаблоны
 
 <p class="description">A selection of basic react templates to help you get started building your app. The collection contains react dashboard, admin, and more.</p>
 

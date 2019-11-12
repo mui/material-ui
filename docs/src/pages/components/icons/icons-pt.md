@@ -7,44 +7,44 @@ components: Icon, SvgIcon
 
 <p class="description">Orientação e sugestões para usar ícones com o Material-UI.</p>
 
-Material-UI provides icons support in three ways:
+Material-UI fornece suporte de ícones de três maneiras:
 
-1. Standardized [Material Design icons](#material-icons) exported as React components (SVG icons).
-1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.
-1. With the [Icon](#icon-font-icons) component, a React wrapper for custom font icons.
+1. Ícones padronizados [Material Design](#material-icons) exportados como componentes do React (ícones SVG).
+1. Com o componente [SvgIcon](#svgicon), um wrapper React para ícones SVG personalizados.
+1. Com o componente [Icon](#icon-font-icons), um wrapper React para ícones de fonte personalizados.
 
 ## Ícones Material
 
-Material Design has standardized over 1,000 official icons, each in five different "themes" (see below). Para cada ícone SVG, exportamos o respectivo componente React do pacote `@material-ui/icons`. You can search the full list of these icons in our [built-in search page](/components/material-icons/).
+O Material Design padronizou mais de 1.000 ícones oficiais, cada um em cinco "temas" diferentes (veja abaixo). Para cada ícone SVG, exportamos o respectivo componente React do pacote `@material-ui/icons`. Você pode pesquisar a lista completa desses ícones em nossa [página de pesquisa incorporada](/components/material-icons/).
 
 ### Utilização
 
-Install `@material-ui/icons`. Import icons using one of these two options:
+Instale `@material-ui/icons`. Importe ícones usando uma destas duas opções:
 
-- Option 1:
+- Opção 1:
 
   ```jsx
   import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
   import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
   ```
 
-- Option 2:
+- Opção 2:
 
   ```jsx
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-The safest is Option 1 but Option 2 can yield the best developer experience. Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach. The configuration of a Babel plugin is encouraged.
+O mais seguro é a Opção 1, mas a Opção 2 pode proporcionar uma melhor experiência para o desenvolvedor. Certifique-se de seguir o guia [minimizando o tamanho do pacote](/guides/minimizing-bundle-size/#option-2) antes de usar a segunda abordagem. A configuração de um plugin Babel é recomendada.
 
-Each icon also has a "theme": `Filled` (default), `Outlined`, `Rounded`, `Two tone` and `Sharp`. If you want to import the icon component with a "theme" different than default, append the "theme" name to the icon name. For example `@material-ui/icons/Delete` icon with:
+Cada ícone possui também um "tema": `Filled` (padrão), `Outlined`, `Rounded`, `Two tone` e `Sharp`. Se você deseja importar o componente do ícone com um "tema" diferente do padrão, acrescente o nome do "tema" ao nome do ícone. Por exemplo, para usar o ícone `@material-ui/icons/Delete`, temos:
 
-- `Filled` "theme" (default) is exported as `@material-ui/icons/Delete`,
-- `Outlined` "theme" is exported as `@material-ui/icons/DeleteOutlined`,
-- `Rounded` "theme" is exported as `@material-ui/icons/DeleteRounded`,
-- `Two tone` "theme" is exported as `@material-ui/icons/DeleteTwoTone`,
-- `Sharp` "theme" is exported as `@material-ui/icons/DeleteSharp`.
+- "Tema" `Filled` (preenchido) (padrão) é exportado como `@material-ui/icons/Delete`,
+- "Tema" `Outlined` (contornado) é exportado como `@material-ui/icons/DeleteOutlined`,
+- "Tema" `Rounded` (arredondado) é exportado como `@material-ui/icons/DeleteRounded`,
+- "Tema" `Two tone` (dois tons) é exportado como `@material-ui/icons/DeleteTwoTone`,
+- "Tema" `Sharp` (pontiagudo) é exportado como `@material-ui/icons/DeleteSharp`.
 
-Note: The Material Design specification names the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
+Nota: A especificação Material Design nomeia os ícones usando a nomeação "snake_case" (por exemplo, `delete_forever`, `add_a_photo`), enquanto `@material-ui/icons` exporta os respectivos ícones usando a nomeação "PascalCase" (por exemplo `DeleteForever`, `AddAPhoto`). Há três exceções a essa regra de nomenclatura: `3d_rotation` exportado como `ThreeDRotation`, `4k` exportado como `FourK`e `360` exportado como `ThreeSixty`.
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
