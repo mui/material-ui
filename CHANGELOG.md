@@ -1,5 +1,95 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.6.1
+###### *Nov 12, 2019*
+
+Big thanks to the 19 contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- 🔍 12 patches on the Autocomplete component.
+- 👨‍🎤 Add Framer X support (#17797) @mbrookes.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v4.6.1`
+
+- Add Framer X wrapper components (#17797) @mbrookes
+- [ButtonBase] Fix space calling onClick on keyDown instead of keyUp (#18319) @eps1lon
+- [ButtonBase] Test keyboard events of child elements (#18318) @eps1lon
+- [ButtonGroup] Fix typings for disabled classes property (#18274) @xZliman
+- [Select] Fix id not being present when native (#18257) @eps1lon
+- [TextField] Add demo for color prop (#18220) @Studio384
+- [core] Fix createMuiTheme side-effect (#18247) @FabianSellmann
+- [core] Increase specificity to get correct style (#18238) @oliviertassinari
+
+### `@material-ui/lab@v4.0.0-alpha.32`
+
+#### Breaking changes
+
+- [Autocomplete] Fix Multiple tag delete action (#18153) @tkanzakic
+
+```diff
+diff --git a/docs/src/pages/components/autocomplete/FixedTags.js b/docs/src/pages/components/autocomplete/FixedTags.js
+index 757d66a97..a4f36edd5 100644
+--- a/docs/src/pages/components/autocomplete/FixedTags.js
++++ b/docs/src/pages/components/autocomplete/FixedTags.js
+@@ -11,17 +11,9 @@ export default function FixedTags() {
+       options={top100Films}
+       getOptionLabel={option => option.title}
+       defaultValue={[top100Films[6], top100Films[13]]}
+-      renderTags={(value, { className, onDelete }) =>
++      renderTags={(value, getTagProps) =>
+         value.map((option, index) => (
+-          <Chip
+-            key={index}
+-            disabled={index === 0}
+-            data-tag-index={index}
+-            tabIndex={-1}
+-            label={option.title}
+-            className={className}
+-            onDelete={onDelete}
+-          />
++          <Chip disabled={index === 0} label={option.title} {...getTagProps({ index })} />
+         ))
+       }
+       style={{ width: 500 }}
+```
+
+#### Changes
+
+- [TreeView] Add controlled API to TreeView (#18165) @joshwooding
+- [TreeView] Support empty array (#18259) @tomasbruckner
+- [Rating] Add random name when none is provided (#18284) @Vitao18
+- [SpeedDial] Fix crash when using custom style in FabProps (#18320) @weslenng
+- [Autocomplete] Add closeIcon and popupIcon props (#18266) @AbdallahElroby
+- [Autocomplete] Add controllable input value API (#18285) @oliviertassinari
+- [Autocomplete] Add hook customization demo (#18242) @oliviertassinari
+- [Autocomplete] Fix Enter key clearing selected option (#18229) @chapmanio
+- [Autocomplete] Fix popup placement (#18289) @andreasheim
+- [Autocomplete] Fix the errors reported by Wave (#18283) @oliviertassinari
+- [Autocomplete] Improve accessibility (#18204) @oliviertassinari
+- [Autocomplete] Improve focus logic (#18286) @oliviertassinari
+- [Autocomplete] Remove aria-activedescendant (#18281) @oliviertassinari
+- [useAutocomplete] Fix missing inputValue (#18268) @AbdallahElroby
+- [useAutocomplete] Handle Opera fullscreen mode (#18275) @xZliman
+
+### Docs
+
+- [blog] October 2019 Product Update (#18239) @oliviertassinari
+- [examples] Fix Gatsby broken example (#18321) @weslenng
+- [docs] Fix error in Select options (#18224) @eedrah
+- [docs] Fix show all rows in table pagination (#18260) @markusf1
+- [docs] Improve demo clarity by using form elements (#18241) @jcuenod
+- [docs] Replace alert with console.info (#18316) @eps1lon
+- [docs] Replace react-inspector with custom TreeView implementation (#17662) @eps1lon
+
+### Core
+
+- [core] Add funding entry to manifests (#18250) @eps1lon
+- [core] Remove nodemod (#18222) @oliviertassinari
+- [test] Misc cleanup (#18261) @eps1lon
+- [core] Batch changes (#18264) @oliviertassinari
+
 ## 4.6.0
 ###### *Nov 5, 2019*
 
