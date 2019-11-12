@@ -27,7 +27,8 @@ const filledProps = {
 // styled
 {
   const StyledTextField = styled(TextField)``;
-  <StyledTextField variant="filled" {...filledProps} />;
+  // $ExpectError
+  <StyledTextField variant="filled" {...filledProps} />; // undesired, fixable by using older version 4.1.20
   // $ExpectError
   <StyledTextField {...filledProps} />; // desired
 }
