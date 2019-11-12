@@ -9,9 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Chip from '@material-ui/core/Chip';
 import CloseIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
-import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
-
-export { createFilterOptions };
+import useAutocomplete from '../useAutocomplete';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
