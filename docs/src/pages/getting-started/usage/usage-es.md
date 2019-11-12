@@ -51,7 +51,7 @@ Material-UI proporciona un componente opcional llamado [CssBaseline](/components
 
 ## Documentación versionada
 
-Ésta documentación siempre refleja la última versión estable de Material-UI. Podrás encontrar versiones antiguas en una [página apartada](/versions/).
+Ésta documentación siempre refleja la última versión estable de Material-UI. You can find older versions of the documentation on a [separate page](https://material-ui.com/versions/).
 
 ## Siguientes pasos
 

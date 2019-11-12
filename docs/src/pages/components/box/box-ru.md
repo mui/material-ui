@@ -28,7 +28,7 @@ Box компонент оборачивает ваш компонент. Соз�
 
 1. Использовать [`React.cloneElement()`](https://reactjs.org/docs/react-api.html#cloneelement)
 
-The Box component has a `clone` property to enable the usage of the clone element method of React.
+Компонент Box имеет свойство `clone`, которое позволяет использовать метод clone element из React.
 
 ```jsx
 <Box color="text.primary" clone>

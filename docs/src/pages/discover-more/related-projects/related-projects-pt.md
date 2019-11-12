@@ -27,20 +27,13 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 - [mui-datatables](https://github.com/gregnb/mui-datatables): Tabelas de dados responsivas para Material-UI com filtro, ordenação, pesquisa e muito mais.
 - [tubular-react](https://github.com/unosquare/tubular-react): Uma tabela de Material-UI com fonte de dados local ou remota. Com filtragem, classificação, pesquisa de texto livre, exportação para CSV localmente e agregações.
 
-### Autocompletar
+### Notifications
 
-- [material-ui-chip-input](https://mui.wertarbyte.com/#material-ui-chip-input): O componente chip e usado no input para permitir a seleção de múltiplos valores de texto.
-- [mui-downshift](https://github.com/techniq/mui-downshift): Camada fina sobre o downshift do paypal para usar componentes visuais do Material-UI.
-- [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest): Um componente de pesquisa difusa para React e Material-UI.
-- [react-select-material-ui](https://github.com/iulian-radu-at/react-select-material-ui): Extensão do react-select com Material-UI.
-
-### Notificações
-
-- [notistack](https://github.com/iamhosseindhv/notistack): Facilita a exibição de snackbars (assim você não precisa ter que lidar com o estado de aberto/fechado delas).
+- [notistack](https://github.com/iamhosseindhv/notistack): Makes it easy to display snackbars (so you don't have to deal with open/close state of them).
 
 ### Upload
 
-- [material-ui-dropzone](https://github.com/Yuvaleros/material-ui-dropzone): Construído sobre o react-dropzone.
+- [material-ui-dropzone](https://github.com/Yuvaleros/material-ui-dropzone): Built on top of react-dropzone.
 
 ### Formulários
 
@@ -49,20 +42,20 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 - [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) Um conjunto de componentes wrapper para facilitar o uso do Material UI com Final Form.
 - [mui-rff](https://github.com/lookfirst/mui-rff) A set of wrapper components to facilitate using Material UI with React Final Form.
 
-### Carrossel
+### Carousel
 
-- [material-auto-rotating-carousel](https://mui.wertarbyte.com/#material-auto-rotating-carousel): Apresente novos usuários ao seu aplicativo.
+- [material-auto-rotating-carousel](https://mui.wertarbyte.com/#material-auto-rotating-carousel): Introduce new users to your app.
 
-### Imagem
+### Image
 
-- [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Imagens são feias até serem carregadas. Materialize elas com material image! Irá desvanecer, como sugere o padrão de carregamento de imagem material.
+- [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Images are ugly until they're loaded. Materialize it with material image! It will fade in like the material image loading pattern suggests.
 
-### Paginação
+### Pagination
 
-- [material-ui-flat-pagination](https://github.com/szmslab/material-ui-flat-pagination): Um componente de paginação de design plano para Material-UI.
+- [material-ui-flat-pagination](https://github.com/szmslab/material-ui-flat-pagination): A flat design pagination component for Material-UI.
 
 ## Temas
 
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Uma ferramenta online para criar temas de Material-UI por meio da ferramenta de cor do Material Design.
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): An online tool for creating Material-UI themes via Material Design Color Tool.
 - [material-ui-tema-editor](https://in-your-saas.github.io/material-ui-theme-editor/): Uma ferramenta para gerar temas para seus aplicativos de Material-UI, basta selecionar as cores e ter uma visualização ao vivo.
 - [Material palette generator](https://material.io/inline-tools/color/): O gerador de paleta do Material pode ser usado para gerar uma paleta para qualquer cor que você inserir.

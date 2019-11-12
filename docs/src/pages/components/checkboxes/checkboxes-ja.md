@@ -13,13 +13,13 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
-`Checkbox`コンポーネントは` FormControlLabel<code>コンポーネントを説明のラベルとして使うことができます。</p>
+`Checkbox`コンポーネントは` FormControlLabel`コンポーネントを説明のラベルとして使うことができます。
 
-<p>{{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}</p>
+{{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
-<h2>FormGroupのCheckbox</h2>
+## FormGroupのCheckbox
 
-<p><code>FormGroup` は、より簡単なAPIを提供する選択コントロールコンポーネントをグループ化するために使用される便利なラッパーです。
+`FormGroup` は、より簡単なAPIを提供する選択コントロールコンポーネントをグループ化するために使用される便利なラッパーです。
 
 {{"demo": "pages/components/checkboxes/CheckboxesGroup.js"}}
 

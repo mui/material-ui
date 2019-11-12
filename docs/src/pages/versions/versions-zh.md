@@ -1,4 +1,4 @@
-# Material-UI 的不同版本
+# Material-UI 的版本
 
 <p class="description">你可以随时回到本页来切换不同版本的文档。</p>
 
@@ -10,62 +10,62 @@
 
 ## 最新版本
 
-在这里您可以找到尚未发布的最新文档和代码。 您可以使用它来查看即将实施的更新 , 并给 Material-UI 的贡献者提供更好的反馈。
+在这里您可以找到尚未发布的最新文档和代码。 您可以使用它来查看未来的更新，并给 Material-UI 的贡献者提供更好的反馈。
 
 {{"demo": "pages/versions/LatestVersions.js", "hideHeader": true}}
 
 ## 版本控制方案
 
-Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around Material-UI to thrive.
+稳定性确保可重用组件、库、教程、工具和实践不会意外过时。 稳定性是Material-UI生态系统蓬勃发展的关键。
 
-This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
+本文档包括遵循为您提供前沿前段库以及权衡稳定性的实践，以确保未来的更新始终可以预测。
 
-Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Material-UI 的版本号由三部分组成：`主版本号.次版本号.修订版本号`。 版本号的选择是根据更新内容的数量决定
+Material-UI遵循[语义化版本2.0.0](https://semver.org/)。 Material-UI 的版本号由三部分组成：`主版本号.次版本号.修订版本号`。 版本号的递增是根据更新内容的级别而决定。
 
-- **主要版本** 包含重要的新功能，有些但在更新期间预计会提供最少的开发人员帮助。 更新到新的主要版本时，您可能需要运行更新脚本，重构代码，运行其他测试以及学习新API。
-- **次版本**包含重要的新功能。 次要版本完全向后兼容;更新期间不需要开发人员协助，但您可以选择修改应用程序和库，以开始使用发行版中添加的新API，功能和功能。
-- **日常更新**的风险较低。它包含了对bug的修复和较小的新功能。 更新期间不需要开发人员协助。
+- **主版本**包含重要的新功能，更新时需要一些少量开发人员的支持。 更新到新的主版本时，您可能需要运行更新脚本，重构代码，运行其他测试以及学习新API。
+- **次版本**包含重要的新功能。 次版本完全向后兼容，更新时不需要开发人员的支持，但您可以选择修改应用程序和库，以开始使用新版本中添加的新API和功能。
+- **修订版本**的风险低，包含了对bug的修复和较小的新功能。 更新时不需要开发人员的支持。
 
 ## 发布周期
 
-A regular schedule of releases helps you plan and coordinate your updates with the continuing evolution of Material-UI.
+定期的发布周期可以帮助您规划和协调Material-UI不断的更新。
 
-通常情况下, 你可以根据以下的发布周期来预测:
+通常情况下，你可以预期以下的发布周期：
 
-- A **major** release every 12 months.
-- 每个主版本会附带1-3个向下兼容的**次版本**。
-- 每周会进行**日常**更新 (如果有紧急的 bugfix，则任何时候都可发布)。
+- 每12个月发布一个**主版本**。
+- 每个主版本会包含1-3个**次版本**。
+- 每周发布**修订版本**更新（随时发布更新来修复紧急的bug）。
 
-## 发布计划
+## 发布时间表
 
-| 日期             | 版本     | Status   |
-|:-------------- |:------ | -------- |
-| May 2018       | v1.0.0 | Released |
-| Septembre 2018 | v3.0.0 | Released |
-| May 2019       | v4.0.0 | Released |
-| Q3 2020        | v5.0.0 | ⏳        |
+| 日期       | 版本     | 状态  |
+|:-------- |:------ | --- |
+| 2018年5月  | v1.0.0 | 已发布 |
+| 2018年9月  | v3.0.0 | 已发布 |
+| 2019年5月  | v4.0.0 | 已发布 |
+| 2020第三季度 | v5.0.0 | ⏳   |
 
 
-You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
+您可以参考[里程碑](https://github.com/mui-org/material-ui/milestones)来获得更详细的概述。
 
-> ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.
+> ⚠️**免责声明** ：我们在动态的环境中运作，情况随时可能发生变化。 提供的信息旨在概述总体框架方向， 仅供参考。 我们可能会根据我们的交付能力来随时决定增加或删除新的项目来确保我们的质量标准。 Material-UI的任何功能的开发，发布和时间安排均由Material-UI自行决定。 指导方针不代表在任何时间交付的承诺和义务。
 
 ## 支持政策
 
-Find details on the [supported versions](/getting-started/support/#supported-versions).
+查看[所支持版本](/getting-started/support/#supported-versions)的详情
 
-## 弃用做法
+## 弃用实践
 
-有时， **“破坏更改”**，例如删除对选定API和功能的支持，是必要的。
+**“不兼容变更”**有时是必要的，例如删除对选定API和功能的支持。
 
-To make these transitions as easy as possible:
+为了让过渡尽可能简单：
 
-- The number of breaking changes is minimized, and migration tools provided when possible.
-- The deprecation policy described below is followed, so that you have time to update your apps to the latest APIs and best practices.
+- 尽量减少不兼容变更，并且尽可能提供迁移工具。
+- 遵循以下描述的弃用政策，以便您有时间用最新的API和最佳做法更新您的应用程序。
 
-### 弃用原则
+### 弃用政策
 
-- Deprecated features are announced in the changelog, and when possible, with warnings at runtime.
-- When a deprecation is announced, recommended update path is provided.
-- Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
-- Peer dependency updates (React) that require changes to your apps are only made in a major release.
+- 弃用的功能会在更新日志中公布，并且尽可能在运行时发出警告。
+- 当公布弃用时，提供建议的更新办法。
+- 在弃用期间支持现有的稳定API，因此您的代码将在此期间继续工作。
+- 要求对您的应用进行修改的同版本依赖更新（React）只会在主版本进行。

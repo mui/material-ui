@@ -118,7 +118,7 @@ Aqui está um [exemplo de integração com react-router](/guides/composition/#bu
 
 ### Cursor não permitido
 
-The ButtonBase component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.
+O componente ButtonBase define `pointer-events: none;` ao desabilitar os botões, o que previne que o cursor desabilitado seja exibido.
 
 Se você deseja usar `not-allowed`, você tem duas opções:
 

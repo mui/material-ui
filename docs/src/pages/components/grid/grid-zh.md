@@ -35,38 +35,37 @@ components: Grid
 
 ### 基本栅格
 
-列宽适用于所有断点（即 `xs</code 及大于其的值）。</p>
+列宽适用于所有断点（即 `xs` 及大于其的值）。
 
-<p>{{"demo": "pages/components/grid/CenteredGrid.js"}}</p>
+{{"demo": "pages/components/grid/CenteredGrid.js"}}
 
-<h3>有断点的栅格</h3>
+### 有断点的栅格
 
-<p>一些列会定义多种宽度，这会导致布局会根据定义的端点来改变其宽度。</p>
+一些列会定义多种宽度，这会导致布局会根据定义的端点来改变其宽度。
 
-<p>{{"demo": "pages/components/grid/FullWidthGrid.js"}}</p>
+{{"demo": "pages/components/grid/FullWidthGrid.js"}}
 
-<h2>交互式</h2>
+## 交互式
 
-<p>下面是一个交互式的演示，您可让探索不同设置下的视觉结果：</p>
+下面是一个交互式的演示，您可让探索不同设置下的视觉结果：
 
-<p>{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true}}</p>
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true}}
 
-<h2>自动布局</h2>
+## 自动布局
 
-<p>自适应布局使得 <em>项</em> 可以平摊使用空间。
-这也意味着你可以显式设置一个 <em>项</em> 的宽度，而使其他项的大小自动进行调整。</p>
+自适应布局使得 *项* 可以平摊使用空间。 这也意味着你可以显式设置一个 *项* 的宽度，而使其他项的大小自动进行调整。
 
-<p>{{"demo": "pages/components/grid/AutoGrid.js"}}</p>
+{{"demo": "pages/components/grid/AutoGrid.js"}}
 
-<h2>复杂的栅格</h2>
+## 复杂的栅格
 
-<p>以下演示不遵循 Material Design 规范，但说明了如何使用栅格构建复杂的布局。</p>
+以下演示不遵循 Material Design 规范，但说明了如何使用栅格构建复杂的布局。
 
-<p>{{"demo": "pages/components/grid/ComplexGrid.js"}}</p>
+{{"demo": "pages/components/grid/ComplexGrid.js"}}
 
-<h2>嵌套栅格</h2>
+## 嵌套栅格
 
-<p><code>container`和` item `属性分别是两个独立的布尔值，它们可以嵌套使用。 它们可以组合起来使用。
+`container`和` item `属性分别是两个独立的布尔值，它们可以嵌套使用。 它们可以组合起来使用。
 
 > 一个 flex **容器** 是通过将 `flex` 或 `inline-flex`的计算显示赋予给一个元素而生成的。 Flex 容器的流入子容器称为 flex **items**， 它们使用 flex 布局模型进行布局。
 

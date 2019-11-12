@@ -24,3 +24,9 @@ Avatare mit einfachen Zeichen können erstellt werden, indem man einen String al
 Icon Avatare werden erstellt, indem man ein Icon als `children` übergibt.
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
+
+## Varianten
+
+If you need square or rounded avatars, use the `variant` prop.
+
+{{"demo": "pages/components/avatars/VariantAvatars.js"}}

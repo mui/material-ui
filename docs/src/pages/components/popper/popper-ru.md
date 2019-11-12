@@ -21,7 +21,7 @@ Some important features of the `Popper` component:
 
 {{"demo": "pages/components/popper/SimplePopper.js"}}
 
-## Transições
+## Переходы
 
 The open/close state of the popper can be animated with a render prop child and a transition component. This component should respect the following conditions:
 

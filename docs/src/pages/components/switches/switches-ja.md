@@ -13,13 +13,13 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 ## FormControlLabelを使用したスイッチ
 
-`Switch` コンポーネントは` FormControlLabel<code>コンポーネントを説明のラベルとして使うことができます。</p>
+`Switch` コンポーネントは` FormControlLabel`コンポーネントを説明のラベルとして使うことができます。
 
-<p>{{"demo": "pages/components/switches/SwitchLabels.js"}}</p>
+{{"demo": "pages/components/switches/SwitchLabels.js"}}
 
-<h2>FormGroupを使用したスイッチ</h2>
+## FormGroupを使用したスイッチ
 
-<p><code>FormGroup` は、より簡単なAPIを提供する選択コントロールコンポーネントをグループ化するために使用される便利なラッパーです。 ただし、代わりに [チェックボックス](#checkboxes) を使用することをお勧めします。
+`FormGroup` は、より簡単なAPIを提供する選択コントロールコンポーネントをグループ化するために使用される便利なラッパーです。 ただし、代わりに [チェックボックス](#checkboxes) を使用することをお勧めします。
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
