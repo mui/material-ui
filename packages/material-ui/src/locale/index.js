@@ -2,7 +2,7 @@ export const deDE = {
   props: {
     MuiTablePagination: {
       backIconButtonText: 'Nächste Seite',
-      labelRowsPerPage: 'Filas por página:',
+      labelRowsPerPage: 'Zeilen pro Seite:',
       labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} of ${count}`,
       nextIconButtonText: 'Siguiente página',
     },
