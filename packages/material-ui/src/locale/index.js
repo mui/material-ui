@@ -118,7 +118,7 @@ export const ptBR = {
       getLabelText: value => `${value} Estrela${value !== 1 ? 's' : ''}`,
     },
     MuiAutocomplete: {
-      clearText: 'Claro',
+      clearText: 'Limpar',
       closeText: 'Fechar',
       loadingText: 'Carregando…',
       noOptionsText: 'Sem opções',
