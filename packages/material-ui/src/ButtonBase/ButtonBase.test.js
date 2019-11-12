@@ -680,7 +680,7 @@ describe('<ButtonBase />', () => {
     });
 
     describe('keyboard accessibility for non interactive elements', () => {
-      it('calls onClick when a spacebar is pressed on the element', () => {
+      it('does not call onClick when a spacebar is pressed on the element', () => {
         const onClickSpy = spy(event => event.defaultPrevented);
         const { getByRole } = render(
           <ButtonBase onClick={onClickSpy} component="div">
@@ -694,7 +694,24 @@ describe('<ButtonBase />', () => {
           key: ' ',
         });
 
-        expect(onClickSpy.calledOnce).to.equal(true);
+        expect(onClickSpy.callCount).to.equal(0);
+      });
+
+      it('does call onClick when a spacebar is released on the element', () => {
+        const onClickSpy = spy(event => event.defaultPrevented);
+        const { getByRole } = render(
+          <ButtonBase onClick={onClickSpy} component="div">
+            Hello
+          </ButtonBase>,
+        );
+        const button = getByRole('button');
+        button.focus();
+
+        fireEvent.keyUp(document.activeElement || document.body, {
+          key: ' ',
+        });
+
+        expect(onClickSpy.callCount).to.equal(1);
         // defaultPrevented?
         expect(onClickSpy.returnValues[0]).to.equal(true);
       });
@@ -735,20 +752,20 @@ describe('<ButtonBase />', () => {
         expect(onClickSpy.callCount).to.equal(0);
       });
 
-      it('does not call onClick if Space was pressed on a child', () => {
+      it('does not call onClick if Space was released on a child', () => {
         const onClickSpy = spy(event => event.defaultPrevented);
-        const onKeyDownSpy = spy();
+        const onKeyUpSpy = spy();
         render(
-          <ButtonBase onClick={onClickSpy} onKeyDown={onKeyDownSpy} component="div">
+          <ButtonBase onClick={onClickSpy} onKeyUp={onKeyUpSpy} component="div">
             <input autoFocus type="text" />
           </ButtonBase>,
         );
 
-        fireEvent.keyDown(document.activeElement, {
+        fireEvent.keyUp(document.activeElement, {
           key: ' ',
         });
 
-        expect(onKeyDownSpy.callCount).to.equal(1);
+        expect(onKeyUpSpy.callCount).to.equal(1);
         expect(onClickSpy.callCount).to.equal(0);
       });
 

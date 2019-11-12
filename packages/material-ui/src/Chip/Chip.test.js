@@ -416,15 +416,15 @@ describe('<Chip />', () => {
         onClickSpy.resetHistory();
       });
 
-      it('should call onClick when `space` is pressed ', () => {
+      it('should call onClick when `space` is released ', () => {
         const preventDefaultSpy = spy();
         const spaceKeyDown = {
           preventDefault: preventDefaultSpy,
           key: ' ',
         };
         wrapper.find('div').simulate('keyDown', spaceKeyDown);
-        assert.strictEqual(preventDefaultSpy.callCount, 2);
-        assert.strictEqual(onClickSpy.callCount, 1);
+        assert.strictEqual(preventDefaultSpy.callCount, 0);
+        assert.strictEqual(onClickSpy.callCount, 0);
 
         const spaceKeyUp = {
           key: ' ',
@@ -441,7 +441,7 @@ describe('<Chip />', () => {
           key: 'Enter',
         };
         wrapper.find('div').simulate('keyDown', enterKeyDown);
-        assert.strictEqual(preventDefaultSpy.callCount, 2);
+        assert.strictEqual(preventDefaultSpy.callCount, 1);
         assert.strictEqual(onClickSpy.callCount, 1);
 
         const enterKeyUp = {
@@ -464,7 +464,7 @@ describe('<Chip />', () => {
           key: 'Backspace',
         };
         wrapper.find('div').simulate('keyDown', backspaceKeyDown);
-        assert.strictEqual(preventDefaultSpy.callCount, 1);
+        assert.strictEqual(preventDefaultSpy.callCount, 0);
         assert.strictEqual(onDeleteSpy.callCount, 0);
 
         const backspaceKeyUp = {
@@ -485,7 +485,7 @@ describe('<Chip />', () => {
           key: 'Delete',
         };
         wrapper.find('div').simulate('keyDown', backspaceKeyDown);
-        assert.strictEqual(preventDefaultSpy.callCount, 1);
+        assert.strictEqual(preventDefaultSpy.callCount, 0);
         assert.strictEqual(onDeleteSpy.callCount, 0);
 
         const backspaceKeyUp = {
