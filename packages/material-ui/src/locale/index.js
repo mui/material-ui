@@ -10,7 +10,7 @@ export const deDE = {
       getLabelText: value => `${value} ${value !== 1 ? 'Sterne' : 'Star'}`,
     },
     MuiAutocomplete: {
-      clearText: 'Klar',
+      clearText: 'Leeren',
       closeText: 'Schließen',
       loadingText: 'Wird geladen…',
       noOptionsText: 'Keine Optionen',
