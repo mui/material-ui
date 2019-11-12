@@ -60,7 +60,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
               isControlled ? 'a ' : 'an un'
             }controlled TreeView to be ${isControlled ? 'un' : ''}controlled.`,
             'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled Select ' +
+            'Decide between using a controlled or uncontrolled TreeView ' +
               'element for the lifetime of the component.',
             'More info: https://fb.me/react-controlled-components',
           ].join('\n'),
