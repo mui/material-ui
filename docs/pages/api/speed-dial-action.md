@@ -26,7 +26,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">delay</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | Adds a transition delay, to allow a series of SpeedDialActions to be animated. |
-| <span class="prop-name">FabProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Fab`](/api/fab/) component. |
+| <span class="prop-name">FabProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`Fab`](/api/fab/) component. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The Icon to display in the SpeedDial Fab. |
 | <span class="prop-name">TooltipClasses</span> | <span class="prop-type">object</span> |  | Classes applied to the [`Tooltip`](/api/tooltip/) element. |
 | <span class="prop-name">tooltipOpen</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Make the tooltip always visible when the SpeedDial is open. |
