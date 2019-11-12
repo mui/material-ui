@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Chip from '@material-ui/core/Chip';
 import HomeIcon from '@material-ui/icons/Home';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 
 const StyledBreadcrumb = withStyles(theme => ({
   root: {
@@ -53,7 +53,7 @@ export default function CustomizedBreadcrumbs() {
         <StyledBreadcrumb component="a" href="#" label="Catalog" onClick={handleClick} />
         <StyledBreadcrumb
           label="Accessories"
-          deleteIcon={<ExpandMoreIcon />}
+          deleteIcon={<ExpandMore />}
           onClick={handleClick}
           onDelete={handleClick}
         />

@@ -6,7 +6,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles({
   root: {
@@ -21,7 +21,7 @@ export default function ActionsInExpansionPanelSummary() {
     <div className={classes.root}>
       <ExpansionPanel>
         <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMore />}
           aria-label="Expand"
           aria-controls="additional-actions1-content"
           id="additional-actions1-header"
@@ -43,7 +43,7 @@ export default function ActionsInExpansionPanelSummary() {
       </ExpansionPanel>
       <ExpansionPanel>
         <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMore />}
           aria-label="Expand"
           aria-controls="additional-actions2-content"
           id="additional-actions2-header"
@@ -65,7 +65,7 @@ export default function ActionsInExpansionPanelSummary() {
       </ExpansionPanel>
       <ExpansionPanel>
         <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMore />}
           aria-label="Expand"
           aria-controls="additional-actions3-content"
           id="additional-actions3-header"

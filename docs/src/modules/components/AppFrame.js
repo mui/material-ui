@@ -15,7 +15,7 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import NoSsr from '@material-ui/core/NoSsr';
 import LanguageIcon from '@material-ui/icons/Translate';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
@@ -239,7 +239,7 @@ function AppFrame(props) {
                   ? 'Translating'
                   : LANGUAGES_LABEL.filter(language => language.code === userLanguage)[0].text}
               </span>
-              <ExpandMoreIcon fontSize="small" />
+              <ExpandMore fontSize="small" />
             </Button>
           </Tooltip>
           <NoSsr>
