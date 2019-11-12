@@ -168,3 +168,24 @@ export const zhCN = {
     },
   },
 };
+
+export const faIR = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'صفحهٔ قبل',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} از ${count}`,
+      labelRowsPerPage: 'تعداد سطرهای هر صفحه:',
+      nextIconButtonText: 'صفحهٔ بعد',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} ستاره`,
+    },
+    MuiAutocomplete: {
+      clearText: 'پاک‌کردن',
+      closeText: 'بستن',
+      loadingText: 'در حال بارگذاری…',
+      noOptionsText: 'بی‌نتیجه',
+      openText: 'بازکردن',
+    },
+  },
+};

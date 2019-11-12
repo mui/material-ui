@@ -33,6 +33,7 @@ const theme = createMuiTheme({
 | German | de-DE |  `deDE` |
 | Japanese | ja-JP | `jaJP` |
 | Portuguese (Brazil) | pt-BR | `ptBR` |
+| Persian | fa-IR | `faIR` |
 | Russian | ru-RU | `ruRU` |
 | Spanish | es-ES | `esES` |
 

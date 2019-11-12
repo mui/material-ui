@@ -6,3 +6,4 @@ export const jaJP: object;
 export const ptBR: object;
 export const ruRU: object;
 export const zhCN: object;
+export const faIR: object;

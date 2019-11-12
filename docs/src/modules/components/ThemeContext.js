@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { enUS, zhCN, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@material-ui/core/locale';
+import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@material-ui/core/locale';
 import { blue, pink } from '@material-ui/core/colors';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { darkTheme, setPrismTheme } from 'docs/src/modules/components/prism';
@@ -15,6 +15,7 @@ import { darkTheme, setPrismTheme } from 'docs/src/modules/components/prism';
 const languageMap = {
   en: enUS,
   zh: zhCN,
+  fa: faIR,
   ru: ruRU,
   pt: ptBR,
   es: esES,
