@@ -46,7 +46,7 @@ export const enUS = {};
 export const esES = {
   props: {
     MuiTablePagination: {
-      backIconButtonText: 'Pagina anterior',
+      backIconButtonText: 'Página anterior',
       labelRowsPerPage: 'Filas por página:',
       labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} of ${count}`,
       nextIconButtonText: 'Siguiente página',
