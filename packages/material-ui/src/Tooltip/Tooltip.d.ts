@@ -5,6 +5,7 @@ import { PopperProps } from '../Popper/Popper';
 
 export interface TooltipProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TooltipClassKey, 'title'> {
+  arrow?: boolean;
   children: React.ReactElement;
   disableFocusListener?: boolean;
   disableHoverListener?: boolean;
@@ -31,7 +32,6 @@ export interface TooltipProps
     | 'top-end'
     | 'top-start'
     | 'top';
-  arrow?: boolean;
   PopperProps?: Partial<PopperProps>;
   title: React.ReactNode;
   TransitionComponent?: React.ComponentType<TransitionProps>;
