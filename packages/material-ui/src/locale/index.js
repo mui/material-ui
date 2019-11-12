@@ -55,7 +55,7 @@ export const esES = {
       getLabelText: value => `${value} Estrella${value !== 1 ? 's' : ''}`,
     },
     MuiAutocomplete: {
-      clearText: 'Claro',
+      clearText: 'Limpiar',
       closeText: 'Cerrar',
       loadingText: 'Cargando…',
       noOptionsText: 'Sin opciones',
