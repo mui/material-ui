@@ -752,7 +752,7 @@ describe('<ButtonBase />', () => {
         expect(onClickSpy.callCount).to.equal(0);
       });
 
-      it('does not call onClick if Space was pressed on a child', () => {
+       it('does not call onClick if Space was released on a child', () => {
         const onClickSpy = spy(event => event.defaultPrevented);
         const onKeyUpSpy = spy();
         render(
