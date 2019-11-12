@@ -4,16 +4,8 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 export default function ArrowTooltips() {
   return (
-    <div>
-      <Tooltip title="Arrow" arrow>
-        <Button>default</Button>
-      </Tooltip>
-      <Tooltip title="Arrow" arrow placement="left">
-        <Button>left</Button>
-      </Tooltip>
-      <Tooltip title="Arrow" arrow placement="right">
-        <Button>right</Button>
-      </Tooltip>
-    </div>
+    <Tooltip title="Add" arrow>
+      <Button>Arrow</Button>
+    </Tooltip>
   );
 }

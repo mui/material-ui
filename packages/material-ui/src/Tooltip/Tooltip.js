@@ -27,7 +27,7 @@ function arrowGenerator() {
       height: '1em',
       '&::before': {
         borderWidth: '0 1em 1em 1em',
-        borderColor: `transparent transparent currentcolor transparent`,
+        borderColor: 'transparent transparent currentcolor transparent',
       },
     },
     '&[x-placement*="top"] $arrow': {
@@ -38,7 +38,7 @@ function arrowGenerator() {
       height: '1em',
       '&::before': {
         borderWidth: '1em 1em 0 1em',
-        borderColor: `currentcolor transparent transparent transparent`,
+        borderColor: 'currentcolor transparent transparent transparent',
       },
     },
     '&[x-placement*="right"] $arrow': {
@@ -48,7 +48,7 @@ function arrowGenerator() {
       width: '1em',
       '&::before': {
         borderWidth: '1em 1em 1em 0',
-        borderColor: `transparent currentcolor transparent transparent`,
+        borderColor: 'transparent currentcolor transparent transparent',
       },
     },
     '&[x-placement*="left"] $arrow': {
@@ -58,7 +58,7 @@ function arrowGenerator() {
       width: '1em',
       '&::before': {
         borderWidth: '1em 0 1em 1em',
-        borderColor: `transparent transparent transparent currentcolor`,
+        borderColor: 'transparent transparent transparent currentcolor',
       },
     },
   };
@@ -511,7 +511,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
 Tooltip.propTypes = {
   /**
-   * If true, adds an arrow to the tooltip.
+   * If `true`, adds an arrow to the tooltip.
    */
   arrow: PropTypes.bool,
   /**
