@@ -260,7 +260,7 @@ export * from './MenuList';
 export { default as MobileStepper } from './MobileStepper';
 export * from './MobileStepper';
 
-export { default as Modal, ModalManager } from './Modal';
+export { default as Modal } from './Modal';
 export * from './Modal';
 
 export { default as NativeSelect } from './NativeSelect';
