@@ -28,5 +28,5 @@ export * from './TreeItem';
 export { default as TreeView } from './TreeView';
 export * from './TreeView';
 
+// createFilterOptions is exported from Autocomplete
 export { default as useAutocomplete } from './useAutocomplete';
-export * from './useAutocomplete';
