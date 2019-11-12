@@ -490,14 +490,18 @@ export default function useAutocomplete(props) {
 
     switch (event.key) {
       case 'Home':
-        // Prevent scroll of the page
-        event.preventDefault();
-        changeHighlightedIndex('start', 'next');
+        if (popupOpen) {
+          // Prevent scroll of the page
+          event.preventDefault();
+          changeHighlightedIndex('start', 'next');
+        }
         break;
       case 'End':
-        // Prevent scroll of the page
-        event.preventDefault();
-        changeHighlightedIndex('end', 'previous');
+        if (popupOpen) {
+          // Prevent scroll of the page
+          event.preventDefault();
+          changeHighlightedIndex('end', 'previous');
+        }
         break;
       case 'PageUp':
         // Prevent scroll of the page
