@@ -121,7 +121,7 @@ function handleRender(req, res) {
   const ssrMatchMedia = query => ({
     matches: mediaQuery.match(query, {
       // The estimated CSS width of the browser.
-      width: deviceType === 'mobile' ? 0 : 1024,
+      width: deviceType === 'mobile' ? '0px' : '1024px',
     }),
   });
 
