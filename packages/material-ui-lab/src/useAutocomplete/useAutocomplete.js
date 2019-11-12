@@ -88,13 +88,6 @@ export default function useAutocomplete(props) {
     setDefaultId(`mui-autocomplete-${Math.round(Math.random() * 1e5)}`);
   }, []);
 
-  const popperRef = React.useRef(null);
-  React.useEffect(() => {
-    if (popperRef.current) {
-      popperRef.current.update();
-    }
-  });
-
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
   const listboxRef = React.useRef(null);
@@ -731,7 +724,7 @@ export default function useAutocomplete(props) {
       onMouseDown: handleInputMouseDown,
       // if open then this is handled imperativeley so don't let react override
       // only have an opinion about this when closed
-      'aria-activedescendant': popupOpen ? undefined : null,
+      'aria-activedescendant': popupOpen ? '' : null,
       'aria-autocomplete': autoComplete ? 'both' : 'list',
       'aria-controls': popupOpen ? `${id}-popup` : null,
       // Disable browser's suggestion that might overlap with the popup.

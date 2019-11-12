@@ -110,7 +110,7 @@ describe('<Autocomplete />', () => {
       const { getAllByRole, getByRole } = render(
         <Autocomplete
           open
-          options={['one', 'two  ']}
+          options={['one', 'two']}
           renderInput={params => <TextField {...params} />}
         />,
       );
@@ -145,6 +145,28 @@ describe('<Autocomplete />', () => {
       buttons.forEach(button => {
         expect(button, 'button is not in tab order').to.have.property('tabIndex', -1);
       });
+    });
+
+    it('should add and remove aria-activedescendant', () => {
+      const { getAllByRole, getByRole, setProps } = render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={params => <TextField autoFocus {...params} />}
+        />,
+      );
+      const textbox = getByRole('textbox');
+      expect(textbox, 'no option is focused when openened').not.to.have.attribute(
+        'aria-activedescendant',
+      );
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+
+      const options = getAllByRole('option');
+      expect(textbox).to.have.attribute('aria-activedescendant', options[0].getAttribute('id'));
+      setProps({ open: false });
+      expect(textbox, 'no option is focused when openened').not.to.have.attribute(
+        'aria-activedescendant',
+      );
     });
   });
 
@@ -205,7 +227,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           onClose={handleClose}
           open
-          options={['one', 'two  ']}
+          options={['one', 'two']}
           renderInput={params => <TextField autoFocus {...params} />}
         />,
       );
@@ -218,7 +240,7 @@ describe('<Autocomplete />', () => {
     it('moves focus to the first option on ArrowDown', () => {
       const { getAllByRole, getByRole } = render(
         <Autocomplete
-          options={['one', 'two  ']}
+          options={['one', 'two']}
           renderInput={params => <TextField autoFocus {...params} />}
         />,
       );
@@ -234,7 +256,7 @@ describe('<Autocomplete />', () => {
     it('moves focus to the last option on ArrowUp', () => {
       const { getAllByRole, getByRole } = render(
         <Autocomplete
-          options={['one', 'two  ']}
+          options={['one', 'two']}
           renderInput={params => <TextField autoFocus {...params} />}
         />,
       );
@@ -461,7 +483,7 @@ describe('<Autocomplete />', () => {
       const { container } = render(
         <Autocomplete
           onChange={handleChange}
-          options={['one', 'two  ']}
+          options={['one', 'two']}
           renderInput={params => <TextField {...params} />}
         />,
       );
