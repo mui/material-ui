@@ -171,7 +171,7 @@ function Main() {
   React.useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
     if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
+      jssStyles.parentNode.removeChild(jssStyles);
     }
   }, []);
 
