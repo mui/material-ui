@@ -104,13 +104,12 @@ function isElementAcceptingRefProp(type) {
   return /^elementAcceptingRef/.test(type.raw);
 }
 
-/**
- * TODO custom
- */
 function PropType(props) {
   const { type } = props;
 
   switch (type.name) {
+    case 'chained':
+      return <PropType type={type.chained} />;
     case 'custom':
       if (isElementTypeAcceptingRefProp(type)) {
         return `element type`;
@@ -121,8 +120,7 @@ function PropType(props) {
       if (isRefType(type)) {
         return `ref`;
       }
-      // TOOD deprecated
-      // TODO chained
+      // TOOD deprecated: currently unused. Probabler better solved with a console.warn
       return type.raw;
     case 'shape':
       return (
