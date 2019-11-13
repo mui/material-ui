@@ -278,11 +278,9 @@ const useComponentPropStyles = makeStyles(theme => {
   // let the specificity games begin
   return {
     propDefault: {
-      'table td&': {
-        fontSize: 13,
-        fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
-        borderBottom: `1px dotted ${theme.palette.divider}`,
-      },
+      fontSize: 13,
+      fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
+      borderBottom: `1px dotted ${theme.palette.divider}`,
     },
     propName: {
       'table td&': {
@@ -326,7 +324,9 @@ function ComponentProp(props) {
       <td className={classes.propType}>
         <PropType type={type} />
       </td>
-      <td className={classes.propDefault}>{defaultValue}</td>
+      <td>
+        <span className={classes.propDefault}>{defaultValue}</span>
+      </td>
       <td>
         <PropDescription description={description} tags={tags} type={type} />
       </td>
