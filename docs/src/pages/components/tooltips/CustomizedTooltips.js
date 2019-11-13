@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -26,19 +25,8 @@ const useStylesBootstrap = makeStyles(theme => ({
 function BootstrapTooltip(props) {
   const classes = useStylesBootstrap();
 
-  return (
-    <Tooltip
-      arrow
-      classes={classes}
-      {...props}
-      title={<React.Fragment>{props.title}</React.Fragment>}
-    />
-  );
+  return <Tooltip arrow classes={classes} {...props} />;
 }
-
-BootstrapTooltip.propTypes = {
-  title: PropTypes.node,
-};
 
 const HtmlTooltip = withStyles(theme => ({
   tooltip: {

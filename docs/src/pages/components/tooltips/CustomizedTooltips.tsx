@@ -25,14 +25,7 @@ const useStylesBootstrap = makeStyles((theme: Theme) => ({
 function BootstrapTooltip(props: TooltipProps) {
   const classes = useStylesBootstrap();
 
-  return (
-    <Tooltip
-      arrow
-      classes={classes}
-      {...props}
-      title={<React.Fragment>{props.title}</React.Fragment>}
-    />
-  );
+  return <Tooltip arrow classes={classes} {...props} />;
 }
 
 const HtmlTooltip = withStyles((theme: Theme) => ({
