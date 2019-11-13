@@ -114,7 +114,7 @@ const markedOptions = {
   renderer,
 };
 
-const styles = theme => ({
+export const styles = theme => ({
   root: {
     ...theme.typography.body1,
     color: theme.palette.text.primary,
@@ -224,23 +224,6 @@ const styles = theme => ({
       marginBottom: '16px',
       borderSpacing: 0,
       overflow: 'hidden',
-      '& .prop-name': {
-        fontSize: 13,
-        fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
-      },
-      '& .required': {
-        color: theme.palette.type === 'light' ? '#006500' : '#a5ffa5',
-      },
-      '& .prop-type': {
-        fontSize: 13,
-        fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
-        color: theme.palette.type === 'light' ? '#932981' : '#ffb6ec',
-      },
-      '& .prop-default': {
-        fontSize: 13,
-        fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
-        borderBottom: `1px dotted ${theme.palette.divider}`,
-      },
     },
     '& td': {
       ...theme.typography.body2,

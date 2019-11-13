@@ -4,8 +4,10 @@ import fetch from 'isomorphic-fetch';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContent from 'docs/src/modules/components/AppContent';
 import Head from 'docs/src/modules/components/Head';
+import { styles as markdownStyles } from 'docs/src/modules/components/MarkdownElement';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
 
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 const PATH_REPLACE_REGEX = /\\/g;
@@ -31,11 +33,23 @@ function ComponentImport(props) {
   return (
     <React.Fragment>
       <h2>Import</h2>
-      <pre>
-        <code>
-          import {api.name} from '{source}/{api.name}'; <br />
-          {'//'} or <br />
-          import {'{'} {api.name} {'}'} from '{source}';
+      <pre className="language-js">
+        <code className="language-js">
+          <span className="token keyword">import</span> {api.name}{' '}
+          <span className="token keyword">from</span>{' '}
+          <span className="token string">
+            '{source}/{api.name}'
+          </span>
+          <span className="token punctuation">;</span>
+          <br />
+          <span className="token comment">// or</span>
+          <br />
+          <span className="token keyword">import</span>{' '}
+          <span className="token punctuation">{'{'}</span> {api.name}{' '}
+          <span className="token punctuation">{'}'}</span>{' '}
+          <span className="token keyword">from</span>{' '}
+          <span className="token string">'{source}'</span>
+          <span className="token punctuation">;</span>
         </code>
       </pre>
     </React.Fragment>
@@ -155,6 +169,37 @@ function PropType(props) {
 
 PropType.propTypes = { type: PropTypes.object.isRequired };
 
+const useComponentPropStyles = makeStyles(theme => {
+  // let the specificity games begin
+  return {
+    propDefault: {
+      'table td&': {
+        fontSize: 13,
+        fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
+        borderBottom: `1px dotted ${theme.palette.divider}`,
+      },
+    },
+    propName: {
+      'table td&': {
+        fontSize: 13,
+        fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
+      },
+    },
+    propType: {
+      'table td&': {
+        fontSize: 13,
+        fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
+        color: theme.palette.type === 'light' ? '#932981' : '#ffb6ec',
+      },
+    },
+    required: {
+      'table td&': {
+        color: theme.palette.type === 'light' ? '#006500' : '#a5ffa5',
+      },
+    },
+  };
+});
+
 function ComponentProp(props) {
   const { name, prop } = props;
 
@@ -165,17 +210,19 @@ function ComponentProp(props) {
   const defaultValue = prop.defaultValue ? prop.defaultValue.value.replace(/\r*\n/g, '') : null;
   const description = prop.description;
 
+  const classes = useComponentPropStyles();
+
   return (
     <tr>
       {/* TODO: entangle the custom required logic */}
-      <td className={clsx('prop-name', { required })}>
+      <td className={clsx(classes.propName, { [classes.required]: required })}>
         {name}
         {required && '&nbsp;*'}
       </td>
-      <td className="prop-type">
+      <td className={classes.propType}>
         <PropType type={type} />
       </td>
-      <td className="prop-default">{defaultValue}</td>
+      <td className={classes.propDefault}>{defaultValue}</td>
       <td>
         <PropDescription description={description} type={type} />
       </td>
@@ -212,11 +259,15 @@ function ComponentProps(props) {
 
 ComponentProps.propTypes = { propsApi: PropTypes.object.isRequired };
 
+const useMarkdownStyles = makeStyles(markdownStyles);
+
 function ComponentApi(props) {
   const { api } = props;
 
+  const classes = useMarkdownStyles();
+
   return (
-    <React.Fragment>
+    <div className={classes.root}>
       {/* TODO: component name + desc */}
       <Head description="API for AppBar component" title="AppBar API - Material-UI" />
       <h1>{api.name} API</h1>
@@ -227,7 +278,7 @@ function ComponentApi(props) {
       <ComponentImport api={api} />
       <p>{api.description}</p>
       <ComponentProps propsApi={api.props} />
-    </React.Fragment>
+    </div>
   );
 }
 
