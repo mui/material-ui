@@ -135,203 +135,6 @@
         "/components/app-bar"
       ]
     },
-    "Avatar": {
-      "description": "",
-      "methods": [],
-      "props": {
-        "alt": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "Used in combination with `src` or `srcSet` to\nprovide an alt attribute for the rendered `img` element.",
-          "tags": []
-        },
-        "children": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "Used to render icon or text elements inside the Avatar if `src` is not set.\nThis can be an element, or just a string.",
-          "tags": []
-        },
-        "classes": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
-          "tags": []
-        },
-        "component": {
-          "type": {
-            "name": "elementType"
-          },
-          "required": false,
-          "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
-          "defaultValue": {
-            "value": "'div'",
-            "computed": false
-          },
-          "tags": []
-        },
-        "imgProps": {
-          "type": {
-            "name": "object"
-          },
-          "required": false,
-          "description": "Attributes applied to the `img` element if the component\nis used to display an image.",
-          "tags": []
-        },
-        "sizes": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "The `sizes` attribute for the `img` element.",
-          "tags": []
-        },
-        "src": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "The `src` attribute for the `img` element.",
-          "tags": []
-        },
-        "srcSet": {
-          "type": {
-            "name": "string"
-          },
-          "required": false,
-          "description": "The `srcSet` attribute for the `img` element.",
-          "tags": []
-        }
-      },
-      "name": "Avatar",
-      "styles": {
-        "classes": [
-          "root",
-          "colorDefault",
-          "img"
-        ],
-        "name": "MuiAvatar",
-        "descriptions": {
-          "root": "Styles applied to the root element.",
-          "colorDefault": "Styles applied to the root element if there are children and not `src` or `srcSet`.",
-          "img": "Styles applied to the img element if either `src` or `srcSet` is defined."
-        },
-        "globalClasses": {
-          "root": "MuiAvatar-root",
-          "colorDefault": "MuiAvatar-colorDefault",
-          "img": "MuiAvatar-img"
-        }
-      },
-      "src": "import React from 'react';\nimport PropTypes from 'prop-types';\nimport clsx from 'clsx';\nimport withStyles from '../styles/withStyles';\n\nexport const styles = theme => ({\n  /* Styles applied to the root element. */\n  root: {\n    position: 'relative',\n    display: 'flex',\n    alignItems: 'center',\n    justifyContent: 'center',\n    flexShrink: 0,\n    width: 40,\n    height: 40,\n    fontFamily: theme.typography.fontFamily,\n    fontSize: theme.typography.pxToRem(20),\n    lineHeight: 1,\n    borderRadius: '50%',\n    overflow: 'hidden',\n    userSelect: 'none',\n  },\n  /* Styles applied to the root element if there are children and not `src` or `srcSet`. */\n  colorDefault: {\n    color: theme.palette.background.default,\n    backgroundColor:\n      theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],\n  },\n  /* Styles applied to the img element if either `src` or `srcSet` is defined. */\n  img: {\n    width: '100%',\n    height: '100%',\n    textAlign: 'center',\n    // Handle non-square image. The property isn't supported by IE 11.\n    objectFit: 'cover',\n  },\n});\n\nconst Avatar = React.forwardRef(function Avatar(props, ref) {\n  const {\n    alt,\n    children: childrenProp,\n    classes,\n    className,\n    component: Component = 'div',\n    imgProps,\n    sizes,\n    src,\n    srcSet,\n    ...other\n  } = props;\n\n  let children = null;\n  const img = src || srcSet;\n\n  if (img) {\n    children = (\n      <img\n        alt={alt}\n        src={src}\n        srcSet={srcSet}\n        sizes={sizes}\n        className={classes.img}\n        {...imgProps}\n      />\n    );\n  } else {\n    children = childrenProp;\n  }\n\n  return (\n    <Component\n      className={clsx(\n        classes.root,\n        classes.system,\n        {\n          [classes.colorDefault]: !img,\n        },\n        className,\n      )}\n      ref={ref}\n      {...other}\n    >\n      {children}\n    </Component>\n  );\n});\n\nAvatar.propTypes = {\n  /**\n   * Used in combination with `src` or `srcSet` to\n   * provide an alt attribute for the rendered `img` element.\n   */\n  alt: PropTypes.string,\n  /**\n   * Used to render icon or text elements inside the Avatar if `src` is not set.\n   * This can be an element, or just a string.\n   */\n  children: PropTypes.node,\n  /**\n   * Override or extend the styles applied to the component.\n   * See [CSS API](#css) below for more details.\n   */\n  classes: PropTypes.object.isRequired,\n  /**\n   * @ignore\n   */\n  className: PropTypes.string,\n  /**\n   * The component used for the root node.\n   * Either a string to use a DOM element or a component.\n   */\n  component: PropTypes.elementType,\n  /**\n   * Attributes applied to the `img` element if the component\n   * is used to display an image.\n   */\n  imgProps: PropTypes.object,\n  /**\n   * The `sizes` attribute for the `img` element.\n   */\n  sizes: PropTypes.string,\n  /**\n   * The `src` attribute for the `img` element.\n   */\n  src: PropTypes.string,\n  /**\n   * The `srcSet` attribute for the `img` element.\n   */\n  srcSet: PropTypes.string,\n};\n\nexport default withStyles(styles, { name: 'MuiAvatar' })(Avatar);\n",
-      "spread": true,
-      "EOL": "\n",
-      "forwardsRefTo": "HTMLDivElement",
-      "filename": "/packages/material-ui/src/Avatar/Avatar.js",
-      "inheritance": null,
-      "usedInPages": [
-        "/components/avatars"
-      ]
-    },
-    "Backdrop": {
-      "description": "",
-      "methods": [],
-      "props": {
-        "children": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "The content of the component.",
-          "tags": []
-        },
-        "classes": {
-          "type": {
-            "name": "object"
-          },
-          "required": false,
-          "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
-          "tags": []
-        },
-        "invisible": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "If `true`, the backdrop is invisible.\nIt can be used when rendering a popover or a custom select component.",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          },
-          "tags": []
-        },
-        "open": {
-          "type": {
-            "name": "bool"
-          },
-          "required": true,
-          "description": "If `true`, the backdrop is open.",
-          "tags": []
-        },
-        "transitionDuration": {
-          "type": {
-            "name": "union",
-            "value": [
-              {
-                "name": "number"
-              },
-              {
-                "name": "shape",
-                "value": {
-                  "appear": {
-                    "name": "number",
-                    "required": false
-                  },
-                  "enter": {
-                    "name": "number",
-                    "required": false
-                  },
-                  "exit": {
-                    "name": "number",
-                    "required": false
-                  }
-                }
-              }
-            ]
-          },
-          "required": false,
-          "description": "The duration for the transition, in milliseconds.\nYou may specify a single timeout for all transitions, or individually with an object.",
-          "tags": []
-        }
-      },
-      "name": "Backdrop",
-      "styles": {
-        "classes": [
-          "root",
-          "invisible"
-        ],
-        "name": "MuiBackdrop",
-        "descriptions": {
-          "root": "Styles applied to the root element.",
-          "invisible": "Styles applied to the root element if `invisible={true}`."
-        },
-        "globalClasses": {
-          "root": "MuiBackdrop-root",
-          "invisible": "MuiBackdrop-invisible"
-        }
-      },
-      "src": "import React from 'react';\nimport PropTypes from 'prop-types';\nimport clsx from 'clsx';\nimport withStyles from '../styles/withStyles';\nimport Fade from '../Fade';\n\nexport const styles = {\n  /* Styles applied to the root element. */\n  root: {\n    zIndex: -1,\n    position: 'fixed',\n    display: 'flex',\n    alignItems: 'center',\n    justifyContent: 'center',\n    right: 0,\n    bottom: 0,\n    top: 0,\n    left: 0,\n    backgroundColor: 'rgba(0, 0, 0, 0.5)',\n    // Remove grey highlight\n    WebkitTapHighlightColor: 'transparent',\n    // Disable scroll capabilities.\n    touchAction: 'none',\n  },\n  /* Styles applied to the root element if `invisible={true}`. */\n  invisible: {\n    backgroundColor: 'transparent',\n  },\n};\n\nconst Backdrop = React.forwardRef(function Backdrop(props, ref) {\n  const {\n    children,\n    classes,\n    className,\n    invisible = false,\n    open,\n    transitionDuration,\n    ...other\n  } = props;\n\n  return (\n    <Fade in={open} timeout={transitionDuration} {...other}>\n      <div\n        data-mui-test=\"Backdrop\"\n        className={clsx(\n          classes.root,\n          {\n            [classes.invisible]: invisible,\n          },\n          className,\n        )}\n        aria-hidden\n        ref={ref}\n      >\n        {children}\n      </div>\n    </Fade>\n  );\n});\n\nBackdrop.propTypes = {\n  // ----------------------------- Warning --------------------------------\n  // | These PropTypes are generated from the TypeScript type definitions |\n  // |     To update them edit the d.ts file and run \"yarn proptypes\"     |\n  // ----------------------------------------------------------------------\n  /**\n   * The content of the component.\n   */\n  children: PropTypes.node,\n  /**\n   * Override or extend the styles applied to the component.\n   * See [CSS API](#css) below for more details.\n   */\n  classes: PropTypes.object,\n  /**\n   * @ignore\n   */\n  className: PropTypes.string,\n  /**\n   * If `true`, the backdrop is invisible.\n   * It can be used when rendering a popover or a custom select component.\n   */\n  invisible: PropTypes.bool,\n  /**\n   * If `true`, the backdrop is open.\n   */\n  open: PropTypes.bool.isRequired,\n  /**\n   * The duration for the transition, in milliseconds.\n   * You may specify a single timeout for all transitions, or individually with an object.\n   */\n  transitionDuration: PropTypes.oneOfType([\n    PropTypes.number,\n    PropTypes.shape({\n      appear: PropTypes.number,\n      enter: PropTypes.number,\n      exit: PropTypes.number,\n    }),\n  ]),\n};\n\nexport default withStyles(styles, { name: 'MuiBackdrop' })(Backdrop);\n",
-      "spread": true,
-      "EOL": "\n",
-      "forwardsRefTo": "HTMLDivElement",
-      "filename": "/packages/material-ui/src/Backdrop/Backdrop.js",
-      "inheritance": null,
-      "usedInPages": []
-    },
     "Badge": {
       "description": "",
       "methods": [],
@@ -689,6 +492,101 @@
         "/components/bottom-navigation"
       ]
     },
+    "Backdrop": {
+      "description": "",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "The content of the component.",
+          "tags": []
+        },
+        "classes": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+          "tags": []
+        },
+        "invisible": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "If `true`, the backdrop is invisible.\nIt can be used when rendering a popover or a custom select component.",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          },
+          "tags": []
+        },
+        "open": {
+          "type": {
+            "name": "bool"
+          },
+          "required": true,
+          "description": "If `true`, the backdrop is open.",
+          "tags": []
+        },
+        "transitionDuration": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "number"
+              },
+              {
+                "name": "shape",
+                "value": {
+                  "appear": {
+                    "name": "number",
+                    "required": false
+                  },
+                  "enter": {
+                    "name": "number",
+                    "required": false
+                  },
+                  "exit": {
+                    "name": "number",
+                    "required": false
+                  }
+                }
+              }
+            ]
+          },
+          "required": false,
+          "description": "The duration for the transition, in milliseconds.\nYou may specify a single timeout for all transitions, or individually with an object.",
+          "tags": []
+        }
+      },
+      "name": "Backdrop",
+      "styles": {
+        "classes": [
+          "root",
+          "invisible"
+        ],
+        "name": "MuiBackdrop",
+        "descriptions": {
+          "root": "Styles applied to the root element.",
+          "invisible": "Styles applied to the root element if `invisible={true}`."
+        },
+        "globalClasses": {
+          "root": "MuiBackdrop-root",
+          "invisible": "MuiBackdrop-invisible"
+        }
+      },
+      "src": "import React from 'react';\nimport PropTypes from 'prop-types';\nimport clsx from 'clsx';\nimport withStyles from '../styles/withStyles';\nimport Fade from '../Fade';\n\nexport const styles = {\n  /* Styles applied to the root element. */\n  root: {\n    zIndex: -1,\n    position: 'fixed',\n    display: 'flex',\n    alignItems: 'center',\n    justifyContent: 'center',\n    right: 0,\n    bottom: 0,\n    top: 0,\n    left: 0,\n    backgroundColor: 'rgba(0, 0, 0, 0.5)',\n    // Remove grey highlight\n    WebkitTapHighlightColor: 'transparent',\n    // Disable scroll capabilities.\n    touchAction: 'none',\n  },\n  /* Styles applied to the root element if `invisible={true}`. */\n  invisible: {\n    backgroundColor: 'transparent',\n  },\n};\n\nconst Backdrop = React.forwardRef(function Backdrop(props, ref) {\n  const {\n    children,\n    classes,\n    className,\n    invisible = false,\n    open,\n    transitionDuration,\n    ...other\n  } = props;\n\n  return (\n    <Fade in={open} timeout={transitionDuration} {...other}>\n      <div\n        data-mui-test=\"Backdrop\"\n        className={clsx(\n          classes.root,\n          {\n            [classes.invisible]: invisible,\n          },\n          className,\n        )}\n        aria-hidden\n        ref={ref}\n      >\n        {children}\n      </div>\n    </Fade>\n  );\n});\n\nBackdrop.propTypes = {\n  // ----------------------------- Warning --------------------------------\n  // | These PropTypes are generated from the TypeScript type definitions |\n  // |     To update them edit the d.ts file and run \"yarn proptypes\"     |\n  // ----------------------------------------------------------------------\n  /**\n   * The content of the component.\n   */\n  children: PropTypes.node,\n  /**\n   * Override or extend the styles applied to the component.\n   * See [CSS API](#css) below for more details.\n   */\n  classes: PropTypes.object,\n  /**\n   * @ignore\n   */\n  className: PropTypes.string,\n  /**\n   * If `true`, the backdrop is invisible.\n   * It can be used when rendering a popover or a custom select component.\n   */\n  invisible: PropTypes.bool,\n  /**\n   * If `true`, the backdrop is open.\n   */\n  open: PropTypes.bool.isRequired,\n  /**\n   * The duration for the transition, in milliseconds.\n   * You may specify a single timeout for all transitions, or individually with an object.\n   */\n  transitionDuration: PropTypes.oneOfType([\n    PropTypes.number,\n    PropTypes.shape({\n      appear: PropTypes.number,\n      enter: PropTypes.number,\n      exit: PropTypes.number,\n    }),\n  ]),\n};\n\nexport default withStyles(styles, { name: 'MuiBackdrop' })(Backdrop);\n",
+      "spread": true,
+      "EOL": "\n",
+      "forwardsRefTo": "HTMLDivElement",
+      "filename": "/packages/material-ui/src/Backdrop/Backdrop.js",
+      "inheritance": null,
+      "usedInPages": []
+    },
     "BottomNavigationAction": {
       "description": "",
       "methods": [],
@@ -779,6 +677,108 @@
       },
       "usedInPages": [
         "/components/bottom-navigation"
+      ]
+    },
+    "Avatar": {
+      "description": "",
+      "methods": [],
+      "props": {
+        "alt": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "Used in combination with `src` or `srcSet` to\nprovide an alt attribute for the rendered `img` element.",
+          "tags": []
+        },
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "Used to render icon or text elements inside the Avatar if `src` is not set.\nThis can be an element, or just a string.",
+          "tags": []
+        },
+        "classes": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+          "tags": []
+        },
+        "component": {
+          "type": {
+            "name": "elementType"
+          },
+          "required": false,
+          "description": "The component used for the root node.\nEither a string to use a DOM element or a component.",
+          "defaultValue": {
+            "value": "'div'",
+            "computed": false
+          },
+          "tags": []
+        },
+        "imgProps": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": "Attributes applied to the `img` element if the component\nis used to display an image.",
+          "tags": []
+        },
+        "sizes": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "The `sizes` attribute for the `img` element.",
+          "tags": []
+        },
+        "src": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "The `src` attribute for the `img` element.",
+          "tags": []
+        },
+        "srcSet": {
+          "type": {
+            "name": "string"
+          },
+          "required": false,
+          "description": "The `srcSet` attribute for the `img` element.",
+          "tags": []
+        }
+      },
+      "name": "Avatar",
+      "styles": {
+        "classes": [
+          "root",
+          "colorDefault",
+          "img"
+        ],
+        "name": "MuiAvatar",
+        "descriptions": {
+          "root": "Styles applied to the root element.",
+          "colorDefault": "Styles applied to the root element if there are children and not `src` or `srcSet`.",
+          "img": "Styles applied to the img element if either `src` or `srcSet` is defined."
+        },
+        "globalClasses": {
+          "root": "MuiAvatar-root",
+          "colorDefault": "MuiAvatar-colorDefault",
+          "img": "MuiAvatar-img"
+        }
+      },
+      "src": "import React from 'react';\nimport PropTypes from 'prop-types';\nimport clsx from 'clsx';\nimport withStyles from '../styles/withStyles';\n\nexport const styles = theme => ({\n  /* Styles applied to the root element. */\n  root: {\n    position: 'relative',\n    display: 'flex',\n    alignItems: 'center',\n    justifyContent: 'center',\n    flexShrink: 0,\n    width: 40,\n    height: 40,\n    fontFamily: theme.typography.fontFamily,\n    fontSize: theme.typography.pxToRem(20),\n    lineHeight: 1,\n    borderRadius: '50%',\n    overflow: 'hidden',\n    userSelect: 'none',\n  },\n  /* Styles applied to the root element if there are children and not `src` or `srcSet`. */\n  colorDefault: {\n    color: theme.palette.background.default,\n    backgroundColor:\n      theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],\n  },\n  /* Styles applied to the img element if either `src` or `srcSet` is defined. */\n  img: {\n    width: '100%',\n    height: '100%',\n    textAlign: 'center',\n    // Handle non-square image. The property isn't supported by IE 11.\n    objectFit: 'cover',\n  },\n});\n\nconst Avatar = React.forwardRef(function Avatar(props, ref) {\n  const {\n    alt,\n    children: childrenProp,\n    classes,\n    className,\n    component: Component = 'div',\n    imgProps,\n    sizes,\n    src,\n    srcSet,\n    ...other\n  } = props;\n\n  let children = null;\n  const img = src || srcSet;\n\n  if (img) {\n    children = (\n      <img\n        alt={alt}\n        src={src}\n        srcSet={srcSet}\n        sizes={sizes}\n        className={classes.img}\n        {...imgProps}\n      />\n    );\n  } else {\n    children = childrenProp;\n  }\n\n  return (\n    <Component\n      className={clsx(\n        classes.root,\n        classes.system,\n        {\n          [classes.colorDefault]: !img,\n        },\n        className,\n      )}\n      ref={ref}\n      {...other}\n    >\n      {children}\n    </Component>\n  );\n});\n\nAvatar.propTypes = {\n  /**\n   * Used in combination with `src` or `srcSet` to\n   * provide an alt attribute for the rendered `img` element.\n   */\n  alt: PropTypes.string,\n  /**\n   * Used to render icon or text elements inside the Avatar if `src` is not set.\n   * This can be an element, or just a string.\n   */\n  children: PropTypes.node,\n  /**\n   * Override or extend the styles applied to the component.\n   * See [CSS API](#css) below for more details.\n   */\n  classes: PropTypes.object.isRequired,\n  /**\n   * @ignore\n   */\n  className: PropTypes.string,\n  /**\n   * The component used for the root node.\n   * Either a string to use a DOM element or a component.\n   */\n  component: PropTypes.elementType,\n  /**\n   * Attributes applied to the `img` element if the component\n   * is used to display an image.\n   */\n  imgProps: PropTypes.object,\n  /**\n   * The `sizes` attribute for the `img` element.\n   */\n  sizes: PropTypes.string,\n  /**\n   * The `src` attribute for the `img` element.\n   */\n  src: PropTypes.string,\n  /**\n   * The `srcSet` attribute for the `img` element.\n   */\n  srcSet: PropTypes.string,\n};\n\nexport default withStyles(styles, { name: 'MuiAvatar' })(Avatar);\n",
+      "spread": true,
+      "EOL": "\n",
+      "forwardsRefTo": "HTMLDivElement",
+      "filename": "/packages/material-ui/src/Avatar/Avatar.js",
+      "inheritance": null,
+      "usedInPages": [
+        "/components/avatars"
       ]
     },
     "Breadcrumbs": {
@@ -892,65 +892,6 @@
       "inheritance": null,
       "usedInPages": [
         "/components/breadcrumbs"
-      ]
-    },
-    "Card": {
-      "description": "",
-      "methods": [],
-      "props": {
-        "children": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "The content of the component.",
-          "tags": []
-        },
-        "classes": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
-          "tags": []
-        },
-        "raised": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "If `true`, the card will use raised styling.",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          },
-          "tags": []
-        }
-      },
-      "name": "Card",
-      "styles": {
-        "classes": [
-          "root"
-        ],
-        "name": "MuiCard",
-        "descriptions": {
-          "root": "Styles applied to the root element."
-        },
-        "globalClasses": {
-          "root": "MuiCard-root"
-        }
-      },
-      "src": "import React from 'react';\nimport PropTypes from 'prop-types';\nimport clsx from 'clsx';\nimport Paper from '../Paper';\nimport withStyles from '../styles/withStyles';\n\nexport const styles = {\n  /* Styles applied to the root element. */\n  root: {\n    overflow: 'hidden',\n  },\n};\n\nconst Card = React.forwardRef(function Card(props, ref) {\n  const { classes, className, raised = false, ...other } = props;\n\n  return (\n    <Paper\n      className={clsx(classes.root, className)}\n      elevation={raised ? 8 : 1}\n      ref={ref}\n      {...other}\n    />\n  );\n});\n\nCard.propTypes = {\n  /**\n   * The content of the component.\n   */\n  children: PropTypes.node,\n  /**\n   * Override or extend the styles applied to the component.\n   * See [CSS API](#css) below for more details.\n   */\n  classes: PropTypes.object.isRequired,\n  /**\n   * @ignore\n   */\n  className: PropTypes.string,\n  /**\n   * If `true`, the card will use raised styling.\n   */\n  raised: PropTypes.bool,\n};\n\nexport default withStyles(styles, { name: 'MuiCard' })(Card);\n",
-      "spread": true,
-      "EOL": "\n",
-      "forwardsRefTo": "HTMLDivElement",
-      "filename": "/packages/material-ui/src/Card/Card.js",
-      "inheritance": {
-        "component": "Paper",
-        "pathname": "/api/paper"
-      },
-      "usedInPages": [
-        "/components/cards"
       ]
     },
     "ButtonGroup": {
@@ -1178,6 +1119,65 @@
         "/components/buttons"
       ]
     },
+    "Card": {
+      "description": "",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "The content of the component.",
+          "tags": []
+        },
+        "classes": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+          "tags": []
+        },
+        "raised": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "If `true`, the card will use raised styling.",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          },
+          "tags": []
+        }
+      },
+      "name": "Card",
+      "styles": {
+        "classes": [
+          "root"
+        ],
+        "name": "MuiCard",
+        "descriptions": {
+          "root": "Styles applied to the root element."
+        },
+        "globalClasses": {
+          "root": "MuiCard-root"
+        }
+      },
+      "src": "import React from 'react';\nimport PropTypes from 'prop-types';\nimport clsx from 'clsx';\nimport Paper from '../Paper';\nimport withStyles from '../styles/withStyles';\n\nexport const styles = {\n  /* Styles applied to the root element. */\n  root: {\n    overflow: 'hidden',\n  },\n};\n\nconst Card = React.forwardRef(function Card(props, ref) {\n  const { classes, className, raised = false, ...other } = props;\n\n  return (\n    <Paper\n      className={clsx(classes.root, className)}\n      elevation={raised ? 8 : 1}\n      ref={ref}\n      {...other}\n    />\n  );\n});\n\nCard.propTypes = {\n  /**\n   * The content of the component.\n   */\n  children: PropTypes.node,\n  /**\n   * Override or extend the styles applied to the component.\n   * See [CSS API](#css) below for more details.\n   */\n  classes: PropTypes.object.isRequired,\n  /**\n   * @ignore\n   */\n  className: PropTypes.string,\n  /**\n   * If `true`, the card will use raised styling.\n   */\n  raised: PropTypes.bool,\n};\n\nexport default withStyles(styles, { name: 'MuiCard' })(Card);\n",
+      "spread": true,
+      "EOL": "\n",
+      "forwardsRefTo": "HTMLDivElement",
+      "filename": "/packages/material-ui/src/Card/Card.js",
+      "inheritance": {
+        "component": "Paper",
+        "pathname": "/api/paper"
+      },
+      "usedInPages": [
+        "/components/cards"
+      ]
+    },
     "CardActionArea": {
       "description": "",
       "methods": [],
@@ -1227,6 +1227,65 @@
         "component": "ButtonBase",
         "pathname": "/api/button-base"
       },
+      "usedInPages": [
+        "/components/cards"
+      ]
+    },
+    "CardActions": {
+      "description": "",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "The content of the component.",
+          "tags": []
+        },
+        "classes": {
+          "type": {
+            "name": "object"
+          },
+          "required": true,
+          "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
+          "tags": []
+        },
+        "disableSpacing": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "If `true`, the actions do not have additional margin.",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          },
+          "tags": []
+        }
+      },
+      "name": "CardActions",
+      "styles": {
+        "classes": [
+          "root",
+          "spacing"
+        ],
+        "name": "MuiCardActions",
+        "descriptions": {
+          "root": "Styles applied to the root element.",
+          "spacing": "Styles applied to the root element if `disableSpacing={false}`."
+        },
+        "globalClasses": {
+          "root": "MuiCardActions-root",
+          "spacing": "MuiCardActions-spacing"
+        }
+      },
+      "src": "import React from 'react';\nimport PropTypes from 'prop-types';\nimport clsx from 'clsx';\nimport withStyles from '../styles/withStyles';\nimport '../Button'; // So we don't have any override priority issue.\n\nexport const styles = {\n  /* Styles applied to the root element. */\n  root: {\n    display: 'flex',\n    alignItems: 'center',\n    padding: 8,\n  },\n  /* Styles applied to the root element if `disableSpacing={false}`. */\n  spacing: {\n    '& > * + *': {\n      marginLeft: 8,\n    },\n  },\n};\n\nconst CardActions = React.forwardRef(function CardActions(props, ref) {\n  const { disableSpacing = false, classes, className, ...other } = props;\n\n  return (\n    <div\n      className={clsx(classes.root, { [classes.spacing]: !disableSpacing }, className)}\n      ref={ref}\n      {...other}\n    />\n  );\n});\n\nCardActions.propTypes = {\n  /**\n   * The content of the component.\n   */\n  children: PropTypes.node,\n  /**\n   * Override or extend the styles applied to the component.\n   * See [CSS API](#css) below for more details.\n   */\n  classes: PropTypes.object.isRequired,\n  /**\n   * @ignore\n   */\n  className: PropTypes.string,\n  /**\n   * If `true`, the actions do not have additional margin.\n   */\n  disableSpacing: PropTypes.bool,\n};\n\nexport default withStyles(styles, { name: 'MuiCardActions' })(CardActions);\n",
+      "spread": true,
+      "EOL": "\n",
+      "forwardsRefTo": "HTMLDivElement",
+      "filename": "/packages/material-ui/src/CardActions/CardActions.js",
+      "inheritance": null,
       "usedInPages": [
         "/components/cards"
       ]
@@ -1483,65 +1542,6 @@
       "EOL": "\n",
       "forwardsRefTo": "HTMLDivElement",
       "filename": "/packages/material-ui/src/CardMedia/CardMedia.js",
-      "inheritance": null,
-      "usedInPages": [
-        "/components/cards"
-      ]
-    },
-    "CardActions": {
-      "description": "",
-      "methods": [],
-      "props": {
-        "children": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "The content of the component.",
-          "tags": []
-        },
-        "classes": {
-          "type": {
-            "name": "object"
-          },
-          "required": true,
-          "description": "Override or extend the styles applied to the component.\nSee [CSS API](#css) below for more details.",
-          "tags": []
-        },
-        "disableSpacing": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "If `true`, the actions do not have additional margin.",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          },
-          "tags": []
-        }
-      },
-      "name": "CardActions",
-      "styles": {
-        "classes": [
-          "root",
-          "spacing"
-        ],
-        "name": "MuiCardActions",
-        "descriptions": {
-          "root": "Styles applied to the root element.",
-          "spacing": "Styles applied to the root element if `disableSpacing={false}`."
-        },
-        "globalClasses": {
-          "root": "MuiCardActions-root",
-          "spacing": "MuiCardActions-spacing"
-        }
-      },
-      "src": "import React from 'react';\nimport PropTypes from 'prop-types';\nimport clsx from 'clsx';\nimport withStyles from '../styles/withStyles';\nimport '../Button'; // So we don't have any override priority issue.\n\nexport const styles = {\n  /* Styles applied to the root element. */\n  root: {\n    display: 'flex',\n    alignItems: 'center',\n    padding: 8,\n  },\n  /* Styles applied to the root element if `disableSpacing={false}`. */\n  spacing: {\n    '& > * + *': {\n      marginLeft: 8,\n    },\n  },\n};\n\nconst CardActions = React.forwardRef(function CardActions(props, ref) {\n  const { disableSpacing = false, classes, className, ...other } = props;\n\n  return (\n    <div\n      className={clsx(classes.root, { [classes.spacing]: !disableSpacing }, className)}\n      ref={ref}\n      {...other}\n    />\n  );\n});\n\nCardActions.propTypes = {\n  /**\n   * The content of the component.\n   */\n  children: PropTypes.node,\n  /**\n   * Override or extend the styles applied to the component.\n   * See [CSS API](#css) below for more details.\n   */\n  classes: PropTypes.object.isRequired,\n  /**\n   * @ignore\n   */\n  className: PropTypes.string,\n  /**\n   * If `true`, the actions do not have additional margin.\n   */\n  disableSpacing: PropTypes.bool,\n};\n\nexport default withStyles(styles, { name: 'MuiCardActions' })(CardActions);\n",
-      "spread": true,
-      "EOL": "\n",
-      "forwardsRefTo": "HTMLDivElement",
-      "filename": "/packages/material-ui/src/CardActions/CardActions.js",
       "inheritance": null,
       "usedInPages": [
         "/components/cards"
@@ -1807,8 +1807,11 @@
         },
         "disableShrink": {
           "type": {
-            "name": "custom",
-            "raw": "chainPropTypes(PropTypes.bool, props => {\n  if (props.disableShrink && props.variant && props.variant !== 'indeterminate') {\n    return new Error(\n      'Material-UI: you have provided the `disableShrink` prop ' +\n        'with a variant other than `indeterminate`. This will have no effect.',\n    );\n  }\n\n  return null;\n})"
+            "name": "chained",
+            "raw": "chainPropTypes(PropTypes.bool, props => {\n  if (props.disableShrink && props.variant && props.variant !== 'indeterminate') {\n    return new Error(\n      'Material-UI: you have provided the `disableShrink` prop ' +\n        'with a variant other than `indeterminate`. This will have no effect.',\n    );\n  }\n\n  return null;\n})",
+            "chained": {
+              "name": "bool"
+            }
           },
           "required": false,
           "description": "If `true`, the shrink animation is disabled.\nThis only works if variant is `indeterminate`.",
@@ -2939,8 +2942,11 @@
       "props": {
         "children": {
           "type": {
-            "name": "custom",
-            "raw": "chainPropTypes(PropTypes.node.isRequired, props => {\n  const summary = React.Children.toArray(props.children)[0];\n  if (summary.type === React.Fragment) {\n    return new Error(\n      \"Material-UI: the ExpansionPanel doesn't accept a Fragment as a child. \" +\n        'Consider providing an array instead.',\n    );\n  }\n\n  if (!React.isValidElement(summary)) {\n    return new Error(\n      'Material-UI: expected the first child of ExpansionPanel to be a valid element.',\n    );\n  }\n\n  return null;\n})"
+            "name": "chained",
+            "raw": "chainPropTypes(PropTypes.node.isRequired, props => {\n  const summary = React.Children.toArray(props.children)[0];\n  if (summary.type === React.Fragment) {\n    return new Error(\n      \"Material-UI: the ExpansionPanel doesn't accept a Fragment as a child. \" +\n        'Consider providing an array instead.',\n    );\n  }\n\n  if (!React.isValidElement(summary)) {\n    return new Error(\n      'Material-UI: expected the first child of ExpansionPanel to be a valid element.',\n    );\n  }\n\n  return null;\n})",
+            "chained": {
+              "name": "node"
+            }
           },
           "required": false,
           "description": "The content of the expansion panel.",
@@ -5920,8 +5926,11 @@
       "props": {
         "children": {
           "type": {
-            "name": "custom",
-            "raw": "chainPropTypes(PropTypes.node, props => {\n  const found = React.Children.toArray(props.children).some(\n    child => React.isValidElement(child) && child.props.onClick,\n  );\n\n  if (found) {\n    return new Error(\n      [\n        'Material-UI: you are providing an onClick event listener ' +\n          'to a child of a button element.',\n        'Firefox will never trigger the event.',\n        'You should move the onClick listener to the parent button element.',\n        'https://github.com/mui-org/material-ui/issues/13957',\n      ].join('\\n'),\n    );\n  }\n\n  return null;\n})"
+            "name": "chained",
+            "raw": "chainPropTypes(PropTypes.node, props => {\n  const found = React.Children.toArray(props.children).some(\n    child => React.isValidElement(child) && child.props.onClick,\n  );\n\n  if (found) {\n    return new Error(\n      [\n        'Material-UI: you are providing an onClick event listener ' +\n          'to a child of a button element.',\n        'Firefox will never trigger the event.',\n        'You should move the onClick listener to the parent button element.',\n        'https://github.com/mui-org/material-ui/issues/13957',\n      ].join('\\n'),\n    );\n  }\n\n  return null;\n})",
+            "chained": {
+              "name": "node"
+            }
           },
           "required": false,
           "description": "The icon element.",
@@ -7081,8 +7090,11 @@
         },
         "children": {
           "type": {
-            "name": "custom",
-            "raw": "chainPropTypes(PropTypes.node, props => {\n  const children = React.Children.toArray(props.children);\n\n  // React.Children.toArray(props.children).findLastIndex(isListItemSecondaryAction)\n  let secondaryActionIndex = -1;\n  for (let i = children.length - 1; i >= 0; i -= 1) {\n    const child = children[i];\n    if (isMuiElement(child, ['ListItemSecondaryAction'])) {\n      secondaryActionIndex = i;\n      break;\n    }\n  }\n\n  //  is ListItemSecondaryAction the last child of ListItem\n  if (secondaryActionIndex !== -1 && secondaryActionIndex !== children.length - 1) {\n    return new Error(\n      'Material-UI: you used an element after ListItemSecondaryAction. ' +\n        'For ListItem to detect that it has a secondary action ' +\n        'you must pass it as the last child to ListItem.',\n    );\n  }\n\n  return null;\n})"
+            "name": "chained",
+            "raw": "chainPropTypes(PropTypes.node, props => {\n  const children = React.Children.toArray(props.children);\n\n  // React.Children.toArray(props.children).findLastIndex(isListItemSecondaryAction)\n  let secondaryActionIndex = -1;\n  for (let i = children.length - 1; i >= 0; i -= 1) {\n    const child = children[i];\n    if (isMuiElement(child, ['ListItemSecondaryAction'])) {\n      secondaryActionIndex = i;\n      break;\n    }\n  }\n\n  //  is ListItemSecondaryAction the last child of ListItem\n  if (secondaryActionIndex !== -1 && secondaryActionIndex !== children.length - 1) {\n    return new Error(\n      'Material-UI: you used an element after ListItemSecondaryAction. ' +\n        'For ListItem to detect that it has a secondary action ' +\n        'you must pass it as the last child to ListItem.',\n    );\n  }\n\n  return null;\n})",
+            "chained": {
+              "name": "node"
+            }
           },
           "required": false,
           "description": "The content of the component. If a `ListItemSecondaryAction` is used it must\nbe the last child.",
@@ -11200,8 +11212,11 @@
         },
         "page": {
           "type": {
-            "name": "custom",
-            "raw": "chainPropTypes(PropTypes.number.isRequired, props => {\n  const { count, page, rowsPerPage } = props;\n  const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);\n  if (page < 0 || page > newLastPage) {\n    return new Error(\n      'Material-UI: the page prop of a TablePagination is out of range ' +\n        `(0 to ${newLastPage}, but page is ${page}).`,\n    );\n  }\n  return null;\n})"
+            "name": "chained",
+            "raw": "chainPropTypes(PropTypes.number.isRequired, props => {\n  const { count, page, rowsPerPage } = props;\n  const newLastPage = Math.max(0, Math.ceil(count / rowsPerPage) - 1);\n  if (page < 0 || page > newLastPage) {\n    return new Error(\n      'Material-UI: the page prop of a TablePagination is out of range ' +\n        `(0 to ${newLastPage}, but page is ${page}).`,\n    );\n  }\n  return null;\n})",
+            "chained": {
+              "name": "number"
+            }
           },
           "required": false,
           "description": "The zero-based index of the current page.",
@@ -11500,59 +11515,6 @@
       },
       "usedInPages": [
         "/components/tables"
-      ]
-    },
-    "TextareaAutosize": {
-      "description": "",
-      "methods": [],
-      "props": {
-        "rows": {
-          "type": {
-            "name": "union",
-            "value": [
-              {
-                "name": "string"
-              },
-              {
-                "name": "number"
-              }
-            ]
-          },
-          "required": false,
-          "description": "Minimum number of rows to display.",
-          "tags": []
-        },
-        "rowsMax": {
-          "type": {
-            "name": "union",
-            "value": [
-              {
-                "name": "string"
-              },
-              {
-                "name": "number"
-              }
-            ]
-          },
-          "required": false,
-          "description": "Maximum number of rows to display.",
-          "tags": []
-        }
-      },
-      "name": "TextareaAutosize",
-      "styles": {
-        "classes": [],
-        "name": null,
-        "descriptions": {}
-      },
-      "src": "import React from 'react';\nimport PropTypes from 'prop-types';\nimport debounce from '../utils/debounce';\nimport useForkRef from '../utils/useForkRef';\n\nfunction getStyleValue(computedStyle, property) {\n  return parseInt(computedStyle[property], 10) || 0;\n}\n\nconst useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;\n\nconst styles = {\n  /* Styles applied to the shadow textarea element. */\n  shadow: {\n    // Visibility needed to hide the extra text area on iPads\n    visibility: 'hidden',\n    // Remove from the content flow\n    position: 'absolute',\n    // Ignore the scrollbar width\n    overflow: 'hidden',\n    height: 0,\n    top: 0,\n    left: 0,\n    // Create a new layer, increase the isolation of the computed values\n    transform: 'translateZ(0)',\n  },\n};\n\nconst TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) {\n  const { onChange, rows, rowsMax, style, value, ...other } = props;\n\n  const { current: isControlled } = React.useRef(value != null);\n  const inputRef = React.useRef(null);\n  const handleRef = useForkRef(ref, inputRef);\n  const shadowRef = React.useRef(null);\n  const [state, setState] = React.useState({});\n\n  const syncHeight = React.useCallback(() => {\n    const input = inputRef.current;\n    const computedStyle = window.getComputedStyle(input);\n\n    const inputShallow = shadowRef.current;\n    inputShallow.style.width = computedStyle.width;\n    inputShallow.value = input.value || props.placeholder || 'x';\n\n    const boxSizing = computedStyle['box-sizing'];\n    const padding =\n      getStyleValue(computedStyle, 'padding-bottom') + getStyleValue(computedStyle, 'padding-top');\n    const border =\n      getStyleValue(computedStyle, 'border-bottom-width') +\n      getStyleValue(computedStyle, 'border-top-width');\n\n    // The height of the inner content\n    const innerHeight = inputShallow.scrollHeight - padding;\n\n    // Measure height of a textarea with a single row\n    inputShallow.value = 'x';\n    const singleRowHeight = inputShallow.scrollHeight - padding;\n\n    // The height of the outer content\n    let outerHeight = innerHeight;\n\n    if (rows != null) {\n      outerHeight = Math.max(Number(rows) * singleRowHeight, outerHeight);\n    }\n    if (rowsMax != null) {\n      outerHeight = Math.min(Number(rowsMax) * singleRowHeight, outerHeight);\n    }\n    outerHeight = Math.max(outerHeight, singleRowHeight);\n\n    // Take the box sizing into account for applying this value as a style.\n    const outerHeightStyle = outerHeight + (boxSizing === 'border-box' ? padding + border : 0);\n    const overflow = Math.abs(outerHeight - innerHeight) <= 1;\n\n    setState(prevState => {\n      // Need a large enough different to update the height.\n      // This prevents infinite rendering loop.\n      if (\n        (outerHeightStyle > 0 &&\n          Math.abs((prevState.outerHeightStyle || 0) - outerHeightStyle) > 1) ||\n        prevState.overflow !== overflow\n      ) {\n        return {\n          overflow,\n          outerHeightStyle,\n        };\n      }\n\n      return prevState;\n    });\n  }, [rows, rowsMax, props.placeholder]);\n\n  React.useEffect(() => {\n    const handleResize = debounce(() => {\n      syncHeight();\n    });\n\n    window.addEventListener('resize', handleResize);\n    return () => {\n      handleResize.clear();\n      window.removeEventListener('resize', handleResize);\n    };\n  }, [syncHeight]);\n\n  useEnhancedEffect(() => {\n    syncHeight();\n  });\n\n  const handleChange = event => {\n    if (!isControlled) {\n      syncHeight();\n    }\n\n    if (onChange) {\n      onChange(event);\n    }\n  };\n\n  return (\n    <React.Fragment>\n      <textarea\n        value={value}\n        onChange={handleChange}\n        ref={handleRef}\n        // Apply the rows prop to get a \"correct\" first SSR paint\n        rows={rows || 1}\n        style={{\n          height: state.outerHeightStyle,\n          // Need a large enough different to allow scrolling.\n          // This prevents infinite rendering loop.\n          overflow: state.overflow ? 'hidden' : null,\n          ...style,\n        }}\n        {...other}\n      />\n      <textarea\n        aria-hidden\n        className={props.className}\n        readOnly\n        ref={shadowRef}\n        tabIndex={-1}\n        style={{ ...styles.shadow, ...style }}\n      />\n    </React.Fragment>\n  );\n});\n\nTextareaAutosize.propTypes = {\n  /**\n   * @ignore\n   */\n  className: PropTypes.string,\n  /**\n   * @ignore\n   */\n  onChange: PropTypes.func,\n  /**\n   * @ignore\n   */\n  placeholder: PropTypes.string,\n  /**\n   * Minimum number of rows to display.\n   */\n  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),\n  /**\n   * Maximum number of rows to display.\n   */\n  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),\n  /**\n   * @ignore\n   */\n  style: PropTypes.object,\n  /**\n   * @ignore\n   */\n  value: PropTypes.any,\n};\n\nexport default TextareaAutosize;\n",
-      "spread": true,
-      "EOL": "\n",
-      "forwardsRefTo": "HTMLTextAreaElement",
-      "filename": "/packages/material-ui/src/TextareaAutosize/TextareaAutosize.js",
-      "inheritance": null,
-      "usedInPages": [
-        "/components/textarea-autosize"
       ]
     },
     "TextField": {
@@ -11900,6 +11862,59 @@
         "/components/integrated-autocomplete",
         "/components/pickers",
         "/components/text-fields"
+      ]
+    },
+    "TextareaAutosize": {
+      "description": "",
+      "methods": [],
+      "props": {
+        "rows": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "number"
+              }
+            ]
+          },
+          "required": false,
+          "description": "Minimum number of rows to display.",
+          "tags": []
+        },
+        "rowsMax": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "string"
+              },
+              {
+                "name": "number"
+              }
+            ]
+          },
+          "required": false,
+          "description": "Maximum number of rows to display.",
+          "tags": []
+        }
+      },
+      "name": "TextareaAutosize",
+      "styles": {
+        "classes": [],
+        "name": null,
+        "descriptions": {}
+      },
+      "src": "import React from 'react';\nimport PropTypes from 'prop-types';\nimport debounce from '../utils/debounce';\nimport useForkRef from '../utils/useForkRef';\n\nfunction getStyleValue(computedStyle, property) {\n  return parseInt(computedStyle[property], 10) || 0;\n}\n\nconst useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;\n\nconst styles = {\n  /* Styles applied to the shadow textarea element. */\n  shadow: {\n    // Visibility needed to hide the extra text area on iPads\n    visibility: 'hidden',\n    // Remove from the content flow\n    position: 'absolute',\n    // Ignore the scrollbar width\n    overflow: 'hidden',\n    height: 0,\n    top: 0,\n    left: 0,\n    // Create a new layer, increase the isolation of the computed values\n    transform: 'translateZ(0)',\n  },\n};\n\nconst TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) {\n  const { onChange, rows, rowsMax, style, value, ...other } = props;\n\n  const { current: isControlled } = React.useRef(value != null);\n  const inputRef = React.useRef(null);\n  const handleRef = useForkRef(ref, inputRef);\n  const shadowRef = React.useRef(null);\n  const [state, setState] = React.useState({});\n\n  const syncHeight = React.useCallback(() => {\n    const input = inputRef.current;\n    const computedStyle = window.getComputedStyle(input);\n\n    const inputShallow = shadowRef.current;\n    inputShallow.style.width = computedStyle.width;\n    inputShallow.value = input.value || props.placeholder || 'x';\n\n    const boxSizing = computedStyle['box-sizing'];\n    const padding =\n      getStyleValue(computedStyle, 'padding-bottom') + getStyleValue(computedStyle, 'padding-top');\n    const border =\n      getStyleValue(computedStyle, 'border-bottom-width') +\n      getStyleValue(computedStyle, 'border-top-width');\n\n    // The height of the inner content\n    const innerHeight = inputShallow.scrollHeight - padding;\n\n    // Measure height of a textarea with a single row\n    inputShallow.value = 'x';\n    const singleRowHeight = inputShallow.scrollHeight - padding;\n\n    // The height of the outer content\n    let outerHeight = innerHeight;\n\n    if (rows != null) {\n      outerHeight = Math.max(Number(rows) * singleRowHeight, outerHeight);\n    }\n    if (rowsMax != null) {\n      outerHeight = Math.min(Number(rowsMax) * singleRowHeight, outerHeight);\n    }\n    outerHeight = Math.max(outerHeight, singleRowHeight);\n\n    // Take the box sizing into account for applying this value as a style.\n    const outerHeightStyle = outerHeight + (boxSizing === 'border-box' ? padding + border : 0);\n    const overflow = Math.abs(outerHeight - innerHeight) <= 1;\n\n    setState(prevState => {\n      // Need a large enough different to update the height.\n      // This prevents infinite rendering loop.\n      if (\n        (outerHeightStyle > 0 &&\n          Math.abs((prevState.outerHeightStyle || 0) - outerHeightStyle) > 1) ||\n        prevState.overflow !== overflow\n      ) {\n        return {\n          overflow,\n          outerHeightStyle,\n        };\n      }\n\n      return prevState;\n    });\n  }, [rows, rowsMax, props.placeholder]);\n\n  React.useEffect(() => {\n    const handleResize = debounce(() => {\n      syncHeight();\n    });\n\n    window.addEventListener('resize', handleResize);\n    return () => {\n      handleResize.clear();\n      window.removeEventListener('resize', handleResize);\n    };\n  }, [syncHeight]);\n\n  useEnhancedEffect(() => {\n    syncHeight();\n  });\n\n  const handleChange = event => {\n    if (!isControlled) {\n      syncHeight();\n    }\n\n    if (onChange) {\n      onChange(event);\n    }\n  };\n\n  return (\n    <React.Fragment>\n      <textarea\n        value={value}\n        onChange={handleChange}\n        ref={handleRef}\n        // Apply the rows prop to get a \"correct\" first SSR paint\n        rows={rows || 1}\n        style={{\n          height: state.outerHeightStyle,\n          // Need a large enough different to allow scrolling.\n          // This prevents infinite rendering loop.\n          overflow: state.overflow ? 'hidden' : null,\n          ...style,\n        }}\n        {...other}\n      />\n      <textarea\n        aria-hidden\n        className={props.className}\n        readOnly\n        ref={shadowRef}\n        tabIndex={-1}\n        style={{ ...styles.shadow, ...style }}\n      />\n    </React.Fragment>\n  );\n});\n\nTextareaAutosize.propTypes = {\n  /**\n   * @ignore\n   */\n  className: PropTypes.string,\n  /**\n   * @ignore\n   */\n  onChange: PropTypes.func,\n  /**\n   * @ignore\n   */\n  placeholder: PropTypes.string,\n  /**\n   * Minimum number of rows to display.\n   */\n  rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),\n  /**\n   * Maximum number of rows to display.\n   */\n  rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),\n  /**\n   * @ignore\n   */\n  style: PropTypes.object,\n  /**\n   * @ignore\n   */\n  value: PropTypes.any,\n};\n\nexport default TextareaAutosize;\n",
+      "spread": true,
+      "EOL": "\n",
+      "forwardsRefTo": "HTMLTextAreaElement",
+      "filename": "/packages/material-ui/src/TextareaAutosize/TextareaAutosize.js",
+      "inheritance": null,
+      "usedInPages": [
+        "/components/textarea-autosize"
       ]
     },
     "Toolbar": {
@@ -13171,8 +13186,11 @@
         },
         "name": {
           "type": {
-            "name": "custom",
-            "raw": "chainPropTypes(PropTypes.string, props => {\n  if (!props.readOnly && !props.name) {\n    return new Error(\n      [\n        'Material-UI: the prop `name` is required (when `readOnly` is false).',\n        'Additionally, the input name should be unique within the parent form.',\n      ].join('\\n'),\n    );\n  }\n  return null;\n})"
+            "name": "chained",
+            "raw": "chainPropTypes(PropTypes.string, props => {\n  if (!props.readOnly && !props.name) {\n    return new Error(\n      [\n        'Material-UI: the prop `name` is required (when `readOnly` is false).',\n        'Additionally, the input name should be unique within the parent form.',\n      ].join('\\n'),\n    );\n  }\n  return null;\n})",
+            "chained": {
+              "name": "string"
+            }
           },
           "required": false,
           "description": "The name attribute of the radio `input` elements.\nIf `readOnly` is false, the prop is required,\nthis input name`should be unique within the parent form.",
@@ -15191,8 +15209,19 @@
       "props": {
         "anchorEl": {
           "type": {
-            "name": "custom",
-            "raw": "chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {\n  if (props.open) {\n    const resolvedAnchorEl = getAnchorEl(props.anchorEl);\n    const containerWindow = ownerWindow(resolvedAnchorEl);\n\n    if (resolvedAnchorEl instanceof containerWindow.Element) {\n      const box = resolvedAnchorEl.getBoundingClientRect();\n\n      if (\n        process.env.NODE_ENV !== 'test' &&\n        box.top === 0 &&\n        box.left === 0 &&\n        box.right === 0 &&\n        box.bottom === 0\n      ) {\n        return new Error(\n          [\n            'Material-UI: the `anchorEl` prop provided to the component is invalid.',\n            'The anchor element should be part of the document layout.',\n            \"Make sure the element is present in the document or that it's not display none.\",\n          ].join('\\n'),\n        );\n      }\n    } else if (\n      !resolvedAnchorEl ||\n      typeof resolvedAnchorEl.clientWidth !== 'number' ||\n      typeof resolvedAnchorEl.clientHeight !== 'number' ||\n      typeof resolvedAnchorEl.getBoundingClientRect !== 'function'\n    ) {\n      return new Error(\n        [\n          'Material-UI: the `anchorEl` prop provided to the component is invalid.',\n          'It should be an HTML Element instance or a referenceObject:',\n          'https://popper.js.org/popper-documentation.html#referenceObject.',\n        ].join('\\n'),\n      );\n    }\n  }\n\n  return null;\n})"
+            "name": "chained",
+            "raw": "chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {\n  if (props.open) {\n    const resolvedAnchorEl = getAnchorEl(props.anchorEl);\n    const containerWindow = ownerWindow(resolvedAnchorEl);\n\n    if (resolvedAnchorEl instanceof containerWindow.Element) {\n      const box = resolvedAnchorEl.getBoundingClientRect();\n\n      if (\n        process.env.NODE_ENV !== 'test' &&\n        box.top === 0 &&\n        box.left === 0 &&\n        box.right === 0 &&\n        box.bottom === 0\n      ) {\n        return new Error(\n          [\n            'Material-UI: the `anchorEl` prop provided to the component is invalid.',\n            'The anchor element should be part of the document layout.',\n            \"Make sure the element is present in the document or that it's not display none.\",\n          ].join('\\n'),\n        );\n      }\n    } else if (\n      !resolvedAnchorEl ||\n      typeof resolvedAnchorEl.clientWidth !== 'number' ||\n      typeof resolvedAnchorEl.clientHeight !== 'number' ||\n      typeof resolvedAnchorEl.getBoundingClientRect !== 'function'\n    ) {\n      return new Error(\n        [\n          'Material-UI: the `anchorEl` prop provided to the component is invalid.',\n          'It should be an HTML Element instance or a referenceObject:',\n          'https://popper.js.org/popper-documentation.html#referenceObject.',\n        ].join('\\n'),\n      );\n    }\n  }\n\n  return null;\n})",
+            "chained": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "object"
+                },
+                {
+                  "name": "func"
+                }
+              ]
+            }
           },
           "required": false,
           "description": "This is the reference element, or a function that returns the reference element,\nthat may be used to set the position of the popover.\nThe return value will passed as the reference object of the Popper\ninstance.\n\nThe reference element should be an HTML Element instance or a referenceObject:\nhttps://popper.js.org/popper-documentation.html#referenceObject.",
@@ -17323,14 +17352,203 @@
         "/components/modal"
       ]
     },
+    "SwipeableDrawer": {
+      "description": "",
+      "methods": [],
+      "props": {
+        "children": {
+          "type": {
+            "name": "node"
+          },
+          "required": false,
+          "description": "The content of the component.",
+          "tags": []
+        },
+        "disableBackdropTransition": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "Disable the backdrop transition.\nThis can improve the FPS on low-end devices.",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          },
+          "tags": []
+        },
+        "disableDiscovery": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "If `true`, touching the screen near the edge of the drawer will not slide in the drawer a bit\nto promote accidental discovery of the swipe gesture.",
+          "defaultValue": {
+            "value": "false",
+            "computed": false
+          },
+          "tags": []
+        },
+        "disableSwipeToOpen": {
+          "type": {
+            "name": "bool"
+          },
+          "required": false,
+          "description": "If `true`, swipe to open is disabled. This is useful in browsers where swiping triggers\nnavigation actions. Swipe to open is disabled on iOS browsers by default.",
+          "defaultValue": {
+            "value": "typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)",
+            "computed": false
+          },
+          "tags": []
+        },
+        "hysteresis": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "Affects how far the drawer must be opened/closed to change his state.\nSpecified as percent (0-1) of the width of the drawer",
+          "defaultValue": {
+            "value": "0.52",
+            "computed": false
+          },
+          "tags": []
+        },
+        "minFlingVelocity": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "Defines, from which (average) velocity on, the swipe is\ndefined as complete although hysteresis isn't reached.\nGood threshold is between 250 - 1000 px/s",
+          "defaultValue": {
+            "value": "450",
+            "computed": false
+          },
+          "tags": []
+        },
+        "onClose": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": "Callback fired when the component requests to be closed.",
+          "tags": [
+            {
+              "title": "param",
+              "description": "The event source of the callback.",
+              "type": {
+                "type": "NameExpression",
+                "name": "object"
+              },
+              "name": "event"
+            }
+          ]
+        },
+        "onOpen": {
+          "type": {
+            "name": "func"
+          },
+          "required": true,
+          "description": "Callback fired when the component requests to be opened.",
+          "tags": [
+            {
+              "title": "param",
+              "description": "The event source of the callback.",
+              "type": {
+                "type": "NameExpression",
+                "name": "object"
+              },
+              "name": "event"
+            }
+          ]
+        },
+        "open": {
+          "type": {
+            "name": "bool"
+          },
+          "required": true,
+          "description": "If `true`, the drawer is open.",
+          "tags": []
+        },
+        "SwipeAreaProps": {
+          "type": {
+            "name": "object"
+          },
+          "required": false,
+          "description": "Props applied to the swipe area element.",
+          "tags": []
+        },
+        "swipeAreaWidth": {
+          "type": {
+            "name": "number"
+          },
+          "required": false,
+          "description": "The width of the left most (or right most) area in pixels where the\ndrawer can be swiped open from.",
+          "defaultValue": {
+            "value": "20",
+            "computed": false
+          },
+          "tags": []
+        },
+        "transitionDuration": {
+          "type": {
+            "name": "union",
+            "value": [
+              {
+                "name": "number"
+              },
+              {
+                "name": "shape",
+                "value": {
+                  "enter": {
+                    "name": "number",
+                    "required": false
+                  },
+                  "exit": {
+                    "name": "number",
+                    "required": false
+                  }
+                }
+              }
+            ]
+          },
+          "required": false,
+          "description": "The duration for the transition, in milliseconds.\nYou may specify a single timeout for all transitions, or individually with an object.",
+          "defaultValue": {
+            "value": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }",
+            "computed": false
+          },
+          "tags": []
+        }
+      },
+      "name": "SwipeableDrawer",
+      "styles": {
+        "classes": [],
+        "name": null,
+        "descriptions": {}
+      },
+      "src": "import React from 'react';\nimport PropTypes from 'prop-types';\nimport ReactDOM from 'react-dom';\nimport { elementTypeAcceptingRef } from '@material-ui/utils';\nimport Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';\nimport useEventCallback from '../utils/useEventCallback';\nimport { duration } from '../styles/transitions';\nimport useTheme from '../styles/useTheme';\nimport { getTransitionProps } from '../transitions/utils';\nimport NoSsr from '../NoSsr';\nimport SwipeArea from './SwipeArea';\n\n// This value is closed to what browsers are using internally to\n// trigger a native scroll.\nconst UNCERTAINTY_THRESHOLD = 3; // px\n\n// We can only have one node at the time claiming ownership for handling the swipe.\n// Otherwise, the UX would be confusing.\n// That's why we use a singleton here.\nlet nodeThatClaimedTheSwipe = null;\n\n// Exported for test purposes.\nexport function reset() {\n  nodeThatClaimedTheSwipe = null;\n}\n\nfunction calculateCurrentX(anchor, touches) {\n  return anchor === 'right' ? document.body.offsetWidth - touches[0].pageX : touches[0].pageX;\n}\n\nfunction calculateCurrentY(anchor, touches) {\n  return anchor === 'bottom' ? window.innerHeight - touches[0].clientY : touches[0].clientY;\n}\n\nfunction getMaxTranslate(horizontalSwipe, paperInstance) {\n  return horizontalSwipe ? paperInstance.clientWidth : paperInstance.clientHeight;\n}\n\nfunction getTranslate(currentTranslate, startLocation, open, maxTranslate) {\n  return Math.min(\n    Math.max(\n      open ? startLocation - currentTranslate : maxTranslate + startLocation - currentTranslate,\n      0,\n    ),\n    maxTranslate,\n  );\n}\n\nfunction getDomTreeShapes(element, rootNode) {\n  // Adapted from https://github.com/oliviertassinari/react-swipeable-views/blob/7666de1dba253b896911adf2790ce51467670856/packages/react-swipeable-views/src/SwipeableViews.js#L129\n  let domTreeShapes = [];\n\n  while (element && element !== rootNode) {\n    const style = window.getComputedStyle(element);\n\n    if (\n      // Ignore the scroll children if the element is absolute positioned.\n      style.getPropertyValue('position') === 'absolute' ||\n      // Ignore the scroll children if the element has an overflowX hidden\n      style.getPropertyValue('overflow-x') === 'hidden'\n    ) {\n      domTreeShapes = [];\n    } else if (\n      (element.clientWidth > 0 && element.scrollWidth > element.clientWidth) ||\n      (element.clientHeight > 0 && element.scrollHeight > element.clientHeight)\n    ) {\n      // Ignore the nodes that have no width.\n      // Keep elements with a scroll\n      domTreeShapes.push(element);\n    }\n\n    element = element.parentNode;\n  }\n\n  return domTreeShapes;\n}\n\nfunction findNativeHandler({ domTreeShapes, start, current, anchor }) {\n  // Adapted from https://github.com/oliviertassinari/react-swipeable-views/blob/7666de1dba253b896911adf2790ce51467670856/packages/react-swipeable-views/src/SwipeableViews.js#L175\n  const axisProperties = {\n    scrollPosition: {\n      x: 'scrollLeft',\n      y: 'scrollTop',\n    },\n    scrollLength: {\n      x: 'scrollWidth',\n      y: 'scrollHeight',\n    },\n    clientLength: {\n      x: 'clientWidth',\n      y: 'clientHeight',\n    },\n  };\n\n  return domTreeShapes.some(shape => {\n    // Determine if we are going backward or forward.\n    let goingForward = current >= start;\n    if (anchor === 'top' || anchor === 'left') {\n      goingForward = !goingForward;\n    }\n    const axis = anchor === 'left' || anchor === 'right' ? 'x' : 'y';\n    const scrollPosition = shape[axisProperties.scrollPosition[axis]];\n\n    const areNotAtStart = scrollPosition > 0;\n    const areNotAtEnd =\n      scrollPosition + shape[axisProperties.clientLength[axis]] <\n      shape[axisProperties.scrollLength[axis]];\n\n    if ((goingForward && areNotAtEnd) || (!goingForward && areNotAtStart)) {\n      return shape;\n    }\n\n    return null;\n  });\n}\n\nconst disableSwipeToOpenDefault =\n  typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);\nconst transitionDurationDefault = { enter: duration.enteringScreen, exit: duration.leavingScreen };\n\nconst useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;\n\nconst SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {\n  const {\n    anchor = 'left',\n    disableBackdropTransition = false,\n    disableDiscovery = false,\n    disableSwipeToOpen = disableSwipeToOpenDefault,\n    hideBackdrop,\n    hysteresis = 0.52,\n    minFlingVelocity = 450,\n    ModalProps: { BackdropProps, ...ModalPropsProp } = {},\n    onClose,\n    onOpen,\n    open,\n    PaperProps = {},\n    SwipeAreaProps,\n    swipeAreaWidth = 20,\n    transitionDuration = transitionDurationDefault,\n    variant = 'temporary', // Mobile first.\n    ...other\n  } = props;\n\n  const theme = useTheme();\n  const [maybeSwiping, setMaybeSwiping] = React.useState(false);\n  const swipeInstance = React.useRef({\n    isSwiping: null,\n  });\n  const swipeAreaRef = React.useRef();\n  const backdropRef = React.useRef();\n  const paperRef = React.useRef();\n\n  const touchDetected = React.useRef(false);\n\n  // Ref for transition duration based on / to match swipe speed\n  const calculatedDurationRef = React.useRef();\n\n  // Use a ref so the open value used is always up to date inside useCallback.\n  useEnhancedEffect(() => {\n    calculatedDurationRef.current = null;\n  }, [open]);\n\n  const setPosition = React.useCallback(\n    (translate, options = {}) => {\n      const { mode = null, changeTransition = true } = options;\n\n      const anchorRtl = getAnchor(theme, anchor);\n      const rtlTranslateMultiplier = ['right', 'bottom'].indexOf(anchorRtl) !== -1 ? 1 : -1;\n      const horizontalSwipe = isHorizontal(anchor);\n\n      const transform = horizontalSwipe\n        ? `translate(${rtlTranslateMultiplier * translate}px, 0)`\n        : `translate(0, ${rtlTranslateMultiplier * translate}px)`;\n      const drawerStyle = paperRef.current.style;\n      drawerStyle.webkitTransform = transform;\n      drawerStyle.transform = transform;\n\n      let transition = '';\n\n      if (mode) {\n        transition = theme.transitions.create(\n          'all',\n          getTransitionProps(\n            {\n              timeout: transitionDuration,\n            },\n            {\n              mode,\n            },\n          ),\n        );\n      }\n\n      if (changeTransition) {\n        drawerStyle.webkitTransition = transition;\n        drawerStyle.transition = transition;\n      }\n\n      if (!disableBackdropTransition && !hideBackdrop) {\n        const backdropStyle = backdropRef.current.style;\n        backdropStyle.opacity = 1 - translate / getMaxTranslate(horizontalSwipe, paperRef.current);\n\n        if (changeTransition) {\n          backdropStyle.webkitTransition = transition;\n          backdropStyle.transition = transition;\n        }\n      }\n    },\n    [anchor, disableBackdropTransition, hideBackdrop, theme, transitionDuration],\n  );\n\n  const handleBodyTouchEnd = useEventCallback(event => {\n    if (!touchDetected.current) {\n      return;\n    }\n    nodeThatClaimedTheSwipe = null;\n    touchDetected.current = false;\n    setMaybeSwiping(false);\n\n    // The swipe wasn't started.\n    if (!swipeInstance.current.isSwiping) {\n      swipeInstance.current.isSwiping = null;\n      return;\n    }\n\n    swipeInstance.current.isSwiping = null;\n\n    const anchorRtl = getAnchor(theme, anchor);\n    const horizontal = isHorizontal(anchor);\n    let current;\n    if (horizontal) {\n      current = calculateCurrentX(anchorRtl, event.changedTouches);\n    } else {\n      current = calculateCurrentY(anchorRtl, event.changedTouches);\n    }\n\n    const startLocation = horizontal ? swipeInstance.current.startX : swipeInstance.current.startY;\n    const maxTranslate = getMaxTranslate(horizontal, paperRef.current);\n    const currentTranslate = getTranslate(current, startLocation, open, maxTranslate);\n    const translateRatio = currentTranslate / maxTranslate;\n\n    if (Math.abs(swipeInstance.current.velocity) > minFlingVelocity) {\n      // Calculate transition duration to match swipe speed\n      calculatedDurationRef.current =\n        Math.abs((maxTranslate - currentTranslate) / swipeInstance.current.velocity) * 1000;\n    }\n\n    if (open) {\n      if (swipeInstance.current.velocity > minFlingVelocity || translateRatio > hysteresis) {\n        onClose();\n      } else {\n        // Reset the position, the swipe was aborted.\n        setPosition(0, {\n          mode: 'exit',\n        });\n      }\n\n      return;\n    }\n\n    if (swipeInstance.current.velocity < -minFlingVelocity || 1 - translateRatio > hysteresis) {\n      onOpen();\n    } else {\n      // Reset the position, the swipe was aborted.\n      setPosition(getMaxTranslate(horizontal, paperRef.current), {\n        mode: 'enter',\n      });\n    }\n  });\n\n  const handleBodyTouchMove = useEventCallback(event => {\n    // the ref may be null when a parent component updates while swiping\n    if (!paperRef.current || !touchDetected.current) {\n      return;\n    }\n\n    // We are not supposed to handle this touch move because the swipe was started in a scrollable container in the drawer\n    if (nodeThatClaimedTheSwipe != null && nodeThatClaimedTheSwipe !== swipeInstance.current) {\n      return;\n    }\n\n    const anchorRtl = getAnchor(theme, anchor);\n    const horizontalSwipe = isHorizontal(anchor);\n\n    const currentX = calculateCurrentX(anchorRtl, event.touches);\n    const currentY = calculateCurrentY(anchorRtl, event.touches);\n\n    if (open && paperRef.current.contains(event.target) && nodeThatClaimedTheSwipe == null) {\n      const domTreeShapes = getDomTreeShapes(event.target, paperRef.current);\n      const nativeHandler = findNativeHandler({\n        domTreeShapes,\n        start: horizontalSwipe ? swipeInstance.current.startX : swipeInstance.current.startY,\n        current: horizontalSwipe ? currentX : currentY,\n        anchor,\n      });\n      if (nativeHandler) {\n        nodeThatClaimedTheSwipe = nativeHandler;\n        return;\n      }\n      nodeThatClaimedTheSwipe = swipeInstance.current;\n    }\n\n    // We don't know yet.\n    if (swipeInstance.current.isSwiping == null) {\n      const dx = Math.abs(currentX - swipeInstance.current.startX);\n      const dy = Math.abs(currentY - swipeInstance.current.startY);\n\n      // We are likely to be swiping, let's prevent the scroll event on iOS.\n      if (dx > dy) {\n        if (event.cancelable) {\n          event.preventDefault();\n        }\n      }\n\n      const definitelySwiping = horizontalSwipe\n        ? dx > dy && dx > UNCERTAINTY_THRESHOLD\n        : dy > dx && dy > UNCERTAINTY_THRESHOLD;\n\n      if (\n        definitelySwiping === true ||\n        (horizontalSwipe ? dy > UNCERTAINTY_THRESHOLD : dx > UNCERTAINTY_THRESHOLD)\n      ) {\n        swipeInstance.current.isSwiping = definitelySwiping;\n        if (!definitelySwiping) {\n          handleBodyTouchEnd(event);\n          return;\n        }\n\n        // Shift the starting point.\n        swipeInstance.current.startX = currentX;\n        swipeInstance.current.startY = currentY;\n\n        // Compensate for the part of the drawer displayed on touch start.\n        if (!disableDiscovery && !open) {\n          if (horizontalSwipe) {\n            swipeInstance.current.startX -= swipeAreaWidth;\n          } else {\n            swipeInstance.current.startY -= swipeAreaWidth;\n          }\n        }\n      }\n    }\n\n    if (!swipeInstance.current.isSwiping) {\n      return;\n    }\n\n    const maxTranslate = getMaxTranslate(horizontalSwipe, paperRef.current);\n    let startLocation = horizontalSwipe\n      ? swipeInstance.current.startX\n      : swipeInstance.current.startY;\n    if (open && !swipeInstance.current.paperHit) {\n      startLocation = Math.min(startLocation, maxTranslate);\n    }\n\n    const translate = getTranslate(\n      horizontalSwipe ? currentX : currentY,\n      startLocation,\n      open,\n      maxTranslate,\n    );\n\n    if (open) {\n      if (!swipeInstance.current.paperHit) {\n        const paperHit = horizontalSwipe ? currentX < maxTranslate : currentY < maxTranslate;\n        if (paperHit) {\n          swipeInstance.current.paperHit = true;\n          swipeInstance.current.startX = currentX;\n          swipeInstance.current.startY = currentY;\n        } else {\n          return;\n        }\n      } else if (translate === 0) {\n        swipeInstance.current.startX = currentX;\n        swipeInstance.current.startY = currentY;\n      }\n    }\n\n    if (swipeInstance.current.lastTranslate === null) {\n      swipeInstance.current.lastTranslate = translate;\n      swipeInstance.current.lastTime = performance.now() + 1;\n    }\n\n    const velocity =\n      ((translate - swipeInstance.current.lastTranslate) /\n        (performance.now() - swipeInstance.current.lastTime)) *\n      1e3;\n\n    // Low Pass filter.\n    swipeInstance.current.velocity = swipeInstance.current.velocity * 0.4 + velocity * 0.6;\n\n    swipeInstance.current.lastTranslate = translate;\n    swipeInstance.current.lastTime = performance.now();\n\n    // We are swiping, let's prevent the scroll event on iOS.\n    if (event.cancelable) {\n      event.preventDefault();\n    }\n\n    setPosition(translate);\n  });\n\n  const handleBodyTouchStart = useEventCallback(event => {\n    // We are not supposed to handle this touch move.\n    // Example of use case: ignore the event if there is a Slider.\n    if (event.defaultPrevented) {\n      return;\n    }\n\n    // We can only have one node at the time claiming ownership for handling the swipe.\n    if (event.muiHandled) {\n      return;\n    }\n\n    // At least one element clogs the drawer interaction zone.\n    if (\n      open &&\n      !backdropRef.current.contains(event.target) &&\n      !paperRef.current.contains(event.target)\n    ) {\n      return;\n    }\n\n    const anchorRtl = getAnchor(theme, anchor);\n    const horizontalSwipe = isHorizontal(anchor);\n\n    const currentX = calculateCurrentX(anchorRtl, event.touches);\n    const currentY = calculateCurrentY(anchorRtl, event.touches);\n\n    if (!open) {\n      if (disableSwipeToOpen || event.target !== swipeAreaRef.current) {\n        return;\n      }\n      if (horizontalSwipe) {\n        if (currentX > swipeAreaWidth) {\n          return;\n        }\n      } else if (currentY > swipeAreaWidth) {\n        return;\n      }\n    }\n\n    event.muiHandled = true;\n    nodeThatClaimedTheSwipe = null;\n    swipeInstance.current.startX = currentX;\n    swipeInstance.current.startY = currentY;\n\n    setMaybeSwiping(true);\n    if (!open && paperRef.current) {\n      // The ref may be null when a parent component updates while swiping.\n      setPosition(\n        getMaxTranslate(horizontalSwipe, paperRef.current) +\n          (disableDiscovery ? 20 : -swipeAreaWidth),\n        {\n          changeTransition: false,\n        },\n      );\n    }\n\n    swipeInstance.current.velocity = 0;\n    swipeInstance.current.lastTime = null;\n    swipeInstance.current.lastTranslate = null;\n    swipeInstance.current.paperHit = false;\n\n    touchDetected.current = true;\n  });\n\n  React.useEffect(() => {\n    if (variant === 'temporary') {\n      document.body.addEventListener('touchstart', handleBodyTouchStart);\n      document.body.addEventListener('touchmove', handleBodyTouchMove, { passive: false });\n      document.body.addEventListener('touchend', handleBodyTouchEnd);\n\n      return () => {\n        document.body.removeEventListener('touchstart', handleBodyTouchStart);\n        document.body.removeEventListener('touchmove', handleBodyTouchMove, { passive: false });\n        document.body.removeEventListener('touchend', handleBodyTouchEnd);\n      };\n    }\n\n    return undefined;\n  }, [variant, handleBodyTouchStart, handleBodyTouchMove, handleBodyTouchEnd]);\n\n  React.useEffect(\n    () => () => {\n      // We need to release the lock.\n      if (nodeThatClaimedTheSwipe === swipeInstance.current) {\n        nodeThatClaimedTheSwipe = null;\n      }\n    },\n    [],\n  );\n\n  React.useEffect(() => {\n    if (!open) {\n      setMaybeSwiping(false);\n    }\n  }, [open]);\n\n  const handleBackdropRef = React.useCallback(instance => {\n    // #StrictMode ready\n    backdropRef.current = ReactDOM.findDOMNode(instance);\n  }, []);\n\n  const handlePaperRef = React.useCallback(instance => {\n    // #StrictMode ready\n    paperRef.current = ReactDOM.findDOMNode(instance);\n  }, []);\n\n  return (\n    <React.Fragment>\n      <Drawer\n        open={variant === 'temporary' && maybeSwiping ? true : open}\n        variant={variant}\n        ModalProps={{\n          BackdropProps: {\n            ...BackdropProps,\n            ref: handleBackdropRef,\n          },\n          ...ModalPropsProp,\n        }}\n        PaperProps={{\n          ...PaperProps,\n          style: {\n            pointerEvents: variant === 'temporary' && !open ? 'none' : '',\n            ...PaperProps.style,\n          },\n          ref: handlePaperRef,\n        }}\n        anchor={anchor}\n        transitionDuration={calculatedDurationRef.current || transitionDuration}\n        onClose={onClose}\n        ref={ref}\n        {...other}\n      />\n      {!disableSwipeToOpen && variant === 'temporary' && (\n        <NoSsr>\n          <SwipeArea\n            anchor={anchor}\n            ref={swipeAreaRef}\n            width={swipeAreaWidth}\n            {...SwipeAreaProps}\n          />\n        </NoSsr>\n      )}\n    </React.Fragment>\n  );\n});\n\nSwipeableDrawer.propTypes = {\n  /**\n   * @ignore\n   */\n  anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),\n  /**\n   * The content of the component.\n   */\n  children: PropTypes.node,\n  /**\n   * Disable the backdrop transition.\n   * This can improve the FPS on low-end devices.\n   */\n  disableBackdropTransition: PropTypes.bool,\n  /**\n   * If `true`, touching the screen near the edge of the drawer will not slide in the drawer a bit\n   * to promote accidental discovery of the swipe gesture.\n   */\n  disableDiscovery: PropTypes.bool,\n  /**\n   * If `true`, swipe to open is disabled. This is useful in browsers where swiping triggers\n   * navigation actions. Swipe to open is disabled on iOS browsers by default.\n   */\n  disableSwipeToOpen: PropTypes.bool,\n  /**\n   * @ignore\n   */\n  hideBackdrop: PropTypes.bool,\n  /**\n   * Affects how far the drawer must be opened/closed to change his state.\n   * Specified as percent (0-1) of the width of the drawer\n   */\n  hysteresis: PropTypes.number,\n  /**\n   * Defines, from which (average) velocity on, the swipe is\n   * defined as complete although hysteresis isn't reached.\n   * Good threshold is between 250 - 1000 px/s\n   */\n  minFlingVelocity: PropTypes.number,\n  /**\n   * @ignore\n   */\n  ModalProps: PropTypes.shape({\n    BackdropProps: PropTypes.shape({\n      component: elementTypeAcceptingRef,\n    }),\n  }),\n  /**\n   * Callback fired when the component requests to be closed.\n   *\n   * @param {object} event The event source of the callback.\n   */\n  onClose: PropTypes.func.isRequired,\n  /**\n   * Callback fired when the component requests to be opened.\n   *\n   * @param {object} event The event source of the callback.\n   */\n  onOpen: PropTypes.func.isRequired,\n  /**\n   * If `true`, the drawer is open.\n   */\n  open: PropTypes.bool.isRequired,\n  /**\n   * @ignore\n   */\n  PaperProps: PropTypes.shape({\n    component: elementTypeAcceptingRef,\n    style: PropTypes.object,\n  }),\n  /**\n   * Props applied to the swipe area element.\n   */\n  SwipeAreaProps: PropTypes.object,\n  /**\n   * The width of the left most (or right most) area in pixels where the\n   * drawer can be swiped open from.\n   */\n  swipeAreaWidth: PropTypes.number,\n  /**\n   * The duration for the transition, in milliseconds.\n   * You may specify a single timeout for all transitions, or individually with an object.\n   */\n  transitionDuration: PropTypes.oneOfType([\n    PropTypes.number,\n    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),\n  ]),\n  /**\n   * @ignore\n   */\n  variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),\n};\n\nexport default SwipeableDrawer;\n",
+      "spread": true,
+      "EOL": "\n",
+      "forwardsRefTo": "HTMLDivElement",
+      "filename": "/packages/material-ui/src/SwipeableDrawer/SwipeableDrawer.js",
+      "inheritance": {
+        "component": "Drawer",
+        "pathname": "/api/drawer"
+      },
+      "usedInPages": [
+        "/components/drawers"
+      ]
+    },
     "Slider": {
       "description": "",
       "methods": [],
       "props": {
         "aria-label": {
           "type": {
-            "name": "custom",
-            "raw": "chainPropTypes(PropTypes.string, props => {\n  const range = Array.isArray(props.value || props.defaultValue);\n\n  if (range && props['aria-label'] != null) {\n    return new Error(\n      'Material-UI: you need to use the `getAriaLabel` prop instead of `aria-label` when using a range slider.',\n    );\n  }\n\n  return null;\n})"
+            "name": "chained",
+            "raw": "chainPropTypes(PropTypes.string, props => {\n  const range = Array.isArray(props.value || props.defaultValue);\n\n  if (range && props['aria-label'] != null) {\n    return new Error(\n      'Material-UI: you need to use the `getAriaLabel` prop instead of `aria-label` when using a range slider.',\n    );\n  }\n\n  return null;\n})",
+            "chained": {
+              "name": "string"
+            }
           },
           "required": false,
           "description": "The label of the slider.",
@@ -17346,8 +17564,11 @@
         },
         "aria-valuetext": {
           "type": {
-            "name": "custom",
-            "raw": "chainPropTypes(PropTypes.string, props => {\n  const range = Array.isArray(props.value || props.defaultValue);\n\n  if (range && props['aria-valuetext'] != null) {\n    return new Error(\n      'Material-UI: you need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range slider.',\n    );\n  }\n\n  return null;\n})"
+            "name": "chained",
+            "raw": "chainPropTypes(PropTypes.string, props => {\n  const range = Array.isArray(props.value || props.defaultValue);\n\n  if (range && props['aria-valuetext'] != null) {\n    return new Error(\n      'Material-UI: you need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range slider.',\n    );\n  }\n\n  return null;\n})",
+            "chained": {
+              "name": "string"
+            }
           },
           "required": false,
           "description": "A string value that provides a user-friendly name for the current value of the slider.",
@@ -17821,192 +18042,6 @@
       "inheritance": null,
       "usedInPages": [
         "/components/slider"
-      ]
-    },
-    "SwipeableDrawer": {
-      "description": "",
-      "methods": [],
-      "props": {
-        "children": {
-          "type": {
-            "name": "node"
-          },
-          "required": false,
-          "description": "The content of the component.",
-          "tags": []
-        },
-        "disableBackdropTransition": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "Disable the backdrop transition.\nThis can improve the FPS on low-end devices.",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          },
-          "tags": []
-        },
-        "disableDiscovery": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "If `true`, touching the screen near the edge of the drawer will not slide in the drawer a bit\nto promote accidental discovery of the swipe gesture.",
-          "defaultValue": {
-            "value": "false",
-            "computed": false
-          },
-          "tags": []
-        },
-        "disableSwipeToOpen": {
-          "type": {
-            "name": "bool"
-          },
-          "required": false,
-          "description": "If `true`, swipe to open is disabled. This is useful in browsers where swiping triggers\nnavigation actions. Swipe to open is disabled on iOS browsers by default.",
-          "defaultValue": {
-            "value": "typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)",
-            "computed": false
-          },
-          "tags": []
-        },
-        "hysteresis": {
-          "type": {
-            "name": "number"
-          },
-          "required": false,
-          "description": "Affects how far the drawer must be opened/closed to change his state.\nSpecified as percent (0-1) of the width of the drawer",
-          "defaultValue": {
-            "value": "0.52",
-            "computed": false
-          },
-          "tags": []
-        },
-        "minFlingVelocity": {
-          "type": {
-            "name": "number"
-          },
-          "required": false,
-          "description": "Defines, from which (average) velocity on, the swipe is\ndefined as complete although hysteresis isn't reached.\nGood threshold is between 250 - 1000 px/s",
-          "defaultValue": {
-            "value": "450",
-            "computed": false
-          },
-          "tags": []
-        },
-        "onClose": {
-          "type": {
-            "name": "func"
-          },
-          "required": true,
-          "description": "Callback fired when the component requests to be closed.",
-          "tags": [
-            {
-              "title": "param",
-              "description": "The event source of the callback.",
-              "type": {
-                "type": "NameExpression",
-                "name": "object"
-              },
-              "name": "event"
-            }
-          ]
-        },
-        "onOpen": {
-          "type": {
-            "name": "func"
-          },
-          "required": true,
-          "description": "Callback fired when the component requests to be opened.",
-          "tags": [
-            {
-              "title": "param",
-              "description": "The event source of the callback.",
-              "type": {
-                "type": "NameExpression",
-                "name": "object"
-              },
-              "name": "event"
-            }
-          ]
-        },
-        "open": {
-          "type": {
-            "name": "bool"
-          },
-          "required": true,
-          "description": "If `true`, the drawer is open.",
-          "tags": []
-        },
-        "SwipeAreaProps": {
-          "type": {
-            "name": "object"
-          },
-          "required": false,
-          "description": "Props applied to the swipe area element.",
-          "tags": []
-        },
-        "swipeAreaWidth": {
-          "type": {
-            "name": "number"
-          },
-          "required": false,
-          "description": "The width of the left most (or right most) area in pixels where the\ndrawer can be swiped open from.",
-          "defaultValue": {
-            "value": "20",
-            "computed": false
-          },
-          "tags": []
-        },
-        "transitionDuration": {
-          "type": {
-            "name": "union",
-            "value": [
-              {
-                "name": "number"
-              },
-              {
-                "name": "shape",
-                "value": {
-                  "enter": {
-                    "name": "number",
-                    "required": false
-                  },
-                  "exit": {
-                    "name": "number",
-                    "required": false
-                  }
-                }
-              }
-            ]
-          },
-          "required": false,
-          "description": "The duration for the transition, in milliseconds.\nYou may specify a single timeout for all transitions, or individually with an object.",
-          "defaultValue": {
-            "value": "{ enter: duration.enteringScreen, exit: duration.leavingScreen }",
-            "computed": false
-          },
-          "tags": []
-        }
-      },
-      "name": "SwipeableDrawer",
-      "styles": {
-        "classes": [],
-        "name": null,
-        "descriptions": {}
-      },
-      "src": "import React from 'react';\nimport PropTypes from 'prop-types';\nimport ReactDOM from 'react-dom';\nimport { elementTypeAcceptingRef } from '@material-ui/utils';\nimport Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';\nimport useEventCallback from '../utils/useEventCallback';\nimport { duration } from '../styles/transitions';\nimport useTheme from '../styles/useTheme';\nimport { getTransitionProps } from '../transitions/utils';\nimport NoSsr from '../NoSsr';\nimport SwipeArea from './SwipeArea';\n\n// This value is closed to what browsers are using internally to\n// trigger a native scroll.\nconst UNCERTAINTY_THRESHOLD = 3; // px\n\n// We can only have one node at the time claiming ownership for handling the swipe.\n// Otherwise, the UX would be confusing.\n// That's why we use a singleton here.\nlet nodeThatClaimedTheSwipe = null;\n\n// Exported for test purposes.\nexport function reset() {\n  nodeThatClaimedTheSwipe = null;\n}\n\nfunction calculateCurrentX(anchor, touches) {\n  return anchor === 'right' ? document.body.offsetWidth - touches[0].pageX : touches[0].pageX;\n}\n\nfunction calculateCurrentY(anchor, touches) {\n  return anchor === 'bottom' ? window.innerHeight - touches[0].clientY : touches[0].clientY;\n}\n\nfunction getMaxTranslate(horizontalSwipe, paperInstance) {\n  return horizontalSwipe ? paperInstance.clientWidth : paperInstance.clientHeight;\n}\n\nfunction getTranslate(currentTranslate, startLocation, open, maxTranslate) {\n  return Math.min(\n    Math.max(\n      open ? startLocation - currentTranslate : maxTranslate + startLocation - currentTranslate,\n      0,\n    ),\n    maxTranslate,\n  );\n}\n\nfunction getDomTreeShapes(element, rootNode) {\n  // Adapted from https://github.com/oliviertassinari/react-swipeable-views/blob/7666de1dba253b896911adf2790ce51467670856/packages/react-swipeable-views/src/SwipeableViews.js#L129\n  let domTreeShapes = [];\n\n  while (element && element !== rootNode) {\n    const style = window.getComputedStyle(element);\n\n    if (\n      // Ignore the scroll children if the element is absolute positioned.\n      style.getPropertyValue('position') === 'absolute' ||\n      // Ignore the scroll children if the element has an overflowX hidden\n      style.getPropertyValue('overflow-x') === 'hidden'\n    ) {\n      domTreeShapes = [];\n    } else if (\n      (element.clientWidth > 0 && element.scrollWidth > element.clientWidth) ||\n      (element.clientHeight > 0 && element.scrollHeight > element.clientHeight)\n    ) {\n      // Ignore the nodes that have no width.\n      // Keep elements with a scroll\n      domTreeShapes.push(element);\n    }\n\n    element = element.parentNode;\n  }\n\n  return domTreeShapes;\n}\n\nfunction findNativeHandler({ domTreeShapes, start, current, anchor }) {\n  // Adapted from https://github.com/oliviertassinari/react-swipeable-views/blob/7666de1dba253b896911adf2790ce51467670856/packages/react-swipeable-views/src/SwipeableViews.js#L175\n  const axisProperties = {\n    scrollPosition: {\n      x: 'scrollLeft',\n      y: 'scrollTop',\n    },\n    scrollLength: {\n      x: 'scrollWidth',\n      y: 'scrollHeight',\n    },\n    clientLength: {\n      x: 'clientWidth',\n      y: 'clientHeight',\n    },\n  };\n\n  return domTreeShapes.some(shape => {\n    // Determine if we are going backward or forward.\n    let goingForward = current >= start;\n    if (anchor === 'top' || anchor === 'left') {\n      goingForward = !goingForward;\n    }\n    const axis = anchor === 'left' || anchor === 'right' ? 'x' : 'y';\n    const scrollPosition = shape[axisProperties.scrollPosition[axis]];\n\n    const areNotAtStart = scrollPosition > 0;\n    const areNotAtEnd =\n      scrollPosition + shape[axisProperties.clientLength[axis]] <\n      shape[axisProperties.scrollLength[axis]];\n\n    if ((goingForward && areNotAtEnd) || (!goingForward && areNotAtStart)) {\n      return shape;\n    }\n\n    return null;\n  });\n}\n\nconst disableSwipeToOpenDefault =\n  typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);\nconst transitionDurationDefault = { enter: duration.enteringScreen, exit: duration.leavingScreen };\n\nconst useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;\n\nconst SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {\n  const {\n    anchor = 'left',\n    disableBackdropTransition = false,\n    disableDiscovery = false,\n    disableSwipeToOpen = disableSwipeToOpenDefault,\n    hideBackdrop,\n    hysteresis = 0.52,\n    minFlingVelocity = 450,\n    ModalProps: { BackdropProps, ...ModalPropsProp } = {},\n    onClose,\n    onOpen,\n    open,\n    PaperProps = {},\n    SwipeAreaProps,\n    swipeAreaWidth = 20,\n    transitionDuration = transitionDurationDefault,\n    variant = 'temporary', // Mobile first.\n    ...other\n  } = props;\n\n  const theme = useTheme();\n  const [maybeSwiping, setMaybeSwiping] = React.useState(false);\n  const swipeInstance = React.useRef({\n    isSwiping: null,\n  });\n  const swipeAreaRef = React.useRef();\n  const backdropRef = React.useRef();\n  const paperRef = React.useRef();\n\n  const touchDetected = React.useRef(false);\n\n  // Ref for transition duration based on / to match swipe speed\n  const calculatedDurationRef = React.useRef();\n\n  // Use a ref so the open value used is always up to date inside useCallback.\n  useEnhancedEffect(() => {\n    calculatedDurationRef.current = null;\n  }, [open]);\n\n  const setPosition = React.useCallback(\n    (translate, options = {}) => {\n      const { mode = null, changeTransition = true } = options;\n\n      const anchorRtl = getAnchor(theme, anchor);\n      const rtlTranslateMultiplier = ['right', 'bottom'].indexOf(anchorRtl) !== -1 ? 1 : -1;\n      const horizontalSwipe = isHorizontal(anchor);\n\n      const transform = horizontalSwipe\n        ? `translate(${rtlTranslateMultiplier * translate}px, 0)`\n        : `translate(0, ${rtlTranslateMultiplier * translate}px)`;\n      const drawerStyle = paperRef.current.style;\n      drawerStyle.webkitTransform = transform;\n      drawerStyle.transform = transform;\n\n      let transition = '';\n\n      if (mode) {\n        transition = theme.transitions.create(\n          'all',\n          getTransitionProps(\n            {\n              timeout: transitionDuration,\n            },\n            {\n              mode,\n            },\n          ),\n        );\n      }\n\n      if (changeTransition) {\n        drawerStyle.webkitTransition = transition;\n        drawerStyle.transition = transition;\n      }\n\n      if (!disableBackdropTransition && !hideBackdrop) {\n        const backdropStyle = backdropRef.current.style;\n        backdropStyle.opacity = 1 - translate / getMaxTranslate(horizontalSwipe, paperRef.current);\n\n        if (changeTransition) {\n          backdropStyle.webkitTransition = transition;\n          backdropStyle.transition = transition;\n        }\n      }\n    },\n    [anchor, disableBackdropTransition, hideBackdrop, theme, transitionDuration],\n  );\n\n  const handleBodyTouchEnd = useEventCallback(event => {\n    if (!touchDetected.current) {\n      return;\n    }\n    nodeThatClaimedTheSwipe = null;\n    touchDetected.current = false;\n    setMaybeSwiping(false);\n\n    // The swipe wasn't started.\n    if (!swipeInstance.current.isSwiping) {\n      swipeInstance.current.isSwiping = null;\n      return;\n    }\n\n    swipeInstance.current.isSwiping = null;\n\n    const anchorRtl = getAnchor(theme, anchor);\n    const horizontal = isHorizontal(anchor);\n    let current;\n    if (horizontal) {\n      current = calculateCurrentX(anchorRtl, event.changedTouches);\n    } else {\n      current = calculateCurrentY(anchorRtl, event.changedTouches);\n    }\n\n    const startLocation = horizontal ? swipeInstance.current.startX : swipeInstance.current.startY;\n    const maxTranslate = getMaxTranslate(horizontal, paperRef.current);\n    const currentTranslate = getTranslate(current, startLocation, open, maxTranslate);\n    const translateRatio = currentTranslate / maxTranslate;\n\n    if (Math.abs(swipeInstance.current.velocity) > minFlingVelocity) {\n      // Calculate transition duration to match swipe speed\n      calculatedDurationRef.current =\n        Math.abs((maxTranslate - currentTranslate) / swipeInstance.current.velocity) * 1000;\n    }\n\n    if (open) {\n      if (swipeInstance.current.velocity > minFlingVelocity || translateRatio > hysteresis) {\n        onClose();\n      } else {\n        // Reset the position, the swipe was aborted.\n        setPosition(0, {\n          mode: 'exit',\n        });\n      }\n\n      return;\n    }\n\n    if (swipeInstance.current.velocity < -minFlingVelocity || 1 - translateRatio > hysteresis) {\n      onOpen();\n    } else {\n      // Reset the position, the swipe was aborted.\n      setPosition(getMaxTranslate(horizontal, paperRef.current), {\n        mode: 'enter',\n      });\n    }\n  });\n\n  const handleBodyTouchMove = useEventCallback(event => {\n    // the ref may be null when a parent component updates while swiping\n    if (!paperRef.current || !touchDetected.current) {\n      return;\n    }\n\n    // We are not supposed to handle this touch move because the swipe was started in a scrollable container in the drawer\n    if (nodeThatClaimedTheSwipe != null && nodeThatClaimedTheSwipe !== swipeInstance.current) {\n      return;\n    }\n\n    const anchorRtl = getAnchor(theme, anchor);\n    const horizontalSwipe = isHorizontal(anchor);\n\n    const currentX = calculateCurrentX(anchorRtl, event.touches);\n    const currentY = calculateCurrentY(anchorRtl, event.touches);\n\n    if (open && paperRef.current.contains(event.target) && nodeThatClaimedTheSwipe == null) {\n      const domTreeShapes = getDomTreeShapes(event.target, paperRef.current);\n      const nativeHandler = findNativeHandler({\n        domTreeShapes,\n        start: horizontalSwipe ? swipeInstance.current.startX : swipeInstance.current.startY,\n        current: horizontalSwipe ? currentX : currentY,\n        anchor,\n      });\n      if (nativeHandler) {\n        nodeThatClaimedTheSwipe = nativeHandler;\n        return;\n      }\n      nodeThatClaimedTheSwipe = swipeInstance.current;\n    }\n\n    // We don't know yet.\n    if (swipeInstance.current.isSwiping == null) {\n      const dx = Math.abs(currentX - swipeInstance.current.startX);\n      const dy = Math.abs(currentY - swipeInstance.current.startY);\n\n      // We are likely to be swiping, let's prevent the scroll event on iOS.\n      if (dx > dy) {\n        if (event.cancelable) {\n          event.preventDefault();\n        }\n      }\n\n      const definitelySwiping = horizontalSwipe\n        ? dx > dy && dx > UNCERTAINTY_THRESHOLD\n        : dy > dx && dy > UNCERTAINTY_THRESHOLD;\n\n      if (\n        definitelySwiping === true ||\n        (horizontalSwipe ? dy > UNCERTAINTY_THRESHOLD : dx > UNCERTAINTY_THRESHOLD)\n      ) {\n        swipeInstance.current.isSwiping = definitelySwiping;\n        if (!definitelySwiping) {\n          handleBodyTouchEnd(event);\n          return;\n        }\n\n        // Shift the starting point.\n        swipeInstance.current.startX = currentX;\n        swipeInstance.current.startY = currentY;\n\n        // Compensate for the part of the drawer displayed on touch start.\n        if (!disableDiscovery && !open) {\n          if (horizontalSwipe) {\n            swipeInstance.current.startX -= swipeAreaWidth;\n          } else {\n            swipeInstance.current.startY -= swipeAreaWidth;\n          }\n        }\n      }\n    }\n\n    if (!swipeInstance.current.isSwiping) {\n      return;\n    }\n\n    const maxTranslate = getMaxTranslate(horizontalSwipe, paperRef.current);\n    let startLocation = horizontalSwipe\n      ? swipeInstance.current.startX\n      : swipeInstance.current.startY;\n    if (open && !swipeInstance.current.paperHit) {\n      startLocation = Math.min(startLocation, maxTranslate);\n    }\n\n    const translate = getTranslate(\n      horizontalSwipe ? currentX : currentY,\n      startLocation,\n      open,\n      maxTranslate,\n    );\n\n    if (open) {\n      if (!swipeInstance.current.paperHit) {\n        const paperHit = horizontalSwipe ? currentX < maxTranslate : currentY < maxTranslate;\n        if (paperHit) {\n          swipeInstance.current.paperHit = true;\n          swipeInstance.current.startX = currentX;\n          swipeInstance.current.startY = currentY;\n        } else {\n          return;\n        }\n      } else if (translate === 0) {\n        swipeInstance.current.startX = currentX;\n        swipeInstance.current.startY = currentY;\n      }\n    }\n\n    if (swipeInstance.current.lastTranslate === null) {\n      swipeInstance.current.lastTranslate = translate;\n      swipeInstance.current.lastTime = performance.now() + 1;\n    }\n\n    const velocity =\n      ((translate - swipeInstance.current.lastTranslate) /\n        (performance.now() - swipeInstance.current.lastTime)) *\n      1e3;\n\n    // Low Pass filter.\n    swipeInstance.current.velocity = swipeInstance.current.velocity * 0.4 + velocity * 0.6;\n\n    swipeInstance.current.lastTranslate = translate;\n    swipeInstance.current.lastTime = performance.now();\n\n    // We are swiping, let's prevent the scroll event on iOS.\n    if (event.cancelable) {\n      event.preventDefault();\n    }\n\n    setPosition(translate);\n  });\n\n  const handleBodyTouchStart = useEventCallback(event => {\n    // We are not supposed to handle this touch move.\n    // Example of use case: ignore the event if there is a Slider.\n    if (event.defaultPrevented) {\n      return;\n    }\n\n    // We can only have one node at the time claiming ownership for handling the swipe.\n    if (event.muiHandled) {\n      return;\n    }\n\n    // At least one element clogs the drawer interaction zone.\n    if (\n      open &&\n      !backdropRef.current.contains(event.target) &&\n      !paperRef.current.contains(event.target)\n    ) {\n      return;\n    }\n\n    const anchorRtl = getAnchor(theme, anchor);\n    const horizontalSwipe = isHorizontal(anchor);\n\n    const currentX = calculateCurrentX(anchorRtl, event.touches);\n    const currentY = calculateCurrentY(anchorRtl, event.touches);\n\n    if (!open) {\n      if (disableSwipeToOpen || event.target !== swipeAreaRef.current) {\n        return;\n      }\n      if (horizontalSwipe) {\n        if (currentX > swipeAreaWidth) {\n          return;\n        }\n      } else if (currentY > swipeAreaWidth) {\n        return;\n      }\n    }\n\n    event.muiHandled = true;\n    nodeThatClaimedTheSwipe = null;\n    swipeInstance.current.startX = currentX;\n    swipeInstance.current.startY = currentY;\n\n    setMaybeSwiping(true);\n    if (!open && paperRef.current) {\n      // The ref may be null when a parent component updates while swiping.\n      setPosition(\n        getMaxTranslate(horizontalSwipe, paperRef.current) +\n          (disableDiscovery ? 20 : -swipeAreaWidth),\n        {\n          changeTransition: false,\n        },\n      );\n    }\n\n    swipeInstance.current.velocity = 0;\n    swipeInstance.current.lastTime = null;\n    swipeInstance.current.lastTranslate = null;\n    swipeInstance.current.paperHit = false;\n\n    touchDetected.current = true;\n  });\n\n  React.useEffect(() => {\n    if (variant === 'temporary') {\n      document.body.addEventListener('touchstart', handleBodyTouchStart);\n      document.body.addEventListener('touchmove', handleBodyTouchMove, { passive: false });\n      document.body.addEventListener('touchend', handleBodyTouchEnd);\n\n      return () => {\n        document.body.removeEventListener('touchstart', handleBodyTouchStart);\n        document.body.removeEventListener('touchmove', handleBodyTouchMove, { passive: false });\n        document.body.removeEventListener('touchend', handleBodyTouchEnd);\n      };\n    }\n\n    return undefined;\n  }, [variant, handleBodyTouchStart, handleBodyTouchMove, handleBodyTouchEnd]);\n\n  React.useEffect(\n    () => () => {\n      // We need to release the lock.\n      if (nodeThatClaimedTheSwipe === swipeInstance.current) {\n        nodeThatClaimedTheSwipe = null;\n      }\n    },\n    [],\n  );\n\n  React.useEffect(() => {\n    if (!open) {\n      setMaybeSwiping(false);\n    }\n  }, [open]);\n\n  const handleBackdropRef = React.useCallback(instance => {\n    // #StrictMode ready\n    backdropRef.current = ReactDOM.findDOMNode(instance);\n  }, []);\n\n  const handlePaperRef = React.useCallback(instance => {\n    // #StrictMode ready\n    paperRef.current = ReactDOM.findDOMNode(instance);\n  }, []);\n\n  return (\n    <React.Fragment>\n      <Drawer\n        open={variant === 'temporary' && maybeSwiping ? true : open}\n        variant={variant}\n        ModalProps={{\n          BackdropProps: {\n            ...BackdropProps,\n            ref: handleBackdropRef,\n          },\n          ...ModalPropsProp,\n        }}\n        PaperProps={{\n          ...PaperProps,\n          style: {\n            pointerEvents: variant === 'temporary' && !open ? 'none' : '',\n            ...PaperProps.style,\n          },\n          ref: handlePaperRef,\n        }}\n        anchor={anchor}\n        transitionDuration={calculatedDurationRef.current || transitionDuration}\n        onClose={onClose}\n        ref={ref}\n        {...other}\n      />\n      {!disableSwipeToOpen && variant === 'temporary' && (\n        <NoSsr>\n          <SwipeArea\n            anchor={anchor}\n            ref={swipeAreaRef}\n            width={swipeAreaWidth}\n            {...SwipeAreaProps}\n          />\n        </NoSsr>\n      )}\n    </React.Fragment>\n  );\n});\n\nSwipeableDrawer.propTypes = {\n  /**\n   * @ignore\n   */\n  anchor: PropTypes.oneOf(['left', 'top', 'right', 'bottom']),\n  /**\n   * The content of the component.\n   */\n  children: PropTypes.node,\n  /**\n   * Disable the backdrop transition.\n   * This can improve the FPS on low-end devices.\n   */\n  disableBackdropTransition: PropTypes.bool,\n  /**\n   * If `true`, touching the screen near the edge of the drawer will not slide in the drawer a bit\n   * to promote accidental discovery of the swipe gesture.\n   */\n  disableDiscovery: PropTypes.bool,\n  /**\n   * If `true`, swipe to open is disabled. This is useful in browsers where swiping triggers\n   * navigation actions. Swipe to open is disabled on iOS browsers by default.\n   */\n  disableSwipeToOpen: PropTypes.bool,\n  /**\n   * @ignore\n   */\n  hideBackdrop: PropTypes.bool,\n  /**\n   * Affects how far the drawer must be opened/closed to change his state.\n   * Specified as percent (0-1) of the width of the drawer\n   */\n  hysteresis: PropTypes.number,\n  /**\n   * Defines, from which (average) velocity on, the swipe is\n   * defined as complete although hysteresis isn't reached.\n   * Good threshold is between 250 - 1000 px/s\n   */\n  minFlingVelocity: PropTypes.number,\n  /**\n   * @ignore\n   */\n  ModalProps: PropTypes.shape({\n    BackdropProps: PropTypes.shape({\n      component: elementTypeAcceptingRef,\n    }),\n  }),\n  /**\n   * Callback fired when the component requests to be closed.\n   *\n   * @param {object} event The event source of the callback.\n   */\n  onClose: PropTypes.func.isRequired,\n  /**\n   * Callback fired when the component requests to be opened.\n   *\n   * @param {object} event The event source of the callback.\n   */\n  onOpen: PropTypes.func.isRequired,\n  /**\n   * If `true`, the drawer is open.\n   */\n  open: PropTypes.bool.isRequired,\n  /**\n   * @ignore\n   */\n  PaperProps: PropTypes.shape({\n    component: elementTypeAcceptingRef,\n    style: PropTypes.object,\n  }),\n  /**\n   * Props applied to the swipe area element.\n   */\n  SwipeAreaProps: PropTypes.object,\n  /**\n   * The width of the left most (or right most) area in pixels where the\n   * drawer can be swiped open from.\n   */\n  swipeAreaWidth: PropTypes.number,\n  /**\n   * The duration for the transition, in milliseconds.\n   * You may specify a single timeout for all transitions, or individually with an object.\n   */\n  transitionDuration: PropTypes.oneOfType([\n    PropTypes.number,\n    PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),\n  ]),\n  /**\n   * @ignore\n   */\n  variant: PropTypes.oneOf(['permanent', 'persistent', 'temporary']),\n};\n\nexport default SwipeableDrawer;\n",
-      "spread": true,
-      "EOL": "\n",
-      "forwardsRefTo": "HTMLDivElement",
-      "filename": "/packages/material-ui/src/SwipeableDrawer/SwipeableDrawer.js",
-      "inheritance": {
-        "component": "Drawer",
-        "pathname": "/api/drawer"
-      },
-      "usedInPages": [
-        "/components/drawers"
       ]
     },
     "Tabs": {
@@ -18627,8 +18662,19 @@
         },
         "anchorEl": {
           "type": {
-            "name": "custom",
-            "raw": "chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {\n  if (props.open && (!props.anchorReference || props.anchorReference === 'anchorEl')) {\n    const resolvedAnchorEl = getAnchorEl(props.anchorEl);\n    const containerWindow = ownerWindow(resolvedAnchorEl);\n\n    if (resolvedAnchorEl instanceof containerWindow.Element) {\n      const box = resolvedAnchorEl.getBoundingClientRect();\n\n      if (\n        process.env.NODE_ENV !== 'test' &&\n        box.top === 0 &&\n        box.left === 0 &&\n        box.right === 0 &&\n        box.bottom === 0\n      ) {\n        return new Error(\n          [\n            'Material-UI: the `anchorEl` prop provided to the component is invalid.',\n            'The anchor element should be part of the document layout.',\n            \"Make sure the element is present in the document or that it's not display none.\",\n          ].join('\\n'),\n        );\n      }\n    } else {\n      return new Error(\n        [\n          'Material-UI: the `anchorEl` prop provided to the component is invalid.',\n          `It should be an Element instance but it's \\`${resolvedAnchorEl}\\` instead.`,\n        ].join('\\n'),\n      );\n    }\n  }\n\n  return null;\n})"
+            "name": "chained",
+            "raw": "chainPropTypes(PropTypes.oneOfType([PropTypes.object, PropTypes.func]), props => {\n  if (props.open && (!props.anchorReference || props.anchorReference === 'anchorEl')) {\n    const resolvedAnchorEl = getAnchorEl(props.anchorEl);\n    const containerWindow = ownerWindow(resolvedAnchorEl);\n\n    if (resolvedAnchorEl instanceof containerWindow.Element) {\n      const box = resolvedAnchorEl.getBoundingClientRect();\n\n      if (\n        process.env.NODE_ENV !== 'test' &&\n        box.top === 0 &&\n        box.left === 0 &&\n        box.right === 0 &&\n        box.bottom === 0\n      ) {\n        return new Error(\n          [\n            'Material-UI: the `anchorEl` prop provided to the component is invalid.',\n            'The anchor element should be part of the document layout.',\n            \"Make sure the element is present in the document or that it's not display none.\",\n          ].join('\\n'),\n        );\n      }\n    } else {\n      return new Error(\n        [\n          'Material-UI: the `anchorEl` prop provided to the component is invalid.',\n          `It should be an Element instance but it's \\`${resolvedAnchorEl}\\` instead.`,\n        ].join('\\n'),\n      );\n    }\n  }\n\n  return null;\n})",
+            "chained": {
+              "name": "union",
+              "value": [
+                {
+                  "name": "object"
+                },
+                {
+                  "name": "func"
+                }
+              ]
+            }
           },
           "required": false,
           "description": "This is the DOM element, or a function that returns the DOM element,\nthat may be used to set the position of the popover.",

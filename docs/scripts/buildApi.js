@@ -7,6 +7,7 @@ import * as _ from 'lodash';
 import { defaultHandlers, parse as docgenParse } from 'react-docgen';
 import muiDefaultPropsHandler from '../src/modules/utils/defaultPropsHandler';
 import propJsdocHandler from '../src/modules/utils/propJsdocHandler';
+import chainedPropHandler from '../src/modules/utils/chainedPropHandler';
 import { findPagesMarkdown, findComponents } from '../src/modules/utils/find';
 import { getHeaders } from '../src/modules/utils/parseMarkdown';
 import parseTest from '../src/modules/utils/parseTest';
@@ -125,7 +126,7 @@ async function buildComponentApi(componentObject) {
     reactAPI = docgenParse(
       src,
       null,
-      defaultHandlers.concat(muiDefaultPropsHandler, propJsdocHandler),
+      defaultHandlers.concat(muiDefaultPropsHandler, propJsdocHandler, chainedPropHandler),
       {
         filename: componentObject.filename,
       },
