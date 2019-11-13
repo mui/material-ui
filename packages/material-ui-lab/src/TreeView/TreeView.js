@@ -24,6 +24,7 @@ function arrayDiff(arr1, arr2) {
 }
 
 const defaultExpandedDefault = [];
+const defaultSelectedDefault = [];
 
 const TreeView = React.forwardRef(function TreeView(props, ref) {
   const {
@@ -35,8 +36,13 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     defaultExpanded = defaultExpandedDefault,
     defaultExpandIcon,
     defaultParentIcon,
+    defaultSelected = defaultSelectedDefault,
+    disableSelection = false,
+    multiSelect = false,
     expanded: expandedProp,
+    onNodeSelect,
     onNodeToggle,
+    selected: selectedProp,
     ...other
   } = props;
   const [tabable, setTabable] = React.useState(null);
@@ -46,27 +52,31 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const nodeMap = React.useRef({});
   const firstCharMap = React.useRef({});
 
-  const { current: isControlled } = React.useRef(expandedProp !== undefined);
+  const { current: isControlledExpanded } = React.useRef(expandedProp !== undefined);
   const [expandedState, setExpandedState] = React.useState(defaultExpanded);
-  const expanded = (isControlled ? expandedProp : expandedState) || defaultExpandedDefault;
+  const expanded = (isControlledExpanded ? expandedProp : expandedState) || defaultExpandedDefault;
+
+  const { current: isControlledSelected } = React.useRef(expandedProp !== undefined);
+  const [selectedState, setSelectedState] = React.useState(defaultSelected);
+  const selected = (isControlledSelected ? selectedProp : selectedState) || defaultSelectedDefault;
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
-      if (isControlled !== (expandedProp != null)) {
+      if (isControlledExpanded !== (expandedProp != null)) {
         console.error(
           [
             `Material-UI: A component is changing ${
-              isControlled ? 'a ' : 'an un'
-            }controlled TreeView to be ${isControlled ? 'un' : ''}controlled.`,
+              isControlledExpanded ? 'a ' : 'an un'
+            }controlled TreeView to be ${isControlledExpanded ? 'un' : ''}controlled.`,
             'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled Select ' +
+            'Decide between using a controlled or uncontrolled TreeView ' +
               'element for the lifetime of the component.',
             'More info: https://fb.me/react-controlled-components',
           ].join('\n'),
         );
       }
-    }, [expandedProp, isControlled]);
+    }, [expandedProp, isControlledExpanded]);
   }
 
   const prevChildIds = React.useRef([]);
@@ -87,6 +97,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   }, [children]);
 
   const isExpanded = React.useCallback(id => expanded.indexOf(id) !== -1, [expanded]);
+  const isSelected = React.useCallback(id => selected.indexOf(id) !== -1, [selected]);
   const isTabable = id => tabable === id;
   const isFocused = id => focused === id;
 
@@ -198,8 +209,28 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       onNodeToggle(event, newExpanded);
     }
 
-    if (!isControlled) {
+    if (!isControlledExpanded) {
       setExpandedState(newExpanded);
+    }
+  };
+
+  const toggleSelect = (event, value, multiple = false) => {
+    let newSelected = value;
+
+    if (multiple) {
+      if (selected.indexOf(value) !== -1) {
+        newSelected = selected.filter(id => id !== value);
+      } else {
+        newSelected = [value, ...selected];
+      }
+    }
+
+    if (onNodeToggle) {
+      onNodeSelect(event, newSelected);
+    }
+
+    if (!isControlledSelected) {
+      setSelectedState(newSelected);
     }
   };
 
@@ -216,7 +247,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
     const newExpanded = [...expanded, ...diff];
 
-    if (!isControlled) {
+    if (!isControlledExpanded) {
       setExpandedState(newExpanded);
     }
 
@@ -335,12 +366,22 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
         isExpanded,
         isFocused,
+        isSelected,
         isTabable,
+        multiSelect,
+        selectionDisabled: disableSelection,
         setFocusByFirstCharacter,
         toggle,
+        toggleSelect,
       }}
     >
-      <ul role="tree" className={clsx(classes.root, className)} ref={ref} {...other}>
+      <ul
+        role="tree"
+        aria-multiselectable={multiSelect}
+        className={clsx(classes.root, className)}
+        ref={ref}
+        {...other}
+      >
         {children}
       </ul>
     </TreeViewContext.Provider>
@@ -388,9 +429,28 @@ TreeView.propTypes = {
    */
   defaultParentIcon: PropTypes.node,
   /**
+   * Selected node ids. (Uncontrolled)
+   */
+  defaultSelected: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * If `true` selection is disabled.
+   */
+  disableSelection: PropTypes.bool,
+  /**
    * Expanded node ids. (Controlled)
    */
   expanded: PropTypes.arrayOf(PropTypes.string),
+  /**
+   * If true `ctrl` and `shift` will trigger multiselect.
+   */
+  multiSelect: PropTypes.bool,
+  /**
+   * Callback fired when tree items are selected/unselected.
+   *
+   * @param {object} event The event source of the callback
+   * @param {array} nodeIds The ids of the selected nodes.
+   */
+  onNodeSelect: PropTypes.func,
   /**
    * Callback fired when tree items are expanded/collapsed.
    *
@@ -398,6 +458,10 @@ TreeView.propTypes = {
    * @param {array} nodeIds The ids of the expanded nodes.
    */
   onNodeToggle: PropTypes.func,
+  /**
+   * Selected node ids. (Controlled)
+   */
+  selected: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default withStyles(styles, { name: 'MuiTreeView' })(TreeView);

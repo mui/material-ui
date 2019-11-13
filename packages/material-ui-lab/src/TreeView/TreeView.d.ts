@@ -26,9 +26,28 @@ export interface TreeViewProps
    */
   defaultParentIcon?: React.ReactNode;
   /**
+   * Selected node ids. (Uncontrolled)
+   */
+  defaultSelected?: string[];
+  /**
+   * If `true` selection is disabled.
+   */
+  disableSelection?: boolean;
+  /**
    * Expanded node ids. (Controlled)
    */
   expanded?: string[];
+  /**
+   * If true `ctrl` and `shift` will trigger multiselect.
+   */
+  multiSelect?: boolean;
+  /**
+   * Callback fired when tree items are selected/unselected.
+   *
+   * @param {object} event The event source of the callback
+   * @param {array} nodeIds The ids of the selected nodes.
+   */
+  onNodeSelect?: (event: React.ChangeEvent<{}>, nodeIds: string[]) => void;
   /**
    * Callback fired when tree items are expanded/collapsed.
    *
@@ -36,6 +55,10 @@ export interface TreeViewProps
    * @param {array} nodeIds The ids of the expanded nodes.
    */
   onNodeToggle?: (event: React.ChangeEvent<{}>, nodeIds: string[]) => void;
+  /**
+   * Selected node ids. (Controlled)
+   */
+  selected?: string[];
 }
 
 export type TreeViewClassKey = 'root';

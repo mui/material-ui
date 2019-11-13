@@ -18,9 +18,14 @@ export const styles = theme => ({
     '&:focus > $content': {
       backgroundColor: theme.palette.grey[400],
     },
+    '&$selected > $content': {
+      backgroundColor: theme.palette.primary.main,
+    },
   },
   /* Pseudo-class applied to the root element when expanded. */
   expanded: {},
+  /* Pseudo-class applied to the root element when selected. */
+  selected: {},
   /* Styles applied to the `role="group"` element. */
   group: {
     margin: 0,
@@ -86,9 +91,14 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     icons: contextIcons,
     isExpanded,
     isFocused,
+    isSelected,
     isTabable,
+    multiSelect,
+    selectionDisabled,
     setFocusByFirstCharacter,
     toggle,
+    toggleSelect,
+    treeVariant,
   } = React.useContext(TreeViewContext);
 
   const nodeRef = React.useRef(null);
@@ -101,6 +111,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const expanded = isExpanded ? isExpanded(nodeId) : false;
   const focused = isFocused ? isFocused(nodeId) : false;
   const tabable = isTabable ? isTabable(nodeId) : false;
+  const selected = isSelected ? isSelected(nodeId) : false;
   const icons = contextIcons || {};
 
   if (!icon) {
@@ -128,6 +139,11 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       toggle(event, nodeId);
     }
 
+    if (!selectionDisabled) {
+      const multiple = multiSelect && (event.shiftKey || event.ctrlKey || event.metaKey);
+      toggleSelect(event, nodeId, multiple);
+    }
+
     if (onClick) {
       onClick(event);
     }
@@ -153,7 +169,8 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     if (event.altKey || event.ctrlKey || event.metaKey) {
       return;
     }
-    if (event.shift) {
+
+    if (event.shiftKey) {
       if (key === ' ' || key === 'Enter') {
         event.stopPropagation();
       } else if (isPrintableCharacter(key)) {
@@ -161,8 +178,14 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       }
     } else {
       switch (key) {
-        case 'Enter':
         case ' ':
+          if (nodeRef.current === event.currentTarget && treeVariant === 'multi-select') {
+            toggleSelect(event, nodeId);
+            flag = true;
+          }
+          event.stopPropagation();
+          break;
+        case 'Enter':
           if (nodeRef.current === event.currentTarget && expandable) {
             toggle(event);
             flag = true;
@@ -257,11 +280,13 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     <li
       className={clsx(classes.root, className, {
         [classes.expanded]: expanded,
+        [classes.selected]: selected,
       })}
       role="treeitem"
       onKeyDown={handleKeyDown}
       onFocus={handleFocus}
       aria-expanded={expandable ? expanded : null}
+      aria-selected={!selectionDisabled ? isSelected(nodeId) : undefined}
       ref={handleRef}
       tabIndex={tabable ? 0 : -1}
       {...other}
