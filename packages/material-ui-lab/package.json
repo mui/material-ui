@@ -34,7 +34,7 @@
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "peerDependencies": {
-    "@material-ui/core": "^4.5.2",
+    "@material-ui/core": "^4.6.1",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
