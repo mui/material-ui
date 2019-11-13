@@ -92,6 +92,18 @@ function Join({ children, separator }) {
   return joinedChildren;
 }
 
+function isElementTypeAcceptingRefProp(type) {
+  return type.raw === 'elementTypeAcceptingRef';
+}
+
+function isRefType(type) {
+  return type.raw === 'refType';
+}
+
+function isElementAcceptingRefProp(type) {
+  return /^elementAcceptingRef/.test(type.raw);
+}
+
 /**
  * TODO custom
  */
@@ -99,6 +111,19 @@ function PropType(props) {
   const { type } = props;
 
   switch (type.name) {
+    case 'custom':
+      if (isElementTypeAcceptingRefProp(type)) {
+        return `element type`;
+      }
+      if (isElementAcceptingRefProp(type)) {
+        return `element`;
+      }
+      if (isRefType(type)) {
+        return `ref`;
+      }
+      // TOOD deprecated
+      // TODO chained
+      return type.raw;
     case 'shape':
       return (
         <React.Fragment>
