@@ -20,6 +20,7 @@ export const styles = theme => ({
     },
     '&$selected > $content': {
       backgroundColor: theme.palette.primary.main,
+      color: theme.palette.primary.contrastText,
     },
   },
   /* Pseudo-class applied to the root element when expanded. */
@@ -73,6 +74,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     onClick,
     onFocus,
     onKeyDown,
+    onMouseDown,
     TransitionComponent = Collapse,
     ...other
   } = props;
@@ -135,17 +137,29 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       focus(nodeId);
     }
 
-    if (expandable) {
+    const multiple = multiSelect && (event.shiftKey || event.ctrlKey || event.metaKey);
+
+    // If already expanded and trying to toggle selection don't close
+    if (expandable && !(multiple && isExpanded(nodeId))) {
       toggle(event, nodeId);
     }
 
     if (!selectionDisabled) {
-      const multiple = multiSelect && (event.shiftKey || event.ctrlKey || event.metaKey);
       toggleSelect(event, nodeId, multiple);
     }
 
     if (onClick) {
       onClick(event);
+    }
+  };
+
+  const handleMouseDown = event => {
+    if (event.shiftKey || event.ctrlKey || event.metaKey) {
+      event.preventDefault();
+    }
+
+    if (onMouseDown) {
+      onMouseDown(event);
     }
   };
 
@@ -286,12 +300,17 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       onKeyDown={handleKeyDown}
       onFocus={handleFocus}
       aria-expanded={expandable ? expanded : null}
-      aria-selected={!selectionDisabled ? isSelected(nodeId) : undefined}
+      aria-selected={!selectionDisabled && isSelected ? isSelected(nodeId) : undefined}
       ref={handleRef}
       tabIndex={tabable ? 0 : -1}
       {...other}
     >
-      <div className={classes.content} onClick={handleClick} ref={contentRef}>
+      <div
+        className={classes.content}
+        onClick={handleClick}
+        onMouseDown={handleMouseDown}
+        ref={contentRef}
+      >
         {icon ? <div className={classes.iconContainer}>{icon}</div> : null}
         <Typography component="div" className={classes.label}>
           {label}
@@ -366,6 +385,10 @@ TreeItem.propTypes = {
    * @ignore
    */
   onKeyDown: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onMouseDown: PropTypes.func,
   /**
    * The component used for the transition.
    */
