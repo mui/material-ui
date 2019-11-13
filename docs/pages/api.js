@@ -416,6 +416,17 @@ function ComponentApi(props) {
       <h2 id="props">Props</h2>
       <ComponentPropsTable propsApi={api.props} />
       <RefHint filename={api.filename} forwardsRefTo={api.forwardsRefTo} />
+      {api.spread && (
+        <p>
+          Any other props supplied will be provided to the root element (
+          {api.inheritance ? (
+            <Link href={api.inheritance.pathname}>{api.inheritance.component}</Link>
+          ) : (
+            'native element'
+          )}
+          ).
+        </p>
+      )}
     </div>
   );
 }
