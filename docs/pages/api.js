@@ -64,7 +64,6 @@ function Join({ children, separator }) {
     return children;
   }
   const joinedChildren = [];
-  children.length <= 1;
   React.Children.forEach(children, (child, index) => {
     if (index === children.length - 1) {
       joinedChildren.push(child);
@@ -80,7 +79,7 @@ function Join({ children, separator }) {
 }
 
 /**
- * TODO custom, instanceOf
+ * TODO custom
  */
 function PropType(props) {
   const { type } = props;
@@ -144,6 +143,11 @@ function PropType(props) {
           {'>'}
         </React.Fragment>
       );
+    case 'instanceOf':
+      if (type.value.startsWith('typeof')) {
+        return /typeof (.*) ===/.exec(type.value)[1];
+      }
+      return type.value;
     default:
       return type.name || 'unknown';
   }
