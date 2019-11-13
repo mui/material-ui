@@ -21,7 +21,7 @@ export default function FileSystemNavigator() {
       className={classes.root}
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpandIcon={<ChevronRightIcon />}
-      multiSelect={true}
+      multiSelect
     >
       <TreeItem nodeId="1" label="Applications">
         <TreeItem nodeId="2" label="Calendar" />
