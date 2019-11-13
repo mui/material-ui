@@ -135,6 +135,7 @@ export type AutocompleteClassKey =
   | 'loading'
   | 'noOptions'
   | 'groupLabel'
+  | 'popperDisablePortal'
   | 'groupUl';
 
 export default function Autocomplete(props: AutocompleteProps): JSX.Element;
