@@ -68,6 +68,29 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
     });
+
+    it('navigates between different tags', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      const { getByRole } = render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={params => <TextField autoFocus {...params} />}
+          multiple
+        />,
+      );
+      const textbox = getByRole('textbox');
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowLeft' });
+      expect(document.activeElement).to.have.text('two');
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowLeft' });
+      expect(document.activeElement).to.have.text('one');
+      fireEvent.keyDown(document.activeElement, { key: 'Backspace' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal([options[1]]);
+      expect(document.activeElement).to.equal(textbox);
+    });
   });
 
   describe('WAI-ARIA conforming markup', () => {
