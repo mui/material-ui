@@ -77,12 +77,27 @@ function Join({ children, separator }) {
 }
 
 /**
- * TODO custom, instanceOf, shape, enum
+ * TODO custom, instanceOf, shape
  */
 function PropType(props) {
   const { type } = props;
 
   switch (type.name) {
+    case 'enum':
+      return (
+        <Join
+          separator={
+            <React.Fragment>
+              <br />
+              |&nbsp;
+            </React.Fragment>
+          }
+        >
+          {type.value.map(member => {
+            return member.value;
+          })}
+        </Join>
+      );
     case 'union':
       return (
         <Join
