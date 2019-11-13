@@ -60,16 +60,19 @@ function PropDescription(props) {
 PropDescription.propTypes = { description: PropTypes.string };
 
 function Join({ children, separator }) {
-  if (children.length <= 1) {
+  if (React.Children.count(children) <= 1) {
     return children;
   }
   const joinedChildren = [];
-
+  children.length <= 1;
   React.Children.forEach(children, (child, index) => {
     if (index === children.length - 1) {
       joinedChildren.push(child);
     } else {
-      joinedChildren.push(child, React.cloneElement(separator, { key: `sep-${index}` }));
+      const separatorElement = React.isValidElement(separator)
+        ? React.cloneElement(separator, { key: `sep-${index}` })
+        : separator;
+      joinedChildren.push(child, separatorElement);
     }
   });
 
@@ -77,12 +80,32 @@ function Join({ children, separator }) {
 }
 
 /**
- * TODO custom, instanceOf, shape
+ * TODO custom, instanceOf
  */
 function PropType(props) {
   const { type } = props;
 
   switch (type.name) {
+    case 'shape':
+      return (
+        <React.Fragment>
+          {'{ '}
+          <Join separator=", ">
+            {Object.keys(type.value).map(key => {
+              const subType = type.value[key];
+              return (
+                <React.Fragment key={key}>
+                  {key}
+                  {!subType.required && '?'}
+                  {': '}
+                  <PropType type={subType} />
+                </React.Fragment>
+              );
+            })}
+          </Join>
+          {' }'}
+        </React.Fragment>
+      );
     case 'enum':
       return (
         <Join
@@ -122,7 +145,7 @@ function PropType(props) {
         </React.Fragment>
       );
     default:
-      return type.name;
+      return type.name || 'unknown';
   }
 }
 
