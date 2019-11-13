@@ -47,7 +47,7 @@ Set `freeSolo` to true so the textbox can contain any arbitrary value.
 ## `useAutocomplete`
 
 For advanced customization use cases, we expose a `useAutocomplete()` hook.
-It accepts almost the same options as the Autocomplete component minor all the props
+It accepts almost the same options as the Autocomplete component minus all the props
 related to the rendering of JSX.
 The Autocomplete component uses this hook internally.
 
