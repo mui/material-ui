@@ -119,6 +119,11 @@ export const styles = theme => {
         opacity: 1, // Reset iOS opacity
       },
       '&:-webkit-autofill': {
+        // Chrome's autofill feature gives the input field a blue background.
+        // Since the input field is after the label in the HTML tree,
+        // the input field is drawn last and hides the label with an opaque background color.
+        // zIndex: -1 will keep opaque background-colors of input behind raise the label above.
+        zIndex: -1,
         animationDuration: '5000s',
         animationName: '$auto-fill',
       },

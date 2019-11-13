@@ -49,11 +49,6 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `variant="filled"`. */
   filled: {
-    // Chrome's autofill feature gives the input field a yellow background.
-    // Since the input field is behind the label in the HTML tree,
-    // the input field is drawn last and hides the label with an opaque background color.
-    // zIndex: 1 will raise the label above opaque background-colors of input.
-    zIndex: 1,
     pointerEvents: 'none',
     transform: 'translate(12px, 20px) scale(1)',
     '&$marginDense': {
@@ -68,8 +63,6 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `variant="outlined"`. */
   outlined: {
-    // see comment above on filled.zIndex
-    zIndex: 1,
     pointerEvents: 'none',
     transform: 'translate(14px, 20px) scale(1)',
     '&$marginDense': {
