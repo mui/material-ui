@@ -127,6 +127,7 @@ function MarkdownDocs(props) {
 
         demos[demoName] = {
           ...demos[demoName],
+          js: req(filename).default,
           tsx: req(filename).default,
           rawTS: reqSource(filename),
         };
