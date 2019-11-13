@@ -17,6 +17,53 @@ function round(value) {
   return Math.round(value * 1e5) / 1e5;
 }
 
+function arrowGenerator() {
+  return {
+    '&[x-placement*="bottom"] $arrow': {
+      top: 0,
+      left: 0,
+      marginTop: '-0.95em',
+      width: '2em',
+      height: '1em',
+      '&::before': {
+        borderWidth: '0 1em 1em 1em',
+        borderColor: 'transparent transparent currentcolor transparent',
+      },
+    },
+    '&[x-placement*="top"] $arrow': {
+      bottom: 0,
+      left: 0,
+      marginBottom: '-0.95em',
+      width: '2em',
+      height: '1em',
+      '&::before': {
+        borderWidth: '1em 1em 0 1em',
+        borderColor: 'currentcolor transparent transparent transparent',
+      },
+    },
+    '&[x-placement*="right"] $arrow': {
+      left: 0,
+      marginLeft: '-0.95em',
+      height: '2em',
+      width: '1em',
+      '&::before': {
+        borderWidth: '1em 1em 1em 0',
+        borderColor: 'transparent currentcolor transparent transparent',
+      },
+    },
+    '&[x-placement*="left"] $arrow': {
+      right: 0,
+      marginRight: '-0.95em',
+      height: '2em',
+      width: '1em',
+      '&::before': {
+        borderWidth: '1em 0 1em 1em',
+        borderColor: 'transparent transparent transparent currentcolor',
+      },
+    },
+  };
+}
+
 export const styles = theme => ({
   /* Styles applied to the Popper component. */
   popper: {
@@ -28,6 +75,8 @@ export const styles = theme => ({
   popperInteractive: {
     pointerEvents: 'auto',
   },
+  /* Styles applied to the Popper component if `arrow={true}`. */
+  popperArrow: arrowGenerator(),
   /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
     backgroundColor: fade(theme.palette.grey[700], 0.9),
@@ -40,6 +89,25 @@ export const styles = theme => ({
     maxWidth: 300,
     wordWrap: 'break-word',
     fontWeight: theme.typography.fontWeightMedium,
+  },
+  /* Styles applied to the tooltip (label wrapper) element if `arrow={true}`. */
+  tooltipArrow: {
+    position: 'relative',
+    margin: '0',
+  },
+  /* Styles applied to the arrow element. */
+  arrow: {
+    position: 'absolute',
+    fontSize: 6,
+    color: fade(theme.palette.grey[700], 0.9),
+    '&::before': {
+      content: '""',
+      margin: 'auto',
+      display: 'block',
+      width: 0,
+      height: 0,
+      borderStyle: 'solid',
+    },
   },
   /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
   touch: {
@@ -84,6 +152,7 @@ export const styles = theme => ({
 
 const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const {
+    arrow = false,
     children,
     classes,
     disableFocusListener = false,
@@ -109,6 +178,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
   const [, forceUpdate] = React.useState(0);
   const [childNode, setChildNode] = React.useState();
+  const [arrowRef, setArrowRef] = React.useState(null);
   const ignoreNonTouchEvents = React.useRef(false);
   const defaultId = React.useRef();
   const closeTimer = React.useRef();
@@ -395,12 +465,21 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       <Popper
         className={clsx(classes.popper, {
           [classes.popperInteractive]: interactive,
+          [classes.popperArrow]: arrow,
         })}
         placement={placement}
         anchorEl={childNode}
         open={childNode ? open : false}
         id={childrenProps['aria-describedby']}
         transition
+        popperOptions={{
+          modifiers: {
+            arrow: {
+              enabled: Boolean(arrowRef),
+              element: arrowRef,
+            },
+          },
+        }}
         {...interactiveWrapperListeners}
         {...PopperProps}
       >
@@ -415,11 +494,13 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
                 classes.tooltip,
                 {
                   [classes.touch]: ignoreNonTouchEvents.current,
+                  [classes.tooltipArrow]: arrow,
                 },
                 classes[`tooltipPlacement${capitalize(placementInner.split('-')[0])}`],
               )}
             >
               {title}
+              {arrow ? <span className={classes.arrow} ref={setArrowRef} /> : null}
             </div>
           </TransitionComponent>
         )}
@@ -429,6 +510,10 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 });
 
 Tooltip.propTypes = {
+  /**
+   * If `true`, adds an arrow to the tooltip.
+   */
+  arrow: PropTypes.bool,
   /**
    * Tooltip reference element.
    */
