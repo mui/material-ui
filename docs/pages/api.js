@@ -336,32 +336,63 @@ function ComponentProp(props) {
 
 ComponentProp.propTypes = { name: PropTypes.string.isRequired, prop: PropTypes.object.isRequired };
 
-function ComponentProps(props) {
+function ComponentPropsTable(props) {
   const { propsApi } = props;
 
   return (
-    <React.Fragment>
-      <h2 id="props">Props</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Default</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Object.keys(propsApi).map(propName => {
-            return <ComponentProp key={propName} name={propName} prop={propsApi[propName]} />;
-          })}
-        </tbody>
-      </table>
-    </React.Fragment>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {Object.keys(propsApi).map(propName => {
+          return <ComponentProp key={propName} name={propName} prop={propsApi[propName]} />;
+        })}
+      </tbody>
+    </table>
   );
 }
 
-ComponentProps.propTypes = { propsApi: PropTypes.object.isRequired };
+ComponentPropsTable.propTypes = { propsApi: PropTypes.object.isRequired };
+
+function RefHint(props) {
+  const { filename, forwardsRefTo } = props;
+
+  if (forwardsRefTo == null) {
+    return <p>The component cannot hold a ref.</p>;
+  }
+  if (forwardsRefTo === 'React.Component') {
+    return (
+      <p>
+        The <code>ref</code> is attached to a component class.
+      </p>
+    );
+  }
+  if (forwardsRefTo === 'Object') {
+    return (
+      <p>
+        The <code>ref</code> is attached to an Imperative Handle. Have a look at the{' '}
+        <a href={`${SOURCE_CODE_ROOT_URL}${normalizePath(filename)}`}>
+          implementation of the component
+        </a>{' '}
+        for more detail.
+      </p>
+    );
+  }
+
+  return (
+    <p>
+      The <code>ref</code> is forwarded to the root element.
+    </p>
+  );
+}
+
+RefHint.propTypes = { filename: PropTypes.string.isRequired, forwardsRefTo: PropTypes.string };
 
 const useMarkdownStyles = makeStyles(markdownStyles);
 
@@ -381,7 +412,10 @@ function ComponentApi(props) {
       </p>
       <ComponentImport api={api} />
       <p>{api.description}</p>
-      <ComponentProps propsApi={api.props} />
+
+      <h2 id="props">Props</h2>
+      <ComponentPropsTable propsApi={api.props} />
+      <RefHint filename={api.filename} forwardsRefTo={api.forwardsRefTo} />
     </div>
   );
 }
