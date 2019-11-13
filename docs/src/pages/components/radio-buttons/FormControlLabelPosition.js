@@ -14,7 +14,7 @@ export default function FormControlLabelPosition() {
 
   return (
     <FormControl component="fieldset">
-      <FormLabel noFocus component="legend">labelPlacement</FormLabel>
+      <FormLabel component="legend">labelPlacement</FormLabel>
       <RadioGroup aria-label="position" name="position" value={value} onChange={handleChange} row>
         <FormControlLabel
           value="top"

@@ -43,9 +43,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     inputProps,
     inputRef,
     name,
-    onBlur,
     onChange,
-    onFocus,
     readOnly,
     required,
     tabIndex,
@@ -57,26 +55,6 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
   const [checkedState, setCheckedState] = React.useState(Boolean(defaultChecked));
 
   const muiFormControl = useFormControl();
-
-  const handleFocus = event => {
-    if (onFocus) {
-      onFocus(event);
-    }
-
-    if (muiFormControl && muiFormControl.onFocus) {
-      muiFormControl.onFocus(event);
-    }
-  };
-
-  const handleBlur = event => {
-    if (onBlur) {
-      onBlur(event);
-    }
-
-    if (muiFormControl && muiFormControl.onBlur) {
-      muiFormControl.onBlur(event);
-    }
-  };
 
   const handleInputChange = event => {
     const checked = event.target.checked;
@@ -115,8 +93,6 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
       disabled={disabled}
       tabIndex={null}
       role={undefined}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
       ref={ref}
       {...other}
     >
@@ -195,20 +171,12 @@ SwitchBase.propTypes = {
    */
   name: PropTypes.string,
   /**
-   * @ignore
-   */
-  onBlur: PropTypes.func,
-  /**
    * Callback fired when the state is changed.
    *
    * @param {object} event The event source of the callback.
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocus: PropTypes.func,
   /**
    * It prevents the user from changing the value of the field
    * (not from interacting with the field).

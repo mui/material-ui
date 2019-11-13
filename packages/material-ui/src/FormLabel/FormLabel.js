@@ -29,12 +29,6 @@ export const styles = theme => ({
       color: theme.palette.secondary.main,
     },
   },
-  /* Pseudo-class applied to the root element if `noFocus={true}`. */
-  noFocus: {
-    '&$focused': {
-      color: theme.palette.text.secondary,
-    },
-  },
   /* Pseudo-class applied to the root element if `focused={true}`. */
   focused: {},
   /* Pseudo-class applied to the root element if `disabled={true}`. */
@@ -64,7 +58,6 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
     error,
     filled,
     focused,
-    noFocus,
     required,
     ...other
   } = props;
@@ -73,7 +66,7 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['color', 'required', 'focused', 'disabled', 'error', 'filled', 'noFocus'],
+    states: ['color', 'required', 'focused', 'disabled', 'error', 'filled'],
   });
 
   return (
@@ -86,7 +79,6 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
           [classes.error]: fcs.error,
           [classes.filled]: fcs.filled,
           [classes.focused]: fcs.focused,
-          [classes.noFocus]: fcs.noFocus,
           [classes.required]: fcs.required,
         },
         className,
@@ -147,10 +139,6 @@ FormLabel.propTypes = {
    * If `true`, the input of this label is focused (used by `FormGroup` components).
    */
   focused: PropTypes.bool,
-  /**
-   * If `true`, the input of this label is not focused.
-   */
-  noFocus: PropTypes.bool,
   /**
    * If `true`, the label will indicate that the input is required.
    */

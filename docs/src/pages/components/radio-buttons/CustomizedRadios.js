@@ -67,7 +67,7 @@ function StyledRadio(props) {
 export default function CustomizedRadios() {
   return (
     <FormControl component="fieldset">
-      <FormLabel noFocus component="legend">Gender</FormLabel>
+      <FormLabel component="legend">Gender</FormLabel>
       <RadioGroup defaultValue="female" aria-label="gender" name="customized-radios">
         <FormControlLabel value="female" control={<StyledRadio />} label="Female" />
         <FormControlLabel value="male" control={<StyledRadio />} label="Male" />

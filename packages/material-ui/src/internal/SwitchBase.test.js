@@ -6,7 +6,7 @@ import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender } from 'test/utils/createClientRender';
 import SwitchBase from './SwitchBase';
-import FormControl, { useFormControl } from '../FormControl';
+import FormControl from '../FormControl';
 import IconButton from '../IconButton';
 
 const shouldSuccessOnce = name => func => () => {
@@ -311,42 +311,6 @@ describe('<SwitchBase />', () => {
 
         expect(getByTestId('root')).not.to.have.class(classes.disabled);
       });
-    });
-  });
-
-  describe('focus/blur', () => {
-    it('forwards focus/blur events and notifies the FormControl', () => {
-      function FocusMonitor(props) {
-        const { focused } = useFormControl();
-
-        return <span {...props}>focused: {String(focused)}</span>;
-      }
-      const handleBlur = spy();
-      const handleFocus = spy();
-      const { getByRole, getByTestId } = render(
-        <FormControl>
-          <FocusMonitor data-testid="focus-monitor" />
-          <SwitchBase
-            data-testid="root"
-            onBlur={handleBlur}
-            onFocus={handleFocus}
-            icon="unchecked"
-            checkedIcon="checked"
-            type="checkbox"
-          />
-        </FormControl>,
-      );
-      const checkbox = getByRole('checkbox');
-
-      checkbox.focus();
-
-      expect(getByTestId('focus-monitor')).to.have.text('focused: true');
-      expect(handleFocus.callCount).to.equal(1);
-
-      checkbox.blur();
-
-      expect(getByTestId('focus-monitor')).to.have.text('focused: false');
-      expect(handleBlur.callCount).to.equal(1);
     });
   });
 
