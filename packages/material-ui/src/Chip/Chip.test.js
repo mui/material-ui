@@ -156,6 +156,25 @@ describe('<Chip />', () => {
       expect(getByRole('button')).to.have.property('tabIndex', 0);
       expect(container.querySelector('#avatar')).to.be.ok;
     });
+
+    it('should apply user value of tabIndex', () => {
+      const { container, getByRole } = render(
+        <Chip
+          avatar={<Avatar id="avatar">MB</Avatar>}
+          label="Text Avatar Chip"
+          onDelete={() => {}}
+          // eslint-disable-next-line jsx-a11y/tabindex-no-positive
+          tabIndex={5}
+        />,
+      );
+
+      expect(getByRole('button')).to.have.property('tabIndex', 5);
+      const elementsInTabOrder = Array.from(container.querySelectorAll('[tabIndex]')).filter(
+        element => element.tabIndex >= 0,
+      );
+      expect(elementsInTabOrder).to.have.length(1);
+    });
+
     it('fires onDelete when clicking the delete button', () => {
       const handleDelete = spy();
       const { getByRole } = render(

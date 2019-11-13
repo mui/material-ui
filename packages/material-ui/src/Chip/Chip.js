@@ -303,6 +303,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     onDelete,
     onKeyUp,
     size = 'medium',
+    tabIndex = 0,
     variant = 'default',
     ...other
   } = props;
@@ -363,7 +364,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
           className={clsx(classes.deleteIconButton, { [classes.deleteIconButtonSmall]: small })}
           onMouseDown={event => event.stopPropagation()}
           onClick={handleDeleteIconClick}
-          tabIndex={clickable ? -1 : 0}
+          tabIndex={clickable ? -1 : tabIndex}
         >
           <CancelIcon className={clsx(classes.deleteIcon, customClasses)} viewBox="2 2 20 20" />
         </ButtonBase>
@@ -419,7 +420,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
         className,
       )}
       aria-disabled={disabled ? true : undefined}
-      tabIndex={clickable ? 0 : undefined}
+      tabIndex={clickable ? tabIndex : undefined}
       onClick={onClick}
       onKeyUp={handleKeyUp}
       ref={handleRef}
@@ -512,6 +513,11 @@ Chip.propTypes = {
    * The size of the chip.
    */
   size: PropTypes.oneOf(['small', 'medium']),
+  /**
+   * Tab index of the element that should be in tab order. By
+   * using `-1` no Chip will be on tab order.
+   */
+  tabIndex: PropTypes.number,
   /**
    * The variant to use.
    */

@@ -36,6 +36,7 @@ Chips represent complex entities in small blocks, such as a contact.
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The content of the label. |
 | <span class="prop-name">onDelete</span> | <span class="prop-type">func</span> |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown. |
 | <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'</span> | <span class="prop-default">'medium'</span> | The size of the chip. |
+| <span class="prop-name">tabIndex</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | Tab index of the element that should be in tab order. By using `-1` no Chip will be on tab order. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'outlined'</span> | <span class="prop-default">'default'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
