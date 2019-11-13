@@ -31,10 +31,6 @@ export interface TreeItemProps
   /**
    * The component used for the transition.
    */
-  /**
-   * Node is selectable.
-   */
-  selectable?: boolean;
   TransitionComponent?: React.ComponentType<TransitionProps>;
 }
 

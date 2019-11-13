@@ -225,7 +225,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       }
     }
 
-    if (onNodeToggle) {
+    if (onNodeSelect) {
       onNodeSelect(event, newSelected);
     }
 
