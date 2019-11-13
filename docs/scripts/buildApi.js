@@ -224,7 +224,14 @@ async function run() {
     }),
   );
 
-  const muiApi = { components: componentApis };
+  const sortedComponentApis = {};
+  Object.keys(componentApis)
+    .sort()
+    .forEach(key => {
+      sortedComponentApis[key] = componentApis[key];
+    });
+
+  const muiApi = { components: sortedComponentApis };
   await writeJSON(outputPath, muiApi, { spaces: 2 });
 }
 
