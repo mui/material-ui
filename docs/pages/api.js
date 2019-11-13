@@ -59,13 +59,45 @@ function PropDescription(props) {
 
 PropDescription.propTypes = { description: PropTypes.string };
 
+function Join({ children, separator }) {
+  if (children.length <= 1) {
+    return children;
+  }
+  const joinedChildren = [];
+
+  React.Children.forEach(children, (child, index) => {
+    if (index === children.length - 1) {
+      joinedChildren.push(child);
+    } else {
+      joinedChildren.push(child, React.cloneElement(separator, { key: `sep-${index}` }));
+    }
+  });
+
+  return joinedChildren;
+}
+
 /**
- * TODO custom, arrayOf, instanceOf, shape, union, enum
+ * TODO custom, instanceOf, shape, enum
  */
 function PropType(props) {
   const { type } = props;
 
   switch (type.name) {
+    case 'union':
+      return (
+        <Join
+          separator={
+            <React.Fragment>
+              <br />
+              |&nbsp;
+            </React.Fragment>
+          }
+        >
+          {type.value.map((member, index) => {
+            return <PropType key={`member-${index}`} type={member} />;
+          })}
+        </Join>
+      );
     case 'arrayOf':
       return (
         <React.Fragment>
