@@ -4,10 +4,13 @@ import fetch from 'isomorphic-fetch';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContent from 'docs/src/modules/components/AppContent';
 import Head from 'docs/src/modules/components/Head';
-import { styles as markdownStyles } from 'docs/src/modules/components/MarkdownElement';
+import MarkdownElement, {
+  styles as markdownStyles,
+} from 'docs/src/modules/components/MarkdownElement';
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, styled } from '@material-ui/core/styles';
+import Link from 'docs/src/modules/components/Link';
 
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 const PATH_REPLACE_REGEX = /\\/g;
@@ -17,6 +20,13 @@ const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map(language => `-${language}.md`);
 function normalizePath(path) {
   return path.replace(PATH_REPLACE_REGEX, PATH_SEPARATOR);
 }
+
+const InlineMarkdownElement = styled(MarkdownElement)({
+  display: 'inline',
+  '& p ': {
+    display: 'inline',
+  },
+});
 
 function ComponentImport(props) {
   const { api } = props;
@@ -58,20 +68,105 @@ function ComponentImport(props) {
 
 ComponentImport.propTypes = { api: PropTypes.object.isRequired };
 
-/**
- * TODO
- */
-function PropDescription(props) {
-  const { description, type } = props;
-
-  if (description === null) {
-    return "This prop doesn't have a description. Please file an issue";
-  }
-
-  return null;
+function isElementTypeAcceptingRefProp(type) {
+  return type.raw === 'elementTypeAcceptingRef';
 }
 
-PropDescription.propTypes = { description: PropTypes.string };
+function isRefType(type) {
+  return type.raw === 'refType';
+}
+
+function isElementAcceptingRefProp(type) {
+  return /^elementAcceptingRef/.test(type.raw);
+}
+
+function FunctionSignature(props) {
+  const { tags } = props;
+
+  if (tags.length === 0) {
+    return null;
+  }
+
+  const paramTags = tags.filter(tag => tag.title === 'param');
+  const returnTag = tags.find(tag => tag.title === 'returns') || { type: { name: 'void' } };
+
+  return (
+    <React.Fragment>
+      <strong>Signature:</strong>
+      <br />
+      <code>
+        function(
+        <Join separator=", ">
+          {paramTags.map(tag => {
+            if (tag.type.type === 'AllLiteral') {
+              return `${tag.name}: any`;
+            }
+
+            if (tag.type.type === 'OptionalType') {
+              return `${tag.name}?: ${tag.type.expression.name}`;
+            }
+
+            return `${tag.name}: ${tag.type.name}`;
+          })}
+        </Join>
+        ) =&gt; {returnTag.type.name}
+      </code>
+      <br />
+      <Join separator={<br />}>
+        {paramTags.map(tag => {
+          return (
+            <React.Fragment key={tag.name}>
+              <em>{tag.name}: </em>
+              <InlineMarkdownElement text={tag.description} />
+            </React.Fragment>
+          );
+        })}
+      </Join>
+      <br />
+      {returnTag.description && (
+        <em>
+          returns ({returnTag.type.name}): <InlineMarkdownElement text={returnTag.description} />
+        </em>
+      )}
+    </React.Fragment>
+  );
+}
+
+FunctionSignature.propTypes = { tags: PropTypes.array.isRequired };
+
+function PropDescription(props) {
+  const { description, tags, type } = props;
+
+  if (description === undefined) {
+    throw new TypeError("This prop doesn't have a description. Please file an issue");
+  }
+
+  const notes = [];
+  if (isElementAcceptingRefProp(type) || isElementTypeAcceptingRefProp(type)) {
+    notes.push(
+      <React.Fragment key="ref">
+        <span role="img" aria-label="Warning">
+          ⚠️
+        </span>
+        <Link to="/guides/composition/#caveat-with-refs">Needs to be able to hold a ref</Link>.
+      </React.Fragment>,
+    );
+  }
+
+  return (
+    <React.Fragment>
+      <MarkdownElement text={description} />
+      {type.name === 'func' && <FunctionSignature tags={tags} />}
+      {notes}
+    </React.Fragment>
+  );
+}
+
+PropDescription.propTypes = {
+  description: PropTypes.string,
+  tags: PropTypes.array,
+  type: PropTypes.object,
+};
 
 function Join({ children, separator }) {
   if (React.Children.count(children) <= 1) {
@@ -91,19 +186,6 @@ function Join({ children, separator }) {
 
   return joinedChildren;
 }
-
-function isElementTypeAcceptingRefProp(type) {
-  return type.raw === 'elementTypeAcceptingRef';
-}
-
-function isRefType(type) {
-  return type.raw === 'refType';
-}
-
-function isElementAcceptingRefProp(type) {
-  return /^elementAcceptingRef/.test(type.raw);
-}
-
 function PropType(props) {
   const { type } = props;
 
@@ -229,9 +311,8 @@ function ComponentProp(props) {
   // injected by withStyles
   const required = name === 'classes' ? false : prop.required;
 
-  const type = prop.type;
+  const { description, tags, type } = prop;
   const defaultValue = prop.defaultValue ? prop.defaultValue.value.replace(/\r*\n/g, '') : null;
-  const description = prop.description;
 
   const classes = useComponentPropStyles();
 
@@ -247,7 +328,7 @@ function ComponentProp(props) {
       </td>
       <td className={classes.propDefault}>{defaultValue}</td>
       <td>
-        <PropDescription description={description} type={type} />
+        <PropDescription description={description} tags={tags} type={type} />
       </td>
     </tr>
   );
@@ -260,7 +341,7 @@ function ComponentProps(props) {
 
   return (
     <React.Fragment>
-      <h2>Props</h2>
+      <h2 id="props">Props</h2>
       <table>
         <thead>
           <tr>
