@@ -11,6 +11,7 @@ import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import clsx from 'clsx';
 import { makeStyles, styled } from '@material-ui/core/styles';
 import Link from 'docs/src/modules/components/Link';
+import { pageToTitle } from 'docs/src/modules/utils/helpers';
 
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 const PATH_REPLACE_REGEX = /\\/g;
@@ -529,6 +530,24 @@ function ComponentInheritance(props) {
 
 ComponentInheritance.propTypes = { inheritance: PropTypes.object };
 
+function ComponentDemos(props) {
+  const { pages } = props;
+
+  return (
+    <ul>
+      {pages.map(pathname => {
+        return (
+          <li key={pathname}>
+            <Link href={pathname}>{pageToTitle({ pathname })}</Link>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+ComponentDemos.propTypes = { pages: PropTypes.arrayOf(PropTypes.object.isRequired) };
+
 const useMarkdownStyles = makeStyles(markdownStyles);
 
 function ComponentApi(props) {
@@ -566,8 +585,14 @@ function ComponentApi(props) {
       <ComponentStyles filename={api.filename} styles={api.styles} />
       {api.inheritance && (
         <React.Fragment>
-          <h3 id="inheritance">Inheritance</h3>
+          <h2 id="inheritance">Inheritance</h2>
           <ComponentInheritance inheritance={api.inheritance} />
+        </React.Fragment>
+      )}
+      {api.usedInPages.length > 0 && (
+        <React.Fragment>
+          <h2 id="demos">Demos</h2>
+          <ComponentDemos pages={api.usedInPages} />
         </React.Fragment>
       )}
     </div>
