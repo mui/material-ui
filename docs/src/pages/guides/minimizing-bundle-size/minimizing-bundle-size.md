@@ -40,6 +40,7 @@ import TextField from '@material-ui/core/TextField';
 instead of top level imports (without a Babel plugin):
 
 ```js
+// 🐢 Slow
 import { Button, TextField } from '@material-ui/core';
 ```
 
