@@ -9,7 +9,7 @@ components: AppBar, Toolbar, Menu
 
 The [top App Bar](https://material.io/design/components/app-bars-top.html) provides content and actions related to the current screen. It’s used for branding, screen titles, navigation, and actions.
 
-It can transform into a contextual action bar or used as a navbar.
+It can transform into a contextual action bar or be used as a navbar.
 
 ## Simple App Bar
 
