@@ -55,7 +55,11 @@ const MenuItem = React.forwardRef(function MenuItem(props, ref) {
       component={component}
       selected={selected}
       disableGutters={disableGutters}
-      classes={{ dense: classes.dense }}
+      classes={{
+        dense: classes.dense,
+        container: classes.container,
+        secondaryAction: classes.secondaryAction,
+      }}
       className={clsx(
         classes.root,
         {
