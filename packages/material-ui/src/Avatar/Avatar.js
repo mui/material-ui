@@ -137,7 +137,8 @@ Avatar.propTypes = {
    */
   src: PropTypes.string,
   /**
-   * The `srcSet` attribute for the `img` element. Defines the set of images we will allow the browser to choose between by match size.
+   * The `srcSet` attribute for the `img` element.
+   * Use this attribute for responsive image display.
    */
   srcSet: PropTypes.string,
   /**
