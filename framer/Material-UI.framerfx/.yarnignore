@@ -6,7 +6,7 @@ Icon\r
 /.backups
 /.cache
 /build
-/dist
+/design
 node_modules
 .config.json
 .project.log
@@ -14,4 +14,3 @@ node_modules
 .npmrc
 .yarnrc
 yarn-error.log
-canvas.tsx
