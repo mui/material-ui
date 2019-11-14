@@ -297,6 +297,14 @@ function MarkdownElement(props) {
   // eslint-disable-next-line no-underscore-dangle
   global.__MARKED_USER_LANGUAGE__ = userLanguage;
 
+  if (typeof window !== 'undefined') {
+    return (
+      <div className={clsx(classes.root, 'markdown-body', className)} {...other}>
+        <div className="description" />
+      </div>
+    );
+  }
+
   /* eslint-disable react/no-danger */
   return (
     <div
