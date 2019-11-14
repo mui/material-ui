@@ -733,7 +733,7 @@ export default function useAutocomplete(props) {
       'aria-controls': popupOpen ? `${id}-popup` : null,
       // Disable browser's suggestion that might overlap with the popup.
       // (autocomplete and autofill)
-      autoComplete: 'disabled',
+      autoComplete: 'off',
       ref: inputRef,
       autoCapitalize: 'none',
       spellCheck: 'false',
