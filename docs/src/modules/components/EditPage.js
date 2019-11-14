@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 
 export default function EditPage(props) {
-  const { markdownLocation } = props;
+  const { className, markdownLocation } = props;
   const t = useSelector(state => state.options.t);
   const userLanguage = useSelector(state => state.options.userLanguage);
   const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
@@ -15,6 +15,7 @@ export default function EditPage(props) {
 
   return (
     <Button
+      className={className}
       component="a"
       href={
         userLanguage === 'en'
@@ -34,5 +35,6 @@ export default function EditPage(props) {
 }
 
 EditPage.propTypes = {
+  className: PropTypes.string,
   markdownLocation: PropTypes.string.isRequired,
 };

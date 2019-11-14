@@ -12,6 +12,8 @@ import clsx from 'clsx';
 import { makeStyles, styled } from '@material-ui/core/styles';
 import Link from 'docs/src/modules/components/Link';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
+import EditPage from 'docs/src/modules/components/EditPage';
+import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 const PATH_REPLACE_REGEX = /\\/g;
@@ -549,53 +551,66 @@ function ComponentDemos(props) {
 ComponentDemos.propTypes = { pages: PropTypes.arrayOf(PropTypes.object.isRequired) };
 
 const useMarkdownStyles = makeStyles(markdownStyles);
+const useComponentApiStyles = makeStyles(theme => {
+  return {
+    editButton: { position: 'absolute', right: theme.spacing(2) },
+  };
+});
 
 function ComponentApi(props) {
   const { api } = props;
 
-  const classes = useMarkdownStyles();
+  const classes = useComponentApiStyles();
+  const markdownClasses = useMarkdownStyles();
 
   return (
-    <div className={classes.root}>
-      {/* TODO: component name + desc */}
-      <Head description="API for AppBar component" title="AppBar API - Material-UI" />
-      <h1>{api.name} API</h1>
-      <p className="description">
-        The API documentation of the {api.name} React component. Learn more about the props and the
-        CSS customization points.
-      </p>
-      <ComponentImport api={api} />
-      <p>{api.description}</p>
-
-      <h2 id="props">Props</h2>
-      <ComponentPropsTable propsApi={api.props} />
-      <RefHint filename={api.filename} forwardsRefTo={api.forwardsRefTo} />
-      {api.spread && (
-        <p>
-          Any other props supplied will be provided to the root element (
-          {api.inheritance ? (
-            <Link href={api.inheritance.pathname}>{api.inheritance.component}</Link>
-          ) : (
-            'native element'
-          )}
-          ).
+    <React.Fragment>
+      <EditPage
+        className={classes.editButton}
+        markdownLocation={api.filename}
+        sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
+      />
+      <div className={markdownClasses.root}>
+        {/* TODO: component name + desc */}
+        <Head description="API for AppBar component" title="AppBar API - Material-UI" />
+        <h1>{api.name} API</h1>
+        <p className="description">
+          The API documentation of the {api.name} React component. Learn more about the props and
+          the CSS customization points.
         </p>
-      )}
-      <h2 id="css">CSS</h2>
-      <ComponentStyles filename={api.filename} styles={api.styles} />
-      {api.inheritance && (
-        <React.Fragment>
-          <h2 id="inheritance">Inheritance</h2>
-          <ComponentInheritance inheritance={api.inheritance} />
-        </React.Fragment>
-      )}
-      {api.usedInPages.length > 0 && (
-        <React.Fragment>
-          <h2 id="demos">Demos</h2>
-          <ComponentDemos pages={api.usedInPages} />
-        </React.Fragment>
-      )}
-    </div>
+        <ComponentImport api={api} />
+        <p>{api.description}</p>
+
+        <h2 id="props">Props</h2>
+        <ComponentPropsTable propsApi={api.props} />
+        <RefHint filename={api.filename} forwardsRefTo={api.forwardsRefTo} />
+        {api.spread && (
+          <p>
+            Any other props supplied will be provided to the root element (
+            {api.inheritance ? (
+              <Link href={api.inheritance.pathname}>{api.inheritance.component}</Link>
+            ) : (
+              'native element'
+            )}
+            ).
+          </p>
+        )}
+        <h2 id="css">CSS</h2>
+        <ComponentStyles filename={api.filename} styles={api.styles} />
+        {api.inheritance && (
+          <React.Fragment>
+            <h2 id="inheritance">Inheritance</h2>
+            <ComponentInheritance inheritance={api.inheritance} />
+          </React.Fragment>
+        )}
+        {api.usedInPages.length > 0 && (
+          <React.Fragment>
+            <h2 id="demos">Demos</h2>
+            <ComponentDemos pages={api.usedInPages} />
+          </React.Fragment>
+        )}
+      </div>
+    </React.Fragment>
   );
 }
 
