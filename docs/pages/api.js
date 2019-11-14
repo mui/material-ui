@@ -505,6 +505,30 @@ function ComponentStyles(props) {
 
 ComponentStyles.propTypes = { filename: PropTypes.string, styles: PropTypes.object };
 
+function ComponentInheritance(props) {
+  const { inheritance } = props;
+
+  let suffix = '';
+  switch (inheritance.component) {
+    case 'Transition':
+      suffix = ', from react-transition-group,';
+      break;
+
+    default:
+      break;
+  }
+
+  return (
+    <p>
+      The props of the <Link href={inheritance.pathname}>{inheritance.component}</Link> component
+      {suffix} are also available. You can take advantage of this behavior to{' '}
+      <Link href="/guides/api/#spread">target nested components</Link>.
+    </p>
+  );
+}
+
+ComponentInheritance.propTypes = { inheritance: PropTypes.object };
+
 const useMarkdownStyles = makeStyles(markdownStyles);
 
 function ComponentApi(props) {
@@ -540,6 +564,12 @@ function ComponentApi(props) {
       )}
       <h2 id="css">CSS</h2>
       <ComponentStyles filename={api.filename} styles={api.styles} />
+      {api.inheritance && (
+        <React.Fragment>
+          <h3 id="inheritance">Inheritance</h3>
+          <ComponentInheritance inheritance={api.inheritance} />
+        </React.Fragment>
+      )}
     </div>
   );
 }
