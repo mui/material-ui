@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import { duration } from '../styles/transitions';
 import ClickAwayListener from '../ClickAwayListener';
+import useEventCallback from '../utils/useEventCallback';
 import capitalize from '../utils/capitalize';
 import createChainedFunction from '../utils/createChainedFunction';
 import Grow from '../Grow';
@@ -130,37 +131,25 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   const [exited, setExited] = React.useState(true);
 
   // Timer that controls delay before snackbar auto hides
-  const setAutoHideTimer = React.useCallback(
-    autoHideDurationParam => {
-      const autoHideDurationBefore =
-        autoHideDurationParam != null ? autoHideDurationParam : autoHideDuration;
-
-      if (!onClose || autoHideDurationBefore == null) {
-        return;
-      }
-
-      clearTimeout(timerAutoHide.current);
-      timerAutoHide.current = setTimeout(() => {
-        const autoHideDurationAfter =
-          autoHideDurationParam != null ? autoHideDurationParam : autoHideDuration;
-        if (!onClose || autoHideDurationAfter == null) {
-          return;
-        }
-        onClose(null, 'timeout');
-      }, autoHideDurationBefore);
-    },
-    [autoHideDuration, onClose],
-  );
+  const setAutoHideTimer = useEventCallback(autoHideDurationParam => {
+    if (!onClose || autoHideDurationParam == null) {
+      return;
+    }
+    clearTimeout(timerAutoHide.current);
+    timerAutoHide.current = setTimeout(() => {
+      onClose(null, 'timeout');
+    }, autoHideDurationParam);
+  });
 
   React.useEffect(() => {
     if (open) {
-      setAutoHideTimer();
+      setAutoHideTimer(autoHideDuration);
     }
 
     return () => {
       clearTimeout(timerAutoHide.current);
     };
-  }, [open, setAutoHideTimer]);
+  }, [open, autoHideDuration, setAutoHideTimer]);
 
   // Pause the timer when the user is interacting with the Snackbar
   // or when the user hide the window.
