@@ -394,6 +394,117 @@ function RefHint(props) {
 
 RefHint.propTypes = { filename: PropTypes.string.isRequired, forwardsRefTo: PropTypes.string };
 
+function ClassesTable(props) {
+  const { styles } = props;
+
+  const classes = useComponentPropStyles();
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Rule name</th>
+          <th>Global class</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {styles.classes.map(styleRule => {
+          return (
+            <tr key={styleRule}>
+              <td className={classes.propName}>{styleRule}</td>
+              <td className={classes.propName}>{styles.globalClasses[styleRule]}</td>
+              <td>
+                {styles.descriptions[styleRule] && (
+                  <InlineMarkdownElement text={styles.descriptions[styleRule]} />
+                )}
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  );
+}
+
+ClassesTable.propTypes = { styles: PropTypes.object };
+
+function ClassesList(props) {
+  const { styles } = props;
+
+  return (
+    <ul>
+      {styles.classes.map(styleRule => {
+        return <li key={styleRule}>{styleRule}</li>;
+      })}
+    </ul>
+  );
+}
+ClassesList.propTypes = { styles: PropTypes.object };
+
+function ComponentStyles(props) {
+  const { filename, styles } = props;
+
+  if (styles.classes.length === 0) {
+    return null;
+  }
+
+  if (!styles.name) {
+    throw new Error(`Missing styles name.`);
+  }
+
+  const details =
+    Object.keys(styles.descriptions).length > 0 ? (
+      <ClassesTable styles={styles} />
+    ) : (
+      <ClassesList styles={styles} />
+    );
+
+  return (
+    <React.Fragment>
+      <p>
+        Style sheet name: <code>{styles.name}</code>
+      </p>
+      <h3>Style sheet details</h3>
+      {details}
+      <p>
+        You can override the style of the component thanks to one of these customization points:
+      </p>
+      <ul>
+        <li>
+          With a rule name of the{' '}
+          <Link href="/customization/components/#overriding-styles-with-classes">
+            <code>classes</code> object prop
+          </Link>
+          .
+        </li>
+        <li>
+          With a{' '}
+          <Link href="/customization/components/#overriding-styles-with-global-class-names">
+            global class name
+          </Link>
+          .
+        </li>
+        <li>
+          With a theme and an
+          <Link href="/customization/globals/#css">
+            <code>overrides</code> property
+          </Link>
+          .
+        </li>
+      </ul>
+      <p>
+        If that&apos;s not sufficient, you can check the{' '}
+        <Link href={`${SOURCE_CODE_ROOT_URL}${normalizePath(filename)}`}>
+          implementation of the component
+        </Link>{' '}
+        for more detail.
+      </p>
+    </React.Fragment>
+  );
+}
+
+ComponentStyles.propTypes = { filename: PropTypes.string, styles: PropTypes.object };
+
 const useMarkdownStyles = makeStyles(markdownStyles);
 
 function ComponentApi(props) {
@@ -427,6 +538,8 @@ function ComponentApi(props) {
           ).
         </p>
       )}
+      <h2 id="css">CSS</h2>
+      <ComponentStyles filename={api.filename} styles={api.styles} />
     </div>
   );
 }
