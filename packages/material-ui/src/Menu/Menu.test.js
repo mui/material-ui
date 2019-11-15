@@ -215,6 +215,21 @@ describe('<Menu />', () => {
     assert.strictEqual(onCloseSpy.args[0][1], 'tabKeyDown');
   });
 
+  it('ignores invalid children', () => {
+    const wrapper = mount(
+      <Menu {...defaultProps} open>
+        {null}
+        <span role="menuitem">hello</span>
+        {/* testing conditional rendering */}
+        {false && <span role="menuitem">hello</span>}
+        {undefined}
+        foo
+      </Menu>,
+    );
+
+    assert.lengthOf(wrapper.find('span[role="menuitem"]'), 1);
+  });
+
   describe('warnings', () => {
     before(() => {
       consoleErrorMock.spy();
