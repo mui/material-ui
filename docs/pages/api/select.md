@@ -24,7 +24,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">autoWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If true, the width of the popover will automatically be set according to the items inside the menu, otherwise it will be at least the width of the select input. |
+| <span class="prop-name">autoWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the width of the popover will automatically be set according to the items inside the menu, otherwise it will be at least the width of the select input. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The option elements to populate the select with. Can be some `MenuItem` when `native` is false and `option` when `native` is true.<br>⚠️The `MenuItem` elements **must** be direct descendants when `native` is false. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">defaultValue</span> | <span class="prop-type">any</span> |  | The default element value. Use when the component is not controlled. |
@@ -35,7 +35,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">labelId</span> | <span class="prop-type">string</span> |  | The idea of an element that acts as an additional label. The Select will be labelled by the additional label and the selected value. |
 | <span class="prop-name">labelWidth</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | The label width to be used on OutlinedInput. This prop is required when the `variant` prop is `outlined`. |
 | <span class="prop-name">MenuProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Menu`](/api/menu/) element. |
-| <span class="prop-name">multiple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If true, `value` must be an array and the menu will support multiple selections. |
+| <span class="prop-name">multiple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, `value` must be an array and the menu will support multiple selections. |
 | <span class="prop-name">native</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the component will be using a native `select` element. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback function fired when a menu item is selected.<br><br>**Signature:**<br>`function(event: object, child?: object) => void`<br>*event:* The event source of the callback. You can pull out the new value by accessing `event.target.value` (any).<br>*child:* The react element that was selected when `native` is `false` (default). |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed. Use in controlled mode (see open).<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |

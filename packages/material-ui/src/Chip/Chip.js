@@ -431,7 +431,7 @@ Chip.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If true, the chip will appear clickable, and will raise when pressed,
+   * If `true`, the chip will appear clickable, and will raise when pressed,
    * even if the onClick prop is not defined.
    * If false, the chip will not be clickable, even if onClick prop is defined.
    * This can be used, for example,

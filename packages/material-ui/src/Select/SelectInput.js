@@ -382,7 +382,7 @@ SelectInput.propTypes = {
    */
   autoFocus: PropTypes.bool,
   /**
-   * If true, the width of the popover will automatically be set according to the items inside the
+   * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
    */
   autoWidth: PropTypes.bool,
@@ -431,7 +431,7 @@ SelectInput.propTypes = {
    */
   MenuProps: PropTypes.object,
   /**
-   * If true, `value` must be an array and the menu will support multiple selections.
+   * If `true`, `value` must be an array and the menu will support multiple selections.
    */
   multiple: PropTypes.bool,
   /**
