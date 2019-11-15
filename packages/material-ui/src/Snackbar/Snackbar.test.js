@@ -130,6 +130,28 @@ describe('<Snackbar />', () => {
       assert.deepEqual(handleClose.args[0], [null, 'timeout']);
     });
 
+    // Test case for https://github.com/mui-org/material-ui/issues/18353
+    it('should call onClose when timer done after a reference change', () => {
+      const handleClose = spy();
+      const autoHideDuration = 2e3;
+      const wrapper = mount(
+        <Snackbar
+          open={false}
+          onClose={handleClose}
+          message="message"
+          autoHideDuration={autoHideDuration}
+        />,
+      );
+
+      wrapper.setProps({ open: true });
+      assert.strictEqual(handleClose.callCount, 0);
+      clock.tick(autoHideDuration / 2);
+      wrapper.setProps({ onClose: () => {} });
+      clock.tick(autoHideDuration / 2);
+      assert.strictEqual(handleClose.callCount, 1);
+      assert.deepEqual(handleClose.args[0], [null, 'timeout']);
+    });
+
     it('should not call onClose when the autoHideDuration is reset', () => {
       const handleClose = spy();
       const autoHideDuration = 2e3;
