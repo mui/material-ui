@@ -1,6 +1,7 @@
 import { assert } from 'chai';
 import createPalette from './createPalette';
 import createTypography from './createTypography';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 describe('createTypography', () => {
   let palette;
@@ -70,5 +71,35 @@ describe('createTypography', () => {
   it('only defines letter-spacing if the font-family is not overwritten', () => {
     assert.isDefined(createTypography(palette, {}).h1.letterSpacing);
     assert.isUndefined(createTypography(palette, { fontFamily: 'Gotham' }).h1.letterSpacing);
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('logs an error if `fontSize` is not of type number', () => {
+      createTypography({}, { fontSize: '1' });
+
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.match(
+        consoleErrorMock.args()[0][0],
+        /Material-UI: `fontSize` is required to be a number./,
+      );
+    });
+
+    it('logs an error if `htmlFontSize` is not of type number', () => {
+      createTypography({}, { htmlFontSize: '1' });
+
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.match(
+        consoleErrorMock.args()[0][0],
+        /Material-UI: `htmlFontSize` is required to be a number./,
+      );
+    });
   });
 });
