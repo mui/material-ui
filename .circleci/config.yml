@@ -51,7 +51,7 @@ jobs:
           command: yarn lint
       - run:
           name: Ensure prettier was run
-          command: yarn prettier --check './**/*.ts*' './**/*.js*'
+          command: yarn prettier --check './**/*.{ts,tsx,js,jsx,json,md,mdx,html,css}'
       - run:
           name: Build and analyze bundlesize
           command: yarn workspace @material-ui/pickers build:analyze

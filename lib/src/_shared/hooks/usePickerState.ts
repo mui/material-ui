@@ -1,7 +1,7 @@
 import { useUtils } from './useUtils';
 import { IUtils } from '@date-io/core/IUtils';
-import { MaterialUiPickersDate } from '../..';
 import { useOpenState } from './useOpenState';
+import { MaterialUiPickersDate } from '../../typings/date';
 import { BasePickerProps } from '../../typings/BasePicker';
 import { getDisplayDate, validate } from '../../_helpers/text-field-helper';
 import { useCallback, useDebugValue, useEffect, useMemo, useState, useRef } from 'react';

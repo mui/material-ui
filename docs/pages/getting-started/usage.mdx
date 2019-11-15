@@ -1,4 +1,4 @@
-import Ad from '_shared/Ad'
+import Ad from '_shared/Ad';
 import PageMeta from '_shared/PageMeta';
 import { NoSsr } from '@material-ui/core';
 import { CODESANDBOX_EXAMPLE_ID } from '_constants';
@@ -14,14 +14,14 @@ import { CODESANDBOX_EXAMPLE_ID } from '_constants';
 #### Quick start
 
 ```jsx
-import React, { useState } from "react";
-import DateFnsUtils from "@date-io/date-fns"; // choose your lib
+import React, { useState } from 'react';
+import DateFnsUtils from '@date-io/date-fns'; // choose your lib
 import {
   DatePicker,
   TimePicker,
   DateTimePicker,
   MuiPickersUtilsProvider,
-} from "@material-ui/pickers";
+} from '@material-ui/pickers';
 
 function App() {
   const [selectedDate, handleDateChange] = useState(new Date());
@@ -34,7 +34,6 @@ function App() {
     </MuiPickersUtilsProvider>
   );
 }
-
 ```
 
 <NoSsr>

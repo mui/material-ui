@@ -62,7 +62,7 @@
     },
     "showTodayButton": {
       "defaultValue": {
-        "value": "false"
+        "value": false
       },
       "description": "If true today button will be displayed <b>Note*</b> that clear button has higher priority",
       "name": "showTodayButton",
@@ -77,7 +77,7 @@
     },
     "clearable": {
       "defaultValue": {
-        "value": "false"
+        "value": false
       },
       "description": "Show clear action in picker dialog",
       "name": "clearable",
@@ -391,7 +391,7 @@
       },
       "required": false,
       "type": {
-        "name": "FunctionComponent<ToolbarComponentProps> | ComponentClass<ToolbarComponentProps, any>"
+        "name": "ComponentClass<ToolbarComponentProps, any> | FunctionComponent<ToolbarComponentProps>"
       }
     },
     "variant": {
@@ -1012,7 +1012,7 @@
       },
       "required": false,
       "type": {
-        "name": "FunctionComponent<ToolbarComponentProps> | ComponentClass<ToolbarComponentProps, any>"
+        "name": "ComponentClass<ToolbarComponentProps, any> | FunctionComponent<ToolbarComponentProps>"
       }
     },
     "PopoverProps": {
@@ -1685,7 +1685,7 @@
       },
       "required": false,
       "type": {
-        "name": "FunctionComponent<ToolbarComponentProps> | ComponentClass<ToolbarComponentProps, any>"
+        "name": "ComponentClass<ToolbarComponentProps, any> | FunctionComponent<ToolbarComponentProps>"
       }
     },
     "variant": {
@@ -2114,7 +2114,7 @@
       },
       "required": false,
       "type": {
-        "name": "FunctionComponent<ToolbarComponentProps> | ComponentClass<ToolbarComponentProps, any>"
+        "name": "ComponentClass<ToolbarComponentProps, any> | FunctionComponent<ToolbarComponentProps>"
       }
     },
     "PopoverProps": {
@@ -2595,7 +2595,7 @@
       },
       "required": false,
       "type": {
-        "name": "FunctionComponent<ToolbarComponentProps> | ComponentClass<ToolbarComponentProps, any>"
+        "name": "ComponentClass<ToolbarComponentProps, any> | FunctionComponent<ToolbarComponentProps>"
       }
     },
     "variant": {
@@ -3285,7 +3285,7 @@
       },
       "required": false,
       "type": {
-        "name": "FunctionComponent<ToolbarComponentProps> | ComponentClass<ToolbarComponentProps, any>"
+        "name": "ComponentClass<ToolbarComponentProps, any> | FunctionComponent<ToolbarComponentProps>"
       }
     },
     "PopoverProps": {
@@ -3768,7 +3768,9 @@
       }
     },
     "minDate": {
-      "defaultValue": null,
+      "defaultValue": {
+        "value": null
+      },
       "description": "Min date",
       "name": "minDate",
       "parent": {
@@ -3781,7 +3783,9 @@
       }
     },
     "maxDate": {
-      "defaultValue": null,
+      "defaultValue": {
+        "value": null
+      },
       "description": "Max date",
       "name": "maxDate",
       "parent": {
@@ -3795,7 +3799,7 @@
     },
     "disablePast": {
       "defaultValue": {
-        "value": "false"
+        "value": false
       },
       "description": "Disable past dates",
       "name": "disablePast",
@@ -3810,7 +3814,7 @@
     },
     "disableFuture": {
       "defaultValue": {
-        "value": "false"
+        "value": false
       },
       "description": "Disable future dates",
       "name": "disableFuture",
@@ -3864,7 +3868,7 @@
     },
     "allowKeyboardControl": {
       "defaultValue": {
-        "value": "true"
+        "value": true
       },
       "description": "Enables keyboard listener for moving between days in calendar",
       "name": "allowKeyboardControl",
@@ -3972,7 +3976,7 @@
     },
     "ampm": {
       "defaultValue": {
-        "value": "true"
+        "value": true
       },
       "description": "12h/24h clock mode",
       "name": "ampm",
@@ -3987,7 +3991,7 @@
     },
     "minutesStep": {
       "defaultValue": {
-        "value": "1"
+        "value": 1
       },
       "description": "Minutes step",
       "name": "minutesStep",
@@ -4069,7 +4073,7 @@
     },
     "ampm": {
       "defaultValue": {
-        "value": "true"
+        "value": true
       },
       "description": "12h/24h clock mode",
       "name": "ampm",
@@ -4084,7 +4088,7 @@
     },
     "minutesStep": {
       "defaultValue": {
-        "value": "1"
+        "value": 1
       },
       "description": "Minutes step",
       "name": "minutesStep",

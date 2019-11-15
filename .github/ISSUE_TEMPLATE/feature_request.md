@@ -4,7 +4,6 @@ about: Suggest an idea for this project
 title: ''
 labels: feature request
 assignees: ''
-
 ---
 
 <!-- If you don't mind add a fun gif or meme, but no pressure -->

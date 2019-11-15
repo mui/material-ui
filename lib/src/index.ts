@@ -1,27 +1,8 @@
-import { MaterialUiPickersDate } from './typings/date';
-import { KeyboardTimePickerProps } from './TimePicker';
-import { DatePickerProps, KeyboardDatePickerProps } from './DatePicker';
-import { DateTimePickerProps, KeyboardDateTimePickerProps } from './DateTimePicker';
+export * from './DatePicker';
 
-export type TimePickerProps = KeyboardTimePickerProps;
+export * from './TimePicker';
 
-export type KeyboardTimePickerProps = KeyboardTimePickerProps;
-
-export type DatePickerProps = DatePickerProps;
-
-export type KeyboardDatePickerProps = KeyboardDatePickerProps;
-
-export type DateTimePickerProps = DateTimePickerProps;
-
-export type KeyboardDateTimePickerProps = KeyboardDateTimePickerProps;
-
-export type MaterialUiPickersDate = MaterialUiPickersDate;
-
-export { DatePicker, KeyboardDatePicker } from './DatePicker';
-
-export { TimePicker, KeyboardTimePicker } from './TimePicker';
-
-export { DateTimePicker, KeyboardDateTimePicker } from './DateTimePicker';
+export * from './DateTimePicker';
 
 export { default as Calendar } from './views/Calendar/Calendar';
 

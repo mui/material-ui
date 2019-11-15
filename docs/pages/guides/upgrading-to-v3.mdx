@@ -1,11 +1,12 @@
-import Ad from '_shared/Ad'
-import PageMeta from '_shared/PageMeta'
+import Ad from '_shared/Ad';
+import PageMeta from '_shared/PageMeta';
 
 <PageMeta title="Updating to v3" />
 
 ## Upgrading to v3
 
 Version `v3` for @material-ui/pickers is coming with a whole bunch of breaking changes. This is a guide of how-to update :)
+
 <Ad />
 
 #### ⬇️ Install
@@ -21,8 +22,8 @@ yarn add @material-ui/pickers @material-ui/core@latest
 
 **Note**: It's also required to upgrade your `@material-ui/core` version to `@next`
 
-
 #### 🌚 Imports
+
 There are a lot of changes in imports. From now on, we are not providing `keyboard` prop on the pickers.
 Keyboard mode comes with separate components like `<KeyboardDatePicker />`.
 Thus you are assured that keyboard-specific logic will be correctly tree-shaken.
@@ -54,7 +55,7 @@ To override the default material-ui's `<TextField />` variant use
 #### 💪 State management
 
 We have done a lot of work to make state-management of pickers more obvious in `v3` and simplify the form integration experience.
-From now on, there is *no hidden internal state* under the hood. Your components are truly controlled.
+From now on, there is _no hidden internal state_ under the hood. Your components are truly controlled.
 
 That means that now `onChange` will be called on **each** particular day-click or keystroke.
 So if you are doing some heavy operations in `onChange` (e.g. xhr requests, dom mutations or redirects) -
@@ -85,7 +86,7 @@ It is even possible to control keyboard pickers by pure string. ⚠️ `value` p
 
 ```jsx
 function KeyboardString() {
-  const [value, setValue] = useState('01/01/2019')
+  const [value, setValue] = useState('01/01/2019');
 
   return (
     <KeyboardDatePicker
@@ -93,7 +94,7 @@ function KeyboardString() {
       inputValue={value}
       onChange={(_, newValue) => setValue(newValue)}
     />
-  )
+  );
 }
 ```
 
@@ -105,7 +106,6 @@ That saved us several KBs of bundle size, and improved performance
 Mask will be generated and applied automatically from the `format` passed.
 So please, make sure that your formats are easy to input from keyboard.
 And it is still possible to fully customize mask, checkout [this](/api/timepicker#keyboard-input) example.
-
 
 ```diff
 <KeyboardDatePicker
@@ -126,6 +126,7 @@ And from `v3` and on, date type in such props like `onChange`, `value` will auto
 So less `any` from our side :)
 
 #### 🙈 Misc
+
 - Improved accessibility by making the toolbar button actually focusable `<button />`
 - Rename `moment` property of `MuiPickersUtilsProvider` to `libInstance`
 - Rename `onlyCalendar` prop to `disableToolbar`

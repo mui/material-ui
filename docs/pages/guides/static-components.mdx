@@ -1,8 +1,8 @@
-import Ad from '_shared/Ad'
-import Example from '_shared/Example'
-import PageMeta from '_shared/PageMeta'
-import LinkedComponents from '_shared/LinkedComponents'
-import * as StaticComponents from './StaticComponents.example'
+import Ad from '_shared/Ad';
+import Example from '_shared/Example';
+import PageMeta from '_shared/PageMeta';
+import LinkedComponents from '_shared/LinkedComponents';
+import * as StaticComponents from './StaticComponents.example';
 
 <PageMeta title="Static componentes" />
 
@@ -16,16 +16,16 @@ are! You can use any sub-control of the pickers directly.
 Also you can use our own HOC that is used for any picker which provides managing temporary
 chosen date and submitting state logic.
 
-**Warning:** Make sure, that *all* your imports are consistent (or default or named) and **are not mixed**
+**Warning:** Make sure, that _all_ your imports are consistent (or default or named) and **are not mixed**
 
 #### Static components example
 
 You can reuse our logic if you needed some advanced accepting or clearing fuctionality. We are providing special
 `useStaticState` for that. It returns you:
 
-* `inputProps` - props to manage date input state, format and validation.
-* `pickerProps` - props that should be spreaded directly to the component
-* `wrapperProps` - props to manage accept, dismiss, clear and any modal/inline functionality.
+- `inputProps` - props to manage date input state, format and validation.
+- `pickerProps` - props that should be spreaded directly to the component
+- `wrapperProps` - props to manage accept, dismiss, clear and any modal/inline functionality.
 
 <Example source={StaticComponents} />
 

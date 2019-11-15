@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { MaterialUiPickersDate } from '../..';
 import { PickerView } from '../../Picker/Picker';
 import { arrayIncludes } from '../../_helpers/utils';
+import { MaterialUiPickersDate } from '../../typings/date';
 
 export function useViews(
   views: PickerView[],

@@ -69,13 +69,10 @@ function replaceGetFormatInvocation(sourceToProcess: string, lib: UtilsLib) {
       // allow both date-fns and dateFns
       return [lib.replace('dateFns', 'date-fns'), libFormat] as [UtilsLib, string];
     })
-    .reduce<FormatsMap>(
-      (obj, [key, value]) => {
-        obj[key] = value;
-        return obj;
-      },
-      {} as any
-    );
+    .reduce<FormatsMap>((obj, [key, value]) => {
+      obj[key] = value;
+      return obj;
+    }, {} as any);
 
   const currentLibFormat = cascadeFormats(lib, formatsMap);
   return sourceToProcess.replace(getFormatStringInvocation, `"${currentLibFormat}"`);
