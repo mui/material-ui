@@ -24,7 +24,7 @@ align-items: center;
 justify-content: center;
 position: relative;
 background-color: transparent;
-outline: none;
+outline: 0;
 border: 0;
 margin: 0;
 border-radius: 0;
