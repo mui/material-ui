@@ -3,7 +3,6 @@ import { assert } from 'chai';
 import { createMount, getClasses, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import Icon from '@material-ui/core/Icon';
 import SpeedDialIcon from './SpeedDialIcon';
-import AddIcon from '../internal/svg-icons/Add';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 
 describe('<SpeedDialIcon />', () => {
@@ -30,7 +29,10 @@ describe('<SpeedDialIcon />', () => {
 
   it('should render the Add icon by default', () => {
     const wrapper = mount(<SpeedDialIcon />);
-    assert.strictEqual(findOutermostIntrinsic(wrapper).find(AddIcon).length, 1);
+    assert.strictEqual(
+      findOutermostIntrinsic(wrapper).find('svg[data-mui-test="AddIcon"]').length,
+      1,
+    );
   });
 
   it('should render an Icon', () => {
