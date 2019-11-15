@@ -200,6 +200,7 @@
     "/guides/testing": "Testing",
     "/guides/flow": "Flow",
     "/guides/right-to-left": "Right-to-left",
+    "/guides/localization": "Localization",
     "/discover-more": "Discover More",
     "/discover-more/showcase": "Showcase",
     "/discover-more/related-projects": "Related Projects",
@@ -221,7 +222,6 @@
     "/components/rating": "Rating",
     "/components/skeleton": "Skeleton",
     "/components/tree-view": "Tree View",
-    "/customization/density": "Density",
-    "/guides/localization": "Localization"
+    "/customization/density": "Density"
   }
 }
