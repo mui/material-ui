@@ -28,34 +28,22 @@ const styles = theme => {
  * @ignore - internal component.
  */
 function HiddenCss(props) {
-  const {
-    children,
-    classes,
-    className,
-    lgDown,
-    lgUp,
-    mdDown,
-    mdUp,
-    only,
-    smDown,
-    smUp,
-    xlDown,
-    xlUp,
-    xsDown,
-    xsUp,
-    ...other
-  } = props;
+  const { children, classes, className, only, ...other } = props;
   const theme = useTheme();
 
   if (process.env.NODE_ENV !== 'production') {
-    if (
-      Object.keys(other).length !== 0 &&
-      !(Object.keys(other).length === 1 && other.hasOwnProperty('ref'))
-    ) {
+    const unknownProps = Object.keys(other).filter(propName => {
+      const isUndeclaredBreakpoint = !theme.breakpoints.keys.some(breakpoint => {
+        return `${breakpoint}Up` === propName || `${breakpoint}Down` === propName;
+      });
+      return isUndeclaredBreakpoint;
+    });
+
+    if (unknownProps.length > 0) {
       console.error(
-        `Material-UI: unsupported props received ${Object.keys(other).join(
+        `Material-UI: unsupported props received by \`<Hidden implementation="css" />\`: ${unknownProps.join(
           ', ',
-        )} by \`<Hidden />\`.`,
+        )}. Did you forget to wrap this component in a ThemeProvider declaring these breakpoints?`,
       );
     }
   }
