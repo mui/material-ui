@@ -294,6 +294,40 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: disableOpenOnFocus', () => {
+    it('disables open on input focus', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          disableOpenOnFocus
+          renderInput={params => <TextField autoFocus {...params} />}
+        />,
+      );
+      const textbox = getByRole('textbox');
+      const combobox = getByRole('combobox');
+
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(textbox).to.have.focus;
+
+      fireEvent.mouseDown(textbox);
+      fireEvent.click(textbox);
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+
+      document.activeElement.blur();
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(textbox).to.not.have.focus;
+
+      fireEvent.mouseDown(textbox);
+      fireEvent.click(textbox);
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(textbox).to.have.focus;
+
+      fireEvent.mouseDown(textbox);
+      fireEvent.click(textbox);
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+    });
+  });
+
   describe('wrapping behavior', () => {
     it('wraps around when navigating the list by default', () => {
       const { getAllByRole, getByRole } = render(
@@ -464,27 +498,6 @@ describe('<Autocomplete />', () => {
           />,
         );
         expect(queryByTitle('Clear')).to.be.null;
-      });
-    });
-
-    describe('prop: disableOpenOnFocus', () => {
-      it('Should disabe open on input focus', () => {
-        const { getByLabelText, getByRole } = render(
-          <Autocomplete
-            id="combo-box-demo"
-            options={['one', 'two', 'three']}
-            getOptionLabel={option => option.title}
-            style={{ width: 300 }}
-            disableOpenOnFocus
-            renderInput={params => (
-              <TextField {...params} label="Combo box" variant="outlined" fullWidth autoFocus />
-            )}
-          />,
-        );
-        const textField = getByLabelText('Combo box');
-        const autoComplete = getByRole('combobox');
-        expect(textField).to.have.focus;
-        expect(autoComplete).to.have.attribute('aria-expanded', 'false');
       });
     });
   });

@@ -672,6 +672,7 @@ export default function useAutocomplete(props) {
       firstFocus.current &&
       inputRef.current.selectionEnd - inputRef.current.selectionStart === 0
     ) {
+      inputRef.current.focus();
       inputRef.current.select();
     }
 
