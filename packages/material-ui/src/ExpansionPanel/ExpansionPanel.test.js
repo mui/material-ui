@@ -156,13 +156,17 @@ describe('<ExpansionPanel />', () => {
         PropTypes.resetWarningCache();
       });
 
-      /* works locally but doesn't catch the errors in test:karma
       it('requires at least one child', () => {
-        assert.throws(() => mount(<ExpansionPanel>[]</ExpansionPanel>));
-        // 2 other errors are from accesing prop of undefined and react component stack
+        if (!/jsdom/.test(window.navigator.userAgent)) {
+          // errors during mount are not caught by try-catch in the browser
+          // can't use skip since this causes multiple errors related to cleanup of the console mock
+          return;
+        }
+
+        assert.throws(() => mount(<ExpansionPanel>{[]}</ExpansionPanel>));
         assert.strictEqual(consoleErrorMock.callCount(), 3);
         assert.include(consoleErrorMock.args()[0][0], 'Material-UI: expected the first child');
-      }); */
+      });
 
       it('needs a valid element as the first child', () => {
         mount(
