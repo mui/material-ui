@@ -4,6 +4,7 @@ import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/co
 import describeConformance from '../test-utils/describeConformance';
 import CardMedia from './CardMedia';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
+import PropTypes from 'prop-types';
 
 describe('<CardMedia />', () => {
   let mount;
@@ -87,6 +88,7 @@ describe('<CardMedia />', () => {
 
     after(() => {
       consoleErrorMock.reset();
+      PropTypes.resetWarningCache();
     });
 
     it('warns when neither `children`, nor `image`, nor `src` are provided', () => {
