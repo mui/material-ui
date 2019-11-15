@@ -3,6 +3,8 @@ import { assert } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import GridList from './GridList';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
+import PropTypes from 'prop-types';
 
 const tilesData = [
   {
@@ -183,6 +185,31 @@ describe('<GridList />', () => {
           .at(0)
           .props().style.height,
         'auto',
+      );
+    });
+  });
+
+  describe('warnings', () => {
+    before(() => {
+      consoleErrorMock.spy();
+    });
+
+    after(() => {
+      consoleErrorMock.reset();
+      PropTypes.resetWarningCache();
+    });
+
+    it('warns a Fragment is passed as a child', () => {
+      mount(
+        <GridList>
+          <React.Fragment />
+        </GridList>,
+      );
+
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        "Material-UI: the GridList component doesn't accept a Fragment as a child.",
       );
     });
   });
