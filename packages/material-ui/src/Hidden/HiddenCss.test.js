@@ -163,7 +163,7 @@ describe('<HiddenCss />', () => {
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.args()[0][0],
-        'Material-UI: Unsupported props received by `<Hidden implementation="css" />`: xxlUp.',
+        'Material-UI: unsupported props received by `<Hidden implementation="css" />`: xxlUp.',
       );
     });
   });
