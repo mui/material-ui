@@ -2,11 +2,11 @@
 
 <p class="description">Localization (also referred to as "l10n") is the process of adapting a product or content to a specific locale or market.</p>
 
-The default locale of Material-UI is English (United States). If you want to use other locales, you can follow the instructions below.
+The default locale of Material-UI is English (United States). If you want to use other locales, follow the instructions below.
 
 ## Locale text
 
-Use the theme to configure the locale text globally
+Use the theme to configure the locale text globally:
 
 ```jsx
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -37,7 +37,9 @@ const theme = createMuiTheme({
 | Russian | ru-RU | `ruRU` |
 | Spanish | es-ES | `esES` |
 
-You can find the [sources](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/locale/index.js) in the GitHub repository.
+You can [find the source](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/locale/index.js) in the GitHub repository.
+
+To create your own translation, or to customise the English text, copy this file to your project, make any changes needed and import the locale from there. (Please do consider contributing new translations back to Material-UI by opening a pull request.)
 
 ### Example
 
@@ -45,5 +47,5 @@ You can find the [sources](https://github.com/mui-org/material-ui/blob/master/pa
 
 ## RTL Support
 
-Right-to-left languages are Arabic, Hebrew, and others.
-Follow [the guide](/guides/right-to-left/) to use them.
+Right-to-left languages such as Arabic or Hebrew are supported.
+Follow [this guide](/guides/right-to-left/) to use them.

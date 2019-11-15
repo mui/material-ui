@@ -47,11 +47,11 @@ export interface AutocompleteProps
    */
   closeIcon?: React.ReactNode;
   /**
-   * Text label for the clear icon button.
+   * Override the default text for the *clear* icon button.
    */
   clearText?: string;
   /**
-   * Text label for the close popup icon button.
+   * Override the default text for the *close popup* icon button.
    */
   closeText?: string;
   /**
@@ -80,7 +80,7 @@ export interface AutocompleteProps
    */
   noOptionsText?: React.ReactNode;
   /**
-   * Text label for the open popup icon button.
+   * Override the default text for the *open popup* icon button.
    */
   openText?: string;
   /**
