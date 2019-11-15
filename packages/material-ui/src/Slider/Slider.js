@@ -247,11 +247,11 @@ export const styles = theme => ({
     '&::after': {
       position: 'absolute',
       content: '""',
-      // reach 48px touch target (2 * 18 + thumb circumference)
-      left: -18,
-      top: -18,
-      right: -18,
-      bottom: -18,
+      // x4 thumb surface (from 12px^2 to 24px^2).
+      left: -6,
+      top: -6,
+      right: -6,
+      bottom: -6,
     },
     '&$focusVisible,&:hover': {
       boxShadow: `0px 0px 0px 8px ${fade(theme.palette.primary.main, 0.16)}`,
