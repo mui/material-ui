@@ -416,7 +416,7 @@ Autocomplete.propTypes = {
    */
   clearOnEscape: PropTypes.bool,
   /**
-   * Text label for the clear icon button.
+   * Override the default text for the *clear* icon button.
    */
   clearText: PropTypes.string,
   /**
@@ -424,7 +424,7 @@ Autocomplete.propTypes = {
    */
   closeIcon: PropTypes.node,
   /**
-   * Text label for the close popup icon button.
+   * Override the default text for the *close popup* icon button.
    */
   closeText: PropTypes.string,
   /**
@@ -561,7 +561,7 @@ Autocomplete.propTypes = {
    */
   open: PropTypes.bool,
   /**
-   * Text label for the open popup icon button.
+   * Override the default text for the *open popup* icon button.
    */
   openText: PropTypes.string,
   /**
