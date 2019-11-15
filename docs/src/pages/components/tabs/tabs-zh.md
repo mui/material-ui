@@ -71,6 +71,12 @@ Left and right scroll buttons will never be presented. All scrolling must be ini
 
 👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/tabs).
 
+## Animated tabs
+
+Here is an example of animated tabs using the [react-transition-group](https://reactcommunity.org/react-transition-group/transition) and [react-tiger-transition](https://pedrobern.github.io/react-tiger-transition/).
+
+{{"demo": "pages/components/tabs/AnimatedTabs.js"}}
+
 ## 垂直选项卡
 
 {{"demo": "pages/components/tabs/VerticalTabs.js"}}

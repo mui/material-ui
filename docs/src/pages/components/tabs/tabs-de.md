@@ -71,6 +71,12 @@ Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf de
 
 👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/tabs).
 
+## Animierte tabs
+
+Hier ist ein Beispiel mit Animation unter Verwendung der [react-transition-group](https://reactcommunity.org/react-transition-group/transition) und [react-tiger-transition](https://pedrobern.github.io/react-tiger-transition/).
+
+{{"demo": "pages/components/tabs/AnimatedTabs.js"}}
+
 ## Vertikale Tabs
 
 {{"demo": "pages/components/tabs/VerticalTabs.js"}}

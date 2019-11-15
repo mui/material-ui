@@ -71,6 +71,12 @@ Aqui esta um exemplo de customização do componente. Você pode aprender mais s
 
 👑 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/components/tabs).
 
+## Guias animadas
+
+Aqui esta um exemplo de guias animadas usando [react-transition-group](https://reactcommunity.org/react-transition-group/transition) com [react-tiger-transition](https://pedrobern.github.io/react-tiger-transition/).
+
+{{"demo": "pages/components/tabs/AnimatedTabs.js"}}
+
 ## Guias verticais
 
 {{"demo": "pages/components/tabs/VerticalTabs.js"}}
