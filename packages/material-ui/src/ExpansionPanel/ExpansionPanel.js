@@ -1,4 +1,5 @@
 import React from 'react';
+import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
@@ -169,7 +170,7 @@ ExpansionPanel.propTypes = {
    */
   children: chainPropTypes(PropTypes.node.isRequired, props => {
     const summary = React.Children.toArray(props.children)[0];
-    if (summary.type === React.Fragment) {
+    if (isFragment(summary)) {
       return new Error(
         "Material-UI: the ExpansionPanel doesn't accept a Fragment as a child. " +
           'Consider providing an array instead.',

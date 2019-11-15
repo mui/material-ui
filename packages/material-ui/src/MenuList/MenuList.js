@@ -1,4 +1,5 @@
 import React from 'react';
+import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ownerDocument from '../utils/ownerDocument';
@@ -209,7 +210,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     }
 
     if (process.env.NODE_ENV !== 'production') {
-      if (child.type === React.Fragment) {
+      if (isFragment(child)) {
         console.error(
           [
             "Material-UI: the Menu component doesn't accept a Fragment as a child.",
