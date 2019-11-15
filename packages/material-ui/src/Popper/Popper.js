@@ -13,7 +13,7 @@ import ownerWindow from '../utils/ownerWindow';
  * @param {string} placement
  */
 function flipPlacement(placement) {
-  const direction = (typeof window !== 'undefined' && document.body.getAttribute('dir')) || 'ltr';
+  const direction = (typeof document !== 'undefined' && document.body.getAttribute('dir')) || 'ltr';
 
   if (direction !== 'rtl') {
     return placement;
@@ -126,11 +126,11 @@ const Popper = React.forwardRef(function Popper(props, ref) {
         ...(disablePortal
           ? {}
           : {
-              // It's using scrollParent by default, we can use the viewport when using a portal.
-              preventOverflow: {
-                boundariesElement: 'window',
-              },
-            }),
+            // It's using scrollParent by default, we can use the viewport when using a portal.
+            preventOverflow: {
+              boundariesElement: 'window',
+            },
+          }),
         ...modifiers,
         ...popperOptions.modifiers,
       },
