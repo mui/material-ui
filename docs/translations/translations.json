@@ -222,6 +222,6 @@
     "/components/skeleton": "Skeleton",
     "/components/tree-view": "Tree View",
     "/customization/density": "Density",
-    "/guides/globalization": "Globalization"
+    "/guides/localization": "Localization"
   }
 }

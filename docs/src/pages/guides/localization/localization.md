@@ -1,6 +1,6 @@
-# Globalization
+# Localization
 
-<p class="description">Globalization is a process which combines the translation of component messages (localization) with their adaptation to specific cultures (internationalization).</p>
+<p class="description">Localization (also referred to as "l10n") is the process of adapting a product or content to a specific locale or market.</p>
 
 The default locale of Material-UI is English (United States). If you want to use other locales, you can follow the instructions below.
 
@@ -41,7 +41,7 @@ You can find the [sources](https://github.com/mui-org/material-ui/blob/master/pa
 
 ### Example
 
-{{"demo": "pages/guides/globalization/Locales.js", "defaultCodeOpen": false}}
+{{"demo": "pages/guides/localization/Locales.js", "defaultCodeOpen": false}}
 
 ## RTL Support
 
