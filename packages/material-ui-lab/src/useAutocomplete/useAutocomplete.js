@@ -679,7 +679,7 @@ export default function useAutocomplete(props) {
   };
 
   const handleInputMouseDown = event => {
-    if (inputValue === ''  && (!disableOpenOnFocus || inputRef.current === document.activeElement)) {
+    if (inputValue === '' && (!disableOpenOnFocus || inputRef.current === document.activeElement)) {
       handlePopupIndicator(event);
     }
   };
