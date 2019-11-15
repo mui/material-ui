@@ -466,6 +466,27 @@ describe('<Autocomplete />', () => {
         expect(queryByTitle('Clear')).to.be.null;
       });
     });
+
+    describe('prop: disableOpenOnFocus', () => {
+      it('Should disabe open on input focus', () => {
+        const { getByLabelText, getByRole } = render(
+          <Autocomplete
+            id="combo-box-demo"
+            options={['one', 'two', 'three']}
+            getOptionLabel={option => option.title}
+            style={{ width: 300 }}
+            disableOpenOnFocus
+            renderInput={params => (
+              <TextField {...params} label="Combo box" variant="outlined" fullWidth autoFocus />
+            )}
+          />,
+        );
+        const textField = getByLabelText('Combo box');
+        const autoComplete = getByRole('combobox');
+        expect(textField).to.have.focus;
+        expect(autoComplete).to.have.attribute('aria-expanded', 'false');
+      });
+    });
   });
 
   describe('warnings', () => {
