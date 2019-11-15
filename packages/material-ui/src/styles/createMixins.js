@@ -38,6 +38,6 @@ export default function createMixins(breakpoints, spacing, mixins) {
         minHeight: 64,
       },
     },
-    ...mixins,
+    ...(typeof mixins === 'function' ? mixins(breakpoints, spacing) : mixins),
   };
 }

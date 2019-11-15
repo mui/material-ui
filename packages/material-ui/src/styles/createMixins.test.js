@@ -23,4 +23,29 @@ describe('createMixins', () => {
       paddingRight: 16,
     });
   });
+
+  it('should accept a function', () => {
+    const theme = createMuiTheme();
+    const mixins = createMixins(theme.breakpoints, theme.spacing, (breakpoints, spacing) => {
+      assert.strictEqual(breakpoints, theme.breakpoints);
+      assert.strictEqual(spacing, theme.spacing);
+      return {
+        element: {
+          padding: spacing(1),
+          [breakpoints.up('sm')]: {
+            padding: spacing(2),
+          },
+        },
+      };
+    });
+
+    assert.deepEqual(mixins.element, {
+      element: {
+        padding: theme.spacing(1),
+        [breakpoints.up('sm')]: {
+          padding: spacing(2),
+        },
+      },
+    });
+  });
 });
