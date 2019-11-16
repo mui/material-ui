@@ -1,7 +1,8 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect, assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import Snackbar from './Snackbar';
 import Grow from '../Grow';
@@ -9,6 +10,7 @@ import Grow from '../Grow';
 describe('<Snackbar />', () => {
   let mount;
   let classes;
+  const render = createClientRender({ strict: false });
 
   before(() => {
     classes = getClasses(<Snackbar open />);
@@ -130,26 +132,25 @@ describe('<Snackbar />', () => {
       assert.deepEqual(handleClose.args[0], [null, 'timeout']);
     });
 
-    // Test case for https://github.com/mui-org/material-ui/issues/18353
-    it('should call onClose when timer done after a reference change', () => {
-      const handleClose = spy();
+    it('calls onClose at timeout even if the prop changes', () => {
+      const handleClose1 = spy();
+      const handleClose2 = spy();
       const autoHideDuration = 2e3;
-      const wrapper = mount(
+      const { setProps } = render(
         <Snackbar
           open={false}
-          onClose={handleClose}
+          onClose={handleClose1}
           message="message"
           autoHideDuration={autoHideDuration}
         />,
       );
 
-      wrapper.setProps({ open: true });
-      assert.strictEqual(handleClose.callCount, 0);
+      setProps({ open: true });
       clock.tick(autoHideDuration / 2);
-      wrapper.setProps({ onClose: () => {} });
+      setProps({ open: true, onClose: handleClose2 });
       clock.tick(autoHideDuration / 2);
-      assert.strictEqual(handleClose.callCount, 1);
-      assert.deepEqual(handleClose.args[0], [null, 'timeout']);
+      expect(handleClose1.callCount).to.equal(0);
+      expect(handleClose2.callCount).to.equal(1);
     });
 
     it('should not call onClose when the autoHideDuration is reset', () => {

@@ -130,14 +130,18 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   const timerAutoHide = React.useRef();
   const [exited, setExited] = React.useState(true);
 
-  // Timer that controls delay before snackbar auto hides
+  const handleClose = useEventCallback((...args) => {
+    onClose(...args);
+  });
+
   const setAutoHideTimer = useEventCallback(autoHideDurationParam => {
-    if (!onClose || autoHideDurationParam == null) {
+    if (!handleClose || autoHideDurationParam == null) {
       return;
     }
+
     clearTimeout(timerAutoHide.current);
     timerAutoHide.current = setTimeout(() => {
-      onClose(null, 'timeout');
+      handleClose(null, 'timeout');
     }, autoHideDurationParam);
   });
 
@@ -161,11 +165,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   // or when the window is shown back.
   const handleResume = React.useCallback(() => {
     if (autoHideDuration != null) {
-      if (resumeHideDuration != null) {
-        setAutoHideTimer(resumeHideDuration);
-        return;
-      }
-      setAutoHideTimer(autoHideDuration * 0.5);
+      setAutoHideTimer(resumeHideDuration != null ? resumeHideDuration : autoHideDuration * 0.5);
     }
   }, [autoHideDuration, resumeHideDuration, setAutoHideTimer]);
 
