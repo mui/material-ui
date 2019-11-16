@@ -271,8 +271,11 @@ export function parseFromProgram(
     const declarations = symbol.getDeclarations();
     const declaration = declarations && declarations[0];
 
-    // TypeChecker keeps the name for { a: React.ElementType } but not
-    // { a?: React.ElementType } can get around this by not using the typechecker
+    // TypeChecker keeps the name for
+    // { a: React.ElementType, b: React.ReactElement | boolean }
+    // but not
+    // { a?: React.ElementType, b: React.ReactElement }
+    // get around this by not using the TypeChecker
     if (
       declaration &&
       ts.isPropertySignature(declaration) &&
@@ -280,13 +283,19 @@ export function parseFromProgram(
       ts.isTypeReferenceNode(declaration.type)
     ) {
       const name = declaration.type.typeName.getText();
-      if (name === 'React.ElementType' || name === 'React.ComponentType') {
+      if (
+        name === 'React.ElementType' ||
+        name === 'React.ComponentType' ||
+        name === 'React.ReactElement'
+      ) {
+        const elementNode = t.elementNode(
+          name === 'React.ReactElement' ? 'element' : 'elementType',
+        );
+
         return t.propTypeNode(
           symbol.getName(),
           getDocumentation(symbol),
-          declaration.questionToken
-            ? t.unionNode([t.undefinedNode(), t.elementNode('elementType')])
-            : t.elementNode('elementType'),
+          declaration.questionToken ? t.unionNode([t.undefinedNode(), elementNode]) : elementNode,
         );
       }
     }
