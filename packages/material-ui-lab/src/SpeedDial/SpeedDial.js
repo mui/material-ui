@@ -1,4 +1,5 @@
 import React from 'react';
+import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { duration, withStyles } from '@material-ui/core/styles';
@@ -280,7 +281,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
 
   const allItems = React.Children.toArray(childrenProp).filter(child => {
     if (process.env.NODE_ENV !== 'production') {
-      if (child.type === React.Fragment) {
+      if (isFragment(child)) {
         console.error(
           [
             "Material-UI: the SpeedDial component doesn't accept a Fragment as a child.",

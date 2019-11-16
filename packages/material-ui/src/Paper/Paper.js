@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import useTheme from '../styles/useTheme';
 
 export const styles = theme => {
   const elevations = {};
@@ -38,9 +37,7 @@ const Paper = React.forwardRef(function Paper(props, ref) {
   } = props;
 
   if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const theme = useTheme();
-    if (!theme.shadows[elevation]) {
+    if (classes[`elevation${elevation}`] === undefined) {
       console.error(`Material-UI: this elevation \`${elevation}\` is not implemented.`);
     }
   }

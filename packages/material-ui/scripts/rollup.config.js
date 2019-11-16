@@ -31,6 +31,7 @@ const commonjsOptions = {
     ],
     '../../node_modules/react-is/index.js': [
       'ForwardRef',
+      'isFragment',
       'isLazy',
       'isMemo',
       'isValidElementType',

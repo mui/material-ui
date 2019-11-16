@@ -1,4 +1,5 @@
 import React from 'react';
+import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ownerDocument from '../utils/ownerDocument';
@@ -34,9 +35,6 @@ function textCriteriaMatches(nextFocus, textCriteria) {
   if (text === undefined) {
     // jsdom doesn't support innerText
     text = nextFocus.textContent;
-  }
-  if (text === undefined) {
-    return false;
   }
   text = text.trim().toLowerCase();
   if (text.length === 0) {
@@ -209,7 +207,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     }
 
     if (process.env.NODE_ENV !== 'production') {
-      if (child.type === React.Fragment) {
+      if (isFragment(child)) {
         console.error(
           [
             "Material-UI: the Menu component doesn't accept a Fragment as a child.",
