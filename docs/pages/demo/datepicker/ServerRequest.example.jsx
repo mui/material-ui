@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { Badge } from '@material-ui/core';
 import { DatePicker } from '@material-ui/pickers';
 import { makeJSDateObject } from '../../../utils/helpers';
@@ -12,6 +12,7 @@ function ServerRequest() {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   const handleMonthChange = async () => {
+    // just select random days to simulate server side based data
     return new Promise(resolve => {
       setTimeout(() => {
         setSelectedDays([1, 2, 3].map(() => getRandomNumber(1, 28)));
@@ -21,7 +22,7 @@ function ServerRequest() {
   };
 
   return (
-    <Fragment>
+    <>
       <DatePicker
         label="With server data"
         value={selectedDate}
@@ -35,7 +36,7 @@ function ServerRequest() {
           return <Badge badgeContent={isSelected ? '🌚' : undefined}>{dayComponent}</Badge>;
         }}
       />
-    </Fragment>
+    </>
   );
 }
 
