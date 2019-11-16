@@ -114,7 +114,7 @@ export function parseFromProgram(
       node.moduleSpecifier.text === 'react' &&
       node.importClause
     ) {
-      const imports = ['Component', 'PureComponent', 'memo'];
+      const imports = ['Component', 'PureComponent', 'memo', 'forwardRef'];
 
       // import x from 'react'
       if (node.importClause.name) {

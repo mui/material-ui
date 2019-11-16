@@ -9,7 +9,8 @@
       "request": "launch",
       "name": "Debug test",
       "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
-      "args": ["test/index.test.ts"]
+      "args": ["test/index.test.ts"],
+      "skipFiles": ["${workspaceFolder}/node_modules/**/*.js", "<node_internals>/**/*.js"]
     }
   ]
 }

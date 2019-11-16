@@ -18,7 +18,7 @@ npm install typescript-to-proptypes --save-dev
 | Function         | :heavy_check_mark: |
 | Const functions  | :heavy_check_mark: |
 | React.memo       | :heavy_check_mark: |
-| React.ForwardRef | :x:                |
+| React.ForwardRef | :heavy_check_mark: |
 
 ## License
 
