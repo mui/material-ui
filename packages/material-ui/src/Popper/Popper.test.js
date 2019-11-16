@@ -3,6 +3,7 @@ import { assert, expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
 import { createMount } from '@material-ui/core/test-utils';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -12,6 +13,7 @@ import Popper from './Popper';
 
 describe('<Popper />', () => {
   let mount;
+  let rtlTheme;
   const render = createClientRender({ strict: true });
   const defaultProps = {
     anchorEl: () => document.createElement('svg'),
@@ -21,6 +23,9 @@ describe('<Popper />', () => {
 
   before(() => {
     mount = createMount({ strict: true });
+    rtlTheme = createMuiTheme({
+      direction: 'rtl',
+    });
   });
 
   after(() => {
@@ -40,23 +45,17 @@ describe('<Popper />', () => {
   }));
 
   describe('prop: placement', () => {
-    before(() => {
-      document.body.setAttribute('dir', 'rtl');
-    });
-
-    after(() => {
-      document.body.removeAttribute('dir');
-    });
-
     it('should have top placement', () => {
       const renderSpy = spy();
       mount(
-        <Popper {...defaultProps} placement="top">
-          {({ placement }) => {
-            renderSpy(placement);
-            return null;
-          }}
-        </Popper>,
+        <ThemeProvider theme={rtlTheme}>
+          <Popper {...defaultProps} placement="top">
+            {({ placement }) => {
+              renderSpy(placement);
+              return null;
+            }}
+          </Popper>
+        </ThemeProvider>,
       );
       assert.strictEqual(renderSpy.callCount, 2); // 2 for strict mode
       assert.strictEqual(renderSpy.args[0][0], 'top');
@@ -87,12 +86,15 @@ describe('<Popper />', () => {
       it(`should flip ${test.in} when direction=rtl is used`, () => {
         const renderSpy = spy();
         mount(
-          <Popper {...defaultProps} placement={test.in}>
-            {({ placement }) => {
-              renderSpy(placement);
-              return null;
-            }}
-          </Popper>,
+          <ThemeProvider theme={rtlTheme}>
+            <Popper {...defaultProps} placement={test.in}>
+              {({ placement }) => {
+                renderSpy(placement);
+                return null;
+              }}
+            </Popper>
+            ,
+          </ThemeProvider>,
         );
         assert.strictEqual(renderSpy.callCount, 2);
         assert.strictEqual(renderSpy.args[0][0], test.out);
@@ -103,12 +105,15 @@ describe('<Popper />', () => {
       const renderSpy = spy();
       const popperRef = React.createRef();
       render(
-        <Popper popperRef={popperRef} {...defaultProps} placement="bottom">
-          {({ placement }) => {
-            renderSpy(placement);
-            return null;
-          }}
-        </Popper>,
+        <ThemeProvider theme={rtlTheme}>
+          <Popper popperRef={popperRef} {...defaultProps} placement="bottom">
+            {({ placement }) => {
+              renderSpy(placement);
+              return null;
+            }}
+          </Popper>
+          ,
+        </ThemeProvider>,
       );
       expect(renderSpy.args).to.deep.equal([['bottom'], ['bottom']]);
       popperRef.current.options.onUpdate({
