@@ -8,4 +8,4 @@ Want to add your app? Found an app that no longer works or no longer uses Materi
 - High traffic
 - Open source
 
-{{"demo": "pages/discover-more/showcase/Showcase.js", "hideHeader": true}}
+{{"demo": "pages/discover-more/showcase/Showcase.js", "hideHeader": true, "bg": true}}

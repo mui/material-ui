@@ -38,7 +38,7 @@ Deleting a chip removes it from the array. Note that since no
 `onClick` property is defined, the Chip can be focused, but does not
 gain depth while clicked or touched.
 
-{{"demo": "pages/components/chips/ChipsArray.js"}}
+{{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 
 ## Small Chip
 
@@ -54,7 +54,7 @@ You can use the `size` prop to define a small Chip.
 
 ## Chip Playground
 
-{{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true, "bg": true}}
 
 ## Accessibility
 

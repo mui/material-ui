@@ -31,7 +31,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 Yes, this really is all you need to get started, as you can see in this live and interactive demo:
 
-{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
+{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true, "bg": true}}
 
 ## Globals
 

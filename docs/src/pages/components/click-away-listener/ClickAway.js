@@ -35,7 +35,11 @@ export default function ClickAway() {
         <button type="button" onClick={handleClick}>
           Open menu dropdown
         </button>
-        {open ? <div className={classes.paper}>Click me, I will stay visible.</div> : null}
+        {open ? (
+          <div className={classes.paper}>
+            Click me, I will stay visible until you click outside.
+          </div>
+        ) : null}
       </div>
     </ClickAwayListener>
   );

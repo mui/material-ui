@@ -1,5 +1,4 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -74,13 +73,9 @@ function Media(props: MediaProps) {
 
 export default function YouTube() {
   return (
-    <Box overflow="hidden" clone>
-      <Paper>
-        <Box px={3}>
-          <Media loading />
-          <Media />
-        </Box>
-      </Paper>
+    <Box overflow="hidden">
+      <Media loading />
+      <Media />
     </Box>
   );
 }

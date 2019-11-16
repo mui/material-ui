@@ -9,4 +9,4 @@ components: Paper
 
 The background of an application resembles the flat, opaque texture of a sheet of paper, and an application’s behavior mimics paper’s ability to be re-sized, shuffled, and bound together in multiple sheets.
 
-{{"demo": "pages/components/paper/PaperSheet.js"}}
+{{"demo": "pages/components/paper/PaperSheet.js", "bg": true}}
