@@ -122,12 +122,6 @@ export default function StickyHeadTable() {
         count={rows.length}
         rowsPerPage={rowsPerPage}
         page={page}
-        backIconButtonProps={{
-          'aria-label': 'previous page',
-        }}
-        nextIconButtonProps={{
-          'aria-label': 'next page',
-        }}
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />

@@ -123,7 +123,7 @@ describe('<Autocomplete />', () => {
       // TODO: computeAccessibleName
       expect(buttons[0]).to.have.attribute('title', 'Clear');
       // TODO: computeAccessibleName
-      expect(buttons[1]).to.have.attribute('title', 'Open popup');
+      expect(buttons[1]).to.have.attribute('title', 'Open');
       buttons.forEach(button => {
         expect(button, 'button is not in tab order').to.have.property('tabIndex', -1);
       });
@@ -164,7 +164,7 @@ describe('<Autocomplete />', () => {
       // TODO: computeAccessibleName
       expect(buttons[0]).to.have.attribute('title', 'Clear');
       // TODO: computeAccessibleName
-      expect(buttons[1]).to.have.attribute('title', 'Close popup');
+      expect(buttons[1]).to.have.attribute('title', 'Close');
       buttons.forEach(button => {
         expect(button, 'button is not in tab order').to.have.property('tabIndex', -1);
       });
@@ -486,7 +486,7 @@ describe('<Autocomplete />', () => {
             renderInput={params => <TextField {...params} />}
           />,
         );
-        expect(queryByTitle('Open popup').disabled).to.be.true;
+        expect(queryByTitle('Open').disabled).to.be.true;
       });
 
       it('should not render the clear button', () => {

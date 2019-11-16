@@ -164,7 +164,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     classes,
     className,
     clearOnEscape = false,
+    clearText = 'Clear',
     closeIcon = <CloseIcon fontSize="small" />,
+    closeText = 'Close',
     debug = false,
     defaultValue,
     disableClearable = false,
@@ -192,6 +194,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     onInputChange,
     onOpen,
     open,
+    openText = 'Open',
     options = [],
     PaperComponent = Paper,
     PopperComponent: PopperComponentProp = Popper,
@@ -303,8 +306,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                 {disableClearable || disabled ? null : (
                   <IconButton
                     {...getClearProps()}
-                    aria-label="Clear"
-                    title="Clear"
+                    aria-label={clearText}
+                    title={clearText}
                     className={clsx(classes.clearIndicator, {
                       [classes.clearIndicatorDirty]: dirty,
                     })}
@@ -317,8 +320,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   <IconButton
                     {...getPopupIndicatorProps()}
                     disabled={disabled}
-                    aria-label={popupOpen ? 'Close popup' : 'Open popup'}
-                    title={popupOpen ? 'Close popup' : 'Open popup'}
+                    aria-label={popupOpen ? closeText : openText}
+                    title={popupOpen ? closeText : openText}
                     className={clsx(classes.popupIndicator, {
                       [classes.popupIndicatorOpen]: popupOpen,
                     })}
@@ -413,9 +416,17 @@ Autocomplete.propTypes = {
    */
   clearOnEscape: PropTypes.bool,
   /**
+   * Override the default text for the *clear* icon button.
+   */
+  clearText: PropTypes.string,
+  /**
    * The icon to display in place of the default close icon.
    */
   closeIcon: PropTypes.node,
+  /**
+   * Override the default text for the *close popup* icon button.
+   */
+  closeText: PropTypes.string,
   /**
    * If `true`, the popup will ignore the blur event if the input if filled.
    * You can inspect the popup markup with your browser tools.
@@ -549,6 +560,10 @@ Autocomplete.propTypes = {
    * Control the popup` open state.
    */
   open: PropTypes.bool,
+  /**
+   * Override the default text for the *open popup* icon button.
+   */
+  openText: PropTypes.string,
   /**
    * Array of options.
    */

@@ -5,11 +5,24 @@ import {
   createMuiTheme,
   darken,
 } from '@material-ui/core/styles';
+import { useSelector } from 'react-redux';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@material-ui/core/locale';
 import { blue, pink } from '@material-ui/core/colors';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { darkTheme, setPrismTheme } from 'docs/src/modules/components/prism';
-import deepmerge from 'deepmerge';
+
+const languageMap = {
+  en: enUS,
+  zh: zhCN,
+  fa: faIR,
+  ru: ruRU,
+  pt: ptBR,
+  es: esES,
+  fr: frFR,
+  de: deDE,
+  ja: jaJP,
+};
 
 export const themeColor = blue[700];
 
@@ -20,72 +33,59 @@ const themeInitialOptions = {
   spacing: 8, // spacing unit
 };
 
-/**
- * @typedef {import('@material-ui/core/src/styles/createMuiTheme').ThemeOptions} ThemeOptions
- *
- *
- * @param {ThemeOptions} themeOptions
- * @returns {ThemeOptions}
- */
-function usingHighDensity(themeOptions) {
-  return deepmerge(themeOptions, {
-    props: {
-      MuiButton: {
-        size: 'small',
-      },
-      MuiFilledInput: {
-        margin: 'dense',
-      },
-      MuiFormControl: {
-        margin: 'dense',
-      },
-      MuiFormHelperText: {
-        margin: 'dense',
-      },
-      MuiIconButton: {
-        size: 'small',
-      },
-      MuiInputBase: {
-        margin: 'dense',
-      },
-      MuiInputLabel: {
-        margin: 'dense',
-      },
-      MuiListItem: {
-        dense: true,
-      },
-      MuiOutlinedInput: {
-        margin: 'dense',
-      },
-      MuiFab: {
-        size: 'small',
-      },
-      MuiTable: {
-        size: 'small',
-      },
-      MuiTextField: {
-        margin: 'dense',
-      },
-      MuiToolbar: {
-        variant: 'dense',
+const highDensity = {
+  props: {
+    MuiButton: {
+      size: 'small',
+    },
+    MuiFilledInput: {
+      margin: 'dense',
+    },
+    MuiFormControl: {
+      margin: 'dense',
+    },
+    MuiFormHelperText: {
+      margin: 'dense',
+    },
+    MuiIconButton: {
+      size: 'small',
+    },
+    MuiInputBase: {
+      margin: 'dense',
+    },
+    MuiInputLabel: {
+      margin: 'dense',
+    },
+    MuiListItem: {
+      dense: true,
+    },
+    MuiOutlinedInput: {
+      margin: 'dense',
+    },
+    MuiFab: {
+      size: 'small',
+    },
+    MuiTable: {
+      size: 'small',
+    },
+    MuiTextField: {
+      margin: 'dense',
+    },
+    MuiToolbar: {
+      variant: 'dense',
+    },
+  },
+  overrides: {
+    MuiIconButton: {
+      sizeSmall: {
+        // minimal touch target hit spacing
+        marginLeft: 4,
+        marginRight: 4,
+        padding: 12,
       },
     },
-    overrides: {
-      MuiIconButton: {
-        sizeSmall: {
-          // minimal touch target hit spacing
-          marginLeft: 4,
-          marginRight: 4,
-          padding: 12,
-        },
-      },
-    },
-  });
-}
-
-function usingIdentity(themeOptions) {
-  return themeOptions;
-}
+  },
+};
 
 export const DispatchContext = React.createContext(() => {
   throw new Error('Forgot to wrap component in ThemeContext.Provider');
@@ -143,6 +143,7 @@ export function ThemeProvider(props) {
     }
   }, themeInitialOptions);
 
+  const userLanguage = useSelector(state => state.options.userLanguage);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredType = prefersDarkMode ? 'dark' : 'light';
   const { dense, direction, paletteColors, paletteType = preferredType, spacing } = themeOptions;
@@ -173,9 +174,8 @@ export function ThemeProvider(props) {
   }, [direction]);
 
   const theme = React.useMemo(() => {
-    const themeDecorator = dense ? usingHighDensity : usingIdentity;
     const nextTheme = createMuiTheme(
-      themeDecorator({
+      {
         direction,
         nprogress: {
           color: paletteType === 'light' ? '#000' : '#fff',
@@ -194,7 +194,9 @@ export function ThemeProvider(props) {
           ...paletteColors,
         },
         spacing,
-      }),
+      },
+      dense ? highDensity : null,
+      languageMap[userLanguage],
     );
 
     nextTheme.palette.background.level2 =
@@ -204,7 +206,7 @@ export function ThemeProvider(props) {
       paletteType === 'light' ? '#fff' : nextTheme.palette.grey[900];
 
     return nextTheme;
-  }, [dense, direction, paletteColors, paletteType, spacing]);
+  }, [dense, direction, paletteColors, paletteType, spacing, userLanguage]);
 
   React.useEffect(() => {
     // Expose the theme as a global variable so people can play with it.

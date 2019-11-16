@@ -64,13 +64,14 @@ The main point to understand is that the injected CSS is cached with the followi
 
 ## API
 
-### `createMuiTheme(options) => theme`
+### `createMuiTheme(options, ...args) => theme`
 
 Generate a theme base on the options received.
 
 #### Arguments
 
 1. `options` (*Object*): Takes an incomplete theme object and adds the missing parts.
+2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
 
 #### Returns
 

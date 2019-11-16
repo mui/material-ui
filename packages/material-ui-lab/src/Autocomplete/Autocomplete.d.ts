@@ -47,6 +47,14 @@ export interface AutocompleteProps
    */
   closeIcon?: React.ReactNode;
   /**
+   * Override the default text for the *clear* icon button.
+   */
+  clearText?: string;
+  /**
+   * Override the default text for the *close popup* icon button.
+   */
+  closeText?: string;
+  /**
    * If `true`, the input will be disabled.
    */
   disabled?: boolean;
@@ -71,6 +79,10 @@ export interface AutocompleteProps
    * Text to display when there are no options.
    */
   noOptionsText?: React.ReactNode;
+  /**
+   * Override the default text for the *open popup* icon button.
+   */
+  openText?: string;
   /**
    * The component used to render the body of the popup.
    */

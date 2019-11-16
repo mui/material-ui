@@ -184,6 +184,7 @@ const pages = [
       { pathname: '/guides/migration-v3', title: 'Migration From v3' },
       { pathname: '/guides/migration-v0x', title: 'Migration From v0.x' },
       { pathname: '/guides/testing' },
+      { pathname: '/guides/localization' },
       { pathname: '/guides/right-to-left', title: 'Right-to-left' },
       { pathname: '/guides/flow' },
     ],

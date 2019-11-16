@@ -116,4 +116,9 @@ describe('createMuiTheme', () => {
       );
     });
   });
+
+  it('deep merges multiple arguments', () => {
+    const muiTheme = createMuiTheme({}, { foo: 'bar' });
+    assert.strictEqual(muiTheme.foo, 'bar');
+  });
 });
