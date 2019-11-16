@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/merceyz/typescript-to-proptypes/compare/v1.3.0...v1.4.0) (2019-11-16)
+
+### Bug Fixes
+
+- **parser:** handle prop of type ReactElement ([adfcca4](https://github.com/merceyz/typescript-to-proptypes/commit/adfcca4))
+
+### Features
+
+- **parser:** support forwardRef ([3f5c0c9](https://github.com/merceyz/typescript-to-proptypes/commit/3f5c0c9)), closes [#2](https://github.com/merceyz/typescript-to-proptypes/issues/2)
+
 ## [1.3.0](https://github.com/merceyz/typescript-to-proptypes/compare/v1.2.5...v1.3.0) (2019-09-03)
 
 ### Features
