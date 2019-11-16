@@ -672,15 +672,16 @@ export default function useAutocomplete(props) {
       firstFocus.current &&
       inputRef.current.selectionEnd - inputRef.current.selectionStart === 0
     ) {
+      inputRef.current.focus();
       inputRef.current.select();
     }
 
     firstFocus.current = false;
   };
 
-  const handleInputMouseDown = () => {
-    if (inputValue === '') {
-      handlePopupIndicator();
+  const handleInputMouseDown = event => {
+    if (inputValue === '' && (!disableOpenOnFocus || inputRef.current === document.activeElement)) {
+      handlePopupIndicator(event);
     }
   };
 

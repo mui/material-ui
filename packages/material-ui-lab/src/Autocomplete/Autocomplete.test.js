@@ -294,6 +294,40 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: disableOpenOnFocus', () => {
+    it('disables open on input focus', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          disableOpenOnFocus
+          renderInput={params => <TextField autoFocus {...params} />}
+        />,
+      );
+      const textbox = getByRole('textbox');
+      const combobox = getByRole('combobox');
+
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(textbox).to.have.focus;
+
+      fireEvent.mouseDown(textbox);
+      fireEvent.click(textbox);
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+
+      document.activeElement.blur();
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(textbox).to.not.have.focus;
+
+      fireEvent.mouseDown(textbox);
+      fireEvent.click(textbox);
+      expect(combobox).to.have.attribute('aria-expanded', 'false');
+      expect(textbox).to.have.focus;
+
+      fireEvent.mouseDown(textbox);
+      fireEvent.click(textbox);
+      expect(combobox).to.have.attribute('aria-expanded', 'true');
+    });
+  });
+
   describe('wrapping behavior', () => {
     it('wraps around when navigating the list by default', () => {
       const { getAllByRole, getByRole } = render(
