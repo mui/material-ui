@@ -132,18 +132,18 @@ export const ruRU = {
     MuiTablePagination: {
       backIconButtonText: 'Предыдущая страница',
       labelRowsPerPage: 'Строк на страницу:',
-      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} of ${count}`,
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} из ${count}`,
       nextIconButtonText: 'Следующая страница',
     },
     MuiRating: {
-      getLabelText: value => `${value} ${value !== 1 ? 'Звезды' : 'звезда'}`,
+      getLabelText: value => `${value} Звезд${value !== 1 ? 'ы' : 'а'}`,
     },
     MuiAutocomplete: {
-      clearText: 'чистый',
-      closeText: 'близко',
-      loadingText: 'загрузка…',
+      clearText: 'Очистить',
+      closeText: 'Закрыть',
+      loadingText: 'Загрузка…',
       noOptionsText: 'Нет вариантов',
-      openText: 'открыто',
+      openText: 'Открыть',
     },
   },
 };
