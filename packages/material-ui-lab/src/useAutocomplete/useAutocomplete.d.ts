@@ -13,7 +13,7 @@ export interface FilterOptionsState {
 }
 
 export type CreateFilterOptions = (
-  config: CreateFilterOptionsConfig,
+  config?: CreateFilterOptionsConfig,
 ) => (option: any, state: FilterOptionsState) => any[];
 
 export const createFilterOptions: CreateFilterOptions;
