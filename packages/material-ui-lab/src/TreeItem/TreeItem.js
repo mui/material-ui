@@ -145,7 +145,15 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
 
     if (!selectionDisabled) {
-      toggleSelect(event, nodeId, multiple);
+      let selectionMode = 'NONE';
+
+      if (event.shiftKey) {
+        selectionMode = 'RANGE';
+      } else if (multiSelect && (event.ctrlKey || event.metaKey)) {
+        selectionMode = 'MULTIPLE';
+      }
+
+      toggleSelect(event, nodeId, selectionMode);
     }
 
     if (onClick) {
