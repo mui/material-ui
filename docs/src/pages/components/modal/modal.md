@@ -60,7 +60,7 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server.
 In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
 
-{{"demo": "pages/components/modal/ServerModal.js"}}
+{{"demo": "pages/components/modal/ServerModal.js", "bg": true}}
 
 ## Accessibility
 

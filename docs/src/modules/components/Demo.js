@@ -51,21 +51,32 @@ const styles = theme => ({
     },
   },
   demo: {
-    position: 'relative',
     outline: 0,
     margin: 'auto',
-    borderRadius: theme.shape.borderRadius,
-    display: 'flex',
-    justifyContent: 'center',
-    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
-    padding: 20,
     [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing(3),
+      borderRadius: theme.shape.borderRadius,
+    },
+    backgroundColor: theme.palette.background.level2,
+    padding: theme.spacing(2),
+    '& $demoInner': {
+      border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
+      borderRadius: theme.shape.borderRadius,
+      backgroundColor: theme.palette.background.paper,
     },
   },
   demoBg: {
-    border: 'none',
-    backgroundColor: theme.palette.background.level2,
+    '& $demoInner': {
+      border: 'none',
+      borderRadius: 0,
+      backgroundColor: 'transparent',
+      padding: 0,
+    },
+  },
+  demoInner: {
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'center',
+    padding: theme.spacing(2),
   },
   demoHiddenHeader: {
     paddingTop: theme.spacing(2),
@@ -301,12 +312,14 @@ function Demo(props) {
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
       >
-        <DemoSandboxed
-          style={demoSandboxedStyle}
-          component={DemoComponent}
-          iframe={demoOptions.iframe}
-          name={demoName}
-        />
+        <div className={classes.demoInner}>
+          <DemoSandboxed
+            style={demoSandboxedStyle}
+            component={DemoComponent}
+            iframe={demoOptions.iframe}
+            name={demoName}
+          />
+        </div>
       </div>
       <div className={classes.anchorLink} id={`${demoName}.js`} />
       <div className={classes.anchorLink} id={`${demoName}.tsx`} />
