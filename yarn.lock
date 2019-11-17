@@ -14501,7 +14501,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript-to-proptypes@^1.3.0:
+typescript-to-proptypes@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/typescript-to-proptypes/-/typescript-to-proptypes-1.4.0.tgz#6253e85b4640a5a1829c3c6bc92a3941062621b2"
   integrity sha512-kGatNmhRV1jjwKCxzo0ohoQZCYqfY3pP9Zzskq02LzaKdIrlh6eLyTk9ucBw5eIWyq5ZoavxXPkRreVFUp9zGw==
