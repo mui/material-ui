@@ -15,6 +15,10 @@ update_configs:
           # for new releases and file a PR if you got time.
           dependency_name: '@babel/*'
       - match:
+          # as of 3.x prevaled code is no longer transpiled
+          dependency_name: 'babel-plugin-preval'
+          version_requirement: '2.x'
+      - match:
           # https://github.com/mui-org/material-ui/pull/17604#issuecomment-536262291
           dependency_name: 'core-js'
       - match:
