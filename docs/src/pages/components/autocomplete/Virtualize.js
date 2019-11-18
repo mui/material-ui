@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -49,6 +49,10 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
     </div>
   );
 });
+
+ListboxComponent.propTypes = {
+  children: PropTypes.node,
+};
 
 function random(length) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
