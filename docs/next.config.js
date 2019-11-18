@@ -161,4 +161,7 @@ module.exports = {
 
     return map;
   },
+  async rewrites() {
+    return [{ source: '/api/:rest*', destination: '/api-docs/:rest' }];
+  },
 };
