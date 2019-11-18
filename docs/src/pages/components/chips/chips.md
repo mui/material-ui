@@ -58,4 +58,4 @@ You can use the `size` prop to define a small Chip.
 
 ## Accessibility
 
-If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (e.g. when tabbing) pressing `Backspace` or `Delete` will call the `onDelete` handler.
+If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (e.g. when tabbing) pressing `Backspace` or `Delete` will call the `onDelete` handler while pressing `Escape` will blur the chip.
