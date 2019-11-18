@@ -248,11 +248,11 @@ export const styles = theme => ({
       position: 'absolute',
       content: '""',
       borderRadius: '50%',
-      // x10 thumb surface (from 12px^2 to 40px^2).
-      left: -14,
-      top: -14,
-      right: -14,
-      bottom: -14,
+      // reach 42px hit target (2 * 15 + thumb diameter)
+      left: -15,
+      top: -15,
+      right: -15,
+      bottom: -15,
     },
     '&$focusVisible,&:hover': {
       boxShadow: `0px 0px 0px 8px ${fade(theme.palette.primary.main, 0.16)}`,
