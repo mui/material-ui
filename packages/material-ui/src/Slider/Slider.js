@@ -83,8 +83,8 @@ function getDecimalPrecision(num) {
   return decimalPart ? decimalPart.length : 0;
 }
 
-function roundValueToStep(value, step) {
-  const nearest = Math.round(value / step) * step;
+function roundValueToStep(value, step, min) {
+  const nearest = Math.round((value - min) / step) * step + min;
   return Number(nearest.toFixed(getDecimalPrecision(step)));
 }
 
@@ -492,7 +492,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     event.preventDefault();
 
     if (step) {
-      newValue = roundValueToStep(newValue, step);
+      newValue = roundValueToStep(newValue, step, min);
     }
 
     newValue = clamp(newValue, min, max);
@@ -547,7 +547,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       let newValue;
       newValue = percentToValue(percent, min, max);
       if (step) {
-        newValue = roundValueToStep(newValue, step);
+        newValue = roundValueToStep(newValue, step, min);
       } else {
         const marksValues = marks.map(mark => mark.value);
         const closestIndex = findClosest(marksValues, newValue);
@@ -946,6 +946,9 @@ Slider.propTypes = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
+   * The `min` prop serves as the origin for the valid values.
+   * We recommend (max - min) to be evenly divisible by the step.
+   *
    * When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
    */
   step: PropTypes.number,
