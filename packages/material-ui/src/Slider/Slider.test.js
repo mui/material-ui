@@ -306,22 +306,37 @@ describe('<Slider />', () => {
       key: 'ArrowRight',
     };
 
+    it('should use min as the step origin', () => {
+      const { getByRole } = render(<Slider defaultValue={150} step={100} max={750} min={150} />);
+      const thumb = getByRole('slider');
+      thumb.focus();
+
+      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      expect(thumb).to.have.attribute('aria-valuenow', '250');
+
+      fireEvent.keyDown(document.activeElement, moveLeftEvent);
+      expect(thumb).to.have.attribute('aria-valuenow', '150');
+    });
+
     it('should reach right edge value', () => {
       const { getByRole } = render(<Slider defaultValue={90} min={6} max={108} step={10} />);
       const thumb = getByRole('slider');
       thumb.focus();
 
       fireEvent.keyDown(document.activeElement, moveRightEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '100');
+      expect(thumb).to.have.attribute('aria-valuenow', '96');
+
+      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      expect(thumb).to.have.attribute('aria-valuenow', '106');
 
       fireEvent.keyDown(document.activeElement, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '108');
 
       fireEvent.keyDown(document.activeElement, moveLeftEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '100');
+      expect(thumb).to.have.attribute('aria-valuenow', '96');
 
       fireEvent.keyDown(document.activeElement, moveLeftEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '90');
+      expect(thumb).to.have.attribute('aria-valuenow', '86');
     });
 
     it('should reach left edge value', () => {
@@ -330,16 +345,13 @@ describe('<Slider />', () => {
       thumb.focus();
 
       fireEvent.keyDown(document.activeElement, moveLeftEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '10');
-
-      fireEvent.keyDown(document.activeElement, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '6');
 
       fireEvent.keyDown(document.activeElement, moveRightEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '20');
+      expect(thumb).to.have.attribute('aria-valuenow', '16');
 
       fireEvent.keyDown(document.activeElement, moveRightEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '30');
+      expect(thumb).to.have.attribute('aria-valuenow', '26');
     });
 
     it('should round value to step precision', () => {
