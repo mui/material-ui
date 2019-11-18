@@ -29,8 +29,8 @@
     "benchmark": "^2.1.4",
     "emotion": "^10.0.23",
     "emotion-server": "^10.0.17",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-jss": "^10.0.0",
     "styled-system": "^5.1.2"
   }
