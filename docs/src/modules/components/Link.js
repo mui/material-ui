@@ -8,10 +8,10 @@ import MuiLink from '@material-ui/core/Link';
 import { useSelector } from 'react-redux';
 
 const NextComposed = React.forwardRef(function NextComposed(props, ref) {
-  const { as, href, prefetch, ...other } = props;
+  const { as, href, ...other } = props;
 
   return (
-    <NextLink href={href} prefetch={prefetch} as={as}>
+    <NextLink href={href} as={as}>
       <a ref={ref} {...other} />
     </NextLink>
   );
@@ -20,7 +20,6 @@ const NextComposed = React.forwardRef(function NextComposed(props, ref) {
 NextComposed.propTypes = {
   as: PropTypes.string,
   href: PropTypes.string,
-  prefetch: PropTypes.bool,
 };
 
 // A styled version of the Next.js Link component:
@@ -65,7 +64,6 @@ Link.propTypes = {
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   naked: PropTypes.bool,
   onClick: PropTypes.func,
-  prefetch: PropTypes.bool,
   role: PropTypes.string,
 };
 
