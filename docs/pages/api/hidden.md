@@ -31,7 +31,7 @@ Responsively hides children based on the selected implementation.
 | <span class="prop-name">lgUp</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If true, screens this size and up will be hidden. |
 | <span class="prop-name">mdDown</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If true, screens this size and down will be hidden. |
 | <span class="prop-name">mdUp</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If true, screens this size and up will be hidden. |
-| <span class="prop-name">only</span> | <span class="prop-type">'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;Array<'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'></span> |  | Hide the given breakpoint(s). |
+| <span class="prop-name">only</span> | <span class="prop-type">'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;Array&lt;'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'&gt;</span> |  | Hide the given breakpoint(s). |
 | <span class="prop-name">smDown</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If true, screens this size and down will be hidden. |
 | <span class="prop-name">smUp</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If true, screens this size and up will be hidden. |
 | <span class="prop-name">xlDown</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If true, screens this size and down will be hidden. |
