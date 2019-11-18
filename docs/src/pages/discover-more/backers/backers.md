@@ -1,27 +1,24 @@
 # Sponsors & Backers
 
-<p class="description">Support Material-UI’s development through donations.</p>
+<p class="description">Support Material-UI core’s development through crowdfunding.</p>
 
-Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development helped by the support of these awesome backers. If you'd like to join them, please consider:
+The core of Material-UI is a crowd-funded open-source project, licensed under the permissive MIT license. Sponsorship increases the rate of bug fixes, documentation improvements, and feature development.
 
-- [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
-- [Become a backer or sponsor on OpenCollective](https://opencollective.com/material-ui).
+## Material-UI's sponsors
 
-#### What's the difference between Patreon and OpenCollective?
+### Diamond 💎
 
-Funds donated via Patreon directly support [Olivier Tassinari](https://github.com/oliviertassinari)'s work on Material-UI.
-Funds donated via OpenCollective are managed transparently and will be used for compensating work and expenses for core team members.
-Your name/logo will receive proper recognition and exposure by donating on either platform.
+*3/3 slots available*
 
-## Gold Sponsors
+Diamond Sponsors are those who have pledged $2,000/month and more to Material-UI.
+Please contact us at diamond@material-ui.com to subscribe to this tier.
 
-Gold Sponsors are those who have pledged $500/month and more to Material-UI.
+### Gold 🏆
 
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex; justify-content: center;">
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="creative-tim" href="https://www.creative-tim.com/?partner=104080" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="126" src="https://github.com/creativetimofficial.png?size=126" alt="creative-tim" title="Premium Themes" /></a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/tidelift.png?size=96" alt="tidelift" title="Get Professionally Supported Material-UI" /></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/tidelift.png?size=96" alt="tidelift" title="Enterprise-ready open source software" /></a>
   <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/teambit.png?size=96" alt="bitsrc" title="The fastest way to share code" /></a>
 </p>
 
@@ -32,48 +29,33 @@ via [OpenCollective](https://opencollective.com/material-ui)
   <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.crosswordsolver.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/crosswordsolver/avatar.png" alt="crosswordsolver" title="Crossword Puzzle Solver" width="100" loading="lazy" /></a>
 </p>
 
-## Silver Sponsors
+Gold Sponsors are those who have pledged $500/month and more to Material-UI.
+
+### Silver
+
+via [Patreon](https://www.patreon.com/oliviertassinari)
+
+via [OpenCollective](https://opencollective.com/material-ui)
+
+<p style="overflow: auto;">
+  <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/silver-sponsor.svg?avatarHeight=70&width=600">Silver Sponsors</object>
+</p>
 
 Silver Sponsors are those who have pledged $250/month to $500/month to Material-UI.
 
+### Bronze
+
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
 <p style="overflow: auto;">
-  <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/silver-sponsors.svg?avatarHeight=70&width=600">Silver Sponsors</object>
+  <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/bronze-sponsor.svg?avatarHeight=60&width=600">Bronze Sponsors</object>
 </p>
-
-## Bronze Sponsors
 
 Bronze Sponsors are those who have pledged $100/month to $250/month to Material-UI.
 
-via [Patreon](https://www.patreon.com/oliviertassinari)
-
-via [OpenCollective](https://opencollective.com/material-ui)
-
-<p style="overflow: auto;">
-  <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/bronze-sponsors.svg?avatarHeight=60&width=600">Bronze Sponsors</object>
-</p>
-
-## Backers
-
-via [Patreon](https://www.patreon.com/oliviertassinari)
-
-| ♥️ | ♥️ | ♥️ | ♥️ | ♥️ |
-|---|---|---|---|---|
-| Olivier Baumann | Linus Gubenis | Scott Fortmann-Roe | Yosmany García Alfonso | cocoanton |
-| Hong Yuan | Lucas Nascimento | the-noob | Thomas Hermann | Diana-Alina Olaru |
-| Daniel Faust | David Langheiter | LocalMonero | Adam Wells | Vincent Bouzeran |
-| Ashwin Hegde | Eric Schultz | Conor Dunk | Jerome Wilson | Greenlink |
-| Jolse Maginnis | asmeikal | David Auffret | Naresh Bhatia | Henk van Hest |
-| Avétis KAZARIAN | Withinpixels | SIM KIM SIA | Renaud Bompuis | Yaron Malin |
-| Arvanitis Panagiotis | Jesse Weigel | Bogdan Mihai Nicolae | Dung Tran | Kyle Pennell |
-| Kai Mit Pansen | Eric Nagy | Karens Grigorjancs | Mohamed Turco | Haroun Serang |
-| Antonio Seveso | Ali Akhavan | Bruno Winck | Alessandro Annini | Victor Irzak |
-| Manuel U Grullon | Skaronator | Peter James | Vincz | Micah Davidson |
-| Nelson Batalha | Daniel Woss | Michael Staub | Scott Fortmann-Roe | Markus Wüstenberg |
-| Anthony Mezzolesta | Julien Vallini | Johan Eliasson | Tomasz Szkodziński | Joseph Dillman |
+### Backers
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
@@ -81,9 +63,55 @@ via [OpenCollective](https://opencollective.com/material-ui)
   <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/backer.svg?avatarHeight=50&width=600">Backers</object>
 </p>
 
-## Why?
+## FAQ
 
-If you run a business and are using Material-UI in a revenue-generating product, it makes business sense to sponsor Material-UI development: **it ensures the project that your product relies on stays healthy and actively maintained**.
-It can also help your exposure in the Material-UI community and makes it easier to attract Material-UI developers.
+#### Why is Material-UI a "crowd-funded open-source project"?
 
-If you are an individual user and have enjoyed the productivity of using Material-UI, consider donating as a sign of appreciation.
+The core of Material-UI is open-source to give users great freedom in how they use the software, and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use-cases. To make Material-UI a project that users can rely on for years to come, it needs to be well directed and financially sustainable.
+
+The absolute best way to support Material-UI’s ongoing development efforts is to become a sponsor. Crowd-sourced funding enables us to spend the most time directly working on improving Material-UI core, which you and other Material-UI users then benefit from.
+
+#### How is sponsorship money spent?
+
+Sponsorship money is used to fund software development, testing, documentation, and releases of the Material-UI software suite.
+
+#### Is sponsorship required to use Material-UI?
+
+Users are not legally required to give back to the Material-UI project, but it is in their interest to do so.
+
+By significantly reducing the amount of work needed to achieve business goals and reducing running costs, Material-UI results in huge time and money savings for users. We encourage organizations to contribute a portion of these savings back, enabling the project to advance more rapidly and result in even greater savings for your organization.
+
+#### What's the difference between Patreon and OpenCollective?
+
+Funds received via Patreon or other forms, directly support [Olivier Tassinari](https://github.com/oliviertassinari) and the core team mission.
+The funds go to a for-profit entity that employs some of the core team members.
+
+Funds donated via OpenCollective are managed transparently and aimed to sustain the MIT core of Material-UI. Material-UI benefits from the Open Collective's fiscal sponsorship (hosted as a non-profit), in exchange for 10% of the donations.
+
+## Services
+
+These great services sponsor Material-UI's core infrastructure:
+
+- [<img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" width="100">](https://github.com/)
+
+GitHub allows us to host the Git repository.
+
+- [<img src="https://assets.brandfolder.com/otz6k5-cj8pew-e4rk9u/element.png?v=1501538594" width="120">](https://circleci.com/)
+
+CircleCI allows us to run the test suite.
+
+- [<img src="https://cdn.netlify.com/15ecf59b59c9d04b88097c6b5d2c7e8a7d1302d0/1b6d6/img/press/logos/full-logo-light.svg" width="120">](https://www.netlify.com/)
+
+Netlify allows us to distribute the documentation.
+
+- [<img src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png" width="120">](https://crowdin.com/)
+
+CrowdIn allows us to translate the documentation.
+
+- [<img src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" width="120">](https://www.browserstack.com/)
+
+BrowserStack allows us to test in real browsers.
+
+- [<img src="https://raw.githubusercontent.com/codecov/media/master/logos/icon-50.png" height="30">](https://codecov.io/)
+
+CodeCov allows us to monitor the test coverage.

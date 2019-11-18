@@ -81,30 +81,38 @@ function Ad(props) {
   const [carbonOut, setCarbonOut] = React.useState(null);
   const [codeFundOut, setCodeFundOut] = React.useState(null);
 
-  const checkAdblock = React.useCallback((attempt = 1) => {
-    if (document.querySelector('.cf-wrapper') || document.querySelector('#carbonads')) {
+  const checkAdblock = React.useCallback(
+    (attempt = 1) => {
       if (
-        document.querySelector('#carbonads a') &&
-        document.querySelector('#carbonads a').getAttribute('href') ===
-          'https://material-ui-next.com/discover-more/backers'
+        document.querySelector('.cf-wrapper') ||
+        document.querySelector('#carbonads') ||
+        codeFundOut ||
+        carbonOut
       ) {
-        setCarbonOut(true);
+        if (
+          document.querySelector('#carbonads a') &&
+          document.querySelector('#carbonads a').getAttribute('href') ===
+            'https://material-ui-next.com/discover-more/backers'
+        ) {
+          setCarbonOut(true);
+        }
+
+        setAdblock(false);
+        return;
       }
 
-      setAdblock(false);
-      return;
-    }
+      if (attempt < 30) {
+        timerAdblock.current = setTimeout(() => {
+          checkAdblock(attempt + 1);
+        }, 500);
+      }
 
-    if (attempt < 30) {
-      timerAdblock.current = setTimeout(() => {
-        checkAdblock(attempt + 1);
-      }, 500);
-    }
-
-    if (attempt > 6) {
-      setAdblock(true);
-    }
-  }, []);
+      if (attempt > 6) {
+        setAdblock(true);
+      }
+    },
+    [codeFundOut, carbonOut],
+  );
 
   React.useEffect(() => {
     if (disable) {
@@ -151,7 +159,7 @@ function Ad(props) {
     if (carbonOut || codeFundOut) {
       children = <AdInHouse ad={inHouses[Math.round((inHouses.length - 1) * random)]} />;
       minHeight = 'auto';
-    } else if (random >= 0.5) {
+    } else if (random >= 0.55) {
       children = <AdCodeFund />;
     } else {
       children = <AdCarbon />;

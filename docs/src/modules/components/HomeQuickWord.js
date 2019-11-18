@@ -8,15 +8,10 @@ import Link from 'docs/src/modules/components/Link';
 
 const backers = [
   {
-    href: 'https://www.creative-tim.com/?partner=104080',
-    alt: 'creative-tim',
-    title: 'Creative Tim — Premium Themes',
-  },
-  {
     href:
       'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage',
     alt: 'tidelift',
-    title: 'Tidelift — Get Professionally Supported Material-UI',
+    title: 'Tidelift — Enterprise-ready open source software',
   },
   {
     href: 'https://bit.dev',

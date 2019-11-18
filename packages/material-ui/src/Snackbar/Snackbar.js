@@ -359,7 +359,7 @@ Snackbar.propTypes = {
    */
   onMouseLeave: PropTypes.func,
   /**
-   * If true, `Snackbar` is open.
+   * If `true`, `Snackbar` is open.
    */
   open: PropTypes.bool,
   /**

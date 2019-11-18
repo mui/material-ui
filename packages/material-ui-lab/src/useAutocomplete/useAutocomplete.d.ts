@@ -112,7 +112,7 @@ export interface UseAutocompleteProps {
    */
   inputValue?: string;
   /**
-   * If true, `value` must be an array and the menu will support multiple selections.
+   * If `true`, `value` must be an array and the menu will support multiple selections.
    */
   multiple?: boolean;
   /**

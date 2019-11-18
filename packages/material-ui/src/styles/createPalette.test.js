@@ -458,7 +458,7 @@ describe('createPalette()', () => {
       assert.strictEqual(consoleErrorMock.callCount(), 1);
       assert.include(
         consoleErrorMock.args()[0][0],
-        'falls below the WACG recommended absolute minimum contrast ratio of 3:1',
+        'falls below the WCAG recommended absolute minimum contrast ratio of 3:1',
       );
     });
   });

@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import marked from 'marked';
 import throttle from 'lodash/throttle';
 import clsx from 'clsx';
+import Box from '@material-ui/core/Box';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import textToHash from 'docs/src/modules/utils/textToHash';
+import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import Link from 'docs/src/modules/components/Link';
 
 const useStyles = makeStyles(theme => ({
@@ -255,6 +257,9 @@ export default function AppTableOfContents(props) {
           </Typography>
         </React.Fragment>
       ) : null}
+      <Box mt={3} mb={2} mx={1.5}>
+        <DiamondSponsors />
+      </Box>
     </nav>
   );
 }

@@ -115,7 +115,7 @@ export const styles = theme => ({
     alignItems: 'center',
     cursor: 'pointer',
     paddingTop: 6,
-    outline: 'none',
+    outline: '0',
     // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
     paddingBottom: 6,
@@ -521,7 +521,7 @@ Autocomplete.propTypes = {
    */
   loadingText: PropTypes.node,
   /**
-   * If true, `value` must be an array and the menu will support multiple selections.
+   * If `true`, `value` must be an array and the menu will support multiple selections.
    */
   multiple: PropTypes.bool,
   /**
