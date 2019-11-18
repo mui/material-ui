@@ -222,36 +222,12 @@ export const styles = theme => {
         color: fade(deleteIconColor, 0.4),
       },
     },
-    /* Styles applied to the button wrapper of the `deleteIcon` element. */
-    deleteIconButton: {
-      borderRadius: 10,
-      marginLeft: -4, // offset 12px padding right of label to get resulting 8px space
-      marginRight: 8,
-      width: 18,
-      height: 18,
-      '& $deleteIcon': {
-        margin: 0,
-        width: 18,
-        height: 18,
-      },
-    },
     /* Styles applied to the `deleteIcon` element if `size="small"`. */
     deleteIconSmall: {
       height: 16,
       width: 16,
       marginRight: 4,
       marginLeft: -4,
-    },
-    /* Styles applied to the button wrapper of the `deleteIcon` element if `size="small"`. */
-    deleteIconButtonSmall: {
-      marginLeft: -3, // offset 8px padding right of label to get resulting 5px space
-      marginRight: 5,
-      width: 13,
-      height: 13,
-      '& $deleteIcon': {
-        width: 13,
-        height: 13,
-      },
     },
     /* Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`. */
     deleteIconColorPrimary: {
@@ -303,7 +279,6 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     onDelete,
     onKeyUp,
     size = 'medium',
-    tabIndex = 0,
     variant = 'default',
     ...other
   } = props;
@@ -343,7 +318,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   const Component = ComponentProp || (clickable ? ButtonBase : 'div');
   const moreProps = Component === ButtonBase ? { component: 'div' } : {};
 
-  let deleteButton = null;
+  let deleteIcon = null;
   if (onDelete) {
     const customClasses = clsx({
       [classes.deleteIconSmall]: small,
@@ -353,21 +328,17 @@ const Chip = React.forwardRef(function Chip(props, ref) {
         color !== 'default' && variant === 'outlined',
     });
 
-    deleteButton =
+    deleteIcon =
       deleteIconProp && React.isValidElement(deleteIconProp) ? (
         React.cloneElement(deleteIconProp, {
           className: clsx(deleteIconProp.props.className, classes.deleteIcon, customClasses),
           onClick: handleDeleteIconClick,
         })
       ) : (
-        <ButtonBase
-          className={clsx(classes.deleteIconButton, { [classes.deleteIconButtonSmall]: small })}
-          onMouseDown={event => event.stopPropagation()}
+        <CancelIcon
+          className={clsx(classes.deleteIcon, customClasses)}
           onClick={handleDeleteIconClick}
-          tabIndex={clickable ? -1 : tabIndex}
-        >
-          <CancelIcon className={clsx(classes.deleteIcon, customClasses)} viewBox="2 2 20 20" />
-        </ButtonBase>
+        />
       );
   }
 
@@ -402,7 +373,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
 
   return (
     <Component
-      role={clickable ? 'button' : undefined}
+      role={clickable || onDelete ? 'button' : undefined}
       className={clsx(
         classes.root,
         {
@@ -420,7 +391,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
         className,
       )}
       aria-disabled={disabled ? true : undefined}
-      tabIndex={clickable ? tabIndex : undefined}
+      tabIndex={clickable || onDelete ? 0 : undefined}
       onClick={onClick}
       onKeyUp={handleKeyUp}
       ref={handleRef}
@@ -435,7 +406,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
       >
         {label}
       </span>
-      {deleteButton}
+      {deleteIcon}
     </Component>
   );
 });
@@ -513,11 +484,6 @@ Chip.propTypes = {
    * The size of the chip.
    */
   size: PropTypes.oneOf(['small', 'medium']),
-  /**
-   * Tab index of the element that should be in tab order. By
-   * using `-1` no Chip will be on tab order.
-   */
-  tabIndex: PropTypes.number,
   /**
    * The variant to use.
    */

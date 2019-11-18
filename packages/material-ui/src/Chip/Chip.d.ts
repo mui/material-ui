@@ -51,9 +51,7 @@ export type ChipClassKey =
   | 'deleteIconColorPrimary'
   | 'deleteIconColorSecondary'
   | 'deleteIconOutlinedColorPrimary'
-  | 'deleteIconOutlinedColorSecondary'
-  | 'deleteIconButton'
-  | 'deleteIconButtonSmall';
+  | 'deleteIconOutlinedColorSecondary';
 
 export type ChipProps<
   D extends React.ElementType = ChipTypeMap['defaultComponent'],

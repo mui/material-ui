@@ -36,7 +36,6 @@ Chips represent complex entities in small blocks, such as a contact.
 | <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The content of the label. |
 | <span class="prop-name">onDelete</span> | <span class="prop-type">func</span> |  | Callback function fired when the delete icon is clicked. If set, the delete icon will be shown. |
 | <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'</span> | <span class="prop-default">'medium'</span> | The size of the chip. |
-| <span class="prop-name">tabIndex</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | Tab index of the element that should be in tab order. By using `-1` no Chip will be on tab order. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'outlined'</span> | <span class="prop-default">'default'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
@@ -75,9 +74,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">label</span> | <span class="prop-name">.MuiChip-label</span> | Styles applied to the label `span` element`.
 | <span class="prop-name">labelSmall</span> | <span class="prop-name">.MuiChip-labelSmall</span> | 
 | <span class="prop-name">deleteIcon</span> | <span class="prop-name">.MuiChip-deleteIcon</span> | Styles applied to the `deleteIcon` element.
-| <span class="prop-name">deleteIconButton</span> | <span class="prop-name">.MuiChip-deleteIconButton</span> | Styles applied to the button wrapper of the `deleteIcon` element.
 | <span class="prop-name">deleteIconSmall</span> | <span class="prop-name">.MuiChip-deleteIconSmall</span> | Styles applied to the `deleteIcon` element if `size="small"`.
-| <span class="prop-name">deleteIconButtonSmall</span> | <span class="prop-name">.MuiChip-deleteIconButtonSmall</span> | Styles applied to the button wrapper of the `deleteIcon` element if `size="small"`.
 | <span class="prop-name">deleteIconColorPrimary</span> | <span class="prop-name">.MuiChip-deleteIconColorPrimary</span> | Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`.
 | <span class="prop-name">deleteIconColorSecondary</span> | <span class="prop-name">.MuiChip-deleteIconColorSecondary</span> | Styles applied to the deleteIcon element if `color="secondary"` and `variant="default"`.
 | <span class="prop-name">deleteIconOutlinedColorPrimary</span> | <span class="prop-name">.MuiChip-deleteIconOutlinedColorPrimary</span> | Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`.

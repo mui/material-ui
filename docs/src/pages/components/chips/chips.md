@@ -58,10 +58,4 @@ You can use the `size` prop to define a small Chip.
 
 ## Accessibility
 
-### Deleteable Clickable Chip
-
-The Chip is a button that is in tab-order. Deleteable Chips have a nested button that is focusable but not in tab order. When the Chip (the outer button) is focused (e.g. when tabbing) pressing `Backspace` or `Delete` will call the `onDelete` handler.
-
-### Deleteable Chip (not clickable)
-
-The Chip has a single button for the delete handler that is focusable and tabbable.
+If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (e.g. when tabbing) pressing `Backspace` or `Delete` will call the `onDelete` handler.
