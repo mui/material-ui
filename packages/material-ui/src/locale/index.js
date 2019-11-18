@@ -131,7 +131,7 @@ export const ruRU = {
   props: {
     MuiTablePagination: {
       backIconButtonText: 'Предыдущая страница',
-      labelRowsPerPage: 'Строк на страницу:',
+      labelRowsPerPage: 'Строк на странице:',
       labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} из ${count}`,
       nextIconButtonText: 'Следующая страница',
     },
@@ -153,7 +153,7 @@ export const ruRU = {
       clearText: 'Очистить',
       closeText: 'Закрыть',
       loadingText: 'Загрузка…',
-      noOptionsText: 'Нет вариантов',
+      noOptionsText: 'Нет доступных вариантов',
       openText: 'Открыть',
     },
   },
