@@ -125,7 +125,7 @@ describe('<Select />', () => {
     });
 
     expect(handleBlur.callCount).to.equal(0);
-    expect(queryByRole('listbox')).to.be.null;
+    expect(queryByRole('listbox', { hidden: false })).to.be.null;
   });
 
   it('options should have a data-value attribute', () => {

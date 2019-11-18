@@ -37,7 +37,7 @@ describe('<Breadcrumbs />', () => {
       </Breadcrumbs>,
     );
 
-    expect(getAllByRole('listitem')).to.have.length(2);
+    expect(getAllByRole('listitem', { hidden: false })).to.have.length(2);
     expect(getByRole('list')).to.have.text('first/second');
   });
 
@@ -56,7 +56,7 @@ describe('<Breadcrumbs />', () => {
       </Breadcrumbs>,
     );
 
-    const listitems = getAllByRole('listitem');
+    const listitems = getAllByRole('listitem', { hidden: false });
     expect(listitems).to.have.length(3);
     expect(getByRole('list')).to.have.text('first//ninth');
     expect(listitems[1].querySelector('[data-mui-test="MoreHorizIcon"]')).to.be.ok;
@@ -77,9 +77,9 @@ describe('<Breadcrumbs />', () => {
       </Breadcrumbs>,
     );
 
-    getAllByRole('listitem')[2].click();
+    getAllByRole('listitem', { hidden: false })[2].click();
 
-    expect(getAllByRole('listitem')).to.have.length(3);
+    expect(getAllByRole('listitem', { hidden: false })).to.have.length(3);
   });
 
   describe('warnings', () => {
@@ -100,7 +100,7 @@ describe('<Breadcrumbs />', () => {
           <span>fourth</span>
         </Breadcrumbs>,
       );
-      expect(getAllByRole('listitem')).to.have.length(4);
+      expect(getAllByRole('listitem', { hidden: false })).to.have.length(4);
       expect(getByRole('list')).to.have.text('first/second/third/fourth');
       expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
       expect(consoleErrorMock.args()[0][0]).to.include(
