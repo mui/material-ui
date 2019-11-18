@@ -131,19 +131,30 @@ export const ruRU = {
   props: {
     MuiTablePagination: {
       backIconButtonText: 'Предыдущая страница',
-      labelRowsPerPage: 'Строк на страницу:',
-      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} of ${count}`,
+      labelRowsPerPage: 'Строк на странице:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} из ${count}`,
       nextIconButtonText: 'Следующая страница',
     },
     MuiRating: {
-      getLabelText: value => `${value} ${value !== 1 ? 'Звезды' : 'звезда'}`,
+      getLabelText: value => {
+        let pluralForm = 'Звёзд';
+        const lastDigit = value % 10;
+
+        if (lastDigit > 1 && lastDigit < 5) {
+          pluralForm = 'Звезды';
+        } else if (lastDigit === 1) {
+          pluralForm = 'Звезда';
+        }
+
+        return `${value} ${pluralForm}`;
+      },
     },
     MuiAutocomplete: {
-      clearText: 'чистый',
-      closeText: 'близко',
-      loadingText: 'загрузка…',
-      noOptionsText: 'Нет вариантов',
-      openText: 'открыто',
+      clearText: 'Очистить',
+      closeText: 'Закрыть',
+      loadingText: 'Загрузка…',
+      noOptionsText: 'Нет доступных вариантов',
+      openText: 'Открыть',
     },
   },
 };
