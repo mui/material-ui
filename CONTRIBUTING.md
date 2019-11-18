@@ -167,7 +167,7 @@ the accessibility (a11y) tree and which are excluded. This check is fairly expen
 is why it is disabled when tests are run locally by default. The rationale being
 that in almost all cases including or excluding elements from a query-set depending
 on their a11y-tree membership makes no difference. The queries where this does
-make a difference explicityl include this check e.g. `getByRole('button', { hidden: false })` (see [byRole documentation](https://testing-library.com/docs/dom-testing-library/api-queries#byrole) for more information).
+make a difference explicitly include this check e.g. `getByRole('button', { hidden: false })` (see [byRole documentation](https://testing-library.com/docs/dom-testing-library/api-queries#byrole) for more information).
 To see if your test (`test:browser` or `test:unit`) behaves the same between CI and local environment set the environment variable `CI` to `'true'`.
 
 ### Testing the documentation site
