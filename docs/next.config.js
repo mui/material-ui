@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const withTypescript = require('@zeit/next-typescript');
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
 const { LANGUAGES_SSR } = require('./src/modules/constants');
@@ -13,7 +12,7 @@ const workspaceRoot = path.join(__dirname, '../');
  */
 const reactMode = 'legacy';
 
-module.exports = withTypescript({
+module.exports = {
   webpack: (config, options) => {
     const plugins = config.plugins.concat([
       new webpack.DefinePlugin({
@@ -162,10 +161,4 @@ module.exports = withTypescript({
 
     return map;
   },
-  onDemandEntries: {
-    // Period (in ms) where the server will keep pages in the buffer
-    maxInactiveAge: 120 * 1e3, // default 25s
-    // Number of pages that should be kept simultaneously without being disposed
-    pagesBufferLength: 3, // default 2
-  },
-});
+};
