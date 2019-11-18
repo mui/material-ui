@@ -42,7 +42,7 @@ gain depth while clicked or touched.
 
 ## Small Chip
 
-You can use the `size` prop to define a small Chip. 
+You can use the `size` prop to define a small Chip.
 
 ### Default variant
 
@@ -55,3 +55,7 @@ You can use the `size` prop to define a small Chip.
 ## Chip Playground
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}
+
+## Accessibility
+
+If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.

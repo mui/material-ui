@@ -1,23 +1,21 @@
 import React from 'react';
-import { assert } from 'chai';
-import { spy } from 'sinon';
+import { expect } from 'chai';
+import { spy, stub } from 'sinon';
 import CheckBox from '../internal/svg-icons/CheckBox';
-import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Avatar from '../Avatar';
 import Chip from './Chip';
 
 describe('<Chip />', () => {
   let classes;
   let mount;
+  const render = createClientRender({ strict: true });
 
   before(() => {
     classes = getClasses(<Chip />);
     mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    mount.cleanUp();
   });
 
   describeConformance(<Chip />, () => ({
@@ -26,581 +24,485 @@ describe('<Chip />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
+    after: () => mount.cleanUp(),
   }));
 
   describe('text only', () => {
-    it('should render a div containing a label', () => {
-      const wrapper = mount(<Chip label="My text Chip" />);
-      const chip = wrapper.find(`.${classes.root}`).hostNodes();
-      const label = chip.find(`.${classes.label}`).hostNodes();
+    it('is not in tab order', () => {
+      const { container } = render(<Chip label="My text Chip" />);
 
-      assert.strictEqual(chip.type(), 'div');
-      assert.strictEqual(label.type(), 'span');
-      assert.strictEqual(label.text(), 'My text Chip');
-      assert.strictEqual(chip.hasClass(classes.root), true);
-      assert.strictEqual(chip.props().tabIndex, undefined);
+      expect(container.querySelectorAll('[tabindex]')).to.have.length(0);
+    });
 
-      assert.strictEqual(chip.hasClass(classes.root), true);
-      assert.strictEqual(chip.hasClass(classes.colorPrimary), false);
-      assert.strictEqual(chip.hasClass(classes.colorSecondary), false);
-      assert.strictEqual(chip.hasClass(classes.clickable), false);
-      assert.strictEqual(chip.hasClass(classes.clickableColorPrimary), false);
-      assert.strictEqual(chip.hasClass(classes.clickableColorSecondary), false);
-      assert.strictEqual(chip.hasClass(classes.deletable), false);
-      assert.strictEqual(chip.hasClass(classes.deletableColorPrimary), false);
-      assert.strictEqual(chip.hasClass(classes.deletableColorSecondary), false);
+    it('should renders certain classes and contains a label', () => {
+      const { container } = render(<Chip label="My text Chip" />);
+
+      const chip = container.querySelector(`.${classes.root}`);
+      const label = container.querySelector(`.${classes.label}`);
+
+      expect(label).to.have.property('tagName', 'SPAN');
+      expect(label).to.have.text('My text Chip');
+
+      expect(chip).to.have.class(classes.root);
+      expect(chip).not.to.have.class(classes.colorPrimary);
+      expect(chip).not.to.have.class(classes.colorSecondary);
+      expect(chip).not.to.have.class(classes.clickable);
+      expect(chip).not.to.have.class(classes.clickableColorPrimary);
+      expect(chip).not.to.have.class(classes.clickableColorSecondary);
+      expect(chip).not.to.have.class(classes.deletable);
+      expect(chip).not.to.have.class(classes.deletableColorPrimary);
+      expect(chip).not.to.have.class(classes.deletableColorSecondary);
     });
 
     it('should render with the root and the primary class', () => {
-      const wrapper = mount(<Chip className="my-Chip" color="primary" />);
-      const chip = wrapper.find(`.${classes.root}`).hostNodes();
+      const { container } = render(<Chip color="primary" />);
 
-      assert.strictEqual(chip.hasClass(classes.root), true);
-      assert.strictEqual(chip.hasClass(classes.colorPrimary), true);
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.colorPrimary);
     });
 
     it('should render with the root and the secondary class', () => {
-      const wrapper = mount(<Chip className="my-Chip" color="secondary" />);
-      const chip = wrapper.find(`.${classes.root}`);
+      const { container } = render(<Chip color="secondary" />);
 
-      assert.strictEqual(chip.exists(), true);
-      assert.strictEqual(chip.hasClass(classes.colorSecondary), true);
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.colorSecondary);
     });
   });
 
-  describe('clickable text chip', () => {
-    let chip;
-    let wrapper;
-    let handleClick;
+  describe('clickable chip', () => {
+    it('renders as a button in taborder with the label as the accessible name', () => {
+      const { getByRole } = render(<Chip label="My Chip" onClick={() => {}} />);
 
-    before(() => {
-      handleClick = () => {};
-      wrapper = mount(<Chip label="My Chip" onClick={handleClick} />);
-      chip = wrapper.find(`.${classes.root}`).hostNodes();
-    });
-
-    it('should render a div containing a label', () => {
-      assert.strictEqual(chip.type(), 'div');
-
-      const label = chip.find(`.${classes.label}`).hostNodes();
-      assert.strictEqual(label.exists(), true);
-      assert.strictEqual(label.type(), 'span');
-      assert.strictEqual(label.text(), 'My Chip');
-    });
-
-    it('should have a tabIndex prop', () => {
-      assert.strictEqual(chip.props().tabIndex, 0);
+      const button = getByRole('button');
+      expect(button).to.have.property('tabIndex', 0);
+      // TODO: accessible name computation
+      expect(button).to.have.text('My Chip');
     });
 
     it('should apply user value of tabIndex', () => {
-      const tabIndexWrapper = mount(
-        // eslint-disable-next-line jsx-a11y/tabindex-no-positive
-        <Chip onClick={() => {}} tabIndex={5} />,
-      );
-      const tabIndexChip = tabIndexWrapper.find(`.${classes.root}`).hostNodes();
-      assert.strictEqual(tabIndexChip.props().tabIndex, 5);
+      // eslint-disable-next-line jsx-a11y/tabindex-no-positive
+      const { getByRole } = render(<Chip label="My Chip" onClick={() => {}} tabIndex={5} />);
+
+      expect(getByRole('button')).to.have.property('tabIndex', 5);
     });
 
     it('should render with the root and clickable class', () => {
-      assert.strictEqual(chip.hasClass(classes.root), true);
-      assert.strictEqual(chip.hasClass(classes.clickable), true);
+      const { container } = render(<Chip label="My Chip" onClick={() => {}} />);
+
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.root);
+      expect(chip).to.have.class(classes.clickable);
     });
 
     it('should render with the root and clickable primary class', () => {
-      const primaryWrapper = mount(
-        <Chip className="my-Chip" data-my-prop="woofChip" onClick={handleClick} color="primary" />,
-      );
-      const primaryChip = primaryWrapper.find('.my-Chip').hostNodes();
+      const { getByRole } = render(<Chip label="My Chip" onClick={() => {}} color="primary" />);
 
-      assert.strictEqual(primaryChip.hasClass(classes.root), true);
-      assert.strictEqual(primaryChip.hasClass(classes.colorPrimary), true);
-      assert.strictEqual(primaryChip.hasClass(classes.clickable), true);
-      assert.strictEqual(primaryChip.hasClass(classes.clickableColorPrimary), true);
+      const button = getByRole('button');
+      expect(button).to.have.class(classes.root);
+      expect(button).to.have.class(classes.colorPrimary);
+      expect(button).to.have.class(classes.clickable);
+      expect(button).to.have.class(classes.clickableColorPrimary);
     });
 
     it('should render with the root and outlined clickable primary class', () => {
-      const outlinedWrapper = mount(
-        <Chip
-          className="my-Chip"
-          data-my-prop="woofChip"
-          onClick={handleClick}
-          color="primary"
-          variant="outlined"
-        />,
+      const { container } = render(
+        <Chip color="primary" label="My Chip" onClick={() => {}} variant="outlined" />,
       );
-      const outlinedChip = outlinedWrapper.find('.my-Chip').hostNodes();
 
-      assert.strictEqual(outlinedChip.hasClass(classes.root), true);
-      assert.strictEqual(outlinedChip.hasClass(classes.colorPrimary), true);
-      assert.strictEqual(outlinedChip.hasClass(classes.clickable), true);
-      assert.strictEqual(outlinedChip.hasClass(classes.clickableColorPrimary), true);
-      assert.strictEqual(outlinedChip.hasClass(classes.outlined), true);
-      assert.strictEqual(outlinedChip.hasClass(classes.outlinedPrimary), true);
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.root);
+      expect(chip).to.have.class(classes.colorPrimary);
+      expect(chip).to.have.class(classes.clickable);
+      expect(chip).to.have.class(classes.clickableColorPrimary);
+      expect(chip).to.have.class(classes.outlined);
+      expect(chip).to.have.class(classes.outlinedPrimary);
     });
 
     it('should render with the root and clickable secondary class', () => {
-      const secondaryWrapper = mount(
-        <Chip
-          className="my-Chip"
-          data-my-prop="woofChip"
-          onClick={handleClick}
-          color="secondary"
-        />,
+      const { getByRole } = render(
+        <Chip color="secondary" label="My Chip" onClick={() => {}} variant="outlined" />,
       );
-      const secondaryChip = secondaryWrapper.find('.my-Chip').hostNodes();
 
-      assert.strictEqual(secondaryChip.hasClass(classes.root), true);
-      assert.strictEqual(secondaryChip.hasClass(classes.colorSecondary), true);
-      assert.strictEqual(secondaryChip.hasClass(classes.clickable), true);
-      assert.strictEqual(secondaryChip.hasClass(classes.clickableColorSecondary), true);
+      const button = getByRole('button');
+      expect(button).to.have.class(classes.root);
+      expect(button).to.have.class(classes.colorSecondary);
+      expect(button).to.have.class(classes.clickable);
+      expect(button).to.have.class(classes.clickableColorSecondary);
     });
   });
 
   describe('deletable Avatar chip', () => {
-    let chip;
-    let wrapper;
-
-    before(() => {
-      wrapper = mount(
+    it('should render a button in tab order with the avatar', () => {
+      const { container, getByRole } = render(
         <Chip
-          avatar={
-            <Avatar className="my-Avatar" data-my-prop="woofChip">
-              MB
-            </Avatar>
-          }
-          id="chip-test"
+          avatar={<Avatar id="avatar">MB</Avatar>}
           label="Text Avatar Chip"
           onDelete={() => {}}
-          className="my-Chip"
-          data-my-prop="woofChip"
         />,
       );
-      chip = wrapper.find('#chip-test').hostNodes();
+
+      expect(getByRole('button')).to.have.property('tabIndex', 0);
+      expect(container.querySelector('#avatar')).to.be.ok;
     });
 
-    it('should render a div containing an Avatar, span and svg', () => {
-      assert.strictEqual(chip.type(), 'div');
-      assert.strictEqual(chip.childAt(0).type(), Avatar);
-      assert.strictEqual(chip.childAt(1).name(), 'span');
-      assert.strictEqual(findOutermostIntrinsic(chip.childAt(2)).type(), 'svg');
+    it('should apply user value of tabIndex', () => {
+      const { container, getByRole } = render(
+        <Chip
+          avatar={<Avatar id="avatar">MB</Avatar>}
+          label="Text Avatar Chip"
+          onDelete={() => {}}
+          // eslint-disable-next-line jsx-a11y/tabindex-no-positive
+          tabIndex={5}
+        />,
+      );
+
+      expect(getByRole('button')).to.have.property('tabIndex', 5);
+      const elementsInTabOrder = Array.from(container.querySelectorAll('[tabIndex]')).filter(
+        element => element.tabIndex >= 0,
+      );
+      expect(elementsInTabOrder).to.have.length(1);
     });
 
-    it('should merge user classes & spread custom props to the root node', () => {
-      assert.strictEqual(chip.hasClass(classes.root), true);
-      assert.strictEqual(chip.hasClass('my-Chip'), true);
-      assert.strictEqual(chip.props()['data-my-prop'], 'woofChip');
+    it('fires onDelete when clicking the delete icon', () => {
+      const handleDelete = spy();
+      const { getByTestId } = render(
+        <Chip
+          avatar={<Avatar id="avatar">MB</Avatar>}
+          label="Text Avatar Chip"
+          onDelete={handleDelete}
+          deleteIcon={<div data-testid="delete-icon" />}
+        />,
+      );
+      const deleteIcon = getByTestId('delete-icon');
+
+      fireEvent.click(deleteIcon);
+
+      expect(handleDelete.callCount).to.equal(1);
     });
 
-    it('should merge user classes & spread custom props to the Avatar node', () => {
-      const avatar = chip.find('.my-Avatar').hostNodes();
-      assert.strictEqual(avatar.exists(), true);
-      assert.strictEqual(avatar.hasClass(classes.avatar), true);
-      assert.strictEqual(avatar.props()['data-my-prop'], 'woofChip');
-    });
+    it('should stop propagation when clicking the delete icon', () => {
+      const handleClick = spy();
+      const { getByTestId } = render(
+        <Chip
+          avatar={<Avatar id="avatar">MB</Avatar>}
+          label="Text Avatar Chip"
+          onClick={handleClick}
+          onDelete={() => {}}
+          deleteIcon={<div data-testid="delete-icon" />}
+        />,
+      );
+      const deleteIcon = getByTestId('delete-icon');
 
-    it('should have a tabIndex prop', () => {
-      assert.strictEqual(chip.props().tabIndex, 0);
-    });
+      fireEvent.click(deleteIcon);
 
-    it('should fire the function given in onDeleteRequest', () => {
-      const onDeleteSpy = spy();
-      wrapper.setProps({ onDelete: onDeleteSpy });
-
-      // simulate seems to not work on memo components
-      wrapper
-        .find('svg[data-mui-test="CancelIcon"]')
-        .props()
-        .onClick({ stopPropagation: () => {} });
-      assert.strictEqual(onDeleteSpy.callCount, 1);
-    });
-
-    it('should stop propagation in onDeleteRequest', () => {
-      const onDeleteSpy = spy();
-      const stopPropagationSpy = spy();
-      wrapper.setProps({ onDelete: onDeleteSpy });
-
-      wrapper
-        .find('svg[data-mui-test="CancelIcon"]')
-        .props()
-        .onClick({ stopPropagation: stopPropagationSpy });
-      assert.strictEqual(stopPropagationSpy.callCount, 1);
+      expect(handleClick.callCount).to.equal(0);
     });
 
     it('should render with the root, deletable classes', () => {
-      assert.strictEqual(chip.hasClass(classes.root), true);
-      assert.strictEqual(chip.hasClass(classes.deletable), true);
+      const { container } = render(
+        <Chip
+          avatar={<Avatar id="avatar">MB</Avatar>}
+          label="Text Avatar Chip"
+          onDelete={() => {}}
+        />,
+      );
 
-      const avatarWrapper = wrapper.find(`.${classes.avatar}`);
-
-      assert.strictEqual(avatarWrapper.exists(), true);
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.deletable);
     });
 
     it('should render with the root, deletable and avatar primary classes', () => {
-      wrapper = mount(
+      const { container } = render(
         <Chip
-          avatar={
-            <Avatar className="my-Avatar" data-my-prop="woofChip">
-              MB
-            </Avatar>
-          }
+          avatar={<Avatar className="my-Avatar">MB</Avatar>}
           label="Text Avatar Chip"
           onDelete={() => {}}
-          className="my-Chip"
-          data-my-prop="woofChip"
           color="primary"
         />,
       );
-      chip = wrapper.find(`.${classes.root}`);
 
-      assert.strictEqual(chip.exists(), true);
-      assert.strictEqual(chip.hasClass(classes.colorPrimary), true);
-      assert.strictEqual(chip.hasClass(classes.deletable), true);
-      assert.strictEqual(chip.hasClass(classes.deletableColorPrimary), true);
-
-      const avatarWrapper = wrapper.find(`.${classes.avatar}`).first();
-
-      assert.strictEqual(avatarWrapper.exists(), true);
-      assert.strictEqual(avatarWrapper.hasClass(classes.avatarColorPrimary), true);
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.colorPrimary);
+      expect(chip).to.have.class(classes.deletable);
+      expect(chip).to.have.class(classes.deletableColorPrimary);
+      const avatar = container.querySelector(`.${classes.avatar}`);
+      expect(avatar).to.have.class(classes.avatarColorPrimary);
     });
 
     it('should render with the root, deletable and avatar secondary classes', () => {
-      wrapper = mount(
+      const { container } = render(
         <Chip
-          avatar={
-            <Avatar className="my-Avatar" data-my-prop="woofChip">
-              MB
-            </Avatar>
-          }
+          avatar={<Avatar>MB</Avatar>}
           label="Text Avatar Chip"
           onDelete={() => {}}
-          className="my-Chip"
-          data-my-prop="woofChip"
           color="secondary"
         />,
       );
-      chip = wrapper.find(`.${classes.root}`);
 
-      assert.strictEqual(chip.exists(), true);
-      assert.strictEqual(chip.hasClass(classes.colorSecondary), true);
-      assert.strictEqual(chip.hasClass(classes.deletable), true);
-      assert.strictEqual(chip.hasClass(classes.deletableColorSecondary), true);
-
-      const avatarWrapper = wrapper.find(`.${classes.avatar}`).first();
-
-      assert.strictEqual(avatarWrapper.exists(), true);
-      assert.strictEqual(avatarWrapper.hasClass(classes.avatarColorSecondary), true);
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.colorSecondary);
+      expect(chip).to.have.class(classes.deletable);
+      expect(chip).to.have.class(classes.deletableColorSecondary);
+      const avatar = container.querySelector(`.${classes.avatar}`);
+      expect(avatar).to.have.class(classes.avatarColorSecondary);
     });
   });
 
   describe('prop: deleteIcon', () => {
-    it('should fire the function given in onDeleteRequest', () => {
-      const onDeleteSpy = spy();
-      const wrapper = mount(
-        <Chip label="Custom delete icon Chip" onDelete={onDeleteSpy} deleteIcon={<CheckBox />} />,
+    it('should render a default icon with the root, deletable, deleteIcon and deleteIconOutlinedColorSecondary classes', () => {
+      const { container, getByRole } = render(
+        <Chip label="Custom delete icon Chip" onDelete={() => {}} />,
       );
 
-      wrapper
-        .find('svg[data-mui-test="CheckBoxIcon"]')
-        .props()
-        .onClick({ stopPropagation: () => {} });
-      assert.strictEqual(onDeleteSpy.callCount, 1, 'should have called the onDelete handler');
+      const icon = container.querySelector('svg[data-mui-test="CancelIcon"]');
+      expect(getByRole('button')).to.contain(icon);
+      expect(icon).to.have.class(classes.deleteIcon);
     });
-
-    it('should render a default icon', () => {
-      const wrapper = mount(<Chip label="Custom delete icon Chip" onDelete={() => {}} />);
-      assert.strictEqual(wrapper.find('svg[data-mui-test="CancelIcon"]').length, 1);
-    });
-
-    it(
-      'should render a default icon with the root, deletable, deleteIcon' +
-        ' and deleteIconOutlinedColorSecondary classes',
-      () => {
-        const wrapper = mount(
-          <Chip
-            label="Custom delete icon Chip"
-            onDelete={() => {}}
-            variant="outlined"
-            color="secondary"
-          />,
-        );
-        const chip = wrapper.find(`.${classes.root}`);
-
-        assert.strictEqual(chip.exists(), true);
-        assert.strictEqual(chip.hasClass(classes.deletable), true);
-
-        const iconWrapper = wrapper.find('svg[data-mui-test="CancelIcon"]');
-        assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
-        assert.strictEqual(iconWrapper.hasClass(classes.deleteIconOutlinedColorSecondary), true);
-      },
-    );
 
     it('should render a default icon with the root, deletable and deleteIcon classes', () => {
-      const wrapper = mount(<Chip label="Custom delete icon Chip" onDelete={() => {}} />);
-      const chip = wrapper.find(`.${classes.root}`);
+      const { container, getByRole } = render(
+        <Chip label="Custom delete icon Chip" onDelete={() => {}} />,
+      );
 
-      assert.strictEqual(chip.exists(), true);
-      assert.strictEqual(chip.hasClass(classes.deletable), true);
-
-      const iconWrapper = wrapper.find('svg[data-mui-test="CancelIcon"]');
-      assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
+      const icon = container.querySelector('svg[data-mui-test="CancelIcon"]');
+      expect(getByRole('button')).to.contain(icon);
+      expect(icon).to.have.class(classes.deleteIcon);
     });
 
     it('should render default icon with the root, deletable and deleteIcon primary class', () => {
-      const wrapper = mount(
+      const { container } = render(
         <Chip label="Custom delete icon Chip" onDelete={() => {}} color="primary" />,
       );
-      const chip = wrapper.find(`.${classes.root}`);
 
-      assert.strictEqual(chip.exists(), true);
-      assert.strictEqual(chip.hasClass(classes.colorPrimary), true);
-      assert.strictEqual(chip.hasClass(classes.deletable), true);
-      assert.strictEqual(chip.hasClass(classes.deletableColorPrimary), true);
-
-      const iconWrapper = wrapper.find('svg[data-mui-test="CancelIcon"]');
-      assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
-      assert.strictEqual(iconWrapper.hasClass(classes.deleteIconColorPrimary), true);
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.colorPrimary);
+      expect(chip).to.have.class(classes.deletable);
+      expect(chip).to.have.class(classes.deletableColorPrimary);
+      const icon = chip.querySelector('svg[data-mui-test="CancelIcon"]');
+      expect(icon).to.have.class(classes.deleteIcon);
+      expect(icon).to.have.class(classes.deleteIconColorPrimary);
     });
 
     it('should render a default icon with the root, deletable, deleteIcon secondary class', () => {
-      const wrapper = mount(
+      const { container } = render(
         <Chip label="Custom delete icon Chip" onDelete={() => {}} color="secondary" />,
       );
-      const chip = wrapper.find(`.${classes.root}`);
-      assert.strictEqual(chip.exists(), true);
-      assert.strictEqual(chip.hasClass(classes.colorSecondary), true);
-      assert.strictEqual(chip.hasClass(classes.deletable), true);
-      assert.strictEqual(chip.hasClass(classes.deletableColorSecondary), true);
 
-      const iconWrapper = wrapper.find('svg[data-mui-test="CancelIcon"]');
-      assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
-      assert.strictEqual(iconWrapper.hasClass(classes.deleteIconColorSecondary), true);
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.colorSecondary);
+      expect(chip).to.have.class(classes.deletable);
+      expect(chip).to.have.class(classes.deletableColorSecondary);
+      const icon = chip.querySelector('svg[data-mui-test="CancelIcon"]');
+      expect(icon).to.have.class(classes.deleteIcon);
+      expect(icon).to.have.class(classes.deleteIconColorSecondary);
+    });
+
+    it('accepts a custom icon', () => {
+      const handleDelete = spy();
+      const { container } = render(
+        <Chip label="Custom delete icon Chip" onDelete={handleDelete} deleteIcon={<CheckBox />} />,
+      );
+
+      fireEvent.click(container.querySelector('svg[data-mui-test="CheckBoxIcon"]'));
+
+      expect(handleDelete.callCount).to.equal(1);
     });
   });
 
   describe('reacts to keyboard chip', () => {
-    describe('onKeyDown is defined', () => {
-      it('should call onKeyDown when a key is pressed', () => {
-        const anyKeydownEvent = { key: 'p' };
-        const onKeyDownSpy = spy();
-        const wrapper = mount(<Chip onKeyDown={onKeyDownSpy} />);
-        wrapper.find('div').simulate('keyDown', anyKeydownEvent);
-        assert.strictEqual(onKeyDownSpy.callCount, 1);
-        assert.strictEqual(onKeyDownSpy.args[0][0].keyCode, anyKeydownEvent.keyCode);
-      });
+    it('should call onKeyDown when a key is pressed', () => {
+      const handleKeydown = stub().callsFake(event => event.key);
+      const { getByRole } = render(<Chip onClick={() => {}} onKeyDown={handleKeydown} />);
+      const chip = getByRole('button');
+      chip.focus();
+
+      fireEvent.keyDown(document.activeElement, { key: 'p' });
+
+      expect(handleKeydown.callCount).to.equal(1);
+      expect(handleKeydown.firstCall.returnValue).to.equal('p');
     });
 
-    describe('escape', () => {
-      it('should unfocus when a esc key is pressed', () => {
-        const ref = React.createRef();
-        const wrapper = mount(<Chip ref={ref} />);
-        const handleBlur = spy();
-        ref.current.blur = handleBlur;
-        wrapper.find('div').simulate('keyUp', {
-          preventDefault: () => {},
-          key: 'Escape',
-        });
-        assert.strictEqual(handleBlur.callCount, 1);
-      });
+    it('should unfocus when a esc key is pressed', () => {
+      const handleBlur = spy();
+      const handleKeydown = spy();
+      const { getByRole } = render(
+        <Chip onBlur={handleBlur} onClick={() => {}} onKeyDown={handleKeydown} />,
+      );
+      const chip = getByRole('button');
+      chip.focus();
+
+      fireEvent.keyUp(document.activeElement, { key: 'Escape' });
+
+      expect(handleBlur.callCount).to.equal(1);
+      expect(chip).not.to.to.have.focus;
     });
 
-    describe('onClick is defined', () => {
-      let onClickSpy;
-      let wrapper;
+    it('should call onClick when `space` is released ', () => {
+      const handleClick = spy();
+      const { getByRole } = render(<Chip onClick={handleClick} />);
+      const chip = getByRole('button');
+      chip.focus();
 
-      before(() => {
-        onClickSpy = spy();
-        wrapper = mount(<Chip onClick={onClickSpy} />);
-      });
+      fireEvent.keyUp(document.activeElement, { key: ' ' });
 
-      afterEach(() => {
-        onClickSpy.resetHistory();
-      });
+      expect(handleClick.callCount).to.equal(1);
+    });
 
-      it('should call onClick when `space` is released ', () => {
-        const preventDefaultSpy = spy();
-        const spaceKeyDown = {
-          preventDefault: preventDefaultSpy,
-          key: ' ',
-        };
-        wrapper.find('div').simulate('keyDown', spaceKeyDown);
-        assert.strictEqual(preventDefaultSpy.callCount, 0);
-        assert.strictEqual(onClickSpy.callCount, 0);
+    it('should call onClick when `enter` is pressed ', () => {
+      const handleClick = spy();
+      const { getByRole } = render(<Chip onClick={handleClick} />);
+      const chip = getByRole('button');
+      chip.focus();
 
-        const spaceKeyUp = {
-          key: ' ',
-        };
-        wrapper.find('div').simulate('keyUp', spaceKeyUp);
-        assert.strictEqual(onClickSpy.callCount, 1);
-        assert.strictEqual(onClickSpy.args[0][0].keyCode, spaceKeyUp.keyCode);
-      });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
 
-      it('should call onClick when `enter` is pressed ', () => {
-        const preventDefaultSpy = spy();
-        const enterKeyDown = {
-          preventDefault: preventDefaultSpy,
-          key: 'Enter',
-        };
-        wrapper.find('div').simulate('keyDown', enterKeyDown);
-        assert.strictEqual(preventDefaultSpy.callCount, 1);
-        assert.strictEqual(onClickSpy.callCount, 1);
-
-        const enterKeyUp = {
-          key: 'Enter',
-        };
-        wrapper.find('div').simulate('keyUp', enterKeyUp);
-        assert.strictEqual(onClickSpy.callCount, 1);
-        assert.strictEqual(onClickSpy.args[0][0].keyCode, enterKeyUp.keyCode);
-      });
+      expect(handleClick.callCount).to.equal(1);
     });
 
     describe('prop: onDelete', () => {
-      it('should call onDelete `backspace` is pressed', () => {
-        const preventDefaultSpy = spy();
-        const onDeleteSpy = spy();
-        const wrapper = mount(<Chip onDelete={onDeleteSpy} />);
+      ['Backspace', 'Delete'].forEach(key => {
+        it(`should call onDelete '${key}' is released`, () => {
+          const handleDelete = spy();
+          const { getAllByRole } = render(<Chip onClick={() => {}} onDelete={handleDelete} />);
+          const chip = getAllByRole('button')[0];
+          chip.focus();
 
-        const backspaceKeyDown = {
-          preventDefault: preventDefaultSpy,
-          key: 'Backspace',
-        };
-        wrapper.find('div').simulate('keyDown', backspaceKeyDown);
-        assert.strictEqual(preventDefaultSpy.callCount, 0);
-        assert.strictEqual(onDeleteSpy.callCount, 0);
+          fireEvent.keyUp(document.activeElement, { key });
 
-        const backspaceKeyUp = {
-          key: 'Backspace',
-        };
-        wrapper.find('div').simulate('keyUp', backspaceKeyUp);
-        assert.strictEqual(onDeleteSpy.callCount, 1);
-        assert.strictEqual(onDeleteSpy.args[0][0].keyCode, backspaceKeyUp.keyCode);
-      });
-
-      it('should call onDelete `delete` is pressed', () => {
-        const preventDefaultSpy = spy();
-        const onDeleteSpy = spy();
-        const wrapper = mount(<Chip onDelete={onDeleteSpy} />);
-
-        const backspaceKeyDown = {
-          preventDefault: preventDefaultSpy,
-          key: 'Delete',
-        };
-        wrapper.find('div').simulate('keyDown', backspaceKeyDown);
-        assert.strictEqual(preventDefaultSpy.callCount, 0);
-        assert.strictEqual(onDeleteSpy.callCount, 0);
-
-        const backspaceKeyUp = {
-          key: 'Delete',
-        };
-        wrapper.find('div').simulate('keyUp', backspaceKeyUp);
-        assert.strictEqual(onDeleteSpy.callCount, 1);
-        assert.strictEqual(onDeleteSpy.args[0][0].keyCode, backspaceKeyUp.keyCode);
+          expect(handleDelete.callCount).to.equal(1);
+        });
       });
     });
 
-    describe('has children that generate events', () => {
-      let onClickSpy;
-      let onDeleteSpy;
-      let onKeyDownSpy;
-      let onKeyUpSpy;
-      let wrapper;
+    describe('with children that generate events', () => {
+      ['Backspace', 'Delete'].forEach(key => {
+        it(`should not call onDelete for child keyup event when '${key}' is released`, () => {
+          const handleDelete = spy();
+          const handleKeyUp = spy();
+          render(
+            <Chip
+              onDelete={handleDelete}
+              label={<input autoFocus className="child-input" onKeyUp={handleKeyUp} />}
+            />,
+          );
 
-      before(() => {
-        onClickSpy = spy();
-        onDeleteSpy = spy();
-        onKeyDownSpy = spy();
-        onKeyUpSpy = spy();
+          fireEvent.keyUp(document.activeElement, { key });
+          expect(handleKeyUp.callCount).to.equal(1);
+          expect(handleDelete.callCount).to.equal(0);
+        });
+      });
 
-        wrapper = mount(
+      it(`should not call onClick for child keyup event when 'Space' is released`, () => {
+        const handleClick = spy();
+        const handleKeyUp = spy();
+        render(
           <Chip
-            onClick={onClickSpy}
-            onDelete={onDeleteSpy}
-            onKeyDown={onKeyDownSpy}
-            onKeyUp={onKeyUpSpy}
-            label={<input className="child-input" />}
+            onClick={handleClick}
+            label={<input autoFocus className="child-input" onKeyUp={handleKeyUp} />}
           />,
         );
+
+        fireEvent.keyUp(document.activeElement, { key: ' ' });
+        expect(handleKeyUp.callCount).to.equal(1);
+        expect(handleClick.callCount).to.equal(0);
       });
 
-      afterEach(() => {
-        onClickSpy.resetHistory();
-        onDeleteSpy.resetHistory();
+      it(`should not call onClick for child keydown event when 'Enter' is pressed`, () => {
+        const handleClick = spy();
+        const handleKeyDown = spy();
+        render(
+          <Chip
+            onClick={handleClick}
+            label={<input autoFocus className="child-input" onKeyDown={handleKeyDown} />}
+          />,
+        );
+
+        fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+        expect(handleKeyDown.callCount).to.equal(1);
+        expect(handleClick.callCount).to.equal(0);
       });
 
-      it('should not call onDelete for child event', () => {
-        wrapper.find('.child-input').simulate('keyDown', { key: 'Backspace' });
-        assert.strictEqual(onDeleteSpy.callCount, 0);
-      });
+      it('should not call onClick for child event when `space` is released', () => {
+        const handleClick = spy();
+        const handleKeyUp = spy();
+        render(
+          <Chip
+            onClick={handleClick}
+            label={<input autoFocus className="child-input" onKeyUp={handleKeyUp} />}
+          />,
+        );
 
-      it('should not call onClick for child event when `space` is pressed', () => {
-        wrapper.find('.child-input').simulate('keyDown', { key: ' ' });
-        assert.strictEqual(onClickSpy.callCount, 0);
+        fireEvent.keyUp(document.activeElement, { key: ' ' });
+
+        expect(handleClick.callCount).to.equal(0);
+        expect(handleKeyUp.callCount).to.equal(1);
       });
 
       it('should not call onClick for child event when `enter` is pressed', () => {
-        wrapper.find('.child-input').simulate('keyDown', { key: 'Enter' });
-        assert.strictEqual(onClickSpy.callCount, 0);
-      });
+        const handleClick = spy();
+        const handleKeyDown = spy();
+        render(
+          <Chip
+            onClick={handleClick}
+            label={<input autoFocus className="child-input" onKeyDown={handleKeyDown} />}
+          />,
+        );
 
-      it('should call handlers for child event', () => {
-        onKeyDownSpy.resetHistory();
-        wrapper.find('.child-input').simulate('keyDown', { key: 'p' });
-        assert.strictEqual(onKeyDownSpy.callCount, 1);
+        fireEvent.keyDown(document.activeElement, { key: 'Enter' });
 
-        onKeyUpSpy.resetHistory();
-        wrapper.find('.child-input').simulate('keyUp', { key: 'p' });
-        assert.strictEqual(onKeyUpSpy.callCount, 1);
+        expect(handleClick.callCount).to.equal(0);
+        expect(handleKeyDown.callCount).to.equal(1);
       });
     });
   });
 
   describe('prop: icon', () => {
     it('should render the icon', () => {
-      const wrapper = mount(<Chip icon={<span id="test-icon" />} />);
-      assert.strictEqual(wrapper.find('span#test-icon').hasClass(classes.icon), true);
+      const { getByTestId } = render(<Chip icon={<span data-testid="test-icon" />} />);
+
+      expect(getByTestId('test-icon')).to.have.class(classes.icon);
     });
   });
 
   describe('prop: size', () => {
     it('should render with the sizeSmall class', () => {
-      const wrapper = mount(<Chip size="small" />);
-      const chip = wrapper.find(`.${classes.root}`).hostNodes();
+      const { container } = render(<Chip size="small" />);
 
-      assert.strictEqual(chip.hasClass(classes.sizeSmall), true);
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.sizeSmall);
     });
 
     it('should render the label with the labelSmall class', () => {
-      const wrapper = mount(<Chip size="small" />);
-      const chip = wrapper.find(`.${classes.root}`).hostNodes();
-      const label = chip.find(`.${classes.label}`).hostNodes();
+      const { container } = render(<Chip size="small" label="small chip" />);
 
-      assert.strictEqual(label.hasClass(classes.labelSmall), true);
+      const label = container.querySelector(`.${classes.label}`);
+      expect(label).to.have.class(classes.labelSmall);
     });
 
     it('should render an avatar with the avatarSmall class', () => {
-      const wrapper = mount(
+      const { container } = render(
         <Chip size="small" avatar={<Avatar className="my-Avatar">MB</Avatar>} />,
       );
-      const chip = wrapper.find(`.${classes.root}`).hostNodes();
-      const avatar = chip.find('.my-Avatar').hostNodes();
 
-      assert.strictEqual(avatar.hasClass(classes.avatar), true);
-      assert.strictEqual(avatar.hasClass(classes.avatarSmall), true);
+      const avatar = container.querySelector('.my-Avatar');
+      expect(avatar).to.have.class(classes.avatar);
+      expect(avatar).to.have.class(classes.avatarSmall);
     });
 
     it('should render an icon with the icon and iconSmall classes', () => {
-      const wrapper = mount(<Chip size="small" icon={<span id="test-icon" />} />);
-      const icon = wrapper.find('span#test-icon');
+      const { container } = render(<Chip size="small" icon={<span id="test-icon" />} />);
 
-      assert.strictEqual(icon.hasClass(classes.icon), true);
-      assert.strictEqual(icon.hasClass(classes.iconSmall), true);
+      const icon = container.querySelector('#test-icon');
+      expect(icon).to.have.class(classes.icon);
+      expect(icon).to.have.class(classes.iconSmall);
     });
 
     it('should render the delete icon with the deleteIcon and deleteIconSmall classes', () => {
-      const wrapper = mount(<Chip size="small" onDelete={() => {}} />);
-      const iconWrapper = wrapper.find('svg[data-mui-test="CancelIcon"]');
+      const { container } = render(<Chip size="small" onDelete={() => {}} />);
 
-      assert.strictEqual(iconWrapper.hasClass(classes.deleteIcon), true);
-      assert.strictEqual(iconWrapper.hasClass(classes.deleteIconSmall), true);
+      const icon = container.querySelector('svg[data-mui-test="CancelIcon"]');
+      expect(icon).to.have.class(classes.deleteIcon);
+      expect(icon).to.have.class(classes.deleteIconSmall);
     });
   });
 });
