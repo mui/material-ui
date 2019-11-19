@@ -49,7 +49,7 @@ function Media(props: MediaProps) {
             <Skeleton variant="rect" width={210} height={118} />
           )}
           {item ? (
-            <Box paddingRight={2}>
+            <Box pr={2}>
               <Typography gutterBottom variant="body2">
                 {item.title}
               </Typography>
@@ -61,10 +61,10 @@ function Media(props: MediaProps) {
               </Typography>
             </Box>
           ) : (
-            <React.Fragment>
+            <Box pt={0.5}>
               <Skeleton />
               <Skeleton width="60%" />
-            </React.Fragment>
+            </Box>
           )}
         </Box>
       ))}
