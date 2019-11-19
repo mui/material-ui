@@ -10651,10 +10651,10 @@ nested-error-stacks@^2.0.0, nested-error-stacks@^2.1.0:
   resolved "https://registry.yarnpkg.com/nested-error-stacks/-/nested-error-stacks-2.1.0.tgz#0fbdcf3e13fe4994781280524f8b96b0cdff9c61"
   integrity sha512-AO81vsIO1k1sM4Zrd6Hu7regmJN1NSiAja10gc4bX3F0wd+9rQmcuHQaHVQCYIEC8iFXnE+mavh23GOt7wBgug==
 
-next@9.1.4-canary.8:
-  version "9.1.4-canary.8"
-  resolved "https://registry.yarnpkg.com/next/-/next-9.1.4-canary.8.tgz#a16c0f5e6659407f5900e7198680f0f9a7d88862"
-  integrity sha512-zyAm+XX/6s9vA3PcdSNw4O5x3kY2QMO+8zGShz0cOBO+AgWF4K8wNJ6W7QqUUwALT0dYahKE130J/hL5X1XvKQ==
+next@9.1.4:
+  version "9.1.4"
+  resolved "https://registry.yarnpkg.com/next/-/next-9.1.4.tgz#32991dd6b49adca4bac302828eb5a1b3654591b6"
+  integrity sha512-NJA6bBdqEWLDksQEylUQ/R2PO0fXb63pOldEvkqggbhcB8j7TGe/UnyZeC0kipatez8h52emJEfoeYPdnTxxVQ==
   dependencies:
     "@ampproject/toolbox-optimizer" "1.1.1"
     "@babel/core" "7.6.4"
