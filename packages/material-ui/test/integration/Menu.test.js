@@ -315,7 +315,7 @@ describe('<Menu /> integration', () => {
   });
 
   it('closes the menu when Tabbing while the list is active', () => {
-    const { getByRole, queryByRole } = render(<ButtonMenu />);
+    const { getByRole } = render(<ButtonMenu />);
 
     getByRole('button').focus();
     getByRole('button').click();
@@ -324,11 +324,11 @@ describe('<Menu /> integration', () => {
     // react-transition-group uses one commit per state transition so we need to wait a bit
     clock.tick(0);
 
-    expect(queryByRole('menu')).to.be.null;
+    expect(getByRole('menu', { hidden: true })).to.be.inaccessible;
   });
 
   it('closes the menu when the backdrop is clicked', () => {
-    const { getByRole, queryByRole } = render(<ButtonMenu />);
+    const { getByRole } = render(<ButtonMenu />);
     const button = getByRole('button');
 
     button.focus();
@@ -337,7 +337,6 @@ describe('<Menu /> integration', () => {
     document.querySelector('[data-mui-test="Backdrop"]').click();
     clock.tick(0);
 
-    // TODO use getByRole with hidden and match that it's inaccessible
-    expect(queryByRole('menu')).to.be.null;
+    expect(getByRole('menu', { hidden: true })).to.be.inaccessible;
   });
 });
