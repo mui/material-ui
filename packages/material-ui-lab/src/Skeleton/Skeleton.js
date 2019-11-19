@@ -12,8 +12,8 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `variant="text"`. */
   text: {
-    marginTop: '0.8em',
-    marginBottom: '0.8em',
+    marginTop: 0,
+    marginBottom: 0,
     height: 'auto',
     transformOrigin: '0 65%',
     transform: 'translateZ(0) scale(1, 0.65)',

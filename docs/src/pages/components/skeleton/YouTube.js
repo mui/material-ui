@@ -60,8 +60,12 @@ function Media(props) {
             </Box>
           ) : (
             <React.Fragment>
-              <Skeleton />
-              <Skeleton width="60%" />
+              <p>
+                <Skeleton />
+              </p>
+              <p>
+                <Skeleton width="60%" />
+              </p>
             </React.Fragment>
           )}
         </Box>
