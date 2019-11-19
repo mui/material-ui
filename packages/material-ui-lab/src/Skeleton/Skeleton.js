@@ -14,7 +14,14 @@ export const styles = theme => ({
   text: {
     marginTop: '0.8em',
     marginBottom: '0.8em',
+    height: 'auto',
+    transformOrigin: '0 65%',
+    transform: 'translateZ(0) scale(1, 0.65)',
     borderRadius: theme.shape.borderRadius,
+    textIndent: -999,
+    '&:empty:before': {
+      content: '"&nbsp;"',
+    },
   },
   /* Styles applied to the root element if `variant="rect"`. */
   rect: {},
