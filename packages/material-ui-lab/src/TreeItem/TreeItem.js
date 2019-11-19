@@ -89,6 +89,8 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     handleFirstChars,
     handleLeftArrow,
     addNodeToNodeMap,
+    rangeSelectFirst,
+    rangeSelectLast,
     removeNodeFromNodeMap,
     icons: contextIcons,
     isExpanded,
@@ -96,11 +98,13 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     isSelected,
     isTabable,
     multiSelect,
+    selectAllNodes,
     selectionDisabled,
+    selectNextNode,
+    selectPreviousNode,
     setFocusByFirstCharacter,
     toggle,
     toggleSelect,
-    treeVariant,
   } = React.useContext(TreeViewContext);
 
   const nodeRef = React.useRef(null);
@@ -190,66 +194,79 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     let flag = false;
     const key = event.key;
 
-    if (event.altKey || event.ctrlKey || event.metaKey) {
+    if (event.altKey) {
       return;
     }
 
-    if (event.shiftKey) {
-      if (key === ' ' || key === 'Enter') {
+    switch (key) {
+      case ' ':
+        if (nodeRef.current === event.currentTarget) {
+          let mode = 'NONE';
+
+          if (event.shiftKey) {
+            mode = multiSelect ? 'RANGE' : 'NONE';
+          }
+
+          toggleSelect(event, nodeId, mode);
+          flag = true;
+        }
         event.stopPropagation();
-      } else if (isPrintableCharacter(key)) {
-        flag = printableCharacter(event, key);
-      }
-    } else {
-      switch (key) {
-        case ' ':
-          if (nodeRef.current === event.currentTarget && treeVariant === 'multi-select') {
-            toggleSelect(event, nodeId);
-            flag = true;
-          }
-          event.stopPropagation();
-          break;
-        case 'Enter':
-          if (nodeRef.current === event.currentTarget && expandable) {
+        break;
+      case 'Enter':
+        if (nodeRef.current === event.currentTarget && expandable) {
+          toggle(event);
+          flag = true;
+        }
+        event.stopPropagation();
+        break;
+      case 'ArrowDown':
+        if (event.shiftKey) {
+          selectNextNode(event, nodeId);
+        }
+        focusNextNode(nodeId);
+        flag = true;
+        break;
+      case 'ArrowUp':
+        if (event.shiftKey) {
+          selectPreviousNode(event, nodeId);
+        }
+        focusPreviousNode(nodeId);
+        flag = true;
+        break;
+      case 'ArrowRight':
+        if (expandable) {
+          if (expanded) {
+            focusNextNode(nodeId);
+          } else {
             toggle(event);
-            flag = true;
           }
-          event.stopPropagation();
-          break;
-        case 'ArrowDown':
-          focusNextNode(nodeId);
+        }
+        flag = true;
+        break;
+      case 'ArrowLeft':
+        handleLeftArrow(nodeId, event);
+        break;
+      case 'Home':
+        if ((event.ctrlKey || event.metaKey) && event.shiftKey) {
+          rangeSelectFirst(event, nodeId);
+        }
+        focusFirstNode();
+        flag = true;
+        break;
+      case 'End':
+        if ((event.ctrlKey || event.metaKey) && event.shiftKey) {
+          rangeSelectLast(event, nodeId);
+        }
+        focusLastNode();
+        flag = true;
+        break;
+      default:
+        if ((event.ctrlKey || event.metaKey) && key.toLowerCase() === 'a') {
+          selectAllNodes(event);
           flag = true;
-          break;
-        case 'ArrowUp':
-          focusPreviousNode(nodeId);
-          flag = true;
-          break;
-        case 'ArrowRight':
-          if (expandable) {
-            if (expanded) {
-              focusNextNode(nodeId);
-            } else {
-              toggle(event);
-            }
-          }
-          flag = true;
-          break;
-        case 'ArrowLeft':
-          handleLeftArrow(nodeId, event);
-          break;
-        case 'Home':
-          focusFirstNode();
-          flag = true;
-          break;
-        case 'End':
-          focusLastNode();
-          flag = true;
-          break;
-        default:
-          if (isPrintableCharacter(key)) {
-            flag = printableCharacter(event, key);
-          }
-      }
+        } else if (isPrintableCharacter(key)) {
+          flag = printableCharacter(event, key);
+        }
     }
 
     if (flag) {
