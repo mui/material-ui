@@ -13,6 +13,16 @@
  */
 const appList = [
   {
+    title: 'Blindpool',
+    description:
+      'A blind pool is a gambling game where all participants are ' +
+      'assigned a random score for a football match. The player with ' +
+      'the correct final score wins!'
+    image: 'blindpool.png',
+    link: 'https://www.blindpool.com',
+    dateAdded: '2019-11-19'
+  }
+  {
     title: 'QuintoAndar',
     description:
       'QuintoAndar is a company that uses technology and ' +
