@@ -21,10 +21,27 @@ function generateGutter(theme) {
       return;
     }
 
-    styles[`spacing-${spacing}`] = {
-      width: '100%',
-      '& > *': {
-        margin: getOffset(themeSpacing, 2),
+    styles[`spacing-row-${spacing}`] = {
+      '& > :not(:first-child):not(:last-child)': {
+        margin: `0 ${getOffset(themeSpacing, 2)}`,
+      },
+      '& > :first-child': {
+        margin: `0 ${getOffset(themeSpacing, 2)} 0 0`,
+      },
+      '& > :last-child': {
+        margin: `0 0 0 ${getOffset(themeSpacing, 2)}`,
+      },
+    };
+
+    styles[`spacing-column-${spacing}`] = {
+      '& > :not(:first-child):not(:last-child)': {
+        margin: `${getOffset(themeSpacing, 2)} 0`,
+      },
+      '& > :first-child': {
+        margin: `0 0 ${getOffset(themeSpacing, 2)} 0`,
+      },
+      '& > :last-child': {
+        margin: `${getOffset(themeSpacing, 2)} 0 0 0`,
       },
     };
   });
@@ -34,16 +51,13 @@ function generateGutter(theme) {
 
 export const styles = theme => ({
   /* Styles applied to the root element */
-  root: {},
-  /* Styles applied to the root element if `container={true}`. */
-  container: {
+  root: {
     boxSizing: 'border-box',
     display: 'flex',
     flexWrap: 'wrap',
-    width: '100%',
+    width: 'auto',
     '& > *': {
       boxSizing: 'border-box',
-      margin: '0', // For instance, it's useful when used with a `figure` element.
     },
   },
   /* Styles applied to the root element if `item={true}`. */
@@ -141,12 +155,11 @@ const Stack = React.forwardRef((props, ref) => {
     classes,
     className: classNameProp,
     component: Component = 'div',
-    container = false,
     direction = 'row',
     item = false,
     justify = 'flex-start',
     spacing = 0,
-    wrap = 'wrap',
+    wrap = 'nowrap',
     zeroMinWidth = false,
     ...other
   } = props;
@@ -154,10 +167,10 @@ const Stack = React.forwardRef((props, ref) => {
   const className = clsx(
     classes.root,
     {
-      [classes.container]: container,
       [classes.item]: item,
       [classes.zeroMinWidth]: zeroMinWidth,
-      [classes[`spacing-${String(spacing)}`]]: container && spacing !== 0,
+      [classes[`spacing-row-${String(spacing)}`]]: spacing !== 0 && direction.indexOf('row') === 0,
+      [classes[`spacing-column-${String(spacing)}`]]: spacing !== 0 && direction.indexOf('column') === 0,
       [classes[`direction-${String(direction)}`]]: direction !== 'row',
       [classes[`wrap-${String(wrap)}`]]: wrap !== 'wrap',
       [classes[`align-items-${String(alignItems)}`]]: alignItems !== 'stretch',
@@ -179,7 +192,6 @@ if (process.env.NODE_ENV !== 'production') {
 Stack.propTypes = {
   /**
    * Defines the `align-content` style property.
-   * It's applied for all screen sizes.
    */
   alignContent: PropTypes.oneOf([
     'stretch',
@@ -191,7 +203,6 @@ Stack.propTypes = {
   ]),
   /**
    * Defines the `align-items` style property.
-   * It's applied for all screen sizes.
    */
   alignItems: PropTypes.oneOf(['flex-start', 'center', 'flex-end', 'stretch', 'baseline']),
   /**
@@ -213,18 +224,13 @@ Stack.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the component will have the flex *container* behavior.
-   * You should be wrapping *items* with a *container*.
-   */
-  container: PropTypes.bool,
-  /**
    * Defines the `flex-direction` style property.
    * It is applied for all screen sizes.
    */
   direction: PropTypes.oneOf(['row', 'row-reverse', 'column', 'column-reverse']),
   /**
    * If `true`, the component will have the flex *item* behavior.
-   * You should be wrapping *items* with a *container*.
+   * You should be wrapping *items* with a *container*, such as Grid or Stack.
    */
   item: PropTypes.bool,
   /**

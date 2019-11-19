@@ -25,7 +25,7 @@ function generateGrid(globalStyles, theme, breakpoint) {
     const key = `grid-${breakpoint}-${size}`;
 
     if (size === true) {
-      // For the auto layouting
+      // For the auto layout
       styles[key] = {
         flexBasis: 0,
         flexGrow: 1,

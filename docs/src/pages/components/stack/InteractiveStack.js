@@ -1,47 +1,56 @@
 import React from 'react';
-import Grid, { GridItemsAlignment, GridJustification, GridDirection } from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid';
+import Stack from '@material-ui/core/Stack';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
+import Slider from '@material-ui/core/Slider';
 import Paper from '@material-ui/core/Paper';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 // We don't have a typescript version of MarkdownElement
 // tslint:disable-next-line: ban-ts-ignore
 // @ts-ignore
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    demo: {
-      height: 240,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      height: '100%',
-      color: theme.palette.text.secondary,
-    },
-    control: {
-      padding: theme.spacing(2),
-    },
-  }),
-);
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  demo: {
+    height: 240,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    color: theme.palette.text.secondary,
+  },
+  control: {
+    padding: theme.spacing(2),
+  },
+  sliderFormControl: {
+    width: '50%',
+  },
+  slider: {
+    width: '100%',
+  },
+}));
 
 export default function InteractiveGrid() {
   const classes = useStyles();
-  const [direction, setDirection] = React.useState<GridDirection>('row');
-  const [justify, setJustify] = React.useState<GridJustification>('center');
-  const [alignItems, setAlignItems] = React.useState<GridItemsAlignment>('center');
+  const [spacing, setSpacing] = React.useState(2);
+  const [direction, setDirection] = React.useState('row');
+  const [justify, setJustify] = React.useState('center');
+  const [alignItems, setAlignItems] = React.useState('center');
+
+  const handleSliderChange = (event, newValue) => {
+    setSpacing(newValue);
+  };
 
   const code = `
 \`\`\`jsx
-<Grid
-  container
-  direction="${direction}"
+<Stack
+  ${spacing === 0 ? '' : `spacing={${spacing}}\n  `}direction="${direction}"
   justify="${justify}"
   alignItems="${alignItems}"
 >
@@ -51,29 +60,47 @@ export default function InteractiveGrid() {
   return (
     <Grid container className={classes.root}>
       <Grid item xs={12}>
-        <Grid
-          container
-          spacing={2}
+        <Stack
+          spacing={spacing}
           className={classes.demo}
           alignItems={alignItems}
           direction={direction}
           justify={justify}
         >
           {[0, 1, 2].map(value => (
-            <Grid key={value} item>
-              <Paper
-                className={classes.paper}
-                style={{ paddingTop: (value + 1) * 10, paddingBottom: (value + 1) * 10 }}
-              >
-                {`Cell ${value + 1}`}
-              </Paper>
-            </Grid>
+            <Paper
+              key={value}
+              className={classes.paper}
+              style={{
+                paddingTop: (value + 1) * 10,
+                paddingBottom: (value + 1) * 10,
+                display: 'inline',
+              }}
+            >
+              {`Cell ${value + 1}`}
+            </Paper>
           ))}
-        </Grid>
+        </Stack>
       </Grid>
       <Grid item xs={12}>
         <Paper className={classes.control}>
           <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <FormControl component="fieldset" className={classes.sliderFormControl}>
+                <FormLabel>spacing</FormLabel>
+                <Slider
+                  className={classes.slider}
+                  defaultValue={spacing}
+                  // getAriaValueText={valuetext}
+                  aria-labelledby="discrete-slider"
+                  valueLabelDisplay="auto"
+                  marks
+                  min={0}
+                  max={10}
+                  onChange={handleSliderChange}
+                />
+              </FormControl>
+            </Grid>
             <Grid item xs={12}>
               <FormControl component="fieldset">
                 <FormLabel>direction</FormLabel>
@@ -83,7 +110,7 @@ export default function InteractiveGrid() {
                   aria-label="direction"
                   value={direction}
                   onChange={event => {
-                    setDirection((event.target as HTMLInputElement).value as GridDirection);
+                    setDirection(event.target.value);
                   }}
                 >
                   <FormControlLabel value="row" control={<Radio />} label="row" />
@@ -106,7 +133,7 @@ export default function InteractiveGrid() {
                   aria-label="justify"
                   value={justify}
                   onChange={event => {
-                    setJustify((event.target as HTMLInputElement).value as GridJustification);
+                    setJustify(event.target.value);
                   }}
                 >
                   <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
@@ -131,7 +158,7 @@ export default function InteractiveGrid() {
                   aria-label="align items"
                   value={alignItems}
                   onChange={event => {
-                    setAlignItems((event.target as HTMLInputElement).value as GridItemsAlignment);
+                    setAlignItems(event.target.value);
                   }}
                 >
                   <FormControlLabel value="flex-start" control={<Radio />} label="flex-start" />
