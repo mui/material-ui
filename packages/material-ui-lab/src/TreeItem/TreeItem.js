@@ -198,13 +198,15 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       return;
     }
 
+    const ctrlPressed = event.ctrlKey || event.metaKey;
+
     switch (key) {
       case ' ':
         if (nodeRef.current === event.currentTarget) {
           let mode = 'NONE';
 
-          if (event.shiftKey) {
-            mode = multiSelect ? 'RANGE' : 'NONE';
+          if (multiSelect) {
+            mode = event.shiftKey ? 'RANGE' : 'MULTIPLE';
           }
 
           toggleSelect(event, nodeId, mode);
@@ -220,14 +222,14 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         event.stopPropagation();
         break;
       case 'ArrowDown':
-        if (event.shiftKey) {
+        if (multiSelect && event.shiftKey) {
           selectNextNode(event, nodeId);
         }
         focusNextNode(nodeId);
         flag = true;
         break;
       case 'ArrowUp':
-        if (event.shiftKey) {
+        if (multiSelect && event.shiftKey) {
           selectPreviousNode(event, nodeId);
         }
         focusPreviousNode(nodeId);
@@ -247,21 +249,21 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         handleLeftArrow(nodeId, event);
         break;
       case 'Home':
-        if ((event.ctrlKey || event.metaKey) && event.shiftKey) {
+        if (multiSelect && ctrlPressed && event.shiftKey) {
           rangeSelectFirst(event, nodeId);
         }
         focusFirstNode();
         flag = true;
         break;
       case 'End':
-        if ((event.ctrlKey || event.metaKey) && event.shiftKey) {
+        if (multiSelect && ctrlPressed && event.shiftKey) {
           rangeSelectLast(event, nodeId);
         }
         focusLastNode();
         flag = true;
         break;
       default:
-        if ((event.ctrlKey || event.metaKey) && key.toLowerCase() === 'a') {
+        if (multiSelect && ctrlPressed && key.toLowerCase() === 'a') {
           selectAllNodes(event);
           flag = true;
         } else if (isPrintableCharacter(key)) {
