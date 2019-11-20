@@ -56,6 +56,8 @@ export default function InteractiveGrid() {
   justify="${justify}"
   alignItems="${alignItems}"
 >
+  {children}
+</Stack>
 \`\`\`
 `;
 

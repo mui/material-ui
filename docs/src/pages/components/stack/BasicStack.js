@@ -4,9 +4,12 @@ import Stack from '@material-ui/core/Stack';
 import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles({
-  paper: {
-    height: 140,
-    width: 100,
+  root: {
+    // Children (Paper)
+    '& > *': {
+      height: 80,
+      width: 80,
+    },
   },
 });
 
@@ -14,10 +17,10 @@ export default function BasicStack() {
   const classes = useStyles();
 
   return (
-    <Stack justify="center" spacing={2}>
-      {[0, 1, 2].map(value => (
-        <Paper key={value} className={classes.paper} />
-      ))}
+    <Stack justify="center" spacing={2} className={classes.root}>
+      <Paper />
+      <Paper />
+      <Paper />
     </Stack>
   );
 }
