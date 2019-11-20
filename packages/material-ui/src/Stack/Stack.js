@@ -148,7 +148,7 @@ export const styles = theme => ({
   ...generateGutter(theme),
 });
 
-const Stack = React.forwardRef((props, ref) => {
+const Stack = React.forwardRef(function Stack(props, ref) {
   const {
     alignContent = 'stretch',
     alignItems = 'stretch',
@@ -182,12 +182,6 @@ const Stack = React.forwardRef((props, ref) => {
 
   return <Component className={className} ref={ref} {...other} />;
 });
-
-if (process.env.NODE_ENV !== 'production') {
-  // can't use named function expression since the function body references `Stack`
-  // which would point to the render function instead of the actual component
-  Stack.displayName = 'ForwardRef(Stack)';
-}
 
 Stack.propTypes = {
   /**
