@@ -136,7 +136,7 @@ export const styles = theme => ({
     height: 2,
     width: '100%',
     boxSizing: 'content-box',
-    padding: '11px 0',
+    padding: '13px 0',
     display: 'inline-block',
     position: 'relative',
     cursor: 'pointer',
@@ -152,7 +152,7 @@ export const styles = theme => ({
     '&$vertical': {
       width: 2,
       height: '100%',
-      padding: '0 11px',
+      padding: '0 13px',
     },
     // The primary input mechanism of the device includes a pointing device of limited accuracy.
     '@media (pointer: coarse)': {
@@ -247,11 +247,12 @@ export const styles = theme => ({
     '&::after': {
       position: 'absolute',
       content: '""',
-      // reach 48px touch target (2 * 18 + thumb circumference)
-      left: -18,
-      top: -18,
-      right: -18,
-      bottom: -18,
+      borderRadius: '50%',
+      // reach 42px hit target (2 * 15 + thumb diameter)
+      left: -15,
+      top: -15,
+      right: -15,
+      bottom: -15,
     },
     '&$focusVisible,&:hover': {
       boxShadow: `0px 0px 0px 8px ${fade(theme.palette.primary.main, 0.16)}`,
@@ -317,12 +318,12 @@ export const styles = theme => ({
     ...theme.typography.body2,
     color: theme.palette.text.secondary,
     position: 'absolute',
-    top: 22,
+    top: 26,
     transform: 'translateX(-50%)',
     whiteSpace: 'nowrap',
     '$vertical &': {
       top: 'auto',
-      left: 22,
+      left: 26,
       transform: 'translateY(50%)',
     },
     '@media (pointer: coarse)': {
