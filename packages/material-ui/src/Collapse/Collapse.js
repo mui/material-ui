@@ -44,7 +44,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     children,
     classes,
     className,
-    collapsedHeight = '0px',
+    collapsedHeight: collapsedHeightProp = '0px',
     component: Component = 'div',
     in: inProp,
     onEnter,
@@ -60,6 +60,8 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
   const timer = React.useRef();
   const wrapperRef = React.useRef(null);
   const autoTransitionDuration = React.useRef();
+  const collapsedHeight =
+    typeof collapsedHeightProp === 'number' ? `${collapsedHeightProp}px` : collapsedHeightProp;
 
   React.useEffect(() => {
     return () => {
@@ -69,16 +71,6 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
 
   const handleEnter = (node, isAppearing) => {
     node.style.height = collapsedHeight;
-    if (process.env.NODE_ENV !== 'production') {
-      if (node.style.height !== collapsedHeight) {
-        console.error(
-          [
-            'Material-UI: the `collapsedHeight` prop is invalid.',
-            `You have provided ${collapsedHeight} but it requires units, e.g. '0px'.`,
-          ].join('\n'),
-        );
-      }
-    }
 
     if (onEnter) {
       onEnter(node, isAppearing);
@@ -148,16 +140,6 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     }
 
     node.style.height = collapsedHeight;
-    if (process.env.NODE_ENV !== 'production') {
-      if (node.style.height !== collapsedHeight) {
-        console.error(
-          [
-            'Material-UI: the `collapsedHeight` prop is invalid.',
-            `You have provided ${collapsedHeight} but it requires units, e.g. '0px'.`,
-          ].join('\n'),
-        );
-      }
-    }
 
     if (onExiting) {
       onExiting(node);
@@ -225,7 +207,7 @@ Collapse.propTypes = {
   /**
    * The height of the container when collapsed.
    */
-  collapsedHeight: PropTypes.string,
+  collapsedHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
