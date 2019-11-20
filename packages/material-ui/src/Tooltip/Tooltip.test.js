@@ -44,17 +44,17 @@ describe('<Tooltip />', () => {
   };
 
   before(() => {
-    // StrictModeViolation: uses Grow and tests a lot of impl details
-    mount = createMount({ strict: undefined });
     classes = getClasses(<Tooltip {...defaultProps} />);
-    clock = useFakeTimers();
   });
 
   beforeEach(() => {
     testReset();
+    clock = useFakeTimers();
+    // StrictModeViolation: uses Grow and tests a lot of impl details
+    mount = createMount({ strict: undefined });
   });
 
-  after(() => {
+  afterEach(() => {
     clock.restore();
     mount.cleanUp();
   });
@@ -130,7 +130,6 @@ describe('<Tooltip />', () => {
     children.simulate('mouseLeave');
     clock.tick(0);
     wrapper.update();
-    assert.strictEqual(wrapper.find(Popper).props().open, false);
     assert.strictEqual(wrapper.find(Popper).props().open, false);
   });
 
