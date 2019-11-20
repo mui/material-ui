@@ -69,6 +69,16 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
 
   const handleEnter = (node, isAppearing) => {
     node.style.height = collapsedHeight;
+    if (process.env.NODE_ENV !== 'production') {
+      if (node.style.height !== collapsedHeight) {
+        console.error(
+          [
+            'Material-UI: the `collapsedHeight` prop is invalid.',
+            `You have provided ${collapsedHeight} but it requires units, e.g. '0px'.`,
+          ].join('\n'),
+        );
+      }
+    }
 
     if (onEnter) {
       onEnter(node, isAppearing);
@@ -138,6 +148,16 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     }
 
     node.style.height = collapsedHeight;
+    if (process.env.NODE_ENV !== 'production') {
+      if (node.style.height !== collapsedHeight) {
+        console.error(
+          [
+            'Material-UI: the `collapsedHeight` prop is invalid.',
+            `You have provided ${collapsedHeight} but it requires units, e.g. '0px'.`,
+          ].join('\n'),
+        );
+      }
+    }
 
     if (onExiting) {
       onExiting(node);
