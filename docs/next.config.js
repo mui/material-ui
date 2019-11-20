@@ -137,7 +137,7 @@ module.exports = {
 
       pages2.forEach(page => {
         if (!page.children) {
-          map[`${prefix}${page.pathname}`] = {
+          map[`${prefix}${page.pathname.replace(/^\/api-docs\/(.*)/, '/api/$1')}`] = {
             page: page.pathname,
             query: {
               userLanguage,
@@ -161,7 +161,9 @@ module.exports = {
 
     return map;
   },
-  async rewrites() {
-    return [{ source: '/api/:rest*', destination: '/api-docs/:rest' }];
+  experimental: {
+    async rewrites() {
+      return [{ source: '/api/:rest*', destination: '/api-docs/:rest*' }];
+    },
   },
 };

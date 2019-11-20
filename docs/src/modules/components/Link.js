@@ -28,37 +28,49 @@ function Link(props) {
   const {
     activeClassName = 'active',
     className: classNameProps,
+    href: routerHref,
     innerRef,
     naked,
     role: roleProp,
     ...other
   } = props;
+
+  // apply nextjs rewrites
+  const href = routerHref.replace(/\/api-docs\/(.*)/, '/api/$1');
+
   const router = useRouter();
 
   const userLanguage = useSelector(state => state.options.userLanguage);
   const className = clsx(classNameProps, {
-    [activeClassName]: router.pathname === props.href && activeClassName,
+    [activeClassName]: router.pathname === routerHref && activeClassName,
   });
 
-  if (userLanguage !== 'en' && other.href.indexOf('/') === 0 && other.href.indexOf('/blog') !== 0) {
-    other.as = `/${userLanguage}${other.href}`;
+  if (userLanguage !== 'en' && href.indexOf('/') === 0 && href.indexOf('/blog') !== 0) {
+    other.as = `/${userLanguage}${href}`;
   }
 
   // catch role passed from ButtonBase. This is definitely a link
   const role = roleProp === 'button' ? undefined : roleProp;
 
-  const isExternal = other.href.startsWith('https:') || other.href.startsWith('mailto:');
+  const isExternal = href.startsWith('https:') || href.startsWith('mailto:');
 
   if (isExternal) {
-    return <MuiLink className={className} ref={innerRef} role={role} {...other} />;
+    return <MuiLink className={className} href={href} ref={innerRef} role={role} {...other} />;
   }
 
   if (naked) {
-    return <NextComposed className={className} ref={innerRef} role={role} {...other} />;
+    return <NextComposed className={className} href={href} ref={innerRef} role={role} {...other} />;
   }
 
   return (
-    <MuiLink component={NextComposed} className={className} ref={innerRef} role={role} {...other} />
+    <MuiLink
+      component={NextComposed}
+      className={className}
+      href={href}
+      ref={innerRef}
+      role={role}
+      {...other}
+    />
   );
 }
 
