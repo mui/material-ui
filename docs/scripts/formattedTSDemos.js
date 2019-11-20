@@ -79,8 +79,7 @@ async function transpileFile(tsxPath, program, ignoreCache = false) {
 
     const source = await fse.readFile(tsxPath, 'utf8');
 
-   //npm
-   const { code } = await babel.transformAsync(source, { ...babelConfig, filename: tsxPath });
+    const { code } = await babel.transformAsync(source, { ...babelConfig, filename: tsxPath });
 
     if (/import \w* from 'prop-types'/.test(code)) {
       throw new Error('TypeScript demo contains prop-types, please remove them');
