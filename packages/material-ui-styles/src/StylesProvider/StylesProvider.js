@@ -28,6 +28,10 @@ const defaultOptions = {
 
 export const StylesContext = React.createContext(defaultOptions);
 
+if (process.env.NODE_ENV !== 'production') {
+  StylesContext.displayName = 'StylesContext';
+}
+
 let injectFirstNode;
 
 function StylesProvider(props) {
