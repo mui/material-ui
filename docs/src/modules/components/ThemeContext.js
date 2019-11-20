@@ -88,8 +88,12 @@ const highDensity = {
 };
 
 export const DispatchContext = React.createContext(() => {
-  throw new Error('Forgot to wrap component in ThemeContext.Provider');
+  throw new Error('Forgot to wrap component in `ThemeProvider`');
 });
+
+if (process.env.NODE_ENV !== 'production') {
+  DispatchContext.displayName = 'ThemeDispatchContext';
+}
 
 const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
