@@ -80,31 +80,31 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   } = props;
 
   const {
-    expandAllSiblings,
+    icons: contextIcons,
     focus,
     focusFirstNode,
     focusLastNode,
     focusNextNode,
     focusPreviousNode,
-    handleFirstChars,
-    handleLeftArrow,
-    addNodeToNodeMap,
+    focusByFirstCharacter,
     rangeSelectFirst,
     rangeSelectLast,
-    removeNodeFromNodeMap,
-    icons: contextIcons,
+    selectAllNodes,
+    selectNextNode,
+    selectPreviousNode,
+    select,
+    expandAllSiblings,
+    toggleExpansion,
     isExpanded,
     isFocused,
     isSelected,
     isTabable,
     multiSelect,
-    selectAllNodes,
     selectionDisabled,
-    selectNextNode,
-    selectPreviousNode,
-    setFocusByFirstCharacter,
-    toggle,
-    toggleSelect,
+    getParent,
+    mapFirstChar,
+    addNodeToNodeMap,
+    removeNodeFromNodeMap,
   } = React.useContext(TreeViewContext);
 
   const nodeRef = React.useRef(null);
@@ -145,7 +145,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
     // If already expanded and trying to toggle selection don't close
     if (expandable && !(multiple && isExpanded(nodeId))) {
-      toggle(event, nodeId);
+      toggleExpansion(event, nodeId);
     }
 
     if (!selectionDisabled) {
@@ -159,7 +159,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         }
       }
 
-      toggleSelect(event, nodeId, selectionMode);
+      select(event, nodeId, selectionMode);
     }
 
     if (onClick) {
@@ -184,7 +184,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
 
     if (isPrintableCharacter(key)) {
-      setFocusByFirstCharacter(nodeId, key);
+      focusByFirstCharacter(nodeId, key);
       return true;
     }
     return false;
@@ -209,14 +209,14 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
             mode = event.shiftKey ? 'RANGE' : 'MULTIPLE';
           }
 
-          toggleSelect(event, nodeId, mode);
+          select(event, nodeId, mode);
           flag = true;
         }
         event.stopPropagation();
         break;
       case 'Enter':
         if (nodeRef.current === event.currentTarget && expandable) {
-          toggle(event);
+          toggleExpansion(event);
           flag = true;
         }
         event.stopPropagation();
@@ -240,13 +240,23 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
           if (expanded) {
             focusNextNode(nodeId);
           } else {
-            toggle(event);
+            toggleExpansion(event);
           }
         }
         flag = true;
         break;
       case 'ArrowLeft':
-        handleLeftArrow(nodeId, event);
+        if (expanded) {
+          toggleExpansion(event, nodeId);
+          flag = true;
+        } else {
+          const parent = getParent(nodeId);
+          if (parent) {
+            focus(parent);
+            flag = true;
+          }
+        }
+
         break;
       case 'Home':
         if (multiSelect && ctrlPressed && event.shiftKey) {
@@ -308,10 +318,10 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   }, [nodeId, removeNodeFromNodeMap]);
 
   React.useEffect(() => {
-    if (handleFirstChars && label) {
-      handleFirstChars(nodeId, contentRef.current.textContent.substring(0, 1).toLowerCase());
+    if (mapFirstChar && label) {
+      mapFirstChar(nodeId, contentRef.current.textContent.substring(0, 1).toLowerCase());
     }
-  }, [handleFirstChars, nodeId, label]);
+  }, [mapFirstChar, nodeId, label]);
 
   React.useEffect(() => {
     if (focused) {

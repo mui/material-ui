@@ -23,6 +23,15 @@ function arrayDiff(arr1, arr2) {
   return false;
 }
 
+const findNextFirstChar = (firstChars, startIndex, char) => {
+  for (let i = startIndex; i < firstChars.length; i += 1) {
+    if (char === firstChars[i]) {
+      return i;
+    }
+  }
+  return -1;
+};
+
 const defaultExpandedDefault = [];
 const defaultSelectedDefault = [];
 
@@ -79,55 +88,17 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }, [expandedProp, isControlledExpanded]);
   }
 
-  const prevChildIds = React.useRef([]);
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    const childIds = React.Children.map(children, child => child.props.nodeId) || [];
-    if (arrayDiff(prevChildIds.current, childIds)) {
-      nodeMap.current[-1] = { parent: null, children: childIds };
-
-      childIds.forEach((id, index) => {
-        if (index === 0) {
-          setTabable(id);
-        }
-        nodeMap.current[id] = { parent: null };
-      });
-      visibleNodes.current = nodeMap.current[-1].children;
-      prevChildIds.current = childIds;
-      setMounted(true);
-    }
-  }, [children]);
-
+  /*
+   * Status Helpers
+   */
   const isExpanded = React.useCallback(id => expanded.indexOf(id) !== -1, [expanded]);
   const isSelected = React.useCallback(id => selected.indexOf(id) !== -1, [selected]);
   const isTabable = id => tabable === id;
   const isFocused = id => focused === id;
 
-  React.useEffect(() => {
-    const buildVisible = nodes => {
-      let list = [];
-      for (let i = 0; i < nodes.length; i += 1) {
-        const item = nodes[i];
-        list.push(item);
-        const childs = nodeMap.current[item].children;
-        if (isExpanded(item) && childs) {
-          list = list.concat(buildVisible(childs));
-        }
-      }
-      return list;
-    };
-
-    if (mounted) {
-      visibleNodes.current = buildVisible(nodeMap.current[-1].children);
-    }
-  }, [expanded, mounted, isExpanded]);
-
-  const focus = id => {
-    if (id) {
-      setTabable(id);
-    }
-    setFocused(id);
-  };
+  /*
+   * Node Helpers
+   */
 
   const getNextNode = id => {
     const nodeIndex = visibleNodes.current.indexOf(id);
@@ -145,54 +116,11 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     return null;
   };
 
-  const focusNextNode = id => {
-    const nextNode = getNextNode(id);
-    if (nextNode) {
-      focus(nextNode);
-    }
-  };
-  const focusPreviousNode = id => {
-    const previousNode = getPreviousNode(id);
-    if (previousNode) {
-      focus(previousNode);
-    }
-  };
-  const focusFirstNode = () => {
-    focus(visibleNodes.current[0]);
-  };
+  const getLastNode = () => visibleNodes.current[visibleNodes.current.length - 1];
+  const getFirstNode = () => visibleNodes.current[0];
+  const getParent = id => nodeMap.current[id].parent;
 
-  const focusLastNode = () => {
-    const lastNode = visibleNodes.current[visibleNodes.current.length - 1];
-    focus(lastNode);
-  };
-
-  const toggle = (event, value = focused) => {
-    let newExpanded;
-    if (expanded.indexOf(value) !== -1) {
-      newExpanded = expanded.filter(id => id !== value);
-      setTabable(oldTabable => {
-        const map = nodeMap.current[oldTabable];
-        if (oldTabable && (map && map.parent ? map.parent.id : null) === value) {
-          return value;
-        }
-        return oldTabable;
-      });
-    } else {
-      newExpanded = [value, ...expanded];
-    }
-
-    if (onNodeToggle) {
-      onNodeToggle(event, newExpanded);
-    }
-
-    if (!isControlledExpanded) {
-      setExpandedState(newExpanded);
-    }
-  };
-
-  const lastSelection = React.useRef(null);
-
-  const getRange = (a, b) => {
+  const getNodesInRange = (a, b) => {
     const aIndex = visibleNodes.current.indexOf(a);
     const bIndex = visibleNodes.current.indexOf(b);
     const start = Math.min(aIndex, bIndex);
@@ -200,122 +128,23 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     return visibleNodes.current.slice(start, end + 1);
   };
 
-  const selectRange = (event, start, end) => {
-    lastSelection.current = end;
-    const range = getRange(start, end);
-    let newSelected = selected.concat(range);
-    newSelected = newSelected.filter((id, i) => newSelected.indexOf(id) === i);
+  /*
+   * Focus Helpers
+   */
 
-    if (onNodeSelect) {
-      onNodeSelect(event, newSelected);
-    }
-
-    if (!isControlledSelected) {
-      setSelectedState(newSelected);
+  const focus = id => {
+    if (id) {
+      setTabable(id);
+      setFocused(id);
     }
   };
 
-  const rangeSelectFirst = (event, start) => {
-    selectRange(event, start, visibleNodes.current[0]);
-  };
+  const focusNextNode = id => focus(getNextNode(id));
+  const focusPreviousNode = id => focus(getPreviousNode(id));
+  const focusFirstNode = () => focus(getFirstNode());
+  const focusLastNode = () => focus(getLastNode());
 
-  const rangeSelectLast = (event, start) => {
-    selectRange(event, start, visibleNodes.current[visibleNodes.current.length - 1]);
-  };
-
-  const toggleSelect = (event, value, selectionMode = 'NONE') => {
-    let newSelected = multiSelect ? [value] : value;
-
-    if (selectionMode === 'MULTIPLE') {
-      if (selected.indexOf(value) !== -1) {
-        newSelected = selected.filter(id => id !== value);
-      } else {
-        newSelected = [value, ...selected];
-      }
-    } else if (selectionMode === 'RANGE' && lastSelection.current) {
-      selectRange(event, lastSelection.current, value);
-      return;
-    }
-    lastSelection.current = value;
-
-    if (onNodeSelect) {
-      onNodeSelect(event, newSelected);
-    }
-
-    if (!isControlledSelected) {
-      setSelectedState(newSelected);
-    }
-  };
-
-  const selectNextNode = (event, id) => {
-    const nextNode = getNextNode(id);
-    if (nextNode) {
-      toggleSelect(event, nextNode, 'MULTIPLE');
-    }
-  };
-
-  const selectPreviousNode = (event, id) => {
-    const previousNode = getPreviousNode(id);
-    if (previousNode) {
-      toggleSelect(event, previousNode, 'MULTIPLE');
-    }
-  };
-
-  const selectAllNodes = event => {
-    rangeSelectLast(event, visibleNodes.current[0]);
-  };
-
-  const expandAllSiblings = (event, id) => {
-    const map = nodeMap.current[id];
-    const parent = nodeMap.current[map.parent];
-
-    let diff;
-    if (parent) {
-      diff = parent.children.filter(child => !isExpanded(child));
-    } else {
-      const topLevelNodes = nodeMap.current[-1].children;
-      diff = topLevelNodes.filter(node => !isExpanded(node));
-    }
-    const newExpanded = [...expanded, ...diff];
-
-    if (!isControlledExpanded) {
-      setExpandedState(newExpanded);
-    }
-
-    if (onNodeToggle) {
-      onNodeToggle(event, newExpanded);
-    }
-  };
-
-  const handleLeftArrow = (id, event) => {
-    let flag = false;
-    if (isExpanded(id)) {
-      toggle(event, id);
-      flag = true;
-    } else {
-      const parent = nodeMap.current[id].parent;
-      if (parent) {
-        focus(parent);
-        flag = true;
-      }
-    }
-
-    if (flag && event) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-  };
-
-  const getIndexFirstChars = (firstChars, startIndex, char) => {
-    for (let i = startIndex; i < firstChars.length; i += 1) {
-      if (char === firstChars[i]) {
-        return i;
-      }
-    }
-    return -1;
-  };
-
-  const setFocusByFirstCharacter = (id, char) => {
+  const focusByFirstCharacter = (id, char) => {
     let start;
     let index;
     const lowercaseChar = char.toLowerCase();
@@ -340,11 +169,11 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
 
     // Check remaining slots in the menu
-    index = getIndexFirstChars(firstChars, start, lowercaseChar);
+    index = findNextFirstChar(firstChars, start, lowercaseChar);
 
     // If not found in remaining slots, check from beginning
     if (index === -1) {
-      index = getIndexFirstChars(firstChars, 0, lowercaseChar);
+      index = findNextFirstChar(firstChars, 0, lowercaseChar);
     }
 
     // If match was found...
@@ -352,6 +181,142 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       focus(firstCharIds[index]);
     }
   };
+
+  /*
+   * Expansion Helpers
+   */
+
+  const toggleExpansion = (event, value = focused) => {
+    let newExpanded;
+    if (expanded.indexOf(value) !== -1) {
+      newExpanded = expanded.filter(id => id !== value);
+      setTabable(oldTabable => {
+        const map = nodeMap.current[oldTabable];
+        if (oldTabable && (map && map.parent ? map.parent.id : null) === value) {
+          return value;
+        }
+        return oldTabable;
+      });
+    } else {
+      newExpanded = [value, ...expanded];
+    }
+
+    if (onNodeToggle) {
+      onNodeToggle(event, newExpanded);
+    }
+
+    if (!isControlledExpanded) {
+      setExpandedState(newExpanded);
+    }
+  };
+
+  const expandAllSiblings = (event, id) => {
+    const map = nodeMap.current[id];
+    const parent = nodeMap.current[map.parent];
+
+    let diff;
+    if (parent) {
+      diff = parent.children.filter(child => !isExpanded(child));
+    } else {
+      const topLevelNodes = nodeMap.current[-1].children;
+      diff = topLevelNodes.filter(node => !isExpanded(node));
+    }
+    const newExpanded = [...expanded, ...diff];
+
+    if (!isControlledExpanded) {
+      setExpandedState(newExpanded);
+    }
+
+    if (onNodeToggle) {
+      onNodeToggle(event, newExpanded);
+    }
+  };
+
+  /*
+   * Selection Helpers
+   */
+
+  const lastSelectedNode = React.useRef(null);
+  const lastSelectionMode = React.useRef(null);
+  const lastRangeSelection = React.useRef([]);
+
+  const handleRangeSelect = (event, start, end) => {
+    let base = selected;
+    // If last selection was a range selection ignore nodes that were selected.
+    if (lastSelectionMode.current === 'RANGE') {
+      base = selected.filter(id => lastRangeSelection.current.indexOf(id) === -1);
+    }
+
+    const range = getNodesInRange(start, end);
+    lastRangeSelection.current = range;
+    let newSelected = base.concat(range);
+    newSelected = newSelected.filter((id, i) => newSelected.indexOf(id) === i);
+
+    if (onNodeSelect) {
+      onNodeSelect(event, newSelected);
+    }
+
+    if (!isControlledSelected) {
+      setSelectedState(newSelected);
+    }
+  };
+
+  const handleMultipleSelect = (event, value) => {
+    let newSelected = [];
+    if (selected.indexOf(value) !== -1) {
+      newSelected = selected.filter(id => id !== value);
+    } else {
+      newSelected = [value, ...selected];
+    }
+
+    if (onNodeSelect) {
+      onNodeSelect(event, newSelected);
+    }
+
+    if (!isControlledSelected) {
+      setSelectedState(newSelected);
+    }
+  };
+
+  const handleSingleSelect = (event, value) => {
+    const newSelected = multiSelect ? [value] : value;
+    setSelectedState(newSelected);
+
+    if (onNodeSelect) {
+      onNodeSelect(event, newSelected);
+    }
+
+    if (!isControlledSelected) {
+      setSelectedState(newSelected);
+    }
+  };
+
+  const rangeSelectFirst = (event, start) => handleRangeSelect(event, start, getFirstNode());
+  const rangeSelectLast = (event, start) => handleRangeSelect(event, start, getLastNode());
+
+  const select = (event, value, selectionMode = 'NODE') => {
+    if (value) {
+      if (selectionMode === 'NONE') {
+        handleSingleSelect(event, value);
+      } else if (selectionMode === 'MULTIPLE') {
+        handleMultipleSelect(event, value);
+      } else if (selectionMode === 'RANGE' && lastSelectedNode.current) {
+        handleRangeSelect(event, lastSelectedNode.current, value);
+      }
+      if (selectionMode === 'MULTIPLE' || selectionMode === 'NONE') {
+        lastSelectedNode.current = value;
+      }
+      lastSelectionMode.current = selectionMode;
+    }
+  };
+
+  const selectNextNode = (event, id) => select(event, getNextNode(id), 'MULTIPLE');
+  const selectPreviousNode = (event, id) => select(event, getPreviousNode(id), 'MULTIPLE');
+  const selectAllNodes = event => rangeSelectLast(event, visibleNodes.current[0]);
+
+  /*
+   * Mapping Helpers
+   */
 
   const addNodeToNodeMap = (id, childrenIds) => {
     const currentMap = nodeMap.current[id];
@@ -378,39 +343,76 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
   };
 
-  const handleFirstChars = (id, firstChar) => {
+  const mapFirstChar = (id, firstChar) => {
     firstCharMap.current[id] = firstChar;
   };
+
+  const prevChildIds = React.useRef([]);
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    const childIds = React.Children.map(children, child => child.props.nodeId) || [];
+    if (arrayDiff(prevChildIds.current, childIds)) {
+      nodeMap.current[-1] = { parent: null, children: childIds };
+
+      childIds.forEach((id, index) => {
+        if (index === 0) {
+          setTabable(id);
+        }
+        nodeMap.current[id] = { parent: null };
+      });
+      visibleNodes.current = nodeMap.current[-1].children;
+      prevChildIds.current = childIds;
+      setMounted(true);
+    }
+  }, [children]);
+
+  React.useEffect(() => {
+    const buildVisible = nodes => {
+      let list = [];
+      for (let i = 0; i < nodes.length; i += 1) {
+        const item = nodes[i];
+        list.push(item);
+        const childs = nodeMap.current[item].children;
+        if (isExpanded(item) && childs) {
+          list = list.concat(buildVisible(childs));
+        }
+      }
+      return list;
+    };
+
+    if (mounted) {
+      visibleNodes.current = buildVisible(nodeMap.current[-1].children);
+    }
+  }, [expanded, mounted, isExpanded]);
 
   return (
     <TreeViewContext.Provider
       value={{
-        expandAllSiblings,
+        icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
         focus,
         focusFirstNode,
         focusLastNode,
         focusNextNode,
         focusPreviousNode,
-        handleFirstChars,
-        handleLeftArrow,
-        addNodeToNodeMap,
+        focusByFirstCharacter,
         rangeSelectFirst,
         rangeSelectLast,
-        removeNodeFromNodeMap,
-        icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
+        selectAllNodes,
+        selectNextNode,
+        selectPreviousNode,
+        select,
+        expandAllSiblings,
+        toggleExpansion,
         isExpanded,
         isFocused,
         isSelected,
         isTabable,
         multiSelect,
         selectionDisabled: disableSelection,
-        selectAllNodes,
-        selectNextNode,
-        selectPreviousNode,
-        selectRange,
-        setFocusByFirstCharacter,
-        toggle,
-        toggleSelect,
+        getParent,
+        mapFirstChar,
+        addNodeToNodeMap,
+        removeNodeFromNodeMap,
       }}
     >
       <ul
