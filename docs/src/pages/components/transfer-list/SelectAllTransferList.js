@@ -91,10 +91,11 @@ export default function TransferList() {
             checked={numberOfChecked(items) === items.length && items.length !== 0}
             indeterminate={numberOfChecked(items) !== items.length && numberOfChecked(items) !== 0}
             disabled={items.length === 0}
-            inputProps={{ 'aria-label': 'all items selected' }}
+            inputProps={{ 'aria-labelledby': 'transfer-list-all-label' }}
           />
         </ListItemIcon>
         <ListItemText
+          id="transfer-list-all-label"
           primary={title}
           secondary={`${numberOfChecked(items)}/${items.length} selected`}
         />
