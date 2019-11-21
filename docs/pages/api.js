@@ -10,6 +10,7 @@ import MarkdownElement, {
 import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import clsx from 'clsx';
 import { makeStyles, styled } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import EditPage from 'docs/src/modules/components/EditPage';
@@ -658,8 +659,11 @@ ComponentApi.propTypes = {
 function Index() {
   return (
     <AppContent>
-      <h1>Material-UI Component-API</h1>
-      <p>Hello, Dave!</p>
+      <Typography variant="h1">Component-API</Typography>
+      <Typography variant="body1">
+        We couldn&apos;t find the API for the requested component. Try one from the navigation under
+        the item <em>Component API</em>.
+      </Typography>
     </AppContent>
   );
 }
@@ -667,7 +671,6 @@ function Index() {
 function ApiPage(props) {
   const { api } = props;
 
-  // TODO suggestions if slug given but API not found
   const content = api === undefined ? <Index /> : <ComponentApi api={api} />;
 
   return <AppFrame>{content}</AppFrame>;
@@ -685,6 +688,10 @@ function uppercaseFirst(string) {
 
 ApiPage.getInitialProps = async ({ ctx }) => {
   const { query, req } = ctx;
+  if (query.component === undefined) {
+    return {};
+  }
+
   const componentId = uppercaseFirst(kebapToCamelCase(query.component));
   const relativeApiUrl = '/static/api.json';
   // https://github.com/zeit/next.js/issues/1213#issuecomment-280978022
