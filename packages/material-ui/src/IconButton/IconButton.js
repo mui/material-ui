@@ -31,6 +31,10 @@ export const styles = theme => ({
       backgroundColor: 'transparent',
       color: theme.palette.action.disabled,
     },
+    '&$sizeSmall': {
+      padding: 3,
+      fontSize: theme.typography.pxToRem(18),
+    }
   },
   /* Styles applied to the root element if `edge="start"`. */
   edgeStart: {
@@ -75,10 +79,7 @@ export const styles = theme => ({
   /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the root element if `size="small"`. */
-  sizeSmall: {
-    padding: 3,
-    fontSize: theme.typography.pxToRem(18),
-  },
+  sizeSmall: {},
   /* Styles applied to the children container element. */
   label: {
     width: '100%',
