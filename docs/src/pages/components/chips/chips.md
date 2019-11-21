@@ -54,7 +54,7 @@ You can use the `size` prop to define a small Chip.
 
 ## Chip Playground
 
-{{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true, "bg": true}}
+{{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}
 
 ## Accessibility
 
