@@ -658,4 +658,38 @@ describe('<Autocomplete />', () => {
       expect(textbox.value).to.equal('');
     });
   });
+
+  describe('prop: filterOptions', () => {
+    it('should ignore object keys by default', () => {
+      const { queryAllByRole, getByRole } = render(
+        <Autocomplete
+          options={[
+            {
+              value: 'one',
+              label: 'One',
+            },
+            {
+              value: 'two',
+              label: 'Two',
+            },
+          ]}
+          getOptionLabel={option => option.name}
+          renderInput={params => <TextField autoFocus {...params} />}
+        />,
+      );
+      let options;
+      const textbox = getByRole('textbox');
+
+      options = queryAllByRole('option');
+      expect(options.length).to.equal(2);
+
+      fireEvent.change(textbox, { target: { value: 'value' } });
+      options = queryAllByRole('option');
+      expect(options.length).to.equal(0);
+
+      fireEvent.change(textbox, { target: { value: 'one' } });
+      options = queryAllByRole('option');
+      expect(options.length).to.equal(1);
+    });
+  });
 });

@@ -10,23 +10,25 @@ function stripDiacritics(string) {
     ? string.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     : string;
 }
+
 function defaultStringify(value) {
-    if (value == null) {
-      return '';
-    }
-  
-    if (typeof value === 'string') {
-      return value;
-    }
-  
-    if (typeof value === 'object') {
-      return Object.keys(value)
-        .map(key => value[key])
-        .join(' ');
-    }
-  
-    return JSON.stringify(value);
+  if (value == null) {
+    return '';
   }
+
+  if (typeof value === 'string') {
+    return value;
+  }
+
+  if (typeof value === 'object') {
+    return Object.keys(value)
+      .map(key => value[key])
+      .join(' ');
+  }
+
+  return JSON.stringify(value);
+}
+
 export function createFilterOptions(config = {}) {
   const {
     ignoreAccents = true,
