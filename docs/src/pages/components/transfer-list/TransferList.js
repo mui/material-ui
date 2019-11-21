@@ -87,7 +87,6 @@ export default function TransferList() {
               <ListItemIcon>
                 <Checkbox
                   size={dense ? 'small' : 'medium'}
-                  edge="start"
                   checked={checked.indexOf(value) !== -1}
                   tabIndex={-1}
                   disableRipple

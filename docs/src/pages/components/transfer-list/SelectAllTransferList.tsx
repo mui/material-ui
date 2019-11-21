@@ -3,7 +3,6 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -15,9 +14,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       margin: 'auto',
-    },
-    cardHeader: {
-      padding: theme.spacing(1, 2),
     },
     list: {
       width: 200,
@@ -51,7 +47,7 @@ export default function TransferList() {
 
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
-  const dense = false;
+  const dense = true;
 
   const handleToggle = (value: number) => () => {
     const currentIndex = checked.indexOf(value);
@@ -90,22 +86,18 @@ export default function TransferList() {
 
   const customList = (title: React.ReactNode, items: number[]) => (
     <Card>
-      <CardHeader
-        className={classes.cardHeader}
-        avatar={
+      <ListItem dense={dense} button onClick={handleToggleAll(items)}>
+        <ListItemIcon>
           <Checkbox
-            size={dense ? 'small' : 'medium'}
-            edge='start'
-            onClick={handleToggleAll(items)}
-            checked={numberOfChecked(items) === items.length && items.length !== 0}
-            indeterminate={numberOfChecked(items) !== items.length && numberOfChecked(items) !== 0}
-            disabled={items.length === 0}
-            inputProps={{ 'aria-label': 'all items selected' }}
-          />
-        }
-        title={title}
-        subheader={`${numberOfChecked(items)}/${items.length} selected`}
-      />
+              size={dense ? 'small' : 'medium'}
+              checked={numberOfChecked(items) === items.length && items.length !== 0}
+              indeterminate={numberOfChecked(items) !== items.length && numberOfChecked(items) !== 0}
+              disabled={items.length === 0}
+              inputProps={{ 'aria-label': 'all items selected' }}
+            />
+        </ListItemIcon>
+        <ListItemText primary={title} secondary={`${numberOfChecked(items)}/${items.length} selected`} />
+      </ListItem>
       <Divider />
       <List className={classes.list} dense={dense} component="div" role="list">
         {items.map((value: number) => {
@@ -116,7 +108,6 @@ export default function TransferList() {
               <ListItemIcon>
                 <Checkbox
                   size={dense ? 'small' : 'medium'}
-                  edge='start'
                   checked={checked.indexOf(value) !== -1}
                   tabIndex={-1}
                   disableRipple
