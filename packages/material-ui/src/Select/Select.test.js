@@ -93,27 +93,14 @@ describe('<Select />', () => {
     // this means the trigger is blurred immediately
     const handleBlur = spy();
     const { getByRole, getAllByRole, queryByRole } = render(
-      <Select
-        onBlur={handleBlur}
-        onMouseDown={event => {
-          // simulating certain platforms that focus on mousedown
-          if (event.defaultPrevented === false) {
-            event.currentTarget.focus();
-          }
-        }}
-        value=""
-      >
+      <Select onBlur={handleBlur} value="">
         <MenuItem value="">none</MenuItem>
         <MenuItem value={10}>Ten</MenuItem>
       </Select>,
     );
     const trigger = getByRole('button');
 
-    // simulating user click
-    act(() => {
-      fireEvent.mouseDown(trigger);
-      trigger.click();
-    });
+    fireEvent.mouseDown(trigger);
 
     expect(handleBlur.callCount).to.equal(0);
     expect(getByRole('listbox')).to.be.ok;
@@ -611,7 +598,6 @@ describe('<Select />', () => {
       const { getByRole, queryByRole } = render(<ControlledWrapper />);
 
       fireEvent.mouseDown(getByRole('button'));
-
       expect(getByRole('listbox')).to.be.ok;
 
       act(() => {
@@ -651,7 +637,6 @@ describe('<Select />', () => {
       stub(button, 'clientWidth').get(() => 14);
 
       fireEvent.mouseDown(button);
-
       expect(getByTestId('paper').style).to.have.property('minWidth', '14px');
     });
 
@@ -665,7 +650,6 @@ describe('<Select />', () => {
       stub(button, 'clientWidth').get(() => 14);
 
       fireEvent.mouseDown(button);
-
       expect(getByTestId('paper').style).to.have.property('minWidth', '');
     });
   });

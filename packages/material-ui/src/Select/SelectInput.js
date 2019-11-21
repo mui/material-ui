@@ -124,6 +124,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   const handleMouseDown = event => {
+    // Hijack the default focus behavior.
+    event.preventDefault();
+    displayNode.focus();
+
     update(true, event);
   };
 
