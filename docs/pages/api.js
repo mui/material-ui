@@ -13,7 +13,8 @@ import { makeStyles, styled } from '@material-ui/core/styles';
 import Link from 'docs/src/modules/components/Link';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import EditPage from 'docs/src/modules/components/EditPage';
-import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
+import ScrollableTableOfContents from 'docs/src/modules/components/ScrollableTableOfContents';
+import textToHash from 'docs/src/modules/utils/textToHash';
 
 const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 const PATH_REPLACE_REGEX = /\\/g;
@@ -44,28 +45,24 @@ function ComponentImport(props) {
     .replace(/\/([^/]+)\/\1\.js$/, '');
 
   return (
-    <React.Fragment>
-      <h2>Import</h2>
-      <pre className="language-js">
-        <code className="language-js">
-          <span className="token keyword">import</span> {api.name}{' '}
-          <span className="token keyword">from</span>{' '}
-          <span className="token string">
-            '{source}/{api.name}'
-          </span>
-          <span className="token punctuation">;</span>
-          <br />
-          <span className="token comment">// or</span>
-          <br />
-          <span className="token keyword">import</span>{' '}
-          <span className="token punctuation">{'{'}</span> {api.name}{' '}
-          <span className="token punctuation">{'}'}</span>{' '}
-          <span className="token keyword">from</span>{' '}
-          <span className="token string">'{source}'</span>
-          <span className="token punctuation">;</span>
-        </code>
-      </pre>
-    </React.Fragment>
+    <pre className="language-js">
+      <code className="language-js">
+        <span className="token keyword">import</span> {api.name}{' '}
+        <span className="token keyword">from</span>{' '}
+        <span className="token string">
+          '{source}/{api.name}'
+        </span>
+        <span className="token punctuation">;</span>
+        <br />
+        <span className="token comment">// or</span>
+        <br />
+        <span className="token keyword">import</span>{' '}
+        <span className="token punctuation">{'{'}</span> {api.name}{' '}
+        <span className="token punctuation">{'}'}</span> <span className="token keyword">from</span>{' '}
+        <span className="token string">'{source}'</span>
+        <span className="token punctuation">;</span>
+      </code>
+    </pre>
   );
 }
 
@@ -557,59 +554,99 @@ const useComponentApiStyles = makeStyles(theme => {
   };
 });
 
+function useTocItems(texts) {
+  return React.useMemo(() => {
+    const items = texts.map(text => {
+      return {
+        children: [],
+        hash: textToHash(text),
+        text,
+        ref(instance) {
+          this.node = instance;
+        },
+      };
+    });
+    return items;
+  }, [texts]);
+}
+
+function ToCAbleHeading(props) {
+  const { item } = props;
+
+  return (
+    <h2 id={item.hash} ref={item.ref.bind(item)}>
+      {item.text}
+    </h2>
+  );
+}
+
+ToCAbleHeading.propTypes = {
+  item: PropTypes.shape({ hash: PropTypes.string, ref: PropTypes.func, text: PropTypes.node })
+    .isRequired,
+};
+
+const headings = ['Import', 'Props', 'CSS', 'Inheritance', 'Demos'];
+
 function ComponentApi(props) {
   const { api } = props;
 
   const classes = useComponentApiStyles();
   const markdownClasses = useMarkdownStyles();
+  const toCItems = useTocItems(headings);
 
   return (
     <React.Fragment>
-      <EditPage
-        className={classes.editButton}
-        markdownLocation={api.filename}
-        sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
-      />
-      <div className={markdownClasses.root}>
-        {/* TODO: component name + desc */}
-        <Head description="API for AppBar component" title="AppBar API - Material-UI" />
-        <h1>{api.name} API</h1>
-        <p className="description">
-          The API documentation of the {api.name} React component. Learn more about the props and
-          the CSS customization points.
-        </p>
-        <ComponentImport api={api} />
-        <p>{api.description}</p>
-
-        <h2 id="props">Props</h2>
-        <ComponentPropsTable propsApi={api.props} />
-        <RefHint filename={api.filename} forwardsRefTo={api.forwardsRefTo} />
-        {api.spread && (
-          <p>
-            Any other props supplied will be provided to the root element (
-            {api.inheritance ? (
-              <Link href={api.inheritance.pathname}>{api.inheritance.component}</Link>
-            ) : (
-              'native element'
-            )}
-            ).
+      <ScrollableTableOfContents items={toCItems} />
+      <AppContent>
+        <EditPage
+          className={classes.editButton}
+          markdownLocation={api.filename}
+          sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
+        />
+        <div className={markdownClasses.root}>
+          {/* TODO: component name + desc */}
+          <Head description="API for AppBar component" title="AppBar API - Material-UI" />
+          <h1>{api.name} API</h1>
+          <p className="description">
+            The API documentation of the {api.name} React component. Learn more about the props and
+            the CSS customization points.
           </p>
-        )}
-        <h2 id="css">CSS</h2>
-        <ComponentStyles filename={api.filename} styles={api.styles} />
-        {api.inheritance && (
-          <React.Fragment>
-            <h2 id="inheritance">Inheritance</h2>
-            <ComponentInheritance inheritance={api.inheritance} />
-          </React.Fragment>
-        )}
-        {api.usedInPages.length > 0 && (
-          <React.Fragment>
-            <h2 id="demos">Demos</h2>
-            <ComponentDemos pages={api.usedInPages} />
-          </React.Fragment>
-        )}
-      </div>
+
+          <ToCAbleHeading item={toCItems[0]} />
+          <ComponentImport api={api} />
+          <p>{api.description}</p>
+
+          <ToCAbleHeading item={toCItems[1]} />
+          <ComponentPropsTable propsApi={api.props} />
+          <RefHint filename={api.filename} forwardsRefTo={api.forwardsRefTo} />
+          {api.spread && (
+            <p>
+              Any other props supplied will be provided to the root element (
+              {api.inheritance ? (
+                <Link href={api.inheritance.pathname}>{api.inheritance.component}</Link>
+              ) : (
+                'native element'
+              )}
+              ).
+            </p>
+          )}
+
+          <ToCAbleHeading item={toCItems[2]} />
+          <ComponentStyles filename={api.filename} styles={api.styles} />
+          {api.inheritance && (
+            <React.Fragment>
+              <ToCAbleHeading item={toCItems[3]} />
+              <ComponentInheritance inheritance={api.inheritance} />
+            </React.Fragment>
+          )}
+          {api.usedInPages.length > 0 && (
+            <React.Fragment>
+              <ToCAbleHeading item={toCItems[4]} />
+              <ComponentDemos pages={api.usedInPages} />
+            </React.Fragment>
+          )}
+        </div>
+      </AppContent>
     </React.Fragment>
   );
 }
@@ -620,10 +657,10 @@ ComponentApi.propTypes = {
 
 function Index() {
   return (
-    <React.Fragment>
+    <AppContent>
       <h1>Material-UI Component-API</h1>
       <p>Hello, Dave!</p>
-    </React.Fragment>
+    </AppContent>
   );
 }
 
@@ -633,11 +670,7 @@ function ApiPage(props) {
   // TODO suggestions if slug given but API not found
   const content = api === undefined ? <Index /> : <ComponentApi api={api} />;
 
-  return (
-    <AppFrame>
-      <AppContent>{content}</AppContent>
-    </AppFrame>
-  );
+  return <AppFrame>{content}</AppFrame>;
 }
 
 function kebapToCamelCase(kebapCased) {
