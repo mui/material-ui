@@ -11,12 +11,30 @@ function stripDiacritics(string) {
     : string;
 }
 
+function defaultStringify(value) {
+  if (value == null) {
+    return '';
+  }
+
+  if (typeof value === 'string') {
+    return value;
+  }
+
+  if (typeof value === 'object') {
+    return Object.keys(value)
+      .map(key => value[key])
+      .join(' ');
+  }
+
+  return JSON.stringify(value);
+}
+
 export function createFilterOptions(config = {}) {
   const {
     ignoreAccents = true,
     ignoreCase = true,
     matchFrom = 'any',
-    stringify = JSON.stringify,
+    stringify = defaultStringify,
     trim = false,
   } = config;
 
