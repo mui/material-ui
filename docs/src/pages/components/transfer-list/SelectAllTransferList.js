@@ -49,6 +49,7 @@ export default function TransferList() {
 
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
+  const dense = false;
 
   const handleToggle = value => () => {
     const currentIndex = checked.indexOf(value);
@@ -91,6 +92,8 @@ export default function TransferList() {
         className={classes.cardHeader}
         avatar={
           <Checkbox
+            size={dense ? 'small' : 'medium'}
+            edge="start"
             onClick={handleToggleAll(items)}
             checked={numberOfChecked(items) === items.length && items.length !== 0}
             indeterminate={numberOfChecked(items) !== items.length && numberOfChecked(items) !== 0}
@@ -102,7 +105,7 @@ export default function TransferList() {
         subheader={`${numberOfChecked(items)}/${items.length} selected`}
       />
       <Divider />
-      <List className={classes.list} dense component="div" role="list">
+      <List className={classes.list} dense={dense} component="div" role="list">
         {items.map(value => {
           const labelId = `transfer-list-all-item-${value}-label`;
 
@@ -110,6 +113,8 @@ export default function TransferList() {
             <ListItem key={value} role="listitem" button onClick={handleToggle(value)}>
               <ListItemIcon>
                 <Checkbox
+                  size={dense ? 'small' : 'medium'}
+                  edge="start"
                   checked={checked.indexOf(value) !== -1}
                   tabIndex={-1}
                   disableRipple

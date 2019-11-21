@@ -41,6 +41,7 @@ export default function TransferList() {
 
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
+  const dense = true;
 
   const handleToggle = (value: number) => () => {
     const currentIndex = checked.indexOf(value);
@@ -79,7 +80,7 @@ export default function TransferList() {
 
   const customList = (items: number[]) => (
     <Paper className={classes.paper}>
-      <List dense component="div" role="list">
+      <List dense={dense} component="div" role="list">
         {items.map((value: number) => {
           const labelId = `transfer-list-item-${value}-label`;
 
@@ -87,6 +88,8 @@ export default function TransferList() {
             <ListItem key={value} role="listitem" button onClick={handleToggle(value)}>
               <ListItemIcon>
                 <Checkbox
+                  size={dense ? 'small' : 'medium'}
+                  edge='start'
                   checked={checked.indexOf(value) !== -1}
                   tabIndex={-1}
                   disableRipple
