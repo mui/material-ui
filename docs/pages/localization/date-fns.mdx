@@ -2,17 +2,24 @@ import Ad from '_shared/Ad';
 import Example from '_shared/Example';
 import PageMeta from '_shared/PageMeta';
 import * as DateFnsExample from './Date-fns.example.jsx';
+import * as DateFnsCustomizedExample from './Date-fns-customized.example.jsx';
 
 <PageMeta title="Date-fns localization - @material-ui/pickers" />
 
 ## Localization with date-fns
 
-Date-fns localization simply performs by passing a date-fns locale object to the `MuiPickerUtilsProvider`
+When using date-fns, localization is performed by passing a locale object to the `MuiPickerUtilsProvider` component.
 
 <Ad />
 
-#### Example
+#### Basic example
 
-_Note_: Any picker in the component tree will be rerendered automatically on locale change
+_Note_: Any picker in the component tree will be re-rendered automatically on locale change.
 
 <Example source={DateFnsExample} />
+
+#### Customization
+
+To meet various local date standards, you can pass customized values to `DatePicker` props, as well as override default date-fns formatting with classes or `.prototype` object propery. You can read more on this in [Global format customization](https://material-ui-pickers.dev/guides/formats) guide.
+
+<Example source={DateFnsCustomizedExample} />
