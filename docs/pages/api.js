@@ -545,7 +545,7 @@ function ComponentDemos(props) {
   );
 }
 
-ComponentDemos.propTypes = { pages: PropTypes.arrayOf(PropTypes.object.isRequired) };
+ComponentDemos.propTypes = { pages: PropTypes.arrayOf(PropTypes.string.isRequired) };
 
 const useMarkdownStyles = makeStyles(markdownStyles);
 const useComponentApiStyles = makeStyles(theme => {
@@ -597,7 +597,7 @@ function ComponentApi(props) {
   return (
     <React.Fragment>
       <ScrollableTableOfContents items={toCItems} />
-      <AppContent>
+      <AppContent disableAd={false} disableToc={false}>
         <EditPage
           className={classes.editButton}
           markdownLocation={api.filename}
