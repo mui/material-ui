@@ -64,6 +64,27 @@ export const esES = {
   },
 };
 
+export const faIR = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'صفحهٔ قبل',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} از ${count}`,
+      labelRowsPerPage: 'تعداد سطرهای هر صفحه:',
+      nextIconButtonText: 'صفحهٔ بعد',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} ستاره`,
+    },
+    MuiAutocomplete: {
+      clearText: 'پاک‌کردن',
+      closeText: 'بستن',
+      loadingText: 'در حال بارگذاری…',
+      noOptionsText: 'بی‌نتیجه',
+      openText: 'بازکردن',
+    },
+  },
+};
+
 export const frFR = {
   props: {
     MuiTablePagination: {
@@ -81,6 +102,27 @@ export const frFR = {
       loadingText: 'Chargement…',
       noOptionsText: 'Pas de résultats',
       openText: 'Ouvrir',
+    },
+  },
+};
+
+export const itIT = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Pagina precedente',
+      labelRowsPerPage: 'Righe per pagina:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} di ${count}`,
+      nextIconButtonText: 'Pagina successiva',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Stell${value !== 1 ? 'a' : 'e'}`,
+    },
+    MuiAutocomplete: {
+      clearText: 'Svuota',
+      closeText: 'Chiudi',
+      loadingText: 'Caricamento in corso…',
+      noOptionsText: 'Nessuna opzione',
+      openText: 'Apri',
     },
   },
 };
@@ -176,27 +218,6 @@ export const zhCN = {
       loadingText: '载入中…',
       noOptionsText: '没有选择',
       openText: '打开',
-    },
-  },
-};
-
-export const faIR = {
-  props: {
-    MuiTablePagination: {
-      backIconButtonText: 'صفحهٔ قبل',
-      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} از ${count}`,
-      labelRowsPerPage: 'تعداد سطرهای هر صفحه:',
-      nextIconButtonText: 'صفحهٔ بعد',
-    },
-    MuiRating: {
-      getLabelText: value => `${value} ستاره`,
-    },
-    MuiAutocomplete: {
-      clearText: 'پاک‌کردن',
-      closeText: 'بستن',
-      loadingText: 'در حال بارگذاری…',
-      noOptionsText: 'بی‌نتیجه',
-      openText: 'بازکردن',
     },
   },
 };
