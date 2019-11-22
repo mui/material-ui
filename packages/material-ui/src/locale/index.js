@@ -201,6 +201,27 @@ export const ruRU = {
   },
 };
 
+export const trTR = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Önceki sayfa',
+      labelRowsPerPage: 'Sayfa başına satır:',
+      labelDisplayedRows: ({ from, to, count }) => `${count} tanesinden ${from}-${to === -1 ? count : to}`,
+      nextIconButtonText: 'Sonraki sayfa',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Yıldız`,
+    },
+    MuiAutocomplete: {
+      clearText: 'Temizle',
+      closeText: 'Kapat',
+      loadingText: 'Yükleniyor…',
+      noOptionsText: 'Seçenek yok',
+      openText: 'Aç',
+    },
+  },
+};
+
 export const zhCN = {
   props: {
     MuiTablePagination: {
