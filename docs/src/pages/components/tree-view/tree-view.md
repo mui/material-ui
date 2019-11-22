@@ -11,7 +11,7 @@ Tree views can be used to represent a file system navigator displaying folders a
 
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}}
 
-## Multi Selection
+## Multi selection
 
 Tree views also support multi selection.
 
