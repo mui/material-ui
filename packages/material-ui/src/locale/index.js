@@ -7,7 +7,7 @@ export const deDE = {
       nextIconButtonText: 'Nächste Seite',
     },
     MuiRating: {
-      getLabelText: value => `${value} ${value !== 1 ? 'Sterne' : 'Star'}`,
+      getLabelText: value => `${value} ${value !== 1 ? 'Sterne' : 'Stern'}`,
     },
     MuiAutocomplete: {
       clearText: 'Leeren',
