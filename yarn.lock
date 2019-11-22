@@ -2020,6 +2020,11 @@
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
   integrity sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
 
+"@types/css-mediaquery@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@types/css-mediaquery/-/css-mediaquery-0.1.0.tgz#61d439d8163880e90b61d19aba24f7b778c4e77d"
+  integrity sha512-jzZ9bRw8fTgCEllDvE7GHR1zTP5LsDHJbAX6BCwD9qdxIOq/Le5TTsdteoCIdEQaFpDMvudLHU/hLo1Lmfcy0Q==
+
 "@types/enzyme@^3.10.3":
   version "3.10.3"
   resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.10.3.tgz#02b6c5ac7d0472005944a652e79045e2f6c66804"
