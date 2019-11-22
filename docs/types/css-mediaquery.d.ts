@@ -1,3 +1,4 @@
+// TODO: Remove once https://github.com/DefinitelyTyped/DefinitelyTyped/pull/40586 is merged
 declare module 'css-mediaquery' {
   type MediaValues = Record<
     | 'orientation'
