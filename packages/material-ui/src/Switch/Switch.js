@@ -42,7 +42,7 @@ export const styles = theme => ({
       duration: theme.transitions.duration.shortest,
     }),
     '&$checked': {
-      transform: 'translateX(50%)',
+      transform: 'translateX(20px)',
     },
     '&$disabled': {
       color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
@@ -109,6 +109,9 @@ export const styles = theme => ({
     },
     '& $switchBase': {
       padding: 4,
+      '&$checked': {
+        transform: 'translateX(16px)',
+      },
     },
   },
   /* Pseudo-class applied to the internal `SwitchBase` component's `checked` class. */

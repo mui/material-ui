@@ -1,14 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { deepOrange, green } from '@material-ui/core/colors';
 import Avatar from '@material-ui/core/Avatar';
+import { deepOrange, green } from '@material-ui/core/colors';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    '& > * + *': {
-      marginLeft: 16,
+    '& > *': {
+      margin: theme.spacing(1),
     },
   },
   square: {
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
     color: '#fff',
     backgroundColor: green[500],
   },
-});
+}));
 
 export default function VariantAvatars() {
   const classes = useStyles();

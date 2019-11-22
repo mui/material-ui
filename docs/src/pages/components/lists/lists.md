@@ -11,7 +11,7 @@ components: Collapse, Divider, List, ListItem, ListItemAvatar, ListItemIcon, Lis
 
 ## Simple List
 
-{{"demo": "pages/components/lists/SimpleList.js"}}
+{{"demo": "pages/components/lists/SimpleList.js", "bg": true}}
 
 The last item of the previous demo shows how you can render a link:
 
@@ -31,27 +31,27 @@ You can find a [demo with React Router following this section](/guides/compositi
 
 ## Nested List
 
-{{"demo": "pages/components/lists/NestedList.js"}}
+{{"demo": "pages/components/lists/NestedList.js", "bg": true}}
 
 ## Folder List
 
-{{"demo": "pages/components/lists/FolderList.js"}}
+{{"demo": "pages/components/lists/FolderList.js", "bg": true}}
 
 ## Interactive
 
 Below is an interactive demo that lets you explore the visual results of the different settings:
 
-{{"demo": "pages/components/lists/InteractiveList.js"}}
+{{"demo": "pages/components/lists/InteractiveList.js", "bg": true}}
 
 ## Selected ListItem
 
-{{"demo": "pages/components/lists/SelectedListItem.js"}}
+{{"demo": "pages/components/lists/SelectedListItem.js", "bg": true}}
 
 ## Align list items
 
 You should change the list item alignment when displaying 3 lines or more, set the `alignItems="flex-start"` property.
 
-{{"demo": "pages/components/lists/AlignItemsList.js"}}
+{{"demo": "pages/components/lists/AlignItemsList.js", "bg": true}}
 
 ## List Controls
 
@@ -61,17 +61,17 @@ A checkbox can either be a primary action or a secondary action.
 
 The checkbox is the primary action and the state indicator for the list item. The comment button is a secondary action and a separate target.
 
-{{"demo": "pages/components/lists/CheckboxList.js"}}
+{{"demo": "pages/components/lists/CheckboxList.js", "bg": true}}
 
 The checkbox is the secondary action for the list item and a separate target.
 
-{{"demo": "pages/components/lists/CheckboxListSecondary.js"}}
+{{"demo": "pages/components/lists/CheckboxListSecondary.js", "bg": true}}
 
 ### Switch
 
 The switch is the secondary action and a separate target.
 
-{{"demo": "pages/components/lists/SwitchListSecondary.js"}}
+{{"demo": "pages/components/lists/SwitchListSecondary.js", "bg": true}}
 
 ## Pinned Subheader List
 
@@ -80,11 +80,11 @@ Upon scrolling, subheaders remain pinned to the top of the screen until pushed o
 This feature relies on CSS sticky positioning.
 Unfortunately it's [not implemented](https://caniuse.com/#search=sticky) by all the supported browsers. It defaults to `disableSticky` when not supported.
 
-{{"demo": "pages/components/lists/PinnedSubheaderList.js"}}
+{{"demo": "pages/components/lists/PinnedSubheaderList.js", "bg": true}}
 
 ## Inset List
 
-{{"demo": "pages/components/lists/InsetList.js"}}
+{{"demo": "pages/components/lists/InsetList.js", "bg": true}}
 
 ## Virtualized List
 
@@ -92,7 +92,7 @@ In the following example, we demonstrate how to use [react-window](https://githu
 It renders 200 rows and can easily handle more.
 Virtualization helps with performance issues.
 
-{{"demo": "pages/components/lists/VirtualizedList.js"}}
+{{"demo": "pages/components/lists/VirtualizedList.js", "bg": true}}
 
  The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
 If this library doesn't cover your use case, you should consider using [react-virtualized](https://github.com/bvaughn/react-virtualized), then alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso).

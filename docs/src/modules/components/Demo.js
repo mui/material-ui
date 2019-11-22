@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import copy from 'clipboard-copy';
 import { useSelector, useDispatch } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, fade } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Collapse from '@material-ui/core/Collapse';
@@ -54,14 +54,21 @@ const styles = theme => ({
     position: 'relative',
     outline: 0,
     margin: 'auto',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: theme.palette.background.level2,
     display: 'flex',
     justifyContent: 'center',
-    padding: 20,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
+    padding: theme.spacing(3),
     [theme.breakpoints.up('sm')]: {
-      padding: theme.spacing(3),
+      borderRadius: theme.shape.borderRadius,
+      borderLeftWidth: 1,
+      borderRightWidth: 1,
     },
+  },
+  demoBg: {
+    border: 'none',
+    backgroundColor: theme.palette.background.level2,
   },
   demoHiddenHeader: {
     paddingTop: theme.spacing(2),
@@ -136,7 +143,6 @@ function Demo(props) {
   const dispatch = useDispatch();
   const t = useSelector(state => state.options.t);
   const codeVariant = useSelector(state => state.options.codeVariant);
-
   const demoData = getDemoData(codeVariant, demo, githubLocation);
 
   const [sourceHintSeen, setSourceHintSeen] = React.useState(false);
@@ -244,6 +250,10 @@ function Demo(props) {
     [demoOptions.height, demoOptions.maxWidth],
   );
 
+  if (demoOptions.iframe) {
+    demoOptions.bg = true;
+  }
+
   const createHandleCodeSourceLink = anchor => async () => {
     try {
       await copy(`${window.location.href.split('#')[0]}#${anchor}`);
@@ -269,9 +279,12 @@ function Demo(props) {
 
   const match = useMediaQuery(theme => theme.breakpoints.up('sm'));
 
-  const jsx = getJsxPreview(demoData.raw || '', demoOptions.defaultCodeOpen);
+  const jsx = getJsxPreview(demoData.raw || '');
   const showPreview =
-    !demoOptions.hideHeader && jsx !== demoData.raw && jsx.split(/\n/).length <= 20;
+    !demoOptions.hideHeader &&
+    demoOptions.defaultCodeOpen !== false &&
+    jsx !== demoData.raw &&
+    jsx.split(/\n/).length <= 15;
 
   let showCodeLabel;
   if (codeOpen) {
@@ -285,6 +298,7 @@ function Demo(props) {
       <div
         className={clsx(classes.demo, {
           [classes.demoHiddenHeader]: demoOptions.hideHeader,
+          [classes.demoBg]: demoOptions.bg,
         })}
         tabIndex={-1}
         onMouseEnter={handleDemoHover}

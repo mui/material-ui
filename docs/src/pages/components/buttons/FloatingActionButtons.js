@@ -7,8 +7,10 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import NavigationIcon from '@material-ui/icons/Navigation';
 
 const useStyles = makeStyles(theme => ({
-  fab: {
-    margin: theme.spacing(1),
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
   },
   extendedIcon: {
     marginRight: theme.spacing(1),
@@ -19,18 +21,18 @@ export default function FloatingActionButtons() {
   const classes = useStyles();
 
   return (
-    <div>
-      <Fab color="primary" aria-label="add" className={classes.fab}>
+    <div className={classes.root}>
+      <Fab color="primary" aria-label="add">
         <AddIcon />
       </Fab>
-      <Fab color="secondary" aria-label="edit" className={classes.fab}>
+      <Fab color="secondary" aria-label="edit">
         <EditIcon />
       </Fab>
-      <Fab variant="extended" aria-label="like" className={classes.fab}>
+      <Fab variant="extended">
         <NavigationIcon className={classes.extendedIcon} />
-        Extended
+        Navigate
       </Fab>
-      <Fab disabled aria-label="like" className={classes.fab}>
+      <Fab disabled aria-label="like">
         <FavoriteIcon />
       </Fab>
     </div>

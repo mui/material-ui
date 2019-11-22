@@ -11,6 +11,12 @@ components: Breadcrumbs, Link, Typography
 
 {{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
+## Active last breadcrumb
+
+Keep the last breadcrumb interactive.
+
+{{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
+
 ## Custom separator
 
 In the following examples, we are using two string separators, and an SVG icon.
@@ -34,7 +40,7 @@ Here is an example of customizing the component. You can learn more about this i
 
 ## Integration with react-router
 
-{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js", "bg": true}}
 
 ## Accessibility
 

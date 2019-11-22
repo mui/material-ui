@@ -15,23 +15,23 @@ They should be easy to scan for relevant and actionable information. Elements, l
 
 Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards are entry points to more complex and detailed information.
 
-{{"demo": "pages/components/cards/SimpleCard.js"}}
+{{"demo": "pages/components/cards/SimpleCard.js", "bg": true}}
 
 ## Complex Interaction
 
 On desktop, card content can expand.
 
-{{"demo": "pages/components/cards/RecipeReviewCard.js"}}
+{{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 
 ## Media
 
 Example of a card using an image to reinforce the content.
 
-{{"demo": "pages/components/cards/MediaCard.js"}}
+{{"demo": "pages/components/cards/MediaCard.js", "bg": true}}
 
 By default, we use the combination of a `<div>` element and a *background image* to display the media. It can be problematic in some situations. For instance, you might want to display a video or a responsive image. Use the `component` property for these use cases:
 
-{{"demo": "pages/components/cards/ImgMediaCard.js"}}
+{{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
 > ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE 11.
 
@@ -41,4 +41,4 @@ Supplemental actions within the card are explicitly called out using icons, text
 
 Here's an example of a media control card.
 
-{{"demo": "pages/components/cards/MediaControlCard.js"}}
+{{"demo": "pages/components/cards/MediaControlCard.js", "bg": true}}

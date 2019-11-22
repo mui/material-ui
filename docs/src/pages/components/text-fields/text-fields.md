@@ -17,7 +17,7 @@ It supports standard, outlined and filled styling.
 
 {{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 
-> **Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support it.
+Note: The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support it.
 
 ## Form props
 
@@ -110,7 +110,7 @@ Here are some examples of customizing the component. You can learn more about th
 Customization does not stop at CSS, you can use composition to build custom components and give your app a unique feel.
 Below is an example using the [`InputBase`](/api/input-base/) component, inspired by Google Maps.
 
-{{"demo": "pages/components/text-fields/CustomizedInputBase.js"}}
+{{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
 ## Limitations
 

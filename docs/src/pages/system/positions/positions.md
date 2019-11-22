@@ -4,7 +4,7 @@
 
 ## z-index
 
-{{"demo": "pages/system/positions/ZIndex.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/positions/ZIndex.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box zIndex="tooltip">

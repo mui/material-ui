@@ -1,6 +1,5 @@
 import React from 'react';
-import { emphasize, withStyles, makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import { emphasize, withStyles } from '@material-ui/core/styles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Chip from '@material-ui/core/Chip';
 import HomeIcon from '@material-ui/icons/Home';
@@ -27,37 +26,23 @@ function handleClick(event) {
   console.info('You clicked a breadcrumb.');
 }
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    padding: theme.spacing(1),
-  },
-  avatar: {
-    background: 'none',
-    marginRight: -theme.spacing(1.5),
-  },
-}));
-
 export default function CustomizedBreadcrumbs() {
-  const classes = useStyles();
-
   return (
-    <Paper elevation={0} className={classes.root}>
-      <Breadcrumbs aria-label="breadcrumb">
-        <StyledBreadcrumb
-          component="a"
-          href="#"
-          label="Home"
-          icon={<HomeIcon fontSize="small" />}
-          onClick={handleClick}
-        />
-        <StyledBreadcrumb component="a" href="#" label="Catalog" onClick={handleClick} />
-        <StyledBreadcrumb
-          label="Accessories"
-          deleteIcon={<ExpandMoreIcon />}
-          onClick={handleClick}
-          onDelete={handleClick}
-        />
-      </Breadcrumbs>
-    </Paper>
+    <Breadcrumbs aria-label="breadcrumb">
+      <StyledBreadcrumb
+        component="a"
+        href="#"
+        label="Home"
+        icon={<HomeIcon fontSize="small" />}
+        onClick={handleClick}
+      />
+      <StyledBreadcrumb component="a" href="#" label="Catalog" onClick={handleClick} />
+      <StyledBreadcrumb
+        label="Accessories"
+        deleteIcon={<ExpandMoreIcon />}
+        onClick={handleClick}
+        onDelete={handleClick}
+      />
+    </Breadcrumbs>
   );
 }

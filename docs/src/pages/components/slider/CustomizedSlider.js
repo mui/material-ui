@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -9,7 +8,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 const useStyles = makeStyles(theme => ({
   root: {
     width: 300 + theme.spacing(3) * 2,
-    padding: theme.spacing(3),
   },
   margin: {
     height: theme.spacing(3),
@@ -199,7 +197,7 @@ export default function CustomizedSlider() {
   const classes = useStyles();
 
   return (
-    <Paper className={classes.root}>
+    <div className={classes.root}>
       <Typography gutterBottom>iOS</Typography>
       <IOSSlider aria-label="ios slider" defaultValue={60} marks={marks} valueLabelDisplay="on" />
       <div className={classes.margin} />
@@ -219,6 +217,6 @@ export default function CustomizedSlider() {
         getAriaLabel={index => (index === 0 ? 'Minimum price' : 'Maximum price')}
         defaultValue={[20, 40]}
       />
-    </Paper>
+    </div>
   );
 }

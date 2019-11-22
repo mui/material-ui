@@ -26,4 +26,4 @@ For instance:
 
 ## Facebook example
 
-{{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false}}
+{{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}

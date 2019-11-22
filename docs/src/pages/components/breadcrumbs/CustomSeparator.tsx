@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
@@ -9,11 +8,9 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      justifyContent: 'center',
-      flexWrap: 'wrap',
-    },
-    paper: {
-      padding: theme.spacing(1, 2),
+      '& > * + *': {
+        marginTop: theme.spacing(2),
+      },
     },
   }),
 );
@@ -28,41 +25,33 @@ export default function CustomSeparator() {
 
   return (
     <div className={classes.root}>
-      <Paper elevation={0} className={classes.paper}>
-        <Breadcrumbs separator="›" aria-label="breadcrumb">
-          <Link color="inherit" href="/" onClick={handleClick}>
-            Material-UI
-          </Link>
-          <Link color="inherit" href="/getting-started/installation/" onClick={handleClick}>
-            Core
-          </Link>
-          <Typography color="textPrimary">Breadcrumb</Typography>
-        </Breadcrumbs>
-      </Paper>
-      <br />
-      <Paper elevation={0} className={classes.paper}>
-        <Breadcrumbs separator="-" aria-label="breadcrumb">
-          <Link color="inherit" href="/" onClick={handleClick}>
-            Material-UI
-          </Link>
-          <Link color="inherit" href="/getting-started/installation/" onClick={handleClick}>
-            Core
-          </Link>
-          <Typography color="textPrimary">Breadcrumb</Typography>
-        </Breadcrumbs>
-      </Paper>
-      <br />
-      <Paper elevation={0} className={classes.paper}>
-        <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
-          <Link color="inherit" href="/" onClick={handleClick}>
-            Material-UI
-          </Link>
-          <Link color="inherit" href="/getting-started/installation/" onClick={handleClick}>
-            Core
-          </Link>
-          <Typography color="textPrimary">Breadcrumb</Typography>
-        </Breadcrumbs>
-      </Paper>
+      <Breadcrumbs separator="›" aria-label="breadcrumb">
+        <Link color="inherit" href="/" onClick={handleClick}>
+          Material-UI
+        </Link>
+        <Link color="inherit" href="/getting-started/installation/" onClick={handleClick}>
+          Core
+        </Link>
+        <Typography color="textPrimary">Breadcrumb</Typography>
+      </Breadcrumbs>
+      <Breadcrumbs separator="-" aria-label="breadcrumb">
+        <Link color="inherit" href="/" onClick={handleClick}>
+          Material-UI
+        </Link>
+        <Link color="inherit" href="/getting-started/installation/" onClick={handleClick}>
+          Core
+        </Link>
+        <Typography color="textPrimary">Breadcrumb</Typography>
+      </Breadcrumbs>
+      <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
+        <Link color="inherit" href="/" onClick={handleClick}>
+          Material-UI
+        </Link>
+        <Link color="inherit" href="/getting-started/installation/" onClick={handleClick}>
+          Core
+        </Link>
+        <Typography color="textPrimary">Breadcrumb</Typography>
+      </Breadcrumbs>
     </div>
   );
 }
