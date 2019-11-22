@@ -37,6 +37,7 @@ const theme = createMuiTheme({
 | Portuguese (Brazil) | pt-BR | `ptBR` |
 | Russian | ru-RU | `ruRU` |
 | Spanish | es-ES | `esES` |
+| Turkish | tr-TR | `trTR` |
 
 You can [find the source](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/locale/index.js) in the GitHub repository.
 

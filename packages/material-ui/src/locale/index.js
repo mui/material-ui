@@ -68,8 +68,8 @@ export const faIR = {
   props: {
     MuiTablePagination: {
       backIconButtonText: 'صفحهٔ قبل',
-      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} از ${count}`,
       labelRowsPerPage: 'تعداد سطرهای هر صفحه:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} از ${count}`,
       nextIconButtonText: 'صفحهٔ بعد',
     },
     MuiRating: {
@@ -206,7 +206,8 @@ export const trTR = {
     MuiTablePagination: {
       backIconButtonText: 'Önceki sayfa',
       labelRowsPerPage: 'Sayfa başına satır:',
-      labelDisplayedRows: ({ from, to, count }) => `${count} tanesinden ${from}-${to === -1 ? count : to}`,
+      labelDisplayedRows: ({ from, to, count }) =>
+        `${count} tanesinden ${from}-${to === -1 ? count : to}`,
       nextIconButtonText: 'Sonraki sayfa',
     },
     MuiRating: {
@@ -226,8 +227,8 @@ export const zhCN = {
   props: {
     MuiTablePagination: {
       backIconButtonText: '上一页',
-      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} 的 ${count}`,
       labelRowsPerPage: '每页行数:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} 的 ${count}`,
       nextIconButtonText: '下一页',
     },
     MuiRating: {
