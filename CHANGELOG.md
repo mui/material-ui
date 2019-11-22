@@ -1,5 +1,76 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.7.0
+###### *Nov 22, 2019*
+
+Big thanks to the 27 contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- 🌎 Add localization support (#18219) @soltanloo.
+- 🔍 8 patches on the Autocomplete component.
+- 💄 Add tooltip arrow support (#18323) @goleary.
+- 📚 Display the demos on a white background (#18396) @oliviertassinari.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v4.7.0`
+
+- [l10n] Add localization (#18219) @soltanloo
+- [l10n] Improve Russian translation (#18422) @gmltA
+- [Avatar] Tip about what srcset can be used for (#18366) @uxitten
+- [CardMedia] Use propTypes for "at least one"-check (#18384) @eps1lon
+- [Chip] Document accessibility (#18271) @eps1lon
+- [Collapse] Add support for unitless collapsedHeight (#18461) @weslenng
+- [Grid] Infer `displayName` (#18481) @NMinhNguyen
+- [HiddenCss] Fix warning when using custom breakpoints (#18382) @eps1lon
+- [Modal] Prefer to lock scroll on body than html element (#18445) @andreasheim
+- [Popper] Use context for RTL support (#18381) @MisterQH
+- [Slider] Increase interaction area (#18429) @oliviertassinari
+- [Slider] Make the slider work as intended when max%step !== 0 (#18438) @macfire10
+- [Snackbar] Fix timer restarting when parent component re-render (#18361) @weslenng
+- [Tooltip] Add `arrow` prop (#18323) @goleary
+- [Tooltip] Use hysteresis with the enterDelay (#18458) @oliviertassinari
+- [getContrastText] Throw descriptive exception when passing falsy argument (#18383) @eps1lon
+
+### `@material-ui/lab@v4.0.0-alpha.33`
+
+- [Skeleton] Keep the size 1:1 to replaced text content (#18451) @macfire10
+- [SpeedDialIcon] Fix test for react 16.12 (#18379) @eps1lon
+- [TreeView] Fix control state error (#18341) @joshwooding
+- [Autocomplete] Add popperDisablePortal to classes (#18346) @nullberri
+- [Autocomplete] Add tag keyboard navigation test (#18355) @oliviertassinari
+- [Autocomplete] Better handle native browsers' autofill and autocomplete (#18376) @IanSmith89
+- [Autocomplete] Fix CreateFilterOptions definition (#18419) @alaumh
+- [Autocomplete] Fix bug on disableOpenOnFocus prop (#18380) @netochaves
+- [Autocomplete] Fix usage of Home/End keys (#18338) @weslenng
+- [Autocomplete] Fix virtualization demo (#18455) @mandrin17299
+- [Autocomplete] Ignore object keys in default filter (#18480) @eggbread
+- [lab] Bump material-ui/core version (#18354) @renatoagds
+
+### Docs
+
+- [docs] Add related project links (#18035) @MaximKudriavtsev
+- [docs] Fix grammar in app-bar.md (#18362) @smilevideo
+- [docs] Fix some markdown spec issue (#18428) @eps1lon
+- [docs] Fix typo in autocomplete docs (#18343) @thomasdashney
+- [docs] Fix useMediaQuery ssr implementation example (#18325) @carloscuesta
+- [docs] Increase the contrast of the demos (#18396) @oliviertassinari
+- [docs] Reduce .html response size (#18356) @oliviertassinari
+- [docs] Remove outdated showcase (#18364) @LorenzHenk
+- [docs] Update the translations (#18339) @mbrookes
+
+### Core
+
+- [GitHub] Fix fragment on link in PR template (#18370) @twgardner2
+- [Security] Bump https-proxy-agent from 2.2.2 to 2.2.4 (#18440) @dependabot-preview
+- [core] Add displayName to contexts (#18468) @eps1lon
+- [core] Batch changes (#18395) @oliviertassinari
+- [core] Ignore babel-plugin-preval updates  (#18415) @dependabot-preview
+- [framer] Update after publication (#18340) @mbrookes
+- [test] Check a11y tree inclusion in CI only (#18433) @eps1lon
+- [test] Improve coverage (#18385) @eps1lon
+- [utils] Simplify refType (#18437) @NMinhNguyen
+
 ## 4.6.1
 ###### *Nov 12, 2019*
 
