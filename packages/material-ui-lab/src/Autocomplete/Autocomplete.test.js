@@ -673,7 +673,7 @@ describe('<Autocomplete />', () => {
               label: 'Two',
             },
           ]}
-          getOptionLabel={option => option.name}
+          getOptionLabel={option => option.label}
           renderInput={params => <TextField autoFocus {...params} />}
         />,
       );
