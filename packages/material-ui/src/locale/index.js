@@ -85,6 +85,27 @@ export const frFR = {
   },
 };
 
+export const itIT = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Pagina precedente',
+      labelRowsPerPage: 'Righe per pagina:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} di ${count}`,
+      nextIconButtonText: 'Pagina successiva',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Stell${value !== 1 ? 'a' : 'e'}`,
+    },
+    MuiAutocomplete: {
+      clearText: 'Svuota',
+      closeText: 'Chiudi',
+      loadingText: 'Caricamento in corso…',
+      noOptionsText: 'Nessuna opzione',
+      openText: 'Apri',
+    },
+  },
+};
+
 export const jaJP = {
   props: {
     MuiTablePagination: {
