@@ -640,3 +640,12 @@ withStyles(theme =>
     };
   });
 }
+
+function themeProviderTest() {
+  <ThemeProvider theme={{ foo: 1 }}>{null}</ThemeProvider>;
+  // $ExpectError
+  <ThemeProvider<Theme> theme={{ foo: 1 }}>{null}</ThemeProvider>;
+  <ThemeProvider<Theme> theme={{ props: { MuiAppBar: { 'aria-atomic': 'true' } } }}>
+    {null}
+  </ThemeProvider>;
+}

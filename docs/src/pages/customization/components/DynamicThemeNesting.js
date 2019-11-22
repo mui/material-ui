@@ -5,14 +5,26 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { blue } from '@material-ui/core/colors';
 import Switch from '@material-ui/core/Switch';
 
-const defaultTheme = createMuiTheme();
-
 export default function DynamicThemeNesting() {
   const [color, setColor] = React.useState('default');
 
   const handleChange = event => {
     setColor(event.target.checked ? 'blue' : 'default');
   };
+
+  const theme = React.useMemo(() => {
+    if (color === 'blue') {
+      return createMuiTheme({
+        palette: {
+          secondary: {
+            main: blue[500],
+            contrastText: '#fff',
+          },
+        },
+      });
+    }
+    return createMuiTheme();
+  }, [color]);
 
   return (
     <React.Fragment>
@@ -27,22 +39,7 @@ export default function DynamicThemeNesting() {
         }
         label="Blue"
       />
-      <ThemeProvider
-        theme={
-          color === 'blue'
-            ? {
-                ...defaultTheme,
-                palette: {
-                  ...defaultTheme.palette,
-                  secondary: {
-                    main: blue[500],
-                    contrastText: '#fff',
-                  },
-                },
-              }
-            : defaultTheme
-        }
-      >
+      <ThemeProvider theme={theme}>
         <Button variant="contained" color="secondary">
           {'Theme nesting'}
         </Button>
