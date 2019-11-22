@@ -93,7 +93,16 @@ describe('<Select />', () => {
     // this means the trigger is blurred immediately
     const handleBlur = spy();
     const { getByRole, getAllByRole, queryByRole } = render(
-      <Select onBlur={handleBlur} value="">
+      <Select
+        onBlur={handleBlur}
+        value=""
+        onMouseDown={event => {
+          // simulating certain platforms that focus on mousedown
+          if (event.defaultPrevented === false) {
+            event.currentTarget.focus();
+          }
+        }}
+      >
         <MenuItem value="">none</MenuItem>
         <MenuItem value={10}>Ten</MenuItem>
       </Select>,
