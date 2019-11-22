@@ -31,9 +31,10 @@ const theme = createMuiTheme({
 | English (United States) | en-US | `enUS` |
 | French | fr-FR | `frFR` |
 | German | de-DE |  `deDE` |
+| Italian | it-IT | `itIT` |
 | Japanese | ja-JP | `jaJP` |
-| Portuguese (Brazil) | pt-BR | `ptBR` |
 | Persian | fa-IR | `faIR` |
+| Portuguese (Brazil) | pt-BR | `ptBR` |
 | Russian | ru-RU | `ruRU` |
 | Spanish | es-ES | `esES` |
 
