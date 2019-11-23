@@ -23,7 +23,11 @@ const alias = {
 };
 
 module.exports = {
-  presets: ['next/babel', '@zeit/next-typescript/babel'],
+  presets: [
+    // we can use the version that is referenced in the lockfile
+    ['next/babel', { 'transform-runtime': { version: '^7.7.4' } }],
+    '@zeit/next-typescript/babel',
+  ],
   plugins: [
     'babel-plugin-optimize-clsx',
     // for IE 11 support
