@@ -153,6 +153,9 @@ export interface UseAutocompleteProps {
   options?: any[];
   /**
    * The value of the autocomplete.
+   *
+   * The value must have reference equality with the option in order to be selected.
+   * You can customize the equality behavior with the `getOptionSelected` prop.
    */
   value?: any;
 }
