@@ -20,9 +20,11 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     demo: {
+      height: 280,
+    },
+    demoArea: {
       border: `1px solid ${theme.palette.grey[300]}`,
       borderRadius: 4,
-      height: 240,
     },
     paper: {
       padding: theme.spacing(2),
@@ -66,7 +68,7 @@ export default function InteractiveGrid() {
 
   return (
     <Grid container className={classes.root}>
-      <Grid item xs={12}>
+      <Grid item xs={12} className={classes.demoArea}>
         <Stack
           spacing={spacing}
           className={classes.demo}

@@ -20,12 +20,22 @@ function generateGutter(theme) {
       return;
     }
 
-    styles[`spacing-${spacing}`] = {
-      margin: `-${getOffset(themeSpacing, 2)}`,
+    styles[`spacing-row-${spacing}`] = {
+      marginLeft: `-${getOffset(themeSpacing, 2)}`,
+      marginRight: `-${getOffset(themeSpacing, 2)}`,
       width: `calc(100% + ${getOffset(themeSpacing)})`,
+      '& > *': {
+        marginLeft: getOffset(themeSpacing, 2),
+        marginRight: getOffset(themeSpacing, 2),
+      },
+    };
+    styles[`spacing-column-${spacing}`] = {
+      marginTop: `-${getOffset(themeSpacing, 2)}`,
+      marginBottom: `-${getOffset(themeSpacing, 2)}`,
       height: `calc(100% + ${getOffset(themeSpacing)})`,
       '& > *': {
-        margin: getOffset(themeSpacing, 2),
+        marginTop: getOffset(themeSpacing, 2),
+        marginBottom: getOffset(themeSpacing, 2),
       },
     };
   });
@@ -36,13 +46,11 @@ function generateGutter(theme) {
 export const styles = theme => ({
   /* Styles applied to the root element */
   root: {
-    height: 'auto',
-  },
-  innerStack: {
     boxSizing: 'border-box',
     display: 'flex',
     flexWrap: 'wrap',
     width: 'auto',
+    height: 'auto',
     '& > *': {
       boxSizing: 'border-box',
     },
@@ -130,7 +138,6 @@ const Stack = React.forwardRef(function Stack(props, ref) {
   const {
     alignContent = 'stretch',
     alignItems = 'stretch',
-    children,
     classes,
     className: classNameProp,
     component: Component = 'div',
@@ -142,21 +149,20 @@ const Stack = React.forwardRef(function Stack(props, ref) {
   } = props;
 
   const className = clsx(
-    classes.innerStack,
+    classes.root,
     {
-      [classes[`spacing-${String(spacing)}`]]: spacing !== 0,
-      [classes[`direction-${String(direction)}`]]: direction !== 'row',
-      [classes[`wrap-${String(wrap)}`]]: wrap !== 'wrap',
-      [classes[`align-items-${String(alignItems)}`]]: alignItems !== 'stretch',
-      [classes[`align-content-${String(alignContent)}`]]: alignContent !== 'stretch',
-      [classes[`justify-${String(justify)}`]]: justify !== 'flex-start',
-    }
+      [classes[`spacing-${direction.split("-")[0]}-${String(spacing)}`]]: spacing !== 0,
+      [classes[`direction-${direction}`]]: direction !== 'row',
+      [classes[`wrap-${wrap}`]]: wrap !== 'wrap',
+      [classes[`align-items-${alignItems}`]]: alignItems !== 'stretch',
+      [classes[`align-content-${alignContent}`]]: alignContent !== 'stretch',
+      [classes[`justify-${justify}`]]: justify !== 'flex-start',
+    },
+    classNameProp,
   );
 
   return (
-    <Component className={clsx(classes.root, classNameProp)} ref={ref} {...other}>
-      <div className={className}>{children}</div>
-    </Component>
+    <Component className={className} ref={ref} {...other} />
   )
 });
 
