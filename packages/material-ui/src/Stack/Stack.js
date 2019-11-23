@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import requirePropFactory from '../utils/requirePropFactory';
 
 const SPACINGS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -47,15 +46,6 @@ export const styles = theme => ({
     '& > *': {
       boxSizing: 'border-box',
     },
-  },
-  /* Styles applied to the root element if `item={true}`. */
-  item: {
-    boxSizing: 'border-box',
-    margin: '0', // For instance, it's useful when used with a `figure` element.
-  },
-  /* Styles applied to the root element if `zeroMinWidth={true}`. */
-  zeroMinWidth: {
-    minWidth: 0,
   },
   /* Styles applied to the root element if `direction="column"`. */
   'direction-column': {
@@ -145,19 +135,15 @@ const Stack = React.forwardRef(function Stack(props, ref) {
     className: classNameProp,
     component: Component = 'div',
     direction = 'row',
-    item = false,
     justify = 'flex-start',
     spacing = 0,
     wrap = 'wrap',
-    zeroMinWidth = false,
     ...other
   } = props;
 
   const className = clsx(
     classes.innerStack,
     {
-      [classes.item]: item,
-      [classes.zeroMinWidth]: zeroMinWidth,
       [classes[`spacing-${String(spacing)}`]]: spacing !== 0,
       [classes[`direction-${String(direction)}`]]: direction !== 'row',
       [classes[`wrap-${String(wrap)}`]]: wrap !== 'wrap',
@@ -214,11 +200,6 @@ Stack.propTypes = {
    */
   direction: PropTypes.oneOf(['row', 'row-reverse', 'column', 'column-reverse']),
   /**
-   * If `true`, the component will have the flex *item* behavior.
-   * You should be wrapping *items* with a *container*, such as Grid or Stack.
-   */
-  item: PropTypes.bool,
-  /**
    * Defines the `justify-content` style property.
    * It is applied for all screen sizes.
    */
@@ -237,34 +218,8 @@ Stack.propTypes = {
   spacing: PropTypes.oneOf(SPACINGS),
   /**
    * Defines the `flex-wrap` style property.
-   * It's applied for all screen sizes.
    */
   wrap: PropTypes.oneOf(['nowrap', 'wrap', 'wrap-reverse']),
-  /**
-   * If `true`, it sets `min-width: 0` on the item.
-   * Refer to the limitations section of the documentation to better understand the use case.
-   */
-  zeroMinWidth: PropTypes.bool,
 };
 
-const StyledStack = withStyles(styles, { name: 'MuiStack' })(Stack);
-
-if (process.env.NODE_ENV !== 'production') {
-  const requireProp = requirePropFactory('Stack');
-  StyledStack.propTypes = {
-    ...StyledStack.propTypes,
-    alignContent: requireProp('container'),
-    alignItems: requireProp('container'),
-    direction: requireProp('container'),
-    justify: requireProp('container'),
-    lg: requireProp('item'),
-    md: requireProp('item'),
-    sm: requireProp('item'),
-    spacing: requireProp('container'),
-    wrap: requireProp('container'),
-    xs: requireProp('item'),
-    zeroMinWidth: requireProp('item'),
-  };
-}
-
-export default StyledStack;
+export default withStyles(styles, { name: 'MuiStack' })(Stack);

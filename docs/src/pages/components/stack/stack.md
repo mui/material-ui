@@ -31,6 +31,6 @@ This example shows three vertical stacks nested in a horizontal stack.
 
 ## Interactive demo
 
-Below is an interactive demo that lets you explore the visual results of the different settings:
+This interactive demo that lets you explore the visual results of the different settings:
 
 {{"demo": "pages/components/stack/InteractiveStack.js", "hideHeader": true}}
