@@ -11,8 +11,8 @@ export interface SelectProps
   displayEmpty?: boolean;
   IconComponent?: React.ElementType;
   input?: React.ReactNode;
+  label?: React.ReactNode;
   labelId?: string;
-  labelWidth?: number;
   MenuProps?: Partial<MenuProps>;
   multiple?: boolean;
   native?: boolean;

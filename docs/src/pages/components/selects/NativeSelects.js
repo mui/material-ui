@@ -23,12 +23,6 @@ export default function NativeSelects() {
     name: 'hai',
   });
 
-  const inputLabel = React.useRef(null);
-  const [labelWidth, setLabelWidth] = React.useState(0);
-  React.useEffect(() => {
-    setLabelWidth(inputLabel.current.offsetWidth);
-  }, []);
-
   const handleChange = name => event => {
     setState({
       ...state,
@@ -200,14 +194,12 @@ export default function NativeSelects() {
         <FormHelperText>Required</FormHelperText>
       </FormControl>
       <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
-          Age
-        </InputLabel>
+        <InputLabel htmlFor="outlined-age-native-simple">Age</InputLabel>
         <Select
           native
           value={state.age}
           onChange={handleChange('age')}
-          labelWidth={labelWidth}
+          label="Age"
           inputProps={{
             name: 'age',
             id: 'outlined-age-native-simple',

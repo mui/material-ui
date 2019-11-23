@@ -104,7 +104,6 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
     fullWidth = false,
     inputComponent = 'input',
     label,
-    labelWidth = 0,
     multiline = false,
     notched,
     type = 'text',
@@ -117,7 +116,6 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
         <NotchedOutline
           className={classes.notchedOutline}
           label={label}
-          labelWidth={labelWidth}
           notched={
             typeof notched !== 'undefined'
               ? notched
@@ -203,9 +201,9 @@ OutlinedInput.propTypes = {
    */
   inputRef: refType,
   /**
-   * The width of the label.
+   * The label.
    */
-  labelWidth: PropTypes.number,
+  label: PropTypes.node,
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.

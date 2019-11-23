@@ -3,50 +3,53 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
-import capitalize from '../utils/capitalize';
 
-export const styles = theme => {
-  const align = theme.direction === 'rtl' ? 'right' : 'left';
-
-  return {
-    /* Styles applied to the root element. */
-    root: {
-      position: 'absolute',
-      bottom: 0,
-      right: 0,
-      top: -5,
-      left: 0,
-      margin: 0,
-      padding: 0,
-      pointerEvents: 'none',
-      borderRadius: 'inherit',
-      borderStyle: 'solid',
-      borderWidth: 1,
-      // Match the Input Label
-      transition: theme.transitions.create([`padding-${align}`, 'border-color', 'border-width'], {
-        duration: theme.transitions.duration.shorter,
-        easing: theme.transitions.easing.easeOut,
-      }),
+export const styles = theme => ({
+  /* Styles applied to the root element. */
+  root: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    top: -5,
+    left: 0,
+    margin: 0,
+    padding: 0,
+    paddingLeft: 8,
+    pointerEvents: 'none',
+    borderRadius: 'inherit',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    // Match the Input Label
+    transition: theme.transitions.create(['border-color', 'border-width'], {
+      duration: theme.transitions.duration.shorter,
+      easing: theme.transitions.easing.easeOut,
+    }),
+  },
+  /* Styles applied to the legend element. */
+  legend: {
+    textAlign: 'left',
+    padding: 0,
+    lineHeight: '11px',
+    fontSize: '0.75rem',
+    visibility: 'hidden',
+    maxWidth: 0,
+    transition: theme.transitions.create('max-width', {
+      duration: 50,
+      delay: 0,
+    }),
+    '& span': {
+      paddingLeft: 4,
+      paddingRight: 6,
     },
-    /* Styles applied to the legend element. */
-    legend: {
-      textAlign: 'left',
-      padding: 0,
-      lineHeight: '11px',
-      fontSize: '0.75rem',
-      maxWidth: 0,
-      transition: theme.transitions.create('max-width', {
-        duration: theme.transitions.duration.shorter,
-        easing: theme.transitions.easing.easeOut,
-      }),
-      visibility: 'hidden',
-      '& span': {
-        paddingLeft: 4,
-        paddingRight: 6,
-      },
-    },
-  };
-};
+  },
+  legendNotched: {
+    maxWidth: 1000,
+    transition: theme.transitions.create('max-width', {
+      duration: 100,
+      delay: 60,
+    }),
+  },
+});
 
 /**
  * @ignore - internal component.
@@ -56,31 +59,22 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
     children,
     classes,
     className,
-    label = '\u200B',
-    labelWidth: labelWidthProp,
+    label,
     notched,
     style,
     ...other
   } = props;
-  const theme = useTheme();
-  const align = theme.direction === 'rtl' ? 'right' : 'left';
-  const labelWidth = labelWidthProp > 0 ? labelWidthProp * 0.75 + 8 : 0;
 
   return (
-    <fieldset
-      aria-hidden
-      style={{
-        [`padding${capitalize(align)}`]: 8,
-        ...style,
-      }}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
-      <legend className={classes.legend} style={{ maxWidth: notched ? '150px' : '0px' }}>
+    <fieldset aria-hidden className={clsx(classes.root, className)} ref={ref} {...other}>
+      <legend
+        className={clsx(classes.legend, {
+          [classes.legendNotched]: notched,
+        })}
+      >
         {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
         {/* eslint-disable-next-line react/no-danger */}
-        <span>{label}</span>
+        {label ? <span>{label}</span> : <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
       </legend>
     </fieldset>
   );
@@ -101,9 +95,9 @@ NotchedOutline.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The width of the label.
+   * The label.
    */
-  labelWidth: PropTypes.number.isRequired,
+  label: PropTypes.node,
   /**
    * If `true`, the outline is notched to accommodate the label.
    */

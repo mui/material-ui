@@ -53,7 +53,7 @@ const Select = React.forwardRef(function Select(props, ref) {
     input ||
     {
       standard: <Input />,
-      outlined: <OutlinedInput labelWidth={labelWidth} />,
+      outlined: <OutlinedInput label={label} />,
       filled: <FilledInput />,
     }[variant];
 
@@ -142,15 +142,15 @@ Select.propTypes = {
    */
   inputProps: PropTypes.object,
   /**
+   * The label to be used on OutlinedInput.
+   * This prop is required when the `variant` prop is `outlined`.
+   */
+  label: PropTypes.node,
+  /**
    * The idea of an element that acts as an additional label. The Select will
    * be labelled by the additional label and the selected value.
    */
   labelId: PropTypes.string,
-  /**
-   * The label width to be used on OutlinedInput.
-   * This prop is required when the `variant` prop is `outlined`.
-   */
-  labelWidth: PropTypes.number,
   /**
    * Props applied to the [`Menu`](/api/menu/) element.
    */

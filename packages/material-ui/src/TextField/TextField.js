@@ -93,16 +93,6 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     ...other
   } = props;
 
-  const [labelWidth, setLabelWidth] = React.useState(0);
-  const labelRef = React.useRef(null);
-  React.useEffect(() => {
-    if (variant === 'outlined') {
-      // #StrictMode ready
-      const labelNode = ReactDOM.findDOMNode(labelRef.current);
-      setLabelWidth(labelNode != null ? labelNode.offsetWidth : 0);
-    }
-  }, [variant, required, label]);
-
   if (process.env.NODE_ENV !== 'production') {
     if (select && !children) {
       console.error(
@@ -119,7 +109,6 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     }
 
     InputMore.label = `${label}${required ? ' *' : ''}`;
-    InputMore.labelWidth = labelWidth;
   }
   if (select) {
     // unset defaults from textbox inputs
@@ -171,7 +160,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       {...other}
     >
       {label && (
-        <InputLabel htmlFor={id} ref={labelRef} id={inputLabelId} {...InputLabelProps}>
+        <InputLabel htmlFor={id} id={inputLabelId} {...InputLabelProps}>
           {label}
         </InputLabel>
       )}
