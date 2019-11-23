@@ -20,7 +20,6 @@ export type OutlinedInputClassKey =
   | 'notchedOutline'
   | 'input'
   | 'inputMarginDense'
-  | 'inputSelect'
   | 'inputMultiline'
   | 'inputAdornedStart'
   | 'inputAdornedEnd';

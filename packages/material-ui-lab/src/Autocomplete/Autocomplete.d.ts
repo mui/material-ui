@@ -134,6 +134,7 @@ export type AutocompleteClassKey =
   | 'inputRoot'
   | 'input'
   | 'inputFocused'
+  | 'endAdornment'
   | 'clearIndicator'
   | 'clearIndicatorDirty'
   | 'popupIndicator'
