@@ -49,5 +49,5 @@ To create your own translation, or to customise the English text, copy this file
 
 ## RTL Support
 
-Right-to-left languages such as Arabic or Hebrew are supported.
+Right-to-left languages such as Arabic, Persian or Hebrew are supported.
 Follow [this guide](/guides/right-to-left/) to use them.
