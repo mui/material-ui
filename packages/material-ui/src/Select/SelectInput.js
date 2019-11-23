@@ -123,7 +123,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
-  const handleClick = event => {
+  const handleMouseDown = event => {
+    // Hijack the default focus behavior.
+    event.preventDefault();
+    displayNode.focus();
+
     update(true, event);
   };
 
@@ -322,7 +326,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         aria-labelledby={`${labelId || ''} ${buttonId || ''}`}
         aria-haspopup="listbox"
         onKeyDown={handleKeyDown}
-        onClick={disabled || readOnly ? null : handleClick}
+        onMouseDown={disabled || readOnly ? null : handleMouseDown}
         onBlur={handleBlur}
         onFocus={onFocus}
         {...SelectDisplayProps}

@@ -58,8 +58,7 @@ describe('<Select> integration', () => {
       const trigger = getByRole('button');
       // Let's open the select component
       // in the browser user click also focuses
-      trigger.focus();
-      trigger.click();
+      fireEvent.mouseDown(trigger);
 
       const options = getAllByRole('option');
       expect(options[1]).to.have.focus;
@@ -81,8 +80,7 @@ describe('<Select> integration', () => {
       expect(trigger).to.have.text('Ten');
       // Let's open the select component
       // in the browser user click also focuses
-      trigger.focus();
-      trigger.click();
+      fireEvent.mouseDown(trigger);
 
       const options = getAllByRole('option');
       expect(options[1]).to.have.focus;
