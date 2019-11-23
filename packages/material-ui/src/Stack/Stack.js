@@ -21,27 +21,12 @@ function generateGutter(theme) {
       return;
     }
 
-    styles[`spacing-row-${spacing}`] = {
-      '& > :not(:first-child):not(:last-child)': {
-        margin: `0 ${getOffset(themeSpacing, 2)}`,
-      },
-      '& > :first-child': {
-        margin: `0 ${getOffset(themeSpacing, 2)} 0 0`,
-      },
-      '& > :last-child': {
-        margin: `0 0 0 ${getOffset(themeSpacing, 2)}`,
-      },
-    };
-
-    styles[`spacing-column-${spacing}`] = {
-      '& > :not(:first-child):not(:last-child)': {
-        margin: `${getOffset(themeSpacing, 2)} 0`,
-      },
-      '& > :first-child': {
-        margin: `0 0 ${getOffset(themeSpacing, 2)} 0`,
-      },
-      '& > :last-child': {
-        margin: `${getOffset(themeSpacing, 2)} 0 0 0`,
+    styles[`spacing-${spacing}`] = {
+      margin: `-${getOffset(themeSpacing, 2)}`,
+      width: `calc(100% + ${getOffset(themeSpacing)})`,
+      height: `calc(100% + ${getOffset(themeSpacing)})`,
+      '& > *': {
+        margin: getOffset(themeSpacing, 2),
       },
     };
   });
@@ -52,6 +37,9 @@ function generateGutter(theme) {
 export const styles = theme => ({
   /* Styles applied to the root element */
   root: {
+    height: 'auto',
+  },
+  innerStack: {
     boxSizing: 'border-box',
     display: 'flex',
     flexWrap: 'wrap',
@@ -152,6 +140,7 @@ const Stack = React.forwardRef(function Stack(props, ref) {
   const {
     alignContent = 'stretch',
     alignItems = 'stretch',
+    children,
     classes,
     className: classNameProp,
     component: Component = 'div',
@@ -159,28 +148,30 @@ const Stack = React.forwardRef(function Stack(props, ref) {
     item = false,
     justify = 'flex-start',
     spacing = 0,
-    wrap = 'nowrap',
+    wrap = 'wrap',
     zeroMinWidth = false,
     ...other
   } = props;
 
   const className = clsx(
-    classes.root,
+    classes.innerStack,
     {
       [classes.item]: item,
       [classes.zeroMinWidth]: zeroMinWidth,
-      [classes[`spacing-row-${String(spacing)}`]]: spacing !== 0 && direction.indexOf('row') === 0,
-      [classes[`spacing-column-${String(spacing)}`]]: spacing !== 0 && direction.indexOf('column') === 0,
+      [classes[`spacing-${String(spacing)}`]]: spacing !== 0,
       [classes[`direction-${String(direction)}`]]: direction !== 'row',
       [classes[`wrap-${String(wrap)}`]]: wrap !== 'wrap',
       [classes[`align-items-${String(alignItems)}`]]: alignItems !== 'stretch',
       [classes[`align-content-${String(alignContent)}`]]: alignContent !== 'stretch',
       [classes[`justify-${String(justify)}`]]: justify !== 'flex-start',
-    },
-    classNameProp,
+    }
   );
 
-  return <Component className={className} ref={ref} {...other} />;
+  return (
+    <Component className={clsx(classes.root, classNameProp)} ref={ref} {...other}>
+      <div className={className}>{children}</div>
+    </Component>
+  )
 });
 
 Stack.propTypes = {

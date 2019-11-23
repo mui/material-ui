@@ -43,7 +43,7 @@ function generateGrid(globalStyles, theme, breakpoint) {
       return;
     }
 
-    // Keep 7 significant numbers.
+    // Keep 7 significant digits.
     const width = `${Math.round((size / 12) * 10e7) / 10e5}%`;
 
     // Close to the bootstrap implementation:

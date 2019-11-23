@@ -20,6 +20,8 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     demo: {
+      border: `1px solid ${theme.palette.grey[300]}`,
+      borderRadius: 4,
       height: 240,
     },
     paper: {
@@ -27,6 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.text.secondary,
     },
     control: {
+      marginTop: 24,
       padding: theme.spacing(2),
     },
     sliderFormControl: {
@@ -75,7 +78,7 @@ export default function InteractiveGrid() {
             <Paper
               key={value}
               className={classes.paper}
-              style={{ paddingTop: (value + 1) * 10, paddingBottom: (value + 1) * 10, display: "inline" }}
+              style={{ padding: (value + 1) * 10 }}
             >
               {`Cell ${value + 1}`}
             </Paper>

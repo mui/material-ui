@@ -18,7 +18,11 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     demo: {
-      height: 240,
+      height: 280,
+    },
+    demoArea: {
+      border: `1px solid ${theme.palette.grey[300]}`,
+      borderRadius: 4,
     },
     paper: {
       padding: theme.spacing(2),
@@ -26,6 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
       color: theme.palette.text.secondary,
     },
     control: {
+      marginTop: 24,
       padding: theme.spacing(2),
     },
   }),
@@ -50,7 +55,7 @@ export default function InteractiveGrid() {
 
   return (
     <Grid container className={classes.root}>
-      <Grid item xs={12}>
+      <Grid item xs={12} className={classes.demoArea}>
         <Grid
           container
           spacing={2}
@@ -63,7 +68,7 @@ export default function InteractiveGrid() {
             <Grid key={value} item>
               <Paper
                 className={classes.paper}
-                style={{ paddingTop: (value + 1) * 10, paddingBottom: (value + 1) * 10 }}
+                style={{ padding: (value + 1) * 10 }}
               >
                 {`Cell ${value + 1}`}
               </Paper>
