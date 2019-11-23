@@ -95,13 +95,13 @@ describe('<Select />', () => {
     const { getByRole, getAllByRole, queryByRole } = render(
       <Select
         onBlur={handleBlur}
+        value=""
         onMouseDown={event => {
           // simulating certain platforms that focus on mousedown
           if (event.defaultPrevented === false) {
             event.currentTarget.focus();
           }
         }}
-        value=""
       >
         <MenuItem value="">none</MenuItem>
         <MenuItem value={10}>Ten</MenuItem>
@@ -109,11 +109,7 @@ describe('<Select />', () => {
     );
     const trigger = getByRole('button');
 
-    // simulating user click
-    act(() => {
-      fireEvent.mouseDown(trigger);
-      trigger.click();
-    });
+    fireEvent.mouseDown(trigger);
 
     expect(handleBlur.callCount).to.equal(0);
     expect(getByRole('listbox')).to.be.ok;
@@ -196,9 +192,7 @@ describe('<Select />', () => {
   it('should focus list if no selection', () => {
     const { getByRole } = render(<Select value="" autoFocus />);
 
-    act(() => {
-      getByRole('button').click();
-    });
+    fireEvent.mouseDown(getByRole('button'));
 
     // TODO not matching WAI-ARIA authoring practices. It should focus the first (or selected) item.
     expect(getByRole('listbox')).to.have.focus;
@@ -224,7 +218,7 @@ describe('<Select />', () => {
           <MenuItem value="2" />
         </Select>,
       );
-      getByRole('button').click();
+      fireEvent.mouseDown(getByRole('button'));
       getAllByRole('option')[1].click();
 
       expect(onChangeHandler.calledOnce).to.be.true;
@@ -514,7 +508,7 @@ describe('<Select />', () => {
         </Select>,
       );
 
-      fireEvent.click(getByRole('button'));
+      fireEvent.mouseDown(getByRole('button'));
       act(() => {
         clock.tick(99);
       });
@@ -612,10 +606,7 @@ describe('<Select />', () => {
       }
       const { getByRole, queryByRole } = render(<ControlledWrapper />);
 
-      act(() => {
-        getByRole('button').click();
-      });
-
+      fireEvent.mouseDown(getByRole('button'));
       expect(getByRole('listbox')).to.be.ok;
 
       act(() => {
@@ -654,10 +645,7 @@ describe('<Select />', () => {
       const button = getByRole('button');
       stub(button, 'clientWidth').get(() => 14);
 
-      act(() => {
-        button.click();
-      });
-
+      fireEvent.mouseDown(button);
       expect(getByTestId('paper').style).to.have.property('minWidth', '14px');
     });
 
@@ -670,10 +658,7 @@ describe('<Select />', () => {
       const button = getByRole('button');
       stub(button, 'clientWidth').get(() => 14);
 
-      act(() => {
-        button.click();
-      });
-
+      fireEvent.mouseDown(button);
       expect(getByTestId('paper').style).to.have.property('minWidth', '');
     });
   });
@@ -794,7 +779,7 @@ describe('<Select />', () => {
         });
         const { getByRole, getAllByRole } = render(<ControlledSelectInput onChange={onChange} />);
 
-        fireEvent.click(getByRole('button'));
+        fireEvent.mouseDown(getByRole('button'));
         const options = getAllByRole('option');
         fireEvent.click(options[2]);
 
