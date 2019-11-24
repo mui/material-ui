@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createMount } from '@material-ui/core/test-utils';
-import { teardown, useIsFocusVisible } from './focusVisible';
+import { teardown as teardownFocusVisible, useIsFocusVisible } from './focusVisible';
 import useForkRef from './useForkRef';
 
 function dispatchFocusVisible(element) {
@@ -53,7 +53,7 @@ describe('focus-visible polyfill', () => {
 
   before(() => {
     // isolate test from previous component test that use the polyfill in the document scope
-    teardown(document);
+    teardownFocusVisible(document);
     mount = createMount({ strict: true });
   });
 
@@ -78,7 +78,7 @@ describe('focus-visible polyfill', () => {
 
     afterEach(() => {
       ReactDOM.unmountComponentAtNode(rootElement.shadowRoot);
-      teardown(rootElement.shadowRoot);
+      teardownFocusVisible(rootElement.shadowRoot);
       document.body.removeChild(rootElement);
     });
 
