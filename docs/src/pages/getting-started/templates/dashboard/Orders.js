@@ -1,4 +1,3 @@
-/* eslint-disable no-script-url */
 import React from 'react';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
@@ -21,6 +20,10 @@ const rows = [
   createData(3, '16 Mar, 2019', 'Michael Jackson', 'Gary, IN', 'AMEX ⠀•••• 2000', 654.39),
   createData(4, '15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
 ];
+
+function preventDefault(event) {
+  event.preventDefault();
+}
 
 const useStyles = makeStyles(theme => ({
   seeMore: {
@@ -56,7 +59,7 @@ export default function Orders() {
         </TableBody>
       </Table>
       <div className={classes.seeMore}>
-        <Link color="primary" href="javascript:;">
+        <Link color="primary" href="#" onClick={preventDefault}>
           See more orders
         </Link>
       </div>
