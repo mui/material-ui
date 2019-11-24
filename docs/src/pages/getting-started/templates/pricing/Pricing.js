@@ -54,7 +54,8 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(8, 0, 6),
   },
   cardHeader: {
-    backgroundColor: theme.palette.type === 'dark' ? theme.palette.grey[700] : theme.palette.grey[200],
+    backgroundColor:
+      theme.palette.type === 'dark' ? theme.palette.grey[700] : theme.palette.grey[200],
   },
   cardPricing: {
     display: 'flex',
