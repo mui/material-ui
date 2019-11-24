@@ -28,6 +28,7 @@ export default function FileSystemNavigator() {
         <TreeItem nodeId="4" label="Webstorm" />
       </TreeItem>
       <TreeItem nodeId="5" label="Documents">
+        <TreeItem nodeId="10" label="OSS" />
         <TreeItem nodeId="6" label="Material-UI">
           <TreeItem nodeId="7" label="src">
             <TreeItem nodeId="8" label="index.js" />
