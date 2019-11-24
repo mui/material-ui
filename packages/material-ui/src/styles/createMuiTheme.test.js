@@ -117,8 +117,18 @@ describe('createMuiTheme', () => {
     });
   });
 
+  it('shallow merges multiple arguments', () => {
+    const muiTheme = createMuiTheme({ foo: 'I am foo' }, { bar: 'I am bar' });
+    assert.strictEqual(muiTheme.foo, 'I am foo');
+    assert.strictEqual(muiTheme.bar, 'I am bar');
+  });
+
   it('deep merges multiple arguments', () => {
-    const muiTheme = createMuiTheme({}, { foo: 'bar' });
-    assert.strictEqual(muiTheme.foo, 'bar');
+    const muiTheme = createMuiTheme(
+      { custom: { foo: 'I am foo' } },
+      { custom: { bar: 'I am bar' } },
+    );
+    assert.strictEqual(muiTheme.custom.foo, 'I am foo');
+    assert.strictEqual(muiTheme.custom.bar, 'I am bar');
   });
 });
