@@ -1,4 +1,4 @@
-# Approche de la conception de l'API
+# Approche de conception de l'API
 
 <p class="description">Nous avons beaucoup appris sur l'utilisation de Material-UI et le refactoring de v1 nous a permis de repenser complètement le composant API.</p>
 
