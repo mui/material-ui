@@ -81,6 +81,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     id => (Array.isArray(selected) ? selected.indexOf(id) !== -1 : selected === id),
     [selected],
   );
+
   const isTabable = id => tabable === id;
   const isFocused = id => focused === id;
 
