@@ -136,13 +136,12 @@ describe('<ButtonBase />', () => {
       ];
 
       /**
-       * @type {Record<string, ReturnType<typeof spy>>}
+       * @type {Record<string, import('sinon').SinonSpy>}
        */
-      const handlers = eventHandlerNames.reduce((result, n) => {
-        // @ts-ignore
-        result[n] = spy();
-        return result;
-      }, {});
+      const handlers = {};
+      eventHandlerNames.forEach(handlerName => {
+        handlers[handlerName] = spy();
+      });
       const onDragEnd = spy();
       const onTouchStart = spy();
       const onTouchEnd = spy();
