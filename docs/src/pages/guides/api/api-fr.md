@@ -1,8 +1,8 @@
-# API Design Approach
+# Approche de la conception de l'API
 
-<p class="description">Nós aprendemos bastante como o Material-UI é usado e o refatoramento da v1 permitiu-nos repensar completamente o componente de API.</p>
+<p class="description">Nous avons beaucoup appris sur l'utilisation de Material-UI et le refactoring de v1 nous a permis de repenser complètement le composant API.</p>
 
-> Le design de l'API est difficile car vous pouvez le rendre simple mais il est en fait trompeur complexe, ou le rendre vraiment simple mais semble complexe.
+> La conception d'API est difficile car vous pouvez faire comme si elle était simple alors qu'elle est en réalité complexe, ou alors la faire réellement simple tout en ayant l'air complexe
 
 [@sebmarkbage](https://twitter.com/sebmarkbage/status/728433349337841665)
 
