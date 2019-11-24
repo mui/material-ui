@@ -56,19 +56,32 @@ const styles = theme => ({
     margin: 'auto',
     display: 'flex',
     justifyContent: 'center',
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
-    padding: theme.spacing(3),
     [theme.breakpoints.up('sm')]: {
       borderRadius: theme.shape.borderRadius,
+    },
+  },
+  /* Isolate the demo with an outline. */
+  demoBgOutlined: {
+    padding: theme.spacing(3),
+    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    [theme.breakpoints.up('sm')]: {
       borderLeftWidth: 1,
       borderRightWidth: 1,
     },
   },
-  demoBg: {
-    border: 'none',
+  /* Prepare the background to display an inner elevation. */
+  demoBgTrue: {
+    padding: theme.spacing(3),
     backgroundColor: theme.palette.background.level2,
+  },
+  /* Make no difference between the demo and the markdown. */
+  demoBgInline: {
+    // Maintain alignment with the markdown text
+    [theme.breakpoints.down('xs')]: {
+      padding: theme.spacing(3),
+    },
   },
   demoHiddenHeader: {
     paddingTop: theme.spacing(2),
@@ -250,6 +263,10 @@ function Demo(props) {
     [demoOptions.height, demoOptions.maxWidth],
   );
 
+  if (demoOptions.bg == null) {
+    demoOptions.bg = 'outlined';
+  }
+
   if (demoOptions.iframe) {
     demoOptions.bg = true;
   }
@@ -298,7 +315,9 @@ function Demo(props) {
       <div
         className={clsx(classes.demo, {
           [classes.demoHiddenHeader]: demoOptions.hideHeader,
-          [classes.demoBg]: demoOptions.bg,
+          [classes.demoBgOutlined]: demoOptions.bg === 'outlined',
+          [classes.demoBgTrue]: demoOptions.bg === true,
+          [classes.demoBgInline]: demoOptions.bg === 'inline',
         })}
         tabIndex={-1}
         onMouseEnter={handleDemoHover}
