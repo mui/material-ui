@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import TreeViewContext from './TreeViewContext';
 import { withStyles } from '@material-ui/core/styles';
+import { useStateChangeWarning } from '@material-ui/core/utils';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -65,34 +66,21 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const [expandedState, setExpandedState] = React.useState(defaultExpanded);
   const expanded = (isControlledExpanded ? expandedProp : expandedState) || defaultExpandedDefault;
 
-  const { current: isControlledSelected } = React.useRef(expandedProp !== undefined);
+  const { current: isControlledSelected } = React.useRef(selectedProp !== undefined);
   const [selectedState, setSelectedState] = React.useState(defaultSelected);
   const selected = (isControlledSelected ? selectedProp : selectedState) || defaultSelectedDefault;
 
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (isControlledExpanded !== (expandedProp != null)) {
-        console.error(
-          [
-            `Material-UI: A component is changing ${
-              isControlledExpanded ? 'a ' : 'an un'
-            }controlled TreeView to be ${isControlledExpanded ? 'un' : ''}controlled.`,
-            'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled TreeView ' +
-              'element for the lifetime of the component.',
-            'More info: https://fb.me/react-controlled-components',
-          ].join('\n'),
-        );
-      }
-    }, [expandedProp, isControlledExpanded]);
-  }
+  useStateChangeWarning('TreeView', isControlledExpanded, expandedProp, 'expanded');
+  useStateChangeWarning('TreeView', isControlledSelected, selectedProp, 'selected');
 
   /*
    * Status Helpers
    */
   const isExpanded = React.useCallback(id => expanded.indexOf(id) !== -1, [expanded]);
-  const isSelected = React.useCallback(id => selected.indexOf(id) !== -1, [selected]);
+  const isSelected = React.useCallback(
+    id => (Array.isArray(selected) ? selected.indexOf(id) !== -1 : selected === id),
+    [selected],
+  );
   const isTabable = id => tabable === id;
   const isFocused = id => focused === id;
 

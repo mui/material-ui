@@ -9,3 +9,4 @@ export { default as unsupportedProp } from './unsupportedProp';
 export { default as useEventCallback } from './useEventCallback';
 export { default as useForkRef } from './useForkRef';
 export { useIsFocusVisible } from './focusVisible';
+export { default as useStateChangeWarning } from './useStateChangeWarning';

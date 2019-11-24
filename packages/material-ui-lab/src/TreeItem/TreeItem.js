@@ -16,11 +16,10 @@ export const styles = theme => ({
     padding: 0,
     outline: 0,
     '&:focus > $content': {
-      backgroundColor: theme.palette.grey[400],
+      backgroundColor: theme.palette.action.hover,
     },
     '&$selected > $content': {
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.primary.contrastText,
+      backgroundColor: theme.palette.action.selected,
     },
   },
   /* Pseudo-class applied to the root element when expanded. */
@@ -53,6 +52,7 @@ export const styles = theme => ({
   /* Styles applied to the label element. */
   label: {
     width: '100%',
+    paddingLeft: 3,
   },
 });
 

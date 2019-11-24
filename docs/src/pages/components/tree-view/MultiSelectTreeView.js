@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function FileSystemNavigator() {
+export default function MultiSelectTreeView() {
   const classes = useStyles();
 
   return (
