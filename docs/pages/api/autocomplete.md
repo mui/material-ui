@@ -68,7 +68,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name required">renderInput&nbsp;*</span> | <span class="prop-type">func</span> |  | Render the input.<br><br>**Signature:**<br>`function(params: object) => ReactNode`<br>*params:* null |
 | <span class="prop-name">renderOption</span> | <span class="prop-type">func</span> |  | Render the option, use `getOptionLabel` by default.<br><br>**Signature:**<br>`function(option: any, state: object) => ReactNode`<br>*option:* The option to render.<br>*state:* The state of the component. |
 | <span class="prop-name">renderTags</span> | <span class="prop-type">func</span> |  | Render the selected value.<br><br>**Signature:**<br>`function(value: any, getTagProps: function) => ReactNode`<br>*value:* The `value` provided to the component.<br>*getTagProps:* A tag props getter. |
-| <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the autocomplete. |
+| <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the autocomplete.<br>The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the `getOptionSelected` prop. |
 
 The `ref` is forwarded to the root element.
 
