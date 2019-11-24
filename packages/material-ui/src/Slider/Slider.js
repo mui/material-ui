@@ -16,13 +16,7 @@ function asc(a, b) {
 }
 
 function clamp(value, min, max) {
-  if (value < min) {
-    return min;
-  }
-  if (value > max) {
-    return max;
-  }
-  return value;
+  return Math.min(Math.max(min, value), max);
 }
 
 function findClosest(values, currentValue) {
