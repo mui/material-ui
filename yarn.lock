@@ -817,15 +817,15 @@
     pirates "^4.0.0"
     source-map-support "^0.5.9"
 
-"@babel/runtime-corejs2@7.1.2", "@babel/runtime-corejs2@^7.4.4":
-  version "7.4.5"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.4.5.tgz#3d892f0560df21bafb384dd7727e33853e95d3c9"
-  integrity sha512-5yLuwzvIDecKwYMzJtiarky4Fb5643H3Ao5jwX0HrMR5oM5mn2iHH9wSZonxwNK0oAjAFUQAiOd4jT7/9Y2jMQ==
+"@babel/runtime-corejs2@7.1.2", "@babel/runtime-corejs2@^7.4.4", "@babel/runtime-corejs2@^7.7.4":
+  version "7.7.4"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.7.4.tgz#b9c2b1b5882762005785bc47740195a0ac780888"
+  integrity sha512-hKNcmHQbBSJFnZ82ewYtWDZ3fXkP/l1XcfRtm7c8gHPM/DMecJtFFBEp7KMLZTuHwwb7RfemHdsEnd7L916Z6A==
   dependencies:
     core-js "^2.6.5"
     regenerator-runtime "^0.13.2"
 
-"@babel/runtime@7.0.0", "@babel/runtime@7.1.2", "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.1.5", "@babel/runtime@^7.2.0", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.2", "@babel/runtime@^7.4.4", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.0", "@babel/runtime@^7.6.2", "@babel/runtime@^7.6.3":
+"@babel/runtime@7.0.0", "@babel/runtime@7.1.2", "@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.1.5", "@babel/runtime@^7.2.0", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.2", "@babel/runtime@^7.4.4", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.0", "@babel/runtime@^7.6.2", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.4":
   version "7.7.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.7.4.tgz#b23a856751e4bf099262f867767889c0e3fe175b"
   integrity sha512-r24eVUUr0QqNZa+qrImUk8fn5SPhHq+IfYvIoIMg0do3GdK9sMdiLKP3GYVVaxpPKORgm8KRKaNTEhAjgIpLMw==
