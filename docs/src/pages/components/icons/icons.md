@@ -58,7 +58,7 @@ The component extends the native `<svg>` element:
 - It comes with built-in accessibility.
 - SVG elements should be scaled for a 24x24px viewport, so the resulting icon can be used as is, or included as a child for other Material-UI components that use icons (can be customized with the `viewBox` attribute).
 - By default, the component inherits the current color.
-Optionally, you can set the icon color using one of the theme color prop.
+Optionally, you can apply one of the theme colors using the `coior` prop.
 
 ```jsx
 function HomeIcon(props) {
