@@ -11,7 +11,7 @@ jobs:
 
       - uses: danger/danger-js@9.1.6
         name: Greeting
-
+        env:
+          DANGER_GITHUB_API_TOKEN: '0230b7bf785fd9dd3614627e26294a91a8a99c1e'
         with:
           args: '--dangerfile ./.github/workflows/pr-bot.danger.js'
-          GITHUB_TOKEN: '0230b7bf785fd9dd3614627e26294a91a8a99c1e'
