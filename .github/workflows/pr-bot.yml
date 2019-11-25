@@ -11,4 +11,4 @@ jobs:
           curl -sL  -X POST -d @- \
             -H "Content-Type: application/json" \
             -H "Authorization: token 1ac223d524ad458207ebf512b80a1cf89d638750" \
-            "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/comments"
+            "https://api.github.com/repos/${{ github.repository }}/issues/18557/comments"
