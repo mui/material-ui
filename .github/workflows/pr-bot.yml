@@ -1,17 +1,14 @@
-name: PR-Bot
-
 on: [push]
 
 jobs:
   greeting:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-
-      - uses: danger/danger-js@9.1.6
-        name: Greeting
-        env:
-          DANGER_GITHUB_API_TOKEN: '0230b7bf785fd9dd3614627e26294a91a8a99c1e'
-        with:
-          args: '--dangerfile ./.github/workflows/pr-bot.danger.js'
+      - uses: actions/checkout@v1
+      - name: Add commit comment
+        run: |
+          jq -nc '{"body": "test comment"}' | \
+          curl -sL  -X POST -d @- \
+            -H "Content-Type: application/json" \
+            -H "Authorization: token 0230b7bf785fd9dd3614627e26294a91a8a99c1e" \
+            "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/comments"
