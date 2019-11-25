@@ -14,4 +14,4 @@ jobs:
 
         with:
           args: '--dangerfile ./.github/workflows/pr-bot.danger.js'
-          GITHUB_TOKEN: ${{ secrets.MUI_PR_BOT_GITHUB_TOKEN }}
+          GITHUB_TOKEN: 0230b7bf785fd9dd3614627e26294a91a8a99c1e
