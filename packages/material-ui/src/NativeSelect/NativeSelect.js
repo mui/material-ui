@@ -52,13 +52,16 @@ export const styles = theme => ({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
+    '&&': {
+      paddingRight: 24,
+    },
   },
   /* Pseudo-class applied to the select component `disabled` class. */
   disabled: {},
   /* Styles applied to the icon component. */
   icon: {
     // We use a position absolute over a flexbox in order to forward the pointer events
-    // to the input.
+    // to the input and to support wrapping tags..
     position: 'absolute',
     right: 0,
     top: 'calc(50% - 12px)', // Center vertically
@@ -105,7 +108,6 @@ const NativeSelect = React.forwardRef(function NativeSelect(props, ref) {
     // Most of the logic is implemented in `NativeSelectInput`.
     // The `Select` component is a simple API wrapper to expose something better to play with.
     inputComponent: NativeSelectInput,
-    select: true,
     inputProps: {
       children,
       classes,
