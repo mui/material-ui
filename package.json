@@ -167,5 +167,7 @@
     "docs",
     "framer"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "@changesets/cli": "^2.4.0"
+  }
 }
