@@ -25,6 +25,7 @@ const Select = React.forwardRef(function Select(props, ref) {
     input,
     inputProps,
     labelId,
+    labelWidth = 0,
     MenuProps,
     multiple = false,
     native = false,
@@ -34,7 +35,6 @@ const Select = React.forwardRef(function Select(props, ref) {
     renderValue,
     SelectDisplayProps,
     variant: variantProps = 'standard',
-    labelWidth = 0,
     ...other
   } = props;
 
@@ -61,7 +61,6 @@ const Select = React.forwardRef(function Select(props, ref) {
     // Most of the logic is implemented in `SelectInput`.
     // The `Select` component is a simple API wrapper to expose something better to play with.
     inputComponent,
-    select: true,
     inputProps: {
       children,
       IconComponent,

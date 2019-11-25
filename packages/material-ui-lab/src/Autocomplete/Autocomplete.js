@@ -24,21 +24,37 @@ export const styles = theme => ({
   focused: {},
   /* Styles applied to the tag elements, e.g. the chips. */
   tag: {
-    margin: theme.spacing(0.5),
+    margin: 3,
   },
   /* Styles applied to the Input element. */
   inputRoot: {
     flexWrap: 'wrap',
+    paddingRight: 62,
+    '& $input:not(:first-child)': {
+      paddingLeft: 4,
+    },
     '&[class*="MuiOutlinedInput-root"]': {
       padding: 8,
+      paddingRight: 62,
       '& $input': {
-        padding: '10.5px 6px',
+        padding: '10.5px 4px',
+      },
+      '& $input:first-child': {
+        paddingLeft: 6,
+      },
+      '& $endAdornment': {
+        right: 7,
       },
     },
     '&[class*="MuiFilledInput-root"]': {
-      paddingTop: 21,
+      paddingTop: 19,
+      paddingLeft: 8,
       '& $input': {
+        paddingLeft: 4,
         paddingTop: 10,
+      },
+      '& $endAdornment': {
+        right: 7,
       },
     },
   },
@@ -53,6 +69,13 @@ export const styles = theme => ({
   /* Styles applied to the input element if tag focused. */
   inputFocused: {
     opacity: 1,
+  },
+  /* Styles applied to the endAdornment element. */
+  endAdornment: {
+    // We use a position absolute to support wrapping tags.
+    position: 'absolute',
+    right: 0,
+    top: 'calc(50% - 14px)', // Center vertically
   },
   /* Styles applied to the clear indictator. */
   clearIndicator: {
@@ -302,7 +325,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
             className: classes.inputRoot,
             startAdornment,
             endAdornment: (
-              <React.Fragment>
+              <div className={classes.endAdornment}>
                 {disableClearable || disabled ? null : (
                   <IconButton
                     {...getClearProps()}
@@ -329,7 +352,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                     {popupIcon}
                   </IconButton>
                 )}
-              </React.Fragment>
+              </div>
             ),
           },
           inputProps: {
