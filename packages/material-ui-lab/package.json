@@ -42,7 +42,8 @@
     "@babel/runtime": "^7.4.4",
     "@material-ui/utils": "^4.5.2",
     "clsx": "^1.0.4",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "react-is": "^16.8.0"
   },
   "devDependencies": {},
   "sideEffects": false,
