@@ -15,11 +15,11 @@ const data = [
   },
   {
     src:
-      'https://i.ytimg.com/vi/ycHr1G0Gffg/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLAS6ZJ5RYa2R3Ksp9d8cLzY_8DMOA',
-    title: 'Top Latino Songs 2019 - Luis Fonsi, Ozuna, Nicky Jam…',
-    channel: 'Dj Yanky Plus',
-    views: '2.1 M views',
-    createdAt: '4 months ago',
+      'https://i.ytimg.com/vi/_Uu12zY01ts/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCpX6Jan2rxrCAZxJYDXppTP4MoQA',
+    title: 'Queen - Greatest Hits',
+    channel: 'Queen Official',
+    views: '40 M views',
+    createdAt: '3 years ago',
   },
   {
     src:

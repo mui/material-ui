@@ -20,6 +20,12 @@ For instance:
 )}
 ```
 
+## Variants
+
+The component supports 3 variants.
+
+{{"demo": "pages/components/skeleton/Variants.js"}}
+
 ## YouTube example
 
 {{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}

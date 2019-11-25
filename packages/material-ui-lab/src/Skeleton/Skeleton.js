@@ -15,10 +15,9 @@ export const styles = theme => ({
     marginTop: 0,
     marginBottom: 0,
     height: 'auto',
-    transformOrigin: '0 65%',
-    transform: 'translateZ(0) scale(1, 0.65)',
+    transformOrigin: '0 60%',
+    transform: 'scale(1, 0.60)',
     borderRadius: theme.shape.borderRadius,
-    textIndent: -999,
     '&:empty:before': {
       content: '"\\00a0"',
     },
