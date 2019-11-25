@@ -38,7 +38,7 @@ The safest is Option 1 but Option 2 can yield the best developer experience.
 Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
 The configuration of a Babel plugin is encouraged.
 
-Each icon also has a theme: Filled (default), Outlined, Rounded, Two tone and Sharp. If you want to import the icon component with a theme different than default, append the theme name to the icon name. For example `@material-ui/icons/Delete` icon with:
+Each icon also has a "theme": Filled (default), Outlined, Rounded, Two tone and Sharp. If you want to import the icon component with a theme different than default, append the theme name to the icon name. For example `@material-ui/icons/Delete` icon with:
 
 - Filled theme (default) is exported as `@material-ui/icons/Delete`,
 - Outlined theme is exported as `@material-ui/icons/DeleteOutlined`,
