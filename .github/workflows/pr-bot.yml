@@ -10,5 +10,5 @@ jobs:
           jq -nc '{"body": "test comment"}' | \
           curl -sL  -X POST -d @- \
             -H "Content-Type: application/json" \
-            -H "Authorization: token 1ac223d524ad458207ebf512b80a1cf89d638750" \
+            -H "Authorization: token ${{ secrets.MUI_PR_BOT_GITHUB_TOKEN }}" \
             "https://api.github.com/repos/${{ github.repository }}/issues/18557/comments"
