@@ -279,7 +279,7 @@ export default function ScrollPlayground() {
               }}
               value={preventOverflow}
               onChange={event => {
-                setPreventOverflow(event.target.checked);
+                setPreventOverflow(event.target.value);
               }}
             >
               <option value="disabled">disabled</option>
