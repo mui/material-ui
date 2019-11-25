@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
-import { UseAutocompleteProps, CreateFilterOptions } from '../useAutocomplete';
+import { UseAutocompleteProps, CreateFilterOptions, createFilterOptions } from '../useAutocomplete';
+
+export { createFilterOptions };
 
 export interface PopperProps extends React.HTMLAttributes<HTMLElement> {
   anchorEl?: HTMLElement;
   open: boolean;
   popperRef: React.Ref<unknown>;
 }
-
-export const createFilterOptions: CreateFilterOptions;
 
 export interface RenderOptionState {
   inputValue: string;
