@@ -22,7 +22,7 @@ components: TextField
 ## Native pickers
 
 ⚠️ Native input controls support by browsers [isn't perfect](https://caniuse.com/#feat=input-datetime).
-Have a look at [@material-ui/pickers](#material-ui-pickers) for a richer solution.
+Have a look at [@material-ui/pickers](https://material-ui-pickers.dev/) for a richer solution.
 
 ### Datepickers
 
