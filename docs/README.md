@@ -5,7 +5,7 @@ This is the documentation website of Material-UI.
 To start the docs site in development mode, from the project root, run:
 
 ```sh
-yarn && yarn start
+yarn && yarn dev
 ```
 
 If you do not have yarn installed, select your OS and follow the instructions on the [Yarn website](https://yarnpkg.com/lang/en/docs/install/#mac-stable).
