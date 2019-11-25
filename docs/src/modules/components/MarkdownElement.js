@@ -213,6 +213,8 @@ const styles = theme => ({
       },
     },
     '& table': {
+      // Trade display table for scroll overflow
+      display: 'block',
       width: '100%',
       overflowX: 'auto',
       WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
