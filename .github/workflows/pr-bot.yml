@@ -10,5 +10,5 @@ jobs:
           jq -nc '{"body": "test comment"}' | \
           curl -sL  -X POST -d @- \
             -H "Content-Type: application/json" \
-            -H "Authorization: token 0230b7bf785fd9dd3614627e26294a91a8a99c1e" \
+            -H "Authorization: token 1ac223d524ad458207ebf512b80a1cf89d638750" \
             "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.number }}/comments"
