@@ -20,7 +20,7 @@ export const styles = theme => ({
     borderRadius: theme.shape.borderRadius,
     textIndent: -999,
     '&:empty:before': {
-      content: '"&nbsp;"',
+      content: '"\\00a0"',
     },
   },
   /* Styles applied to the root element if `variant="rect"`. */
