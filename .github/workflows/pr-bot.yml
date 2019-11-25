@@ -1,4 +1,4 @@
-on: [push]
+on: [pull_request]
 
 jobs:
   greeting:
@@ -7,8 +7,17 @@ jobs:
       - uses: actions/checkout@v1
       - name: Add commit comment
         run: |
-          jq -nc '{"body": "test comment"}' | \
+          jq -nc '{"body": "<!--
+  0 failure: 
+  0 warning: 
+  
+  1 markdown notices
+  DangerID: danger-id-Danger;
+-->
+
+Here could appear your bundle changes
+"}' | \
           curl -sL  -X POST -d @- \
             -H "Content-Type: application/json" \
             -H "Authorization: token ${{ secrets.MUI_PR_BOT_GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/issues/18557/comments"
+            "https://api.github.com/repos/${{ github.repository }}/issues/{{ github.event.number }}/comments"
