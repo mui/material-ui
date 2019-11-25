@@ -1,5 +1,18 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.8.0
+###### *Nov 25, 2019*
+
+Big thanks to the **count the number** contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- Add highlights
+
+### Update packages
+
+- a list of links to the respective changelogs
+
 ## 4.7.0
 ###### *Nov 22, 2019*
 
