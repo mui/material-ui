@@ -8,7 +8,6 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
 
@@ -17,7 +16,7 @@ const FILTERED_BRANCHES = ['latest', 'staging', 'l10n', 'next'];
 
 const styles = {
   root: {
-    height: 410,
+    minHeight: 33 * 11,
     overflow: 'auto',
     width: '100%',
   },
@@ -72,8 +71,8 @@ function StableVersions(props) {
   }, []);
 
   return (
-    <Paper className={classes.root}>
-      <Table size="small">
+    <div className={classes.root}>
+      <Table>
         <TableBody>
           {docs.map(doc => (
             <TableRow key={doc.version}>
@@ -104,7 +103,7 @@ function StableVersions(props) {
           ))}
         </TableBody>
       </Table>
-    </Paper>
+    </div>
   );
 }
 

@@ -42,7 +42,6 @@ const pages = [
           { pathname: '/components/switches' },
           { pathname: '/components/text-fields' },
           { pathname: '/components/transfer-list' },
-          { pathname: '/components/integrated-autocomplete' },
         ],
       },
       {
