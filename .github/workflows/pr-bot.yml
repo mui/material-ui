@@ -1,0 +1,17 @@
+name: PR-Bot
+
+on: [push]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - uses: danger/danger-js@9.1.6
+        name: Greeting
+
+        with:
+          args: '--dangerfile ./.github/workflows/pr-bot.danger.js'
+          GITHUB_TOKEN: ${{ secrets.MUI_PR_BOT_GITHUB_TOKEN }}
