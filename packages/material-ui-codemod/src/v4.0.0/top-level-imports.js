@@ -1,23 +1,19 @@
-import { dirname } from 'path';
-import getJSExports from '../util/getJSExports';
 import addImports from 'jscodeshift-add-imports';
-
-// istanbul ignore next
-if (process.env.NODE_ENV === 'test') {
-  const resolve = require.resolve;
-  require.resolve = source =>
-    resolve(source.replace(/^@material-ui\/core\/es/, '../../../material-ui/src'));
-}
 
 export default function transformer(fileInfo, api, options) {
   const j = api.jscodeshift;
   const importModule = options.importModule || '@material-ui/core';
   const targetModule = options.targetModule || '@material-ui/core';
-  const whitelist = getJSExports(
-    require.resolve(`${importModule}/es`, {
-      paths: [dirname(fileInfo.path)],
-    }),
-  );
+
+  let requirePath = importModule;
+
+  if (process.env.NODE_ENV === 'test') {
+    requirePath = requirePath.replace(/^@material-ui\/core/, '../../../material-ui/src');
+  }
+
+  // eslint-disable-next-line global-require, import/no-dynamic-require
+  const whitelist = require(requirePath);
+
   const printOptions = options.printOptions || {
     quote: 'single',
     trailingComma: true,
@@ -41,13 +37,12 @@ export default function transformer(fileInfo, api, options) {
     path.node.specifiers.forEach((specifier, index) => {
       if (specifier.importKind && specifier.importKind !== 'value') return;
       if (specifier.type === 'ImportNamespaceSpecifier') return;
-      const localName = specifier.local.name;
+
       switch (specifier.type) {
-        case 'ImportNamespaceSpecifier':
-          return;
         case 'ImportDefaultSpecifier': {
+          const localName = specifier.local.name;
           const moduleName = match[1];
-          if (!whitelist.has(moduleName)) return;
+          if (whitelist[moduleName] == null) return;
           resultSpecifiers.push(
             j.importSpecifier(j.identifier(moduleName), j.identifier(localName)),
           );
@@ -55,7 +50,7 @@ export default function transformer(fileInfo, api, options) {
           break;
         }
         case 'ImportSpecifier':
-          if (!whitelist.has(specifier.imported.name)) return;
+          if (whitelist[specifier.imported.name] == null) return;
           resultSpecifiers.push(specifier);
           path.get('specifiers', index).prune();
           break;

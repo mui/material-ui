@@ -17,7 +17,10 @@ describe('@material-ui/codemod', () => {
     describe('top-level-imports', () => {
       it('convert path as needed', () => {
         const actual = transform(
-          { source: read('./top-level-imports.test/actual.js'), path: require.resolve('./top-level-imports.test/actual.js') },
+          {
+            source: read('./top-level-imports.test/actual.js'),
+            path: require.resolve('./top-level-imports.test/actual.js'),
+          },
           { jscodeshift: jscodeshift },
           {},
         );
@@ -33,7 +36,10 @@ describe('@material-ui/codemod', () => {
 
       it('should be idempotent', () => {
         const actual = transform(
-          { source: read('./top-level-imports.test/expected.js'), path: require.resolve('./top-level-imports.test/expected.js')  },
+          {
+            source: read('./top-level-imports.test/expected.js'),
+            path: require.resolve('./top-level-imports.test/expected.js'),
+          },
           { jscodeshift: jscodeshift },
           {},
         );
