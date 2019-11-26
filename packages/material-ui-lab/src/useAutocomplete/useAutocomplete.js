@@ -505,7 +505,7 @@ export default function useAutocomplete(props) {
   };
 
   const handleKeyDown = event => {
-    if (['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
+    if (focusedTag !== -1 && ['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
       setFocusedTag(-1);
       focusTag(-1);
     }
