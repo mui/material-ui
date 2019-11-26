@@ -30,9 +30,6 @@ export const styles = theme => ({
   inputRoot: {
     flexWrap: 'wrap',
     paddingRight: 62,
-    '& $input:not(:first-child)': {
-      paddingLeft: 4,
-    },
     '&[class*="MuiOutlinedInput-root"]': {
       padding: 8,
       paddingRight: 62,
@@ -57,14 +54,19 @@ export const styles = theme => ({
         right: 7,
       },
     },
+    '& $input:not(:first-child)': {
+      paddingLeft: 4,
+    },
+    '& $input': {
+      width: 0,
+      minWidth: 30,
+    },
   },
   /* Styles applied to the input element. */
   input: {
-    width: 0,
-    minWidth: 30,
     flexGrow: 1,
-    opacity: 0,
     textOverflow: 'ellipsis',
+    opacity: 0,
   },
   /* Styles applied to the input element if tag focused. */
   inputFocused: {
