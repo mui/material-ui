@@ -378,7 +378,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           open
         >
           <PaperComponent className={classes.paper}>
-            {loading ? <div className={classes.loading}>{loadingText}</div> : null}
+            {loading && groupedOptions.length === 0 ? (
+              <div className={classes.loading}>{loadingText}</div>
+            ) : null}
             {groupedOptions.length === 0 && !freeSolo && !loading ? (
               <div className={classes.noOptions}>{noOptionsText}</div>
             ) : null}
