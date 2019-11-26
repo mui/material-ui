@@ -650,11 +650,10 @@ describe('<Autocomplete />', () => {
       const { getByRole } = render(<MyComponent />);
 
       const textbox = getByRole('textbox');
-      expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][0]).to.equal('');
+      expect(handleChange.callCount).to.equal(0);
       fireEvent.change(textbox, { target: { value: 'a' } });
-      expect(handleChange.callCount).to.equal(2);
-      expect(handleChange.args[1][0]).to.equal('a');
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][0]).to.equal('a');
       expect(textbox.value).to.equal('');
     });
   });
