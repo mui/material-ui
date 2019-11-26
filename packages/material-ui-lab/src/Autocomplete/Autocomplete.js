@@ -54,13 +54,13 @@ export const styles = theme => ({
         right: 7,
       },
     },
-  },
-  '& $input:not(:first-child)': {
-    paddingLeft: 4,
-  },
-  '& $input': {
-    width: 0,
-    minWidth: 30,
+    '& $input:not(:first-child)': {
+      paddingLeft: 4,
+    },
+    '& $input': {
+      width: 0,
+      minWidth: 30,
+    },
   },
   /* Styles applied to the input element. */
   input: {
