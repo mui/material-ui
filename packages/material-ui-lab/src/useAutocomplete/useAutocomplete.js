@@ -210,6 +210,10 @@ export default function useAutocomplete(props) {
       newInputValue = typeof optionLabel === 'string' ? optionLabel : '';
     }
 
+    if (inputValue === newInputValue) {
+      return;
+    }
+
     setInputValue(newInputValue);
 
     if (onInputChange) {
@@ -633,6 +637,10 @@ export default function useAutocomplete(props) {
       }
     } else {
       handleOpen(event);
+    }
+
+    if (inputValue === newValue) {
+      return;
     }
 
     setInputValue(newValue);
