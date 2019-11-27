@@ -98,7 +98,7 @@ function Ad(props) {
         if (
           document.querySelector('#carbonads a') &&
           document.querySelector('#carbonads a').getAttribute('href') ===
-          'https://material-ui-next.com/discover-more/backers'
+            'https://material-ui-next.com/discover-more/backers'
         ) {
           setCarbonOut(true);
         }
