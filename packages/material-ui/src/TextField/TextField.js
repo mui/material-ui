@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
 import Input from '../Input';
 import FilledInput from '../FilledInput';
