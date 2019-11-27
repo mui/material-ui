@@ -7,7 +7,7 @@ import Fade from '../Fade';
 export const styles = {
   /* Styles applied to the root element. */
   root: {
-    zIndex: -1,
+    zIndex: 1,
     position: 'fixed',
     display: 'flex',
     alignItems: 'center',
