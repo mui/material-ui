@@ -48,10 +48,14 @@ export interface AutocompleteProps
   closeIcon?: React.ReactNode;
   /**
    * Override the default text for the *clear* icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   clearText?: string;
   /**
    * Override the default text for the *close popup* icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   closeText?: string;
   /**
@@ -73,14 +77,20 @@ export interface AutocompleteProps
   loading?: boolean;
   /**
    * Text to display when in a loading state.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   loadingText?: React.ReactNode;
   /**
    * Text to display when there are no options.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   noOptionsText?: React.ReactNode;
   /**
    * Override the default text for the *open popup* icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   openText?: string;
   /**

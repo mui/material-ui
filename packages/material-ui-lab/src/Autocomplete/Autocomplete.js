@@ -444,6 +444,8 @@ Autocomplete.propTypes = {
   clearOnEscape: PropTypes.bool,
   /**
    * Override the default text for the *clear* icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   clearText: PropTypes.string,
   /**
@@ -452,6 +454,8 @@ Autocomplete.propTypes = {
   closeIcon: PropTypes.node,
   /**
    * Override the default text for the *close popup* icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   closeText: PropTypes.string,
   /**
@@ -545,6 +549,8 @@ Autocomplete.propTypes = {
   loading: PropTypes.bool,
   /**
    * Text to display when in a loading state.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   loadingText: PropTypes.node,
   /**
@@ -553,6 +559,8 @@ Autocomplete.propTypes = {
   multiple: PropTypes.bool,
   /**
    * Text to display when there are no options.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   noOptionsText: PropTypes.node,
   /**
@@ -589,6 +597,8 @@ Autocomplete.propTypes = {
   open: PropTypes.bool,
   /**
    * Override the default text for the *open popup* icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   openText: PropTypes.string,
   /**
