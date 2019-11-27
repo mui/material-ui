@@ -154,7 +154,7 @@ function Ad(props) {
   if (adblock) {
     minHeight = 'auto';
 
-    if (random >= 0.8) {
+    if (Math.random() >= 0.8) {
       children = getAdblock(classes, t);
     } else {
       children = <AdInHouse ad={inHouseAds[Math.round((inHouseAds.length - 1) * random)]} />;
