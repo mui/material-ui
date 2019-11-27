@@ -7,5 +7,6 @@ export const itIT: object;
 export const jaJP: object;
 export const ptBR: object;
 export const ruRU: object;
+export const svSE: object;
 export const trTR: object;
 export const zhCN: object;
