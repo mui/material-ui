@@ -53,7 +53,7 @@ Note: The Material Design specification names the icons using "snake_case" namin
 ## SvgIcon
 
 If you need a custom SVG icon (not available in the Material Icons [default set](/components/material-icons/)) you can use the `SvgIcon` wrapper.
-The component extends the native `<svg>` element:
+This component extends the native `<svg>` element:
 
 - It comes with built-in accessibility.
 - SVG elements should be scaled for a 24x24px viewport, so the resulting icon can be used as is, or included as a child for other Material-UI components that use icons (can be customized with the `viewBox` attribute).
