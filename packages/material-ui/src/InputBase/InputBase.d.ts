@@ -71,6 +71,7 @@ export type InputBaseClassKey =
   | 'colorSecondary'
   | 'input'
   | 'inputMarginDense'
+  | 'inputSelect'
   | 'inputMultiline'
   | 'inputTypeSearch'
   | 'inputAdornedStart'
