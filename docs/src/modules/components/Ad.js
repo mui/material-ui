@@ -98,7 +98,7 @@ function Ad(props) {
         if (
           document.querySelector('#carbonads a') &&
           document.querySelector('#carbonads a').getAttribute('href') ===
-            'https://material-ui-next.com/discover-more/backers'
+          'https://material-ui-next.com/discover-more/backers'
         ) {
           setCarbonOut(true);
         }
@@ -157,13 +157,13 @@ function Ad(props) {
     if (Math.random() >= 0.8) {
       children = getAdblock(classes, t);
     } else {
-      children = <AdInHouse ad={inHouseAds[Math.round((inHouseAds.length - 1) * random)]} />;
+      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * random)]} />;
     }
   }
 
   if (!children) {
     if (carbonOut || codeFundOut) {
-      children = <AdInHouse ad={inHouseAds[Math.round((inHouseAds.length - 1) * random)]} />;
+      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * random)]} />;
       minHeight = 'auto';
     } else if (random >= 0.55) {
       children = <AdCodeFund />;
