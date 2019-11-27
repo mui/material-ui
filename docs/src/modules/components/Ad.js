@@ -46,7 +46,7 @@ function getAdblock(classes, t) {
 
 const disable = process.env.NODE_ENV !== 'production' && process.env.ENABLE_AD !== 'true';
 
-const inHouses = [
+const inHouseAds = [
   {
     name: 'scaffoldhub',
     link: 'https://scaffoldhub.io/?partner=1',
@@ -68,6 +68,12 @@ const inHouses = [
     img: '/static/in-house/tidelift.png',
     description:
       '<b>Material-UI for enterprise</b><br />Available in the Tidelift Subscription. Reduce risk, and improve code health.',
+  },
+  {
+    name: 'monday',
+    link: 'https://monday.com/partners/status-video?&utm_source=Partner&utm_campaign=MaterialUI',
+    img: '/static/in-house/monday.jpg',
+    description: 'Why use multiple tools to manage your projects? Meet monday.com',
   },
 ];
 
@@ -148,16 +154,16 @@ function Ad(props) {
   if (adblock) {
     minHeight = 'auto';
 
-    if (random >= 0.8) {
+    if (Math.random() >= 0.8) {
       children = getAdblock(classes, t);
     } else {
-      children = <AdInHouse ad={inHouses[Math.round((inHouses.length - 1) * random)]} />;
+      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * random)]} />;
     }
   }
 
   if (!children) {
     if (carbonOut || codeFundOut) {
-      children = <AdInHouse ad={inHouses[Math.round((inHouses.length - 1) * random)]} />;
+      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * random)]} />;
       minHeight = 'auto';
     } else if (random >= 0.55) {
       children = <AdCodeFund />;
