@@ -60,8 +60,6 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     autoComplete,
     autoFocus = false,
     children,
-    classes,
-    className,
     color = 'primary',
     defaultValue,
     disabled = false,
@@ -158,7 +156,6 @@ const TextField = React.forwardRef(function TextField(props, ref) {
 
   return (
     <FormControl
-      className={clsx(classes.root, className)}
       disabled={disabled}
       error={error}
       fullWidth={fullWidth}
