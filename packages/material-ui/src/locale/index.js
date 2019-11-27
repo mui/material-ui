@@ -201,6 +201,27 @@ export const ruRU = {
   },
 };
 
+export const svSE = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Föregående sida',
+      labelRowsPerPage: 'Rader per sida:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} av ${count}`,
+      nextIconButtonText: 'Nästa sida',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} ${value !== 1 ? 'Stjärnor' : 'Stjärna'}`,
+    },
+    MuiAutocomplete: {
+      clearText: 'Rensa',
+      closeText: 'Stäng',
+      loadingText: 'Laddar…',
+      noOptionsText: 'Inga alternativ',
+      openText: 'Öppen',
+    },
+  },
+};
+
 export const trTR = {
   props: {
     MuiTablePagination: {

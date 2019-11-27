@@ -177,6 +177,8 @@ TablePagination.propTypes = {
   backIconButtonProps: PropTypes.object,
   /**
    * Text label for the back arrow icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   backIconButtonText: PropTypes.string,
   /**
@@ -203,11 +205,15 @@ TablePagination.propTypes = {
   count: PropTypes.number.isRequired,
   /**
    * Customize the displayed rows label.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   labelDisplayedRows: PropTypes.func,
   /**
    * Customize the rows per page label. Invoked with a `{ from, to, count, page }`
    * object.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   labelRowsPerPage: PropTypes.node,
   /**
@@ -216,6 +222,8 @@ TablePagination.propTypes = {
   nextIconButtonProps: PropTypes.object,
   /**
    * Text label for the next arrow icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   nextIconButtonText: PropTypes.string,
   /**
