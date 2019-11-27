@@ -19,7 +19,7 @@ Material Design has standardized over 1,000 official icons, each in five differe
 
 ### Usage
 
-Install @material-ui/icons. Import icons using one of these two options:
+Install `@material-ui/icons`. Import icons using one of these two options:
 
 - Option 1:
 
