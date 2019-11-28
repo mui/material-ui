@@ -142,7 +142,6 @@ export const styles = theme => ({
     cursor: 'pointer',
     touchAction: 'none',
     color: theme.palette.primary.main,
-    // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
     '&$disabled': {
       pointerEvents: 'none',

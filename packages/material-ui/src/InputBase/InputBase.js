@@ -82,7 +82,6 @@ export const styles = theme => {
       background: 'none',
       height: '1.1875em', // Reset (19px), match the native input line-height
       margin: 0, // Reset for Safari
-      // Remove grey highlight
       WebkitTapHighlightColor: 'transparent',
       display: 'block',
       // Make the flex item shrink with Firefox

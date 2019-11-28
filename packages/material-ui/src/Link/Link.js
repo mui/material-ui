@@ -30,7 +30,6 @@ export const styles = {
   /* Styles applied to the root element if `component="button"`. */
   button: {
     position: 'relative',
-    // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
     backgroundColor: 'transparent', // Reset default value
     // We disable the focus ring for mouse, touch and keyboard users.
