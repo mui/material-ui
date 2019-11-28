@@ -1,5 +1,14 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 3.9.4
+###### *Nov 28, 2019*
+
+### `@material-ui/core@v3.9.4`
+
+- [Portal] Fix circular PortalProps Types (#18602)
+
+Fix TypeScript 3.7 support
+
 ## 3.9.3
 ###### *Mar 28, 2019*
 
