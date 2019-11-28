@@ -534,6 +534,70 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('keyboard navigation for updated options', () => {
+    it('should keep focus on selected option and not reset to top option when options updated', () => {
+      const options = ['one', 'two'];
+      const { container, getByRole, setProps } = render(
+        <Autocomplete
+          options={options}
+          renderInput={params => <TextField {...params} />}
+        />,
+      );
+      const input = container.querySelector('input');
+      fireEvent.keyDown(input, { key: 'ArrowDown' }); // opens the drop down
+      fireEvent.keyDown(input, { key: 'ArrowDown' }); // goes to 'one'
+      fireEvent.keyDown(input, { key: 'ArrowDown' }); // goes to 'two'
+
+      function checkHighlightIs(expected) {
+        const popup = getByRole('listbox');
+        const focusedListItem = popup.querySelector('li[data-focus]');
+        expect(focusedListItem.innerHTML).to.equal(expected);
+      }
+      
+      checkHighlightIs('two');
+
+      // three option is added and autocomplete re-renders, two should still be highlighted
+      options.push('three');
+      setProps({ options });
+      checkHighlightIs('two');
+
+      // user presses down, three should be highlighted
+      fireEvent.keyDown(input, { key: 'ArrowDown' });
+      checkHighlightIs('three');
+    })
+  });
+
+  describe('mouse selection for updated options', () => {
+    it('should not select undefined ', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      const { container, getByRole, setProps } = render(
+        <Autocomplete
+          onChange={handleChange}
+          options={options}
+          renderInput={params => <TextField {...params} />}
+        />,
+      );
+      const input = container.querySelector('input');
+      fireEvent.click(input);
+
+      const popup = getByRole('listbox');
+      const firstItem = popup.querySelector('li');
+      fireEvent.click(firstItem);
+
+      expect(handleChange.args[0][1]).to.equal('one');
+
+      // three option is added and autocomplete re-renders
+      options.push('three');
+      setProps({ options });
+
+      // click the first one again
+      fireEvent.click(firstItem);
+
+      expect(handleChange.args[0][1]).to.equal('one');
+    })
+  });
+
   describe('enter', () => {
     it('select a single value when enter is pressed', () => {
       const handleChange = spy();
@@ -631,7 +695,7 @@ describe('<Autocomplete />', () => {
 
   describe('controlled input', () => {
     it('controls the input value', () => {
-      const handleChange = spy();
+      const handleChange = spy(); 
       function MyComponent() {
         const [, setInputValue] = React.useState('');
         const handleInputChange = (event, value) => {
