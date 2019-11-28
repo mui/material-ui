@@ -35,7 +35,7 @@ export const styles = theme => ({
     color: '#ffb400',
     cursor: 'pointer',
     [theme.breakpoints.down('xs')]: {
-      cursor: 'default'
+      cursor: 'default',
     },
     '&$disabled': {
       opacity: 0.5,
