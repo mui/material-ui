@@ -371,7 +371,7 @@ export default function useAutocomplete(props) {
 
   React.useEffect(() => {
     changeHighlightedIndex('reset', 'next');
-  }, [filteredOptions.length]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [inputValue]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleOpen = event => {
     if (open) {
@@ -656,7 +656,8 @@ export default function useAutocomplete(props) {
   };
 
   const handleOptionClick = event => {
-    selectNewValue(event, filteredOptions[highlightedIndexRef.current]);
+    const index = Number(event.currentTarget.getAttribute('data-option-index'));
+    selectNewValue(event, filteredOptions[index]);
   };
 
   const handleTagDelete = index => event => {
