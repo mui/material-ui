@@ -34,6 +34,9 @@ export const styles = theme => ({
     fontSize: theme.typography.pxToRem(24),
     color: '#ffb400',
     cursor: 'pointer',
+    [theme.breakpoints.down('xs')]: {
+      cursor: 'default'
+    },
     '&$disabled': {
       opacity: 0.5,
       pointerEvents: 'none',
