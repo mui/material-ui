@@ -141,7 +141,6 @@ export const styles = theme => ({
     cursor: 'pointer',
     paddingTop: 6,
     outline: '0',
-    // Remove blue highlight
     WebkitTapHighlightColor: 'transparent',
     paddingBottom: 6,
     paddingLeft: 16,

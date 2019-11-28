@@ -84,7 +84,6 @@ export const styles = theme => {
     /* Styles applied to the root element if `onClick` is defined or `clickable={true}`. */
     clickable: {
       userSelect: 'none',
-      // Remove blue highlight
       WebkitTapHighlightColor: 'transparent',
       cursor: 'pointer',
       '&:hover, &:focus': {
@@ -212,7 +211,6 @@ export const styles = theme => {
     },
     /* Styles applied to the `deleteIcon` element. */
     deleteIcon: {
-      // Remove blue highlight
       WebkitTapHighlightColor: 'transparent',
       color: deleteIconColor,
       height: 22,

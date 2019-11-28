@@ -34,7 +34,6 @@ export const styles = theme => ({
     fontSize: theme.typography.pxToRem(24),
     color: '#ffb400',
     cursor: 'pointer',
-    // Remove blue highlight
     WebkitTapHighlightColor: 'transparent',
     '&$disabled': {
       opacity: 0.5,
