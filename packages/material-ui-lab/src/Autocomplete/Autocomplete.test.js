@@ -538,10 +538,7 @@ describe('<Autocomplete />', () => {
     it('should keep focus on selected option and not reset to top option when options updated', () => {
       const options = ['one', 'two'];
       const { container, getByRole, setProps } = render(
-        <Autocomplete
-          options={options}
-          renderInput={params => <TextField {...params} />}
-        />,
+        <Autocomplete options={options} renderInput={params => <TextField {...params} />} />,
       );
       const input = container.querySelector('input');
       fireEvent.keyDown(input, { key: 'ArrowDown' }); // opens the drop down
@@ -553,7 +550,7 @@ describe('<Autocomplete />', () => {
         const focusedListItem = popup.querySelector('li[data-focus]');
         expect(focusedListItem.innerHTML).to.equal(expected);
       }
-      
+
       checkHighlightIs('two');
 
       // three option is added and autocomplete re-renders, two should still be highlighted
@@ -564,7 +561,7 @@ describe('<Autocomplete />', () => {
       // user presses down, three should be highlighted
       fireEvent.keyDown(input, { key: 'ArrowDown' });
       checkHighlightIs('three');
-    })
+    });
   });
 
   describe('mouse selection for updated options', () => {
@@ -595,7 +592,7 @@ describe('<Autocomplete />', () => {
       fireEvent.click(firstItem);
 
       expect(handleChange.args[0][1]).to.equal('one');
-    })
+    });
   });
 
   describe('enter', () => {
@@ -695,7 +692,7 @@ describe('<Autocomplete />', () => {
 
   describe('controlled input', () => {
     it('controls the input value', () => {
-      const handleChange = spy(); 
+      const handleChange = spy();
       function MyComponent() {
         const [, setInputValue] = React.useState('');
         const handleInputChange = (event, value) => {
