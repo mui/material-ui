@@ -406,6 +406,7 @@ describe('<Select />', () => {
     it('it will fallback to its content for the accessible name when it has no name', () => {
       const { getByRole } = render(<Select value="" />);
 
+      // TODO what is the accessible name actually?
       expect(getByRole('button')).to.have.attribute('aria-labelledby', ' ');
     });
 
