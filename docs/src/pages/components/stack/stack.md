@@ -17,7 +17,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 ## Basic stack
 
-{{"demo": "pages/components/stack/BasicStack.js"}}
+{{"demo": "pages/components/stack/BasicStack.js", "resizable": true}}
 
 ## Vertical stack
 

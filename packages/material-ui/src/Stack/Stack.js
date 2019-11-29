@@ -151,7 +151,7 @@ const Stack = React.forwardRef(function Stack(props, ref) {
   const className = clsx(
     classes.root,
     {
-      [classes[`spacing-${direction.split("-")[0]}-${String(spacing)}`]]: spacing !== 0,
+      [classes[`spacing-${direction.split('-')[0]}-${String(spacing)}`]]: spacing !== 0,
       [classes[`direction-${direction}`]]: direction !== 'row',
       [classes[`wrap-${wrap}`]]: wrap !== 'wrap',
       [classes[`align-items-${alignItems}`]]: alignItems !== 'stretch',
@@ -161,9 +161,7 @@ const Stack = React.forwardRef(function Stack(props, ref) {
     classNameProp,
   );
 
-  return (
-    <Component className={className} ref={ref} {...other} />
-  )
+  return <Component className={className} ref={ref} {...other} />;
 });
 
 Stack.propTypes = {

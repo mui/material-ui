@@ -10,15 +10,14 @@ const useStyles = makeStyles({
       height: 80,
       width: 80,
     },
-  }
+  },
 });
 
 export default function BasicStack() {
   const classes = useStyles();
 
-
   return (
-    <Stack justify="center" spacing={2} >
+    <Stack justify="center" spacing={2}>
       {[0, 1, 2].map(value => (
         <Stack key={value} direction="column" spacing={2} className={classes.stack}>
           <Paper />

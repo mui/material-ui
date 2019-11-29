@@ -60,8 +60,7 @@ export type StackClassKey =
   | 'spacing-10';
 
 export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
-  {
+  props: P & {
     alignContent?: StackContentAlignment;
     alignItems?: StackItemsAlignment;
     direction?: StackDirection;
@@ -80,6 +79,6 @@ declare const Stack: OverridableComponent<StackTypeMap>;
 export type StackProps<
   D extends React.ElementType = StackTypeMap['defaultComponent'],
   P = {}
-  > = OverrideProps<StackTypeMap<P, D>, D>;
+> = OverrideProps<StackTypeMap<P, D>, D>;
 
 export default Stack;

@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 // tslint:disable-next-line: ban-ts-ignore
 // @ts-ignore
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import Resizable from 'docs/src/modules/components/Resizable';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,10 +21,6 @@ const useStyles = makeStyles(theme => ({
   },
   demo: {
     height: 280,
-  },
-  demoArea: {
-    border: `1px solid ${theme.palette.grey[300]}`,
-    borderRadius: 4,
   },
   paper: {
     padding: theme.spacing(2),
@@ -66,20 +63,22 @@ export default function InteractiveGrid() {
 
   return (
     <Grid container className={classes.root}>
-      <Grid item xs={12} className={classes.demoArea}>
-        <Stack
-          spacing={spacing}
-          className={classes.demo}
-          alignItems={alignItems}
-          direction={direction}
-          justify={justify}
-        >
-          {[0, 1, 2].map(value => (
-            <Paper key={value} className={classes.paper} style={{ padding: (value + 1) * 10 }}>
-              {`Cell ${value + 1}`}
-            </Paper>
-          ))}
-        </Stack>
+      <Grid item xs={12}>
+        <Resizable>
+          <Stack
+            spacing={spacing}
+            className={classes.demo}
+            alignItems={alignItems}
+            direction={direction}
+            justify={justify}
+          >
+            {[0, 1, 2].map(value => (
+              <Paper key={value} className={classes.paper} style={{ padding: (value + 1) * 10 }}>
+                {`Cell ${value + 1}`}
+              </Paper>
+            ))}
+          </Stack>
+        </Resizable>
       </Grid>
       <Grid item xs={12}>
         <Paper className={classes.control}>

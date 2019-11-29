@@ -19,6 +19,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
+import Resizable from 'docs/src/modules/components/Resizable';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
 import { getCookie } from 'docs/src/modules/utils/helpers';
@@ -59,6 +60,9 @@ const styles = theme => ({
     [theme.breakpoints.up('sm')]: {
       borderRadius: theme.shape.borderRadius,
     },
+  },
+  demoWrapper: {
+    padding: theme.spacing(3),
   },
   /* Isolate the demo with an outline. */
   demoBgOutlined: {
@@ -310,12 +314,14 @@ function Demo(props) {
     showCodeLabel = showPreview ? t('showFullSource') : t('showSource');
   }
 
+  const DemoWrapper = demoOptions.resizable ? Resizable : 'div';
+
   return (
     <div className={classes.root}>
       <div
         className={clsx(classes.demo, {
           [classes.demoHiddenHeader]: demoOptions.hideHeader,
-          [classes.demoBgOutlined]: demoOptions.bg === 'outlined',
+          [classes.demoBgOutlined]: demoOptions.bg === 'outlined' && !demoOptions.resizable,
           [classes.demoBgTrue]: demoOptions.bg === true,
           [classes.demoBgInline]: demoOptions.bg === 'inline',
         })}
@@ -323,12 +329,14 @@ function Demo(props) {
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
       >
-        <DemoSandboxed
-          style={demoSandboxedStyle}
-          component={DemoComponent}
-          iframe={demoOptions.iframe}
-          name={demoName}
-        />
+        <DemoWrapper classes={{ track: classes.demoWrapper }}>
+          <DemoSandboxed
+            style={demoSandboxedStyle}
+            component={DemoComponent}
+            iframe={demoOptions.iframe}
+            name={demoName}
+          />
+        </DemoWrapper>
       </div>
       <div className={classes.anchorLink} id={`${demoName}.js`} />
       <div className={classes.anchorLink} id={`${demoName}.tsx`} />

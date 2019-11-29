@@ -66,10 +66,7 @@ export default function InteractiveGrid() {
         >
           {[0, 1, 2].map(value => (
             <Grid key={value} item>
-              <Paper
-                className={classes.paper}
-                style={{ padding: (value + 1) * 10 }}
-              >
+              <Paper className={classes.paper} style={{ padding: (value + 1) * 10 }}>
                 {`Cell ${value + 1}`}
               </Paper>
             </Grid>

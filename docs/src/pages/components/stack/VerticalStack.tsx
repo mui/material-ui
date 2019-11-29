@@ -10,7 +10,7 @@ const useStyles = makeStyles({
       height: 80,
       width: 80,
     },
-  }
+  },
 });
 
 export default function BasicStack() {
