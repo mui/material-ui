@@ -8,8 +8,7 @@ import capitalize from '../utils/capitalize';
 const SIZE = 44;
 
 function getRelativeValue(value, min, max) {
-  const clampedValue = Math.min(Math.max(min, value), max);
-  return (clampedValue - min) / (max - min);
+  return (Math.min(Math.max(min, value), max) - min) / (max - min);
 }
 
 function easeOut(t) {

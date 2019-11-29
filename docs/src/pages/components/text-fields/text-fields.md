@@ -17,7 +17,9 @@ It supports standard, outlined and filled styling.
 
 {{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 
-Note: The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support it.
+**Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/)
+([here's why](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)),
+but Material-UI will continue to support it.
 
 ## Form props
 
