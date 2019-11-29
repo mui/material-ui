@@ -119,9 +119,9 @@ describe('<Autocomplete />', () => {
 
       const buttons = getAllByRole('button');
       expect(buttons).to.have.length(2);
-      // TODO: computeAccessibleName
+      expect(buttons[0]).to.have.accessibleName('Clear');
       expect(buttons[0]).to.have.attribute('title', 'Clear');
-      // TODO: computeAccessibleName
+      expect(buttons[1]).to.have.accessibleName('Open');
       expect(buttons[1]).to.have.attribute('title', 'Open');
       buttons.forEach(button => {
         expect(button, 'button is not in tab order').to.have.property('tabIndex', -1);
@@ -160,9 +160,9 @@ describe('<Autocomplete />', () => {
 
       const buttons = getAllByRole('button');
       expect(buttons).to.have.length(2);
-      // TODO: computeAccessibleName
+      expect(buttons[0]).to.have.accessibleName('Clear');
       expect(buttons[0]).to.have.attribute('title', 'Clear');
-      // TODO: computeAccessibleName
+      expect(buttons[1]).to.have.accessibleName('Close');
       expect(buttons[1]).to.have.attribute('title', 'Close');
       buttons.forEach(button => {
         expect(button, 'button is not in tab order').to.have.property('tabIndex', -1);

@@ -75,8 +75,7 @@ describe('<Chip />', () => {
 
       const button = getByRole('button');
       expect(button).to.have.property('tabIndex', 0);
-      // TODO: accessible name computation
-      expect(button).to.have.text('My Chip');
+      expect(button).to.have.accessibleName('My Chip');
     });
 
     it('should apply user value of tabIndex', () => {

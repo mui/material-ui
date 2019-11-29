@@ -5751,6 +5751,11 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
+dom-accessibility-api@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/dom-accessibility-api/-/dom-accessibility-api-0.2.0.tgz#2890ce677bd7b2172778ed979ab2ff4967c3085d"
+  integrity sha512-afrHGxXpS5C2jUC5hquPb3GWytNKHI+wJLKr/jvri95sZpLYpEJi3CtI/yBPEJ+/R9/CXaWXifadz94tsDcotg==
+
 dom-helpers@^3.2.1, dom-helpers@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-3.4.0.tgz#e9b369700f959f62ecde5a6babde4bccd9169af8"
