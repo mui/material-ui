@@ -11,6 +11,7 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
     hiddenLabel?: boolean;
     margin?: PropTypes.Margin;
     required?: boolean;
+    size?: 'small' | 'medium';
     variant?: 'standard' | 'outlined' | 'filled';
   };
   defaultComponent: D;

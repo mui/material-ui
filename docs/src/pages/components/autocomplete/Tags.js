@@ -1,12 +1,24 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
 import Chip from '@material-ui/core/Chip';
-import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: 500,
+    '& > * + *': {
+      marginTop: theme.spacing(3),
+    },
+  },
+}));
 
 export default function Tags() {
+  const classes = useStyles();
+
   return (
-    <div style={{ width: 500 }}>
+    <div className={classes.root}>
       <Autocomplete
         multiple
         id="tags-standard"
@@ -19,7 +31,6 @@ export default function Tags() {
             variant="standard"
             label="Multiple values"
             placeholder="Favorites"
-            margin="normal"
             fullWidth
           />
         )}
@@ -37,7 +48,6 @@ export default function Tags() {
             variant="outlined"
             label="filterSelectedOptions"
             placeholder="Favorites"
-            margin="normal"
             fullWidth
           />
         )}
@@ -59,7 +69,6 @@ export default function Tags() {
             variant="filled"
             label="freeSolo"
             placeholder="Favorites"
-            margin="normal"
             fullWidth
           />
         )}

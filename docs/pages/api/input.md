@@ -70,6 +70,7 @@ Any other props supplied will be provided to the root element ([InputBase](/api/
 | <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiInput-colorSecondary</span> | Styles applied to the root element if color secondary.
 | <span class="prop-name">underline</span> | <span class="prop-name">.MuiInput-underline</span> | Styles applied to the root element if `disableUnderline={false}`.
 | <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Styles applied to the root element if `error={true}`.
+| <span class="prop-name">marginDense</span> | <span class="prop-name">.MuiInput-marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
 | <span class="prop-name">multiline</span> | <span class="prop-name">.MuiInput-multiline</span> | Styles applied to the root element if `multiline={true}`.
 | <span class="prop-name">fullWidth</span> | <span class="prop-name">.MuiInput-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 | <span class="prop-name">input</span> | <span class="prop-name">.MuiInput-input</span> | Styles applied to the `input` element.

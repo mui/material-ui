@@ -25,16 +25,44 @@ export const styles = theme => ({
   /* Styles applied to the tag elements, e.g. the chips. */
   tag: {
     margin: 3,
+    '&:last-child': {
+      marginRight: 5,
+    },
+  },
+  /* Styles applied to the tag elements, e.g. the chips if `size="small"`. */
+  tagSizeSmall: {
+    margin: 2,
   },
   /* Styles applied to the Input element. */
   inputRoot: {
     flexWrap: 'wrap',
     paddingRight: 62,
+    '& $input': {
+      width: 0,
+      minWidth: 30,
+    },
+    '&[class*="MuiInput-root"]': {
+      paddingBottom: 1,
+      '& $input': {
+        padding: 4,
+      },
+      '& $input:first-child': {
+        padding: '6px 0',
+      },
+    },
+    '&[class*="MuiInput-root"][class*="MuiInput-marginDense"]': {
+      '& $input': {
+        padding: '4px 4px 5px',
+      },
+      '& $input:first-child': {
+        padding: '3px 0 6px',
+      },
+    },
     '&[class*="MuiOutlinedInput-root"]': {
       padding: 8,
       paddingRight: 62,
       '& $input': {
-        padding: '10.5px 4px',
+        padding: '9.5px 4px',
       },
       '& $input:first-child': {
         paddingLeft: 6,
@@ -43,23 +71,28 @@ export const styles = theme => ({
         right: 7,
       },
     },
+    '&[class*="MuiOutlinedInput-root"][class*="MuiOutlinedInput-marginDense"]': {
+      padding: 6,
+      paddingRight: 62,
+      '& $input': {
+        padding: '4.5px 4px',
+      },
+    },
     '&[class*="MuiFilledInput-root"]': {
       paddingTop: 19,
       paddingLeft: 8,
       '& $input': {
-        paddingLeft: 4,
-        paddingTop: 10,
+        padding: '9px 4px',
       },
       '& $endAdornment': {
         right: 7,
       },
     },
-    '& $input:not(:first-child)': {
-      paddingLeft: 4,
-    },
-    '& $input': {
-      width: 0,
-      minWidth: 30,
+    '&[class*="MuiFilledInput-root"][class*="MuiFilledInput-marginDense"]': {
+      paddingBottom: 1,
+      '& $input': {
+        padding: '4.5px 4px',
+      },
     },
   },
   /* Styles applied to the input element. */
@@ -227,6 +260,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     renderInput,
     renderOption: renderOptionProp,
     renderTags,
+    size = 'medium',
     value: valueProp,
     ...other
   } = props;
@@ -265,7 +299,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
 
   if (multiple && value.length > 0) {
     const getCustomizedTagProps = params => ({
-      className: classes.tag,
+      className: clsx(classes.tag, {
+        [classes.tagSizeSmall]: size === 'small',
+      }),
       ...getTagProps(params),
     });
 
@@ -273,7 +309,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
       startAdornment = renderTags(value, getCustomizedTagProps);
     } else {
       startAdornment = value.map((option, index) => (
-        <Chip label={getOptionLabel(option)} {...getCustomizedTagProps({ index })} />
+        <Chip label={getOptionLabel(option)} size={size} {...getCustomizedTagProps({ index })} />
       ));
     }
   }
@@ -320,6 +356,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
         {renderInput({
           id,
           disabled,
+          size: size === 'small' ? 'small' : undefined,
           InputLabelProps: getInputLabelProps(),
           InputProps: {
             ref: setAnchorEl,
@@ -646,6 +683,10 @@ Autocomplete.propTypes = {
    * @returns {ReactNode}
    */
   renderTags: PropTypes.func,
+  /**
+   * The size of the autocomplete.
+   */
+  size: PropTypes.oneOf(['medium', 'small']),
   /**
    * The value of the autocomplete.
    *
