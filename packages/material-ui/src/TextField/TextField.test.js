@@ -160,14 +160,7 @@ describe('<TextField />', () => {
         </TextField>,
       );
 
-      const label = getByRole('button')
-        .getAttribute('aria-labelledby')
-        .split(' ')
-        .map(idref => document.getElementById(idref))
-        .reduce((partial, element) => `${partial} ${element.textContent}`, '');
-      // this whitespace is ok since actual AT will only use so called "flat strings"
-      // https://w3c.github.io/accname/#mapping_additional_nd_te
-      expect(label).to.equal(' Release:  Stable');
+      expect(getByRole('button')).to.have.accessibleName('Release: Stable');
     });
 
     it('creates an input[hidden] that has no accessible properties', () => {

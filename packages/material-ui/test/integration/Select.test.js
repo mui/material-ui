@@ -75,9 +75,7 @@ describe('<Select> integration', () => {
       const { getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
 
       const trigger = getByRole('button');
-      // basically this is a combined query getByRole('button', { name: 'Ten' })
-      // but we arent' there yet
-      expect(trigger).to.have.text('Ten');
+      expect(trigger).to.have.accessibleName('Ten');
       // Let's open the select component
       // in the browser user click also focuses
       fireEvent.mouseDown(trigger);
@@ -96,17 +94,31 @@ describe('<Select> integration', () => {
   });
 
   describe('with label', () => {
+    it('requires `id` and `labelId` for a proper accessible name', () => {
+      const { getByRole } = render(
+        <FormControl>
+          <InputLabel id="label">Age</InputLabel>
+          <Select id="input" labelId="label" value="10">
+            <MenuItem value="">none</MenuItem>
+            <MenuItem value="10">Ten</MenuItem>
+          </Select>
+        </FormControl>,
+      );
+
+      expect(getByRole('button')).to.have.accessibleName('Age Ten');
+    });
+
     // we're somewhat abusing "focus" here. What we're actually interested in is
     // displaying it as "active". WAI-ARIA authoring practices do not consider the
     // the trigger part of the widget while a native <select /> will outline the trigger
     // as well
     it('is displayed as focused while open', () => {
-      const { container, getByRole } = render(
+      const { getByTestId, getByRole } = render(
         <FormControl>
-          <InputLabel classes={{ focused: 'focused-label' }} htmlFor="age-simple">
+          <InputLabel classes={{ focused: 'focused-label' }} data-testid="label">
             Age
           </InputLabel>
-          <Select inputProps={{ id: 'age' }} value="">
+          <Select value="">
             <MenuItem value="">none</MenuItem>
             <MenuItem value={10}>Ten</MenuItem>
           </Select>
@@ -117,7 +129,7 @@ describe('<Select> integration', () => {
       trigger.focus();
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
 
-      expect(container.querySelector('[for="age-simple"]')).to.have.class('focused-label');
+      expect(getByTestId('label')).to.have.class('focused-label');
     });
 
     it('does not stays in an active state if an open action did not actually open', () => {
