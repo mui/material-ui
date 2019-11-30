@@ -95,11 +95,6 @@ function HomeFooter(props) {
                     {t('pages./discover-more/team')}
                   </Link>
                 </li>
-                <li>
-                  <Link color="inherit" variant="body2" href="https://spectrum.chat/material-ui">
-                    Spectrum
-                  </Link>
-                </li>
               </ul>
             </Grid>
             <Grid item xs={6} md={3} className={classes.list}>
