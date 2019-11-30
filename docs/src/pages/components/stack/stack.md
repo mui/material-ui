@@ -17,17 +17,17 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 ## Basic stack
 
-{{"demo": "pages/components/stack/BasicStack.js", "resizable": true}}
+{{"demo": "pages/components/stack/BasicStack.js", "resizable": "horizontal"}}
 
 ## Vertical stack
 
-{{"demo": "pages/components/stack/VerticalStack.js"}}
+{{"demo": "pages/components/stack/VerticalStack.js", "resizable": "vertical"}}
 
 ## Nested stacks
 
 This example shows three vertical stacks nested in a horizontal stack.
 
-{{"demo": "pages/components/stack/NestedStack.js", "resizable": true}}
+{{"demo": "pages/components/stack/NestedStack.js", "resizable": "horizontal"}}
 
 ## Interactive demo
 

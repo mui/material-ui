@@ -329,7 +329,7 @@ function Demo(props) {
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
       >
-        <DemoWrapper orientation="vertical" classes={{ track: classes.demoWrapper }}>
+        <DemoWrapper orientation={demoOptions.resizable} classes={{ resizer: classes.demoWrapper }}>
           <DemoSandboxed
             style={demoSandboxedStyle}
             component={DemoComponent}

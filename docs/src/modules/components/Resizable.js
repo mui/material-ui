@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import DragIndicatorIcon from '@material-ui/icons/DragIndicator';
-import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '@material-ui/styles/withStyles';
 import { fade } from '../../../../packages/material-ui/src/styles/colorManipulator';
 import { useIsFocusVisible } from '../../../../packages/material-ui/src/utils/focusVisible';
@@ -34,14 +33,6 @@ function trackFinger(event, touchId) {
   };
 }
 
-function valueToPercent(value, min, max) {
-  return ((value - min) * 100) / (max - min);
-}
-
-function percentToValue(percent, min, max) {
-  return (max - min) * percent + min;
-}
-
 function getDecimalPrecision(num) {
   // This handles the case when num is very small (0.00000001), js will turn this into 1e-8.
   // When num is bigger than 1 or less than -1 it won't get converted to this notation so it's fine.
@@ -60,27 +51,14 @@ function roundValueToStep(value, step, min) {
   return Number(nearest.toFixed(getDecimalPrecision(step)));
 }
 
-function focusThumb({ sliderRef, activeIndex, setActive }) {
-  if (
-    !sliderRef.current.contains(document.activeElement) ||
-    Number(document.activeElement.getAttribute('data-index')) !== activeIndex
-  ) {
-    sliderRef.current.querySelector(`[data-index="${activeIndex}"]`).focus();
-  }
-
-  if (setActive) {
-    setActive(activeIndex);
-  }
-}
-
 const axisProps = {
   horizontal: {
-    offset: percent => ({ left: `${percent}%` }),
-    leap: percent => ({ width: `${percent}%` }),
+    offset: value => ({ left: `${value}px` }),
+    leap: value => ({ width: `${value}px` }),
   },
   vertical: {
-    offset: percent => ({ top: `${percent}%` }),
-    leap: percent => ({ height: `${percent}%` }),
+    offset: value => ({ top: `${value}px` }),
+    leap: value => ({ height: `${value}px` }),
   },
 };
 
@@ -96,10 +74,11 @@ export const styles = theme => ({
     color: theme.palette.grey[400],
     // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
+    display: 'flex',
     '&$vertical': {
       width: '100%',
-      // height: '100%',
-      height: '200px',
+      height: '100%',
+      flexDirection: 'column',
     },
     // The primary input mechanism of the device includes a pointing device of limited accuracy.
     '@media (pointer: coarse)': {
@@ -113,7 +92,7 @@ export const styles = theme => ({
   /* Pseudo-class applied to the root element if `orientation="vertical"`. */
   vertical: {},
   /* Styles applied to the track element. */
-  track: {
+  resizer: {
     height: '100%',
     borderRadius: 4,
     overflow: 'hidden',
@@ -137,7 +116,7 @@ export const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    cursor: 'col-resize',
+    cursor: 'ew-resize',
     transition: theme.transitions.create(['box-shadow'], {
       duration: theme.transitions.duration.shortest,
     }),
@@ -164,7 +143,7 @@ export const styles = theme => ({
       top: 'auto',
       left: '50%',
       transform: 'rotate(90deg)',
-      cursor: 'row-resize',
+      cursor: 'ns-resize',
       marginLeft: -6,
       marginBottom: -6,
     },
@@ -179,7 +158,6 @@ const Resizable = React.forwardRef(function Resizable(props, ref) {
   const {
     'aria-label': ariaLabel,
     'aria-labelledby': ariaLabelledby,
-    'aria-valuetext': ariaValuetext,
     children,
     classes,
     className,
@@ -189,19 +167,17 @@ const Resizable = React.forwardRef(function Resizable(props, ref) {
     ...other
   } = props;
 
-  const defaultValue = 100;
-  const max = 100;
-  const min = 0;
-  const step = 0.1;
-
   const touchId = React.useRef();
-  // We can't use the :active browser pseudo-classes.
-  // - The active state isn't triggered when clicking on the rail.
-  // - The active state isn't transfered when inversing a range slider.
   const [active, setActive] = React.useState(-1);
-  const [valueState, setValueState] = React.useState(defaultValue);
+  const [valueState, setValueState] = React.useState();
   const instanceRef = React.useRef();
-  const value = clamp(valueState, min, max);
+  const boundsRef = React.useRef();
+  const maxRef = React.useRef();
+  const value = valueState;
+
+  const max = maxRef.current;
+  const min = 0;
+  const step = 1;
 
   instanceRef.current = {
     source: valueState, // Keep track of the input value to leverage immutable state comparison.
@@ -210,9 +186,19 @@ const Resizable = React.forwardRef(function Resizable(props, ref) {
   const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
   const [focusVisible, setFocusVisible] = React.useState(-1);
 
-  const sliderRef = React.useRef();
-  const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
+  const resizerRef = React.useRef();
+  const handleFocusRef = useForkRef(focusVisibleRef, resizerRef);
   const handleRef = useForkRef(ref, handleFocusRef);
+
+  React.useEffect(() => {
+    if (!boundsRef.current) {
+      boundsRef.current = resizerRef.current.getBoundingClientRect();
+      const newValue =
+        orientation === 'vertical' ? boundsRef.current.height : boundsRef.current.width;
+      setValueState(newValue);
+      maxRef.current = newValue;
+    }
+  }, [orientation]);
 
   const handleFocus = useEventCallback(event => {
     if (isFocusVisible(event)) {
@@ -228,7 +214,7 @@ const Resizable = React.forwardRef(function Resizable(props, ref) {
   });
 
   const handleKeyDown = useEventCallback(event => {
-    const tenPercents = (max - min) / 10;
+    const tenPercent = (max - min) / 10;
     let newValue;
 
     switch (event.key) {
@@ -240,12 +226,12 @@ const Resizable = React.forwardRef(function Resizable(props, ref) {
         break;
       case 'PageUp':
         if (step) {
-          newValue = value + tenPercents;
+          newValue = value + tenPercent;
         }
         break;
       case 'PageDown':
         if (step) {
-          newValue = value - tenPercents;
+          newValue = value - tenPercent;
         }
         break;
       case 'ArrowRight':
@@ -274,28 +260,19 @@ const Resizable = React.forwardRef(function Resizable(props, ref) {
     setFocusVisible(0);
   });
 
-  const getFingerNewValue = React.useCallback(
-    ({ finger }) => {
-      const { current: slider } = sliderRef;
-      const { width, height, top, left } = slider.getBoundingClientRect();
-      let percent;
+  const getFingerNewValue = finger => {
+    const { top, left } = resizerRef.current.getBoundingClientRect();
 
-      if (orientation.indexOf('vertical') === 0) {
-        percent = (finger.y - top) / height;
-      } else {
-        percent = (finger.x - left) / width;
-      }
+    let newValue;
 
-      let newValue;
-      newValue = percentToValue(percent, min, max);
-      newValue = roundValueToStep(newValue, step, min);
-      newValue = clamp(newValue, min, max);
-      const activeIndex = 0;
+    if (orientation === 'vertical') {
+      newValue = clamp(finger.y - top, 0, boundsRef.current.height);
+    } else {
+      newValue = clamp(finger.x - left, 0, boundsRef.current.width);
+    }
 
-      return { newValue, activeIndex };
-    },
-    [max, min, orientation, step],
-  );
+    return newValue;
+  };
 
   const handleTouchMove = useEventCallback(event => {
     const finger = trackFinger(event, touchId);
@@ -304,14 +281,8 @@ const Resizable = React.forwardRef(function Resizable(props, ref) {
       return;
     }
 
-    const { newValue, activeIndex } = getFingerNewValue({
-      finger,
-      move: true,
-      values: value,
-      source: valueState,
-    });
+    const newValue = getFingerNewValue(finger);
 
-    focusThumb({ sliderRef, activeIndex, setActive });
     setValueState(newValue);
   });
 
@@ -334,7 +305,7 @@ const Resizable = React.forwardRef(function Resizable(props, ref) {
   });
 
   const handleMouseEnter = useEventCallback(event => {
-    // If the slider was being interacted with but the mouse went off the window
+    // If the resizer was being interacted with but the mouse went off the window
     // and then re-entered while unclicked then end the interaction.
     if (event.buttons === 0) {
       handleTouchEnd(event);
@@ -350,12 +321,7 @@ const Resizable = React.forwardRef(function Resizable(props, ref) {
       touchId.current = touch.identifier;
     }
     const finger = trackFinger(event, touchId);
-    const { newValue, activeIndex } = getFingerNewValue({
-      finger,
-      values: value,
-      source: valueState,
-    });
-    focusThumb({ sliderRef, activeIndex, setActive });
+    const newValue = getFingerNewValue(finger);
 
     setValueState(newValue);
 
@@ -364,11 +330,11 @@ const Resizable = React.forwardRef(function Resizable(props, ref) {
   });
 
   React.useEffect(() => {
-    const { current: slider } = sliderRef;
-    slider.addEventListener('touchstart', handleTouchStart);
+    const { current: resizer } = resizerRef;
+    resizer.addEventListener('touchstart', handleTouchStart);
 
     return () => {
-      slider.removeEventListener('touchstart', handleTouchStart);
+      resizer.removeEventListener('touchstart', handleTouchStart);
       document.body.removeEventListener('mousemove', handleTouchMove);
       document.body.removeEventListener('mouseup', handleTouchEnd);
       document.body.removeEventListener('mouseenter', handleMouseEnter);
@@ -380,12 +346,7 @@ const Resizable = React.forwardRef(function Resizable(props, ref) {
   const handleMouseDown = useEventCallback(event => {
     event.preventDefault();
     const finger = trackFinger(event, touchId);
-    const { newValue, activeIndex } = getFingerNewValue({
-      finger,
-      values: value,
-      source: valueState,
-    });
-    focusThumb({ sliderRef, activeIndex, setActive });
+    const newValue = getFingerNewValue(finger);
 
     setValueState(newValue);
 
@@ -394,15 +355,8 @@ const Resizable = React.forwardRef(function Resizable(props, ref) {
     document.body.addEventListener('mouseup', handleTouchEnd);
   });
 
-  const trackOffset = valueToPercent(min, min, max);
-  const trackLeap = valueToPercent(value, min, max) - trackOffset;
-  const trackStyle = {
-    ...axisProps[orientation].offset(trackOffset),
-    ...axisProps[orientation].leap(trackLeap),
-  };
-
-  const percent = valueToPercent(value, min, max);
-  const style = axisProps[orientation].offset(percent);
+  const resizerStyle = axisProps[orientation].leap(valueState);
+  const style = axisProps[orientation].offset(valueState);
 
   return (
     <Component
@@ -416,10 +370,9 @@ const Resizable = React.forwardRef(function Resizable(props, ref) {
       )}
       {...other}
     >
-      <div className={classes.track} style={trackStyle}>
+      <div className={classes.resizer} style={resizerStyle}>
         {children}
       </div>
-
       <span
         className={clsx(classes.thumb, {
           [classes.active]: active === 0,
@@ -435,7 +388,6 @@ const Resizable = React.forwardRef(function Resizable(props, ref) {
         aria-valuemax={max}
         aria-valuemin={min}
         aria-valuenow={value}
-        aria-valuetext={ariaValuetext}
         onKeyDown={handleKeyDown}
         onFocus={handleFocus}
         onBlur={handleBlur}
@@ -451,35 +403,11 @@ Resizable.propTypes = {
   /**
    * The label of the slider.
    */
-  'aria-label': chainPropTypes(PropTypes.string, props => {
-    const range = Array.isArray(props.value || props.defaultValue);
-
-    if (range && props['aria-label'] != null) {
-      return new Error(
-        'Material-UI: you need to use the `getAriaLabel` prop instead of `aria-label` when using a range slider.',
-      );
-    }
-
-    return null;
-  }),
+  'aria-label': PropTypes.string,
   /**
    * The id of the element containing a label for the slider.
    */
   'aria-labelledby': PropTypes.string,
-  /**
-   * A string value that provides a user-friendly name for the current value of the slider.
-   */
-  'aria-valuetext': chainPropTypes(PropTypes.string, props => {
-    const range = Array.isArray(props.value || props.defaultValue);
-
-    if (range && props['aria-valuetext'] != null) {
-      return new Error(
-        'Material-UI: you need to use the `getAriaValueText` prop instead of `aria-valuetext` when using a range slider.',
-      );
-    }
-
-    return null;
-  }),
   /**
    * The content of the component.
    */
