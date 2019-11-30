@@ -66,8 +66,8 @@ export default function InteractiveGrid() {
       <Grid item xs={12}>
         <Resizable>
           <Stack
-            spacing={spacing}
             className={classes.demo}
+            spacing={spacing}
             alignItems={alignItems}
             direction={direction}
             justify={justify}

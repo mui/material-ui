@@ -27,7 +27,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 
 This example shows three vertical stacks nested in a horizontal stack.
 
-{{"demo": "pages/components/stack/NestedStack.js"}}
+{{"demo": "pages/components/stack/NestedStack.js", "resizable": true}}
 
 ## Interactive demo
 

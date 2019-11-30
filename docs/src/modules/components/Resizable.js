@@ -8,7 +8,6 @@ import { fade } from '../../../../packages/material-ui/src/styles/colorManipulat
 import { useIsFocusVisible } from '../../../../packages/material-ui/src/utils/focusVisible';
 import useEventCallback from '../../../../packages/material-ui/src/utils/useEventCallback';
 import useForkRef from '../../../../packages/material-ui/src/utils/useForkRef';
-import capitalize from '../../../../packages/material-ui/src/utils/capitalize';
 
 function clamp(value, min, max) {
   return Math.min(Math.max(min, value), max);
@@ -80,7 +79,7 @@ const axisProps = {
     leap: percent => ({ width: `${percent}%` }),
   },
   vertical: {
-    offset: percent => ({ bottom: `${percent}%` }),
+    offset: percent => ({ top: `${percent}%` }),
     leap: percent => ({ height: `${percent}%` }),
   },
 };
@@ -98,9 +97,9 @@ export const styles = theme => ({
     // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
     '&$vertical': {
-      width: 'auto',
-      height: '100%',
-      padding: '0 13px',
+      width: '100%',
+      // height: '100%',
+      height: '200px',
     },
     // The primary input mechanism of the device includes a pointing device of limited accuracy.
     '@media (pointer: coarse)': {
@@ -162,6 +161,10 @@ export const styles = theme => ({
       boxShadow: `0px 0px 0px 14px ${fade(theme.palette.grey[400], 0.16)}`,
     },
     '$vertical &': {
+      top: 'auto',
+      left: '50%',
+      transform: 'rotate(90deg)',
+      cursor: 'row-resize',
       marginLeft: -6,
       marginBottom: -6,
     },
@@ -180,16 +183,17 @@ const Resizable = React.forwardRef(function Resizable(props, ref) {
     children,
     classes,
     className,
-    color = 'primary',
     component: Component = 'div',
-    defaultValue = 100,
-    max = 100,
-    min = 0,
     name,
     orientation = 'horizontal',
-    step = 0.1,
     ...other
   } = props;
+
+  const defaultValue = 100;
+  const max = 100;
+  const min = 0;
+  const step = 0.1;
+
   const touchId = React.useRef();
   // We can't use the :active browser pseudo-classes.
   // - The active state isn't triggered when clicking on the rail.
@@ -273,11 +277,11 @@ const Resizable = React.forwardRef(function Resizable(props, ref) {
   const getFingerNewValue = React.useCallback(
     ({ finger }) => {
       const { current: slider } = sliderRef;
-      const { width, height, bottom, left } = slider.getBoundingClientRect();
+      const { width, height, top, left } = slider.getBoundingClientRect();
       let percent;
 
       if (orientation.indexOf('vertical') === 0) {
-        percent = (bottom - finger.y) / height;
+        percent = (finger.y - top) / height;
       } else {
         percent = (finger.x - left) / width;
       }
@@ -417,7 +421,7 @@ const Resizable = React.forwardRef(function Resizable(props, ref) {
       </div>
 
       <span
-        className={clsx(classes.thumb, classes[`thumbColor${capitalize(color)}`], {
+        className={clsx(classes.thumb, {
           [classes.active]: active === 0,
           [classes.focusVisible]: focusVisible === 0,
         })}
@@ -490,28 +494,10 @@ Resizable.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   */
-  color: PropTypes.oneOf(['primary', 'secondary']),
-  /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * The default element value.
-   */
-  defaultValue: PropTypes.number,
-  /**
-   * The maximum allowed value of the slider.
-   * Should not be equal to min.
-   */
-  max: PropTypes.number,
-  /**
-   * The minimum allowed value of the slider.
-   * Should not be equal to max.
-   */
-  min: PropTypes.number,
   /**
    * Name attribute of the hidden `input` element.
    */
@@ -520,12 +506,6 @@ Resizable.propTypes = {
    * The slider orientation.
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
-  /**
-   * The granularity with which the slider can step through values. (A "discrete" slider.)
-   * The `min` prop serves as the origin for the valid values.
-   * We recommend (max - min) to be evenly divisible by the step.
-   */
-  step: PropTypes.number,
   /**
    * The value of the slider.
    * For ranged sliders, provide an array with two values.
