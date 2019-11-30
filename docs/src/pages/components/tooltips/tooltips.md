@@ -3,7 +3,7 @@ title: Tooltip React component
 components: Tooltip
 ---
 
-# Tooltips
+# Tooltip
 
 <p class="description">Tooltips display informative text when users hover over, focus on, or tap an element.</p>
 

@@ -3,13 +3,13 @@ title: Table React component
 components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
-# Tables
+# Table
 
-<p class="description">Data tables display sets of data. They can be fully customized.</p>
+<p class="description">Tables display sets of data. They can be fully customized.</p>
 
-[Data tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards.
+[Tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. They can be embedded in primary content, such as cards.
 
-Data tables can include:
+Tables can include:
 
 - A corresponding visualization
 - Navigation

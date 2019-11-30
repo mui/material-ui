@@ -3,7 +3,7 @@ title: Text Field React component
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
-# Text Fields
+# Text Field
 
 <p class="description">Text fields let users enter and edit text.</p>
 
