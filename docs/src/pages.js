@@ -155,7 +155,7 @@ const pages = [
         pathname: '/customization',
         subheader: '/customization/theming',
         children: [
-          { pathname: '/customization/theming', title: 'Overview' },
+          { pathname: '/customization/theming' },
           { pathname: '/customization/palette' },
           { pathname: '/customization/typography' },
           { pathname: '/customization/spacing' },
