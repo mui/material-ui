@@ -121,6 +121,10 @@ Try the demo below to see what we mean:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
+## Limitations
+
+Follow the [Modal limitations section](/components/modal/#limitations).
+
 ## Accessibility
 
 Follow the [Modal accessibility section](/components/modal/#accessibility).
