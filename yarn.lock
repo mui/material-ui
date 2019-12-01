@@ -8647,9 +8647,9 @@ jsbn@~0.1.0:
   integrity sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
 
 jscodeshift-add-imports@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/jscodeshift-add-imports/-/jscodeshift-add-imports-1.0.1.tgz#1f7d6295b4461ceae45b5f09a03b6b70734f746d"
-  integrity sha512-m0M89DKG3yiFG+wtT2tE0INnGdZGUGHvswlXPZO2jHj8S8BEwzO5NEWxB6+UzpCQztTlJEFlMQftzrJsQ2m0QA==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/jscodeshift-add-imports/-/jscodeshift-add-imports-1.0.2.tgz#c1e59ce6b6cda661fbe1bc8ee1ed6693e90239e2"
+  integrity sha512-TydQsgc1nVGzSd2+asUJCU9hNsTuzXGTTf7NiENOg3UPXBK50vvRqVjWqH8JhY4kH5c+OUy3HSjhvvjKUa/v7w==
   dependencies:
     "@babel/traverse" "^7.4.5"
     jscodeshift-find-imports "^1.0.2"
