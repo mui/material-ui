@@ -1,4 +1,4 @@
-/* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
+/* eslint react/jsx-no-target-blank: ["error", { allowReferrer: true }] */
 import React from 'react';
 import propTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -44,12 +44,12 @@ const useStyles = makeStyles(theme => ({
 export default function AdInHouse(props) {
   const { ad } = props;
   const classes = useStyles();
+  /* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
   return (
     <span className={classes.root}>
       <a
         className={classes.link}
         href={ad.link}
-        // eslint-disable-next-line react/jsx-no-target-blank
         target="_blank"
         rel="noopener sponsored"
         data-ga-event-category="in-house-ad"
@@ -69,6 +69,7 @@ export default function AdInHouse(props) {
       </a>
     </span>
   );
+  /* eslint-enable material-ui/no-hardcoded-labels, react/no-danger */
 }
 
 AdInHouse.propTypes = {
