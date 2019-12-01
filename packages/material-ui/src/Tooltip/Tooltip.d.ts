@@ -42,6 +42,8 @@ export type TooltipClassKey =
   | 'popper'
   | 'popperInteractive'
   | 'tooltip'
+  | 'tooltipArrow'
+  | 'arrow'
   | 'touch'
   | 'tooltipPlacementLeft'
   | 'tooltipPlacementRight'
