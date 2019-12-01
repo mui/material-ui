@@ -115,7 +115,7 @@
     "redux-logger": "^3.0.6",
     "rimraf": "^3.0.0",
     "styled-components": "^4.4.0",
-    "url-loader": "^2.1.0",
+    "url-loader": "^3.0.0",
     "webfontloader": "^1.6.28",
     "webpack": "^4.41.0",
     "webpack-bundle-analyzer": "^3.5.1"
