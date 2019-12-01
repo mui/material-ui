@@ -23,11 +23,6 @@ const backers = [
     alt: 'callemall',
     title: 'Call-Em-All - The easy way to message your group',
   },
-  {
-    href: 'https://www.crosswordsolver.com',
-    alt: 'crosswordsolver',
-    title: 'Crossword Puzzle Solver',
-  },
 ];
 
 const styles = theme => ({
