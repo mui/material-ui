@@ -175,6 +175,7 @@
     "/system/typography": "Typography",
     "/customization": "Customization",
     "/customization/theming": "Theming",
+    "/customization/theme": "Theme",
     "/customization/breakpoints": "Breakpoints",
     "/customization/color": "Color",
     "/customization/palette": "Palette",

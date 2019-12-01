@@ -153,7 +153,7 @@ const pages = [
     children: [
       {
         pathname: '/customization',
-        subheader: '/customization/theming',
+        subheader: '/customization/theme',
         children: [
           { pathname: '/customization/theming' },
           { pathname: '/customization/palette' },
