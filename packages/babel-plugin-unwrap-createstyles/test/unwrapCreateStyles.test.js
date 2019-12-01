@@ -1,4 +1,4 @@
-import pluginTester from 'babel-plugin-tester';
+import pluginTester from 'babel-plugin-tester/pure';
 import * as path from 'path';
 import unwrapCreateStylesPlugin from '../src';
 

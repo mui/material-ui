@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/system",
-  "version": "4.5.2",
+  "version": "4.7.1",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI System - Design system for Material-UI.",
@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/utils": "^4.5.2",
+    "@material-ui/utils": "^4.7.1",
     "prop-types": "^15.7.2"
   },
   "devDependencies": {},
