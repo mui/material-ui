@@ -8,7 +8,7 @@
 
 ### 添加剂
 
-{{"demo": "pages/system/borders/BorderAdditive.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/borders/BorderAdditive.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box border={1}>…
@@ -20,7 +20,7 @@
 
 ### 减法
 
-{{"demo": "pages/system/borders/BorderSubtractive.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/borders/BorderSubtractive.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box border={0}>…

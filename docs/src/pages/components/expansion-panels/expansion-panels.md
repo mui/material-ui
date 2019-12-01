@@ -13,13 +13,13 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 ## Simple Expansion Panel
 
-{{"demo": "pages/components/expansion-panels/SimpleExpansionPanel.js"}}
+{{"demo": "pages/components/expansion-panels/SimpleExpansionPanel.js", "bg": true}}
 
 ## Controlled Accordion
 
 Extend the default panel behavior to create an accordion with the `ExpansionPanel` component.
 
-{{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js"}}
+{{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js", "bg": true}}
 
 ## Customized expansion panels
 
@@ -35,7 +35,7 @@ expanding/collapsing when using the action.
 You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in
 the label of the parent button that controls the panel expansion.
 
-{{"demo": "pages/components/expansion-panels/ActionsInExpansionPanelSummary.js"}}
+{{"demo": "pages/components/expansion-panels/ActionsInExpansionPanelSummary.js", "bg": true}}
 
 ## Performance
 
@@ -56,7 +56,7 @@ bottlenecks first and then try out these optimization strategies.
 
 Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
 
-{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}
+{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js", "bg": true}}
 
 ## Accessibility
 

@@ -13,7 +13,7 @@ export interface FilterOptionsState {
 }
 
 export type CreateFilterOptions = (
-  config: CreateFilterOptionsConfig,
+  config?: CreateFilterOptionsConfig,
 ) => (option: any, state: FilterOptionsState) => any[];
 
 export const createFilterOptions: CreateFilterOptions;
@@ -112,7 +112,7 @@ export interface UseAutocompleteProps {
    */
   inputValue?: string;
   /**
-   * If true, `value` must be an array and the menu will support multiple selections.
+   * If `true`, `value` must be an array and the menu will support multiple selections.
    */
   multiple?: boolean;
   /**
@@ -153,6 +153,9 @@ export interface UseAutocompleteProps {
   options?: any[];
   /**
    * The value of the autocomplete.
+   *
+   * The value must have reference equality with the option in order to be selected.
+   * You can customize the equality behavior with the `getOptionSelected` prop.
    */
   value?: any;
 }

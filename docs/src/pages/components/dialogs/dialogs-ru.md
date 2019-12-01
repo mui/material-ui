@@ -13,7 +13,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## Простые диалоги
 
-Simple dialogs can provide additional details or actions about a list item. For example, they can display avatars, icons, clarifying subtext, or orthogonal actions (such as adding an account).
+Простые диалоговые окна могут предоставить дополнительные сведения или действия об элементе списка. Например, они могут отображать аватары, иконки, уточнение подтекста, или действия (например, добавление учетной записи).
 
 Особенности механики касаний:
 
@@ -26,7 +26,7 @@ Simple dialogs can provide additional details or actions about a list item. For 
 
 Оповещения - это срочные сообщения, требующие подтверждения, которые информируют пользователя о ситуации.
 
-Most alerts don't need titles. They summarize a decision in a sentence or two by either:
+Большинство предупреждений не нужны заголовки. They summarize a decision in a sentence or two by either:
 
 - Задать вопрос (например, «Удалить этот разговор?»)
 - Создать заявления, связанное с кнопками действий
@@ -40,7 +40,7 @@ Use title bar alerts only for high-risk situations, such as the potential loss o
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
-## Transições
+## Переходы
 
 Вы также можете поменять анимацию, в следующем примере используется `Slide`.
 
@@ -52,11 +52,11 @@ Use title bar alerts only for high-risk situations, such as the potential loss o
 
 {{"demo": "pages/components/dialogs/FormDialog.js"}}
 
-## Customized dialogs
+## Индивидуальные диалоги
 
 Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-The dialog has a close button added to aide usability.
+Данный диалог имеет кнопку закрытия, добавленную для удобства использования.
 
 {{"demo": "pages/components/dialogs/CustomizedDialogs.js"}}
 
@@ -108,7 +108,7 @@ When dialogs become too long for the user’s viewport or device, they scroll.
 - `scroll = paper` содержимое диалогового окна прокручивается внутри элемента paper.
 - `scroll = body` содержимое диалога прокручивается внутри элемента body.
 
-Try the demo below to see what we mean:
+Попробуйте демо ниже, чтобы увидеть, что мы имеем в виду:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 

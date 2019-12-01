@@ -46,7 +46,7 @@ function getAdblock(classes, t) {
 
 const disable = process.env.NODE_ENV !== 'production' && process.env.ENABLE_AD !== 'true';
 
-const inHouses = [
+const inHouseAds = [
   {
     name: 'scaffoldhub',
     link: 'https://scaffoldhub.io/?partner=1',
@@ -69,6 +69,12 @@ const inHouses = [
     description:
       '<b>Material-UI for enterprise</b><br />Available in the Tidelift Subscription. Reduce risk, and improve code health.',
   },
+  {
+    name: 'monday',
+    link: 'https://monday.com/partners/status-video?&utm_source=Partner&utm_campaign=MaterialUI',
+    img: '/static/in-house/monday.jpg',
+    description: 'Why use multiple tools to manage your projects? Meet monday.com',
+  },
 ];
 
 function Ad(props) {
@@ -81,30 +87,38 @@ function Ad(props) {
   const [carbonOut, setCarbonOut] = React.useState(null);
   const [codeFundOut, setCodeFundOut] = React.useState(null);
 
-  const checkAdblock = React.useCallback((attempt = 1) => {
-    if (document.querySelector('.cf-wrapper') || document.querySelector('#carbonads')) {
+  const checkAdblock = React.useCallback(
+    (attempt = 1) => {
       if (
-        document.querySelector('#carbonads a') &&
-        document.querySelector('#carbonads a').getAttribute('href') ===
-          'https://material-ui-next.com/discover-more/backers'
+        document.querySelector('.cf-wrapper') ||
+        document.querySelector('#carbonads') ||
+        codeFundOut ||
+        carbonOut
       ) {
-        setCarbonOut(true);
+        if (
+          document.querySelector('#carbonads a') &&
+          document.querySelector('#carbonads a').getAttribute('href') ===
+            'https://material-ui-next.com/discover-more/backers'
+        ) {
+          setCarbonOut(true);
+        }
+
+        setAdblock(false);
+        return;
       }
 
-      setAdblock(false);
-      return;
-    }
+      if (attempt < 30) {
+        timerAdblock.current = setTimeout(() => {
+          checkAdblock(attempt + 1);
+        }, 500);
+      }
 
-    if (attempt < 30) {
-      timerAdblock.current = setTimeout(() => {
-        checkAdblock(attempt + 1);
-      }, 500);
-    }
-
-    if (attempt > 6) {
-      setAdblock(true);
-    }
-  }, []);
+      if (attempt > 6) {
+        setAdblock(true);
+      }
+    },
+    [codeFundOut, carbonOut],
+  );
 
   React.useEffect(() => {
     if (disable) {
@@ -140,18 +154,18 @@ function Ad(props) {
   if (adblock) {
     minHeight = 'auto';
 
-    if (random >= 0.8) {
+    if (Math.random() >= 0.8) {
       children = getAdblock(classes, t);
     } else {
-      children = <AdInHouse ad={inHouses[Math.round((inHouses.length - 1) * random)]} />;
+      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * random)]} />;
     }
   }
 
   if (!children) {
     if (carbonOut || codeFundOut) {
-      children = <AdInHouse ad={inHouses[Math.round((inHouses.length - 1) * random)]} />;
+      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * random)]} />;
       minHeight = 'auto';
-    } else if (random >= 0.5) {
+    } else if (random >= 0.55) {
       children = <AdCodeFund />;
     } else {
       children = <AdCarbon />;

@@ -1,9 +1,17 @@
-build
-.backups
-.cache
+# General
+.DS_Store
+Icon\r
+
+# Framer
+/.backups
+/.cache
+/build
+/dist
+node_modules
+.config.json
 .project.log
-yarn-error.log
-.yarnrc
 .framer-lock
+.npmrc
+.yarnrc
+yarn-error.log
 canvas.tsx
-dist

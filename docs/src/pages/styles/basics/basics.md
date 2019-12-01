@@ -22,6 +22,8 @@ Material-UI's styling solution is inspired by many other styling libraries such 
 
 ## Installation
 
+> `@material-ui/styles` is re-exported as `@material-ui/core/styles` - you only need to install it if you wish to use it independently from Material-UI.
+
 To install and save in your `package.json` dependencies, run:
 
 ```sh
@@ -132,7 +134,6 @@ The following example uses the Hook API, but it works the same way with the othe
 ```js
 const useStyles = makeStyles({
   root: {
-    padding: 16,
     color: 'red',
     '& p': {
       color: 'green',
@@ -144,7 +145,7 @@ const useStyles = makeStyles({
 });
 ```
 
-{{"demo": "pages/styles/basics/NestedStylesHook.js"}}
+{{"demo": "pages/styles/basics/NestedStylesHook.js", "defaultCodeOpen": false}}
 
 ## Adapting based on props
 

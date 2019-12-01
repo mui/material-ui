@@ -548,13 +548,6 @@ const appList = [
     dateAdded: '2018-01-32',
   },
   {
-    title: 'Code Typing Tutor',
-    description: 'Keyboard simulator that helps to write code quickly and without errors.',
-    image: 'code-typing-tutor.png',
-    link: 'https://code-typing-tutor.com/',
-    dateAdded: '2018-01-29',
-  },
-  {
     title: 'npm registry browser',
     description:
       'An open source web app that lets you search the npm registry ' +

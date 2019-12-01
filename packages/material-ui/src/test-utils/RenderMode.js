@@ -3,6 +3,10 @@ import * as PropTypes from 'prop-types';
 
 const Context = React.createContext();
 
+if (process.env.NODE_ENV !== 'production') {
+  Context.displayName = 'RenderContext';
+}
+
 /**
  * @ignore - internal component.
  */

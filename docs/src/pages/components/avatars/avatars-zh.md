@@ -24,3 +24,9 @@ components: Avatar
 为了创建图标头像， 您可以将图标作为`子元素`来传递。
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
+
+## 变种(Variants)
+
+If you need square or rounded avatars, use the `variant` prop.
+
+{{"demo": "pages/components/avatars/VariantAvatars.js"}}

@@ -15,7 +15,7 @@ Some of the key features:
 
 ## Simple media query
 
-You should provide a media query to the first argument of the hook. The media query string can by any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference).
+You should provide a media query to the first argument of the hook. The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference).
 
 {{"demo": "pages/components/use-media-query/SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
@@ -115,7 +115,7 @@ function handleRender(req, res) {
   const ssrMatchMedia = query => ({
     matches: mediaQuery.match(query, {
       // The estimated CSS width of the browser.
-      width: deviceType === 'mobile' ? 0 : 1024,
+      width: deviceType === 'mobile' ? '0px' : '1024px',
     }),
   });
 

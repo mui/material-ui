@@ -30,7 +30,7 @@ components: Chip
 
 下面是一个通过数组呈现多个纸片的示例。 删除一个纸片元素，则会将其从纸片组的数组中删除。 请注意，既然 `onClick` 属性并没有被定义过，所以这些纸片在被点击或触碰时可以被对焦，但不会在立体和阴影上有所变化。
 
-{{"demo": "pages/components/chips/ChipsArray.js"}}
+{{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 
 ## 小型纸片组件
 
@@ -47,3 +47,7 @@ components: Chip
 ## 在线编译纸片组件
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}
+
+## 可访问性
+
+If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.

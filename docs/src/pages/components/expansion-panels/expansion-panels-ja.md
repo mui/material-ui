@@ -9,17 +9,17 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 [拡張パネル](https://material.io/archive/guidelines/components/expansion-panels.html)は 独立した軽量のコンテナであるか、カードなどの大きなサーフェスに接続されています。
 
-> **注：** 拡張パネルについては、<a href=「https://material.io/」>Material Design guidelines</a>では説明されていませんが、Material-UIでは引き続きサポートされます。
+> **注：** 拡張パネルについては、[Material Design guidelines](https://material.io/)では説明されていませんが、Material-UIでは引き続きサポートされます。
 
 ## Simple Expansion Panel
 
-{{"demo": "pages/components/expansion-panels/SimpleExpansionPanel.js"}}
+{{"demo": "pages/components/expansion-panels/SimpleExpansionPanel.js", "bg": true}}
 
 ## Controlled Accordion
 
 Extend the default panel behavior to create an accordion with the `ExpansionPanel` component.
 
-{{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js"}}
+{{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js", "bg": true}}
 
 ## Customized expansion panels
 
@@ -31,7 +31,7 @@ Extend the default panel behavior to create an accordion with the `ExpansionPane
 
 In order to put an action such as a `Checkbox` or a button inside of the `ExpansionPanelSummary`, you need to stop the propagation of the focus and click events to prevent the panel from expanding/collapsing when using the action. You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in the label of the parent button that controls the panel expansion.
 
-{{"demo": "pages/components/expansion-panels/ActionsInExpansionPanelSummary.js"}}
+{{"demo": "pages/components/expansion-panels/ActionsInExpansionPanelSummary.js", "bg": true}}
 
 ## Performance
 
@@ -47,7 +47,7 @@ As with any performance optimization this is not a silver bullet. Be sure to ide
 
 Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
 
-{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}
+{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js", "bg": true}}
 
 ## アクセシビリティ
 

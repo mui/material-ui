@@ -27,7 +27,7 @@ The `ToggleButtonGroup` will control the selected state of its child buttons whe
 
 以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
-{{"demo": "pages/components/toggle-button/CustomizedDividers.js"}}
+{{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 
 ## 可访问性
 

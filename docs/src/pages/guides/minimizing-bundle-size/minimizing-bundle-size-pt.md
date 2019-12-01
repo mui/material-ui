@@ -162,26 +162,27 @@ If you are using Create React App, you will need to use a couple of projects tha
 
   Note: You may run into errors like these:
 
-  ```
-    Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
-    Module not found: Can't resolve '@material-ui/core/createStyles' in '/your/project'
-  ```
+  > Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
 
   This is because `@material-ui/styles` is re-exported through `core`, but the full import is not allowed.
 
   You have an import like this in your code:
 
-  `import {makeStyles, createStyles} from '@material-ui/core';`
+  ```js
+  import { makeStyles, createStyles } from '@material-ui/core';
+  ```
 
   The fix is simple, define the import separately:
 
-  `import {makeStyles, createStyles} from '@material-ui/core/styles';`
+  ```js
+  import { makeStyles, createStyles } from '@material-ui/core/styles';
+  ```
 
   Enjoy significantly faster start times.
 
 #### 2. Convert all your imports
 
-Finally, you can convert your exisiting codebase to this option with this [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) codemod. It will perform the following diffs:
+Finally, you can convert your existing codebase to this option with this [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) codemod. It will perform the following diffs:
 
 ```diff
 -import Button from '@material-ui/core/Button';

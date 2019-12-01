@@ -27,7 +27,7 @@ A grade responsiva se concentra em larguras de espaçamento consistentes, em vez
 
 Esta função de transformação de saída pode ser customizada [usando o tema](/customization/spacing/).
 
-{{"demo": "pages/components/grid/SpacingGrid.js"}}
+{{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
 
 ## Grades Fluídas
 
@@ -37,31 +37,31 @@ As grades fluídas usam colunas que dimensionam e redimensionam o conteúdo. O l
 
 As larguras de coluna se aplicam-se a todos os pontos de quebra (breakpoints) (i.e. `xs` e acima).
 
-{{"demo": "pages/components/grid/CenteredGrid.js"}}
+{{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
 
 ### Grade com pontos de interrupção (breakpoints)
 
 Algumas colunas têm várias larguras definidas, fazendo com que o leiaute seja alterado no ponto de interrupção definido.
 
-{{"demo": "pages/components/grid/FullWidthGrid.js"}}
+{{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
 ## Interativo
 
 Abaixo está uma demonstração interativa que permite explorar os resultados visuais das diferentes configurações:
 
-{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true, "bg": true}}
 
 ## Leiaute Automático
 
 O leiaute automático faz com que os *items* compartilhem equitativamente o espaço disponível. Isso também significa que você pode definir a largura de um *item* e os outros automaticamente se redimensionarão em torno dele.
 
-{{"demo": "pages/components/grid/AutoGrid.js"}}
+{{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
 
 ## Grade Complexa
 
 A demonstração a seguir não segue a especificação do Material Design, mas ilustra como a grade pode ser usada para criar leiautes complexos.
 
-{{"demo": "pages/components/grid/ComplexGrid.js"}}
+{{"demo": "pages/components/grid/ComplexGrid.js", "bg": true}}
 
 ## Grade Aninhada
 
@@ -71,7 +71,7 @@ As propriedades `container` e `item` são boleanas e independentes. Elas podem s
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
-{{"demo": "pages/components/grid/NestedGrid.js"}}
+{{"demo": "pages/components/grid/NestedGrid.js", "bg": true}}
 
 ## Limitações
 
@@ -110,7 +110,7 @@ Para que o item permaneça dentro do contêiner, você precisa definir `min-widt
   <Typography noWrap>
 ```
 
-{{"demo": "pages/components/grid/AutoGridNoWrap.js"}}
+{{"demo": "pages/components/grid/AutoGridNoWrap.js", "bg": true}}
 
 ### direction: column | column-reverse
 
@@ -120,4 +120,4 @@ Embora o componente `Grid` tenha uma propriedade `direction` que permite valores
 
 Material-UI não fornece nenhuma funcionalidade CSS de Grade, mas como pode ser visto abaixo, você pode facilmente usar leiaute de Grade CSS em suas páginas.
 
-{{"demo": "pages/components/grid/CSSGrid.js"}}
+{{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}

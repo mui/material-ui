@@ -11,35 +11,41 @@ components: Breadcrumbs, Link, Typography
 
 {{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
-## Separador personalizado
+## Active last breadcrumb
 
-No exemplo a seguir, nós usamos duas strings separadoras, e um ícone SVG.
+Keep the last breadcrumb interactive.
+
+{{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
+
+## Custom separator
+
+In the following examples, we are using two string separators, and an SVG icon.
 
 {{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
-## Breadcrumbs com ícones
+## Breadcrumbs with icons
 
 {{"demo": "pages/components/breadcrumbs/IconBreadcrumbs.js"}}
 
-## Breadcrumbs colapsado
+## Collapsed breadcrumbs
 
 {{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## Breadcrumbs personalizado
+## Customized breadcrumbs
 
-Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
-## Integração com react-router
+## Integration with react-router
 
-{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js", "bg": true}}
 
 ## Acessibilidade
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#breadcrumb)
 
-Certifique-se de adcionar uma descrição `aria-label` no componente `Breadcrumbs`.
+Be sure to add a `aria-label` description on the `Breadcrumbs` component.
 
 A acessibilidade neste componente conta com:
 

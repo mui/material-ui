@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      width: '90%',
+      width: '100%',
     },
     backButton: {
       marginRight: theme.spacing(1),

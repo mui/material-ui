@@ -1,7 +1,8 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect, assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { createClientRender } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import Snackbar from './Snackbar';
 import Grow from '../Grow';
@@ -9,6 +10,7 @@ import Grow from '../Grow';
 describe('<Snackbar />', () => {
   let mount;
   let classes;
+  const render = createClientRender({ strict: false });
 
   before(() => {
     classes = getClasses(<Snackbar open />);
@@ -128,6 +130,27 @@ describe('<Snackbar />', () => {
       clock.tick(autoHideDuration);
       assert.strictEqual(handleClose.callCount, 1);
       assert.deepEqual(handleClose.args[0], [null, 'timeout']);
+    });
+
+    it('calls onClose at timeout even if the prop changes', () => {
+      const handleClose1 = spy();
+      const handleClose2 = spy();
+      const autoHideDuration = 2e3;
+      const { setProps } = render(
+        <Snackbar
+          open={false}
+          onClose={handleClose1}
+          message="message"
+          autoHideDuration={autoHideDuration}
+        />,
+      );
+
+      setProps({ open: true });
+      clock.tick(autoHideDuration / 2);
+      setProps({ open: true, onClose: handleClose2 });
+      clock.tick(autoHideDuration / 2);
+      expect(handleClose1.callCount).to.equal(0);
+      expect(handleClose2.callCount).to.equal(1);
     });
 
     it('should not call onClose when the autoHideDuration is reset', () => {

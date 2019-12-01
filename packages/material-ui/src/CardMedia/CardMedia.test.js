@@ -3,6 +3,8 @@ import { assert } from 'chai';
 import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import CardMedia from './CardMedia';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
+import PropTypes from 'prop-types';
 
 describe('<CardMedia />', () => {
   let mount;
@@ -76,6 +78,27 @@ describe('<CardMedia />', () => {
     it('should not have `src` prop if not media component specified', () => {
       const wrapper = mount(<CardMedia image="/foo.jpg" component="table" />);
       assert.strictEqual(findOutermostIntrinsic(wrapper).props().src, undefined);
+    });
+  });
+
+  describe('warnings', () => {
+    before(() => {
+      consoleErrorMock.spy();
+    });
+
+    after(() => {
+      consoleErrorMock.reset();
+      PropTypes.resetWarningCache();
+    });
+
+    it('warns when neither `children`, nor `image`, nor `src` are provided', () => {
+      mount(<CardMedia />);
+
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'Material-UI: either `children`, `image` or `src` prop must be specified.',
+      );
     });
   });
 });

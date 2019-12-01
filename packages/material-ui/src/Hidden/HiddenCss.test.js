@@ -1,21 +1,32 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createShallow, getClasses } from '@material-ui/core/test-utils';
+import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
 import HiddenCss from './HiddenCss';
+import { createMuiTheme, MuiThemeProvider } from '../styles';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 const Foo = () => <div>bar</div>;
 
 describe('<HiddenCss />', () => {
+  /**
+   * @type {ReturnType<typeof createMount>}
+   */
+  let mount;
   let shallow;
   let classes;
 
   before(() => {
+    mount = createMount({ strict: true });
     shallow = createShallow({ untilSelector: 'div' });
     classes = getClasses(
       <HiddenCss>
         <div />
       </HiddenCss>,
     );
+  });
+
+  after(() => {
+    mount.cleanUp();
   });
 
   describe('the generated class names', () => {
@@ -82,6 +93,19 @@ describe('<HiddenCss />', () => {
       );
       assert.strictEqual(wrapper.hasClass('custom'), true);
     });
+
+    it('allows custom breakpoints', () => {
+      const theme = createMuiTheme({ breakpoints: { keys: ['xxl'] } });
+      const wrapper = mount(
+        <MuiThemeProvider theme={theme}>
+          <HiddenCss xxlUp className="testid" classes={{ xxlUp: 'xxlUp' }}>
+            <div />
+          </HiddenCss>
+        </MuiThemeProvider>,
+      );
+
+      assert.strictEqual(wrapper.find('div.testid').hasClass('xxlUp'), true);
+    });
   });
 
   describe('prop: children', () => {
@@ -117,6 +141,30 @@ describe('<HiddenCss />', () => {
       assert.strictEqual(wrapper.childAt(0).is(Foo), true);
       assert.strictEqual(wrapper.childAt(1).is(Foo), true);
       assert.strictEqual(wrapper.childAt(2).text(), 'foo');
+    });
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      consoleErrorMock.spy();
+    });
+
+    afterEach(() => {
+      consoleErrorMock.reset();
+    });
+
+    it('warns about excess props (potentially undeclared breakpoints)', () => {
+      mount(
+        <HiddenCss xxlUp>
+          <div />
+        </HiddenCss>,
+      );
+
+      assert.strictEqual(consoleErrorMock.callCount(), 1);
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        'Material-UI: unsupported props received by `<Hidden implementation="css" />`: xxlUp.',
+      );
     });
   });
 });

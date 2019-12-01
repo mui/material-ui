@@ -34,6 +34,7 @@ export const styles = theme => ({
     fontSize: theme.typography.pxToRem(24),
     color: '#ffb400',
     cursor: 'pointer',
+    WebkitTapHighlightColor: 'transparent',
     '&$disabled': {
       opacity: 0.5,
       pointerEvents: 'none',
@@ -434,6 +435,8 @@ Rating.propTypes = {
   emptyIcon: PropTypes.node,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    *
    * @param {number} value The rating label's value to format.
    * @returns {string}

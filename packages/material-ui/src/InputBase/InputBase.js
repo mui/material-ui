@@ -82,7 +82,6 @@ export const styles = theme => {
       background: 'none',
       height: '1.1875em', // Reset (19px), match the native input line-height
       margin: 0, // Reset for Safari
-      // Remove grey highlight
       WebkitTapHighlightColor: 'transparent',
       display: 'block',
       // Make the flex item shrink with Firefox
@@ -132,10 +131,6 @@ export const styles = theme => {
     /* Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense: {
       paddingTop: 4 - 1,
-    },
-    /* Styles applied to the `input` element if `select={true}`. */
-    inputSelect: {
-      paddingRight: 24,
     },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
@@ -196,7 +191,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     renderSuffix,
     rows,
     rowsMax,
-    select = false,
     startAdornment,
     type = 'text',
     value: valueProp,
@@ -451,7 +445,6 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
               [classes.disabled]: fcs.disabled,
               [classes.inputTypeSearch]: type === 'search',
               [classes.inputMultiline]: multiline,
-              [classes.inputSelect]: select,
               [classes.inputMarginDense]: fcs.margin === 'dense',
               [classes.inputHiddenLabel]: fcs.hiddenLabel,
               [classes.inputAdornedStart]: startAdornment,
@@ -606,10 +599,6 @@ InputBase.propTypes = {
    * Maximum number of rows to display when multiline option is set to true.
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  /**
-   * Should be `true` when the component hosts a select.
-   */
-  select: PropTypes.bool,
   /**
    * Start `InputAdornment` for this component.
    */

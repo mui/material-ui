@@ -28,7 +28,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 是的，这就是您开始使用所需的一切，您也可以在这个实时的交互式的演示中所查看：
 
-{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
+{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true, "bg": true}}
 
 ## 全局变量
 
@@ -51,7 +51,7 @@ Material-UI 提供了可选的 [CssBaseline](/components/css-baseline/) 组件�
 
 ## 不同版本的文档
 
-本文档始终展示了最新最稳定的 Material-UI 版本。 您可以在一个[单独的页面上](/versions/)找到旧版本的文档。
+本文档始终展示了最新最稳定的 Material-UI 版本。 You can find older versions of the documentation on a [separate page](https://material-ui.com/versions/).
 
 ## 下一步
 

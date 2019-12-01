@@ -74,21 +74,4 @@ export function UseWidth() {
 
 `);
   });
-  it('should return all if defaultCodeOpen is false', () => {
-    expect(
-      getJsxPreview(
-        `
-export default function UseWidth() {
-  return <MyComponent />;
-}
-`,
-        false,
-      ),
-    ).to.equal(`
-export default function UseWidth() {
-  return <MyComponent />;
-}
-
-`);
-  });
 });

@@ -77,6 +77,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
   const {
     ActionsComponent = TablePaginationActions,
     backIconButtonProps,
+    backIconButtonText = 'Previous page',
     classes,
     className,
     colSpan: colSpanProp,
@@ -85,6 +86,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     labelDisplayedRows = defaultLabelDisplayedRows,
     labelRowsPerPage = 'Rows per page:',
     nextIconButtonProps,
+    nextIconButtonText = 'Next page',
     onChangePage,
     onChangeRowsPerPage,
     page,
@@ -143,9 +145,17 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
         </Typography>
         <ActionsComponent
           className={classes.actions}
-          backIconButtonProps={backIconButtonProps}
+          backIconButtonProps={{
+            title: backIconButtonText,
+            'aria-label': backIconButtonText,
+            ...backIconButtonProps,
+          }}
           count={count}
-          nextIconButtonProps={nextIconButtonProps}
+          nextIconButtonProps={{
+            title: nextIconButtonText,
+            'aria-label': nextIconButtonText,
+            ...nextIconButtonProps,
+          }}
           onChangePage={onChangePage}
           page={page}
           rowsPerPage={rowsPerPage}
@@ -165,6 +175,12 @@ TablePagination.propTypes = {
    * Props applied to the back arrow [`IconButton`](/api/icon-button/) component.
    */
   backIconButtonProps: PropTypes.object,
+  /**
+   * Text label for the back arrow icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   */
+  backIconButtonText: PropTypes.string,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
@@ -189,17 +205,27 @@ TablePagination.propTypes = {
   count: PropTypes.number.isRequired,
   /**
    * Customize the displayed rows label.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   labelDisplayedRows: PropTypes.func,
   /**
    * Customize the rows per page label. Invoked with a `{ from, to, count, page }`
    * object.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   labelRowsPerPage: PropTypes.node,
   /**
    * Props applied to the next arrow [`IconButton`](/api/icon-button/) element.
    */
   nextIconButtonProps: PropTypes.object,
+  /**
+   * Text label for the next arrow icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   */
+  nextIconButtonText: PropTypes.string,
   /**
    * Callback fired when the page is changed.
    *

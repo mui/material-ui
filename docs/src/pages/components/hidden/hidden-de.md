@@ -37,13 +37,13 @@ Wenn Sie serverseitiges Rendering verwenden, können Sie `implementation="css"` 
 
 Unter Verwendung einer beliebigen Haltepunkte `up` Eigenschaft, werden die angegebenen *Kinder* ausgeblendet *bei oder über* dem Haltepunkt.
 
-{{"demo": "pages/components/hidden/BreakpointUp.js"}}
+{{"demo": "pages/components/hidden/BreakpointUp.js", "bg": true}}
 
 ## Haltepunkte Down
 
 Unter Verwendung einer beliebigen Haltepunkte `down` Eigenschaft, werden die angegebenen *Kinder* ausgeblendet *bei oder unter* dem Haltepunkt.
 
-{{"demo": "pages/components/hidden/BreakpointDown.js"}}
+{{"demo": "pages/components/hidden/BreakpointDown.js", "bg": true}}
 
 ## Haltepunkte einzeln
 
@@ -54,10 +54,10 @@ Die `only` Eigenschaft kann auf zwei Arten verwendet werden:
 - Einzelnen Haltepunkt auflisten
 - Listen Sie ein Array von Haltepunkten auf
 
-{{"demo": "pages/components/hidden/BreakpointOnly.js"}}
+{{"demo": "pages/components/hidden/BreakpointOnly.js", "bg": true}}
 
 ## Integration mit Grid
 
 Es ist üblich, das`Grid` an verschiedenen Haltepunkten zu ändern, und in vielen Fällen möchten Sie einige dieser Elemente ausblenden.
 
-{{"demo": "pages/components/hidden/GridIntegration.js"}}
+{{"demo": "pages/components/hidden/GridIntegration.js", "bg": true}}

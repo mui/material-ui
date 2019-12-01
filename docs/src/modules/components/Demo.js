@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import copy from 'clipboard-copy';
 import { useSelector, useDispatch } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, fade } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Collapse from '@material-ui/core/Collapse';
+import NoSsr from '@material-ui/core/NoSsr';
 import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
 import GitHubIcon from '@material-ui/icons/GitHub';
@@ -53,12 +54,32 @@ const styles = theme => ({
     position: 'relative',
     outline: 0,
     margin: 'auto',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: theme.palette.background.level2,
     display: 'flex',
     justifyContent: 'center',
-    padding: 20,
     [theme.breakpoints.up('sm')]: {
+      borderRadius: theme.shape.borderRadius,
+    },
+  },
+  /* Isolate the demo with an outline. */
+  demoBgOutlined: {
+    padding: theme.spacing(3),
+    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    [theme.breakpoints.up('sm')]: {
+      borderLeftWidth: 1,
+      borderRightWidth: 1,
+    },
+  },
+  /* Prepare the background to display an inner elevation. */
+  demoBgTrue: {
+    padding: theme.spacing(3),
+    backgroundColor: theme.palette.background.level2,
+  },
+  /* Make no difference between the demo and the markdown. */
+  demoBgInline: {
+    // Maintain alignment with the markdown text
+    [theme.breakpoints.down('xs')]: {
       padding: theme.spacing(3),
     },
   },
@@ -75,6 +96,7 @@ const styles = theme => ({
       flip: false,
       top: 0,
       right: theme.spacing(1),
+      height: theme.spacing(6),
     },
     justifyContent: 'space-between',
   },
@@ -91,6 +113,7 @@ const styles = theme => ({
     },
     '& pre': {
       overflow: 'auto',
+      lineHeight: 1.5,
       margin: '0px !important',
       maxHeight: 1000,
     },
@@ -133,7 +156,6 @@ function Demo(props) {
   const dispatch = useDispatch();
   const t = useSelector(state => state.options.t);
   const codeVariant = useSelector(state => state.options.codeVariant);
-
   const demoData = getDemoData(codeVariant, demo, githubLocation);
 
   const [sourceHintSeen, setSourceHintSeen] = React.useState(false);
@@ -241,6 +263,14 @@ function Demo(props) {
     [demoOptions.height, demoOptions.maxWidth],
   );
 
+  if (demoOptions.bg == null) {
+    demoOptions.bg = 'outlined';
+  }
+
+  if (demoOptions.iframe) {
+    demoOptions.bg = true;
+  }
+
   const createHandleCodeSourceLink = anchor => async () => {
     try {
       await copy(`${window.location.href.split('#')[0]}#${anchor}`);
@@ -266,9 +296,12 @@ function Demo(props) {
 
   const match = useMediaQuery(theme => theme.breakpoints.up('sm'));
 
-  const jsx = getJsxPreview(demoData.raw || '', demoOptions.defaultCodeOpen);
+  const jsx = getJsxPreview(demoData.raw || '');
   const showPreview =
-    !demoOptions.hideHeader && jsx !== demoData.raw && jsx.split(/\n/).length <= 20;
+    !demoOptions.hideHeader &&
+    demoOptions.defaultCodeOpen !== false &&
+    jsx !== demoData.raw &&
+    jsx.split(/\n/).length <= 15;
 
   let showCodeLabel;
   if (codeOpen) {
@@ -282,6 +315,9 @@ function Demo(props) {
       <div
         className={clsx(classes.demo, {
           [classes.demoHiddenHeader]: demoOptions.hideHeader,
+          [classes.demoBgOutlined]: demoOptions.bg === 'outlined',
+          [classes.demoBgTrue]: demoOptions.bg === true,
+          [classes.demoBgInline]: demoOptions.bg === 'inline',
         })}
         tabIndex={-1}
         onMouseEnter={handleDemoHover}
@@ -298,115 +334,121 @@ function Demo(props) {
       <div className={classes.anchorLink} id={`${demoName}.tsx`} />
       {demoOptions.hideHeader ? null : (
         <div className={classes.header}>
-          <DemoLanguages
-            demo={demo}
-            codeOpen={codeOpen}
-            codeVariant={codeVariant}
-            gaEventCategory={gaCategory}
-            onLanguageClick={handleCodeLanguageClick}
-          />
-          <div className={classes.headerButtons}>
-            <Tooltip
-              classes={{ popper: classes.tooltip }}
-              key={showSourceHint}
-              open={showSourceHint && match ? true : undefined}
-              PopperProps={{ disablePortal: true }}
-              title={showCodeLabel}
-              placement="top"
-            >
-              <IconButton
-                aria-label={showCodeLabel}
-                data-ga-event-category={gaCategory}
-                data-ga-event-action="expand"
-                onClick={handleClickCodeOpen}
-                color={demoHovered ? 'primary' : 'default'}
-              >
-                <CodeIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Tooltip classes={{ popper: classes.tooltip }} title={t('viewGitHub')} placement="top">
-              <IconButton
-                aria-label={t('viewGitHub')}
-                data-ga-event-category={gaCategory}
-                data-ga-event-action="github"
-                href={demoData.githubLocation}
-                target="_blank"
-                rel="noopener nofollow"
-              >
-                <GitHubIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            {demoOptions.hideEditButton ? null : (
+          <NoSsr>
+            <DemoLanguages
+              demo={demo}
+              codeOpen={codeOpen}
+              codeVariant={codeVariant}
+              gaEventCategory={gaCategory}
+              onLanguageClick={handleCodeLanguageClick}
+            />
+            <div className={classes.headerButtons}>
               <Tooltip
                 classes={{ popper: classes.tooltip }}
-                title={t('codesandbox')}
+                key={showSourceHint}
+                open={showSourceHint && match ? true : undefined}
+                PopperProps={{ disablePortal: true }}
+                title={showCodeLabel}
                 placement="top"
               >
                 <IconButton
-                  aria-label={t('codesandbox')}
+                  aria-label={showCodeLabel}
                   data-ga-event-category={gaCategory}
-                  data-ga-event-action="codesandbox"
-                  onClick={handleClickCodeSandbox}
+                  data-ga-event-action="expand"
+                  onClick={handleClickCodeOpen}
+                  color={demoHovered ? 'primary' : 'default'}
                 >
-                  <EditIcon fontSize="small" />
+                  <CodeIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
-            )}
-            <IconButton
-              onClick={handleClickMore}
-              aria-owns={anchorEl ? 'demo-menu-more' : undefined}
-              aria-haspopup="true"
-              aria-label={t('seeMore')}
-            >
-              <MoreVertIcon fontSize="small" />
-            </IconButton>
-            <Menu
-              id="demo-menu-more"
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={handleCloseMore}
-              getContentAnchorEl={null}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-            >
-              <MenuItem
-                data-ga-event-category={gaCategory}
-                data-ga-event-action="copy"
-                onClick={handleClickCopy}
+              <Tooltip
+                classes={{ popper: classes.tooltip }}
+                title={t('viewGitHub')}
+                placement="top"
               >
-                {t('copySource')}
-              </MenuItem>
+                <IconButton
+                  aria-label={t('viewGitHub')}
+                  data-ga-event-category={gaCategory}
+                  data-ga-event-action="github"
+                  href={demoData.githubLocation}
+                  target="_blank"
+                  rel="noopener nofollow"
+                >
+                  <GitHubIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
               {demoOptions.hideEditButton ? null : (
+                <Tooltip
+                  classes={{ popper: classes.tooltip }}
+                  title={t('codesandbox')}
+                  placement="top"
+                >
+                  <IconButton
+                    aria-label={t('codesandbox')}
+                    data-ga-event-category={gaCategory}
+                    data-ga-event-action="codesandbox"
+                    onClick={handleClickCodeSandbox}
+                  >
+                    <EditIcon fontSize="small" />
+                  </IconButton>
+                </Tooltip>
+              )}
+              <IconButton
+                onClick={handleClickMore}
+                aria-owns={anchorEl ? 'demo-menu-more' : undefined}
+                aria-haspopup="true"
+                aria-label={t('seeMore')}
+              >
+                <MoreVertIcon fontSize="small" />
+              </IconButton>
+              <Menu
+                id="demo-menu-more"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleCloseMore}
+                getContentAnchorEl={null}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+              >
                 <MenuItem
                   data-ga-event-category={gaCategory}
-                  data-ga-event-action="stackblitz"
-                  onClick={handleClickStackBlitz}
+                  data-ga-event-action="copy"
+                  onClick={handleClickCopy}
                 >
-                  {t('stackblitz')}
+                  {t('copySource')}
                 </MenuItem>
-              )}
-              <MenuItem
-                data-ga-event-category={gaCategory}
-                data-ga-event-action="copy-js-source-link"
-                onClick={createHandleCodeSourceLink(`${demoName}.js`)}
-              >
-                {t('copySourceLinkJS')}
-              </MenuItem>
-              <MenuItem
-                data-ga-event-category={gaCategory}
-                data-ga-event-action="copy-ts-source-link"
-                onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
-              >
-                {t('copySourceLinkTS')}
-              </MenuItem>
-            </Menu>
-          </div>
+                {demoOptions.hideEditButton ? null : (
+                  <MenuItem
+                    data-ga-event-category={gaCategory}
+                    data-ga-event-action="stackblitz"
+                    onClick={handleClickStackBlitz}
+                  >
+                    {t('stackblitz')}
+                  </MenuItem>
+                )}
+                <MenuItem
+                  data-ga-event-category={gaCategory}
+                  data-ga-event-action="copy-js-source-link"
+                  onClick={createHandleCodeSourceLink(`${demoName}.js`)}
+                >
+                  {t('copySourceLinkJS')}
+                </MenuItem>
+                <MenuItem
+                  data-ga-event-category={gaCategory}
+                  data-ga-event-action="copy-ts-source-link"
+                  onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
+                >
+                  {t('copySourceLinkTS')}
+                </MenuItem>
+              </Menu>
+            </div>
+          </NoSsr>
         </div>
       )}
       <Collapse in={codeOpen || showPreview} unmountOnExit>

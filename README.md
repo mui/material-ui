@@ -44,28 +44,22 @@ yarn add @material-ui/core
 
 Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
 
-## Supporting Material-UI
+## Who sponsors Material-UI?
 
-Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development helped by the support of these awesome [backers](https://material-ui.com/discover-more/backers/). If you'd like to join them, please consider:
-- [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
-- [Become a backer or sponsor on OpenCollective](https://opencollective.com/material-ui).
+### Diamond 💎
 
-#### What's the difference between Patreon and OpenCollective?
+*3/3 slots available*
 
-Funds donated via Patreon directly support [Olivier Tassinari](https://github.com/oliviertassinari)'s work on Material-UI.
-Funds donated via OpenCollective are managed transparently and will be used for compensating work and expenses for core team members.
-Your name/logo will receive proper recognition and exposure by donating on either platform.
+Diamond Sponsors are those who have pledged $2,000/month and more to Material-UI.
+Please contact us at diamond@material-ui.com to subscribe to this tier.
 
-### Gold Sponsors
-
-Gold Sponsors are those who have pledged $500/month and more to Material-UI.
+### Gold 🏆
 
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex; justify-content: center;">
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="creative-tim" href="https://www.creative-tim.com/?partner=104080" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="126" src="https://github.com/creativetimofficial.png?size=126" alt="creative-tim" title="Premium Themes"></a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/tidelift.png?size=96" alt="tidelift" title="Get Professionally Supported Material-UI"></a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/teambit.png?size=96" alt="bitsrc" title="The fastest way to share code"></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/tidelift.png?size=96" alt="tidelift" title="Enterprise-ready open source software" /></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/teambit.png?size=96" alt="bitsrc" title="The fastest way to share code" /></a>
 </p>
 
 via [OpenCollective](https://opencollective.com/material-ui)
@@ -74,6 +68,8 @@ via [OpenCollective](https://opencollective.com/material-ui)
   <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Ff4053300-e0ea-11e7-acf0-0fa7c0509f4e.png&height=100" alt="callemall" title="The easy way to message your group" width="100" loading="lazy"></a>
   <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.crosswordsolver.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/crosswordsolver/avatar.png" alt="crosswordsolver" title="Crossword Puzzle Solver" width="100" loading="lazy"></a>
 </p>
+
+Gold Sponsors are those who have pledged $500/month and more to Material-UI.
 
 ### There is more!
 
@@ -137,34 +133,6 @@ Please read the [changelog](https://github.com/mui-org/material-ui/releases).
 ## Roadmap
 
 The future plans and high priority features and enhancements can be found in the [roadmap](https://material-ui.com/discover-more/roadmap/) file.
-
-## Thanks
-
-Material-UI is only made possible thanks to these great services that sponsor our core infrastructure:
-
-[<img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" width="100">](https://github.com/)
-
-GitHub allows us to host the Git repository.
-
-[<img src="https://assets.brandfolder.com/otz6k5-cj8pew-e4rk9u/element.png?v=1501538594" width="120">](https://circleci.com/)
-
-CircleCI allows us to run the test suite.
-
-[<img src="https://cdn.netlify.com/15ecf59b59c9d04b88097c6b5d2c7e8a7d1302d0/1b6d6/img/press/logos/full-logo-light.svg" width="120">](https://www.netlify.com/)
-
-Netlify allows us to distribute the documentation.
-
-[<img src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png" width="120">](https://crowdin.com/)
-
-CrowdIn allows us to translate the documentation.
-
-[<img src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" width="120">](https://www.browserstack.com/)
-
-BrowserStack allows us to test in real browsers.
-
-[<img src="https://raw.githubusercontent.com/codecov/media/master/logos/icon-50.png" height="30">](https://codecov.io/)
-
-CodeCov allows us to monitor the test coverage.
 
 ## License
 

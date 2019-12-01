@@ -2,20 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PopperJS from 'popper.js';
 import { chainPropTypes, refType } from '@material-ui/utils';
+import { useTheme } from '@material-ui/styles';
 import Portal from '../Portal';
 import createChainedFunction from '../utils/createChainedFunction';
 import setRef from '../utils/setRef';
 import useForkRef from '../utils/useForkRef';
 import ownerWindow from '../utils/ownerWindow';
 
-/**
- * Flips placement if in <body dir="rtl" />
- * @param {string} placement
- */
-function flipPlacement(placement) {
-  const direction = (typeof window !== 'undefined' && document.body.getAttribute('dir')) || 'ltr';
+function flipPlacement(placement, theme) {
+  const direction = (theme && theme.direction) || 'ltr';
 
-  if (direction !== 'rtl') {
+  if (direction === 'ltr') {
     return placement;
   }
 
@@ -72,7 +69,8 @@ const Popper = React.forwardRef(function Popper(props, ref) {
 
   const [exited, setExited] = React.useState(true);
 
-  const rtlPlacement = flipPlacement(initialPlacement);
+  const theme = useTheme();
+  const rtlPlacement = flipPlacement(initialPlacement, theme);
   /**
    * placement initialized from prop but can change during lifetime if modifiers.flip.
    * modifiers.flip is essentially a flip for controlled/uncontrolled behavior

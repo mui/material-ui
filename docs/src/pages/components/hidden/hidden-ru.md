@@ -37,13 +37,13 @@ mdDown      |                     hide | show
 
 Используя любое свойство точки остановки от `up`, данные *дочерних элементов* будут скрыты *на уровне или выше* точки остановки.
 
-{{"demo": "pages/components/hidden/BreakpointUp.js"}}
+{{"demo": "pages/components/hidden/BreakpointUp.js", "bg": true}}
 
 ## Точка остановки Вниз
 
 Используя любое свойство точки остановки от `down`, данные *дочерних элементов* будут скрыты *на уровне или ниже* точки остановки.
 
-{{"demo": "pages/components/hidden/BreakpointDown.js"}}
+{{"demo": "pages/components/hidden/BreakpointDown.js", "bg": true}}
 
 ## Точка остановки Только (only)
 
@@ -54,10 +54,10 @@ mdDown      |                     hide | show
 - указать одну точку остановки
 - перечислить массив точек остановки
 
-{{"demo": "pages/components/hidden/BreakpointOnly.js"}}
+{{"demo": "pages/components/hidden/BreakpointOnly.js", "bg": true}}
 
 ## Интеграция с Grid (Сеткой)
 
 Весьма обычным является изменение `Grid` в разных точках остановки, и во многих случаях вы хотите скрыть некоторые из этих элементов.
 
-{{"demo": "pages/components/hidden/GridIntegration.js"}}
+{{"demo": "pages/components/hidden/GridIntegration.js", "bg": true}}

@@ -20,7 +20,7 @@ components: TextField
 
 ## Native pickers
 
-⚠️ Поддержка нативных типов полей ввода [не идеальна](https://caniuse.com/#feat=input-datetime). Have a look at [@material-ui/pickers](#material-ui-pickers) for a richer solution.
+⚠️ Поддержка нативных типов полей ввода [не идеальна](https://caniuse.com/#feat=input-datetime). Have a look at [@material-ui/pickers](https://material-ui-pickers.dev/) for a richer solution.
 
 ### Datepickers
 

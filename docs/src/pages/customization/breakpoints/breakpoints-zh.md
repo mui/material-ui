@@ -203,7 +203,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 1. `options` (*Object* [optional]): 
   - ` options.withTheme ` (*Boolean* [optional]): 默认值为 `false`。 将 ` theme ` 对象作为属性提供给组件。
-  - `options.noSSR` (*Boolean* [可选的]): 默认值为`false`。 为了执行服务器端呈现协调，它需要呈现两次。 第一次没有任何东西，第二次与孩子们在一起。 这种双遍渲染周期有一个缺点。 The UI might blink. You can set this flag to `true` if you are not doing server-side rendering.
+  - `options.noSSR` (*Boolean* [可选的]): 默认值为`false`。 为了执行服务器端呈现协调，它需要呈现两次。 第一次没有任何东西，第二次与孩子们在一起。 这种双遍渲染周期有一个缺点。 UI显示的时候可能会发生闪烁，如果你不打算使用SSR服务器端渲染 你可以将其设置为`true`来避免这种情况发生
   - `options.initialWidth` （*Breakpoint* [可选的]）： 为`window.innerWidth`在服务器上不可用， 我们默认在第一次安装期间呈现空组件。 You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/globals/#default-props) on the theme. In order to set the initialWidth we need to pass a custom property with this shape:
 
 ```js
@@ -240,6 +240,6 @@ function MyComponent(props) {
 export default withWidth()(MyComponent);
 ```
 
-## Default values
+## 默认值
 
 You can explore the default values of the breakpoints using [the theme explorer](/customization/default-theme/?expend-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).

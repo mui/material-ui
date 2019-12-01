@@ -8,7 +8,7 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 
 ### Additive
 
-{{"demo": "pages/system/borders/BorderAdditive.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/borders/BorderAdditive.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box border={1}>…
@@ -20,7 +20,7 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 
 ### Subtractive
 
-{{"demo": "pages/system/borders/BorderSubtractive.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/borders/BorderSubtractive.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box border={0}>…

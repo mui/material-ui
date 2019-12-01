@@ -8,7 +8,7 @@ Use os utilitários de borda para adicionar ou remover as bordas de um elemento.
 
 ### Adicionando
 
-{{"demo": "pages/system/borders/BorderAdditive.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/borders/BorderAdditive.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box border={1}>…
@@ -20,7 +20,7 @@ Use os utilitários de borda para adicionar ou remover as bordas de um elemento.
 
 ### Removendo
 
-{{"demo": "pages/system/borders/BorderSubtractive.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/borders/BorderSubtractive.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box border={0}>…

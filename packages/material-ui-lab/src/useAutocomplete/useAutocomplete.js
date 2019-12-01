@@ -11,12 +11,30 @@ function stripDiacritics(string) {
     : string;
 }
 
+function defaultStringify(value) {
+  if (value == null) {
+    return '';
+  }
+
+  if (typeof value === 'string') {
+    return value;
+  }
+
+  if (typeof value === 'object') {
+    return Object.keys(value)
+      .map(key => value[key])
+      .join(' ');
+  }
+
+  return JSON.stringify(value);
+}
+
 export function createFilterOptions(config = {}) {
   const {
     ignoreAccents = true,
     ignoreCase = true,
     matchFrom = 'any',
-    stringify = JSON.stringify,
+    stringify = defaultStringify,
     trim = false,
   } = config;
 
@@ -192,6 +210,10 @@ export default function useAutocomplete(props) {
       newInputValue = typeof optionLabel === 'string' ? optionLabel : '';
     }
 
+    if (inputValue === newInputValue) {
+      return;
+    }
+
     setInputValue(newInputValue);
 
     if (onInputChange) {
@@ -349,7 +371,7 @@ export default function useAutocomplete(props) {
 
   React.useEffect(() => {
     changeHighlightedIndex('reset', 'next');
-  }, [filteredOptions.length]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [inputValue]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleOpen = event => {
     if (open) {
@@ -483,21 +505,25 @@ export default function useAutocomplete(props) {
   };
 
   const handleKeyDown = event => {
-    if (['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
+    if (focusedTag !== -1 && ['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
       setFocusedTag(-1);
       focusTag(-1);
     }
 
     switch (event.key) {
       case 'Home':
-        // Prevent scroll of the page
-        event.preventDefault();
-        changeHighlightedIndex('start', 'next');
+        if (popupOpen) {
+          // Prevent scroll of the page
+          event.preventDefault();
+          changeHighlightedIndex('start', 'next');
+        }
         break;
       case 'End':
-        // Prevent scroll of the page
-        event.preventDefault();
-        changeHighlightedIndex('end', 'previous');
+        if (popupOpen) {
+          // Prevent scroll of the page
+          event.preventDefault();
+          changeHighlightedIndex('end', 'previous');
+        }
         break;
       case 'PageUp':
         // Prevent scroll of the page
@@ -613,6 +639,10 @@ export default function useAutocomplete(props) {
       handleOpen(event);
     }
 
+    if (inputValue === newValue) {
+      return;
+    }
+
     setInputValue(newValue);
 
     if (onInputChange) {
@@ -626,7 +656,8 @@ export default function useAutocomplete(props) {
   };
 
   const handleOptionClick = event => {
-    selectNewValue(event, filteredOptions[highlightedIndexRef.current]);
+    const index = Number(event.currentTarget.getAttribute('data-option-index'));
+    selectNewValue(event, filteredOptions[index]);
   };
 
   const handleTagDelete = index => event => {
@@ -668,15 +699,16 @@ export default function useAutocomplete(props) {
       firstFocus.current &&
       inputRef.current.selectionEnd - inputRef.current.selectionStart === 0
     ) {
+      inputRef.current.focus();
       inputRef.current.select();
     }
 
     firstFocus.current = false;
   };
 
-  const handleInputMouseDown = () => {
-    if (inputValue === '') {
-      handlePopupIndicator();
+  const handleInputMouseDown = event => {
+    if (inputValue === '' && (!disableOpenOnFocus || inputRef.current === document.activeElement)) {
+      handlePopupIndicator(event);
     }
   };
 
@@ -728,8 +760,8 @@ export default function useAutocomplete(props) {
       'aria-autocomplete': autoComplete ? 'both' : 'list',
       'aria-controls': popupOpen ? `${id}-popup` : null,
       // Disable browser's suggestion that might overlap with the popup.
-      // (autocomplete and autofill)
-      autoComplete: 'disabled',
+      // Handle autocomplete but not autofill.
+      autoComplete: 'off',
       ref: inputRef,
       autoCapitalize: 'none',
       spellCheck: 'false',
@@ -886,7 +918,7 @@ useAutocomplete.propTypes = {
    */
   includeInputInList: PropTypes.bool,
   /**
-   * If true, `value` must be an array and the menu will support multiple selections.
+   * If `true`, `value` must be an array and the menu will support multiple selections.
    */
   multiple: PropTypes.bool,
   /**

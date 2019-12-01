@@ -28,7 +28,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 そうです。これは本当に始めるのに必要な全てです。この編集可能なデモで確認できるように:
 
-{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
+{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true, "bg": true}}
 
 ## Globals
 
@@ -51,7 +51,7 @@ Material-UIはオプションで[CssBaseline](/components/css-baseline/)コン�
 
 ## バージョン管理されたドキュメント
 
-このドキュメントは常に最新の安定版のMaterial-UIを反映しています。 古いバージョンのドキュメントは、[別のページ ](/versions/)にあります。
+このドキュメントは常に最新の安定版のMaterial-UIを反映しています。 You can find older versions of the documentation on a [separate page](https://material-ui.com/versions/).
 
 ## 次のステップ
 

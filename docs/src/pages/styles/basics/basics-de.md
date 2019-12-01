@@ -18,6 +18,8 @@ Die Styling-Lösung von Material-UI ist von vielen anderen Styling-Bibliotheken 
 
 ## Installation
 
+> `@material-ui/styles` is re-exported as `@material-ui/core/styles` - you only need to install it if you wish to use it independently from Material-UI.
+
 Um die Abhängigkeit zu ihrer `package.json` hinzuzufügen, führen Sie folgenden Befehl aus:
 
 ```sh
@@ -126,7 +128,6 @@ Sie können Selektoren verschachteln, um Elemente innerhalb der aktuellen Klasse
 ```js
 const useStyles = makeStyles({
   root: {
-    padding: 16,
     color: 'red',
     '& p': {
       color: 'green',
@@ -138,7 +139,7 @@ const useStyles = makeStyles({
 });
 ```
 
-{{"demo": "pages/styles/basics/NestedStylesHook.js"}}
+{{"demo": "pages/styles/basics/NestedStylesHook.js", "defaultCodeOpen": false}}
 
 ## Anpassung basierend auf Eigenschaften
 

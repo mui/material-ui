@@ -50,8 +50,8 @@ function Media(props: MediaProps) {
             </IconButton>
           )
         }
-        title={loading ? <Skeleton height={6} width="80%" /> : 'Ted'}
-        subheader={loading ? <Skeleton height={6} width="40%" /> : '5 hours ago'}
+        title={loading ? <Skeleton height={10} width="80%" style={{ marginBottom: 6 }} /> : 'Ted'}
+        subheader={loading ? <Skeleton height={10} width="40%" /> : '5 hours ago'}
       />
       {loading ? (
         <Skeleton variant="rect" className={classes.media} />
@@ -65,8 +65,8 @@ function Media(props: MediaProps) {
       <CardContent>
         {loading ? (
           <React.Fragment>
-            <Skeleton height={6} />
-            <Skeleton height={6} width="80%" />
+            <Skeleton height={10} style={{ marginBottom: 6 }} />
+            <Skeleton height={10} width="80%" />
           </React.Fragment>
         ) : (
           <Typography variant="body2" color="textSecondary" component="p">

@@ -25,4 +25,4 @@ O CSS exibido nesta documentação é processado com [`autoprefixer`](https://ww
 
 ## React
 
-Material-UI supports the most recent versions of React, starting with ^16.8.0 (the one with the hooks). Have a look at the older [versions](/versions/) for backward compatibility.
+Material-UI supports the most recent versions of React, starting with ^16.8.0 (the one with the hooks). Have a look at the older [versions](https://material-ui.com/versions/) for backward compatibility.

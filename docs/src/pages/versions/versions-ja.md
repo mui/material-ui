@@ -6,13 +6,13 @@
 
 本番環境では最新バージョンをお勧めします。
 
-{{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
+{{"demo": "pages/versions/StableVersions.js", "hideHeader": true, "bg": "inline"}}
 
 ## 最新バージョン
 
 ここには、最新の未発表の文書とコードがあります。 これを使用して、変更点を確認し、Material-UIの貢献者により良いフィードバックを提供できます。
 
-{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true}}
+{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true, "bg": "inline"}}
 
 ## バージョン管理戦略
 
@@ -39,7 +39,7 @@ Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Material-U
 ## リリーススケジュール
 
 | Date           | Version | Status   |
-|:-------------- |:------- | -------- |
+|:-------------- |:------- |:-------- |
 | May 2018       | v1.0.0  | Released |
 | Septembre 2018 | v3.0.0  | Released |
 | May 2019       | v4.0.0  | Released |

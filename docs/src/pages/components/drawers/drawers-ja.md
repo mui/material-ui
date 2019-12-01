@@ -7,7 +7,7 @@ components: Drawer, SwipeableDrawer
 
 <p class="description">ナビゲーションドロワー(Drawer) を使用すると、App内の目的地にアクセスできます。サイドシートは、画面の左端または右端にアンカーされた補足コンテンツを含むサーフェスです。</p>
 
-<a href=「https://material.io/design/components/navigation-drawer.html」>ナビゲーション・ドロワー</a>(または「サイドバー」)は、目的地へのアクセスとアカウントの切り替えなどのアプリケーション機能を提供します。 これらは、画面上で永続的に表示することも、ナビゲーション・メニュー・アイコンで制御することもできます。
+[ナビゲーション・ドロワー](https://material.io/design/components/navigation-drawer.html)(または「サイドバー」)は、目的地へのアクセスとアカウントの切り替えなどのアプリケーション機能を提供します。 これらは、画面上で永続的に表示することも、ナビゲーション・メニュー・アイコンで制御することもできます。
 
 [サイドシート](https://material.io/design/components/sheets-side.html) は、主にタブレットやデスクトップで使用される補助サーフェスです。
 

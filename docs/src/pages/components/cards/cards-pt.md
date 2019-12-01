@@ -15,23 +15,23 @@ Eles devem ser relevantes, de fácil verificação e apresentar informações ú
 
 Apesar dos componentes cartões poderem suportar múltiplas ações tais como: controles de UI, e overflow de menu, use-os com moderação e lembre-se que cartões são pontos de entrada de informações mais complexas e detalhadas.
 
-{{"demo": "pages/components/cards/SimpleCard.js"}}
+{{"demo": "pages/components/cards/SimpleCard.js", "bg": true}}
 
 ## Interação Complexa
 
 O conteúdo do cartão pode ser expandido.
 
-{{"demo": "pages/components/cards/RecipeReviewCard.js"}}
+{{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 
 ## Mídia
 
 Exemplo de um cartão usando uma imagem para reforçar o conteúdo.
 
-{{"demo": "pages/components/cards/MediaCard.js"}}
+{{"demo": "pages/components/cards/MediaCard.js", "bg": true}}
 
 Por padrão, usamos a combinação de um elemento `<div>` e uma *imagem de fundo* para exibir a mídia. Isto pode ser problemático em algumas situações. Por exemplo, você pode querer exibir um vídeo ou uma imagem responsiva. Use a propriedade `component` para estas situações:
 
-{{"demo": "pages/components/cards/ImgMediaCard.js"}}
+{{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
 > ⚠️ Quando `component="img"`, CardMedia depende de `object-fit` para centralizar a imagem. Não é suportado pelo IE 11.
 
@@ -41,4 +41,4 @@ Ações suplementares dentro do cartão são explicitamente chamadas usando íco
 
 Aqui está um exemplo de um controle de mídia do cartão.
 
-{{"demo": "pages/components/cards/MediaControlCard.js"}}
+{{"demo": "pages/components/cards/MediaControlCard.js", "bg": true}}

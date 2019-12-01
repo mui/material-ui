@@ -4,11 +4,10 @@ import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    button: {
-      margin: theme.spacing(1),
-    },
-    input: {
-      display: 'none',
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+      },
     },
   }),
 );
@@ -17,34 +16,20 @@ export default function ContainedButtons() {
   const classes = useStyles();
 
   return (
-    <div>
-      <Button variant="contained" className={classes.button}>
-        Default
-      </Button>
-      <Button variant="contained" color="primary" className={classes.button}>
+    <div className={classes.root}>
+      <Button variant="contained">Default</Button>
+      <Button variant="contained" color="primary">
         Primary
       </Button>
-      <Button variant="contained" color="secondary" className={classes.button}>
+      <Button variant="contained" color="secondary">
         Secondary
       </Button>
-      <Button variant="contained" color="secondary" disabled className={classes.button}>
+      <Button variant="contained" disabled>
         Disabled
       </Button>
-      <Button variant="contained" href="#contained-buttons" className={classes.button}>
+      <Button variant="contained" color="primary" href="#contained-buttons">
         Link
       </Button>
-      <input
-        accept="image/*"
-        className={classes.input}
-        id="contained-button-file"
-        multiple
-        type="file"
-      />
-      <label htmlFor="contained-button-file">
-        <Button variant="contained" component="span" className={classes.button}>
-          Upload
-        </Button>
-      </label>
     </div>
   );
 }

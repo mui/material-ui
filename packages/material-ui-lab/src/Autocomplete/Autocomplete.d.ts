@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
-import { UseAutocompleteProps, CreateFilterOptions } from '../useAutocomplete';
+import { UseAutocompleteProps, CreateFilterOptions, createFilterOptions } from '../useAutocomplete';
+
+export { createFilterOptions };
 
 export interface PopperProps extends React.HTMLAttributes<HTMLElement> {
   anchorEl?: HTMLElement;
   open: boolean;
   popperRef: React.Ref<unknown>;
 }
-
-export const createFilterOptions: CreateFilterOptions;
 
 export interface RenderOptionState {
   inputValue: string;
@@ -47,6 +47,18 @@ export interface AutocompleteProps
    */
   closeIcon?: React.ReactNode;
   /**
+   * Override the default text for the *clear* icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   */
+  clearText?: string;
+  /**
+   * Override the default text for the *close popup* icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   */
+  closeText?: string;
+  /**
    * If `true`, the input will be disabled.
    */
   disabled?: boolean;
@@ -65,12 +77,22 @@ export interface AutocompleteProps
   loading?: boolean;
   /**
    * Text to display when in a loading state.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   loadingText?: React.ReactNode;
   /**
    * Text to display when there are no options.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   noOptionsText?: React.ReactNode;
+  /**
+   * Override the default text for the *open popup* icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   */
+  openText?: string;
   /**
    * The component used to render the body of the popup.
    */
@@ -120,20 +142,20 @@ export type AutocompleteClassKey =
   | 'focused'
   | 'tag'
   | 'inputRoot'
-  | 'inputRootOutlined'
-  | 'inputRootFilled'
   | 'input'
   | 'inputFocused'
+  | 'endAdornment'
   | 'clearIndicator'
   | 'clearIndicatorDirty'
   | 'popupIndicator'
   | 'popupIndicatorOpen'
-  | 'popup'
+  | 'popper'
+  | 'popperDisablePortal'
   | 'paper'
   | 'listbox'
-  | 'option'
   | 'loading'
   | 'noOptions'
+  | 'option'
   | 'groupLabel'
   | 'groupUl';
 

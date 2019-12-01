@@ -1,8 +1,8 @@
 # Контрольные точки
 
-<p class="description">API that enables the use of breakpoints in a wide variety of contexts.</p>
+<p class="description">API, позволяющее использовать контрольные точки во множестве контекстов.</p>
 
-For optimal user experience, material design interfaces need to be able to adapt their layout at various breakpoints. Material-UI uses a **simplified** implementation of the original [specification](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
+Для оптимального взаимодействия с пользователем material интерфейсы должны быть в состоянии адаптировать свое расположение в различных точках останова. Material-UI использует **упрощенную** реализацию оригинальной [спецификации](https://material.io/design/layout/responsive-layout-grid.html#breakpoints).
 
 Каждая контрольная точка (ключ) соответствует *фиксированной* ширине экрана (значению):
 
@@ -34,7 +34,7 @@ CSS media queries are the idiomatic approach to make your UI responsive. The the
 - [theme.breakpoints.only(key)](#theme-breakpoints-only-key-media-query)
 - [theme.breakpoints.between(start, end)](#theme-breakpoints-between-start-end-media-query)
 
-В следующем примере мы изменяем фоновой цвет (красный, синий или зеленый) в зависмости от ширини экрана.
+В следующем примере мы изменяем фоновой цвет (красный, синий или зеленый) в зависимости от ширины экрана.
 
 ```jsx
 const styles = theme => ({

@@ -27,7 +27,7 @@ La cuadrícula responsive se centra en anchos de espaciado coherentes, en lugar 
 
 Esta función de transformación de la salida se puede personalizar [usando el tema](/customization/spacing/).
 
-{{"demo": "pages/components/grid/SpacingGrid.js"}}
+{{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
 
 ## Grids fluidos
 
@@ -37,31 +37,31 @@ Fluid grids use columns that scale and resize content. A fluid grid’s layout c
 
 Los anchos de columna se aplican en todos los breakepoints (ej. `xs` y superiores).
 
-{{"demo": "pages/components/grid/CenteredGrid.js"}}
+{{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
 
 ### Grid con breakpoints
 
 Algunas columnas tienen varios anchos definidos, causando que el layout cambie en el correspondiente breakpoint definido.
 
-{{"demo": "pages/components/grid/FullWidthGrid.js"}}
+{{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
 ## Explora
 
 Debajo de esta línea hay una demostración interactiva que permite explorar el resultado visual de las distintas configuraciones:
 
-{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true, "bg": true}}
 
 ## Auto-layout
 
 The Auto-layout makes the *items* equitably share the available space. That also means you can set the width of one *item* and the others will automatically resize around it.
 
-{{"demo": "pages/components/grid/AutoGrid.js"}}
+{{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
 
 ## Grid Compleja
 
 El siguiente ejemplo no sigue las directrices de Material Design, pero ilustra cómo el grid puede ser usado para dar forma a layouts complejas.
 
-{{"demo": "pages/components/grid/ComplexGrid.js"}}
+{{"demo": "pages/components/grid/ComplexGrid.js", "bg": true}}
 
 ## Grid Anidada
 
@@ -71,7 +71,7 @@ The `container` and `item` properties are two independent booleans. They can be 
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
-{{"demo": "pages/components/grid/NestedGrid.js"}}
+{{"demo": "pages/components/grid/NestedGrid.js", "bg": true}}
 
 ## Limitaciones
 
@@ -110,7 +110,7 @@ In order for the item to stay within the container you need to set `min-width: 0
   <Typography noWrap>
 ```
 
-{{"demo": "pages/components/grid/AutoGridNoWrap.js"}}
+{{"demo": "pages/components/grid/AutoGridNoWrap.js", "bg": true}}
 
 ### direction: column | column-reverse
 
@@ -120,4 +120,4 @@ Though the `Grid` component has a `direction` property that allows values of `ro
 
 Material-UI doesn't provide any CSS Grid functionality itself, but as seen below you can easily use CSS Grid to layout your pages.
 
-{{"demo": "pages/components/grid/CSSGrid.js"}}
+{{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}

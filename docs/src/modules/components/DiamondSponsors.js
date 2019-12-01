@@ -1,6 +1,5 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
@@ -39,7 +38,7 @@ export default function DiamondSponsors() {
   const t = useSelector(state => state.options.t);
 
   return (
-    <Box mx={3} my={2} className={classes.root}>
+    <div className={classes.root}>
       <Typography variant="caption" color="textSecondary" display="block">
         {t('diamondSponsors')}
       </Typography>
@@ -48,10 +47,10 @@ export default function DiamondSponsors() {
         className={classes.placeholder}
         rel="noopener noreferrer"
         target="_blank"
-        href="https://www.patreon.com/oliviertassinari"
+        href="/discover-more/backers/#diamond"
       >
         <AddIcon />
       </a>
-    </Box>
+    </div>
   );
 }

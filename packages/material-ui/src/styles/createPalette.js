@@ -104,12 +104,10 @@ export default function createPalette(palette) {
   // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
   // and material-components-web https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L54
   function getContrastText(background) {
-    if (process.env.NODE_ENV !== 'production') {
-      if (!background) {
-        console.error(
-          `Material-UI: missing background argument in getContrastText(${background}).`,
-        );
-      }
+    if (!background) {
+      throw new TypeError(
+        `Material-UI: missing background argument in getContrastText(${background}).`,
+      );
     }
 
     const contrastText =
@@ -123,7 +121,7 @@ export default function createPalette(palette) {
         console.error(
           [
             `Material-UI: the contrast ratio of ${contrast}:1 for ${contrastText} on ${background}`,
-            'falls below the WACG recommended absolute minimum contrast ratio of 3:1.',
+            'falls below the WCAG recommended absolute minimum contrast ratio of 3:1.',
             'https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast',
           ].join('\n'),
         );

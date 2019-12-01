@@ -5,16 +5,16 @@ import Tooltip from '@material-ui/core/Tooltip';
 export default function ControlledTooltips() {
   const [open, setOpen] = React.useState(false);
 
-  const handleTooltipClose = () => {
+  const handleClose = () => {
     setOpen(false);
   };
 
-  const handleTooltipOpen = () => {
+  const handleOpen = () => {
     setOpen(true);
   };
 
   return (
-    <Tooltip onClose={handleTooltipClose} onOpen={handleTooltipOpen} open={open} title="Add">
+    <Tooltip open={open} onClose={handleClose} onOpen={handleOpen} title="Add">
       <Button>Controlled</Button>
     </Tooltip>
   );

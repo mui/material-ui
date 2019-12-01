@@ -17,6 +17,53 @@ function round(value) {
   return Math.round(value * 1e5) / 1e5;
 }
 
+function arrowGenerator() {
+  return {
+    '&[x-placement*="bottom"] $arrow': {
+      top: 0,
+      left: 0,
+      marginTop: '-0.95em',
+      width: '2em',
+      height: '1em',
+      '&::before': {
+        borderWidth: '0 1em 1em 1em',
+        borderColor: 'transparent transparent currentcolor transparent',
+      },
+    },
+    '&[x-placement*="top"] $arrow': {
+      bottom: 0,
+      left: 0,
+      marginBottom: '-0.95em',
+      width: '2em',
+      height: '1em',
+      '&::before': {
+        borderWidth: '1em 1em 0 1em',
+        borderColor: 'currentcolor transparent transparent transparent',
+      },
+    },
+    '&[x-placement*="right"] $arrow': {
+      left: 0,
+      marginLeft: '-0.95em',
+      height: '2em',
+      width: '1em',
+      '&::before': {
+        borderWidth: '1em 1em 1em 0',
+        borderColor: 'transparent currentcolor transparent transparent',
+      },
+    },
+    '&[x-placement*="left"] $arrow': {
+      right: 0,
+      marginRight: '-0.95em',
+      height: '2em',
+      width: '1em',
+      '&::before': {
+        borderWidth: '1em 0 1em 1em',
+        borderColor: 'transparent transparent transparent currentcolor',
+      },
+    },
+  };
+}
+
 export const styles = theme => ({
   /* Styles applied to the Popper component. */
   popper: {
@@ -28,6 +75,8 @@ export const styles = theme => ({
   popperInteractive: {
     pointerEvents: 'auto',
   },
+  /* Styles applied to the Popper component if `arrow={true}`. */
+  popperArrow: arrowGenerator(),
   /* Styles applied to the tooltip (label wrapper) element. */
   tooltip: {
     backgroundColor: fade(theme.palette.grey[700], 0.9),
@@ -40,6 +89,25 @@ export const styles = theme => ({
     maxWidth: 300,
     wordWrap: 'break-word',
     fontWeight: theme.typography.fontWeightMedium,
+  },
+  /* Styles applied to the tooltip (label wrapper) element if `arrow={true}`. */
+  tooltipArrow: {
+    position: 'relative',
+    margin: '0',
+  },
+  /* Styles applied to the arrow element. */
+  arrow: {
+    position: 'absolute',
+    fontSize: 6,
+    color: fade(theme.palette.grey[700], 0.9),
+    '&::before': {
+      content: '""',
+      margin: 'auto',
+      display: 'block',
+      width: 0,
+      height: 0,
+      borderStyle: 'solid',
+    },
   },
   /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
   touch: {
@@ -82,8 +150,17 @@ export const styles = theme => ({
   },
 });
 
+let hystersisOpen = false;
+let hystersisTimer = null;
+
+export function testReset() {
+  hystersisOpen = false;
+  clearTimeout(hystersisTimer);
+}
+
 const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const {
+    arrow = false,
     children,
     classes,
     disableFocusListener = false,
@@ -91,7 +168,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     disableTouchListener = false,
     enterDelay = 0,
     enterTouchDelay = 700,
-    id,
+    id: idProp,
     interactive = false,
     leaveDelay = 0,
     leaveTouchDelay = 1500,
@@ -107,10 +184,10 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   } = props;
   const theme = useTheme();
 
-  const [, forceUpdate] = React.useState(0);
   const [childNode, setChildNode] = React.useState();
+  const [arrowRef, setArrowRef] = React.useState(null);
   const ignoreNonTouchEvents = React.useRef(false);
-  const defaultId = React.useRef();
+
   const closeTimer = React.useRef();
   const enterTimer = React.useRef();
   const leaveTimer = React.useRef();
@@ -162,19 +239,18 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }, [isControlled, title, childNode]);
   }
 
+  const [defaultId, setDefaultId] = React.useState();
+  const id = idProp || defaultId;
   React.useEffect(() => {
+    if (!open || defaultId) {
+      return;
+    }
+
     // Fallback to this default id when possible.
     // Use the random value for client-side rendering only.
     // We can't use it server-side.
-    if (!defaultId.current) {
-      defaultId.current = `mui-tooltip-${Math.round(Math.random() * 1e5)}`;
-    }
-
-    // Rerender with defaultId and childNode.
-    if (openProp) {
-      forceUpdate(n => !n);
-    }
-  }, [openProp]);
+    setDefaultId(`mui-tooltip-${Math.round(Math.random() * 1e5)}`);
+  }, [open, defaultId]);
 
   React.useEffect(() => {
     return () => {
@@ -186,6 +262,9 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   }, []);
 
   const handleOpen = event => {
+    clearTimeout(hystersisTimer);
+    hystersisOpen = true;
+
     // The mouseover event will trigger for every nested element in the tooltip.
     // We can skip rerendering when the tooltip is already open.
     // We are using the mouseover event instead of the mouseenter event to fix a hide/show issue.
@@ -218,7 +297,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
-    if (enterDelay) {
+    if (enterDelay && !hystersisOpen) {
       event.persist();
       enterTimer.current = setTimeout(() => {
         handleOpen(event);
@@ -257,6 +336,12 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   };
 
   const handleClose = event => {
+    clearTimeout(hystersisTimer);
+    hystersisTimer = setTimeout(() => {
+      hystersisOpen = false;
+    }, 500);
+    // Use 500 ms per https://github.com/reach/reach-ui/blob/3b5319027d763a3082880be887d7a29aee7d3afc/packages/tooltip/src/index.js#L214
+
     if (!isControlled) {
       setOpenState(false);
     }
@@ -347,7 +432,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   // We are open to change the tradeoff.
   const shouldShowNativeTitle = !open && !disableHoverListener;
   const childrenProps = {
-    'aria-describedby': open ? id || defaultId.current : null,
+    'aria-describedby': open ? id : null,
     title: shouldShowNativeTitle && typeof title === 'string' ? title : null,
     ...other,
     ...children.props,
@@ -395,12 +480,21 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       <Popper
         className={clsx(classes.popper, {
           [classes.popperInteractive]: interactive,
+          [classes.popperArrow]: arrow,
         })}
         placement={placement}
         anchorEl={childNode}
         open={childNode ? open : false}
         id={childrenProps['aria-describedby']}
         transition
+        popperOptions={{
+          modifiers: {
+            arrow: {
+              enabled: Boolean(arrowRef),
+              element: arrowRef,
+            },
+          },
+        }}
         {...interactiveWrapperListeners}
         {...PopperProps}
       >
@@ -415,11 +509,13 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
                 classes.tooltip,
                 {
                   [classes.touch]: ignoreNonTouchEvents.current,
+                  [classes.tooltipArrow]: arrow,
                 },
                 classes[`tooltipPlacement${capitalize(placementInner.split('-')[0])}`],
               )}
             >
               {title}
+              {arrow ? <span className={classes.arrow} ref={setArrowRef} /> : null}
             </div>
           </TransitionComponent>
         )}
@@ -429,6 +525,10 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 });
 
 Tooltip.propTypes = {
+  /**
+   * If `true`, adds an arrow to the tooltip.
+   */
+  arrow: PropTypes.bool,
   /**
    * Tooltip reference element.
    */

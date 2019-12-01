@@ -1,9 +1,9 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { makeStyles } from '@material-ui/core/styles';
+import { useTheme, makeStyles } from '@material-ui/core/styles';
 import { FixedSizeList } from 'react-window';
 
 function renderRow(props) {
@@ -23,7 +23,8 @@ function renderRow(props) {
 // Adapter for react-window
 const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
   const { children, ...other } = props;
-  const smUp = useMediaQuery(theme => theme.breakpoints.up('sm'));
+  const theme = useTheme();
+  const smUp = useMediaQuery(theme.breakpoints.up('sm'));
   const itemCount = Array.isArray(children) ? children.length : 0;
   const itemSize = smUp ? 36 : 48;
 
@@ -49,6 +50,10 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
     </div>
   );
 });
+
+ListboxComponent.propTypes = {
+  children: PropTypes.node,
+};
 
 function random(length) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

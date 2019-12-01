@@ -1,4 +1,5 @@
 import React from 'react';
+import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
@@ -383,7 +384,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     }
 
     if (process.env.NODE_ENV !== 'production') {
-      if (child.type === React.Fragment) {
+      if (isFragment(child)) {
         console.error(
           [
             "Material-UI: the Tabs component doesn't accept a Fragment as a child.",

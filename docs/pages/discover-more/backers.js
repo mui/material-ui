@@ -10,5 +10,5 @@ const reqSource = require.context(
 const reqPrefix = 'pages/discover-more/backers';
 
 export default function Page() {
-  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
+  return <MarkdownDocs req={req} reqSource={reqSource} disableAd reqPrefix={reqPrefix} />;
 }

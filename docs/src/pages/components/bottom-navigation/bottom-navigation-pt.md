@@ -13,10 +13,10 @@ Barras de [Navegação Inferior](https://material.io/design/components/bottom-na
 
 Quando existir apenas **três** ações, exiba ambos, os ícones e rótulos de texto.
 
-{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js", "bg": true}}
 
 ## Navegação Inferior sem rótulo
 
 Se existir **quatro** ou **cinco** ações, exiba os destinos inativos somente com ícone.
 
-{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js", "bg": true}}

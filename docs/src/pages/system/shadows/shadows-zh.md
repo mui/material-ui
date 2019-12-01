@@ -4,7 +4,7 @@
 
 ## 示例
 
-{{"demo": "pages/system/shadows/Demo.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/shadows/Demo.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box boxShadow={0}>…

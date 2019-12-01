@@ -9,37 +9,37 @@ components: AppBar, Toolbar, Menu
 
 A [barra de aplicativos superior](https://material.io/design/components/app-bars-top.html) provê conteúdo e ações relacionados à tela atual. Ela é utilizada para a identidade visual, títulos de tela, navegação, e ações.
 
-Ele pode se transformar em uma barra de ações contextual ou utilizado como uma barra de navegação.
+It can transform into a contextual action bar or be used as a navbar.
 
 ## Barra de Aplicativos Simples
 
-{{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
+{{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 
 ## Barra de Aplicativos com um campo de busca principal
 
 Um campo de busca principal.
 
-{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
 
 ## Barra de Aplicativos com menu
 
-{{"demo": "pages/components/app-bar/MenuAppBar.js"}}
+{{"demo": "pages/components/app-bar/MenuAppBar.js", "bg": true}}
 
 ## Barra de Aplicativos com campo de busca
 
 Uma barra de pesquisa na lateral.
 
-{{"demo": "pages/components/app-bar/SearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/SearchAppBar.js", "bg": true}}
 
 ## Densa (apenas para desktop)
 
-{{"demo": "pages/components/app-bar/DenseAppBar.js"}}
+{{"demo": "pages/components/app-bar/DenseAppBar.js", "bg": true}}
 
 ## Proeminente
 
 Uma barra de aplicativos proeminente.
 
-{{"demo": "pages/components/app-bar/ProminentAppBar.js"}}
+{{"demo": "pages/components/app-bar/ProminentAppBar.js", "bg": true}}
 
 ## Barra de Aplicativos Inferior
 
@@ -50,14 +50,14 @@ Uma barra de aplicativos proeminente.
 Quando você renderiza a posição da barra de apps fixa, a dimensão do elemento não afeta o resto da página. Isso pode fazer com que parte do seu conteúdo fique invisível, atrás da barra de aplicativos. Aqui estão 3 soluções possíveis:
 
 1. Você pode usar `posição="sticky"` ao invés de fixed. ⚠️ sticky não é suportado pelo IE 11.
-2. You can render a second `<Toolbar />` component:
+2. Você pode renderizar um segundo componente `<Toolbar />`:
 
 ```jsx
 function App() {
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>{/* content */}</Toolbar>
+        <Toolbar>{/* conteúdo */}</Toolbar>
       </AppBar>
       <Toolbar />
     </React.Fragment>
@@ -65,7 +65,7 @@ function App() {
 }
 ```
 
-3. You can use `theme.mixins.toolbar` CSS:
+3. Você pode usar `theme.mixins.toolbar` CSS:
 
 ```jsx
 const useStyles = makeStyles(theme => ({
@@ -77,7 +77,7 @@ function App() {
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>{/* content */}</Toolbar>
+        <Toolbar>{/* conteúdo */}</Toolbar>
       </AppBar>
       <div className={classes.offset} />
     </React.Fragment>
@@ -85,25 +85,25 @@ function App() {
 };
 ```
 
-## Scrolling
+## Rolagem
 
-You can use the `useScrollTrigger()` hook to respond to user scroll actions.
+Você pode usar o hook `useScrollTrigger()` para responder às ações de rolagem do usuário.
 
 ### Barra de Aplicativos oculta
 
-The app bar hides on scroll down to leave more space for reading.
+A barra de aplicativos sumirá ao descer a página para deixar mais espaço de leitura.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### Barra de aplicativos elevada
 
-The app bar elevates on scroll to communicate that the user is not at the top of the page.
+A barra de aplicativos eleva-se na rolagem para comunicar que o usuário não está na parte superior da página.
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### Voltar ao topo
 
-A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+Um botão de ação flutuante aparece na rolagem para facilitar o retorno ao topo da página.
 
 {{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
 
@@ -119,7 +119,7 @@ A floating action buttons appears on scroll to make it easy to get back to the t
 
 #### Retornos
 
-`trigger`: Does the scroll position match the criteria?
+`trigger`: A posição da tela bate com o critério estabelecido?
 
 #### Exemplos
 

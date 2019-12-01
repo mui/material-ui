@@ -14,7 +14,7 @@ for reuse in other pages.
 For multi-part examples, a table in the README at the linked source code location describes
 the purpose of each file.
 
-{{"demo": "pages/getting-started/templates/Templates.js", "hideHeader": true}}
+{{"demo": "pages/getting-started/templates/Templates.js", "hideHeader": true, "bg": true}}
 
 If while using these examples you make changes or enhancements that could improve the
 developer experience, or you would like to contribute an additional example,

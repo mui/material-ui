@@ -1,4 +1,4 @@
-export default function getJsxPreview(code, defaultCodeOpen) {
+export default function getJsxPreview(code) {
   /* The regex matches the content of the return statement in the default export,
    * stripping any wrapper divs:
    *
@@ -14,7 +14,7 @@ export default function getJsxPreview(code, defaultCodeOpen) {
   );
   // Just the match, otherwise the full source if either no match or preview disabled,
   // so as not to break the Collapse transition.
-  jsx = jsx && defaultCodeOpen !== false ? jsx[1] : code;
+  jsx = jsx ? jsx[1] : code;
 
   // Remove leading spaces from each line
   return jsx.split(/\n/).reduce(

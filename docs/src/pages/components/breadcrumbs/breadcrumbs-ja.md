@@ -11,21 +11,27 @@ components: Breadcrumbs, Link, Typography
 
 {{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
-## カスタムセパレーター (Custom separator）
+## Active last breadcrumb
 
-次の例では、2つの文字列セパレータとSVGアイコンを使用しています。
+Keep the last breadcrumb interactive.
+
+{{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
+
+## Custom separator
+
+In the following examples, we are using two string separators, and an SVG icon.
 
 {{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
-## アイコン付きBreadcrumbs
+## Breadcrumbs with icons
 
 {{"demo": "pages/components/breadcrumbs/IconBreadcrumbs.js"}}
 
-## 折りたたみBreadcrumbs
+## Collapsed breadcrumbs
 
 {{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## カスタマイズされた breadcrumbs
+## Customized breadcrumbs
 
 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
@@ -33,7 +39,7 @@ components: Breadcrumbs, Link, Typography
 
 ## Integration with react-router
 
-{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js", "bg": true}}
 
 ## アクセシビリティ
 

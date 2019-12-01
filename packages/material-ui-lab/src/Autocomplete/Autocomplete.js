@@ -24,35 +24,60 @@ export const styles = theme => ({
   focused: {},
   /* Styles applied to the tag elements, e.g. the chips. */
   tag: {
-    margin: theme.spacing(0.5),
+    margin: 3,
   },
   /* Styles applied to the Input element. */
   inputRoot: {
     flexWrap: 'wrap',
+    paddingRight: 62,
     '&[class*="MuiOutlinedInput-root"]': {
       padding: 8,
+      paddingRight: 62,
       '& $input': {
-        padding: '10.5px 6px',
+        padding: '10.5px 4px',
+      },
+      '& $input:first-child': {
+        paddingLeft: 6,
+      },
+      '& $endAdornment': {
+        right: 7,
       },
     },
     '&[class*="MuiFilledInput-root"]': {
-      paddingTop: 21,
+      paddingTop: 19,
+      paddingLeft: 8,
       '& $input': {
+        paddingLeft: 4,
         paddingTop: 10,
       },
+      '& $endAdornment': {
+        right: 7,
+      },
+    },
+    '& $input:not(:first-child)': {
+      paddingLeft: 4,
+    },
+    '& $input': {
+      width: 0,
+      minWidth: 30,
     },
   },
   /* Styles applied to the input element. */
   input: {
-    width: 0,
-    minWidth: 30,
     flexGrow: 1,
-    opacity: 0,
     textOverflow: 'ellipsis',
+    opacity: 0,
   },
   /* Styles applied to the input element if tag focused. */
   inputFocused: {
     opacity: 1,
+  },
+  /* Styles applied to the endAdornment element. */
+  endAdornment: {
+    // We use a position absolute to support wrapping tags.
+    position: 'absolute',
+    right: 0,
+    top: 'calc(50% - 14px)', // Center vertically
   },
   /* Styles applied to the clear indictator. */
   clearIndicator: {
@@ -115,8 +140,7 @@ export const styles = theme => ({
     alignItems: 'center',
     cursor: 'pointer',
     paddingTop: 6,
-    outline: 'none',
-    // Remove grey highlight
+    outline: '0',
     WebkitTapHighlightColor: 'transparent',
     paddingBottom: 6,
     paddingLeft: 16,
@@ -164,7 +188,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     classes,
     className,
     clearOnEscape = false,
+    clearText = 'Clear',
     closeIcon = <CloseIcon fontSize="small" />,
+    closeText = 'Close',
     debug = false,
     defaultValue,
     disableClearable = false,
@@ -192,6 +218,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     onInputChange,
     onOpen,
     open,
+    openText = 'Open',
     options = [],
     PaperComponent = Paper,
     PopperComponent: PopperComponentProp = Popper,
@@ -299,12 +326,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
             className: classes.inputRoot,
             startAdornment,
             endAdornment: (
-              <React.Fragment>
+              <div className={classes.endAdornment}>
                 {disableClearable || disabled ? null : (
                   <IconButton
                     {...getClearProps()}
-                    aria-label="Clear"
-                    title="Clear"
+                    aria-label={clearText}
+                    title={clearText}
                     className={clsx(classes.clearIndicator, {
                       [classes.clearIndicatorDirty]: dirty,
                     })}
@@ -317,8 +344,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   <IconButton
                     {...getPopupIndicatorProps()}
                     disabled={disabled}
-                    aria-label={popupOpen ? 'Close popup' : 'Open popup'}
-                    title={popupOpen ? 'Close popup' : 'Open popup'}
+                    aria-label={popupOpen ? closeText : openText}
+                    title={popupOpen ? closeText : openText}
                     className={clsx(classes.popupIndicator, {
                       [classes.popupIndicatorOpen]: popupOpen,
                     })}
@@ -326,7 +353,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                     {popupIcon}
                   </IconButton>
                 )}
-              </React.Fragment>
+              </div>
             ),
           },
           inputProps: {
@@ -352,7 +379,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           open
         >
           <PaperComponent className={classes.paper}>
-            {loading ? <div className={classes.loading}>{loadingText}</div> : null}
+            {loading && groupedOptions.length === 0 ? (
+              <div className={classes.loading}>{loadingText}</div>
+            ) : null}
             {groupedOptions.length === 0 && !freeSolo && !loading ? (
               <div className={classes.noOptions}>{noOptionsText}</div>
             ) : null}
@@ -413,9 +442,21 @@ Autocomplete.propTypes = {
    */
   clearOnEscape: PropTypes.bool,
   /**
+   * Override the default text for the *clear* icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   */
+  clearText: PropTypes.string,
+  /**
    * The icon to display in place of the default close icon.
    */
   closeIcon: PropTypes.node,
+  /**
+   * Override the default text for the *close popup* icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   */
+  closeText: PropTypes.string,
   /**
    * If `true`, the popup will ignore the blur event if the input if filled.
    * You can inspect the popup markup with your browser tools.
@@ -507,14 +548,18 @@ Autocomplete.propTypes = {
   loading: PropTypes.bool,
   /**
    * Text to display when in a loading state.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   loadingText: PropTypes.node,
   /**
-   * If true, `value` must be an array and the menu will support multiple selections.
+   * If `true`, `value` must be an array and the menu will support multiple selections.
    */
   multiple: PropTypes.bool,
   /**
    * Text to display when there are no options.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   noOptionsText: PropTypes.node,
   /**
@@ -549,6 +594,12 @@ Autocomplete.propTypes = {
    * Control the popup` open state.
    */
   open: PropTypes.bool,
+  /**
+   * Override the default text for the *open popup* icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   */
+  openText: PropTypes.string,
   /**
    * Array of options.
    */
@@ -597,6 +648,9 @@ Autocomplete.propTypes = {
   renderTags: PropTypes.func,
   /**
    * The value of the autocomplete.
+   *
+   * The value must have reference equality with the option in order to be selected.
+   * You can customize the equality behavior with the `getOptionSelected` prop.
    */
   value: PropTypes.any,
 };

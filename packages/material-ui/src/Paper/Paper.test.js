@@ -3,11 +3,21 @@ import { assert } from 'chai';
 import { createMount, createShallow, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Paper from './Paper';
+import { createMuiTheme, ThemeProvider } from '../styles';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
 
 describe('<Paper />', () => {
   let mount;
   let shallow;
   let classes;
+
+  beforeEach(() => {
+    consoleErrorMock.spy();
+  });
+
+  afterEach(() => {
+    consoleErrorMock.reset();
+  });
 
   before(() => {
     mount = createMount({ strict: true });
@@ -58,5 +68,27 @@ describe('<Paper />', () => {
       true,
       'should have the 2 elevation class',
     );
+  });
+
+  it('warns if the given `elevation` is not implemented in the theme', () => {
+    mount(<Paper elevation={25} />);
+
+    assert.strictEqual(consoleErrorMock.callCount(), 1);
+    assert.include(
+      consoleErrorMock.args()[0][0],
+      'Material-UI: this elevation `25` is not implemented.',
+    );
+  });
+
+  it('allows custom elevations via theme.shadows', () => {
+    const theme = createMuiTheme();
+    theme.shadows.push('20px 20px');
+    const wrapper = mount(
+      <ThemeProvider theme={theme}>
+        <Paper data-testid="paper" classes={{ elevation25: 'custom-elevation' }} elevation={25} />
+      </ThemeProvider>,
+    );
+
+    assert.strictEqual(wrapper.find('div[data-testid="paper"]').hasClass('custom-elevation'), true);
   });
 });

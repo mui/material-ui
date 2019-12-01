@@ -31,7 +31,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">imgProps</span> | <span class="prop-type">object</span> |  | Attributes applied to the `img` element if the component is used to display an image. |
 | <span class="prop-name">sizes</span> | <span class="prop-type">string</span> |  | The `sizes` attribute for the `img` element. |
 | <span class="prop-name">src</span> | <span class="prop-type">string</span> |  | The `src` attribute for the `img` element. |
-| <span class="prop-name">srcSet</span> | <span class="prop-type">string</span> |  | The `srcSet` attribute for the `img` element. |
+| <span class="prop-name">srcSet</span> | <span class="prop-type">string</span> |  | The `srcSet` attribute for the `img` element. Use this attribute for responsive image display. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'circle'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'</span> | <span class="prop-default">'circle'</span> | The shape of the avatar. |
 
 The `ref` is forwarded to the root element.

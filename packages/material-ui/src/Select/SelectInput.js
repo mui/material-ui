@@ -1,4 +1,5 @@
 import React from 'react';
+import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import capitalize from '../utils/capitalize';
@@ -32,9 +33,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     defaultValue,
     disabled,
     displayEmpty,
-    labelId,
     IconComponent,
     inputRef: inputRefProp,
+    labelId,
     MenuProps = {},
     multiple,
     name,
@@ -122,7 +123,11 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
-  const handleClick = event => {
+  const handleMouseDown = event => {
+    // Hijack the default focus behavior.
+    event.preventDefault();
+    displayNode.focus();
+
     update(true, event);
   };
 
@@ -214,7 +219,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
 
     if (process.env.NODE_ENV !== 'production') {
-      if (child.type === React.Fragment) {
+      if (isFragment(child)) {
         console.error(
           [
             "Material-UI: the Select component doesn't accept a Fragment as a child.",
@@ -321,7 +326,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         aria-labelledby={`${labelId || ''} ${buttonId || ''}`}
         aria-haspopup="listbox"
         onKeyDown={handleKeyDown}
-        onClick={disabled || readOnly ? null : handleClick}
+        onMouseDown={disabled || readOnly ? null : handleMouseDown}
         onBlur={handleBlur}
         onFocus={onFocus}
         {...SelectDisplayProps}
@@ -381,7 +386,7 @@ SelectInput.propTypes = {
    */
   autoFocus: PropTypes.bool,
   /**
-   * If true, the width of the popover will automatically be set according to the items inside the
+   * If `true`, the width of the popover will automatically be set according to the items inside the
    * menu, otherwise it will be at least the width of the select input.
    */
   autoWidth: PropTypes.bool,
@@ -430,7 +435,7 @@ SelectInput.propTypes = {
    */
   MenuProps: PropTypes.object,
   /**
-   * If true, `value` must be an array and the menu will support multiple selections.
+   * If `true`, `value` must be an array and the menu will support multiple selections.
    */
   multiple: PropTypes.bool,
   /**

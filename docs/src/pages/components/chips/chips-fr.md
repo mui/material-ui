@@ -30,7 +30,7 @@ Outlined chips offer an alternative style.
 
 Un exemple de rendu de plusieurs puces à partir d'un tableau de valeurs. Supprimer une puce la supprime du tablea. Notez que puisqu'aucun `onClick` propriété est définie, la puce peut être concentré, mais ne pas profondeur de gain tandis que vous cliquez dessus ou touché.
 
-{{"demo": "pages/components/chips/ChipsArray.js"}}
+{{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 
 ## Small Chip
 
@@ -47,3 +47,7 @@ You can use the `size` prop to define a small Chip.
 ## Terrain de jeu de puce
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}
+
+## Accessibilité
+
+If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.

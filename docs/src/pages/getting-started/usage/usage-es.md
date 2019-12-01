@@ -28,7 +28,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 Así es! Esto es todo lo que necesitas para empezar, como podrás comprobar con la siguiente demostración interactiva en vivo:
 
-{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
+{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true, "bg": true}}
 
 ## Globales
 
@@ -51,7 +51,7 @@ Material-UI proporciona un componente opcional llamado [CssBaseline](/components
 
 ## Documentación versionada
 
-Ésta documentación siempre refleja la última versión estable de Material-UI. Podrás encontrar versiones antiguas en una [página apartada](/versions/).
+Ésta documentación siempre refleja la última versión estable de Material-UI. You can find older versions of the documentation on a [separate page](https://material-ui.com/versions/).
 
 ## Siguientes pasos
 

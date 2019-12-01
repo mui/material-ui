@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
+import { chainPropTypes } from '@material-ui/utils';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -36,12 +37,6 @@ const CardMedia = React.forwardRef(function CardMedia(props, ref) {
     ...other
   } = props;
 
-  if (process.env.NODE_ENV !== 'production') {
-    if (!children && !image && !src) {
-      console.error('Material-UI: either `children`, `image` or `src` prop must be specified.');
-    }
-  }
-
   const isMediaComponent = MEDIA_COMPONENTS.indexOf(Component) !== -1;
   const composedStyle =
     !isMediaComponent && image ? { backgroundImage: `url("${image}")`, ...style } : style;
@@ -70,7 +65,12 @@ CardMedia.propTypes = {
   /**
    * The content of the component.
    */
-  children: PropTypes.node,
+  children: chainPropTypes(PropTypes.node, props => {
+    if (!props.children && !props.image && !props.src) {
+      return new Error('Material-UI: either `children`, `image` or `src` prop must be specified.');
+    }
+    return null;
+  }),
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.

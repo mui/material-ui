@@ -8,7 +8,7 @@ import Frame from 'react-frame-component';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 
 const styles = theme => ({
-  root: {
+  frame: {
     backgroundColor: theme.palette.background.default,
     flexGrow: 1,
     height: 400,
@@ -54,7 +54,7 @@ function DemoFrame(props) {
     <NoSsr>
       <Frame
         ref={handleRef}
-        className={classes.root}
+        className={classes.frame}
         contentDidMount={onContentDidMount}
         contentDidUpdate={onContentDidUpdate}
         {...other}

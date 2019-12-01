@@ -5,7 +5,7 @@ import { TransitionProps } from '../transitions/transition';
 
 export interface CollapseProps extends StandardProps<TransitionProps, CollapseClassKey, 'timeout'> {
   children?: React.ReactNode;
-  collapsedHeight?: string;
+  collapsedHeight?: string | number;
   component?: React.ElementType<TransitionProps>;
   theme?: Theme;
   timeout?: TransitionProps['timeout'] | 'auto';

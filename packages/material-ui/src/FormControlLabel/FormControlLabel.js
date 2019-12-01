@@ -15,7 +15,6 @@ export const styles = theme => ({
     cursor: 'pointer',
     // For correct alignment with the text.
     verticalAlign: 'middle',
-    // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
     marginLeft: -11,
     marginRight: 16, // used for row presentation of radio/checkbox

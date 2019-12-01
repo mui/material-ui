@@ -31,7 +31,7 @@ If you are creating a modal dialog, you probably want to use the [Dialog](/compo
 
 Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
 
-## Transições
+## Переходы
 
 The open/close state of the modal can be animated with a transition component. This component should respect the following conditions:
 

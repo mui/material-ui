@@ -13,19 +13,19 @@ components: Tabs, Tab
 
 Ein einfaches Beispiel ohne Verzierungen.
 
-{{"demo": "pages/components/tabs/SimpleTabs.js"}}
+{{"demo": "pages/components/tabs/SimpleTabs.js", "bg": true}}
 
 ### Umbrechen von Tab Beschriftungen
 
 Lange Beschriftungen werden automatisch umgebrochen. Zu lange Beschriftungen sind allerdings nicht sichtbar und werden abgeschnitten (`overflow`).
 
-{{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
+{{"demo": "pages/components/tabs/TabsWrappedLabel.js", "bg": true}}
 
 ### Deaktivierter Tab
 
 Ein Tab kann durch die Eigenschaft `disabled` deaktiviert werden.
 
-{{"demo": "pages/components/tabs/DisabledTabs.js"}}
+{{"demo": "pages/components/tabs/DisabledTabs.js", "bg": true}}
 
 ## Feste Tabs
 
@@ -35,13 +35,13 @@ Feste Tabs sollten mit einer begrenzten Anzahl von Tabs verwendet werden, und we
 
 Die Eigenschaft `variant="fullWidth"` sollte für kleinere Ansichten verwendet werden. Diese Demo verwendet auch [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views), um den Tab-Übergang zu animieren und Tabs auf Touch-Geräten zu ziehen.
 
-{{"demo": "pages/components/tabs/FullWidthTabs.js"}}
+{{"demo": "pages/components/tabs/FullWidthTabs.js", "bg": true}}
 
 ### Zentriert
 
 Die Eigenschaft `centered` sollte für kleinere Ansichten verwendet werden.
 
-{{"demo": "pages/components/tabs/CenteredTabs.js"}}
+{{"demo": "pages/components/tabs/CenteredTabs.js", "bg": true}}
 
 ## Scrollbare Tabs
 
@@ -49,42 +49,42 @@ Die Eigenschaft `centered` sollte für kleinere Ansichten verwendet werden.
 
 Bildlauftasten werden auf der linken und rechten Seite angezeigt, wenn der Tab breiter als der viewport ist. Auf mobilen Endgeräten werden diese Buttons nicht angezeigt. (based on viewport width)
 
-{{"demo": "pages/components/tabs/ScrollableTabsButtonAuto.js"}}
+{{"demo": "pages/components/tabs/ScrollableTabsButtonAuto.js", "bg": true}}
 
 ### Erzwungene Bildlaufschaltflächen
 
 Die linken und rechten Bildlauftasten werden unabhängig von der Breite des Ansichtsfensters angezeigt.
 
-{{"demo": "pages/components/tabs/ScrollableTabsButtonForce.js"}}
+{{"demo": "pages/components/tabs/ScrollableTabsButtonForce.js", "bg": true}}
 
 ### Scrolltasten verhindern
 
 Left and right scroll buttons will never be presented. All scrolling must be initiated through user agent scrolling mechanisms (e.g. left/right swipe, shift-mousewheel, etc.)
 
-{{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js"}}
+{{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
 ## Benutzerdefinierte Tabs
 
 Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
-{{"demo": "pages/components/tabs/CustomizedTabs.js"}}
+{{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
 👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/tabs).
 
 ## Vertikale Tabs
 
-{{"demo": "pages/components/tabs/VerticalTabs.js"}}
+{{"demo": "pages/components/tabs/VerticalTabs.js", "bg": true}}
 
 ## Nav-Tabs
 
 Standardmäßig verwenden Registerkarten als `Button-` Element dargestellt, Sie können jedoch Ihr eigenes benutzerdefiniertes Tag oder Ihre eigene Komponente definieren. Here's an example of implementing tabbed navigation:
 
-{{"demo": "pages/components/tabs/NavTabs.js"}}
+{{"demo": "pages/components/tabs/NavTabs.js", "bg": true}}
 
 ## Symbol-Tabs
 
 Tab-Beschriftungen können entweder nur Symbole oder nur Text enthalten.
 
-{{"demo": "pages/components/tabs/IconTabs.js"}}
+{{"demo": "pages/components/tabs/IconTabs.js", "bg": true}}
 
-{{"demo": "pages/components/tabs/IconLabelTabs.js"}}
+{{"demo": "pages/components/tabs/IconLabelTabs.js", "bg": true}}

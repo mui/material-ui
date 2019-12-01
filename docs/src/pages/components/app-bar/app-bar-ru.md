@@ -9,37 +9,37 @@ components: AppBar, Toolbar, Menu
 
 В [](https://material.io/design/components/app-bars-top.html)верхней панели приложений</a> отображается содержимое и действия, связанные с текущим экраном. Он используется для брендинга, заголовков экрана, навигации и действий.
 
-Может трансформироваться в контекстную панель действий или использоваться в качестве панели навигации.
+It can transform into a contextual action bar or be used as a navbar.
 
 ## Простая панель навигации
 
-{{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
+{{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 
 ## Панель навигации с основным полем поиска
 
 Основная панель поиска.
 
-{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
 
 ## Панель навигации с меню
 
-{{"demo": "pages/components/app-bar/MenuAppBar.js"}}
+{{"demo": "pages/components/app-bar/MenuAppBar.js", "bg": true}}
 
 ## Панель навигации с полем для поиска
 
 Боковая панель поиска.
 
-{{"demo": "pages/components/app-bar/SearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/SearchAppBar.js", "bg": true}}
 
 ## Dense (Только для компьютеров)
 
-{{"demo": "pages/components/app-bar/DenseAppBar.js"}}
+{{"demo": "pages/components/app-bar/DenseAppBar.js", "bg": true}}
 
 ## Prominent
 
 A prominent app bar.
 
-{{"demo": "pages/components/app-bar/ProminentAppBar.js"}}
+{{"demo": "pages/components/app-bar/ProminentAppBar.js", "bg": true}}
 
 ## Bottom App Bar
 

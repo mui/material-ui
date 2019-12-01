@@ -4,17 +4,23 @@ import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import describeConformance from '../test-utils/describeConformance';
 import Popper from '../Popper';
-import Tooltip from './Tooltip';
+import Tooltip, { testReset } from './Tooltip';
 import Input from '../Input';
-import createMuiTheme from '../styles/createMuiTheme';
 
-const theme = createMuiTheme();
-
-function focusVisible(wrapper) {
+function focusVisibleLegacy(wrapper) {
   document.dispatchEvent(new window.Event('keydown'));
   wrapper.simulate('focus');
+}
+
+function focusVisible(element) {
+  act(() => {
+    element.blur();
+    fireEvent.keyDown(document.activeElement || document.body, { key: 'Tab' });
+    element.focus();
+  });
 }
 
 function simulatePointerDevice() {
@@ -26,30 +32,38 @@ function simulatePointerDevice() {
 describe('<Tooltip />', () => {
   let mount;
   let classes;
+  const render = createClientRender({ strict: false });
   let clock;
   const defaultProps = {
-    children: <span id="testChild">Hello World</span>,
-    theme,
+    children: (
+      <button id="testChild" type="submit">
+        Hello World
+      </button>
+    ),
     title: 'Hello World',
   };
 
   before(() => {
-    // StrictModeViolation: uses Grow and tests a lot of impl details
-    mount = createMount({ strict: undefined });
     classes = getClasses(<Tooltip {...defaultProps} />);
-    clock = useFakeTimers();
   });
 
-  after(() => {
+  beforeEach(() => {
+    testReset();
+    clock = useFakeTimers();
+    // StrictModeViolation: uses Grow and tests a lot of impl details
+    mount = createMount({ strict: undefined });
+  });
+
+  afterEach(() => {
     clock.restore();
     mount.cleanUp();
   });
 
   describeConformance(<Tooltip {...defaultProps} />, () => ({
     classes,
-    inheritComponent: 'span',
+    inheritComponent: 'button',
     mount,
-    refInstanceof: window.HTMLSpanElement,
+    refInstanceof: window.HTMLButtonElement,
     skip: [
       'componentProp',
       // react-transition-group issue
@@ -116,7 +130,6 @@ describe('<Tooltip />', () => {
     children.simulate('mouseLeave');
     clock.tick(0);
     wrapper.update();
-    assert.strictEqual(wrapper.find(Popper).props().open, false);
     assert.strictEqual(wrapper.find(Popper).props().open, false);
   });
 
@@ -193,14 +206,38 @@ describe('<Tooltip />', () => {
 
   describe('prop: delay', () => {
     it('should take the enterDelay into account', () => {
-      const wrapper = mount(<Tooltip enterDelay={111} {...defaultProps} />);
+      const wrapper = mount(<Tooltip {...defaultProps} enterDelay={111} />);
       simulatePointerDevice();
       const children = wrapper.find('#testChild');
-      focusVisible(children);
+      focusVisibleLegacy(children);
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
       clock.tick(111);
       wrapper.update();
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
+    });
+
+    it('should use hysteresis with the enterDelay', () => {
+      const { container } = render(
+        <Tooltip
+          enterDelay={111}
+          leaveDelay={5}
+          TransitionProps={{ timeout: 6 }}
+          {...defaultProps}
+        />,
+      );
+      const children = container.querySelector('#testChild');
+      focusVisible(children);
+      assert.strictEqual(document.body.querySelectorAll('[role="tooltip"]').length, 0);
+      clock.tick(111);
+      assert.strictEqual(document.body.querySelectorAll('[role="tooltip"]').length, 1);
+      document.activeElement.blur();
+      clock.tick(5);
+      clock.tick(6);
+      assert.strictEqual(document.body.querySelectorAll('[role="tooltip"]').length, 0);
+
+      focusVisible(children);
+      // Bypass `enterDelay` wait, instant display.
+      assert.strictEqual(document.body.querySelectorAll('[role="tooltip"]').length, 1);
     });
 
     it('should take the leaveDelay into account', () => {
@@ -212,7 +249,7 @@ describe('<Tooltip />', () => {
       );
       simulatePointerDevice();
       const children = wrapper.find('#testChild');
-      focusVisible(children);
+      focusVisibleLegacy(children);
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
       children.simulate('blur');
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
@@ -345,7 +382,7 @@ describe('<Tooltip />', () => {
   describe('forward', () => {
     it('should forward props to the child element', () => {
       const wrapper = mount(
-        <Tooltip className="foo" {...defaultProps}>
+        <Tooltip {...defaultProps} className="foo">
           <h1 className="bar">H1</h1>
         </Tooltip>,
       );
@@ -354,7 +391,7 @@ describe('<Tooltip />', () => {
 
     it('should respect the props priority', () => {
       const wrapper = mount(
-        <Tooltip hidden {...defaultProps}>
+        <Tooltip {...defaultProps} hidden>
           <h1 hidden={false}>H1</h1>
         </Tooltip>,
       );
@@ -390,7 +427,7 @@ describe('<Tooltip />', () => {
 
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), false);
 
-      focusVisible(wrapper.find('#target'));
+      focusVisibleLegacy(wrapper.find('#target'));
 
       assert.strictEqual(wrapper.find('[role="tooltip"]').exists(), true);
     });

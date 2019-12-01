@@ -10,7 +10,7 @@ const StyledButton = styled.button`
   padding: 8px 12px;
   border: 1px solid;
   cursor: pointer;
-  outline: none;
+  outline: 0;
   border-radius: ${theme.shape.borderRadius}px;
   color: ${theme.palette.primary.contrastText};
   background-color: ${theme.palette.primary.main};

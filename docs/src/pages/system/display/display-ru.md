@@ -6,7 +6,7 @@
 
 ### Inline
 
-{{"demo": "pages/system/display/Inline.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/display/Inline.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box component="div" display="inline">inline</Box>
@@ -15,7 +15,7 @@
 
 ### Block
 
-{{"demo": "pages/system/display/Block.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/display/Block.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box component="span" display="block">block</Box>

@@ -9,45 +9,45 @@ components: AppBar, Toolbar, Menu
 
 La [top App Bar](https://material.io/design/components/app-bars-top.html) provee contenido y acciones relacionados a la pantalla actual. Es usada para mostrar logotipos de marcas, títulos de pantalla, navegación y acciones.
 
-Puede transformarse en una barra de acción contextual o ser usada como una barra de navegación.
+Se puede transformar en una barra de acción contextual o usarse como una barra de navegación.
 
 ## App Bar Simple
 
-{{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
+{{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 
 ## App Bar con un campo de búsqueda principal
 
 Un campo de búsqueda principal.
 
-{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
 
 ## App Bar con menú
 
-{{"demo": "pages/components/app-bar/MenuAppBar.js"}}
+{{"demo": "pages/components/app-bar/MenuAppBar.js", "bg": true}}
 
 ## App Bar con campo de búsqueda
 
 Un campo de búsqueda al costado.
 
-{{"demo": "pages/components/app-bar/SearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/SearchAppBar.js", "bg": true}}
 
 ## Denso (sólo escritorio)
 
-{{"demo": "pages/components/app-bar/DenseAppBar.js"}}
+{{"demo": "pages/components/app-bar/DenseAppBar.js", "bg": true}}
 
 ## Prominente
 
 Un App Bar prominente.
 
-{{"demo": "pages/components/app-bar/ProminentAppBar.js"}}
+{{"demo": "pages/components/app-bar/ProminentAppBar.js", "bg": true}}
 
 ## App bar en pie de página
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Fixed placement
+## Posición Fija
 
-Cuando renderizas la posición del app bar fijo, la dimensión de los elementos no tiene impacto sobre el resto de la página. Esto puede causar que alguna parte de tu contenido no sea visible, detrás del app bar. Aquí hay 3 posibles soluciones:
+Cuando muestra la posición de la barra de App Bar fija, la dimensión de los elementos no tiene impacto sobre el resto de la página. Esto puede causar que alguna parte de su contenido no sea visible, detrás del App Bar. Aquí hay 3 posibles soluciones:
 
 1. Puedes usar `position = "sticky"` en lugar de fijo. ⚠️ sticky no es compatible con IE 11.
 2. Puedes renderizar un segundo componente `<Toolbar />`:
@@ -113,13 +113,13 @@ Aparece un botón de acción flotante al desplazarse para que sea fácil volver 
 
 1. `options` (*Object* [optional]):
 
-- `options.disableHysteresis` (*Boolean* [optional]): Defaults to `false`. Disable the hysteresis. Ignore the scroll direction when determining the `trigger` value.
-- `options.target` (*Node* [optional]): Defaults to `window`.
-- `options.threshold` (*Number* [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
+- `options.disableHysteresis` (*Boolean* [optional]): Default `false`. Desactiva la histéresis. Ignora la dirección de desplazamiento cuando determina el valor del `trigger`.
+- `options.target` (*Node* [optional]): Default `window`.
+- `options.threshold` (*Number* [optional]): Default `100`. Cambia el valor de `trigger` cuando el desplazamiento vertical cruza estrictamente este umbral (exclusivo).
 
-#### Devuelve
+#### Regresa
 
-`trigger`: Does the scroll position match the criteria?
+`trigger`: ¿La posición de desplazamiento coincide con los criterios?
 
 #### Ejemplos
 

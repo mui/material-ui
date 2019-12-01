@@ -27,7 +27,7 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
-{{"demo": "pages/components/toggle-button/CustomizedDividers.js"}}
+{{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 
 ## Accessibilité
 

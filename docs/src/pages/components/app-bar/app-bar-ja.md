@@ -9,47 +9,47 @@ components: AppBar, Toolbar, Menu
 
 [top App Bar](https://material.io/design/components/app-bars-top.html) は、現在の画面に関連するコンテンツとアクションを提供します。 ブランディング、画面タイトル、ナビゲーション、およびアクションに使用されます。
 
-状況に応じて変化するアクションバーや、ナビゲーションバーとして使用することができます。
+It can transform into a contextual action bar or be used as a navbar.
 
 ## シンプルなアプリバー
 
-{{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
+{{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 
 ## 基本的な検索フィールド付きApp Bar
 
 基本的な検索バー
 
-{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
 
 ## メニュー付き App Bar
 
-{{"demo": "pages/components/app-bar/MenuAppBar.js"}}
+{{"demo": "pages/components/app-bar/MenuAppBar.js", "bg": true}}
 
 ## 検索フィールド付きApp Bar
 
 サイド検索バー
 
-{{"demo": "pages/components/app-bar/SearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/SearchAppBar.js", "bg": true}}
 
 ## Dense App Bar (デスクトップのみ)
 
-{{"demo": "pages/components/app-bar/DenseAppBar.js"}}
+{{"demo": "pages/components/app-bar/DenseAppBar.js", "bg": true}}
 
 ## Prominent
 
 A prominent app bar.
 
-{{"demo": "pages/components/app-bar/ProminentAppBar.js"}}
+{{"demo": "pages/components/app-bar/ProminentAppBar.js", "bg": true}}
 
-## Bottom App Bar
+## 下部アプリバー
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Fixed placement
+## ラベルの配置
 
-When you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:
+アプリバーの位置を固定してレンダリングすると、要素の寸法はページの残りの部分に影響しません。 これにより、コンテンツの一部がアプリバーの背後で見えなくなる可能性があります。 以下に3つの解決策を示します。
 
-1. You can use `position="sticky"` instead of fixed. ⚠️ sticky is not supported by IE 11.
+1. 固定の代わりに `position = "sticky"` を使用できます。 stickyはIE 11ではサポートされていません。
 2. You can render a second `<Toolbar />` component:
 
 ```jsx
@@ -119,7 +119,7 @@ A floating action buttons appears on scroll to make it easy to get back to the t
 
 #### 戻り値
 
-`trigger`: Does the scroll position match the criteria?
+` trigger `：スクロール位置が基準に合っていますか？
 
 #### 例
 

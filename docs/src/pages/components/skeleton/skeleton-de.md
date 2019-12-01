@@ -19,10 +19,16 @@ The component is designed to be used **directly in your components**. For instan
 )}
 ```
 
+## Varianten
+
+The component supports 3 variants.
+
+{{"demo": "pages/components/skeleton/Variants.js"}}
+
 ## YouTube example
 
 {{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
 ## Facebook example
 
-{{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false}}
+{{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}

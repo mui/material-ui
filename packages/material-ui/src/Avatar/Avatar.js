@@ -138,6 +138,7 @@ Avatar.propTypes = {
   src: PropTypes.string,
   /**
    * The `srcSet` attribute for the `img` element.
+   * Use this attribute for responsive image display.
    */
   srcSet: PropTypes.string,
   /**

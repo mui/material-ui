@@ -6,4 +6,8 @@ import React from 'react';
  */
 const ExpansionPanelContext = React.createContext({});
 
+if (process.env.NODE_ENV !== 'production') {
+  ExpansionPanelContext.displayName = 'ExpansionPanelContext';
+}
+
 export default ExpansionPanelContext;

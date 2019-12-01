@@ -9,4 +9,4 @@ components: Paper
 
 Фон приложения напоминает плоскую непрозрачную текстуру листа бумаги, а поведение приложения имитирует способность бумаги изменять размер, перетасовывать и связывать вместе в несколько листов.
 
-{{"demo": "pages/components/paper/PaperSheet.js"}}
+{{"demo": "pages/components/paper/PaperSheet.js", "bg": true}}

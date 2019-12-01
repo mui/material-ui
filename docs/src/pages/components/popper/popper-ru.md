@@ -21,7 +21,7 @@ Some important features of the `Popper` component:
 
 {{"demo": "pages/components/popper/SimplePopper.js"}}
 
-## Transições
+## Переходы
 
 The open/close state of the popper can be animated with a render prop child and a transition component. This component should respect the following conditions:
 
@@ -39,11 +39,11 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 
 ## Positioned Popper
 
-{{"demo": "pages/components/popper/PositionedPopper.js"}}
+{{"demo": "pages/components/popper/PositionedPopper.js", "bg": true}}
 
 ## Scroll playground
 
-{{"demo": "pages/components/popper/ScrollPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/popper/ScrollPlayground.js", "hideHeader": true, "bg": true}}
 
 ## Faked reference object
 
