@@ -30,7 +30,7 @@ export const styles = theme => ({
   group: {
     margin: 0,
     padding: 0,
-    marginLeft: 26,
+    marginLeft: 17,
   },
   /* Styles applied to the tree node content. */
   content: {
@@ -45,9 +45,12 @@ export const styles = theme => ({
   /* Styles applied to the tree node icon and collapse/expand icon. */
   iconContainer: {
     marginRight: 2,
-    width: 24,
+    width: 15,
     display: 'flex',
     justifyContent: 'center',
+    "& svg": {
+      flex: 1
+    }
   },
   /* Styles applied to the label element. */
   label: {
@@ -350,7 +353,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         onMouseDown={handleMouseDown}
         ref={contentRef}
       >
-        {icon ? <div className={classes.iconContainer}>{icon}</div> : null}
+        <div className={classes.iconContainer}>{icon}</div>
         <Typography component="div" className={classes.label}>
           {label}
         </Typography>
