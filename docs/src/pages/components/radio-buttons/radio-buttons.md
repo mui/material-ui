@@ -3,7 +3,7 @@ title: Radio buttons React component
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 ---
 
-# Radio Button
+# Radio
 
 <p class="description">Radio buttons allow the user to select one option from a set.</p>
 
