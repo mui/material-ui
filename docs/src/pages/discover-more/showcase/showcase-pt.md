@@ -8,4 +8,4 @@ Quer adicionar sua aplicação? Encontrou uma aplicação que não funciona mais
 - Alto tráfego
 - Código aberto
 
-{{"demo": "pages/discover-more/showcase/Showcase.js", "hideHeader": true}}
+{{"demo": "pages/discover-more/showcase/Showcase.js", "hideHeader": true, "bg": "inline"}}

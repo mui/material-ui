@@ -11,17 +11,17 @@ As visualizações em árvore podem ser usadas para representar um navegador do 
 
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}}
 
-## Visualização em árvore customizada
-
-### Ícones customizados, borda e animação
-
-{{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
-
-### Controlled
+## Controlled
 
 The tree view also offers a controlled API.
 
 {{"demo": "pages/components/tree-view/ControlledTreeView.js"}}
+
+## Customized tree view
+
+### Ícones customizados, borda e animação
+
+{{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
 
 ### Gmail clone
 

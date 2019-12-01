@@ -8,7 +8,7 @@ Verwenden Sie Ränder Werkzeuge, um die Ränder eines Elements hinzuzufügen ode
 
 ### Zusätze
 
-{{"demo": "pages/system/borders/BorderAdditive.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/borders/BorderAdditive.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box border={1}>…
@@ -20,7 +20,7 @@ Verwenden Sie Ränder Werkzeuge, um die Ränder eines Elements hinzuzufügen ode
 
 ### Subtraktionen
 
-{{"demo": "pages/system/borders/BorderSubtractive.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/borders/BorderSubtractive.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box border={0}>…

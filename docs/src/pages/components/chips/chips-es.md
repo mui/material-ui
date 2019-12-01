@@ -30,7 +30,7 @@ Los chips con contorno ofrecen un estilo alternativo.
 
 Un ejemplo de cómo renderizar múltiples Chips desde un array de valores. Eliminar un chip lo quita del array. Tened en cuenta que al no estar la propiedad `onClick` definida, al Chip se le puede hacer focus, pero no gana profundidad si se hace click en él o se toca.
 
-{{"demo": "pages/components/chips/ChipsArray.js"}}
+{{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 
 ## Small Chip
 
@@ -47,3 +47,7 @@ You can use the `size` prop to define a small Chip.
 ## Chip Playground
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}
+
+## Accesibilidad
+
+If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.

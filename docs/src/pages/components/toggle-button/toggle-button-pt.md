@@ -25,9 +25,9 @@ Gosta de botões maiores ou menores? Use a propriedade `size`.
 
 ## Botão de alternância customizado
 
-Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
-{{"demo": "pages/components/toggle-button/CustomizedDividers.js"}}
+{{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 
 ## Acessibilidade
 

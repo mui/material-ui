@@ -31,7 +31,7 @@ The `Menu` component uses the `Popover` component internally. However, you might
 
 The primary responsibility of the `MenuList` component is to handle the focus.
 
-{{"demo": "pages/components/menus/MenuListComposition.js"}}
+{{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
 ## Customized menus
 
@@ -51,7 +51,7 @@ The `MenuItem` is a wrapper around `ListItem` with some additional styles. You c
 
 Существует [ошибка flexbox](https://bugs.chromium.org/p/chromium/issues/detail?id=327437), которая предотвращает работу свойства `text-overflow: ellipsis` внутри flexbox. Вы можете использовать компонент `Typography` с `noWrap`, чтобы обойти эту проблему:
 
-{{"demo": "pages/components/menus/TypographyMenu.js"}}
+{{"demo": "pages/components/menus/TypographyMenu.js", "bg": true}}
 
 ## Change transition
 

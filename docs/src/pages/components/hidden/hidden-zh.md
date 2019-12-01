@@ -37,13 +37,13 @@ mdDown      |                     hide | show
 
 使用任何断点 `up` 属性的元素，给定的 *子节点* 将在 *断点以及断点以上* 时被隐藏。
 
-{{"demo": "pages/components/hidden/BreakpointUp.js"}}
+{{"demo": "pages/components/hidden/BreakpointUp.js", "bg": true}}
 
 ## 断点 down
 
 使用任何断点 `down` 属性的元素，给定 *子节点* 将在 *断点以及断点以下* 时被隐藏 。
 
-{{"demo": "pages/components/hidden/BreakpointDown.js"}}
+{{"demo": "pages/components/hidden/BreakpointDown.js", "bg": true}}
 
 ## 断点 only
 
@@ -54,10 +54,10 @@ mdDown      |                     hide | show
 - 列出一个断点
 - 列出一个断点数组
 
-{{"demo": "pages/components/hidden/BreakpointOnly.js"}}
+{{"demo": "pages/components/hidden/BreakpointOnly.js", "bg": true}}
 
 ## 与 Grid 集成
 
 在不同的响应断点处更改 `Grid` 是很常见的，并且在许多情况下，您希望隐藏其中一些元素。
 
-{{"demo": "pages/components/hidden/GridIntegration.js"}}
+{{"demo": "pages/components/hidden/GridIntegration.js", "bg": true}}

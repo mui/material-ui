@@ -9,48 +9,48 @@ components: AppBar, Toolbar, Menu
 
 [顶部应用栏](https://material.io/design/components/app-bars-top.html) 提供与当前屏幕相关的内容和操作。 它用于展示品牌、屏幕标题、导航和操作选项。
 
-它可以转换为上下文相关的操作栏或直接用作导航栏。
+It can transform into a contextual action bar or be used as a navbar.
 
 ## 简单的应用栏
 
-{{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
+{{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 
 ## 带一个主搜索输入框的应用栏
 
 一个主要搜索栏。
 
-{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
 
 ## 带有菜单的应用栏
 
-{{"demo": "pages/components/app-bar/MenuAppBar.js"}}
+{{"demo": "pages/components/app-bar/MenuAppBar.js", "bg": true}}
 
 ## 带有搜索输入框的应用栏
 
 一个侧边搜索栏。
 
-{{"demo": "pages/components/app-bar/SearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/SearchAppBar.js", "bg": true}}
 
 ## 紧凑模式 (仅限桌面模式)
 
-{{"demo": "pages/components/app-bar/DenseAppBar.js"}}
+{{"demo": "pages/components/app-bar/DenseAppBar.js", "bg": true}}
 
-## Prominent
+## 突出模式
 
-A prominent app bar.
+一个突出模式的应用栏。
 
-{{"demo": "pages/components/app-bar/ProminentAppBar.js"}}
+{{"demo": "pages/components/app-bar/ProminentAppBar.js", "bg": true}}
 
-## Bottom App Bar
+## 底部应用栏
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Fixed placement
+## 固定放置
 
-When you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:
+当您固定放置应用栏时，元素的尺寸不会影响页面的其他部分。 这可能导致您的部分内容被挡在应用程序栏后面而看不见。 下面是3种可能的解决方案：
 
-1. You can use `position="sticky"` instead of fixed. ⚠️ sticky is not supported by IE 11.
-2. You can render a second `<Toolbar />` component:
+1. 您可以使用 `position =“ sticky”` 代替 fixed。 ⚠️ IE 11不支持sticky。
+2. 您可以渲染第二个 `<Toolbar />` 组件：
 
 ```jsx
 function App() {
@@ -65,7 +65,7 @@ function App() {
 }
 ```
 
-3. You can use `theme.mixins.toolbar` CSS:
+3. 您可以使用 `theme.mixins.toolbar` CSS：
 
 ```jsx
 const useStyles = makeStyles(theme => ({
@@ -85,13 +85,13 @@ function App() {
 };
 ```
 
-## Scrolling
+## 滚动
 
-You can use the `useScrollTrigger()` hook to respond to user scroll actions.
+您可以使用 `useScrollTrigger()` 挂钩来回应用户的滚动操作。
 
 ### 隐藏应用栏
 
-The app bar hides on scroll down to leave more space for reading.
+当向下滚动时，应用栏将会隐藏，这样一来会留有更多的空间进行阅读。
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
 
@@ -103,7 +103,7 @@ The app bar elevates on scroll to communicate that the user is not at the top of
 
 ### 回到顶部
 
-A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+在滚动的时候，会出现一个浮动操作按钮，这样以便于返回页面的顶部。
 
 {{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
 

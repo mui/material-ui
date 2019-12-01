@@ -1,12 +1,12 @@
 # 高级
 
-<p class="description">This section covers more advanced usage of @material-ui/core/styles.</p>
+<p class="description">本节包含了更多 @material-ui/core/styles 的进阶用法。</p>
 
 ## 主题
 
-Add a `ThemeProvider` to the top level of your app to pass a theme down the React component tree. 然后，您可以在样式函数中访问主题对象。
+添加` ThemeProvider `到应用程序的顶层，将主题传递到React组件树。 然后，您可以在样式函数中访问主题对象。
 
-> This example creates a new theme. See the [theming section](/customization/theming/) for how to customize the default Material-UI theme.
+> 此示例创建一个新主题。 有关如何自定义默认 Material-UI 主题的信息，参见[主题部分](/customization/theming/)。
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -33,7 +33,7 @@ function Theming() {
 
 #### `useTheme` hook
 
-For use in function components:
+用于函数组件：
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';

@@ -6,13 +6,13 @@
 
 我们推荐在生产开发中使用最新版本。
 
-{{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
+{{"demo": "pages/versions/StableVersions.js", "hideHeader": true, "bg": "inline"}}
 
 ## 最新版本
 
 在这里您可以找到尚未发布的最新文档和代码。 您可以使用它来查看未来的更新，并给 Material-UI 的贡献者提供更好的反馈。
 
-{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true}}
+{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true, "bg": "inline"}}
 
 ## 版本控制方案
 
@@ -39,7 +39,7 @@ Material-UI遵循[语义化版本2.0.0](https://semver.org/)。 Material-UI 的�
 ## 发布时间表
 
 | 日期       | 版本     | 状态  |
-|:-------- |:------ | --- |
+|:-------- |:------ |:--- |
 | 2018年5月  | v1.0.0 | 已发布 |
 | 2018年9月  | v3.0.0 | 已发布 |
 | 2019年5月  | v4.0.0 | 已发布 |

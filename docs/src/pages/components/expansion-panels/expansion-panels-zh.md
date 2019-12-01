@@ -11,29 +11,29 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 > **注意：** 此版本的文本框将不再记录在 [Material Design 指南中](https://material.io/)，但 Material-UI 将继续支持它。
 
-## Simple Expansion Panel
+## 简单的扩展面板
 
-{{"demo": "pages/components/expansion-panels/SimpleExpansionPanel.js"}}
+{{"demo": "pages/components/expansion-panels/SimpleExpansionPanel.js", "bg": true}}
 
-## Controlled Accordion
+## 可控制的折叠面板
 
-Extend the default panel behavior to create an accordion with the `ExpansionPanel` component.
+使用` ExpansionPanel `组件创建自定义的扩展面板组件
 
-{{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js"}}
+{{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js", "bg": true}}
 
-## Customized expansion panels
+## 自定义扩展面板
 
 以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/expansion-panels/CustomizedExpansionPanels.js"}}
 
-## Additional actions
+## 其他操作
 
 In order to put an action such as a `Checkbox` or a button inside of the `ExpansionPanelSummary`, you need to stop the propagation of the focus and click events to prevent the panel from expanding/collapsing when using the action. You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in the label of the parent button that controls the panel expansion.
 
-{{"demo": "pages/components/expansion-panels/ActionsInExpansionPanelSummary.js"}}
+{{"demo": "pages/components/expansion-panels/ActionsInExpansionPanelSummary.js", "bg": true}}
 
-## Performance
+## 性能
 
 The content of ExpansionPanels is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
 
@@ -43,11 +43,11 @@ The content of ExpansionPanels is mounted by default even if the panel is not ex
 
 As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
 
-## Secondary heading and Columns
+## 次要标题和列
 
 Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
 
-{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}
+{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js", "bg": true}}
 
 ## 可访问性
 

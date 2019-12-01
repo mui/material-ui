@@ -8,4 +8,4 @@
 - 高流量
 - 开源
 
-{{"demo": "pages/discover-more/showcase/Showcase.js", "hideHeader": true}}
+{{"demo": "pages/discover-more/showcase/Showcase.js", "hideHeader": true, "bg": "inline"}}

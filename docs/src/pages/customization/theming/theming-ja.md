@@ -56,13 +56,14 @@ Reactコンポーネント内のテーマ変数に[アクセスできます](/st
 
 ## API
 
-### `createMuiTheme(options) => theme`
+### `createMuiTheme(options, ...args) => theme`
 
 受け取ったオプションに基づいてテーマを生成します。
 
 #### 引数
 
 1. `options` (*Object*): 不完全なテーマオブジェクトを取得し、不足している部分を追加します。
+2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
 
 #### 戻り値
 
@@ -95,10 +96,10 @@ const theme = createMuiTheme({
 1. `theme` (*Object*): 強化するテーマオブジェクト。
 2. `オプション` (*オプジェクト* [任意]):
 
-- `breakpoints` (*Array<String>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
+- `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
 - `disableAlign` (*Boolean* [optional]): Default to `false`. フォントサイズがわずかに変化して線が表示されるかどうか 高さは保持され、Material Designの4pxライン高さグリッドに位置合わせされます。 これには、テーマのスタイルで単位なしの行の高さが必要です。
 - `factor` (*Number* [optional]): Default to `2`. この値は、フォントサイズのサイズ変更の強度を決定します。 値が大きいほど、小さな画面のフォントサイズの差は小さくなります。 値が小さいほど、小さい画面のフォントサイズが大きくなります。 値は1より大きくなければなりません。
-- `variants` (*Array<String>* [optional]): Default to all. 処理するタイポグラフィバリアント。
+- `variants` (*Array\<String\>* [optional]): Default to all. 処理するタイポグラフィバリアント。
 
 #### 戻り値
 

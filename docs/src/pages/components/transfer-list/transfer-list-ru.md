@@ -11,10 +11,10 @@ components: List, ListItem, Checkbox, Switch
 
 For completeness, this example includes buttons for "move all", but not every transfer list needs these.
 
-{{"demo": "pages/components/transfer-list/TransferList.js"}}
+{{"demo": "pages/components/transfer-list/TransferList.js", "bg": true}}
 
 ## Enhanced Transfer List
 
 This example exchanges the "move all" buttons for a "select all / select none" checkbox, and adds a counter.
 
-{{"demo": "pages/components/transfer-list/SelectAllTransferList.js"}}
+{{"demo": "pages/components/transfer-list/SelectAllTransferList.js", "bg": true}}

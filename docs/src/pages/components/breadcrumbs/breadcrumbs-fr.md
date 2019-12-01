@@ -11,21 +11,27 @@ components: Breadcrumbs, Link, Typography
 
 {{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
-## Séparateur personnalisé
+## Active last breadcrumb
 
-Dans les exemples qui suivent, nous utilisons deux chaînes de caractère et une icône SVG comme séparateurs.
+Keep the last breadcrumb interactive.
+
+{{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
+
+## Custom separator
+
+In the following examples, we are using two string separators, and an SVG icon.
 
 {{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
-## Fil d'Ariane avec icônes
+## Breadcrumbs with icons
 
 {{"demo": "pages/components/breadcrumbs/IconBreadcrumbs.js"}}
 
-## Fil d'Ariane contracté
+## Collapsed breadcrumbs
 
 {{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## Fil d'Ariane personnalisé
+## Customized breadcrumbs
 
 Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
@@ -33,7 +39,7 @@ Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus da
 
 ## Integration with react-router
 
-{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js", "bg": true}}
 
 ## Accessibilité
 

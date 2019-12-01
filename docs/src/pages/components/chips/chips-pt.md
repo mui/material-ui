@@ -30,7 +30,7 @@ Chips Delineados oferecem um estilo alternativo.
 
 Um exemplo de renderização de vários Chips em uma matriz de valores. Deletando um chip irá remove-lo da matriz. Observe que mesmo que a propriedade `onClick` não esteja definida, o Chip pode ser focado, mas não irá ganhar efeito de profundidade quando clicado ou tocado.
 
-{{"demo": "pages/components/chips/ChipsArray.js"}}
+{{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 
 ## Chip Pequeno
 
@@ -47,3 +47,7 @@ Você pode usar a propriedade `size` para definir um Chip pequeno.
 ## Chip - Live Demo
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}
+
+## Acessibilidade
+
+If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.

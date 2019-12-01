@@ -10,13 +10,15 @@ Material-UI стремится обеспечить прочную основу 
 
 Подход к стилизации Material-UI вдохновлен многими другими библиотеками стилей, такими как [ styled-components ](https://www.styled-components.com/) и [ emotion](https://emotion.sh/).
 
-- 💅 You can expect [the same advantages](https://www.styled-components.com/docs/basics#motivation) as styled-components.
-- 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles).
-- 🧩 It's extensible via a [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
-- ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core – a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
-- 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles); and no bundle size increase if used alongside Material-UI.
+- 💅 Вы можете ожидать [всех преимуществ](https://www.styled-components.com/docs/basics#motivation), которые имеются в styled-components.
+- 🚀 [невероятно быстро](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles) ,
+- 🧩 возможность расширения с помощью [плагина](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
+- ⚡️ решение использует [ JSS ](https://github.com/cssinjs/jss) в своей основе - [ высокая производительность ](https://github.com/cssinjs/jss/blob/master/docs/performance.md) компилятора JavaScript в CSS, который работает и во время выполнения и на стороне сервера.
+- 📦 Менее [ 15 КБ в архиве ](https://bundlephobia.com/result?p=@material-ui/styles) ; и не увеличивает размер пакета, если используется вместе с Material-UI.
 
 ## Инструкция по установке
+
+> `@material-ui/styles` is re-exported as `@material-ui/core/styles` - you only need to install it if you wish to use it independently from Material-UI.
 
 Для установки и сохранения в вашем ` package.json ` зависимости, запустите:
 
@@ -61,7 +63,7 @@ export default function Hook() {
 
 ### Styled components API
 
-Note: this only applies to the calling syntax – style definitions still use a JSS object. You can also [change this behavior](/styles/advanced/#string-templates), with some limitations.
+Примечание: это относится только к синтаксису вызова. Для определения стилей по-прежнему используется объект JSS. Вы можете [ изменить это поведение ](/styles/advanced/#string-templates) (с некоторыми ограничениями).
 
 ```jsx
 import React from 'react';
@@ -119,14 +121,13 @@ export default withStyles(styles)(HigherOrderComponent);
 
 {{"demo": "pages/styles/basics/HigherOrderComponent.js"}}
 
-## Nesting selectors
+## Вложенные селекторы
 
-You can nest selectors to target elements inside the current class or component. The following example uses the Hook API, but it works the same way with the other APIs.
+Вы можете вкладывать селекторы в целевые элементы внутри текущего класса или компонента. В следующем примере используется Hook API, но вы можете аналогично работать и с другими API.
 
 ```js
 const useStyles = makeStyles({
   root: {
-    padding: 16,
     color: 'red',
     '& p': {
       color: 'green',
@@ -138,11 +139,11 @@ const useStyles = makeStyles({
 });
 ```
 
-{{"demo": "pages/styles/basics/NestedStylesHook.js"}}
+{{"demo": "pages/styles/basics/NestedStylesHook.js", "defaultCodeOpen": false}}
 
-## Adapting based on props
+## Адаптация на основе props
 
-You can pass a function to `makeStyles` ("interpolation") in order to adapt the generated value based on the component's props. The function can be provided at the style rule level, or at the CSS property level:
+You can pass a function to `makeStyles` ("interpolation") in order to adapt the generated value based on the component's props. Функция может быть предоставлена на уровне правила стиля или на уровне свойства CSS:
 
 ```jsx
 const useStyles = makeStyles({
@@ -166,23 +167,23 @@ function MyComponent() {
 }
 ```
 
-Этот компонент кнопка имеет свойство цвет, которое меняет свой цвет:
+Этот компонент кнопки имеет свойство цвет, которое изменяет его цвет:
 
 ### Адаптация хука API
 
 {{"demo": "pages/styles/basics/AdaptingHook.js", "react":"next"}}
 
-### Adapting the styled components API
+### Адаптация styled components API
 
 {{"demo": "pages/styles/basics/AdaptingStyledComponents.js"}}
 
-### Адаптация API компонента высшего порядка
+### Адаптация API компонента высшего порядка (HOC)
 
 {{"demo": "pages/styles/basics/AdaptingHOC.js"}}
 
-### Stress test
+### Стресс-тест
 
-In the following stress test, you can update the *theme color* and the *background-color property* live:
+В следующем стресс-тесте вы можете обновить *цвет темы* и свойство * background-color *:
 
 ```js
 const useStyles = makeStyles(theme => ({
@@ -197,11 +198,11 @@ const useStyles = makeStyles(theme => ({
 
 ## @material-ui/core/styles vs @material-ui/styles
 
-Material-UI's styles are powered by the [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) package, (built with JSS). This solution is [isolated](https://bundlephobia.com/result?p=@material-ui/styles). It doesn't have a default theme, and can be used to style React applications that are not using Material-UI components.
+Material-UI's styles are powered by the [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) package, (built with JSS). This solution is [isolated](https://bundlephobia.com/result?p=@material-ui/styles). Он не имеет темы по умолчанию и может использоваться для стилизации приложений React, которые не используют компоненты Material-UI.
 
-To reduce the number of packages to install when using Material-UI, and to simplify the imports, `@material-ui/styles` modules are re-exported from `@material-ui/core/styles`.
+Чтобы уменьшить количество пакетов, устанавливаемых при использовании Material-UI, и упростить импорт, модули `@material-ui/styles` реэкспортируются из `@material-ui/core/styles` ,
 
-To remove the need to systematically supply a theme, the default Material-UI theme is applied to the re-exported `makeStyles`, `styled`, `withTheme`, `useTheme`, and `withStyles` modules.
+Чтобы устранить необходимость постоянного подключения темы, к реэкспортированным модулям применяется дефолтная тема Material-UI. Это относится к модулям: `makeStyles`, `styled`, `withTheme`, `useTheme` и `withStyles` 
 
 For instance:
 

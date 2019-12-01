@@ -10,7 +10,7 @@ The templates can be combined with one of the [example applications](https://git
 
 Les sections de chaque mise en page sont clairement définies, soit par des commentaires, soit par l’utilisation de fichiers séparés ce qui facilite l’extraction de parties d’une page (telle qu'une "unité héros" ou un pied de page, par exemple) pour une utilisation ultérieure. Pour les exemples multi-parties, une table dans le README à l'emplacement du code source lié décrit le but de chaque fichier.
 
-{{"demo": "pages/getting-started/templates/Templates.js", "hideHeader": true}}
+{{"demo": "pages/getting-started/templates/Templates.js", "hideHeader": true, "bg": true}}
 
 If while using these examples you make changes or enhancements that could improve the developer experience, or you would like to contribute an additional example, please consider creating a [pull request on GitHub](https://github.com/mui-org/material-ui/pulls).
 

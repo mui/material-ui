@@ -31,7 +31,7 @@ El componente `Menu` usa el componente `Popover` internamente. Sin embargo, es p
 
 La responsabilidad principal del componente `MenuList` es manejar el foco.
 
-{{"demo": "pages/components/menus/MenuListComposition.js"}}
+{{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
 ## Customized menus
 
@@ -51,7 +51,7 @@ Si el alto de un menú previene que todos los elementos sean mostrados, puede ha
 
 Existe un [bug de flexbox](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) que previene el funcionamiento de `text-overflow: ellipsis` en un diseño de flexbox. Puede usar el componente `Typography` con `noWrap` para solucionar este problema:
 
-{{"demo": "pages/components/menus/TypographyMenu.js"}}
+{{"demo": "pages/components/menus/TypographyMenu.js", "bg": true}}
 
 ## Change transition
 

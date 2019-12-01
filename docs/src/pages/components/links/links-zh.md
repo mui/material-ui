@@ -17,7 +17,7 @@ However, the Link component has different default properties than the Typography
 - 当链接需要突出显示，使用 `color="primary"`
 - `variant="inherit"` as the link will, most of the time, be used as a child of a Typography component.
 
-## Security
+## 安全提示
 
 When you use `target="_blank"` with Links, it is [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to third party content.
 

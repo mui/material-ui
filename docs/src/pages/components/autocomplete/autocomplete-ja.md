@@ -9,7 +9,7 @@ components: TextField, Popper, Autocomplete
 
 The widget is useful for setting the value of a single-line textbox in one of two types of scenarios:
 
-1. The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name: [combo box](#combobox).
+1. The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name: [combo box](#combo-box).
 2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, e.g., a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
 
 ## Combo box
@@ -46,13 +46,13 @@ Set `freeSolo` to true so the textbox can contain any arbitrary value.
 
 ## `useAutocomplete`
 
-For advanced customization use cases, we expose a `useAutocomplete()` hook. It accepts almost the same options as the Autocomplete component minor all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
+For advanced customization use cases, we expose a `useAutocomplete()` hook. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
 
 ```jsx
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
 ```
 
-- 📦 [4 kB gzipped](/size-snapshot).
+- 📦 [4.5 kB gzipped](/size-snapshot).
 
 {{"demo": "pages/components/autocomplete/UseAutocomplete.js", "defaultCodeOpen": false}}
 

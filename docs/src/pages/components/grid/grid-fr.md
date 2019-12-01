@@ -27,7 +27,7 @@ La grille responsive se concentre sur les largeurs d'espacement cohérentes plut
 
 Cette fonction de transformation de sortie peut être personnalisée [à l'aide du thème](/customization/spacing/).
 
-{{"demo": "pages/components/grid/SpacingGrid.js"}}
+{{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
 
 ## Les grilles fluides
 
@@ -37,31 +37,31 @@ Fluid grids use columns that scale and resize content. A fluid grid’s layout c
 
 La largeur des colonnes s’applique à tous les points de rupture (c.-à-d. `xs` et plus).
 
-{{"demo": "pages/components/grid/CenteredGrid.js"}}
+{{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
 
 ### Grille avec points d'arrêt
 
 Plusieurs colonnes ont plusieurs largeurs définies, ce qui entraîne une modification de la présentation au point de rupture défini.
 
-{{"demo": "pages/components/grid/FullWidthGrid.js"}}
+{{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
 ## Interactif
 
 Vous trouverez ci-dessous une démo interactive vous permettant d'explorer les résultats visuels des différents paramètres:
 
-{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true, "bg": true}}
 
 ## Mise en page automatique
 
 The Auto-layout makes the *items* equitably share the available space. That also means you can set the width of one *item* and the others will automatically resize around it.
 
-{{"demo": "pages/components/grid/AutoGrid.js"}}
+{{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
 
 ## Grille complexe
 
 La démo suivante ne suit pas la spécification Material Design, mais illustre comment la grille peut être utilisée pour créer des mises en page complexes.
 
-{{"demo": "pages/components/grid/ComplexGrid.js"}}
+{{"demo": "pages/components/grid/ComplexGrid.js", "bg": true}}
 
 ## Grille imbriquée
 
@@ -71,7 +71,7 @@ The `container` and `item` properties are two independent booleans. They can be 
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
-{{"demo": "pages/components/grid/NestedGrid.js"}}
+{{"demo": "pages/components/grid/NestedGrid.js", "bg": true}}
 
 ## Limites
 
@@ -110,7 +110,7 @@ In order for the item to stay within the container you need to set `min-width: 0
   <Typography noWrap>
 ```
 
-{{"demo": "pages/components/grid/AutoGridNoWrap.js"}}
+{{"demo": "pages/components/grid/AutoGridNoWrap.js", "bg": true}}
 
 ### direction: column | column-reverse
 
@@ -120,4 +120,4 @@ Bien que le composant `Grid` ait une propriété `direction` qui autorise les va
 
 Material-UI ne fournit aucune fonctionnalité de grille CSS, mais comme illustré ci-dessous, vous pouvez facilement utiliser CSS Grid pour mettre en page vos pages.
 
-{{"demo": "pages/components/grid/CSSGrid.js"}}
+{{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}

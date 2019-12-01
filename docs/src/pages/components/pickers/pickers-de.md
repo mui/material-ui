@@ -3,9 +3,9 @@ title: Date picker, Time picker React components
 components: TextField
 ---
 
-# Date / Time pickers
+# Datums- und Uhrzeitauswahlen
 
-<p class="description">Date pickers and Time pickers provide a simple way to select a single value from a pre-determined set.</p>
+<p class="description">Datums- und Zeitauswahlen bieten einen einfachen weg, um einen einzigen Wert aus einem vorgefertigten Bereich zu erfassen.</p>
 
 - Auf dem Handy sind Pcikers am besten für die Anzeige im Bestätigungsdialogfeld geeignet.
 - Für die Inline-Anzeige, z. B. in einem Formular, sollten Sie kompakte Steuerelemente wie segmentierte Dropdown-Schaltflächen verwenden.
@@ -14,17 +14,17 @@ components: TextField
 
 ![stars](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
 
-[@material-ui/pickers](https://material-ui-pickers.dev/) provides date picker and time picker controls.
+[@material-ui/pickers](https://material-ui-pickers.dev/) bietet weitere Datums- und Zeitauswahlmöglichkeiten.
 
 {{"demo": "pages/components/pickers/MaterialUIPickers.js"}}
 
 ## Native Picker
 
-⚠️ Unterstützung von systemeigenen Eingabesteuerelementen durch Browser [ist nicht perfekt](https://caniuse.com/#feat=input-datetime). Have a look at [@material-ui/pickers](#material-ui-pickers) for a richer solution.
+⚠️ Unterstützung von systemeigenen Eingabesteuerelementen durch Browser [ist nicht perfekt](https://caniuse.com/#feat=input-datetime). Have a look at [@material-ui/pickers](https://material-ui-pickers.dev/) for a richer solution.
 
-### Datepickers
+### Datumsauswahlen
 
-A native datepicker example with `type="date"`.
+Eine native Datumsauswahl mit `type="date"`.
 
 {{"demo": "pages/components/pickers/DatePickers.js"}}
 

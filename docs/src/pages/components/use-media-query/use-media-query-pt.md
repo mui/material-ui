@@ -15,7 +15,7 @@ Algumas das principais características:
 
 ## Consulta de mídia simples
 
-Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. The media query string can by any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference).
+Você deve fornecer uma consulta de mídia ao primeiro argumento do hook. The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference).
 
 {{"demo": "pages/components/use-media-query/SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
@@ -115,7 +115,7 @@ function handleRender(req, res) {
   const ssrMatchMedia = query => ({
     matches: mediaQuery.match(query, {
       // The estimated CSS width of the browser.
-      width: deviceType === 'mobile' ? 0 : 1024,
+      width: deviceType === 'mobile' ? '0px' : '1024px',
     }),
   });
 
@@ -123,7 +123,7 @@ function handleRender(req, res) {
     <ThemeProvider
       theme={{
         props: {
-          // Modifica as opções padrões de useMediaQuery
+          // Change the default options of useMediaQuery
           MuiUseMediaQuery: { ssrMatchMedia },
         },
       }}

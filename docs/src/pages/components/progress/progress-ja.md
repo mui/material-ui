@@ -30,15 +30,15 @@ components: CircularProgress, LinearProgress
 
 ### Interactive Integration
 
-{{"demo": "pages/components/progress/CircularIndeterminate.js"}}
+{{"demo": "pages/components/progress/CircularIntegration.js"}}
 
 ### Circular Determinate
 
-{{"demo": "pages/components/progress/CircularIndeterminate.js"}}
+{{"demo": "pages/components/progress/CircularDeterminate.js"}}
 
 ### Circular Static
 
-{{"demo": "pages/components/progress/CircularIndeterminate.js"}}
+{{"demo": "pages/components/progress/CircularStatic.js"}}
 
 ## Linear
 

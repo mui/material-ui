@@ -9,7 +9,7 @@ components: TextField, Popper, Autocomplete
 
 Этот виджет используется для установки значения однострочного текстового поля. Он полезен в одном из двух случев:
 
-1. Значение для текстового поля должно быть выбрано из предопределенного набора допустимых значений. Например, поле "местоположение" должно содержать список названий реальных локаций: [combo box](#combobox).
+1. The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name: [combo box](#combo-box).
 2. Текстовое поле может содержать любое произвольное значение, но целесообразно предлагать пользователю возможные значения. Например, поле поиска может предлагать аналогичные или предыдущие поиски, чтобы сэкономить время пользователя: [free solo](#free-solo).
 
 ## Combo box
@@ -46,13 +46,13 @@ components: TextField, Popper, Autocomplete
 
 ## `useAutocomplete`
 
-For advanced customization use cases, we expose a `useAutocomplete()` hook. It accepts almost the same options as the Autocomplete component minor all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
+For advanced customization use cases, we expose a `useAutocomplete()` hook. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
 
 ```jsx
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
 ```
 
-- 📦 [4 kB gzipped](/size-snapshot).
+- 📦 [4.5 kB gzipped](/size-snapshot).
 
 {{"demo": "pages/components/autocomplete/UseAutocomplete.js", "defaultCodeOpen": false}}
 

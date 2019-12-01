@@ -1,14 +1,14 @@
 # Borders
 
-<p class="description">Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons, or any other element.</p>
+<p class="description">Используй настройки border и border-radius для стилизации элементов. Доступно для изображений, кнопок и других элементов.</p>
 
 ## Border
 
-Use border utilities to add or remove an element’s borders. Choose from all borders or one at a time.
+Используй настройки для добавления или удаления границ. Можно устанавливать как все сразу, так и каждую часть по отдельности.
 
-### Additive
+### Добавление
 
-{{"demo": "pages/system/borders/BorderAdditive.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/borders/BorderAdditive.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box border={1}>…
@@ -18,9 +18,9 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 <Box borderLeft={1}>…
 ```
 
-### Subtractive
+### Удаление
 
-{{"demo": "pages/system/borders/BorderSubtractive.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/borders/BorderSubtractive.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box border={0}>…
@@ -30,7 +30,7 @@ Use border utilities to add or remove an element’s borders. Choose from all bo
 <Box borderLeft={0}>…
 ```
 
-## Border color
+## Цвет границы
 
 {{"demo": "pages/system/borders/BorderColor.js", "defaultCodeOpen": false}}
 

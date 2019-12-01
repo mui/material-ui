@@ -220,7 +220,8 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 ### ExpansionPanel（扩展面板）
 
 - [ExpansionPanelActions] 将 CSS 类 `action` 重命名为 `spacing`。
-- [ExpansionPanel] 加强 `disabled` 样式规则的 CSS 特性。
+- [ExpansionPanel] Increase the CSS specificity of the `disabled` and `expanded` style rules.
+- [ExpansionPanel] Rename the `CollapseProps` prop to `TransitionProps`.
 
 ### Lists（列表）
 

@@ -37,13 +37,13 @@ Se você estiver usando a renderização do lado do servidor, poderá definir `i
 
 Usando qualquer propriedade de ponto de quebra com `up`, o componente *children* será ocultado *em ou acima* do ponto de quebra.
 
-{{"demo": "pages/components/hidden/BreakpointUp.js"}}
+{{"demo": "pages/components/hidden/BreakpointUp.js", "bg": true}}
 
 ## Ponto de quebra abaixo
 
 Usando qualquer propriedade de ponto de quebra com `down`, o componente *children* será ocultado *em ou abaixo* do ponto de quebra.
 
-{{"demo": "pages/components/hidden/BreakpointDown.js"}}
+{{"demo": "pages/components/hidden/BreakpointDown.js", "bg": true}}
 
 ## Ponto de quebra somente
 
@@ -54,10 +54,10 @@ A propriedade `only` pode ser usada de duas maneiras:
 - com um único ponto de quebra
 - com um array de pontos de quebra
 
-{{"demo": "pages/components/hidden/BreakpointOnly.js"}}
+{{"demo": "pages/components/hidden/BreakpointOnly.js", "bg": true}}
 
 ## Integração com Grade
 
 É bastante comum alterar um `Grid` em pontos de quebra responsivos diferentes e, em muitos casos, você deseja ocultar alguns desses elementos.
 
-{{"demo": "pages/components/hidden/GridIntegration.js"}}
+{{"demo": "pages/components/hidden/GridIntegration.js", "bg": true}}

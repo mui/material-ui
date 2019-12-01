@@ -28,7 +28,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 Да, это действительно все, что вам нужно для начала, как вы можете увидеть в этой интерактивной демонстрации:
 
-{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
+{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true, "bg": true}}
 
 ## Глобальная настройка
 
@@ -36,49 +36,27 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ### Responsive meta tag
 
-Material-UI разработан используя подход Mobile First, согласно которому мы сначала пишем код для мобильных устройств, затем мастштабируем компоненты по мере необходимости, используя медиа-запросы CSS. Чтобы обеспечить правильный рендеринг и масштабирование касанием для всех устройств, добавьте метатег реагирующего окна просмотра в элемент 
+Material-UI разработан используя подход Mobile First, согласно которому мы сначала пишем код для мобильных устройств, затем мастштабируем компоненты по мере необходимости, используя медиа-запросы CSS. Чтобы обеспечить правильный рендеринг и масштабирование касанием для всех устройств, добавьте метатег реагирующего окна просмотра в элемент `<head>`.
 
-<head>
-  .</p> 
-  
-  <pre><code class="html">&lt;meta
-  name="viewport"
-  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-/&gt;
-</code></pre>
-  
-  <h3>
-    CssBaseline
-  </h3>
-  
-  <p>
-    Material-UI предоставляет опциональный компонент <a href="/components/css-baseline/">CssBaseline</a>. Он исправляет некоторые несоответствия между браузерами и устройствами, обеспечивая несколько более упорядоченный сброс стилей HTML элементов.
-  </p>
-  
-  <h2>
-    Версионная документация
-  </h2>
-  
-  <p>
-    Данная документация всегда отражает последнюю стабильную версию Material-UI. You can find older versions of the documentation on a <a href="https://material-ui.com/versions/">separate page</a>.
-  </p>
-  
-  <h2>
-    Дальнейшие шаги
-  </h2>
-  
-  <p>
-    Теперь, когда у вас есть представление о базовых настройках, можно узнать больше:
-  </p>
-  
-  <ul spaces="0" level="0" marker="-">
-    <li level="0">
-      Как предоставить <a href="/components/typography/">шрифт и оформление Material Design</a>.
-    </li>
-    <li level="0">
-      Как воспользоваться <a href="/customization/theming/">механизмом тем</a>.
-    </li>
-    <li level="0">
-      Как <a href="/customization/components/">переопределить</a> внешний вид компонентов.
-    </li>
-  </ul>
+```html
+<meta
+ name="viewport"
+ content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+/>
+```
+
+### CssBaseline
+
+Material-UI предоставляет опциональный компонент [CssBaseline](/components/css-baseline/). Он исправляет некоторые несоответствия между браузерами и устройствами, обеспечивая несколько более упорядоченный сброс стилей HTML элементов.
+
+## Версионная документация
+
+Данная документация всегда отражает последнюю стабильную версию Material-UI. You can find older versions of the documentation on a [separate page](https://material-ui.com/versions/).
+
+## Дальнейшие шаги
+
+Теперь, когда у вас есть представление о базовых настройках, можно узнать больше:
+
+- Как предоставить [шрифт и оформление Material Design](/components/typography/).
+- Как воспользоваться [механизмом тем](/customization/theming/).
+- Как [переопределить](/customization/components/) внешний вид компонентов.

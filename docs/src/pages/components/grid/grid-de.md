@@ -27,7 +27,7 @@ Das responsive Raster konzentriert sich auf konsistente Abstandsbreiten und nich
 
 Diese Ausgabetransformationsfunktion kann durch [Verwendung des Themes](/customization/spacing/) angepasst werden.
 
-{{"demo": "pages/components/grid/SpacingGrid.js"}}
+{{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
 
 ## Fluides Raster
 
@@ -37,31 +37,31 @@ Fluid grids use columns that scale and resize content. A fluid grid’s layout c
 
 Die Spaltenbreiten gelten für alle Rasterpunkte (d.h. `xs` und höher).
 
-{{"demo": "pages/components/grid/CenteredGrid.js"}}
+{{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
 
 ### Raster mit Rasterpunkten
 
 Für einige Spalten sind mehrere Breiten definiert, wodurch sich das Layout am definierten Rasterpunkten ändert.
 
-{{"demo": "pages/components/grid/FullWidthGrid.js"}}
+{{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
 ## Interaktive Liste
 
 Nachfolgend finden Sie eine interaktive Demo, mit der Sie die visuellen Ergebnisse der verschiedenen Einstellungen untersuchen können:
 
-{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true, "bg": true}}
 
 ## Automatisches Layout
 
 The Auto-layout makes the *items* equitably share the available space. That also means you can set the width of one *item* and the others will automatically resize around it.
 
-{{"demo": "pages/components/grid/AutoGrid.js"}}
+{{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
 
 ## Komplexes Raster
 
 Die folgende Demo folgt nicht der Material Design-Spezifikation, sondern zeigt, wie das Raster zum Erstellen komplexer Layouts verwendet werden kann.
 
-{{"demo": "pages/components/grid/ComplexGrid.js"}}
+{{"demo": "pages/components/grid/ComplexGrid.js", "bg": true}}
 
 ## Verschachteltes Raster
 
@@ -71,7 +71,7 @@ The `container` and `item` properties are two independent booleans. They can be 
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
-{{"demo": "pages/components/grid/NestedGrid.js"}}
+{{"demo": "pages/components/grid/NestedGrid.js", "bg": true}}
 
 ## Einschränkungen
 
@@ -110,7 +110,7 @@ In order for the item to stay within the container you need to set `min-width: 0
   <Typography noWrap>
 ```
 
-{{"demo": "pages/components/grid/AutoGridNoWrap.js"}}
+{{"demo": "pages/components/grid/AutoGridNoWrap.js", "bg": true}}
 
 ### direction: column | column-reverse
 
@@ -120,4 +120,4 @@ Obwohl die `Grid-` Komponente eine `direction-` Eigenschaft hat, die Werte von `
 
 Die Material-UI bietet selbst keine CSS-Grid-Funktionalität. Wie Sie jedoch unten sehen, können Sie CSS-Grid einfach zum Layout Ihrer Seiten hinzufügen.
 
-{{"demo": "pages/components/grid/CSSGrid.js"}}
+{{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}

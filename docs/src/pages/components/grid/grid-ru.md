@@ -27,7 +27,7 @@ components: Grid
 
 Поведение функции `output` можно изменить, [отредактировав тему](/customization/spacing/).
 
-{{"demo": "pages/components/grid/SpacingGrid.js"}}
+{{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
 
 ## Адаптивные сетки
 
@@ -37,31 +37,31 @@ components: Grid
 
 Ширина столбца меняется во всех точках прерывания (от `xs` и выше).
 
-{{"demo": "pages/components/grid/CenteredGrid.js"}}
+{{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
 
 ### Сетка с точками прерывания
 
 Некоторые столбцы имеют несколько значений ширины, что приводит к изменению макета в определенной точке прерывания.
 
-{{"demo": "pages/components/grid/FullWidthGrid.js"}}
+{{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
 ## Интерактивность
 
 Ниже приведен интерактивный пример, который демонстрирует результаты различных настроек сетки:
 
-{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true, "bg": true}}
 
 ## Авто-разметка
 
 Автоматическая разметка позволяет *элементам* равномерно распределяться по всему доступному пространству. Это также означает, что вы можете установить ширину одного *элемента* и остальные автоматически изменят свои размеры вокруг него.
 
-{{"demo": "pages/components/grid/AutoGrid.js"}}
+{{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
 
 ## Сложная сетка
 
 Следующая демонстрация не соответствует спецификации Material Design, но иллюстрирует, как сетка может использоваться для создания сложных макетов.
 
-{{"demo": "pages/components/grid/ComplexGrid.js"}}
+{{"demo": "pages/components/grid/ComplexGrid.js", "bg": true}}
 
 ## Вложенная сетка
 
@@ -71,7 +71,7 @@ components: Grid
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
-{{"demo": "pages/components/grid/NestedGrid.js"}}
+{{"demo": "pages/components/grid/NestedGrid.js", "bg": true}}
 
 ## Ограничения
 
@@ -110,7 +110,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
   <Typography noWrap>
 ```
 
-{{"demo": "pages/components/grid/AutoGridNoWrap.js"}}
+{{"demo": "pages/components/grid/AutoGridNoWrap.js", "bg": true}}
 
 ### direction: column | column-reverse
 
@@ -120,4 +120,4 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 Material UI сам по себе не предоставляет никакой функциональности CSS Grid, но, как видно ниже, вы можете легко использовать CSS Grid в макете страницы.
 
-{{"demo": "pages/components/grid/CSSGrid.js"}}
+{{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}

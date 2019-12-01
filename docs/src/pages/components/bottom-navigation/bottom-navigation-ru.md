@@ -13,10 +13,10 @@ components: BottomNavigation, BottomNavigationAction
 
 Если есть только **три действия**, стоит всегда отображать и значки и текстовые метки.
 
-{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js", "bg": true}}
 
 ## Нижняя навигация без текста
 
 Если существует **четыре** или **пять** действий, стоит отображать неактивные элементы только в виде значков.
 
-{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js", "bg": true}}

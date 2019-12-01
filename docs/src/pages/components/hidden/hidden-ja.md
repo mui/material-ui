@@ -37,13 +37,13 @@ mdDown      |                     hide | show
 
 ブレークポイントの `up`プロパティを使用すると、指定した*children*がブレークポイントの位置またはその上*at or above*になります。
 
-{{"demo": "pages/components/hidden/BreakpointUp.js"}}
+{{"demo": "pages/components/hidden/BreakpointUp.js", "bg": true}}
 
 ## ブレイクポイント
 
 ブレークポイントの`down`プロパティを使用すると、指定した*children*がブレークポイントの位置またはその上*at or below*になります。
 
-{{"demo": "pages/components/hidden/BreakpointDown.js"}}
+{{"demo": "pages/components/hidden/BreakpointDown.js", "bg": true}}
 
 ## ブレークポイントのみ
 
@@ -54,10 +54,10 @@ mdDown      |                     hide | show
 - 単一のブレークポイントをリストする
 - ブレークポイントの配列をリストします
 
-{{"demo": "pages/components/hidden/BreakpointOnly.js"}}
+{{"demo": "pages/components/hidden/BreakpointOnly.js", "bg": true}}
 
 ## グリッドとの統合
 
 さまざまな応答ブレークポイントで`Grid` を変更することはよくあり、多くの場合、これらの要素の一部を非表示にする必要があります。
 
-{{"demo": "pages/components/hidden/GridIntegration.js"}}
+{{"demo": "pages/components/hidden/GridIntegration.js", "bg": true}}

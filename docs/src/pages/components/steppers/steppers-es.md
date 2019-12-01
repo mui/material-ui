@@ -22,19 +22,19 @@ The `Stepper` can be controlled by passing the current step index (zero-based) a
 
 This example also shows the use of an optional step by placing the `optional` property on the second `Step` component. Note that it's up to you to manage when an optional step is skipped. Once you've determined this for a particular step you must set `completed={false}` to signify that even though the active step index has gone beyond the optional step, it's not actually complete.
 
-{{"demo": "pages/components/steppers/HorizontalLinearStepper.js"}}
+{{"demo": "pages/components/steppers/HorizontalLinearStepper.js", "bg": true}}
 
 ### Linear - Alternative Label
 
 Labels can be placed below the step icon by setting the `alternativeLabel` prop on the `Stepper` component.
 
-{{"demo": "pages/components/steppers/HorizontalLinearAlternativeLabelStepper.js"}}
+{{"demo": "pages/components/steppers/HorizontalLinearAlternativeLabelStepper.js", "bg": true}}
 
 ### Customized Stepper
 
 Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
+{{"demo": "pages/components/steppers/CustomizedSteppers.js", "bg": true}}
 
 ### Non-linear
 
@@ -44,21 +44,21 @@ This example is similar to the regular horizontal stepper, except steps are no l
 
 The use of the `StepButton` here demonstrates clickable step labels, as well as setting the `completed` flag. However because steps can be accessed in a non-linear fashion, it's up to your own implementation to determine when all steps are completed (or even if they need to be completed).
 
-{{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js"}}
+{{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js", "bg": true}}
 
 ### Non Linear - Alternative Label
 
 Labels can be placed below the step icon by setting the `alternativeLabel` prop on the `Stepper` component.
 
-{{"demo": "pages/components/steppers/HorizontalNonLinearAlternativeLabelStepper.js"}}
+{{"demo": "pages/components/steppers/HorizontalNonLinearAlternativeLabelStepper.js", "bg": true}}
 
 ### Non Linear - Error Step
 
-{{"demo": "pages/components/steppers/HorizontalNonLinearStepperWithError.js"}}
+{{"demo": "pages/components/steppers/HorizontalNonLinearStepperWithError.js", "bg": true}}
 
 ## Vertical Stepper
 
-{{"demo": "pages/components/steppers/VerticalLinearStepper.js"}}
+{{"demo": "pages/components/steppers/VerticalLinearStepper.js", "bg": true}}
 
 ## Mobile Stepper
 
@@ -68,22 +68,22 @@ This component implements a compact stepper suitable for a mobile device. See [m
 
 This is essentially a back/next button positioned correctly. You must implement the textual description yourself, however, an example is provided below for reference.
 
-{{"demo": "pages/components/steppers/TextMobileStepper.js"}}
+{{"demo": "pages/components/steppers/TextMobileStepper.js", "bg": true}}
 
 ### Text with Carousel effect
 
 This demo is very similar to the previous, the difference is the usage of [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to make the transition of steps.
 
-{{"demo": "pages/components/steppers/SwipeableTextMobileStepper.js"}}
+{{"demo": "pages/components/steppers/SwipeableTextMobileStepper.js", "bg": true}}
 
 ### Dots
 
 Use dots when the number of steps isn’t large.
 
-{{"demo": "pages/components/steppers/DotsMobileStepper.js"}}
+{{"demo": "pages/components/steppers/DotsMobileStepper.js", "bg": true}}
 
 ### Progreso
 
 Use a progress bar when there are many steps, or if there are steps that need to be inserted during the process (based on responses to earlier steps).
 
-{{"demo": "pages/components/steppers/ProgressMobileStepper.js"}}
+{{"demo": "pages/components/steppers/ProgressMobileStepper.js", "bg": true}}

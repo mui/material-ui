@@ -11,17 +11,17 @@ components: TreeView, TreeItem
 
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}
 
-## Customized tree view
-
-### Пользовательские иконки, границы и анимации
-
-{{"demo": "pages/components/tree-view/CustomizedTreeView.js"}
-
-### Controlled
+## Controlled
 
 The tree view also offers a controlled API.
 
 {{"demo": "pages/components/tree-view/ControlledTreeView.js"}}
+
+## Customized tree view
+
+### Пользовательские иконки, границы и анимации
+
+{{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
 
 ### Gmail clone
 

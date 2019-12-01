@@ -11,35 +11,41 @@ components: Breadcrumbs, Link, Typography
 
 {{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
-## 自定义分隔符
+## Active last breadcrumb
 
-在以下的示例中，我们使用了两个字符串分隔符和一个SVG图标。
+Keep the last breadcrumb interactive.
+
+{{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
+
+## Custom separator
+
+In the following examples, we are using two string separators, and an SVG icon.
 
 {{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
-## 带图标的面包屑导航
+## Breadcrumbs with icons
 
 {{"demo": "pages/components/breadcrumbs/IconBreadcrumbs.js"}}
 
-## 可折叠的面包屑导航
+## Collapsed breadcrumbs
 
 {{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## 自定义的面包屑导航
+## Customized breadcrumbs
 
 以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
-## 与 react-router 的交互
+## Integration with react-router
 
-{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js", "bg": true}}
 
-## 可及性
+## 可访问性
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#breadcrumb)
 
-请确保在`面包屑导航`上加上一个对于 `aria-label` 的描述。
+Be sure to add a `aria-label` description on the `Breadcrumbs` component.
 
 这个组件的可访问性依赖于：
 

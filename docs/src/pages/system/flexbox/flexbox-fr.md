@@ -8,7 +8,7 @@ Si vous êtes **nouveau ou peu familiers avec FlexBox**, nous vous encourageons 
 
 ### display
 
-{{"demo": "pages/system/flexbox/Display.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/flexbox/Display.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box display="flex">…
@@ -16,7 +16,7 @@ Si vous êtes **nouveau ou peu familiers avec FlexBox**, nous vous encourageons 
 
 ### flex-direction
 
-{{"demo": "pages/system/flexbox/FlexDirection.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/flexbox/FlexDirection.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box flexDirection="row">…
@@ -25,7 +25,7 @@ Si vous êtes **nouveau ou peu familiers avec FlexBox**, nous vous encourageons 
 
 ### flex-wrap
 
-{{"demo": "pages/system/flexbox/FlexWrap.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/flexbox/FlexWrap.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box flexWrap="nowrap">…
@@ -34,7 +34,7 @@ Si vous êtes **nouveau ou peu familiers avec FlexBox**, nous vous encourageons 
 
 ### justify-content
 
-{{"demo": "pages/system/flexbox/JustifyContent.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/flexbox/JustifyContent.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box justifyContent="flex-start">…
@@ -44,7 +44,7 @@ Si vous êtes **nouveau ou peu familiers avec FlexBox**, nous vous encourageons 
 
 ### align-items
 
-{{"demo": "pages/system/flexbox/AlignItems.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/flexbox/AlignItems.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box alignItems="flex-start">…
@@ -54,7 +54,7 @@ Si vous êtes **nouveau ou peu familiers avec FlexBox**, nous vous encourageons 
 
 ### align-content
 
-{{"demo": "pages/system/flexbox/AlignContent.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/flexbox/AlignContent.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box alignContent="flex-start">…
@@ -65,7 +65,7 @@ Si vous êtes **nouveau ou peu familiers avec FlexBox**, nous vous encourageons 
 
 ### order
 
-{{"demo": "pages/system/flexbox/Order.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/flexbox/Order.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box order={2}>Item 1</Box>
@@ -75,7 +75,7 @@ Si vous êtes **nouveau ou peu familiers avec FlexBox**, nous vous encourageons 
 
 ### flex-grow
 
-{{"demo": "pages/system/flexbox/FlexGrow.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/flexbox/FlexGrow.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box flexGrow={1}>Item 1</Box>
@@ -85,7 +85,7 @@ Si vous êtes **nouveau ou peu familiers avec FlexBox**, nous vous encourageons 
 
 ### flex-shrink
 
-{{"demo": "pages/system/flexbox/FlexShrink.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/flexbox/FlexShrink.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box width="100%">Item 1</Box>
@@ -95,7 +95,7 @@ Si vous êtes **nouveau ou peu familiers avec FlexBox**, nous vous encourageons 
 
 ### align-self
 
-{{"demo": "pages/system/flexbox/AlignSelf.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/flexbox/AlignSelf.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box>Item 1</Box>

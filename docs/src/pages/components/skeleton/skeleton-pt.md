@@ -19,10 +19,16 @@ O componente é projetado para ser usado **diretamente em seus componentes**. Po
 )}
 ```
 
-## Exemplo YouTube
+## Variantes
+
+The component supports 3 variants.
+
+{{"demo": "pages/components/skeleton/Variants.js"}}
+
+## YouTube example
 
 {{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
-## Exemplo Facebook
+## Facebook example
 
-{{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false}}
+{{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}
