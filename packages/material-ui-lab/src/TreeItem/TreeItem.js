@@ -15,10 +15,10 @@ export const styles = theme => ({
     margin: 0,
     padding: 0,
     outline: 0,
-    '&:focus > $content': {
+    '&:focus > $content $label': {
       backgroundColor: theme.palette.action.hover,
     },
-    '&$selected > $content': {
+    '&$selected > $content $label': {
       backgroundColor: theme.palette.action.selected,
     },
   },
@@ -38,9 +38,6 @@ export const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     cursor: 'pointer',
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover,
-    },
   },
   /* Styles applied to the tree node icon and collapse/expand icon. */
   iconContainer: {
@@ -55,7 +52,10 @@ export const styles = theme => ({
   /* Styles applied to the label element. */
   label: {
     width: '100%',
-    paddingLeft: 3,
+    paddingLeft: 4,
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+    },
   },
 });
 

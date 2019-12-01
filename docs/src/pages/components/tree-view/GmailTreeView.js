@@ -17,7 +17,7 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 const useTreeItemStyles = makeStyles(theme => ({
   root: {
     color: theme.palette.text.secondary,
-    '&:focus > $content': {
+    '&:focus > $content $label': {
       backgroundColor: `var(--tree-view-bg-color, ${theme.palette.grey[400]})`,
       color: 'var(--tree-view-color)',
     },
