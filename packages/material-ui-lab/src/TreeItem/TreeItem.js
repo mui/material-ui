@@ -48,9 +48,9 @@ export const styles = theme => ({
     width: 15,
     display: 'flex',
     justifyContent: 'center',
-    "& svg": {
-      flex: 1
-    }
+    '& svg': {
+      flex: 1,
+    },
   },
   /* Styles applied to the label element. */
   label: {
