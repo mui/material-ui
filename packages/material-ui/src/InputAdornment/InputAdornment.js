@@ -12,6 +12,7 @@ export const styles = {
     height: '0.01em', // Fix IE 11 flexbox alignment. To remove at some point.
     maxHeight: '2em',
     alignItems: 'center',
+    whiteSpace: 'nowrap',
   },
   /* Styles applied to the root element if `variant="filled"`. */
   filled: {
