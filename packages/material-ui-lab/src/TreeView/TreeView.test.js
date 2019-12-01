@@ -37,7 +37,7 @@ describe('<TreeView />', () => {
       consoleErrorMock.reset();
     });
 
-    it('should warn when switching from controlled to uncontrolled', () => {
+    it('should warn when switching from controlled to uncontrolled of the expanded prop', () => {
       const { setProps } = render(
         <TreeView expanded={[]}>
           <TreeItem nodeId="1" label="one" />
@@ -48,6 +48,21 @@ describe('<TreeView />', () => {
       expect(consoleErrorMock.args()[0][0]).to.include(
         'A component is changing a controlled TreeView to be uncontrolled.',
       );
+      expect(consoleErrorMock.args()[0][0]).to.include('expanded');
+    });
+
+    it('should warn when switching from controlled to uncontrolled of the selected prop', () => {
+      const { setProps } = render(
+        <TreeView selected={[]}>
+          <TreeItem nodeId="1" label="one" />
+        </TreeView>,
+      );
+
+      setProps({ selected: undefined });
+      expect(consoleErrorMock.args()[0][0]).to.include(
+        'A component is changing a controlled TreeView to be uncontrolled.',
+      );
+      expect(consoleErrorMock.args()[0][0]).to.include('selected');
     });
   });
 
