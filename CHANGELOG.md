@@ -1,5 +1,64 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.7.1
+###### *Dec 1, 2019*
+
+Big thanks to the 27 contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- 🌎 Improve localization support.
+- ✨ Export all the types from barrel index (#18306) @merceyz.
+- 🔍 8 patches on the Autocomplete component.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v4.7.1`
+
+- [Backdrop] Comment on z-index use case (#18589) @meebix
+- [Select] Improve response, react to mouse down (#17978) @SarthakC
+- [l10n] Add Italian translation (#18507) @Angelk90
+- [l10n] Add Turkish translation (#18509) @yunusemredilber
+- [l10n] Add svSE translations (Swedish) (#18591) @dluco-
+- [l10n] Fix German translation (#18498) @cmfcmf
+- [styles] Fix ThemeProvider requiring full theme (#18500) @eps1lon
+- [useMediaQuery] Fix ssrMatchMedia requiring listener mixin (#18501) @eps1lon
+
+### `@material-ui/lab@v4.0.0-alpha.34`
+
+- [Skeleton] Fix non-breakable space (#18548) @gmltA
+- [Rating] Improve mobile support (#18603) @aleccaputo
+- [Autocomplete] Document value equality check (#18516) @ChawinTan
+- [Autocomplete] Fix CSS specificity issue (#18578) @mr-bjerre
+- [Autocomplete] Fix selecting undefined on updated options (#18611) @jellyedwards
+- [Autocomplete] Fix typo in test (#18506) @TrejGun
+- [Autocomplete] Improve icons display (#18520) @oliviertassinari
+- [Autocomplete] Only call .focus() when necessary (#18584) @Davidasg180
+- [Autocomplete] Only trigger onInputChange when the value changes (#18571) @sclavijo93
+- [Autocomplete] Show loading text when there are no options (#18570) @sclavijo93
+
+### Docs
+
+- [docs] Add monday.com to in-house ads (#18598) @mbrookes
+- [docs] Fix bug in Popper component's Scroll playground example (#18562) @maprihoda
+- [docs] Fix typo in media query docs (#18617) @rajnish307
+- [docs] Fix yarn start command (#18565) @andrestone
+- [docs] Improve the SvgIcon documentation (#18560) @oliviertassinari
+- [docs] Reduce confusion in picker link (#18566) @BGehrels
+- [docs] Include mention to Persian in localization.md (#18513) @uxitten
+- [docs] Update v3 migration guide for ExpansionPanel (#18612) @NMinhNguyen
+
+### Core
+
+- [test] Assert accessible name (#18609) @eps1lon
+- [test] Improve merging tests for createMuiTheme (#18543) @eedrah
+- [misc] Batch small changes (#18614) @mbrookes
+- [core] Add react-is dependency (#18551) @HeadFox
+- [core] Batch small changes (#18539) @oliviertassinari
+- [core] Bump `@babel/*` deps (#18552) @eps1lon
+- [core] Export everything from the second level (#18306) @merceyz
+- [core] Fix dependabot not ignoring babel-plugin-preval (#18553) @eps1lon
+- [core] Ignore url-loader >= 3 updates (#18639) @eps1lon
+
 ## 4.7.0
 ###### *Nov 22, 2019*
 
