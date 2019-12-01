@@ -7,16 +7,15 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     width: '100%',
-    marginTop: theme.spacing(3),
     overflowX: 'auto',
   },
   table: {
     minWidth: 650,
   },
-}));
+});
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };

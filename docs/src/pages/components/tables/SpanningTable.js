@@ -9,16 +9,15 @@ import Paper from '@material-ui/core/Paper';
 
 const TAX_RATE = 0.07;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     width: '100%',
-    marginTop: theme.spacing(3),
     overflowX: 'auto',
   },
   table: {
     minWidth: 700,
   },
-}));
+});
 
 function ccyFormat(num) {
   return `${num.toFixed(2)}`;

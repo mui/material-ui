@@ -100,20 +100,17 @@ const rows = [
   createData('Oreo', 437, 18.0),
 ].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
-const useStyles2 = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      marginTop: theme.spacing(3),
-    },
-    table: {
-      minWidth: 500,
-    },
-    tableWrapper: {
-      overflowX: 'auto',
-    },
-  }),
-);
+const useStyles2 = makeStyles({
+  root: {
+    width: '100%',
+  },
+  table: {
+    minWidth: 500,
+  },
+  tableWrapper: {
+    overflowX: 'auto',
+  },
+});
 
 export default function CustomPaginationActionsTable() {
   const classes = useStyles2();
