@@ -9,37 +9,37 @@ components: AppBar, Toolbar, Menu
 
 A [barra de aplicativos superior](https://material.io/design/components/app-bars-top.html) provê conteúdo e ações relacionados à tela atual. Ela é utilizada para a identidade visual, títulos de tela, navegação, e ações.
 
-Ele pode se transformar em uma barra de ações contextual ou utilizado como uma barra de navegação.
+It can transform into a contextual action bar or be used as a navbar.
 
 ## Barra de Aplicativos Simples
 
-{{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
+{{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 
 ## Barra de Aplicativos com um campo de busca principal
 
 Um campo de busca principal.
 
-{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
 
 ## Barra de Aplicativos com menu
 
-{{"demo": "pages/components/app-bar/MenuAppBar.js"}}
+{{"demo": "pages/components/app-bar/MenuAppBar.js", "bg": true}}
 
 ## Barra de Aplicativos com campo de busca
 
 Uma barra de pesquisa na lateral.
 
-{{"demo": "pages/components/app-bar/SearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/SearchAppBar.js", "bg": true}}
 
 ## Densa (apenas para desktop)
 
-{{"demo": "pages/components/app-bar/DenseAppBar.js"}}
+{{"demo": "pages/components/app-bar/DenseAppBar.js", "bg": true}}
 
 ## Proeminente
 
 Uma barra de aplicativos proeminente.
 
-{{"demo": "pages/components/app-bar/ProminentAppBar.js"}}
+{{"demo": "pages/components/app-bar/ProminentAppBar.js", "bg": true}}
 
 ## Barra de Aplicativos Inferior
 
@@ -57,7 +57,7 @@ function App() {
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>{/* content */}</Toolbar>
+        <Toolbar>{/* conteúdo */}</Toolbar>
       </AppBar>
       <Toolbar />
     </React.Fragment>
@@ -77,7 +77,7 @@ function App() {
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>{/* content */}</Toolbar>
+        <Toolbar>{/* conteúdo */}</Toolbar>
       </AppBar>
       <div className={classes.offset} />
     </React.Fragment>

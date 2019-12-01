@@ -17,7 +17,7 @@ components: GridList, GridListTile, GridListTileBar, ListSubheader, IconButton
 
 ## 带有标题栏的网格列表
 
-此示例演示如何使用 `GridListTileBar` 为每个 `GridListTile` 添加一个叠加层。 叠加层可以容纳 code>title</code>， `subtitle` 和辅助操作—在本例中为 `IconButton`。
+此示例演示如何使用 `GridListTileBar` 为每个 `GridListTile` 添加一个叠加层。 叠加层可以容纳 `title`， `subtitle` 和辅助操作—在本例中为 `IconButton`。
 
 {{"demo": "pages/components/grid-list/TitlebarGridList.js", "hideEditButton": true}}
 

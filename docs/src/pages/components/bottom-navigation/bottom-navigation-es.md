@@ -13,10 +13,10 @@ components: BottomNavigation, BottomNavigationAction
 
 Cuando sólo hay **tres** acciones, muestra las dos cosas, iconos y etiquetas de texto en todo momento.
 
-{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js", "bg": true}}
 
 ## Botón de navegación sin texto
 
 Si hay **cuatro ** o **cinco** acciones, mostrar vistas inactivas solamente como iconos.
 
-{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js", "bg": true}}

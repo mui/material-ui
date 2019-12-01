@@ -194,119 +194,49 @@ export default function StyledComponents() {
 
 它最好应在**组件树的根目录中使用** 。
 
-#### PropsBy default, the styles are injected last in the 
+#### Props
 
-<head>
-  element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Material-UI's styles, set this prop.</td> </tr> 
-  
-  <tr>
-    <td align="left">
-      jss
-    </td>
-    
-    <td align="left">
-      object
-    </td>
-    
-    <td align="left">
-      
-    </td>
-    
-    <td align="left">
-      JSS's instance.
-    </td>
-  </tr></tbody> </table> 
-  
-  <h4>
-    例子
-  </h4>
-  
-  <pre><code class="jsx">import React from 'react';
+| 名称                | 类型     | 默认值   | 描述                                                                                                                                                                                                                                                                                                                                   |
+|:----------------- |:------ |:----- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| children&nbsp;*   | node   |       | Your component tree.                                                                                                                                                                                                                                                                                                                 |
+| disableGeneration | bool   | false | You can disable the generation of the styles with this option. It can be useful when traversing the React tree outside of the HTML rendering step on the server. Let's say you are using react-apollo to extract all the queries made by the interface server-side. You can significantly speed up the traversal with this property. |
+| generateClassName | func   |       | JSS's class name generator.                                                                                                                                                                                                                                                                                                          |
+| injectFirst       | bool   | false | By default, the styles are injected last in the `<head>` element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Material-UI's styles, set this prop.                                                                                                                 |
+| jss               | object |       | JSS's instance.                                                                                                                                                                                                                                                                                                                      |
+
+
+#### 例子
+
+```jsx
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { StylesProvider } from '@material-ui/core/styles';
 
 function App() {
   return (
-    &lt;StylesProvider jss={jss}&gt;...&lt;/StylesProvider&gt;
+    <StylesProvider jss={jss}>...</StylesProvider>
   );
 }
 
-ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
-</code></pre>
-  
-  <h2>
-    <code>ThemeProvider</code>
-  </h2>
-  
-  <p>
-    This component takes a <code>theme</code> property, and makes it available down the React tree thanks to the context. 它最好应在<strong>组件树的根目录中使用</strong> 。
-  </p>
-  
-  <h4>
-    Props
-  </h4>
-  
-  <table>
-    <tr>
-      <th align="left">
-        名称
-      </th>
-      
-      <th align="left">
-        类型
-      </th>
-      
-      <th align="left">
-        默认值
-      </th>
-      
-      <th align="left">
-        描述
-      </th>
-    </tr>
-    
-    <tr>
-      <td align="left">
-        children&nbsp;*
-      </td>
-      
-      <td align="left">
-        node
-      </td>
-      
-      <td align="left">
-        
-      </td>
-      
-      <td align="left">
-        Your component tree.
-      </td>
-    </tr>
-    
-    <tr>
-      <td align="left">
-        theme&nbsp;*
-      </td>
-      
-      <td align="left">
-        union:&nbsp;object&nbsp;&#124;&nbsp;func
-      </td>
-      
-      <td align="left">
-        
-      </td>
-      
-      <td align="left">
-        A theme object. You can provide a function to extend the outer theme.
-      </td>
-    </tr>
-  </table>
-  
-  <h4>
-    例子
-  </h4>
-  
-  <pre><code class="jsx">import React from 'react';
+ReactDOM.render(<App />, document.querySelector('#app'));
+```
+
+## `ThemeProvider`
+
+This component takes a `theme` property, and makes it available down the React tree thanks to the context. 它最好应在**组件树的根目录中使用** 。
+
+#### Props
+
+| 名称              | 类型                                       | 默认值 | 描述                                                                    |
+|:--------------- |:---------------------------------------- |:--- |:--------------------------------------------------------------------- |
+| children&nbsp;* | node                                     |     | Your component tree.                                                  |
+| theme&nbsp;*    | union:&nbsp;object&nbsp;&#124;&nbsp;func |     | A theme object. You can provide a function to extend the outer theme. |
+
+
+#### 例子
+
+```jsx
+import React from 'react';
 import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core/styles';
 
@@ -314,113 +244,63 @@ const theme = {};
 
 function App() {
   return (
-    &lt;ThemeProvider theme={theme}&gt;...&lt;/ThemeProvider&gt;
+    <ThemeProvider theme={theme}>...</ThemeProvider>
   );
 }
 
-ReactDOM.render(&lt;App /&gt;, document.querySelector('#app'));
-</code></pre>
-  
-  <h2>
-    <code>useTheme() =&gt; theme</code>
-  </h2>
-  
-  <p>
-    该钩子返回<code>theme</code>对象因此可以在函数组件中使用。
-  </p>
-  
-  <h4>
-    返回结果
-  </h4>
-  
-  <p>
-    <code>theme</code>: The theme object previously injected in the context.
-  </p>
-  
-  <h4>
-    例子
-  </h4>
-  
-  <pre><code class="jsx">import React from 'react';
+ReactDOM.render(<App />, document.querySelector('#app'));
+```
+
+## `useTheme() => theme`
+
+该钩子返回`theme`对象因此可以在函数组件中使用。
+
+#### 返回结果
+
+`theme`: The theme object previously injected in the context.
+
+#### 例子
+
+```jsx
+import React from 'react';
 import { useTheme } from '@material-ui/core/styles';
 
 export default function MyComponent() {
   const theme = useTheme();
 
-  return &lt;div&gt;{`spacing ${theme.spacing}`}&lt;/div&gt;;
+  return <div>{`spacing ${theme.spacing}`}</div>;
 }
-</code></pre>
-  
-  <h2>
-    <code>withStyles(styles, [options]) =&gt; higher-order component</code>
-  </h2>
-  
-  <p>
-    链路的样式表有分量利用<strong>higher-order component</strong>的模式。 它不会修改传递给它的组件；相反，它返回一个具有<code>classes</code>属性的新组件。 这个<code>classes</code>对象包含DOM中注入的class名称。
-  </p>
-  
-  <p>
-    一些可能有趣的实现细节：
-  </p>
-  
-  <ul spaces="0" level="0" marker="-">
-    <li level="0">
-      它添加了一个 <code>classes</code> 属性，因此您可以从外部覆盖注入的类名。
-    </li>
-    <li level="0">
-      It forwards refs to the inner component.
-    </li>
-    <li level="0">
-      The <code>innerRef</code> prop is deprecated. Use <code>ref</code> instead.
-    </li>
-    <li level="0">
-      It does <strong>not</strong> copy over statics. 例如，它可用于定义 <code> getInitialProps()</code> 静态方法 (next.js)。
-    </li>
-  </ul>
-  
-  <h4>
-    参数
-  </h4>
-  
-  <ol start="1" spaces="2" level="0">
-    <li level="0">
-      <code> styles </code>(<em> Function | Object </em>): 生成样式或样式对象的函数。 它将链接到组件。 如果需要访问主题, 请使用函数签名。 它作为第一个参数提供。
-    </li>
-    
-    <li level="0">
-      <code>options</code> (<em>Object</em> [optional]): <ul spaces="0" level="1" marker="-">
-        <li level="1">
-          <code>options.defaultTheme</code>（<em>Object</em> [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-        </li>
-        <li level="1">
-          <code> options.withTheme </code> (<em>Boolean</em> [optional]): 默认值为 <code>false</code>。 将 <code> theme </code> 对象作为属性提供给组件。
-        </li>
-        <li level="1">
-          <code> options.name </code> (<em>String</em> [optional]): 样式表的名称。 用于调试。 如果未提供该值, 它将尝试回退到组件的名称。
-        </li>
-        <li level="1">
-          <code>options.flip</code> (<em>Boolean</em> [optional])：当设置为 <code>false</code> 时, 此工作表将选择退出 <code> rtl </code> 转换。 如果设置为 <code> true </code>, 则会反转样式。 当设置为<code>null</code>，它跟随<code>theme.direction</code>。
-        </li>
-        <li level="1">
-          其他键被转发到<a href="https://cssinjs.org/jss-api/#create-style-sheet">jss.createStyleSheet([styles], [options])</a>。
-        </li>
-      </ul>
-    </li>
-  </ol>
-  
-  <h4>
-    返回结果
-  </h4>
-  
-  <p>
-    <code>higher-order component</code>：应用于包装组件。
-  </p>
-  
-  <h4>
-    例子
-  </h4>
-  
-  <pre><code class="jsx">import React from 'react';
+```
+
+## `withStyles(styles, [options]) => higher-order component`
+
+链路的样式表有分量利用**higher-order component**的模式。 它不会修改传递给它的组件；相反，它返回一个具有`classes`属性的新组件。 这个`classes`对象包含DOM中注入的class名称。
+
+一些可能有趣的实现细节：
+
+- 它添加了一个 `classes` 属性，因此您可以从外部覆盖注入的类名。
+- It forwards refs to the inner component.
+- The `innerRef` prop is deprecated. Use `ref` instead.
+- It does **not** copy over statics. 例如，它可用于定义 ` getInitialProps()` 静态方法 (next.js)。
+
+#### 参数
+
+1. ` styles `(* Function | Object *): 生成样式或样式对象的函数。 它将链接到组件。 如果需要访问主题, 请使用函数签名。 它作为第一个参数提供。
+2. `options` (*Object* [optional]): 
+  - `options.defaultTheme`（*Object* [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
+  - ` options.withTheme ` (*Boolean* [optional]): 默认值为 `false`。 将 ` theme ` 对象作为属性提供给组件。
+  - ` options.name ` (*String* [optional]): 样式表的名称。 用于调试。 如果未提供该值, 它将尝试回退到组件的名称。
+  - `options.flip` (*Boolean* [optional])：当设置为 `false` 时, 此工作表将选择退出 ` rtl ` 转换。 如果设置为 ` true `, 则会反转样式。 当设置为`null`，它跟随`theme.direction`。
+  - 其他键被转发到[jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
+
+#### 返回结果
+
+`higher-order component`：应用于包装组件。
+
+#### 例子
+
+```jsx
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -430,17 +310,16 @@ const styles = {
 };
 
 function MyComponent(props) {
-  return &lt;div className={props.classes.root} /&gt;;
+  return <div className={props.classes.root} />;
 }
 
 export default withStyles(styles)(MyComponent);
-</code></pre>
-  
-  <p>
-    此外, 还可以像这样使用 <a href="https://babeljs.io/docs/en/babel-plugin-proposal-decorators">修饰器</a>:
-  </p>
-  
-  <pre><code class="jsx">import React from 'react';
+```
+
+此外, 还可以像这样使用 [修饰器](https://babeljs.io/docs/en/babel-plugin-proposal-decorators):
+
+```jsx
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
@@ -452,49 +331,34 @@ const styles = {
 @withStyles(styles)
 class MyComponent extends React.Component {
   render () {
-    return &lt;div className={this.props.classes.root} /&gt;;
+    return <div className={this.props.classes.root} />;
   }
 }
 
 export default MyComponent
-</code></pre>
-  
-  <h2>
-    <code>withTheme(Component) =&gt; Component</code>
-  </h2>
-  
-  <p>
-    提供<code>theme</code> object作为输入组件的属性，因此可以在render方法中使用 。
-  </p>
-  
-  <h4>
-    参数
-  </h4>
-  
-  <ol start="1" spaces="0" level="0">
-    <li level="0">
-      <code>Component</code> ：将被包装的组件。
-    </li>
-  </ol>
-  
-  <h4>
-    返回结果
-  </h4>
-  
-  <p>
-    <code>Component</code> ：创建新组件。 Does forward refs to the inner component.
-  </p>
-  
-  <h4>
-    例子
-  </h4>
-  
-  <pre><code class="jsx">import React from 'react';
+```
+
+## `withTheme(Component) => Component`
+
+提供`theme` object作为输入组件的属性，因此可以在render方法中使用 。
+
+#### 参数
+
+1. `Component` ：将被包装的组件。
+
+#### 返回结果
+
+`Component` ：创建新组件。 Does forward refs to the inner component.
+
+#### 例子
+
+```jsx
+import React from 'react';
 import { withTheme } from '@material-ui/core/styles';
 
 function MyComponent(props) {
-  return &lt;div&gt;{props.theme.direction}&lt;/div&gt;;
+  return <div>{props.theme.direction}</div>;
 }
 
 export default withTheme(MyComponent);
-</code></pre>
+```

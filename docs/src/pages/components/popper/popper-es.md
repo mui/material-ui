@@ -39,11 +39,11 @@ Como alternativa, puedes usar [react-spring](https://github.com/react-spring/rea
 
 ## Positioned Popper
 
-{{"demo": "pages/components/popper/PositionedPopper.js"}}
+{{"demo": "pages/components/popper/PositionedPopper.js", "bg": true}}
 
 ## Scroll playground
 
-{{"demo": "pages/components/popper/ScrollPlayground.js", "hideHeader": true}}
+{{"demo": "pages/components/popper/ScrollPlayground.js", "hideHeader": true, "bg": true}}
 
 ## Faked reference object
 

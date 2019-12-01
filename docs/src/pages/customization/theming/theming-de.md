@@ -56,13 +56,14 @@ The performance implications of nesting the `ThemeProvider` component are linked
 
 ## API
 
-### `createMuiTheme(options) => theme`
+### `createMuiTheme(options, ...args) => theme`
 
 Generate a theme base on the options received.
 
 #### Parameter
 
 1. `options` (*Object*): Nimmt ein unvollständiges Themeobjekt auf und fügt die fehlenden Teile hinzu.
+2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
 
 #### Rückgabewerte
 
@@ -95,10 +96,10 @@ Generieren Sie responsive Typografieeinstellungen basierend auf den erhaltenen O
 1. `theme` (*Object*): Das zu verbessernde Themeobjekt.
 2. `options` (*Object* [optional]):
 
-- `breakpoints` (*Array<String>* [optional]): Default to `['sm', 'md', 'lg']`. Array von [Haltepunkten](/customization/breakpoints/) (Bezeichner).
+- `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`. Array von [Haltepunkten](/customization/breakpoints/) (Bezeichner).
 - `disableAlign` (*Boolean* [optional]): Standardmäßig auf `false`. Ob sich die Schriftgrößen geringfügig ändern, um die Höhen der Linie beizubehalten und an das 4px-Linienhöhenraster von Material Design anzupassent. Dies erfordert eine einheitlose Zeilenhöhe in den Stilen des Designs.
 - `factor` (*Nummer* [optional]): Standardmäßig auf `2`. Dieser Wert bestimmt die Stärke der Größenänderung der Schriftgröße. Je höher der Wert, desto geringer ist der Unterschied zwischen den Schriftgrößen auf kleinen Bildschirmen. Je niedriger der Wert, desto größer die Schriftgröße für kleine Bildschirme. The value must be greater than 1.
-- `variants` (*Array<String>* [optional]): Default to all. Die zu behandelnden Typografie-Varianten.
+- `variants` (*Array\<String\>* [optional]): Default to all. Die zu behandelnden Typografie-Varianten.
 
 #### Rückgabewerte
 

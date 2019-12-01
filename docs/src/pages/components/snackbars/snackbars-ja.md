@@ -63,7 +63,7 @@ Google Keepのスナックバーの動作を再現することを目的とした
 
 [スライド](/components/transitions/#slide) トランジションの方向を変更できます。
 
-{{"demo": "pages/components/snackbars/TransitionsSnackbar.js"}}
+{{"demo": "pages/components/snackbars/DirectionSnackbar.js"}}
 
 ## 補完プロジェクト
 

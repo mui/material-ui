@@ -326,7 +326,7 @@ O styled-system fez um ótimo trabalho [explicando como ele funciona](https://gi
 
 Na prática, um componente do Box pode poupar muito tempo. Neste exemplo, demonstramos como reproduzir um componente Banner.
 
-{{"demo": "pages/system/basics/RealWorld.js"}}
+{{"demo": "pages/system/basics/RealWorld.js", "bg": true}}
 
 ## Arte prévia
 

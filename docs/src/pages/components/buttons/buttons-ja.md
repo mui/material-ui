@@ -72,7 +72,11 @@ FABを使用するのは、それが画面の主なアクションを提示す�
 
 これを実現するにはズームトランジションを使用できます。 終了アニメーションと入力アニメーションの両方が同時にトリガーされるため、新しいフローティングアクションボタンのアニメーションが開始される前に終了するように` enterDelay `を使用します。
 
-{{"demo": "pages/components/buttons/FloatingActionButtonZoom.js"}}
+{{"demo": "pages/components/buttons/FloatingActionButtonZoom.js", "bg": true}}
+
+## Upload button
+
+{{"demo": "pages/components/buttons/UploadButtons.js"}}
 
 ## サイズ
 
@@ -80,39 +84,39 @@ FABを使用するのは、それが画面の主なアクションを提示す�
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
-## アイコンとラベルの付いたButton
+## Buttons with icons and label
 
-プレーンテキストよりもロゴを認識しやすいため、アプリケーションのUXを向上させるために特定のボタンのアイコンを表示したい場合があります。 たとえば、削除ボタンがある場合は、ゴミ箱アイコンでラベルを付けることができます。
+ロゴはプレーンテキストよりも認識しやすいため、ボタンにアイコンを追加してアプリケーションのUXを強化したい場合があります。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
 ## Icon Buttons
 
-アイコンボタンは通常、アプリバーとツールバーにあります。
+アイコンだけのボタンは、App BarやToolbarでよく使われます。
 
-アイコンは、アイテムへの星の追加や削除など、単一の選択肢を選択または選択解除できるトグルボタンにも適しています。
+アイコンは、アイテムを一つ選択したり、アイテムに星を追加または削除するなど選択/解除できるトグルボタンにも適しています。
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## カスタムButton
+## Customized buttons
 
 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-👑 インスピレーションを求めているなら, [MUI Treasury's customization examples](https://mui-treasury.com/components/button)を確認できます。
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
 
-## 複雑なButton
+## Complex Buttons
 
-テキストボタン、包含ボタン、フローティングアクションボタン、およびアイコンボタンは、同じコンポーネント（ `ButtonBase`上に構築されています。 この低レベルのコンポーネントを利用してカスタムインタラクションを構築できます。
+The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`. You can take advantage of this lower level component to build custom interactions.
 
 {{"demo": "pages/components/buttons/ButtonBases.js"}}
 
 ## サードパーティ製ルーティングライブラリ
 
-一般的な使用例の1つは、ボタンを使用して新しいページへのナビゲーションを開始することです。 `ButtonBase` コンポーネントは、このユースケースを処理するためのプロパティを提供します 。 108/5000 ただし、特定のフォーカスについては` ButtonBase `には提供されているDOMノードが必要です。 これは、refをコンポーネントに添付し、 コンポーネントがこのrefを基になるDOMノードに転送することを期待することによって実現されます。 Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
+One common use case is to use the button to trigger navigation to a new page. The `ButtonBase` component provides a property to handle this use case: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
-こちらは [react-routerとの統合例](/guides/composition/#button).
+Here is an [integration example with react-router](/guides/composition/#button).
 
 ## 制限事項
 
@@ -124,12 +128,12 @@ If you wish to use `not-allowed`, you have two options:
 
 1. **CSS only**. You can remove the pointer events style on the disabled state of the `<button>` element:
 
-```css
-.MuiButtonBase-root:disabled {
-  cursor: not-allowed;
-  pointer-events: auto;
-}
-```
+  ```css
+  .MuiButtonBase-root:disabled {
+    cursor: not-allowed;
+    pointer-events: auto;
+  }
+  ```
 
 However:
 
@@ -138,10 +142,12 @@ However:
 
 2. **DOM change**. You can wrap the button:
 
-```jsx
-<span style={{ cursor: "not-allowed" }}>
-  <Button component={Link} disabled>disabled</Button>
-</span>
-```
+  ```jsx
+  <span style={{ cursor: 'not-allowed' }}>
+    <Button component={Link} disabled>
+      disabled
+    </Button>
+  </span>
+  ```
 
 This has the advantage of supporting any element, for instance, a link `<a>` element.

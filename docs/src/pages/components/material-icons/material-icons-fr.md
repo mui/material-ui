@@ -9,6 +9,6 @@ components: Icones, SvgIcon
 
 Le package [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) inclut plus de 1000 [Icones Material Ui](https://material.io/tools/icons/?style=baseline) officielles converties en composants [`SvgIcon`](/api/svg-icon/).
 
-{{"demo": "pages/components/material-icons/SearchIcons.js", "hideHeader": true}}
+{{"demo": "pages/components/material-icons/SearchIcons.js", "hideHeader": true, "bg": true}}
 
 La recherche inclut les synonymes. Essayez de chercher "hamburger" ou "déconnexion".

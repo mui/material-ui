@@ -13,7 +13,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
-`Checkbox`コンポーネントは` FormControlLabel`コンポーネントを説明のラベルとして使うことができます。
+`Checkbox`コンポーネントは `FormControlLabel`コンポーネントを説明のラベルとして使うことができます。
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 

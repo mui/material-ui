@@ -35,13 +35,13 @@ export default Main() {
 
 子要素の上部から垂直方向に展開します。 `collapsedHeight` プロパティを使用して、展開されていないときの最小の高さを設定できます。
 
-{{"demo": "pages/components/transitions/SimpleCollapse.js"}}
+{{"demo": "pages/components/transitions/SimpleCollapse.js", "bg": true}}
 
 ## Fade
 
 透明から不透明にフェードインします。
 
-{{"demo": "pages/components/transitions/SimpleFade.js"}}
+{{"demo": "pages/components/transitions/SimpleFade.js", "bg": true}}
 
 ## Grow
 
@@ -49,7 +49,7 @@ export default Main() {
 
 次の例では、 `transform-origin`を変更する方法を示し、条件付きで適用します。 `timeout` プロパティを使用して、進入速度を変更します。
 
-{{"demo": "pages/components/transitions/SimpleGrow.js"}}
+{{"demo": "pages/components/transitions/SimpleGrow.js", "bg": true}}
 
 ## Slide
 
@@ -57,7 +57,7 @@ export default Main() {
 
 トランジションコンポーネントの `mountOnEnter`プロパティーにより、 `in`が`true`になるまで。子コンポーネントがマウントされないようにします これにより、相対的に配置されたコンポーネントが画面外の位置からビューにスクロールするのを防ぐことができます。 同様に、 `unmountOnExit` プロパティは、画面外に遷移した後、DOMからコンポーネント を削除します。
 
-{{"demo": "pages/components/transitions/SimpleSlide.js"}}
+{{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
 ## Zoom
 
@@ -65,4 +65,4 @@ export default Main() {
 
 この例は、入力遷移を遅らせる方法も示しています。
 
-{{"demo": "pages/components/transitions/SimpleZoom.js"}}
+{{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}

@@ -13,10 +13,10 @@ components: BottomNavigation, BottomNavigationAction
 
 Lorsqu'il y a seulement **trois** actions, l'affichage d'icônes et des étiquettes de texte en permanence.
 
-{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js", "bg": true}}
 
 ## Navigation inférieure sans étiquette
 
 Si il y a **quatre** ou **cinq** actions, affichage inactif points de vue uniquement sous forme d'icônes.
 
-{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js", "bg": true}}

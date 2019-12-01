@@ -56,13 +56,14 @@ The performance implications of nesting the `ThemeProvider` component are linked
 
 ## API
 
-### `createMuiTheme(options) => theme`
+### `createMuiTheme(options, ...args) => theme`
 
 Generate a theme base on the options received.
 
 #### 参数
 
 1. `options` （*Object*）：采用不完整的主题对象并添加缺少的部分。
+2. `...args` (*Array*): Deep merge the arguments with the about to be returned theme.
 
 #### 返回结果
 
@@ -95,10 +96,10 @@ Generate responsive typography settings based on the options received.
 1. `theme` (*Object*): The theme object to enhance.
 2. `options` (*Object* [optional]):
 
-- `breakpoints` (*Array<String>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
+- `breakpoints` (*Array\<String\>* [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
 - `disableAlign` (*Boolean* [optional]): Default to `false`. Whether font sizes change slightly so line heights are preserved and align to Material Design's 4px line height grid. This requires a unitless line height in the theme's styles.
 - `factor` (*Number* [optional]): Default to `2`. This value determines the strength of font size resizing. The higher the value, the less difference there is between font sizes on small screens. The lower the value, the bigger font sizes for small screens. 该值必须大于1。
-- `variants` (*Array<String>* [optional]): Default to all. The typography variants to handle.
+- `variants` (*Array\<String\>* [optional]): Default to all. The typography variants to handle.
 
 #### 返回结果
 

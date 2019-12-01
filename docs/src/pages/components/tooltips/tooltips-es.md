@@ -25,15 +25,21 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
+## Arrow Tooltips
+
+You can use the `arrow` prop to give your tooltip an arrow indicating which element it refers to.
+
+{{"demo": "pages/components/tooltips/ArrowTooltips.js"}}
+
 ## Custom child element
 
 The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
 
 ```jsx
-function MyComponent(props) {
-  //  Spread the properties to the underlying DOM element.
-  return <div {...props}>Bin</div>
-}
+const MyComponent = React.forwardRef(function MyComponent(props, ref) {
+  //  Spread the props to the underlying DOM element.
+  return <div {...props} ref={ref}>Bin</div>
+});
 
 // ...
 

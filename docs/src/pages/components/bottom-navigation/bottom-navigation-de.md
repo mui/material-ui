@@ -13,10 +13,10 @@ Die [unteren Navigationsleiste](https://material.io/design/components/bottom-nav
 
 Wenn es nur **3** Aktionen gibt, werden immer sowohl Symbole als auch Beschriftungen angezeigt.
 
-{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js", "bg": true}}
 
 ## Untere Navigation ohne Beschriftung
 
 Bei **4** oder **5** Aktionen werden inaktive Ansichten nur als Symbole angezeigt.
 
-{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js", "bg": true}}

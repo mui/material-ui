@@ -28,7 +28,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 そうです。これは本当に始めるのに必要な全てです。この編集可能なデモで確認できるように:
 
-{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
+{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true, "bg": true}}
 
 ## Globals
 

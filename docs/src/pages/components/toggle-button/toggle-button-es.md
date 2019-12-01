@@ -27,7 +27,7 @@ Botones más grandes o más pequeños? Usa la propiedad `size`.
 
 Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/components/toggle-button/CustomizedDividers.js"}}
+{{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 
 ## Accesibilidad
 

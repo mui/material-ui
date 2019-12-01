@@ -9,4 +9,4 @@ components: Paper
 
 应用程序的的背景类似纸张一样平坦、不透明，而其行为也像纸张一样，能够改变大小、与其他纸张绑定或者调换顺序。
 
-{{"demo": "pages/components/paper/PaperSheet.js"}}
+{{"demo": "pages/components/paper/PaperSheet.js", "bg": true}}

@@ -18,6 +18,8 @@ A solução de estilo do Material-UI é inspirada em muitas outras bibliotecas d
 
 ## Instalação
 
+> `@material-ui/styles` is re-exported as `@material-ui/core/styles` - you only need to install it if you wish to use it independently from Material-UI.
+
 Para instalar e salvar em suas dependências do `package.json`, execute:
 
 ```sh
@@ -126,7 +128,6 @@ Você pode aninhar seletores para segmentar elementos dentro da classe ou compon
 ```js
 const useStyles = makeStyles({
   root: {
-    padding: 16,
     color: 'red',
     '& p': {
       color: 'green',
@@ -138,7 +139,7 @@ const useStyles = makeStyles({
 });
 ```
 
-{{"demo": "pages/styles/basics/NestedStylesHook.js"}}
+{{"demo": "pages/styles/basics/NestedStylesHook.js", "defaultCodeOpen": false}}
 
 ## Adaptando com base em propriedades
 

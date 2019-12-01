@@ -29,13 +29,13 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 Простой пример без излишеств.
 
-{{"demo": "pages/components/tables/SimpleTable.js"}}
+{{"demo": "pages/components/tables/SimpleTable.js", "bg": true}}
 
 ## Плотная компоновка таблицы
 
 Простой пример таблицы с плотной компоновкой и без излишеств.
 
-{{"demo": "pages/components/tables/DenseTable.js"}}
+{{"demo": "pages/components/tables/DenseTable.js", "bg": true}}
 
 ## Сортировка и выбор строк
 
@@ -43,13 +43,13 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 Таблица имеет фиксированную ширину для демонстрации горизонтальной прокрутки. Чтобы предотвратить прокрутку элементов управления нумерацией страниц, компонент TablePagination находится за пределами таблицы. (В [примерe «собственные действия элементов нумерации»](#custom-table-pagination-action) ниже показывается управление нумерацией таблиц с помощью TableFooter.)
 
-{{"demo": "pages/components/tables/EnhancedTable.js"}}
+{{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
 ## Customized tables
 
 Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/components/tables/CustomizedTables.js"}}
+{{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
 ### Custom pagination options
 
@@ -71,25 +71,25 @@ It's possible to customise the options shown in the "Rows per page" select using
 
 The `Action` property of the `TablePagination` component allows the implementation of custom actions.
 
-{{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}
+{{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
 ## Fixed header
 
 An example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
 
-{{"demo": "pages/components/tables/StickyHeadTable.js"}}
+{{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
 ## Spanning Table
 
 A simple example with spanning rows & columns.
 
-{{"demo": "pages/components/tables/SpanningTable.js"}}
+{{"demo": "pages/components/tables/SpanningTable.js", "bg": true}}
 
 ## Virtualized Table
 
 In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. Он отображает 200 строк и c легкостью может еще больше. Virtualization helps with performance issues.
 
-{{"demo": "pages/components/tables/ReactVirtualizedTable.js"}}
+{{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
 ## Дополнительные проекты
 
@@ -101,7 +101,7 @@ In the following example, we demonstrate how to use [react-virtualized](https://
 
 [material-table](https://github.com/mbrn/material-table) is a simple and powerful Datatable for React based on Material-UI Table with some additional features. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
 
-{{"demo": "pages/components/tables/MaterialTableDemo.js"}}
+{{"demo": "pages/components/tables/MaterialTableDemo.js", "bg": true}}
 
 ### Прочее
 
@@ -117,4 +117,4 @@ In the following example, we demonstrate how to use [react-virtualized](https://
 
 A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it’s about and decide if they want to read it.
 
-{{"demo": "pages/components/tables/AcccessibleTable.js"}}
+{{"demo": "pages/components/tables/AcccessibleTable.js", "bg": true}}

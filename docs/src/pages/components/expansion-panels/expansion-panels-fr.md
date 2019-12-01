@@ -13,13 +13,13 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 ## Simple Expansion Panel
 
-{{"demo": "pages/components/expansion-panels/SimpleExpansionPanel.js"}}
+{{"demo": "pages/components/expansion-panels/SimpleExpansionPanel.js", "bg": true}}
 
 ## Controlled Accordion
 
 Extend the default panel behavior to create an accordion with the `ExpansionPanel` component.
 
-{{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js"}}
+{{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js", "bg": true}}
 
 ## Customized expansion panels
 
@@ -31,7 +31,7 @@ Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus da
 
 In order to put an action such as a `Checkbox` or a button inside of the `ExpansionPanelSummary`, you need to stop the propagation of the focus and click events to prevent the panel from expanding/collapsing when using the action. You should also provide an `aria-label` for the action, otherwise the label of the nested action will be included in the label of the parent button that controls the panel expansion.
 
-{{"demo": "pages/components/expansion-panels/ActionsInExpansionPanelSummary.js"}}
+{{"demo": "pages/components/expansion-panels/ActionsInExpansionPanelSummary.js", "bg": true}}
 
 ## Performance
 
@@ -47,7 +47,7 @@ As with any performance optimization this is not a silver bullet. Be sure to ide
 
 Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
 
-{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js"}}
+{{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js", "bg": true}}
 
 ## Accessibilité
 

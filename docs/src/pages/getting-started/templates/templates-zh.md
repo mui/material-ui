@@ -10,7 +10,7 @@ The templates can be combined with one of the [example applications](https://git
 
 Sections of each layout are clearly defined either by comments or use of separate files, making it simple to extract parts of a page (such as a "hero unit", or footer, for example) for reuse in other pages. For multi-part examples, a table in the README at the linked source code location describes the purpose of each file.
 
-{{"demo": "pages/getting-started/templates/Templates.js", "hideHeader": true}}
+{{"demo": "pages/getting-started/templates/Templates.js", "hideHeader": true, "bg": true}}
 
 如果您在使用这些示例时进行了更改或增强以改善开发人员的体验，或者您想提供其他示例，请考虑在GitHub</a>上创建 pull 请求。</p> 
 

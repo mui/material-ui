@@ -35,13 +35,13 @@ export default Main() {
 
 Expand vertically from the top of the child element. The `collapsedHeight` property can be used to set the minimum height when not expanded.
 
-{{"demo": "pages/components/transitions/SimpleCollapse.js"}}
+{{"demo": "pages/components/transitions/SimpleCollapse.js", "bg": true}}
 
 ## Fade
 
 Blende von Transparent zu Undurchsichtig ein.
 
-{{"demo": "pages/components/transitions/SimpleFade.js"}}
+{{"demo": "pages/components/transitions/SimpleFade.js", "bg": true}}
 
 ## Grow
 
@@ -49,7 +49,7 @@ Erweitert sich von der Mitte des untergeordneten Elements nach außen, während 
 
 Das zweite Beispiel zeigt, wie Sie die `transform-origin` ändern können und bedingt die ` Timeout` Eigenschaft anpassen, um die Eintrittsgeschwindigkeit zu beeinflussen.
 
-{{"demo": "pages/components/transitions/SimpleGrow.js"}}
+{{"demo": "pages/components/transitions/SimpleGrow.js", "bg": true}}
 
 ## Slide
 
@@ -57,7 +57,7 @@ Slide in from the edge of the screen. The `direction` property controls which ed
 
 Die `mountOnEnter` -Eigenschaft der Transition-Komponente verhindert, dass die untergeordnete Komponente gezeigt wird, bis `in` gleich `true` ist. Dadurch wird verhindert, dass die relativ positionierte Komponente von der Off-Screen-Position in die Ansicht gescrollt wird. In ähnlicher Weise entfernt die `unmountOnExit` -Eigenschaft die Komponente aus dem DOM, nachdem der Übergang vom Bildschirm beendet wurde.
 
-{{"demo": "pages/components/transitions/SimpleSlide.js"}}
+{{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
 ## Zoom
 
@@ -65,4 +65,4 @@ Erweitern sich von der Mitte des untergeordneten Elements nach außen.
 
 In diesem Beispiel veranschaulicht, wie der Eintritts animation verzögert wird.
 
-{{"demo": "pages/components/transitions/SimpleZoom.js"}}
+{{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}

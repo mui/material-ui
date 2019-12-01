@@ -13,7 +13,7 @@ components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 
 ## FormControlLabelを使用したスイッチ
 
-`Switch` コンポーネントは` FormControlLabel`コンポーネントを説明のラベルとして使うことができます。
+`Switch` コンポーネントは `FormControlLabel`コンポーネントを説明のラベルとして使うことができます。
 
 {{"demo": "pages/components/switches/SwitchLabels.js"}}
 

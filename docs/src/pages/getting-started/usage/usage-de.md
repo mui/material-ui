@@ -28,7 +28,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 Ja, das ist tatsächlich alles, das Sie für den Start brauchen. In dieser interaktiven Live-Demo können Sie dies ausprobieren:
 
-{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
+{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true, "bg": true}}
 
 ## Globale Objekte
 

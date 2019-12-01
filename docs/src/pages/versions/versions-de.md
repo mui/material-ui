@@ -6,13 +6,13 @@
 
 Die aktuellste Version wird in der Produktion empfohlen.
 
-{{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
+{{"demo": "pages/versions/StableVersions.js", "hideHeader": true, "bg": "inline"}}
 
 ## Neueste Versionen
 
 Hier finden Sie die neuesten unveröffentlichten Dokumentationen und Codes. Sie können damit feststellen, welche Änderungen bevorstehen, und den Mitwirkenden der Material-UI besseres Feedback geben.
 
-{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true}}
+{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true, "bg": "inline"}}
 
 ## Versionierungsstrategie
 
@@ -39,7 +39,7 @@ Im Allgemeinen können Sie den folgenden Release-Zyklus erwarten:
 ## Release Zeitplan
 
 | Datum          | Version | Status   |
-|:-------------- |:------- | -------- |
+|:-------------- |:------- |:-------- |
 | May 2018       | v1.0.0  | Released |
 | Septembre 2018 | v3.0.0  | Released |
 | May 2019       | v4.0.0  | Released |

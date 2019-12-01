@@ -235,7 +235,8 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 ### Painel de expansão
 
 - [ExpansionPanelActions] Renomeie a classe CSS `action` para `spacing`.
-- [ExpansionPanel] Aumente a especificidade CSS da regra de estilo `disabled`.
+- [ExpansionPanel] Increase the CSS specificity of the `disabled` and `expanded` style rules.
+- [ExpansionPanel] Rename the `CollapseProps` prop to `TransitionProps`.
 
 ### Lista
 

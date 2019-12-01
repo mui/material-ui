@@ -8,6 +8,7 @@ Como o escopo dos problemas que o Material-UI resolve é limitado, tentamos inte
 
 - **Sketch**: [Editor de tema](https://material.io/resources/theme-editor/) para Material Design feito pelo Google.
 - **Figma**: [Figma UI Kit](https://material.5ly.co/) para Material-UI feito pelo time Fively.
+- **Framer**: [Framer X Kit](https://packages.framer.com/package/material-ui/material-ui) for Material-UI.
 
 Você não encontrou os recursos de design que sua equipe está procurando? Nos conte!
 
@@ -53,6 +54,14 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 ### Pagination
 
 - [material-ui-flat-pagination](https://github.com/szmslab/material-ui-flat-pagination): A flat design pagination component for Material-UI.
+
+### Schedulers/Calendars
+
+- [dx-react-scheduler-material-ui](https://devexpress.github.io/devextreme-reactive/react/scheduler/): A scheduler/calendar component for Material-UI with multiple calendar views, editing, recurrence appointments and date navigation features ([paid license](https://js.devexpress.com/licensing/)).
+
+### Charts
+
+- [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/): Charts for Material-UI that visualizes data using a variety of series types, including bar, line, area, scatter, pie, and more ([paid license](https://js.devexpress.com/licensing/)).
 
 ## Temas
 

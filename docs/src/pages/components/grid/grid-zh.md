@@ -27,7 +27,7 @@ components: Grid
 
 通过[使用主题](/customization/spacing/)，该变换函数的输出是可定制的。
 
-{{"demo": "pages/components/grid/SpacingGrid.js"}}
+{{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
 
 ## Fluid grids（流式格网）
 
@@ -37,31 +37,31 @@ components: Grid
 
 列宽适用于所有断点（即 `xs` 及大于其的值）。
 
-{{"demo": "pages/components/grid/CenteredGrid.js"}}
+{{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
 
 ### 有断点的栅格
 
 一些列会定义多种宽度，这会导致布局会根据定义的端点来改变其宽度。
 
-{{"demo": "pages/components/grid/FullWidthGrid.js"}}
+{{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
 ## 交互式
 
 下面是一个交互式的演示，您可让探索不同设置下的视觉结果：
 
-{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true, "bg": true}}
 
 ## 自动布局
 
 自适应布局使得 *项* 可以平摊使用空间。 这也意味着你可以显式设置一个 *项* 的宽度，而使其他项的大小自动进行调整。
 
-{{"demo": "pages/components/grid/AutoGrid.js"}}
+{{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
 
 ## 复杂的栅格
 
 以下演示不遵循 Material Design 规范，但说明了如何使用栅格构建复杂的布局。
 
-{{"demo": "pages/components/grid/ComplexGrid.js"}}
+{{"demo": "pages/components/grid/ComplexGrid.js", "bg": true}}
 
 ## 嵌套栅格
 
@@ -71,7 +71,7 @@ components: Grid
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
-{{"demo": "pages/components/grid/NestedGrid.js"}}
+{{"demo": "pages/components/grid/NestedGrid.js", "bg": true}}
 
 ## 局限性
 
@@ -92,7 +92,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
   </body>
 ```
 
-3. 3。将父元素设置为 `overflow-x: hidden;`。
+3. 将父元素设置为 `overflow-x: hidden;`。
 
 ### white-space: nowrap;
 
@@ -110,7 +110,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
   <Typography noWrap>
 ```
 
-{{"demo": "pages/components/grid/AutoGridNoWrap.js"}}
+{{"demo": "pages/components/grid/AutoGridNoWrap.js", "bg": true}}
 
 ### direction: column | column-reverse
 
@@ -120,4 +120,4 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 Material-UI 本身不提供任何 CSS Grid 功能，但如下所示，您可以轻松使用 CSS Grid 来布局您的页面。
 
-{{"demo": "pages/components/grid/CSSGrid.js"}}
+{{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}

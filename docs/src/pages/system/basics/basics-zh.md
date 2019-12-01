@@ -14,23 +14,23 @@
 - 📦体积小 [4KB gzipped](https://bundlephobia.com/result?p=@material-ui/system)
 - 🚀 [快速](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uisystem)，性能不是运行时问题
 
-值得关注的是，整个仓库的函数都是无副作用的(side-effect free)，它们拥有这样的类型签名： `({ theme, ...style })=> style<、0>。</p>
+值得关注的是，整个仓库的函数都是无副作用的(side-effect free)，它们拥有这样的类型签名： `({ theme, ...style })=> style`。
 
-<h3>演示</h3>
+### 演示
 
-<p>在<em>开始</em>章节的余下部分，我们会配合<strong>styled-components</strong> 作为演示例子(因为这个库具有普遍性)。 或者，你也可以使用 <a href="#interoperability">JSS</a>。
-另外，以下的例子都直接使用了 Material-UI 的 <strong>默认</strong> <a href="/customization/default-theme/">主题对象</a>。</p>
+在*开始*章节的余下部分，我们会配合**styled-components** 作为演示例子(因为这个库具有普遍性)。 或者，你也可以使用 [JSS](#interoperability)。 另外，以下的例子都直接使用了 Material-UI 的 **默认** [主题对象](/customization/default-theme/)。
 
-<p>{{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}</p>
+{{"demo": "pages/system/basics/Demo.js", "defaultCodeOpen": true}}
 
-<h3>安装</h3>
+### 安装
 
-<pre><code class="jsx">// 使用 npm
+```jsx
+// 使用 npm
 npm install @material-ui/system
 
 // 使用 yarn
 yarn add @material-ui/system
-`</pre> 
+```
 
 ### 创建组件
 
@@ -326,7 +326,7 @@ styled-system在[解释它如何工作](https://github.com/jxnblk/styled-system/
 
 在实践中，Box 组件可以节省我们很多时间。 在这个例子中，我们演示了如何做一个 Banner 组件。
 
-{{"demo": "pages/system/basics/RealWorld.js"}}
+{{"demo": "pages/system/basics/RealWorld.js", "bg": true}}
 
 ## 现有技术
 

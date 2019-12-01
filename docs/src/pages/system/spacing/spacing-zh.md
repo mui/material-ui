@@ -70,7 +70,7 @@ const theme = {
 
 ## 示例
 
-{{"demo": "pages/system/spacing/Demo.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/spacing/Demo.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box p={1}>…
@@ -80,7 +80,7 @@ const theme = {
 
 ## 水平居中
 
-{{"demo": "pages/system/spacing/HorizontalCentering.js", "defaultCodeOpen": false}}
+{{"demo": "pages/system/spacing/HorizontalCentering.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box mx="auto">…

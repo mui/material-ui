@@ -13,7 +13,7 @@ components: Divider
 
 Der Trenner gibt per Standard ein `<hr>`-Element aus. Sie können sich dieses zusätzliche Element sparen, in dem sie die `divider`-Eigenschaft bei der `ListItem`-Komponente verwenden.
 
-{{"demo": "pages/components/dividers/ListDividers.js"}}
+{{"demo": "pages/components/dividers/ListDividers.js", "bg": true}}
 
 ## HTML5-Spezifikation
 
@@ -21,12 +21,18 @@ In einer Liste sollten sie sicherstellen, dass der `Trenner` als `<li>` gerender
 
 ## Eingerückter Trenner
 
-{{"demo": "pages/components/dividers/InsetDividers.js"}}
+{{"demo": "pages/components/dividers/InsetDividers.js", "bg": true}}
 
 ## Subheader-Trenner
 
-{{"demo": "pages/components/dividers/SubheaderDividers.js"}}
+{{"demo": "pages/components/dividers/SubheaderDividers.js", "bg": true}}
 
 ## Mitteltrenner
 
-{{"demo": "pages/components/dividers/MiddleDividers.js"}}
+{{"demo": "pages/components/dividers/MiddleDividers.js", "bg": true}}
+
+## Vertical Dividers
+
+You can also render a divider vertically using the `orientation` prop.
+
+{{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}

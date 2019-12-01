@@ -6,13 +6,13 @@
 
 É recomendado usar a versāo mais recente em ambiente de produção.
 
-{{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
+{{"demo": "pages/versions/StableVersions.js", "hideHeader": true, "bg": "inline"}}
 
 ## Últimas versões
 
 Aqui pode encontrar a versão em desenvolvimento e sua documentação. Poderá usar esta versão para ver quais alterações que estão a ser implementadas e fornecer um feedback melhor para os contribuidores de Material-UI.
 
-{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true}}
+{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true, "bg": "inline"}}
 
 ## Estratégia de controle de versão
 
@@ -39,7 +39,7 @@ Em geral, você pode esperar o seguinte ciclo de lançamento:
 ## Cronograma de lançamento
 
 | Data             | Versão | Situação |
-|:---------------- |:------ | -------- |
+|:---------------- |:------ |:-------- |
 | Maio de 2018     | v1.0.0 | Liberada |
 | Setembro de 2018 | v3.0.0 | Liberada |
 | Maio de 2019     | v4.0.0 | Liberada |

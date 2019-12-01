@@ -29,13 +29,13 @@ Data tableの上部には、列名をリストするヘッダー行があり、�
 
 飾り気のないシンプルな例です。
 
-{{"demo": "pages/components/tables/SimpleTable.js"}}
+{{"demo": "pages/components/tables/SimpleTable.js", "bg": true}}
 
 ## Dense Table
 
 簡単な例ではの緻密なテーブル詳細
 
-{{"demo": "pages/components/tables/DenseTable.js"}}
+{{"demo": "pages/components/tables/DenseTable.js", "bg": true}}
 
 ## Sorting & Selecting
 
@@ -43,13 +43,13 @@ Data tableの上部には、列名をリストするヘッダー行があり、�
 
 テーブルは水平スクロールを示すために固定幅が与えられています。 ページ付けコントロールがスクロールするのを防ぐために、TablePaginationコンポーネントはTableの外側で使用されます。 （下記の ['カスタムテーブルページネーションアクション'の例](#custom-table-pagination-action) は、TableFooter内のページネーションを示しています。）
 
-{{"demo": "pages/components/tables/EnhancedTable.js"}}
+{{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
 ## Customized tables
 
 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
-{{"demo": "pages/components/tables/CustomizedTables.js"}}
+{{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
 ### Custom pagination options
 
@@ -71,25 +71,25 @@ It's possible to customise the options shown in the "Rows per page" select using
 
 The `Action` property of the `TablePagination` component allows the implementation of custom actions.
 
-{{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}
+{{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
 ## Fixed header
 
 An example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
 
-{{"demo": "pages/components/tables/StickyHeadTable.js"}}
+{{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
 ## Spanning Table
 
 A simple example with spanning rows & columns.
 
-{{"demo": "pages/components/tables/SpanningTable.js"}}
+{{"demo": "pages/components/tables/SpanningTable.js", "bg": true}}
 
 ## Virtualized Table
 
 In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。
 
-{{"demo": "pages/components/tables/ReactVirtualizedTable.js"}}
+{{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
 ## 補完プロジェクト
 
@@ -101,7 +101,7 @@ In the following example, we demonstrate how to use [react-virtualized](https://
 
 [material-table](https://github.com/mbrn/material-table) is a simple and powerful Datatable for React based on Material-UI Table with some additional features. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). 参照するといいでしょう。
 
-{{"demo": "pages/components/tables/MaterialTableDemo.js"}}
+{{"demo": "pages/components/tables/MaterialTableDemo.js", "bg": true}}
 
 ### その他
 
@@ -117,4 +117,4 @@ In the following example, we demonstrate how to use [react-virtualized](https://
 
 A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it’s about and decide if they want to read it.
 
-{{"demo": "pages/components/tables/AcccessibleTable.js"}}
+{{"demo": "pages/components/tables/AcccessibleTable.js", "bg": true}}

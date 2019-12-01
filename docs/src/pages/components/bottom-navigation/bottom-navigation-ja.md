@@ -13,10 +13,10 @@ components: BottomNavigation, BottomNavigationAction
 
 **3** アクションしかない場合は、アイコンとテキストラベルの両方を常に表示します。
 
-{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/SimpleBottomNavigation.js", "bg": true}}
 
 ## ラベルなしのボトムナビゲーション
 
 **4** または **5** アクションがある場合は、非アクティブビューをアイコンとしてのみ表示します。
 
-{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js"}}
+{{"demo": "pages/components/bottom-navigation/LabelBottomNavigation.js", "bg": true}}
