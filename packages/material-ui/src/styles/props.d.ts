@@ -18,7 +18,7 @@ import { CheckboxProps } from '../Checkbox';
 import { ChipProps } from '../Chip';
 import { CircularProgressProps } from '../CircularProgress';
 import { CollapseProps } from '../Collapse';
-import { ContainerProps } from '../Container'
+import { ContainerProps } from '../Container';
 import { CssBaselineProps } from '../CssBaseline';
 import { DialogActionsProps } from '../DialogActions';
 import { DialogContentProps } from '../DialogContent';
