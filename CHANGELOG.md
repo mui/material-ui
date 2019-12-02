@@ -59,6 +59,15 @@ Here are some highlights ✨:
 - [core] Fix dependabot not ignoring babel-plugin-preval (#18553) @eps1lon
 - [core] Ignore url-loader >= 3 updates (#18639) @eps1lon
 
+## 3.9.4
+###### *Nov 28, 2019*
+
+### `@material-ui/core@v3.9.4`
+
+- [Portal] Fix circular PortalProps Types (#18602)
+
+  Fix TypeScript 3.7 support
+
 ## 4.7.0
 ###### *Nov 22, 2019*
 

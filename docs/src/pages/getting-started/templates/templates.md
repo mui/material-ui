@@ -1,5 +1,5 @@
 ---
-title: Free React Templates
+title: +9 Free React Templates
 ---
 
 # React Templates

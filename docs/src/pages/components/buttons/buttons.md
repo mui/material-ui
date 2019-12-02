@@ -3,7 +3,7 @@ title: Button React component
 components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 ---
 
-# Buttons
+# Button
 
 <p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
 

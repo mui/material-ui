@@ -41,18 +41,15 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      marginTop: theme.spacing(3),
-      overflowX: 'auto',
-    },
-    table: {
-      minWidth: 700,
-    },
-  }),
-);
+const useStyles = makeStyles({
+  root: {
+    width: '100%',
+    overflowX: 'auto',
+  },
+  table: {
+    minWidth: 700,
+  },
+});
 
 export default function CustomizedTables() {
   const classes = useStyles();

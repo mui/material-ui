@@ -3,7 +3,7 @@ title: Card React component
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
-# Cards
+# Card
 
 <p class="description">Cards contain content and actions about a single subject.</p>
 
