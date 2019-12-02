@@ -135,12 +135,17 @@ export interface AutocompleteProps
    * @returns {ReactNode}
    */
   renderTags?: (value: any, getTagProps: GetTagProps) => React.ReactNode;
+  /**
+   * The size of the autocomplete.
+   */
+  size?: 'small' | 'medium';
 }
 
 export type AutocompleteClassKey =
   | 'root'
   | 'focused'
   | 'tag'
+  | 'tagSizeSmall'
   | 'inputRoot'
   | 'input'
   | 'inputFocused'

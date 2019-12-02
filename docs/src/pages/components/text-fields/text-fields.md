@@ -59,6 +59,12 @@ For instance, you can use an icon button to hide or reveal the password.
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
+## Sizes
+
+Fancy smaller inputs? Use the `size` prop.
+
+{{"demo": "pages/components/text-fields/TextFieldSizes.js"}}
+
 ## Layout
 
 `margin` can be used to alter the vertical spacing of inputs.

@@ -79,6 +79,7 @@ For advanced cases, please look at the source of TextField by clicking on the
 | <span class="prop-name">rowsMax</span> | <span class="prop-type">string<br>&#124;&nbsp;number</span> |  | Maximum number of rows to display when multiline option is set to true. |
 | <span class="prop-name">select</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Render a [`Select`](/api/select/) element while passing the Input element to `Select` as `input` parameter. If this option is set you must pass the options of the select as children. |
 | <span class="prop-name">SelectProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Select`](/api/select/) element. |
+| <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'</span> |  | The size of the text field. |
 | <span class="prop-name">type</span> | <span class="prop-type">string</span> |  | Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types). |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the `input` element, required for a controlled component. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'standard'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'filled'</span> | <span class="prop-default">'standard'</span> | The variant to use. |

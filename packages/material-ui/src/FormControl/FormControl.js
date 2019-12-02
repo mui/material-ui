@@ -64,14 +64,15 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     children,
     classes,
     className,
+    color = 'primary',
     component: Component = 'div',
     disabled = false,
     error = false,
     fullWidth = false,
     hiddenLabel = false,
     margin = 'none',
-    color = 'primary',
     required = false,
+    size,
     variant = 'standard',
     ...other
   } = props;
@@ -162,7 +163,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     filled,
     focused,
     hiddenLabel,
-    margin,
+    margin: (size === 'small' ? 'dense' : undefined) || margin,
     onBlur: () => {
       setFocused(false);
     },
@@ -245,6 +246,10 @@ FormControl.propTypes = {
    * If `true`, the label will indicate that the input is required.
    */
   required: PropTypes.bool,
+  /**
+   * The size of the text field.
+   */
+  size: PropTypes.oneOf(['small', 'medium']),
   /**
    * The variant to use.
    */

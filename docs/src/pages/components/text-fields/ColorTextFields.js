@@ -4,16 +4,14 @@ import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
     '& > *': {
-      width: 200,
       margin: theme.spacing(1),
+      width: 200,
     },
   },
 }));
 
-export default function ColorTextField() {
+export default function ColorTextFields() {
   const classes = useStyles();
 
   return (

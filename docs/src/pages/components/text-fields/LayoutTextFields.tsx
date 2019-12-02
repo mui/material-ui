@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    container: {
+    root: {
       display: 'flex',
       flexWrap: 'wrap',
     },
@@ -20,7 +20,7 @@ export default function LayoutTextFields() {
   const classes = useStyles();
 
   return (
-    <div className={classes.container}>
+    <div className={classes.root}>
       <div>
         <TextField
           id="standard-full-width"

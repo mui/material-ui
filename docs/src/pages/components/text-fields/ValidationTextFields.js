@@ -3,14 +3,11 @@ import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: 200,
+    },
   },
 }));
 
@@ -18,24 +15,15 @@ export default function ValidationTextFields() {
   const classes = useStyles();
 
   return (
-    <form className={classes.container} noValidate autoComplete="off">
+    <form className={classes.root} noValidate autoComplete="off">
       <div>
-        <TextField
-          error
-          id="standard-error"
-          label="Error"
-          defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
-        />
+        <TextField error id="standard-error" label="Error" defaultValue="Hello World" />
         <TextField
           error
           id="standard-error-helper-text"
           label="Error"
           defaultValue="Hello World"
           helperText="Incorrect entry."
-          className={classes.textField}
-          margin="normal"
         />
       </div>
       <div>
@@ -44,8 +32,6 @@ export default function ValidationTextFields() {
           id="filled-error"
           label="Error"
           defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
           variant="filled"
         />
         <TextField
@@ -54,8 +40,6 @@ export default function ValidationTextFields() {
           label="Error"
           defaultValue="Hello World"
           helperText="Incorrect entry."
-          className={classes.textField}
-          margin="normal"
           variant="filled"
         />
       </div>
@@ -65,8 +49,6 @@ export default function ValidationTextFields() {
           id="outlined-error"
           label="Error"
           defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
           variant="outlined"
         />
         <TextField
@@ -75,8 +57,6 @@ export default function ValidationTextFields() {
           label="Error"
           defaultValue="Hello World"
           helperText="Incorrect entry."
-          className={classes.textField}
-          margin="normal"
           variant="outlined"
         />
       </div>
