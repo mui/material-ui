@@ -62,6 +62,19 @@ In order to display the modal, you need to disable the portal feature with the `
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
 
+## Limitations
+
+### Focus trap
+
+The modal moves the focus back to the body of the component if the focus tries to escape it.
+
+This is done for accessibility purposes, however, it might create issues.
+In the event the users need to interact with another part of the page, e.g. with a chatbot window, you can disable the behavior:
+
+```jsx
+<Modal disableEnforceFocus />
+```
+
 ## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
