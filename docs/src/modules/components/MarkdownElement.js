@@ -27,12 +27,12 @@ renderer.heading = (text, level) => {
   }
 
   // eslint-disable-next-line no-underscore-dangle
-  const escapedText = textToHash(text, global.__MARKED_UNIQUE__);
+  const fragmentId = textToHash(text, global.__MARKED_UNIQUE__);
 
   return [
     `<h${level}>`,
-    `<a class="anchor-link" id="${escapedText}"></a>${text}`,
-    `<a class="anchor-link-style" aria-label="${escapedText}" href="#${escapedText}">`,
+    `<a class="anchor-link" id="${fragmentId}"></a>${text}`,
+    `<a class="anchor-link-style" aria-label="${text}" href="#${fragmentId}">`,
     '<svg><use xlink:href="#icons--fragment-link" /></svg>',
     `</a>`,
     `</h${level}>`,
