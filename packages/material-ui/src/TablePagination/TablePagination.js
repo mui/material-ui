@@ -16,6 +16,7 @@ export const styles = theme => ({
   root: {
     color: theme.palette.text.primary,
     fontSize: theme.typography.pxToRem(14),
+    overflow: 'auto',
     // Increase the specificity to override TableCell.
     '&:last-child': {
       padding: 0,
