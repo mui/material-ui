@@ -26,7 +26,6 @@ export const styles = theme => ({
   tag: {
     margin: 3,
     maxWidth: 'calc(100% - 6px)',
-
     '&:last-child': {
       marginRight: 5,
       maxWidth: 'calc(100% - 8px)',
