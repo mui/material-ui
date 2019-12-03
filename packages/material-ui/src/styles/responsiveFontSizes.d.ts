@@ -6,7 +6,7 @@ export interface ResponsiveFontSizesOptions {
   breakpoints?: Breakpoint[];
   disableAlign?: boolean;
   factor?: number;
-  variants?: ThemeStyle;
+  variants?: ThemeStyle[];
 }
 
 export default function responsiveFontSizes(
