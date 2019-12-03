@@ -52,12 +52,12 @@ Any other props supplied will be provided to the root element ([IconButton](/api
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiCheckbox-root</span> | Styles applied to the root element.
-| <span class="prop-name">checked</span> | <span class="prop-name">.Mui-checked</span> | Pseudo-class applied to the root element if `checked={true}`.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">indeterminate</span> | <span class="prop-name">.MuiCheckbox-indeterminate</span> | Pseudo-class applied to the root element if `indeterminate={true}`.
-| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiCheckbox-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiCheckbox-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiCheckbox-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--checked"></a><a href="#css--checked" class="prop-name">checked</a> | <span class="prop-name">.Mui-checked</span> | Pseudo-class applied to the root element if `checked={true}`.
+| <a class="anchor-link" id="css--disabled"></a><a href="#css--disabled" class="prop-name">disabled</a> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <a class="anchor-link" id="css--indeterminate"></a><a href="#css--indeterminate" class="prop-name">indeterminate</a> | <span class="prop-name">.MuiCheckbox-indeterminate</span> | Pseudo-class applied to the root element if `indeterminate={true}`.
+| <a class="anchor-link" id="css--colorPrimary"></a><a href="#css--colorPrimary" class="prop-name">colorPrimary</a> | <span class="prop-name">.MuiCheckbox-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <a class="anchor-link" id="css--colorSecondary"></a><a href="#css--colorSecondary" class="prop-name">colorSecondary</a> | <span class="prop-name">.MuiCheckbox-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 
 You can override the style of the component thanks to one of these customization points:
 

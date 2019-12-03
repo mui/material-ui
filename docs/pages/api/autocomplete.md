@@ -82,27 +82,27 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiAutocomplete-root</span> | Styles applied to the root element.
-| <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element if focused.
-| <span class="prop-name">tag</span> | <span class="prop-name">.MuiAutocomplete-tag</span> | Styles applied to the tag elements, e.g. the chips.
-| <span class="prop-name">tagSizeSmall</span> | <span class="prop-name">.MuiAutocomplete-tagSizeSmall</span> | Styles applied to the tag elements, e.g. the chips if `size="small"`.
-| <span class="prop-name">inputRoot</span> | <span class="prop-name">.MuiAutocomplete-inputRoot</span> | Styles applied to the Input element.
-| <span class="prop-name">input</span> | <span class="prop-name">.MuiAutocomplete-input</span> | Styles applied to the input element.
-| <span class="prop-name">inputFocused</span> | <span class="prop-name">.MuiAutocomplete-inputFocused</span> | Styles applied to the input element if tag focused.
-| <span class="prop-name">endAdornment</span> | <span class="prop-name">.MuiAutocomplete-endAdornment</span> | Styles applied to the endAdornment element.
-| <span class="prop-name">clearIndicator</span> | <span class="prop-name">.MuiAutocomplete-clearIndicator</span> | Styles applied to the clear indictator.
-| <span class="prop-name">clearIndicatorDirty</span> | <span class="prop-name">.MuiAutocomplete-clearIndicatorDirty</span> | Styles applied to the clear indictator if the input is dirty.
-| <span class="prop-name">popupIndicator</span> | <span class="prop-name">.MuiAutocomplete-popupIndicator</span> | Styles applied to the popup indictator.
-| <span class="prop-name">popupIndicatorOpen</span> | <span class="prop-name">.MuiAutocomplete-popupIndicatorOpen</span> | Styles applied to the popup indictator if the popup is open.
-| <span class="prop-name">popper</span> | <span class="prop-name">.MuiAutocomplete-popper</span> | Styles applied to the popper element.
-| <span class="prop-name">popperDisablePortal</span> | <span class="prop-name">.MuiAutocomplete-popperDisablePortal</span> | Styles applied to the popper element if `disablePortal={true}`.
-| <span class="prop-name">paper</span> | <span class="prop-name">.MuiAutocomplete-paper</span> | Styles applied to the `Paper` component.
-| <span class="prop-name">listbox</span> | <span class="prop-name">.MuiAutocomplete-listbox</span> | Styles applied to the `listbox` component.
-| <span class="prop-name">loading</span> | <span class="prop-name">.MuiAutocomplete-loading</span> | Styles applied to the loading wrapper.
-| <span class="prop-name">noOptions</span> | <span class="prop-name">.MuiAutocomplete-noOptions</span> | Styles applied to the no option wrapper.
-| <span class="prop-name">option</span> | <span class="prop-name">.MuiAutocomplete-option</span> | Styles applied to the option elements.
-| <span class="prop-name">groupLabel</span> | <span class="prop-name">.MuiAutocomplete-groupLabel</span> | Styles applied to the group's label elements.
-| <span class="prop-name">groupUl</span> | <span class="prop-name">.MuiAutocomplete-groupUl</span> | Styles applied to the group's ul elements.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiAutocomplete-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--focused"></a><a href="#css--focused" class="prop-name">focused</a> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element if focused.
+| <a class="anchor-link" id="css--tag"></a><a href="#css--tag" class="prop-name">tag</a> | <span class="prop-name">.MuiAutocomplete-tag</span> | Styles applied to the tag elements, e.g. the chips.
+| <a class="anchor-link" id="css--tagSizeSmall"></a><a href="#css--tagSizeSmall" class="prop-name">tagSizeSmall</a> | <span class="prop-name">.MuiAutocomplete-tagSizeSmall</span> | Styles applied to the tag elements, e.g. the chips if `size="small"`.
+| <a class="anchor-link" id="css--inputRoot"></a><a href="#css--inputRoot" class="prop-name">inputRoot</a> | <span class="prop-name">.MuiAutocomplete-inputRoot</span> | Styles applied to the Input element.
+| <a class="anchor-link" id="css--input"></a><a href="#css--input" class="prop-name">input</a> | <span class="prop-name">.MuiAutocomplete-input</span> | Styles applied to the input element.
+| <a class="anchor-link" id="css--inputFocused"></a><a href="#css--inputFocused" class="prop-name">inputFocused</a> | <span class="prop-name">.MuiAutocomplete-inputFocused</span> | Styles applied to the input element if tag focused.
+| <a class="anchor-link" id="css--endAdornment"></a><a href="#css--endAdornment" class="prop-name">endAdornment</a> | <span class="prop-name">.MuiAutocomplete-endAdornment</span> | Styles applied to the endAdornment element.
+| <a class="anchor-link" id="css--clearIndicator"></a><a href="#css--clearIndicator" class="prop-name">clearIndicator</a> | <span class="prop-name">.MuiAutocomplete-clearIndicator</span> | Styles applied to the clear indictator.
+| <a class="anchor-link" id="css--clearIndicatorDirty"></a><a href="#css--clearIndicatorDirty" class="prop-name">clearIndicatorDirty</a> | <span class="prop-name">.MuiAutocomplete-clearIndicatorDirty</span> | Styles applied to the clear indictator if the input is dirty.
+| <a class="anchor-link" id="css--popupIndicator"></a><a href="#css--popupIndicator" class="prop-name">popupIndicator</a> | <span class="prop-name">.MuiAutocomplete-popupIndicator</span> | Styles applied to the popup indictator.
+| <a class="anchor-link" id="css--popupIndicatorOpen"></a><a href="#css--popupIndicatorOpen" class="prop-name">popupIndicatorOpen</a> | <span class="prop-name">.MuiAutocomplete-popupIndicatorOpen</span> | Styles applied to the popup indictator if the popup is open.
+| <a class="anchor-link" id="css--popper"></a><a href="#css--popper" class="prop-name">popper</a> | <span class="prop-name">.MuiAutocomplete-popper</span> | Styles applied to the popper element.
+| <a class="anchor-link" id="css--popperDisablePortal"></a><a href="#css--popperDisablePortal" class="prop-name">popperDisablePortal</a> | <span class="prop-name">.MuiAutocomplete-popperDisablePortal</span> | Styles applied to the popper element if `disablePortal={true}`.
+| <a class="anchor-link" id="css--paper"></a><a href="#css--paper" class="prop-name">paper</a> | <span class="prop-name">.MuiAutocomplete-paper</span> | Styles applied to the `Paper` component.
+| <a class="anchor-link" id="css--listbox"></a><a href="#css--listbox" class="prop-name">listbox</a> | <span class="prop-name">.MuiAutocomplete-listbox</span> | Styles applied to the `listbox` component.
+| <a class="anchor-link" id="css--loading"></a><a href="#css--loading" class="prop-name">loading</a> | <span class="prop-name">.MuiAutocomplete-loading</span> | Styles applied to the loading wrapper.
+| <a class="anchor-link" id="css--noOptions"></a><a href="#css--noOptions" class="prop-name">noOptions</a> | <span class="prop-name">.MuiAutocomplete-noOptions</span> | Styles applied to the no option wrapper.
+| <a class="anchor-link" id="css--option"></a><a href="#css--option" class="prop-name">option</a> | <span class="prop-name">.MuiAutocomplete-option</span> | Styles applied to the option elements.
+| <a class="anchor-link" id="css--groupLabel"></a><a href="#css--groupLabel" class="prop-name">groupLabel</a> | <span class="prop-name">.MuiAutocomplete-groupLabel</span> | Styles applied to the group's label elements.
+| <a class="anchor-link" id="css--groupUl"></a><a href="#css--groupUl" class="prop-name">groupUl</a> | <span class="prop-name">.MuiAutocomplete-groupUl</span> | Styles applied to the group's ul elements.
 
 You can override the style of the component thanks to one of these customization points:
 

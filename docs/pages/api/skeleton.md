@@ -42,11 +42,11 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiSkeleton-root</span> | Styles applied to the root element.
-| <span class="prop-name">text</span> | <span class="prop-name">.MuiSkeleton-text</span> | Styles applied to the root element if `variant="text"`.
-| <span class="prop-name">rect</span> | <span class="prop-name">.MuiSkeleton-rect</span> | Styles applied to the root element if `variant="rect"`.
-| <span class="prop-name">circle</span> | <span class="prop-name">.MuiSkeleton-circle</span> | Styles applied to the root element if `variant="circle"`.
-| <span class="prop-name">animate</span> | <span class="prop-name">.MuiSkeleton-animate</span> | Styles applied to the root element if `disabledAnimate={false}`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiSkeleton-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--text"></a><a href="#css--text" class="prop-name">text</a> | <span class="prop-name">.MuiSkeleton-text</span> | Styles applied to the root element if `variant="text"`.
+| <a class="anchor-link" id="css--rect"></a><a href="#css--rect" class="prop-name">rect</a> | <span class="prop-name">.MuiSkeleton-rect</span> | Styles applied to the root element if `variant="rect"`.
+| <a class="anchor-link" id="css--circle"></a><a href="#css--circle" class="prop-name">circle</a> | <span class="prop-name">.MuiSkeleton-circle</span> | Styles applied to the root element if `variant="circle"`.
+| <a class="anchor-link" id="css--animate"></a><a href="#css--animate" class="prop-name">animate</a> | <span class="prop-name">.MuiSkeleton-animate</span> | Styles applied to the root element if `disabledAnimate={false}`.
 
 You can override the style of the component thanks to one of these customization points:
 

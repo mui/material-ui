@@ -40,12 +40,12 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiExpansionPanelSummary-root</span> | Styles applied to the root element.
-| <span class="prop-name">expanded</span> | <span class="prop-name">.Mui-expanded</span> | Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.
-| <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element if `focused={true}`.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">content</span> | <span class="prop-name">.MuiExpansionPanelSummary-content</span> | Styles applied to the children wrapper element.
-| <span class="prop-name">expandIcon</span> | <span class="prop-name">.MuiExpansionPanelSummary-expandIcon</span> | Styles applied to the `IconButton` component when `expandIcon` is supplied.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiExpansionPanelSummary-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--expanded"></a><a href="#css--expanded" class="prop-name">expanded</a> | <span class="prop-name">.Mui-expanded</span> | Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`.
+| <a class="anchor-link" id="css--focused"></a><a href="#css--focused" class="prop-name">focused</a> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element if `focused={true}`.
+| <a class="anchor-link" id="css--disabled"></a><a href="#css--disabled" class="prop-name">disabled</a> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <a class="anchor-link" id="css--content"></a><a href="#css--content" class="prop-name">content</a> | <span class="prop-name">.MuiExpansionPanelSummary-content</span> | Styles applied to the children wrapper element.
+| <a class="anchor-link" id="css--expandIcon"></a><a href="#css--expandIcon" class="prop-name">expandIcon</a> | <span class="prop-name">.MuiExpansionPanelSummary-expandIcon</span> | Styles applied to the `IconButton` component when `expandIcon` is supplied.
 
 You can override the style of the component thanks to one of these customization points:
 

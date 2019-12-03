@@ -45,12 +45,12 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiAvatar-root</span> | Styles applied to the root element.
-| <span class="prop-name">colorDefault</span> | <span class="prop-name">.MuiAvatar-colorDefault</span> | Styles applied to the root element if there are children and not `src` or `srcSet`.
-| <span class="prop-name">circle</span> | <span class="prop-name">.MuiAvatar-circle</span> | Styles applied to the root element if `variant="circle"`.
-| <span class="prop-name">rounded</span> | <span class="prop-name">.MuiAvatar-rounded</span> | Styles applied to the root element if `variant="rounded"`.
-| <span class="prop-name">square</span> | <span class="prop-name">.MuiAvatar-square</span> | Styles applied to the root element if `variant="square"`.
-| <span class="prop-name">img</span> | <span class="prop-name">.MuiAvatar-img</span> | Styles applied to the img element if either `src` or `srcSet` is defined.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiAvatar-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--colorDefault"></a><a href="#css--colorDefault" class="prop-name">colorDefault</a> | <span class="prop-name">.MuiAvatar-colorDefault</span> | Styles applied to the root element if there are children and not `src` or `srcSet`.
+| <a class="anchor-link" id="css--circle"></a><a href="#css--circle" class="prop-name">circle</a> | <span class="prop-name">.MuiAvatar-circle</span> | Styles applied to the root element if `variant="circle"`.
+| <a class="anchor-link" id="css--rounded"></a><a href="#css--rounded" class="prop-name">rounded</a> | <span class="prop-name">.MuiAvatar-rounded</span> | Styles applied to the root element if `variant="rounded"`.
+| <a class="anchor-link" id="css--square"></a><a href="#css--square" class="prop-name">square</a> | <span class="prop-name">.MuiAvatar-square</span> | Styles applied to the root element if `variant="square"`.
+| <a class="anchor-link" id="css--img"></a><a href="#css--img" class="prop-name">img</a> | <span class="prop-name">.MuiAvatar-img</span> | Styles applied to the img element if either `src` or `srcSet` is defined.
 
 You can override the style of the component thanks to one of these customization points:
 

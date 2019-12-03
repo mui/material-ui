@@ -43,12 +43,12 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiListSubheader-root</span> | Styles applied to the root element.
-| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiListSubheader-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorInherit</span> | <span class="prop-name">.MuiListSubheader-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
-| <span class="prop-name">gutters</span> | <span class="prop-name">.MuiListSubheader-gutters</span> | Styles applied to the inner `component` element if `disableGutters={false}`.
-| <span class="prop-name">inset</span> | <span class="prop-name">.MuiListSubheader-inset</span> | Styles applied to the root element if `inset={true}`.
-| <span class="prop-name">sticky</span> | <span class="prop-name">.MuiListSubheader-sticky</span> | Styles applied to the root element if `disableSticky={false}`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiListSubheader-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--colorPrimary"></a><a href="#css--colorPrimary" class="prop-name">colorPrimary</a> | <span class="prop-name">.MuiListSubheader-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <a class="anchor-link" id="css--colorInherit"></a><a href="#css--colorInherit" class="prop-name">colorInherit</a> | <span class="prop-name">.MuiListSubheader-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
+| <a class="anchor-link" id="css--gutters"></a><a href="#css--gutters" class="prop-name">gutters</a> | <span class="prop-name">.MuiListSubheader-gutters</span> | Styles applied to the inner `component` element if `disableGutters={false}`.
+| <a class="anchor-link" id="css--inset"></a><a href="#css--inset" class="prop-name">inset</a> | <span class="prop-name">.MuiListSubheader-inset</span> | Styles applied to the root element if `inset={true}`.
+| <a class="anchor-link" id="css--sticky"></a><a href="#css--sticky" class="prop-name">sticky</a> | <span class="prop-name">.MuiListSubheader-sticky</span> | Styles applied to the root element if `disableSticky={false}`.
 
 You can override the style of the component thanks to one of these customization points:
 

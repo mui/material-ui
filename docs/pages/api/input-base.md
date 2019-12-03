@@ -64,24 +64,24 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiInputBase-root</span> | Styles applied to the root element.
-| <span class="prop-name">formControl</span> | <span class="prop-name">.MuiInputBase-formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
-| <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Styles applied to the root element if the component is focused.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Styles applied to the root element if `disabled={true}`.
-| <span class="prop-name">adornedStart</span> | <span class="prop-name">.MuiInputBase-adornedStart</span> | Styles applied to the root element if `startAdornment` is provided.
-| <span class="prop-name">adornedEnd</span> | <span class="prop-name">.MuiInputBase-adornedEnd</span> | Styles applied to the root element if `endAdornment` is provided.
-| <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Styles applied to the root element if `error={true}`.
-| <span class="prop-name">marginDense</span> | <span class="prop-name">.MuiInputBase-marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
-| <span class="prop-name">multiline</span> | <span class="prop-name">.MuiInputBase-multiline</span> | Styles applied to the root element if `multiline={true}`.
-| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiInputBase-colorSecondary</span> | Styles applied to the root element if the color is secondary.
-| <span class="prop-name">fullWidth</span> | <span class="prop-name">.MuiInputBase-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
-| <span class="prop-name">input</span> | <span class="prop-name">.MuiInputBase-input</span> | Styles applied to the `input` element.
-| <span class="prop-name">inputMarginDense</span> | <span class="prop-name">.MuiInputBase-inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
-| <span class="prop-name">inputMultiline</span> | <span class="prop-name">.MuiInputBase-inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
-| <span class="prop-name">inputTypeSearch</span> | <span class="prop-name">.MuiInputBase-inputTypeSearch</span> | Styles applied to the `input` element if `type="search"`.
-| <span class="prop-name">inputAdornedStart</span> | <span class="prop-name">.MuiInputBase-inputAdornedStart</span> | Styles applied to the `input` element if `startAdornment` is provided.
-| <span class="prop-name">inputAdornedEnd</span> | <span class="prop-name">.MuiInputBase-inputAdornedEnd</span> | Styles applied to the `input` element if `endAdornment` is provided.
-| <span class="prop-name">inputHiddenLabel</span> | <span class="prop-name">.MuiInputBase-inputHiddenLabel</span> | Styles applied to the `input` element if `hiddenLabel={true}`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiInputBase-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--formControl"></a><a href="#css--formControl" class="prop-name">formControl</a> | <span class="prop-name">.MuiInputBase-formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
+| <a class="anchor-link" id="css--focused"></a><a href="#css--focused" class="prop-name">focused</a> | <span class="prop-name">.Mui-focused</span> | Styles applied to the root element if the component is focused.
+| <a class="anchor-link" id="css--disabled"></a><a href="#css--disabled" class="prop-name">disabled</a> | <span class="prop-name">.Mui-disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <a class="anchor-link" id="css--adornedStart"></a><a href="#css--adornedStart" class="prop-name">adornedStart</a> | <span class="prop-name">.MuiInputBase-adornedStart</span> | Styles applied to the root element if `startAdornment` is provided.
+| <a class="anchor-link" id="css--adornedEnd"></a><a href="#css--adornedEnd" class="prop-name">adornedEnd</a> | <span class="prop-name">.MuiInputBase-adornedEnd</span> | Styles applied to the root element if `endAdornment` is provided.
+| <a class="anchor-link" id="css--error"></a><a href="#css--error" class="prop-name">error</a> | <span class="prop-name">.Mui-error</span> | Styles applied to the root element if `error={true}`.
+| <a class="anchor-link" id="css--marginDense"></a><a href="#css--marginDense" class="prop-name">marginDense</a> | <span class="prop-name">.MuiInputBase-marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
+| <a class="anchor-link" id="css--multiline"></a><a href="#css--multiline" class="prop-name">multiline</a> | <span class="prop-name">.MuiInputBase-multiline</span> | Styles applied to the root element if `multiline={true}`.
+| <a class="anchor-link" id="css--colorSecondary"></a><a href="#css--colorSecondary" class="prop-name">colorSecondary</a> | <span class="prop-name">.MuiInputBase-colorSecondary</span> | Styles applied to the root element if the color is secondary.
+| <a class="anchor-link" id="css--fullWidth"></a><a href="#css--fullWidth" class="prop-name">fullWidth</a> | <span class="prop-name">.MuiInputBase-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
+| <a class="anchor-link" id="css--input"></a><a href="#css--input" class="prop-name">input</a> | <span class="prop-name">.MuiInputBase-input</span> | Styles applied to the `input` element.
+| <a class="anchor-link" id="css--inputMarginDense"></a><a href="#css--inputMarginDense" class="prop-name">inputMarginDense</a> | <span class="prop-name">.MuiInputBase-inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
+| <a class="anchor-link" id="css--inputMultiline"></a><a href="#css--inputMultiline" class="prop-name">inputMultiline</a> | <span class="prop-name">.MuiInputBase-inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
+| <a class="anchor-link" id="css--inputTypeSearch"></a><a href="#css--inputTypeSearch" class="prop-name">inputTypeSearch</a> | <span class="prop-name">.MuiInputBase-inputTypeSearch</span> | Styles applied to the `input` element if `type="search"`.
+| <a class="anchor-link" id="css--inputAdornedStart"></a><a href="#css--inputAdornedStart" class="prop-name">inputAdornedStart</a> | <span class="prop-name">.MuiInputBase-inputAdornedStart</span> | Styles applied to the `input` element if `startAdornment` is provided.
+| <a class="anchor-link" id="css--inputAdornedEnd"></a><a href="#css--inputAdornedEnd" class="prop-name">inputAdornedEnd</a> | <span class="prop-name">.MuiInputBase-inputAdornedEnd</span> | Styles applied to the `input` element if `endAdornment` is provided.
+| <a class="anchor-link" id="css--inputHiddenLabel"></a><a href="#css--inputHiddenLabel" class="prop-name">inputHiddenLabel</a> | <span class="prop-name">.MuiInputBase-inputHiddenLabel</span> | Styles applied to the `input` element if `hiddenLabel={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

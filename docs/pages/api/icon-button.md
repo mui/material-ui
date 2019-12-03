@@ -45,15 +45,15 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiIconButton-root</span> | Styles applied to the root element.
-| <span class="prop-name">edgeStart</span> | <span class="prop-name">.MuiIconButton-edgeStart</span> | Styles applied to the root element if `edge="start"`.
-| <span class="prop-name">edgeEnd</span> | <span class="prop-name">.MuiIconButton-edgeEnd</span> | Styles applied to the root element if `edge="end"`.
-| <span class="prop-name">colorInherit</span> | <span class="prop-name">.MuiIconButton-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
-| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiIconButton-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiIconButton-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">sizeSmall</span> | <span class="prop-name">.MuiIconButton-sizeSmall</span> | Styles applied to the root element if `size="small"`.
-| <span class="prop-name">label</span> | <span class="prop-name">.MuiIconButton-label</span> | Styles applied to the children container element.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiIconButton-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--edgeStart"></a><a href="#css--edgeStart" class="prop-name">edgeStart</a> | <span class="prop-name">.MuiIconButton-edgeStart</span> | Styles applied to the root element if `edge="start"`.
+| <a class="anchor-link" id="css--edgeEnd"></a><a href="#css--edgeEnd" class="prop-name">edgeEnd</a> | <span class="prop-name">.MuiIconButton-edgeEnd</span> | Styles applied to the root element if `edge="end"`.
+| <a class="anchor-link" id="css--colorInherit"></a><a href="#css--colorInherit" class="prop-name">colorInherit</a> | <span class="prop-name">.MuiIconButton-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
+| <a class="anchor-link" id="css--colorPrimary"></a><a href="#css--colorPrimary" class="prop-name">colorPrimary</a> | <span class="prop-name">.MuiIconButton-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <a class="anchor-link" id="css--colorSecondary"></a><a href="#css--colorSecondary" class="prop-name">colorSecondary</a> | <span class="prop-name">.MuiIconButton-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <a class="anchor-link" id="css--disabled"></a><a href="#css--disabled" class="prop-name">disabled</a> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <a class="anchor-link" id="css--sizeSmall"></a><a href="#css--sizeSmall" class="prop-name">sizeSmall</a> | <span class="prop-name">.MuiIconButton-sizeSmall</span> | Styles applied to the root element if `size="small"`.
+| <a class="anchor-link" id="css--label"></a><a href="#css--label" class="prop-name">label</a> | <span class="prop-name">.MuiIconButton-label</span> | Styles applied to the children container element.
 
 You can override the style of the component thanks to one of these customization points:
 

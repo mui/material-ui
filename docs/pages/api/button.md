@@ -49,34 +49,34 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiButton-root</span> | Styles applied to the root element.
-| <span class="prop-name">label</span> | <span class="prop-name">.MuiButton-label</span> | Styles applied to the span element that wraps the children.
-| <span class="prop-name">text</span> | <span class="prop-name">.MuiButton-text</span> | Styles applied to the root element if `variant="text"`.
-| <span class="prop-name">textPrimary</span> | <span class="prop-name">.MuiButton-textPrimary</span> | Styles applied to the root element if `variant="text"` and `color="primary"`.
-| <span class="prop-name">textSecondary</span> | <span class="prop-name">.MuiButton-textSecondary</span> | Styles applied to the root element if `variant="text"` and `color="secondary"`.
-| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiButton-outlined</span> | Styles applied to the root element if `variant="outlined"`.
-| <span class="prop-name">outlinedPrimary</span> | <span class="prop-name">.MuiButton-outlinedPrimary</span> | Styles applied to the root element if `variant="outlined"` and `color="primary"`.
-| <span class="prop-name">outlinedSecondary</span> | <span class="prop-name">.MuiButton-outlinedSecondary</span> | Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
-| <span class="prop-name">contained</span> | <span class="prop-name">.MuiButton-contained</span> | Styles applied to the root element if `variant="contained"`.
-| <span class="prop-name">containedPrimary</span> | <span class="prop-name">.MuiButton-containedPrimary</span> | Styles applied to the root element if `variant="contained"` and `color="primary"`.
-| <span class="prop-name">containedSecondary</span> | <span class="prop-name">.MuiButton-containedSecondary</span> | Styles applied to the root element if `variant="contained"` and `color="secondary"`.
-| <span class="prop-name">focusVisible</span> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">colorInherit</span> | <span class="prop-name">.MuiButton-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
-| <span class="prop-name">textSizeSmall</span> | <span class="prop-name">.MuiButton-textSizeSmall</span> | Styles applied to the root element if `size="small"` and `variant="text"`.
-| <span class="prop-name">textSizeLarge</span> | <span class="prop-name">.MuiButton-textSizeLarge</span> | Styles applied to the root element if `size="large"` and `variant="text"`.
-| <span class="prop-name">outlinedSizeSmall</span> | <span class="prop-name">.MuiButton-outlinedSizeSmall</span> | Styles applied to the root element if `size="small"` and `variant="outlined"`.
-| <span class="prop-name">outlinedSizeLarge</span> | <span class="prop-name">.MuiButton-outlinedSizeLarge</span> | Styles applied to the root element if `size="large"` and `variant="outlined"`.
-| <span class="prop-name">containedSizeSmall</span> | <span class="prop-name">.MuiButton-containedSizeSmall</span> | Styles applied to the root element if `size="small"` and `variant="contained"`.
-| <span class="prop-name">containedSizeLarge</span> | <span class="prop-name">.MuiButton-containedSizeLarge</span> | Styles applied to the root element if `size="large"` and `variant="contained"`.
-| <span class="prop-name">sizeSmall</span> | <span class="prop-name">.MuiButton-sizeSmall</span> | Styles applied to the root element if `size="small"`.
-| <span class="prop-name">sizeLarge</span> | <span class="prop-name">.MuiButton-sizeLarge</span> | Styles applied to the root element if `size="large"`.
-| <span class="prop-name">fullWidth</span> | <span class="prop-name">.MuiButton-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
-| <span class="prop-name">startIcon</span> | <span class="prop-name">.MuiButton-startIcon</span> | Styles applied to the startIcon element if supplied.
-| <span class="prop-name">endIcon</span> | <span class="prop-name">.MuiButton-endIcon</span> | Styles applied to the endIcon element if supplied.
-| <span class="prop-name">iconSizeSmall</span> | <span class="prop-name">.MuiButton-iconSizeSmall</span> | Styles applied to the icon element if supplied and `size="small"`.
-| <span class="prop-name">iconSizeMedium</span> | <span class="prop-name">.MuiButton-iconSizeMedium</span> | Styles applied to the icon element if supplied and `size="medium"`.
-| <span class="prop-name">iconSizeLarge</span> | <span class="prop-name">.MuiButton-iconSizeLarge</span> | Styles applied to the icon element if supplied and `size="large"`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiButton-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--label"></a><a href="#css--label" class="prop-name">label</a> | <span class="prop-name">.MuiButton-label</span> | Styles applied to the span element that wraps the children.
+| <a class="anchor-link" id="css--text"></a><a href="#css--text" class="prop-name">text</a> | <span class="prop-name">.MuiButton-text</span> | Styles applied to the root element if `variant="text"`.
+| <a class="anchor-link" id="css--textPrimary"></a><a href="#css--textPrimary" class="prop-name">textPrimary</a> | <span class="prop-name">.MuiButton-textPrimary</span> | Styles applied to the root element if `variant="text"` and `color="primary"`.
+| <a class="anchor-link" id="css--textSecondary"></a><a href="#css--textSecondary" class="prop-name">textSecondary</a> | <span class="prop-name">.MuiButton-textSecondary</span> | Styles applied to the root element if `variant="text"` and `color="secondary"`.
+| <a class="anchor-link" id="css--outlined"></a><a href="#css--outlined" class="prop-name">outlined</a> | <span class="prop-name">.MuiButton-outlined</span> | Styles applied to the root element if `variant="outlined"`.
+| <a class="anchor-link" id="css--outlinedPrimary"></a><a href="#css--outlinedPrimary" class="prop-name">outlinedPrimary</a> | <span class="prop-name">.MuiButton-outlinedPrimary</span> | Styles applied to the root element if `variant="outlined"` and `color="primary"`.
+| <a class="anchor-link" id="css--outlinedSecondary"></a><a href="#css--outlinedSecondary" class="prop-name">outlinedSecondary</a> | <span class="prop-name">.MuiButton-outlinedSecondary</span> | Styles applied to the root element if `variant="outlined"` and `color="secondary"`.
+| <a class="anchor-link" id="css--contained"></a><a href="#css--contained" class="prop-name">contained</a> | <span class="prop-name">.MuiButton-contained</span> | Styles applied to the root element if `variant="contained"`.
+| <a class="anchor-link" id="css--containedPrimary"></a><a href="#css--containedPrimary" class="prop-name">containedPrimary</a> | <span class="prop-name">.MuiButton-containedPrimary</span> | Styles applied to the root element if `variant="contained"` and `color="primary"`.
+| <a class="anchor-link" id="css--containedSecondary"></a><a href="#css--containedSecondary" class="prop-name">containedSecondary</a> | <span class="prop-name">.MuiButton-containedSecondary</span> | Styles applied to the root element if `variant="contained"` and `color="secondary"`.
+| <a class="anchor-link" id="css--focusVisible"></a><a href="#css--focusVisible" class="prop-name">focusVisible</a> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
+| <a class="anchor-link" id="css--disabled"></a><a href="#css--disabled" class="prop-name">disabled</a> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <a class="anchor-link" id="css--colorInherit"></a><a href="#css--colorInherit" class="prop-name">colorInherit</a> | <span class="prop-name">.MuiButton-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
+| <a class="anchor-link" id="css--textSizeSmall"></a><a href="#css--textSizeSmall" class="prop-name">textSizeSmall</a> | <span class="prop-name">.MuiButton-textSizeSmall</span> | Styles applied to the root element if `size="small"` and `variant="text"`.
+| <a class="anchor-link" id="css--textSizeLarge"></a><a href="#css--textSizeLarge" class="prop-name">textSizeLarge</a> | <span class="prop-name">.MuiButton-textSizeLarge</span> | Styles applied to the root element if `size="large"` and `variant="text"`.
+| <a class="anchor-link" id="css--outlinedSizeSmall"></a><a href="#css--outlinedSizeSmall" class="prop-name">outlinedSizeSmall</a> | <span class="prop-name">.MuiButton-outlinedSizeSmall</span> | Styles applied to the root element if `size="small"` and `variant="outlined"`.
+| <a class="anchor-link" id="css--outlinedSizeLarge"></a><a href="#css--outlinedSizeLarge" class="prop-name">outlinedSizeLarge</a> | <span class="prop-name">.MuiButton-outlinedSizeLarge</span> | Styles applied to the root element if `size="large"` and `variant="outlined"`.
+| <a class="anchor-link" id="css--containedSizeSmall"></a><a href="#css--containedSizeSmall" class="prop-name">containedSizeSmall</a> | <span class="prop-name">.MuiButton-containedSizeSmall</span> | Styles applied to the root element if `size="small"` and `variant="contained"`.
+| <a class="anchor-link" id="css--containedSizeLarge"></a><a href="#css--containedSizeLarge" class="prop-name">containedSizeLarge</a> | <span class="prop-name">.MuiButton-containedSizeLarge</span> | Styles applied to the root element if `size="large"` and `variant="contained"`.
+| <a class="anchor-link" id="css--sizeSmall"></a><a href="#css--sizeSmall" class="prop-name">sizeSmall</a> | <span class="prop-name">.MuiButton-sizeSmall</span> | Styles applied to the root element if `size="small"`.
+| <a class="anchor-link" id="css--sizeLarge"></a><a href="#css--sizeLarge" class="prop-name">sizeLarge</a> | <span class="prop-name">.MuiButton-sizeLarge</span> | Styles applied to the root element if `size="large"`.
+| <a class="anchor-link" id="css--fullWidth"></a><a href="#css--fullWidth" class="prop-name">fullWidth</a> | <span class="prop-name">.MuiButton-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
+| <a class="anchor-link" id="css--startIcon"></a><a href="#css--startIcon" class="prop-name">startIcon</a> | <span class="prop-name">.MuiButton-startIcon</span> | Styles applied to the startIcon element if supplied.
+| <a class="anchor-link" id="css--endIcon"></a><a href="#css--endIcon" class="prop-name">endIcon</a> | <span class="prop-name">.MuiButton-endIcon</span> | Styles applied to the endIcon element if supplied.
+| <a class="anchor-link" id="css--iconSizeSmall"></a><a href="#css--iconSizeSmall" class="prop-name">iconSizeSmall</a> | <span class="prop-name">.MuiButton-iconSizeSmall</span> | Styles applied to the icon element if supplied and `size="small"`.
+| <a class="anchor-link" id="css--iconSizeMedium"></a><a href="#css--iconSizeMedium" class="prop-name">iconSizeMedium</a> | <span class="prop-name">.MuiButton-iconSizeMedium</span> | Styles applied to the icon element if supplied and `size="medium"`.
+| <a class="anchor-link" id="css--iconSizeLarge"></a><a href="#css--iconSizeLarge" class="prop-name">iconSizeLarge</a> | <span class="prop-name">.MuiButton-iconSizeLarge</span> | Styles applied to the icon element if supplied and `size="large"`.
 
 You can override the style of the component thanks to one of these customization points:
 

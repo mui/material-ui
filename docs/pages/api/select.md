@@ -57,16 +57,16 @@ Any other props supplied will be provided to the root element ([Input](/api/inpu
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiSelect-root</span> | Styles applied to the select component `root` class.
-| <span class="prop-name">select</span> | <span class="prop-name">.MuiSelect-select</span> | Styles applied to the select component `select` class.
-| <span class="prop-name">filled</span> | <span class="prop-name">.MuiSelect-filled</span> | Styles applied to the select component if `variant="filled"`.
-| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiSelect-outlined</span> | Styles applied to the select component if `variant="outlined"`.
-| <span class="prop-name">selectMenu</span> | <span class="prop-name">.MuiSelect-selectMenu</span> | Styles applied to the select component `selectMenu` class.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the select component `disabled` class.
-| <span class="prop-name">icon</span> | <span class="prop-name">.MuiSelect-icon</span> | Styles applied to the icon component.
-| <span class="prop-name">iconOpen</span> | <span class="prop-name">.MuiSelect-iconOpen</span> | Styles applied to the icon component if the popup is open.
-| <span class="prop-name">iconFilled</span> | <span class="prop-name">.MuiSelect-iconFilled</span> | Styles applied to the icon component if `variant="filled"`.
-| <span class="prop-name">iconOutlined</span> | <span class="prop-name">.MuiSelect-iconOutlined</span> | Styles applied to the icon component if `variant="outlined"`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiSelect-root</span> | Styles applied to the select component `root` class.
+| <a class="anchor-link" id="css--select"></a><a href="#css--select" class="prop-name">select</a> | <span class="prop-name">.MuiSelect-select</span> | Styles applied to the select component `select` class.
+| <a class="anchor-link" id="css--filled"></a><a href="#css--filled" class="prop-name">filled</a> | <span class="prop-name">.MuiSelect-filled</span> | Styles applied to the select component if `variant="filled"`.
+| <a class="anchor-link" id="css--outlined"></a><a href="#css--outlined" class="prop-name">outlined</a> | <span class="prop-name">.MuiSelect-outlined</span> | Styles applied to the select component if `variant="outlined"`.
+| <a class="anchor-link" id="css--selectMenu"></a><a href="#css--selectMenu" class="prop-name">selectMenu</a> | <span class="prop-name">.MuiSelect-selectMenu</span> | Styles applied to the select component `selectMenu` class.
+| <a class="anchor-link" id="css--disabled"></a><a href="#css--disabled" class="prop-name">disabled</a> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the select component `disabled` class.
+| <a class="anchor-link" id="css--icon"></a><a href="#css--icon" class="prop-name">icon</a> | <span class="prop-name">.MuiSelect-icon</span> | Styles applied to the icon component.
+| <a class="anchor-link" id="css--iconOpen"></a><a href="#css--iconOpen" class="prop-name">iconOpen</a> | <span class="prop-name">.MuiSelect-iconOpen</span> | Styles applied to the icon component if the popup is open.
+| <a class="anchor-link" id="css--iconFilled"></a><a href="#css--iconFilled" class="prop-name">iconFilled</a> | <span class="prop-name">.MuiSelect-iconFilled</span> | Styles applied to the icon component if `variant="filled"`.
+| <a class="anchor-link" id="css--iconOutlined"></a><a href="#css--iconOutlined" class="prop-name">iconOutlined</a> | <span class="prop-name">.MuiSelect-iconOutlined</span> | Styles applied to the icon component if `variant="outlined"`.
 
 You can override the style of the component thanks to one of these customization points:
 

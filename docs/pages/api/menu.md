@@ -53,8 +53,8 @@ Any other props supplied will be provided to the root element ([Popover](/api/po
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">paper</span> | <span class="prop-name">.MuiMenu-paper</span> | Styles applied to the `Paper` component.
-| <span class="prop-name">list</span> | <span class="prop-name">.MuiMenu-list</span> | Styles applied to the `List` component via `MenuList`.
+| <a class="anchor-link" id="css--paper"></a><a href="#css--paper" class="prop-name">paper</a> | <span class="prop-name">.MuiMenu-paper</span> | Styles applied to the `Paper` component.
+| <a class="anchor-link" id="css--list"></a><a href="#css--list" class="prop-name">list</a> | <span class="prop-name">.MuiMenu-list</span> | Styles applied to the `List` component via `MenuList`.
 
 You can override the style of the component thanks to one of these customization points:
 

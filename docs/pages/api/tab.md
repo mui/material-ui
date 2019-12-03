@@ -45,16 +45,16 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiTab-root</span> | Styles applied to the root element.
-| <span class="prop-name">labelIcon</span> | <span class="prop-name">.MuiTab-labelIcon</span> | Styles applied to the root element if both `icon` and `label` are provided.
-| <span class="prop-name">textColorInherit</span> | <span class="prop-name">.MuiTab-textColorInherit</span> | Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="inherit"`.
-| <span class="prop-name">textColorPrimary</span> | <span class="prop-name">.MuiTab-textColorPrimary</span> | Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="primary"`.
-| <span class="prop-name">textColorSecondary</span> | <span class="prop-name">.MuiTab-textColorSecondary</span> | Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="secondary"`.
-| <span class="prop-name">selected</span> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the root element if `selected={true}` (controlled by the Tabs component).
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}` (controlled by the Tabs component).
-| <span class="prop-name">fullWidth</span> | <span class="prop-name">.MuiTab-fullWidth</span> | Styles applied to the root element if `fullWidth={true}` (controlled by the Tabs component).
-| <span class="prop-name">wrapped</span> | <span class="prop-name">.MuiTab-wrapped</span> | Styles applied to the root element if `wrapped={true}`.
-| <span class="prop-name">wrapper</span> | <span class="prop-name">.MuiTab-wrapper</span> | Styles applied to the `icon` and `label`'s wrapper element.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiTab-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--labelIcon"></a><a href="#css--labelIcon" class="prop-name">labelIcon</a> | <span class="prop-name">.MuiTab-labelIcon</span> | Styles applied to the root element if both `icon` and `label` are provided.
+| <a class="anchor-link" id="css--textColorInherit"></a><a href="#css--textColorInherit" class="prop-name">textColorInherit</a> | <span class="prop-name">.MuiTab-textColorInherit</span> | Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="inherit"`.
+| <a class="anchor-link" id="css--textColorPrimary"></a><a href="#css--textColorPrimary" class="prop-name">textColorPrimary</a> | <span class="prop-name">.MuiTab-textColorPrimary</span> | Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="primary"`.
+| <a class="anchor-link" id="css--textColorSecondary"></a><a href="#css--textColorSecondary" class="prop-name">textColorSecondary</a> | <span class="prop-name">.MuiTab-textColorSecondary</span> | Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="secondary"`.
+| <a class="anchor-link" id="css--selected"></a><a href="#css--selected" class="prop-name">selected</a> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the root element if `selected={true}` (controlled by the Tabs component).
+| <a class="anchor-link" id="css--disabled"></a><a href="#css--disabled" class="prop-name">disabled</a> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}` (controlled by the Tabs component).
+| <a class="anchor-link" id="css--fullWidth"></a><a href="#css--fullWidth" class="prop-name">fullWidth</a> | <span class="prop-name">.MuiTab-fullWidth</span> | Styles applied to the root element if `fullWidth={true}` (controlled by the Tabs component).
+| <a class="anchor-link" id="css--wrapped"></a><a href="#css--wrapped" class="prop-name">wrapped</a> | <span class="prop-name">.MuiTab-wrapped</span> | Styles applied to the root element if `wrapped={true}`.
+| <a class="anchor-link" id="css--wrapper"></a><a href="#css--wrapper" class="prop-name">wrapper</a> | <span class="prop-name">.MuiTab-wrapper</span> | Styles applied to the `icon` and `label`'s wrapper element.
 
 You can override the style of the component thanks to one of these customization points:
 

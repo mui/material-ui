@@ -43,12 +43,12 @@ Any other props supplied will be provided to the root element ([Typography](/api
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiLink-root</span> | Styles applied to the root element.
-| <span class="prop-name">underlineNone</span> | <span class="prop-name">.MuiLink-underlineNone</span> | Styles applied to the root element if `underline="none"`.
-| <span class="prop-name">underlineHover</span> | <span class="prop-name">.MuiLink-underlineHover</span> | Styles applied to the root element if `underline="hover"`.
-| <span class="prop-name">underlineAlways</span> | <span class="prop-name">.MuiLink-underlineAlways</span> | Styles applied to the root element if `underline="always"`.
-| <span class="prop-name">button</span> | <span class="prop-name">.MuiLink-button</span> | Styles applied to the root element if `component="button"`.
-| <span class="prop-name">focusVisible</span> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the root element if the link is keyboard focused.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiLink-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--underlineNone"></a><a href="#css--underlineNone" class="prop-name">underlineNone</a> | <span class="prop-name">.MuiLink-underlineNone</span> | Styles applied to the root element if `underline="none"`.
+| <a class="anchor-link" id="css--underlineHover"></a><a href="#css--underlineHover" class="prop-name">underlineHover</a> | <span class="prop-name">.MuiLink-underlineHover</span> | Styles applied to the root element if `underline="hover"`.
+| <a class="anchor-link" id="css--underlineAlways"></a><a href="#css--underlineAlways" class="prop-name">underlineAlways</a> | <span class="prop-name">.MuiLink-underlineAlways</span> | Styles applied to the root element if `underline="always"`.
+| <a class="anchor-link" id="css--button"></a><a href="#css--button" class="prop-name">button</a> | <span class="prop-name">.MuiLink-button</span> | Styles applied to the root element if `component="button"`.
+| <a class="anchor-link" id="css--focusVisible"></a><a href="#css--focusVisible" class="prop-name">focusVisible</a> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the root element if the link is keyboard focused.
 
 You can override the style of the component thanks to one of these customization points:
 

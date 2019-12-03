@@ -47,36 +47,36 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiTypography-root</span> | Styles applied to the root element.
-| <span class="prop-name">body2</span> | <span class="prop-name">.MuiTypography-body2</span> | Styles applied to the root element if `variant="body2"`.
-| <span class="prop-name">body1</span> | <span class="prop-name">.MuiTypography-body1</span> | Styles applied to the root element if `variant="body1"`.
-| <span class="prop-name">caption</span> | <span class="prop-name">.MuiTypography-caption</span> | Styles applied to the root element if `variant="caption"`.
-| <span class="prop-name">button</span> | <span class="prop-name">.MuiTypography-button</span> | Styles applied to the root element if `variant="button"`.
-| <span class="prop-name">h1</span> | <span class="prop-name">.MuiTypography-h1</span> | Styles applied to the root element if `variant="h1"`.
-| <span class="prop-name">h2</span> | <span class="prop-name">.MuiTypography-h2</span> | Styles applied to the root element if `variant="h2"`.
-| <span class="prop-name">h3</span> | <span class="prop-name">.MuiTypography-h3</span> | Styles applied to the root element if `variant="h3"`.
-| <span class="prop-name">h4</span> | <span class="prop-name">.MuiTypography-h4</span> | Styles applied to the root element if `variant="h4"`.
-| <span class="prop-name">h5</span> | <span class="prop-name">.MuiTypography-h5</span> | Styles applied to the root element if `variant="h5"`.
-| <span class="prop-name">h6</span> | <span class="prop-name">.MuiTypography-h6</span> | Styles applied to the root element if `variant="h6"`.
-| <span class="prop-name">subtitle1</span> | <span class="prop-name">.MuiTypography-subtitle1</span> | Styles applied to the root element if `variant="subtitle1"`.
-| <span class="prop-name">subtitle2</span> | <span class="prop-name">.MuiTypography-subtitle2</span> | Styles applied to the root element if `variant="subtitle2"`.
-| <span class="prop-name">overline</span> | <span class="prop-name">.MuiTypography-overline</span> | Styles applied to the root element if `variant="overline"`.
-| <span class="prop-name">srOnly</span> | <span class="prop-name">.MuiTypography-srOnly</span> | Styles applied to the root element if `variant="srOnly"`. Only accessible to screen readers.
-| <span class="prop-name">alignLeft</span> | <span class="prop-name">.MuiTypography-alignLeft</span> | Styles applied to the root element if `align="left"`.
-| <span class="prop-name">alignCenter</span> | <span class="prop-name">.MuiTypography-alignCenter</span> | Styles applied to the root element if `align="center"`.
-| <span class="prop-name">alignRight</span> | <span class="prop-name">.MuiTypography-alignRight</span> | Styles applied to the root element if `align="right"`.
-| <span class="prop-name">alignJustify</span> | <span class="prop-name">.MuiTypography-alignJustify</span> | Styles applied to the root element if `align="justify"`.
-| <span class="prop-name">noWrap</span> | <span class="prop-name">.MuiTypography-noWrap</span> | Styles applied to the root element if `nowrap={true}`.
-| <span class="prop-name">gutterBottom</span> | <span class="prop-name">.MuiTypography-gutterBottom</span> | Styles applied to the root element if `gutterBottom={true}`.
-| <span class="prop-name">paragraph</span> | <span class="prop-name">.MuiTypography-paragraph</span> | Styles applied to the root element if `paragraph={true}`.
-| <span class="prop-name">colorInherit</span> | <span class="prop-name">.MuiTypography-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
-| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiTypography-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiTypography-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
-| <span class="prop-name">colorTextPrimary</span> | <span class="prop-name">.MuiTypography-colorTextPrimary</span> | Styles applied to the root element if `color="textPrimary"`.
-| <span class="prop-name">colorTextSecondary</span> | <span class="prop-name">.MuiTypography-colorTextSecondary</span> | Styles applied to the root element if `color="textSecondary"`.
-| <span class="prop-name">colorError</span> | <span class="prop-name">.MuiTypography-colorError</span> | Styles applied to the root element if `color="error"`.
-| <span class="prop-name">displayInline</span> | <span class="prop-name">.MuiTypography-displayInline</span> | Styles applied to the root element if `display="inline"`.
-| <span class="prop-name">displayBlock</span> | <span class="prop-name">.MuiTypography-displayBlock</span> | Styles applied to the root element if `display="block"`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiTypography-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--body2"></a><a href="#css--body2" class="prop-name">body2</a> | <span class="prop-name">.MuiTypography-body2</span> | Styles applied to the root element if `variant="body2"`.
+| <a class="anchor-link" id="css--body1"></a><a href="#css--body1" class="prop-name">body1</a> | <span class="prop-name">.MuiTypography-body1</span> | Styles applied to the root element if `variant="body1"`.
+| <a class="anchor-link" id="css--caption"></a><a href="#css--caption" class="prop-name">caption</a> | <span class="prop-name">.MuiTypography-caption</span> | Styles applied to the root element if `variant="caption"`.
+| <a class="anchor-link" id="css--button"></a><a href="#css--button" class="prop-name">button</a> | <span class="prop-name">.MuiTypography-button</span> | Styles applied to the root element if `variant="button"`.
+| <a class="anchor-link" id="css--h1"></a><a href="#css--h1" class="prop-name">h1</a> | <span class="prop-name">.MuiTypography-h1</span> | Styles applied to the root element if `variant="h1"`.
+| <a class="anchor-link" id="css--h2"></a><a href="#css--h2" class="prop-name">h2</a> | <span class="prop-name">.MuiTypography-h2</span> | Styles applied to the root element if `variant="h2"`.
+| <a class="anchor-link" id="css--h3"></a><a href="#css--h3" class="prop-name">h3</a> | <span class="prop-name">.MuiTypography-h3</span> | Styles applied to the root element if `variant="h3"`.
+| <a class="anchor-link" id="css--h4"></a><a href="#css--h4" class="prop-name">h4</a> | <span class="prop-name">.MuiTypography-h4</span> | Styles applied to the root element if `variant="h4"`.
+| <a class="anchor-link" id="css--h5"></a><a href="#css--h5" class="prop-name">h5</a> | <span class="prop-name">.MuiTypography-h5</span> | Styles applied to the root element if `variant="h5"`.
+| <a class="anchor-link" id="css--h6"></a><a href="#css--h6" class="prop-name">h6</a> | <span class="prop-name">.MuiTypography-h6</span> | Styles applied to the root element if `variant="h6"`.
+| <a class="anchor-link" id="css--subtitle1"></a><a href="#css--subtitle1" class="prop-name">subtitle1</a> | <span class="prop-name">.MuiTypography-subtitle1</span> | Styles applied to the root element if `variant="subtitle1"`.
+| <a class="anchor-link" id="css--subtitle2"></a><a href="#css--subtitle2" class="prop-name">subtitle2</a> | <span class="prop-name">.MuiTypography-subtitle2</span> | Styles applied to the root element if `variant="subtitle2"`.
+| <a class="anchor-link" id="css--overline"></a><a href="#css--overline" class="prop-name">overline</a> | <span class="prop-name">.MuiTypography-overline</span> | Styles applied to the root element if `variant="overline"`.
+| <a class="anchor-link" id="css--srOnly"></a><a href="#css--srOnly" class="prop-name">srOnly</a> | <span class="prop-name">.MuiTypography-srOnly</span> | Styles applied to the root element if `variant="srOnly"`. Only accessible to screen readers.
+| <a class="anchor-link" id="css--alignLeft"></a><a href="#css--alignLeft" class="prop-name">alignLeft</a> | <span class="prop-name">.MuiTypography-alignLeft</span> | Styles applied to the root element if `align="left"`.
+| <a class="anchor-link" id="css--alignCenter"></a><a href="#css--alignCenter" class="prop-name">alignCenter</a> | <span class="prop-name">.MuiTypography-alignCenter</span> | Styles applied to the root element if `align="center"`.
+| <a class="anchor-link" id="css--alignRight"></a><a href="#css--alignRight" class="prop-name">alignRight</a> | <span class="prop-name">.MuiTypography-alignRight</span> | Styles applied to the root element if `align="right"`.
+| <a class="anchor-link" id="css--alignJustify"></a><a href="#css--alignJustify" class="prop-name">alignJustify</a> | <span class="prop-name">.MuiTypography-alignJustify</span> | Styles applied to the root element if `align="justify"`.
+| <a class="anchor-link" id="css--noWrap"></a><a href="#css--noWrap" class="prop-name">noWrap</a> | <span class="prop-name">.MuiTypography-noWrap</span> | Styles applied to the root element if `nowrap={true}`.
+| <a class="anchor-link" id="css--gutterBottom"></a><a href="#css--gutterBottom" class="prop-name">gutterBottom</a> | <span class="prop-name">.MuiTypography-gutterBottom</span> | Styles applied to the root element if `gutterBottom={true}`.
+| <a class="anchor-link" id="css--paragraph"></a><a href="#css--paragraph" class="prop-name">paragraph</a> | <span class="prop-name">.MuiTypography-paragraph</span> | Styles applied to the root element if `paragraph={true}`.
+| <a class="anchor-link" id="css--colorInherit"></a><a href="#css--colorInherit" class="prop-name">colorInherit</a> | <span class="prop-name">.MuiTypography-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
+| <a class="anchor-link" id="css--colorPrimary"></a><a href="#css--colorPrimary" class="prop-name">colorPrimary</a> | <span class="prop-name">.MuiTypography-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <a class="anchor-link" id="css--colorSecondary"></a><a href="#css--colorSecondary" class="prop-name">colorSecondary</a> | <span class="prop-name">.MuiTypography-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <a class="anchor-link" id="css--colorTextPrimary"></a><a href="#css--colorTextPrimary" class="prop-name">colorTextPrimary</a> | <span class="prop-name">.MuiTypography-colorTextPrimary</span> | Styles applied to the root element if `color="textPrimary"`.
+| <a class="anchor-link" id="css--colorTextSecondary"></a><a href="#css--colorTextSecondary" class="prop-name">colorTextSecondary</a> | <span class="prop-name">.MuiTypography-colorTextSecondary</span> | Styles applied to the root element if `color="textSecondary"`.
+| <a class="anchor-link" id="css--colorError"></a><a href="#css--colorError" class="prop-name">colorError</a> | <span class="prop-name">.MuiTypography-colorError</span> | Styles applied to the root element if `color="error"`.
+| <a class="anchor-link" id="css--displayInline"></a><a href="#css--displayInline" class="prop-name">displayInline</a> | <span class="prop-name">.MuiTypography-displayInline</span> | Styles applied to the root element if `display="inline"`.
+| <a class="anchor-link" id="css--displayBlock"></a><a href="#css--displayBlock" class="prop-name">displayBlock</a> | <span class="prop-name">.MuiTypography-displayBlock</span> | Styles applied to the root element if `display="block"`.
 
 You can override the style of the component thanks to one of these customization points:
 

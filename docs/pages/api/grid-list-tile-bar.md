@@ -42,17 +42,17 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiGridListTileBar-root</span> | Styles applied to the root element.
-| <span class="prop-name">titlePositionBottom</span> | <span class="prop-name">.MuiGridListTileBar-titlePositionBottom</span> | Styles applied to the root element if `titlePosition="bottom"`.
-| <span class="prop-name">titlePositionTop</span> | <span class="prop-name">.MuiGridListTileBar-titlePositionTop</span> | Styles applied to the root element if `titlePosition="top"`.
-| <span class="prop-name">rootSubtitle</span> | <span class="prop-name">.MuiGridListTileBar-rootSubtitle</span> | Styles applied to the root element if a `subtitle` is provided.
-| <span class="prop-name">titleWrap</span> | <span class="prop-name">.MuiGridListTileBar-titleWrap</span> | Styles applied to the title and subtitle container element.
-| <span class="prop-name">titleWrapActionPosLeft</span> | <span class="prop-name">.MuiGridListTileBar-titleWrapActionPosLeft</span> | Styles applied to the container element if `actionPosition="left"`.
-| <span class="prop-name">titleWrapActionPosRight</span> | <span class="prop-name">.MuiGridListTileBar-titleWrapActionPosRight</span> | Styles applied to the container element if `actionPosition="right"`.
-| <span class="prop-name">title</span> | <span class="prop-name">.MuiGridListTileBar-title</span> | Styles applied to the title container element.
-| <span class="prop-name">subtitle</span> | <span class="prop-name">.MuiGridListTileBar-subtitle</span> | Styles applied to the subtitle container element.
-| <span class="prop-name">actionIcon</span> | <span class="prop-name">.MuiGridListTileBar-actionIcon</span> | Styles applied to the actionIcon if supplied.
-| <span class="prop-name">actionIconActionPosLeft</span> | <span class="prop-name">.MuiGridListTileBar-actionIconActionPosLeft</span> | Styles applied to the actionIcon if `actionPosition="left"`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiGridListTileBar-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--titlePositionBottom"></a><a href="#css--titlePositionBottom" class="prop-name">titlePositionBottom</a> | <span class="prop-name">.MuiGridListTileBar-titlePositionBottom</span> | Styles applied to the root element if `titlePosition="bottom"`.
+| <a class="anchor-link" id="css--titlePositionTop"></a><a href="#css--titlePositionTop" class="prop-name">titlePositionTop</a> | <span class="prop-name">.MuiGridListTileBar-titlePositionTop</span> | Styles applied to the root element if `titlePosition="top"`.
+| <a class="anchor-link" id="css--rootSubtitle"></a><a href="#css--rootSubtitle" class="prop-name">rootSubtitle</a> | <span class="prop-name">.MuiGridListTileBar-rootSubtitle</span> | Styles applied to the root element if a `subtitle` is provided.
+| <a class="anchor-link" id="css--titleWrap"></a><a href="#css--titleWrap" class="prop-name">titleWrap</a> | <span class="prop-name">.MuiGridListTileBar-titleWrap</span> | Styles applied to the title and subtitle container element.
+| <a class="anchor-link" id="css--titleWrapActionPosLeft"></a><a href="#css--titleWrapActionPosLeft" class="prop-name">titleWrapActionPosLeft</a> | <span class="prop-name">.MuiGridListTileBar-titleWrapActionPosLeft</span> | Styles applied to the container element if `actionPosition="left"`.
+| <a class="anchor-link" id="css--titleWrapActionPosRight"></a><a href="#css--titleWrapActionPosRight" class="prop-name">titleWrapActionPosRight</a> | <span class="prop-name">.MuiGridListTileBar-titleWrapActionPosRight</span> | Styles applied to the container element if `actionPosition="right"`.
+| <a class="anchor-link" id="css--title"></a><a href="#css--title" class="prop-name">title</a> | <span class="prop-name">.MuiGridListTileBar-title</span> | Styles applied to the title container element.
+| <a class="anchor-link" id="css--subtitle"></a><a href="#css--subtitle" class="prop-name">subtitle</a> | <span class="prop-name">.MuiGridListTileBar-subtitle</span> | Styles applied to the subtitle container element.
+| <a class="anchor-link" id="css--actionIcon"></a><a href="#css--actionIcon" class="prop-name">actionIcon</a> | <span class="prop-name">.MuiGridListTileBar-actionIcon</span> | Styles applied to the actionIcon if supplied.
+| <a class="anchor-link" id="css--actionIconActionPosLeft"></a><a href="#css--actionIconActionPosLeft" class="prop-name">actionIconActionPosLeft</a> | <span class="prop-name">.MuiGridListTileBar-actionIconActionPosLeft</span> | Styles applied to the actionIcon if `actionPosition="left"`.
 
 You can override the style of the component thanks to one of these customization points:
 

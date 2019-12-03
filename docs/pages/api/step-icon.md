@@ -41,11 +41,11 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiStepIcon-root</span> | Styles applied to the root element.
-| <span class="prop-name">text</span> | <span class="prop-name">.MuiStepIcon-text</span> | Styles applied to the SVG text element.
-| <span class="prop-name">active</span> | <span class="prop-name">.MuiStepIcon-active</span> | Pseudo-class applied to the root element if `active={true}`.
-| <span class="prop-name">completed</span> | <span class="prop-name">.MuiStepIcon-completed</span> | Pseudo-class applied to the root element if `completed={true}`.
-| <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Pseudo-class applied to the root element if `error={true}`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiStepIcon-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--text"></a><a href="#css--text" class="prop-name">text</a> | <span class="prop-name">.MuiStepIcon-text</span> | Styles applied to the SVG text element.
+| <a class="anchor-link" id="css--active"></a><a href="#css--active" class="prop-name">active</a> | <span class="prop-name">.MuiStepIcon-active</span> | Pseudo-class applied to the root element if `active={true}`.
+| <a class="anchor-link" id="css--completed"></a><a href="#css--completed" class="prop-name">completed</a> | <span class="prop-name">.MuiStepIcon-completed</span> | Pseudo-class applied to the root element if `completed={true}`.
+| <a class="anchor-link" id="css--error"></a><a href="#css--error" class="prop-name">error</a> | <span class="prop-name">.Mui-error</span> | Pseudo-class applied to the root element if `error={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

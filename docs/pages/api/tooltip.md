@@ -56,17 +56,17 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">popper</span> | <span class="prop-name">.MuiTooltip-popper</span> | Styles applied to the Popper component.
-| <span class="prop-name">popperInteractive</span> | <span class="prop-name">.MuiTooltip-popperInteractive</span> | Styles applied to the Popper component if `interactive={true}`.
-| <span class="prop-name">popperArrow</span> | <span class="prop-name">.MuiTooltip-popperArrow</span> | Styles applied to the Popper component if `arrow={true}`.
-| <span class="prop-name">tooltip</span> | <span class="prop-name">.MuiTooltip-tooltip</span> | Styles applied to the tooltip (label wrapper) element.
-| <span class="prop-name">tooltipArrow</span> | <span class="prop-name">.MuiTooltip-tooltipArrow</span> | Styles applied to the tooltip (label wrapper) element if `arrow={true}`.
-| <span class="prop-name">arrow</span> | <span class="prop-name">.MuiTooltip-arrow</span> | Styles applied to the arrow element.
-| <span class="prop-name">touch</span> | <span class="prop-name">.MuiTooltip-touch</span> | Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch.
-| <span class="prop-name">tooltipPlacementLeft</span> | <span class="prop-name">.MuiTooltip-tooltipPlacementLeft</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "left".
-| <span class="prop-name">tooltipPlacementRight</span> | <span class="prop-name">.MuiTooltip-tooltipPlacementRight</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "right".
-| <span class="prop-name">tooltipPlacementTop</span> | <span class="prop-name">.MuiTooltip-tooltipPlacementTop</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "top".
-| <span class="prop-name">tooltipPlacementBottom</span> | <span class="prop-name">.MuiTooltip-tooltipPlacementBottom</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom".
+| <a class="anchor-link" id="css--popper"></a><a href="#css--popper" class="prop-name">popper</a> | <span class="prop-name">.MuiTooltip-popper</span> | Styles applied to the Popper component.
+| <a class="anchor-link" id="css--popperInteractive"></a><a href="#css--popperInteractive" class="prop-name">popperInteractive</a> | <span class="prop-name">.MuiTooltip-popperInteractive</span> | Styles applied to the Popper component if `interactive={true}`.
+| <a class="anchor-link" id="css--popperArrow"></a><a href="#css--popperArrow" class="prop-name">popperArrow</a> | <span class="prop-name">.MuiTooltip-popperArrow</span> | Styles applied to the Popper component if `arrow={true}`.
+| <a class="anchor-link" id="css--tooltip"></a><a href="#css--tooltip" class="prop-name">tooltip</a> | <span class="prop-name">.MuiTooltip-tooltip</span> | Styles applied to the tooltip (label wrapper) element.
+| <a class="anchor-link" id="css--tooltipArrow"></a><a href="#css--tooltipArrow" class="prop-name">tooltipArrow</a> | <span class="prop-name">.MuiTooltip-tooltipArrow</span> | Styles applied to the tooltip (label wrapper) element if `arrow={true}`.
+| <a class="anchor-link" id="css--arrow"></a><a href="#css--arrow" class="prop-name">arrow</a> | <span class="prop-name">.MuiTooltip-arrow</span> | Styles applied to the arrow element.
+| <a class="anchor-link" id="css--touch"></a><a href="#css--touch" class="prop-name">touch</a> | <span class="prop-name">.MuiTooltip-touch</span> | Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch.
+| <a class="anchor-link" id="css--tooltipPlacementLeft"></a><a href="#css--tooltipPlacementLeft" class="prop-name">tooltipPlacementLeft</a> | <span class="prop-name">.MuiTooltip-tooltipPlacementLeft</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "left".
+| <a class="anchor-link" id="css--tooltipPlacementRight"></a><a href="#css--tooltipPlacementRight" class="prop-name">tooltipPlacementRight</a> | <span class="prop-name">.MuiTooltip-tooltipPlacementRight</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "right".
+| <a class="anchor-link" id="css--tooltipPlacementTop"></a><a href="#css--tooltipPlacementTop" class="prop-name">tooltipPlacementTop</a> | <span class="prop-name">.MuiTooltip-tooltipPlacementTop</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "top".
+| <a class="anchor-link" id="css--tooltipPlacementBottom"></a><a href="#css--tooltipPlacementBottom" class="prop-name">tooltipPlacementBottom</a> | <span class="prop-name">.MuiTooltip-tooltipPlacementBottom</span> | Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom".
 
 You can override the style of the component thanks to one of these customization points:
 

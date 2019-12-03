@@ -50,22 +50,22 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiRating-root</span> | Styles applied to the root element.
-| <span class="prop-name">sizeSmall</span> | <span class="prop-name">.MuiRating-sizeSmall</span> | Styles applied to the root element if `size="small"`.
-| <span class="prop-name">sizeLarge</span> | <span class="prop-name">.MuiRating-sizeLarge</span> | Styles applied to the root element if `size="large"`.
-| <span class="prop-name">readOnly</span> | <span class="prop-name">.MuiRating-readOnly</span> | Styles applied to the root element if `readOnly={true}`.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">focusVisible</span> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the root element if keyboard focused.
-| <span class="prop-name">visuallyhidden</span> | <span class="prop-name">.MuiRating-visuallyhidden</span> | Visually hide an element.
-| <span class="prop-name">pristine</span> | <span class="prop-name">.MuiRating-pristine</span> | Styles applied to the pristine label.
-| <span class="prop-name">label</span> | <span class="prop-name">.MuiRating-label</span> | Styles applied to the label elements.
-| <span class="prop-name">icon</span> | <span class="prop-name">.MuiRating-icon</span> | Styles applied to the icon wrapping elements.
-| <span class="prop-name">iconEmpty</span> | <span class="prop-name">.MuiRating-iconEmpty</span> | Styles applied to the icon wrapping elements when empty.
-| <span class="prop-name">iconFilled</span> | <span class="prop-name">.MuiRating-iconFilled</span> | Styles applied to the icon wrapping elements when filled.
-| <span class="prop-name">iconHover</span> | <span class="prop-name">.MuiRating-iconHover</span> | Styles applied to the icon wrapping elements when hover.
-| <span class="prop-name">iconFocus</span> | <span class="prop-name">.MuiRating-iconFocus</span> | Styles applied to the icon wrapping elements when focus.
-| <span class="prop-name">iconActive</span> | <span class="prop-name">.MuiRating-iconActive</span> | Styles applied to the icon wrapping elements when active.
-| <span class="prop-name">decimal</span> | <span class="prop-name">.MuiRating-decimal</span> | Styles applied to the icon wrapping elements when decimals are necessary.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiRating-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--sizeSmall"></a><a href="#css--sizeSmall" class="prop-name">sizeSmall</a> | <span class="prop-name">.MuiRating-sizeSmall</span> | Styles applied to the root element if `size="small"`.
+| <a class="anchor-link" id="css--sizeLarge"></a><a href="#css--sizeLarge" class="prop-name">sizeLarge</a> | <span class="prop-name">.MuiRating-sizeLarge</span> | Styles applied to the root element if `size="large"`.
+| <a class="anchor-link" id="css--readOnly"></a><a href="#css--readOnly" class="prop-name">readOnly</a> | <span class="prop-name">.MuiRating-readOnly</span> | Styles applied to the root element if `readOnly={true}`.
+| <a class="anchor-link" id="css--disabled"></a><a href="#css--disabled" class="prop-name">disabled</a> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <a class="anchor-link" id="css--focusVisible"></a><a href="#css--focusVisible" class="prop-name">focusVisible</a> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the root element if keyboard focused.
+| <a class="anchor-link" id="css--visuallyhidden"></a><a href="#css--visuallyhidden" class="prop-name">visuallyhidden</a> | <span class="prop-name">.MuiRating-visuallyhidden</span> | Visually hide an element.
+| <a class="anchor-link" id="css--pristine"></a><a href="#css--pristine" class="prop-name">pristine</a> | <span class="prop-name">.MuiRating-pristine</span> | Styles applied to the pristine label.
+| <a class="anchor-link" id="css--label"></a><a href="#css--label" class="prop-name">label</a> | <span class="prop-name">.MuiRating-label</span> | Styles applied to the label elements.
+| <a class="anchor-link" id="css--icon"></a><a href="#css--icon" class="prop-name">icon</a> | <span class="prop-name">.MuiRating-icon</span> | Styles applied to the icon wrapping elements.
+| <a class="anchor-link" id="css--iconEmpty"></a><a href="#css--iconEmpty" class="prop-name">iconEmpty</a> | <span class="prop-name">.MuiRating-iconEmpty</span> | Styles applied to the icon wrapping elements when empty.
+| <a class="anchor-link" id="css--iconFilled"></a><a href="#css--iconFilled" class="prop-name">iconFilled</a> | <span class="prop-name">.MuiRating-iconFilled</span> | Styles applied to the icon wrapping elements when filled.
+| <a class="anchor-link" id="css--iconHover"></a><a href="#css--iconHover" class="prop-name">iconHover</a> | <span class="prop-name">.MuiRating-iconHover</span> | Styles applied to the icon wrapping elements when hover.
+| <a class="anchor-link" id="css--iconFocus"></a><a href="#css--iconFocus" class="prop-name">iconFocus</a> | <span class="prop-name">.MuiRating-iconFocus</span> | Styles applied to the icon wrapping elements when focus.
+| <a class="anchor-link" id="css--iconActive"></a><a href="#css--iconActive" class="prop-name">iconActive</a> | <span class="prop-name">.MuiRating-iconActive</span> | Styles applied to the icon wrapping elements when active.
+| <a class="anchor-link" id="css--decimal"></a><a href="#css--decimal" class="prop-name">decimal</a> | <span class="prop-name">.MuiRating-decimal</span> | Styles applied to the icon wrapping elements when decimals are necessary.
 
 You can override the style of the component thanks to one of these customization points:
 

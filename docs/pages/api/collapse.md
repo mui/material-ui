@@ -44,11 +44,11 @@ Any other props supplied will be provided to the root element ([Transition](http
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">container</span> | <span class="prop-name">.MuiCollapse-container</span> | Styles applied to the container element.
-| <span class="prop-name">entered</span> | <span class="prop-name">.MuiCollapse-entered</span> | Styles applied to the container element when the transition has entered.
-| <span class="prop-name">hidden</span> | <span class="prop-name">.MuiCollapse-hidden</span> | Styles applied to the container element when the transition has exited and `collapsedHeight` != 0px.
-| <span class="prop-name">wrapper</span> | <span class="prop-name">.MuiCollapse-wrapper</span> | Styles applied to the outer wrapper element.
-| <span class="prop-name">wrapperInner</span> | <span class="prop-name">.MuiCollapse-wrapperInner</span> | Styles applied to the inner wrapper element.
+| <a class="anchor-link" id="css--container"></a><a href="#css--container" class="prop-name">container</a> | <span class="prop-name">.MuiCollapse-container</span> | Styles applied to the container element.
+| <a class="anchor-link" id="css--entered"></a><a href="#css--entered" class="prop-name">entered</a> | <span class="prop-name">.MuiCollapse-entered</span> | Styles applied to the container element when the transition has entered.
+| <a class="anchor-link" id="css--hidden"></a><a href="#css--hidden" class="prop-name">hidden</a> | <span class="prop-name">.MuiCollapse-hidden</span> | Styles applied to the container element when the transition has exited and `collapsedHeight` != 0px.
+| <a class="anchor-link" id="css--wrapper"></a><a href="#css--wrapper" class="prop-name">wrapper</a> | <span class="prop-name">.MuiCollapse-wrapper</span> | Styles applied to the outer wrapper element.
+| <a class="anchor-link" id="css--wrapperInner"></a><a href="#css--wrapperInner" class="prop-name">wrapperInner</a> | <span class="prop-name">.MuiCollapse-wrapperInner</span> | Styles applied to the inner wrapper element.
 
 You can override the style of the component thanks to one of these customization points:
 

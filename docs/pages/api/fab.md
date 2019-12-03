@@ -46,16 +46,16 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiFab-root</span> | Styles applied to the root element.
-| <span class="prop-name">label</span> | <span class="prop-name">.MuiFab-label</span> | Styles applied to the span element that wraps the children.
-| <span class="prop-name">primary</span> | <span class="prop-name">.MuiFab-primary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">secondary</span> | <span class="prop-name">.MuiFab-secondary</span> | Styles applied to the root element if `color="secondary"`.
-| <span class="prop-name">extended</span> | <span class="prop-name">.MuiFab-extended</span> | Styles applied to the root element if `variant="extended"`.
-| <span class="prop-name">focusVisible</span> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">colorInherit</span> | <span class="prop-name">.MuiFab-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
-| <span class="prop-name">sizeSmall</span> | <span class="prop-name">.MuiFab-sizeSmall</span> | Styles applied to the root element if `size="small"``.
-| <span class="prop-name">sizeMedium</span> | <span class="prop-name">.MuiFab-sizeMedium</span> | Styles applied to the root element if `size="medium"``.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiFab-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--label"></a><a href="#css--label" class="prop-name">label</a> | <span class="prop-name">.MuiFab-label</span> | Styles applied to the span element that wraps the children.
+| <a class="anchor-link" id="css--primary"></a><a href="#css--primary" class="prop-name">primary</a> | <span class="prop-name">.MuiFab-primary</span> | Styles applied to the root element if `color="primary"`.
+| <a class="anchor-link" id="css--secondary"></a><a href="#css--secondary" class="prop-name">secondary</a> | <span class="prop-name">.MuiFab-secondary</span> | Styles applied to the root element if `color="secondary"`.
+| <a class="anchor-link" id="css--extended"></a><a href="#css--extended" class="prop-name">extended</a> | <span class="prop-name">.MuiFab-extended</span> | Styles applied to the root element if `variant="extended"`.
+| <a class="anchor-link" id="css--focusVisible"></a><a href="#css--focusVisible" class="prop-name">focusVisible</a> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the ButtonBase root element if the button is keyboard focused.
+| <a class="anchor-link" id="css--disabled"></a><a href="#css--disabled" class="prop-name">disabled</a> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <a class="anchor-link" id="css--colorInherit"></a><a href="#css--colorInherit" class="prop-name">colorInherit</a> | <span class="prop-name">.MuiFab-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
+| <a class="anchor-link" id="css--sizeSmall"></a><a href="#css--sizeSmall" class="prop-name">sizeSmall</a> | <span class="prop-name">.MuiFab-sizeSmall</span> | Styles applied to the root element if `size="small"``.
+| <a class="anchor-link" id="css--sizeMedium"></a><a href="#css--sizeMedium" class="prop-name">sizeMedium</a> | <span class="prop-name">.MuiFab-sizeMedium</span> | Styles applied to the root element if `size="medium"``.
 
 You can override the style of the component thanks to one of these customization points:
 

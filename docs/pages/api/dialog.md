@@ -61,21 +61,21 @@ Any other props supplied will be provided to the root element ([Modal](/api/moda
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiDialog-root</span> | Styles applied to the root element.
-| <span class="prop-name">scrollPaper</span> | <span class="prop-name">.MuiDialog-scrollPaper</span> | Styles applied to the container element if `scroll="paper"`.
-| <span class="prop-name">scrollBody</span> | <span class="prop-name">.MuiDialog-scrollBody</span> | Styles applied to the container element if `scroll="body"`.
-| <span class="prop-name">container</span> | <span class="prop-name">.MuiDialog-container</span> | Styles applied to the container element.
-| <span class="prop-name">paper</span> | <span class="prop-name">.MuiDialog-paper</span> | Styles applied to the `Paper` component.
-| <span class="prop-name">paperScrollPaper</span> | <span class="prop-name">.MuiDialog-paperScrollPaper</span> | Styles applied to the `Paper` component if `scroll="paper"`.
-| <span class="prop-name">paperScrollBody</span> | <span class="prop-name">.MuiDialog-paperScrollBody</span> | Styles applied to the `Paper` component if `scroll="body"`.
-| <span class="prop-name">paperWidthFalse</span> | <span class="prop-name">.MuiDialog-paperWidthFalse</span> | Styles applied to the `Paper` component if `maxWidth=false`.
-| <span class="prop-name">paperWidthXs</span> | <span class="prop-name">.MuiDialog-paperWidthXs</span> | Styles applied to the `Paper` component if `maxWidth="xs"`.
-| <span class="prop-name">paperWidthSm</span> | <span class="prop-name">.MuiDialog-paperWidthSm</span> | Styles applied to the `Paper` component if `maxWidth="sm"`.
-| <span class="prop-name">paperWidthMd</span> | <span class="prop-name">.MuiDialog-paperWidthMd</span> | Styles applied to the `Paper` component if `maxWidth="md"`.
-| <span class="prop-name">paperWidthLg</span> | <span class="prop-name">.MuiDialog-paperWidthLg</span> | Styles applied to the `Paper` component if `maxWidth="lg"`.
-| <span class="prop-name">paperWidthXl</span> | <span class="prop-name">.MuiDialog-paperWidthXl</span> | Styles applied to the `Paper` component if `maxWidth="xl"`.
-| <span class="prop-name">paperFullWidth</span> | <span class="prop-name">.MuiDialog-paperFullWidth</span> | Styles applied to the `Paper` component if `fullWidth={true}`.
-| <span class="prop-name">paperFullScreen</span> | <span class="prop-name">.MuiDialog-paperFullScreen</span> | Styles applied to the `Paper` component if `fullScreen={true}`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiDialog-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--scrollPaper"></a><a href="#css--scrollPaper" class="prop-name">scrollPaper</a> | <span class="prop-name">.MuiDialog-scrollPaper</span> | Styles applied to the container element if `scroll="paper"`.
+| <a class="anchor-link" id="css--scrollBody"></a><a href="#css--scrollBody" class="prop-name">scrollBody</a> | <span class="prop-name">.MuiDialog-scrollBody</span> | Styles applied to the container element if `scroll="body"`.
+| <a class="anchor-link" id="css--container"></a><a href="#css--container" class="prop-name">container</a> | <span class="prop-name">.MuiDialog-container</span> | Styles applied to the container element.
+| <a class="anchor-link" id="css--paper"></a><a href="#css--paper" class="prop-name">paper</a> | <span class="prop-name">.MuiDialog-paper</span> | Styles applied to the `Paper` component.
+| <a class="anchor-link" id="css--paperScrollPaper"></a><a href="#css--paperScrollPaper" class="prop-name">paperScrollPaper</a> | <span class="prop-name">.MuiDialog-paperScrollPaper</span> | Styles applied to the `Paper` component if `scroll="paper"`.
+| <a class="anchor-link" id="css--paperScrollBody"></a><a href="#css--paperScrollBody" class="prop-name">paperScrollBody</a> | <span class="prop-name">.MuiDialog-paperScrollBody</span> | Styles applied to the `Paper` component if `scroll="body"`.
+| <a class="anchor-link" id="css--paperWidthFalse"></a><a href="#css--paperWidthFalse" class="prop-name">paperWidthFalse</a> | <span class="prop-name">.MuiDialog-paperWidthFalse</span> | Styles applied to the `Paper` component if `maxWidth=false`.
+| <a class="anchor-link" id="css--paperWidthXs"></a><a href="#css--paperWidthXs" class="prop-name">paperWidthXs</a> | <span class="prop-name">.MuiDialog-paperWidthXs</span> | Styles applied to the `Paper` component if `maxWidth="xs"`.
+| <a class="anchor-link" id="css--paperWidthSm"></a><a href="#css--paperWidthSm" class="prop-name">paperWidthSm</a> | <span class="prop-name">.MuiDialog-paperWidthSm</span> | Styles applied to the `Paper` component if `maxWidth="sm"`.
+| <a class="anchor-link" id="css--paperWidthMd"></a><a href="#css--paperWidthMd" class="prop-name">paperWidthMd</a> | <span class="prop-name">.MuiDialog-paperWidthMd</span> | Styles applied to the `Paper` component if `maxWidth="md"`.
+| <a class="anchor-link" id="css--paperWidthLg"></a><a href="#css--paperWidthLg" class="prop-name">paperWidthLg</a> | <span class="prop-name">.MuiDialog-paperWidthLg</span> | Styles applied to the `Paper` component if `maxWidth="lg"`.
+| <a class="anchor-link" id="css--paperWidthXl"></a><a href="#css--paperWidthXl" class="prop-name">paperWidthXl</a> | <span class="prop-name">.MuiDialog-paperWidthXl</span> | Styles applied to the `Paper` component if `maxWidth="xl"`.
+| <a class="anchor-link" id="css--paperFullWidth"></a><a href="#css--paperFullWidth" class="prop-name">paperFullWidth</a> | <span class="prop-name">.MuiDialog-paperFullWidth</span> | Styles applied to the `Paper` component if `fullWidth={true}`.
+| <a class="anchor-link" id="css--paperFullScreen"></a><a href="#css--paperFullScreen" class="prop-name">paperFullScreen</a> | <span class="prop-name">.MuiDialog-paperFullScreen</span> | Styles applied to the `Paper` component if `fullScreen={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

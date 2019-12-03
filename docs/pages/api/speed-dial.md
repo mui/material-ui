@@ -50,14 +50,14 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiSpeedDial-root</span> | Styles applied to the root element.
-| <span class="prop-name">fab</span> | <span class="prop-name">.MuiSpeedDial-fab</span> | Styles applied to the Fab component.
-| <span class="prop-name">directionUp</span> | <span class="prop-name">.MuiSpeedDial-directionUp</span> | Styles applied to the root if direction="up"
-| <span class="prop-name">directionDown</span> | <span class="prop-name">.MuiSpeedDial-directionDown</span> | Styles applied to the root if direction="down"
-| <span class="prop-name">directionLeft</span> | <span class="prop-name">.MuiSpeedDial-directionLeft</span> | Styles applied to the root if direction="left"
-| <span class="prop-name">directionRight</span> | <span class="prop-name">.MuiSpeedDial-directionRight</span> | Styles applied to the root if direction="right"
-| <span class="prop-name">actions</span> | <span class="prop-name">.MuiSpeedDial-actions</span> | Styles applied to the actions (`children` wrapper) element.
-| <span class="prop-name">actionsClosed</span> | <span class="prop-name">.MuiSpeedDial-actionsClosed</span> | Styles applied to the actions (`children` wrapper) element if `open={false}`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiSpeedDial-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--fab"></a><a href="#css--fab" class="prop-name">fab</a> | <span class="prop-name">.MuiSpeedDial-fab</span> | Styles applied to the Fab component.
+| <a class="anchor-link" id="css--directionUp"></a><a href="#css--directionUp" class="prop-name">directionUp</a> | <span class="prop-name">.MuiSpeedDial-directionUp</span> | Styles applied to the root if direction="up"
+| <a class="anchor-link" id="css--directionDown"></a><a href="#css--directionDown" class="prop-name">directionDown</a> | <span class="prop-name">.MuiSpeedDial-directionDown</span> | Styles applied to the root if direction="down"
+| <a class="anchor-link" id="css--directionLeft"></a><a href="#css--directionLeft" class="prop-name">directionLeft</a> | <span class="prop-name">.MuiSpeedDial-directionLeft</span> | Styles applied to the root if direction="left"
+| <a class="anchor-link" id="css--directionRight"></a><a href="#css--directionRight" class="prop-name">directionRight</a> | <span class="prop-name">.MuiSpeedDial-directionRight</span> | Styles applied to the root if direction="right"
+| <a class="anchor-link" id="css--actions"></a><a href="#css--actions" class="prop-name">actions</a> | <span class="prop-name">.MuiSpeedDial-actions</span> | Styles applied to the actions (`children` wrapper) element.
+| <a class="anchor-link" id="css--actionsClosed"></a><a href="#css--actionsClosed" class="prop-name">actionsClosed</a> | <span class="prop-name">.MuiSpeedDial-actionsClosed</span> | Styles applied to the actions (`children` wrapper) element if `open={false}`.
 
 You can override the style of the component thanks to one of these customization points:
 

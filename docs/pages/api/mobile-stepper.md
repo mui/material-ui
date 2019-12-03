@@ -44,14 +44,14 @@ Any other props supplied will be provided to the root element ([Paper](/api/pape
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiMobileStepper-root</span> | Styles applied to the root element.
-| <span class="prop-name">positionBottom</span> | <span class="prop-name">.MuiMobileStepper-positionBottom</span> | Styles applied to the root element if `position="bottom"`.
-| <span class="prop-name">positionTop</span> | <span class="prop-name">.MuiMobileStepper-positionTop</span> | Styles applied to the root element if `position="top"`.
-| <span class="prop-name">positionStatic</span> | <span class="prop-name">.MuiMobileStepper-positionStatic</span> | Styles applied to the root element if `position="static"`.
-| <span class="prop-name">dots</span> | <span class="prop-name">.MuiMobileStepper-dots</span> | Styles applied to the dots container if `variant="dots"`.
-| <span class="prop-name">dot</span> | <span class="prop-name">.MuiMobileStepper-dot</span> | Styles applied to each dot if `variant="dots"`.
-| <span class="prop-name">dotActive</span> | <span class="prop-name">.MuiMobileStepper-dotActive</span> | Styles applied to a dot if `variant="dots"` and this is the active step.
-| <span class="prop-name">progress</span> | <span class="prop-name">.MuiMobileStepper-progress</span> | Styles applied to the Linear Progress component if `variant="progress"`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiMobileStepper-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--positionBottom"></a><a href="#css--positionBottom" class="prop-name">positionBottom</a> | <span class="prop-name">.MuiMobileStepper-positionBottom</span> | Styles applied to the root element if `position="bottom"`.
+| <a class="anchor-link" id="css--positionTop"></a><a href="#css--positionTop" class="prop-name">positionTop</a> | <span class="prop-name">.MuiMobileStepper-positionTop</span> | Styles applied to the root element if `position="top"`.
+| <a class="anchor-link" id="css--positionStatic"></a><a href="#css--positionStatic" class="prop-name">positionStatic</a> | <span class="prop-name">.MuiMobileStepper-positionStatic</span> | Styles applied to the root element if `position="static"`.
+| <a class="anchor-link" id="css--dots"></a><a href="#css--dots" class="prop-name">dots</a> | <span class="prop-name">.MuiMobileStepper-dots</span> | Styles applied to the dots container if `variant="dots"`.
+| <a class="anchor-link" id="css--dot"></a><a href="#css--dot" class="prop-name">dot</a> | <span class="prop-name">.MuiMobileStepper-dot</span> | Styles applied to each dot if `variant="dots"`.
+| <a class="anchor-link" id="css--dotActive"></a><a href="#css--dotActive" class="prop-name">dotActive</a> | <span class="prop-name">.MuiMobileStepper-dotActive</span> | Styles applied to a dot if `variant="dots"` and this is the active step.
+| <a class="anchor-link" id="css--progress"></a><a href="#css--progress" class="prop-name">progress</a> | <span class="prop-name">.MuiMobileStepper-progress</span> | Styles applied to the Linear Progress component if `variant="progress"`.
 
 You can override the style of the component thanks to one of these customization points:
 

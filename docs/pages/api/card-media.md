@@ -41,9 +41,9 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiCardMedia-root</span> | Styles applied to the root element.
-| <span class="prop-name">media</span> | <span class="prop-name">.MuiCardMedia-media</span> | Styles applied to the root element if `component="video, audio, picture, iframe, or img"`.
-| <span class="prop-name">img</span> | <span class="prop-name">.MuiCardMedia-img</span> | Styles applied to the root element if `component="picture or img"`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiCardMedia-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--media"></a><a href="#css--media" class="prop-name">media</a> | <span class="prop-name">.MuiCardMedia-media</span> | Styles applied to the root element if `component="video, audio, picture, iframe, or img"`.
+| <a class="anchor-link" id="css--img"></a><a href="#css--img" class="prop-name">img</a> | <span class="prop-name">.MuiCardMedia-img</span> | Styles applied to the root element if `component="picture or img"`.
 
 You can override the style of the component thanks to one of these customization points:
 

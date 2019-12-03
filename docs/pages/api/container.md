@@ -41,13 +41,13 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiContainer-root</span> | Styles applied to the root element.
-| <span class="prop-name">fixed</span> | <span class="prop-name">.MuiContainer-fixed</span> | Styles applied to the root element if `fixed={true}`.
-| <span class="prop-name">maxWidthXs</span> | <span class="prop-name">.MuiContainer-maxWidthXs</span> | Styles applied to the root element if `maxWidth="xs"`.
-| <span class="prop-name">maxWidthSm</span> | <span class="prop-name">.MuiContainer-maxWidthSm</span> | Styles applied to the root element if `maxWidth="sm"`.
-| <span class="prop-name">maxWidthMd</span> | <span class="prop-name">.MuiContainer-maxWidthMd</span> | Styles applied to the root element if `maxWidth="md"`.
-| <span class="prop-name">maxWidthLg</span> | <span class="prop-name">.MuiContainer-maxWidthLg</span> | Styles applied to the root element if `maxWidth="lg"`.
-| <span class="prop-name">maxWidthXl</span> | <span class="prop-name">.MuiContainer-maxWidthXl</span> | Styles applied to the root element if `maxWidth="xl"`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiContainer-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--fixed"></a><a href="#css--fixed" class="prop-name">fixed</a> | <span class="prop-name">.MuiContainer-fixed</span> | Styles applied to the root element if `fixed={true}`.
+| <a class="anchor-link" id="css--maxWidthXs"></a><a href="#css--maxWidthXs" class="prop-name">maxWidthXs</a> | <span class="prop-name">.MuiContainer-maxWidthXs</span> | Styles applied to the root element if `maxWidth="xs"`.
+| <a class="anchor-link" id="css--maxWidthSm"></a><a href="#css--maxWidthSm" class="prop-name">maxWidthSm</a> | <span class="prop-name">.MuiContainer-maxWidthSm</span> | Styles applied to the root element if `maxWidth="sm"`.
+| <a class="anchor-link" id="css--maxWidthMd"></a><a href="#css--maxWidthMd" class="prop-name">maxWidthMd</a> | <span class="prop-name">.MuiContainer-maxWidthMd</span> | Styles applied to the root element if `maxWidth="md"`.
+| <a class="anchor-link" id="css--maxWidthLg"></a><a href="#css--maxWidthLg" class="prop-name">maxWidthLg</a> | <span class="prop-name">.MuiContainer-maxWidthLg</span> | Styles applied to the root element if `maxWidth="lg"`.
+| <a class="anchor-link" id="css--maxWidthXl"></a><a href="#css--maxWidthXl" class="prop-name">maxWidthXl</a> | <span class="prop-name">.MuiContainer-maxWidthXl</span> | Styles applied to the root element if `maxWidth="xl"`.
 
 You can override the style of the component thanks to one of these customization points:
 

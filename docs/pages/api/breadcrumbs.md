@@ -43,10 +43,10 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiBreadcrumbs-root</span> | Styles applied to the root element.
-| <span class="prop-name">ol</span> | <span class="prop-name">.MuiBreadcrumbs-ol</span> | Styles applied to the ol element.
-| <span class="prop-name">li</span> | <span class="prop-name">.MuiBreadcrumbs-li</span> | Styles applied to the li element.
-| <span class="prop-name">separator</span> | <span class="prop-name">.MuiBreadcrumbs-separator</span> | Styles applied to the separator element.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiBreadcrumbs-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--ol"></a><a href="#css--ol" class="prop-name">ol</a> | <span class="prop-name">.MuiBreadcrumbs-ol</span> | Styles applied to the ol element.
+| <a class="anchor-link" id="css--li"></a><a href="#css--li" class="prop-name">li</a> | <span class="prop-name">.MuiBreadcrumbs-li</span> | Styles applied to the li element.
+| <a class="anchor-link" id="css--separator"></a><a href="#css--separator" class="prop-name">separator</a> | <span class="prop-name">.MuiBreadcrumbs-separator</span> | Styles applied to the separator element.
 
 You can override the style of the component thanks to one of these customization points:
 

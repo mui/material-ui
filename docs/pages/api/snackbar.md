@@ -58,13 +58,13 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiSnackbar-root</span> | Styles applied to the root element.
-| <span class="prop-name">anchorOriginTopCenter</span> | <span class="prop-name">.MuiSnackbar-anchorOriginTopCenter</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`.
-| <span class="prop-name">anchorOriginBottomCenter</span> | <span class="prop-name">.MuiSnackbar-anchorOriginBottomCenter</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'center' }}`.
-| <span class="prop-name">anchorOriginTopRight</span> | <span class="prop-name">.MuiSnackbar-anchorOriginTopRight</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`.
-| <span class="prop-name">anchorOriginBottomRight</span> | <span class="prop-name">.MuiSnackbar-anchorOriginBottomRight</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }}`.
-| <span class="prop-name">anchorOriginTopLeft</span> | <span class="prop-name">.MuiSnackbar-anchorOriginTopLeft</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`.
-| <span class="prop-name">anchorOriginBottomLeft</span> | <span class="prop-name">.MuiSnackbar-anchorOriginBottomLeft</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiSnackbar-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--anchorOriginTopCenter"></a><a href="#css--anchorOriginTopCenter" class="prop-name">anchorOriginTopCenter</a> | <span class="prop-name">.MuiSnackbar-anchorOriginTopCenter</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`.
+| <a class="anchor-link" id="css--anchorOriginBottomCenter"></a><a href="#css--anchorOriginBottomCenter" class="prop-name">anchorOriginBottomCenter</a> | <span class="prop-name">.MuiSnackbar-anchorOriginBottomCenter</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'center' }}`.
+| <a class="anchor-link" id="css--anchorOriginTopRight"></a><a href="#css--anchorOriginTopRight" class="prop-name">anchorOriginTopRight</a> | <span class="prop-name">.MuiSnackbar-anchorOriginTopRight</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`.
+| <a class="anchor-link" id="css--anchorOriginBottomRight"></a><a href="#css--anchorOriginBottomRight" class="prop-name">anchorOriginBottomRight</a> | <span class="prop-name">.MuiSnackbar-anchorOriginBottomRight</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }}`.
+| <a class="anchor-link" id="css--anchorOriginTopLeft"></a><a href="#css--anchorOriginTopLeft" class="prop-name">anchorOriginTopLeft</a> | <span class="prop-name">.MuiSnackbar-anchorOriginTopLeft</span> | Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`.
+| <a class="anchor-link" id="css--anchorOriginBottomLeft"></a><a href="#css--anchorOriginBottomLeft" class="prop-name">anchorOriginBottomLeft</a> | <span class="prop-name">.MuiSnackbar-anchorOriginBottomLeft</span> | Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`.
 
 You can override the style of the component thanks to one of these customization points:
 

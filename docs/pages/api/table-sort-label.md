@@ -42,11 +42,11 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiTableSortLabel-root</span> | Styles applied to the root element.
-| <span class="prop-name">active</span> | <span class="prop-name">.MuiTableSortLabel-active</span> | Pseudo-class applied to the root element if `active={true}`.
-| <span class="prop-name">icon</span> | <span class="prop-name">.MuiTableSortLabel-icon</span> | Styles applied to the icon component.
-| <span class="prop-name">iconDirectionDesc</span> | <span class="prop-name">.MuiTableSortLabel-iconDirectionDesc</span> | Styles applied to the icon component if `direction="desc"`.
-| <span class="prop-name">iconDirectionAsc</span> | <span class="prop-name">.MuiTableSortLabel-iconDirectionAsc</span> | Styles applied to the icon component if `direction="asc"`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiTableSortLabel-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--active"></a><a href="#css--active" class="prop-name">active</a> | <span class="prop-name">.MuiTableSortLabel-active</span> | Pseudo-class applied to the root element if `active={true}`.
+| <a class="anchor-link" id="css--icon"></a><a href="#css--icon" class="prop-name">icon</a> | <span class="prop-name">.MuiTableSortLabel-icon</span> | Styles applied to the icon component.
+| <a class="anchor-link" id="css--iconDirectionDesc"></a><a href="#css--iconDirectionDesc" class="prop-name">iconDirectionDesc</a> | <span class="prop-name">.MuiTableSortLabel-iconDirectionDesc</span> | Styles applied to the icon component if `direction="desc"`.
+| <a class="anchor-link" id="css--iconDirectionAsc"></a><a href="#css--iconDirectionAsc" class="prop-name">iconDirectionAsc</a> | <span class="prop-name">.MuiTableSortLabel-iconDirectionAsc</span> | Styles applied to the icon component if `direction="asc"`.
 
 You can override the style of the component thanks to one of these customization points:
 

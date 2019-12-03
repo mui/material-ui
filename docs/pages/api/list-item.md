@@ -49,17 +49,17 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiListItem-root</span> | Styles applied to the (normally root) `component` element. May be wrapped by a `container`.
-| <span class="prop-name">container</span> | <span class="prop-name">.MuiListItem-container</span> | Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`.
-| <span class="prop-name">focusVisible</span> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`.
-| <span class="prop-name">dense</span> | <span class="prop-name">.MuiListItem-dense</span> | Styles applied to the `component` element if dense.
-| <span class="prop-name">alignItemsFlexStart</span> | <span class="prop-name">.MuiListItem-alignItemsFlexStart</span> | Styles applied to the `component` element if `alignItems="flex-start"`.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the inner `component` element if `disabled={true}`.
-| <span class="prop-name">divider</span> | <span class="prop-name">.MuiListItem-divider</span> | Styles applied to the inner `component` element if `divider={true}`.
-| <span class="prop-name">gutters</span> | <span class="prop-name">.MuiListItem-gutters</span> | Styles applied to the inner `component` element if `disableGutters={false}`.
-| <span class="prop-name">button</span> | <span class="prop-name">.MuiListItem-button</span> | Styles applied to the inner `component` element if `button={true}`.
-| <span class="prop-name">secondaryAction</span> | <span class="prop-name">.MuiListItem-secondaryAction</span> | Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`.
-| <span class="prop-name">selected</span> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the root element if `selected={true}`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiListItem-root</span> | Styles applied to the (normally root) `component` element. May be wrapped by a `container`.
+| <a class="anchor-link" id="css--container"></a><a href="#css--container" class="prop-name">container</a> | <span class="prop-name">.MuiListItem-container</span> | Styles applied to the `container` element if `children` includes `ListItemSecondaryAction`.
+| <a class="anchor-link" id="css--focusVisible"></a><a href="#css--focusVisible" class="prop-name">focusVisible</a> | <span class="prop-name">.Mui-focusVisible</span> | Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`.
+| <a class="anchor-link" id="css--dense"></a><a href="#css--dense" class="prop-name">dense</a> | <span class="prop-name">.MuiListItem-dense</span> | Styles applied to the `component` element if dense.
+| <a class="anchor-link" id="css--alignItemsFlexStart"></a><a href="#css--alignItemsFlexStart" class="prop-name">alignItemsFlexStart</a> | <span class="prop-name">.MuiListItem-alignItemsFlexStart</span> | Styles applied to the `component` element if `alignItems="flex-start"`.
+| <a class="anchor-link" id="css--disabled"></a><a href="#css--disabled" class="prop-name">disabled</a> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the inner `component` element if `disabled={true}`.
+| <a class="anchor-link" id="css--divider"></a><a href="#css--divider" class="prop-name">divider</a> | <span class="prop-name">.MuiListItem-divider</span> | Styles applied to the inner `component` element if `divider={true}`.
+| <a class="anchor-link" id="css--gutters"></a><a href="#css--gutters" class="prop-name">gutters</a> | <span class="prop-name">.MuiListItem-gutters</span> | Styles applied to the inner `component` element if `disableGutters={false}`.
+| <a class="anchor-link" id="css--button"></a><a href="#css--button" class="prop-name">button</a> | <span class="prop-name">.MuiListItem-button</span> | Styles applied to the inner `component` element if `button={true}`.
+| <a class="anchor-link" id="css--secondaryAction"></a><a href="#css--secondaryAction" class="prop-name">secondaryAction</a> | <span class="prop-name">.MuiListItem-secondaryAction</span> | Styles applied to the `component` element if `children` includes `ListItemSecondaryAction`.
+| <a class="anchor-link" id="css--selected"></a><a href="#css--selected" class="prop-name">selected</a> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the root element if `selected={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

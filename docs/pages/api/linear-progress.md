@@ -45,24 +45,24 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiLinearProgress-root</span> | Styles applied to the root element.
-| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiLinearProgress-colorPrimary</span> | Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant-"buffer"`.
-| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiLinearProgress-colorSecondary</span> | Styles applied to the root and bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`.
-| <span class="prop-name">determinate</span> | <span class="prop-name">.MuiLinearProgress-determinate</span> | Styles applied to the root element if `variant="determinate"`.
-| <span class="prop-name">indeterminate</span> | <span class="prop-name">.MuiLinearProgress-indeterminate</span> | Styles applied to the root element if `variant="indeterminate"`.
-| <span class="prop-name">buffer</span> | <span class="prop-name">.MuiLinearProgress-buffer</span> | Styles applied to the root element if `variant="buffer"`.
-| <span class="prop-name">query</span> | <span class="prop-name">.MuiLinearProgress-query</span> | Styles applied to the root element if `variant="query"`.
-| <span class="prop-name">dashed</span> | <span class="prop-name">.MuiLinearProgress-dashed</span> | Styles applied to the additional bar element if `variant="buffer"`.
-| <span class="prop-name">dashedColorPrimary</span> | <span class="prop-name">.MuiLinearProgress-dashedColorPrimary</span> | Styles applied to the additional bar element if `variant="buffer"` and `color="primary"`.
-| <span class="prop-name">dashedColorSecondary</span> | <span class="prop-name">.MuiLinearProgress-dashedColorSecondary</span> | Styles applied to the additional bar element if `variant="buffer"` and `color="secondary"`.
-| <span class="prop-name">bar</span> | <span class="prop-name">.MuiLinearProgress-bar</span> | Styles applied to the layered bar1 and bar2 elements.
-| <span class="prop-name">barColorPrimary</span> | <span class="prop-name">.MuiLinearProgress-barColorPrimary</span> | Styles applied to the bar elements if `color="primary"`; bar2 if `variant` not "buffer".
-| <span class="prop-name">barColorSecondary</span> | <span class="prop-name">.MuiLinearProgress-barColorSecondary</span> | Styles applied to the bar elements if `color="secondary"`; bar2 if `variant` not "buffer".
-| <span class="prop-name">bar1Indeterminate</span> | <span class="prop-name">.MuiLinearProgress-bar1Indeterminate</span> | Styles applied to the bar1 element if `variant="indeterminate or query"`.
-| <span class="prop-name">bar1Determinate</span> | <span class="prop-name">.MuiLinearProgress-bar1Determinate</span> | Styles applied to the bar1 element if `variant="determinate"`.
-| <span class="prop-name">bar1Buffer</span> | <span class="prop-name">.MuiLinearProgress-bar1Buffer</span> | Styles applied to the bar1 element if `variant="buffer"`.
-| <span class="prop-name">bar2Indeterminate</span> | <span class="prop-name">.MuiLinearProgress-bar2Indeterminate</span> | Styles applied to the bar2 element if `variant="indeterminate or query"`.
-| <span class="prop-name">bar2Buffer</span> | <span class="prop-name">.MuiLinearProgress-bar2Buffer</span> | Styles applied to the bar2 element if `variant="buffer"`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiLinearProgress-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--colorPrimary"></a><a href="#css--colorPrimary" class="prop-name">colorPrimary</a> | <span class="prop-name">.MuiLinearProgress-colorPrimary</span> | Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant-"buffer"`.
+| <a class="anchor-link" id="css--colorSecondary"></a><a href="#css--colorSecondary" class="prop-name">colorSecondary</a> | <span class="prop-name">.MuiLinearProgress-colorSecondary</span> | Styles applied to the root and bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`.
+| <a class="anchor-link" id="css--determinate"></a><a href="#css--determinate" class="prop-name">determinate</a> | <span class="prop-name">.MuiLinearProgress-determinate</span> | Styles applied to the root element if `variant="determinate"`.
+| <a class="anchor-link" id="css--indeterminate"></a><a href="#css--indeterminate" class="prop-name">indeterminate</a> | <span class="prop-name">.MuiLinearProgress-indeterminate</span> | Styles applied to the root element if `variant="indeterminate"`.
+| <a class="anchor-link" id="css--buffer"></a><a href="#css--buffer" class="prop-name">buffer</a> | <span class="prop-name">.MuiLinearProgress-buffer</span> | Styles applied to the root element if `variant="buffer"`.
+| <a class="anchor-link" id="css--query"></a><a href="#css--query" class="prop-name">query</a> | <span class="prop-name">.MuiLinearProgress-query</span> | Styles applied to the root element if `variant="query"`.
+| <a class="anchor-link" id="css--dashed"></a><a href="#css--dashed" class="prop-name">dashed</a> | <span class="prop-name">.MuiLinearProgress-dashed</span> | Styles applied to the additional bar element if `variant="buffer"`.
+| <a class="anchor-link" id="css--dashedColorPrimary"></a><a href="#css--dashedColorPrimary" class="prop-name">dashedColorPrimary</a> | <span class="prop-name">.MuiLinearProgress-dashedColorPrimary</span> | Styles applied to the additional bar element if `variant="buffer"` and `color="primary"`.
+| <a class="anchor-link" id="css--dashedColorSecondary"></a><a href="#css--dashedColorSecondary" class="prop-name">dashedColorSecondary</a> | <span class="prop-name">.MuiLinearProgress-dashedColorSecondary</span> | Styles applied to the additional bar element if `variant="buffer"` and `color="secondary"`.
+| <a class="anchor-link" id="css--bar"></a><a href="#css--bar" class="prop-name">bar</a> | <span class="prop-name">.MuiLinearProgress-bar</span> | Styles applied to the layered bar1 and bar2 elements.
+| <a class="anchor-link" id="css--barColorPrimary"></a><a href="#css--barColorPrimary" class="prop-name">barColorPrimary</a> | <span class="prop-name">.MuiLinearProgress-barColorPrimary</span> | Styles applied to the bar elements if `color="primary"`; bar2 if `variant` not "buffer".
+| <a class="anchor-link" id="css--barColorSecondary"></a><a href="#css--barColorSecondary" class="prop-name">barColorSecondary</a> | <span class="prop-name">.MuiLinearProgress-barColorSecondary</span> | Styles applied to the bar elements if `color="secondary"`; bar2 if `variant` not "buffer".
+| <a class="anchor-link" id="css--bar1Indeterminate"></a><a href="#css--bar1Indeterminate" class="prop-name">bar1Indeterminate</a> | <span class="prop-name">.MuiLinearProgress-bar1Indeterminate</span> | Styles applied to the bar1 element if `variant="indeterminate or query"`.
+| <a class="anchor-link" id="css--bar1Determinate"></a><a href="#css--bar1Determinate" class="prop-name">bar1Determinate</a> | <span class="prop-name">.MuiLinearProgress-bar1Determinate</span> | Styles applied to the bar1 element if `variant="determinate"`.
+| <a class="anchor-link" id="css--bar1Buffer"></a><a href="#css--bar1Buffer" class="prop-name">bar1Buffer</a> | <span class="prop-name">.MuiLinearProgress-bar1Buffer</span> | Styles applied to the bar1 element if `variant="buffer"`.
+| <a class="anchor-link" id="css--bar2Indeterminate"></a><a href="#css--bar2Indeterminate" class="prop-name">bar2Indeterminate</a> | <span class="prop-name">.MuiLinearProgress-bar2Indeterminate</span> | Styles applied to the bar2 element if `variant="indeterminate or query"`.
+| <a class="anchor-link" id="css--bar2Buffer"></a><a href="#css--bar2Buffer" class="prop-name">bar2Buffer</a> | <span class="prop-name">.MuiLinearProgress-bar2Buffer</span> | Styles applied to the bar2 element if `variant="buffer"`.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -42,10 +42,10 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiToggleButtonGroup-root</span> | Styles applied to the root element.
-| <span class="prop-name">grouped</span> | <span class="prop-name">.MuiToggleButtonGroup-grouped</span> | Styles applied to the children.
-| <span class="prop-name">groupedSizeSmall</span> | <span class="prop-name">.MuiToggleButtonGroup-groupedSizeSmall</span> | Styles applied to the children if `size="small"`.
-| <span class="prop-name">groupedSizeLarge</span> | <span class="prop-name">.MuiToggleButtonGroup-groupedSizeLarge</span> | Styles applied to the children if `size="large"`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiToggleButtonGroup-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--grouped"></a><a href="#css--grouped" class="prop-name">grouped</a> | <span class="prop-name">.MuiToggleButtonGroup-grouped</span> | Styles applied to the children.
+| <a class="anchor-link" id="css--groupedSizeSmall"></a><a href="#css--groupedSizeSmall" class="prop-name">groupedSizeSmall</a> | <span class="prop-name">.MuiToggleButtonGroup-groupedSizeSmall</span> | Styles applied to the children if `size="small"`.
+| <a class="anchor-link" id="css--groupedSizeLarge"></a><a href="#css--groupedSizeLarge" class="prop-name">groupedSizeLarge</a> | <span class="prop-name">.MuiToggleButtonGroup-groupedSizeLarge</span> | Styles applied to the children if `size="large"`.
 
 You can override the style of the component thanks to one of these customization points:
 

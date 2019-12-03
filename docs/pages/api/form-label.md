@@ -45,14 +45,14 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiFormLabel-root</span> | Styles applied to the root element.
-| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiFormLabel-colorSecondary</span> | Styles applied to the root element if the color is secondary.
-| <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element if `focused={true}`.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Pseudo-class applied to the root element if `error={true}`.
-| <span class="prop-name">filled</span> | <span class="prop-name">.MuiFormLabel-filled</span> | Pseudo-class applied to the root element if `filled={true}`.
-| <span class="prop-name">required</span> | <span class="prop-name">.Mui-required</span> | Pseudo-class applied to the root element if `required={true}`.
-| <span class="prop-name">asterisk</span> | <span class="prop-name">.MuiFormLabel-asterisk</span> | Styles applied to the asterisk element.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiFormLabel-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--colorSecondary"></a><a href="#css--colorSecondary" class="prop-name">colorSecondary</a> | <span class="prop-name">.MuiFormLabel-colorSecondary</span> | Styles applied to the root element if the color is secondary.
+| <a class="anchor-link" id="css--focused"></a><a href="#css--focused" class="prop-name">focused</a> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element if `focused={true}`.
+| <a class="anchor-link" id="css--disabled"></a><a href="#css--disabled" class="prop-name">disabled</a> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <a class="anchor-link" id="css--error"></a><a href="#css--error" class="prop-name">error</a> | <span class="prop-name">.Mui-error</span> | Pseudo-class applied to the root element if `error={true}`.
+| <a class="anchor-link" id="css--filled"></a><a href="#css--filled" class="prop-name">filled</a> | <span class="prop-name">.MuiFormLabel-filled</span> | Pseudo-class applied to the root element if `filled={true}`.
+| <a class="anchor-link" id="css--required"></a><a href="#css--required" class="prop-name">required</a> | <span class="prop-name">.Mui-required</span> | Pseudo-class applied to the root element if `required={true}`.
+| <a class="anchor-link" id="css--asterisk"></a><a href="#css--asterisk" class="prop-name">asterisk</a> | <span class="prop-name">.MuiFormLabel-asterisk</span> | Styles applied to the asterisk element.
 
 You can override the style of the component thanks to one of these customization points:
 

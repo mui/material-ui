@@ -45,12 +45,12 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiTreeItem-root</span> | Styles applied to the root element.
-| <span class="prop-name">expanded</span> | <span class="prop-name">.Mui-expanded</span> | Pseudo-class applied to the root element when expanded.
-| <span class="prop-name">group</span> | <span class="prop-name">.MuiTreeItem-group</span> | Styles applied to the `role="group"` element.
-| <span class="prop-name">content</span> | <span class="prop-name">.MuiTreeItem-content</span> | Styles applied to the tree node content.
-| <span class="prop-name">iconContainer</span> | <span class="prop-name">.MuiTreeItem-iconContainer</span> | Styles applied to the tree node icon and collapse/expand icon.
-| <span class="prop-name">label</span> | <span class="prop-name">.MuiTreeItem-label</span> | Styles applied to the label element.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiTreeItem-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--expanded"></a><a href="#css--expanded" class="prop-name">expanded</a> | <span class="prop-name">.Mui-expanded</span> | Pseudo-class applied to the root element when expanded.
+| <a class="anchor-link" id="css--group"></a><a href="#css--group" class="prop-name">group</a> | <span class="prop-name">.MuiTreeItem-group</span> | Styles applied to the `role="group"` element.
+| <a class="anchor-link" id="css--content"></a><a href="#css--content" class="prop-name">content</a> | <span class="prop-name">.MuiTreeItem-content</span> | Styles applied to the tree node content.
+| <a class="anchor-link" id="css--iconContainer"></a><a href="#css--iconContainer" class="prop-name">iconContainer</a> | <span class="prop-name">.MuiTreeItem-iconContainer</span> | Styles applied to the tree node icon and collapse/expand icon.
+| <a class="anchor-link" id="css--label"></a><a href="#css--label" class="prop-name">label</a> | <span class="prop-name">.MuiTreeItem-label</span> | Styles applied to the label element.
 
 You can override the style of the component thanks to one of these customization points:
 

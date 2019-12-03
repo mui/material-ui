@@ -44,12 +44,12 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiListItemText-root</span> | Styles applied to the root element.
-| <span class="prop-name">multiline</span> | <span class="prop-name">.MuiListItemText-multiline</span> | Styles applied to the `Typography` components if primary and secondary are set.
-| <span class="prop-name">dense</span> | <span class="prop-name">.MuiListItemText-dense</span> | Styles applied to the `Typography` components if dense.
-| <span class="prop-name">inset</span> | <span class="prop-name">.MuiListItemText-inset</span> | Styles applied to the root element if `inset={true}`.
-| <span class="prop-name">primary</span> | <span class="prop-name">.MuiListItemText-primary</span> | Styles applied to the primary `Typography` component.
-| <span class="prop-name">secondary</span> | <span class="prop-name">.MuiListItemText-secondary</span> | Styles applied to the secondary `Typography` component.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiListItemText-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--multiline"></a><a href="#css--multiline" class="prop-name">multiline</a> | <span class="prop-name">.MuiListItemText-multiline</span> | Styles applied to the `Typography` components if primary and secondary are set.
+| <a class="anchor-link" id="css--dense"></a><a href="#css--dense" class="prop-name">dense</a> | <span class="prop-name">.MuiListItemText-dense</span> | Styles applied to the `Typography` components if dense.
+| <a class="anchor-link" id="css--inset"></a><a href="#css--inset" class="prop-name">inset</a> | <span class="prop-name">.MuiListItemText-inset</span> | Styles applied to the root element if `inset={true}`.
+| <a class="anchor-link" id="css--primary"></a><a href="#css--primary" class="prop-name">primary</a> | <span class="prop-name">.MuiListItemText-primary</span> | Styles applied to the primary `Typography` component.
+| <a class="anchor-link" id="css--secondary"></a><a href="#css--secondary" class="prop-name">secondary</a> | <span class="prop-name">.MuiListItemText-secondary</span> | Styles applied to the secondary `Typography` component.
 
 You can override the style of the component thanks to one of these customization points:
 

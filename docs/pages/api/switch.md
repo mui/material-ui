@@ -52,18 +52,18 @@ Any other props supplied will be provided to the root element ([IconButton](/api
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiSwitch-root</span> | Styles applied to the root element.
-| <span class="prop-name">edgeStart</span> | <span class="prop-name">.MuiSwitch-edgeStart</span> | Styles applied to the root element if `edge="start"`.
-| <span class="prop-name">edgeEnd</span> | <span class="prop-name">.MuiSwitch-edgeEnd</span> | Styles applied to the root element if `edge="end"`.
-| <span class="prop-name">switchBase</span> | <span class="prop-name">.MuiSwitch-switchBase</span> | Styles applied to the internal `SwitchBase` component's `root` class.
-| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiSwitch-colorPrimary</span> | Styles applied to the internal SwitchBase component's root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiSwitch-colorSecondary</span> | Styles applied to the internal SwitchBase component's root element if `color="secondary"`.
-| <span class="prop-name">sizeSmall</span> | <span class="prop-name">.MuiSwitch-sizeSmall</span> | Styles applied to the root element if `size="small"`.
-| <span class="prop-name">checked</span> | <span class="prop-name">.Mui-checked</span> | Pseudo-class applied to the internal `SwitchBase` component's `checked` class.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the internal SwitchBase component's disabled class.
-| <span class="prop-name">input</span> | <span class="prop-name">.MuiSwitch-input</span> | Styles applied to the internal SwitchBase component's input element.
-| <span class="prop-name">thumb</span> | <span class="prop-name">.MuiSwitch-thumb</span> | Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop.
-| <span class="prop-name">track</span> | <span class="prop-name">.MuiSwitch-track</span> | Styles applied to the track element.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiSwitch-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--edgeStart"></a><a href="#css--edgeStart" class="prop-name">edgeStart</a> | <span class="prop-name">.MuiSwitch-edgeStart</span> | Styles applied to the root element if `edge="start"`.
+| <a class="anchor-link" id="css--edgeEnd"></a><a href="#css--edgeEnd" class="prop-name">edgeEnd</a> | <span class="prop-name">.MuiSwitch-edgeEnd</span> | Styles applied to the root element if `edge="end"`.
+| <a class="anchor-link" id="css--switchBase"></a><a href="#css--switchBase" class="prop-name">switchBase</a> | <span class="prop-name">.MuiSwitch-switchBase</span> | Styles applied to the internal `SwitchBase` component's `root` class.
+| <a class="anchor-link" id="css--colorPrimary"></a><a href="#css--colorPrimary" class="prop-name">colorPrimary</a> | <span class="prop-name">.MuiSwitch-colorPrimary</span> | Styles applied to the internal SwitchBase component's root element if `color="primary"`.
+| <a class="anchor-link" id="css--colorSecondary"></a><a href="#css--colorSecondary" class="prop-name">colorSecondary</a> | <span class="prop-name">.MuiSwitch-colorSecondary</span> | Styles applied to the internal SwitchBase component's root element if `color="secondary"`.
+| <a class="anchor-link" id="css--sizeSmall"></a><a href="#css--sizeSmall" class="prop-name">sizeSmall</a> | <span class="prop-name">.MuiSwitch-sizeSmall</span> | Styles applied to the root element if `size="small"`.
+| <a class="anchor-link" id="css--checked"></a><a href="#css--checked" class="prop-name">checked</a> | <span class="prop-name">.Mui-checked</span> | Pseudo-class applied to the internal `SwitchBase` component's `checked` class.
+| <a class="anchor-link" id="css--disabled"></a><a href="#css--disabled" class="prop-name">disabled</a> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the internal SwitchBase component's disabled class.
+| <a class="anchor-link" id="css--input"></a><a href="#css--input" class="prop-name">input</a> | <span class="prop-name">.MuiSwitch-input</span> | Styles applied to the internal SwitchBase component's input element.
+| <a class="anchor-link" id="css--thumb"></a><a href="#css--thumb" class="prop-name">thumb</a> | <span class="prop-name">.MuiSwitch-thumb</span> | Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop.
+| <a class="anchor-link" id="css--track"></a><a href="#css--track" class="prop-name">track</a> | <span class="prop-name">.MuiSwitch-track</span> | Styles applied to the track element.
 
 You can override the style of the component thanks to one of these customization points:
 

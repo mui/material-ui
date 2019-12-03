@@ -53,53 +53,53 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiGrid-root</span> | Styles applied to the root element
-| <span class="prop-name">container</span> | <span class="prop-name">.MuiGrid-container</span> | Styles applied to the root element if `container={true}`.
-| <span class="prop-name">item</span> | <span class="prop-name">.MuiGrid-item</span> | Styles applied to the root element if `item={true}`.
-| <span class="prop-name">zeroMinWidth</span> | <span class="prop-name">.MuiGrid-zeroMinWidth</span> | Styles applied to the root element if `zeroMinWidth={true}`.
-| <span class="prop-name">direction-xs-column</span> | <span class="prop-name">.MuiGrid-direction-xs-column</span> | 
-| <span class="prop-name">direction-xs-column-reverse</span> | <span class="prop-name">.MuiGrid-direction-xs-column-reverse</span> | 
-| <span class="prop-name">direction-xs-row-reverse</span> | <span class="prop-name">.MuiGrid-direction-xs-row-reverse</span> | 
-| <span class="prop-name">wrap-xs-nowrap</span> | <span class="prop-name">.MuiGrid-wrap-xs-nowrap</span> | 
-| <span class="prop-name">wrap-xs-wrap-reverse</span> | <span class="prop-name">.MuiGrid-wrap-xs-wrap-reverse</span> | 
-| <span class="prop-name">align-items-xs-center</span> | <span class="prop-name">.MuiGrid-align-items-xs-center</span> | 
-| <span class="prop-name">align-items-xs-flex-start</span> | <span class="prop-name">.MuiGrid-align-items-xs-flex-start</span> | 
-| <span class="prop-name">align-items-xs-flex-end</span> | <span class="prop-name">.MuiGrid-align-items-xs-flex-end</span> | 
-| <span class="prop-name">align-items-xs-baseline</span> | <span class="prop-name">.MuiGrid-align-items-xs-baseline</span> | 
-| <span class="prop-name">align-content-xs-center</span> | <span class="prop-name">.MuiGrid-align-content-xs-center</span> | 
-| <span class="prop-name">align-content-xs-flex-start</span> | <span class="prop-name">.MuiGrid-align-content-xs-flex-start</span> | 
-| <span class="prop-name">align-content-xs-flex-end</span> | <span class="prop-name">.MuiGrid-align-content-xs-flex-end</span> | 
-| <span class="prop-name">align-content-xs-space-between</span> | <span class="prop-name">.MuiGrid-align-content-xs-space-between</span> | 
-| <span class="prop-name">align-content-xs-space-around</span> | <span class="prop-name">.MuiGrid-align-content-xs-space-around</span> | 
-| <span class="prop-name">justify-xs-center</span> | <span class="prop-name">.MuiGrid-justify-xs-center</span> | 
-| <span class="prop-name">justify-xs-flex-end</span> | <span class="prop-name">.MuiGrid-justify-xs-flex-end</span> | 
-| <span class="prop-name">justify-xs-space-between</span> | <span class="prop-name">.MuiGrid-justify-xs-space-between</span> | 
-| <span class="prop-name">justify-xs-space-around</span> | <span class="prop-name">.MuiGrid-justify-xs-space-around</span> | 
-| <span class="prop-name">justify-xs-space-evenly</span> | <span class="prop-name">.MuiGrid-justify-xs-space-evenly</span> | 
-| <span class="prop-name">spacing-xs-1</span> | <span class="prop-name">.MuiGrid-spacing-xs-1</span> | 
-| <span class="prop-name">spacing-xs-2</span> | <span class="prop-name">.MuiGrid-spacing-xs-2</span> | 
-| <span class="prop-name">spacing-xs-3</span> | <span class="prop-name">.MuiGrid-spacing-xs-3</span> | 
-| <span class="prop-name">spacing-xs-4</span> | <span class="prop-name">.MuiGrid-spacing-xs-4</span> | 
-| <span class="prop-name">spacing-xs-5</span> | <span class="prop-name">.MuiGrid-spacing-xs-5</span> | 
-| <span class="prop-name">spacing-xs-6</span> | <span class="prop-name">.MuiGrid-spacing-xs-6</span> | 
-| <span class="prop-name">spacing-xs-7</span> | <span class="prop-name">.MuiGrid-spacing-xs-7</span> | 
-| <span class="prop-name">spacing-xs-8</span> | <span class="prop-name">.MuiGrid-spacing-xs-8</span> | 
-| <span class="prop-name">spacing-xs-9</span> | <span class="prop-name">.MuiGrid-spacing-xs-9</span> | 
-| <span class="prop-name">spacing-xs-10</span> | <span class="prop-name">.MuiGrid-spacing-xs-10</span> | 
-| <span class="prop-name">grid-xs-auto</span> | <span class="prop-name">.MuiGrid-grid-xs-auto</span> | 
-| <span class="prop-name">grid-xs-true</span> | <span class="prop-name">.MuiGrid-grid-xs-true</span> | 
-| <span class="prop-name">grid-xs-1</span> | <span class="prop-name">.MuiGrid-grid-xs-1</span> | 
-| <span class="prop-name">grid-xs-2</span> | <span class="prop-name">.MuiGrid-grid-xs-2</span> | 
-| <span class="prop-name">grid-xs-3</span> | <span class="prop-name">.MuiGrid-grid-xs-3</span> | 
-| <span class="prop-name">grid-xs-4</span> | <span class="prop-name">.MuiGrid-grid-xs-4</span> | 
-| <span class="prop-name">grid-xs-5</span> | <span class="prop-name">.MuiGrid-grid-xs-5</span> | 
-| <span class="prop-name">grid-xs-6</span> | <span class="prop-name">.MuiGrid-grid-xs-6</span> | 
-| <span class="prop-name">grid-xs-7</span> | <span class="prop-name">.MuiGrid-grid-xs-7</span> | 
-| <span class="prop-name">grid-xs-8</span> | <span class="prop-name">.MuiGrid-grid-xs-8</span> | 
-| <span class="prop-name">grid-xs-9</span> | <span class="prop-name">.MuiGrid-grid-xs-9</span> | 
-| <span class="prop-name">grid-xs-10</span> | <span class="prop-name">.MuiGrid-grid-xs-10</span> | 
-| <span class="prop-name">grid-xs-11</span> | <span class="prop-name">.MuiGrid-grid-xs-11</span> | 
-| <span class="prop-name">grid-xs-12</span> | <span class="prop-name">.MuiGrid-grid-xs-12</span> | 
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiGrid-root</span> | Styles applied to the root element
+| <a class="anchor-link" id="css--container"></a><a href="#css--container" class="prop-name">container</a> | <span class="prop-name">.MuiGrid-container</span> | Styles applied to the root element if `container={true}`.
+| <a class="anchor-link" id="css--item"></a><a href="#css--item" class="prop-name">item</a> | <span class="prop-name">.MuiGrid-item</span> | Styles applied to the root element if `item={true}`.
+| <a class="anchor-link" id="css--zeroMinWidth"></a><a href="#css--zeroMinWidth" class="prop-name">zeroMinWidth</a> | <span class="prop-name">.MuiGrid-zeroMinWidth</span> | Styles applied to the root element if `zeroMinWidth={true}`.
+| <a class="anchor-link" id="css--direction-xs-column"></a><a href="#css--direction-xs-column" class="prop-name">direction-xs-column</a> | <span class="prop-name">.MuiGrid-direction-xs-column</span> | 
+| <a class="anchor-link" id="css--direction-xs-column-reverse"></a><a href="#css--direction-xs-column-reverse" class="prop-name">direction-xs-column-reverse</a> | <span class="prop-name">.MuiGrid-direction-xs-column-reverse</span> | 
+| <a class="anchor-link" id="css--direction-xs-row-reverse"></a><a href="#css--direction-xs-row-reverse" class="prop-name">direction-xs-row-reverse</a> | <span class="prop-name">.MuiGrid-direction-xs-row-reverse</span> | 
+| <a class="anchor-link" id="css--wrap-xs-nowrap"></a><a href="#css--wrap-xs-nowrap" class="prop-name">wrap-xs-nowrap</a> | <span class="prop-name">.MuiGrid-wrap-xs-nowrap</span> | 
+| <a class="anchor-link" id="css--wrap-xs-wrap-reverse"></a><a href="#css--wrap-xs-wrap-reverse" class="prop-name">wrap-xs-wrap-reverse</a> | <span class="prop-name">.MuiGrid-wrap-xs-wrap-reverse</span> | 
+| <a class="anchor-link" id="css--align-items-xs-center"></a><a href="#css--align-items-xs-center" class="prop-name">align-items-xs-center</a> | <span class="prop-name">.MuiGrid-align-items-xs-center</span> | 
+| <a class="anchor-link" id="css--align-items-xs-flex-start"></a><a href="#css--align-items-xs-flex-start" class="prop-name">align-items-xs-flex-start</a> | <span class="prop-name">.MuiGrid-align-items-xs-flex-start</span> | 
+| <a class="anchor-link" id="css--align-items-xs-flex-end"></a><a href="#css--align-items-xs-flex-end" class="prop-name">align-items-xs-flex-end</a> | <span class="prop-name">.MuiGrid-align-items-xs-flex-end</span> | 
+| <a class="anchor-link" id="css--align-items-xs-baseline"></a><a href="#css--align-items-xs-baseline" class="prop-name">align-items-xs-baseline</a> | <span class="prop-name">.MuiGrid-align-items-xs-baseline</span> | 
+| <a class="anchor-link" id="css--align-content-xs-center"></a><a href="#css--align-content-xs-center" class="prop-name">align-content-xs-center</a> | <span class="prop-name">.MuiGrid-align-content-xs-center</span> | 
+| <a class="anchor-link" id="css--align-content-xs-flex-start"></a><a href="#css--align-content-xs-flex-start" class="prop-name">align-content-xs-flex-start</a> | <span class="prop-name">.MuiGrid-align-content-xs-flex-start</span> | 
+| <a class="anchor-link" id="css--align-content-xs-flex-end"></a><a href="#css--align-content-xs-flex-end" class="prop-name">align-content-xs-flex-end</a> | <span class="prop-name">.MuiGrid-align-content-xs-flex-end</span> | 
+| <a class="anchor-link" id="css--align-content-xs-space-between"></a><a href="#css--align-content-xs-space-between" class="prop-name">align-content-xs-space-between</a> | <span class="prop-name">.MuiGrid-align-content-xs-space-between</span> | 
+| <a class="anchor-link" id="css--align-content-xs-space-around"></a><a href="#css--align-content-xs-space-around" class="prop-name">align-content-xs-space-around</a> | <span class="prop-name">.MuiGrid-align-content-xs-space-around</span> | 
+| <a class="anchor-link" id="css--justify-xs-center"></a><a href="#css--justify-xs-center" class="prop-name">justify-xs-center</a> | <span class="prop-name">.MuiGrid-justify-xs-center</span> | 
+| <a class="anchor-link" id="css--justify-xs-flex-end"></a><a href="#css--justify-xs-flex-end" class="prop-name">justify-xs-flex-end</a> | <span class="prop-name">.MuiGrid-justify-xs-flex-end</span> | 
+| <a class="anchor-link" id="css--justify-xs-space-between"></a><a href="#css--justify-xs-space-between" class="prop-name">justify-xs-space-between</a> | <span class="prop-name">.MuiGrid-justify-xs-space-between</span> | 
+| <a class="anchor-link" id="css--justify-xs-space-around"></a><a href="#css--justify-xs-space-around" class="prop-name">justify-xs-space-around</a> | <span class="prop-name">.MuiGrid-justify-xs-space-around</span> | 
+| <a class="anchor-link" id="css--justify-xs-space-evenly"></a><a href="#css--justify-xs-space-evenly" class="prop-name">justify-xs-space-evenly</a> | <span class="prop-name">.MuiGrid-justify-xs-space-evenly</span> | 
+| <a class="anchor-link" id="css--spacing-xs-1"></a><a href="#css--spacing-xs-1" class="prop-name">spacing-xs-1</a> | <span class="prop-name">.MuiGrid-spacing-xs-1</span> | 
+| <a class="anchor-link" id="css--spacing-xs-2"></a><a href="#css--spacing-xs-2" class="prop-name">spacing-xs-2</a> | <span class="prop-name">.MuiGrid-spacing-xs-2</span> | 
+| <a class="anchor-link" id="css--spacing-xs-3"></a><a href="#css--spacing-xs-3" class="prop-name">spacing-xs-3</a> | <span class="prop-name">.MuiGrid-spacing-xs-3</span> | 
+| <a class="anchor-link" id="css--spacing-xs-4"></a><a href="#css--spacing-xs-4" class="prop-name">spacing-xs-4</a> | <span class="prop-name">.MuiGrid-spacing-xs-4</span> | 
+| <a class="anchor-link" id="css--spacing-xs-5"></a><a href="#css--spacing-xs-5" class="prop-name">spacing-xs-5</a> | <span class="prop-name">.MuiGrid-spacing-xs-5</span> | 
+| <a class="anchor-link" id="css--spacing-xs-6"></a><a href="#css--spacing-xs-6" class="prop-name">spacing-xs-6</a> | <span class="prop-name">.MuiGrid-spacing-xs-6</span> | 
+| <a class="anchor-link" id="css--spacing-xs-7"></a><a href="#css--spacing-xs-7" class="prop-name">spacing-xs-7</a> | <span class="prop-name">.MuiGrid-spacing-xs-7</span> | 
+| <a class="anchor-link" id="css--spacing-xs-8"></a><a href="#css--spacing-xs-8" class="prop-name">spacing-xs-8</a> | <span class="prop-name">.MuiGrid-spacing-xs-8</span> | 
+| <a class="anchor-link" id="css--spacing-xs-9"></a><a href="#css--spacing-xs-9" class="prop-name">spacing-xs-9</a> | <span class="prop-name">.MuiGrid-spacing-xs-9</span> | 
+| <a class="anchor-link" id="css--spacing-xs-10"></a><a href="#css--spacing-xs-10" class="prop-name">spacing-xs-10</a> | <span class="prop-name">.MuiGrid-spacing-xs-10</span> | 
+| <a class="anchor-link" id="css--grid-xs-auto"></a><a href="#css--grid-xs-auto" class="prop-name">grid-xs-auto</a> | <span class="prop-name">.MuiGrid-grid-xs-auto</span> | 
+| <a class="anchor-link" id="css--grid-xs-true"></a><a href="#css--grid-xs-true" class="prop-name">grid-xs-true</a> | <span class="prop-name">.MuiGrid-grid-xs-true</span> | 
+| <a class="anchor-link" id="css--grid-xs-1"></a><a href="#css--grid-xs-1" class="prop-name">grid-xs-1</a> | <span class="prop-name">.MuiGrid-grid-xs-1</span> | 
+| <a class="anchor-link" id="css--grid-xs-2"></a><a href="#css--grid-xs-2" class="prop-name">grid-xs-2</a> | <span class="prop-name">.MuiGrid-grid-xs-2</span> | 
+| <a class="anchor-link" id="css--grid-xs-3"></a><a href="#css--grid-xs-3" class="prop-name">grid-xs-3</a> | <span class="prop-name">.MuiGrid-grid-xs-3</span> | 
+| <a class="anchor-link" id="css--grid-xs-4"></a><a href="#css--grid-xs-4" class="prop-name">grid-xs-4</a> | <span class="prop-name">.MuiGrid-grid-xs-4</span> | 
+| <a class="anchor-link" id="css--grid-xs-5"></a><a href="#css--grid-xs-5" class="prop-name">grid-xs-5</a> | <span class="prop-name">.MuiGrid-grid-xs-5</span> | 
+| <a class="anchor-link" id="css--grid-xs-6"></a><a href="#css--grid-xs-6" class="prop-name">grid-xs-6</a> | <span class="prop-name">.MuiGrid-grid-xs-6</span> | 
+| <a class="anchor-link" id="css--grid-xs-7"></a><a href="#css--grid-xs-7" class="prop-name">grid-xs-7</a> | <span class="prop-name">.MuiGrid-grid-xs-7</span> | 
+| <a class="anchor-link" id="css--grid-xs-8"></a><a href="#css--grid-xs-8" class="prop-name">grid-xs-8</a> | <span class="prop-name">.MuiGrid-grid-xs-8</span> | 
+| <a class="anchor-link" id="css--grid-xs-9"></a><a href="#css--grid-xs-9" class="prop-name">grid-xs-9</a> | <span class="prop-name">.MuiGrid-grid-xs-9</span> | 
+| <a class="anchor-link" id="css--grid-xs-10"></a><a href="#css--grid-xs-10" class="prop-name">grid-xs-10</a> | <span class="prop-name">.MuiGrid-grid-xs-10</span> | 
+| <a class="anchor-link" id="css--grid-xs-11"></a><a href="#css--grid-xs-11" class="prop-name">grid-xs-11</a> | <span class="prop-name">.MuiGrid-grid-xs-11</span> | 
+| <a class="anchor-link" id="css--grid-xs-12"></a><a href="#css--grid-xs-12" class="prop-name">grid-xs-12</a> | <span class="prop-name">.MuiGrid-grid-xs-12</span> | 
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -44,10 +44,10 @@ Any other props supplied will be provided to the root element ([Paper](/api/pape
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiExpansionPanel-root</span> | Styles applied to the root element.
-| <span class="prop-name">rounded</span> | <span class="prop-name">.MuiExpansionPanel-rounded</span> | Styles applied to the root element if `square={false}`.
-| <span class="prop-name">expanded</span> | <span class="prop-name">.Mui-expanded</span> | Styles applied to the root element if `expanded={true}`.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiExpansionPanel-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--rounded"></a><a href="#css--rounded" class="prop-name">rounded</a> | <span class="prop-name">.MuiExpansionPanel-rounded</span> | Styles applied to the root element if `square={false}`.
+| <a class="anchor-link" id="css--expanded"></a><a href="#css--expanded" class="prop-name">expanded</a> | <span class="prop-name">.Mui-expanded</span> | Styles applied to the root element if `expanded={true}`.
+| <a class="anchor-link" id="css--disabled"></a><a href="#css--disabled" class="prop-name">disabled</a> | <span class="prop-name">.Mui-disabled</span> | Styles applied to the root element if `disabled={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

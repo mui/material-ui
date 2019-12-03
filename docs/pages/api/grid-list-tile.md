@@ -41,10 +41,10 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiGridListTile-root</span> | Styles applied to the root element.
-| <span class="prop-name">tile</span> | <span class="prop-name">.MuiGridListTile-tile</span> | Styles applied to the `div` element that wraps the children.
-| <span class="prop-name">imgFullHeight</span> | <span class="prop-name">.MuiGridListTile-imgFullHeight</span> | Styles applied to an `img` element child, if needed to ensure it covers the tile.
-| <span class="prop-name">imgFullWidth</span> | <span class="prop-name">.MuiGridListTile-imgFullWidth</span> | Styles applied to an `img` element child, if needed to ensure it covers the tile.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiGridListTile-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--tile"></a><a href="#css--tile" class="prop-name">tile</a> | <span class="prop-name">.MuiGridListTile-tile</span> | Styles applied to the `div` element that wraps the children.
+| <a class="anchor-link" id="css--imgFullHeight"></a><a href="#css--imgFullHeight" class="prop-name">imgFullHeight</a> | <span class="prop-name">.MuiGridListTile-imgFullHeight</span> | Styles applied to an `img` element child, if needed to ensure it covers the tile.
+| <a class="anchor-link" id="css--imgFullWidth"></a><a href="#css--imgFullWidth" class="prop-name">imgFullWidth</a> | <span class="prop-name">.MuiGridListTile-imgFullWidth</span> | Styles applied to an `img` element child, if needed to ensure it covers the tile.
 
 You can override the style of the component thanks to one of these customization points:
 

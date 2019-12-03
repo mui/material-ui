@@ -48,18 +48,18 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiDrawer-root</span> | Styles applied to the root element.
-| <span class="prop-name">docked</span> | <span class="prop-name">.MuiDrawer-docked</span> | Styles applied to the root element if `variant="permanent or persistent"`.
-| <span class="prop-name">paper</span> | <span class="prop-name">.MuiDrawer-paper</span> | Styles applied to the `Paper` component.
-| <span class="prop-name">paperAnchorLeft</span> | <span class="prop-name">.MuiDrawer-paperAnchorLeft</span> | Styles applied to the `Paper` component if `anchor="left"`.
-| <span class="prop-name">paperAnchorRight</span> | <span class="prop-name">.MuiDrawer-paperAnchorRight</span> | Styles applied to the `Paper` component if `anchor="right"`.
-| <span class="prop-name">paperAnchorTop</span> | <span class="prop-name">.MuiDrawer-paperAnchorTop</span> | Styles applied to the `Paper` component if `anchor="top"`.
-| <span class="prop-name">paperAnchorBottom</span> | <span class="prop-name">.MuiDrawer-paperAnchorBottom</span> | Styles applied to the `Paper` component if `anchor="bottom"`.
-| <span class="prop-name">paperAnchorDockedLeft</span> | <span class="prop-name">.MuiDrawer-paperAnchorDockedLeft</span> | Styles applied to the `Paper` component if `anchor="left"` and `variant` is not "temporary".
-| <span class="prop-name">paperAnchorDockedTop</span> | <span class="prop-name">.MuiDrawer-paperAnchorDockedTop</span> | Styles applied to the `Paper` component if `anchor="top"` and `variant` is not "temporary".
-| <span class="prop-name">paperAnchorDockedRight</span> | <span class="prop-name">.MuiDrawer-paperAnchorDockedRight</span> | Styles applied to the `Paper` component if `anchor="right"` and `variant` is not "temporary".
-| <span class="prop-name">paperAnchorDockedBottom</span> | <span class="prop-name">.MuiDrawer-paperAnchorDockedBottom</span> | Styles applied to the `Paper` component if `anchor="bottom"` and `variant` is not "temporary".
-| <span class="prop-name">modal</span> | <span class="prop-name">.MuiDrawer-modal</span> | Styles applied to the `Modal` component.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiDrawer-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--docked"></a><a href="#css--docked" class="prop-name">docked</a> | <span class="prop-name">.MuiDrawer-docked</span> | Styles applied to the root element if `variant="permanent or persistent"`.
+| <a class="anchor-link" id="css--paper"></a><a href="#css--paper" class="prop-name">paper</a> | <span class="prop-name">.MuiDrawer-paper</span> | Styles applied to the `Paper` component.
+| <a class="anchor-link" id="css--paperAnchorLeft"></a><a href="#css--paperAnchorLeft" class="prop-name">paperAnchorLeft</a> | <span class="prop-name">.MuiDrawer-paperAnchorLeft</span> | Styles applied to the `Paper` component if `anchor="left"`.
+| <a class="anchor-link" id="css--paperAnchorRight"></a><a href="#css--paperAnchorRight" class="prop-name">paperAnchorRight</a> | <span class="prop-name">.MuiDrawer-paperAnchorRight</span> | Styles applied to the `Paper` component if `anchor="right"`.
+| <a class="anchor-link" id="css--paperAnchorTop"></a><a href="#css--paperAnchorTop" class="prop-name">paperAnchorTop</a> | <span class="prop-name">.MuiDrawer-paperAnchorTop</span> | Styles applied to the `Paper` component if `anchor="top"`.
+| <a class="anchor-link" id="css--paperAnchorBottom"></a><a href="#css--paperAnchorBottom" class="prop-name">paperAnchorBottom</a> | <span class="prop-name">.MuiDrawer-paperAnchorBottom</span> | Styles applied to the `Paper` component if `anchor="bottom"`.
+| <a class="anchor-link" id="css--paperAnchorDockedLeft"></a><a href="#css--paperAnchorDockedLeft" class="prop-name">paperAnchorDockedLeft</a> | <span class="prop-name">.MuiDrawer-paperAnchorDockedLeft</span> | Styles applied to the `Paper` component if `anchor="left"` and `variant` is not "temporary".
+| <a class="anchor-link" id="css--paperAnchorDockedTop"></a><a href="#css--paperAnchorDockedTop" class="prop-name">paperAnchorDockedTop</a> | <span class="prop-name">.MuiDrawer-paperAnchorDockedTop</span> | Styles applied to the `Paper` component if `anchor="top"` and `variant` is not "temporary".
+| <a class="anchor-link" id="css--paperAnchorDockedRight"></a><a href="#css--paperAnchorDockedRight" class="prop-name">paperAnchorDockedRight</a> | <span class="prop-name">.MuiDrawer-paperAnchorDockedRight</span> | Styles applied to the `Paper` component if `anchor="right"` and `variant` is not "temporary".
+| <a class="anchor-link" id="css--paperAnchorDockedBottom"></a><a href="#css--paperAnchorDockedBottom" class="prop-name">paperAnchorDockedBottom</a> | <span class="prop-name">.MuiDrawer-paperAnchorDockedBottom</span> | Styles applied to the `Paper` component if `anchor="bottom"` and `variant` is not "temporary".
+| <a class="anchor-link" id="css--modal"></a><a href="#css--modal" class="prop-name">modal</a> | <span class="prop-name">.MuiDrawer-modal</span> | Styles applied to the `Modal` component.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -42,11 +42,11 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiTableRow-root</span> | Styles applied to the root element.
-| <span class="prop-name">selected</span> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the root element if `selected={true}`.
-| <span class="prop-name">hover</span> | <span class="prop-name">.MuiTableRow-hover</span> | Pseudo-class applied to the root element if `hover={true}`.
-| <span class="prop-name">head</span> | <span class="prop-name">.MuiTableRow-head</span> | Styles applied to the root element if table variant="head".
-| <span class="prop-name">footer</span> | <span class="prop-name">.MuiTableRow-footer</span> | Styles applied to the root element if table variant="footer".
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiTableRow-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--selected"></a><a href="#css--selected" class="prop-name">selected</a> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the root element if `selected={true}`.
+| <a class="anchor-link" id="css--hover"></a><a href="#css--hover" class="prop-name">hover</a> | <span class="prop-name">.MuiTableRow-hover</span> | Pseudo-class applied to the root element if `hover={true}`.
+| <a class="anchor-link" id="css--head"></a><a href="#css--head" class="prop-name">head</a> | <span class="prop-name">.MuiTableRow-head</span> | Styles applied to the root element if table variant="head".
+| <a class="anchor-link" id="css--footer"></a><a href="#css--footer" class="prop-name">footer</a> | <span class="prop-name">.MuiTableRow-footer</span> | Styles applied to the root element if table variant="footer".
 
 You can override the style of the component thanks to one of these customization points:
 

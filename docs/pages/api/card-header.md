@@ -45,12 +45,12 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiCardHeader-root</span> | Styles applied to the root element.
-| <span class="prop-name">avatar</span> | <span class="prop-name">.MuiCardHeader-avatar</span> | Styles applied to the avatar element.
-| <span class="prop-name">action</span> | <span class="prop-name">.MuiCardHeader-action</span> | Styles applied to the action element.
-| <span class="prop-name">content</span> | <span class="prop-name">.MuiCardHeader-content</span> | Styles applied to the content wrapper element.
-| <span class="prop-name">title</span> | <span class="prop-name">.MuiCardHeader-title</span> | Styles applied to the title Typography element.
-| <span class="prop-name">subheader</span> | <span class="prop-name">.MuiCardHeader-subheader</span> | Styles applied to the subheader Typography element.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiCardHeader-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--avatar"></a><a href="#css--avatar" class="prop-name">avatar</a> | <span class="prop-name">.MuiCardHeader-avatar</span> | Styles applied to the avatar element.
+| <a class="anchor-link" id="css--action"></a><a href="#css--action" class="prop-name">action</a> | <span class="prop-name">.MuiCardHeader-action</span> | Styles applied to the action element.
+| <a class="anchor-link" id="css--content"></a><a href="#css--content" class="prop-name">content</a> | <span class="prop-name">.MuiCardHeader-content</span> | Styles applied to the content wrapper element.
+| <a class="anchor-link" id="css--title"></a><a href="#css--title" class="prop-name">title</a> | <span class="prop-name">.MuiCardHeader-title</span> | Styles applied to the title Typography element.
+| <a class="anchor-link" id="css--subheader"></a><a href="#css--subheader" class="prop-name">subheader</a> | <span class="prop-name">.MuiCardHeader-subheader</span> | Styles applied to the subheader Typography element.
 
 You can override the style of the component thanks to one of these customization points:
 

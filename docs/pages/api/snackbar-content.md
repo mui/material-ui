@@ -40,9 +40,9 @@ Any other props supplied will be provided to the root element ([Paper](/api/pape
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiSnackbarContent-root</span> | Styles applied to the root element.
-| <span class="prop-name">message</span> | <span class="prop-name">.MuiSnackbarContent-message</span> | Styles applied to the message wrapper element.
-| <span class="prop-name">action</span> | <span class="prop-name">.MuiSnackbarContent-action</span> | Styles applied to the action wrapper element if `action` is provided.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiSnackbarContent-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--message"></a><a href="#css--message" class="prop-name">message</a> | <span class="prop-name">.MuiSnackbarContent-message</span> | Styles applied to the message wrapper element.
+| <a class="anchor-link" id="css--action"></a><a href="#css--action" class="prop-name">action</a> | <span class="prop-name">.MuiSnackbarContent-action</span> | Styles applied to the action wrapper element if `action` is provided.
 
 You can override the style of the component thanks to one of these customization points:
 

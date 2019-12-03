@@ -41,10 +41,10 @@ Any other props supplied will be provided to the root element ([ListItem](/api/l
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiMenuItem-root</span> | Styles applied to the root element.
-| <span class="prop-name">gutters</span> | <span class="prop-name">.MuiMenuItem-gutters</span> | Styles applied to the root element if `disableGutters={false}`.
-| <span class="prop-name">selected</span> | <span class="prop-name">.Mui-selected</span> | Styles applied to the root element if `selected={true}`.
-| <span class="prop-name">dense</span> | <span class="prop-name">.MuiMenuItem-dense</span> | Styles applied to the root element if dense.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiMenuItem-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--gutters"></a><a href="#css--gutters" class="prop-name">gutters</a> | <span class="prop-name">.MuiMenuItem-gutters</span> | Styles applied to the root element if `disableGutters={false}`.
+| <a class="anchor-link" id="css--selected"></a><a href="#css--selected" class="prop-name">selected</a> | <span class="prop-name">.Mui-selected</span> | Styles applied to the root element if `selected={true}`.
+| <a class="anchor-link" id="css--dense"></a><a href="#css--dense" class="prop-name">dense</a> | <span class="prop-name">.MuiMenuItem-dense</span> | Styles applied to the root element if dense.
 
 You can override the style of the component thanks to one of these customization points:
 

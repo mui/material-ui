@@ -47,18 +47,18 @@ Any other props supplied will be provided to the root element ([FormLabel](/api/
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiInputLabel-root</span> | Styles applied to the root element.
-| <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element if `focused={true}`.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Pseudo-class applied to the root element if `error={true}`.
-| <span class="prop-name">required</span> | <span class="prop-name">.Mui-required</span> | Pseudo-class applied to the root element if `required={true}`.
-| <span class="prop-name">asterisk</span> | <span class="prop-name">.MuiInputLabel-asterisk</span> | Pseudo-class applied to the asterisk element.
-| <span class="prop-name">formControl</span> | <span class="prop-name">.MuiInputLabel-formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
-| <span class="prop-name">marginDense</span> | <span class="prop-name">.MuiInputLabel-marginDense</span> | Styles applied to the root element if `margin="dense"`.
-| <span class="prop-name">shrink</span> | <span class="prop-name">.MuiInputLabel-shrink</span> | Styles applied to the `input` element if `shrink={true}`.
-| <span class="prop-name">animated</span> | <span class="prop-name">.MuiInputLabel-animated</span> | Styles applied to the `input` element if `disableAnimation={false}`.
-| <span class="prop-name">filled</span> | <span class="prop-name">.MuiInputLabel-filled</span> | Styles applied to the root element if `variant="filled"`.
-| <span class="prop-name">outlined</span> | <span class="prop-name">.MuiInputLabel-outlined</span> | Styles applied to the root element if `variant="outlined"`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiInputLabel-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--focused"></a><a href="#css--focused" class="prop-name">focused</a> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element if `focused={true}`.
+| <a class="anchor-link" id="css--disabled"></a><a href="#css--disabled" class="prop-name">disabled</a> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <a class="anchor-link" id="css--error"></a><a href="#css--error" class="prop-name">error</a> | <span class="prop-name">.Mui-error</span> | Pseudo-class applied to the root element if `error={true}`.
+| <a class="anchor-link" id="css--required"></a><a href="#css--required" class="prop-name">required</a> | <span class="prop-name">.Mui-required</span> | Pseudo-class applied to the root element if `required={true}`.
+| <a class="anchor-link" id="css--asterisk"></a><a href="#css--asterisk" class="prop-name">asterisk</a> | <span class="prop-name">.MuiInputLabel-asterisk</span> | Pseudo-class applied to the asterisk element.
+| <a class="anchor-link" id="css--formControl"></a><a href="#css--formControl" class="prop-name">formControl</a> | <span class="prop-name">.MuiInputLabel-formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
+| <a class="anchor-link" id="css--marginDense"></a><a href="#css--marginDense" class="prop-name">marginDense</a> | <span class="prop-name">.MuiInputLabel-marginDense</span> | Styles applied to the root element if `margin="dense"`.
+| <a class="anchor-link" id="css--shrink"></a><a href="#css--shrink" class="prop-name">shrink</a> | <span class="prop-name">.MuiInputLabel-shrink</span> | Styles applied to the `input` element if `shrink={true}`.
+| <a class="anchor-link" id="css--animated"></a><a href="#css--animated" class="prop-name">animated</a> | <span class="prop-name">.MuiInputLabel-animated</span> | Styles applied to the `input` element if `disableAnimation={false}`.
+| <a class="anchor-link" id="css--filled"></a><a href="#css--filled" class="prop-name">filled</a> | <span class="prop-name">.MuiInputLabel-filled</span> | Styles applied to the root element if `variant="filled"`.
+| <a class="anchor-link" id="css--outlined"></a><a href="#css--outlined" class="prop-name">outlined</a> | <span class="prop-name">.MuiInputLabel-outlined</span> | Styles applied to the root element if `variant="outlined"`.
 
 You can override the style of the component thanks to one of these customization points:
 

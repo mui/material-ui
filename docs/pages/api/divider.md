@@ -42,12 +42,12 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiDivider-root</span> | Styles applied to the root element.
-| <span class="prop-name">absolute</span> | <span class="prop-name">.MuiDivider-absolute</span> | Styles applied to the root element if `absolute={true}`.
-| <span class="prop-name">inset</span> | <span class="prop-name">.MuiDivider-inset</span> | Styles applied to the root element if `variant="inset"`.
-| <span class="prop-name">light</span> | <span class="prop-name">.MuiDivider-light</span> | Styles applied to the root element if `light={true}`.
-| <span class="prop-name">middle</span> | <span class="prop-name">.MuiDivider-middle</span> | Styles applied to the root element if `variant="middle"`.
-| <span class="prop-name">vertical</span> | <span class="prop-name">.MuiDivider-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiDivider-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--absolute"></a><a href="#css--absolute" class="prop-name">absolute</a> | <span class="prop-name">.MuiDivider-absolute</span> | Styles applied to the root element if `absolute={true}`.
+| <a class="anchor-link" id="css--inset"></a><a href="#css--inset" class="prop-name">inset</a> | <span class="prop-name">.MuiDivider-inset</span> | Styles applied to the root element if `variant="inset"`.
+| <a class="anchor-link" id="css--light"></a><a href="#css--light" class="prop-name">light</a> | <span class="prop-name">.MuiDivider-light</span> | Styles applied to the root element if `light={true}`.
+| <a class="anchor-link" id="css--middle"></a><a href="#css--middle" class="prop-name">middle</a> | <span class="prop-name">.MuiDivider-middle</span> | Styles applied to the root element if `variant="middle"`.
+| <a class="anchor-link" id="css--vertical"></a><a href="#css--vertical" class="prop-name">vertical</a> | <span class="prop-name">.MuiDivider-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
 
 You can override the style of the component thanks to one of these customization points:
 

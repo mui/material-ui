@@ -52,16 +52,16 @@ Any other props supplied will be provided to the root element ([TableCell](/api/
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiTablePagination-root</span> | Styles applied to the root element.
-| <span class="prop-name">toolbar</span> | <span class="prop-name">.MuiTablePagination-toolbar</span> | Styles applied to the Toolbar component.
-| <span class="prop-name">spacer</span> | <span class="prop-name">.MuiTablePagination-spacer</span> | Styles applied to the spacer element.
-| <span class="prop-name">caption</span> | <span class="prop-name">.MuiTablePagination-caption</span> | Styles applied to the caption Typography components if `variant="caption"`.
-| <span class="prop-name">selectRoot</span> | <span class="prop-name">.MuiTablePagination-selectRoot</span> | Styles applied to the Select component root element.
-| <span class="prop-name">select</span> | <span class="prop-name">.MuiTablePagination-select</span> | Styles applied to the Select component `select` class.
-| <span class="prop-name">selectIcon</span> | <span class="prop-name">.MuiTablePagination-selectIcon</span> | Styles applied to the Select component `icon` class.
-| <span class="prop-name">input</span> | <span class="prop-name">.MuiTablePagination-input</span> | Styles applied to the `InputBase` component.
-| <span class="prop-name">menuItem</span> | <span class="prop-name">.MuiTablePagination-menuItem</span> | Styles applied to the MenuItem component.
-| <span class="prop-name">actions</span> | <span class="prop-name">.MuiTablePagination-actions</span> | Styles applied to the internal `TablePaginationActions` component.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiTablePagination-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--toolbar"></a><a href="#css--toolbar" class="prop-name">toolbar</a> | <span class="prop-name">.MuiTablePagination-toolbar</span> | Styles applied to the Toolbar component.
+| <a class="anchor-link" id="css--spacer"></a><a href="#css--spacer" class="prop-name">spacer</a> | <span class="prop-name">.MuiTablePagination-spacer</span> | Styles applied to the spacer element.
+| <a class="anchor-link" id="css--caption"></a><a href="#css--caption" class="prop-name">caption</a> | <span class="prop-name">.MuiTablePagination-caption</span> | Styles applied to the caption Typography components if `variant="caption"`.
+| <a class="anchor-link" id="css--selectRoot"></a><a href="#css--selectRoot" class="prop-name">selectRoot</a> | <span class="prop-name">.MuiTablePagination-selectRoot</span> | Styles applied to the Select component root element.
+| <a class="anchor-link" id="css--select"></a><a href="#css--select" class="prop-name">select</a> | <span class="prop-name">.MuiTablePagination-select</span> | Styles applied to the Select component `select` class.
+| <a class="anchor-link" id="css--selectIcon"></a><a href="#css--selectIcon" class="prop-name">selectIcon</a> | <span class="prop-name">.MuiTablePagination-selectIcon</span> | Styles applied to the Select component `icon` class.
+| <a class="anchor-link" id="css--input"></a><a href="#css--input" class="prop-name">input</a> | <span class="prop-name">.MuiTablePagination-input</span> | Styles applied to the `InputBase` component.
+| <a class="anchor-link" id="css--menuItem"></a><a href="#css--menuItem" class="prop-name">menuItem</a> | <span class="prop-name">.MuiTablePagination-menuItem</span> | Styles applied to the MenuItem component.
+| <a class="anchor-link" id="css--actions"></a><a href="#css--actions" class="prop-name">actions</a> | <span class="prop-name">.MuiTablePagination-actions</span> | Styles applied to the internal `TablePaginationActions` component.
 
 You can override the style of the component thanks to one of these customization points:
 

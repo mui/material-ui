@@ -42,10 +42,10 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiList-root</span> | Styles applied to the root element.
-| <span class="prop-name">padding</span> | <span class="prop-name">.MuiList-padding</span> | Styles applied to the root element if `disablePadding={false}`.
-| <span class="prop-name">dense</span> | <span class="prop-name">.MuiList-dense</span> | Styles applied to the root element if dense.
-| <span class="prop-name">subheader</span> | <span class="prop-name">.MuiList-subheader</span> | Styles applied to the root element if a `subheader` is provided.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiList-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--padding"></a><a href="#css--padding" class="prop-name">padding</a> | <span class="prop-name">.MuiList-padding</span> | Styles applied to the root element if `disablePadding={false}`.
+| <a class="anchor-link" id="css--dense"></a><a href="#css--dense" class="prop-name">dense</a> | <span class="prop-name">.MuiList-dense</span> | Styles applied to the root element if dense.
+| <a class="anchor-link" id="css--subheader"></a><a href="#css--subheader" class="prop-name">subheader</a> | <span class="prop-name">.MuiList-subheader</span> | Styles applied to the root element if a `subheader` is provided.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -41,8 +41,8 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.MuiBackdrop-root</span> | Styles applied to the root element.
-| <span class="prop-name">invisible</span> | <span class="prop-name">.MuiBackdrop-invisible</span> | Styles applied to the root element if `invisible={true}`.
+| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiBackdrop-root</span> | Styles applied to the root element.
+| <a class="anchor-link" id="css--invisible"></a><a href="#css--invisible" class="prop-name">invisible</a> | <span class="prop-name">.MuiBackdrop-invisible</span> | Styles applied to the root element if `invisible={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 
