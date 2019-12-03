@@ -25,13 +25,12 @@ export const styles = theme => ({
   /* Styles applied to the tag elements, e.g. the chips. */
   tag: {
     margin: 3,
-    '&:last-child': {
-      marginRight: 5,
-    },
+    maxWidth: 'calc(100% - 6px)',
   },
   /* Styles applied to the tag elements, e.g. the chips if `size="small"`. */
   tagSizeSmall: {
     margin: 2,
+    maxWidth: 'calc(100% - 4px)',
   },
   /* Styles applied to the Input element. */
   inputRoot: {
