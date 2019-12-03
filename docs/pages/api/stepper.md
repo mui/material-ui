@@ -24,13 +24,13 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">activeStep</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | Set the active step (zero based index). |
-| <span class="prop-name">alternativeLabel</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If set to 'true' and orientation is horizontal, then the step label will be positioned under the icon. |
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | Two or more `<Step />` components. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">connector</span> | <span class="prop-type">element</span> | <span class="prop-default">&lt;StepConnector /></span> | An element to be placed between each step. |
-| <span class="prop-name">nonLinear</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If set the `Stepper` will not assist in controlling steps for linear flow. |
-| <span class="prop-name">orientation</span> | <span class="prop-type">'horizontal'<br>&#124;&nbsp;'vertical'</span> | <span class="prop-default">'horizontal'</span> | The stepper orientation (layout flow direction). |
+| <a class="anchor-link" id="props--activeStep"></a><a href="#props--activeStep" class="prop-name">activeStep</a> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | Set the active step (zero based index). |
+| <a class="anchor-link" id="props--alternativeLabel"></a><a href="#props--alternativeLabel" class="prop-name">alternativeLabel</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If set to 'true' and orientation is horizontal, then the step label will be positioned under the icon. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name required">children&nbsp;*</a> | <span class="prop-type">node</span> |  | Two or more `<Step />` components. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--connector"></a><a href="#props--connector" class="prop-name">connector</a> | <span class="prop-type">element</span> | <span class="prop-default">&lt;StepConnector /></span> | An element to be placed between each step. |
+| <a class="anchor-link" id="props--nonLinear"></a><a href="#props--nonLinear" class="prop-name">nonLinear</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If set the `Stepper` will not assist in controlling steps for linear flow. |
+| <a class="anchor-link" id="props--orientation"></a><a href="#props--orientation" class="prop-name">orientation</a> | <span class="prop-type">'horizontal'<br>&#124;&nbsp;'vertical'</span> | <span class="prop-default">'horizontal'</span> | The stepper orientation (layout flow direction). |
 
 The `ref` is forwarded to the root element.
 

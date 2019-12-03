@@ -24,15 +24,15 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">collapseIcon</span> | <span class="prop-type">node</span> |  | The icon used to collapse the node. |
-| <span class="prop-name">endIcon</span> | <span class="prop-type">node</span> |  | The icon displayed next to a end node. |
-| <span class="prop-name">expandIcon</span> | <span class="prop-type">node</span> |  | The icon used to expand the node. |
-| <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon to display next to the tree node's label. |
-| <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | The tree node label. |
-| <span class="prop-name required">nodeId&nbsp;*</span> | <span class="prop-type">string</span> |  | The id of the node. |
-| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Collapse</span> | The component used for the transition. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | The content of the component. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--collapseIcon"></a><a href="#props--collapseIcon" class="prop-name">collapseIcon</a> | <span class="prop-type">node</span> |  | The icon used to collapse the node. |
+| <a class="anchor-link" id="props--endIcon"></a><a href="#props--endIcon" class="prop-name">endIcon</a> | <span class="prop-type">node</span> |  | The icon displayed next to a end node. |
+| <a class="anchor-link" id="props--expandIcon"></a><a href="#props--expandIcon" class="prop-name">expandIcon</a> | <span class="prop-type">node</span> |  | The icon used to expand the node. |
+| <a class="anchor-link" id="props--icon"></a><a href="#props--icon" class="prop-name">icon</a> | <span class="prop-type">node</span> |  | The icon to display next to the tree node's label. |
+| <a class="anchor-link" id="props--label"></a><a href="#props--label" class="prop-name">label</a> | <span class="prop-type">node</span> |  | The tree node label. |
+| <a class="anchor-link" id="props--nodeId"></a><a href="#props--nodeId" class="prop-name required">nodeId&nbsp;*</a> | <span class="prop-type">string</span> |  | The id of the node. |
+| <a class="anchor-link" id="props--TransitionComponent"></a><a href="#props--TransitionComponent" class="prop-name">TransitionComponent</a> | <span class="prop-type">elementType</span> | <span class="prop-default">Collapse</span> | The component used for the transition. |
 
 The `ref` is forwarded to the root element.
 

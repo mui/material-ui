@@ -24,10 +24,10 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Can be a `StepLabel` or a node to place inside `StepLabel` as children. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon displayed by the step label. |
-| <span class="prop-name">optional</span> | <span class="prop-type">node</span> |  | The optional node to display. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | Can be a `StepLabel` or a node to place inside `StepLabel` as children. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--icon"></a><a href="#props--icon" class="prop-name">icon</a> | <span class="prop-type">node</span> |  | The icon displayed by the step label. |
+| <a class="anchor-link" id="props--optional"></a><a href="#props--optional" class="prop-name">optional</a> | <span class="prop-type">node</span> |  | The optional node to display. |
 
 The `ref` is forwarded to the root element.
 

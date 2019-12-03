@@ -24,11 +24,11 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">active</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Whether this step is active. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">completed</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as completed. Is passed to child components. |
-| <span class="prop-name">error</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as failed. |
-| <span class="prop-name required">icon&nbsp;*</span> | <span class="prop-type">node</span> |  | The label displayed in the step icon. |
+| <a class="anchor-link" id="props--active"></a><a href="#props--active" class="prop-name">active</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Whether this step is active. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--completed"></a><a href="#props--completed" class="prop-name">completed</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as completed. Is passed to child components. |
+| <a class="anchor-link" id="props--error"></a><a href="#props--error" class="prop-name">error</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as failed. |
+| <a class="anchor-link" id="props--icon"></a><a href="#props--icon" class="prop-name required">icon&nbsp;*</a> | <span class="prop-type">node</span> |  | The label displayed in the step icon. |
 
 The `ref` is forwarded to the root element.
 

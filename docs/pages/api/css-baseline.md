@@ -24,7 +24,7 @@ Kickstart an elegant, consistent, and simple baseline to build upon.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> | <span class="prop-default">null</span> | You can wrap a node. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> | <span class="prop-default">null</span> | You can wrap a node. |
 
 The component cannot hold a ref.
 

@@ -24,19 +24,19 @@ Uses an additional container component if `ListItemSecondaryAction` is the last 
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">alignItems</span> | <span class="prop-type">'flex-start'<br>&#124;&nbsp;'center'</span> | <span class="prop-default">'center'</span> | Defines the `align-items` style property. |
-| <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item will be focused during the first mount. Focus will also be triggered if the value changes from false to true. |
-| <span class="prop-name">button</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item will be a button (using `ButtonBase`). Props intended for `ButtonBase` can then be applied to `ListItem`. |
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. If a `ListItemSecondaryAction` is used it must be the last child. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> |  | The component used for the root node. Either a string to use a DOM element or a component. By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`. |
-| <span class="prop-name">ContainerComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'li'</span> | The container component used when a `ListItemSecondaryAction` is the last child. |
-| <span class="prop-name">ContainerProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the container component if used. |
-| <span class="prop-name">dense</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, compact vertical padding designed for keyboard and mouse input will be used. |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item will be disabled. |
-| <span class="prop-name">disableGutters</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the left and right padding is removed. |
-| <span class="prop-name">divider</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, a 1px light border is added to the bottom of the list item. |
-| <span class="prop-name">selected</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Use to apply selected styling. |
+| <a class="anchor-link" id="props--alignItems"></a><a href="#props--alignItems" class="prop-name">alignItems</a> | <span class="prop-type">'flex-start'<br>&#124;&nbsp;'center'</span> | <span class="prop-default">'center'</span> | Defines the `align-items` style property. |
+| <a class="anchor-link" id="props--autoFocus"></a><a href="#props--autoFocus" class="prop-name">autoFocus</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item will be focused during the first mount. Focus will also be triggered if the value changes from false to true. |
+| <a class="anchor-link" id="props--button"></a><a href="#props--button" class="prop-name">button</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item will be a button (using `ButtonBase`). Props intended for `ButtonBase` can then be applied to `ListItem`. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | The content of the component. If a `ListItemSecondaryAction` is used it must be the last child. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--component"></a><a href="#props--component" class="prop-name">component</a> | <span class="prop-type">elementType</span> |  | The component used for the root node. Either a string to use a DOM element or a component. By default, it's a `li` when `button` is `false` and a `div` when `button` is `true`. |
+| <a class="anchor-link" id="props--ContainerComponent"></a><a href="#props--ContainerComponent" class="prop-name">ContainerComponent</a> | <span class="prop-type">elementType</span> | <span class="prop-default">'li'</span> | The container component used when a `ListItemSecondaryAction` is the last child. |
+| <a class="anchor-link" id="props--ContainerProps"></a><a href="#props--ContainerProps" class="prop-name">ContainerProps</a> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the container component if used. |
+| <a class="anchor-link" id="props--dense"></a><a href="#props--dense" class="prop-name">dense</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, compact vertical padding designed for keyboard and mouse input will be used. |
+| <a class="anchor-link" id="props--disabled"></a><a href="#props--disabled" class="prop-name">disabled</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the list item will be disabled. |
+| <a class="anchor-link" id="props--disableGutters"></a><a href="#props--disableGutters" class="prop-name">disableGutters</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the left and right padding is removed. |
+| <a class="anchor-link" id="props--divider"></a><a href="#props--divider" class="prop-name">divider</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, a 1px light border is added to the bottom of the list item. |
+| <a class="anchor-link" id="props--selected"></a><a href="#props--selected" class="prop-name">selected</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Use to apply selected styling. |
 
 The `ref` is forwarded to the root element.
 

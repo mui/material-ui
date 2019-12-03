@@ -24,14 +24,14 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Alias for the `primary` property. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">disableTypography</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the children won't be wrapped by a Typography component. This can be useful to render an alternative Typography variant by wrapping the `children` (or `primary`) text, and optional `secondary` text with the Typography component. |
-| <span class="prop-name">inset</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the children will be indented. This should be used if there is no left avatar or left icon. |
-| <span class="prop-name">primary</span> | <span class="prop-type">node</span> |  | The main content element. |
-| <span class="prop-name">primaryTypographyProps</span> | <span class="prop-type">object</span> |  | These props will be forwarded to the primary typography component (as long as disableTypography is not `true`). |
-| <span class="prop-name">secondary</span> | <span class="prop-type">node</span> |  | The secondary content element. |
-| <span class="prop-name">secondaryTypographyProps</span> | <span class="prop-type">object</span> |  | These props will be forwarded to the secondary typography component (as long as disableTypography is not `true`). |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | Alias for the `primary` property. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--disableTypography"></a><a href="#props--disableTypography" class="prop-name">disableTypography</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the children won't be wrapped by a Typography component. This can be useful to render an alternative Typography variant by wrapping the `children` (or `primary`) text, and optional `secondary` text with the Typography component. |
+| <a class="anchor-link" id="props--inset"></a><a href="#props--inset" class="prop-name">inset</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the children will be indented. This should be used if there is no left avatar or left icon. |
+| <a class="anchor-link" id="props--primary"></a><a href="#props--primary" class="prop-name">primary</a> | <span class="prop-type">node</span> |  | The main content element. |
+| <a class="anchor-link" id="props--primaryTypographyProps"></a><a href="#props--primaryTypographyProps" class="prop-name">primaryTypographyProps</a> | <span class="prop-type">object</span> |  | These props will be forwarded to the primary typography component (as long as disableTypography is not `true`). |
+| <a class="anchor-link" id="props--secondary"></a><a href="#props--secondary" class="prop-name">secondary</a> | <span class="prop-type">node</span> |  | The secondary content element. |
+| <a class="anchor-link" id="props--secondaryTypographyProps"></a><a href="#props--secondaryTypographyProps" class="prop-name">secondaryTypographyProps</a> | <span class="prop-type">object</span> |  | These props will be forwarded to the secondary typography component (as long as disableTypography is not `true`). |
 
 The `ref` is forwarded to the root element.
 

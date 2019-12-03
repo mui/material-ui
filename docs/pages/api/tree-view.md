@@ -24,15 +24,15 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">defaultCollapseIcon</span> | <span class="prop-type">node</span> |  | The default icon used to collapse the node. |
-| <span class="prop-name">defaultEndIcon</span> | <span class="prop-type">node</span> |  | The default icon displayed next to a end node. This is applied to all tree nodes and can be overridden by the TreeItem `icon` prop. |
-| <span class="prop-name">defaultExpanded</span> | <span class="prop-type">Array&lt;string&gt;</span> | <span class="prop-default">[]</span> | Expanded node ids. (Uncontrolled) |
-| <span class="prop-name">defaultExpandIcon</span> | <span class="prop-type">node</span> |  | The default icon used to expand the node. |
-| <span class="prop-name">defaultParentIcon</span> | <span class="prop-type">node</span> |  | The default icon displayed next to a parent node. This is applied to all parent nodes and can be overridden by the TreeItem `icon` prop. |
-| <span class="prop-name">expanded</span> | <span class="prop-type">Array&lt;string&gt;</span> |  | Expanded node ids. (Controlled) |
-| <span class="prop-name">onNodeToggle</span> | <span class="prop-type">func</span> |  | Callback fired when tree items are expanded/collapsed.<br><br>**Signature:**<br>`function(event: object, nodeIds: array) => void`<br>*event:* The event source of the callback<br>*nodeIds:* The ids of the expanded nodes. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | The content of the component. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--defaultCollapseIcon"></a><a href="#props--defaultCollapseIcon" class="prop-name">defaultCollapseIcon</a> | <span class="prop-type">node</span> |  | The default icon used to collapse the node. |
+| <a class="anchor-link" id="props--defaultEndIcon"></a><a href="#props--defaultEndIcon" class="prop-name">defaultEndIcon</a> | <span class="prop-type">node</span> |  | The default icon displayed next to a end node. This is applied to all tree nodes and can be overridden by the TreeItem `icon` prop. |
+| <a class="anchor-link" id="props--defaultExpanded"></a><a href="#props--defaultExpanded" class="prop-name">defaultExpanded</a> | <span class="prop-type">Array&lt;string&gt;</span> | <span class="prop-default">[]</span> | Expanded node ids. (Uncontrolled) |
+| <a class="anchor-link" id="props--defaultExpandIcon"></a><a href="#props--defaultExpandIcon" class="prop-name">defaultExpandIcon</a> | <span class="prop-type">node</span> |  | The default icon used to expand the node. |
+| <a class="anchor-link" id="props--defaultParentIcon"></a><a href="#props--defaultParentIcon" class="prop-name">defaultParentIcon</a> | <span class="prop-type">node</span> |  | The default icon displayed next to a parent node. This is applied to all parent nodes and can be overridden by the TreeItem `icon` prop. |
+| <a class="anchor-link" id="props--expanded"></a><a href="#props--expanded" class="prop-name">expanded</a> | <span class="prop-type">Array&lt;string&gt;</span> |  | Expanded node ids. (Controlled) |
+| <a class="anchor-link" id="props--onNodeToggle"></a><a href="#props--onNodeToggle" class="prop-name">onNodeToggle</a> | <span class="prop-type">func</span> |  | Callback fired when tree items are expanded/collapsed.<br><br>**Signature:**<br>`function(event: object, nodeIds: array) => void`<br>*event:* The event source of the callback<br>*nodeIds:* The ids of the expanded nodes. |
 
 The `ref` is forwarded to the root element.
 

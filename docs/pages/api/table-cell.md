@@ -25,15 +25,15 @@ or otherwise a `<td>` element.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">align</span> | <span class="prop-type">'inherit'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'justify'</span> | <span class="prop-default">'inherit'</span> | Set the text-align on the table cell content.<br>Monetary or generally number fields **should be right aligned** as that allows you to add them up quickly in your head without having to worry about decimals. |
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The table cell contents. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> |  | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">padding</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'checkbox'<br>&#124;&nbsp;'none'</span> |  | Sets the padding applied to the cell. By default, the Table parent component set the value (`default`). |
-| <span class="prop-name">scope</span> | <span class="prop-type">string</span> |  | Set scope attribute. |
-| <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'</span> |  | Specify the size of the cell. By default, the Table parent component set the value (`medium`). |
-| <span class="prop-name">sortDirection</span> | <span class="prop-type">'asc'<br>&#124;&nbsp;'desc'<br>&#124;&nbsp;false</span> |  | Set aria-sort direction. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'head'<br>&#124;&nbsp;'body'<br>&#124;&nbsp;'footer'</span> |  | Specify the cell type. By default, the TableHead, TableBody or TableFooter parent component set the value. |
+| <a class="anchor-link" id="props--align"></a><a href="#props--align" class="prop-name">align</a> | <span class="prop-type">'inherit'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'justify'</span> | <span class="prop-default">'inherit'</span> | Set the text-align on the table cell content.<br>Monetary or generally number fields **should be right aligned** as that allows you to add them up quickly in your head without having to worry about decimals. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | The table cell contents. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--component"></a><a href="#props--component" class="prop-name">component</a> | <span class="prop-type">elementType</span> |  | The component used for the root node. Either a string to use a DOM element or a component. |
+| <a class="anchor-link" id="props--padding"></a><a href="#props--padding" class="prop-name">padding</a> | <span class="prop-type">'default'<br>&#124;&nbsp;'checkbox'<br>&#124;&nbsp;'none'</span> |  | Sets the padding applied to the cell. By default, the Table parent component set the value (`default`). |
+| <a class="anchor-link" id="props--scope"></a><a href="#props--scope" class="prop-name">scope</a> | <span class="prop-type">string</span> |  | Set scope attribute. |
+| <a class="anchor-link" id="props--size"></a><a href="#props--size" class="prop-name">size</a> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'</span> |  | Specify the size of the cell. By default, the Table parent component set the value (`medium`). |
+| <a class="anchor-link" id="props--sortDirection"></a><a href="#props--sortDirection" class="prop-name">sortDirection</a> | <span class="prop-type">'asc'<br>&#124;&nbsp;'desc'<br>&#124;&nbsp;false</span> |  | Set aria-sort direction. |
+| <a class="anchor-link" id="props--variant"></a><a href="#props--variant" class="prop-name">variant</a> | <span class="prop-type">'head'<br>&#124;&nbsp;'body'<br>&#124;&nbsp;'footer'</span> |  | Specify the cell type. By default, the TableHead, TableBody or TableFooter parent component set the value. |
 
 The `ref` is forwarded to the root element.
 

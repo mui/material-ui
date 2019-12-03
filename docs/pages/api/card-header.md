@@ -24,15 +24,15 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">action</span> | <span class="prop-type">node</span> |  | The action to display in the card header. |
-| <span class="prop-name">avatar</span> | <span class="prop-type">node</span> |  | The Avatar for the Card Header. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">disableTypography</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, `subheader` and `title` won't be wrapped by a Typography component. This can be useful to render an alternative Typography variant by wrapping the `title` text, and optional `subheader` text with the Typography component. |
-| <span class="prop-name">subheader</span> | <span class="prop-type">node</span> |  | The content of the component. |
-| <span class="prop-name">subheaderTypographyProps</span> | <span class="prop-type">object</span> |  | These props will be forwarded to the subheader (as long as disableTypography is not `true`). |
-| <span class="prop-name">title</span> | <span class="prop-type">node</span> |  | The content of the Card Title. |
-| <span class="prop-name">titleTypographyProps</span> | <span class="prop-type">object</span> |  | These props will be forwarded to the title (as long as disableTypography is not `true`). |
+| <a class="anchor-link" id="props--action"></a><a href="#props--action" class="prop-name">action</a> | <span class="prop-type">node</span> |  | The action to display in the card header. |
+| <a class="anchor-link" id="props--avatar"></a><a href="#props--avatar" class="prop-name">avatar</a> | <span class="prop-type">node</span> |  | The Avatar for the Card Header. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--component"></a><a href="#props--component" class="prop-name">component</a> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <a class="anchor-link" id="props--disableTypography"></a><a href="#props--disableTypography" class="prop-name">disableTypography</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, `subheader` and `title` won't be wrapped by a Typography component. This can be useful to render an alternative Typography variant by wrapping the `title` text, and optional `subheader` text with the Typography component. |
+| <a class="anchor-link" id="props--subheader"></a><a href="#props--subheader" class="prop-name">subheader</a> | <span class="prop-type">node</span> |  | The content of the component. |
+| <a class="anchor-link" id="props--subheaderTypographyProps"></a><a href="#props--subheaderTypographyProps" class="prop-name">subheaderTypographyProps</a> | <span class="prop-type">object</span> |  | These props will be forwarded to the subheader (as long as disableTypography is not `true`). |
+| <a class="anchor-link" id="props--title"></a><a href="#props--title" class="prop-name">title</a> | <span class="prop-type">node</span> |  | The content of the Card Title. |
+| <a class="anchor-link" id="props--titleTypographyProps"></a><a href="#props--titleTypographyProps" class="prop-name">titleTypographyProps</a> | <span class="prop-type">object</span> |  | These props will be forwarded to the title (as long as disableTypography is not `true`). |
 
 The `ref` is forwarded to the root element.
 

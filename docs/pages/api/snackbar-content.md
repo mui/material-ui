@@ -24,10 +24,10 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">action</span> | <span class="prop-type">node</span> |  | The action to display. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">message</span> | <span class="prop-type">node</span> |  | The message to display. |
-| <span class="prop-name">role</span> | <span class="prop-type">'alert'<br>&#124;&nbsp;'alertdialog'</span> | <span class="prop-default">'alert'</span> | The role of the SnackbarContent. If the Snackbar requires focus to be closed, the `alertdialog` role should be used instead. |
+| <a class="anchor-link" id="props--action"></a><a href="#props--action" class="prop-name">action</a> | <span class="prop-type">node</span> |  | The action to display. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--message"></a><a href="#props--message" class="prop-name">message</a> | <span class="prop-type">node</span> |  | The message to display. |
+| <a class="anchor-link" id="props--role"></a><a href="#props--role" class="prop-name">role</a> | <span class="prop-type">'alert'<br>&#124;&nbsp;'alertdialog'</span> | <span class="prop-default">'alert'</span> | The role of the SnackbarContent. If the Snackbar requires focus to be closed, the `alertdialog` role should be used instead. |
 
 The `ref` is forwarded to the root element.
 

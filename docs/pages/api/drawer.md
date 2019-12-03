@@ -25,17 +25,17 @@ when `variant="temporary"` is set.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">anchor</span> | <span class="prop-type">'left'<br>&#124;&nbsp;'top'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'bottom'</span> | <span class="prop-default">'left'</span> | Side from which the drawer will appear. |
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The contents of the drawer. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">elevation</span> | <span class="prop-type">number</span> | <span class="prop-default">16</span> | The elevation of the drawer. |
-| <span class="prop-name">ModalProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`Modal`](/api/modal/) element. |
-| <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |
-| <span class="prop-name">open</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the drawer is open. |
-| <span class="prop-name">PaperProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Paper`](/api/paper/) element. |
-| <span class="prop-name">SlideProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Slide`](/api/slide/) element. |
-| <span class="prop-name">transitionDuration</span> | <span class="prop-type">number<br>&#124;&nbsp;{ enter?: number, exit?: number }</span> | <span class="prop-default">{ enter: duration.enteringScreen, exit: duration.leavingScreen }</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'permanent'<br>&#124;&nbsp;'persistent'<br>&#124;&nbsp;'temporary'</span> | <span class="prop-default">'temporary'</span> | The variant to use. |
+| <a class="anchor-link" id="props--anchor"></a><a href="#props--anchor" class="prop-name">anchor</a> | <span class="prop-type">'left'<br>&#124;&nbsp;'top'<br>&#124;&nbsp;'right'<br>&#124;&nbsp;'bottom'</span> | <span class="prop-default">'left'</span> | Side from which the drawer will appear. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | The contents of the drawer. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--elevation"></a><a href="#props--elevation" class="prop-name">elevation</a> | <span class="prop-type">number</span> | <span class="prop-default">16</span> | The elevation of the drawer. |
+| <a class="anchor-link" id="props--ModalProps"></a><a href="#props--ModalProps" class="prop-name">ModalProps</a> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`Modal`](/api/modal/) element. |
+| <a class="anchor-link" id="props--onClose"></a><a href="#props--onClose" class="prop-name">onClose</a> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |
+| <a class="anchor-link" id="props--open"></a><a href="#props--open" class="prop-name">open</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the drawer is open. |
+| <a class="anchor-link" id="props--PaperProps"></a><a href="#props--PaperProps" class="prop-name">PaperProps</a> | <span class="prop-type">object</span> |  | Props applied to the [`Paper`](/api/paper/) element. |
+| <a class="anchor-link" id="props--SlideProps"></a><a href="#props--SlideProps" class="prop-name">SlideProps</a> | <span class="prop-type">object</span> |  | Props applied to the [`Slide`](/api/slide/) element. |
+| <a class="anchor-link" id="props--transitionDuration"></a><a href="#props--transitionDuration" class="prop-name">transitionDuration</a> | <span class="prop-type">number<br>&#124;&nbsp;{ enter?: number, exit?: number }</span> | <span class="prop-default">{ enter: duration.enteringScreen, exit: duration.leavingScreen }</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| <a class="anchor-link" id="props--variant"></a><a href="#props--variant" class="prop-name">variant</a> | <span class="prop-type">'permanent'<br>&#124;&nbsp;'persistent'<br>&#124;&nbsp;'temporary'</span> | <span class="prop-default">'temporary'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
 

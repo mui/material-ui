@@ -24,14 +24,14 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | In most cases will simply be a string containing a title for the label. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as disabled, will also disable the button if `StepLabelButton` is a child of `StepLabel`. Is passed to child components. |
-| <span class="prop-name">error</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as failed. |
-| <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | Override the default label of the step icon. |
-| <span class="prop-name">optional</span> | <span class="prop-type">node</span> |  | The optional node to display. |
-| <span class="prop-name">StepIconComponent</span> | <span class="prop-type">elementType</span> |  | The component to render in place of the [`StepIcon`](/api/step-icon/). |
-| <span class="prop-name">StepIconProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`StepIcon`](/api/step-icon/) element. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | In most cases will simply be a string containing a title for the label. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--disabled"></a><a href="#props--disabled" class="prop-name">disabled</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as disabled, will also disable the button if `StepLabelButton` is a child of `StepLabel`. Is passed to child components. |
+| <a class="anchor-link" id="props--error"></a><a href="#props--error" class="prop-name">error</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as failed. |
+| <a class="anchor-link" id="props--icon"></a><a href="#props--icon" class="prop-name">icon</a> | <span class="prop-type">node</span> |  | Override the default label of the step icon. |
+| <a class="anchor-link" id="props--optional"></a><a href="#props--optional" class="prop-name">optional</a> | <span class="prop-type">node</span> |  | The optional node to display. |
+| <a class="anchor-link" id="props--StepIconComponent"></a><a href="#props--StepIconComponent" class="prop-name">StepIconComponent</a> | <span class="prop-type">elementType</span> |  | The component to render in place of the [`StepIcon`](/api/step-icon/). |
+| <a class="anchor-link" id="props--StepIconProps"></a><a href="#props--StepIconProps" class="prop-name">StepIconProps</a> | <span class="prop-type">object</span> |  | Props applied to the [`StepIcon`](/api/step-icon/) element. |
 
 The `ref` is forwarded to the root element.
 

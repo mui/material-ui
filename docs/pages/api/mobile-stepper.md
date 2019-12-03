@@ -24,14 +24,14 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">activeStep</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | Set the active step (zero based index). Defines which dot is highlighted when the variant is 'dots'. |
-| <span class="prop-name">backButton</span> | <span class="prop-type">node</span> |  | A back button element. For instance, it can be a `Button` or an `IconButton`. |
-| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">LinearProgressProps</span> | <span class="prop-type">object</span> |  | Props applied to the `LinearProgress` element. |
-| <span class="prop-name">nextButton</span> | <span class="prop-type">node</span> |  | A next button element. For instance, it can be a `Button` or an `IconButton`. |
-| <span class="prop-name">position</span> | <span class="prop-type">'bottom'<br>&#124;&nbsp;'top'<br>&#124;&nbsp;'static'</span> | <span class="prop-default">'bottom'</span> | Set the positioning type. |
-| <span class="prop-name required">steps&nbsp;*</span> | <span class="prop-type">number</span> |  | The total steps. |
-| <span class="prop-name">variant</span> | <span class="prop-type">'text'<br>&#124;&nbsp;'dots'<br>&#124;&nbsp;'progress'</span> | <span class="prop-default">'dots'</span> | The variant to use. |
+| <a class="anchor-link" id="props--activeStep"></a><a href="#props--activeStep" class="prop-name">activeStep</a> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | Set the active step (zero based index). Defines which dot is highlighted when the variant is 'dots'. |
+| <a class="anchor-link" id="props--backButton"></a><a href="#props--backButton" class="prop-name">backButton</a> | <span class="prop-type">node</span> |  | A back button element. For instance, it can be a `Button` or an `IconButton`. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--LinearProgressProps"></a><a href="#props--LinearProgressProps" class="prop-name">LinearProgressProps</a> | <span class="prop-type">object</span> |  | Props applied to the `LinearProgress` element. |
+| <a class="anchor-link" id="props--nextButton"></a><a href="#props--nextButton" class="prop-name">nextButton</a> | <span class="prop-type">node</span> |  | A next button element. For instance, it can be a `Button` or an `IconButton`. |
+| <a class="anchor-link" id="props--position"></a><a href="#props--position" class="prop-name">position</a> | <span class="prop-type">'bottom'<br>&#124;&nbsp;'top'<br>&#124;&nbsp;'static'</span> | <span class="prop-default">'bottom'</span> | Set the positioning type. |
+| <a class="anchor-link" id="props--steps"></a><a href="#props--steps" class="prop-name required">steps&nbsp;*</a> | <span class="prop-type">number</span> |  | The total steps. |
+| <a class="anchor-link" id="props--variant"></a><a href="#props--variant" class="prop-name">variant</a> | <span class="prop-type">'text'<br>&#124;&nbsp;'dots'<br>&#124;&nbsp;'progress'</span> | <span class="prop-default">'dots'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
 

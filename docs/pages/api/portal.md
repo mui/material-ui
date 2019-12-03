@@ -25,10 +25,10 @@ that exists outside the DOM hierarchy of the parent component.
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The children to render into the `container`. |
-| <span class="prop-name">container</span> | <span class="prop-type">func<br>&#124;&nbsp;React.Component<br>&#124;&nbsp;Element</span> |  | A node, component instance, or function that returns either. The `container` will have the portal children appended to it. By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time. |
-| <span class="prop-name">disablePortal</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Disable the portal behavior. The children stay within it's parent DOM hierarchy. |
-| <span class="prop-name">onRendered</span> | <span class="prop-type">func</span> |  | Callback fired once the children has been mounted into the `container`.<br>This prop will be deprecated and removed in v5, the ref can be used instead. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | The children to render into the `container`. |
+| <a class="anchor-link" id="props--container"></a><a href="#props--container" class="prop-name">container</a> | <span class="prop-type">func<br>&#124;&nbsp;React.Component<br>&#124;&nbsp;Element</span> |  | A node, component instance, or function that returns either. The `container` will have the portal children appended to it. By default, it uses the body of the top-level document object, so it's simply `document.body` most of the time. |
+| <a class="anchor-link" id="props--disablePortal"></a><a href="#props--disablePortal" class="prop-name">disablePortal</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Disable the portal behavior. The children stay within it's parent DOM hierarchy. |
+| <a class="anchor-link" id="props--onRendered"></a><a href="#props--onRendered" class="prop-name">onRendered</a> | <span class="prop-type">func</span> |  | Callback fired once the children has been mounted into the `container`.<br>This prop will be deprecated and removed in v5, the ref can be used instead. |
 
 The component cannot hold a ref.
 

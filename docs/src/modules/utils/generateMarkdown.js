@@ -275,23 +275,24 @@ function generateProps(reactAPI) {
 
     const chainedPropType = getChained(prop.type);
 
+    let propDisplay = propRaw;
     if (
       prop.required ||
       /\.isRequired/.test(prop.type.raw) ||
       (chainedPropType !== false && chainedPropType.required)
     ) {
-      propRaw = `<span class="prop-name required">${propRaw}&nbsp;*</span>`;
+      propDisplay = `<a href="#props--${propRaw}" class="prop-name required">${propRaw}&nbsp;*</a>`;
     } else {
-      propRaw = `<span class="prop-name">${propRaw}</span>`;
+      propDisplay = `<a href="#props--${propRaw}" class="prop-name">${propRaw}</a>`;
     }
 
     if (prop.type.name === 'custom') {
       if (getDeprecatedInfo(prop.type)) {
-        propRaw = `~~${propRaw}~~`;
+        propDisplay = `~~${propDisplay}~~`;
       }
     }
 
-    textProps += `| ${propRaw} | <span class="prop-type">${generatePropType(
+    textProps += `| <a class="anchor-link" id="props--${propRaw}"></a>${propDisplay} | <span class="prop-type">${generatePropType(
       prop.type,
     )}</span> | ${defaultValue} | ${description} |\n`;
 
