@@ -59,10 +59,10 @@ export default function createTypography(palette, typography) {
   });
 
   const variants = {
-    h1: buildVariant(fontWeightLight, 96, 1.125, -1.5),
-    h2: buildVariant(fontWeightLight, 60, 1.134, -0.5),
-    h3: buildVariant(fontWeightRegular, 48, 1.084, 0),
-    h4: buildVariant(fontWeightRegular, 34, 1.118, 0.25),
+    h1: buildVariant(fontWeightLight, 96, 1.167, -1.5),
+    h2: buildVariant(fontWeightLight, 60, 1.2, -0.5),
+    h3: buildVariant(fontWeightRegular, 48, 1.167, 0),
+    h4: buildVariant(fontWeightRegular, 34, 1.235, 0.25),
     h5: buildVariant(fontWeightRegular, 24, 1.334, 0),
     h6: buildVariant(fontWeightMedium, 20, 1.6, 0.15),
     subtitle1: buildVariant(fontWeightRegular, 16, 1.75, 0.15),
