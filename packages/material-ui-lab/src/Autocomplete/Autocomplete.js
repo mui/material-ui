@@ -25,13 +25,23 @@ export const styles = theme => ({
   /* Styles applied to the tag elements, e.g. the chips. */
   tag: {
     margin: 3,
+    maxWidth: 'calc(100% - 6px)',
+
     '&:last-child': {
       marginRight: 5,
+      maxWidth: 'calc(100% - 8px)',
     },
   },
   /* Styles applied to the tag elements, e.g. the chips if `size="small"`. */
   tagSizeSmall: {
     margin: 2,
+    maxWidth: 'calc(100% - 4px)',
+  },
+  /* Styles applied to the label of the tag elements, e.g. the chip's label. */
+  tagLabel: {
+    display: 'block',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
   },
   /* Styles applied to the Input element. */
   inputRoot: {
@@ -302,6 +312,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
       className: clsx(classes.tag, {
         [classes.tagSizeSmall]: size === 'small',
       }),
+      classes: { label: classes.tagLabel },
       ...getTagProps(params),
     });
 
