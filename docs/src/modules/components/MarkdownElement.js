@@ -186,6 +186,7 @@ const styles = theme => ({
       paddingLeft: 30,
     },
     '& h1, & h2, & h3, & h4': {
+      position: 'relative',
       '& code': {
         fontSize: 'inherit',
         lineHeight: 'inherit',
@@ -194,6 +195,10 @@ const styles = theme => ({
       },
       '& .anchor-link-style': {
         display: 'inline-block',
+        position: 'absolute',
+        // negative box width of the anchor so that it is displayed before the heading
+        // -(iconWidth + anchorPadding)
+        left: 'calc(-0.7em - 16px)',
         padding: '0 8px',
         color: theme.palette.text.secondary,
         '&:hover': {
