@@ -284,7 +284,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
       event.type === 'mouseover' &&
       childrenProps.onMouseOver &&
       event.currentTarget === childNode
-    )  {
+    ) {
       childrenProps.onMouseOver(event);
     }
 
