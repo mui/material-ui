@@ -280,7 +280,11 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const handleEnter = event => {
     const childrenProps = children.props;
 
-    if (event.type === 'mouseover' && childrenProps.onMouseOver) {
+    if (
+      event.type === 'mouseover' &&
+      childrenProps.onMouseOver &&
+      event.currentTarget === childNode
+    )  {
       childrenProps.onMouseOver(event);
     }
 
