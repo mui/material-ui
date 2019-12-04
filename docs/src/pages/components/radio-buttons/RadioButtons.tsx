@@ -60,8 +60,7 @@ export default function RadioButtons() {
         color="default"
         name="radio-button-demo"
         inputProps={{ 'aria-label': 'E' }}
-        icon={<RadioButtonUncheckedIcon fontSize="small" />}
-        checkedIcon={<RadioButtonCheckedIcon fontSize="small" />}
+        size="small"
       />
     </div>
   );

@@ -7,6 +7,7 @@ export interface RadioProps
   checkedIcon?: React.ReactNode;
   color?: 'primary' | 'secondary' | 'default';
   icon?: React.ReactNode;
+  size?: 'small' | 'medium';
 }
 
 export type RadioClassKey = SwitchBaseClassKey | 'colorPrimary' | 'colorSecondary';

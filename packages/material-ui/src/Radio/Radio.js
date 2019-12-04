@@ -64,6 +64,7 @@ const Radio = React.forwardRef(function Radio(props, ref) {
     disabled = false,
     name: nameProp,
     onChange: onChangeProp,
+    size = 'medium',
     ...other
   } = props;
   const radioGroup = React.useContext(RadioGroupContext);
