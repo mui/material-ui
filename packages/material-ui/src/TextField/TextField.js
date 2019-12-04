@@ -107,7 +107,12 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       InputMore.notched = InputLabelProps.shrink;
     }
 
-    InputMore.label = `${label}${required ? ' *' : ''}`;
+    InputMore.label = (
+      <React.Fragment>
+        {label}
+        {required && '\u00a0*'}
+      </React.Fragment>
+    );
   }
   if (select) {
     // unset defaults from textbox inputs

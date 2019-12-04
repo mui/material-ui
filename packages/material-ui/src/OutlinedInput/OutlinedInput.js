@@ -103,6 +103,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
     classes,
     fullWidth = false,
     inputComponent = 'input',
+    label,
     labelWidth = 0,
     multiline = false,
     notched,
@@ -115,6 +116,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
       renderSuffix={state => (
         <NotchedOutline
           className={classes.notchedOutline}
+          label={label}
           labelWidth={labelWidth}
           notched={
             typeof notched !== 'undefined'

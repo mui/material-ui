@@ -18,6 +18,7 @@ export const styles = theme => {
       left: 0,
       margin: 0,
       padding: 0,
+      paddingLeft: 8,
       pointerEvents: 'none',
       borderRadius: 'inherit',
       borderStyle: 'solid',
@@ -113,7 +114,16 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
   }
 
   return (
-    <fieldset aria-hidden className={clsx(classes.root, className)} ref={ref} {...other}>
+    <fieldset
+      aria-hidden
+      className={clsx(classes.root, className)}
+      ref={ref}
+      style={{
+        paddingLeft: '8px',
+        ...style,
+      }}
+      {...other}
+    >
       <legend
         className={clsx(classes.legendLabelled, {
           [classes.legendNotched]: notched,
