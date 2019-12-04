@@ -86,8 +86,8 @@ const Radio = React.forwardRef(function Radio(props, ref) {
     <SwitchBase
       color={color}
       type="radio"
-      icon={defaultIcon}
-      checkedIcon={defaultCheckedIcon}
+      icon={React.cloneElement(defaultIcon,{ fontSize: size === 'small' ? 'small' : 'default'})}
+      checkedIcon={React.cloneElement(defaultCheckedIcon,{fontSize : size === 'small' ? 'small':'default',})}
       classes={{
         root: clsx(classes.root, classes[`color${capitalize(color)}`]),
         checked: classes.checked,
@@ -108,6 +108,11 @@ Radio.propTypes = {
    * If `true`, the component is checked.
    */
   checked: PropTypes.bool,
+  /**
+  * The size of the radio.
+  * `small` is equivalent to the dense radio styling.
+  */
+  size: PropTypes.oneOf(['small', 'medium']),
   /**
    * The icon to display when the component is checked.
    */
