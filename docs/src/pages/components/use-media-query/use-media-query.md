@@ -108,7 +108,7 @@ You have the choice between using:
 Finally, you need to provide an implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) to the `useMediaQuery` with the previously guessed characteristics.
 Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate matchMedia is recommended.
 
-For instance:
+For instance on the server-side:
 
 ```js
 import ReactDOMServer from 'react-dom/server';
@@ -142,7 +142,9 @@ function handleRender(req, res) {
 }
 ```
 
-{{"demo": "pages/components/use-media-query/ServerSide.js"}}
+{{"demo": "pages/components/use-media-query/ServerSide.js", "defaultCodeOpen": false}}
+
+Make sure you provide the same custom match media implementation to the client-side to guarantee a hydration match.
 
 ## Migrating from `withWidth()`
 
