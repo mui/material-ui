@@ -33,7 +33,6 @@ export const styles = theme => ({
  * @ignore - internal component.
  */
 function RadioButtonIcon(props) {
-  const { checked, classes } = props;
   const { checked, classes, fontSize } = props;
 
   return (
