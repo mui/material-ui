@@ -25,10 +25,10 @@ For instance, if you need to hide a menu when people click anywhere else on your
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name required">children&nbsp;*</a> | <span class="prop-type">element</span> |  | The wrapped element.<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
-| <a class="anchor-link" id="props--mouseEvent"></a><a href="#props--mouseEvent" class="prop-name">mouseEvent</a> | <span class="prop-type">'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;false</span> | <span class="prop-default">'onClick'</span> | The mouse event to listen to. You can disable the listener by providing `false`. |
-| <a class="anchor-link" id="props--onClickAway"></a><a href="#props--onClickAway" class="prop-name required">onClickAway&nbsp;*</a> | <span class="prop-type">func</span> |  | Callback fired when a "click away" event is detected. |
-| <a class="anchor-link" id="props--touchEvent"></a><a href="#props--touchEvent" class="prop-name">touchEvent</a> | <span class="prop-type">'onTouchStart'<br>&#124;&nbsp;'onTouchEnd'<br>&#124;&nbsp;false</span> | <span class="prop-default">'onTouchEnd'</span> | The touch event to listen to. You can disable the listener by providing `false`. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" title="link to the prop on this page" class="prop-name required">children&nbsp;*</a> | <span class="prop-type">element</span> |  | The wrapped element.<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs). |
+| <a class="anchor-link" id="props--mouseEvent"></a><a href="#props--mouseEvent" title="link to the prop on this page" class="prop-name">mouseEvent</a> | <span class="prop-type">'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;false</span> | <span class="prop-default">'onClick'</span> | The mouse event to listen to. You can disable the listener by providing `false`. |
+| <a class="anchor-link" id="props--onClickAway"></a><a href="#props--onClickAway" title="link to the prop on this page" class="prop-name required">onClickAway&nbsp;*</a> | <span class="prop-type">func</span> |  | Callback fired when a "click away" event is detected. |
+| <a class="anchor-link" id="props--touchEvent"></a><a href="#props--touchEvent" title="link to the prop on this page" class="prop-name">touchEvent</a> | <span class="prop-type">'onTouchStart'<br>&#124;&nbsp;'onTouchEnd'<br>&#124;&nbsp;false</span> | <span class="prop-default">'onTouchEnd'</span> | The touch event to listen to. You can disable the listener by providing `false`. |
 
 The component cannot hold a ref.
 

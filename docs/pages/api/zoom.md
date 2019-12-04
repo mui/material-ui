@@ -26,9 +26,9 @@ It uses [react-transition-group](https://github.com/reactjs/react-transition-gro
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">element</span> |  | A single child content element. |
-| <a class="anchor-link" id="props--in"></a><a href="#props--in" class="prop-name">in</a> | <span class="prop-type">bool</span> |  | If `true`, the component will transition in. |
-| <a class="anchor-link" id="props--timeout"></a><a href="#props--timeout" class="prop-name">timeout</a> | <span class="prop-type">number<br>&#124;&nbsp;{ enter?: number, exit?: number }</span> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" title="link to the prop on this page" class="prop-name">children</a> | <span class="prop-type">element</span> |  | A single child content element. |
+| <a class="anchor-link" id="props--in"></a><a href="#props--in" title="link to the prop on this page" class="prop-name">in</a> | <span class="prop-type">bool</span> |  | If `true`, the component will transition in. |
+| <a class="anchor-link" id="props--timeout"></a><a href="#props--timeout" title="link to the prop on this page" class="prop-name">timeout</a> | <span class="prop-type">number<br>&#124;&nbsp;{ enter?: number, exit?: number }</span> | <span class="prop-default">{  enter: duration.enteringScreen,  exit: duration.leavingScreen,}</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
 The `ref` is forwarded to the root element.
 

@@ -24,11 +24,11 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <a class="anchor-link" id="props--active"></a><a href="#props--active" class="prop-name">active</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Sets the step as active. Is passed to child components. |
-| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | Should be `Step` sub-components such as `StepLabel`, `StepContent`. |
-| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <a class="anchor-link" id="props--completed"></a><a href="#props--completed" class="prop-name">completed</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as completed. Is passed to child components. |
-| <a class="anchor-link" id="props--disabled"></a><a href="#props--disabled" class="prop-name">disabled</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as disabled, will also disable the button if `StepButton` is a child of `Step`. Is passed to child components. |
+| <a class="anchor-link" id="props--active"></a><a href="#props--active" title="link to the prop on this page" class="prop-name">active</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Sets the step as active. Is passed to child components. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" title="link to the prop on this page" class="prop-name">children</a> | <span class="prop-type">node</span> |  | Should be `Step` sub-components such as `StepLabel`, `StepContent`. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" title="link to the prop on this page" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--completed"></a><a href="#props--completed" title="link to the prop on this page" class="prop-name">completed</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as completed. Is passed to child components. |
+| <a class="anchor-link" id="props--disabled"></a><a href="#props--disabled" title="link to the prop on this page" class="prop-name">disabled</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as disabled, will also disable the button if `StepButton` is a child of `Step`. Is passed to child components. |
 
 The `ref` is forwarded to the root element.
 
@@ -41,11 +41,11 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiStep-root</span> | Styles applied to the root element.
-| <a class="anchor-link" id="css--horizontal"></a><a href="#css--horizontal" class="prop-name">horizontal</a> | <span class="prop-name">.MuiStep-horizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
-| <a class="anchor-link" id="css--vertical"></a><a href="#css--vertical" class="prop-name">vertical</a> | <span class="prop-name">.MuiStep-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
-| <a class="anchor-link" id="css--alternativeLabel"></a><a href="#css--alternativeLabel" class="prop-name">alternativeLabel</a> | <span class="prop-name">.MuiStep-alternativeLabel</span> | Styles applied to the root element if `alternativeLabel={true}`.
-| <a class="anchor-link" id="css--completed"></a><a href="#css--completed" class="prop-name">completed</a> | <span class="prop-name">.MuiStep-completed</span> | Pseudo-class applied to the root element if `completed={true}`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiStep-root</span> | Styles applied to the root element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--horizontal"></a><a href="#css--horizontal" class="prop-name">horizontal</a> | <span class="prop-name">.MuiStep-horizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--vertical"></a><a href="#css--vertical" class="prop-name">vertical</a> | <span class="prop-name">.MuiStep-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--alternativeLabel"></a><a href="#css--alternativeLabel" class="prop-name">alternativeLabel</a> | <span class="prop-name">.MuiStep-alternativeLabel</span> | Styles applied to the root element if `alternativeLabel={true}`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--completed"></a><a href="#css--completed" class="prop-name">completed</a> | <span class="prop-name">.MuiStep-completed</span> | Pseudo-class applied to the root element if `completed={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

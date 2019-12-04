@@ -24,7 +24,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" title="link to the prop on this page" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 
 The `ref` is forwarded to the root element.
 
@@ -37,16 +37,16 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiStepConnector-root</span> | Styles applied to the root element.
-| <a class="anchor-link" id="css--horizontal"></a><a href="#css--horizontal" class="prop-name">horizontal</a> | <span class="prop-name">.MuiStepConnector-horizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
-| <a class="anchor-link" id="css--vertical"></a><a href="#css--vertical" class="prop-name">vertical</a> | <span class="prop-name">.MuiStepConnector-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
-| <a class="anchor-link" id="css--alternativeLabel"></a><a href="#css--alternativeLabel" class="prop-name">alternativeLabel</a> | <span class="prop-name">.MuiStepConnector-alternativeLabel</span> | Styles applied to the root element if `alternativeLabel={true}`.
-| <a class="anchor-link" id="css--active"></a><a href="#css--active" class="prop-name">active</a> | <span class="prop-name">.MuiStepConnector-active</span> | Pseudo-class applied to the root element if `active={true}`.
-| <a class="anchor-link" id="css--completed"></a><a href="#css--completed" class="prop-name">completed</a> | <span class="prop-name">.MuiStepConnector-completed</span> | Pseudo-class applied to the root element if `completed={true}`.
-| <a class="anchor-link" id="css--disabled"></a><a href="#css--disabled" class="prop-name">disabled</a> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <a class="anchor-link" id="css--line"></a><a href="#css--line" class="prop-name">line</a> | <span class="prop-name">.MuiStepConnector-line</span> | Styles applied to the line element.
-| <a class="anchor-link" id="css--lineHorizontal"></a><a href="#css--lineHorizontal" class="prop-name">lineHorizontal</a> | <span class="prop-name">.MuiStepConnector-lineHorizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
-| <a class="anchor-link" id="css--lineVertical"></a><a href="#css--lineVertical" class="prop-name">lineVertical</a> | <span class="prop-name">.MuiStepConnector-lineVertical</span> | Styles applied to the root element if `orientation="vertical"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiStepConnector-root</span> | Styles applied to the root element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--horizontal"></a><a href="#css--horizontal" class="prop-name">horizontal</a> | <span class="prop-name">.MuiStepConnector-horizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--vertical"></a><a href="#css--vertical" class="prop-name">vertical</a> | <span class="prop-name">.MuiStepConnector-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--alternativeLabel"></a><a href="#css--alternativeLabel" class="prop-name">alternativeLabel</a> | <span class="prop-name">.MuiStepConnector-alternativeLabel</span> | Styles applied to the root element if `alternativeLabel={true}`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--active"></a><a href="#css--active" class="prop-name">active</a> | <span class="prop-name">.MuiStepConnector-active</span> | Pseudo-class applied to the root element if `active={true}`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--completed"></a><a href="#css--completed" class="prop-name">completed</a> | <span class="prop-name">.MuiStepConnector-completed</span> | Pseudo-class applied to the root element if `completed={true}`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--disabled"></a><a href="#css--disabled" class="prop-name">disabled</a> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--line"></a><a href="#css--line" class="prop-name">line</a> | <span class="prop-name">.MuiStepConnector-line</span> | Styles applied to the line element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--lineHorizontal"></a><a href="#css--lineHorizontal" class="prop-name">lineHorizontal</a> | <span class="prop-name">.MuiStepConnector-lineHorizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--lineVertical"></a><a href="#css--lineVertical" class="prop-name">lineVertical</a> | <span class="prop-name">.MuiStepConnector-lineVertical</span> | Styles applied to the root element if `orientation="vertical"`.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -24,15 +24,15 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <a class="anchor-link" id="props--alt"></a><a href="#props--alt" class="prop-name">alt</a> | <span class="prop-type">string</span> |  | Used in combination with `src` or `srcSet` to provide an alt attribute for the rendered `img` element. |
-| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | Used to render icon or text elements inside the Avatar if `src` is not set. This can be an element, or just a string. |
-| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <a class="anchor-link" id="props--component"></a><a href="#props--component" class="prop-name">component</a> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <a class="anchor-link" id="props--imgProps"></a><a href="#props--imgProps" class="prop-name">imgProps</a> | <span class="prop-type">object</span> |  | Attributes applied to the `img` element if the component is used to display an image. |
-| <a class="anchor-link" id="props--sizes"></a><a href="#props--sizes" class="prop-name">sizes</a> | <span class="prop-type">string</span> |  | The `sizes` attribute for the `img` element. |
-| <a class="anchor-link" id="props--src"></a><a href="#props--src" class="prop-name">src</a> | <span class="prop-type">string</span> |  | The `src` attribute for the `img` element. |
-| <a class="anchor-link" id="props--srcSet"></a><a href="#props--srcSet" class="prop-name">srcSet</a> | <span class="prop-type">string</span> |  | The `srcSet` attribute for the `img` element. Use this attribute for responsive image display. |
-| <a class="anchor-link" id="props--variant"></a><a href="#props--variant" class="prop-name">variant</a> | <span class="prop-type">'circle'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'</span> | <span class="prop-default">'circle'</span> | The shape of the avatar. |
+| <a class="anchor-link" id="props--alt"></a><a href="#props--alt" title="link to the prop on this page" class="prop-name">alt</a> | <span class="prop-type">string</span> |  | Used in combination with `src` or `srcSet` to provide an alt attribute for the rendered `img` element. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" title="link to the prop on this page" class="prop-name">children</a> | <span class="prop-type">node</span> |  | Used to render icon or text elements inside the Avatar if `src` is not set. This can be an element, or just a string. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" title="link to the prop on this page" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--component"></a><a href="#props--component" title="link to the prop on this page" class="prop-name">component</a> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <a class="anchor-link" id="props--imgProps"></a><a href="#props--imgProps" title="link to the prop on this page" class="prop-name">imgProps</a> | <span class="prop-type">object</span> |  | Attributes applied to the `img` element if the component is used to display an image. |
+| <a class="anchor-link" id="props--sizes"></a><a href="#props--sizes" title="link to the prop on this page" class="prop-name">sizes</a> | <span class="prop-type">string</span> |  | The `sizes` attribute for the `img` element. |
+| <a class="anchor-link" id="props--src"></a><a href="#props--src" title="link to the prop on this page" class="prop-name">src</a> | <span class="prop-type">string</span> |  | The `src` attribute for the `img` element. |
+| <a class="anchor-link" id="props--srcSet"></a><a href="#props--srcSet" title="link to the prop on this page" class="prop-name">srcSet</a> | <span class="prop-type">string</span> |  | The `srcSet` attribute for the `img` element. Use this attribute for responsive image display. |
+| <a class="anchor-link" id="props--variant"></a><a href="#props--variant" title="link to the prop on this page" class="prop-name">variant</a> | <span class="prop-type">'circle'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'square'</span> | <span class="prop-default">'circle'</span> | The shape of the avatar. |
 
 The `ref` is forwarded to the root element.
 
@@ -45,12 +45,12 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiAvatar-root</span> | Styles applied to the root element.
-| <a class="anchor-link" id="css--colorDefault"></a><a href="#css--colorDefault" class="prop-name">colorDefault</a> | <span class="prop-name">.MuiAvatar-colorDefault</span> | Styles applied to the root element if there are children and not `src` or `srcSet`.
-| <a class="anchor-link" id="css--circle"></a><a href="#css--circle" class="prop-name">circle</a> | <span class="prop-name">.MuiAvatar-circle</span> | Styles applied to the root element if `variant="circle"`.
-| <a class="anchor-link" id="css--rounded"></a><a href="#css--rounded" class="prop-name">rounded</a> | <span class="prop-name">.MuiAvatar-rounded</span> | Styles applied to the root element if `variant="rounded"`.
-| <a class="anchor-link" id="css--square"></a><a href="#css--square" class="prop-name">square</a> | <span class="prop-name">.MuiAvatar-square</span> | Styles applied to the root element if `variant="square"`.
-| <a class="anchor-link" id="css--img"></a><a href="#css--img" class="prop-name">img</a> | <span class="prop-name">.MuiAvatar-img</span> | Styles applied to the img element if either `src` or `srcSet` is defined.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiAvatar-root</span> | Styles applied to the root element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--colorDefault"></a><a href="#css--colorDefault" class="prop-name">colorDefault</a> | <span class="prop-name">.MuiAvatar-colorDefault</span> | Styles applied to the root element if there are children and not `src` or `srcSet`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--circle"></a><a href="#css--circle" class="prop-name">circle</a> | <span class="prop-name">.MuiAvatar-circle</span> | Styles applied to the root element if `variant="circle"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--rounded"></a><a href="#css--rounded" class="prop-name">rounded</a> | <span class="prop-name">.MuiAvatar-rounded</span> | Styles applied to the root element if `variant="rounded"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--square"></a><a href="#css--square" class="prop-name">square</a> | <span class="prop-name">.MuiAvatar-square</span> | Styles applied to the root element if `variant="square"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--img"></a><a href="#css--img" class="prop-name">img</a> | <span class="prop-name">.MuiAvatar-img</span> | Styles applied to the img element if either `src` or `srcSet` is defined.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -26,9 +26,9 @@ For the `Radio`, you should be using the `RadioGroup` component instead of this 
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | The content of the component. |
-| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <a class="anchor-link" id="props--row"></a><a href="#props--row" class="prop-name">row</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Display group of elements in a compact row. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" title="link to the prop on this page" class="prop-name">children</a> | <span class="prop-type">node</span> |  | The content of the component. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" title="link to the prop on this page" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--row"></a><a href="#props--row" title="link to the prop on this page" class="prop-name">row</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Display group of elements in a compact row. |
 
 The `ref` is forwarded to the root element.
 
@@ -41,8 +41,8 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiFormGroup-root</span> | Styles applied to the root element.
-| <a class="anchor-link" id="css--row"></a><a href="#css--row" class="prop-name">row</a> | <span class="prop-name">.MuiFormGroup-row</span> | Styles applied to the root element if `row={true}`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiFormGroup-root</span> | Styles applied to the root element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--row"></a><a href="#css--row" class="prop-name">row</a> | <span class="prop-name">.MuiFormGroup-row</span> | Styles applied to the root element if `row={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -24,11 +24,11 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | The content of the component. |
-| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <a class="anchor-link" id="props--invisible"></a><a href="#props--invisible" class="prop-name">invisible</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the backdrop is invisible. It can be used when rendering a popover or a custom select component. |
-| <a class="anchor-link" id="props--open"></a><a href="#props--open" class="prop-name required">open&nbsp;*</a> | <span class="prop-type">bool</span> |  | If `true`, the backdrop is open. |
-| <a class="anchor-link" id="props--transitionDuration"></a><a href="#props--transitionDuration" class="prop-name">transitionDuration</a> | <span class="prop-type">number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }</span> |  | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" title="link to the prop on this page" class="prop-name">children</a> | <span class="prop-type">node</span> |  | The content of the component. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" title="link to the prop on this page" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--invisible"></a><a href="#props--invisible" title="link to the prop on this page" class="prop-name">invisible</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the backdrop is invisible. It can be used when rendering a popover or a custom select component. |
+| <a class="anchor-link" id="props--open"></a><a href="#props--open" title="link to the prop on this page" class="prop-name required">open&nbsp;*</a> | <span class="prop-type">bool</span> |  | If `true`, the backdrop is open. |
+| <a class="anchor-link" id="props--transitionDuration"></a><a href="#props--transitionDuration" title="link to the prop on this page" class="prop-name">transitionDuration</a> | <span class="prop-type">number<br>&#124;&nbsp;{ appear?: number, enter?: number, exit?: number }</span> |  | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 
 The `ref` is forwarded to the root element.
 
@@ -41,8 +41,8 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiBackdrop-root</span> | Styles applied to the root element.
-| <a class="anchor-link" id="css--invisible"></a><a href="#css--invisible" class="prop-name">invisible</a> | <span class="prop-name">.MuiBackdrop-invisible</span> | Styles applied to the root element if `invisible={true}`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiBackdrop-root</span> | Styles applied to the root element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--invisible"></a><a href="#css--invisible" class="prop-name">invisible</a> | <span class="prop-name">.MuiBackdrop-invisible</span> | Styles applied to the root element if `invisible={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

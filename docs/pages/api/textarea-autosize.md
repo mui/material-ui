@@ -24,8 +24,8 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <a class="anchor-link" id="props--rows"></a><a href="#props--rows" class="prop-name">rows</a> | <span class="prop-type">string<br>&#124;&nbsp;number</span> |  | Minimum number of rows to display. |
-| <a class="anchor-link" id="props--rowsMax"></a><a href="#props--rowsMax" class="prop-name">rowsMax</a> | <span class="prop-type">string<br>&#124;&nbsp;number</span> |  | Maximum number of rows to display. |
+| <a class="anchor-link" id="props--rows"></a><a href="#props--rows" title="link to the prop on this page" class="prop-name">rows</a> | <span class="prop-type">string<br>&#124;&nbsp;number</span> |  | Minimum number of rows to display. |
+| <a class="anchor-link" id="props--rowsMax"></a><a href="#props--rowsMax" title="link to the prop on this page" class="prop-name">rowsMax</a> | <span class="prop-type">string<br>&#124;&nbsp;number</span> |  | Maximum number of rows to display. |
 
 The `ref` is forwarded to the root element.
 

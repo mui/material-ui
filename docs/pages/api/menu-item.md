@@ -24,11 +24,11 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | Menu item contents. |
-| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <a class="anchor-link" id="props--component"></a><a href="#props--component" class="prop-name">component</a> | <span class="prop-type">elementType</span> | <span class="prop-default">'li'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <a class="anchor-link" id="props--dense"></a><a href="#props--dense" class="prop-name">dense</a> | <span class="prop-type">bool</span> |  | If `true`, compact vertical padding designed for keyboard and mouse input will be used. |
-| <a class="anchor-link" id="props--disableGutters"></a><a href="#props--disableGutters" class="prop-name">disableGutters</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the left and right padding is removed. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" title="link to the prop on this page" class="prop-name">children</a> | <span class="prop-type">node</span> |  | Menu item contents. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" title="link to the prop on this page" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--component"></a><a href="#props--component" title="link to the prop on this page" class="prop-name">component</a> | <span class="prop-type">elementType</span> | <span class="prop-default">'li'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <a class="anchor-link" id="props--dense"></a><a href="#props--dense" title="link to the prop on this page" class="prop-name">dense</a> | <span class="prop-type">bool</span> |  | If `true`, compact vertical padding designed for keyboard and mouse input will be used. |
+| <a class="anchor-link" id="props--disableGutters"></a><a href="#props--disableGutters" title="link to the prop on this page" class="prop-name">disableGutters</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the left and right padding is removed. |
 
 The `ref` is forwarded to the root element.
 
@@ -41,10 +41,10 @@ Any other props supplied will be provided to the root element ([ListItem](/api/l
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiMenuItem-root</span> | Styles applied to the root element.
-| <a class="anchor-link" id="css--gutters"></a><a href="#css--gutters" class="prop-name">gutters</a> | <span class="prop-name">.MuiMenuItem-gutters</span> | Styles applied to the root element if `disableGutters={false}`.
-| <a class="anchor-link" id="css--selected"></a><a href="#css--selected" class="prop-name">selected</a> | <span class="prop-name">.Mui-selected</span> | Styles applied to the root element if `selected={true}`.
-| <a class="anchor-link" id="css--dense"></a><a href="#css--dense" class="prop-name">dense</a> | <span class="prop-name">.MuiMenuItem-dense</span> | Styles applied to the root element if dense.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiMenuItem-root</span> | Styles applied to the root element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--gutters"></a><a href="#css--gutters" class="prop-name">gutters</a> | <span class="prop-name">.MuiMenuItem-gutters</span> | Styles applied to the root element if `disableGutters={false}`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--selected"></a><a href="#css--selected" class="prop-name">selected</a> | <span class="prop-name">.Mui-selected</span> | Styles applied to the root element if `selected={true}`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--dense"></a><a href="#css--dense" class="prop-name">dense</a> | <span class="prop-name">.MuiMenuItem-dense</span> | Styles applied to the root element if dense.
 
 You can override the style of the component thanks to one of these customization points:
 

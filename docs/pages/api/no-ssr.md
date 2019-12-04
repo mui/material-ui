@@ -30,9 +30,9 @@ This component can be useful in a variety of situations:
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name required">children&nbsp;*</a> | <span class="prop-type">node</span> |  | You can wrap a node. |
-| <a class="anchor-link" id="props--defer"></a><a href="#props--defer" class="prop-name">defer</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the component will not only prevent server-side rendering. It will also defer the rendering of the children into a different screen frame. |
-| <a class="anchor-link" id="props--fallback"></a><a href="#props--fallback" class="prop-name">fallback</a> | <span class="prop-type">node</span> | <span class="prop-default">null</span> | The fallback content to display. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" title="link to the prop on this page" class="prop-name required">children&nbsp;*</a> | <span class="prop-type">node</span> |  | You can wrap a node. |
+| <a class="anchor-link" id="props--defer"></a><a href="#props--defer" title="link to the prop on this page" class="prop-name">defer</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the component will not only prevent server-side rendering. It will also defer the rendering of the children into a different screen frame. |
+| <a class="anchor-link" id="props--fallback"></a><a href="#props--fallback" title="link to the prop on this page" class="prop-name">fallback</a> | <span class="prop-type">node</span> | <span class="prop-default">null</span> | The fallback content to display. |
 
 The component cannot hold a ref.
 

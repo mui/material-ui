@@ -24,15 +24,15 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | The content of the component. |
-| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <a class="anchor-link" id="props--defaultCollapseIcon"></a><a href="#props--defaultCollapseIcon" class="prop-name">defaultCollapseIcon</a> | <span class="prop-type">node</span> |  | The default icon used to collapse the node. |
-| <a class="anchor-link" id="props--defaultEndIcon"></a><a href="#props--defaultEndIcon" class="prop-name">defaultEndIcon</a> | <span class="prop-type">node</span> |  | The default icon displayed next to a end node. This is applied to all tree nodes and can be overridden by the TreeItem `icon` prop. |
-| <a class="anchor-link" id="props--defaultExpanded"></a><a href="#props--defaultExpanded" class="prop-name">defaultExpanded</a> | <span class="prop-type">Array&lt;string&gt;</span> | <span class="prop-default">[]</span> | Expanded node ids. (Uncontrolled) |
-| <a class="anchor-link" id="props--defaultExpandIcon"></a><a href="#props--defaultExpandIcon" class="prop-name">defaultExpandIcon</a> | <span class="prop-type">node</span> |  | The default icon used to expand the node. |
-| <a class="anchor-link" id="props--defaultParentIcon"></a><a href="#props--defaultParentIcon" class="prop-name">defaultParentIcon</a> | <span class="prop-type">node</span> |  | The default icon displayed next to a parent node. This is applied to all parent nodes and can be overridden by the TreeItem `icon` prop. |
-| <a class="anchor-link" id="props--expanded"></a><a href="#props--expanded" class="prop-name">expanded</a> | <span class="prop-type">Array&lt;string&gt;</span> |  | Expanded node ids. (Controlled) |
-| <a class="anchor-link" id="props--onNodeToggle"></a><a href="#props--onNodeToggle" class="prop-name">onNodeToggle</a> | <span class="prop-type">func</span> |  | Callback fired when tree items are expanded/collapsed.<br><br>**Signature:**<br>`function(event: object, nodeIds: array) => void`<br>*event:* The event source of the callback<br>*nodeIds:* The ids of the expanded nodes. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" title="link to the prop on this page" class="prop-name">children</a> | <span class="prop-type">node</span> |  | The content of the component. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" title="link to the prop on this page" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--defaultCollapseIcon"></a><a href="#props--defaultCollapseIcon" title="link to the prop on this page" class="prop-name">defaultCollapseIcon</a> | <span class="prop-type">node</span> |  | The default icon used to collapse the node. |
+| <a class="anchor-link" id="props--defaultEndIcon"></a><a href="#props--defaultEndIcon" title="link to the prop on this page" class="prop-name">defaultEndIcon</a> | <span class="prop-type">node</span> |  | The default icon displayed next to a end node. This is applied to all tree nodes and can be overridden by the TreeItem `icon` prop. |
+| <a class="anchor-link" id="props--defaultExpanded"></a><a href="#props--defaultExpanded" title="link to the prop on this page" class="prop-name">defaultExpanded</a> | <span class="prop-type">Array&lt;string&gt;</span> | <span class="prop-default">[]</span> | Expanded node ids. (Uncontrolled) |
+| <a class="anchor-link" id="props--defaultExpandIcon"></a><a href="#props--defaultExpandIcon" title="link to the prop on this page" class="prop-name">defaultExpandIcon</a> | <span class="prop-type">node</span> |  | The default icon used to expand the node. |
+| <a class="anchor-link" id="props--defaultParentIcon"></a><a href="#props--defaultParentIcon" title="link to the prop on this page" class="prop-name">defaultParentIcon</a> | <span class="prop-type">node</span> |  | The default icon displayed next to a parent node. This is applied to all parent nodes and can be overridden by the TreeItem `icon` prop. |
+| <a class="anchor-link" id="props--expanded"></a><a href="#props--expanded" title="link to the prop on this page" class="prop-name">expanded</a> | <span class="prop-type">Array&lt;string&gt;</span> |  | Expanded node ids. (Controlled) |
+| <a class="anchor-link" id="props--onNodeToggle"></a><a href="#props--onNodeToggle" title="link to the prop on this page" class="prop-name">onNodeToggle</a> | <span class="prop-type">func</span> |  | Callback fired when tree items are expanded/collapsed.<br><br>**Signature:**<br>`function(event: object, nodeIds: array) => void`<br>*event:* The event source of the callback<br>*nodeIds:* The ids of the expanded nodes. |
 
 The `ref` is forwarded to the root element.
 
@@ -45,7 +45,7 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiTreeView-root</span> | Styles applied to the root element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiTreeView-root</span> | Styles applied to the root element.
 
 You can override the style of the component thanks to one of these customization points:
 

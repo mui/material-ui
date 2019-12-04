@@ -24,11 +24,11 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <a class="anchor-link" id="props--active"></a><a href="#props--active" class="prop-name">active</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Whether this step is active. |
-| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <a class="anchor-link" id="props--completed"></a><a href="#props--completed" class="prop-name">completed</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as completed. Is passed to child components. |
-| <a class="anchor-link" id="props--error"></a><a href="#props--error" class="prop-name">error</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as failed. |
-| <a class="anchor-link" id="props--icon"></a><a href="#props--icon" class="prop-name required">icon&nbsp;*</a> | <span class="prop-type">node</span> |  | The label displayed in the step icon. |
+| <a class="anchor-link" id="props--active"></a><a href="#props--active" title="link to the prop on this page" class="prop-name">active</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Whether this step is active. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" title="link to the prop on this page" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--completed"></a><a href="#props--completed" title="link to the prop on this page" class="prop-name">completed</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as completed. Is passed to child components. |
+| <a class="anchor-link" id="props--error"></a><a href="#props--error" title="link to the prop on this page" class="prop-name">error</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Mark the step as failed. |
+| <a class="anchor-link" id="props--icon"></a><a href="#props--icon" title="link to the prop on this page" class="prop-name required">icon&nbsp;*</a> | <span class="prop-type">node</span> |  | The label displayed in the step icon. |
 
 The `ref` is forwarded to the root element.
 
@@ -41,11 +41,11 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiStepIcon-root</span> | Styles applied to the root element.
-| <a class="anchor-link" id="css--text"></a><a href="#css--text" class="prop-name">text</a> | <span class="prop-name">.MuiStepIcon-text</span> | Styles applied to the SVG text element.
-| <a class="anchor-link" id="css--active"></a><a href="#css--active" class="prop-name">active</a> | <span class="prop-name">.MuiStepIcon-active</span> | Pseudo-class applied to the root element if `active={true}`.
-| <a class="anchor-link" id="css--completed"></a><a href="#css--completed" class="prop-name">completed</a> | <span class="prop-name">.MuiStepIcon-completed</span> | Pseudo-class applied to the root element if `completed={true}`.
-| <a class="anchor-link" id="css--error"></a><a href="#css--error" class="prop-name">error</a> | <span class="prop-name">.Mui-error</span> | Pseudo-class applied to the root element if `error={true}`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiStepIcon-root</span> | Styles applied to the root element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--text"></a><a href="#css--text" class="prop-name">text</a> | <span class="prop-name">.MuiStepIcon-text</span> | Styles applied to the SVG text element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--active"></a><a href="#css--active" class="prop-name">active</a> | <span class="prop-name">.MuiStepIcon-active</span> | Pseudo-class applied to the root element if `active={true}`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--completed"></a><a href="#css--completed" class="prop-name">completed</a> | <span class="prop-name">.MuiStepIcon-completed</span> | Pseudo-class applied to the root element if `completed={true}`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--error"></a><a href="#css--error" class="prop-name">error</a> | <span class="prop-name">.Mui-error</span> | Pseudo-class applied to the root element if `error={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

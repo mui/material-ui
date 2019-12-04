@@ -53,8 +53,8 @@ function MyComponent() {
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name required">children&nbsp;*</a> | <span class="prop-type">element</span> |  | The wrapped element. |
-| <a class="anchor-link" id="props--rootRef"></a><a href="#props--rootRef" class="prop-name required">rootRef&nbsp;*</a> | <span class="prop-type">refType.isRequired</span> |  | A ref that points to the first DOM node of the wrapped element. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" title="link to the prop on this page" class="prop-name required">children&nbsp;*</a> | <span class="prop-type">element</span> |  | The wrapped element. |
+| <a class="anchor-link" id="props--rootRef"></a><a href="#props--rootRef" title="link to the prop on this page" class="prop-name required">rootRef&nbsp;*</a> | <span class="prop-type">refType.isRequired</span> |  | A ref that points to the first DOM node of the wrapped element. |
 
 The component cannot hold a ref.
 

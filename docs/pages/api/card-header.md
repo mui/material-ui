@@ -24,15 +24,15 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <a class="anchor-link" id="props--action"></a><a href="#props--action" class="prop-name">action</a> | <span class="prop-type">node</span> |  | The action to display in the card header. |
-| <a class="anchor-link" id="props--avatar"></a><a href="#props--avatar" class="prop-name">avatar</a> | <span class="prop-type">node</span> |  | The Avatar for the Card Header. |
-| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <a class="anchor-link" id="props--component"></a><a href="#props--component" class="prop-name">component</a> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <a class="anchor-link" id="props--disableTypography"></a><a href="#props--disableTypography" class="prop-name">disableTypography</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, `subheader` and `title` won't be wrapped by a Typography component. This can be useful to render an alternative Typography variant by wrapping the `title` text, and optional `subheader` text with the Typography component. |
-| <a class="anchor-link" id="props--subheader"></a><a href="#props--subheader" class="prop-name">subheader</a> | <span class="prop-type">node</span> |  | The content of the component. |
-| <a class="anchor-link" id="props--subheaderTypographyProps"></a><a href="#props--subheaderTypographyProps" class="prop-name">subheaderTypographyProps</a> | <span class="prop-type">object</span> |  | These props will be forwarded to the subheader (as long as disableTypography is not `true`). |
-| <a class="anchor-link" id="props--title"></a><a href="#props--title" class="prop-name">title</a> | <span class="prop-type">node</span> |  | The content of the Card Title. |
-| <a class="anchor-link" id="props--titleTypographyProps"></a><a href="#props--titleTypographyProps" class="prop-name">titleTypographyProps</a> | <span class="prop-type">object</span> |  | These props will be forwarded to the title (as long as disableTypography is not `true`). |
+| <a class="anchor-link" id="props--action"></a><a href="#props--action" title="link to the prop on this page" class="prop-name">action</a> | <span class="prop-type">node</span> |  | The action to display in the card header. |
+| <a class="anchor-link" id="props--avatar"></a><a href="#props--avatar" title="link to the prop on this page" class="prop-name">avatar</a> | <span class="prop-type">node</span> |  | The Avatar for the Card Header. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" title="link to the prop on this page" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--component"></a><a href="#props--component" title="link to the prop on this page" class="prop-name">component</a> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <a class="anchor-link" id="props--disableTypography"></a><a href="#props--disableTypography" title="link to the prop on this page" class="prop-name">disableTypography</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, `subheader` and `title` won't be wrapped by a Typography component. This can be useful to render an alternative Typography variant by wrapping the `title` text, and optional `subheader` text with the Typography component. |
+| <a class="anchor-link" id="props--subheader"></a><a href="#props--subheader" title="link to the prop on this page" class="prop-name">subheader</a> | <span class="prop-type">node</span> |  | The content of the component. |
+| <a class="anchor-link" id="props--subheaderTypographyProps"></a><a href="#props--subheaderTypographyProps" title="link to the prop on this page" class="prop-name">subheaderTypographyProps</a> | <span class="prop-type">object</span> |  | These props will be forwarded to the subheader (as long as disableTypography is not `true`). |
+| <a class="anchor-link" id="props--title"></a><a href="#props--title" title="link to the prop on this page" class="prop-name">title</a> | <span class="prop-type">node</span> |  | The content of the Card Title. |
+| <a class="anchor-link" id="props--titleTypographyProps"></a><a href="#props--titleTypographyProps" title="link to the prop on this page" class="prop-name">titleTypographyProps</a> | <span class="prop-type">object</span> |  | These props will be forwarded to the title (as long as disableTypography is not `true`). |
 
 The `ref` is forwarded to the root element.
 
@@ -45,12 +45,12 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiCardHeader-root</span> | Styles applied to the root element.
-| <a class="anchor-link" id="css--avatar"></a><a href="#css--avatar" class="prop-name">avatar</a> | <span class="prop-name">.MuiCardHeader-avatar</span> | Styles applied to the avatar element.
-| <a class="anchor-link" id="css--action"></a><a href="#css--action" class="prop-name">action</a> | <span class="prop-name">.MuiCardHeader-action</span> | Styles applied to the action element.
-| <a class="anchor-link" id="css--content"></a><a href="#css--content" class="prop-name">content</a> | <span class="prop-name">.MuiCardHeader-content</span> | Styles applied to the content wrapper element.
-| <a class="anchor-link" id="css--title"></a><a href="#css--title" class="prop-name">title</a> | <span class="prop-name">.MuiCardHeader-title</span> | Styles applied to the title Typography element.
-| <a class="anchor-link" id="css--subheader"></a><a href="#css--subheader" class="prop-name">subheader</a> | <span class="prop-name">.MuiCardHeader-subheader</span> | Styles applied to the subheader Typography element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiCardHeader-root</span> | Styles applied to the root element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--avatar"></a><a href="#css--avatar" class="prop-name">avatar</a> | <span class="prop-name">.MuiCardHeader-avatar</span> | Styles applied to the avatar element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--action"></a><a href="#css--action" class="prop-name">action</a> | <span class="prop-name">.MuiCardHeader-action</span> | Styles applied to the action element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--content"></a><a href="#css--content" class="prop-name">content</a> | <span class="prop-name">.MuiCardHeader-content</span> | Styles applied to the content wrapper element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--title"></a><a href="#css--title" class="prop-name">title</a> | <span class="prop-name">.MuiCardHeader-title</span> | Styles applied to the title Typography element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--subheader"></a><a href="#css--subheader" class="prop-name">subheader</a> | <span class="prop-name">.MuiCardHeader-subheader</span> | Styles applied to the subheader Typography element.
 
 You can override the style of the component thanks to one of these customization points:
 

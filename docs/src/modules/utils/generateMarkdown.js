@@ -281,9 +281,9 @@ function generateProps(reactAPI) {
       /\.isRequired/.test(prop.type.raw) ||
       (chainedPropType !== false && chainedPropType.required)
     ) {
-      propDisplay = `<a href="#props--${propRaw}" class="prop-name required">${propRaw}&nbsp;*</a>`;
+      propDisplay = `<a href="#props--${propRaw}" title="link to the prop on this page" class="prop-name required">${propRaw}&nbsp;*</a>`;
     } else {
-      propDisplay = `<a href="#props--${propRaw}" class="prop-name">${propRaw}</a>`;
+      propDisplay = `<a href="#props--${propRaw}" title="link to the prop on this page" class="prop-name">${propRaw}</a>`;
     }
 
     if (prop.type.name === 'custom') {
@@ -341,7 +341,7 @@ function generateClasses(reactAPI) {
     text += reactAPI.styles.classes
       .map(
         styleRule =>
-          `| <a class="anchor-link" id="css--${styleRule}"></a><a href="#css--${styleRule}" class="prop-name">${styleRule}</a> | <span class="prop-name">.${
+          `| <a class="anchor-link" title="link to the rule name on this page" id="css--${styleRule}"></a><a href="#css--${styleRule}" class="prop-name">${styleRule}</a> | <span class="prop-name">.${
             reactAPI.styles.globalClasses[styleRule]
           }</span> | ${
             reactAPI.styles.descriptions[styleRule]

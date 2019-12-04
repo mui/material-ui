@@ -25,11 +25,11 @@ based on the material table element parent (head, body, etc).
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | Should be valid &lt;tr> children such as `TableCell`. |
-| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <a class="anchor-link" id="props--component"></a><a href="#props--component" class="prop-name">component</a> | <span class="prop-type">elementType</span> | <span class="prop-default">'tr'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <a class="anchor-link" id="props--hover"></a><a href="#props--hover" class="prop-name">hover</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the table row will shade on hover. |
-| <a class="anchor-link" id="props--selected"></a><a href="#props--selected" class="prop-name">selected</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the table row will have the selected shading. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" title="link to the prop on this page" class="prop-name">children</a> | <span class="prop-type">node</span> |  | Should be valid &lt;tr> children such as `TableCell`. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" title="link to the prop on this page" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--component"></a><a href="#props--component" title="link to the prop on this page" class="prop-name">component</a> | <span class="prop-type">elementType</span> | <span class="prop-default">'tr'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <a class="anchor-link" id="props--hover"></a><a href="#props--hover" title="link to the prop on this page" class="prop-name">hover</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the table row will shade on hover. |
+| <a class="anchor-link" id="props--selected"></a><a href="#props--selected" title="link to the prop on this page" class="prop-name">selected</a> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the table row will have the selected shading. |
 
 The `ref` is forwarded to the root element.
 
@@ -42,11 +42,11 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiTableRow-root</span> | Styles applied to the root element.
-| <a class="anchor-link" id="css--selected"></a><a href="#css--selected" class="prop-name">selected</a> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the root element if `selected={true}`.
-| <a class="anchor-link" id="css--hover"></a><a href="#css--hover" class="prop-name">hover</a> | <span class="prop-name">.MuiTableRow-hover</span> | Pseudo-class applied to the root element if `hover={true}`.
-| <a class="anchor-link" id="css--head"></a><a href="#css--head" class="prop-name">head</a> | <span class="prop-name">.MuiTableRow-head</span> | Styles applied to the root element if table variant="head".
-| <a class="anchor-link" id="css--footer"></a><a href="#css--footer" class="prop-name">footer</a> | <span class="prop-name">.MuiTableRow-footer</span> | Styles applied to the root element if table variant="footer".
+| <a class="anchor-link" title="link to the rule name on this page" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiTableRow-root</span> | Styles applied to the root element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--selected"></a><a href="#css--selected" class="prop-name">selected</a> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the root element if `selected={true}`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--hover"></a><a href="#css--hover" class="prop-name">hover</a> | <span class="prop-name">.MuiTableRow-hover</span> | Pseudo-class applied to the root element if `hover={true}`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--head"></a><a href="#css--head" class="prop-name">head</a> | <span class="prop-name">.MuiTableRow-head</span> | Styles applied to the root element if table variant="head".
+| <a class="anchor-link" title="link to the rule name on this page" id="css--footer"></a><a href="#css--footer" class="prop-name">footer</a> | <span class="prop-name">.MuiTableRow-footer</span> | Styles applied to the root element if table variant="footer".
 
 You can override the style of the component thanks to one of these customization points:
 

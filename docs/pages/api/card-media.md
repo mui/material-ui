@@ -24,11 +24,11 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | The content of the component. |
-| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <a class="anchor-link" id="props--component"></a><a href="#props--component" class="prop-name">component</a> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | Component for rendering image. Either a string to use a DOM element or a component. |
-| <a class="anchor-link" id="props--image"></a><a href="#props--image" class="prop-name">image</a> | <span class="prop-type">string</span> |  | Image to be displayed as a background image. Either `image` or `src` prop must be specified. Note that caller must specify height otherwise the image will not be visible. |
-| <a class="anchor-link" id="props--src"></a><a href="#props--src" class="prop-name">src</a> | <span class="prop-type">string</span> |  | An alias for `image` property. Available only with media components. Media components: `video`, `audio`, `picture`, `iframe`, `img`. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" title="link to the prop on this page" class="prop-name">children</a> | <span class="prop-type">node</span> |  | The content of the component. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" title="link to the prop on this page" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--component"></a><a href="#props--component" title="link to the prop on this page" class="prop-name">component</a> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | Component for rendering image. Either a string to use a DOM element or a component. |
+| <a class="anchor-link" id="props--image"></a><a href="#props--image" title="link to the prop on this page" class="prop-name">image</a> | <span class="prop-type">string</span> |  | Image to be displayed as a background image. Either `image` or `src` prop must be specified. Note that caller must specify height otherwise the image will not be visible. |
+| <a class="anchor-link" id="props--src"></a><a href="#props--src" title="link to the prop on this page" class="prop-name">src</a> | <span class="prop-type">string</span> |  | An alias for `image` property. Available only with media components. Media components: `video`, `audio`, `picture`, `iframe`, `img`. |
 
 The `ref` is forwarded to the root element.
 
@@ -41,9 +41,9 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiCardMedia-root</span> | Styles applied to the root element.
-| <a class="anchor-link" id="css--media"></a><a href="#css--media" class="prop-name">media</a> | <span class="prop-name">.MuiCardMedia-media</span> | Styles applied to the root element if `component="video, audio, picture, iframe, or img"`.
-| <a class="anchor-link" id="css--img"></a><a href="#css--img" class="prop-name">img</a> | <span class="prop-name">.MuiCardMedia-img</span> | Styles applied to the root element if `component="picture or img"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiCardMedia-root</span> | Styles applied to the root element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--media"></a><a href="#css--media" class="prop-name">media</a> | <span class="prop-name">.MuiCardMedia-media</span> | Styles applied to the root element if `component="video, audio, picture, iframe, or img"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--img"></a><a href="#css--img" class="prop-name">img</a> | <span class="prop-name">.MuiCardMedia-img</span> | Styles applied to the root element if `component="picture or img"`.
 
 You can override the style of the component thanks to one of these customization points:
 

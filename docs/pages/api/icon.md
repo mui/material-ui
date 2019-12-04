@@ -24,11 +24,11 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <a class="anchor-link" id="props--children"></a><a href="#props--children" class="prop-name">children</a> | <span class="prop-type">node</span> |  | The name of the icon font ligature. |
-| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <a class="anchor-link" id="props--color"></a><a href="#props--color" class="prop-name">color</a> | <span class="prop-type">'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'action'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'disabled'</span> | <span class="prop-default">'inherit'</span> | The color of the component. It supports those theme colors that make sense for this component. |
-| <a class="anchor-link" id="props--component"></a><a href="#props--component" class="prop-name">component</a> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <a class="anchor-link" id="props--fontSize"></a><a href="#props--fontSize" class="prop-name">fontSize</a> | <span class="prop-type">'inherit'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;'large'</span> | <span class="prop-default">'default'</span> | The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size. |
+| <a class="anchor-link" id="props--children"></a><a href="#props--children" title="link to the prop on this page" class="prop-name">children</a> | <span class="prop-type">node</span> |  | The name of the icon font ligature. |
+| <a class="anchor-link" id="props--classes"></a><a href="#props--classes" title="link to the prop on this page" class="prop-name">classes</a> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <a class="anchor-link" id="props--color"></a><a href="#props--color" title="link to the prop on this page" class="prop-name">color</a> | <span class="prop-type">'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'action'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'disabled'</span> | <span class="prop-default">'inherit'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <a class="anchor-link" id="props--component"></a><a href="#props--component" title="link to the prop on this page" class="prop-name">component</a> | <span class="prop-type">elementType</span> | <span class="prop-default">'span'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
+| <a class="anchor-link" id="props--fontSize"></a><a href="#props--fontSize" title="link to the prop on this page" class="prop-name">fontSize</a> | <span class="prop-type">'inherit'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;'large'</span> | <span class="prop-default">'default'</span> | The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size. |
 
 The `ref` is forwarded to the root element.
 
@@ -41,15 +41,15 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <a class="anchor-link" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiIcon-root</span> | Styles applied to the root element.
-| <a class="anchor-link" id="css--colorPrimary"></a><a href="#css--colorPrimary" class="prop-name">colorPrimary</a> | <span class="prop-name">.MuiIcon-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <a class="anchor-link" id="css--colorSecondary"></a><a href="#css--colorSecondary" class="prop-name">colorSecondary</a> | <span class="prop-name">.MuiIcon-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
-| <a class="anchor-link" id="css--colorAction"></a><a href="#css--colorAction" class="prop-name">colorAction</a> | <span class="prop-name">.MuiIcon-colorAction</span> | Styles applied to the root element if `color="action"`.
-| <a class="anchor-link" id="css--colorError"></a><a href="#css--colorError" class="prop-name">colorError</a> | <span class="prop-name">.MuiIcon-colorError</span> | Styles applied to the root element if `color="error"`.
-| <a class="anchor-link" id="css--colorDisabled"></a><a href="#css--colorDisabled" class="prop-name">colorDisabled</a> | <span class="prop-name">.MuiIcon-colorDisabled</span> | Styles applied to the root element if `color="disabled"`.
-| <a class="anchor-link" id="css--fontSizeInherit"></a><a href="#css--fontSizeInherit" class="prop-name">fontSizeInherit</a> | <span class="prop-name">.MuiIcon-fontSizeInherit</span> | 
-| <a class="anchor-link" id="css--fontSizeSmall"></a><a href="#css--fontSizeSmall" class="prop-name">fontSizeSmall</a> | <span class="prop-name">.MuiIcon-fontSizeSmall</span> | Styles applied to the root element if `fontSize="small"`.
-| <a class="anchor-link" id="css--fontSizeLarge"></a><a href="#css--fontSizeLarge" class="prop-name">fontSizeLarge</a> | <span class="prop-name">.MuiIcon-fontSizeLarge</span> | Styles applied to the root element if `fontSize="large"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--root"></a><a href="#css--root" class="prop-name">root</a> | <span class="prop-name">.MuiIcon-root</span> | Styles applied to the root element.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--colorPrimary"></a><a href="#css--colorPrimary" class="prop-name">colorPrimary</a> | <span class="prop-name">.MuiIcon-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--colorSecondary"></a><a href="#css--colorSecondary" class="prop-name">colorSecondary</a> | <span class="prop-name">.MuiIcon-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--colorAction"></a><a href="#css--colorAction" class="prop-name">colorAction</a> | <span class="prop-name">.MuiIcon-colorAction</span> | Styles applied to the root element if `color="action"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--colorError"></a><a href="#css--colorError" class="prop-name">colorError</a> | <span class="prop-name">.MuiIcon-colorError</span> | Styles applied to the root element if `color="error"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--colorDisabled"></a><a href="#css--colorDisabled" class="prop-name">colorDisabled</a> | <span class="prop-name">.MuiIcon-colorDisabled</span> | Styles applied to the root element if `color="disabled"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--fontSizeInherit"></a><a href="#css--fontSizeInherit" class="prop-name">fontSizeInherit</a> | <span class="prop-name">.MuiIcon-fontSizeInherit</span> | 
+| <a class="anchor-link" title="link to the rule name on this page" id="css--fontSizeSmall"></a><a href="#css--fontSizeSmall" class="prop-name">fontSizeSmall</a> | <span class="prop-name">.MuiIcon-fontSizeSmall</span> | Styles applied to the root element if `fontSize="small"`.
+| <a class="anchor-link" title="link to the rule name on this page" id="css--fontSizeLarge"></a><a href="#css--fontSizeLarge" class="prop-name">fontSizeLarge</a> | <span class="prop-name">.MuiIcon-fontSizeLarge</span> | Styles applied to the root element if `fontSize="large"`.
 
 You can override the style of the component thanks to one of these customization points:
 
