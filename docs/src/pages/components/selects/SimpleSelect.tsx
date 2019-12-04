@@ -22,6 +22,12 @@ export default function SimpleSelect() {
   const classes = useStyles();
   const [age, setAge] = React.useState('');
 
+  const inputLabel = React.useRef<HTMLLabelElement>(null);
+  const [labelWidth, setLabelWidth] = React.useState(0);
+  React.useEffect(() => {
+    setLabelWidth(inputLabel.current!.offsetWidth);
+  }, []);
+
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setAge(event.target.value as string);
   };
@@ -191,7 +197,7 @@ export default function SimpleSelect() {
         <FormHelperText>Required</FormHelperText>
       </FormControl>
       <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">
+        <InputLabel ref={inputLabel} id="demo-simple-select-outlined-label">
           Age
         </InputLabel>
         <Select
@@ -199,7 +205,7 @@ export default function SimpleSelect() {
           id="demo-simple-select-outlined"
           value={age}
           onChange={handleChange}
-          label="Age"
+          labelWidth={labelWidth}
         >
           <MenuItem value="">
             <em>None</em>

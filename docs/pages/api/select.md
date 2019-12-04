@@ -32,8 +32,9 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">IconComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">ArrowDropDownIcon</span> | The icon that displays the arrow. |
 | <span class="prop-name">input</span> | <span class="prop-type">element</span> |  | An `Input` element; does not have to be a material-ui specific `Input`. |
 | <span class="prop-name">inputProps</span> | <span class="prop-type">object</span> |  | [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes) applied to the `input` element. When `native` is `true`, the attributes are applied on the `select` element. |
+| <span class="prop-name">label</span> | <span class="prop-type">node</span> |  | See [OutlinedLabel#label](/api/outlined-input/#props) |
 | <span class="prop-name">labelId</span> | <span class="prop-type">string</span> |  | The idea of an element that acts as an additional label. The Select will be labelled by the additional label and the selected value. |
-| <span class="prop-name">labelWidth</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | The label width to be used on OutlinedInput. This prop is required when the `variant` prop is `outlined`. |
+| <span class="prop-name">labelWidth</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | See OutlinedLabel#label |
 | <span class="prop-name">MenuProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Menu`](/api/menu/) element. |
 | <span class="prop-name">multiple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, `value` must be an array and the menu will support multiple selections. |
 | <span class="prop-name">native</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the component will be using a native `select` element. |

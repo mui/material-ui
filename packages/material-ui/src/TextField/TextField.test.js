@@ -92,9 +92,9 @@ describe('<TextField />', () => {
 
   describe('with an outline', () => {
     it('should set outline props', () => {
-      const wrapper = mount(<TextField variant="outlined" />);
+      const wrapper = mount(<TextField label="foo" variant="outlined" />);
 
-      expect(wrapper.find(OutlinedInput).props()).to.have.property('labelWidth', 0);
+      expect(wrapper.find(OutlinedInput).props()).to.have.property('label', 'foo');
     });
 
     it('should set shrink prop on outline from label', () => {

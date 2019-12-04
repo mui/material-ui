@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
@@ -63,13 +62,13 @@ export default function SimpleTabs() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <TextField label="dummy input" variant="outlined" />
+        Item One
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <TextField label="dummy input" variant="outlined" />
+        Item Three
       </TabPanel>
     </div>
   );
