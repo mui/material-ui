@@ -5,7 +5,6 @@ import { stub } from 'sinon';
 import { createMount, createShallow } from '@material-ui/core/test-utils';
 import mediaQuery from 'css-mediaquery';
 import withWidth, { isWidthDown, isWidthUp } from './withWidth';
-import { testReset } from '../useMediaQuery/useMediaQuery';
 import createMuiTheme from '../styles/createMuiTheme';
 
 function createMatchMedia(width, ref) {
@@ -48,7 +47,6 @@ describe('withWidth', () => {
 
   beforeEach(() => {
     matchMediaInstances = [];
-    testReset();
     const fakeMatchMedia = createMatchMedia(1200, matchMediaInstances);
     // can't stub non-existent properties with sinon
     // jsdom does not implement window.matchMedia
