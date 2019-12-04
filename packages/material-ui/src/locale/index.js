@@ -148,6 +148,38 @@ export const jaJP = {
   },
 };
 
+export const plPL = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Poprzednia strona',
+      labelRowsPerPage: 'Wierszy na stronę:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} z ${count}`,
+      nextIconButtonText: 'Następna strona',
+    },
+    MuiRating: {
+      getLabelText: value => {
+        let pluralForm = 'gwiazdek';
+        const lastDigit = value % 10;
+
+        if ((value < 10 || value > 20) && lastDigit > 1 && lastDigit < 5) {
+          pluralForm = 'gwiazdki';
+        } else if (value === 1) {
+          pluralForm = 'gwiazdka';
+        }
+
+        return `${value} ${pluralForm}`;
+      },
+    },
+    MuiAutocomplete: {
+      clearText: 'Wyczyść',
+      closeText: 'Zamknij',
+      loadingText: 'Ładowanie…',
+      noOptionsText: 'Brak opcji',
+      openText: 'Otwórz',
+    },
+  },
+};
+
 export const ptBR = {
   props: {
     MuiTablePagination: {
