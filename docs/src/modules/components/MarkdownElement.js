@@ -32,8 +32,8 @@ renderer.heading = (text, level) => {
   return [
     `<h${level}>`,
     `<a class="anchor-link" id="${fragmentId}"></a>${text}`,
-    `<a class="anchor-link-style" aria-label="${text}" href="#${fragmentId}">`,
-    '<svg><use xlink:href="#icons--fragment-link" /></svg>',
+    `<a class="anchor-link-style" title="link to this heading" href="#${fragmentId}">`,
+    `<svg alt="${text}"><use xlink:href="#icons--fragment-link" /></svg>`,
     `</a>`,
     `</h${level}>`,
   ].join('');
