@@ -555,6 +555,11 @@ Autocomplete.propTypes = {
    */
   getOptionLabel: PropTypes.func,
   /**
+   * Used to determine if an option is selected.
+   * Uses strict equality by default.
+   */
+  getOptionSelected: PropTypes.func,
+  /**
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
@@ -694,12 +699,6 @@ Autocomplete.propTypes = {
    * You can customize the equality behavior with the `getOptionSelected` prop.
    */
   value: PropTypes.any,
-    /**
-   * 
-   * The function get selected value for renderOption
-   *
-   */
-  getOptionSelected: PropTypes.func
 };
 
 export default withStyles(styles, { name: 'MuiAutocomplete' })(Autocomplete);
