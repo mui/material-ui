@@ -236,6 +236,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     freeSolo = false,
     getOptionDisabled,
     getOptionLabel = x => x,
+    getOptionSelected,
     groupBy,
     id: idProp,
     includeInputInList = false,
@@ -693,6 +694,12 @@ Autocomplete.propTypes = {
    * You can customize the equality behavior with the `getOptionSelected` prop.
    */
   value: PropTypes.any,
+    /**
+   * 
+   * The function get selected value for renderOption
+   *
+   */
+  getOptionSelected: PropTypes.func
 };
 
 export default withStyles(styles, { name: 'MuiAutocomplete' })(Autocomplete);

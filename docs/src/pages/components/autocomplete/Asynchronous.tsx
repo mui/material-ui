@@ -59,6 +59,7 @@ export default function Asynchronous() {
       onClose={() => {
         setOpen(false);
       }}
+      getOptionSelected={(option, value) => option.name === value.name}
       getOptionLabel={option => option.name}
       options={options}
       loading={loading}

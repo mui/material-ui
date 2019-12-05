@@ -91,6 +91,11 @@ export interface UseAutocompleteProps {
    */
   getOptionLabel?: (option: any) => string;
   /**
+   * Used to determine if an option is selected.
+   * Uses strict equality by default.
+   */
+  getOptionSelected?: (option: any, value: any) => boolean;
+  /**
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *

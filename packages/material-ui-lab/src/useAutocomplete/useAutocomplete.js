@@ -83,6 +83,7 @@ export default function useAutocomplete(props) {
     freeSolo = false,
     getOptionDisabled,
     getOptionLabel = x => x,
+    getOptionSelected = (option, value) => option === value,
     groupBy,
     id: idProp,
     includeInputInList = false,
@@ -239,7 +240,9 @@ export default function useAutocomplete(props) {
         options.filter(option => {
           if (
             filterSelectedOptions &&
-            (multiple ? value.indexOf(option) !== -1 : value === option)
+            (multiple ? value : [value]).some(
+              value2 => value2 !== null && getOptionSelected(option, value2)
+            )
           ) {
             return false;
           }
