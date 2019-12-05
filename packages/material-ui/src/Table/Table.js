@@ -85,7 +85,7 @@ Table.propTypes = {
    * Allows TableCells to inherit padding of the Table.
    */
   padding: PropTypes.oneOf(['default', 'checkbox', 'none']),
-  /*
+  /**
    * Allow table to overflow horizontally, making it responsive.
    */
   responsive: PropTypes.bool,
