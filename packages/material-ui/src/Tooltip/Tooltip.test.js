@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React from 'react';
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import PropTypes from 'prop-types';
 import { spy, useFakeTimers } from 'sinon';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
@@ -227,17 +228,17 @@ describe('<Tooltip />', () => {
       );
       const children = container.querySelector('#testChild');
       focusVisible(children);
-      assert.strictEqual(document.body.querySelectorAll('[role="tooltip"]').length, 0);
+      expect(document.body.querySelectorAll('[role="tooltip"]').length).to.equal(0);
       clock.tick(111);
-      assert.strictEqual(document.body.querySelectorAll('[role="tooltip"]').length, 1);
+      expect(document.body.querySelectorAll('[role="tooltip"]').length).to.equal(1);
       document.activeElement.blur();
       clock.tick(5);
       clock.tick(6);
-      assert.strictEqual(document.body.querySelectorAll('[role="tooltip"]').length, 0);
+      expect(document.body.querySelectorAll('[role="tooltip"]').length).to.equal(0);
 
       focusVisible(children);
       // Bypass `enterDelay` wait, instant display.
-      assert.strictEqual(document.body.querySelectorAll('[role="tooltip"]').length, 1);
+      expect(document.body.querySelectorAll('[role="tooltip"]').length).to.equal(1);
     });
 
     it('should take the leaveDelay into account', () => {
@@ -284,6 +285,19 @@ describe('<Tooltip />', () => {
         clock.tick(0);
         assert.strictEqual(handler.callCount, 1);
       });
+    });
+
+    it('should ignore event from the tooltip', () => {
+      const handleMouseOver = spy();
+      const { getByRole } = render(
+        <Tooltip {...defaultProps} open interactive>
+          <button type="submit" onMouseOver={handleMouseOver}>
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+      fireEvent.mouseOver(getByRole('tooltip'));
+      expect(handleMouseOver.callCount).to.equal(0);
     });
   });
 
