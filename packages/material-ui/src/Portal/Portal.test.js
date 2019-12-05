@@ -240,13 +240,4 @@ describe('<Portal />', () => {
       'ref',
     ]);
   });
-
-  it('should render if children is undefined', () => {
-    render(
-      <div>
-        <Portal />
-        <Portal disablePortal />
-      </div>,
-    );
-  });
 });

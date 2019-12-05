@@ -4,7 +4,7 @@ export interface PortalProps {
   /**
    * The children to render into the `container`.
    */
-  children?: React.ReactNode;
+  children: React.ReactNode;
   /**
    * A node, component instance, or function that returns either.
    * The `container` will have the portal children appended to it.
