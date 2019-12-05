@@ -37,8 +37,8 @@ function RadioButtonIcon(props) {
 
   return (
     <div className={clsx(classes.root, { [classes.checked]: checked })}>
-     <RadioButtonUncheckedIcon fontSize={fontSize} />
-     <RadioButtonCheckedIcon fontSize={fontSize} className={classes.layer} />
+      <RadioButtonUncheckedIcon fontSize={fontSize} />
+      <RadioButtonCheckedIcon fontSize={fontSize} className={classes.layer} />
     </div>
   );
 }
@@ -54,9 +54,9 @@ RadioButtonIcon.propTypes = {
    */
   classes: PropTypes.object.isRequired,
   /**
-  * The size of the radio.
-  * `small` is equivalent to the dense radio styling.
-  */
+   * The size of the radio.
+   * `small` is equivalent to the dense radio styling.
+   */
   fontSize: PropTypes.oneOf(['small', 'medium']),
 };
 
