@@ -12,7 +12,6 @@ const TAX_RATE = 0.07;
 const useStyles = makeStyles({
   root: {
     width: '100%',
-    overflowX: 'auto',
   },
   table: {
     minWidth: 700,
@@ -51,7 +50,7 @@ export default function SpanningTable() {
 
   return (
     <Paper className={classes.root}>
-      <Table className={classes.table} aria-label="spanning table">
+      <Table responsive className={classes.table} aria-label="spanning table">
         <TableHead>
           <TableRow>
             <TableCell align="center" colSpan={3}>

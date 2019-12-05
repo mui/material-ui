@@ -4,6 +4,7 @@ import { StandardProps } from '..';
 export interface TableProps extends StandardProps<TableBaseProps, TableClassKey> {
   component?: React.ElementType<TableBaseProps>;
   padding?: Padding;
+  responsive?: boolean;
   size?: Size;
   stickyHeader?: boolean;
 }
@@ -14,7 +15,7 @@ export type Padding = 'default' | 'checkbox' | 'none';
 
 export type Size = 'small' | 'medium';
 
-export type TableClassKey = 'root' | 'stickyHeader';
+export type TableClassKey = 'root' | 'stickyHeader' | 'responsive';
 
 declare const Table: React.ComponentType<TableProps>;
 

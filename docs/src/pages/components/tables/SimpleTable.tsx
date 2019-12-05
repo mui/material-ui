@@ -10,7 +10,6 @@ import Paper from '@material-ui/core/Paper';
 const useStyles = makeStyles({
   root: {
     width: '100%',
-    overflowX: 'auto',
   },
   table: {
     minWidth: 650,
@@ -34,7 +33,7 @@ export default function SimpleTable() {
 
   return (
     <Paper className={classes.root}>
-      <Table className={classes.table} aria-label="simple table">
+      <Table responsive className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Dessert (100g serving)</TableCell>

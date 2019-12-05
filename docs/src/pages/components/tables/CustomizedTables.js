@@ -40,7 +40,6 @@ const rows = [
 const useStyles = makeStyles({
   root: {
     width: '100%',
-    overflowX: 'auto',
   },
   table: {
     minWidth: 700,
@@ -52,7 +51,7 @@ export default function CustomizedTables() {
 
   return (
     <Paper className={classes.root}>
-      <Table className={classes.table} aria-label="customized table">
+      <Table responsive className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell>Dessert (100g serving)</StyledTableCell>

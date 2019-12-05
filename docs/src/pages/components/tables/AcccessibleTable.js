@@ -10,7 +10,6 @@ import Paper from '@material-ui/core/Paper';
 const useStyles = makeStyles({
   root: {
     width: '100%',
-    overflowX: 'auto',
   },
   table: {
     minWidth: 650,
@@ -32,7 +31,7 @@ export default function AcccessibleTable() {
 
   return (
     <Paper className={classes.root}>
-      <Table className={classes.table} aria-label="caption table">
+      <Table responsive className={classes.table} aria-label="caption table">
         <caption>A barbone structure table example with a caption</caption>
         <TableHead>
           <TableRow>
