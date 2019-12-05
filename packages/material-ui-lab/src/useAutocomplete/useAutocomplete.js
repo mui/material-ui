@@ -83,6 +83,7 @@ export default function useAutocomplete(props) {
     freeSolo = false,
     getOptionDisabled,
     getOptionLabel = x => x,
+    getOptionSelected = (option, value) => option === value,
     groupBy,
     id: idProp,
     includeInputInList = false,
@@ -239,7 +240,9 @@ export default function useAutocomplete(props) {
         options.filter(option => {
           if (
             filterSelectedOptions &&
-            (multiple ? value.indexOf(option) !== -1 : value === option)
+            (multiple ? value : [value]).some(
+              value2 => value2 !== null && getOptionSelected(option, value2),
+            )
           ) {
             return false;
           }
@@ -416,7 +419,15 @@ export default function useAutocomplete(props) {
     if (multiple) {
       const item = newValue;
       newValue = Array.isArray(value) ? [...value] : [];
-      const itemIndex = value.indexOf(item);
+
+      let itemIndex = -1;
+      // To replace with .findIndex() once we stop IE 11 support.
+      for (let i = 0; i < newValue.length; i += 1) {
+        if (getOptionSelected(item, newValue[i])) {
+          itemIndex = i;
+        }
+      }
+
       if (itemIndex === -1) {
         newValue.push(item);
       } else {
@@ -791,7 +802,9 @@ export default function useAutocomplete(props) {
       },
     }),
     getOptionProps: ({ index, option }) => {
-      const selected = multiple ? value.indexOf(option) !== -1 : value === option;
+      const selected = (multiple ? value : [value]).some(
+        value2 => value2 != null && getOptionSelected(option, value2),
+      );
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
       return {

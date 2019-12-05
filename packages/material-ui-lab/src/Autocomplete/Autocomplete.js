@@ -236,6 +236,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     freeSolo = false,
     getOptionDisabled,
     getOptionLabel = x => x,
+    getOptionSelected,
     groupBy,
     id: idProp,
     includeInputInList = false,
@@ -553,6 +554,11 @@ Autocomplete.propTypes = {
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
    */
   getOptionLabel: PropTypes.func,
+  /**
+   * Used to determine if an option is selected.
+   * Uses strict equality by default.
+   */
+  getOptionSelected: PropTypes.func,
   /**
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
