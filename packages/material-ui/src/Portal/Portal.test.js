@@ -128,10 +128,11 @@ describe('<Portal />', () => {
   it('should render overlay into container (document)', () => {
     render(
       <Portal>
-        <div id="test2" />
+        <div className="test2" />
+        <div className="test2" />
       </Portal>,
     );
-    expect(document.querySelectorAll('#test2').length).to.equal(1);
+    expect(document.querySelectorAll('.test2').length).to.equal(2);
   });
 
   it('should render overlay into container (DOMNode)', () => {

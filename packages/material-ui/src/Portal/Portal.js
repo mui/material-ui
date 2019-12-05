@@ -20,7 +20,7 @@ const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect 
 const Portal = React.forwardRef(function Portal(props, ref) {
   const { children, container, disablePortal = false, onRendered } = props;
   const [mountNode, setMountNode] = React.useState(null);
-  const handleRef = useForkRef(children.ref, ref);
+  const handleRef = useForkRef(React.isValidElement(children) ? children.ref : null, ref);
 
   useEnhancedEffect(() => {
     if (!disablePortal) {
@@ -46,10 +46,12 @@ const Portal = React.forwardRef(function Portal(props, ref) {
   }, [onRendered, mountNode, disablePortal]);
 
   if (disablePortal) {
-    React.Children.only(children);
-    return React.cloneElement(children, {
-      ref: handleRef,
-    });
+    if (React.isValidElement(children)) {
+      return React.cloneElement(children, {
+        ref: handleRef,
+      });
+    }
+    return children;
   }
 
   return mountNode ? ReactDOM.createPortal(children, mountNode) : mountNode;
@@ -63,7 +65,7 @@ Portal.propTypes = {
   /**
    * The children to render into the `container`.
    */
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   /**
    * A node, component instance, or function that returns either.
    * The `container` will have the portal children appended to it.
