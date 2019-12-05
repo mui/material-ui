@@ -111,11 +111,6 @@ Radio.propTypes = {
    */
   checked: PropTypes.bool,
   /**
-   * The size of the radio.
-   * `small` is equivalent to the dense radio styling.
-   */
-  size: PropTypes.oneOf(['small', 'medium']),
-  /**
    * The icon to display when the component is checked.
    */
   checkedIcon: PropTypes.node,
@@ -168,6 +163,11 @@ Radio.propTypes = {
    * If `true`, the `input` element will be required.
    */
   required: PropTypes.bool,
+  /**
+   * The size of the radio.
+   * `small` is equivalent to the dense radio styling.
+   */
+  size: PropTypes.oneOf(['small', 'medium']),
   /**
    * The input component prop `type`.
    */
