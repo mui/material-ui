@@ -1,22 +1,18 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, createRender } from '@material-ui/core/test-utils';
+import { createRender } from '@material-ui/core/test-utils';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
+import { createClientRender } from 'test/utils/createClientRender';
 import Portal from './Portal';
 
 describe('<Portal />', () => {
-  let mount;
-  let render;
+  let serverRender;
+  const render = createClientRender({ strict: true });
 
   before(() => {
-    mount = createMount({ strict: true });
-    render = createRender();
-  });
-
-  after(() => {
-    mount.cleanUp();
+    serverRender = createRender();
   });
 
   describe('server-side', () => {
@@ -34,64 +30,65 @@ describe('<Portal />', () => {
     });
 
     it('render nothing on the server', () => {
-      const markup1 = render(<div>Bar</div>);
-      assert.strictEqual(markup1.text(), 'Bar');
+      const markup1 = serverRender(<div>Bar</div>);
+      expect(markup1.text()).to.equal('Bar');
 
-      const markup2 = render(
+      const markup2 = serverRender(
         <Portal>
           <div>Bar</div>
         </Portal>,
       );
-      assert.strictEqual(markup2.text(), '');
+      expect(markup2.text()).to.equal('');
     });
   });
 
   describe('ref', () => {
     it('should have access to the mountNode when disabledPortal={false}', () => {
       const refSpy = spy();
-      const wrapper = mount(
+      const { unmount } = render(
         <Portal ref={refSpy}>
           <h1>Foo</h1>
         </Portal>,
       );
-      assert.deepEqual(refSpy.args, [[document.body]]);
-      wrapper.unmount();
-      assert.deepEqual(refSpy.args, [[document.body], [null]]);
+      expect(refSpy.args).to.deep.equal([[document.body]]);
+      unmount();
+      expect(refSpy.args).to.deep.equal([[document.body], [null]]);
     });
 
     it('should have access to the mountNode when disabledPortal={true}', () => {
       const refSpy = spy();
-      const wrapper = mount(
+      const { unmount } = render(
         <Portal disablePortal ref={refSpy}>
           <h1 className="woofPortal">Foo</h1>
         </Portal>,
       );
       const mountNode = document.querySelector('.woofPortal');
-      assert.deepEqual(refSpy.args, [[mountNode]]);
-      wrapper.unmount();
-      assert.deepEqual(refSpy.args, [[mountNode], [null]]);
+      expect(refSpy.args).to.deep.equal([[mountNode]]);
+      unmount();
+      expect(refSpy.args).to.deep.equal([[mountNode], [null]]);
     });
 
     it('should have access to the mountNode when switching disabledPortal', () => {
       const refSpy = spy();
-      const wrapper = mount(
+      const { setProps, unmount } = render(
         <Portal disablePortal ref={refSpy}>
           <h1 className="woofPortal">Foo</h1>
         </Portal>,
       );
       const mountNode = document.querySelector('.woofPortal');
-      assert.deepEqual(refSpy.args, [[mountNode]]);
-      wrapper.setProps({
+      expect(refSpy.args).to.deep.equal([[mountNode]]);
+      setProps({
         disablePortal: false,
+        ref: refSpy,
       });
-      assert.deepEqual(refSpy.args, [[mountNode], [null], [document.body]]);
-      wrapper.unmount();
-      assert.deepEqual(refSpy.args, [[mountNode], [null], [document.body], [null]]);
+      expect(refSpy.args).to.deep.equal([[mountNode], [null], [document.body]]);
+      unmount();
+      expect(refSpy.args).to.deep.equal([[mountNode], [null], [document.body], [null]]);
     });
   });
 
   it('should render in a different node', () => {
-    mount(
+    render(
       <div id="test1">
         <h1 className="woofPortal1">Foo</h1>
         <Portal>
@@ -100,8 +97,8 @@ describe('<Portal />', () => {
       </div>,
     );
     const rootElement = document.querySelector('#test1');
-    assert.strictEqual(rootElement.contains(document.querySelector('.woofPortal1')), true);
-    assert.strictEqual(rootElement.contains(document.querySelector('.woofPortal2')), false);
+    expect(rootElement.contains(document.querySelector('.woofPortal1'))).to.equal(true);
+    expect(rootElement.contains(document.querySelector('.woofPortal2'))).to.equal(false);
   });
 
   it('should unmount when parent unmounts', () => {
@@ -122,29 +119,30 @@ describe('<Portal />', () => {
       );
     }
 
-    const wrapper = mount(<Parent />);
-    assert.strictEqual(document.querySelectorAll('#test1').length, 1);
-    wrapper.setProps({ show: false });
-    assert.strictEqual(document.querySelectorAll('#test1').length, 0);
+    const { setProps } = render(<Parent />);
+    expect(document.querySelectorAll('#test1').length).to.equal(1);
+    setProps({ show: false });
+    expect(document.querySelectorAll('#test1').length).to.equal(0);
   });
 
   it('should render overlay into container (document)', () => {
-    mount(
+    render(
       <Portal>
-        <div id="test2" />
+        <div className="test2" />
+        <div className="test2" />
       </Portal>,
     );
-    assert.strictEqual(document.querySelectorAll('#test2').length, 1);
+    expect(document.querySelectorAll('.test2').length).to.equal(2);
   });
 
   it('should render overlay into container (DOMNode)', () => {
     const container = document.createElement('div');
-    mount(
+    render(
       <Portal container={container}>
         <div id="test2" />
       </Portal>,
     );
-    assert.strictEqual(container.querySelectorAll('#test2').length, 1);
+    expect(container.querySelectorAll('#test2').length).to.equal(1);
   });
 
   it('should change container on prop change', () => {
@@ -165,82 +163,82 @@ describe('<Portal />', () => {
       );
     }
 
-    const wrapper = mount(<ContainerTest />);
-    assert.strictEqual(document.querySelector('#test3').parentElement.nodeName, 'SPAN', 'c');
-    wrapper.setProps({
+    const { setProps } = render(<ContainerTest />);
+    expect(document.querySelector('#test3').parentElement.nodeName).to.equal('SPAN');
+    setProps({
       containerElement: true,
+      disablePortal: true,
     });
-    assert.strictEqual(document.querySelector('#test3').parentElement.nodeName, 'SPAN', 'a');
-    wrapper.setProps({
+    expect(document.querySelector('#test3').parentElement.nodeName).to.equal('SPAN');
+    setProps({
+      containerElement: true,
       disablePortal: false,
     });
-    assert.strictEqual(document.querySelector('#test3').parentElement.nodeName, 'STRONG', 'c');
-    wrapper.setProps({
+    expect(document.querySelector('#test3').parentElement.nodeName).to.equal('STRONG');
+    setProps({
       containerElement: false,
+      disablePortal: false,
     });
-    assert.strictEqual(document.querySelector('#test3').parentElement.nodeName, 'BODY', 'b');
+    expect(document.querySelector('#test3').parentElement.nodeName).to.equal('BODY');
   });
 
   it('should call onRendered', () => {
     const ref = React.createRef();
     const handleRendered = spy();
-    mount(
+    render(
       <Portal
         ref={ref}
         onRendered={() => {
           handleRendered();
-          assert.strictEqual(ref.current !== null, true);
+          expect(ref.current !== null).to.equal(true);
         }}
       >
         <div />
       </Portal>,
     );
-    assert.strictEqual(handleRendered.callCount, 1);
+    expect(handleRendered.callCount).to.equal(1);
   });
 
-  it('should call onRendered after child componentDidUpdate', () => {
+  it('should call ref after child effect', () => {
+    const callOrder = [];
+    const handleRef = node => {
+      if (node) {
+        callOrder.push('ref');
+      }
+    };
+    const updateFunction = () => {
+      callOrder.push('effect');
+    };
+
     function Test(props) {
-      const { updateFunction, container, onRendered } = props;
+      const { container } = props;
 
       React.useEffect(() => {
         updateFunction();
-      }, [container, updateFunction]);
+      }, [container]);
 
       return (
-        <Portal onRendered={onRendered} container={container}>
+        <Portal ref={handleRef} container={container}>
           <div />
         </Portal>
       );
     }
 
-    const callOrder = [];
-    const onRendered = () => {
-      callOrder.push('onRendered');
-    };
-    const updateFunction = () => {
-      callOrder.push('cDU');
-    };
+    const { setProps } = render(<Test container={document.createElement('div')} />);
 
-    const container1 = document.createElement('div');
-    const container2 = document.createElement('div');
+    setProps({ container: null });
+    setProps({ container: document.createElement('div') });
+    setProps({ container: null });
 
-    const wrapper = mount(
-      <Test onRendered={onRendered} updateFunction={updateFunction} container={container1} />,
-    );
-
-    wrapper.setProps({ container: null });
-    wrapper.setProps({ container: container2 });
-    wrapper.setProps({ container: null });
-
-    assert.deepEqual(callOrder, [
-      'cDU',
-      'onRendered',
-      'cDU',
-      'onRendered',
-      'cDU',
-      'onRendered',
-      'cDU',
-      'onRendered',
+    expect(callOrder).to.deep.equal([
+      'effect',
+      'ref',
+      'effect',
+      'ref',
+      'effect',
+      'ref',
+      'effect',
+      'ref',
     ]);
   });
 });
