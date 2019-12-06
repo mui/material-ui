@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   pink: {
-    color: '#fff',
+    color: theme.palette.getContrastText(pink[500]),
     backgroundColor: pink[500],
   },
   green: {

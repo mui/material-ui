@@ -1,6 +1,6 @@
 ---
 title: Avatar React component
-components: Avatar
+components: Avatar, AvatarGroup, Badge
 ---
 
 # Avatar
@@ -40,3 +40,13 @@ The component fallbacks if there is an error loading the avatar image, in this o
 - a generic avatar icon
 
 {{"demo": "pages/components/avatars/FallbackAvatars.js"}}
+
+## With badge
+
+{{"demo": "pages/components/avatars/BadgeAvatars.js"}}
+
+## Grouped
+
+`AvatarGroup` is a wrapper around avatars designed to render a stacked collection of avatars.
+
+{{"demo": "pages/components/avatars/GroupAvatars.js"}}

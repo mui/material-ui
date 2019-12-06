@@ -34,8 +34,6 @@ export const styles = theme => ({
     padding: '0 6px',
     height: RADIUS_STANDARD * 2,
     borderRadius: RADIUS_STANDARD,
-    backgroundColor: theme.palette.color,
-    color: theme.palette.textColor,
     zIndex: 1, // Render the badge on top of potential ripples.
     transition: theme.transitions.create('transform', {
       easing: theme.transitions.easing.easeInOut,

@@ -73,5 +73,6 @@ If that's not sufficient, you can check the [implementation of the component](ht
 
 ## Demos
 
+- [Avatars](/components/avatars/)
 - [Badges](/components/badges/)
 

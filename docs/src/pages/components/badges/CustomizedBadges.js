@@ -69,7 +69,7 @@ export default function CustomizedBadges() {
           }}
           variant="dot"
         >
-          <Avatar alt="Stock avatar" src="/static/images/avatar/1.jpg" />
+          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
         </StyledBadge2>
       </Box>
       <Box m={1}>
@@ -81,7 +81,7 @@ export default function CustomizedBadges() {
           }}
           badgeContent={<SmallAvatar alt="Stock avatar" src="/static/images/avatar/1.jpg" />}
         >
-          <Avatar alt="Stock avatar" src="/static/images/avatar/2.jpg" />
+          <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
         </Badge>
       </Box>
     </Box>
