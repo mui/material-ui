@@ -28,6 +28,8 @@ export const styles = theme => {
       borderRadius: 32 / 2,
       whiteSpace: 'nowrap',
       transition: theme.transitions.create(['background-color', 'box-shadow']),
+      // setting max-width to support `text-overflow: "ellipsis"`
+      maxWidth: 220,
       // label will inherit this from root, then `clickable` class overrides this for both
       cursor: 'default',
       // We disable the focus ring for mouse, touch and keyboard users.
@@ -199,8 +201,8 @@ export const styles = theme => {
     },
     /* Styles applied to the label `span` element`. */
     label: {
-      display: 'flex',
-      alignItems: 'center',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
       paddingLeft: 12,
       paddingRight: 12,
       whiteSpace: 'nowrap',
