@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { exactProp, refType } from '@material-ui/utils';
 import setRef from '../utils/setRef';
@@ -38,12 +37,12 @@ import setRef from '../utils/setRef';
  */
 class RootRef extends React.Component {
   componentDidMount() {
-    this.ref = ReactDOM.findDOMNode(this);
-    setRef(this.props.rootRef, this.ref);
+    this.ref = this.props.forwardedRed;
+    setRef(this.props.rootRef, this.props.forwardedRed);
   }
 
   componentDidUpdate(prevProps) {
-    const ref = ReactDOM.findDOMNode(this);
+    const ref = this.props.forwardedRed;
 
     if (prevProps.rootRef !== this.props.rootRef || this.ref !== ref) {
       if (prevProps.rootRef !== this.props.rootRef) {
@@ -73,6 +72,10 @@ RootRef.propTypes = {
   /**
    * A ref that points to the first DOM node of the wrapped element.
    */
+  forwardedRed: refType.isRequired,
+  /**
+   * A ref that points to the first DOM node of the wrapped element.
+   */
   rootRef: refType.isRequired,
 };
 
@@ -80,4 +83,9 @@ if (process.env.NODE_ENV !== 'production') {
   RootRef.propTypes = exactProp(RootRef.propTypes);
 }
 
-export default RootRef;
+export default React.forwardRef((props, ref) => (
+  <RootRef
+    {...props}
+    forwardedRed={ref}
+  />
+));
