@@ -15,7 +15,9 @@
     "start": "next start"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "latest",
     "@types/next": "latest",
+    "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "typescript": "latest"
