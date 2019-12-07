@@ -1,5 +1,43 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.7.2
+###### *Dec 7, 2019*
+
+Big thanks to the 18 contributors who made this release possible.
+
+### `@material-ui/core@v4.7.2`
+
+- [Tooltip] Add missing classes type definitions (#18645) @dufia
+- [Tooltip] Fix arrow placement in RTL languages (#18706) @mosijava
+- [Tooltip] Fix onMouseOver event leak (#18687) @r3dm1ke
+- [ClickAwayListener] Support other documents (#18701) @Izhaki
+- [Avatar] Fallback images when fails to load (#18711) @netochaves
+- [Chip] Support text-overflow ellipsis by default (#18708) @suliskh
+- [Container] Add missing default theme props Type (#18654) @max10rogerio
+- [Modal] Document the 'Focus trap' limitation (#18643) @PutziSan
+- [Portal] Support any children node (#18692) @luffywuliao
+- [TablePagination] Fix responsive display issue (#18668) @r3dm1ke
+- [TextField] InputAdornment shouldn't wrap (#18641) @TrejGun
+- [l10n] Add Polish translation (#18685) @eXtreme
+- [theme] Fix wrong ResponsiveFontSizesOptions type (#18661) @pstadler
+- [useMediaQuery] Fix hydrationCompleted true before hydrated (#18683) @toddmazierski
+
+### `@material-ui/lab@v4.0.0-alpha.35`
+
+- [Autocomplete] Add getOptionSelected prop (#18695) @DarkKnight1992
+- [Autocomplete] Add size prop (#18624) @oliviertassinari
+- [Autocomplete] Prevent tag overflow (#18662) @fbarbare
+
+### Docs
+
+- [docs] Break up blog template into smaller sections (#18627) @mbrookes
+- [docs] Update the translations (#18644) @mbrookes
+- [docs] `ssrMatchMedia` required for client rending as well (#18680) @moshest
+
+### Core
+
+- [core] Batch changes (#18629) @oliviertassinari
+
 ## 4.7.1
 ###### *Dec 1, 2019*
 
