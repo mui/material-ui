@@ -11,7 +11,7 @@ export interface ContainerProps
 
 export type ContainerClassKey =
   | 'root'
-  | 'gutters'
+  | 'disableGutters'
   | 'fixed'
   | 'maxWidthXs'
   | 'maxWidthSm'

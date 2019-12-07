@@ -22,8 +22,7 @@ export const styles = theme => ({
       paddingRight: theme.spacing(4),
     },
   },
-  // TODO change style rule to gutters in v5, avoid duplication of CSS.
-  /* Styles applied to the inner `component` element if `disableGutters={true}`. */
+  /* Styles applied to the root element if `disableGutters={true}`. */
   disableGutters: {
     paddingLeft: 0,
     paddingRight: 0,
