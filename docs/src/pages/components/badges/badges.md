@@ -15,7 +15,7 @@ Examples of badges containing text, using primary and secondary colors. The badg
 
 ## Customized badges
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -49,4 +49,4 @@ You can use the `overlap` property to place the badge relative to the corner of 
 
 You can use the `horizontalAlignment` and `verticalAlignment` properties to move the badge to any corner of the wrapped element.
 
-{{"demo": "pages/components/badges/BadgeAlignment.js"}}
+{{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}

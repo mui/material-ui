@@ -7,11 +7,11 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import MailIcon from '@material-ui/icons/Mail';
+import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
+    width: '100%',
   },
   formControl: {
     margin: theme.spacing(3),
@@ -38,19 +38,30 @@ export default function BadgeAlignment() {
     setVertical(event.target.value);
   };
 
+  const code = `
+\`\`\`jsx
+<Badge
+  anchorOrigin={{
+    vertical: '${vertical}',
+    horizontal: '${horizontal}',
+  }}
+>
+\`\`\`
+`;
+
   return (
     <div className={classes.root}>
       <div className={classes.row}>
         <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend">Vertical</FormLabel>
-          <RadioGroup value={vertical} onChange={handleVerticalChange}>
+          <RadioGroup name="vertical" value={vertical} onChange={handleVerticalChange}>
             <FormControlLabel value="top" control={<Radio />} label="Top" />
             <FormControlLabel value="bottom" control={<Radio />} label="Bottom" />
           </RadioGroup>
         </FormControl>
         <FormControl component="fieldset" className={classes.formControl}>
           <FormLabel component="legend">Horizontal</FormLabel>
-          <RadioGroup value={horizontal} onChange={handleHorizontalChange}>
+          <RadioGroup name="horizontal" value={horizontal} onChange={handleHorizontalChange}>
             <FormControlLabel value="right" control={<Radio />} label="Right" />
             <FormControlLabel value="left" control={<Radio />} label="Left" />
           </RadioGroup>
@@ -115,6 +126,7 @@ export default function BadgeAlignment() {
           <MailIcon />
         </Badge>
       </div>
+      <MarkdownElement text={code} />
     </div>
   );
 }

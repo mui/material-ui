@@ -19,6 +19,12 @@ Avatars containing simple characters can be created by passing your string as `c
 
 {{"demo": "pages/components/avatars/LetterAvatars.js"}}
 
+## Sizes
+
+You can change the size of the avatar with the `height` and `width` CSS properties.
+
+{{"demo": "pages/components/avatars/SizeAvatars.js"}}
+
 ## Icon avatars
 
 Icon avatars are created by passing an icon as `children`.
@@ -41,12 +47,12 @@ The component fallbacks if there is an error loading the avatar image, in this o
 
 {{"demo": "pages/components/avatars/FallbackAvatars.js"}}
 
-## With badge
-
-{{"demo": "pages/components/avatars/BadgeAvatars.js"}}
-
 ## Grouped
 
 `AvatarGroup` renders its children as a stack.
 
 {{"demo": "pages/components/avatars/GroupAvatars.js"}}
+
+## With badge
+
+{{"demo": "pages/components/avatars/BadgeAvatars.js"}}
