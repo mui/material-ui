@@ -53,12 +53,12 @@ export const styles = theme => ({
   },
   /* Styles applied to the fallback icon */
   fallback: {
-    width: '80%',
-    height: '80%',
+    width: '75%',
+    height: '75%',
   },
 });
 
-const useLoaded = ({ src, srcSet }) => {
+function useLoaded({ src, srcSet }) {
   const [loaded, setLoaded] = React.useState(false);
 
   React.useEffect(() => {
@@ -91,7 +91,7 @@ const useLoaded = ({ src, srcSet }) => {
   }, [src, srcSet]);
 
   return loaded;
-};
+}
 
 const Avatar = React.forwardRef(function Avatar(props, ref) {
   const {
@@ -126,7 +126,7 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
         {...imgProps}
       />
     );
-  } else if (childrenProp) {
+  } else if (childrenProp != null) {
     children = childrenProp;
   } else if (hasImg && alt) {
     children = alt[0];

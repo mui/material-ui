@@ -30,3 +30,13 @@ Icon avatars are created by passing an icon as `children`.
 If you need square or rounded avatars, use the `variant` prop.
 
 {{"demo": "pages/components/avatars/VariantAvatars.js"}}
+
+## Fallbacks
+
+The component fallbacks if there is an error loading the avatar image, in this order, to:
+
+- the provided children
+- the first letter of tha `alt` text
+- a generic avatar icon
+
+{{"demo": "pages/components/avatars/FallbackAvatars.js"}}
