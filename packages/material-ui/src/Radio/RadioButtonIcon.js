@@ -33,12 +33,12 @@ export const styles = theme => ({
  * @ignore - internal component.
  */
 function RadioButtonIcon(props) {
-  const { checked, classes } = props;
+  const { checked, classes, fontSize } = props;
 
   return (
     <div className={clsx(classes.root, { [classes.checked]: checked })}>
-      <RadioButtonUncheckedIcon />
-      <RadioButtonCheckedIcon className={classes.layer} />
+      <RadioButtonUncheckedIcon fontSize={fontSize} />
+      <RadioButtonCheckedIcon fontSize={fontSize} className={classes.layer} />
     </div>
   );
 }
@@ -53,6 +53,11 @@ RadioButtonIcon.propTypes = {
    * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
+  /**
+   * The size of the radio.
+   * `small` is equivalent to the dense radio styling.
+   */
+  fontSize: PropTypes.oneOf(['small', 'default']),
 };
 
 export default withStyles(styles, { name: 'PrivateRadioButtonIcon' })(RadioButtonIcon);

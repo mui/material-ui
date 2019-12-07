@@ -2,72 +2,51 @@ import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 
 export default function Checkboxes() {
-  const [state, setState] = React.useState({
-    checkedA: true,
-    checkedB: true,
-    checkedF: true,
-  });
+  const [checked, setChecked] = React.useState(true);
 
-  const handleChange = name => event => {
-    setState({ ...state, [name]: event.target.checked });
+  const handleChange = event => {
+    setChecked(event.target.checked);
   };
 
   return (
     <div>
       <Checkbox
-        checked={state.checkedA}
-        onChange={handleChange('checkedA')}
-        value="checkedA"
-        inputProps={{
-          'aria-label': 'primary checkbox',
-        }}
+        checked={checked}
+        onChange={handleChange}
+        value="primary"
+        inputProps={{ 'aria-label': 'primary checkbox' }}
       />
       <Checkbox
-        checked={state.checkedB}
-        onChange={handleChange('checkedB')}
-        value="checkedB"
+        defaultChecked
+        value="secondary"
         color="primary"
-        inputProps={{
-          'aria-label': 'secondary checkbox',
-        }}
+        inputProps={{ 'aria-label': 'secondary checkbox' }}
       />
-      <Checkbox
-        value="checkedC"
-        inputProps={{
-          'aria-label': 'uncontrolled-checkbox',
-        }}
-      />
-      <Checkbox
-        disabled
-        value="checkedD"
-        inputProps={{
-          'aria-label': 'disabled checkbox',
-        }}
-      />
+      <Checkbox value="uncontrolled" inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} />
+      <Checkbox disabled value="disabled" inputProps={{ 'aria-label': 'disabled checkbox' }} />
       <Checkbox
         disabled
         checked
-        value="checkedE"
-        inputProps={{
-          'aria-label': 'disabled checked checkbox',
-        }}
+        value="disabled checked"
+        inputProps={{ 'aria-label': 'disabled checked checkbox' }}
       />
       <Checkbox
-        checked={state.checkedF}
-        onChange={handleChange('checkedF')}
-        value="checkedF"
+        defaultChecked
+        value="indeterminate"
         indeterminate
-        inputProps={{
-          'aria-label': 'indeterminate checkbox',
-        }}
+        inputProps={{ 'aria-label': 'indeterminate checkbox' }}
       />
       <Checkbox
         defaultChecked
         color="default"
-        value="checkedG"
-        inputProps={{
-          'aria-label': 'checkbox with default color',
-        }}
+        value="default"
+        inputProps={{ 'aria-label': 'checkbox with default color' }}
+      />
+      <Checkbox
+        defaultChecked
+        size="small"
+        value="small"
+        inputProps={{ 'aria-label': 'checkbox with small size' }}
       />
     </div>
   );
