@@ -16,7 +16,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
 
 declare const Avatar: OverridableComponent<AvatarTypeMap>;
 
-export type AvatarClassKey = 'root' | 'colorDefault' | 'circle' | 'rounded' | 'square' | 'img';
+export type AvatarClassKey = 'root' | 'colorDefault' | 'fallback' | 'circle' | 'rounded' | 'square' | 'img';
 
 export type AvatarProps<
   D extends React.ElementType = AvatarTypeMap['defaultComponent'],
