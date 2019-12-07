@@ -28,7 +28,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Used to render icon or text elements inside the Avatar if `src` is not set. This can be an element, or just a string. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">imgProps</span> | <span class="prop-type">object</span> |  | Attributes applied to the `img` element if the component is used to display an image. |
+| <span class="prop-name">imgProps</span> | <span class="prop-type">object</span> |  | Attributes applied to the `img` element if the component is used to display an image. It can be used to listen for the loading error event. |
 | <span class="prop-name">sizes</span> | <span class="prop-type">string</span> |  | The `sizes` attribute for the `img` element. |
 | <span class="prop-name">src</span> | <span class="prop-type">string</span> |  | The `src` attribute for the `img` element. |
 | <span class="prop-name">srcSet</span> | <span class="prop-type">string</span> |  | The `srcSet` attribute for the `img` element. Use this attribute for responsive image display. |
@@ -46,11 +46,12 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiAvatar-root</span> | Styles applied to the root element.
-| <span class="prop-name">colorDefault</span> | <span class="prop-name">.MuiAvatar-colorDefault</span> | Styles applied to the root element if there are children and not `src` or `srcSet`.
+| <span class="prop-name">colorDefault</span> | <span class="prop-name">.MuiAvatar-colorDefault</span> | Styles applied to the root element if not `src` or `srcSet`.
 | <span class="prop-name">circle</span> | <span class="prop-name">.MuiAvatar-circle</span> | Styles applied to the root element if `variant="circle"`.
 | <span class="prop-name">rounded</span> | <span class="prop-name">.MuiAvatar-rounded</span> | Styles applied to the root element if `variant="rounded"`.
 | <span class="prop-name">square</span> | <span class="prop-name">.MuiAvatar-square</span> | Styles applied to the root element if `variant="square"`.
 | <span class="prop-name">img</span> | <span class="prop-name">.MuiAvatar-img</span> | Styles applied to the img element if either `src` or `srcSet` is defined.
+| <span class="prop-name">fallback</span> | <span class="prop-name">.MuiAvatar-fallback</span> | Styles applied to the fallback icon
 
 You can override the style of the component thanks to one of these customization points:
 
