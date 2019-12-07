@@ -6,6 +6,7 @@ const whitelist = [
   // required for fake getComputedStyle
   'CSSStyleDeclaration',
   'Element',
+  'Image',
   'HTMLElement',
   'HTMLInputElement',
   'Performance',
