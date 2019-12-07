@@ -47,6 +47,6 @@ The component fallbacks if there is an error loading the avatar image, in this o
 
 ## Grouped
 
-`AvatarGroup` is a wrapper around avatars designed to render a stacked collection of avatars.
+`AvatarGroup` renders its children as a stack.
 
 {{"demo": "pages/components/avatars/GroupAvatars.js"}}
