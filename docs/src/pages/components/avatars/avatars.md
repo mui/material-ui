@@ -9,13 +9,13 @@ components: Avatar
 
 ## Image avatars
 
-Image avatars can be created by passing standard `img` props `src` or `srcSet` into the component.
+Image avatars can be created by passing standard `img` props `src` or `srcSet` to the component.
 
 {{"demo": "pages/components/avatars/ImageAvatars.js"}}
 
 ## Letter avatars
 
-Avatars containing simple characters can be created by passing your string as `children`.
+Avatars containing simple characters can be created by passing a string as `children`.
 
 {{"demo": "pages/components/avatars/LetterAvatars.js"}}
 
@@ -33,7 +33,7 @@ If you need square or rounded avatars, use the `variant` prop.
 
 ## Fallbacks
 
-The component fallbacks if there is an error loading the avatar image, in this order, to:
+If there is an error loading the avatar image, the component falls back to an alternative in the following order:
 
 - the provided children
 - the first letter of tha `alt` text
