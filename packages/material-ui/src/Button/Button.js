@@ -163,9 +163,6 @@ export const styles = theme => ({
     boxShadow: 'none',
     '&:hover': {
       boxShadow: 'none',
-      '@media (hover: none)': {
-        boxShadow: 'none',
-      },
     },
     '&$focusVisible': {
       boxShadow: 'none',

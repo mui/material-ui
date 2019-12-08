@@ -25,9 +25,6 @@ export default function ContainedButtons() {
       <Button variant="contained" disabled>
         Disabled
       </Button>
-      <Button variant="contained" color="primary" disableElevation>
-        Disable Elevation
-      </Button>
       <Button variant="contained" color="primary" href="#contained-buttons">
         Link
       </Button>
