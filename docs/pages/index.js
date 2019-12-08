@@ -117,11 +117,7 @@ export default function HomePage() {
         <main id="main-content" tabIndex="-1">
           <div className={classes.hero}>
             <Container maxWidth="md" className={classes.content}>
-              <img
-                src="/static/images/material-ui-logo.svg"
-                alt="Material-UI Logo"
-                className={classes.logo}
-              />
+              <img src="/static/images/material-ui-logo.svg" alt="" className={classes.logo} />
               <div>
                 <Typography
                   variant="h3"

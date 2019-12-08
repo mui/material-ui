@@ -199,11 +199,12 @@ function HomeSteps(props) {
             data-ga-event-action="click"
             data-ga-event-label="home-image"
             className={classes.link}
+            aria-label={t('themesButton')}
           >
             <NoSsr>
               <img
                 className={classes.img}
-                alt="themes"
+                alt=""
                 src={`/static/images/themes-${theme.palette.type}.jpg`}
                 loading="eager"
                 width={500}
