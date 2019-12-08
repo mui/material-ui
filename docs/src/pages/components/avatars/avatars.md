@@ -1,6 +1,6 @@
 ---
 title: Avatar React component
-components: Avatar
+components: Avatar, AvatarGroup, Badge
 ---
 
 # Avatar
@@ -18,6 +18,12 @@ Image avatars can be created by passing standard `img` props `src` or `srcSet` t
 Avatars containing simple characters can be created by passing a string as `children`.
 
 {{"demo": "pages/components/avatars/LetterAvatars.js"}}
+
+## Sizes
+
+You can change the size of the avatar with the `height` and `width` CSS properties.
+
+{{"demo": "pages/components/avatars/SizeAvatars.js"}}
 
 ## Icon avatars
 
@@ -40,3 +46,13 @@ If there is an error loading the avatar image, the component falls back to an al
 - a generic avatar icon
 
 {{"demo": "pages/components/avatars/FallbackAvatars.js"}}
+
+## Grouped
+
+`AvatarGroup` renders its children as a stack.
+
+{{"demo": "pages/components/avatars/GroupAvatars.js"}}
+
+## With badge
+
+{{"demo": "pages/components/avatars/BadgeAvatars.js"}}

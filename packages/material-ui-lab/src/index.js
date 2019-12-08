@@ -2,6 +2,9 @@
 export { default as Autocomplete } from './Autocomplete';
 export * from './Autocomplete';
 
+export { default as AvatarGroup } from './AvatarGroup';
+export * from './AvatarGroup';
+
 export { default as Rating } from './Rating';
 export * from './Rating';
 

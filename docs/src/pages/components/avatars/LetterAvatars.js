@@ -11,11 +11,11 @@ const useStyles = makeStyles(theme => ({
     },
   },
   orange: {
-    color: '#fff',
+    color: theme.palette.getContrastText(deepOrange[500]),
     backgroundColor: deepOrange[500],
   },
   purple: {
-    color: '#fff',
+    color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
   },
 }));
