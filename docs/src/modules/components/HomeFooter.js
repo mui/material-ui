@@ -124,7 +124,7 @@ function HomeFooter(props) {
             <Interpolate
               replacement={{
                 versionNumber: (
-                  <Link color="inherit" href="https://material-ui.com/versions/">
+                  <Link color="inherit" href="https://material-ui.com/versions/" aria-label={`v${process.env.LIB_VERSION}. View versions page.`}>
                     {`v${process.env.LIB_VERSION}`}
                   </Link>
                 ),
