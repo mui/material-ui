@@ -8,6 +8,7 @@ export type ButtonTypeMap<
 > = ExtendButtonBaseTypeMap<{
   props: P & {
     color?: PropTypes.Color;
+    disableElevation?: boolean;
     disableFocusRipple?: boolean;
     endIcon?: React.ReactNode;
     fullWidth?: boolean;
@@ -39,6 +40,7 @@ export type ButtonClassKey =
   | 'contained'
   | 'containedPrimary'
   | 'containedSecondary'
+  | 'disableElevation'
   | 'focusVisible'
   | 'disabled'
   | 'colorInherit'
