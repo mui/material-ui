@@ -199,7 +199,7 @@ function HomeSteps(props) {
             data-ga-event-action="click"
             data-ga-event-label="home-image"
             className={classes.link}
-            aria-label={t('themesButton')}
+            aria-hidden="true"
           >
             <NoSsr>
               <img
