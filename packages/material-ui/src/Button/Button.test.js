@@ -310,12 +310,10 @@ describe('<Button />', () => {
   });
 
   it('can disable the elevation', () => {
-    const { getByRole } = render(
-      <Button disableElevation>Hello World</Button>,
-    );
+    const { getByRole } = render(<Button disableElevation>Hello World</Button>);
     const button = getByRole('button');
 
-    expect(button).to.have.class(classes.disableElevation)
+    expect(button).to.have.class(classes.disableElevation);
   });
 
   it('should have a focusRipple by default', () => {
