@@ -4,7 +4,7 @@ The core of Material-UI is a [crowd-funded](/discover-more/backers/) open-source
 
 ### Diamond 💎
 
-_3/3 slots available_
+*3/3 slots available*
 
 Diamond Sponsors are those who have pledged \$2,000/month and more to Material-UI.
 Please contact us at diamond@material-ui.com to subscribe to this tier.
