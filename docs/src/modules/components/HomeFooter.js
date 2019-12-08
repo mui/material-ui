@@ -63,7 +63,7 @@ function HomeFooter(props) {
               </div>
             </Grid>
             <Grid item xs={6} sm={4} className={classes.list}>
-              <Typography component="h3" gutterBottom>
+              <Typography component="h2" gutterBottom>
                 {t('footerCommunity')}
               </Typography>
               <ul>
@@ -98,7 +98,7 @@ function HomeFooter(props) {
               </ul>
             </Grid>
             <Grid item xs={6} sm={4} className={classes.list}>
-              <Typography component="h3" gutterBottom>
+              <Typography component="h2" gutterBottom>
                 {t('footerResources')}
               </Typography>
               <ul>

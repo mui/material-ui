@@ -87,7 +87,7 @@ function HomeUsers(props) {
       <Divider />
       <NoSsr>
         <Container maxWidth="md" className={classes.container}>
-          <Typography variant="h4" align="center" gutterBottom>
+          <Typography variant="h4" component="h2" align="center" gutterBottom>
             {t('whosUsing')}
           </Typography>
           <Typography variant="body1" align="center" gutterBottom>
