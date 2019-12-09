@@ -21,6 +21,8 @@ export const styles = theme => ({
   contained: {
     boxShadow: theme.shadows[2],
   },
+  /* Pseudo-class applied to child elements if `disabled={true}`. */
+  disabled: {},
   /* Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: {
     width: '100%',
@@ -40,10 +42,6 @@ export const styles = theme => ({
       borderBottomRightRadius: 0,
     },
   },
-  /* Styles applied to the root element if `orientation="vertical"`. */
-  vertical: {
-    flexDirection: 'column',
-  },
   /* Styles applied to the children if `orientation="vertical"`. */
   groupedVertical: {
     '&:not(:first-child)': {
@@ -62,7 +60,7 @@ export const styles = theme => ({
     '&:not(:last-child)': {
       borderRight: `1px solid ${
         theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-      }`,
+        }`,
     },
   },
   /* Styles applied to the children if `variant="text"` and `orientation="vertical"`. */
@@ -70,7 +68,7 @@ export const styles = theme => ({
     '&:not(:last-child)': {
       borderBottom: `1px solid ${
         theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-      }`,
+        }`,
     },
   },
   /* Styles applied to the children if `variant="text"` and `color="primary"`. */
@@ -152,8 +150,11 @@ export const styles = theme => ({
       borderColor: theme.palette.secondary.dark,
     },
   },
-  /* Pseudo-class applied to child elements if `disabled={true}`. */
-  disabled: {},
+   /* Styles applied to the root element if `orientation="vertical"`. */
+   vertical: {
+    flexDirection: 'column',
+  },
+  
 });
 
 const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
