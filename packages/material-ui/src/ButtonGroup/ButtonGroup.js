@@ -27,6 +27,10 @@ export const styles = theme => ({
   fullWidth: {
     width: '100%',
   },
+  /* Styles applied to the root element if `orientation="vertical"`. */
+  vertical: {
+    flexDirection: 'column',
+  },
   /* Styles applied to the children. */
   grouped: {
     minWidth: 40,
@@ -150,10 +154,6 @@ export const styles = theme => ({
       borderColor: theme.palette.secondary.dark,
     },
   },
-  /* Styles applied to the root element if `orientation="vertical"`. */
-  vertical: {
-    flexDirection: 'column',
-  },
 });
 
 const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
@@ -258,10 +258,6 @@ ButtonGroup.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * The group orientation.
-   */
-  orientation: PropTypes.oneOf(['vertical', 'horizontal']),
-  /**
    * If `true`, the button keyboard focus ripple will be disabled.
    * `disableRipple` must also be true.
    */
@@ -274,6 +270,10 @@ ButtonGroup.propTypes = {
    * If `true`, the buttons will take up the full width of its container.
    */
   fullWidth: PropTypes.bool,
+  /**
+   * The group orientation.
+   */
+  orientation: PropTypes.oneOf(['vertical', 'horizontal']),
   /**
    * The size of the button.
    * `small` is equivalent to the dense button styling.
