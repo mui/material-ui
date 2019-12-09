@@ -36,6 +36,7 @@ export interface BaseTextFieldProps
   required?: boolean;
   rows?: string | number;
   rowsMax?: string | number;
+  size?: 'small' | 'medium';
   select?: boolean;
   SelectProps?: Partial<SelectProps>;
   type?: string;
