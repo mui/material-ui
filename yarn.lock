@@ -5330,9 +5330,9 @@ damerau-levenshtein@^1.0.4:
   integrity sha1-AxkcQyy27qFou3fzpV/9zLiXhRQ=
 
 danger@^9.1.8:
-  version "9.2.8"
-  resolved "https://registry.yarnpkg.com/danger/-/danger-9.2.8.tgz#138f5549fdba940f71ec959c4abd7d2d1452ccfb"
-  integrity sha512-AyxHtFBB+Wh266wVi30RmywDJwGIO1geTdTFzS3ctUh83J3OXOeG6uUjzt8WeZfsakdXRKbYHlEPBmsuWw1Dog==
+  version "9.2.9"
+  resolved "https://registry.yarnpkg.com/danger/-/danger-9.2.9.tgz#233203f42c6dbae64084b814344d94cced749536"
+  integrity sha512-3Or++mfuX2scwYewf5Ef4t2sq4ncOSprexOyjOoQwr2d21m+InzSDzt/AANqGZFsPIbCt88jggzDPoKO8VSE/Q==
   dependencies:
     "@babel/polyfill" "^7.2.5"
     "@octokit/rest" "^16.14.1"
