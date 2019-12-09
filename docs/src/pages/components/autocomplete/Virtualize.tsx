@@ -1,58 +1,66 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import Autocomplete, { RenderGroupParams } from '@material-ui/lab/Autocomplete';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import { useTheme, makeStyles } from '@material-ui/core/styles';
-import { FixedSizeList, ListChildComponentProps } from 'react-window';
+import { VariableSizeList, ListChildComponentProps } from 'react-window';
+import { Typography } from '@material-ui/core';
 
 function renderRow(props: ListChildComponentProps) {
   const { data, index, style } = props;
-
-  return React.cloneElement(data[index], {
-    style: {
-      overflow: 'hidden',
-      textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap',
-      display: 'block',
-      ...style,
-    },
-  });
+  return React.cloneElement(data[index], { style });
 }
 
 // Adapter for react-window
-const ListboxComponent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLElement>>(
-  function ListboxComponent(props, ref) {
-    const { children, ...other } = props;
-    const theme = useTheme();
-    const smUp = useMediaQuery(theme.breakpoints.up('sm'));
-    const itemCount = Array.isArray(children) ? children.length : 0;
-    const itemSize = smUp ? 36 : 48;
+const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxComponent(
+  props,
+  ref
+) {
+  const { children, ...other } = props;
+  const itemData = React.Children.toArray(children);
+  const theme = useTheme();
+  const smUp = useMediaQuery(theme.breakpoints.up("sm"), { noSsr: true });
+  const itemCount = itemData.length;
+  const itemSize = smUp ? 36 : 48;
 
-    const outerElementType = React.useMemo(() => {
-      return React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-        (props2, ref2) => <div ref={ref2} {...props2} {...other} />,
-      );
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const getItemSize = (index: number) => {
+    const child = itemData[index];
+    if (React.isValidElement(child) && child.type === ListSubheader) {
+      return 48;
+    }
 
-    return (
-      <div ref={ref}>
-        <FixedSizeList
-          style={{ padding: 0, height: Math.min(8, itemCount) * itemSize, maxHeight: 'auto' }}
-          itemData={children}
-          height={250}
-          width="100%"
-          outerElementType={outerElementType}
-          innerElementType="ul"
-          itemSize={itemSize}
-          overscanCount={5}
-          itemCount={itemCount}
-        >
-          {renderRow}
-        </FixedSizeList>
-      </div>
-    );
-  },
-);
+    return itemSize;
+  };
+
+  const outerElementType = React.useMemo(() => {
+    return React.forwardRef<HTMLDivElement>((props2, ref2) => (
+      <div ref={ref2} {...props2} {...other} />
+    ));
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return (
+    <div ref={ref}>
+      <VariableSizeList
+        style={{
+          padding: 0,
+          height: Math.min(8, itemCount) * itemSize,
+          maxHeight: "auto"
+        }}
+        itemData={itemData}
+        height={250}
+        width="100%"
+        outerElementType={outerElementType}
+        innerElementType="ul"
+        itemSize={getItemSize}
+        overscanCount={5}
+        itemCount={itemCount}
+      >
+        {renderRow}
+      </VariableSizeList>
+    </div>
+  );
+});
 
 function random(length: number) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -74,6 +82,17 @@ const useStyles = makeStyles({
   },
 });
 
+const OPTIONS = Array.from(new Array(10000))
+  .map(() => random(10 + Math.ceil(Math.random() * 20)))
+  .sort((a: string, b: string) => a.toUpperCase().localeCompare(b.toUpperCase()));
+
+const renderGroup = (params: RenderGroupParams) => [
+  <ListSubheader key={params.key} component="div">
+    {params.key}
+  </ListSubheader>,
+  params.children
+];
+
 export default function Virtualize() {
   const classes = useStyles();
 
@@ -83,11 +102,14 @@ export default function Virtualize() {
       style={{ width: 300 }}
       disableListWrap
       classes={classes}
-      ListboxComponent={ListboxComponent}
-      options={Array.from(new Array(10000)).map(() => random(Math.ceil(Math.random() * 18)))}
+      ListboxComponent={ListboxComponent as React.ComponentType<React.HTMLAttributes<HTMLElement>>}
+      renderGroup={renderGroup}
+      options={OPTIONS}
+      groupBy={option => option[0].toUpperCase()}
       renderInput={params => (
         <TextField {...params} variant="outlined" label="10,000 options" fullWidth />
       )}
+      renderOption={option => <Typography noWrap>{option}</Typography>}
     />
   );
 }
