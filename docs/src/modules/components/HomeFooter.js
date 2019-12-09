@@ -56,14 +56,14 @@ function HomeFooter(props) {
       <Container maxWidth="md">
         <footer className={classes.footer}>
           <Grid container>
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} sm={4}>
               <div className={classes.logo}>
-                <img src="/static/images/material-ui-logo.svg" alt="Material-UI Logo" />
+                <img src="/static/images/material-ui-logo.svg" alt="" />
                 <Typography color="primary">Material-UI</Typography>
               </div>
             </Grid>
-            <Grid item xs={6} md={3} className={classes.list}>
-              <Typography component="h3" gutterBottom>
+            <Grid item xs={6} sm={4} className={classes.list}>
+              <Typography component="h2" gutterBottom>
                 {t('footerCommunity')}
               </Typography>
               <ul>
@@ -97,8 +97,8 @@ function HomeFooter(props) {
                 </li>
               </ul>
             </Grid>
-            <Grid item xs={6} md={3} className={classes.list}>
-              <Typography component="h3" gutterBottom>
+            <Grid item xs={6} sm={4} className={classes.list}>
+              <Typography component="h2" gutterBottom>
                 {t('footerResources')}
               </Typography>
               <ul>
@@ -119,15 +119,16 @@ function HomeFooter(props) {
                 </li>
               </ul>
             </Grid>
-            <Grid item xs={6} md={3}>
-              <ul className={classes.list} />
-            </Grid>
           </Grid>
           <Typography className={classes.version} color="textSecondary" variant="body2">
             <Interpolate
               replacement={{
                 versionNumber: (
-                  <Link color="inherit" href="https://material-ui.com/versions/">
+                  <Link
+                    color="inherit"
+                    href="https://material-ui.com/versions/"
+                    aria-label={`v${process.env.LIB_VERSION}. View versions page.`}
+                  >
                     {`v${process.env.LIB_VERSION}`}
                   </Link>
                 ),
