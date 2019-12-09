@@ -31,14 +31,19 @@ function useMediaQuery(queryInput, options = {}) {
   const supportMatchMedia =
     typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
 
-  const { defaultMatches = false, noSsr = false, ssrMatchMedia = null } = {
+  const {
+    defaultMatches = false,
+    matchMedia = supportMatchMedia ? window.matchMedia : null,
+    noSsr = false,
+    ssrMatchMedia = null,
+  } = {
     ...props,
     ...options,
   };
 
   const [match, setMatch] = React.useState(() => {
     if (noSsr && supportMatchMedia) {
-      return window.matchMedia(query).matches;
+      return matchMedia(query).matches;
     }
     if (ssrMatchMedia) {
       return ssrMatchMedia(query).matches;
@@ -56,7 +61,7 @@ function useMediaQuery(queryInput, options = {}) {
       return undefined;
     }
 
-    const queryList = window.matchMedia(query);
+    const queryList = matchMedia(query);
     const updateMatch = () => {
       // Workaround Safari wrong implementation of matchMedia
       // TODO can we remove it?
@@ -71,7 +76,7 @@ function useMediaQuery(queryInput, options = {}) {
       active = false;
       queryList.removeListener(updateMatch);
     };
-  }, [query, supportMatchMedia]);
+  }, [query, matchMedia, supportMatchMedia]);
 
   return match;
 }
