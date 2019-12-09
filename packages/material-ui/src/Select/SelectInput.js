@@ -257,6 +257,18 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     return React.cloneElement(child, {
       'aria-selected': selected ? 'true' : undefined,
       onClick: handleItemClick(child),
+      onKeyUp: event => {
+        if (event.key === ' ') {
+          // otherwise our MenuItems dispatches a click event
+          // it's not behavior of the native <option> and causes
+          // the select to close immediately since we open on space keydown
+          event.preventDefault();
+        }
+        const { onKeyUp } = child.props;
+        if (typeof onKeyUp === 'function') {
+          onKeyUp(event);
+        }
+      },
       role: 'option',
       selected,
       value: undefined, // The value is most likely not a valid HTML attribute.
