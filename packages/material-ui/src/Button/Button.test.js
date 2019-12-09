@@ -309,6 +309,13 @@ describe('<Button />', () => {
     expect(button.querySelector('.touch-ripple')).to.be.null;
   });
 
+  it('can disable the elevation', () => {
+    const { getByRole } = render(<Button disableElevation>Hello World</Button>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.disableElevation);
+  });
+
   it('should have a focusRipple by default', () => {
     const { getByRole } = render(
       <Button TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}>

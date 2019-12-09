@@ -25,6 +25,10 @@ The last example of this demo show how to use an upload button.
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
+You can remove the elevation with the `disableElevation` prop.
+
+{{"demo": "pages/components/buttons/DisableElevation.js"}}
+
 ## Text Buttons
 
 [Text buttons](https://material.io/design/components/buttons.html#text-button)
