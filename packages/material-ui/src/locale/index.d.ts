@@ -5,6 +5,7 @@ export const faIR: object;
 export const frFR: object;
 export const itIT: object;
 export const jaJP: object;
+export const nlNL: object;
 export const plPL: object;
 export const ptBR: object;
 export const ruRU: object;

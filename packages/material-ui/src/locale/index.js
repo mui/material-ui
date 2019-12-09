@@ -148,6 +148,27 @@ export const jaJP = {
   },
 };
 
+export const nlNL = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Vorige pagina',
+      labelRowsPerPage: 'Regels per pagina :',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} van ${count}`,
+      nextIconButtonText: 'Volgende pagina',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Ster${value !== 1 ? 'ren' : ''}`,
+    },
+    MuiAutocomplete: {
+      clearText: 'Wissen',
+      closeText: 'Sluiten',
+      loadingText: 'Laden…',
+      noOptionsText: 'Geen opties',
+      openText: 'Openen',
+    },
+  },
+};
+
 export const plPL = {
   props: {
     MuiTablePagination: {
