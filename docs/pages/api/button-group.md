@@ -25,11 +25,11 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | The content of the button group. |
-| <span class="prop-name">orientation&nbsp;*</span> | <span class="prop-type">node</span> |  | Orientation of the ButtonGroup. It could be horizontal or vertical. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the buttons will be disabled. |
+| <span class="prop-name">orientation</span> | <span class="prop-type">'vertical'<br>&#124;&nbsp;'horizontal'</span> | <span class="prop-default">'vertical'</span> | The group orientation. |
 | <span class="prop-name">disableFocusRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button keyboard focus ripple will be disabled. `disableRipple` must also be true. |
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button ripple effect will be disabled. |
 | <span class="prop-name">fullWidth</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the buttons will take up the full width of its container. |
@@ -51,13 +51,22 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">contained</span> | <span class="prop-name">.MuiButtonGroup-contained</span> | Styles applied to the root element if `variant="contained"`.
 | <span class="prop-name">fullWidth</span> | <span class="prop-name">.MuiButtonGroup-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 | <span class="prop-name">grouped</span> | <span class="prop-name">.MuiButtonGroup-grouped</span> | Styles applied to the children.
+| <span class="prop-name">groupedHorizontal</span> | <span class="prop-name">.MuiButtonGroup-groupedHorizontal</span> | Styles applied to the children if `orientation="horizontal"`.
+| <span class="prop-name">vertical</span> | <span class="prop-name">.MuiButtonGroup-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
+| <span class="prop-name">groupedVertical</span> | <span class="prop-name">.MuiButtonGroup-groupedVertical</span> | Styles applied to the children if `orientation="vertical"`.
 | <span class="prop-name">groupedText</span> | <span class="prop-name">.MuiButtonGroup-groupedText</span> | Styles applied to the children if `variant="text"`.
+| <span class="prop-name">groupedTextHorizontal</span> | <span class="prop-name">.MuiButtonGroup-groupedTextHorizontal</span> | Styles applied to the children if `variant="text"` and `orientation="horizontal"`.
+| <span class="prop-name">groupedTextVertical</span> | <span class="prop-name">.MuiButtonGroup-groupedTextVertical</span> | Styles applied to the children if `variant="text"` and `orientation="vertical"`.
 | <span class="prop-name">groupedTextPrimary</span> | <span class="prop-name">.MuiButtonGroup-groupedTextPrimary</span> | Styles applied to the children if `variant="text"` and `color="primary"`.
 | <span class="prop-name">groupedTextSecondary</span> | <span class="prop-name">.MuiButtonGroup-groupedTextSecondary</span> | Styles applied to the children if `variant="text"` and `color="secondary"`.
 | <span class="prop-name">groupedOutlined</span> | <span class="prop-name">.MuiButtonGroup-groupedOutlined</span> | Styles applied to the children if `variant="outlined"`.
+| <span class="prop-name">groupedOutlinedHorizontal</span> | <span class="prop-name">.MuiButtonGroup-groupedOutlinedHorizontal</span> | Styles applied to the children if `variant="outlined"` and `orientation="horizontal"`.
+| <span class="prop-name">groupedOutlinedVertical</span> | <span class="prop-name">.MuiButtonGroup-groupedOutlinedVertical</span> | Styles applied to the children if `variant="outlined"` and `orientation="vertical"`.
 | <span class="prop-name">groupedOutlinedPrimary</span> | <span class="prop-name">.MuiButtonGroup-groupedOutlinedPrimary</span> | Styles applied to the children if `variant="outlined"` and `color="primary"`.
 | <span class="prop-name">groupedOutlinedSecondary</span> | <span class="prop-name">.MuiButtonGroup-groupedOutlinedSecondary</span> | Styles applied to the children if `variant="outlined"` and `color="secondary"`.
 | <span class="prop-name">groupedContained</span> | <span class="prop-name">.MuiButtonGroup-groupedContained</span> | Styles applied to the children if `variant="contained"`.
+| <span class="prop-name">groupedContainedHorizontal</span> | <span class="prop-name">.MuiButtonGroup-groupedContainedHorizontal</span> | Styles applied to the children if `variant="contained"` and `orientation="horizontal"`.
+| <span class="prop-name">groupedContainedVertical</span> | <span class="prop-name">.MuiButtonGroup-groupedContainedVertical</span> | Styles applied to the children if `variant="contained"` and `orientation="vertical"`.
 | <span class="prop-name">groupedContainedPrimary</span> | <span class="prop-name">.MuiButtonGroup-groupedContainedPrimary</span> | Styles applied to the children if `variant="contained"` and `color="primary"`.
 | <span class="prop-name">groupedContainedSecondary</span> | <span class="prop-name">.MuiButtonGroup-groupedContainedSecondary</span> | Styles applied to the children if `variant="contained"` and `color="secondary"`.
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to child elements if `disabled={true}`.
