@@ -167,7 +167,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
     disableFocusRipple = false,
     disableRipple = false,
     fullWidth = false,
-    orientation = 'horizontal',
+    orientation = 'vertical',
     size = 'medium',
     variant = 'outlined',
     ...other
@@ -260,7 +260,7 @@ ButtonGroup.propTypes = {
   /**
    * The group orientation.
    */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  orientation: PropTypes.oneOf(['vertical', 'horizontal']),
   /**
    * If `true`, the button keyboard focus ripple will be disabled.
    * `disableRipple` must also be true.

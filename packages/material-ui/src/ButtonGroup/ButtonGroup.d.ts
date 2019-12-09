@@ -11,7 +11,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
     fullWidth?: boolean;
     size?: 'small' | 'medium' | 'large';
     variant?: 'text' | 'outlined' | 'contained';
-    orientation?: 'horizontal' | 'vertical';
+    orientation?: 'vertical' | 'horizontal';
   };
   defaultComponent: D;
   classKey: ButtonGroupClassKey;
