@@ -13,14 +13,11 @@ function renderRow(props: ListChildComponentProps) {
 }
 
 // Adapter for react-window
-const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxComponent(
-  props,
-  ref
-) {
+const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxComponent(props, ref) {
   const { children, ...other } = props;
   const itemData = React.Children.toArray(children);
   const theme = useTheme();
-  const smUp = useMediaQuery(theme.breakpoints.up("sm"), { noSsr: true });
+  const smUp = useMediaQuery(theme.breakpoints.up('sm'), { noSsr: true });
   const itemCount = itemData.length;
   const itemSize = smUp ? 36 : 48;
 
@@ -91,7 +88,7 @@ const renderGroup = (params: RenderGroupParams) => [
   <ListSubheader key={params.key} component="div">
     {params.key}
   </ListSubheader>,
-  params.children
+  params.children,
 ];
 
 export default function Virtualize() {
