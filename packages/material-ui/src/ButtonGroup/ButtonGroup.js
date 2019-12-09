@@ -12,10 +12,6 @@ import Button from '../Button';
 Button.styles;
 
 export const styles = theme => ({
-  /* Styles applied to the root element if `orientation="vertical"`. */
-  vertical: {
-   flexDirection: 'column',
-  },
   /* Styles applied to the root element. */
   root: {
     display: 'inline-flex',
@@ -44,7 +40,11 @@ export const styles = theme => ({
       borderBottomRightRadius: 0,
     },
   },
-    /* Styles applied to the children if `orientation="vertical"`. */
+  /* Styles applied to the root element if `orientation="vertical"`. */
+  vertical: {
+    flexDirection: 'column',
+   },
+  /* Styles applied to the children if `orientation="vertical"`. */
   groupedVertical: {
     '&:not(:first-child)': {
       borderTopRightRadius: 0,
