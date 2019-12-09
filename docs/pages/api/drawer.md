@@ -32,7 +32,7 @@ when `variant="temporary"` is set.
 | <span class="prop-name">ModalProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`Modal`](/api/modal/) element. |
 | <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. |
 | <span class="prop-name">open</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the drawer is open. |
-| <span class="prop-name">PaperProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Paper`](/api/paper/) element. |
+| <span class="prop-name">PaperProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`Paper`](/api/paper/) element. |
 | <span class="prop-name">SlideProps</span> | <span class="prop-type">object</span> |  | Props applied to the [`Slide`](/api/slide/) element. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">number<br>&#124;&nbsp;{ enter?: number, exit?: number }</span> | <span class="prop-default">{ enter: duration.enteringScreen, exit: duration.leavingScreen }</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'permanent'<br>&#124;&nbsp;'persistent'<br>&#124;&nbsp;'temporary'</span> | <span class="prop-default">'temporary'</span> | The variant to use. |
