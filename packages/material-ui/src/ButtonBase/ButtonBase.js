@@ -219,7 +219,15 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     }
   });
   const handleKeyUp = useEventCallback(event => {
-    if (focusRipple && event.key === ' ' && rippleRef.current && focusVisible) {
+    // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
+    // https://codesandbox.io/s/button-keyup-preventdefault-dn7f0
+    if (
+      focusRipple &&
+      event.key === ' ' &&
+      rippleRef.current &&
+      focusVisible &&
+      !event.defaultPrevented
+    ) {
       keydownRef.current = false;
       event.persist();
       rippleRef.current.stop(event, () => {
@@ -231,7 +239,12 @@ const ButtonBase = React.forwardRef(function ButtonBase(props, ref) {
     }
 
     // Keyboard accessibility for non interactive elements
-    if (event.target === event.currentTarget && isNonNativeButton() && event.key === ' ') {
+    if (
+      event.target === event.currentTarget &&
+      isNonNativeButton() &&
+      event.key === ' ' &&
+      !event.defaultPrevented
+    ) {
       event.preventDefault();
       if (onClick) {
         onClick(event);
