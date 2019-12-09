@@ -33,9 +33,8 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   const getHeight = () => {
     if (itemCount > 8) {
       return 8 * itemSize;
-    } else {
-      return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
     }
+    return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
   };
 
   const outerElementType = React.useMemo(() => {
