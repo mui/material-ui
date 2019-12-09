@@ -35,7 +35,7 @@ const styles = theme => ({
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as _ from '@unexisting/thing';
-import Autosuggest from 'react-autosuggest';
+import Draggable from 'react-draggable';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
 import TextField from '@material-ui/core/TextField';
@@ -50,7 +50,7 @@ const suggestions = [
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
       'prop-types': 'latest',
-      'react-autosuggest': 'latest',
+      'react-draggable': 'latest',
       'react-dom': 'latest',
       react: 'latest',
     });
