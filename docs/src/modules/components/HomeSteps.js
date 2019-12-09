@@ -200,6 +200,7 @@ function HomeSteps(props) {
             data-ga-event-label="home-image"
             className={classes.link}
             aria-hidden="true"
+            tabindex="-1"
           >
             <NoSsr>
               <img
