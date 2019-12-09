@@ -204,7 +204,7 @@ function HomeSteps(props) {
             <NoSsr>
               <img
                 className={classes.img}
-                alt=""
+                alt="themes"
                 src={`/static/images/themes-${theme.palette.type}.jpg`}
                 loading="eager"
                 width={500}
