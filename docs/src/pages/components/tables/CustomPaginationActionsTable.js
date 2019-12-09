@@ -4,6 +4,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
 import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
@@ -100,9 +101,6 @@ const rows = [
 ].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
 const useStyles2 = makeStyles({
-  root: {
-    width: '100%',
-  },
   table: {
     minWidth: 500,
   },
@@ -125,8 +123,8 @@ export default function CustomPaginationActionsTable() {
   };
 
   return (
-    <Paper className={classes.root}>
-      <Table responsive className={classes.table} aria-label="custom pagination table">
+    <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="custom pagination table">
         <TableBody>
           {(rowsPerPage > 0
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
@@ -166,6 +164,6 @@ export default function CustomPaginationActionsTable() {
           </TableRow>
         </TableFooter>
       </Table>
-    </Paper>
+    </TableContainer>
   );
 }

@@ -84,6 +84,7 @@ import { SvgIconProps } from '../SvgIcon';
 import { SwitchProps } from '../Switch';
 import { TableBodyProps } from '../TableBody';
 import { TableCellProps } from '../TableCell';
+import { TableContainerProps } from '../TableContainer';
 import { TableHeadProps } from '../TableHead';
 import { TablePaginationProps } from '../TablePagination';
 import { TableProps } from '../Table';
@@ -190,6 +191,7 @@ export interface ComponentsPropsList {
   MuiTable: TableProps;
   MuiTableBody: TableBodyProps;
   MuiTableCell: TableCellProps;
+  MuiTableContainer: TableContainerProps;
   MuiTableHead: TableHeadProps;
   MuiTablePagination: TablePaginationProps;
   MuiTableRow: TableRowProps;

@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
@@ -77,9 +78,8 @@ const useStyles = makeStyles({
   root: {
     width: '100%',
   },
-  tableWrapper: {
+  container: {
     maxHeight: 440,
-    overflow: 'auto',
   },
 });
 
@@ -99,7 +99,7 @@ export default function StickyHeadTable() {
 
   return (
     <Paper className={classes.root}>
-      <div className={classes.tableWrapper}>
+      <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -131,7 +131,7 @@ export default function StickyHeadTable() {
             })}
           </TableBody>
         </Table>
-      </div>
+      </TableContainer>
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"

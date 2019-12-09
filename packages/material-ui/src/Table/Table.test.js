@@ -69,23 +69,4 @@ describe('<Table />', () => {
       stickyHeader: false,
     });
   });
-
-  it('should wrap the table with a styled div when responsive=true', () => {
-    const { container } = render(
-      <Table responsive>
-        <tbody />
-      </Table>,
-    );
-    expect(container.firstChild).to.have.property('nodeName', 'DIV');
-    expect(container.firstChild).to.have.class(classes.responsive);
-  });
-
-  it('should have table as a child when responsive=true', () => {
-    const { container } = render(
-      <Table responsive>
-        <tbody />
-      </Table>,
-    );
-    expect(container.firstChild.firstChild).to.have.property('nodeName', 'TABLE');
-  });
 });

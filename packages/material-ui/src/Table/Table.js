@@ -23,10 +23,6 @@ export const styles = theme => ({
   stickyHeader: {
     borderCollapse: 'separate',
   },
-  /* Styles applied to the root element if `responsive={true}`. */
-  responsive: {
-    overflowX: 'auto',
-  },
 });
 
 const Table = React.forwardRef(function Table(props, ref) {
@@ -37,27 +33,21 @@ const Table = React.forwardRef(function Table(props, ref) {
     padding = 'default',
     size = 'medium',
     stickyHeader = false,
-    responsive = false,
     ...other
   } = props;
-
   const table = React.useMemo(() => ({ padding, size, stickyHeader }), [
     padding,
     size,
     stickyHeader,
   ]);
 
-  const tableComponent = (
-    <Component
-      ref={ref}
-      className={clsx(classes.root, { [classes.stickyHeader]: stickyHeader }, className)}
-      {...other}
-    />
-  );
-
   return (
     <TableContext.Provider value={table}>
-      {responsive ? <div className={classes.responsive}>{tableComponent}</div> : tableComponent}
+      <Component
+        ref={ref}
+        className={clsx(classes.root, { [classes.stickyHeader]: stickyHeader }, className)}
+        {...other}
+      />
     </TableContext.Provider>
   );
 });
@@ -85,10 +75,6 @@ Table.propTypes = {
    * Allows TableCells to inherit padding of the Table.
    */
   padding: PropTypes.oneOf(['default', 'checkbox', 'none']),
-  /**
-   * Allow table to overflow horizontally, making it responsive.
-   */
-  responsive: PropTypes.bool,
   /**
    * Allows TableCells to inherit size of the Table.
    */
