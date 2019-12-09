@@ -60,7 +60,7 @@ export const styles = theme => ({
     '&:not(:last-child)': {
       borderRight: `1px solid ${
         theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-        }`,
+      }`,
     },
   },
   /* Styles applied to the children if `variant="text"` and `orientation="vertical"`. */
@@ -68,7 +68,7 @@ export const styles = theme => ({
     '&:not(:last-child)': {
       borderBottom: `1px solid ${
         theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-        }`,
+      }`,
     },
   },
   /* Styles applied to the children if `variant="text"` and `color="primary"`. */
@@ -150,11 +150,10 @@ export const styles = theme => ({
       borderColor: theme.palette.secondary.dark,
     },
   },
-   /* Styles applied to the root element if `orientation="vertical"`. */
-   vertical: {
+  /* Styles applied to the root element if `orientation="vertical"`. */
+  vertical: {
     flexDirection: 'column',
   },
-  
 });
 
 const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {

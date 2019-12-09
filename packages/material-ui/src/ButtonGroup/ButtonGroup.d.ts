@@ -38,6 +38,6 @@ export type ButtonGroupClassKey =
 export type ButtonGroupProps<
   D extends React.ElementType = ButtonGroupTypeMap['defaultComponent'],
   P = {}
-  > = OverrideProps<ButtonGroupTypeMap<P, D>, D>;
+> = OverrideProps<ButtonGroupTypeMap<P, D>, D>;
 
 export default ButtonGroup;
