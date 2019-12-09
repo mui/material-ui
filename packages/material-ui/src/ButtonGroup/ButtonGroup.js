@@ -43,12 +43,12 @@ export const styles = theme => ({
   /* Styles applied to the root element if `orientation="vertical"`. */
   vertical: {
     flexDirection: 'column',
-   },
+  },
   /* Styles applied to the children if `orientation="vertical"`. */
   groupedVertical: {
     '&:not(:first-child)': {
       borderTopRightRadius: 0,
-     borderTopLeftRadius: 0,
+      borderTopLeftRadius: 0,
     },
     '&:not(:last-child)': {
       borderBottomRightRadius: 0,
@@ -86,9 +86,9 @@ export const styles = theme => ({
     },
   },
   /* Styles applied to the children if `variant="outlined"`. */
-   groupedOutlined: {},
-   /* Styles applied to the children if `variant="outlined"` and `orientation="horizontal"`. */
-   groupedOutlinedHorizontal: {
+  groupedOutlined: {},
+  /* Styles applied to the children if `variant="outlined"` and `orientation="horizontal"`. */
+  groupedOutlinedHorizontal: {
     '&:not(:first-child)': {
       marginLeft: -1,
     },
