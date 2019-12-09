@@ -76,7 +76,7 @@ function useMediaQuery(queryInput, options = {}) {
       active = false;
       queryList.removeListener(updateMatch);
     };
-  }, [query, supportMatchMedia]);
+  }, [query, matchMedia, supportMatchMedia]);
 
   return match;
 }
