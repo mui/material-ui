@@ -24,13 +24,20 @@ const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxCompon
   const itemCount = itemData.length;
   const itemSize = smUp ? 36 : 48;
 
-  const getItemSize = (index: number) => {
-    const child = itemData[index];
+  const getChildSize = (child: React.ReactNode) => {
     if (React.isValidElement(child) && child.type === ListSubheader) {
       return 48;
     }
 
     return itemSize;
+  };
+
+  const getHeight = () => {
+    if (itemCount > 8) {
+      return 8 * itemSize;
+    } else {
+      return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
+    }
   };
 
   const outerElementType = React.useMemo(() => {
@@ -42,17 +49,12 @@ const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxCompon
   return (
     <div ref={ref}>
       <VariableSizeList
-        style={{
-          padding: 0,
-          height: Math.min(8, itemCount) * itemSize,
-          maxHeight: "auto"
-        }}
         itemData={itemData}
-        height={250}
+        height={getHeight()}
         width="100%"
         outerElementType={outerElementType}
         innerElementType="ul"
-        itemSize={getItemSize}
+        itemSize={index => getChildSize(itemData[index])}
         overscanCount={5}
         itemCount={itemCount}
       >
