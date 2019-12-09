@@ -3479,9 +3479,9 @@ babel-plugin-syntax-jsx@6.18.0, babel-plugin-syntax-jsx@^6.18.0:
   integrity sha1-CvMqmm4Tyno/1QaeYtew9Y0NiUY=
 
 babel-plugin-tester@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-tester/-/babel-plugin-tester-8.0.0.tgz#250cfa79c03373a30120b502f2e60d912cdac9db"
-  integrity sha512-/aMDd8INt1aXV5X2gp6l1hnyQQevn/kQ21LtOPiL6HGGBPTCVoJbz3wx4fFT/0dxZM4+cQRiBIBb8JpJxe6Gdg==
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-tester/-/babel-plugin-tester-8.0.1.tgz#6cffa9b9d508a567139339afc74c97c64b62f131"
+  integrity sha512-5PN7FR1oxbTiA7JUdInT+vFkgu6ckYL5moRzWf5T7hAq+QX5cbcHpoXNHu1x7SQHCEZwYMhN1HzZoqeolNaO2g==
   dependencies:
     lodash.mergewith "^4.6.2"
     prettier "^1.19.1"
