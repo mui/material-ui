@@ -156,7 +156,14 @@ export default function AppTableOfContents(props) {
   }, [itemsServer]);
 
   const [activeState, setActiveState] = React.useState(null);
+  const clickedRef = React.useRef(false);
+  const unsetClickedRef = React.useRef(null);
   const findActiveIndex = React.useCallback(() => {
+    // Don't set the active index based on scroll if a link was just clicked
+    if (clickedRef.current) {
+      return;
+    }
+
     let active;
     for (let i = itemsClientRef.current.length - 1; i >= 0; i -= 1) {
       // No hash if we're near the top of the page
@@ -191,12 +198,44 @@ export default function AppTableOfContents(props) {
   // Corresponds to 10 frames at 60 Hz
   useThrottledOnScroll(itemsServer.length > 0 ? findActiveIndex : null, 166);
 
+  const handleClick = hash => event => {
+    // Ignore click for new tab/new window behavior
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 || // ignore everything but left-click
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      (event.nativeEvent && event.nativeEvent.which === 2)
+    ) {
+      return;
+    }
+
+    // Used to disable findActiveIndex if the page scrolls due to a click
+    clickedRef.current = true;
+    unsetClickedRef.current = setTimeout(() => {
+      clickedRef.current = false;
+    }, 1000);
+
+    if (activeState !== hash) {
+      setActiveState(hash);
+    }
+  };
+
+  React.useEffect(
+    () => () => {
+      clearTimeout(unsetClickedRef.current);
+    },
+    [],
+  );
+
   const itemLink = (item, secondary) => (
     <Link
       display="block"
       color={activeState === item.hash ? 'textPrimary' : 'textSecondary'}
       href={`#${item.hash}`}
       underline="none"
+      onClick={handleClick(item.hash)}
       className={clsx(
         classes.item,
         { [classes.secondaryItem]: secondary },
