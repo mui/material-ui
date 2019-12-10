@@ -110,9 +110,6 @@ const styles = theme => ({
     color: theme.palette.type === 'dark' ? '#fff' : null,
     backgroundColor: theme.palette.type === 'dark' ? theme.palette.background.level2 : null,
     transition: theme.transitions.create('width'),
-    '@media print': {
-      position: 'absolute',
-    },
   },
   language: {
     margin: theme.spacing(0, 0.5, 0, 1),
