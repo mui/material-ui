@@ -131,7 +131,6 @@ const ExpansionPanelSummary = React.forwardRef(function ExpansionPanelSummary(pr
           className={clsx(classes.expandIcon, {
             [classes.expanded]: expanded,
           })}
-          edge="end"
           component="div"
           tabIndex={null}
           role={null}
