@@ -13,6 +13,16 @@
  */
 const appList = [
   {
+    title: 'PassKit',
+    description:
+      'PassKit enables users to create, manage and distribute ' +
+      'digital cards for Apple Wallet and Google Pay.',
+    image: 'passkit.jpg',
+    link: 'https://app.passkit.com/',
+    similarWebVisits: 223,
+    dateAdded: '2019-12-09',
+  },
+  {
     title: 'QuintoAndar',
     description:
       'QuintoAndar is a company that uses technology and ' +
