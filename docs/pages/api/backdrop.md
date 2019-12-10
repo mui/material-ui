@@ -52,3 +52,7 @@ You can override the style of the component thanks to one of these customization
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Backdrop/Backdrop.js) for more detail.
 
+## Demos
+
+- [Backdrop](/components/backdrop/)
+
