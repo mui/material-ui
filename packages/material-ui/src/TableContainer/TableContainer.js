@@ -19,7 +19,7 @@ const TableContainer = React.forwardRef(function TableContainer(props, ref) {
 
 TableContainer.propTypes = {
   /**
-   * The content of the table, normally `TableHead` and `TableBody`.
+   * The table itself, normally `<Table />`
    */
   children: PropTypes.node,
   /**
