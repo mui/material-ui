@@ -1,15 +1,15 @@
 import React from 'react';
 import { assert } from 'chai';
-import { createMount, createRender } from '@material-ui/core/test-utils';
+import { createMount } from '@material-ui/core/test-utils';
+import createServerRender from 'test/utils/createServerRender';
 import NoSsr from './NoSsr';
 
 describe('<NoSsr />', () => {
   let mount;
-  let render;
+  const serverRender = createServerRender();
 
   before(() => {
     mount = createMount({ strict: true });
-    render = createRender();
   });
 
   after(() => {
@@ -18,7 +18,7 @@ describe('<NoSsr />', () => {
 
   describe('server-side rendering', () => {
     it('should not render the children as the width is unknown', () => {
-      const wrapper = render(
+      const wrapper = serverRender(
         <NoSsr>
           <span>Hello</span>
         </NoSsr>,
@@ -40,7 +40,7 @@ describe('<NoSsr />', () => {
 
   describe('prop: fallback', () => {
     it('should render the fallback', () => {
-      const wrapper = render(
+      const wrapper = serverRender(
         <div>
           <NoSsr fallback="fallback">
             <span>Hello</span>
