@@ -13,6 +13,7 @@ export type ToggleButtonTypeMap<
     disableFocusRipple?: boolean;
     selected?: boolean;
     value?: any;
+    size?: 'small' | 'medium' | 'large';
   };
   defaultComponent: D;
   classKey: ToggleButtonClassKey;
