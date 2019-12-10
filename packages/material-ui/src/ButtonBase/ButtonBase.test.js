@@ -715,6 +715,32 @@ describe('<ButtonBase />', () => {
         expect(onClickSpy.returnValues[0]).to.equal(true);
       });
 
+      it('does not call onClick when a spacebar is released and the default is prevented', () => {
+        const onClickSpy = spy(event => event.defaultPrevented);
+        const { getByRole } = render(
+          <ButtonBase
+            onClick={onClickSpy}
+            onKeyUp={
+              /**
+               * @param {React.SyntheticEvent} event
+               */
+              event => event.preventDefault()
+            }
+            component="div"
+          >
+            Hello
+          </ButtonBase>,
+        );
+        const button = getByRole('button');
+        button.focus();
+
+        fireEvent.keyUp(document.activeElement || document.body, {
+          key: ' ',
+        });
+
+        expect(onClickSpy.callCount).to.equal(0);
+      });
+
       it('calls onClick when Enter is pressed on the element', () => {
         const onClickSpy = spy(event => event.defaultPrevented);
         const { getByRole } = render(

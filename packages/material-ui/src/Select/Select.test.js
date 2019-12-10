@@ -148,8 +148,10 @@ describe('<Select />', () => {
       getByRole('button').focus();
 
       fireEvent.keyDown(document.activeElement, { key });
+      expect(getByRole('listbox', { hidden: false })).to.be.ok;
 
-      expect(getByRole('listbox')).to.be.ok;
+      fireEvent.keyUp(document.activeElement, { key });
+      expect(getByRole('listbox', { hidden: false })).to.be.ok;
     });
   });
 
@@ -485,7 +487,9 @@ describe('<Select />', () => {
       getByRole('button').focus();
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      expect(queryByRole('listbox')).not.to.be.ok;
 
+      fireEvent.keyUp(document.activeElement, { key: 'ArrowDown' });
       expect(queryByRole('listbox')).not.to.be.ok;
     });
   });
@@ -870,5 +874,21 @@ describe('<Select />', () => {
 
       expect(getByLabelText('A select')).to.have.property('tagName', 'SELECT');
     });
+  });
+
+  it('prevents the default when releasing Space on the children', () => {
+    const keyUpSpy = spy(event => event.defaultPrevented);
+    render(
+      <Select value="one" open>
+        <MenuItem onKeyUp={keyUpSpy} value="one">
+          One
+        </MenuItem>
+      </Select>,
+    );
+
+    fireEvent.keyUp(document.activeElement, { key: ' ' });
+
+    expect(keyUpSpy.callCount).to.equal(1);
+    expect(keyUpSpy.returnValues[0]).to.equal(true);
   });
 });
