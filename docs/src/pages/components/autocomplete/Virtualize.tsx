@@ -13,54 +13,52 @@ function renderRow(props: ListChildComponentProps) {
 }
 
 // Adapter for react-window
-const ListboxComponent = React.forwardRef<HTMLDivElement, { className: string }>(
-  function ListboxComponent(props, ref) {
-    const { children, className, ...other } = props;
-    const itemData = React.Children.toArray(children);
-    const theme = useTheme();
-    const smUp = useMediaQuery(theme.breakpoints.up('sm'), { noSsr: true });
-    const itemCount = itemData.length;
-    const itemSize = smUp ? 36 : 48;
+const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxComponent(props, ref) {
+  const { children, ...other } = props;
+  const itemData = React.Children.toArray(children);
+  const theme = useTheme();
+  const smUp = useMediaQuery(theme.breakpoints.up('sm'), { noSsr: true });
+  const itemCount = itemData.length;
+  const itemSize = smUp ? 36 : 48;
 
-    const getChildSize = (child: React.ReactNode) => {
-      if (React.isValidElement(child) && child.type === ListSubheader) {
-        return 48;
-      }
+  const getChildSize = (child: React.ReactNode) => {
+    if (React.isValidElement(child) && child.type === ListSubheader) {
+      return 48;
+    }
 
-      return itemSize;
-    };
+    return itemSize;
+  };
 
-    const getHeight = () => {
-      if (itemCount > 8) {
-        return 8 * itemSize;
-      }
-      return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
-    };
+  const getHeight = () => {
+    if (itemCount > 8) {
+      return 8 * itemSize;
+    }
+    return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
+  };
 
-    const outerElementType = React.useMemo(() => {
-      return React.forwardRef<HTMLDivElement>((props2, ref2) => (
-        <div ref={ref2} {...props2} {...other} />
-      ));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const outerElementType = React.useMemo(() => {
+    return React.forwardRef<HTMLDivElement>((props2, ref2) => (
+      <div ref={ref2} {...props2} {...other} />
+    ));
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    return (
-      <div ref={ref} className={className}>
-        <VariableSizeList
-          itemData={itemData}
-          height={getHeight()}
-          width="100%"
-          outerElementType={outerElementType}
-          innerElementType="ul"
-          itemSize={index => getChildSize(itemData[index])}
-          overscanCount={5}
-          itemCount={itemCount}
-        >
-          {renderRow}
-        </VariableSizeList>
-      </div>
-    );
-  },
-);
+  return (
+    <div ref={ref}>
+      <VariableSizeList
+        itemData={itemData}
+        height={getHeight()}
+        width="100%"
+        outerElementType={outerElementType}
+        innerElementType="ul"
+        itemSize={index => getChildSize(itemData[index])}
+        overscanCount={5}
+        itemCount={itemCount}
+      >
+        {renderRow}
+      </VariableSizeList>
+    </div>
+  );
+});
 
 function random(length: number) {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
