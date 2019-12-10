@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 export interface ClickAwayListenerProps {
+  allowPreventDefaultEvents?: boolean;
   children: React.ReactNode;
   mouseEvent?: 'onClick' | 'onMouseDown' | 'onMouseUp' | false;
   onClickAway: (event: React.MouseEvent<Document>) => void;

@@ -37,7 +37,7 @@ describe('<ClickAwayListener />', () => {
   });
 
   describe('prop: onClickAway', () => {
-    it('should be call when clicking away', () => {
+    it('should be called when clicking away', () => {
       const handleClickAway = spy();
       wrapper = mount(
         <ClickAwayListener onClickAway={handleClickAway}>
@@ -51,7 +51,7 @@ describe('<ClickAwayListener />', () => {
       assert.deepEqual(handleClickAway.args[0], [event]);
     });
 
-    it('should not be call when clicking inside', () => {
+    it('should not be called when clicking inside', () => {
       const handleClickAway = spy();
       const ref = React.createRef();
       wrapper = mount(
@@ -69,7 +69,7 @@ describe('<ClickAwayListener />', () => {
       assert.strictEqual(handleClickAway.callCount, 0);
     });
 
-    it('should not be call when defaultPrevented', () => {
+    it('should not be called when defaultPrevented', () => {
       const handleClickAway = spy();
       wrapper = mount(
         <ClickAwayListener onClickAway={handleClickAway}>
@@ -82,6 +82,23 @@ describe('<ClickAwayListener />', () => {
       const event = new window.Event('click', { view: window, bubbles: true, cancelable: true });
       document.body.dispatchEvent(event);
       assert.strictEqual(handleClickAway.callCount, 0);
+
+      document.body.removeEventListener('click', preventDefault);
+    });
+
+    it('should be called when preventDefault and allowPreventDefaultEvents is `true`', () => {
+      const handleClickAway = spy();
+      wrapper = mount(
+        <ClickAwayListener allowPreventDefaultEvents onClickAway={handleClickAway}>
+          <span>Hello</span>
+        </ClickAwayListener>,
+      );
+      const preventDefault = event => event.preventDefault();
+      document.body.addEventListener('click', preventDefault);
+
+      const event = new window.Event('click', { view: window, bubbles: true, cancelable: true });
+      document.body.dispatchEvent(event);
+      assert.strictEqual(handleClickAway.callCount, 1);
 
       document.body.removeEventListener('click', preventDefault);
     });

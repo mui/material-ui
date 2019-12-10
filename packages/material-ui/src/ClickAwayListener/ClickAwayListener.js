@@ -16,7 +16,13 @@ function mapEventPropToEvent(eventProp) {
  * For instance, if you need to hide a menu when people click anywhere else on your page.
  */
 const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref) {
-  const { children, mouseEvent = 'onClick', touchEvent = 'onTouchEnd', onClickAway } = props;
+  const {
+    allowPreventDefaultEvents = false,
+    children,
+    mouseEvent = 'onClick',
+    touchEvent = 'onTouchEnd',
+    onClickAway,
+  } = props;
   const movedRef = React.useRef(false);
   const nodeRef = React.useRef(null);
   const mountedRef = React.useRef(false);
@@ -40,8 +46,9 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
   const handleClickAway = useEventCallback(event => {
-    // Ignore events that have been `event.preventDefault()` marked.
-    if (event.defaultPrevented) {
+    // Ignore events that have been `event.preventDefault()` marked unless
+    // allowPreventDefaultEvents is true.
+    if (!allowPreventDefaultEvents && event.defaultPrevented) {
       return;
     }
 
@@ -113,6 +120,10 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
 });
 
 ClickAwayListener.propTypes = {
+  /**
+   * If `true`, the component skips the check to see if events used event.preventDefault().
+   */
+  allowPreventDefaultEvents: PropTypes.bool,
   /**
    * The wrapped element.
    */
