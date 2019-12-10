@@ -10,7 +10,12 @@ import { Typography } from '@material-ui/core';
 
 function renderRow(props) {
   const { data, index, style } = props;
-  return React.cloneElement(data[index], { style });
+  return React.cloneElement(data[index], {
+    style: {
+      ...style,
+      top: style.top + 8,
+    },
+  });
 }
 
 // Adapter for react-window
@@ -45,8 +50,9 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
     <div ref={ref}>
       <VariableSizeList
         itemData={itemData}
-        height={getHeight()}
+        height={getHeight() + 16}
         width="100%"
+        key={itemCount}
         outerElementType={outerElementType}
         innerElementType="ul"
         itemSize={index => getChildSize(itemData[index])}
