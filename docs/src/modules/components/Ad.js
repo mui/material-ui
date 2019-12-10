@@ -75,6 +75,13 @@ const inHouseAds = [
     img: '/static/in-house/monday.jpg',
     description: 'Why use multiple tools to manage your projects? Meet monday.com',
   },
+  {
+    name: 'bonsaiilabs',
+    link: 'https://bonsaiilabs.com/courseDetail/material-ui-with-react',
+    img: '/static/in-house/bonsaiilabs.png',
+    description:
+      'A course to learn Material‑UI while developing a mobile flight search and booking app.',
+  },
 ];
 
 function Ad(props) {
