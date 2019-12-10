@@ -122,6 +122,9 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
 ClickAwayListener.propTypes = {
   /**
    * If `true`, the component skips the check to see if events used event.preventDefault().
+   *
+   * The usage of this prop is recommended.
+   * It will become the default and unique behavior in v5.
    */
   allowPreventDefaultEvents: PropTypes.bool,
   /**
