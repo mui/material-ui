@@ -15,7 +15,7 @@ function renderRow(props) {
 
 // Adapter for react-window
 const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
-  const { children, ...other } = props;
+  const { children, className, ...other } = props;
   const itemData = React.Children.toArray(children);
   const theme = useTheme();
   const smUp = useMediaQuery(theme.breakpoints.up('sm'), { noSsr: true });
@@ -42,7 +42,7 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className={className}>
       <VariableSizeList
         itemData={itemData}
         height={getHeight()}
