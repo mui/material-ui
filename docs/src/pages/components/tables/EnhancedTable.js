@@ -5,6 +5,7 @@ import { lighten, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
@@ -197,9 +198,6 @@ const useStyles = makeStyles(theme => ({
   table: {
     minWidth: 750,
   },
-  tableWrapper: {
-    overflowX: 'auto',
-  },
   visuallyHidden: {
     border: 0,
     clip: 'rect(0 0 0 0)',
@@ -278,7 +276,7 @@ export default function EnhancedTable() {
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} />
-        <div className={classes.tableWrapper}>
+        <TableContainer>
           <Table
             className={classes.table}
             aria-labelledby="tableTitle"
@@ -334,7 +332,7 @@ export default function EnhancedTable() {
               )}
             </TableBody>
           </Table>
-        </div>
+        </TableContainer>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
