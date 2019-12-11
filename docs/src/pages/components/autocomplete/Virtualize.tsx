@@ -7,15 +7,24 @@ import { useTheme, makeStyles } from '@material-ui/core/styles';
 import { VariableSizeList, ListChildComponentProps } from 'react-window';
 import { Typography } from '@material-ui/core';
 
+const LISTBOX_PADDING = 8; // px
+
 function renderRow(props: ListChildComponentProps) {
   const { data, index, style } = props;
   return React.cloneElement(data[index], {
     style: {
       ...style,
-      top: (style.top as number) + 8,
+      top: (style.top as number) + LISTBOX_PADDING,
     },
   });
 }
+
+const outerElementPropsContext = React.createContext({});
+
+const OuterElementType = React.forwardRef<HTMLDivElement>((props, ref) => {
+  const outerProps = React.useContext(outerElementPropsContext);
+  return <div ref={ref} {...props} {...outerProps} />;
+});
 
 // Adapter for react-window
 const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxComponent(props, ref) {
@@ -41,27 +50,23 @@ const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxCompon
     return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
   };
 
-  const outerElementType = React.useMemo(() => {
-    return React.forwardRef<HTMLDivElement>((props2, ref2) => (
-      <div ref={ref2} {...props2} {...other} />
-    ));
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
   return (
     <div ref={ref}>
-      <VariableSizeList
-        itemData={itemData}
-        height={getHeight() + 16}
-        width="100%"
-        key={itemCount}
-        outerElementType={outerElementType}
-        innerElementType="ul"
-        itemSize={index => getChildSize(itemData[index])}
-        overscanCount={5}
-        itemCount={itemCount}
-      >
-        {renderRow}
-      </VariableSizeList>
+      <outerElementPropsContext.Provider value={other}>
+        <VariableSizeList
+          itemData={itemData}
+          height={getHeight() + 2 * LISTBOX_PADDING}
+          width="100%"
+          key={itemCount}
+          outerElementType={OuterElementType}
+          innerElementType="ul"
+          itemSize={index => getChildSize(itemData[index])}
+          overscanCount={5}
+          itemCount={itemCount}
+        >
+          {renderRow}
+        </VariableSizeList>
+      </outerElementPropsContext.Provider>
     </div>
   );
 });
