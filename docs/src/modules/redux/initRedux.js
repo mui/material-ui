@@ -21,8 +21,7 @@ function create(initialState) {
     process.browser &&
     !window.__REDUX_DEVTOOLS_EXTENSION__ &&
     // redux-logger needs this feature
-    // eslint-disable-next-line no-eval
-    eval('Object.assign')
+    Object.hasOwnProperty('assign')
   ) {
     // eslint-disable-next-line global-require
     const createLogger = require('redux-logger').createLogger;
