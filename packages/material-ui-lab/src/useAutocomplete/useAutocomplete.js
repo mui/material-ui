@@ -579,7 +579,7 @@ export default function useAutocomplete(props) {
               inputRef.current.value.length,
             );
           }
-        } else if (freeSolo && inputValue !== '') {
+        } else if (freeSolo && inputValueFilter !== '') {
           selectNewValue(event, inputValue);
         }
         break;
