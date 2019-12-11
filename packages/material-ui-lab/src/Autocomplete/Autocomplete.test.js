@@ -724,11 +724,12 @@ describe('<Autocomplete />', () => {
   describe('freeSolo', () => {
     it('pressing twice enter should not call onChange listener twice', () => {
       const handleChange = spy();
+      const options = [{ name: 'foo' }];
       render(
         <Autocomplete
           freeSolo
           onChange={handleChange}
-          options={[{ name: 'foo' }]}
+          options={options}
           getOptionLabel={option => option.name}
           renderInput={params => <TextField {...params} autoFocus />}
         />,
@@ -736,10 +737,10 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][1]).to.equal('foo');
+      expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][1]).to.equal('foo');
+      expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
     });
   });
 });
