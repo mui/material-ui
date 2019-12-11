@@ -720,4 +720,25 @@ describe('<Autocomplete />', () => {
       expect(options.length).to.equal(1);
     });
   });
+
+  describe('freeSolo', () => {
+    it('pressing twice enter should not call onChange listener twice', () => {
+      render(
+        <Autocomplete
+          freeSolo
+          onChange={handleChange}
+          options={[{ name: 'foo' }}]}
+          getOptionLabel={option => option.name}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('foo');
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('foo');
+    });
+  });
 });
