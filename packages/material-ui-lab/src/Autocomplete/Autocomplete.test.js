@@ -723,6 +723,7 @@ describe('<Autocomplete />', () => {
 
   describe('freeSolo', () => {
     it('pressing twice enter should not call onChange listener twice', () => {
+      const handleChange = spy();
       render(
         <Autocomplete
           freeSolo
