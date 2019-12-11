@@ -39,12 +39,22 @@ export const styles = theme => ({
     '&:not([multiple]) option, &:not([multiple]) optgroup': {
       backgroundColor: theme.palette.background.paper,
     },
+    '&&': {
+      paddingRight: 24,
+    },
   },
   /* Styles applied to the select component if `variant="filled"`. */
-  filled: {},
+  filled: {
+    '&&': {
+      paddingRight: 32,
+    },
+  },
   /* Styles applied to the select component if `variant="outlined"`. */
   outlined: {
     borderRadius: theme.shape.borderRadius,
+    '&&': {
+      paddingRight: 32,
+    },
   },
   /* Styles applied to the select component `selectMenu` class. */
   selectMenu: {
@@ -52,9 +62,6 @@ export const styles = theme => ({
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
-    '&&': {
-      paddingRight: 24,
-    },
   },
   /* Pseudo-class applied to the select component `disabled` class. */
   disabled: {},
