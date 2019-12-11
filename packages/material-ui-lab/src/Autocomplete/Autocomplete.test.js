@@ -727,7 +727,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete
           freeSolo
           onChange={handleChange}
-          options={[{ name: 'foo' }}]}
+          options={[{ name: 'foo' }]}
           getOptionLabel={option => option.name}
           renderInput={params => <TextField {...params} autoFocus />}
         />,
