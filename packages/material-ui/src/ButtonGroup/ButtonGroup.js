@@ -167,7 +167,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
     disableFocusRipple = false,
     disableRipple = false,
     fullWidth = false,
-    orientation = 'vertical',
+    orientation = 'horizontal',
     size = 'medium',
     variant = 'outlined',
     ...other
