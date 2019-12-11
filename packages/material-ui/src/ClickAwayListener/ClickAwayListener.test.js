@@ -41,26 +41,10 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.callCount).to.equal(0);
     });
 
-    it('should not be called when defaultPrevented', () => {
+    it('should be called when preventDefault is `true`', () => {
       const handleClickAway = spy();
       render(
         <ClickAwayListener onClickAway={handleClickAway}>
-          <span />
-        </ClickAwayListener>,
-      );
-      const preventDefault = event => event.preventDefault();
-      document.body.addEventListener('click', preventDefault);
-
-      fireEvent.click(document.body);
-      expect(handleClickAway.callCount).to.equal(0);
-
-      document.body.removeEventListener('click', preventDefault);
-    });
-
-    it('should be called when preventDefault and allowPreventDefaultEvents is `true`', () => {
-      const handleClickAway = spy();
-      render(
-        <ClickAwayListener allowPreventDefaultEvents onClickAway={handleClickAway}>
           <span />
         </ClickAwayListener>,
       );

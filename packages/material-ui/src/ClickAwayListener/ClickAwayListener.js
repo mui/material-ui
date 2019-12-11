@@ -16,13 +16,7 @@ function mapEventPropToEvent(eventProp) {
  * For instance, if you need to hide a menu when people click anywhere else on your page.
  */
 const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref) {
-  const {
-    allowPreventDefaultEvents = false,
-    children,
-    mouseEvent = 'onClick',
-    touchEvent = 'onTouchEnd',
-    onClickAway,
-  } = props;
+  const { children, mouseEvent = 'onClick', touchEvent = 'onTouchEnd', onClickAway } = props;
   const movedRef = React.useRef(false);
   const nodeRef = React.useRef(null);
   const mountedRef = React.useRef(false);
@@ -46,11 +40,12 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
   const handleClickAway = useEventCallback(event => {
-    // Ignore events that have been `event.preventDefault()` marked unless
-    // allowPreventDefaultEvents is true.
-    if (!allowPreventDefaultEvents && event.defaultPrevented) {
-      return;
-    }
+    // The handler doesn't take event.defaultPrevented into account:
+    //
+    // event.preventDefault() is meant to stop default behaviours like
+    // clicking a checkbox to check it, hitting a button to submit a form,
+    // and hitting left arrow to move the cursor in a text input etc.
+    // Only special HTML elements have these default behaviors.
 
     // IE 11 support, which trigger the handleClickAway even after the unbind
     if (!mountedRef.current) {
@@ -120,13 +115,6 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
 });
 
 ClickAwayListener.propTypes = {
-  /**
-   * If `true`, the component skips the check to see if events used event.preventDefault().
-   *
-   * The usage of this prop is recommended.
-   * It will become the default and unique behavior in v5.
-   */
-  allowPreventDefaultEvents: PropTypes.bool,
   /**
    * The wrapped element.
    */
