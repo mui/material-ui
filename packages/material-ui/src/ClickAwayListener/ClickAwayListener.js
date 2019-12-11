@@ -40,10 +40,12 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
   const handleClickAway = useEventCallback(event => {
-    // Ignore events that have been `event.preventDefault()` marked.
-    if (event.defaultPrevented) {
-      return;
-    }
+    // The handler doesn't take event.defaultPrevented into account:
+    //
+    // event.preventDefault() is meant to stop default behaviours like
+    // clicking a checkbox to check it, hitting a button to submit a form,
+    // and hitting left arrow to move the cursor in a text input etc.
+    // Only special HTML elements have these default behaviors.
 
     // IE 11 support, which trigger the handleClickAway even after the unbind
     if (!mountedRef.current) {
