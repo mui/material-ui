@@ -737,10 +737,10 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
+      expect(handleChange.args[0][1]).to.deep.equal(options[0]);
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
       expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
+      expect(handleChange.args[0][1]).to.deep.equal(options[0]);
     });
   });
 });
