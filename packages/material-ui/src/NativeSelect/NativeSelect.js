@@ -47,7 +47,7 @@ export const styles = theme => ({
   filled: {
     '&&': {
       paddingRight: 32,
-    }
+    },
   },
   /* Styles applied to the select component if `variant="outlined"`. */
   outlined: {
