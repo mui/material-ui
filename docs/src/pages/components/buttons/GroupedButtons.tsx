@@ -9,14 +9,14 @@ export default function GroupedButtons() {
       <Grid item xs={12} md={6}>
         <Grid container spacing={1} direction="column" alignItems="center">
           <Grid item>
-            <ButtonGroup size="small" aria-label="small outlined button group">
+            <ButtonGroup size="small" aria-label="small outlined button group" orientation = 'horizontal'>
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
             </ButtonGroup>
           </Grid>
           <Grid item>
-            <ButtonGroup color="primary" aria-label="outlined primary button group">
+            <ButtonGroup color="primary" aria-label="outlined primary button group" orientation = 'horizontal' >
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
@@ -27,6 +27,7 @@ export default function GroupedButtons() {
               color="secondary"
               size="large"
               aria-label="large outlined secondary button group"
+              orientation = 'horizontal'
             >
               <Button>One</Button>
               <Button>Two</Button>
@@ -38,7 +39,7 @@ export default function GroupedButtons() {
       <Grid item xs={12} md={6}>
         <Grid container spacing={1} direction="column" alignItems="center">
           <Grid item>
-            <ButtonGroup variant="contained" size="small" aria-label="small contained button group">
+            <ButtonGroup variant="contained" size="small" aria-label="small contained button group" orientation = 'horizontal'>
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
@@ -49,6 +50,7 @@ export default function GroupedButtons() {
               variant="contained"
               color="primary"
               aria-label="full-width contained primary button group"
+              orientation = 'horizontal'
             >
               <Button>One</Button>
               <Button>Two</Button>
@@ -61,6 +63,7 @@ export default function GroupedButtons() {
               color="secondary"
               size="large"
               aria-label="large contained secondary button group"
+              orientation = 'horizontal'
             >
               <Button>One</Button>
               <Button>Two</Button>
@@ -72,7 +75,7 @@ export default function GroupedButtons() {
       <Grid item xs={12} md={6}>
         <Grid container spacing={1} direction="column" alignItems="center">
           <Grid item>
-            <ButtonGroup variant="text" size="small" aria-label="small contained button group">
+            <ButtonGroup variant="text" size="small" aria-label="small contained button group" orientation = 'vertical'>
               <Button>One</Button>
               <Button>Two</Button>
               <Button>Three</Button>
@@ -83,6 +86,7 @@ export default function GroupedButtons() {
               variant="text"
               color="primary"
               aria-label="full-width contained primary button group"
+              orientation = 'vertical'
             >
               <Button>One</Button>
               <Button>Two</Button>
@@ -95,6 +99,7 @@ export default function GroupedButtons() {
               color="secondary"
               size="large"
               aria-label="large contained secondary button group"
+              orientation = 'vertical'
             >
               <Button>One</Button>
               <Button>Two</Button>
@@ -104,7 +109,7 @@ export default function GroupedButtons() {
         </Grid>
       </Grid>
       <Grid item xs={12} md={6}>
-        <ButtonGroup fullWidth aria-label="full width outlined button group">
+        <ButtonGroup fullWidth aria-label="full width outlined button group" orientation = 'vertical'>
           <Button>Full</Button>
           <Button>width</Button>
           <Button>Group</Button>
