@@ -54,9 +54,9 @@ The `ButtonGroup` component can be used to group buttons.
 
 {{"demo": "pages/components/buttons/GroupedButtons.js"}}
 
-### Group sizes
+### Group sizes and colors
 
-{{"demo": "pages/components/buttons/GroupSizes.js"}}
+{{"demo": "pages/components/buttons/GroupSizesColors.js"}}
 
 ### Group orientation
 

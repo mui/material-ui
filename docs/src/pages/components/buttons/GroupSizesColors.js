@@ -1,32 +1,30 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      '& > *': {
-        margin: theme.spacing(1),
-      },
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    '& > *': {
+      margin: theme.spacing(1),
     },
-  }),
-);
+  },
+}));
 
-export default function GroupSizes() {
+export default function GroupSizesColors() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <ButtonGroup size="small" color="primary" aria-label="small outlined primary button group">
+      <ButtonGroup size="small" aria-label="small outlined button group">
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
       </ButtonGroup>
-      <ButtonGroup color="primary" aria-label="outlined primary button group">
+      <ButtonGroup color="secondary" aria-label="outlined secondary button group">
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
