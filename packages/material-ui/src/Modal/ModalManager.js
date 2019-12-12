@@ -75,11 +75,8 @@ function handleContainer(containerInfo, props) {
       el: scrollContainer,
     });
 
-    // Block the scroll even if no scrollbar is visible to account for mobile keyboard
-    // screensize shrink.
-    scrollContainer.style.overflow = 'hidden';
-
     if (overflowing) {
+      // Compute the size before applying overflow hidden to avoid any scroll jumps.
       const scrollbarSize = getScrollbarSize();
 
       restoreStyle.push({
@@ -87,6 +84,8 @@ function handleContainer(containerInfo, props) {
         key: 'padding-right',
         el: container,
       });
+      // Disable scroll here to be processed on the same frame with padding change.
+      scrollContainer.style.overflow = 'hidden';
       // Use computed style, here to get the real padding to add our scrollbar width.
       container.style['padding-right'] = `${getPaddingRight(container) + scrollbarSize}px`;
 
@@ -96,6 +95,10 @@ function handleContainer(containerInfo, props) {
         restorePaddings.push(node.style.paddingRight);
         node.style.paddingRight = `${getPaddingRight(node) + scrollbarSize}px`;
       });
+    } else {
+      // Block the scroll even if no scrollbar is visible to account for mobile keyboard
+      // screensize shrink.
+      scrollContainer.style.overflow = 'hidden';
     }
   }
 
