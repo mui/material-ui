@@ -75,6 +75,13 @@ const inHouseAds = [
     img: '/static/in-house/monday.jpg',
     description: 'Why use multiple tools to manage your projects? Meet monday.com',
   },
+  {
+    name: 'bonsaiilabs',
+    link: 'https://bonsaiilabs.com/courseDetail/material-ui-with-react',
+    img: '/static/in-house/bonsaiilabs.png',
+    description:
+      'A course to learn Material‑UI while developing a mobile flight search and booking app.',
+  },
 ];
 
 function Ad(props) {
@@ -165,7 +172,7 @@ function Ad(props) {
     if (carbonOut || codeFundOut) {
       children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * random)]} />;
       minHeight = 'auto';
-    } else if (random >= 0.55) {
+    } else if (random >= 0.65) {
       children = <AdCodeFund />;
     } else {
       children = <AdCarbon />;

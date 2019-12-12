@@ -141,6 +141,7 @@ export const styles = theme => ({
   /* Styles applied to the `Paper` component. */
   paper: {
     ...theme.typography.body1,
+    overflow: 'hidden',
     margin: '4px 0',
     '& > ul': {
       maxHeight: '40vh',

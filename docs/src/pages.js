@@ -74,6 +74,7 @@ const pages = [
           { pathname: '/components/progress' },
           { pathname: '/components/dialogs' },
           { pathname: '/components/snackbars' },
+          { pathname: '/components/backdrop' },
         ],
       },
       {

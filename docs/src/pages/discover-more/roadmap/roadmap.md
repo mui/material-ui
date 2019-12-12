@@ -84,6 +84,7 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | TopLayout | ⏳ |
 | Big Calendar | ⏳⭐️ |
 | Charts | ⏳⭐️ |
+| Sparkline | ⏳⭐️ |
 | Color Picker | ⏳⭐️ |
 | Gantt Chart | ⏳⭐️ |
 | Gauge | ⏳⭐️ |
