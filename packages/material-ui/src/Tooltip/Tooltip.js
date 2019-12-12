@@ -200,6 +200,13 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   } = props;
   const theme = useTheme();
 
+  const popperRef = React.useRef(null);
+  React.useEffect(() => {
+    if (popperRef.current) {
+      popperRef.current.update();
+    }
+  });
+
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);
   const ignoreNonTouchEvents = React.useRef(false);
