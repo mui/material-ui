@@ -24,7 +24,7 @@ We have handled more than [100 related issues](https://github.com/mui-org/materi
   <p class="blog-description">After</p>
 
 - 🌎 We have introduced [localization](/guides/localization/) support.
-The framework supports [13 locales](/guides/localization/#supported-locales), and growing. We would love to see your translations contribution ✨.
+The framework supports [13 locales](/guides/localization/#supported-locales), and growing. We would love to see your translation contribution ✨.
 
 - 👨‍🎤 We have added [Framer X](https://packages.framer.com/package/material-ui/material-ui) support ([#17797](https://github.com/mui-org/material-ui/pull/17797)) (and now looking into Sketch, Figma and Adobe XD).
 
