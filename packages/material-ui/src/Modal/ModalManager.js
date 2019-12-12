@@ -59,23 +59,7 @@ function handleContainer(containerInfo, props) {
   let fixedNodes;
 
   if (!props.disableScrollLock) {
-    const overflowing = isOverflowing(container);
-
-    // Improve Gatsby support
-    // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
-    const parent = container.parentElement;
-    const scrollContainer =
-      parent.nodeName === 'HTML' && window.getComputedStyle(parent)['overflow-y'] === 'scroll'
-        ? parent
-        : container;
-
-    restoreStyle.push({
-      value: scrollContainer.style.overflow,
-      key: 'overflow',
-      el: scrollContainer,
-    });
-
-    if (overflowing) {
+    if (isOverflowing(container)) {
       // Compute the size before applying overflow hidden to avoid any scroll jumps.
       const scrollbarSize = getScrollbarSize();
 
@@ -84,8 +68,6 @@ function handleContainer(containerInfo, props) {
         key: 'padding-right',
         el: container,
       });
-      // Disable scroll here to be processed on the same frame with padding change.
-      scrollContainer.style.overflow = 'hidden';
       // Use computed style, here to get the real padding to add our scrollbar width.
       container.style['padding-right'] = `${getPaddingRight(container) + scrollbarSize}px`;
 
@@ -95,11 +77,24 @@ function handleContainer(containerInfo, props) {
         restorePaddings.push(node.style.paddingRight);
         node.style.paddingRight = `${getPaddingRight(node) + scrollbarSize}px`;
       });
-    } else {
-      // Block the scroll even if no scrollbar is visible to account for mobile keyboard
-      // screensize shrink.
-      scrollContainer.style.overflow = 'hidden';
     }
+
+    // Improve Gatsby support
+    // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
+    const parent = container.parentElement;
+    const scrollContainer =
+      parent.nodeName === 'HTML' && window.getComputedStyle(parent)['overflow-y'] === 'scroll'
+        ? parent
+        : container;
+
+    // Block the scroll even if no scrollbar is visible to account for mobile keyboard
+    // screensize shrink.
+    restoreStyle.push({
+      value: scrollContainer.style.overflow,
+      key: 'overflow',
+      el: scrollContainer,
+    });
+    scrollContainer.style.overflow = 'hidden';
   }
 
   const restore = () => {
