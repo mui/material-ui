@@ -742,4 +742,41 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
     });
   });
+
+  describe('prop: onInputChange', () => {
+    it('provides a reason on input change', () => {
+      const handleInputChange = spy();
+      const options = [{ name: 'foo' }];
+      render(
+        <Autocomplete
+          onInputChange={handleInputChange}
+          options={options}
+          getOptionLabel={option => option.name}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      fireEvent.change(document.activeElement, { target: { value: 'a' } });
+      expect(handleInputChange.callCount).to.equal(1);
+      expect(handleInputChange.args[0][1]).to.equal('a');
+      expect(handleInputChange.args[0][2]).to.equal('input');
+    });
+
+    it('provides a reason on select reset', () => {
+      const handleInputChange = spy();
+      const options = [{ name: 'foo' }];
+      render(
+        <Autocomplete
+          onInputChange={handleInputChange}
+          options={options}
+          getOptionLabel={option => option.name}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(handleInputChange.callCount).to.equal(1);
+      expect(handleInputChange.args[0][1]).to.equal(options[0].name);
+      expect(handleInputChange.args[0][2]).to.equal('reset');
+    });
+  });
 });
