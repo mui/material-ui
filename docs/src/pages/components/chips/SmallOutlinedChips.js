@@ -38,6 +38,7 @@ export default function SmallOutlinedChips() {
         onClick={handleClick}
       />
       <Chip
+        variant="outlined"
         size="small"
         avatar={<Avatar alt="Natacha" src="/static/images/avatar/1.jpg" />}
         label="Deletable"
