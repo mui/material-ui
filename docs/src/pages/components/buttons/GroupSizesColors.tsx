@@ -16,22 +16,22 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function GroupedButtons() {
+export default function GroupSizesColors() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <ButtonGroup color="primary" aria-label="outlined primary button group">
+      <ButtonGroup size="small" aria-label="small outlined button group">
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
       </ButtonGroup>
-      <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+      <ButtonGroup color="secondary" aria-label="outlined secondary button group">
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>
       </ButtonGroup>
-      <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
+      <ButtonGroup size="large" color="primary" aria-label="large outlined primary button group">
         <Button>One</Button>
         <Button>Two</Button>
         <Button>Three</Button>

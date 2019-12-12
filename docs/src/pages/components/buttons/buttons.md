@@ -47,8 +47,6 @@ In cards, text buttons help maintain an emphasis on card content.
 are medium-emphasis buttons. They contain actions that are important,
 but aren’t the primary action in an app.
 
-### Alternatives
-
 Outlined buttons are also a lower emphasis alternative to contained buttons,
 or a higher emphasis alternative to text buttons.
 
@@ -56,11 +54,19 @@ or a higher emphasis alternative to text buttons.
 
 ## Grouped Buttons
 
-The ButtonGroup component can be used to group outlined (the default) or contained buttons.
+The `ButtonGroup` component can be used to group buttons.
 
 {{"demo": "pages/components/buttons/GroupedButtons.js"}}
 
-## Split Button
+### Group sizes and colors
+
+{{"demo": "pages/components/buttons/GroupSizesColors.js"}}
+
+### Group orientation
+
+{{"demo": "pages/components/buttons/GroupOrientation.js"}}
+
+### Split Button
 
 ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
 
