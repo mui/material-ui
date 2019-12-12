@@ -19,10 +19,10 @@ function renderRow(props: ListChildComponentProps) {
   });
 }
 
-const outerElementPropsContext = React.createContext({});
+const OuterElementContext = React.createContext({});
 
 const OuterElementType = React.forwardRef<HTMLDivElement>((props, ref) => {
-  const outerProps = React.useContext(outerElementPropsContext);
+  const outerProps = React.useContext(OuterElementContext);
   return <div ref={ref} {...props} {...outerProps} />;
 });
 
@@ -52,7 +52,7 @@ const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxCompon
 
   return (
     <div ref={ref}>
-      <outerElementPropsContext.Provider value={other}>
+      <OuterElementContext.Provider value={other}>
         <VariableSizeList
           itemData={itemData}
           height={getHeight() + 2 * LISTBOX_PADDING}
@@ -66,7 +66,7 @@ const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxCompon
         >
           {renderRow}
         </VariableSizeList>
-      </outerElementPropsContext.Provider>
+      </OuterElementContext.Provider>
     </div>
   );
 });
