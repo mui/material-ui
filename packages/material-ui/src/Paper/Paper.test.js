@@ -49,6 +49,13 @@ describe('<Paper />', () => {
     });
   });
 
+  describe('prop: variant', () => {
+    it('adds a outlined class', () => {
+      const wrapper = mount(<Paper variant="outlined">Hello World</Paper>);
+      assert.strictEqual(wrapper.find(`.${classes.root}`).some(`.${classes.outlined}`), true);
+    });
+  });
+
   it('should set the elevation elevation class', () => {
     const wrapper = shallow(<Paper elevation={16}>Hello World</Paper>);
     assert.strictEqual(
