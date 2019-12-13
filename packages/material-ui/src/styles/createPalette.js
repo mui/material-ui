@@ -4,6 +4,9 @@ import grey from '../colors/grey';
 import indigo from '../colors/indigo';
 import pink from '../colors/pink';
 import red from '../colors/red';
+import yellow from '../colors/yellow';
+import lightBlue from '../colors/lightBlue';
+import green from '../colors/green';
 import { darken, getContrastRatio, lighten } from './colorManipulator';
 
 export const light = {
@@ -94,6 +97,21 @@ export default function createPalette(palette) {
       main: red[500],
       dark: red[700],
     },
+    warning = {
+      light: yellow[300],
+      main: yellow[500],
+      dark: yellow[700],
+    },
+    info = {
+      light: lightBlue[300],
+      main: lightBlue[500],
+      dark: lightBlue[700],
+    },
+    success = {
+      light: green[300],
+      main: green[500],
+      dark: green[700],
+    },
     type = 'light',
     contrastThreshold = 3,
     tonalOffset = 0.2,
@@ -177,6 +195,12 @@ export default function createPalette(palette) {
       secondary: augmentColor(secondary, 'A400', 'A200', 'A700'),
       // The colors used to represent interface elements that the user should be made aware of.
       error: augmentColor(error),
+      // The colors used to represent important info that may have negative consequences and user should be aware of.
+      warning: augmentColor(warning),
+      // The colors used to present important information without context.
+      info: augmentColor(info),
+      // The colors used to indicate successful action.
+      success: augmentColor(success),
       // The grey colors.
       grey,
       // Used by `getContrastText()` to maximize the contrast between the background and

@@ -1,6 +1,16 @@
 import { assert } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { deepOrange, green, indigo, pink, red } from '../colors';
+import {
+  blue,
+  deepOrange,
+  green,
+  indigo,
+  lightBlue,
+  lightGreen,
+  pink,
+  red,
+  yellow,
+} from '../colors';
 import { darken, lighten } from './colorManipulator';
 import createPalette, { dark, light } from './createPalette';
 
@@ -69,6 +79,51 @@ describe('createPalette()', () => {
       palette.error.dark,
       red[700],
       'should use red[700] as the default error dark color',
+    );
+    assert.strictEqual(
+      palette.warning.main,
+      yellow[500],
+      'should use yellow[500] as the default warning main color',
+    );
+    assert.strictEqual(
+      palette.warning.light,
+      yellow[300],
+      'should use yellow[300] as the default warning light color',
+    );
+    assert.strictEqual(
+      palette.warning.dark,
+      yellow[700],
+      'should use yellow[700] as the default warning dark color',
+    );
+    assert.strictEqual(
+      palette.info.main,
+      lightBlue[500],
+      'should use lightBlue[500] as the default info main color',
+    );
+    assert.strictEqual(
+      palette.info.light,
+      lightBlue[300],
+      'should use lightBlue[300] as the default info light color',
+    );
+    assert.strictEqual(
+      palette.info.dark,
+      lightBlue[700],
+      'should use lightBlue[700] as the default info dark color',
+    );
+    assert.strictEqual(
+      palette.success.main,
+      green[500],
+      'should use green[500] as the default success main color',
+    );
+    assert.strictEqual(
+      palette.success.light,
+      green[300],
+      'should use green[300] as the default success light color',
+    );
+    assert.strictEqual(
+      palette.success.dark,
+      green[700],
+      'should use green[700] as the default success dark color',
     );
     assert.strictEqual(
       palette.text,
@@ -151,6 +206,24 @@ describe('createPalette()', () => {
         dark: pink[700],
         contrastText: '#00ff00',
       },
+      warning: {
+        main: red[500],
+        light: red[300],
+        dark: red[700],
+        contrastText: '#0000ff',
+      },
+      info: {
+        main: blue[500],
+        light: blue[300],
+        dark: blue[700],
+        contrastText: '#ff0000',
+      },
+      success: {
+        main: lightGreen[500],
+        light: lightGreen[300],
+        dark: lightGreen[700],
+        contrastText: '#ff00ff',
+      },
     });
     assert.strictEqual(
       palette.primary.main,
@@ -212,6 +285,58 @@ describe('createPalette()', () => {
       '#00ff00',
       'should use #00ff00 as the error contrastText color',
     );
+    assert.strictEqual(
+      palette.warning.main,
+      red[500],
+      'should use red[500] as the warning main color',
+    );
+    assert.strictEqual(
+      palette.warning.light,
+      red[300],
+      'should use red[300] as the warning light color',
+    );
+    assert.strictEqual(
+      palette.warning.dark,
+      red[700],
+      'should use red[700] as the warning dark color',
+    );
+    assert.strictEqual(
+      palette.warning.contrastText,
+      '#0000ff',
+      'should use #0000ff as the warning contrastText color',
+    );
+    assert.strictEqual(palette.info.main, blue[500], 'should use blue[500] as the info main color');
+    assert.strictEqual(
+      palette.info.light,
+      blue[300],
+      'should use blue[300] as the info light color',
+    );
+    assert.strictEqual(palette.info.dark, blue[700], 'should use blue[700] as the info dark color');
+    assert.strictEqual(
+      palette.info.contrastText,
+      '#ff0000',
+      'should use #ff0000 as the info contrastText color',
+    );
+    assert.strictEqual(
+      palette.success.main,
+      lightGreen[500],
+      'should use lightGreen[500] as the success main color',
+    );
+    assert.strictEqual(
+      palette.success.light,
+      lightGreen[300],
+      'should use lightGreen[300] as the success light color',
+    );
+    assert.strictEqual(
+      palette.success.dark,
+      lightGreen[700],
+      'should use lightGreen[700] as the success dark color',
+    );
+    assert.strictEqual(
+      palette.success.contrastText,
+      '#ff00ff',
+      'should use #ff00ff as the success contrastText color',
+    );
     assert.strictEqual(palette.text, light.text, 'should use light theme text');
   });
 
@@ -220,6 +345,9 @@ describe('createPalette()', () => {
       primary: { main: deepOrange[500] },
       secondary: { main: green.A400 },
       error: { main: pink[500] },
+      warning: { main: red[500] },
+      info: { main: blue[500] },
+      success: { main: lightGreen[500] },
     };
     const palette = createPalette(paletteOptions);
     assert.deepEqual(
@@ -228,6 +356,9 @@ describe('createPalette()', () => {
         primary: { main: deepOrange[500] },
         secondary: { main: green.A400 },
         error: { main: pink[500] },
+        warning: { main: red[500] },
+        info: { main: blue[500] },
+        success: { main: lightGreen[500] },
       },
       'should not mutate createPalette argument',
     );
@@ -276,6 +407,47 @@ describe('createPalette()', () => {
       darken(pink[500], 0.3),
       'should use darken(pink[500], 0.3) as the error dark color',
     );
+    assert.strictEqual(
+      palette.warning.main,
+      red[500],
+      'should use red[500] as the warning main color',
+    );
+    assert.strictEqual(
+      palette.warning.light,
+      lighten(red[500], 0.2),
+      'should use lighten(red[500], 0.2) as the warning light color',
+    );
+    assert.strictEqual(
+      palette.warning.dark,
+      darken(red[500], 0.3),
+      'should use darken(red[500], 0.3) as the warning dark color',
+    );
+    assert.strictEqual(palette.info.main, blue[500], 'should use blue[500] as the info main color');
+    assert.strictEqual(
+      palette.info.light,
+      lighten(blue[500], 0.2),
+      'should use lighten(blue[500], 0.2) as the info light color',
+    );
+    assert.strictEqual(
+      palette.info.dark,
+      darken(blue[500], 0.3),
+      'should use darken(blue[500], 0.3) as the info dark color',
+    );
+    assert.strictEqual(
+      palette.success.main,
+      lightGreen[500],
+      'should use lightGreen[500] as the success main color',
+    );
+    assert.strictEqual(
+      palette.success.light,
+      lighten(lightGreen[500], 0.2),
+      'should use lighten(lightGreen[500], 0.2) as the success light color',
+    );
+    assert.strictEqual(
+      palette.success.dark,
+      darken(lightGreen[500], 0.3),
+      'should use darken(lightGreen[500], 0.3) as the success dark color',
+    );
   });
 
   it('should calculate light and dark colors using the provided tonalOffset', () => {
@@ -283,6 +455,9 @@ describe('createPalette()', () => {
       primary: { main: deepOrange[500] },
       secondary: { main: green.A400 },
       error: { main: red[500] },
+      warning: { main: yellow[500] },
+      info: { main: lightBlue[500] },
+      success: { main: green[500] },
       tonalOffset: 0.1,
     });
     // primary
@@ -328,6 +503,54 @@ describe('createPalette()', () => {
       palette.error.dark,
       darken(red[500], 0.15),
       'should use darken(red[500], 0.1) as the error dark color',
+    );
+    // warning
+    assert.strictEqual(
+      palette.warning.main,
+      yellow[500],
+      'should use yellow[500] as the warning main color',
+    );
+    assert.strictEqual(
+      palette.warning.light,
+      lighten(yellow[500], 0.1),
+      'should use lighten(yellow[500], 0.1) as the warning light color',
+    );
+    assert.strictEqual(
+      palette.warning.dark,
+      darken(yellow[500], 0.15),
+      'should use darken(yellow[500], 0.1) as the warning dark color',
+    );
+    // info
+    assert.strictEqual(
+      palette.info.main,
+      lightBlue[500],
+      'should use lightBlue[500] as the info main color',
+    );
+    assert.strictEqual(
+      palette.info.light,
+      lighten(lightBlue[500], 0.1),
+      'should use lighten(lightBlue[500], 0.1) as the info light color',
+    );
+    assert.strictEqual(
+      palette.info.dark,
+      darken(lightBlue[500], 0.15),
+      'should use darken(lightBlue[500], 0.1) as the info dark color',
+    );
+    // success
+    assert.strictEqual(
+      palette.success.main,
+      green[500],
+      'should use green[500] as the success main color',
+    );
+    assert.strictEqual(
+      palette.success.light,
+      lighten(green[500], 0.1),
+      'should use lighten(green[500], 0.1) as the success light color',
+    );
+    assert.strictEqual(
+      palette.success.dark,
+      darken(green[500], 0.15),
+      'should use darken(green[500], 0.1) as the success dark color',
     );
   });
 
