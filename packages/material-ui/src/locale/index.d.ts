@@ -3,6 +3,7 @@ export const enUS: object;
 export const esES: object;
 export const faIR: object;
 export const frFR: object;
+export const idID: object;
 export const itIT: object;
 export const jaJP: object;
 export const nlNL: object;
