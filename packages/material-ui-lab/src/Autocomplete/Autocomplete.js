@@ -218,6 +218,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     autoComplete = false,
     autoHighlight = false,
     autoSelect = false,
+    blurOnSelect,
     classes,
     className,
     clearOnEscape = false,
