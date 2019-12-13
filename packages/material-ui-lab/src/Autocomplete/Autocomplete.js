@@ -341,7 +341,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   </IconButton>
                 )}
 
-                {(!freeSolo || forcePopupIcon ===true) && forcePopupIcon !== false ? (
+                {(!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false ? (
                   <IconButton
                     {...getPopupIndicatorProps()}
                     disabled={disabled}
@@ -353,7 +353,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   >
                     {popupIcon}
                   </IconButton>
-                ):null}
+                ) : null}
               </div>
             ),
           },
