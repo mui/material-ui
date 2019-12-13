@@ -208,7 +208,7 @@ export const styles = theme => ({
 
 function DisablePortal(props) {
   // eslint-disable-next-line react/prop-types
-  const { popperRef, anchorEl, open, ...other } = props;
+  const { anchorEl, open, ...other } = props;
   return <div {...other} />;
 }
 
@@ -267,12 +267,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   } = props;
   /* eslint-enable no-unused-vars */
 
-  const popperRef = React.useRef(null);
-  React.useEffect(() => {
-    if (popperRef.current) {
-      popperRef.current.update();
-    }
-  });
   const PopperComponent = disablePortal ? DisablePortal : PopperComponentProp;
 
   const {
@@ -412,7 +406,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
             width: anchorEl ? anchorEl.clientWidth : null,
           }}
           role="presentation"
-          popperRef={popperRef}
           anchorEl={anchorEl}
           open
         >
