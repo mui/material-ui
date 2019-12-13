@@ -134,7 +134,6 @@ export default function MiniDrawer() {
             [classes.drawerClose]: !open,
           }),
         }}
-        open={open}
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
