@@ -111,7 +111,8 @@ export const idID = {
     MuiTablePagination: {
       backIconButtonText: 'Halaman sebelumnya',
       labelRowsPerPage: 'Baris per halaman:',
-      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} dari ${count}`,
+      labelDisplayedRows: ({ from, to, count }) =>
+        `${from}-${to === -1 ? count : to} dari ${count}`,
       nextIconButtonText: 'Halaman selanjutnya',
     },
     MuiRating: {
