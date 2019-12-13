@@ -115,7 +115,7 @@ export const idID = {
       nextIconButtonText: 'Halaman selanjutnya',
     },
     MuiRating: {
-      getLabelText: value => `${value} Star${value !== 1 ? 's' : ''}`,
+      getLabelText: value => `${value} Bintang`,
     },
     MuiAutocomplete: {
       clearText: 'Hapus',
