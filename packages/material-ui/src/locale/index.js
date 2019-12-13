@@ -106,6 +106,28 @@ export const frFR = {
   },
 };
 
+export const idID = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Halaman sebelumnya',
+      labelRowsPerPage: 'Baris per halaman:',
+      labelDisplayedRows: ({ from, to, count }) =>
+        `${from}-${to === -1 ? count : to} dari ${count}`,
+      nextIconButtonText: 'Halaman selanjutnya',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Bintang`,
+    },
+    MuiAutocomplete: {
+      clearText: 'Hapus',
+      closeText: 'Tutup',
+      loadingText: 'Memuat…',
+      noOptionsText: 'Tidak ada opsi',
+      openText: 'Buka',
+    },
+  },
+};
+
 export const itIT = {
   props: {
     MuiTablePagination: {
