@@ -24,8 +24,9 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">rows</span> | <span class="prop-type">string<br>&#124;&nbsp;number</span> |  | Minimum number of rows to display. |
+| <span class="prop-name">rows</span> | <span class="prop-type">string<br>&#124;&nbsp;number</span> |  | Use `rowsMin` instead. The prop will be removed in v5. |
 | <span class="prop-name">rowsMax</span> | <span class="prop-type">string<br>&#124;&nbsp;number</span> |  | Maximum number of rows to display. |
+| <span class="prop-name">rowsMin</span> | <span class="prop-type">string<br>&#124;&nbsp;number</span> | <span class="prop-default">1</span> | Minimum number of rows to display. |
 
 The `ref` is forwarded to the root element.
 
