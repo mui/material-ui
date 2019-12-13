@@ -317,3 +317,24 @@ export const zhCN = {
     },
   },
 };
+
+export const idID = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Halaman sebelumnya',
+      labelRowsPerPage: 'Baris per halaman:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} of ${count}`,
+      nextIconButtonText: 'Halaman selanjutnya',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Star${value !== 1 ? 's' : ''}`,
+    },
+    MuiAutocomplete: {
+      clearText: 'Hapus',
+      closeText: 'Tutup',
+      loadingText: 'Memuat…',
+      noOptionsText: 'Tidak ada opsi',
+      openText: 'Buka',
+    },
+  },
+};
