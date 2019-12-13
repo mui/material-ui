@@ -201,6 +201,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     disablePortal = false,
     filterOptions,
     filterSelectedOptions = false,
+    forcePopIcon = 'auto',
     freeSolo = false,
     getOptionDisabled,
     getOptionLabel = x => x,
@@ -340,7 +341,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   </IconButton>
                 )}
 
-                {freeSolo ? null : (
+                {(!freeSolo || forcePopupIcon ===true) && forcePopupIcon !== false ? (
                   <IconButton
                     {...getPopupIndicatorProps()}
                     disabled={disabled}
@@ -352,7 +353,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   >
                     {popupIcon}
                   </IconButton>
-                )}
+                ):null}
               </div>
             ),
           },
