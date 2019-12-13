@@ -601,17 +601,10 @@ InputBase.propTypes = {
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
-<<<<<<< HEAD
-=======
    * Minimum number of rows to display when multiline option is set to true.
    */
   rowsMin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
-   * Should be `true` when the component hosts a select.
-   */
-  select: PropTypes.bool,
-  /**
->>>>>>> Add rowsMin
    * Start `InputAdornment` for this component.
    */
   startAdornment: PropTypes.node,
