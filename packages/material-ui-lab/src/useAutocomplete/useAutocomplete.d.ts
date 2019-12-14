@@ -36,6 +36,15 @@ export interface UseAutocompleteProps {
    */
   autoSelect?: boolean;
   /**
+   * Control if the input should be blurred when an option is selected:
+   *
+   * - `false` the input is not blurred.
+   * - `true` the input is always blurred.
+   * - `touch` the input is blurred only on touch devices.
+   * - `pointer` the input is blurred only on pointing devices.
+   */
+  blurOnSelect?: 'touch' | 'pointer' | true | false;
+  /**
    * If `true`, clear all values when the user presses escape and the popup is closed.
    */
   clearOnEscape?: boolean;

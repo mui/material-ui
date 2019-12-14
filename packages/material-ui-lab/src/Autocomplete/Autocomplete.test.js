@@ -829,7 +829,7 @@ describe('<Autocomplete />', () => {
       expect(textbox).to.not.have.focus;
     });
 
-    it('[blurOnSelect="event"] should only blur the input when an option is clicked', () => {
+    it('[blurOnSelect="pointer"] should only blur the input when an option is clicked', () => {
       const options = [{ name: 'foo' }];
       const { getByRole, queryByTitle } = render(
         <Autocomplete
