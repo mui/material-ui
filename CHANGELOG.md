@@ -1,5 +1,67 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.8.0
+###### *Dec 14, 2019*
+
+Big thanks to the 29 contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- 💄 Add orientation support to the button group (#18762) @SandraMarcelaHerreraArriaga.
+- 💄 Add stacking support to the avatar (#18707) @oliviertassinari.
+- 💄 Add disable elevation support to the button (#18744) @netochaves.
+- 💄 Add size small support to the radio and checkbox (#18688) @SandraMarcelaHerreraArriaga.
+- 🌎 Add 3 new locales (id-Id, ro-RO, nl-NL) @fuadinaqi, @raduchiriac, @JimKoene.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v4.8.0`
+
+- [AvatarGroup] Introduce new component (#18707) @oliviertassinari
+- [Avatar] Add missing 'fallback' AvatarClassKey (#18717) @kLabz
+- [ButtonGroup] Add orientation prop (#18762) @SandraMarcelaHerreraArriaga
+- [Button] disableElevation prop (#18744) @netochaves
+- [ClickAwayListener] Fix preventDefault logic (#18768) @jayknott
+- [Container] Add disableGutters prop (#15872) @divyanshutomar
+- [Drawer] Fix PaperProps className merge conflict (#18740) @siriwatknp
+- [Modal] Fix scroll jump issue (#18808) @cvara
+- [Popper] Fix position when changing state or updated (#18813) @Amagon96
+- [Radio][Checkbox] Add size="small" support (#18688) @SandraMarcelaHerreraArriaga
+- [Select] Fix incorrect auto-sizing of native select (#18787) @IvanFrescas
+- [Select] Fix listbox closing on Space keyUp (#18754) @eps1lon
+- [Table] Add TableContainer component (#18699) @r3dm1ke
+- [TextField] Fix missing size prop in TypeScript types @sarpt
+- [TextareaAutosize] Add rowsMin prop (#18804) @lcswillems
+- [ToggleButton] Add size prop type definition (#18778) @sarfata
+- [Tooltip] Add `popperArrow` to `TooltipClassKey` (#18772) @umidbekkarimov
+- [Typography] Fix lineHeight for h1-h5 (#18663) @LorenzHenk
+- [l10n] Add Indonesian (id-Id) locale (#18817) @fuadinaqi
+- [l10n] Add Romanian (roRO) locale (#18825) @raduchiriac
+- [l10n] Add dutch translations (#18758) @JimKoene
+- [useMediaQuery] Support custom window (#18741) @siriwatknp
+
+### `@material-ui/lab@v4.0.0-alpha.36`
+
+- [Autocomplete] Fix double change event issue (#18786) @tplai
+- [Autocomplete] Add reason to onInputChange callback (#18796) @Tybot204
+- [Autocomplete] Expand virtualized example to have grouped items (#18763) @Janpot
+
+### Docs
+
+- [blog] November 2019 Update (#18805) @oliviertassinari
+- [docs] Change `readOnly` to `disabled` in text-fields.md example (#18792) @sterjoski
+- [docs] Fix chip outlined variant (#18806) @scotttrinh
+- [docs] Improve Avatar fallback description (#18720) @mbrookes
+- [docs] Improve homepage accessibility (#18745) @mbrookes
+- [docs] Improve table of contents cmd+click (#18765) @Janpot
+- [docs] Remove unused dependencies (#18753) @eps1lon
+- [docs] Revert hiding duplicate link (#18767) @mbrookes
+- [docs] Simplify MiniDrawer demo (#18814) @shc023
+
+### Core
+
+- [core] Fix @material-ui/lab homepage url (#18823) @francisrod01
+- [core] Batch small changes (#18780) @oliviertassinari
+
 ## 4.7.2
 ###### *Dec 7, 2019*
 
