@@ -7,7 +7,7 @@ import describeConformance from '../test-utils/describeConformance';
 import Snackbar from './Snackbar';
 import Grow from '../Grow';
 
-describe('<Snackbar />', () => {
+describe.only('<Snackbar />', () => {
   let mount;
   let classes;
   const render = createClientRender({ strict: false });
