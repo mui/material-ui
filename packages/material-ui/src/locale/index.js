@@ -340,6 +340,38 @@ export const trTR = {
   },
 };
 
+export const ukUA = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Попередня сторінка',
+      labelRowsPerPage: 'Рядків на сторінці:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} з ${count}`,
+      nextIconButtonText: 'Наступна сторінка',
+    },
+    MuiRating: {
+      getLabelText: value => {
+        let pluralForm = 'Зірок';
+        const lastDigit = value % 10;
+
+        if (lastDigit > 1 && lastDigit < 5) {
+          pluralForm = 'Зірки';
+        } else if (lastDigit === 1) {
+          pluralForm = 'Зірка';
+        }
+
+        return `${value} ${pluralForm}`;
+      },
+    },
+    MuiAutocomplete: {
+      clearText: 'Очистити',
+      closeText: 'Згорнути',
+      loadingText: 'Завантаження…',
+      noOptionsText: 'Немає варіантів',
+      openText: 'Розгорнути',
+    },
+  },
+};
+
 export const zhCN = {
   props: {
     MuiTablePagination: {
