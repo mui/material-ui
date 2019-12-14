@@ -244,6 +244,27 @@ export const ptBR = {
   },
 };
 
+export const roRO = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Pagina precedentă',
+      labelRowsPerPage: 'Rânduri pe pagină:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} din ${count}`,
+      nextIconButtonText: 'Pagina următoare',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} St${value !== 1 ? 'ele' : 'ea'}`,
+    },
+    MuiAutocomplete: {
+      clearText: 'Șterge',
+      closeText: 'Închide',
+      loadingText: 'Se încarcă…',
+      noOptionsText: 'Nicio opțiune',
+      openText: 'Deschide',
+    },
+  },
+};
+
 export const ruRU = {
   props: {
     MuiTablePagination: {

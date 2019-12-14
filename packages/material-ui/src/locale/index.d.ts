@@ -9,6 +9,7 @@ export const jaJP: object;
 export const nlNL: object;
 export const plPL: object;
 export const ptBR: object;
+export const roRO: object;
 export const ruRU: object;
 export const svSE: object;
 export const trTR: object;
