@@ -472,10 +472,10 @@ Autocomplete.propTypes = {
    *
    * - `false` the input is not blurred.
    * - `true` the input is always blurred.
-   * - `touch` the input is blurred only on touch devices.
-   * - `pointer` the input is blurred only on pointing devices.
+   * - `touch` the input is blurred after a touch event.
+   * - `mouse` the input is blurred after a mouse event.
    */
-  blurOnSelect: PropTypes.oneOfType([PropTypes.oneOf(['pointer', 'touch']), PropTypes.bool]),
+  blurOnSelect: PropTypes.oneOfType([PropTypes.oneOf(['mouse', 'touch']), PropTypes.bool]),
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.

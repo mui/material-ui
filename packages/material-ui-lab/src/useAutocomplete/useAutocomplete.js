@@ -680,7 +680,7 @@ export default function useAutocomplete(props) {
     if (
       blurOnSelect === true ||
       (blurOnSelect === 'touch' && isTouch.current) ||
-      (blurOnSelect === 'pointer' && !isTouch.current)
+      (blurOnSelect === 'mouse' && !isTouch.current)
     ) {
       inputRef.current.blur();
     }
