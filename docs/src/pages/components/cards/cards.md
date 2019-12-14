@@ -17,6 +17,12 @@ Although cards can support multiple actions, UI controls, and an overflow menu, 
 
 {{"demo": "pages/components/cards/SimpleCard.js", "bg": true}}
 
+### Outlined Card
+
+Set `variant="outlined` to render an outlined card.
+
+{{"demo": "pages/components/cards/OutlinedCard.js", "bg": true}}
+
 ## Complex Interaction
 
 On desktop, card content can expand.
