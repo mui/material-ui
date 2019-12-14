@@ -218,7 +218,7 @@ export default function useAutocomplete(props) {
     setInputValue(newInputValue);
 
     if (onInputChange) {
-      onInputChange(event, newInputValue);
+      onInputChange(event, newInputValue, 'reset');
     }
   });
 
@@ -657,7 +657,7 @@ export default function useAutocomplete(props) {
     setInputValue(newValue);
 
     if (onInputChange) {
-      onInputChange(event, newValue);
+      onInputChange(event, newValue, 'input');
     }
   };
 
@@ -948,6 +948,14 @@ useAutocomplete.propTypes = {
    * @param {object} event The event source of the callback.
    */
   onClose: PropTypes.func,
+  /**
+   * Callback fired when the text input value changes.
+   *
+   * @param {object} event The event source of the callback
+   * @param {string} value The new value of the text input
+   * @param {string} reason One of "input" (user input) or "reset" (programmatic change)
+   */
+  onInputChange: PropTypes.func,
   /**
    * Callback fired when the popup requests to be opened.
    * Use in controlled mode (see open).

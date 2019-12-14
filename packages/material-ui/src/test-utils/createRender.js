@@ -4,7 +4,7 @@ import { RenderContext } from './RenderMode';
 
 /**
  * Generate a render to string function.
- * @deprecated
+ * @deprecated to remvoe in v5
  */
 export default function createRender(options1 = {}) {
   const { render = enzymeRender, ...other1 } = options1;

@@ -74,6 +74,7 @@ const pages = [
           { pathname: '/components/progress' },
           { pathname: '/components/dialogs' },
           { pathname: '/components/snackbars' },
+          { pathname: '/components/backdrop' },
         ],
       },
       {
@@ -214,6 +215,7 @@ const pages = [
   {
     pathname: '/blog',
     children: [
+      { pathname: '/blog/november-2019-update' },
       { pathname: '/blog/october-2019-update' },
       { pathname: '/blog/september-2019-update' },
       { pathname: '/blog/august-2019-update' },

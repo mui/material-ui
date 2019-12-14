@@ -126,7 +126,7 @@ const styles = theme => ({
     '& pre': {
       margin: '24px 0',
       padding: '12px 18px',
-      backgroundColor: '#333',
+      backgroundColor: '#272c34',
       direction: 'ltr',
       borderRadius: theme.shape.borderRadius,
       overflow: 'auto',
@@ -144,7 +144,7 @@ const styles = theme => ({
       borderRadius: 2,
     },
     '& code[class*="language-"]': {
-      backgroundColor: '#333',
+      backgroundColor: '#272c34',
       color: '#fff',
     },
     '& p code, & ul code, & pre code': {

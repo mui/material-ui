@@ -141,6 +141,7 @@ export const styles = theme => ({
   /* Styles applied to the `Paper` component. */
   paper: {
     ...theme.typography.body1,
+    overflow: 'hidden',
     margin: '4px 0',
     '& > ul': {
       maxHeight: '40vh',
@@ -207,7 +208,7 @@ export const styles = theme => ({
 
 function DisablePortal(props) {
   // eslint-disable-next-line react/prop-types
-  const { popperRef, anchorEl, open, ...other } = props;
+  const { anchorEl, open, ...other } = props;
   return <div {...other} />;
 }
 
@@ -266,12 +267,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
   } = props;
   /* eslint-enable no-unused-vars */
 
-  const popperRef = React.useRef(null);
-  React.useEffect(() => {
-    if (popperRef.current) {
-      popperRef.current.update();
-    }
-  });
   const PopperComponent = disablePortal ? DisablePortal : PopperComponentProp;
 
   const {
@@ -411,7 +406,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
             width: anchorEl ? anchorEl.clientWidth : null,
           }}
           role="presentation"
-          popperRef={popperRef}
           anchorEl={anchorEl}
           open
         >
@@ -622,7 +616,8 @@ Autocomplete.propTypes = {
    * Callback fired when the input value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} value
+   * @param {string} value The new value of the text input
+   * @param {string} reason One of "input" (user input) or "reset" (programmatic change)
    */
   onInputChange: PropTypes.func,
   /**

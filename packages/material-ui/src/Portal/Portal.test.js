@@ -2,18 +2,14 @@
 import React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRender } from '@material-ui/core/test-utils';
+import createServerRender from 'test/utils/createServerRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { createClientRender } from 'test/utils/createClientRender';
 import Portal from './Portal';
 
 describe('<Portal />', () => {
-  let serverRender;
+  const serverRender = createServerRender();
   const render = createClientRender({ strict: true });
-
-  before(() => {
-    serverRender = createRender();
-  });
 
   describe('server-side', () => {
     // Only run the test on node.

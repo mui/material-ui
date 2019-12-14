@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/styles';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import { act, createClientRender } from 'test/utils/createClientRender';
-import { createRender } from '@material-ui/core/test-utils';
+import createServerRender from 'test/utils/createServerRender';
 import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
@@ -238,11 +238,7 @@ describe('useMediaQuery', () => {
   });
 
   describe('server-side', () => {
-    let serverRender;
-
-    before(() => {
-      serverRender = createRender();
-    });
+    const serverRender = createServerRender();
 
     it('should use the ssr match media ponyfill', () => {
       const ref = React.createRef();

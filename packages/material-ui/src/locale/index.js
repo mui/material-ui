@@ -106,6 +106,28 @@ export const frFR = {
   },
 };
 
+export const idID = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Halaman sebelumnya',
+      labelRowsPerPage: 'Baris per halaman:',
+      labelDisplayedRows: ({ from, to, count }) =>
+        `${from}-${to === -1 ? count : to} dari ${count}`,
+      nextIconButtonText: 'Halaman selanjutnya',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Bintang`,
+    },
+    MuiAutocomplete: {
+      clearText: 'Hapus',
+      closeText: 'Tutup',
+      loadingText: 'Memuat…',
+      noOptionsText: 'Tidak ada opsi',
+      openText: 'Buka',
+    },
+  },
+};
+
 export const itIT = {
   props: {
     MuiTablePagination: {
@@ -218,6 +240,27 @@ export const ptBR = {
       loadingText: 'Carregando…',
       noOptionsText: 'Sem opções',
       openText: 'Abrir',
+    },
+  },
+};
+
+export const roRO = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Pagina precedentă',
+      labelRowsPerPage: 'Rânduri pe pagină:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} din ${count}`,
+      nextIconButtonText: 'Pagina următoare',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} St${value !== 1 ? 'ele' : 'ea'}`,
+    },
+    MuiAutocomplete: {
+      clearText: 'Șterge',
+      closeText: 'Închide',
+      loadingText: 'Se încarcă…',
+      noOptionsText: 'Nicio opțiune',
+      openText: 'Deschide',
     },
   },
 };

@@ -138,9 +138,10 @@ export interface UseAutocompleteProps {
    * Callback fired when the input value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} value
+   * @param {string} value The new value of the text input
+   * @param {string} reason One of "input" (user input) or "reset" (programmatic change)
    */
-  onInputChange?: (event: React.ChangeEvent<{}>, value: any) => void;
+  onInputChange?: (event: React.ChangeEvent<{}>, value: any, reason: 'input' | 'reset') => void;
   /**
    * Callback fired when the popup requests to be opened.
    * Use in controlled mode (see open).

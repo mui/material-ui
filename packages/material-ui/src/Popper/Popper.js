@@ -77,6 +77,12 @@ const Popper = React.forwardRef(function Popper(props, ref) {
    */
   const [placement, setPlacement] = React.useState(rtlPlacement);
 
+  React.useEffect(() => {
+    if (popperRef.current) {
+      popperRef.current.update();
+    }
+  });
+
   const handleOpen = React.useCallback(() => {
     if (!tooltipRef.current || !anchorEl || !open) {
       return;

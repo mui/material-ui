@@ -59,27 +59,8 @@ function handleContainer(containerInfo, props) {
   let fixedNodes;
 
   if (!props.disableScrollLock) {
-    const overflowing = isOverflowing(container);
-
-    // Improve Gatsby support
-    // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
-    const parent = container.parentElement;
-    const scrollContainer =
-      parent.nodeName === 'HTML' && window.getComputedStyle(parent)['overflow-y'] === 'scroll'
-        ? parent
-        : container;
-
-    restoreStyle.push({
-      value: scrollContainer.style.overflow,
-      key: 'overflow',
-      el: scrollContainer,
-    });
-
-    // Block the scroll even if no scrollbar is visible to account for mobile keyboard
-    // screensize shrink.
-    scrollContainer.style.overflow = 'hidden';
-
-    if (overflowing) {
+    if (isOverflowing(container)) {
+      // Compute the size before applying overflow hidden to avoid any scroll jumps.
       const scrollbarSize = getScrollbarSize();
 
       restoreStyle.push({
@@ -97,6 +78,23 @@ function handleContainer(containerInfo, props) {
         node.style.paddingRight = `${getPaddingRight(node) + scrollbarSize}px`;
       });
     }
+
+    // Improve Gatsby support
+    // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
+    const parent = container.parentElement;
+    const scrollContainer =
+      parent.nodeName === 'HTML' && window.getComputedStyle(parent)['overflow-y'] === 'scroll'
+        ? parent
+        : container;
+
+    // Block the scroll even if no scrollbar is visible to account for mobile keyboard
+    // screensize shrink.
+    restoreStyle.push({
+      value: scrollContainer.style.overflow,
+      key: 'overflow',
+      el: scrollContainer,
+    });
+    scrollContainer.style.overflow = 'hidden';
   }
 
   const restore = () => {
