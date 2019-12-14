@@ -131,11 +131,13 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   const [exited, setExited] = React.useState(true);
 
   const handleClose = useEventCallback((...args) => {
-    onClose(...args);
+    if (onClose) {
+      onClose(...args);
+    }
   });
 
   const setAutoHideTimer = useEventCallback(autoHideDurationParam => {
-    if (!handleClose || autoHideDurationParam == null) {
+    if (!onClose || autoHideDurationParam == null) {
       return;
     }
 
