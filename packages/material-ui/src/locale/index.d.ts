@@ -13,4 +13,5 @@ export const roRO: object;
 export const ruRU: object;
 export const svSE: object;
 export const trTR: object;
+export const ukUA: object;
 export const zhCN: object;
