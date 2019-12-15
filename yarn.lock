@@ -9694,11 +9694,13 @@ material-table@^1.50.0:
     react-double-scrollbar "0.0.15"
 
 material-ui-popup-state@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/material-ui-popup-state/-/material-ui-popup-state-1.4.1.tgz#e63ea694fb2e91c17ac4571ce5817d884d6240cd"
-  integrity sha512-zSwS7FFuJL1/de8qaShrp3R8L7V3WschJ8CuqLMRkL6xW6PNqr3pJcyt/Iqev93X54ZqT7pWLaLiI5LTJZMWBA==
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/material-ui-popup-state/-/material-ui-popup-state-1.5.1.tgz#e5087693986ec63690580c639d54b7aa96981f72"
+  integrity sha512-UkCbn3H8U602zpYY/mlYdoT8JVqSB5CT022uDmRvjNS0hrtQ98Qxb6JyeVMvEM8YrAA2E8jIFDGCovWCZ40Dcg==
   dependencies:
     "@babel/runtime" "^7.1.5"
+    "@material-ui/types" "^4.1.1"
+    classnames "^2.2.6"
     prop-types "^15.0.0"
 
 math-expression-evaluator@^1.2.14:
