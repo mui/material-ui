@@ -40,7 +40,7 @@
     "@babel/runtime": "^7.4.4",
     "@material-ui/utils": "^4.1.0",
     "clsx": "^1.0.4",
-    "marked": "^0.7.0",
+    "marked": "^0.8.0",
     "nprogress": "^0.2.0",
     "prismjs": "^1.17.1"
   },
