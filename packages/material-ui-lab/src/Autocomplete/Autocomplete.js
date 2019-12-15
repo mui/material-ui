@@ -58,7 +58,7 @@ export const styles = theme => ({
       },
     },
     '&[class*="MuiOutlinedInput-root"]': {
-      padding: 8,
+      padding: 9,
       paddingRight: 62,
       '& $input': {
         padding: '9.5px 4px',
