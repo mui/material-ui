@@ -1,3 +1,33 @@
+export const azAZ = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Əvvəlki səhifə',
+      labelRowsPerPage: 'Səhifəyə düşən sətrlər:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} dən ${count}`,
+      nextIconButtonText: 'Növbəti səhifə',
+    },
+    MuiRating: {
+      getLabelText: value => {
+        let pluralForm = 'Ulduz';
+        const lastDigit = value % 10;
+
+        if (lastDigit > 1 && lastDigit < 5) {
+          pluralForm = 'Ulduzlar';
+        }
+
+        return `${value} ${pluralForm}`;
+      },
+    },
+    MuiAutocomplete: {
+      clearText: 'Silmək',
+      closeText: 'Bağlamaq',
+      loadingText: 'Yüklənir…',
+      noOptionsText: 'Seçimlər mövcud deyil',
+      openText: 'Открыть',
+    },
+  },
+};
+
 export const deDE = {
   props: {
     MuiTablePagination: {
@@ -102,6 +132,28 @@ export const frFR = {
       loadingText: 'Chargement…',
       noOptionsText: 'Pas de résultats',
       openText: 'Ouvrir',
+    },
+  },
+};
+
+export const idID = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Halaman sebelumnya',
+      labelRowsPerPage: 'Baris per halaman:',
+      labelDisplayedRows: ({ from, to, count }) =>
+        `${from}-${to === -1 ? count : to} dari ${count}`,
+      nextIconButtonText: 'Halaman selanjutnya',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Bintang`,
+    },
+    MuiAutocomplete: {
+      clearText: 'Hapus',
+      closeText: 'Tutup',
+      loadingText: 'Memuat…',
+      noOptionsText: 'Tidak ada opsi',
+      openText: 'Buka',
     },
   },
 };
@@ -222,6 +274,27 @@ export const ptBR = {
   },
 };
 
+export const roRO = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Pagina precedentă',
+      labelRowsPerPage: 'Rânduri pe pagină:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} din ${count}`,
+      nextIconButtonText: 'Pagina următoare',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} St${value !== 1 ? 'ele' : 'ea'}`,
+    },
+    MuiAutocomplete: {
+      clearText: 'Șterge',
+      closeText: 'Închide',
+      loadingText: 'Se încarcă…',
+      noOptionsText: 'Nicio opțiune',
+      openText: 'Deschide',
+    },
+  },
+};
+
 export const ruRU = {
   props: {
     MuiTablePagination: {
@@ -293,6 +366,38 @@ export const trTR = {
       loadingText: 'Yükleniyor…',
       noOptionsText: 'Seçenek yok',
       openText: 'Aç',
+    },
+  },
+};
+
+export const ukUA = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Попередня сторінка',
+      labelRowsPerPage: 'Рядків на сторінці:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} з ${count}`,
+      nextIconButtonText: 'Наступна сторінка',
+    },
+    MuiRating: {
+      getLabelText: value => {
+        let pluralForm = 'Зірок';
+        const lastDigit = value % 10;
+
+        if (lastDigit > 1 && lastDigit < 5) {
+          pluralForm = 'Зірки';
+        } else if (lastDigit === 1) {
+          pluralForm = 'Зірка';
+        }
+
+        return `${value} ${pluralForm}`;
+      },
+    },
+    MuiAutocomplete: {
+      clearText: 'Очистити',
+      closeText: 'Згорнути',
+      loadingText: 'Завантаження…',
+      noOptionsText: 'Немає варіантів',
+      openText: 'Розгорнути',
     },
   },
 };

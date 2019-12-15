@@ -27,7 +27,9 @@ const styles = {
 };
 
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) {
-  const { onChange, rows, rowsMax, style, value, ...other } = props;
+  const { onChange, rows, rowsMax, rowsMin: rowsMinProp = 1, style, value, ...other } = props;
+
+  const rowsMin = rows || rowsMinProp;
 
   const { current: isControlled } = React.useRef(value != null);
   const inputRef = React.useRef(null);
@@ -60,10 +62,10 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     // The height of the outer content
     let outerHeight = innerHeight;
 
-    if (rows != null) {
-      outerHeight = Math.max(Number(rows) * singleRowHeight, outerHeight);
+    if (rowsMin) {
+      outerHeight = Math.max(Number(rowsMin) * singleRowHeight, outerHeight);
     }
-    if (rowsMax != null) {
+    if (rowsMax) {
       outerHeight = Math.min(Number(rowsMax) * singleRowHeight, outerHeight);
     }
     outerHeight = Math.max(outerHeight, singleRowHeight);
@@ -88,7 +90,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
 
       return prevState;
     });
-  }, [rows, rowsMax, props.placeholder]);
+  }, [rowsMax, rowsMin, props.placeholder]);
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
@@ -123,7 +125,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
         onChange={handleChange}
         ref={handleRef}
         // Apply the rows prop to get a "correct" first SSR paint
-        rows={rows || 1}
+        rows={rowsMin}
         style={{
           height: state.outerHeightStyle,
           // Need a large enough different to allow scrolling.
@@ -159,13 +161,19 @@ TextareaAutosize.propTypes = {
    */
   placeholder: PropTypes.string,
   /**
-   * Minimum number of rows to display.
+   * Use `rowsMin` instead. The prop will be removed in v5.
+   *
+   * @deprecated
    */
   rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * Maximum number of rows to display.
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Minimum number of rows to display.
+   */
+  rowsMin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * @ignore
    */

@@ -564,8 +564,8 @@ describe('<Autocomplete />', () => {
       fireEvent.click(input);
 
       const listbox = getByRole('listbox');
-      const firstItem = listbox.querySelector('li');
-      fireEvent.click(firstItem);
+      const firstOption = listbox.querySelector('li');
+      fireEvent.click(firstOption);
 
       expect(handleChange.args[0][1]).to.equal('one');
     });
@@ -777,6 +777,79 @@ describe('<Autocomplete />', () => {
       expect(handleInputChange.callCount).to.equal(1);
       expect(handleInputChange.args[0][1]).to.equal(options[0].name);
       expect(handleInputChange.args[0][2]).to.equal('reset');
+    });
+  });
+
+  describe('prop: blurOnSelect', () => {
+    it('[blurOnSelect=true] should blur the input when clicking or touching options', () => {
+      const options = [{ name: 'foo' }];
+      const { getByRole, queryByTitle } = render(
+        <Autocomplete
+          options={options}
+          getOptionLabel={option => option.name}
+          renderInput={params => <TextField {...params} autoFocus />}
+          blurOnSelect
+        />,
+      );
+      const textbox = getByRole('textbox');
+      let firstOption = getByRole('option');
+      expect(textbox).to.have.focus;
+      fireEvent.click(firstOption);
+      expect(textbox).to.not.have.focus;
+
+      const opener = queryByTitle('Open');
+      fireEvent.click(opener);
+      expect(textbox).to.have.focus;
+      firstOption = getByRole('option');
+      fireEvent.touchStart(firstOption);
+      fireEvent.click(firstOption);
+      expect(textbox).to.not.have.focus;
+    });
+
+    it('[blurOnSelect="touch"] should only blur the input when an option is touched', () => {
+      const options = [{ name: 'foo' }];
+      const { getByRole, queryByTitle } = render(
+        <Autocomplete
+          options={options}
+          getOptionLabel={option => option.name}
+          renderInput={params => <TextField {...params} autoFocus />}
+          blurOnSelect="touch"
+        />,
+      );
+      const textbox = getByRole('textbox');
+      let firstOption = getByRole('option');
+      fireEvent.click(firstOption);
+      expect(textbox).to.have.focus;
+
+      const opener = queryByTitle('Open');
+      fireEvent.click(opener);
+      firstOption = getByRole('option');
+      fireEvent.touchStart(firstOption);
+      fireEvent.click(firstOption);
+      expect(textbox).to.not.have.focus;
+    });
+
+    it('[blurOnSelect="mouse"] should only blur the input when an option is clicked', () => {
+      const options = [{ name: 'foo' }];
+      const { getByRole, queryByTitle } = render(
+        <Autocomplete
+          options={options}
+          getOptionLabel={option => option.name}
+          renderInput={params => <TextField {...params} autoFocus />}
+          blurOnSelect="mouse"
+        />,
+      );
+      const textbox = getByRole('textbox');
+      let firstOption = getByRole('option');
+      fireEvent.touchStart(firstOption);
+      fireEvent.click(firstOption);
+      expect(textbox).to.have.focus;
+
+      const opener = queryByTitle('Open');
+      fireEvent.click(opener);
+      firstOption = getByRole('option');
+      fireEvent.click(firstOption);
+      expect(textbox).to.not.have.focus;
     });
   });
 });
