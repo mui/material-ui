@@ -71,6 +71,7 @@ export default function useAutocomplete(props) {
     autoComplete = false,
     autoHighlight = false,
     autoSelect = false,
+    blurOnSelect = false,
     clearOnEscape = false,
     debug = false,
     defaultValue,
@@ -666,9 +667,25 @@ export default function useAutocomplete(props) {
     setHighlightedIndex(index, 'mouse');
   };
 
+  const isTouch = React.useRef(false);
+
+  const handleOptionTouchStart = () => {
+    isTouch.current = true;
+  };
+
   const handleOptionClick = event => {
     const index = Number(event.currentTarget.getAttribute('data-option-index'));
     selectNewValue(event, filteredOptions[index]);
+
+    if (
+      blurOnSelect === true ||
+      (blurOnSelect === 'touch' && isTouch.current) ||
+      (blurOnSelect === 'mouse' && !isTouch.current)
+    ) {
+      inputRef.current.blur();
+    }
+
+    isTouch.current = false;
   };
 
   const handleTagDelete = index => event => {
@@ -814,6 +831,7 @@ export default function useAutocomplete(props) {
         id: `${id}-option-${index}`,
         onMouseOver: handleOptionMouseOver,
         onClick: handleOptionClick,
+        onTouchStart: handleOptionTouchStart,
         'data-option-index': index,
         'aria-disabled': disabled,
         'aria-selected': selected,

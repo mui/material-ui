@@ -218,6 +218,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     autoComplete = false,
     autoHighlight = false,
     autoSelect = false,
+    blurOnSelect = false,
     classes,
     className,
     clearOnEscape = false,
@@ -459,6 +460,15 @@ Autocomplete.propTypes = {
    * a different option or changes the character string in the input.
    */
   autoSelect: PropTypes.bool,
+  /**
+   * Control if the input should be blurred when an option is selected:
+   *
+   * - `false` the input is not blurred.
+   * - `true` the input is always blurred.
+   * - `touch` the input is blurred after a touch event.
+   * - `mouse` the input is blurred after a mouse event.
+   */
+  blurOnSelect: PropTypes.oneOfType([PropTypes.oneOf(['mouse', 'touch']), PropTypes.bool]),
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
