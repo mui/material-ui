@@ -110,11 +110,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       if (onOpen) {
         onOpen(event);
       }
-    } else {
-      displayNode.focus();
-      if (onClose) {
-        onClose(event);
-      }
+    } else if (onClose) {
+      onClose(event);
     }
 
     if (!isOpenControlled) {

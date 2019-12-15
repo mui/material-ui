@@ -593,6 +593,33 @@ describe('<Select />', () => {
       clock.restore();
     });
 
+    it('should not focus on close controlled select', () => {
+      function ControlledWrapper() {
+        const [open, setOpen] = React.useState(false);
+
+        return (
+          <Select
+            MenuProps={{ transitionDuration: 0 }}
+            open={open}
+            onClose={() => setOpen(false)}
+            onOpen={() => setOpen(true)}
+            value=""
+          >
+            <MenuItem onClick={() => setOpen(false)}>close</MenuItem>
+          </Select>
+        );
+      }
+      const { getByRole } = render(<ControlledWrapper />);
+      fireEvent.mouseDown(getByRole('button'));
+      expect(getByRole('option')).to.have.focus;
+
+      act(() => {
+        getByRole('option').click();
+      });
+
+      expect(getByRole('option')).to.not.have.focus;
+    });
+
     it('should allow to control closing by passing onClose props', () => {
       function ControlledWrapper() {
         const [open, setOpen] = React.useState(false);
