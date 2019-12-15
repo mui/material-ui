@@ -14,7 +14,7 @@ export const azAZ = {
         if (lastDigit > 1 && lastDigit < 5) {
           pluralForm = 'Ulduzlar';
         }
-        
+
         return `${value} ${pluralForm}`;
       },
     },
