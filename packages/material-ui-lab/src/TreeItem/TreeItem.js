@@ -159,7 +159,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
   const handlePreviousArrow = event => {
     handleLeftArrow(nodeId, event);
-  }
+  };
 
   const handleKeyDown = event => {
     let flag = false;
