@@ -3,7 +3,7 @@ title: Componente React para Dicas
 components: Tooltip
 ---
 
-# Dicas
+# Tooltip (dica)
 
 <p class="description">Dicas exibem texto informativo quando os usuários passam o mouse, focalizam ou tocam em um elemento.</p>
 

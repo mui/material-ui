@@ -3,7 +3,7 @@ title: React-компонент Значок
 components: Badge
 ---
 
-# Значки
+# Badge (значок)
 
 <p class="description">Значок генерирует маленький значок в правом верхнем углу своего дочернего(их) элемента(ов).</p>
 
@@ -15,7 +15,7 @@ components: Badge
 
 ## Настраиваемые значки
 
-Вот несколько примеров настройки компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -29,13 +29,13 @@ components: Badge
 
 ## Максимальное значение
 
-You can use the `max` property to cap the value of the badge content.
+Вы можете использовать свойство `max` чтобы ограничить значение содержимого значка.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
-## Dot Badge
+## Точечный значок
 
-The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
+Свойство `точка` превращает значок в маленькую точку. Это можно использовать как уведомление о том, что что-то изменилось без подсчета.
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
@@ -49,4 +49,4 @@ You can use the `overlap` property to place the badge relative to the corner of 
 
 You can use the `horizontalAlignment` and `verticalAlignment` properties to move the badge to any corner of the wrapped element.
 
-{{"demo": "pages/components/badges/BadgeAlignment.js"}}
+{{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}

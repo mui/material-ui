@@ -87,7 +87,7 @@ describe('MeusTestes', () => {
 
 > ⚠️ Renderização do lado servidor e consultas de mídia do lado cliente são fundamentalmente conflitantes. Esteja ciente da escolha. O suporte só pode ser parcial.
 
-Try relying on client-side CSS media queries first. For instance, you could use:
+Tente confiar em consultas de mídia CSS do lado do cliente primeiro. Por exemplo, você poderia usar:
 
 - [`<Box display>`](/system/display/#hiding-elements)
 - [`themes.breakpoints.up(x)`](/customization/breakpoints/#css-media-queries)
@@ -102,7 +102,7 @@ First, you need to guess the characteristics of the client request, from the ser
 
 Finally, you need to provide an implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) to the `useMediaQuery` with the previously guessed characteristics. Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate matchMedia is recommended.
 
-Por exemplo:
+For instance on the server-side:
 
 ```js
 import ReactDOMServer from 'react-dom/server';
@@ -136,7 +136,9 @@ function handleRender(req, res) {
 }
 ```
 
-{{"demo": "pages/components/use-media-query/ServerSide.js"}}
+{{"demo": "pages/components/use-media-query/ServerSide.js", "defaultCodeOpen": false}}
+
+Make sure you provide the same custom match media implementation to the client-side to guarantee a hydration match.
 
 ## Migrando de `withWidth()`
 
@@ -153,8 +155,9 @@ The `withWidth()` higher-order component injects the screen width of the page. Y
 1. `query` (*String* | *Function*): Uma string representando a consulta de mídia a ser manipulada ou uma função de retorno de chamada aceitando o tema (no contexto) que retorna uma string.
 2. `options` (*Object* [opcional]): 
   - `options.defaultMatches` (*Boolean* [opcional]): Como `window.matchMedia()` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. O valor padrão é `false`.
-  - `options.noSsr` (*Boolean* [opcional]): Padrão é `false`. Para realizar a reconciliação de renderização do lado do servidor, ele precisa renderizar duas vezes. Uma primeira vez sem nada e uma segunda vez com os filhos. Este ciclo de renderização de dupla passagem tem uma desvantagem. É mais lento. Você pode definir esse sinalizador para `true` se você **não estiver fazendo a renderização do lado do servidor**.
-  - `options.ssrMatchMedia` (*Function* [opcional]) Você pode fornecer sua própria implementação de *matchMedia*. Isso é especialmente útil para [suporte de renderização no lado do servidor](#server-side-rendering).
+  - `options.matchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia*. This can be used for handling an iframe content window.
+  - `options.noSsr` (*Boolean* [optional]): Defaults to `false`. Para realizar a reconciliação de renderização do lado do servidor, ele precisa renderizar duas vezes. Uma primeira vez sem nada e uma segunda vez com os filhos. Este ciclo de renderização de dupla passagem tem uma desvantagem. It's slower. You can set this flag to `true` if you are **not doing server-side rendering**.
+  - `options.ssrMatchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia* in a [server-side rendering context](#server-side-rendering).
 
 Note: You can change the default options using the [`default props`](/customization/globals/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 

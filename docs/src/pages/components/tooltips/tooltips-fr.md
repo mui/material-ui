@@ -3,7 +3,7 @@ title: Composant React Info-bulle
 components: Tooltip
 ---
 
-# Tooltips (Info-bulle)
+# Tooltip (Info-bulle)
 
 <p class="description">Les info-bulles affichent un texte informatif lorsque les utilisateurs survolent, se concentrent ou tapent sur un élément.</p>
 

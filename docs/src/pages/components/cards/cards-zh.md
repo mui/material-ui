@@ -3,7 +3,7 @@ title: React Card（卡片）组件
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
-# Cards（卡片）
+# Card（卡片）
 
 <p class="description">卡片包含有关单个主题的内容和操作。</p>
 

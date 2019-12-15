@@ -3,7 +3,7 @@ title: Switch React component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Switch (переключатели)
+# Switch (переключатель)
 
 <p class="description">Переключатели изменяют состояние одного отдельного параметра между "включено" и "выключено".</p>
 

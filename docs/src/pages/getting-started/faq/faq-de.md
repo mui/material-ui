@@ -10,7 +10,7 @@ There are many ways to support Material-UI:
 
 - **Spread the word**. Evangelize Material-UI by [linking to material-ui.com](https://material-ui.com/) on your website, every backlink matters. Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
-- **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) or chat with the community on [Spectrum](https://spectrum.chat/material-ui) (notice that the core team gives priority to StackOverflow over Spectrum).
+- **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Make changes happen**. 
   - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
   - Reviewing and commenting on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
@@ -36,11 +36,11 @@ Overall, it's simple to recover from this problem by wrapping each Material-UI a
 
 ## Why do the fixed positioned elements move when a modal is opened?
 
-Scrolling is blocked as soon as a modal is opened. This prevents interacting with the background when the modal should be the only interactive content, however, removing the scrollbar can make your **fixed positioned elements** move. In this situation, you can apply a global `.mui-fixed` class name to tell Material-UI to handle those elements.
+Scrolling is blocked as soon as a modal is opened. Dies verhindert die Interaktion mit dem Hintergrund, wenn der Modal der einzige interaktive Inhalt sein sollte. Wenn Sie jedoch die Bildlaufleiste entfernen, können Sie Ihre **fest positionierten Elemente ** bewegen. In dieser Situation können Sie einen globalen `.mui-fixed` Klassennamen anwenden, damit Material-UI mit diesen Elementen umgehen kann.
 
 ## How can I disable the ripple effect globally?
 
-The ripple effect is exclusively coming from the `BaseButton` component. You can disable the ripple effect globally by providing the following in your theme:
+Der Ripple-Effekt kommt ausschließlich von der `BaseButton` Komponente. Sie können den Ripple-Effekt global deaktivieren, indem Sie in Ihrem Theme folgendes angeben:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -113,16 +113,16 @@ Perhaps, however, you're adding some Material-UI components to an app that alrea
 
 As a rule of thumb, only use inline-style for dynamic style properties. The CSS alternative provides more advantages, such as:
 
-- auto-prefixing
-- better debugging
-- media queries
-- keyframes
+- Auto-Präfixe
+- Besseres debuggen
+- Medien-Anfragen
+- Keyframes
 
 ## How do I use react-router?
 
 We detail the [integration with third-party routing libraries](/guides/composition/#routing-libraries) like react-router, Gatsby or Next.js in our guide.
 
-## How can I access the DOM element?
+## Wie kann ich auf das DOM-Element zugreifen?
 
 All Material-UI components that should render something in the DOM forward their ref to the underlying DOM component. This means that you can get DOM elements by reading the ref attached to Material-UI components:
 
@@ -151,9 +151,9 @@ If you are seeing a warning message in the console like the one below, you proba
 
 There are several common reasons for this to happen:
 
-- You have another `@material-ui/styles` library somewhere in your dependencies.
-- You have a monorepo structure for your project (e.g, lerna, yarn workspaces) and `@material-ui/styles` module is a dependency in more than one package (this one is more or less the same as the previous one).
-- You have several applications that are using `@material-ui/styles` running on the same page (e.g., several entry points in webpack are loaded on the same page).
+- Sie haben eine andere `@material-ui/styles` Bibliothek irgendwo in Ihren Abhängigkeiten.
+- Sie haben eine Monorepo-Struktur für Ihr Projekt (z. B. Lerna, yarn workspaces) und das `@material-ui/styles` Modul ist eine Abhängigkeit in mehr als einem Paket (dieses ist mehr oder weniger dasselbe wie das vorherige).
+- Sie haben mehrere Anwendungen, die `@material-ui/styles` verwenden, und auf derselben Seite ausgeführt werden (z. B. werden mehrere Einstiegspunkte im Webpack auf derselben Seite geladen).
 
 ### Dupliziertes Modul in node_modules
 
@@ -262,7 +262,7 @@ There is a class name mismatch between the client and the server. It might work 
 
 The class names value relies on the concept of [class name generator](/styles/advanced/#class-names). The whole page needs to be rendered with **a single generator**. This generator needs to behave identically on the server and on the client. For instance:
 
-- You need to provide a new class name generator for each request. But you shouldn't share a `createGenerateClassName()` between different requests:
+- You need to provide a new class name generator for each request. Sie sollten jedoch nicht eine `createGenerateClassName()` Funktion zwischen verschiedenen Anfragen teilen:
 
 *example of fix:*
 

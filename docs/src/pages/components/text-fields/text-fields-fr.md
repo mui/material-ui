@@ -3,7 +3,7 @@ title: Composant React de champ de texte
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
-# Text Fields (Champs de texte)
+# Text Field
 
 <p class="description">Les champs de texte permettent aux utilisateurs d'entrer et de modifier du texte.</p>
 
@@ -21,7 +21,7 @@ It supports standard, outlined and filled styling.
 
 ## Form props
 
-Standard form attributes are supported e.g. `required`, `readOnly`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
+Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
@@ -51,9 +51,15 @@ There are multiple ways to display an icon with a text field.
 
 ### Input Adornments
 
-The main way is with an `InputAdornment`. These can be used to add a prefix, a suffix or an action to an input. For instance, you can use an icon button to hide or reveal the password.
+The main way is with an `InputAdornment`. Ceux-ci peuvent être utilisés pour ajouter un préfixe, un suffixe ou une action à une entrée. Par exemple, vous pouvez utiliser un bouton icône pour masquer ou révéler le mot de passe.
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
+
+## Tailles
+
+Fancy smaller inputs? Use the `size` prop.
+
+{{"demo": "pages/components/text-fields/TextFieldSizes.js"}}
 
 ## Disposition
 

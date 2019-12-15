@@ -5,7 +5,7 @@ components: Breadcrumbs, Link, Typography
 
 # Breadcrumbs
 
-<p class="description">ブレッドクラムを使用すると、値の範囲から選択できます。</p>
+<p class="description">Breadcrumbsを使用すると、値の範囲から選択できます。</p>
 
 ## シンプルなbreadcurmbs
 
@@ -37,7 +37,7 @@ In the following examples, we are using two string separators, and an SVG icon.
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
-## Integration with react-router
+## react-routerとの統合
 
 {{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js", "bg": true}}
 

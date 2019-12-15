@@ -37,7 +37,7 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
-## Integration with react-router
+## Integración con react-router
 
 {{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js", "bg": true}}
 

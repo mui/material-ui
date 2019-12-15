@@ -1,15 +1,15 @@
 ---
 title: React-компонент Таблица
-components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
+components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
-# Таблицы
+# Table (tаблица)
 
-<p class="description">Data tables display sets of data. They can be fully customized.</p>
+<p class="description">Tables display sets of data. Они могут быть полностью модифицированы.</p>
 
-[Таблицы](https://material.io/design/components/data-tables.html) отображают информацию так, чтобы ее было легко воспринимать визуально. Так чтобы пользователи видели шаблоны отображения данных. Они могут быть встроены в основной контент, например в карточки.
+[Tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. Они могут быть встроены в основной контент, например в карточки.
 
-Таблицы могут включать в себя:
+Tables can include:
 
 - Соответствующую визуализацию
 - Навигацию
@@ -45,15 +45,15 @@ components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
-## Customized tables
+## Настраиваемые таблицы
 
 Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
-### Custom pagination options
+### Пользовательские параметры разбивки на страницы
 
-It's possible to customise the options shown in the "Rows per page" select using the `rowsPerPageOptions` prop. You should either provide an array of:
+Возможна настройка параметров, отображаемых в "Строках на странице", используя `rowsPerPageOptions` prop. You should either provide an array of:
 
 - **numbers**, each number will be used for the option's label and value.
     
@@ -67,15 +67,15 @@ It's possible to customise the options shown in the "Rows per page" select using
     <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
     ```
 
-### Custom pagination actions
+### Пользовательские действия разбивки на страницы
 
 The `Action` property of the `TablePagination` component allows the implementation of custom actions.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
-## Fixed header
+## Фиксированный заголовок
 
-An example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
+Пример таблицы с прокручиваемыми строками и фиксированными заголовками столбцов. It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
@@ -85,9 +85,9 @@ A simple example with spanning rows & columns.
 
 {{"demo": "pages/components/tables/SpanningTable.js", "bg": true}}
 
-## Virtualized Table
+## Виртуализированная таблица
 
-In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. Он отображает 200 строк и c легкостью может еще больше. Virtualization helps with performance issues.
+В следующем примере мы демонстрируем, как использовать [react-virtualized](https://github.com/bvaughn/react-virtualized) с компонентом `Table`. Он отображает 200 строк и c легкостью может еще больше. Virtualization helps with performance issues.
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
@@ -99,7 +99,7 @@ In the following example, we demonstrate how to use [react-virtualized](https://
 
 ![stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-table.svg)
 
-[material-table](https://github.com/mbrn/material-table) is a simple and powerful Datatable for React based on Material-UI Table with some additional features. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
+[material-table](https://github.com/mbrn/material-table) представляет собой простой и мощный объект DataTable для React на основе Material-UI Table с некоторыми дополнительными функциями. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
 
 {{"demo": "pages/components/tables/MaterialTableDemo.js", "bg": true}}
 

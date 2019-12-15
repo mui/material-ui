@@ -68,7 +68,7 @@ yarn add @material-ui/styles
 
 - Every component forward their ref. This is implemented by using `React.forwardRef()`. This affects the internal component tree and display name and therefore might break shallow or snapshot tests. `innerRef` will no longer return a ref to the instance (or nothing if the inner component is a function component) but a ref to its root component. The corresponding API docs list the root component.
 
-### Styles
+### Стили
 
 - ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9. Make sure JSS v9 is not installed in your environment. (Removing `react-jss` from your `package.json` can help). The StylesProvider component replaces the JssProvider one.
 - Remove the first option argument of `withTheme()`. (The first argument was a placeholder for a potential future option that never arose.)

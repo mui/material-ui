@@ -10,7 +10,7 @@ There are many ways to support Material-UI:
 
 - **Spread the word**. Evangelize Material-UI by [linking to material-ui.com](https://material-ui.com/) on your website, every backlink matters. Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
-- **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) or chat with the community on [Spectrum](https://spectrum.chat/material-ui) (notice that the core team gives priority to StackOverflow over Spectrum).
+- **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Make changes happen**. 
   - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
   - Reviewing and commenting on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
@@ -115,14 +115,14 @@ As a rule of thumb, only use inline-style for dynamic style properties. The CSS 
 
 - auto-prefixing
 - better debugging
-- media queries
-- keyframes
+- медиа-запросы
+- ключевые кадры
 
 ## How do I use react-router?
 
 We detail the [integration with third-party routing libraries](/guides/composition/#routing-libraries) like react-router, Gatsby or Next.js in our guide.
 
-## How can I access the DOM element?
+## Как я могу получить доступ к элементу DOM?
 
 All Material-UI components that should render something in the DOM forward their ref to the underlying DOM component. This means that you can get DOM elements by reading the ref attached to Material-UI components:
 

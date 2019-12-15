@@ -3,7 +3,7 @@ title: Radio buttons コンポーネント
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 ---
 
-# ラジオボタン
+# Radio
 
 <p class="description">ラジオボタンを使用すると、ユーザーはセットから1つのオプションを選択できます。</p>
 

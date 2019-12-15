@@ -54,6 +54,18 @@ React [não suporta](https://github.com/facebook/react/issues/13097) a API [`cre
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
 
+## Limitações
+
+### Focus trap
+
+The modal moves the focus back to the body of the component if the focus tries to escape it.
+
+This is done for accessibility purposes, however, it might create issues. In the event the users need to interact with another part of the page, e.g. with a chatbot window, you can disable the behavior:
+
+```jsx
+<Modal disableEnforceFocus />
+```
+
 ## Acessibilidade
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)

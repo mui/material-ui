@@ -3,7 +3,7 @@ title: Snackbar React component
 components: Snackbar, SnackbarContent
 ---
 
-# Barra de notificaciones
+# Snackbar
 
 <p class="description">Snackbars provide brief messages about app processes. The component is also known as a toast.</p>
 

@@ -3,7 +3,7 @@ title: Componente React para Seleção
 components: Select, NativeSelect
 ---
 
-# Seleção
+# Select
 
 <p class="description">Os componentes de seleção são usados para coletar informações fornecidas pelo usuário em uma lista de opções.</p>
 

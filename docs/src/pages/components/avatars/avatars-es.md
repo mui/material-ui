@@ -1,27 +1,33 @@
 ---
 title: Componente Avatar de React
-components: Avatar
+components: Avatar, AvatarGroup, Badge
 ---
 
-# Avatares
+# Avatar
 
 <p class="description">Los avatares se pueden encontrar a lo largo de todo Material Design con usos que van desde tablas hasta diálogos de menús.</p>
 
 ## Avatares de Imágenes
 
-Las imágenes de avatares son creadas por medio de la etiqueta `img` y su propiedad `src` o por medio de `srcSet` dentro del componente.
+Image avatars can be created by passing standard `img` props `src` or `srcSet` to the component.
 
 {{"demo": "pages/components/avatars/ImageAvatars.js"}}
 
 ## Avatares de Letras
 
-Los avatares que contienen letras simples pueden crearse pasando su cadena como `children`.
+Avatars containing simple characters can be created by passing a string as `children`.
 
 {{"demo": "pages/components/avatars/LetterAvatars.js"}}
 
-## Avatares de íconos
+## Tamaños
 
-Los avatares de íconos son creados pasando un ícono como `children`.
+You can change the size of the avatar with the `height` and `width` CSS properties.
+
+{{"demo": "pages/components/avatars/SizeAvatars.js"}}
+
+## Icon avatars
+
+Icon avatars are created by passing an icon as `children`.
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
 
@@ -30,3 +36,23 @@ Los avatares de íconos son creados pasando un ícono como `children`.
 If you need square or rounded avatars, use the `variant` prop.
 
 {{"demo": "pages/components/avatars/VariantAvatars.js"}}
+
+## Fallbacks
+
+If there is an error loading the avatar image, the component falls back to an alternative in the following order:
+
+- the provided children
+- the first letter of tha `alt` text
+- a generic avatar icon
+
+{{"demo": "pages/components/avatars/FallbackAvatars.js"}}
+
+## Grouped
+
+`AvatarGroup` renders its children as a stack.
+
+{{"demo": "pages/components/avatars/GroupAvatars.js"}}
+
+## With badge
+
+{{"demo": "pages/components/avatars/BadgeAvatars.js"}}

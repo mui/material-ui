@@ -3,7 +3,7 @@ title: Панель расширения (Компонент React)
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
 
-# Expansion panels (Раскрывающиеся панели)
+# Expansion Panel (панель расширения)
 
 <p class="description">Панель расширения содержит потоки создания и позволяет легко редактировать элементы.</p>
 
@@ -11,13 +11,13 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 > **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
 
-## Simple Expansion Panel
+## Простая Expansion Panel
 
 {{"demo": "pages/components/expansion-panels/SimpleExpansionPanel.js", "bg": true}}
 
-## Controlled Accordion
+## Контролируемый "Аккордеон"
 
-Extend the default panel behavior to create an accordion with the `ExpansionPanel` component.
+Используя компонент `ExpansionPanel`, расширив его поведение по умолчанию, можно получить "аккордеон".
 
 {{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js", "bg": true}}
 
@@ -33,7 +33,7 @@ In order to put an action such as a `Checkbox` or a button inside of the `Expans
 
 {{"demo": "pages/components/expansion-panels/ActionsInExpansionPanelSummary.js", "bg": true}}
 
-## Performance
+## Производительность
 
 The content of ExpansionPanels is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
 

@@ -3,7 +3,7 @@ title: React Select（选择器）组件
 components: Select, NativeSelect
 ---
 
-# Selects（选择器）
+# Select（选择器）
 
 <p class="description">选择器组件能从一个选项列表中去获得用户所提供的信息。</p>
 
@@ -19,7 +19,7 @@ components: Select, NativeSelect
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
-## Text Fields（文本框）
+## Text Fields（文本输入框）
 
 `TextField` wrapper 组件是一个完整的表单控件，包括标签，输入和帮助文本。 You can find an example with the select mode [in this section](/components/text-fields/#select).
 

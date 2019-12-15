@@ -3,7 +3,7 @@ title: Componente React para Interruptores
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Interruptores
+# Switch (seletor)
 
 <p class="description">Interruptores alternam o estado de uma única configuração ligado ou desligado.</p>
 

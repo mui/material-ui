@@ -92,6 +92,12 @@ In the event that you need to lock certain tag so that they can't be removed in 
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
 
+## Tamanhos
+
+Fancy smaller inputs? Use a propriedade `size`.
+
+{{"demo": "pages/components/autocomplete/Sizes.js"}}
+
 ## Customized Autocomplete
 
 This demo reproduces the GitHub's label picker:

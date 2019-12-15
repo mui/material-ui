@@ -3,7 +3,7 @@ title: React Badge（徽章）组件
 components: Badge
 ---
 
-# Badges（徽章）
+# Badge（徽章）
 
 <p class="description">徽章会在其子项的右上角生成一个小徽章。</p>
 
@@ -15,7 +15,7 @@ components: Badge
 
 ## 自定义徽章
 
-以下是自定义组件的一些例子。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -49,4 +49,4 @@ components: Badge
 
 您可以使用 `horizontalAlignment` 和 `verticalAlignment` 这两个属性，在封装的组件任意角落显示徽章组件。
 
-{{"demo": "pages/components/badges/BadgeAlignment.js"}}
+{{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}

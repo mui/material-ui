@@ -1,6 +1,6 @@
-# Shadows
+# Тени
 
-<p class="description">Add or remove shadows to elements with box-shadow utilities.</p>
+<p class="description">Добавление или удаление теней для элементов с утилитами box-shadow.</p>
 
 ## Пример
 

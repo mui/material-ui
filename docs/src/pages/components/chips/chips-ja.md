@@ -3,7 +3,7 @@ title: Chip コンポーネント
 components: Chip
 ---
 
-# Chips
+# Chip
 
 <p class="description">Chipsは、入力、属性、やアクションを表すコンパクトな要素です。</p>
 

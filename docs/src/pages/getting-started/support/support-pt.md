@@ -27,19 +27,13 @@ Usamos issues do GitHub exclusivamente para rastrear bugs e solicitações de re
 - Não agrupe vários tópicos em uma issue - cada um deve ter sua própria issue.
 - Por favor, não comente "+1" em uma issue. Isso engana os mantenedores e não ajuda a avançar com a issue. Use as reações do GitHub (👍).
 
-### Spectrum <img src="/static/images/logos/spectrum.svg" width="24" height="24" alt="Spectrum logo" loading="lazy" />
-
-Converse com a comunidade no Spectrum. Se você acha que sua thread pode ser uma pergunta do StackOverflow, acesse o StackOverflow. Bloqueamos/excluímos as perguntas que são melhor resolvidas no StackOverflow para evitar duplicatas.
-
-[Inicie uma discussão](https://spectrum.chat/material-ui)
-
 ### Blog 📝
 
-Mantenha-se atualizado com o desenvolvimento da biblioteca seguindo o blog.
+Stay up to date with the development of the library by following the blog.
 
-[Leia as últimas postagens](https://medium.com/material-ui/)
+[Read the latest posts](https://medium.com/material-ui/)
 
-### Recursos 📖
+### Resources 📖
 
 Novo no Material-UI? É fácil de aprender, se você souber por onde começar!
 
@@ -47,17 +41,17 @@ Novo no Material-UI? É fácil de aprender, se você souber por onde começar!
 
 ### Twitter <img src="/static/images/logos/twitter.svg" width="24" height="24" alt="Twitter logo" loading="lazy" />
 
-Receba as últimas notícias sobre Material-UI.
+Receive the latest news on Material-UI.
 
-[Siga-nos](https://twitter.com/MaterialUI)
+[Follow us](https://twitter.com/MaterialUI)
 
-### Versões suportadas
+### Supported versions
 
-O Material-UI CE (Community Edition) é 100% de código aberto (MIT) desde o início, e sempre será. Os desenvolvedores podem garantir que Material-UI seja a escolha certa para seus aplicativos React através da estratégia de manutenção da comunidade do Material-UI. A equipe do Material-UI disponibiliza regularmente novos lançamentos, correções de bugs e é muito receptiva às solicitações da comunidade.
+The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the very beginning, and always will be. Developers can ensure Material-UI is the right choice for their React applications through Material-UI’s community maintenance strategy. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
-Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://material-ui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v4](/guides/migration-v3/). A comunidade de código aberto é sempre bem-vinda para enviar novos recursos e correções de erros também.
+Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://material-ui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v4](/guides/migration-v3/). The open-source community is always welcome to submit new features and bug fixes as well.
 
-O status atual de cada versão do Material-UI é o seguinte:
+The current status of each Material-UI version is as follows:
 
 - Material-UI v4 (hooks): ✅ Em desenvolvimento ativo.
 - Material-UI v3 (alteração de navegadores suportados): ⚠️ Somente correções de segurança.
@@ -65,28 +59,28 @@ O status atual de cada versão do Material-UI é o seguinte:
 - Material-UI v1 (reescrita): ❌ Inativa.
 - Material-UI v0.x: ❌ Inativa.
 
-Para equipes e organizações que exigem suporte adicional para versões mais antigas, o Material-UI possui [opções disponíveis](#enterprise).
+For teams and organizations that require additional support for older versions, Material-UI has [options available](#enterprise).
 
 ## Suporte profissional (Premium)
 
 ### Enterprise Edition
 
-Acelere o desenvolvimento de aplicativos da sua empresa com uma solução segura e de longo prazo otimizada para empresas e apoiada por especialistas em Material-UI.
+Accelerate your company’s application development with a secure, long-term solution that’s optimized for enterprise and backed by Material-UI experts.
 
 - **Suporte a versão de longo prazo.** LTS fornece aos desenvolvedores e organizações, estabilidade e confiabilidade adicional nos aplicativos que estão em desenvolvimento, incluindo SLAs (contratos de nível de serviço garantidos) e serviços de consultoria. Aproveite o tempo que você precisa antes de atualizar para a versão ativa mais recente do Material-UI, ou confie no suporte de longo prazo para seu aplicativo, permanecendo na versão com a qual você se sentir mais confortável. O LTS está disponível como um serviço pago, estende-se às implementações do Material-UI v1 e superior.
 - **Assistência de migração de versão**.
 - **Prioridade nas correções**.
 - **Suporte prioritário**. Suporte a tempo e solução de problemas quando você mais precisar. Get expert help directly from the Material-UI team with guaranteed response times (next business day).
 
-Para mais informações, [obtenha uma cotação](mailto:enterprise@material-ui.com) da nossa equipe.
+For more information, [get a quote](mailto:enterprise@material-ui.com) from our team.
 
-### Assessoria
+### Advisory
 
-Incremente o desenvolvimento de sua equipe com os Serviços de Consultoria do Material-UI:
+Supercharge your team’s development with Material-UI Advisory Services:
 
 #### Assessoria ao Desenvolvedor
 
-Tudo o que sua equipe precisa para garantir que você esteja usando o React da melhor maneira ao avaliar e desenvolver com Material-UI.
+Everything your team needs to make sure you’re using React in the best way as you evaluate and build on Material-UI.
 
 - Um canal Slack privado e dedicado, com acesso aos nossos consultores. Get real-time advice, guidance, and feedback when you need it, with live Slack access and direct private chat with Material-UI’s expert technical team.
 - An initial review of your architecture and development workflow.
@@ -133,6 +127,6 @@ Tweak Material-UI to meet specific requirements. Give us a summary of your needs
 - Suggest alternatives that might not require Material-UI
 - Decline the work due to timing or relevancy
 
-Note that work must be Material-UI related. We don't accept general React development work. Our contracting price is $300/hour or $1,500/day.
+Note that work must be Material-UI related. We don't accept general React development work. Our contracting price is $200/hour or $1,500/day.
 
 [Send us an email](mailto:custom-work@material-ui.com)

@@ -7,14 +7,14 @@ components: TextField, Popper, Autocomplete
 
 <p class="description">El autocompletado es una caja de texto normal mejorada por un panel de opciones sugeridas.</p>
 
-The widget is useful for setting the value of a single-line textbox in one of two types of scenarios:
+El widget es útil para establecer el valor de un cuadro de texto de una sola línea en uno de los dos tipos de escenarios:
 
-1. The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name: [combo box](#combo-box).
-2. The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, e.g., a search field may suggest similar or previous searches to save the user time: [free solo](#free-solo).
+1. El valor para el cuadro de texto debe elegirse de un conjunto predefinido de valores permitidos, por ejemplo, un campo de ubicación debe contener un nombre de ubicación válido: [cuadro combinado](#combo-box).
+2. El cuadro de texto puede contener cualquier valor arbitrario, pero es ventajoso sugerir posibles valores al usuario, por ejemplo, un campo de búsqueda puede sugerir búsquedas similares o anteriores para ahorrarle tiempo al usuario: [gratis solo](#free-solo).
 
 ## Combo box
 
-The value must be chosen from a predefined set of allowed values.
+El valor debe elegirse de un conjunto predefinido de valores permitidos.
 
 {{"demo": "pages/components/autocomplete/ComboBox.js"}}
 
@@ -92,7 +92,13 @@ In the event that you need to lock certain tag so that they can't be removed in 
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
 
-## Customized Autocomplete
+## Tamaños
+
+Fancy smaller inputs? Use the `size` prop.
+
+{{"demo": "pages/components/autocomplete/Sizes.js"}}
+
+## Autocompletado personalizado
 
 This demo reproduces the GitHub's label picker:
 
@@ -100,13 +106,13 @@ This demo reproduces the GitHub's label picker:
 
 Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
 
-## Highlights
+## Destacados
 
-The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
+La siguiente demostración se basa en [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), una pequeña utilidad (1 kB) para resaltar texto en componentes de autosuggest y autocompletar.
 
 {{"demo": "pages/components/autocomplete/Highlights.js"}}
 
-## Custom filter
+## Filtro personalizado
 
 The component exposes a factory to create a filter method that can provided to the `filerOption` prop. You can use it to change the default option filter behavior.
 

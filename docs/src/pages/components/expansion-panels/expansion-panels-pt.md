@@ -3,7 +3,7 @@ title: Componente React para Painéis de Expansão
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
 
-# Painéis de Expansão
+# Expansion Panel (Painel de Expansão)
 
 <p class="description">Os painéis de expansão contêm fluxos de criação e permitem a edição simplificada de um elemento.</p>
 
@@ -35,15 +35,15 @@ In order to put an action such as a `Checkbox` or a button inside of the `Expans
 
 ## Performance
 
-The content of ExpansionPanels is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
+O conteúdo dos painéis de expansão é montado por padrão, mesmo que o painel não esteja expandido. Esse comportamento padrão tem em mente a renderização do lado do servidor e o SEO. Se você renderizar grandes árvores de componentes dentro de seu painel ou simplesmente renderizar muitos painéis, pode ser uma boa ideia desabilitar esse comportamento padrão habilitando `unmountOnExit` em `TransitionProps`:
 
 ```jsx
 <ExpansionPanel TransitionProps={{ unmountOnExit: true }} />
 ```
 
-As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
+Como acontece com qualquer otimização de desempenho, isso não é uma bala de prata. Certifique-se de identificar gargalos primeiro e, em seguida, experimente essas estratégias de otimização.
 
-## Secondary heading and Columns
+## Cabeçalho Secundário e Colunas
 
 Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
 
@@ -53,4 +53,4 @@ Multiple columns can be used to structure the content, and a helper text may be 
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
 
-For optimal accessibility we recommend setting `id` and `aria-controls` on the `ExpansionPanelSummary`. The `ExpansionPanel` will derive the necessary `aria-labelledby` and `id` for the content region of the panel.
+Para melhor acessibilidade recomendamos a definição de `id` e `aria-controles` no `ExpansionPanelSummary`. O `ExpansionPanel` irá derivar os valores de `aria-labelledby` e `id` para a região de conteúdo do painel.

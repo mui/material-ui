@@ -3,7 +3,7 @@ title: Badge React-Komponente
 components: Badge
 ---
 
-# Badges
+# Badge
 
 <p class="description">Badge generiert ein kleines Abzeichen an der oberen rechten Ecke seiner Kinder.</p>
 
@@ -15,7 +15,7 @@ Beispiele für Text Badges in Primär- und Sekundärfarben. The badge is applied
 
 ## Customized badges
 
-Hier sind einige Beispiele, wie man die Komponente anpassen kann. You can learn more about this in the [overrides documentation page](/customization/components/).
+Hier ist ein Beispiel zum Anpassen der Komponente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -49,4 +49,4 @@ You can use the `overlap` property to place the badge relative to the corner of 
 
 You can use the `horizontalAlignment` and `verticalAlignment` properties to move the badge to any corner of the wrapped element.
 
-{{"demo": "pages/components/badges/BadgeAlignment.js"}}
+{{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}

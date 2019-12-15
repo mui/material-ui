@@ -12,17 +12,17 @@ components: Link
 
 {{"demo": "pages/components/links/Links.js"}}
 
-However, the Link component has different default properties than the Typography component:
+然而，链接（Link）组件有着不同于版面设计（Typography ）组件的默认属性
 
 - 当链接需要突出显示，使用 `color="primary"`
-- `variant="inherit"` as the link will, most of the time, be used as a child of a Typography component.
+- 链接在多数的情况下，将被用于作为版面设计（Typograpy）的子组件，这种情况使用`variant="inherit"`
 
 ## 安全提示
 
-When you use `target="_blank"` with Links, it is [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to third party content.
+当你在使用Link组件下的 `target="_blank"`时 ，并同时在关联第三方内容的情况下， [推荐](https://developers. google. com/web/tools/lighthouse/audits/noopener) 始终配置 `rel ="noopener"` 或 `的rel ="noreferrer"` 。
 
-- `rel="noopener"` prevents the new page from being able to access the `window.opener` property and ensures it runs in a separate process. Without this, the target page can potentially redirect your page to a malicious URL.
-- `rel="noreferrer"` has the same effect, but also prevents the *Referer* header from being sent to the new page. ⚠️ Removing the referrer header will affect analytics.
+- `rel="noopener"` 阻止新页面访问 `window.opener` 属性并确保它分开在不同的进程中运行。 若不如此，目标页面有潜在可能性将你的页面重定向至一个恶意网址
+- `rel ="noreferrer"` 具有相同的效果，但也阻止将 *Referer* 标头发送到新页面。 ⚠️ 去除referrer header会影响分析统计
 
 ## Third-party routing library（第三方路由库）
 

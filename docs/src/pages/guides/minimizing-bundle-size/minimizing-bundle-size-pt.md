@@ -38,7 +38,7 @@ This is the option we document in all the demos, since it requires no configurat
 
 Ao importar diretamente dessa maneira, não utiliza as exportações em [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js), esse arquivo pode servir como uma referência útil para quais módulos são públicos.
 
-Esteja ciente de que apenas damos suporte para as importações de primeiro e segundo nível. Qualquer coisa abaixo do segundo nível, é considerada privada e pode causar duplicação de módulo no seu pacote.
+Esteja ciente de que apenas damos suporte para as importações de primeiro e segundo nível. Anything deeper is considered private and can cause issues, such as module duplication in your bundle.
 
 ```js
 // ✅ OK

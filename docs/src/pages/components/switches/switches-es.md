@@ -3,7 +3,7 @@ title: Switch React component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Interruptores
+# Switch
 
 <p class="description">Switches toggle the state of a single setting on or off.</p>
 
