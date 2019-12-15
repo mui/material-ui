@@ -646,20 +646,21 @@ describe('<TreeItem />', () => {
         expect(getByTestId('six')).to.have.attribute('aria-expanded', 'false');
       });
     });
-    describe('tree-view in rtl',()=>{
-      it('tree expand right to left',()=>{
+    describe('tree-view in rtl', () => {
+      it('tree expand right to left', () => {
         const { getByTestId } = render(
           <div dir="rtl">
             <TreeView>
               <TreeItem nodeId="one" label="one" data-testid="one">
                 <TreeItem nodeId="two" label="two" data-testid="two" />
               </TreeItem>
-            </TreeView>,
-          </div>
+            </TreeView>
+            ,
+          </div>,
         );
         getByTestId('one').focus();
         expect(getByTestId('two')).to.have.focus;
-      })
-    })
+      });
+    });
   });
 });

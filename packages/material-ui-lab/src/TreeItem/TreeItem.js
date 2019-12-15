@@ -149,18 +149,18 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   };
 
   const handleNextArrow = event => {
-        handleLeftArrow(nodeId, event);
-      };
-    
-      const handlePreviousArrow = event => {
-        if (expandable) {
-          if (expanded) {
-            focusNextNode(nodeId);
-          } else {
-            toggle(event);
-          }
-        }
-      };
+    handleLeftArrow(nodeId, event);
+  };
+
+  const handlePreviousArrow = event => {
+    if (expandable) {
+      if (expanded) {
+        focusNextNode(nodeId);
+      } else {
+        toggle(event);
+      }
+    }
+  };
 
   const handleKeyDown = event => {
     let flag = false;
@@ -195,18 +195,18 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
           break;
         case 'ArrowRight':
           if (theme.direction === 'rtl') {
-                        handleNextArrow(event);
-                      } else {
-                      handlePreviousArrow(event);
+            handleNextArrow(event);
+          } else {
+            handlePreviousArrow(event);
           }
           flag = true;
           break;
         case 'ArrowLeft':
           if (theme.direction === 'rtl') {
-                        handlePreviousArrow(event);
-                      } else {
-                        handleNextArrow(event);
-                      }
+            handlePreviousArrow(event);
+          } else {
+            handleNextArrow(event);
+          }
           break;
         case 'Home':
           focusFirstNode();
