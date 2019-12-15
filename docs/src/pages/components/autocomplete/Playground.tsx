@@ -11,7 +11,7 @@ export default function Playground() {
   const flatProps = {
     options: top100Films.map(option => option.title),
   };
-  const [value, setValue] = React.useState(null);
+  const [value, setValue] = React.useState<FilmOptionType>();
 
   return (
     <div style={{ width: 300 }}>
