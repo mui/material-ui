@@ -217,7 +217,6 @@ describe('<Drawer />', () => {
     });
   });
 
-
   describe('prop: PaperProps', () => {
     const drawerElement = (
       <Drawer PaperProps={{ className: 'my-class' }} open>
@@ -315,5 +314,4 @@ describe('<Drawer />', () => {
       assert.strictEqual(getAnchor(theme, 'right'), 'left');
     });
   });
-
 });
