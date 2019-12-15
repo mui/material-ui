@@ -43,7 +43,8 @@
     "@material-ui/utils": "^4.7.1",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
-    "react-is": "^16.8.0"
+    "react-is": "^16.8.0",
+    "react-window": "^1.8.5"
   },
   "devDependencies": {},
   "sideEffects": false,

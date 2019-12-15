@@ -17,6 +17,7 @@ export const styles = {
     bottom: 0,
     top: 0,
     left: 0,
+    // To move under black style rule in v5.
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     WebkitTapHighlightColor: 'transparent',
     // Disable scroll capabilities.
@@ -26,10 +27,17 @@ export const styles = {
   invisible: {
     backgroundColor: 'transparent',
   },
+  /* Styles applied to the root element if `backgroundColor="black`. */
+  black: {},
+  /* Styles applied to the root element if `backgroundColor="white`. */
+  white: {
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+  },
 };
 
 const Backdrop = React.forwardRef(function Backdrop(props, ref) {
   const {
+    backgroundColor = 'black',
     children,
     classes,
     className,
@@ -45,6 +53,7 @@ const Backdrop = React.forwardRef(function Backdrop(props, ref) {
         data-mui-test="Backdrop"
         className={clsx(
           classes.root,
+          classes[backgroundColor],
           {
             [classes.invisible]: invisible,
           },
@@ -64,6 +73,10 @@ Backdrop.propTypes = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
+  /**
+   * The background color.
+   */
+  backgroundColor: PropTypes.oneOf(['black', 'white']),
   /**
    * The content of the component.
    */

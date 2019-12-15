@@ -9,6 +9,10 @@ export interface BackdropProps
     BackdropClassKey
   > {
   /**
+   * The background color.
+   */
+  backgroundColor?: 'black' | 'white';
+  /**
    * If `true`, the backdrop is invisible.
    * It can be used when rendering a popover or a custom select component.
    */

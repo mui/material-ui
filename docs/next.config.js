@@ -58,11 +58,9 @@ module.exports = withTypescript({
 
       config.externals = [
         (context, request, callback) => {
-          const hasDependencyOnRepoPackages = [
-            'notistack',
-            'material-table',
-            '@material-ui/pickers',
-          ].includes(request);
+          const hasDependencyOnRepoPackages = ['notistack', '@material-ui/pickers'].includes(
+            request,
+          );
 
           if (hasDependencyOnRepoPackages) {
             return callback(null);
@@ -92,8 +90,8 @@ module.exports = withTypescript({
           },
           // transpile 3rd party packages with dependencies in this repository
           {
-            test: /\.(js|mjs|jsx)$/,
-            include: /node_modules(\/|\\)(material-table|notistack|@material-ui(\/|\\)pickers)/,
+            test: /\.(js|mjs|jsx|tsx)$/,
+            include: /node_modules(\/|\\)(notistack|@material-ui(\/|\\)pickers)/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -116,7 +114,7 @@ module.exports = withTypescript({
           },
           // required to transpile ../packages/
           {
-            test: /\.(js|mjs|jsx)$/,
+            test: /\.(js|mjs|jsx|tsx)$/,
             include: [workspaceRoot],
             exclude: /node_modules/,
             use: options.defaultLoaders.babel,

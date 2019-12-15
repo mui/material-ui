@@ -51,6 +51,7 @@
     "@babel/plugin-transform-runtime": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
+    "@babel/preset-typescript": "^7.7.7",
     "@babel/register": "^7.7.4",
     "@testing-library/dom": "^6.8.1",
     "@testing-library/react": "^9.3.2",

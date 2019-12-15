@@ -24,6 +24,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| <span class="prop-name">backgroundColor</span> | <span class="prop-type">'black'<br>&#124;&nbsp;'white'</span> | <span class="prop-default">'black'</span> | The background color. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">invisible</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the backdrop is invisible. It can be used when rendering a popover or a custom select component. |
@@ -43,6 +44,8 @@ Any other props supplied will be provided to the root element (native element).
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiBackdrop-root</span> | Styles applied to the root element.
 | <span class="prop-name">invisible</span> | <span class="prop-name">.MuiBackdrop-invisible</span> | Styles applied to the root element if `invisible={true}`.
+| <span class="prop-name">black</span> | <span class="prop-name">.MuiBackdrop-black</span> | Styles applied to the root element if `backgroundColor="black`.
+| <span class="prop-name">white</span> | <span class="prop-name">.MuiBackdrop-white</span> | Styles applied to the root element if `backgroundColor="white`.
 
 You can override the style of the component thanks to one of these customization points:
 

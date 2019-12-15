@@ -107,7 +107,7 @@ function reduceChildRoutes({ props, activePage, items, page, depth, t }) {
         depth={depth}
         key={title}
         topLevel={topLevel && !page.subheader}
-        openImmediately={topLevel || Boolean(page.subheader)}
+        openImmediately={topLevel}
         title={title}
       >
         {renderNavItems({ props, pages: page.children, activePage, depth: depth + 1, t })}

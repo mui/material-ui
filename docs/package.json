@@ -56,6 +56,7 @@
     "babel-plugin-transform-dev-warning": "^0.1.1",
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "chance": "^1.1.4",
     "clean-css": "^4.1.11",
     "clipboard-copy": "^3.0.0",
     "clsx": "^1.0.2",
@@ -79,7 +80,6 @@
     "lz-string": "^1.4.4",
     "markdown-to-jsx": "^6.10.2",
     "marked": "^0.8.0",
-    "material-table": "^1.50.0",
     "material-ui-popup-state": "^1.4.1",
     "next": "8.1.0",
     "notistack": "^0.9.3",
@@ -116,6 +116,7 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.7.4",
+    "@types/chance": "^1.0.8",
     "babel-plugin-unwrap-createstyles": "^4.1.0",
     "cpy-cli": "^3.0.0",
     "gm": "^1.23.0"

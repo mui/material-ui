@@ -25,14 +25,6 @@ You didn't find the design assets your team is looking for? Let us know!
 
 This is a collection of third-party projects that extend Material-UI.
 
-### Tables
-
-- [material-table](https://github.com/mbrn/material-table): A simple and powerful Datatable for React based on Material-UI Table with some additional features.
-They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
-- [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.
-- [tubular-react](https://github.com/unosquare/tubular-react): A Material-UI table with local or remote data-source. Featuring filtering, sorting, free-text search, export to CSV locally, and aggregations.
-
 ### Notifications
 
 - [notistack](https://github.com/iamhosseindhv/notistack): Makes it easy to display snackbars (so you don't have to deal with open/close state of them).
