@@ -1,3 +1,33 @@
+export const azAZ = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Əvvəlki səhifə',
+      labelRowsPerPage: 'Səhifəyə düşən sətrlər:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} dən ${count}`,
+      nextIconButtonText: 'Növbəti səhifə',
+    },
+    MuiRating: {
+      getLabelText: value => {
+        let pluralForm = 'Ulduz';
+        const lastDigit = value % 10;
+
+        if (lastDigit > 1 && lastDigit < 5) {
+          pluralForm = 'Ulduzlar';
+        }
+
+        return `${value} ${pluralForm}`;
+      },
+    },
+    MuiAutocomplete: {
+      clearText: 'Silmək',
+      closeText: 'Bağlamaq',
+      loadingText: 'Yüklənir…',
+      noOptionsText: 'Seçimlər mövcud deyil',
+      openText: 'Открыть',
+    },
+  },
+};
+
 export const deDE = {
   props: {
     MuiTablePagination: {

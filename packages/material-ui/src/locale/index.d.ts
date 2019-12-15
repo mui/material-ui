@@ -1,3 +1,4 @@
+export const azAZ: object;
 export const deDE: object;
 export const enUS: object;
 export const esES: object;
