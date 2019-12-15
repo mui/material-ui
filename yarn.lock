@@ -270,9 +270,9 @@
     v8flags "^3.1.1"
 
 "@babel/parser@^7.0.0", "@babel/parser@^7.1.6", "@babel/parser@^7.4.3", "@babel/parser@^7.7.4":
-  version "7.7.4"
-  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.7.4.tgz#75ab2d7110c2cf2fa949959afb05fa346d2231bb"
-  integrity sha512-jIwvLO0zCL+O/LmEJQjWA75MQTWwx3c3u2JOTDK5D3/9egrWRRA0/0hk9XXywYnXZVVpzrBYeIQTmhwUaePI9g==
+  version "7.7.5"
+  resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.7.5.tgz#cbf45321619ac12d83363fcf9c94bb67fa646d71"
+  integrity sha512-KNlOe9+/nk4i29g0VXgl8PEXIRms5xKLJeuZ6UptN0fHv+jDiriG+y94X6qAgWTR0h3KaoM1wK5G5h7MHFRSig==
 
 "@babel/plugin-proposal-async-generator-functions@^7.7.4":
   version "7.7.4"
@@ -8676,6 +8676,30 @@ jscodeshift@^0.6.4:
     neo-async "^2.5.0"
     node-dir "^0.1.17"
     recast "^0.16.1"
+    temp "^0.8.1"
+    write-file-atomic "^2.3.0"
+
+jscodeshift@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/jscodeshift/-/jscodeshift-0.7.0.tgz#4eee7506fd4fdacbd80340287d61575af991fdab"
+  integrity sha512-Kt6rpTa1HVhAWagD6J0y6qxxqRmDgkFvczerLgOsDNSGoUZSmq2CO1vFRcda9OV1BaZKSHCIh+VREPts5tB/Ig==
+  dependencies:
+    "@babel/core" "^7.1.6"
+    "@babel/parser" "^7.1.6"
+    "@babel/plugin-proposal-class-properties" "^7.1.0"
+    "@babel/plugin-proposal-object-rest-spread" "^7.0.0"
+    "@babel/preset-env" "^7.1.6"
+    "@babel/preset-flow" "^7.0.0"
+    "@babel/preset-typescript" "^7.1.0"
+    "@babel/register" "^7.0.0"
+    babel-core "^7.0.0-bridge.0"
+    colors "^1.1.2"
+    flow-parser "0.*"
+    graceful-fs "^4.1.11"
+    micromatch "^3.1.10"
+    neo-async "^2.5.0"
+    node-dir "^0.1.17"
+    recast "^0.18.1"
     temp "^0.8.1"
     write-file-atomic "^2.3.0"
 
