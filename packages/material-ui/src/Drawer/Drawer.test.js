@@ -217,6 +217,29 @@ describe('<Drawer />', () => {
     });
   });
 
+
+  describe('prop: PaperProps', () => {
+    const drawerElement = (
+      <Drawer PaperProps={{ className: 'my-class' }} open>
+        <h1>Hello</h1>
+      </Drawer>
+    );
+
+    it('should render paper with my-class', () => {
+      const wrapper = mount(drawerElement);
+
+      const paper = wrapper.find(Paper);
+      assert.strictEqual(paper.hasClass('my-class'), true);
+    });
+
+    it('should render paper with classes.paper', () => {
+      const wrapper = mount(drawerElement);
+
+      const paper = wrapper.find(Paper);
+      assert.strictEqual(paper.hasClass(classes.paper), true);
+    });
+  });
+
   describe('slide direction', () => {
     it('should return the opposing slide direction', () => {
       const wrapper = mount(
@@ -292,4 +315,5 @@ describe('<Drawer />', () => {
       assert.strictEqual(getAnchor(theme, 'right'), 'left');
     });
   });
+
 });
