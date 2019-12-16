@@ -1,28 +1,38 @@
 import * as React from 'react';
 import { StandardProps, PropTypes } from '..';
+import { OverrideProps, OverridableTypeMap, OverridableComponent } from '../OverridableComponent';
 import { ThemeStyle } from '../styles/createTypography';
 
 type Style = ThemeStyle | 'srOnly';
 
-export interface TypographyProps
-  extends StandardProps<React.HTMLAttributes<HTMLElement>, TypographyClassKey> {
-  align?: PropTypes.Alignment;
-  color?:
-    | 'initial'
-    | 'inherit'
-    | 'primary'
-    | 'secondary'
-    | 'textPrimary'
-    | 'textSecondary'
-    | 'error';
-  component?: React.ElementType<React.HTMLAttributes<HTMLElement>>;
-  display?: 'initial' | 'block' | 'inline';
-  gutterBottom?: boolean;
-  noWrap?: boolean;
-  paragraph?: boolean;
-  variant?: Style | 'inherit';
-  variantMapping?: Partial<Record<Style, string>>;
+export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
+  props: P & {
+    align?: PropTypes.Alignment;
+    color?:
+      | 'initial'
+      | 'inherit'
+      | 'primary'
+      | 'secondary'
+      | 'textPrimary'
+      | 'textSecondary'
+      | 'error';
+    display?: 'initial' | 'block' | 'inline';
+    gutterBottom?: boolean;
+    noWrap?: boolean;
+    paragraph?: boolean;
+    variant?: Style | 'inherit';
+    variantMapping?: Partial<Record<Style, string>>;
+  };
+  defaultComponent: D;
+  classKey: TypographyClassKey;
 }
+
+declare const Typography: OverridableComponent<TypographyTypeMap>;
+
+export type TypographyProps<
+  D extends React.ElementType = TypographyTypeMap['defaultComponent'],
+  P = {}
+> = OverrideProps<TypographyTypeMap<P, D>, D>;
 
 export type TypographyClassKey =
   | 'root'
@@ -53,7 +63,5 @@ export type TypographyClassKey =
   | 'colorError'
   | 'displayInline'
   | 'displayBlock';
-
-declare const Typography: React.ComponentType<TypographyProps>;
 
 export default Typography;
