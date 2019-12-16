@@ -18,6 +18,8 @@ import { Autocomplete } from '@material-ui/lab';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
+
+
 ## Props
 
 | Name | Type | Default | Description |
