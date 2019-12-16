@@ -611,10 +611,10 @@ describe('<Select />', () => {
       }
       const { getByRole } = render(<ControlledWrapper />);
       fireEvent.mouseDown(getByRole('button'));
-      expect(getByRole('option')).to.have.focus;
+      expect(getByRole('option', { hidden: true })).to.have.focus;
 
       act(() => {
-        getByRole('option').click();
+        getByRole('option', { hidden: true }).click();
       });
 
       expect(getByRole('option')).to.not.have.focus;
