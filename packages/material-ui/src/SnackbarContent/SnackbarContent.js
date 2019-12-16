@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
-import Typography from '../Typography';
 import { emphasize } from '../styles/colorManipulator';
 
 export const styles = theme => {
@@ -13,6 +12,7 @@ export const styles = theme => {
   return {
     /* Styles applied to the root element. */
     root: {
+      ...theme.typography.body2,
       color: theme.palette.getContrastText(backgroundColor),
       backgroundColor,
       display: 'flex',
@@ -46,12 +46,6 @@ const SnackbarContent = React.forwardRef(function SnackbarContent(props, ref) {
 
   return (
     <Paper
-      component={Typography}
-      variant="body2"
-      variantMapping={{
-        body1: 'div',
-        body2: 'div',
-      }}
       role={role}
       square
       elevation={6}
