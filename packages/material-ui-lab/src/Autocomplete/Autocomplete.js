@@ -201,7 +201,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     disablePortal = false,
     filterOptions,
     filterSelectedOptions = false,
-    forcePopIcon = 'auto',
+    forcePopupIcon = 'auto',
     freeSolo = false,
     getOptionDisabled,
     getOptionLabel = x => x,
@@ -505,6 +505,10 @@ Autocomplete.propTypes = {
    * If `true`, hide the selected options from the list box.
    */
   filterSelectedOptions: PropTypes.bool,
+  /**
+   * Force the visibility display of the popup icon.
+   */
+  forcePopupIcon: PropTypes.string,
   /**
    * If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
    */
