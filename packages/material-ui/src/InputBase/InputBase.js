@@ -552,7 +552,7 @@ InputBase.propTypes = {
   name: PropTypes.string,
   /**
    * Callback fired when the input is blurred.
-   * 
+   *
    * Notice that the first argument (event) might be undefined.
    * https://github.com/mui-org/material-ui/pull/9042
    */
