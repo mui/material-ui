@@ -508,7 +508,7 @@ Autocomplete.propTypes = {
   /**
    * Force the visibility display of the popup icon.
    */
-  forcePopupIcon: PropTypes.string,
+  forcePopupIcon: PropTypes.oneOf([true, false ,'auto']),
   /**
    * If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
    */
