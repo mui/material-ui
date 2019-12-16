@@ -208,18 +208,18 @@ describe('<Autocomplete />', () => {
     it('does not open on clear', () => {
       const handleOpen = spy();
       const handleChange = spy();
-      const { container } = render (
+      const { container } = render(
         <Autocomplete
           onOpen={handleOpen}
           onChange={handleChange}
           open={false}
           options={['one', 'two']}
           value="one"
-          renderInput={params => <TextField {...params}/>}
+          renderInput={params => <TextField {...params} />}
         />,
-      )
+      );
 
-      const clear = container.querySelector('button')
+      const clear = container.querySelector('button');
       fireEvent.click(clear);
 
       expect(handleOpen.callCount).to.equal(0);
