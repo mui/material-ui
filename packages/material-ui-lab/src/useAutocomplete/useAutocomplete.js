@@ -108,6 +108,7 @@ export default function useAutocomplete(props) {
     setDefaultId(`mui-autocomplete-${Math.round(Math.random() * 1e5)}`);
   }, []);
 
+  const ignoreFocus = React.useRef(false);
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
   const listboxRef = React.useRef(null);
@@ -509,10 +510,8 @@ export default function useAutocomplete(props) {
   };
 
   const handleClear = event => {
+    ignoreFocus.current = true;
     handleValue(event, multiple ? [] : null);
-    if (disableOpenOnFocus) {
-      handleClose();
-    }
     setInputValue('');
   };
 
@@ -614,7 +613,7 @@ export default function useAutocomplete(props) {
   const handleFocus = event => {
     setFocused(true);
 
-    if (!disableOpenOnFocus) {
+    if (!disableOpenOnFocus && !ignoreFocus.current) {
       handleOpen(event);
     }
   };
@@ -622,6 +621,7 @@ export default function useAutocomplete(props) {
   const handleBlur = event => {
     setFocused(false);
     firstFocus.current = true;
+    ignoreFocus.current = false;
 
     if (debug && inputValue !== '') {
       return;
@@ -706,8 +706,6 @@ export default function useAutocomplete(props) {
   });
 
   const handlePopupIndicator = event => {
-    inputRef.current.focus();
-
     if (open) {
       handleClose(event);
     } else {
@@ -715,13 +713,14 @@ export default function useAutocomplete(props) {
     }
   };
 
+  // Prevent input blur when interacting with the combobox
   const handleMouseDown = event => {
     if (event.target.nodeName !== 'INPUT') {
-      // Prevent blur
       event.preventDefault();
     }
   };
 
+  // Focus the input when first interacting with the combobox
   const handleClick = () => {
     if (
       firstFocus.current &&
