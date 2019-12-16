@@ -47,7 +47,7 @@ export interface InputBaseProps
   onChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   onKeyDown?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
   onKeyUp?: React.KeyboardEventHandler<HTMLTextAreaElement | HTMLInputElement>;
-  onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement | undefined>;
   onFocus?: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
