@@ -126,6 +126,10 @@ export interface UseAutocompleteProps {
    */
   inputValue?: string;
   /**
+   * Props applied to the ListboxProps element.
+   */
+  ListboxProps?: object;
+  /**
    * If `true`, `value` must be an array and the menu will support multiple selections.
    */
   multiple?: boolean;

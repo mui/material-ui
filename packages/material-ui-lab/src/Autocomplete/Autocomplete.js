@@ -244,6 +244,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     includeInputInList = false,
     inputValue: inputValueProp,
     ListboxComponent = 'ul',
+    ListboxProps: {},
     loading = false,
     loadingText = 'Loading…',
     multiple = false,
