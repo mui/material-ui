@@ -1,4 +1,5 @@
 export const azAZ: object;
+export const csCZ: object;
 export const deDE: object;
 export const enUS: object;
 export const esES: object;
@@ -12,6 +13,7 @@ export const plPL: object;
 export const ptBR: object;
 export const roRO: object;
 export const ruRU: object;
+export const skSK: object;
 export const svSE: object;
 export const trTR: object;
 export const ukUA: object;
