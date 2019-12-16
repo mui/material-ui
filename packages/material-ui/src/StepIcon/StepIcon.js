@@ -11,15 +11,15 @@ export const styles = theme => ({
   root: {
     display: 'block',
     color: theme.palette.text.disabled,
-    '&$completed': {
-      color: theme.palette.primary.main,
-    },
-    '&$active': {
-      color: theme.palette.primary.main,
-    },
-    '&$error': {
-      color: theme.palette.error.main,
-    },
+  },
+  '$completed': {
+    color: theme.palette.primary.main,
+  },
+  '$active': {
+    color: theme.palette.primary.main,
+  },
+  '$error': {
+    color: theme.palette.error.main,
   },
   /* Styles applied to the SVG text element. */
   text: {
