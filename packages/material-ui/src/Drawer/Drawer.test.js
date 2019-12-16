@@ -1,5 +1,5 @@
 import React from 'react';
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import { createMount, findOutermostIntrinsic, getClasses } from '@material-ui/core/test-utils';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import describeConformance from '../test-utils/describeConformance';
@@ -7,10 +7,12 @@ import Slide from '../Slide';
 import Paper from '../Paper';
 import Modal from '../Modal';
 import Drawer, { getAnchor, isHorizontal } from './Drawer';
+import { createClientRender } from 'test/utils/createClientRender';
 
 describe('<Drawer />', () => {
   let mount;
   let classes;
+  const render = createClientRender({ strict: false });
 
   before(() => {
     // StrictModeViolation: uses Slide
@@ -214,6 +216,17 @@ describe('<Drawer />', () => {
 
       const root = wrapper.find(`div.${classes.root}`);
       assert.strictEqual(root.exists(), true);
+    });
+  });
+
+  describe('prop: PaperProps', () => {
+    it('should merge class names', () => {
+      const { container } = render(
+        <Drawer PaperProps={{ className: 'my-class' }} variant="permanent">
+          <h1>Hello</h1>
+        </Drawer>,
+      );
+      expect(container.querySelector(`.${classes.paper}`)).to.have.class('my-class');
     });
   });
 

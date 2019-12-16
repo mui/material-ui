@@ -134,6 +134,7 @@ const Drawer = React.forwardRef(function Drawer(props, ref) {
     <Paper
       elevation={variant === 'temporary' ? elevation : 0}
       square
+      {...PaperProps}
       className={clsx(
         classes.paper,
         classes[`paperAnchor${capitalize(anchor)}`],
@@ -142,7 +143,6 @@ const Drawer = React.forwardRef(function Drawer(props, ref) {
         },
         PaperProps.className,
       )}
-      {...PaperProps}
     >
       {children}
     </Paper>
