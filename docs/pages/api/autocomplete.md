@@ -18,24 +18,6 @@ import { Autocomplete } from '@material-ui/lab';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
-If you wish to alter the props applied to the `ListboxComponent` element, you can do so as follows:
-
-```jsx
-const ListboxProps = {
-  onScroll: event => console.log(event),
-};
-
-return (
-  <Autocomplete
-    options={options}
-    ListboxProps={ListboxProps}
-    renderInput={params => <TextField {...params} label="Autocomplete" variant="outlined" fullWidth />}
-  />
-);
-
-```
-
-
 ## Props
 
 | Name | Type | Default | Description |
