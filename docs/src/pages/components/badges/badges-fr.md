@@ -3,7 +3,7 @@ title: Composant React Badge
 components: Badge
 ---
 
-# Badges
+# Badge
 
 <p class="description">Emblema gera um pequeno emblema para o canto superior direito do seu filho(s).</p>
 
@@ -15,7 +15,7 @@ Exemples de badges contenant du texte, utilisant les couleurs primaires et secon
 
 ## Customized badges
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Voici un exemple de personnalisation du composant. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -49,4 +49,4 @@ You can use the `overlap` property to place the badge relative to the corner of 
 
 You can use the `horizontalAlignment` and `verticalAlignment` properties to move the badge to any corner of the wrapped element.
 
-{{"demo": "pages/components/badges/BadgeAlignment.js"}}
+{{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}

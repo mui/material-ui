@@ -1,9 +1,9 @@
 ---
-title: Chip React component
+title: "Los Chips son elementos compactos que representan una entrada, atributo, o acción.\nLos Chips le permiten a los usuarios introducir información, hacer selecciones, filtrar contenido, o activar acciones.\nAunque incluido como un componente individual, el uso más común será en algún tipo de entrada de formulario, por lo que parte del comportamiento demostrado aquí no se muestra en este contexto"
 components: Chip
 ---
 
-# Chips
+# Chip
 
 <p class="description">Los Chips son elementos compactos que representan una entrada, atributo o acción.</p>
 

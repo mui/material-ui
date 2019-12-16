@@ -10,7 +10,7 @@
 
 - **口口相传**。 通过[链接到material-ui.com来传播Material-UI ](https://material-ui.com/)在您的网站上，每个反向链接都很重要。 在[ Twitter上关注我们](https://twitter.com/MaterialUI) ，点赞并转发重要新闻。 或者只是与您的朋友谈论我们。
 - **给我们反馈** 。 告诉我们我们做得好还是可以改进的地方。 请投票（👍）您最想解决的问题。
-- **帮助新用户** 。 您可以在 [ StackOverflow上回答问题](https://stackoverflow.com/questions/tagged/material-ui)或在[ Spectrum上与社区聊天](https://spectrum.chat/material-ui) （请注意，核心团队优先于StackOverflow而不是Spectrum）。
+- **帮助新用户** 。 You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Make changes happen**. 
   - 通过[创建问题](https://github.com/mui-org/material-ui/issues/new)来报告错误或缺少的功能 。
   - Reviewing and commenting on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).

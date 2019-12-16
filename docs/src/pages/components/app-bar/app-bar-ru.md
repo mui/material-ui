@@ -7,9 +7,9 @@ components: AppBar, Toolbar, Menu
 
 <p class="description">Панель навигации отображает информацию и действия, относящиеся к текущему экрану.</p>
 
-В [](https://material.io/design/components/app-bars-top.html)верхней панели приложений</a> отображается содержимое и действия, связанные с текущим экраном. Он используется для брендинга, заголовков экрана, навигации и действий.
+В [](https://material.io/design/components/app-bars-top.html)верхней панели приложений</a> отображается содержимое и действия, связанные с текущим экраном. Она используется для брендинга, заголовков экрана, навигации и действий.
 
-It can transform into a contextual action bar or be used as a navbar.
+Она может использоваться как контекстное меню или как навигационная панель.
 
 ## Простая панель навигации
 
@@ -35,29 +35,29 @@ It can transform into a contextual action bar or be used as a navbar.
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js", "bg": true}}
 
-## Prominent
+## Выступающая
 
-A prominent app bar.
+Выступающая панель навигации.
 
 {{"demo": "pages/components/app-bar/ProminentAppBar.js", "bg": true}}
 
-## Bottom App Bar
+## Нижняя панели навигации
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 
-## Fixed placement
+## Фиксированное положение
 
-When you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:
+Когда вы рендерите навигационную панель с фиксированным положением, размер элемента не влияет на остальную часть страницы. Это может быть причиной того, что часть вашего содержимого может стать невидимой, скрываясь за навигационной панелью. Есть 3 варианта решения:
 
-1. You can use `position="sticky"` instead of fixed. ⚠️ sticky is not supported by IE 11.
-2. You can render a second `<Toolbar />` component:
+1. Вы можете использовать `position="sticky"` вместо `"fixed"`. ⚠️ `"sticky"` не поддерживается в IE 11.
+2. Вы можете отрендерить второй `<Toolbar />` компонент:
 
 ```jsx
 function App() {
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>{/* content */}</Toolbar>
+        <Toolbar>{/* содержимое */}</Toolbar>
       </AppBar>
       <Toolbar />
     </React.Fragment>
@@ -65,7 +65,7 @@ function App() {
 }
 ```
 
-3. You can use `theme.mixins.toolbar` CSS:
+3. Вы можете использовать `theme.mixins.toolbar` в CSS:
 
 ```jsx
 const useStyles = makeStyles(theme => ({
@@ -77,7 +77,7 @@ function App() {
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>{/* content */}</Toolbar>
+        <Toolbar>{/* содержимое */}</Toolbar>
       </AppBar>
       <div className={classes.offset} />
     </React.Fragment>
@@ -85,25 +85,25 @@ function App() {
 };
 ```
 
-## Scrolling
+## Прокрутка
 
-You can use the `useScrollTrigger()` hook to respond to user scroll actions.
+Вы можете использовать `useScrollTrigger()` хук, отвечающий за механизм прокрутки.
 
-### Скрытие панели навигации
+### Скрыть панель навигации
 
-The app bar hides on scroll down to leave more space for reading.
+Панель навигации прячется при прокрутке вниз, освобождая место для чтения.
 
 {{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
 
-### Поднять Панель Приложения
+### Надвинуть панель навигации
 
-The app bar elevates on scroll to communicate that the user is not at the top of the page.
+Панель навигации наползает на содержимое при прокрутке, сообщая пользователю, что он находится не в начале страницы.
 
 {{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
 
 ### Вернуться в начало страницы
 
-A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+Плавающая кнопка появляется при прокрутке, позволяя легко вернуться в начало страницы.
 
 {{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
 
@@ -113,7 +113,7 @@ A floating action buttons appears on scroll to make it easy to get back to the t
 
 1. `варианты` (*объекта* [optional]):
 
-- `options.disableHysteresis` (*Boolean* [optional]): Defaults to `false`. Disable the hysteresis. Игнорирование направления прокрутки когда определено `trigger` значение.
+- `options.disableHysteresis` (*Boolean* [optional]): По умолчанию - `false`. Disable the hysteresis. Игнорирование направления прокрутки когда определено `trigger` значение.
 - `options.target` (*Node* [optional]): По умолчанию `window`.
 - `options.threshold` (*Number* [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
 

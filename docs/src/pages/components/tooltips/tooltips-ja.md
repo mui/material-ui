@@ -3,7 +3,7 @@ title: Tooltip React component
 components: Tooltip
 ---
 
-# Tooltip
+# Tooltip (ツールチップ)
 
 <p class="description">ユーザーが要素上にマウスを移動したり、要素をフォーカスしたり、タップしたりすると、ツールチップにわかりやすいテキストが表示されます。</p>
 
@@ -94,7 +94,7 @@ By default disabled elements like `<button>` do not trigger user interactions so
 </Tooltip>
 ```
 
-## Transições
+## Transitions
 
 別のトランジションを使用します。
 

@@ -1,15 +1,15 @@
 ---
 title: Tableコンポーネント
-components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
+components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
-# Tables
+# Table (テーブル)
 
-<p class="description">データテーブルには、データのセットが表示されます。 それらは完全にカスタマイズできます。</p>
+<p class="description">Tables display sets of data. それらは完全にカスタマイズできます。</p>
 
-[Data tables](https://material.io/design/components/data-tables.html) は情報を見やすく表示する方法です。 Cardなどの他のプライマリーコンテンツを埋め込むことができます。
+[Tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. Cardなどの他のプライマリーコンテンツを埋め込むことができます。
 
-Data tables では次のものを含めることができます:
+Tables can include:
 
 - 対応の可視化
 - ナビゲーション

@@ -3,7 +3,7 @@ title: Select React component
 components: Select, NativeSelect
 ---
 
-# Selects
+# Select (選択)
 
 <p class="description">選択コンポーネントは、オプションのリストからユーザー提供の情報を収集するために使用されます。</p>
 
@@ -19,7 +19,7 @@ components: Select, NativeSelect
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
-## Text Fields
+## テキストフィールド
 
 `TextField` ラッパーコンポーネントは、ラベル、入力、およびヘルプテキストを含む完全なフォームコントロールです。 You can find an example with the select mode [in this section](/components/text-fields/#select).
 

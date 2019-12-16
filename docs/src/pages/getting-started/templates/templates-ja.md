@@ -1,10 +1,10 @@
 ---
-title: Free React Templates
+title: 9+ Free React Templates
 ---
 
 # Reactテンプレート
 
-<p class="description">A selection of basic react templates to help you get started building your app. The collection contains react dashboard, admin, and more.</p>
+<p class="description">A selection of free react templates to help you get started building your app. The collection contains react dashboard, admin, and more.</p>
 
 テンプレートを [サンプルアプリケーション](https://github.com/mui-org/material-ui/tree/master/examples) いずれかと組み合わせて、完全なスターターを形成できます。
 

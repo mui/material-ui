@@ -13,7 +13,7 @@ Material-UI通过三种方式提供图标支持：
 1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.
 1. With the [Icon](#icon-font-icons) component, a React wrapper for custom font icons.
 
-## Material Icons
+## Material Icons (材料图标)
 
 Material Design已经标准化了1,000多个官方图标，每个图标都有五个不同的“主题”(见下文)。 For each SVG icon, we export the respective React component from the @material-ui/icons package. You can [search the full list of these icons](/components/material-icons/).
 

@@ -92,6 +92,12 @@ In the event that you need to lock certain tag so that they can't be removed in 
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
 
+## 尺寸
+
+Fancy smaller inputs? Use the `size` prop.
+
+{{"demo": "pages/components/autocomplete/Sizes.js"}}
+
 ## Customized Autocomplete
 
 This demo reproduces the GitHub's label picker:
@@ -106,7 +112,7 @@ The following demo relies on [autosuggest-highlight](https://github.com/moroshko
 
 {{"demo": "pages/components/autocomplete/Highlights.js"}}
 
-## 自定义筛选规则
+## Custom filter
 
 The component exposes a factory to create a filter method that can provided to the `filerOption` prop. You can use it to change the default option filter behavior.
 
@@ -149,7 +155,7 @@ const filterOptions = (options, { inputValue }) =>
 <Autocomplete filterOptions={filterOptions} />
 ```
 
-## 虚拟滚动
+## Virtualization
 
 Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
 

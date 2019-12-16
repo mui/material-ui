@@ -7,7 +7,7 @@ components: Icon, SvgIcon
 
 <p class="description">Руководство и рекомендации по использованию иконок в Material-UI.</p>
 
-Material-UI provides icons support in three ways:
+Material-UI обеспечивает поддержку иконок тремя способами:
 
 1. Standardized [Material Design icons](#material-icons) exported as React components (SVG icons).
 1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.

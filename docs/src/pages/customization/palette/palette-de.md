@@ -87,12 +87,12 @@ const theme = createMuiTheme({
     primary: indigo,
     secondary: pink,
     error: red,
-    // Used by `getContrastText()` to maximize the contrast between the background and
-    // the text.
+    // Wird von `getContrastText()` benutzt, um den Kontrast zwischen Text und 
+    // Hintergrund zu maximieren.
     contrastThreshold: 3,
-    // Used to shift a color's luminance by approximately
-    // two indexes within its tonal palette.
-    // E.g., shift from Red 500 to Red 300 or Red 700.
+    // Wird verwendet, um die Luminanz einer Farbe um ungefähr
+    // zwei Indizes in der Tonpalette zu verschieben.
+    // Zum Beispiel von Red 500 zu Red 300 oder Red 700 zu wechseln.
     tonalOffset: 0.2,
   },
 });

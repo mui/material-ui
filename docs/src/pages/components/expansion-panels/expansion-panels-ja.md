@@ -3,7 +3,7 @@ title: Expansion Panel React component
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
 
-# Expansion Panels
+# Expansion Panel (拡張パネル)
 
 <p class="description">Expansion panels(拡張パネル) には作成フローが含まれ、要素を簡単に編集できます。</p>
 
@@ -43,7 +43,7 @@ The content of ExpansionPanels is mounted by default even if the panel is not ex
 
 As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
 
-## Secondary heading and Columns
+## Secondary heading and Columns (第2の見出しと列)
 
 Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
 

@@ -3,7 +3,7 @@ title: React Stepper（步骤条）组件
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 ---
 
-# Steppers（步骤条）
+# Stepper（步进器）
 
 <p class="description">Steppers convey progress through numbered steps. It provides a wizard-like workflow.</p>
 

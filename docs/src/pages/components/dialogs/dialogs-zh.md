@@ -3,7 +3,7 @@ title: React Dialog（对话框）组件
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
-# Dialogs（对话框组件）
+# Dialog（对话框）
 
 <p class="description">对话框将一个任务告知给用户，它包含了一些关键信息，需要用户进行确认，或者包含了多个任务。</p>
 
@@ -112,6 +112,10 @@ function MyComponent() {
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
+## 局限性
+
+Follow the [Modal limitations section](/components/modal/#limitations).
+
 ## 可访问性
 
-请参考[模态框可及性的部分](/components/modal/#accessibility)。
+Follow the [Modal accessibility section](/components/modal/#accessibility).

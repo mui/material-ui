@@ -71,7 +71,7 @@ yarn add @material-ui/styles
 ### Estilos
 
 - ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com o v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Removing `react-jss` from your `package.json` can help). O componente StylesProvider substitui o componente JssProvider.
-- Remove the first option argument of `withTheme()`. (The first argument was a placeholder for a potential future option that never arose.)
+- Remova a primeira opção de argumento do `withTheme()`. (The first argument was a placeholder for a potential future option that never arose.)
   
     It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
 

@@ -3,7 +3,7 @@ title: React Button（按钮）组件
 components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 ---
 
-# Buttons（按钮）
+# Button（按钮）
 
 <p class="description">只需通过轻按一下按钮，用户即可采取行动并做出选择。</p>
 
@@ -23,54 +23,64 @@ components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
+You can remove the elevation with the `disableElevation` prop.
+
+{{"demo": "pages/components/buttons/DisableElevation.js"}}
+
 ## Text Buttons（文本按钮）
 
-[文本按钮](https://material.io/design/components/buttons.html#text-button)通常用于不太醒目的操作, 包括那些位于:
+[Text buttons](https://material.io/design/components/buttons.html#text-button) are typically used for less-pronounced actions, including those located:
 
 - dialogs（对话框）中的
 - cards（卡片）中的
 
-在卡片中，使用文本按钮有助于保持卡片内容的醒目程度。
+In cards, text buttons help maintain an emphasis on card content.
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
 ## Outlined Buttons（描边按钮）
 
-[描边按钮](https://material.io/design/components/buttons.html#outlined-button)是中等强调按钮。 它们包含重要但在应用程序中的不是主要的那些操作。
+[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button) are medium-emphasis buttons. They contain actions that are important, but aren’t the primary action in an app.
 
-### 备选方案
-
-和实心按钮相比，描边按钮强调的更少；或者和文本按钮相比，描边按钮强调的更多。
+Outlined buttons are also a lower emphasis alternative to contained buttons, or a higher emphasis alternative to text buttons.
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
 ## Grouped Buttons（组合按钮）
 
-ButtonGroup 组件可用于组合描边按钮（默认的）或者实心按钮。
+The `ButtonGroup` component can be used to group buttons.
 
 {{"demo": "pages/components/buttons/GroupedButtons.js"}}
 
-## Split Button（分割按钮）
+### Group sizes and colors
 
-ButtonGroup 也可用于创建分割按钮。 下拉列表可以用于更改按钮相关的操作（如本例所示），或者用于立即出发一个相关的操作。
+{{"demo": "pages/components/buttons/GroupSizesColors.js"}}
+
+### Group orientation
+
+{{"demo": "pages/components/buttons/GroupOrientation.js"}}
+
+### Split Button
+
+ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
 
 {{"demo": "pages/components/buttons/SplitButton.js"}}
 
-## Floating Action Buttons（提升动作按钮）
+## Floating Action Buttons
 
-[提升动作按钮](https://material.io/design/components/buttons-floating-action-button.html) (FAB) 在屏幕上执行主要的或最常用的操作。 它出现在所有屏幕内容的前面，通常是一个圆形，中间有一个图标。 FAB 一般有两种类型：常规的和扩展的。
+A [floating action button](https://material.io/design/components/buttons-floating-action-button.html) (FAB) performs the primary, or most common, action on a screen. It appears in front of all screen content, typically as a circular shape with an icon in its center. FABs come in two types: regular, and extended.
 
-仅使用 FAB 则是最适合呈现屏幕主要操作的方法。
+Only use a FAB if it is the most suitable way to present a screen’s primary action.
 
-在每个屏幕中，我们建议只有一个浮动操作按钮来表示最常见的操作。
+Only one floating action button is recommended per screen to represent the most common action.
 
 {{"demo": "pages/components/buttons/FloatingActionButtons.js"}}
 
-默认情况下，浮动操作按钮会以展开的动画出现在屏幕上。
+The floating action button animates onto the screen as an expanding piece of material, by default.
 
-跨越多个横向屏幕（例如标签式屏幕）的浮动操作按钮应该短暂消失，然后如果其动作改变则会重新出现。
+A floating action button that spans multiple lateral screens (such as tabbed screens) should briefly disappear, then reappear if its action changes.
 
-您可以使用缩放转换来实现此目的。 请注意，鉴于退出和进入的动画会同时被触发，我们使用`enterDelay` 来确保旧的浮动动作按钮的动画会在新的按钮出现之前完成。
+The Zoom transition can be used to achieve this. Note that since both the exiting and entering animations are triggered at the same time, we use `enterDelay` to allow the outgoing Floating Action Button's animation to finish before the new one enters.
 
 {{"demo": "pages/components/buttons/FloatingActionButtonZoom.js", "bg": true}}
 
@@ -120,7 +130,7 @@ Here is an [integration example with react-router](/guides/composition/#button).
 
 ## 局限性
 
-### Cursor（鼠标悬浮）禁用
+### Cursor not-allowed
 
 The ButtonBase component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.
 

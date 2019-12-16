@@ -3,7 +3,7 @@ title: Componente React Panel de Expansión
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
 
-# Paneles de Expansión
+# Expansion Panel (panel de expansión)
 
 <p class="description">Los paneles de expansión contienen flujos de creación y permiten una edición simple de un elemento.</p>
 

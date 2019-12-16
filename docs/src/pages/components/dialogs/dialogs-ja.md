@@ -3,7 +3,7 @@ title: Dialog Reactコンポーネント
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
-# ダイアログ
+# Dialog (ダイアログ)
 
 <p class="description">ダイアログは、タスクについてユーザーに通知します。重要な情報を含める、決定を求める、または複数のタスクを伴うことができます。</p>
 
@@ -40,7 +40,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
-## Transições
+## Transitions
 
 トランジションを入れ替えることもできます。次の例では、`Slide`. を使用します。
 
@@ -111,6 +111,10 @@ When dialogs become too long for the user’s viewport or device, they scroll.
 Try the demo below to see what we mean:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
+
+## 制限事項
+
+Follow the [Modal limitations section](/components/modal/#limitations).
 
 ## アクセシビリティ
 

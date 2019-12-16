@@ -3,7 +3,7 @@ title: Composant React Panneau d'expansion
 components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary
 ---
 
-# Expansion Panels (Panneaux d'extension)
+# Expansion Panel (Panneau d'extension)
 
 <p class="description">Les panneaux d’extension contiennent des flux de création et permettent une édition légère d’un élément.</p>
 
@@ -11,13 +11,13 @@ components: ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, Expans
 
 > **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
 
-## Simple Expansion Panel
+## Panneau d'extension simple
 
 {{"demo": "pages/components/expansion-panels/SimpleExpansionPanel.js", "bg": true}}
 
-## Controlled Accordion
+## Accordéon contrôlé
 
-Extend the default panel behavior to create an accordion with the `ExpansionPanel` component.
+Étendez le comportement du panneau par défaut pour créer un accordéon avec le composant `ExpansionPanel`.
 
 {{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js", "bg": true}}
 

@@ -3,7 +3,7 @@ title: Checkbox React component
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Чекбоксы
+# Checkbox
 
 <p class="description">Чекбоксы позволяют выбрать один или несколько элементов из набора.</p>
 

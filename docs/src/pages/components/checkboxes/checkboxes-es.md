@@ -3,7 +3,7 @@ title: Checkbox React component
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Casillas de Verificación
+# Checkbox
 
 <p class="description">Los Checkbox permiten al usuario seleccionar uno o más elementos de un conjunto.</p>
 

@@ -88,9 +88,15 @@ In the event that you need to lock certain tag so that they can't be removed in 
 
 {{"demo": "pages/components/autocomplete/FixedTags.js"}}
 
-### Checkbox
+### チェックボックス
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
+
+## サイズ
+
+Fancy smaller inputs? `size`propを使用します。
+
+{{"demo": "pages/components/autocomplete/Sizes.js"}}
 
 ## Customized Autocomplete
 

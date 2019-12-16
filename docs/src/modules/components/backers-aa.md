@@ -20,8 +20,7 @@ crwdns105445:0crwdne105445:0
 crwdns105463:0crwdne105463:0
 
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="crwdns105465:0crwdne105465:0" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="crwdns105467:0%3crwdnd105467:0%2Fcrwdnd105467:0%2Fcrwdnd105467:0%2Fcrwdne105467:0" alt="crwdns105469:0crwdne105469:0" title="crwdns105471:0crwdne105471:0" width="100" loading="lazy"></a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="crwdns105473:0crwdne105473:0" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="crwdns105475:0crwdne105475:0" alt="crwdns105477:0crwdne105477:0" title="crwdns105479:0crwdne105479:0" width="100" loading="lazy"></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="crwdns105465:0crwdne105465:0" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="crwdns105467:0%3crwdnd105467:0%2Fcrwdnd105467:0%2Fcrwdnd105467:0%2Fcrwdne105467:0" alt="crwdns106857:0crwdne106857:0" title="crwdns105471:0crwdne105471:0" width="100" loading="lazy"></a>
 </p>
 
 crwdns105481:0crwdne105481:0

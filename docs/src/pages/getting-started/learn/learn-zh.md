@@ -2,7 +2,7 @@
 
 <p class="description">您是第一次接触 Material-UI 吗? 如果你知道从哪里开始, 就很容易学会! 而接下来的教程将帮助你快速入门。</p>
 
-Developers come to Material-UI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you’ll find this section helpful. 与任何新技术一样，Material-UI 的确有一个学习曲线。 有了练习和耐心, 你很快就会掌握其中的诀窍。
+学习 Material-UI 的开发者有着不同背景和不同学习方法。 无论您是喜欢更理论还是实践的学习方法，我们都希望本节对您有所帮助。 与任何新技术一样，Material-UI 的确有一个学习曲线。 有了练习和耐心, 你很快就会掌握其中的诀窍。
 
 ## 第一个例子
 
@@ -44,5 +44,5 @@ Developers come to Material-UI from different backgrounds and with different lea
 
 [![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
 
-- **Builder Book**: Learn how to build a full-stack JavaScript web application from scratch, using a Modern JavaScript stack and Material-UI. 
-  - 📘 [书](https://builderbook.org/book)
+- **Builder Book**：学习如何使用 Modern JavaScript 堆栈和 Material-UI 来从头开始创建一个全栈 JavaScript Web 应用程序。 
+  - 📘 [Builder Book](https://builderbook.org/book)

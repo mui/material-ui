@@ -1,15 +1,15 @@
 ---
 title: Componente React Tabelas
-components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
+components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
-# Tabelas
+# Table (tabela)
 
-<p class="description">Tabelas exibem conjuntos de dados. Eles podem ser totalmente customizadas.</p>
+<p class="description">Tables display sets of data. Eles podem ser totalmente customizadas.</p>
 
-[Tabelas de dados](https://material.io/design/components/data-tables.html) apresentam informações de uma forma fácil de verificar, de modo que os usuários podem procurar por padrões e percepções. Elas podem ser incorporadas no conteúdo principal, assim como Cartões.
+[Tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. Elas podem ser incorporadas no conteúdo principal, assim como Cartões.
 
-Tabelas de dados podem incluir:
+Tables can include:
 
 - Uma visualização correspondente
 - Navegação
