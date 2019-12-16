@@ -598,26 +598,32 @@ describe('<Select />', () => {
         const [open, setOpen] = React.useState(false);
 
         return (
-          <Select
-            MenuProps={{ transitionDuration: 0 }}
-            open={open}
-            onClose={() => setOpen(false)}
-            onOpen={() => setOpen(true)}
-            value=""
-          >
-            <MenuItem onClick={() => setOpen(false)}>close</MenuItem>
-          </Select>
+          <div>
+            <button type="button" id="open-select" onClick={() => setOpen(true)}>
+              Open select
+            </button>
+            <Select
+              MenuProps={{ transitionDuration: 0 }}
+              open={open}
+              onClose={() => setOpen(false)}
+              value=""
+            >
+              <MenuItem onClick={() => setOpen(false)}>close</MenuItem>
+            </Select>
+          </div>
         );
       }
-      const { getByRole } = render(<ControlledWrapper />);
-      fireEvent.mouseDown(getByRole('button'));
-      expect(getByRole('option', { hidden: true })).to.have.focus;
+      const { container, getByRole } = render(<ControlledWrapper />);
+      const openSelect = container.querySelector('#open-select');
+      openSelect.focus();
+      fireEvent.click(openSelect);
 
-      act(() => {
-        getByRole('option', { hidden: true }).click();
-      });
+      const option = getByRole('option');
+      expect(option).to.have.focus;
+      fireEvent.click(option);
 
-      expect(getByRole('option')).to.not.have.focus;
+      expect(container.querySelectorAll('.Mui-focused').length).to.equal(0);
+      expect(openSelect).to.have.focus;
     });
 
     it('should allow to control closing by passing onClose props', () => {
