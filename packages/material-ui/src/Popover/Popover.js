@@ -293,7 +293,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
 
       return {
         top: `${top}px`,
-        left: `${left}px`,
+        left: `${Math.round(left)}px`,
         transformOrigin: getTransformOriginValue(elemTransformOrigin),
       };
     },
