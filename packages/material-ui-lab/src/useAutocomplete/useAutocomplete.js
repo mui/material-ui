@@ -639,6 +639,10 @@ export default function useAutocomplete(props) {
   const handleInputChange = event => {
     const newValue = event.target.value;
 
+    if (onInputChange) {
+      onInputChange(event, newValue, 'input');
+    }
+
     if (newValue === '') {
       if (disableOpenOnFocus) {
         handleClose(event);
@@ -656,10 +660,6 @@ export default function useAutocomplete(props) {
     }
 
     setInputValue(newValue);
-
-    if (onInputChange) {
-      onInputChange(event, newValue, 'input');
-    }
   };
 
   const handleOptionMouseOver = event => {
