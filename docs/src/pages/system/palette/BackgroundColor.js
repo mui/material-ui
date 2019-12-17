@@ -14,6 +14,15 @@ export default function Background() {
       <Box bgcolor="error.main" color="error.contrastText" p={2} m={1}>
         error.main
       </Box>
+      <Box bgcolor="warning.main" color="warning.contrastText" p={2} m={1}>
+        warning.main
+      </Box>
+      <Box bgcolor="info.main" color="info.contrastText" p={2} m={1}>
+        info.main
+      </Box>
+      <Box bgcolor="success.main" color="success.contrastText" p={2} m={1}>
+        success.main
+      </Box>
       <Box bgcolor="text.primary" color="background.paper" p={2} m={1}>
         text.primary
       </Box>
