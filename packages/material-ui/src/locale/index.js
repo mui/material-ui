@@ -28,6 +28,35 @@ export const azAZ = {
   },
 };
 
+export const csCZ = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Předchozí stránka',
+      labelRowsPerPage: 'Řádků na stránce:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} z ${count}`,
+      nextIconButtonText: 'Další stránka',
+    },
+    MuiRating: {
+      getLabelText: value => {
+        if (value === 1) {
+          return `${value} hvězdička`;
+        }
+        if (value >= 2 && value <= 4) {
+          return `${value} hvězdičky`;
+        }
+        return `${value} hvězdiček`;
+      },
+    },
+    MuiAutocomplete: {
+      clearText: 'Vymazat',
+      closeText: 'Zavřít',
+      loadingText: 'Načítání…',
+      noOptionsText: 'Žádné možnosti',
+      openText: 'Otevřít',
+    },
+  },
+};
+
 export const deDE = {
   props: {
     MuiTablePagination: {
@@ -323,6 +352,35 @@ export const ruRU = {
       loadingText: 'Загрузка…',
       noOptionsText: 'Нет доступных вариантов',
       openText: 'Открыть',
+    },
+  },
+};
+
+export const skSK = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Predchádzajúca stránka',
+      labelRowsPerPage: 'Riadkov na stránke:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} z ${count}`,
+      nextIconButtonText: 'Ďalšia stránka',
+    },
+    MuiRating: {
+      getLabelText: value => {
+        if (value === 1) {
+          return `${value} hviezdička`;
+        }
+        if (value >= 2 && value <= 4) {
+          return `${value} hviezdičky`;
+        }
+        return `${value} hviezdičiek`;
+      },
+    },
+    MuiAutocomplete: {
+      clearText: 'Vymazať',
+      closeText: 'Zavrieť',
+      loadingText: 'Načítanie…',
+      noOptionsText: 'Žiadne možnosti',
+      openText: 'Otvoriť',
     },
   },
 };
