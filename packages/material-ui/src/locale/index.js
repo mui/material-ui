@@ -39,12 +39,12 @@ export const csCZ = {
     MuiRating: {
       getLabelText: value => {
         if (value === 1) {
-          return `${value} Hvězda`;
+          return `${value} hvězdička`;
         }
         if (value >= 2 && value <= 4) {
-          return `${value} Hvězdy`;
+          return `${value} hvězdičky`;
         }
-        return `${value} Hvězd`;
+        return `${value} hvězdiček`;
       },
     },
     MuiAutocomplete: {
@@ -367,12 +367,12 @@ export const skSK = {
     MuiRating: {
       getLabelText: value => {
         if (value === 1) {
-          return `${value} Hviezda`;
+          return `${value} hviezdička`;
         }
         if (value >= 2 && value <= 4) {
-          return `${value} Hviezdy`;
+          return `${value} hviezdičky`;
         }
-        return `${value} Hviezd`;
+        return `${value} hviezdičiek`;
       },
     },
     MuiAutocomplete: {
