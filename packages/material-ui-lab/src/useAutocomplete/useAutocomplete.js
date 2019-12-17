@@ -89,7 +89,6 @@ export default function useAutocomplete(props) {
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
-    ListboxProps: {},
     multiple = false,
     onChange,
     onClose,
@@ -818,7 +817,6 @@ export default function useAutocomplete(props) {
         // Prevent blur
         event.preventDefault();
       },
-      ...ListboxProps,
     }),
     getOptionProps: ({ index, option }) => {
       const selected = (multiple ? value : [value]).some(
