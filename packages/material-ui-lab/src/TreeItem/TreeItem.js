@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, useTheme } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
 
@@ -102,6 +102,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const focused = isFocused ? isFocused(nodeId) : false;
   const tabable = isTabable ? isTabable(nodeId) : false;
   const icons = contextIcons || {};
+  const theme = useTheme();
 
   if (!icon) {
     if (expandable) {
@@ -146,6 +147,20 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     return false;
   };
 
+  const handleNextArrow = event => {
+    if (expandable) {
+      if (expanded) {
+        focusNextNode(nodeId);
+      } else {
+        toggle(event);
+      }
+    }
+  };
+
+  const handlePreviousArrow = event => {
+    handleLeftArrow(nodeId, event);
+  };
+
   const handleKeyDown = event => {
     let flag = false;
     const key = event.key;
@@ -178,17 +193,20 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
           flag = true;
           break;
         case 'ArrowRight':
-          if (expandable) {
-            if (expanded) {
-              focusNextNode(nodeId);
-            } else {
-              toggle(event);
-            }
+          if (theme.direction === 'rtl') {
+            handlePreviousArrow(event);
+          } else {
+            handleNextArrow(event);
+            flag = true;
           }
-          flag = true;
           break;
         case 'ArrowLeft':
-          handleLeftArrow(nodeId, event);
+          if (theme.direction === 'rtl') {
+            handleNextArrow(event);
+            flag = true;
+          } else {
+            handlePreviousArrow(event);
+          }
           break;
         case 'Home':
           focusFirstNode();
