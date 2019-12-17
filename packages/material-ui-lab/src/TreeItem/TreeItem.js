@@ -165,7 +165,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     let flag = false;
     const key = event.key;
 
-    if (event.altKey || event.ctrlKey || event.metaKey) {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.currentTarget !== event.target) {
       return;
     }
     if (event.shift) {
