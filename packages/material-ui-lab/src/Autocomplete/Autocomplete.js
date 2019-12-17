@@ -590,7 +590,7 @@ Autocomplete.propTypes = {
    */
   ListboxComponent: PropTypes.elementType,
   /**
-   * Props applied to the ListboxProps element.
+   * Props applied to the Listbox element.
    */
   ListboxProps: PropTypes.object,
   /**

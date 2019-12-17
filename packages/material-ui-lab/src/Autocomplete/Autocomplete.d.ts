@@ -67,7 +67,7 @@ export interface AutocompleteProps
    */
   ListboxComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
   /**
-   * Props applied to the ListboxProps element.
+   * Props applied to the Listbox element.
    */
   ListboxProps?: object;
   /**
