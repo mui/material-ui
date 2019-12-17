@@ -379,7 +379,7 @@ export const skSK = {
       clearText: 'Vymazať',
       closeText: 'Zavrieť',
       loadingText: 'Načítanie…',
-      noOptionsText: 'Žiadne možnosti ',
+      noOptionsText: 'Žiadne možnosti',
       openText: 'Otvoriť',
     },
   },
