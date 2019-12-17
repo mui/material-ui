@@ -549,7 +549,9 @@ InputBase.propTypes = {
    */
   name: PropTypes.string,
   /**
-   * @ignore
+   * Callback fired when the input is blurred.
+   *
+   * Notice that the first argument (event) might be undefined.
    */
   onBlur: PropTypes.func,
   /**
