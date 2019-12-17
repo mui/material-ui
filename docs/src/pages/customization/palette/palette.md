@@ -11,6 +11,9 @@ The theme exposes the following color intentions:
 - primary - used to represent primary interface elements for a user.
 - secondary - used to represent secondary interface elements for a user.
 - error - used to represent interface elements that the user should be made aware of.
+- warning - used to represent potentially dangerous actions or important messages.
+- info - used to present information to the user that is neutral and not necessarily important.
+- success - used to indicate a successful completion of an action that user triggered.
 
 The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary intention,
 and the un-prefixed shades for the other intentions.
@@ -22,8 +25,11 @@ If you want to learn more about color, you can check out [the color section](/cu
 You may override the default palette values by including a `palette` object as part of your theme.
 
 If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary),
-[`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary) or
-[`palette.error`](/customization/default-theme/?expend-path=$.palette.error)
+[`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary),
+[`palette.error`](/customization/default-theme/?expend-path=$.palette.error), 
+[`palette.warning`](/customization/default-theme/?expend-path=$.palette.warning),
+[`palette.info`](/customization/default-theme/?expend-path=$.palette.info) or
+[`palette.successs`](/customization/default-theme/?expend-path=$.palette.successs)
 'intention' objects are provided, they will replace the defaults.
 
 The intention value can either be a [color](/customization/color/) object, or an object with one or more of the keys specified by the following TypeScript interface:
@@ -76,6 +82,24 @@ palette: {
     dark: palette.error[700],
     contrastText: getContrastText(palette.error[500]),
   },
+  warning: {
+    light: palette.warning[300],
+    main: palette.warning[500],
+    dark: palette.warning[700],
+    contrastText: getContrastText(palette.warning[500]),
+  },
+  info: {
+    light: palette.info[300],
+    main: palette.info[500],
+    dark: palette.info[700],
+    contrastText: getContrastText(palette.info[500]),
+  },
+  success: {
+    light: palette.success[300],
+    main: palette.success[500],
+    dark: palette.success[700],
+    contrastText: getContrastText(palette.success[500]),
+  },
 },
 ```
 
@@ -86,6 +110,9 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import indigo from '@material-ui/core/colors/indigo';
 import pink from '@material-ui/core/colors/pink';
 import red from '@material-ui/core/colors/red';
+import amber from '@material-ui/core/colors/amber';
+import blueGrey from '@material-ui/core/colors/blueGrey';
+import lightGreen from '@material-ui/core/colors/lightGreen';
 
 // All the following keys are optional, as default values are provided.
 const theme = createMuiTheme({
@@ -93,6 +120,9 @@ const theme = createMuiTheme({
     primary: indigo,
     secondary: pink,
     error: red,
+    warning: amber,
+    info: blueGrey,
+    success: lightGreen,
     // Used by `getContrastText()` to maximize the contrast between the background and
     // the text.
     contrastThreshold: 3,
@@ -126,7 +156,7 @@ const theme = createMuiTheme({
       // dark: will be calculated from palette.secondary.main,
       contrastText: '#ffcc00',
     },
-    // error: will use the default color
+    // error, warning, info, success: will use the default color
   },
 });
 ```
