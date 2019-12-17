@@ -11,7 +11,7 @@ export interface SwitchBaseProps
   disabled?: boolean;
   disableRipple?: boolean;
   icon: React.ReactNode;
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  inputProps?: SwitchBaseComponentProps;
   inputRef?: React.Ref<any>;
   name?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
@@ -19,6 +19,11 @@ export interface SwitchBaseProps
   required?: boolean;
   tabIndex?: number;
   value?: unknown;
+}
+
+interface SwitchBaseComponentProps extends React.HTMLAttributes<HTMLInputElement> {
+  // Accommodate arbitrary additional props coming from the `inputProps` prop
+  [arbitrary: string]: any;
 }
 
 export type SwitchBaseClassKey = 'root' | 'checked' | 'disabled' | 'input';
