@@ -205,6 +205,27 @@ describe('<Autocomplete />', () => {
       expect(handleOpen.callCount).to.equal(1);
     });
 
+    it('does not open on clear', () => {
+      const handleOpen = spy();
+      const handleChange = spy();
+      const { container } = render(
+        <Autocomplete
+          onOpen={handleOpen}
+          onChange={handleChange}
+          open={false}
+          options={['one', 'two']}
+          value="one"
+          renderInput={params => <TextField {...params} />}
+        />,
+      );
+
+      const clear = container.querySelector('button');
+      fireEvent.click(clear);
+
+      expect(handleOpen.callCount).to.equal(0);
+      expect(handleChange.callCount).to.equal(1);
+    });
+
     ['ArrowDown', 'ArrowUp'].forEach(key => {
       it(`opens on ${key} when focus is on the textbox without moving focus`, () => {
         const handleOpen = spy();
