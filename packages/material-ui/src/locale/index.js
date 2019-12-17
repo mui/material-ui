@@ -51,7 +51,7 @@ export const csCZ = {
       clearText: 'Vymazat',
       closeText: 'Zavřít',
       loadingText: 'Načítání…',
-      noOptionsText: 'Žádné možnosti ',
+      noOptionsText: 'Žádné možnosti',
       openText: 'Otevřít',
     },
   },
