@@ -235,6 +235,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     disablePortal = false,
     filterOptions,
     filterSelectedOptions = false,
+    forcePopupIcon = 'auto',
     freeSolo = false,
     getOptionDisabled,
     getOptionLabel = x => x,
@@ -373,7 +374,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   </IconButton>
                 )}
 
-                {freeSolo ? null : (
+                {(!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false ? (
                   <IconButton
                     {...getPopupIndicatorProps()}
                     disabled={disabled}
@@ -385,7 +386,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   >
                     {popupIcon}
                   </IconButton>
-                )}
+                ) : null}
               </div>
             ),
           },
@@ -545,6 +546,10 @@ Autocomplete.propTypes = {
    * If `true`, hide the selected options from the list box.
    */
   filterSelectedOptions: PropTypes.bool,
+  /**
+   * Force the visibility display of the popup icon.
+   */
+  forcePopupIcon: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.bool]),
   /**
    * If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
    */

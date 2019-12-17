@@ -63,6 +63,10 @@ export interface AutocompleteProps
    */
   disablePortal?: boolean;
   /**
+   * Force the visibility display of the popup icon.
+   */
+  forcePopupIcon?: true | false | 'auto';
+  /**
    * The component used to render the listbox.
    */
   ListboxComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
