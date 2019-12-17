@@ -21,7 +21,7 @@ export interface SwitchBaseProps
   value?: unknown;
 }
 
-interface SwitchBaseComponentProps extends React.HTMLAttributes<HTMLInputElement> {
+export interface SwitchBaseComponentProps extends React.HTMLAttributes<HTMLInputElement> {
   // Accommodate arbitrary additional props coming from the `inputProps` prop
   [arbitrary: string]: any;
 }
