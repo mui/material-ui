@@ -1,3 +1,5 @@
+import { DefaultTheme } from '@material-ui/styles/defaultTheme';
+
 export interface MuiMediaQueryListEvent {
   matches: boolean;
 }
@@ -16,7 +18,7 @@ export interface Options {
   ssrMatchMedia?: (query: string) => { matches: boolean };
 }
 
-export default function useMediaQuery<Theme = unknown>(
+export default function useMediaQuery<Theme = DefaultTheme>(
   query: string | ((theme: Theme) => string),
   options?: Options,
 ): boolean;
