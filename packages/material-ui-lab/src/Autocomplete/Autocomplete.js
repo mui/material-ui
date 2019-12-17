@@ -245,6 +245,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     includeInputInList = false,
     inputValue: inputValueProp,
     ListboxComponent = 'ul',
+    ListboxProps,
     loading = false,
     loadingText = 'Loading…',
     multiple = false,
@@ -593,6 +594,10 @@ Autocomplete.propTypes = {
    * The component used to render the listbox.
    */
   ListboxComponent: PropTypes.elementType,
+  /**
+   * Props applied to the Listbox element.
+   */
+  ListboxProps: PropTypes.object,
   /**
    * If `true`, the component is in a loading state.
    */

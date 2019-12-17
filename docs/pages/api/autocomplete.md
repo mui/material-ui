@@ -53,6 +53,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">includeInputInList</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the highlight can move to the input. |
 | <span class="prop-name">inputValue</span> | <span class="prop-type">string</span> |  | The input value. |
 | <span class="prop-name">ListboxComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'ul'</span> | The component used to render the listbox. |
+| <span class="prop-name">ListboxProps</span> | <span class="prop-type">object</span> |  | Props applied to the Listbox element. |
 | <span class="prop-name">loading</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the component is in a loading state. |
 | <span class="prop-name">loadingText</span> | <span class="prop-type">node</span> | <span class="prop-default">'Loading…'</span> | Text to display when in a loading state.<br>For localization purposes, you can use the provided [translations](/guides/localization/). |
 | <span class="prop-name">multiple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, `value` must be an array and the menu will support multiple selections. |

@@ -71,6 +71,10 @@ export interface AutocompleteProps
    */
   ListboxComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
   /**
+   * Props applied to the Listbox element.
+   */
+  ListboxProps?: object;
+  /**
    * If `true`, the component is in a loading state.
    */
   loading?: boolean;
