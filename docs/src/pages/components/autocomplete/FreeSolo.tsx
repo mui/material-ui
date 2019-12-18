@@ -35,7 +35,7 @@ export default function FreeSolo() {
         id="free-solo-3-demo"
         freeSolo
         value={value}
-        onInputChange={(_, value) => setValue(value)}
+        onInputChange={(_, newValue) => setValue(newValue)}
         options={top100Films.map(option => option.title)}
         renderInput={params => (
           <TextField
