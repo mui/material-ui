@@ -420,7 +420,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
               <div className={classes.noOptions}>{noOptionsText}</div>
             ) : null}
             {groupedOptions.length > 0 ? (
-              <ListboxComponent className={classes.listbox} {...getListboxProps()}>
+              <ListboxComponent
+                className={classes.listbox}
+                {...getListboxProps()}
+                {...ListboxProps}
+              >
                 {groupedOptions.map((option, index) => {
                   if (groupBy) {
                     return renderGroup({
