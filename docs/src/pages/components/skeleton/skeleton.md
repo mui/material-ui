@@ -13,11 +13,13 @@ The component is designed to be used **directly in your components**.
 For instance:
 
 ```jsx
-{item ? (
-  <img style={{ width: 210, height: 118 }} alt={item.title} src={item.src} />
-) : (
-  <Skeleton variant="rect" width={210} height={118} />
-)}
+{
+  item ? (
+    <img style={{ width: 210, height: 118 }} alt={item.title} src={item.src} />
+  ) : (
+    <Skeleton variant="rect" width={210} height={118} />
+  );
+}
 ```
 
 ## Variants
@@ -33,3 +35,7 @@ The component supports 3 variants.
 ## Facebook example
 
 {{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}
+
+## Delay example
+
+{{"demo": "pages/components/skeleton/Delay.js", "defaultCodeOpen": false}}

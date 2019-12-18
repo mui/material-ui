@@ -7,6 +7,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'hr'> {
     height?: number | string;
     variant?: 'text' | 'rect' | 'circle';
     width?: number | string;
+    animationDelay?: string;
   };
   defaultComponent: 'div';
   classKey: SkeletonClassKey;
