@@ -29,7 +29,7 @@ const theme = createMuiTheme({
 |:-------|:---------|:---------|
 | Azerbaijani | az-AZ | `azAZ` |
 | Chinese (Simplified) | zh-CN | `zhCN` |
-| Czech | cs-CZ | `csCz` |
+| Czech | cs-CZ | `csCZ` |
 | Dutch | nl-NL | `nlNL` |
 | English (United States) | en-US | `enUS` |
 | French | fr-FR | `frFR` |
