@@ -30,6 +30,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">height</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> |  | Height of the skeleton. Useful when you don't want to adapt the skeleton to a text element but for instance a card. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'text'<br>&#124;&nbsp;'rect'<br>&#124;&nbsp;'circle'</span> | <span class="prop-default">'text'</span> | The type of content that will be rendered. |
 | <span class="prop-name">width</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> |  | Width of the skeleton. Useful when the skeleton is inside an inline element with no width of its own. |
+| <span class="prop-name">animationDelay</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> |  | animationDelay of the skeleton. Useful when you have multiple skeletons, and need them to pulse out of rhyme. |
 
 The `ref` is forwarded to the root element.
 
