@@ -148,7 +148,7 @@ export interface UseAutocompleteProps {
    *
    * @param {object} event The event source of the callback.
    * @param {string} value The new value of the text input
-   * @param {string} reason One of "input" (user input) or "reset" (programmatic change)
+   * @param {string} reason Can be: "input" (user input), "reset" (programmatic change), `"clear"`.
    */
   onInputChange?: (event: React.ChangeEvent<{}>, value: any, reason: 'input' | 'reset') => void;
   /**

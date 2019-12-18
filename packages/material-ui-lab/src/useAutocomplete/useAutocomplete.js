@@ -436,12 +436,13 @@ export default function useAutocomplete(props) {
         newValue.splice(itemIndex, 1);
       }
     }
+
+    resetInputValue(event, newValue);
+
     handleValue(event, newValue);
     if (!disableCloseOnSelect) {
       handleClose(event);
     }
-
-    resetInputValue(event, newValue);
 
     selectedIndexRef.current = -1;
   };
@@ -511,8 +512,13 @@ export default function useAutocomplete(props) {
 
   const handleClear = event => {
     ignoreFocus.current = true;
-    handleValue(event, multiple ? [] : null);
     setInputValue('');
+
+    if (onInputChange) {
+      onInputChange(event, '', 'clear');
+    }
+
+    handleValue(event, multiple ? [] : null);
   };
 
   const handleKeyDown = event => {
@@ -639,6 +645,14 @@ export default function useAutocomplete(props) {
   const handleInputChange = event => {
     const newValue = event.target.value;
 
+    if (inputValue !== newValue) {
+      setInputValue(newValue);
+
+      if (onInputChange) {
+        onInputChange(event, newValue, 'input');
+      }
+    }
+
     if (newValue === '') {
       if (disableOpenOnFocus) {
         handleClose(event);
@@ -649,16 +663,6 @@ export default function useAutocomplete(props) {
       }
     } else {
       handleOpen(event);
-    }
-
-    if (inputValue === newValue) {
-      return;
-    }
-
-    setInputValue(newValue);
-
-    if (onInputChange) {
-      onInputChange(event, newValue, 'input');
     }
   };
 
