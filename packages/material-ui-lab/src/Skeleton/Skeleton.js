@@ -47,6 +47,7 @@ export const styles = theme => ({
 
 const Skeleton = React.forwardRef(function Skeleton(props, ref) {
   const {
+    animationDelay,
     classes,
     className,
     component: Component = 'div',
@@ -72,6 +73,7 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
       style={{
         width,
         height,
+        animationDelay,
         ...other.style,
       }}
     />
@@ -79,6 +81,11 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
 });
 
 Skeleton.propTypes = {
+  /**
+   * animationDelay of the skeleton.
+   * Useful when you have multiple skeletons, and need them to pulse out of rhyme.
+   */
+  animationDelay: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.

@@ -24,6 +24,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
+| <span class="prop-name">animationDelay</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> |  | animationDelay of the skeleton. Useful when you have multiple skeletons, and need them to pulse out of rhyme. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">disableAnimate</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true` the animation effect is disabled. |

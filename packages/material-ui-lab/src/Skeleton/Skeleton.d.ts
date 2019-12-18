@@ -3,6 +3,7 @@ import { OverridableComponent, OverrideProps } from '@material-ui/core/Overridab
 
 export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'hr'> {
   props: P & {
+    animationDelay?: string;
     disableAnimate?: boolean;
     height?: number | string;
     variant?: 'text' | 'rect' | 'circle';
