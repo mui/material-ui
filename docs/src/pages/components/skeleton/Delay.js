@@ -16,7 +16,7 @@ export default function Variants() {
         variant="rect"
         width={210}
         height={118}
-        animationDelay={'0.2s'}
+        animationDelay="0.2s"
         style={{ marginTop: 5 }}
       />
     </div>
