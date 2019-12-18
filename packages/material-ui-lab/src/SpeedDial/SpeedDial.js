@@ -402,7 +402,7 @@ SpeedDial.propTypes = {
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} reason Can be:`"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`.
+   * @param {string} reason Can be: `"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`.
    */
   onClose: PropTypes.func,
   /**
@@ -425,7 +425,7 @@ SpeedDial.propTypes = {
    * Callback fired when the component requests to be open.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} reason Can be:`"toggle"`, `"focus"`, `"mouseEnter"`.
+   * @param {string} reason Can be: `"toggle"`, `"focus"`, `"mouseEnter"`.
    */
   onOpen: PropTypes.func,
   /**

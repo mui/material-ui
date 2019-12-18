@@ -314,7 +314,7 @@ Snackbar.propTypes = {
    * for example ignoring `clickaway`.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`.
+   * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`.
    */
   onClose: PropTypes.func,
   /**

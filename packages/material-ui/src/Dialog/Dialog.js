@@ -321,7 +321,7 @@ Dialog.propTypes = {
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} reason Can be:`"escapeKeyDown"`, `"backdropClick"`.
+   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose: PropTypes.func,
   /**
