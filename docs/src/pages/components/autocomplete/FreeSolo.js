@@ -38,7 +38,13 @@ export default function FreeSolo() {
         onInputChange={(_, value) => setValue(value)}
         options={top100Films.map(option => option.title)}
         renderInput={params => (
-          <TextField {...params} label="Controlled freeSolo" margin="normal" variant="outlined" fullWidth />
+          <TextField
+            {...params}
+            label="Controlled freeSolo"
+            margin="normal"
+            variant="outlined"
+            fullWidth
+          />
         )}
       />
     </div>
