@@ -26,7 +26,7 @@ You may override the default palette values by including a `palette` object as p
 
 If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary),
 [`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary),
-[`palette.error`](/customization/default-theme/?expend-path=$.palette.error), 
+[`palette.error`](/customization/default-theme/?expend-path=$.palette.error),
 [`palette.warning`](/customization/default-theme/?expend-path=$.palette.warning),
 [`palette.info`](/customization/default-theme/?expend-path=$.palette.info) or
 [`palette.successs`](/customization/default-theme/?expend-path=$.palette.successs)
@@ -111,8 +111,8 @@ import indigo from '@material-ui/core/colors/indigo';
 import pink from '@material-ui/core/colors/pink';
 import red from '@material-ui/core/colors/red';
 import amber from '@material-ui/core/colors/amber';
-import blueGrey from '@material-ui/core/colors/blueGrey';
-import lightGreen from '@material-ui/core/colors/lightGreen';
+import blue from '@material-ui/core/colors/blue';
+import green from '@material-ui/core/colors/green';
 
 // All the following keys are optional, as default values are provided.
 const theme = createMuiTheme({
@@ -121,8 +121,8 @@ const theme = createMuiTheme({
     secondary: pink,
     error: red,
     warning: amber,
-    info: blueGrey,
-    success: lightGreen,
+    info: blue,
+    success: green,
     // Used by `getContrastText()` to maximize the contrast between the background and
     // the text.
     contrastThreshold: 3,
@@ -185,27 +185,22 @@ Note that `contrastThreshold` follows a non-linear curve.
 
 Need inspiration? The Material Design team has built an awesome [palette configuration tool](/customization/color/#color-tool) to help you.
 
-## Type (light /dark theme)
+## Dark theme
 
 Material-UI comes with two theme variants, light (the default) and dark.
 
-You can make the theme dark by setting `type` to `dark`.
-While it's only a single property value change, internally it modifies the value of the following keys:
-
-- `palette.text`
-- `palette.divider`
-- `palette.background`
-- `palette.action`
+You can make the theme dark by setting `type: 'dark'`.
+While it's only a single property value change, internally it modifies the palette.
 
 ```js
-const theme = createMuiTheme({
+const darkTheme = createMuiTheme({
   palette: {
     type: 'dark',
   },
 });
 ```
 
-{{"demo": "pages/customization/palette/DarkTheme.js"}}
+{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline"}}
 
 ### User preference
 

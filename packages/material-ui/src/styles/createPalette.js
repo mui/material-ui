@@ -4,8 +4,8 @@ import grey from '../colors/grey';
 import indigo from '../colors/indigo';
 import pink from '../colors/pink';
 import red from '../colors/red';
-import yellow from '../colors/yellow';
-import lightBlue from '../colors/lightBlue';
+import amber from '../colors/amber';
+import blue from '../colors/blue';
 import green from '../colors/green';
 import { darken, getContrastRatio, lighten } from './colorManipulator';
 
@@ -98,14 +98,14 @@ export default function createPalette(palette) {
       dark: red[700],
     },
     warning = {
-      light: yellow[300],
-      main: yellow[500],
-      dark: yellow[700],
+      light: amber[300],
+      main: amber[500],
+      dark: amber[700],
     },
     info = {
-      light: lightBlue[300],
-      main: lightBlue[500],
-      dark: lightBlue[700],
+      light: blue[300],
+      main: blue[500],
+      dark: blue[700],
     },
     success = {
       light: green[300],
