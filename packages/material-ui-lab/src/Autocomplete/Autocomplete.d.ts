@@ -38,6 +38,10 @@ export interface AutocompleteProps
       'defaultValue' | 'onChange' | 'children'
     > {
   /**
+   * Props applied to the [`Chip`](/api/chip/) element.
+   */
+  ChipProps?: object;
+  /**
    * The icon to display in place of the default close icon.
    */
   closeIcon?: React.ReactNode;

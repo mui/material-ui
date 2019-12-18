@@ -219,6 +219,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     autoHighlight = false,
     autoSelect = false,
     blurOnSelect = false,
+    ChipProps,
     classes,
     className,
     clearOnEscape = false,
@@ -307,7 +308,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
       startAdornment = renderTags(value, getCustomizedTagProps);
     } else {
       startAdornment = value.map((option, index) => (
-        <Chip label={getOptionLabel(option)} size={size} {...getCustomizedTagProps({ index })} />
+        <Chip
+          label={getOptionLabel(option)}
+          size={size}
+          {...getCustomizedTagProps({ index })}
+          {...ChipProps}
+        />
       ));
     }
   }
@@ -475,6 +481,10 @@ Autocomplete.propTypes = {
    * - `mouse` the input is blurred after a mouse event.
    */
   blurOnSelect: PropTypes.oneOfType([PropTypes.oneOf(['mouse', 'touch']), PropTypes.bool]),
+  /**
+   * Props applied to the [`Chip`](/api/chip/) element.
+   */
+  ChipProps: PropTypes.object,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
