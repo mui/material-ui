@@ -515,7 +515,7 @@ export default function useAutocomplete(props) {
     setInputValue('');
 
     if (onInputChange) {
-      onInputChange(event, newValue, 'clear');
+      onInputChange(event, '', 'clear');
     }
 
     handleValue(event, multiple ? [] : null);
