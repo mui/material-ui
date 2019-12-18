@@ -47,11 +47,11 @@ export const styles = theme => ({
 
 const Skeleton = React.forwardRef(function Skeleton(props, ref) {
   const {
+    animationDelay,
     classes,
     className,
     component: Component = 'div',
     disableAnimate = false,
-    animationDelay,
     height,
     variant = 'text',
     width,
@@ -81,6 +81,11 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
 });
 
 Skeleton.propTypes = {
+  /**
+   * animationDelay of the skeleton.
+   * Useful when you have multiple skeletons, and need them to pulse out of rhyme.
+   */
+  animationDelay: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
@@ -113,11 +118,6 @@ Skeleton.propTypes = {
    * Useful when the skeleton is inside an inline element with no width of its own.
    */
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * animationDelay of the skeleton.
-   * Useful when you have multiple skeletons, and need them to pulse out of rhyme.
-   */
-  animationDelay: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 export default withStyles(styles, { name: 'MuiSkeleton' })(Skeleton);
