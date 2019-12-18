@@ -38,7 +38,7 @@ export interface AutocompleteProps
       'defaultValue' | 'onChange' | 'children'
     > {
   /**
-   * Props applied to the Chip element.
+   * Props applied to the [`Chip`](/api/chip/) element.
    */
   ChipProps?: object;
   /**

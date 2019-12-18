@@ -478,7 +478,7 @@ Autocomplete.propTypes = {
    */
   blurOnSelect: PropTypes.oneOfType([PropTypes.oneOf(['mouse', 'touch']), PropTypes.bool]),
   /**
-   * Props applied to the Chip element.
+   * Props applied to the [`Chip`](/api/chip/) element.
    */
   ChipProps: PropTypes.object,
   /**
