@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 
 export default function FreeSolo() {
+  const [value, setValue] = React.useState('');
   return (
     <div style={{ width: 300 }}>
       <Autocomplete
@@ -28,6 +29,16 @@ export default function FreeSolo() {
             fullWidth
             InputProps={{ ...params.InputProps, type: 'search' }}
           />
+        )}
+      />
+      <Autocomplete
+        id="free-solo-3-demo"
+        freeSolo
+        value={value}
+        onInputChange={(_, value) => setValue(value)}
+        options={top100Films.map(option => option.title)}
+        renderInput={params => (
+          <TextField {...params} label="Controlled freeSolo" margin="normal" variant="outlined" fullWidth />
         )}
       />
     </div>
