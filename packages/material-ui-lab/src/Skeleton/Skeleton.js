@@ -31,6 +31,7 @@ export const styles = theme => ({
   /* Styles applied to the root element if `disabledAnimate={false}`. */
   animate: {
     animation: '$animate 1.5s ease-in-out infinite',
+    animationDelay: '0.5s',
   },
   '@keyframes animate': {
     '0%': {
