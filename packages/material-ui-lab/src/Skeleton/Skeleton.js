@@ -83,7 +83,7 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
 Skeleton.propTypes = {
   /**
    * Delays the animation of the skeleton.
-   * Useful when you have multiple skeletons, and need them to pulse out of sync.
+   * Useful when you have multiple skeletons, and need them to pulse out of phase.
    */
   animationDelay: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
