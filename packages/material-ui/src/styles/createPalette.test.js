@@ -1,16 +1,6 @@
 import { expect } from 'chai';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import {
-  blue,
-  deepOrange,
-  green,
-  indigo,
-  lightBlue,
-  lightGreen,
-  pink,
-  red,
-  yellow,
-} from '../colors';
+import { deepOrange, indigo, pink } from '../colors';
 import { darken, lighten } from './colorManipulator';
 import createPalette, { dark, light } from './createPalette';
 

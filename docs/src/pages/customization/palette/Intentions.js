@@ -6,6 +6,7 @@ import { makeStyles, useTheme, rgbToHex } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
+    maxWidth: 600,
   },
   group: {
     marginTop: theme.spacing(3),
