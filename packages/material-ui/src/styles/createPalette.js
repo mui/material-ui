@@ -203,8 +203,8 @@ export default function createPalette(palette) {
       success: augmentColor(success),
       // The grey colors.
       grey,
-      // Used by `getContrastText()` to maximize the contrast between the background and
-      // the text.
+      // Used by `getContrastText()` to maximize the contrast between
+      // the background and the text.
       contrastThreshold,
       // Take a background color and return the color of the text to maximize the contrast.
       getContrastText,

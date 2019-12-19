@@ -228,11 +228,14 @@ function DefaultTheme(props) {
     }
 
     setExpandPaths(
-      expandPath.split('.').reduce((acc, path) => {
-        const last = acc.length > 0 ? `${acc[acc.length - 1]}.` : '';
-        acc.push(last + path);
-        return acc;
-      }, []),
+      expandPath
+        .replace('$.', '')
+        .split('.')
+        .reduce((acc, path) => {
+          const last = acc.length > 0 ? `${acc[acc.length - 1]}.` : '';
+          acc.push(last + path);
+          return acc;
+        }, []),
     );
   }, []);
 
@@ -256,11 +259,7 @@ function DefaultTheme(props) {
             checked={checked}
             onChange={(event, newChecked) => {
               setChecked(newChecked);
-              if (newChecked) {
-                setExpandPaths(allNodeIds);
-              } else {
-                setExpandPaths([]);
-              }
+              setExpandPaths(newChecked ? allNodeIds : []);
             }}
           />
         }

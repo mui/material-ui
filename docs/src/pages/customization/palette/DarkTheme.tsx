@@ -26,9 +26,7 @@ function Demo() {
 
   return (
     <div className={classes.root}>
-      <Typography>
-        {`${theme.palette.type} theme`}
-      </Typography>
+      <Typography>{`${theme.palette.type} theme`}</Typography>
     </div>
   );
 }
@@ -47,7 +45,7 @@ const darkTheme = createMuiTheme({
 
 export default function DarkTheme() {
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%' }}>
       <ThemeProvider theme={darkTheme}>
         <Demo />
       </ThemeProvider>
