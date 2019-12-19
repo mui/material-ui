@@ -35,6 +35,7 @@ export interface InputBaseProps
     startAdornment?: React.ReactNode;
   }) => React.ReactNode;
   rows?: string | number;
+  rowsMin?: string | number;
   rowsMax?: string | number;
   startAdornment?: React.ReactNode;
   type?: string;
