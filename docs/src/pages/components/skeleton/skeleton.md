@@ -33,7 +33,3 @@ The component supports 3 variants.
 ## Facebook example
 
 {{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}
-
-## Delay example
-
-{{"demo": "pages/components/skeleton/Delay.js", "defaultCodeOpen": false}}
