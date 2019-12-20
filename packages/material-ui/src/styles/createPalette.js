@@ -206,7 +206,7 @@ export default function createPalette(palette) {
       // Used by `getContrastText()` to maximize the contrast between
       // the background and the text.
       contrastThreshold,
-      // Take a background color and return the color of the text to maximize the contrast.
+      // Takes a background color and returns the text color that maximizes the contrast.
       getContrastText,
       // Generate a rich color object.
       augmentColor,

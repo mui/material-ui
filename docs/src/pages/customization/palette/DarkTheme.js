@@ -24,13 +24,15 @@ function Demo() {
 
 const lightTheme = createMuiTheme({
   palette: {
+    // This is the default, so only included for comparison.
     type: 'light',
   },
 });
 
 const darkTheme = createMuiTheme({
   palette: {
-    type: 'dark', // Switching the dark mode on is a single property value change.
+    // Switching the dark mode on is a single property value change.
+    type: 'dark',
   },
 });
 
