@@ -199,7 +199,7 @@ export default function createPalette(palette) {
       warning: augmentColor(warning),
       // The colors used to present information to the user that is neutral and not necessarily important.
       info: augmentColor(info),
-      // The colors used to indicate a successful completion of an action that user triggered.
+      // The colors used to indicate the successful completion of an action that user triggered.
       success: augmentColor(success),
       // The grey colors.
       grey,
