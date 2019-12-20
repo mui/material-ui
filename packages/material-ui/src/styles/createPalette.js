@@ -195,11 +195,11 @@ export default function createPalette(palette) {
       secondary: augmentColor(secondary, 'A400', 'A200', 'A700'),
       // The colors used to represent interface elements that the user should be made aware of.
       error: augmentColor(error),
-      // The colors used to represent important info that may have negative consequences and user should be aware of.
+      // The colors used to represent potentially dangerous actions or important messages.
       warning: augmentColor(warning),
-      // The colors used to present important information without context.
+      // The colors used to present information to the user that is neutral and not necessarily important.
       info: augmentColor(info),
-      // The colors used to indicate successful action.
+      // The colors used to indicate a successful completion of an action that user triggered.
       success: augmentColor(success),
       // The grey colors.
       grey,
