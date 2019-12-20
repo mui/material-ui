@@ -12,7 +12,7 @@ The theme exposes the following color intentions:
 - error - used to represent interface elements that the user should be made aware of.
 - warning - used to represent potentially dangerous actions or important messages.
 - info - used to present information to the user that is neutral and not necessarily important.
-- success - used to indicate a successful completion of an action that user triggered.
+- success - used to indicate the successful completion of an action that user triggered.
 
 The default palette uses the shades prefixed with `A` (`A200`, etc.) for the secondary intention,
 and the un-prefixed shades for the other intentions.
