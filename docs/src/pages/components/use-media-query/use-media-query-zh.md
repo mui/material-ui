@@ -10,7 +10,7 @@ title: React中的媒体查询用于响应式设计
 
 - ⚛️它有一个惯用的React API。
 - 🚀它具有高性能，它会观察文档以检测其媒体查询何时发生更改，而不是定期轮询值。
-- 📦 [1 kB gzipped](/size-snapshot).
+- 📦 [1kB 已压缩的包](/size-snapshot)。
 - 🤖 It supports server-side rendering.
 
 ## 简单的媒体查询
@@ -142,7 +142,7 @@ Make sure you provide the same custom match media implementation to the client-s
 
 ## 迁徙自 `withWidth()`
 
-The `withWidth()` higher-order component injects the screen width of the page. You can reproduce the same behavior with a `useWidth` hook:
+`withWidth()` 高阶组件注入页面的屏幕宽度。 您可以对 `useWidth` 钩子重用相同的操作：
 
 {{"demo": "pages/components/use-media-query/UseWidth.js"}}
 
@@ -156,14 +156,14 @@ The `withWidth()` higher-order component injects the screen width of the page. Y
 2. `options` (*Object* [optional]): 
   - `options.defaultMatches` （*布尔值* [optional]）： 作为 `window.matchMedia()` 在服务器上不可用， 我们在第一次安装时返回默认匹配。 默认值为 `false`。
   - `options.matchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia*. This can be used for handling an iframe content window.
-  - `options.noSsr` (*Boolean* [optional]): Defaults to `false`. 为了执行服务器端呈现协调，它需要呈现两次。 第一次没有任何东西，第二次与孩子们在一起。 这种双遍渲染周期有一个缺点。 It's slower. You can set this flag to `true` if you are **not doing server-side rendering**.
+  - `options.noSsr` (*Boolean* [optional]): 默认值为`false`。 为了执行服务器端呈现协调，它需要呈现两次。 第一次没有任何东西，第二次与孩子们在一起。 这种双遍渲染周期有一个缺点。 It's slower. You can set this flag to `true` if you are **not doing server-side rendering**.
   - `options.ssrMatchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia* in a [server-side rendering context](#server-side-rendering).
 
 Note: You can change the default options using the [`default props`](/customization/globals/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 
 #### 返回结果
 
-`matches`: Matches is `true` if the document currently matches the media query and `false` when it does not.
+` matches `：如果文档当前能够匹配这个媒体查询，Matches 是 `true` ，否则为 `false` 。
 
 #### 例子
 

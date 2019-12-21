@@ -27,13 +27,13 @@ We use GitHub issues exclusively as a bugs and feature requests tracker. If you 
 - Please don't group multiple topics in one issue – each should have its own issue instead.
 - Please don't comment "+1" on an issue. It spams the maintainers and doesn't help move the issue forward. Use GitHub reactions instead (👍).
 
-### Blog 📝
+### Блог 📝
 
 Stay up to date with the development of the library by following the blog.
 
 [Read the latest posts](https://medium.com/material-ui/)
 
-### Resources 📖
+### Ресурсы 📖
 
 Новичок в Material-UI? Легко начать изучение если ты знаешь с чего начать!
 

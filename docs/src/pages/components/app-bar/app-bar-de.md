@@ -17,7 +17,7 @@ It can transform into a contextual action bar or be used as a navbar.
 
 ## App-Bar mit einem Hauptsuchfeld
 
-A primary searchbar.
+Eine primäre Suchleiste.
 
 {{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
 
@@ -25,7 +25,7 @@ A primary searchbar.
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js", "bg": true}}
 
-## App Bar with search field
+## App-Bar mit Suchfeld
 
 Ein seitliches Suchfeld.
 
@@ -85,9 +85,9 @@ function App() {
 };
 ```
 
-## Scrolling
+## Scrollen
 
-You can use the `useScrollTrigger()` hook to respond to user scroll actions.
+Sie können den Hook `useScrollTrigger ()`, um auf Bildlauf Aktionen zu reagieren.
 
 ### App-Bar verstecken
 
@@ -119,7 +119,7 @@ A floating action buttons appears on scroll to make it easy to get back to the t
 
 #### Rückgabewerte
 
-`trigger`: Does the scroll position match the criteria?
+`trigger`: Entspricht die Bildlaufposition den Kriterien?
 
 #### Beispiele
 

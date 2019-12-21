@@ -23,7 +23,7 @@ title: Media queries in React for responsive design
 
 ## Material-UIのブレークポイントヘルパーの使用
 
-You can use Material-UI's [breakpoint helpers](/customization/breakpoints/) as follows:
+Material-UIの [ブレークポイントヘルパー](/customization/breakpoints/) を次のように使用できます。
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';
@@ -39,7 +39,7 @@ function MyComponent() {
 
 {{"demo": "pages/components/use-media-query/ThemeHelper.js", "defaultCodeOpen": false}}
 
-Alternatively, you can use a callback function, accepting the theme as a first argument:
+または、コールバック関数を使用して、最初の引数としてテーマを受け入れることもできます。
 
 ```jsx
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -51,11 +51,11 @@ function MyComponent() {
 }
 ```
 
-⚠️ There is **no default** theme support, you have to inject it in a parent theme provider.
+既定の**テーマのサポートはありません**。親テーマプロバイダに挿入する必要があります。
 
 ## JavaScriptシンタックスを使用する
 
-You can use [json2mq](https://github.com/akiran/json2mq) to generate media query string from a JavaScript object.
+JavaScriptオブジェクトからメディアクエリ文字列を生成するには、 [json2mq](https://github.com/akiran/json2mq) を使えます。
 
 {{"demo": "pages/components/use-media-query/JavaScriptMedia.js", "defaultCodeOpen": true}}
 
@@ -63,7 +63,7 @@ You can use [json2mq](https://github.com/akiran/json2mq) to generate media query
 
 You need an implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) in your test environment.
 
-For instance, [jsdom doesn't support it yet](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html). You should polyfill it. Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it is recommended.
+たとえば、 [jsdomはまだサポートしていません](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html)。 ポリフィルしたほうがいいですよ。 Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it is recommended.
 
 ```js
 import mediaQuery from 'css-mediaquery';
@@ -85,7 +85,7 @@ describe('MyTests', () => {
 
 ## サーバーサイドレンダリング
 
-> ⚠️サーバー側のレンダリングとクライアント側のメディアクエリは基本的に対立しています。 Be aware of the tradeoff. The support can only be partial.
+> ⚠️サーバー側のレンダリングとクライアント側のメディアクエリは基本的に対立しています。 トレードオフに注意してください。 サポートは部分的にのみ可能です。
 
 Try relying on client-side CSS media queries first. たとえば、
 
@@ -142,7 +142,7 @@ Make sure you provide the same custom match media implementation to the client-s
 
 ## `withWidth（）`からの移行
 
-The `withWidth()` higher-order component injects the screen width of the page. You can reproduce the same behavior with a `useWidth` hook:
+`withWidth()`上位コンポーネントは、ページの画面幅を挿入します。 `useWidth` フックで同じ動作を再現できます：
 
 {{"demo": "pages/components/use-media-query/UseWidth.js"}}
 
@@ -156,14 +156,14 @@ The `withWidth()` higher-order component injects the screen width of the page. Y
 2. `オプション` (*オプジェクト* [任意]): 
   - `options.defaultMatches` （*Boolean* [optional]）： `window.matchMedia（）` はサーバーで使用できないため、 最初のマウント時にデフォルトの一致を返します。 既定値は`false`です。
   - `options.matchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia*. This can be used for handling an iframe content window.
-  - `options.noSsr` (*Boolean* [optional]): Defaults to `false`. サーバー側のレンダリング調整を実行するには、2回レンダリングする必要があります。 1回目は何もない状態で、2回目は子要素と一緒です。 このダブルパスレンダリングサイクルには欠点があります。 It's slower. You can set this flag to `true` if you are **not doing server-side rendering**.
+  - `options.noSsr` (*ブール値* [任意]): デフォルト値 `false`. サーバー側のレンダリング調整を実行するには、2回レンダリングする必要があります。 1回目は何もない状態で、2回目は子要素と一緒です。 このダブルパスレンダリングサイクルには欠点があります。 遅いです。 サーバ側でレンダリングを`実行しない`場合は、このフラグを`true`に設定します。
   - `options.ssrMatchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia* in a [server-side rendering context](#server-side-rendering).
 
 Note: You can change the default options using the [`default props`](/customization/globals/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 
 #### 戻り値
 
-`matches`: Matches is `true` if the document currently matches the media query and `false` when it does not.
+`matches`：ドキュメントが現在メディアクエリと一致する場合は`true` 、一致しない場合は`false`になります。
 
 #### 例
 

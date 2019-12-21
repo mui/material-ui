@@ -69,7 +69,7 @@ It's possible to customise the options shown in the "Rows per page" select using
 
 ### Custom pagination actions
 
-The `Action` property of the `TablePagination` component allows the implementation of custom actions.
+El atributo `Action`del componente `TablePagination` permite implementar acciones personalizadas.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
@@ -79,15 +79,15 @@ An example of a table with scrollable rows and fixed column headers. It leverage
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
-## Spanning Table
+## Tabla Expandible
 
-A simple example with spanning rows & columns.
+Un ejemplo sencillo con filas & columnas expandibles.
 
 {{"demo": "pages/components/tables/SpanningTable.js", "bg": true}}
 
-## Virtualized Table
+## Tabla Virtualizada
 
-In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. Renderiza 200 filas y fácilmente puede manejar más. La virtualización ayuda con problemas de rendimiento.
+En el siguiente ejemplo, demostramos como usar [react-virtualized](https://github.com/bvaughn/react-virtualized) con el componente `Table`. Renderiza 200 filas y fácilmente puede manejar más. La virtualización ayuda con problemas de rendimiento.
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 

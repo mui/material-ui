@@ -31,7 +31,7 @@ Une barre de recherche latérale.
 
 {{"demo": "pages/components/app-bar/SearchAppBar.js", "bg": true}}
 
-## Dense (desktop only)
+## Dense (bureau uniquement)
 
 {{"demo": "pages/components/app-bar/DenseAppBar.js", "bg": true}}
 
@@ -85,7 +85,7 @@ function App() {
 };
 ```
 
-## Scrolling
+## Défilement
 
 You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
@@ -119,7 +119,7 @@ A floating action buttons appears on scroll to make it easy to get back to the t
 
 #### Valeur de retour
 
-`trigger`: Does the scroll position match the criteria?
+`trigger`: Est-ce que la position de défilement respecte les critères ?
 
 #### Exemples
 

@@ -71,6 +71,6 @@ Here is an example of a context menu. (Right click to open.)
 
 ### PopupState helper
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
+サードパーティ製のパッケージ [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state)があり、ほとんどの場合、メニューの状態を管理してくれます。
 
 {{"demo": "pages/components/menus/MenuPopupState.js"}}

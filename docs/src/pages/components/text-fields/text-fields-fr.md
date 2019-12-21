@@ -3,7 +3,7 @@ title: Composant React de champ de texte
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
-# Text Field
+# Text Field (Champ de texte)
 
 <p class="description">Les champs de texte permettent aux utilisateurs d'entrer et de modifier du texte.</p>
 
@@ -49,7 +49,7 @@ There are multiple ways to display an icon with a text field.
 
 {{"demo": "pages/components/text-fields/InputWithIcon.js"}}
 
-### Input Adornments
+### Ornements d'input
 
 The main way is with an `InputAdornment`. Ceux-ci peuvent être utilisés pour ajouter un préfixe, un suffixe ou une action à une entrée. Par exemple, vous pouvez utiliser un bouton icône pour masquer ou révéler le mot de passe.
 
@@ -77,9 +77,9 @@ The component can be controlled or uncontrolled
 
 ## Composants
 
-`TextField` is composed of smaller components ( [`FormControl`](/api/form-control/), [`Input`](/api/input/), [`FilledInput`](/api/filled-input/), [`InputLabel`](/api/input-label/), [`OutlinedInput`](/api/outlined-input/), and [`FormHelperText`](/api/form-helper-text/) ) that you can leverage directly to significantly customize your form inputs.
+`TextField` est composé d'éléments plus petits ( [`FormControl`](/api/form-control/), [`Input`](/api/input/), [`FilledInput`](/api/filled-input/), [`InputLabel`](/api/input-label/), [`OutlinedInput`](/api/outlined-input/), et [`FormHelperText`](/api/form-helper-text/) ) que vous pouvez utiliser directement pour personnaliser de manière significative vos entrées de formulaire.
 
-You might also have noticed that some native HTML input properties are missing from the `TextField` component. This is on purpose. The component takes care of the most used properties, then it's up to the user to use the underlying component shown in the following demo. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
+Vous avez peut-être également remarqué que certaines propriétés d'entrée HTML natives sont absentes du composant `TextField`. C'est intentionnel. Le composant prend en charge les propriétés les plus utilisées, puis il appartient à l'utilisateur d'utiliser le composant sous-jacent présenté dans la démonstration suivante. Néanmoins, vous pouvez utiliser `inputProps` (et `InputProps`, `InputLabelProps` propriétés) pour aller plus vite.
 
 {{"demo": "pages/components/text-fields/ComposedTextField.js"}}
 
@@ -93,13 +93,13 @@ The `color` prop changes the highlight color of the text field when focused.
 
 {{"demo": "pages/components/text-fields/ColorTextFields.js"}}
 
-## Customized inputs
+## Inputs personnalisées
 
 Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
-Customization does not stop at CSS, you can use composition to build custom components and give your app a unique feel. Below is an example using the [`InputBase`](/api/input-base/) component, inspired by Google Maps.
+La personnalisation ne se limite pas aux CSS, vous pouvez utiliser la composition pour créer des composants personnalisés et donner à votre application une sensation unique. Voici un exemple utilisant le composant [`InputBase`](/api/input-base/), inspiré de Google Maps.
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
@@ -107,17 +107,17 @@ Customization does not stop at CSS, you can use composition to build custom comp
 
 ### Shrink
 
-The input label "shrink" state isn't always correct. The input label is supposed to shrink as soon as the input is displaying something. In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
+Le label "shrink" n'est pas toujours correct. Le label d'input est supposé se réduire dès que l'input affiche quelque chose. Dans certaines circonstances, nous ne pouvons pas déterminer l'état de "réduction" (entrée de numéro, entrée de date / heure, entrée de bande). Vous remarquerez peut-être un chevauchement.
 
 ![shrink](/static/images/text-fields/shrink.png)
 
-To workaround the issue, you can force the "shrink" state of the label.
+Pour contourner le problème, vous pouvez forcer l'état "shrink" de la legende.
 
 ```jsx
 <TextField InputLabelProps={{ shrink: true }} />
 ```
 
-or
+ou
 
 ```jsx
 <InputLabel shrink>Contagem</InputLabel>
@@ -129,13 +129,13 @@ The floating label is absolutely positioned, it won't impact the layout of the p
 
 ## Integration with 3rd party input libraries
 
-You can use third-party libraries to format an input. You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
+Vous pouvez utiliser des bibliothèques tierces pour formater un input. Vous devez fournir une implémentation personnalisée de l'élément `<input>` avec la propriété `inputComponent`.
 
-The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
+La démo suivante utilise les bibliothèques [react-text-mask](https://github.com/text-mask/text-mask) et [react-number-format](https://github.com/s-yadav/react-number-format). The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
+Le composantinput fourni doit gérer la propriété `inputRef`. The property should be called with a value that implements the following interface:
 
 ```ts
 interface InputElement {

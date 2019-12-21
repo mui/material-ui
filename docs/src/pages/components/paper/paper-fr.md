@@ -9,4 +9,10 @@ components: Paper
 
 L'arrière-plan d'une application ressemble à la texture plate et opaque d'une feuille de papier, et le comportement d'une application imite la capacité du papier à être redimensionné, mélangé et lié ensemble en plusieurs feuilles.
 
-{{"demo": "pages/components/paper/PaperSheet.js", "bg": true}}
+{{"demo": "pages/components/paper/SimplePaper.js", "bg": true}}
+
+## Variants
+
+If you need an outlined surface, use the `variant` prop.
+
+{{"demo": "pages/components/paper/Variants.js", "bg": "inline"}}

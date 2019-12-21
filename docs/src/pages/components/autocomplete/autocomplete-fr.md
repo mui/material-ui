@@ -127,7 +127,7 @@ It supports the following options:
   - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
   - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
   - `config.stringify` (*Func* [optional]): Defaults to `JSON.stringify`.
-  - `config.trim` (*Boolean* [optional]): Defaults to `false`. Remove trailing spaces.
+  - `config.trim` (*Boolean* [optional]): Valeur par défaut `false`. Remove trailing spaces.
 
 In the following demo, the options need to start with the query prefix:
 
@@ -144,7 +144,7 @@ const filterOptions = createFilterOptions({
 
 ### Avancé
 
-For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). For instance:
+For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). Par exemple:
 
 ```jsx
 import matchSorter from 'match-sorter';

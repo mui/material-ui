@@ -11,13 +11,13 @@ Un [panel de expansión](https://material.io/archive/guidelines/components/expan
 
 > **Note:** Expansion panels are no longer documented in the [Material Design guidelines](https://material.io/), but Material-UI will continue to support them.
 
-## Simple Expansion Panel
+## Panel de expansión simple
 
 {{"demo": "pages/components/expansion-panels/SimpleExpansionPanel.js", "bg": true}}
 
-## Controlled Accordion
+## Acordeón controlado
 
-Extend the default panel behavior to create an accordion with the `ExpansionPanel` component.
+Extiende el comportamiento por defecto del panel para crear un acordeón con el componente `ExpansionPanel`.
 
 {{"demo": "pages/components/expansion-panels/ControlledExpansionPanels.js", "bg": true}}
 
@@ -33,7 +33,7 @@ In order to put an action such as a `Checkbox` or a button inside of the `Expans
 
 {{"demo": "pages/components/expansion-panels/ActionsInExpansionPanelSummary.js", "bg": true}}
 
-## Performance
+## Rendimiento
 
 The content of ExpansionPanels is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
 
@@ -43,9 +43,9 @@ The content of ExpansionPanels is mounted by default even if the panel is not ex
 
 As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
 
-## Secondary heading and Columns
+## Cabecera secundaria y columnas
 
-Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
+Múltiples columnas pueden ser usadas para estructurar el contenido, y un texto de ayuda puede ser agregado al panel para asistir al usuario.
 
 {{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js", "bg": true}}
 
@@ -53,4 +53,4 @@ Multiple columns can be used to structure the content, and a helper text may be 
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
 
-For optimal accessibility we recommend setting `id` and `aria-controls` on the `ExpansionPanelSummary`. The `ExpansionPanel` will derive the necessary `aria-labelledby` and `id` for the content region of the panel.
+Para óptima accesibilidad recomendamos establecer `id` y `aria-controls` en `ExpansionPanelSummary`. El `ExpansionPanel` derivará los necesarios `aria-labelledby` y `id` para la región de contenido del panel.

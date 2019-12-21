@@ -27,13 +27,13 @@
 - 请不要在一个Issue中打包多个话题 - 取而代之的，是每一个话题都应该有他自己的Issue。
 - 请不要在Issue评论中回复“+1” 它相当于向维护者发送垃圾信息，也无法使问题取得进展。 可以用GitHub的表情来替代 (👍).
 
-### Blog 📝
+### 博客 📝
 
 Stay up to date with the development of the library by following the blog.
 
 [Read the latest posts](https://medium.com/material-ui/)
 
-### Resources 📖
+### 资源📖
 
 您是第一次接触 Material-UI 吗? 如果你知道从哪里开始, 就很容易学会!
 
@@ -45,7 +45,7 @@ Receive the latest news on Material-UI.
 
 [Follow us](https://twitter.com/MaterialUI)
 
-### Supported versions
+### 支持的版本
 
 The Material-UI CE (Community Edition) has been 100% open-source (MIT) since the very beginning, and always will be. Developers can ensure Material-UI is the right choice for their React applications through Material-UI’s community maintenance strategy. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
@@ -63,7 +63,7 @@ For teams and organizations that require additional support for older versions, 
 
 ## 专业支持(高级)
 
-### Enterprise Edition
+### 企业版本
 
 Accelerate your company’s application development with a secure, long-term solution that’s optimized for enterprise and backed by Material-UI experts.
 
@@ -74,7 +74,7 @@ Accelerate your company’s application development with a secure, long-term sol
 
 For more information, [get a quote](mailto:enterprise@material-ui.com) from our team.
 
-### Advisory
+### 咨询
 
 Supercharge your team’s development with Material-UI Advisory Services:
 
@@ -119,14 +119,14 @@ The end result? All of the capabilities you expect from commercial-grade softwar
 
 [Request a demo](https://tidelift.com/subscription/request-a-demo?utm_source=material_ui&utm_medium=referral&utm_campaign=enterprise)
 
-### Custom work 🛠
+### 定制工作🛠
 
-Tweak Material-UI to meet specific requirements. Give us a summary of your needs; We'll help you if I can. We might:
+调整Material-UI以满足特定要求。 给我们您的需求摘要；如果可以的话，我们会帮助您。 我们可能：
 
 - 如果工作简单明了，会给您估计时间和价格
 - 建议可能不需要 Material-UI 的替代方法
 - 由于时间或相关性而拒绝合作
 
-Note that work must be Material-UI related. We don't accept general React development work. Our contracting price is $200/hour or $1,500/day.
+请注意，工作必须与 Material-UI 相关。 我们不接受一般的 React 开发工作。 Our contracting price is $200/hour or $1,500/day.
 
-[Send us an email](mailto:custom-work@material-ui.com)
+[给我们发送电子邮件](mailto:custom-work@material-ui.com)

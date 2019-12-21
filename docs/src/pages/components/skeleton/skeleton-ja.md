@@ -19,16 +19,16 @@ components: Skeleton
 )}
 ```
 
-## Variants
+## バリアント
 
 The component supports 3 variants.
 
 {{"demo": "pages/components/skeleton/Variants.js"}}
 
-## YouTube example
+## YouTubeの例
 
 {{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
-## Facebook example
+## Facebookの例
 
 {{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}

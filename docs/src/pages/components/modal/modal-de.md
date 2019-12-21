@@ -9,9 +9,9 @@ components: Modal
 
 Die Komponente rendered seine `Kinder` - Knoten vor einer Hintergrund - Komponente. The `Modal` offers important features:
 
-- 💄 Manages modal stacking when one-at-a-time just isn't enough.
-- 🔐 Creates a backdrop, for disabling interaction below the modal.
-- 🔐 It disables scrolling of the page content while open.
+- 💄 Verwaltet modales Stacking, wenn eins zu einem Zeitpunkt nicht ausreicht.
+- 🔐 Erstellt einen Hintergrund zum Deaktivieren der Interaktion unter dem Modal.
+- 🔐 Es deaktiviert das Blättern des Seiteninhalts, während es geöffnet ist.
 - ♿️ Der Fokus wird richtig verwaltet. Wechseln des Fokus zum modalen Inhalt und diesen halten belassen, bis der Modal geschlossen ist.
 - ♿️ Fügt die entsprechenden ARIA-Rollen automatisch hinzu.
 - 📦 [5 kB gzipped](/size-snapshot).
@@ -70,7 +70,7 @@ This is done for accessibility purposes, however, it might create issues. In the
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
-- Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
+- Achten Sie darauf, eine Referenzierung des modalen Titels durch `aria-labelledby = "id..."` zu dem `Modal` hinzufügen. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
     
     ```jsx
     <Modal

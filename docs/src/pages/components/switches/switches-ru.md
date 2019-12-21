@@ -43,7 +43,7 @@ Fancy smaller switches? Use the `size` property.
 
 ## Бесплатно
 
-- [Checkboxes vs. Switch (переключатели)](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
+- [Чекбоксы. Switch (переключатели)](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
 ## Доступность
 

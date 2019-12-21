@@ -67,7 +67,7 @@ The track can be inverted with `track="inverted"`.
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
 
-The component handles most of the work necessary to make it accessible. However, you need to make sure that:
+コンポーネントは、アクセス可能にするために必要なほとんどの作業を処理します。 ただし、次の点を確認する必要があります。
 
 - Each thumb has a user-friendly label (`aria-label`, `aria-labelledby` or `getAriaLabel` prop).
 - Each thumb has a user-friendly text for its current value. 値がラベルのセマンティクスと一致する場合、これは必要ありません。 この名前は、 `getAriaValueText`または`aria-valuetext`プロパティを使用して変更できます。

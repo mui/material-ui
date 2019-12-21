@@ -52,7 +52,7 @@ For advanced customization use cases, we expose a `useAutocomplete()` hook. It a
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
 ```
 
-- 📦 [4.5 kB gzipped](/size-snapshot).
+- 📦 [4.5 kB comprimido](/size-snapshot).
 
 {{"demo": "pages/components/autocomplete/UseAutocomplete.js", "defaultCodeOpen": false}}
 
@@ -127,7 +127,7 @@ It supports the following options:
   - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
   - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
   - `config.stringify` (*Func* [optional]): Defaults to `JSON.stringify`.
-  - `config.trim` (*Boolean* [optional]): Defaults to `false`. Remove trailing spaces.
+  - `config.trim` (*Boolean* [optional]): Default `false`. Remove trailing spaces.
 
 In the following demo, the options need to start with the query prefix:
 
@@ -144,7 +144,7 @@ const filterOptions = createFilterOptions({
 
 ### Avanzado
 
-For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). For instance:
+For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). Por ejemplo:
 
 ```jsx
 import matchSorter from 'match-sorter';

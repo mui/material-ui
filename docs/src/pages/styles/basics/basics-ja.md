@@ -181,7 +181,7 @@ This button component has a color property that changes its color:
 
 {{"demo": "pages/styles/basics/AdaptingHOC.js"}}
 
-### Stress test
+### ストレステスト
 
 In the following stress test, you can update the *theme color* and the *background-color property* live:
 
@@ -196,7 +196,7 @@ const useStyles = makeStyles(theme => ({
 
 {{"demo": "pages/styles/basics/StressTest.js"}}
 
-## @material-ui/core/styles vs @material-ui/styles
+## @material-ui/core/styles と @material-ui/styles
 
 Material-UI's styles are powered by the [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) package, (built with JSS). This solution is [isolated](https://bundlephobia.com/result?p=@material-ui/styles). It doesn't have a default theme, and can be used to style React applications that are not using Material-UI components.
 

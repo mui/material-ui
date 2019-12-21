@@ -14,7 +14,7 @@ The component renders its `children` node in front of a backdrop component. The 
 - 🔐 It disables scrolling of the page content while open.
 - ♿️ It properly manages focus; moving to the modal content, and keeping it there until the modal is closed.
 - ♿️ Adds the appropriate ARIA roles automatically.
-- 📦 [5 kB gzipped](/size-snapshot).
+- 5 [1 кБ в сжатом виде](/size-snapshot).
 
 > **примечание по терминологии**. Термин «modal» иногда используется для обозначения «dialog», но это неверно. A modal window describes parts of a UI. An element is considered modal if [it blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window).
 

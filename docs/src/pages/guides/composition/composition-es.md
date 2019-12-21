@@ -120,7 +120,7 @@ You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-
 
 The integration with third-party routing libraries is achieved with the `component` prop. The behavior is identical to the description of the prop above. Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router). It covers the Button, Link, and List components, you should be able to apply the same strategy with all the components.
 
-### Button
+### Button (botón)
 
 {{"demo": "pages/guides/composition/ButtonRouter.js"}}
 

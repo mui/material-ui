@@ -7,14 +7,14 @@ components: Modal
 
 <p class="description">模态框组件可以用来快速创建对话框、弹出窗口，灯箱等任何你所需的组件。</p>
 
-The component renders its `children` node in front of a backdrop component. The `Modal` offers important features:
+组件会在背景组件前渲染其`children`节点。 The `Modal` offers important features:
 
 - 💄 Manages modal stacking when one-at-a-time just isn't enough.
 - 🔐 Creates a backdrop, for disabling interaction below the modal.
 - 🔐 It disables scrolling of the page content while open.
 - ♿️它妥善管理焦点;移动到模态内容， 并保持它直到模态关闭。
 - ♿️自动添加适当的ARIA角色。
-- 📦 [5 kB gzipped](/size-snapshot).
+- 📦 [5kB 已压缩的包](/size-snapshot)。
 
 > **术语注释**。 “模态框”（Modal）这个词有时也被用来指代“对话框”，但是这种用法属于误用。 A modal window describes parts of a UI. 如果一个元素[阻挡了用户与应用的其它部分的互动](https://en.wikipedia.org/wiki/Modal_window)，这个元素就是模态的。
 
@@ -70,7 +70,7 @@ This is done for accessibility purposes, however, it might create issues. In the
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
-- Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
+- 记得用 `aria-labelledby="id..."` 属性来指向`Modal` 的标题. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
     
     ```jsx
     <Modal

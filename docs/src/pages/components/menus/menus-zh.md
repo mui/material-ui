@@ -71,6 +71,6 @@ The `MenuItem` is a wrapper around `ListItem` with some additional styles. You c
 
 ### PopupState helper
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
+这里有一个第三方包 [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) 在大部分情况下，它都能帮你处理好菜单状态
 
 {{"demo": "pages/components/menus/MenuPopupState.js"}}

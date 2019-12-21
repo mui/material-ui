@@ -1,4 +1,4 @@
-# Showcase
+# 事例
 
 <p class="description">The following is a list of some of the public apps using Material-UI.</p>
 

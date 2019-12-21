@@ -1,4 +1,4 @@
-# Support
+# サポート
 
 <p class="description">From community help to premium critical business support, we’re here to help.</p>
 
@@ -27,7 +27,7 @@ We use GitHub issues exclusively as a bugs and feature requests tracker. If you 
 - Please don't group multiple topics in one issue – each should have its own issue instead.
 - Please don't comment "+1" on an issue. It spams the maintainers and doesn't help move the issue forward. Use GitHub reactions instead (👍).
 
-### Blog 📝
+### ブログ 📝
 
 Stay up to date with the development of the library by following the blog.
 

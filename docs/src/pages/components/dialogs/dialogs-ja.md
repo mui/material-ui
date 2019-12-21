@@ -95,20 +95,20 @@ function MyComponent() {
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## Draggable dialog
+## ドラッグ可能なダイアログ
 
-You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable). To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. This will make the entire dialog draggable.
+[react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。
 
 {{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## 長いコンテンツをスクロールする
 
-When dialogs become too long for the user’s viewport or device, they scroll.
+ダイアログがユーザのビューポートまたはデバイスに対して長すぎる場合は、スクロールします。
 
 - `scroll=paper`: paper要素内でダイアログボックスの内容がスクロールします。
 - `scroll=body`: ダイアログの内容がbody要素内をスクロールします。
 
-Try the demo below to see what we mean:
+以下のデモを試してみてください。
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
@@ -118,4 +118,4 @@ Follow the [Modal limitations section](/components/modal/#limitations).
 
 ## アクセシビリティ
 
-Follow the [Modal accessibility section](/components/modal/#accessibility).
+[モーダルアクセシビリティのセクション](/components/modal/#accessibility)従ってください。

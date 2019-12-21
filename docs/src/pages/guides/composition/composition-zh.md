@@ -112,9 +112,9 @@ import { Link } from 'react-router-dom';
 
 ⚠️ However, this strategy suffers from a limitation: prop collisions. The component providing the `component` prop (e.g. ListItem) might not forward all the props (for example dense) to the root element.
 
-### With TypeScript
+### 使用 TypeScript
 
-You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-component-prop).
+您可以在[ TypeScript指南中找到详细信息](/guides/typescript/#usage-of-component-prop) 。
 
 ## Routing libraries
 
@@ -132,11 +132,11 @@ The integration with third-party routing libraries is achieved with the `compone
 
 {{"demo": "pages/guides/composition/ListRouter.js"}}
 
-## Caveat with refs
+## 使用refs时要注意
 
-This section covers caveats when using a custom component as `children` or for the `component` prop.
+本节介绍将自定义组件用作`子组件`或`component`属性的值时的注意事项。
 
-Some of the components need access to the DOM node. This was previously possible by using `ReactDOM.findDOMNode`. This function is deprecated in favor of `ref` and ref forwarding. However, only the following component types can be given a `ref`:
+某些组件需要访问DOM节点。 之前提到，通过使用` ReactDOM.findDOMNode ` 就能实现。 该方法已被废弃，代替的是使用` ref `和 ref 转递。 然而，只有下列组件类型才可获得 `ref`：
 
 - 任何Material-UI组件
 - 类组件，如 `React.Component` 或 `React.PureComponent` 等
@@ -145,17 +145,17 @@ Some of the components need access to the DOM node. This was previously possible
 - [React.lazy组件](https://reactjs.org/docs/react-api.html#reactlazy)
 - [React.memo组件](https://reactjs.org/docs/react-api.html#reactmemo)
 
-If you don't use one of the above types when using your components in conjunction with Material-UI, you might see a warning from React in your console similar to:
+如果在将组件与Material-UI结合使用时未使用上述类型之一，则可能会在控制台中看到来自React的警告，类似于：
 
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
-Be aware that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref.
+请注意，在使用 `lazy` 和 `memo` 组件时，如果被封装的组件无法持有 ref，您仍然有可能收到这个警告。
 
 In some instances an additional warning is issued to help with debugging, similar to:
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
-Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
+Only the two most common use cases are covered. 更多信息见[React官方文档中的本章节](https://reactjs.org/docs/forwarding-refs.html)。
 
 ```diff
 - const MyButton = props => <div role="button" {...props} />;
@@ -169,7 +169,7 @@ Only the two most common use cases are covered. For more information see [this s
 <Tooltip title="Hello, again."><SomeContent /></Tooltip>;
 ```
 
-To find out if the Material-UI component you're using has this requirement, check out the the props API documentation for that component. If you need to forward refs the description will link to this section.
+要确定您使用的Material-UI组件是否具有此需求，请查阅该组件的props API文档。 如果您需要转递 refs，描述将链接到此部分。
 
 ### Caveat with StrictMode
 

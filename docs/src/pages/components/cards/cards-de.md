@@ -17,6 +17,12 @@ Karten können zwar mehrere Aktionen, UI-Steuerelemente und ein Überlaufmenü u
 
 {{"demo": "pages/components/cards/SimpleCard.js", "bg": true}}
 
+### Outlined Card
+
+Set `variant="outlined` to render an outlined card.
+
+{{"demo": "pages/components/cards/OutlinedCard.js", "bg": true}}
+
 ## Komplexe Interaktion
 
 Auf dem Desktop können Karteninhalte erweitert werden.

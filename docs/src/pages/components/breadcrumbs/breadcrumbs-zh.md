@@ -17,27 +17,27 @@ Keep the last breadcrumb interactive.
 
 {{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
 
-## Custom separator
+## 自定义分隔符
 
-In the following examples, we are using two string separators, and an SVG icon.
+在以下的示例中，我们使用了两个字符串分隔符和一个SVG图标。
 
 {{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
-## Breadcrumbs with icons
+## 带图标的面包屑导航
 
 {{"demo": "pages/components/breadcrumbs/IconBreadcrumbs.js"}}
 
-## Collapsed breadcrumbs
+## 可折叠的面包屑导航
 
 {{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## Customized breadcrumbs
+## 自定义的面包屑导航
 
 以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
-## Integration with react-router
+## 与 react-router 的交互
 
 {{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js", "bg": true}}
 
@@ -45,7 +45,7 @@ In the following examples, we are using two string separators, and an SVG icon.
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#breadcrumb)
 
-Be sure to add a `aria-label` description on the `Breadcrumbs` component.
+请务必在 `面包屑导航`组件上加上`aria-label`的描述。
 
 这个组件的可访问性依赖于：
 

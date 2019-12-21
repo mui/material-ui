@@ -31,7 +31,7 @@ You can use the `arrow` prop to give your tooltip an arrow indicating which elem
 
 {{"demo": "pages/components/tooltips/ArrowTooltips.js"}}
 
-## Custom child element
+## Élément enfant personnalisé
 
 The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
 
@@ -48,23 +48,23 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 </Tooltip>
 ```
 
-You can find a similar concept in the [wrapping components](/guides/composition/#wrapping-components) guide.
+Vous pouvez trouver un concept similaire dans le [composants d'emballage](/guides/composition/#wrapping-components) guide.
 
-## Triggers
+## Activation
 
-You can define the types of events that cause a tooltip to show.
+Vous pouvez définir les types d'événements qui entraînent l'affichage d'une info-bulle.
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## Controlled Tooltips
+## Info-bulles contrôlées
 
-You can use the `open`, `onOpen` and `onClose` properties to control the behavior of the tooltip.
+Vous pouvez utiliser les propriétés `open`, `onOpen` et `onClose` pour contrôler le comportement de l'info-bulle.
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## Variable Width
+## Largeur Variable
 
-The `Tooltip` wraps long text by default to make it readable.
+Le `Tooltip` enveloppements long texte par défaut pour le rendre lisible.
 
 {{"demo": "pages/components/tooltips/VariableWidth.js"}}
 
@@ -74,9 +74,9 @@ A tooltip can be interactive. It won't close when the user hovers over the toolt
 
 {{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
 
-## Disabled Elements
+## Éléments désactivés
 
-By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
+Par éléments désactivés par défaut comme `<button>` ne déclenchent pas les interactions utilisateur si un `infobulle` ne sera pas activée sur les événements normaux comme vol stationnaire. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
 > ⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
 
@@ -100,9 +100,9 @@ Utilisez une transition différente.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
-## Showing and hiding
+## Montrer et se cacher
 
-The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the properties `enterDelay` and `leaveDelay`, as shown in the Controlled Tooltips demo above.
+L'info-bulle est normalement affichée immédiatement lorsque la souris de l'utilisateur survole l'élément, et se cache immédiatement lorsque la souris de l'utilisateur quitte la souris. Un retard dans l'affichage ou le masquage de l'info-bulle peut être ajouté via les propriétés suivantes `enterDelay` et `leaveDelay`, comme indiqué dans la démo Infobulles contrôlées ci-dessus.
 
 On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` property.
 

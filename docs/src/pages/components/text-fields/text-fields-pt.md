@@ -49,9 +49,9 @@ There are multiple ways to display an icon with a text field.
 
 {{"demo": "pages/components/text-fields/InputWithIcon.js"}}
 
-### Input Adornments
+### Decoração de inputs
 
-The main way is with an `InputAdornment`. These can be used to add a prefix, a suffix or an action to an input. For instance, you can use an icon button to hide or reveal the password.
+The main way is with an `InputAdornment`. Estes podem ser usados para adicionar um prefixo, sufixo ou uma ação para uma entrada. Por exemplo, você pode usar um botão com ícone para ocultar ou revelar a senha.
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
@@ -77,9 +77,9 @@ The component can be controlled or uncontrolled
 
 ## Componentes
 
-`TextField` is composed of smaller components ( [`FormControl`](/api/form-control/), [`Input`](/api/input/), [`FilledInput`](/api/filled-input/), [`InputLabel`](/api/input-label/), [`OutlinedInput`](/api/outlined-input/), and [`FormHelperText`](/api/form-helper-text/) ) that you can leverage directly to significantly customize your form inputs.
+`TextField` é composto por componentes menores ([`FormControl`](/api/form-control/), [`Input`](/api/input/), [`FilledInput`](/api/filled-input/), [`InputLabel`](/api/input-label/), [`OutlinedInput`](/api/outlined-input/), e [`FormHelperText`](/api/form-helper-text/)) que você pode aproveitar diretamente para personalizar significativamente as entradas do seu formulário.
 
-You might also have noticed that some native HTML input properties are missing from the `TextField` component. This is on purpose. The component takes care of the most used properties, then it's up to the user to use the underlying component shown in the following demo. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
+Você também pode ter notado que algumas propriedades de entrada nativas do HTML estão faltando no componente `TextField`. Isto é intencional. O componente cuida das propriedades mais usadas, depois cabe ao usuário usar o componente exibido na demonstração. Ainda, você pode usar `inputProps` (`InputProps` e `InputLabelProps`) se você quiser evitar algum boilerplate.
 
 {{"demo": "pages/components/text-fields/ComposedTextField.js"}}
 
@@ -93,49 +93,49 @@ The `color` prop changes the highlight color of the text field when focused.
 
 {{"demo": "pages/components/text-fields/ColorTextFields.js"}}
 
-## Customized inputs
+## Inputs Costumizados
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
-Customization does not stop at CSS, you can use composition to build custom components and give your app a unique feel. Below is an example using the [`InputBase`](/api/input-base/) component, inspired by Google Maps.
+A customização não para no CSS, você pode usar composição para criar componentes personalizados e dar ao seu aplicativo uma sensação única. Abaixo há um exemplo usando o componente [`InputBase`](/api/input-base/), inspirado pelo Google Maps.
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
 ## Limitações
 
-### Shrink
+### Reduzir
 
-The input label "shrink" state isn't always correct. The input label is supposed to shrink as soon as the input is displaying something. In some circumstances, we can't determine the "shrink" state (number input, datetime input, Stripe input). You might notice an overlap.
+O label de entrada "shrink" nem sempre está correto. O input label deve encolher assim que o input estiver exibindo algo. Em algumas circunstâncias, não podemos determinar o estado de "srink" (input numérico, input datetime, input Stripe). Você pode notar uma sobreposição.
 
-![shrink](/static/images/text-fields/shrink.png)
+![minimizar](/static/images/text-fields/shrink.png)
 
-To workaround the issue, you can force the "shrink" state of the label.
+Para contornar o problema, você pode forçar a "shrink" do label.
 
 ```jsx
 <TextField InputLabelProps={{ shrink: true }} />
 ```
 
-or
+ou
 
 ```jsx
 <InputLabel shrink>Contagem</InputLabel>
 ```
 
-### Floating label
+### Rótulo flutuante
 
-The floating label is absolutely positioned, it won't impact the layout of the page. You need to make sure that the input is larger than the label to display correctly.
+O rótulo flutuante está absolutamente posicionado, não afetará o leiaute da página. Você precisa ter certeza de que o componente de entrada é maior do que o rótulo para a exibição correta.
 
-## Integration with 3rd party input libraries
+## Integração com bibliotecas de input de terceiros
 
-You can use third-party libraries to format an input. You have to provide a custom implementation of the `<input>` element with the `inputComponent` property.
+Você pode usar bibliotecas de terceiros para formatar uma entrada. Você precisa fornecer uma implementação personalizada do elemento `<input>` com a propriedade `inputComponent`.
 
-The following demo uses the [react-text-mask](https://github.com/text-mask/text-mask) and [react-number-format](https://github.com/s-yadav/react-number-format) libraries. The same concept could be applied to [e.g. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
+A seguinte demonstração usa as bibliotecas [react-text-mask](https://github.com/text-mask/text-mask) e [react-number-format](https://github.com/s-yadav/react-number-format). O mesmo conceito pode ser aplicado para, [p. ex. react-stripe-element](https://github.com/mui-org/material-ui/issues/16037).
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-The provided input component should handle the `inputRef` property. The property should be called with a value that implements the following interface:
+O componente de entrada fornecido deve manipular a propriedade `inputRef`. A propriedade deve ser chamada com um valor que implemente a seguinte interface:
 
 ```ts
 interface InputElement {
@@ -171,7 +171,7 @@ function MeuInputComponente(props) {
 
 ## Acessibilidade
 
-In order for the text field to be accessible, **the input should be linked to the label and the helper text**. The underlying DOM nodes should have this structure.
+Para que o campo de texto seja acessível, **a entrada deve estar vinculada ao rótulo e ao texto auxiliar**. Os nós DOM subjacentes devem ter essa estrutura.
 
 ```jsx
 <div class="form-control">

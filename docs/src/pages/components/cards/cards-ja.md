@@ -3,7 +3,7 @@ title: Card コンポーネント
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
-# Card
+# Card (カード)
 
 <p class="description">Cardは一つの主題に関してのコンテンツとアクションを含みます。</p>
 
@@ -16,6 +16,12 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 Cardは複数のアクション、UIコントロール、およびオーバーフローメニューをサポートできますが制限してください。Cardがより複雑で詳細な情報への入り口であることを忘れてはいけません。
 
 {{"demo": "pages/components/cards/SimpleCard.js", "bg": true}}
+
+### Outlined Card
+
+Set `variant="outlined` to render an outlined card.
+
+{{"demo": "pages/components/cards/OutlinedCard.js", "bg": true}}
 
 ## 複雑なインタラクション
 

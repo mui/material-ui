@@ -37,7 +37,7 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 
 {{"demo": "pages/components/popper/SpringPopper.js"}}
 
-## Positioned Popper
+## 位置決めポッパー
 
 {{"demo": "pages/components/popper/PositionedPopper.js", "bg": true}}
 
@@ -45,11 +45,11 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 
 {{"demo": "pages/components/popper/ScrollPlayground.js", "hideHeader": true, "bg": true}}
 
-## Faked reference object
+## 偽の参照オブジェクト
 
-The `anchorEl` property can be a reference to a fake DOM element. You just need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+`anchorEl` プロパティは、偽のDOM要素への参照することができます。 [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123)のような形のオブジェクトを作成するだけです。
 
-Highlight part of the text to see the popper:
+テキストの一部をハイライトして、ポップヒントを表示します。
 
 {{"demo": "pages/components/popper/FakedReferencePopper.js"}}
 
@@ -59,6 +59,6 @@ Highlight part of the text to see the popper:
 
 ### PopupState helper
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper state for you in most cases.
+サードパーティ製のパッケージ [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) があり、ほとんどの場合、popperの状態を管理してくれます。
 
 {{"demo": "pages/components/popper/PopperPopupState.js"}}

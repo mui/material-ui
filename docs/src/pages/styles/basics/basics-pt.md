@@ -10,11 +10,11 @@ Nas versões anteriores, o Material-UI usava o LESS, e em seguida, uma solução
 
 A solução de estilo do Material-UI é inspirada em muitas outras bibliotecas de estilo, como [styled-components](https://www.styled-components.com/) e [emotion](https://emotion.sh/).
 
-- 💅 You can expect [the same advantages](https://www.styled-components.com/docs/basics#motivation) as styled-components.
-- 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles).
-- 🧩 It's extensible via a [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
-- ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core – a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
-- 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles); and no bundle size increase if used alongside Material-UI.
+- 💅 Você pode esperar [as mesmas vantagens](https://www.styled-components.com/docs/basics#motivation) que styled-components.
+- 🚀 Está [super rápida](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles).
+- 🧩 É extensível através de uma API de [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md).
+- ⚡️Ela usa [JSS](https://github.com/cssinjs/jss) em seu núcleo – um [alto desempenho](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript para o compilador CSS, que funciona em tempo de execução e no lado do servidor.
+- 📦 Menor que [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles); e nenhum aumento no tamanho do pacote se usado juntamente com o Material-UI.
 
 ## Instalação
 
@@ -181,7 +181,7 @@ Este componente botão tem uma propriedade de cor que modifica sua cor:
 
 {{"demo": "pages/styles/basics/AdaptingHOC.js"}}
 
-### Stress test
+### Teste de estresse
 
 No teste de estresse a seguir, você pode atualizar *a cor do tema* e a *propriedade background-color* de forma interativa:
 

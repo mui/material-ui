@@ -17,6 +17,12 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 {{"demo": "pages/components/cards/SimpleCard.js", "bg": true}}
 
+### Outlined Card
+
+Set `variant="outlined` to render an outlined card.
+
+{{"demo": "pages/components/cards/OutlinedCard.js", "bg": true}}
+
 ## 复杂交互
 
 在桌面上, 卡片内容可以展开。
@@ -29,7 +35,7 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 {{"demo": "pages/components/cards/MediaCard.js", "bg": true}}
 
-默认情况下，我们会混合一个 `<div>`元素和一张*背景图片*来显示多媒体元素。 在某些情况下可能会产生一些问题。 例如, 您可能希望显示一个视频或一张响应式的图片。 这样的情况下，请您使用 `component` 属性:
+默认情况下，我们使用给`<div>` 元素加一个 *背景图片* 的方式来显示多媒体元素。 但在某些情况下，可能会产生一些不可预知的问题。 例如, 您可能希望显示一个视频或一张响应式的图片。 对于这些用例, 请使用 `component` 属性:
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 
@@ -37,7 +43,7 @@ components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedi
 
 ## UI 控件
 
-我们可以可使用图标、文本和 UI 控件显式来调用卡片中的补充操作，而它们通常被放在卡片的底部。
+卡片中的补充操作可使用图标、文本和 UI 控件显式调用, 通常放在一个卡片的底部。
 
 下面是一个媒体控制卡片的例子。
 

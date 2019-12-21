@@ -32,7 +32,7 @@ A regular schedule of releases helps you plan and coordinate your updates with t
 
 In general, you can expect the following release cycle:
 
-- A **major** release every 12 months.
+- Une version **majeure** tous les 12 mois.
 - 1-3 **mineur** versions pour chaque version majeure.
 - A **patch** release every week (anytime for urgent bugfix).
 

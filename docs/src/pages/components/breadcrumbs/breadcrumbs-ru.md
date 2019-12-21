@@ -17,21 +17,21 @@ Keep the last breadcrumb interactive.
 
 {{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
 
-## Custom separator
+## Пользовательский разделитель
 
-In the following examples, we are using two string separators, and an SVG icon.
+В следующих примерах мы используем два строковых разделителя и SVG иконку.
 
 {{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
-## Breadcrumbs with icons
+## Хлебные крошки с иконками
 
 {{"demo": "pages/components/breadcrumbs/IconBreadcrumbs.js"}}
 
-## Collapsed breadcrumbs
+## Collapsed хлебные крошки
 
 {{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## Customized breadcrumbs
+## Пользовательские хлебные крошки
 
 Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
@@ -45,7 +45,7 @@ In the following examples, we are using two string separators, and an SVG icon.
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#breadcrumb)
 
-Be sure to add a `aria-label` description on the `Breadcrumbs` component.
+Убедитесь что добавили `aria-label` в описание `Breadcrumbs` компонента.
 
 Доступность этого компонента зависит от:
 

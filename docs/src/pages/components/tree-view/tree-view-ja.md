@@ -17,7 +17,7 @@ The tree view also offers a controlled API.
 
 {{"demo": "pages/components/tree-view/ControlledTreeView.js"}}
 
-## Customized tree view
+## カスタマイズされたツリービュー
 
 ### Custom icons, border and animation
 

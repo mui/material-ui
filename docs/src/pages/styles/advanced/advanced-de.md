@@ -64,7 +64,7 @@ const DeepChild = withTheme(DeepChildRaw);
 
 ### Verschachtelung des Themes
 
-You can nest multiple theme providers. This can be really useful when dealing with different areas of your application that have distinct appearance from each other.
+Sie können mehrere Theme Provider verschachteln. Dies kann sehr nützlich sein, wenn Sie sich mit unterschiedlichen Bereichen Ihrer Anwendung befassen, die sich voneinander unterscheiden.
 
 ```jsx
 <ThemeProvider theme={outerTheme}>
@@ -77,7 +77,7 @@ You can nest multiple theme providers. This can be really useful when dealing wi
 
 {{"demo": "pages/styles/advanced/ThemeNesting.js"}}
 
-The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
+Das innere Theme ** überschreibt** das äußere Theme. Sie können das äußere Theme erweitern, indem Sie eine Funktion bereitstellen:
 
 ```jsx
 <ThemeProvider theme={…} >
@@ -90,7 +90,7 @@ The inner theme will **override** the outer theme. You can extend the outer them
 
 ## Überschreiben der Styles `classes` Eigenschaft
 
-The `makeStyles` (hook generator) and `withStyles` (HOC) APIs allow the creation of multiple style rules per style sheet. Each style rule has its own class name. The class names are provided to the component with the `classes` variable. This is particularly useful when styling nested elements in a component.
+Die `makeStyle` (Hook-Generator) und `withStyles` (HOC) APIs ermöglichen die Erstellung mehrerer Stilregeln pro Stylesheet. Jede Stilregel hat einen eigenen Klassennamen. Die Klassennamen werden der Komponente mit der `classes` Variable zur Verfügung gestellt. Dies ist besonders nützlich, wenn Sie verschachtelte Elemente in einer Komponente formatieren.
 
 ```jsx
 // Ein Stylesheet
@@ -115,11 +115,11 @@ function Parent() {
 }
 ```
 
-However, the class names are often non-deterministic. How can a parent component override the style of a nested element?
+Die Klassennamen sind jedoch häufig nicht deterministisch. Wie kann eine übergeordnete Komponente den Stil eines verschachtelten Elements überschreiben?
 
 ### `withStyles`
 
-This is the simplest case. the wrapped component accepts a `classes` prop, it simply merges the class names provided with the style sheet.
+Dies ist der einfachste Fall. Die umschlossene Komponente akzeptiert die `classes` Eigenschaft, welches einfach die mit dem Stylesheet gelieferten Klassennamen zusammengeführt wird.
 
 ```jsx
 const Nested = withStyles({
@@ -140,7 +140,7 @@ function Parent() {
 
 ### `makeStyles`
 
-The hook API requires a bit more work. You have to forward the parent props to the hook as a first argument.
+Die Hook-API erfordert etwas mehr Arbeit. Sie müssen die übergeordneten Eigenschaften als erstes Argument an den Hook übergeben.
 
 ```jsx
 const useStyles = makeStyles({
@@ -166,9 +166,9 @@ function Parent() {
 
 ## JSS-Plugins
 
-JSS uses plugins to extend its core, allowing you to cherry-pick the features you need, and only pay the performance overhead for what you are using.
+JSS nutzt Plugins um seinen Kern zu erweitern, sodass Sie die Funktionen, die Sie benötigen auswählen können. Sie bezahlen nur für den Leistungsaufwand, den Sie verwenden.
 
-Not all the plugins are available in Material-UI by default. The following (which is a subset of [jss-preset-default](https://cssinjs.org/jss-preset-default/)) are included:
+Nicht alle Plugins sind standardmäßig in der Material-UI verfügbar. Folgende (die eine Teilmenge von [jss-preset-default](https://cssinjs.org/jss-preset-default/) sind) sind inklusive:
 
 - [jss-plugin-rule-value-function](https://cssinjs.org/jss-plugin-rule-value-function/)
 - [jss-plugin-global](https://cssinjs.org/jss-plugin-global/)
@@ -178,7 +178,7 @@ Not all the plugins are available in Material-UI by default. The following (whic
 - [jss-plugin-vendor-prefixer](https://cssinjs.org/jss-plugin-default-unit/)
 - [jss-plugin-props-sort](https://cssinjs.org/jss-plugin-vendor-prefixer/)
 
-Of course, you are free to use additional plugins. Here is an example with the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
+Selbstverständlich können Sie weitere Plugins benutzen. Hier ist ein Beispiel mit dem [ jss-rtl ](https://github.com/alitaheri/jss-rtl) Plugin.
 
 ```jsx
 import { create } from 'jss';
@@ -200,7 +200,7 @@ export default function App() {
 
 ## String-Vorlagen
 
-If you prefer CSS syntax over JSS, you can use the [jss-plugin-template](https://cssinjs.org/jss-plugin-template/) plugin.
+Wenn Sie die CSS-Syntax gegenüber JSS bevorzugen, können Sie das [jss-plugin-template](https://cssinjs.org/jss-plugin-template/) Plugin verwenden.
 
 ```jsx
 const useStyles = makeStyles({
@@ -217,7 +217,7 @@ const useStyles = makeStyles({
 });
 ```
 
-Note that this doesn't support selectors, or nested rules.
+Beachten Sie, dass dies keine Selektoren oder verschachtelten Regeln unterstützt.
 
 {{"demo": "pages/styles/advanced/StringTemplates.js"}}
 
@@ -225,11 +225,11 @@ Note that this doesn't support selectors, or nested rules.
 
 > It's **really important** to understand how the CSS specificity is calculated by the browser, as it's one of the key elements to know when overriding styles. You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
-By default, the style tags are injected **last** in the `<head>` element of the page. They gain more specificity than any other style tags on your page e.g. CSS modules, styled components.
+Standardmäßig werden die Style-Tags **zuletzt** im `<head>` -Element der Seite eingefügt. Sie erhalten mehr Details als jedes andere Styletag auf Ihrer Seite, z.B. CSS-Module oder StilKomponenten.
 
 ### injectFirst
 
-The `StylesProvider` component has an `injectFirst` prop to inject the style tags **first** in the head (less priority):
+Der `StylesProvider` Komponente hat eine `injectFirst` Eigenschaft, um **zuerst** die Style-Tags im Kopf einzufügen (weniger Priorität):
 
 ```jsx
 import { StylesProvider } from '@material-ui/core/styles';
@@ -242,7 +242,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 ### `makeStyles` / `withStyles` / `styled`
 
-The injection of style tags happens in the **same order** as the `makeStyles` / `withStyles` / `styled` invocations. For instance the color red wins in this case:
+Das Einfügen von Style-Tags erfolgt in der **gleichen Reihenfolge** wie die `makeStyles`/`withStyles`/`styled` Aufrufe. Zum Beispiel gewinnt die Farbe Rot in diesem Fall:
 
 ```jsx
 import clsx from 'clsx';
@@ -273,15 +273,15 @@ export default function MyComponent() {
 }
 ```
 
-The hook call order and the class name concatenation order **don't matter**.
+Die Hook-Aufrufreihenfolge und die Klassennamensverkettungsreihenfolge **spielen keine Rolle**.
 
 ### insertionPoint
 
-JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) to control this situation. By adding an `insertionPoint` within the HTML you can [control the order](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
+JSS [bietet einen Mechanismus](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) um diese Situation zu kontrollieren. Durch Hinzufügen der Platzierung des `Einfügepunkts` innerhalb Ihres HTML-Heads können Sie die [Reihenfolge steuern](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order), sodass die CSS-Regeln auf Ihre Komponenten angewendet werden.
 
 #### HTML-Kommentar
 
-The simplest approach is to add an HTML comment to the `<head>` that determines where JSS will inject the styles:
+Am einfachsten ist es, einen HTML-Kommentar zum `<head>` hinzuzufügen, der bestimmt, wo JSS die Stile einfügt:
 
 ```html
 <head>
@@ -307,7 +307,7 @@ export default function App() {
 
 #### Other HTML elements
 
-[Create React App](https://github.com/facebook/create-react-app) strips HTML comments when creating the production build. To get around this issue, you can provide a DOM element (other than a comment) as the JSS insertion point, for example, a `<noscript>` element:
+[Create React App](https://github.com/facebook/create-react-app) entfernt HTML-Kommentare beim Erstellen des Produktions-Builds. Um dieses Problem zu umgehen, können Sie ein DOM-Element (nicht einen Kommentar) als JSS-Einfügepunkt angeben, z. B. `<noscript>`:
 
 ```jsx
 <head>
@@ -333,7 +333,7 @@ export default function App() {
 
 #### JS createComment
 
-codesandbox.io prevents access to the `<head>` element. To get around this issue, you can use the JavaScript `document.createComment()` API:
+codesandbox.io verhindert Zugriff auf das `<head>` Element. Um dieses Problem zu umgehen, können Sie die JavaScript `document.createComment()` API verwenden:
 
 ```jsx
 import { create } from 'jss';
@@ -355,7 +355,7 @@ export default function App() {
 
 ## Server-Rendering
 
-This example returns a string of HTML and inlines the critical CSS required, right before it’s used:
+In diesem Beispiel wird ein Html-String zurückgegeben und die erforderliche kritische Css direkt vor ihrer Verwendung eingebettet:
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
@@ -385,23 +385,23 @@ You can [follow the server side guide](/guides/server-rendering/) for a more det
 
 ### Gatsby
 
-There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Refer to the plugin's page for setup and usage instructions.
+There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Anleitungen zur Einrichtung und Verwendung finden Sie auf der Seite des Plugins.
 
 Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
-You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js) to inject the server-side rendered styles into the `<head>` element.
+Sie müssen über eine benutzerdefiniertes `pages/_document.js` haben und [diese Logik](https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js) kopieren, um die serverseitig gerenderten Stile in das `<head>` Element hinzuzufügen.
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/nextjs) for an up-to-date usage example.
+Siehe [dieses Beispielprojekt](https://github.com/mui-org/material-ui/blob/master/examples/nextjs) für ein aktuelles Verwendungsbeispiel.
 
 ## Klassennamen
 
-The class names are generated by [the class name generator](/styles/api/#creategenerateclassname-options-class-name-generator).
+Die Klassennamen werden von dem [Klassennamengenerator](/styles/api/#creategenerateclassname-options-class-name-generator) generiert. Nehmen wir den folgenden Stil als Beispiel.
 
 ### Standard
 
-By default, the class names generated by `@material-ui/core/styles` are **non-deterministic**; you can't rely on them to stay the same. Let's take the following style as an example:
+By default, the class names generated by `@material-ui/core/styles` are **non-deterministic**; you can't rely on them to stay the same. Nehmen wir den folgenden Stil als Beispiel:
 
 ```js
 const useStyles = makeStyles({
@@ -411,9 +411,9 @@ const useStyles = makeStyles({
 });
 ```
 
-This will generate a class name such as `makeStyles-root-123`.
+Dadurch wird ein Klassenname wie `makeStyles-root-123` generiert.
 
-You have to use the `classes` prop of a component to override the styles. The non-deterministic nature of the class names enables style isolation.
+Sie müssen die `Klassen` Eigenschaft einer Komponente verwenden, um die Styles zu überschreiben. Die nicht deterministische Natur der Klassennamen ermöglicht die Stilisolation.
 
 - In der **Entwicklung** lauten der Klassenname: `.makeStyles-root-123` nach dieser Logik:
 
@@ -436,13 +436,13 @@ const className = `${productionPrefix}-${identifier}`;
 
 ### Mit `@material-ui/core`
 
-The generated class names of the `@material-ui/core` components behave differently. When the following conditions are met, the class names are **deterministic**:
+Die generierten Klassennamen der `@material-ui/core` Komponenten verhalten sich anders. Wenn die folgenden Bedingungen erfüllt sind, sind die Klassennamen **deterministisch**:
 
 - Es wird nur ein Themeanbieter verwendet (**Keine Verschachtelung von Themes**)
 - The style sheet has a name that starts with `Mui` (all Material-UI components).
 - The `disableGlobal` option of the [class name generator](/styles/api/#creategenerateclassname-options-class-name-generator) is `false` (the default).
 
-These conditions are met with the most common use cases of `@material-ui/core`. For instance, this style sheet:
+Diese Bedingungen werden bei den häufigsten Anwendungsfällen von `@material-ui/core` erfüllt. Zum Beispiel dieses Stylesheet:
 
 ```jsx
 const useStyles = makeStyles({
@@ -460,7 +460,7 @@ const useStyles = makeStyles({
 }, { name: 'MuiButton' });
 ```
 
-generates the following class names that you can override:
+generiert die folgenden Klassennamen, die Sie überschreiben können:
 
 ```css
 .MuiButton-root { /* … */ }
@@ -471,9 +471,9 @@ generates the following class names that you can override:
 .MuiButton-outlinedPrimary:hover { /* … */ }
 ```
 
-*This is a simplification of the `@material-ui/core/Button` component's style sheet.*
+*Dies ist eine Vereinfachung des `@material-ui/core/Button` Stylesheet der Komponente.*
 
-Customization of the TextField can be cumbersome with the [`classes` API](#overriding-styles-classes-prop), where you have to define the the classes prop. It's easier to use the default values, as described above. For example:
+Die Anpassung des TextFields kann mit der [ `classes-`API ](#overriding-styles-classes-prop) mühsam sein, wo Sie die classes Eingenschaft definieren müssen. Die Standardwerte sind, wie oben beschrieben, einfacher zu verwenden. Zum Beispiel:
 
 ```jsx
 import styled from 'styled-components';
@@ -503,25 +503,25 @@ const StyledTextField = styled(TextField)`
 
 ### `jss-plugin-global`
 
-The [`jss-plugin-global`](#jss-plugins) plugin is installed in the default preset. You can use it to define global class names.
+Das [`jss-plugin-global`](#jss-plugins) Plugin ist in der Standardvoreinstellung installiert. Sie können es verwenden, um globale Klassennamen zu definieren.
 
 {{"demo": "pages/styles/advanced/GlobalCss.js"}}
 
 ### Hybrid
 
-You can also combine JSS generated class names with global ones.
+Sie können auch JSS-generierte Klassennamen mit globalen Namen kombinieren.
 
 {{"demo": "pages/styles/advanced/HybridGlobalCss.js"}}
 
 ## CSS-Präfix
 
-JSS uses feature detection to apply the correct prefixes. [Don't be surprised](https://github.com/mui-org/material-ui/issues/9293) if you can't see a specific prefix in the latest version of Chrome. Your browser probably doesn't need it.
+JSS verwendet Featureerkennung, um die korrekten Präfixe anzuwenden. [Seien Sie nicht überrascht](https://github.com/mui-org/material-ui/issues/9293) wenn Sie in der neuesten Version von Chrome kein bestimmtes Präfix sehen können. Ihr Browser benötigt es wahrscheinlich nicht.
 
 ## Inhaltssicherheitsrichtlinie (Content Security Policy, CSP)
 
 ### Was ist CSP und warum ist es nützlich?
 
-Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring developers to whitelist the sources their assets are retrieved from. This list is returned as a header from the server. For instance, say you have a site hosted at `https://example.com` the CSP header `default-src: 'self';` will allow all assets that are located at `https://example.com/*` and deny all others. If there is a section of your website that is vulnerable to XSS where unescaped user input is displayed, an attacker could input something like:
+Grundsätzlich verringert CSP Cross-Site Scripting (XSS)-Angriffe, indem Entwickler die Quellen angeben, aus denen ihre Assets abgerufen werden. Diese Liste wird vom Server als Header zurückgegeben. Angenommen, Sie haben eine Website unter `https://example.com` gehostet. Der CSP-Header `default-src: 'self';` erlaubt alle Assets, die sich unter `https://example.com/*` befinden und blockt alle anderen. Wenn es auf Ihrer Website einen für XSS anfälligen Bereich gibt, in dem nicht eingegebene Benutzereingaben angezeigt werden, könnte ein Angreifer Folgendes eingeben:
 
 ```html
 <script>
@@ -529,15 +529,15 @@ Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring develop
 </script>
 ```
 
-This vulnerability would allow the attacker to execute anything. However, with a secure CSP header, the browser will not load this script.
+Diese Sicherheitsanfälligkeit ermöglicht es dem Angreifer, irgendetwas auszuführen. Mit einem sicheren CSP-Header lädt der Browser dieses Skript jedoch nicht.
 
-You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
+Weitere Informationen zu CSP finden Sie in den [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
 
 ### Wie kann man CSP implementieren?
 
-In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
+Um CSP mit Material-UI (und JSS) verwenden zu können, müssen Sie eine Nonce verwenden. Eine Nonce ist eine zufällig generierte Zeichenfolge, die nur einmal verwendet wird. Daher müssen Sie eine Server-Middleware hinzufügen, um für jede Anforderung eine zu generieren. JSS hat ein [tolles Tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) wie man dies mit Express und React Helmet erreichen kann. Lesen Sie für einen grundlegenden Überblick weiter.
 
-A CSP nonce is a Base 64 encoded string. You can generate one like this:
+Eine CSP-Nonce ist eine Base 64-codierte Zeichenfolge. Sie können so erstellen:
 
 ```js
 import uuidv4 from 'uuid/v4';
@@ -545,14 +545,14 @@ import uuidv4 from 'uuid/v4';
 const nonce = new Buffer(uuidv4()).toString('base64');
 ```
 
-It is very important that you use UUID version 4, as it generates an **unpredictable** string. You then apply this nonce to the CSP header. A CSP header might look like this with the nonce applied:
+Es ist sehr wichtig, dass Sie die UUID Version 4 verwenden, da es einen **unvorhersehbaren** String generiert. Sie wenden dann dieses Nonce auf den CSP-Header an. Ein CSP-Header könnte mit der angewendeten Nonce so aussehen:
 
 ```js
 header('Content-Security-Policy')
   .set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
 ```
 
-If you are using Server-Side Rendering (SSR), you should pass the nonce in the `<style>` tag on the server.
+Wenn Sie Server Side-Rendering (SSR) verwenden, sollten Sie die Nonce im `<style>`-Tag des Servers übergeben.
 
 ```jsx
 <style
@@ -562,11 +562,11 @@ If you are using Server-Side Rendering (SSR), you should pass the nonce in the `
 />
 ```
 
-Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags.
+Dann müssen Sie dieses Nonce an JSS übergeben, damit es den nachfolgenden `<style>`-Tags hinzugefügt werden kann.
 
 The way that you do this is by passing a `<meta property="csp-nonce" content={nonce} />` tag in the `<head>` of your HTML. JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
 
-You must include this header regardless of whether or not SSR is used. Here is an example of what a fictional header could look like:
+Sie müssen diesen Header unabhängig davon angeben, ob SSR verwendet wird oder nicht. Here is an example of what a fictional header could look like:
 
 ```html
 <head>

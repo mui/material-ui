@@ -13,7 +13,7 @@ Material-UI provides icons support in three ways:
 1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.
 1. With the [Icon](#icon-font-icons) component, a React wrapper for custom font icons.
 
-## Material Icons
+## マテリアルアイコン（Material Icons）
 
 Material Design has standardized over 1,000 official icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the @material-ui/icons package. You can [search the full list of these icons](/components/material-icons/).
 
@@ -92,7 +92,7 @@ import StarIcon from './star.svg';
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
-### Libraries
+### ライブラリ
 
 #### Material Design (recommended)
 
@@ -106,7 +106,7 @@ Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has a
 
 ## Icon (Font icons)
 
-The `Icon` component will display an icon from any icon font that supports ligatures. As a prerequisite, you must include one, such as the [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project, for instance, via Google Web Fonts:
+`Icon` コンポーネントは、合字をサポートする任意のアイコンフォントのアイコンを表示できます。 前提条件として、たとえば、Google Web Fontsを介して、 [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) プロジェクトをプロジェクトに含める必要があります。
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -114,7 +114,7 @@ The `Icon` component will display an icon from any icon font that supports ligat
 
 `Icon` will set the correct class name for the Material icon font. For other fonts, you must supply the class name using the Icon component's `className` property.
 
-To use an icon simply wrap the icon name (font ligature) with the `Icon` component, for example:
+アイコンを使用するには、単純にアイコン名（フォントの合字）を `Icon` コンポーネントでラップします。例えば：
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
@@ -122,7 +122,7 @@ import Icon from '@material-ui/core/Icon';
 <Icon>star</Icon>
 ```
 
-By default, an Icon will inherit the current text color. Optionally, you can set the icon color using one of the theme color properties: `primary`, `secondary`, `action`, `error` & `disabled`.
+デフォルトでは、アイコンは現在のテキストの色を継承します。 必要に応じて、テーマの色特性のいずれかを使用して、アイコンの色を設定することができます。： `primary`, `secondary`, `action`, `error` & `disabled`.
 
 ### Font Material icons
 
@@ -130,21 +130,21 @@ By default, an Icon will inherit the current text color. Optionally, you can set
 
 ### Font Awesome
 
-[Font Awesome](https://fontawesome.com/icons) can be used with the `Icon` component as follow:
+[Font Awesome](https://fontawesome.com/icons) は、 `Icon` コンポーネントとともに、次のように使用することができます。
 
 {{"demo": "pages/components/icons/FontAwesome.js", "hideEditButton": true}}
 
-## Font vs SVG. Which approach to use?
+## Font vs SVG どのアプローチを使用しますか？
 
-Both approaches work fine, however, there are some subtle differences, especially in terms of performance and rendering quality. Whenever possible SVG is preferred as it allows code splitting, supports more icons, renders faster and better.
+どちらの方法でも問題なく動作しますが、特にパフォーマンスとレンダリング品質の点で、わずかな違いがいくつかあります。 コード分割を可能にし、より多くのアイコンをサポートし、より速くより良くレンダリングするので、可能な限りSVGが優先されます。
 
-For more details, you can check out [why GitHub migrated from font icons to SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/).
+詳しくは、[why GitHub migrated from font icons to SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/)をご覧ください。
 
 ## アクセシビリティ
 
-Icons can convey all sorts of meaningful information, so it’s important that they reach the largest amount of people possible. There are two use cases you’ll want to consider:
-- **Decorative Icons** are only being used for visual or branding reinforcement. If they were removed from the page, users would still understand and be able to use your page.
-- **Semantic Icons** are ones that you’re using to convey meaning, rather than just pure decoration. This includes icons without text next to them used as interactive controls — buttons, form elements, toggles, etc.
+アイコンはあらゆる種類の意味のある情報を伝えることができるので、可能な限り多くの人に届くことが重要です。 次の2つの使用例を検討してください。
+- **装飾アイコン** は、視覚的またはブランド強化のためにのみ使用されています。 それらがページから削除された場合でも、ユーザーはあなたのページを理解して使用することができます。
+- **セマンティックアイコン** は、単なる装飾ではなく、意味を伝えるために使用しているものです。 これには、ボタン、フォーム要素、トグルなど、インタラクティブコントロールとして使用されるテキストのないアイコンが含まれます。
 
 ### Decorative SVG Icons
 
@@ -152,9 +152,9 @@ Icons can convey all sorts of meaningful information, so it’s important that t
 
 ### Semantic SVG Icons
 
-If your icon has semantic meaning, all you need to do is throw in a `titleAccess="meaning"` property. The `role="img"` attribute and the `<title>` element are added so that your icons are properly accessible.
+あなたのアイコンが意味的な意味を持っているなら、あなたがする必要があるのは `titleAccess="meaning"` プロパティを投入することだけです。 The `role="img"` attribute and the `<title>` element are added so that your icons are properly accessible.
 
-In the case of focusable interactive elements, like when used with an icon button, you can use the `aria-label` property:
+アイコンボタンと一緒に使用したときのようにフォーカス可能なインタラクティブ要素の場合は、 `aria-label` プロパティを使用できます。
 
 ```jsx
 import IconButton from '@material-ui/core/IconButton';
@@ -175,7 +175,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 ### Semantic Font Icons
 
-If your icons have semantic meaning, you need to provide a text alternative only visible to assistive technologies.
+アイコンに意味的な意味がある場合は、支援技術にしか見えない代替テキストを提供する必要があります。
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
@@ -187,6 +187,6 @@ import Typography from '@material-ui/core/Typography';
 <Typography variant="srOnly">Create a user</Typography>
 ```
 
-### Reference
+### リファレンス
 
 - https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/

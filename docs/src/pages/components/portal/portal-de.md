@@ -9,7 +9,7 @@ components: Portal
 
 - 📦 [1.3 kB gzipped](/size-snapshot)
 
-The children of the portal component will be appended to the `container` specified. The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components.
+Die untergeordneten Elemente der Portalkomponente werden an den angegebenen `Container` angehängt. Die Komponente wird intern von den Komponenten [`Modal`](/components/modal/) und [`Popper`](/components/popper/) benutzt.
 
 ## Beispiel
 

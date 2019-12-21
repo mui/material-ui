@@ -26,16 +26,16 @@ components: Link
 
 ## Third-party routing library（第三方路由库）
 
-One common use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Link` component provides a property to handle this use case: `component`.
+One common use case is to perform navigation on the client only, without an HTTP round-trip to the server. 为解决此用例 `组件`，`Link` 组件提供了一个属性：
 
-Here is an [integration example with react-router](/guides/composition/#link).
+这有一个[与 react-router 交互的例子](/guides/composition/#link)。
 
 ## 可访问性
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#link)
 
-- When providing the content for the link, avoid generic descriptions like "click here" or "go to". Instead, use [specific descriptions](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
+- 当提供链接对应的内容时，避免使用泛泛的描述，比如“点击这里”或“跳转”之类的词语 相反的，请使用 [具体详细的描述](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text)说明.
 - For the best user experience, links should stand out from the text on the page.
-- If a link doesn't have a meaningful href, [it should be rendered using a `<button>` element](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md).
+- 如果一个链接没有赋予一个有意义的href值, [它应该用一个 `<按钮>` 元素](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md)表示
 
 {{"demo": "pages/components/links/ButtonLink.js"}}

@@ -13,27 +13,27 @@ Beispiele für Text Badges in Primär- und Sekundärfarben. The badge is applied
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
-## Customized badges
+## Benutzerdefinierte Badges
 
 Hier ist ein Beispiel zum Anpassen der Komponente. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
-## Badge visibility
+## Badge Sichtbarkeit
 
-The visibility of badges can be controlled using the `invisible` property.
+Die Sichtbarkeit von Badges kann über die Eigenschaft `invisible` gesteuert werden.
 
 The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-## Maximum Value
+## Maximalwert
 
-You can use the `max` property to cap the value of the badge content.
+Sie können die Eigenschaft `max` verwenden, um den Wert des Badge-Inhalts zu begrenzen.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
-## Dot Badge
+## Punkt-Badge
 
 The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
 

@@ -113,25 +113,16 @@ function App() {
 
 1. `варианты` (*объекта* [optional]):
 
-- `options.disableHysteresis` (*Boolean* [optional]): По умолчанию - `false`. Disable the hysteresis. Игнорирование направления прокрутки когда определено `trigger` значение.
+- `options.disableHysteresis` (*Boolean* [optional]): По умолчанию - `false`. Отключение запаздывания. Игнорирование направления прокрутки когда определено `trigger` значение.
 - `options.target` (*Node* [optional]): По умолчанию `window`.
-- `options.threshold` (*Number* [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
+- `options.threshold` (*Number* [optional]): По умолчанию `100`. Измените значение `trigger` когда вертикальная прокрутка строго первышает этот порог (исключительно).
 
 #### Возвращает
 
-`trigger`: Does the scroll position match the criteria?
+`trigger`: Соответствует ли положение прокрутки критерию?
 
 #### Примеры
 
 ```jsx
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
-
-function HideOnScroll(props) {
-  const trigger = useScrollTrigger();
-  return (
-    <Slide in={!trigger}>
-      <div>Hello</div>
-    </Slide>
-  );
-}
+<div>
 ```

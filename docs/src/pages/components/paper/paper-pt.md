@@ -9,4 +9,10 @@ components: Paper
 
 O fundo da aplicação simboliza a lisa e opaca textura de uma folha de papel. O comportamento da aplicação imita a habilidade de ser redimensionada, embaralhada e conectada juntamente de diversas folhas.
 
-{{"demo": "pages/components/paper/PaperSheet.js", "bg": true}}
+{{"demo": "pages/components/paper/SimplePaper.js", "bg": true}}
+
+## Variantes
+
+If you need an outlined surface, use the `variant` prop.
+
+{{"demo": "pages/components/paper/Variants.js", "bg": "inline"}}

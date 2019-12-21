@@ -18,7 +18,7 @@ Create React App es un excelente proyecto para aprender React. Echa un vistazo a
 
 El código fuente de esta documentación también está incluido en el repositorio. Es un proyecto ligeramente más complejo. Echa un vistazo en la carpeta [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) para las instrucciones de compilación.
 
-## More advanced example projects
+## Proyectos de ejemplo más avanzados
 
 If you want to start with a more complete and real-world example, you could take a look at the [premium themes & templates](https://themes.material-ui.com/) or:
 
@@ -26,7 +26,7 @@ If you want to start with a more complete and real-world example, you could take
 
 - [React Most Wanted](https://github.com/TarikHuber/react-most-wanted):
     
-  - Created with Create React App
+  - Creado con Create React App
   - Custom Create React App script to start a new project with just a single CLI command
   - Build for Firebase including Authentication using the official Firebase Web Auth UI
   - Routing with React Router including error handling (404) and lazy loading
@@ -43,7 +43,7 @@ If you want to start with a more complete and real-world example, you could take
   - Graph using recharts
   - React Router incluido con un ejemplo de navegación
   - Un contenedor de docker con servidor Nginx para compilado de producción
-  - Created with Create React App
+  - Creado con Create React App
 
 ### De Pago
 

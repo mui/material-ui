@@ -69,11 +69,11 @@ It's possible to customise the options shown in the "Rows per page" select using
 
 ### Custom pagination actions
 
-The `Action` property of the `TablePagination` component allows the implementation of custom actions.
+`TablePagination` コンポーネントの `Action` プロパティにより、 カスタムアクションを実装することができます。
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
-## Fixed header
+## 固定ヘッダー
 
 An example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
 
@@ -81,13 +81,13 @@ An example of a table with scrollable rows and fixed column headers. It leverage
 
 ## Spanning Table
 
-A simple example with spanning rows & columns.
+行 & 列にまたがる単純な例です。
 
 {{"demo": "pages/components/tables/SpanningTable.js", "bg": true}}
 
 ## Virtualized Table
 
-In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。
+次の例では、 ` Table ` コンポーネントで [react-virtualized](https://github.com/bvaughn/react-virtualized) を使用する方法を示します。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。
 
 {{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
@@ -99,7 +99,7 @@ In the following example, we demonstrate how to use [react-virtualized](https://
 
 ![Stars](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npmダウンロード](https://img.shields.io/npm/dm/material-table.svg)
 
-[material-table](https://github.com/mbrn/material-table) is a simple and powerful Datatable for React based on Material-UI Table with some additional features. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). 参照するといいでしょう。
+[material-table](https://github.com/mbrn/material-table) は、いくつかの追加機能を備えたMaterial-UI Tableを基にしたシンプルで強力なReact用データテーブルです。 それらは多くの異なるユースケース（編集可能、フィルタリング、グループ化、ソート、選択、i18n、ツリーデータなど）をサポートします。 参照するといいでしょう。
 
 {{"demo": "pages/components/tables/MaterialTableDemo.js", "bg": true}}
 

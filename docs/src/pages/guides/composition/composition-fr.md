@@ -112,7 +112,7 @@ import { Link } from 'react-router-dom';
 
 ⚠️ However, this strategy suffers from a limitation: prop collisions. The component providing the `component` prop (e.g. ListItem) might not forward all the props (for example dense) to the root element.
 
-### With TypeScript
+### Avec TypeScript
 
 You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-component-prop).
 
@@ -128,7 +128,7 @@ The integration with third-party routing libraries is achieved with the `compone
 
 {{"demo": "pages/guides/composition/LinkRouter.js"}}
 
-### List
+### List (Liste)
 
 {{"demo": "pages/guides/composition/ListRouter.js"}}
 

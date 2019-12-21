@@ -128,7 +128,7 @@ The integration with third-party routing libraries is achieved with the `compone
 
 {{"demo": "pages/guides/composition/LinkRouter.js"}}
 
-### List
+### List (リスト)
 
 {{"demo": "pages/guides/composition/ListRouter.js"}}
 

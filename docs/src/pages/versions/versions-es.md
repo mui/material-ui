@@ -32,7 +32,7 @@ A regular schedule of releases helps you plan and coordinate your updates with t
 
 En general, espera el siguiente ciclo de lanzamiento:
 
-- A **major** release every 12 months.
+- Un lanzamiento ** mayor ** cada 12 meses.
 - 1-3 lanzamiento ** menor ** por cada lanzamiento mayor.
 - Un Lanzamiento de **parche** cada semana (en cualquier momento para la corrección de errores urgente).
 

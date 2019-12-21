@@ -27,11 +27,11 @@ You can change the size of the avatar with the `height` and `width` CSS properti
 
 ## Icon avatars
 
-Icon avatars are created by passing an icon as `children`.
+アイコンアバターは、 `子要素`としてアイコンを渡すことによって作成されます。
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
 
-## Variants
+## バリアント
 
 If you need square or rounded avatars, use the `variant` prop.
 

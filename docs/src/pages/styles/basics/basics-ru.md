@@ -196,7 +196,7 @@ const useStyles = makeStyles(theme => ({
 
 {{"demo": "pages/styles/basics/StressTest.js"}}
 
-## @material-ui/core/styles vs @material-ui/styles
+## Отличие @material-ui/core/styles от @material-ui/styles
 
 Material-UI's styles are powered by the [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) package, (built with JSS). This solution is [isolated](https://bundlephobia.com/result?p=@material-ui/styles). Он не имеет темы по умолчанию и может использоваться для стилизации приложений React, которые не используют компоненты Material-UI.
 

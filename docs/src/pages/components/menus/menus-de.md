@@ -71,6 +71,6 @@ Für fortgeschrittenere Anwendungsfälle können Ihnen folgende Projekte helfen:
 
 ### PopupState-Helfer
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
+Es gibt ein Drittanbieter-Paket [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state), das sich in den meisten Fällen um Popper Status kümmern kann.
 
 {{"demo": "pages/components/menus/MenuPopupState.js"}}

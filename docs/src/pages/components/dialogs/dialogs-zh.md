@@ -118,4 +118,4 @@ Follow the [Modal limitations section](/components/modal/#limitations).
 
 ## 可访问性
 
-Follow the [Modal accessibility section](/components/modal/#accessibility).
+参考[模态框可及性的部分](/components/modal/#accessibility)。

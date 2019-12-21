@@ -17,6 +17,12 @@ Bien que les cartes puissent prendre en charge plusieurs actions, des contrôles
 
 {{"demo": "pages/components/cards/SimpleCard.js", "bg": true}}
 
+### Outlined Card
+
+Set `variant="outlined` to render an outlined card.
+
+{{"demo": "pages/components/cards/OutlinedCard.js", "bg": true}}
+
 ## Interaction complexe
 
 Sur le bureau, le contenu de la carte peut s’étendre.

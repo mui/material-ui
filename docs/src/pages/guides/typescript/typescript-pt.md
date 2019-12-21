@@ -17,15 +17,15 @@ In order for types to work, you have to at least have the following options enab
 }
 ```
 
-The strict mode options are the same that are required for every types package published in the `@types/` namespace. Using a less strict `tsconfig.json` or omitting some of the libraries might cause errors. To get the best type experience with the types we recommend setting `"strict": true`.
+The strict mode options are the same that are required for every types package published in the `@types/` namespace. Usando uma `tsconfig.json` menos rigorosa ou omitindo algumas das bibliotecas podem causar erros. To get the best type experience with the types we recommend setting `"strict": true`.
 
 ## Uso de `withStyles`
 
-Using `withStyles` in TypeScript can be a little tricky, but there are some utilities to make the experience as painless as possible.
+Utilizando `withStyles` no TypeScript pode ser um pouco complicado, mas há alguns utilitários que tornam a experiência menos dolorosa possível.
 
 ### Utilizando `createStyles` para evitar a ampliação de tipo (type widening)
 
-A frequent source of confusion is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
+Uma fonte frequente de confusão é a ampliação de tipos ([type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening)) do TypeScript, que faz com que este exemplo não funcione como o esperado:
 
 ```ts
 const styles = {
@@ -37,11 +37,11 @@ const styles = {
 
 withStyles(styles);
 //         ^^^^^^
-//         Types of property 'flexDirection' are incompatible.
-//           Type 'string' is not assignable to type '"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'.
+//         Os tipos de propriedade 'flexDirection' são incompatíveis.
+//           Tipo 'string' não pode ser atribuído para o tipo '"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'.
 ```
 
-The problem is that the type of the `flexDirection` property is inferred as `string`, which is too arbitrary. To fix this, you can pass the styles object directly to `withStyles`:
+O problema é que o tipo da propriedade `flexDirection` é convertido como `string`, no qual é o tipo mais conveniente. Para corrigir isto, você pode passar o objeto de estilos diretamente para `withStyles`:
 
 ```ts
 withStyles({

@@ -44,9 +44,9 @@ const theme = createMuiTheme({
 theme.spacing(2); // = 8
 ```
 
-## Multiple arity
+## Mehrere Aritäten
 
-Der `theme.spacing ()` Helfer akzeptiert bis zu 4 Argumente. You can use the arguments to reduce the boilerplate. Instead of doing:
+Der `theme.spacing ()` Helfer akzeptiert bis zu 4 Argumente. Sie können die Argumente verwenden, um den Boilerplate zu reduzieren. Instead of doing:
 
 ```js
 padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'

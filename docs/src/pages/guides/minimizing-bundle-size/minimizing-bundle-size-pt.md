@@ -23,7 +23,7 @@ Se isso é um problema para você, você tem várias opções:
 Você pode usar as importações de caminho para evitar a extração de módulos não utilizados. For instance, use:
 
 ```js
-// 🚀 Fast
+// 🚀 Rápida
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 ```
@@ -71,9 +71,9 @@ However, you need to apply the two following steps correctly.
 
 #### 1. Configure o Babel
 
-Pick one of the following plugins:
+Escolha um dos seguintes plugins:
 
-- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) with the following configuration:
+- [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) com a seguinte configuração:
 
   `yarn add -D babel-plugin-import`
 
@@ -192,8 +192,8 @@ Finally, you can convert your existing codebase to this option with this [top-le
 
 ## ECMAScript
 
-The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms/).
+O pacote publicado no npm é **transpilado**, com [Babel](https://github.com/babel/babel), para levar em consideração as [plataformas suportadas](/getting-started/supported-platforms/).
 
-A second version of the components is also published, which you can find under the [`/es` folder](https://unpkg.com/@material-ui/core/es/). All the non-official syntax is transpiled to the [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nothing more. This can be used to make separate bundles targeting different browsers. Older browsers will require more JavaScript features to be transpiled, which increases the size of the bundle. No polyfills are included for ES2015 runtime features. IE11+ and evergreen browsers support all the necessary features. If you need support for other browsers, consider using [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
+A second version of the components is also published, which you can find under the [`/es` folder](https://unpkg.com/@material-ui/core/es/). Toda a sintaxe não oficial é transpilada para o padrão [ECMA-262](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nada mais. Isso pode ser usado para criar pacotes separados visando diferentes navegadores. Os navegadores mais antigos exigem mais recursos JavaScript para serem transpilados, o que aumenta o tamanho do pacote. Nenhum polyfill está incluído para os recursos de tempo de execução do ES2015. IE11+ e navegadores evergreen suportam todos os recursos necessários. Se você precisar de suporte para outros navegadores, considere usar [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
 
 ⚠️ In order to minimize duplication of code in users' bundles, library authors are **strongly discouraged** from using the `/es` folder.

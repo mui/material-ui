@@ -45,7 +45,7 @@ Como acontece com qualquer otimização de desempenho, isso não é uma bala de 
 
 ## Cabeçalho Secundário e Colunas
 
-Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
+Várias colunas podem ser usadas para estruturar o conteúdo, e um texto auxiliar pode ser adicionado ao painel para ajudar o usuário.
 
 {{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js", "bg": true}}
 

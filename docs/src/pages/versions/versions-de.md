@@ -32,7 +32,7 @@ A regular schedule of releases helps you plan and coordinate your updates with t
 
 Im Allgemeinen können Sie den folgenden Release-Zyklus erwarten:
 
-- A **major** release every 12 months.
+- Ein Veröffentlichung einer **Hauptversion ** alle 12 Monate.
 - 1-3 Veröffentlichungen von ** Nebenversionen** für jede Hauptversion.
 - Ein ** Patch ** Veröffentlichung jede Woche (jederzeit für dringende Bugfixes).
 

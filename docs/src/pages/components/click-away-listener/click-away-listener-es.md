@@ -7,7 +7,7 @@ components: ClickAwayListener
 
 <p class="description">Detecta si ocurrió un evento de clic fuera de un elemento. Escucha los clics que se producen en algún lugar del documento.</p>
 
-- 📦 [1.5 kB gzipped](/size-snapshot).
+- 📦 [1.5 kB comprimido](/size-snapshot).
 
 ## Ejemplo
 

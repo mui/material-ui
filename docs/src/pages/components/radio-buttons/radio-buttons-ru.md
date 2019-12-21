@@ -35,7 +35,7 @@ Use [radio buttons](https://material.io/design/components/selection-controls.htm
 
 ## Бесплатно
 
-- [Checkboxes vs. Radio Buttons (радиокнопки)](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Чекбоксы. Radio Buttons (радиокнопки)](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 
 ## Доступность
 

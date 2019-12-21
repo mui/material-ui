@@ -14,7 +14,7 @@ Der Einfachheit halber stellt Material-UI seine vollständige API auf der oberst
 import { Button, TextField } from '@material-ui/core';
 ```
 
-⚠️ Be aware that tree-shaking is an optimization that is usually only applied to production bundles. Development bundles will contain the full library which can lead to **slower startup times**. Dies macht sich insbesondere dann bemerkbar, wenn Sie aus `@material-ui/icons` importieren. Die Startzeiten können ungefähr 6-mal langsamer sein als ohne benannte Importe von der API der obersten Ebene.
+⚠️ Beachten Sie, dass das Tree-Shacking eine Optimierung darstellt, die normalerweise nicht in der Entwicklungsumgebung angewendet wird. Development bundles will contain the full library which can lead to **slower startup times**. Dies macht sich insbesondere dann bemerkbar, wenn Sie aus `@material-ui/icons` importieren. Die Startzeiten können ungefähr 6-mal langsamer sein als ohne benannte Importe von der API der obersten Ebene.
 
 If this is an issue for you, you have various options:
 
@@ -71,7 +71,7 @@ However, you need to apply the two following steps correctly.
 
 #### 1. Configure Babel
 
-Pick one of the following plugins:
+Wählen Sie eines der folgenden Plugins:
 
 - [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) with the following configuration:
 
@@ -192,8 +192,8 @@ Finally, you can convert your existing codebase to this option with this [top-le
 
 ## ECMAScript
 
-The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms/).
+Das auf npm veröffentlichte Paket ist mit [Babel](https://github.com/babel/babel) **transpiliert**, um die [ unterstützten Plattformen](/getting-started/supported-platforms/) zu berücksichtigen.
 
-A second version of the components is also published, which you can find under the [`/es` folder](https://unpkg.com/@material-ui/core/es/). All the non-official syntax is transpiled to the [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nothing more. This can be used to make separate bundles targeting different browsers. Older browsers will require more JavaScript features to be transpiled, which increases the size of the bundle. No polyfills are included for ES2015 runtime features. IE11+ and evergreen browsers support all the necessary features. If you need support for other browsers, consider using [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
+A second version of the components is also published, which you can find under the [`/es` folder](https://unpkg.com/@material-ui/core/es/). Die gesamte nicht offizielle Syntax wird auf den [ECMA-262 Standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm) transpiliert, nichts mehr. Dies kann verwendet werden, um separate Bundles für verschiedene Browser zu erstellen. Ältere Browser erfordern mehr transpilierte JavaScript-Funktionen. Dies erhöht die Größe des Packets. Für die Laufzeitfunktionen von ES2015 sind keine polyfills enthalten. IE11 + und Evergreen-Browser unterstützen alle erforderlichen Funktionen. Wenn Sie Unterstützung für andere Browser benötigen, sollten Sie [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill) in Betracht ziehen.
 
 ⚠️ In order to minimize duplication of code in users' bundles, library authors are **strongly discouraged** from using the `/es` folder.

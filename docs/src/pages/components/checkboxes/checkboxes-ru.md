@@ -37,7 +37,7 @@ components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 
 ## Бесплатно
 
-- [Checkboxes vs. Radio Buttons (радиокнопки)](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Чекбоксы. Radio Buttons (радиокнопки)](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
 - [Чекбоксы. Switch (переключатели)](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
 ## Доступность
