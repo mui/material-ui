@@ -29,6 +29,7 @@ const theme = createMuiTheme({
 |:----------------------- |:------------------- |:---------- |
 | Azerbaijani             | az-AZ               | `azAZ`     |
 | Chinese (Simplified)    | zh-CN               | `zhCN`     |
+| Czech                   | cs-CZ               | `csCZ`     |
 | Dutch                   | nl-NL               | `nlNL`     |
 | English (United States) | en-US               | `enUS`     |
 | French                  | fr-FR               | `frFR`     |
@@ -41,6 +42,7 @@ const theme = createMuiTheme({
 | Portuguese (Brazil)     | pt-BR               | `ptBR`     |
 | Romanian                | ro-RO               | `roRO`     |
 | Russian                 | ru-RU               | `ruRU`     |
+| Slovak                  | sk-SK               | `skSK`     |
 | Spanish                 | es-ES               | `esES`     |
 | Swedish                 | sv-SE               | `svSE`     |
 | Turkish                 | tr-TR               | `trTR`     |

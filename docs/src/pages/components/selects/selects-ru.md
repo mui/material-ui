@@ -3,7 +3,7 @@ title: Select React component
 components: Select, NativeSelect
 ---
 
-# Select
+# Select (Список)
 
 <p class="description">Компонент Select используются для сбора информации, предоставленной пользователем, из списка параметров.</p>
 

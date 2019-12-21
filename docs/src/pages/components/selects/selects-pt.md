@@ -21,31 +21,31 @@ Como a experiência do usuário pode ser melhorada em dispositivos móveis usand
 
 ## Campos de Texto
 
-O componente wrapper `TextField` é um controle de formulário completo, incluindo um rótulo, entrada e texto de ajuda. You can find an example with the select mode [in this section](/components/text-fields/#select).
+O componente wrapper `TextField` é um controle de formulário completo, incluindo um rótulo, entrada e texto de ajuda. Você pode encontrar um exemplo de seleção [nesta seção](/components/text-fields/#select).
 
-## Customized selects
+## Seleções Customizados
 
 Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
-The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a `select` field.
+O primeiro passo é modelar o componente `InputBase`. Uma vez estilizado, você pode usá-lo diretamente como um campo de texto ou fornecê-lo à propriedade `input` da seleção para ter um campo `select`.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
-## Multiple Select
+## Seleção Múltipla
 
-The `Select` component can handle multiple selections. It's enabled with the `multiple` property.
+O componente `Select` pode lidar com várias seleções. É ativado com a propriedade `multiple`.
 
-Like with the single selection, you can pull out the new value by accessing `event.target.value` in the `onChange` callback. It's always an array.
+Como na seleção única, você pode extrair o novo valor acessando `event.target.value` na chamada `onChange`. É sempre uma matriz.
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
-## Controlled Open Select
+## Seleção Aberta Controlada
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
-## With a Dialog
+## Com uma caixa de Diálogo
 
-While it's discouraged by the Material Design specification, you can use a select inside a dialog.
+Embora não seja recomendado pela especificação do Material Design, você pode usar uma seleção dentro de uma caixa de diálogo.
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 

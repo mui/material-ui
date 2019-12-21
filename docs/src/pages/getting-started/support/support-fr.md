@@ -33,7 +33,7 @@ Stay up to date with the development of the library by following the blog.
 
 [Read the latest posts](https://medium.com/material-ui/)
 
-### Resources 📖
+### Ressources 📖
 
 Nouveau sur Material-UI ? C'est facile à apprendre si vous savez par où commencer !
 

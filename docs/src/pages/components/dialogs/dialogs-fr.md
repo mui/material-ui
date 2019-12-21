@@ -95,20 +95,20 @@ Appuyer sur “Annuler” dans une boîte de dialogue de confirmation ou appuyer
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## Draggable dialog
+## Dialogue glissable
 
-You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable). To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. This will make the entire dialog draggable.
+Vous pouvez créer une boîte de dialogue déplaçable à l’aide de [react-draggable](https://github.com/mzabriskie/react-draggable). Pour ce faire, vous pouvez passer le composant importé `Draggable` en tant que proprieté `PaperComponent` du composant `Dialog`. Cela rend la totalité de la boîte de dialogue déplaçable.
 
 {{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## Défiler de longues contenu
 
-When dialogs become too long for the user’s viewport or device, they scroll.
+Lorsque les boîtes de dialogue deviennent trop longues pour la fenêtre ou le périphérique de l'utilisateur, elles défilent.
 
 - `scroll=paper` le contenu de la boîte de dialogue défile dans l'élément de papier.
 - `scroll=body` le contenu de la boîte de dialogue défile dans l'élément body.
 
-Try the demo below to see what we mean:
+Essayez la démo ci-dessous pour voir ce que nous voulons dire:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
@@ -118,4 +118,4 @@ Follow the [Modal limitations section](/components/modal/#limitations).
 
 ## Accessibilité
 
-Follow the [Modal accessibility section](/components/modal/#accessibility).
+Suivez la [section d'accessibilité de la Modal](/components/modal/#accessibility).

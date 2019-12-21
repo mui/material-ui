@@ -3,7 +3,7 @@ title: Date picker, Time picker React components
 components: TextField
 ---
 
-# Date / Time pickers
+# Поля выбора даты/времени
 
 <p class="description">Date pickers and Time pickers provide a simple way to select a single value from a pre-determined set.</p>
 
@@ -20,9 +20,9 @@ components: TextField
 
 ## Native pickers
 
-⚠️ Поддержка нативных типов полей ввода [не идеальна](https://caniuse.com/#feat=input-datetime). Have a look at [@material-ui/pickers](https://material-ui-pickers.dev/) for a richer solution.
+⚠️ Поддержка нативных типов полей ввода [не идеальна](https://caniuse.com/#feat=input-datetime). Взгяните на [@material-ui/pickers](https://material-ui-pickers.dev/) для более детального решения.
 
-### Datepickers
+### Выбор даты
 
 A native datepicker example with `type="date"`.
 

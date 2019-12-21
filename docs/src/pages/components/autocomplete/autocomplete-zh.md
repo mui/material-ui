@@ -9,7 +9,7 @@ components: TextField, Popper, Autocomplete
 
 该组件常用于以下两个场景中的单行文本框赋值：
 
-1. The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name: [combo box](#combo-box).
+1. 文本框必须取值于某个预设值的集合，例如位置字段必须包含合理的位置： [组合框](#combo-box)
 2. 文本框可以设置任何值，但是为用户提供可能的选项会更好，譬如搜索框可以提供近似的或者曾搜索过的选项以节省用户时间：[灵活的单文本框](#free-solo)
 
 ## 组合框
@@ -52,7 +52,7 @@ components: TextField, Popper, Autocomplete
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
 ```
 
-- 📦 [4.5 kB gzipped](/size-snapshot).
+- 📦 [4.5kB 已压缩的包](/size-snapshot)。
 
 {{"demo": "pages/components/autocomplete/UseAutocomplete.js", "defaultCodeOpen": false}}
 
@@ -112,7 +112,7 @@ The following demo relies on [autosuggest-highlight](https://github.com/moroshko
 
 {{"demo": "pages/components/autocomplete/Highlights.js"}}
 
-## Custom filter
+## 自定义筛选规则
 
 The component exposes a factory to create a filter method that can provided to the `filerOption` prop. You can use it to change the default option filter behavior.
 
@@ -127,7 +127,7 @@ It supports the following options:
   - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
   - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
   - `config.stringify` (*Func* [optional]): Defaults to `JSON.stringify`.
-  - `config.trim` (*Boolean* [optional]): Defaults to `false`. Remove trailing spaces.
+  - `config.trim` (*Boolean* [optional]): 默认值为`false`。 Remove trailing spaces.
 
 In the following demo, the options need to start with the query prefix:
 
@@ -155,7 +155,7 @@ const filterOptions = (options, { inputValue }) =>
 <Autocomplete filterOptions={filterOptions} />
 ```
 
-## Virtualization
+## 虚拟滚动
 
 Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
 

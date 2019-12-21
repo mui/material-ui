@@ -17,6 +17,12 @@ Apesar dos componentes cartões poderem suportar múltiplas ações tais como: c
 
 {{"demo": "pages/components/cards/SimpleCard.js", "bg": true}}
 
+### Outlined Card
+
+Set `variant="outlined` to render an outlined card.
+
+{{"demo": "pages/components/cards/OutlinedCard.js", "bg": true}}
+
 ## Interação Complexa
 
 O conteúdo do cartão pode ser expandido.
@@ -25,11 +31,11 @@ O conteúdo do cartão pode ser expandido.
 
 ## Mídia
 
-Exemplo de um cartão usando uma imagem para reforçar o conteúdo.
+Exemplo de um cartão usando uma imagem para demonstrar a principal ideia do conteúdo.
 
 {{"demo": "pages/components/cards/MediaCard.js", "bg": true}}
 
-Por padrão, usamos a combinação de um elemento `<div>` e uma *imagem de fundo* para exibir a mídia. Isto pode ser problemático em algumas situações. Por exemplo, você pode querer exibir um vídeo ou uma imagem responsiva. Use a propriedade `component` para estas situações:
+Por padrão, nós usamos uma combinação de um elemento `&lt;div&gt;` e um *background image* para exibir o componente media. Isto pode ser problemático em algumas situações. Por exemplo, você pode querer exibir um vídeo ou uma imagem responsiva. Use a propriedade `component` para estes casos de uso:
 
 {{"demo": "pages/components/cards/ImgMediaCard.js", "bg": true}}
 

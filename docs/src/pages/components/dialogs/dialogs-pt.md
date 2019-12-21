@@ -118,4 +118,4 @@ Follow the [Modal limitations section](/components/modal/#limitations).
 
 ## Acessibilidade
 
-Follow the [Modal accessibility section](/components/modal/#accessibility).
+Siga a seção de [ Acessibilidade Modal](/components/modal/#accessibility).

@@ -51,12 +51,12 @@ Material-UI fournit un composant [CssBaseline](/components/css-baseline/) facult
 
 ## Documentation versionnée
 
-Cette documentation reflète toujours la dernière version stable de Material-UI. You can find older versions of the documentation on a [separate page](https://material-ui.com/versions/).
+Cette documentation reflète toujours la dernière version stable de Material-UI. Vous pouvez trouver les anciennes versions de la documentation sur une [page séparée](https://material-ui.com/versions/).
 
 ## Etapes suivantes
 
 Maintenant que vous avez une idée de la configuration de base, il est temps d'en apprendre d'avantage sur :
 
 - Comment fournir [la police et la typographie Material Design](/components/typography/) .
-- How to take advantage of the [theming solution](/customization/theming/).
+- Comment tirer parti de la [solution de thème](/customization/theming/).
 - Comment [modifier](/customization/components/), l'apparence des composants.

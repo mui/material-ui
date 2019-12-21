@@ -25,9 +25,9 @@ You can change the size of the avatar with the `height` and `width` CSS properti
 
 {{"demo": "pages/components/avatars/SizeAvatars.js"}}
 
-## Icon avatars
+## Avatars d'icônes
 
-Icon avatars are created by passing an icon as `children`.
+Les avatars d'icônes sont créés en transmettant une icône à `enfant`.
 
 {{"demo": "pages/components/avatars/IconAvatars.js"}}
 

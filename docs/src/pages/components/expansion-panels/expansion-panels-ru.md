@@ -35,17 +35,17 @@ In order to put an action such as a `Checkbox` or a button inside of the `Expans
 
 ## Производительность
 
-The content of ExpansionPanels is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
+Содержимое ExpansionPanels монтируется по умолчанию, даже если панель не развернута. Это предопределенное поведение подразумевает рендеринг на стороне сервера и SEO. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
 
 ```jsx
 <ExpansionPanel TransitionProps={{ unmountOnExit: true }} />
 ```
 
-As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
+Как и при любой оптимизации производительности, не стоит переоценивать её. Сначала идентифицируйте узкие места и лишь затем пытайтесь применить эти стратегии.
 
-## Secondary heading and Columns
+## Подзаголовок и столбцы
 
-Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
+Содержимое панели можно структурировать, сгруппировав его в отдельные столбцы, кроме того можно добавить подзаголовок и подсказки для пользователя.
 
 {{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js", "bg": true}}
 
@@ -53,4 +53,4 @@ Multiple columns can be used to structure the content, and a helper text may be 
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
 
-For optimal accessibility we recommend setting `id` and `aria-controls` on the `ExpansionPanelSummary`. The `ExpansionPanel` will derive the necessary `aria-labelledby` and `id` for the content region of the panel.
+Для оптимальной доступности мы рекомендуем установить `id` и `aria-controls` на `ExpansionPanelSummary`. `ExpansionPanel` унаследует необходимые `aria-labelbyby` и `id` для области содержимого панели.

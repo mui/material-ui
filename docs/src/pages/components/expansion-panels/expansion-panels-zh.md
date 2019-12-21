@@ -35,17 +35,17 @@ In order to put an action such as a `Checkbox` or a button inside of the `Expans
 
 ## 性能
 
-The content of ExpansionPanels is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
+默认情况下，即使在面板没被展开的情况下，扩展面板的内容也会被注入到页面中。 这样的默认情况是是考虑到了 server-side rendering（服务端渲染）和 SEO（搜索引擎优化）。 If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
 
 ```jsx
 <ExpansionPanel TransitionProps={{ unmountOnExit: true }} />
 ```
 
-As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
+不过对所有情况下的性能优化，这并不是灵丹妙药。 请您务必先确定性能的瓶颈所在，再考虑这些优化策略。
 
 ## 次要标题和列
 
-Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
+可以使用多列来构造内容，并且可以将辅助文本添加到面板以帮助用户。
 
 {{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js", "bg": true}}
 
@@ -53,4 +53,4 @@ Multiple columns can be used to structure the content, and a helper text may be 
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
 
-For optimal accessibility we recommend setting `id` and `aria-controls` on the `ExpansionPanelSummary`. The `ExpansionPanel` will derive the necessary `aria-labelledby` and `id` for the content region of the panel.
+如果想要得到最佳辅助，我们建议您在 `ExpansionPanelSummary` 中配置 `id` 和 `aria-controls` 。 `ExpansionPanel` 将为面板的内容区域导出必要的 `aria-labelledby` 和 `id`。

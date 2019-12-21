@@ -14,7 +14,7 @@ components: Modal
 - 🔐open開いている間、ページコンテンツのスクロールを無効にします。
 - ♿️フォーカスを適切に管理します。モーダルコンテンツに移動し、 して、モーダルが閉じられるまでそこに保持します。
 - ♿️適切なARIAロールを自動的に追加します。
-- 📦 [5 kB gzipped](/size-snapshot).
+- [5 kB gzipped](/size-snapshot).
 
 > **用語の注記**。 「モーダル」という用語は「ダイアログ」を意味するために使用されることがありますが、これは誤った呼び名です。 A modal window describes parts of a UI. 要素が[アプリケーションの他の部分との対話をブロックする場合](https://en.wikipedia.org/wiki/Modal_window)、その要素はモーダルであると見なされます。
 
@@ -70,7 +70,7 @@ This is done for accessibility purposes, however, it might create issues. In the
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 
-- Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
+- モーダルタイトルを参照する `aria-labelledby = "id..."` `モーダル`に追加してください。 Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
     
     ```jsx
     <Modal

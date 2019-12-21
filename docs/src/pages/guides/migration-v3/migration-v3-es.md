@@ -206,7 +206,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   
     This also applies to `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` as well as `ListItem` if the `button` prop is true.
 
-### Card
+### Card (tarjeta)
 
 - [CardActions] Rename the `disableActionSpacing` prop to `disableSpacing`.
 - [CardActions] Remove the `disableActionSpacing` CSS class.
@@ -331,7 +331,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   +<Tabs variant="scrollable" />
   ```
 
-### Table
+### Table (tabla)
 
 - [TableCell] Remove the deprecated `numeric` property:
   

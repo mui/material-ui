@@ -23,7 +23,7 @@ Dado que la experiencia del usuario puede mejorarse en m√≥vil usando la selecci√
 
 El componente `TextField` es un control de formulario completo, incluyendo una etiqueta, el campo de texto y texto de ayuda. You can find an example with the select mode [in this section](/components/text-fields/#select).
 
-## Customized selects
+## Selecciones personalizadas
 
 Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 

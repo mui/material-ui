@@ -70,10 +70,10 @@ yarn add @material-ui/styles
 
 ### Estilos
 
-- ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com o v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Removing `react-jss` from your `package.json` can help). O componente StylesProvider substitui o componente JssProvider.
+- ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com o v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Remover `react-jss` do seu `package.json` pode ajudar). O componente StylesProvider substitui o componente JssProvider.
 - Remova a primeira opção de argumento do `withTheme()`. (The first argument was a placeholder for a potential future option that never arose.)
   
-    It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
+    Corresponde à [emotion API](https://emotion.sh/docs/introduction) e [styled-components API](https://www.styled-components.com).
 
 ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
@@ -247,7 +247,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   - A propriedade `edge` deve ser definida para botões de ícone.
 - [List] `dense` no longer reduces the top and bottom padding of the `List` element.
 
-- [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
+- [ListItem] Aumente a especificidade CSS das regras de estilo `disabled` e `focusVisible`.
 
 ### Menu
 

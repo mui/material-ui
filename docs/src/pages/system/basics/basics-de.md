@@ -210,7 +210,7 @@ const Box = styled.div`
 />
 
 /**
- * Outputs:
+ * Ausgaben:
  *
  * padding: 16px;
  * @media (min-width: 600px) {

@@ -17,13 +17,13 @@ The tree view also offers a controlled API.
 
 {{"demo": "pages/components/tree-view/ControlledTreeView.js"}}
 
-## Customized tree view
+## 自定义树视图
 
 ### Custom icons, border and animation
 
 {{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
 
-### Gmail clone
+### 仿 Gmail
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}
 

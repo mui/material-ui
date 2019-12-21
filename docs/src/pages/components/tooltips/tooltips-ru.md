@@ -50,19 +50,19 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 You can find a similar concept in the [wrapping components](/guides/composition/#wrapping-components) guide.
 
-## Triggers
+## Триггеры
 
 You can define the types of events that cause a tooltip to show.
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## Controlled Tooltips
+## Контролируемые подсказки
 
-You can use the `open`, `onOpen` and `onClose` properties to control the behavior of the tooltip.
+Вы можете использовать `open`, `onOpen` and `onClose` свойства, чтобы контролировать поведение всплывающей подсказки.
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## Variable Width
+## Вариативная ширина
 
 The `Tooltip` wraps long text by default to make it readable.
 
@@ -74,7 +74,7 @@ A tooltip can be interactive. It won't close when the user hovers over the toolt
 
 {{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
 
-## Disabled Elements
+## Неактивные элементы
 
 By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
@@ -102,7 +102,7 @@ By default disabled elements like `<button>` do not trigger user interactions so
 
 ## Showing and hiding
 
-The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the properties `enterDelay` and `leaveDelay`, as shown in the Controlled Tooltips demo above.
+Всплывающая подсказка обычно отображается сразу же, как пользователь наводит курсор на элемент, и сразу же скрывается, когда курсор уходит с элемента. Задержку в отображении или скрытии всплывающей подсказки можно добавить через свойства `enterDelay` и `leaveDelay`, как показано выше в демонстрационной версии «Контролируемые подсказки».
 
 On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` property.
 

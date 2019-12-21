@@ -59,6 +59,6 @@ Highlight part of the text to see the popper:
 
 ### PopupState helper
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper state for you in most cases.
+在大多数情况下，一个第三方包 [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) 可以为你处理popper 的 state 。
 
 {{"demo": "pages/components/popper/PopperPopupState.js"}}

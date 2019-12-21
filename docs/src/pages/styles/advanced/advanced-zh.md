@@ -64,7 +64,7 @@ const DeepChild = withTheme(DeepChildRaw);
 
 ### 主题嵌套
 
-You can nest multiple theme providers. This can be really useful when dealing with different areas of your application that have distinct appearance from each other.
+您可以嵌套多个主题提供者。 在应用程序的不同区域需要应用不同外观时，这非常有用。
 
 ```jsx
 <ThemeProvider theme={outerTheme}>
@@ -77,7 +77,7 @@ You can nest multiple theme providers. This can be really useful when dealing wi
 
 {{"demo": "pages/styles/advanced/ThemeNesting.js"}}
 
-The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
+内部主题将 **覆盖** 外部主题。 You can extend the outer theme by providing a function:
 
 ```jsx
 <ThemeProvider theme={…} >
@@ -90,7 +90,7 @@ The inner theme will **override** the outer theme. You can extend the outer them
 
 ## Overriding styles - `classes` prop
 
-The `makeStyles` (hook generator) and `withStyles` (HOC) APIs allow the creation of multiple style rules per style sheet. Each style rule has its own class name. The class names are provided to the component with the `classes` variable. This is particularly useful when styling nested elements in a component.
+` makeStyles ` (hook generator) 和` withStyles ` (HOC) API允许为每个样式表创建多个样式规则。 每个样式规则都有自己的类名。 类名通过` classes `变量传入组件。 在为组件中的嵌套元素设置样式时，这尤其有用。
 
 ```jsx
 // A style sheet
@@ -115,11 +115,11 @@ function Parent() {
 }
 ```
 
-However, the class names are often non-deterministic. How can a parent component override the style of a nested element?
+但是，类名通常是不确定的。 父组件如何覆盖嵌套元素的样式？
 
 ### `withStyles`
 
-This is the simplest case. the wrapped component accepts a `classes` prop, it simply merges the class names provided with the style sheet.
+这是最简单的情况。 包装组件接受` classes ` 属性， 它简单地合并了样式表提供的类名。
 
 ```jsx
 const Nested = withStyles({
@@ -140,7 +140,7 @@ function Parent() {
 
 ### `makeStyles`
 
-The hook API requires a bit more work. You have to forward the parent props to the hook as a first argument.
+Hook API需要多写一点模版代码。 您需要转发父级组件的属性到hook作为第一个参数。
 
 ```jsx
 const useStyles = makeStyles({
@@ -166,9 +166,9 @@ function Parent() {
 
 ## JSS plugins
 
-JSS uses plugins to extend its core, allowing you to cherry-pick the features you need, and only pay the performance overhead for what you are using.
+JSS使用插件来扩展其核心，允许您挑选所需的功能， 并且只为您正在使用的内容支付性能开销。
 
-Not all the plugins are available in Material-UI by default. The following (which is a subset of [jss-preset-default](https://cssinjs.org/jss-preset-default/)) are included:
+默认情况下，Material-UI不会启用所有插件。 以下（它是 [ jss-preset-default的子集](https://cssinjs.org/jss-preset-default/) ） 被包含在内：
 
 - [jss-plugin-rule-value-function](https://cssinjs.org/jss-plugin-rule-value-function/)
 - [jss-plugin-global](https://cssinjs.org/jss-plugin-global/)
@@ -178,7 +178,7 @@ Not all the plugins are available in Material-UI by default. The following (whic
 - [jss-plugin-vendor-prefixer](https://cssinjs.org/jss-plugin-vendor-prefixer/)
 - [jss-plugin-props-sort](https://cssinjs.org/jss-plugin-props-sort/)
 
-Of course, you are free to use additional plugins. Here is an example with the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
+当然，你可以自由的添加新插件。 我们有一个[](https://github.com/alitaheri/jss-rtl)jss-rtl插件的例子。
 
 ```jsx
 import { create } from 'jss';
@@ -200,7 +200,7 @@ export default function App() {
 
 ## 字符串模板
 
-If you prefer CSS syntax over JSS, you can use the [jss-plugin-template](https://cssinjs.org/jss-plugin-template/) plugin.
+如果您更喜欢CSS语法而不是JSS，则可以使用[ jss-plugin-template ](https://cssinjs.org/jss-plugin-template/)插入。
 
 ```jsx
 const useStyles = makeStyles({
@@ -217,7 +217,7 @@ const useStyles = makeStyles({
 });
 ```
 
-Note that this doesn't support selectors, or nested rules.
+请注意，这不支持选择器或嵌套规则。
 
 {{"demo": "pages/styles/advanced/StringTemplates.js"}}
 
@@ -225,11 +225,11 @@ Note that this doesn't support selectors, or nested rules.
 
 > It's **really important** to understand how the CSS specificity is calculated by the browser, as it's one of the key elements to know when overriding styles. You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
-By default, the style tags are injected **last** in the `<head>` element of the page. They gain more specificity than any other style tags on your page e.g. CSS modules, styled components.
+默认情况下，注入的style标签会被插入到页面`<head>`元素的最后。 它们比页面上任何其他样式标签更具特异性，例如CSS模块， styled components。
 
 ### injectFirst
 
-The `StylesProvider` component has an `injectFirst` prop to inject the style tags **first** in the head (less priority):
+`StylesProvider`组件的属性 `injectFirst` 会把style标签注入到head的**前部**(意味着更低的权重)。
 
 ```jsx
 import { StylesProvider } from '@material-ui/core/styles';
@@ -242,7 +242,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 ### `makeStyles` / `withStyles` / `styled`
 
-The injection of style tags happens in the **same order** as the `makeStyles` / `withStyles` / `styled` invocations. For instance the color red wins in this case:
+使用 `makeStyles` / `withStyles` / `styled` 的注入顺序于调用顺序**相同**。 例如，在这种情况下，红色胜出：
 
 ```jsx
 import clsx from 'clsx';
@@ -273,11 +273,11 @@ export default function MyComponent() {
 }
 ```
 
-The hook call order and the class name concatenation order **don't matter**.
+Hook 调用顺序和类名顺序**不影响**注入属性权重 。
 
 ### insertionPoint
 
-JSS [provides a mechanism](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) to control this situation. By adding an `insertionPoint` within the HTML you can [control the order](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order) that the CSS rules are applied to your components.
+JSS [提供了一种机制](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point)控制这种情况。 通过添加`insertionPoint`到HTML中，你可以[控制](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order)组件中CSS的插入位置。
 
 #### HTML 注释
 
@@ -307,7 +307,7 @@ export default function App() {
 
 #### Other HTML elements
 
-[Create React App](https://github.com/facebook/create-react-app) strips HTML comments when creating the production build. To get around this issue, you can provide a DOM element (other than a comment) as the JSS insertion point, for example, a `<noscript>` element:
+创建生产环境时, [Create React App](https://github.com/facebook/create-react-app) 会剥离 HTML 注释。 To get around this issue, you can provide a DOM element (other than a comment) as the JSS insertion point, for example, a `<noscript>` element:
 
 ```jsx
 <head>
@@ -521,7 +521,7 @@ JSS uses feature detection to apply the correct prefixes. [Don't be surprised](h
 
 ### 什么是CSP，为什么它有用？
 
-Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring developers to whitelist the sources their assets are retrieved from. This list is returned as a header from the server. For instance, say you have a site hosted at `https://example.com` the CSP header `default-src: 'self';` will allow all assets that are located at `https://example.com/*` and deny all others. If there is a section of your website that is vulnerable to XSS where unescaped user input is displayed, an attacker could input something like:
+基本上，CSP通过要求开发人员将其资产从中检索的源列入白名单来缓解跨站点脚本（XSS）攻击。 此列表作为服务器的标头返回。 例如，假设您有一个托管在` https://example.com`的网站 CSP头`default-src：'self';`将允许位于`https://example.com/*`的所有资产并否认所有其他人。 如果您的网站的某个部分容易受到XSS的影响而未显示未转义的用户输入，则攻击者可以输入以下内容：
 
 ```html
 <script>
@@ -529,15 +529,15 @@ Basically, CSP mitigates cross-site scripting (XSS) attacks by requiring develop
 </script>
 ```
 
-This vulnerability would allow the attacker to execute anything. However, with a secure CSP header, the browser will not load this script.
+此漏洞允许攻击者执行任何操作。 但是，使用安全的CSP标头，浏览器将不会加载此脚本。
 
 You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP).
 
 ### 如何实现CSP？
 
-In order to use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
+为了将CSP与Material-UI（和JSS）一起使用，您需要使用nonce。 A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS 有一个关于如何使用 Express 和 React Helmet 实现这一目标的[很棒的教程](https://github.com/cssinjs/jss/blob/master/docs/csp.md)。 对于基本纲要，请继续阅读。
 
-A CSP nonce is a Base 64 encoded string. You can generate one like this:
+CSP nonce是Base 64编码的字符串。 你可以这样生成一个：
 
 ```js
 import uuidv4 from 'uuid/v4';
@@ -545,7 +545,7 @@ import uuidv4 from 'uuid/v4';
 const nonce = new Buffer(uuidv4()).toString('base64');
 ```
 
-It is very important that you use UUID version 4, as it generates an **unpredictable** string. You then apply this nonce to the CSP header. A CSP header might look like this with the nonce applied:
+It is very important that you use UUID version 4, as it generates an **unpredictable** string. 然后，将此随机数应用于CSP标头。 应用了随机数时，CSP标头可能如下所示：
 
 ```js
 header('Content-Security-Policy')
@@ -562,11 +562,11 @@ If you are using Server-Side Rendering (SSR), you should pass the nonce in the `
 />
 ```
 
-Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags.
+然后，您必须将此随机数传递给JSS，以便将其添加到后续`<style>`标记中。
 
 The way that you do this is by passing a `<meta property="csp-nonce" content={nonce} />` tag in the `<head>` of your HTML. JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
 
-You must include this header regardless of whether or not SSR is used. Here is an example of what a fictional header could look like:
+无论是否使用SSR，都必须包含此标头。 Here is an example of what a fictional header could look like:
 
 ```html
 <head>

@@ -9,7 +9,7 @@ A function which returns [a class name generator function](https://cssinjs.org/j
 #### Аргументы
 
 1. `варианты` (*объекта* [optional]): 
-  - `options.disableGlobal` (*Boolean* [optional]): Defaults to `false`. Disable the generation of deterministic class names.
+  - `options.disableGlobal` (*Boolean* [optional]): По умолчанию - `false`. Disable the generation of deterministic class names.
   - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
   - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators in the same document.
 
@@ -154,7 +154,7 @@ Link a style sheet with a function component using the **styled components** pat
 2. `styles` (*Function | Object*): A function generating the styles or a styles object. Это будет связано с компонентом. Use the function signature if you need to have access to the theme. It's provided as property of the first argument.
 3. `варианты` (*объекта* [optional]): 
   - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-  - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
+  - `options.withTheme` (*Boolean* [optional]): По умолчанию - `false`. Provide the `theme` object to the component as a property.
   - `options.name` (*String* [optional]): The name of the style sheet. Полезно для отладки. If the value isn't provided, it will try to fallback to the name of the component.
   - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
   - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).
@@ -288,7 +288,7 @@ Link a style sheet with a component using the **higher-order component** pattern
 1. `styles` (*Function | Object*): A function generating the styles or a styles object. Это будет связано с компонентом. Use the function signature if you need to have access to the theme. It's provided as the first argument.
 2. `варианты` (*объекта* [optional]): 
   - `options.defaultTheme` (*Object* [optional]): The default theme to use if a theme isn't supplied through a Theme Provider.
-  - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
+  - `options.withTheme` (*Boolean* [optional]): По умолчанию - `false`. Provide the `theme` object to the component as a property.
   - `options.name` (*String* [optional]): The name of the style sheet. Полезно для отладки. If the value isn't provided, it will try to fallback to the name of the component.
   - `options.flip` (*Boolean* [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. When set to `true`, the styles are inversed. When set to `null`, it follows `theme.direction`.
   - The other keys are forwarded to the options argument of [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet).

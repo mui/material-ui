@@ -33,7 +33,7 @@ In order to put an action such as a `Checkbox` or a button inside of the `Expans
 
 {{"demo": "pages/components/expansion-panels/ActionsInExpansionPanelSummary.js", "bg": true}}
 
-## Performance
+## Performances
 
 The content of ExpansionPanels is mounted by default even if the panel is not expanded. This default behavior has server-side rendering and SEO in mind. If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
 
@@ -43,9 +43,9 @@ The content of ExpansionPanels is mounted by default even if the panel is not ex
 
 As with any performance optimization this is not a silver bullet. Be sure to identify bottlenecks first and then try out these optimization strategies.
 
-## Secondary heading and Columns
+## En-tête et colonnes secondaires
 
-Multiple columns can be used to structure the content, and a helper text may be added to the panel to assist the user.
+Plusieurs colonnes peuvent être utilisées pour structurer le contenu et un texte d'assistance peut être ajouté au panneau pour aider l'utilisateur.
 
 {{"demo": "pages/components/expansion-panels/DetailedExpansionPanel.js", "bg": true}}
 

@@ -76,7 +76,7 @@ A tooltip can be interactive. It won't close when the user hovers over the toolt
 
 ## 停用元素
 
-By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
+默认情况下，`<Button>`等disabled的元素不会触发用户交互，因此`Tooltip`不会在hover等正常事件上激活显示。 To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
 > ⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
 
@@ -102,7 +102,7 @@ By default disabled elements like `<button>` do not trigger user interactions so
 
 ## 显示和隐藏
 
-The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the properties `enterDelay` and `leaveDelay`, as shown in the Controlled Tooltips demo above.
+当用户的鼠标悬浮在该元素时工具提示会立即显示，并且当用户鼠标离开时立即隐藏。 可以通过` enterDelay `和` leaveDelay `属性来控制显示及隐藏文字提示的延迟，如上面的控制文字提示演示中所示。
 
 On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` property.
 

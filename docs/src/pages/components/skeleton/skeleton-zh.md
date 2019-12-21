@@ -25,10 +25,10 @@ The component supports 3 variants.
 
 {{"demo": "pages/components/skeleton/Variants.js"}}
 
-## YouTube example
+## YouTube 示例
 
 {{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
-## Facebook example
+## Facebook 示例
 
 {{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}

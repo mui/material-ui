@@ -7,7 +7,7 @@ components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 
 <p class="description">Los botones permiten a los usuarios ejecutar acciones, y tomar decisiones, con un simple toque.</p>
 
-[Buttons](https://material.io/design/components/buttons.html) communicate actions that users can take. They are typically placed throughout your UI, in places like:
+[Los botones](https://material.io/design/components/buttons.html) comunican acciones que los usuarios pueden realizar. Usualmente están ubicados dentro de tu interfaz, en lugares como:
 
 - Diálogos
 - Ventanas modal
@@ -29,26 +29,26 @@ You can remove the elevation with the `disableElevation` prop.
 
 ## Botones de texto
 
-[Text buttons](https://material.io/design/components/buttons.html#text-button) are typically used for less-pronounced actions, including those located:
+Los [Botones de texto](https://material.io/design/components/buttons.html#text-button) se suelen usar para acciones menos notables, incluyendo las que se encuentran:
 
 - En diálogos
 - En tarjetas
 
-In cards, text buttons help maintain an emphasis on card content.
+En las tarjetas, los botones de texto ayudan a mantener un énfasis en el contenido de la tarjeta.
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
 ## Botones con Contorno
 
-[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button) are medium-emphasis buttons. They contain actions that are important, but aren’t the primary action in an app.
+[Los botones con contorno](https://material.io/design/components/buttons.html#outlined-button) son botones de énfasis intermedio. Estos contienen acciones que son importantes, sin ser primarias, dentro de una aplicación.
 
-Outlined buttons are also a lower emphasis alternative to contained buttons, or a higher emphasis alternative to text buttons.
+Los botones con contorno tambien son una alternativa de énfasis más bajo que los botones contenidos, y de énfasis más alto que los botones de texto.
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
 ## Botones Agrupados
 
-The `ButtonGroup` component can be used to group buttons.
+Los `ButtonGroup` pueden ser usados para agrupar botones.
 
 {{"demo": "pages/components/buttons/GroupedButtons.js"}}
 
@@ -66,21 +66,21 @@ ButtonGroup can also be used to create a split button. The dropdown can change t
 
 {{"demo": "pages/components/buttons/SplitButton.js"}}
 
-## Floating Action Buttons
+## Botones de acción flotantes
 
-A [floating action button](https://material.io/design/components/buttons-floating-action-button.html) (FAB) performs the primary, or most common, action on a screen. It appears in front of all screen content, typically as a circular shape with an icon in its center. FABs come in two types: regular, and extended.
+Un [botón de acción flotante](https://material.io/design/components/buttons-floating-action-button.html) (BAF) desempeña la acción principal, o más común, en una pantalla. Aparece en frente de todo el contenido de la pantalla, normalmente como una forma circular con un icono en el centro. Los BAF existen en dos formas: regular, y extendido.
 
-Only use a FAB if it is the most suitable way to present a screen’s primary action.
+Sólo se recomienda usar un BAF si es la manera más apta para presentar la acción primaria de una pantalla.
 
-Only one floating action button is recommended per screen to represent the most common action.
+Se recomienda solo un botón flotante por pantalla para representar la acción más común.
 
 {{"demo": "pages/components/buttons/FloatingActionButtons.js"}}
 
-The floating action button animates onto the screen as an expanding piece of material, by default.
+El botón de acción flotante aparece en la página animado como un pedazo de material en expansión, por defecto.
 
-A floating action button that spans multiple lateral screens (such as tabbed screens) should briefly disappear, then reappear if its action changes.
+Un botón de acción flotante que aparece en varias páginas laterales (como páginas en pestañas) debe desaparecer por un momento, y luego aparecer de nuevo si su acción cambia.
 
-The Zoom transition can be used to achieve this. Note that since both the exiting and entering animations are triggered at the same time, we use `enterDelay` to allow the outgoing Floating Action Button's animation to finish before the new one enters.
+La transición Zoom se puede usar para lograr esto. Ten en cuenta que ya que las animaciones de salida y de entrada son desencadenados al mismo tiempo, usamos `enterDelay` para permitir que termine la animación del Botón de Acción Flotante saliente antes de que entre el nuevo.
 
 {{"demo": "pages/components/buttons/FloatingActionButtonZoom.js", "bg": true}}
 
@@ -94,17 +94,17 @@ Botones más grandes o más pequeños? Usa la propiedad `size`.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
-## Buttons with icons and label
+## Botones con iconos y títulos
 
-Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
+Tal vez se necesita tener iconos para un botón en particular para mejorar la experiencia del usuario de la aplicación porque se reconocen más fácilmente los logos que el texto. Por ejemplo, si se crea un botón para borrar se le puede poner un icono de papelera.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Icon Buttons
+## Botones con Iconos
 
-Icon buttons are commonly found in app bars and toolbars.
+Los botones de iconos suelen encontrarse en las barras de aplicaciones y las barras de herramientas.
 
-Icons are also appropriate for toggle buttons that allow a single choice to be selected or deselected, such as adding or removing a star to an item.
+Los iconos son también apropiados para botones toggle que permiten marcar o desmarcar una sola opción, tal como poner o quitar una estrella de un elemento.
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
@@ -116,15 +116,15 @@ Here are some examples of customizing the component. You can learn more about th
 
 👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
 
-## Complex Buttons
+## Botones Complejos
 
-The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`. You can take advantage of this lower level component to build custom interactions.
+Los Botones de Texto, los Botones Contenidos, los Botones de Acción Flotantes y los Botones con Iconos se construyen sobre el mismo componente: el `ButtonBase`. Se puede sacar partido de este componente básico para construir interacciones personalizadas.
 
 {{"demo": "pages/components/buttons/ButtonBases.js"}}
 
 ## Librería externa de routing
 
-One common use case is to use the button to trigger navigation to a new page. The `ButtonBase` component provides a property to handle this use case: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
+One common use case is to use the button to trigger navigation to a new page. El componente `ButtonBase` provee un atributo para tratar este uso: `component`. Sin embargo, para ciertos rellenos `ButtonBase` requiere el nodo DOM del componente proporcionado. Esto se logra adjuntando una referencia al componente y esperando que el componente reenvíe esta referencia al nodo DOM subyacente. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
 Here is an [integration example with react-router](/guides/composition/#button).
 
@@ -160,4 +160,4 @@ However:
   </span>
   ```
 
-This has the advantage of supporting any element, for instance, a link `<a>` element.
+Este tiene la ventaja de permitir cualquier elemento, por ejemplo un enlace `<a>`<a></0>.</p>

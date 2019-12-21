@@ -17,21 +17,21 @@ Keep the last breadcrumb interactive.
 
 {{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
 
-## Custom separator
+## Benutzerdefiniertes Trennzeichen
 
-In the following examples, we are using two string separators, and an SVG icon.
+In den folgenden Beispielen werden zwei textbasierte Trennzeichen und ein SVG Icon verwendet.
 
 {{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
-## Breadcrumbs with icons
+## Breadcrumbs mit Icons
 
 {{"demo": "pages/components/breadcrumbs/IconBreadcrumbs.js"}}
 
-## Collapsed breadcrumbs
+## Zusammengeklappte Breadcrumbs
 
 {{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## Customized breadcrumbs
+## Benutzerdefinierte Breadcrumbs
 
 Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
@@ -45,7 +45,7 @@ Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf de
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#breadcrumb)
 
-Be sure to add a `aria-label` description on the `Breadcrumbs` component.
+Stelle sicher, dass du ein `aria-label` mit einem Beschreibungstext zur `Breadcrumbs`-Komponente hinzufügst.
 
 Die Barrierefreiheit dieser Komponente setzt voraus:
 

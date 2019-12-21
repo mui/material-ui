@@ -1,6 +1,6 @@
 ---
 title: React-компонент Автозаполнение
-components: TextField, Popper, Autocomplete
+components: TextField, Popper, автозаполнение
 ---
 
 # Автодополнение
@@ -9,10 +9,10 @@ components: TextField, Popper, Autocomplete
 
 Этот виджет используется для установки значения однострочного текстового поля. Он полезен в одном из двух случев:
 
-1. The value for the textbox must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name: [combo box](#combo-box).
+1. Значение для текстового поля должно быть выбрано из предопределенного набора допустимых значений, например, поле местоположения должно содержать действительное имя местоположения: [поле со списком](#combo-box).
 2. Текстовое поле может содержать любое произвольное значение, но целесообразно предлагать пользователю возможные значения. Например, поле поиска может предлагать аналогичные или предыдущие поиски, чтобы сэкономить время пользователя: [free solo](#free-solo).
 
-## Combo box
+## Ком-Бог
 
 Значение должно быть выбрано из предопределенного набора допустимых значений.
 
@@ -30,7 +30,7 @@ components: TextField, Popper, Autocomplete
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
-## Free solo
+## Бесплатное соло
 
 Установите для `freeSolo` значение true, чтобы текстовое поле могло содержать любое произвольное значение.
 
@@ -52,7 +52,7 @@ For advanced customization use cases, we expose a `useAutocomplete()` hook. It a
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
 ```
 
-- 📦 [4.5 kB gzipped](/size-snapshot).
+- 4.5 [1 кБ в сжатом виде](/size-snapshot).
 
 {{"demo": "pages/components/autocomplete/UseAutocomplete.js", "defaultCodeOpen": false}}
 
@@ -78,13 +78,13 @@ For this demo, we need to load the [Google Maps JavaScript](https://developers.g
 
 ## Множественные значения
 
-Also knowned as tags, the user is allowed to enter more than 1 value.
+Также известны как теги. Пользователь может ввести более 1 значения.
 
 {{"demo": "pages/components/autocomplete/Tags.js"}}
 
 ### Фиксированные опции
 
-In the event that you need to lock certain tag so that they can't be removed in the interface, you can set the chips disabled.
+В случае, если вам нужно зафиксировать определенный тег (так что он не мог быть удалён через интерфейс), вы можете установить chips в состояние disabled.
 
 {{"demo": "pages/components/autocomplete/FixedTags.js"}}
 
@@ -127,7 +127,7 @@ It supports the following options:
   - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
   - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
   - `config.stringify` (*Func* [optional]): Defaults to `JSON.stringify`.
-  - `config.trim` (*Boolean* [optional]): Defaults to `false`. Remove trailing spaces.
+  - `config.trim` (*Boolean* [optional]): По умолчанию - `false`. Remove trailing spaces.
 
 In the following demo, the options need to start with the query prefix:
 
@@ -142,7 +142,7 @@ const filterOptions = createFilterOptions({
 
 {{"demo": "pages/components/autocomplete/Filter.js", "defaultCodeOpen": false}}
 
-### Advanced
+### Дополнительные параметры
 
 For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). For instance:
 

@@ -112,9 +112,9 @@ import { Link } from 'react-router-dom';
 
 ⚠️ However, this strategy suffers from a limitation: prop collisions. The component providing the `component` prop (e.g. ListItem) might not forward all the props (for example dense) to the root element.
 
-### With TypeScript
+### Usando TypeScript
 
-You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-component-prop).
+Você pode encontrar os detalhes no [guia TypeScript](/guides/typescript/#usage-of-component-prop).
 
 ## Bibliotecas de roteamento
 
@@ -134,9 +134,9 @@ The integration with third-party routing libraries is achieved with the `compone
 
 ## Advertência com refs
 
-This section covers caveats when using a custom component as `children` or for the `component` prop.
+Esta seção aborda advertências ao usar um componente customizado como `children` ou para a propriedade `component`.
 
-Some of the components need access to the DOM node. This was previously possible by using `ReactDOM.findDOMNode`. This function is deprecated in favor of `ref` and ref forwarding. However, only the following component types can be given a `ref`:
+Alguns dos componentes precisam acessar o nó DOM. Anteriormente, isso era possível usando `ReactDOM.findDOMNode`. Esta função está obsoleta em favor da utilização de `ref` e encaminhamento de ref. No entanto, apenas os seguintes tipos de componentes podem receber um `ref`:
 
 - Qualquer componente do Material-UI
 - componentes de classe, ou seja, `React.Component` ou `React.PureComponent`
@@ -145,17 +145,17 @@ Some of the components need access to the DOM node. This was previously possible
 - [Componentes React.lazy](https://reactjs.org/docs/react-api.html#reactlazy)
 - [Componentes React.memo](https://reactjs.org/docs/react-api.html#reactmemo)
 
-If you don't use one of the above types when using your components in conjunction with Material-UI, you might see a warning from React in your console similar to:
+Se você não usar um dos tipos acima ao usar seus componentes em conjunto com o Material-UI, poderá ver um aviso do React no seu console semelhante a:
 
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
-Be aware that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref.
+Esteja ciente que você ainda receberá este aviso para componentes `lazy` ou `memo` se eles forem encapsulados por um componente que não contém ref.
 
 In some instances an additional warning is issued to help with debugging, similar to:
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
-Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
+Only the two most common use cases are covered. Para mais informações, consulte [esta seção na documentação oficial do React](https://reactjs.org/docs/forwarding-refs.html).
 
 ```diff
 - const MyButton = props => <div role="button" {...props} />;
@@ -169,7 +169,7 @@ Only the two most common use cases are covered. For more information see [this s
 <Tooltip title="Hello, again."><SomeContent /></Tooltip>;
 ```
 
-To find out if the Material-UI component you're using has this requirement, check out the the props API documentation for that component. If you need to forward refs the description will link to this section.
+Para descobrir se o componente de Material-UI que você está usando tem esse requisito, verifique na documentação de propriedades da API do componente. Se você precisar encaminhar refs, a descrição será vinculada a esta seção.
 
 ### Caveat with StrictMode
 

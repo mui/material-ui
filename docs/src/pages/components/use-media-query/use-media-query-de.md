@@ -23,7 +23,7 @@ Sie sollten eine Medienabfrage für das erste Argument des Hooks bereitstellen. 
 
 ## Verwenden der Haltepunkt-Helfer der Material-UI
 
-You can use Material-UI's [breakpoint helpers](/customization/breakpoints/) as follows:
+Sie können die Material-UI [Haltepunkt-Helfer](/customization/breakpoints/) wie folgt verwenden:
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';
@@ -142,7 +142,7 @@ Make sure you provide the same custom match media implementation to the client-s
 
 ## Migration von `withWidth()`
 
-The `withWidth()` higher-order component injects the screen width of the page. You can reproduce the same behavior with a `useWidth` hook:
+Die Komponente höherer Ordnung `withWidth()` fügt die Bildschirmbreite der Seite ein. Sie können dasselbe Verhalten mit einem `useWidth` Hook reproduzieren:
 
 {{"demo": "pages/components/use-media-query/UseWidth.js"}}
 
@@ -156,14 +156,14 @@ The `withWidth()` higher-order component injects the screen width of the page. Y
 2. `options` (*Object* [optional]): 
   - ` options.defaultMatches ` (*Boolean* [optional]): Da `window.matchMedia()` auf dem Server nicht verfügbar ist, wird ein Standard Match zurückgegeben. Der Standardwert ist `false`.
   - `options.matchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia*. This can be used for handling an iframe content window.
-  - `options.noSsr` (*Boolean* [optional]): Defaults to `false`. Um den serverseitigen Renderingabgleich durchzuführen, muss er zweimal gerendert werden. Ein erstes Mal mit nichts und ein zweites Mal mit den Kind-Elementen. Dieser Zyklus mit zwei Durchgängen ist mit einem Nachteil verbunden. It's slower. You can set this flag to `true` if you are **not doing server-side rendering**.
+  - `options.noSsr ` (*Boolean* [optional]): Standardeinstellung ist `false`. Um den serverseitigen Renderingabgleich durchzuführen, muss er zweimal gerendert werden. Ein erstes Mal mit nichts und ein zweites Mal mit den Kind-Elementen. Dieser Zyklus mit zwei Durchgängen ist mit einem Nachteil verbunden. Es ist langsamer. Sie können diese Flag auf `true` setzten, wenn Sie **nicht serverseitig** rendern.
   - `options.ssrMatchMedia` (*Function* [optional]) You can provide your own implementation of *matchMedia* in a [server-side rendering context](#server-side-rendering).
 
 Note: You can change the default options using the [`default props`](/customization/globals/#default-props) feature of the theme with the `MuiUseMediaQuery` key.
 
 #### Rückgabewerte
 
-`matches`: Matches is `true` if the document currently matches the media query and `false` when it does not.
+`matches`: Match ist `true` wenn das Dokument aktuell mit der Medienabfrage übereinstimmt, und `false` wenn dies nicht der Fall ist.
 
 #### Beispiele
 

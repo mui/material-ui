@@ -29,20 +29,20 @@ You can remove the elevation with the `disableElevation` prop.
 
 ## Текстовые кнопки
 
-[Text buttons](https://material.io/design/components/buttons.html#text-button) are typically used for less-pronounced actions, including those located:
+[Текстовые кнопки](https://material.io/design/components/buttons.html#text-button) обычно используются для менее выраженных действий, в том числе расположенных:
 
 - В диалогах
 - В карточках - Cards
 
-In cards, text buttons help maintain an emphasis on card content.
+В Карточках (Cards) текстовые кнопки помогают сохранить акцент на содержании карточки.
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
 ## Контурные кнопки
 
-[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button) are medium-emphasis buttons. They contain actions that are important, but aren’t the primary action in an app.
+[Контурные кнопки](https://material.io/design/components/buttons.html#outlined-button) - это кнопки со средним акцентом. Они содержат действия, которые важны, но не являются основными в приложении.
 
-Outlined buttons are also a lower emphasis alternative to contained buttons, or a higher emphasis alternative to text buttons.
+Выделенные кнопки также являются альтернативой выделенным кнопкам или могут использоваться как альтернатива текстовым кнопкам.
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
@@ -66,25 +66,25 @@ ButtonGroup can also be used to create a split button. The dropdown can change t
 
 {{"demo": "pages/components/buttons/SplitButton.js"}}
 
-## Floating Action Buttons
+## Плавающие кнопки действий
 
-A [floating action button](https://material.io/design/components/buttons-floating-action-button.html) (FAB) performs the primary, or most common, action on a screen. It appears in front of all screen content, typically as a circular shape with an icon in its center. FABs come in two types: regular, and extended.
+[Плавающая кнопка действия](https://material.io/design/components/buttons-floating-action-button.html) выполняет основное или наиболее распространенное действие на экране. Они отображаются над всем содержимым экрана, обычно в виде закрашенного круга со значком в центре. FABs бывают двух типов: обычные и расширенные.
 
-Only use a FAB if it is the most suitable way to present a screen’s primary action.
+Используйте плавающую кнопку действий (FAB) только в том случае, если это наиболее подходящий способ представить основное действие экрана.
 
-Only one floating action button is recommended per screen to represent the most common action.
+Для отображения наиболее распространенных действий рекомендуется использовать только одну кнопку с плавающим действием.
 
 {{"demo": "pages/components/buttons/FloatingActionButtons.js"}}
 
-The floating action button animates onto the screen as an expanding piece of material, by default.
+По умолчанию анимация кнопки с плавающим действием на экране является расширяющейся.
 
-A floating action button that spans multiple lateral screens (such as tabbed screens) should briefly disappear, then reappear if its action changes.
+Кнопка с плавающим действием, которая охватывает несколько боковых экранов (например, экраны с вкладками), должна анимироваться при переходах.
 
-The Zoom transition can be used to achieve this. Note that since both the exiting and entering animations are triggered at the same time, we use `enterDelay` to allow the outgoing Floating Action Button's animation to finish before the new one enters.
+Переход масштабирование (Zoom) может быть использован для достижения этой цели. Обратите внимание, что так как выход и вход анимации запускаются одновременно, мы используем ` enterDelay `, чтобы разрешить исходящим кнопкам плавающего действия анимироваться постепенно.
 
 {{"demo": "pages/components/buttons/FloatingActionButtonZoom.js", "bg": true}}
 
-## Upload button
+## Кнопка загрузки файла
 
 {{"demo": "pages/components/buttons/UploadButtons.js"}}
 
@@ -94,21 +94,21 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
-## Buttons with icons and label
+## Кнопки с иконками и текстом
 
-Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
+Иногда вы можете захотеть добавить текст для определенной кнопки, чтобы улучшить UX, поскольку мы распознаем логотипы легче, чем обычный текст. Например, если у вас есть кнопка удаления, вы можете пометить ее значком мусорной корзины.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Icon Buttons
+## Кнопки с иконками
 
-Icon buttons are commonly found in app bars and toolbars.
+Кнопки с иконками обычно находятся на панелях навигации и на панелях инструментов.
 
-Icons are also appropriate for toggle buttons that allow a single choice to be selected or deselected, such as adding or removing a star to an item.
+Значки также подходят для кнопок переключения, которые позволяют выбрать элемент или отменить выбор, например, добавление или удаление звезды для элемента.
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## Customized buttons
+## Настраиваемые кнопки
 
 Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
@@ -116,15 +116,15 @@ Icons are also appropriate for toggle buttons that allow a single choice to be s
 
 👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
 
-## Complex Buttons
+## Сложные кнопки
 
-The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`. You can take advantage of this lower level component to build custom interactions.
+Текстовые кнопки, плавающие кнопки действий, блочные кнопки построены на основе одного и того же компонента: `ButtonBase`. Вы можете воспользоваться этим более низкоуровневым компонентом для создания пользовательских взаимодействий.
 
 {{"demo": "pages/components/buttons/ButtonBases.js"}}
 
 ## Сторонняя библиотека маршрутизации
 
-One common use case is to use the button to trigger navigation to a new page. The `ButtonBase` component provides a property to handle this use case: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
+One common use case is to use the button to trigger navigation to a new page. `ButtonBase` компонент предоставляет свойство для обработки этого варианта использования: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
 Here is an [integration example with react-router](/guides/composition/#button).
 

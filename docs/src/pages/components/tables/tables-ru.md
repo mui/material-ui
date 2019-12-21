@@ -69,7 +69,7 @@ Tables can include:
 
 ### Пользовательские действия разбивки на страницы
 
-The `Action` property of the `TablePagination` component allows the implementation of custom actions.
+Свойство `Action` компонента `TablePagination` позволяет реализовать собственную обработку пользовательский событий.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
@@ -79,9 +79,9 @@ The `Action` property of the `TablePagination` component allows the implementati
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
-## Spanning Table
+## Объединение таблиц
 
-A simple example with spanning rows & columns.
+Простой пример с объединением строк и столбцов.
 
 {{"demo": "pages/components/tables/SpanningTable.js", "bg": true}}
 

@@ -33,7 +33,7 @@ You can use the `arrow` prop to give your tooltip an arrow indicating which elem
 
 ## Custom child element
 
-The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
+ツールチップは、DOMイベントリスナーをその子要素に適用する必要があります。 If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -48,35 +48,35 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 </Tooltip>
 ```
 
-You can find a similar concept in the [wrapping components](/guides/composition/#wrapping-components) guide.
+同様の概念は、[wrapping components](/guides/composition/#wrapping-components)ガイドにも記載されています。
 
 ## Triggers
 
-You can define the types of events that cause a tooltip to show.
+ツールチップを表示するイベントのタイプを定義できます。
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
 ## Controlled Tooltips
 
-You can use the `open`, `onOpen` and `onClose` properties to control the behavior of the tooltip.
+`open`, `onOpen` and `onClose` の各プロパティを使用して、ツールチップの動作を制御できます。
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
 ## Variable Width
 
-The `Tooltip` wraps long text by default to make it readable.
+既定では、`Tooltip`は長いテキストを折り返して読みやすくします。
 
 {{"demo": "pages/components/tooltips/VariableWidth.js"}}
 
 ## インタラクティブ
 
-A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
+ツールチップをインタラクティブにすることができます。 `leaveDelay` が期限切れになる前に、ユーザーがツールチップにカーソルを合わせても閉じません。
 
 {{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
 
-## Disabled Elements
+## 無効な要素
 
-By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
+デフォルトでは無効になっている要素`<button>`はユーザーの操作をトリガーしないため、 `Tooltip`は、ホバーなどの通常のイベントでアクティブになりません。 To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
 > ⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
 
@@ -100,10 +100,10 @@ By default disabled elements like `<button>` do not trigger user interactions so
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
-## Showing and hiding
+## 表示と非表示
 
-The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the properties `enterDelay` and `leaveDelay`, as shown in the Controlled Tooltips demo above.
+ツールチップは通常、ユーザーのマウスが要素の上に移動するとすぐに表示され、ユーザーのマウスが離れるとすぐに非表示になります。 ツールチップの表示または非表示の遅延は、上記のControlled Tooltipsデモに示すように、プロパティ `enterDelay` および `leaveDelay`を使用して追加できます。
 
-On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` property.
+モバイルでは、ユーザーが要素を長押しして1500msの遅延後に非表示になると、ツールチップが表示されます。 `disableTouchListener` プロパティでこの機能を無効にできます。
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}

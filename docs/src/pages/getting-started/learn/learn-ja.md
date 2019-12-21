@@ -40,7 +40,7 @@ Material-UIを初めて学ぶときは、公式のドキュメントよりもサ
   - 💻[コース](https://bonsaiilabs.com/courseDetail/material-ui-with-react)
 - **React Material-UI Cookbook**: Build modern-day applications by implementing Material Design principles in React, using Material-UI.
   
-  - 📘 [The book](https://www.amazon.com/gp/product/1789615224/)
+  - 📘 [書籍](https://www.amazon.com/gp/product/1789615224/)
 
 [![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
 

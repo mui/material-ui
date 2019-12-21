@@ -31,9 +31,9 @@ You can use the `arrow` prop to give your tooltip an arrow indicating which elem
 
 {{"demo": "pages/components/tooltips/ArrowTooltips.js"}}
 
-## Custom child element
+## Elemento filho customizado
 
-The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
+A dica precisa aplicar ouvintes de evento DOM ao seu elemento filho. Se o filho for um elemento React personalizado, você precisará garantir que ele repasse suas propriedades para o elemento DOM subjacente.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -48,41 +48,41 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 </Tooltip>
 ```
 
-You can find a similar concept in the [wrapping components](/guides/composition/#wrapping-components) guide.
+Você pode encontrar um conceito similar no guia de [componentes de encapsulamento](/guides/composition/#wrapping-components).
 
-## Triggers
+## Gatilhos
 
-You can define the types of events that cause a tooltip to show.
+Você pode definir os tipos de eventos que fazem com que uma dica seja exibida.
 
 {{"demo": "pages/components/tooltips/TriggersTooltips.js"}}
 
-## Controlled Tooltips
+## Dicas Controladas
 
-You can use the `open`, `onOpen` and `onClose` properties to control the behavior of the tooltip.
+Você pode usas as propriedades `open`, `onOpen` e `onClose` para controlar o comportamento da dica.
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## Variable Width
+## Largura Variável
 
-The `Tooltip` wraps long text by default to make it readable.
+A dica (`Tooltip`) quebra o texto longo por padrão para torná-lo legível.
 
 {{"demo": "pages/components/tooltips/VariableWidth.js"}}
 
 ## Interativo
 
-A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
+Uma dica pode ser interativa. Ela não será fechada quando o usuário passar por cima da dica antes que `leaveDelay` expire.
 
 {{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
 
-## Disabled Elements
+## Elementos Desativados
 
-By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
+Por padrão os elementos desativados como `<button>` não disparam interações do usuário, então uma `Tooltip` não será ativada em eventos normais, omo passar o mouse. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
 > ⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
-> If you're not wrapping a Material-UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property *pointer-events: none;* to your element when disabled:
+> Se você não estiver manipulando com um componente Material-UI que herde de `ButtonBase`, por exemplo, um elemento `<button>` nativo, você também deve adicionar a propriedade CSS *pointer-events: none;* ao seu elemento quando desativado:
 
 ```jsx
 <Tooltip title="Você não tem permissão para esta tarefa">
@@ -100,10 +100,10 @@ Use uma transição diferente.
 
 {{"demo": "pages/components/tooltips/TransitionsTooltips.js"}}
 
-## Showing and hiding
+## Mostrando e ocultando
 
-The tooltip is normally shown immediately when the user's mouse hovers over the element, and hides immediately when the user's mouse leaves. A delay in showing or hiding the tooltip can be added through the properties `enterDelay` and `leaveDelay`, as shown in the Controlled Tooltips demo above.
+A dica normalmente é mostrada imediatamente quando o mouse do usuário passa sobre o elemento e se oculta imediatamente quando o mouse do usuário sai. Um atraso na exibição ou ocultação da dica pode ser adicionado por meio das propriedades `enterDelay` e `leaveDelay`, conforme mostrado na demonstração de dicas controladas acima.
 
-On mobile, the tooltip is displayed when the user longpresses the element and hides after a delay of 1500ms. You can disable this feature with the `disableTouchListener` property.
+No celular, a dica é exibida quando o usuário pressiona longamente o elemento e oculta após um atraso de 1500 ms. Você pode desativar esse recurso com a propriedade `disableTouchListener`.
 
 {{"demo": "pages/components/tooltips/DelayTooltips.js"}}

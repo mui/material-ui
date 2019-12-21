@@ -37,19 +37,19 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 
 {{"demo": "pages/components/popper/SpringPopper.js"}}
 
-## Positioned Popper
+## Positionierter Popper
 
 {{"demo": "pages/components/popper/PositionedPopper.js", "bg": true}}
 
-## Scroll playground
+## Blätter Spielplatz
 
 {{"demo": "pages/components/popper/ScrollPlayground.js", "hideHeader": true, "bg": true}}
 
-## Faked reference object
+## Gefälschtes Referenzobjekt
 
-The `anchorEl` property can be a reference to a fake DOM element. You just need to create an object shaped like the [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123).
+Die `anchorEl` -Eigenschaft kann eine Referenz auf ein künstliches DOM-Element sein. Sie müssen nur ein Objekt mit der Form [`ReferenceObject`](https://github.com/FezVrasta/popper.js/blob/0642ce0ddeffe3c7c033a412d4d60ce7ec8193c3/packages/popper/index.d.ts#L118-L123) erstellen.
 
-Highlight part of the text to see the popper:
+Markieren Sie einen Teil des Textes, um den Popper zu sehen:
 
 {{"demo": "pages/components/popper/FakedReferencePopper.js"}}
 
@@ -59,6 +59,6 @@ Für fortgeschrittenere Anwendungsfälle können Ihnen folgende Projekte helfen:
 
 ### PopupState-Helfer
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of popper state for you in most cases.
+Es gibt ein Drittanbieter-Paket [`Material-Ui-Popup-Status`](https://github.com/jcoreio/material-ui-popup-state), das sich in den meisten Fällen um Popper Status kümmern kann.
 
 {{"demo": "pages/components/popper/PopperPopupState.js"}}

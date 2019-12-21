@@ -17,6 +17,12 @@ They should be easy to scan for relevant and actionable information. Elements, l
 
 {{"demo": "pages/components/cards/SimpleCard.js", "bg": true}}
 
+### Outlined Card
+
+Set `variant="outlined` to render an outlined card.
+
+{{"demo": "pages/components/cards/OutlinedCard.js", "bg": true}}
+
 ## Сложное взаимодействие
 
 В варианте для десктопа контент карточки может раздвигаться.

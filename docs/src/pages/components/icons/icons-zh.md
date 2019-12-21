@@ -15,20 +15,20 @@ Material-UI通过三种方式提供图标支持：
 
 ## Material Icons (材料图标)
 
-Material Design已经标准化了1,000多个官方图标，每个图标都有五个不同的“主题”(见下文)。 For each SVG icon, we export the respective React component from the @material-ui/icons package. You can [search the full list of these icons](/components/material-icons/).
+Material Design已经标准化了1,000多个官方图标，每个图标都有五个不同的“主题”(见下文)。 对于每个SVG图标，我们从 @ material-ui/icons 包中导出相应的React组件。 You can [search the full list of these icons](/components/material-icons/).
 
 ### 使用
 
 Install `@material-ui/icons`. Import icons using one of these two options:
 
-- Option 1:
+- 方法 1:
 
   ```jsx
   import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
   import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
   ```
 
-- Option 2:
+- 选项2:
 
   ```jsx
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
@@ -92,7 +92,7 @@ import StarIcon from './star.svg';
 <SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
 ```
 
-### Libraries
+### 库
 
 #### Material Design (recommended)
 
@@ -106,7 +106,7 @@ Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has a
 
 ## Icon (Font icons)
 
-The `Icon` component will display an icon from any icon font that supports ligatures. As a prerequisite, you must include one, such as the [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project, for instance, via Google Web Fonts:
+对于支持连字的任何图标字体，`Icon` 组件能够将其显示为一个图标。 作为先决条件，您必须在项目中包括一个 [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web)，举例来说，您可以由 Google Web Fonts 引入：
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -114,7 +114,7 @@ The `Icon` component will display an icon from any icon font that supports ligat
 
 `Icon` will set the correct class name for the Material icon font. For other fonts, you must supply the class name using the Icon component's `className` property.
 
-To use an icon simply wrap the icon name (font ligature) with the `Icon` component, for example:
+若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
@@ -122,39 +122,39 @@ import Icon from '@material-ui/core/Icon';
 <Icon>star</Icon>
 ```
 
-By default, an Icon will inherit the current text color. Optionally, you can set the icon color using one of the theme color properties: `primary`, `secondary`, `action`, `error` & `disabled`.
+默认情况下，一个图标会继承使用当前的文本颜色。 您也可以选择使用以下任何一个主题颜色属性来设置图标的颜色：`primary`，`secondary`，`action`，`error` 以及 `disabled`。
 
-### Font Material icons
+### Font Material 图标
 
 {{"demo": "pages/components/icons/Icons.js"}}
 
 ### Font Awesome
 
-[Font Awesome](https://fontawesome.com/icons) can be used with the `Icon` component as follow:
+如下是一个同时使用[Font Awesome](https://fontawesome.com/icons) 与 `Icon` 的示例：
 
 {{"demo": "pages/components/icons/FontAwesome.js", "hideEditButton": true}}
 
 ## Font vs SVG. Which approach to use?
 
-Both approaches work fine, however, there are some subtle differences, especially in terms of performance and rendering quality. Whenever possible SVG is preferred as it allows code splitting, supports more icons, renders faster and better.
+这两种方法都能管用，然而，它们之间还是有着一些微妙的差异，特别当涉及到整体性能和渲染质量。 我们推荐尽可能选择 SVG，因为它允许代码分割、支持更多图标、而且渲染得更快、更好。
 
-For more details, you can check out [why GitHub migrated from font icons to SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/).
+若您想了解更多细节，请查看 [ 为什么 GitHub 从字体图标迁移到 SVG 图标](https://github.blog/2016-02-22-delivering-octicons-with-svg/)这篇文章。
 
 ## 可访问性
 
-Icons can convey all sorts of meaningful information, so it’s important that they reach the largest amount of people possible. There are two use cases you’ll want to consider:
-- **Decorative Icons** are only being used for visual or branding reinforcement. If they were removed from the page, users would still understand and be able to use your page.
-- **Semantic Icons** are ones that you’re using to convey meaning, rather than just pure decoration. This includes icons without text next to them used as interactive controls — buttons, form elements, toggles, etc.
+图标可以传达各种各样有意义的信息，所以将他们传递给尽可能多的受众是至关重要的。 There are two use cases you’ll want to consider:
+- **Decorative Icons** are only being used for visual or branding reinforcement. 如果将它们从页面中删除，用户仍然可以理解并能够使用您的页面。
+- **Semantic Icons** are ones that you’re using to convey meaning, rather than just pure decoration. 这包括将边上不带有文本的图标用作一些交互式控件 — 按钮，表单元素，切换等。
 
-### Decorative SVG Icons
+### 装饰 SVG 图标
 
 If your icons are purely decorative, you’re already done! The `aria-hidden=true` attribute is added so that your icons are properly accessible (invisible).
 
-### Semantic SVG Icons
+### 语义 SVG 图标
 
-If your icon has semantic meaning, all you need to do is throw in a `titleAccess="meaning"` property. The `role="img"` attribute and the `<title>` element are added so that your icons are properly accessible.
+如果您的图标带有语义，您只需要包含 `titleAccess =“含义”` 属性。 The `role="img"` attribute and the `<title>` element are added so that your icons are properly accessible.
 
-In the case of focusable interactive elements, like when used with an icon button, you can use the `aria-label` property:
+对于那些可聚焦的交互式元素，譬如与一个图标按钮一起使用时，您可以使用 `aria-label` 属性：
 
 ```jsx
 import IconButton from '@material-ui/core/IconButton';
@@ -169,13 +169,13 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 </IconButton>
 ```
 
-### Decorative Font Icons
+### 装饰形的字体图标
 
 If your icons are purely decorative, you’re already done! The `aria-hidden=true` attribute is added so that your icons are properly accessible (invisible).
 
-### Semantic Font Icons
+### 语义字体图标
 
-If your icons have semantic meaning, you need to provide a text alternative only visible to assistive technologies.
+如果您的图标具有语义含义，您则需要提供一个对协助的技术可见的文本替代方法。
 
 ```jsx
 import Icon from '@material-ui/core/Icon';
@@ -184,9 +184,9 @@ import Typography from '@material-ui/core/Typography';
 // ...
 
 <Icon>add_circle</Icon>
-<Typography variant="srOnly">Create a user</Typography>
+<Typography variant="srOnly">创建一个用户</Typography>
 ```
 
-### Reference
+### 参考
 
 - https://developer.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/
