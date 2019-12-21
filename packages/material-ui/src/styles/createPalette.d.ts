@@ -60,6 +60,9 @@ export interface Palette {
   primary: PaletteColor;
   secondary: PaletteColor;
   error: PaletteColor;
+  warning: PaletteColor;
+  info: PaletteColor;
+  success: PaletteColor;
   grey: Color;
   text: TypeText;
   divider: TypeDivider;
@@ -83,6 +86,9 @@ export interface PaletteOptions {
   primary?: PaletteColorOptions;
   secondary?: PaletteColorOptions;
   error?: PaletteColorOptions;
+  warning?: PaletteColorOptions;
+  info?: PaletteColorOptions;
+  success?: PaletteColorOptions;
   type?: PaletteType;
   tonalOffset?: number;
   contrastThreshold?: number;

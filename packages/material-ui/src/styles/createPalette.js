@@ -4,6 +4,9 @@ import grey from '../colors/grey';
 import indigo from '../colors/indigo';
 import pink from '../colors/pink';
 import red from '../colors/red';
+import amber from '../colors/amber';
+import blue from '../colors/blue';
+import green from '../colors/green';
 import { darken, getContrastRatio, lighten } from './colorManipulator';
 
 export const light = {
@@ -94,6 +97,21 @@ export default function createPalette(palette) {
       main: red[500],
       dark: red[700],
     },
+    warning = {
+      light: amber[300],
+      main: amber[500],
+      dark: amber[700],
+    },
+    info = {
+      light: blue[300],
+      main: blue[500],
+      dark: blue[700],
+    },
+    success = {
+      light: green[300],
+      main: green[500],
+      dark: green[700],
+    },
     type = 'light',
     contrastThreshold = 3,
     tonalOffset = 0.2,
@@ -177,12 +195,18 @@ export default function createPalette(palette) {
       secondary: augmentColor(secondary, 'A400', 'A200', 'A700'),
       // The colors used to represent interface elements that the user should be made aware of.
       error: augmentColor(error),
+      // The colors used to represent potentially dangerous actions or important messages.
+      warning: augmentColor(warning),
+      // The colors used to present information to the user that is neutral and not necessarily important.
+      info: augmentColor(info),
+      // The colors used to indicate the successful completion of an action that user triggered.
+      success: augmentColor(success),
       // The grey colors.
       grey,
-      // Used by `getContrastText()` to maximize the contrast between the background and
-      // the text.
+      // Used by `getContrastText()` to maximize the contrast between
+      // the background and the text.
       contrastThreshold,
-      // Take a background color and return the color of the text to maximize the contrast.
+      // Takes a background color and returns the text color that maximizes the contrast.
       getContrastText,
       // Generate a rich color object.
       augmentColor,
