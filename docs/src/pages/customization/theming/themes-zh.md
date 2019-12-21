@@ -80,9 +80,6 @@ const theme = createMuiTheme({
     primary: purple,
     secondary: green,
   },
-  status: {
-    danger: 'orange',
-  },
 });
 ```
 
