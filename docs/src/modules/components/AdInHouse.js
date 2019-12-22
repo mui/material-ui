@@ -44,6 +44,7 @@ const useStyles = makeStyles(theme => ({
 export default function AdInHouse(props) {
   const { ad } = props;
   const classes = useStyles();
+
   /* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
   return (
     <span className={classes.root}>

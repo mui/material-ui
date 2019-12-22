@@ -10,10 +10,9 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 //   Foo
 // </Button>
 function handleClick(event) {
-  const rootNode = document;
   let element = event.target;
 
-  while (element && element !== rootNode) {
+  while (element && element !== document) {
     const category = element.getAttribute('data-ga-event-category');
 
     // We reach a tracking element, no need to look higher in the dom tree.
