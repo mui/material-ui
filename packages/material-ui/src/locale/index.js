@@ -229,6 +229,27 @@ export const jaJP = {
   },
 };
 
+export const koKR = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: '이전 페이지',
+      labelRowsPerPage: '페이지 당 행:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} / ${count}`,
+      nextIconButtonText: '다음 페이지',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} 점`,
+    },
+    MuiAutocomplete: {
+      clearText: '지우기',
+      closeText: '닫기',
+      loadingText: '불러오는 중…',
+      noOptionsText: '옵션 없음',
+      openText: '열기',
+    },
+  },
+};
+
 export const nlNL = {
   props: {
     MuiTablePagination: {
