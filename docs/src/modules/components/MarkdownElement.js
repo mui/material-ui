@@ -48,6 +48,7 @@ const externs = [
   'https://materialdesignicons.com/',
   'https://www.w3.org/',
   'https://devexpress.github.io/',
+  'https://ui-kit.co/',
 ];
 
 renderer.link = (href, title, text) => {

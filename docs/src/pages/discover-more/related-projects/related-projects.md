@@ -9,7 +9,9 @@ Feel free to submit a pull request to add another project; it will be accepted i
 ## Design resources
 
 - **Sketch**: [Material Theme Editor](https://material.io/resources/theme-editor/) for Material Design made by Google.
-- **Figma**: [Figma UI Kit](https://material.5ly.co/) for Material-UI made by Fively Team.
+- **Figma**:
+  - https://material.5ly.co/ for Material-UI made by Fively Team.
+  - https://ui-kit.co/ a starter kit for your Material Design 2 project.
 - **Framer**: [Framer X Kit](https://packages.framer.com/package/material-ui/material-ui) for Material-UI.
 
 You didn't find the design assets your team is looking for? Let us know!
