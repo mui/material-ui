@@ -11,7 +11,7 @@ import TextField from '@material-ui/core/TextField';
 describe('<Autocomplete />', () => {
   let mount;
   let classes;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Autocomplete renderInput={() => null} />);

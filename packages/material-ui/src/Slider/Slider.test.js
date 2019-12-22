@@ -29,7 +29,7 @@ describe('<Slider />', () => {
 
   let mount;
   let classes;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Slider value={0} />);

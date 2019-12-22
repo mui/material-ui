@@ -9,7 +9,7 @@ import ThemeProvider from './ThemeProvider';
 
 describe('ThemeProvider', () => {
   let mount;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     mount = createMount({ strict: true });

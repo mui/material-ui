@@ -12,7 +12,7 @@ import MenuItem from '../MenuItem';
 describe('<TextField />', () => {
   let classes;
   let mount;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<TextField />);

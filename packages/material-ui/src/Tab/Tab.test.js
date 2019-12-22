@@ -7,7 +7,7 @@ import { act, createClientRender, fireEvent } from 'test/utils/createClientRende
 import Tab from './Tab';
 import ButtonBase from '../ButtonBase';
 
-const render = createClientRender({ strict: true });
+const render = createClientRender();
 
 describe('<Tab />', () => {
   let mount;

@@ -9,7 +9,7 @@ import SnackbarContent from './SnackbarContent';
 describe('<SnackbarContent />', () => {
   let mount;
   let classes;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     mount = createMount({ strict: true });
