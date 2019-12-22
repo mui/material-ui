@@ -16,7 +16,6 @@ Here are some highlights ✨:
 
 ### `@material-ui/core@v4.8.0`
 
-- [AvatarGroup] Introduce new component (#18707) @oliviertassinari
 - [Avatar] Add missing 'fallback' AvatarClassKey (#18717) @kLabz
 - [ButtonGroup] Add orientation prop (#18762) @SandraMarcelaHerreraArriaga
 - [Button] disableElevation prop (#18744) @netochaves
@@ -41,6 +40,7 @@ Here are some highlights ✨:
 
 ### `@material-ui/lab@v4.0.0-alpha.36`
 
+- [AvatarGroup] Introduce new component (#18707) @oliviertassinari
 - [Autocomplete] Fix double change event issue (#18786) @tplai
 - [Autocomplete] Add reason to onInputChange callback (#18796) @Tybot204
 - [Autocomplete] Expand virtualized example to have grouped items (#18763) @Janpot
