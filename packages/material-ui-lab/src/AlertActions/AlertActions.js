@@ -11,7 +11,7 @@ export const styles = () => ({
     justifyContent: 'flex-start',
     flex: '0 0 auto',
   },
-  /** Styles applied to the root element if `disableSpacing={false}`. */
+  /* Styles applied to the root element if `disableSpacing={false}`. */
   spacing: {
     '& > :not(:first-child)': {
       marginLeft: 8,

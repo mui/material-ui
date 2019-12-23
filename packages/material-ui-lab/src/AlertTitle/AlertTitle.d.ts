@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 
 export interface AlertTitleProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, AlertTitleClassKey> { }
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, AlertTitleClassKey> {}
 
 export type AlertTitleClassKey = 'root';
 

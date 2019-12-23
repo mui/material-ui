@@ -1,43 +1,40 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
-import { Alert as MuiAlert, AlertTitle, AlertContent } from '@material-ui/lab';
-import { withStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import { Alert, AlertTitle, AlertContent } from '@material-ui/lab';
 
 /* eslint-disable react/jsx-filename-extension */
 
-const Wrapper = withStyles({
+const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
   },
-})(Box);
-
-const Alert = withStyles({
-  root: {
-    marginBottom: '1em',
-  },
-})(MuiAlert);
+}));
 
 /*
-                 commented out while we figure out https://github.com/mui-org/material-ui/issues/13875
-           
-                 <AlertActions>
-                   <Button variant="contained" color="primary">
-                     Refresh
-                   </Button>
-                   <Button component="a" href="mailto:support@foo.bar" color="primary">
-                     Contact support
-                   </Button>
-                 </AlertActions>
-           */
+                                                 commented out while we figure out https://github.com/mui-org/material-ui/issues/13875
+                                           
+                                                 <AlertActions>
+                                                   <Button variant="contained" color="primary">
+                                                     Refresh
+                                                   </Button>
+                                                   <Button component="a" href="mailto:support@foo.bar" color="primary">
+                                                     Contact support
+                                                   </Button>
+                                                 </AlertActions>
+                                           */
 
 export default function SimpleAlert() {
   const onClose = () => {
     console.log('TEMP: clicking close');
   };
 
+  const classes = useStyles();
+
   return (
-    <Wrapper>
+    <Box className={classes.root}>
       <Alert onClose={onClose} type="error">
         <AlertTitle>Error!</AlertTitle>
         <AlertContent>Your request for the ultimate cup of coffee has been denied!</AlertContent>
@@ -64,6 +61,6 @@ export default function SimpleAlert() {
           You fetched the ultimate cup of coffee in less than five Earth minutes!
         </AlertContent>
       </Alert>
-    </Wrapper>
+    </Box>
   );
 }

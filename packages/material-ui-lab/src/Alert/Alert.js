@@ -18,67 +18,53 @@ export const styles = theme => ({
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    padding: '1em 0',
+    padding: '16px 0',
     maxWidth: 800,
   },
   alertContent: {
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'column',
-    padding: '0 1em',
+    padding: '0 16px',
   },
   startIcon: {
-    marginTop: '0.25em',
-    marginRight: '-1em',
-    padding: '0 1em',
+    marginTop: '4px',
+    marginRight: '-16px',
+    padding: '0 16px',
     alignSelf: 'flex-start',
   },
   closeIcon: {
-    marginTop: '-0.5em',
+    marginTop: '-8px',
     alignSelf: 'flex-start',
   },
   success: {
-    // THESE COLORS ARE STUBBED WHILE https://github.com/mui-org/material-ui/issues/13875 gets done
-    color: green[600],
-    borderColor: green[600],
-    backgroundColor: lighten(green[600], 0.95),
+    color: theme.palette.success.main,
+    borderColor: theme.palette.success.main,
+    backgroundColor: lighten(theme.palette.success.main, 0.95),
   },
   info: {
-    // THESE COLORS ARE STUBBED WHILE https://github.com/mui-org/material-ui/issues/13875 gets done
-    color: theme.palette.primary.main,
-    borderColor: theme.palette.primary.main,
-    backgroundColor: lighten(theme.palette.primary.main, 0.95),
+    color: theme.palette.info.main,
+    borderColor: theme.palette.info.main,
+    backgroundColor: lighten(theme.palette.info.main, 0.95),
   },
   warning: {
-    // THESE COLORS ARE STUBBED WHILE https://github.com/mui-org/material-ui/issues/13875 gets done
-    color: orange[600],
-    borderColor: orange[600],
-    backgroundColor: lighten(orange[600], 0.95),
+    color: theme.palette.warning.main,
+    borderColor: theme.palette.warning.main,
+    backgroundColor: lighten(theme.palette.warning.main, 0.95),
   },
   error: {
-    // THESE COLORS ARE STUBBED WHILE https://github.com/mui-org/material-ui/issues/13875 gets done
-    color: red[600],
-    borderColor: red[600],
-    backgroundColor: lighten(red[600], 0.95),
+    color: theme.palette.error.main,
+    borderColor: theme.palette.error.main,
+    backgroundColor: lighten(theme.palette.error.main, 0.95),
   },
 });
 
-const getDefaultIcon = (type) => {
-  switch (type) {
-    case 'success':
-      return <CheckCircle />;
-
-    case 'warning':
-      return <Warning />;
-
-    case 'error':
-      return <Error />;
-
-    default:
-    case 'info':
-      return <Info />;
-  }
-}
+const DEFAULT_ICONS = {
+  success: <CheckCircle />,
+  warning: <Warning />,
+  error: <Error />,
+  info: <Info />,
+};
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   const {
@@ -93,7 +79,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
   const startIcon = startIconProp !== false && (
     <span className={clsx(classes.startIcon, classes[type], className)}>
-      {startIconProp || getDefaultIcon(type)}
+      {startIconProp || DEFAULT_ICONS[type]}
     </span>
   );
 

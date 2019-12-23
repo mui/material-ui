@@ -6,7 +6,7 @@ export interface AlertProps
   /**
    * Element placed before the children.
    */
-  closeIcon?: React.ReactNode,
+  closeIcon?: React.ReactNode;
   /*
    * Main color for the Alert, picked from theme palette
    */
@@ -20,11 +20,11 @@ export interface AlertProps
    *
    * @param {object} event The event source of the callback.
    */
-  onClose?: (event: React.SyntheticEvent) => void,
+  onClose?: (event: React.SyntheticEvent) => void;
   /**
    * Element placed before the children.
    */
-  startIcon?: React.ReactNode | false,
+  startIcon?: React.ReactNode | false;
   /**
    * The type of Alert
    */

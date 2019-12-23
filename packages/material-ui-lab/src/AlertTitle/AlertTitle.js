@@ -13,11 +13,9 @@ export const styles = () => ({
 const AlertTitle = React.forwardRef(function AlertTitle(props, ref) {
   const { classes, children, className } = props;
   return (
-    <div className={clsx(classes.root, className)} ref={ref}>
-      <Typography component="h2" variant="h6">
-        {children}
-      </Typography>
-    </div>
+    <Typography component="div" variant="h6" ref={ref} className={clsx(classes.root, className)}>
+      {children}
+    </Typography>
   );
 });
 
