@@ -10,7 +10,7 @@ function InlineDatePickerDemo(props) {
         variant="inline"
         label="Basic example"
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
       />
 
       <DatePicker
@@ -19,7 +19,7 @@ function InlineDatePickerDemo(props) {
         label="Only calendar"
         helperText="No year selection"
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
       />
 
       <KeyboardDatePicker

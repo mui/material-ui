@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.7.4",
     "@date-io/date-fns": "^1.3.7",
     "@date-io/dayjs": "^1.3.7",
     "@date-io/hijri": "^1.3.8",

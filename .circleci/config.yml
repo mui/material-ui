@@ -24,8 +24,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths: .
-
-  javascript:
+  install_deps:
     <<: *js_defaults
     steps:
       - attach_workspace:
@@ -42,32 +41,42 @@ jobs:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache
+      - persist_to_workspace:
+          root: .
+          paths: .
 
-      - run:
-          name: Typescript
-          command: yarn workspaces run build:typescript
+  lint:
+    <<: *js_defaults
+    steps:
+      - attach_workspace:
+          at: .
       - run:
           name: Eslint
           command: yarn lint
       - run:
           name: Ensure prettier was run
           command: yarn prettier --check './**/*.{ts,tsx,js,jsx,json,md,mdx,html,css}'
+
+  build:
+    <<: *js_defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Typescript
+          command: yarn workspaces run build:typescript
       - run:
           name: Build and analyze bundlesize
           command: yarn workspace @material-ui/pickers build:analyze
-
-      - persist_to_workspace:
-          root: .
-          paths: .
 
   jest_tests:
     description: Running jest test with separate library
     parameters:
       lib:
-        description: "Library to run tests"
+        description: 'Library to run tests'
         type: string
       after-tests:
-        description: "Steps that will be executed after test run is finished"
+        description: 'Steps that will be executed after test run is finished'
         type: steps
         default: []
     <<: *js_defaults
@@ -111,10 +120,18 @@ workflows:
   build_and_test:
     jobs:
       - checkout_code
-      - javascript:
-          name: 'Install deps, lint and build'
+      - install_deps:
+          name: 'Install deps'
           requires:
             - checkout_code
+      - build:
+          name: 'Build and analyze bundlesize'
+          requires:
+            - 'Install deps'
+      - lint:
+          name: 'Run linters'
+          requires:
+            - 'Install deps'
 
       - cypress_tests:
           name: 'Cypress tests'
@@ -127,16 +144,16 @@ workflows:
           after-tests:
             - run: npx codecov
           requires:
-            - 'Install deps, lint and build'
+            - 'Build and analyze bundlesize'
 
       - jest_tests:
           name: 'Moment jest tests'
           lib: moment
           requires:
-            - 'Install deps, lint and build'
+            - 'Build and analyze bundlesize'
 
       - jest_tests:
           name: 'Luxon jest tests'
           lib: luxon
           requires:
-            - 'Install deps, lint and build'
+            - 'Build and analyze bundlesize'

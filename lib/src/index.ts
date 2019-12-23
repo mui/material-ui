@@ -4,7 +4,9 @@ export * from './TimePicker';
 
 export * from './DateTimePicker';
 
-export { default as Calendar } from './views/Calendar/Calendar';
+export { Calendar } from './views/Calendar/Calendar';
+
+export * from './views/Calendar/CalendarView';
 
 export { default as Day } from './views/Calendar/Day';
 

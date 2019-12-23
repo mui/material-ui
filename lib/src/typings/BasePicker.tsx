@@ -57,5 +57,10 @@ export interface BasePickerProps {
   orientation?: 'portrait' | 'landscape';
   /** Component that will replace default toolbar renderer */
   ToolbarComponent?: React.ComponentType<ToolbarComponentProps>;
+  /**
+   * Mobile picker title, displaying in the toolbar
+   * @default "SELECT DATE"
+   */
+  title?: string;
   variant?: WrapperVariant;
 }

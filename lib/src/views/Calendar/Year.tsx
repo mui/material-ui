@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, fade } from '@material-ui/core/styles';
 
 export interface YearProps {
   children: React.ReactNode;
@@ -14,21 +14,31 @@ export interface YearProps {
 
 export const useStyles = makeStyles(
   theme => ({
-    root: {
-      height: 40,
+    yearContainer: {
+      flexBasis: '33.3%',
+      display: 'flex',
+      justifyContent: 'center',
+      padding: '8px 0',
+    },
+    yearLabel: {
+      height: 36,
+      width: 72,
+      borderRadius: 16,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       cursor: 'pointer',
       outline: 'none',
       '&:focus': {
-        color: theme.palette.primary.main,
-        fontWeight: theme.typography.fontWeightMedium,
+        backgroundColor: fade(theme.palette.action.active, theme.palette.action.hoverOpacity),
       },
     },
     yearSelected: {
-      margin: '10px 0',
-      fontWeight: theme.typography.fontWeightMedium,
+      color: theme.palette.getContrastText(theme.palette.primary.main),
+      backgroundColor: theme.palette.primary.main,
+      '&:focus': {
+        backgroundColor: theme.palette.primary.light,
+      },
     },
     yearDisabled: {
       pointerEvents: 'none',
@@ -51,22 +61,21 @@ export const Year: React.FC<YearProps> = ({
   const handleClick = React.useCallback(() => onSelect(value), [onSelect, value]);
 
   return (
-    <Typography
-      role="button"
-      component="div"
-      tabIndex={disabled ? -1 : 0}
-      onClick={handleClick}
-      onKeyPress={handleClick}
-      color={selected ? 'primary' : undefined}
-      variant={selected ? 'h5' : 'subtitle1'}
-      children={children}
-      ref={forwardedRef}
-      className={clsx(classes.root, {
-        [classes.yearSelected]: selected,
-        [classes.yearDisabled]: disabled,
-      })}
-      {...other}
-    />
+    <div role="button" onClick={handleClick} className={classes.yearContainer}>
+      <Typography
+        variant="subtitle1"
+        tabIndex={disabled ? -1 : 0}
+        onKeyPress={handleClick}
+        color={selected ? 'primary' : undefined}
+        children={children}
+        ref={forwardedRef}
+        className={clsx(classes.yearLabel, {
+          [classes.yearSelected]: selected,
+          [classes.yearDisabled]: disabled,
+        })}
+        {...other}
+      />
+    </div>
   );
 };
 

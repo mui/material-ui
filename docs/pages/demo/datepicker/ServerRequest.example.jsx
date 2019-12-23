@@ -26,7 +26,7 @@ function ServerRequest() {
       <DatePicker
         label="With server data"
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
         onMonthChange={handleMonthChange}
         renderDay={(day, selectedDate, isInCurrentMonth, dayComponent) => {
           const date = makeJSDateObject(day); // skip this step, it is required to support date libs

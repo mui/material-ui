@@ -125,7 +125,7 @@ function Example({ source, testId, paddingBottom }: ExampleProps) {
       </Collapse>
 
       <div
-        data-test-id={testId}
+        data-mui-test={testId}
         className={clsx(classes.pickers, { [classes.paddingBottom]: paddingBottom })}
       >
         <Tooltip title="Show/Hide the source">

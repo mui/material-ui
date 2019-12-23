@@ -39,7 +39,7 @@ export interface ClockNumberProps {
 
 export const useStyles = makeStyles(
   theme => {
-    const size = theme.spacing(4);
+    const size = 32;
 
     return {
       clockNumber: {

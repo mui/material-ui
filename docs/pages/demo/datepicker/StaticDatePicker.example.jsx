@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { DatePicker } from '@material-ui/pickers';
 
 const StaticDatePicker = () => {
-  const [date, changeDate] = useState(new Date());
+  const [date, handleDateChange] = useState(new Date());
 
-  // prettier-ignore
   return (
     <>
       <DatePicker
@@ -12,7 +11,7 @@ const StaticDatePicker = () => {
         variant="static"
         openTo="year"
         value={date}
-        onChange={changeDate}
+        onChange={date => handleDateChange(date)}
       />
 
       <DatePicker
@@ -21,7 +20,7 @@ const StaticDatePicker = () => {
         variant="static"
         openTo="date"
         value={date}
-        onChange={changeDate}
+        onChange={date => handleDateChange(date)}
       />
     </>
   );

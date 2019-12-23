@@ -15,7 +15,7 @@ describe('Visual Regression', () => {
       withDarkTheme: true,
       scenarios: {
         'Opened datepicker': () => {
-          cy.get('[data-test-id=datepicker-example]')
+          cy.get('[data-mui-test=datepicker-example]')
             .find('input')
             .first()
             .click({ force: true });
@@ -51,7 +51,7 @@ describe('Visual Regression', () => {
       name: 'Css overrides',
       scenarios: {
         'Custom material-ui theme': () => {
-          cy.get('[data-test-id=css-override]')
+          cy.get('[data-mui-test=css-override]')
             .find('input')
             .click({ force: true });
         },

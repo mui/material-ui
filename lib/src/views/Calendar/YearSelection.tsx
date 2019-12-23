@@ -13,15 +13,18 @@ export interface YearSelectionProps {
   onChange: (date: MaterialUiPickersDate, isFinish: boolean) => void;
   disablePast?: boolean | null | undefined;
   disableFuture?: boolean | null | undefined;
-  animateYearScrolling?: boolean | null | undefined;
   onYearChange?: (date: MaterialUiPickersDate) => void;
 }
 
 export const useStyles = makeStyles(
   {
     container: {
-      height: 300,
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
       overflowY: 'auto',
+      justifyContent: 'center',
+      height: '100%',
     },
   },
   { name: 'MuiPickersYearSelection' }
@@ -35,7 +38,6 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
   maxDate,
   disablePast,
   disableFuture,
-  animateYearScrolling,
 }) => {
   const utils = useUtils();
   const classes = useStyles();
@@ -47,7 +49,6 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
       try {
         selectedYearRef.current.scrollIntoView({
           block: currentVariant === 'static' ? 'nearest' : 'center',
-          behavior: animateYearScrolling ? 'smooth' : 'auto',
         });
       } catch (e) {
         // call without arguments in case when scrollIntoView works improperly (e.g. Firefox 52-57)
@@ -70,27 +71,29 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
   );
 
   return (
-    <div className={classes.container}>
-      {utils.getYearRange(minDate, maxDate).map(year => {
-        const yearNumber = utils.getYear(year);
-        const selected = yearNumber === currentYear;
+    <div>
+      <div className={classes.container}>
+        {utils.getYearRange(minDate, maxDate).map(year => {
+          const yearNumber = utils.getYear(year);
+          const selected = yearNumber === currentYear;
 
-        return (
-          <Year
-            key={utils.getYearText(year)}
-            selected={selected}
-            value={yearNumber}
-            onSelect={onYearSelect}
-            ref={selected ? selectedYearRef : undefined}
-            disabled={Boolean(
-              (disablePast && utils.isBeforeYear(year, utils.date())) ||
-                (disableFuture && utils.isAfterYear(year, utils.date()))
-            )}
-          >
-            {utils.getYearText(year)}
-          </Year>
-        );
-      })}
+          return (
+            <Year
+              key={utils.getYearText(year)}
+              selected={selected}
+              value={yearNumber}
+              onSelect={onYearSelect}
+              ref={selected ? selectedYearRef : undefined}
+              disabled={Boolean(
+                (disablePast && utils.isBeforeYear(year, utils.date())) ||
+                  (disableFuture && utils.isAfterYear(year, utils.date()))
+              )}
+            >
+              {utils.getYearText(year)}
+            </Year>
+          );
+        })}
+      </div>
     </div>
   );
 };

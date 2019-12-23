@@ -10,7 +10,7 @@ function YearMonthPicker() {
         views={['year']}
         label="Year only"
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
       />
 
       <DatePicker
@@ -20,7 +20,7 @@ function YearMonthPicker() {
         minDate={new Date('2018-03-01')}
         maxDate={new Date('2018-06-01')}
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
       />
 
       <DatePicker
@@ -30,7 +30,7 @@ function YearMonthPicker() {
         label="Year and Month"
         helperText="Start from year selection"
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
       />
     </Fragment>
   );

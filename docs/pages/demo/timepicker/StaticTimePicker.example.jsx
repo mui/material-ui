@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { TimePicker } from '@material-ui/pickers';
 
 const StaticTimePicker = () => {
-  const [date, changeDate] = useState(new Date());
+  const [date, handleDateChange] = useState(new Date());
 
-  // prettier-ignore
   return (
     <>
       <TimePicker
@@ -12,7 +11,7 @@ const StaticTimePicker = () => {
         variant="static"
         openTo="hours"
         value={date}
-        onChange={changeDate}
+        onChange={date => handleDateChange(date)}
       />
 
       <TimePicker
@@ -22,7 +21,7 @@ const StaticTimePicker = () => {
         orientation="landscape"
         openTo="minutes"
         value={date}
-        onChange={changeDate}
+        onChange={date => handleDateChange(date)}
       />
     </>
   );

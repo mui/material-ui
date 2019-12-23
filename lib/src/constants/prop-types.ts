@@ -1,5 +1,5 @@
 import * as PropTypes from 'prop-types';
-import { BaseTimePickerProps } from '../TimePicker/TimePicker';
+import { BaseClockProps } from '../views/Clock/ClockView';
 import { BaseDatePickerProps } from '../DatePicker/DatePicker';
 
 const date = PropTypes.oneOfType([
@@ -19,7 +19,7 @@ export const DomainPropTypes = { date, datePickerView };
 export const timePickerDefaultProps = {
   ampm: true,
   invalidDateMessage: 'Invalid Time Format',
-} as BaseTimePickerProps;
+} as BaseClockProps;
 
 export const datePickerDefaultProps = {
   minDate: new Date('1900-01-01'),
@@ -34,4 +34,4 @@ export const dateTimePickerDefaultProps = {
   ...timePickerDefaultProps,
   ...datePickerDefaultProps,
   showTabs: true,
-} as BaseTimePickerProps & BaseDatePickerProps;
+} as BaseClockProps & BaseDatePickerProps;

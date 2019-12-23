@@ -26,6 +26,7 @@
     "url": "git+https://github.com/mui-org/material-ui-pickers.git"
   },
   "devDependencies": {
+    "@babel/runtime": "^7.7.5",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
     "eslint": "^5.16.0",
@@ -43,7 +44,7 @@
     }
   },
   "lint-staged": {
-    "lib/**/*.{ts,tsx}": [
+    "lib/src/**/*.{ts,tsx}": [
       "yarn docgen",
       "git add docs/prop-types.json"
     ],
@@ -55,7 +56,6 @@
   "eslintIgnore": [
     "**/node_modules",
     "**/coverage",
-    "*.d.ts",
     "videos/",
     "**/build"
   ],

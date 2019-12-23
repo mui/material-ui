@@ -61,10 +61,7 @@ describe('e2e - DateTimePicker', () => {
   });
 
   it('Should change meridiem', () => {
-    component
-      .find('ToolbarButton')
-      .at(5)
-      .simulate('click');
+    component.find('button[data-mui-test="in-clock-pm-btn"]').simulate('click');
 
     clickOKButton(component);
     toHaveBeenCalledExceptMoment(onChangeMock, [utilsToUse.date('2018-01-01T12:00:00.000Z')]);

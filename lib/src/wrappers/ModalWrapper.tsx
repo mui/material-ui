@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import ModalDialog from '../_shared/ModalDialog';
 import { WrapperProps } from './Wrapper';
 import { Omit } from '../_helpers/utils';
-import { useKeyDown } from '../_shared/hooks/useKeyDown';
+import { useKeyDownHandler } from '../_shared/hooks/useKeyDown';
 import { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
 
 export interface ModalWrapperProps<T = {}> extends WrapperProps<T> {
@@ -64,8 +64,8 @@ export const ModalWrapper: React.FC<ModalWrapperProps<any>> = ({
   onSetToday,
   ...other
 }) => {
-  useKeyDown(open, {
-    Enter: onAccept,
+  const handleKeyDown = useKeyDownHandler(open, {
+    13: onAccept, // Enter
   });
 
   return (
@@ -73,6 +73,7 @@ export const ModalWrapper: React.FC<ModalWrapperProps<any>> = ({
       <InputComponent {...other} {...DateInputProps} />
 
       <ModalDialog
+        onKeyDown={handleKeyDown}
         wider={wider}
         showTabs={showTabs}
         open={open}

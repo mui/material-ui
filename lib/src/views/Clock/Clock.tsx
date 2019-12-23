@@ -1,140 +1,33 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import clsx from 'clsx';
 import ClockPointer from './ClockPointer';
-import ClockType, { ClockViewType } from '../../constants/ClockType';
+import { ClockViewType } from '../../constants/ClockType';
+import { MaterialUiPickersDate } from '../../typings/date';
 import { getHours, getMinutes } from '../../_helpers/time-utils';
-import { withStyles, createStyles, WithStyles, Theme } from '@material-ui/core/styles';
+import { useMeridiemMode } from '../../TimePicker/TimePickerToolbar';
+import { IconButton, Typography, makeStyles } from '@material-ui/core';
 
-export interface ClockProps extends WithStyles<typeof styles> {
+export interface ClockProps {
+  date: MaterialUiPickersDate;
   type: ClockViewType;
   value: number;
+  children: React.ReactElement<any>[];
+  onDateChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
   onChange: (value: number, isFinish?: boolean) => void;
   ampm?: boolean;
   minutesStep?: number;
-  children: React.ReactElement<any>[];
+  ampmInClock?: boolean;
 }
 
-export class Clock extends React.Component<ClockProps> {
-  public static propTypes: any = {
-    type: PropTypes.oneOf(
-      Object.keys(ClockType).map(key => ClockType[key as keyof typeof ClockType])
-    ).isRequired,
-    value: PropTypes.number.isRequired,
-    onChange: PropTypes.func.isRequired,
-    children: PropTypes.arrayOf(PropTypes.node).isRequired,
-    ampm: PropTypes.bool,
-    minutesStep: PropTypes.number,
-    innerRef: PropTypes.any,
-  };
-
-  public static defaultProps = {
-    ampm: false,
-    minutesStep: 1,
-  };
-
-  public isMoving = false;
-
-  public setTime(e: any, isFinish = false) {
-    let { offsetX, offsetY } = e;
-
-    if (typeof offsetX === 'undefined') {
-      const rect = e.target.getBoundingClientRect();
-
-      offsetX = e.changedTouches[0].clientX - rect.left;
-      offsetY = e.changedTouches[0].clientY - rect.top;
-    }
-
-    const value =
-      this.props.type === ClockType.SECONDS || this.props.type === ClockType.MINUTES
-        ? getMinutes(offsetX, offsetY, this.props.minutesStep)
-        : getHours(offsetX, offsetY, Boolean(this.props.ampm));
-
-    this.props.onChange(value, isFinish);
-  }
-
-  public handleTouchMove = (e: React.TouchEvent) => {
-    this.isMoving = true;
-    this.setTime(e);
-  };
-
-  public handleTouchEnd = (e: React.TouchEvent) => {
-    if (this.isMoving) {
-      this.setTime(e, true);
-      this.isMoving = false;
-    }
-  };
-
-  public handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    // MouseEvent.which is deprecated, but MouseEvent.buttons is not supported in Safari
-    const isButtonPressed =
-      typeof e.buttons === 'undefined' ? e.nativeEvent.which === 1 : e.buttons === 1;
-
-    if (isButtonPressed) {
-      this.setTime(e.nativeEvent, false);
-    }
-  };
-
-  public handleMouseUp = (e: React.MouseEvent) => {
-    if (this.isMoving) {
-      this.isMoving = false;
-    }
-
-    this.setTime(e.nativeEvent, true);
-  };
-
-  public hasSelected = () => {
-    const { type, value } = this.props;
-
-    if (type === ClockType.HOURS) {
-      return true;
-    }
-
-    return value % 5 === 0;
-  };
-
-  public render() {
-    const { classes, value, children, type, ampm } = this.props;
-
-    const isPointerInner = !ampm && type === ClockType.HOURS && (value < 1 || value > 12);
-
-    return (
-      <div className={classes.container}>
-        <div className={classes.clock}>
-          <div
-            role="menu"
-            tabIndex={-1}
-            className={classes.squareMask}
-            onTouchMove={this.handleTouchMove}
-            onTouchEnd={this.handleTouchEnd}
-            onMouseUp={this.handleMouseUp}
-            onMouseMove={this.handleMove}
-          />
-
-          <div className={classes.pin} />
-
-          <ClockPointer
-            type={type}
-            value={value}
-            isInner={isPointerInner}
-            hasSelected={this.hasSelected()}
-          />
-
-          {children}
-        </div>
-      </div>
-    );
-  }
-}
-
-export const styles = (theme: Theme) =>
-  createStyles({
+export const useStyles = makeStyles(
+  theme => ({
     container: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'flex-end',
-      margin: `${theme.spacing(2)}px 0 ${theme.spacing(1)}px`,
+      position: 'relative',
+      margin: `16px 0 8px`,
     },
     clock: {
       backgroundColor: 'rgba(0,0,0,.07)',
@@ -167,8 +60,163 @@ export const styles = (theme: Theme) =>
       left: '50%',
       transform: 'translate(-50%, -50%)',
     },
-  });
+    amButton: {
+      zIndex: 1,
+      left: 8,
+      position: 'absolute',
+      bottom: -10,
+    },
+    pmButton: {
+      zIndex: 1,
+      position: 'absolute',
+      bottom: -10,
+      right: 8,
+    },
+    meridiemButtonSelected: {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.primary.contrastText,
+      '&:hover': {
+        backgroundColor: theme.palette.primary.light,
+      },
+    },
+  }),
+  {
+    name: 'MuiPickersClock',
+  }
+);
 
-export default withStyles(styles, {
-  name: 'MuiPickersClock',
-})(Clock as React.ComponentType<ClockProps>);
+export const Clock: React.FC<ClockProps> = ({
+  date,
+  onDateChange,
+  ampmInClock = false,
+  value,
+  children: numbersElementsArray,
+  type,
+  ampm,
+  minutesStep,
+  onChange,
+}) => {
+  const classes = useStyles();
+  const isMoving = React.useRef(false);
+  const { meridiemMode, handleMeridiemChange } = useMeridiemMode(date, ampm, onDateChange);
+
+  const isPointerInner = !ampm && type === 'hours' && (value < 1 || value > 12);
+
+  const setTime = (e: any, isFinish = false) => {
+    let { offsetX, offsetY } = e;
+
+    if (typeof offsetX === 'undefined') {
+      const rect = e.target.getBoundingClientRect();
+
+      offsetX = e.changedTouches[0].clientX - rect.left;
+      offsetY = e.changedTouches[0].clientY - rect.top;
+    }
+
+    const value =
+      type === 'seconds' || type === 'minutes'
+        ? getMinutes(offsetX, offsetY, minutesStep)
+        : getHours(offsetX, offsetY, Boolean(ampm));
+
+    onChange(value, isFinish);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    isMoving.current = true;
+    setTime(e);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (isMoving.current) {
+      setTime(e, true);
+      isMoving.current = false;
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    // MouseEvent.which is deprecated, but MouseEvent.buttons is not supported in Safari
+    const isButtonPressed =
+      typeof e.buttons === 'undefined' ? e.nativeEvent.which === 1 : e.buttons === 1;
+
+    if (isButtonPressed) {
+      setTime(e.nativeEvent, false);
+    }
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    if (isMoving.current) {
+      isMoving.current = false;
+    }
+
+    setTime(e.nativeEvent, true);
+  };
+
+  const hasSelected = React.useMemo(() => {
+    if (type === 'hours') {
+      return true;
+    }
+
+    return value % 5 === 0;
+  }, [type, value]);
+
+  return (
+    <div className={classes.container}>
+      <div className={classes.clock}>
+        <div
+          role="menu"
+          tabIndex={-1}
+          className={classes.squareMask}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
+        />
+
+        <div className={classes.pin} />
+
+        <ClockPointer
+          type={type}
+          value={value}
+          isInner={isPointerInner}
+          hasSelected={hasSelected}
+        />
+
+        {numbersElementsArray}
+      </div>
+
+      {ampm && ampmInClock && (
+        <>
+          <IconButton
+            data-mui-test="in-clock-am-btn"
+            onClick={() => handleMeridiemChange('am')}
+            className={clsx(classes.amButton, {
+              [classes.meridiemButtonSelected]: meridiemMode === 'am',
+            })}
+          >
+            <Typography variant="caption">AM</Typography>
+          </IconButton>
+          <IconButton
+            data-mui-test="in-clock-pm-btn"
+            onClick={() => handleMeridiemChange('pm')}
+            className={clsx(classes.pmButton, {
+              [classes.meridiemButtonSelected]: meridiemMode === 'pm',
+            })}
+          >
+            <Typography variant="caption">PM</Typography>
+          </IconButton>
+        </>
+      )}
+    </div>
+  );
+};
+
+// @ts-ignore
+Clock.defaultProps = {
+  ampm: PropTypes.bool,
+  minutesStep: PropTypes.number,
+};
+
+Clock.displayName = 'Clock';
+
+export default Clock;

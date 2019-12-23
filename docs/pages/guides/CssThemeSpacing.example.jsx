@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { createMuiTheme } from '@material-ui/core';
-import { ThemeProvider } from '@material-ui/styles';
 import { DateTimePicker } from '@material-ui/pickers';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-const defaultMaterialTheme = createMuiTheme({
+const muiTheme = createMuiTheme({
   spacing: 2,
 });
 
@@ -11,7 +10,7 @@ function CssThemeExample() {
   const [selectedDate, handleDateChange] = useState(new Date());
 
   return (
-    <ThemeProvider theme={defaultMaterialTheme}>
+    <ThemeProvider theme={muiTheme}>
       <DateTimePicker label="2px spacing" value={selectedDate} onChange={handleDateChange} />
     </ThemeProvider>
   );

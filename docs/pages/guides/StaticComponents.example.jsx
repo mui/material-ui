@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from 'react';
 import { Paper, Button } from '@material-ui/core';
 import { useStaticState, ClockView, Calendar } from '@material-ui/pickers';

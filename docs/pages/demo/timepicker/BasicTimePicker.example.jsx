@@ -16,8 +16,10 @@ function BasicTimePicker() {
         onChange={handleDateChange}
       />
 
+      {/* Alternative way to show am/pm */}
       <TimePicker
         showTodayButton
+        ampmInClock
         todayLabel="now"
         label="Step = 5"
         value={selectedDate}

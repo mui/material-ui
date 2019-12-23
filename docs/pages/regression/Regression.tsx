@@ -12,7 +12,7 @@ function Regression() {
 
   const sharedProps = {
     value: date,
-    onChange: changeDate,
+    onChange: (date: any) => changeDate(date),
     style: { margin: '0 10px' },
     format: 'MMMM d',
     leftArrowIcon: <LeftArrowIcon data-arrow="left" />,
@@ -36,12 +36,7 @@ function Regression() {
       <Grid container justify="center" wrap="wrap">
         <DatePicker id="basic-datepicker" {...sharedProps} />
         <DatePicker id="clearable-datepicker" clearable {...sharedProps} />
-        <KeyboardDatePicker
-          id="keyboard-mask-datepicker"
-          {...sharedProps}
-          onChange={changeDate}
-          format="MM/dd/yyyy"
-        />
+        <KeyboardDatePicker id="keyboard-mask-datepicker" {...sharedProps} format="MM/dd/yyyy" />
         <DatePicker disabled id="disabled" {...sharedProps} />
         <DatePicker readOnly id="readonly" {...sharedProps} />
       </Grid>

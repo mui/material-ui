@@ -67,7 +67,7 @@ describe('e2e -- Controlling open state', () => {
         open
         onClose={onCloseMock}
         onChange={jest.fn()}
-        onFocus={console.log}
+        onFocus={jest.fn()}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
       />
     );

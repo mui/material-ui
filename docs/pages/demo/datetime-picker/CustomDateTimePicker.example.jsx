@@ -16,7 +16,7 @@ function CustomDateTimePicker(props) {
         hideTabs
         ampm={false}
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
         allowKeyboardControl={false}
         minDate={new Date('2018-01-01')}
         helperText="Hardcoded helper text"
@@ -37,7 +37,7 @@ function CustomDateTimePicker(props) {
 
       <KeyboardDateTimePicker
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
         label="Keyboard with error handler"
         onError={console.log}
         minDate={new Date('2018-01-01T00:00')}

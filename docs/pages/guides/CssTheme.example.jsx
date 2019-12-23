@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import lime from '@material-ui/core/colors/lime';
-import { createMuiTheme } from '@material-ui/core';
-import { ThemeProvider } from '@material-ui/styles';
 import { DateTimePicker } from '@material-ui/pickers';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const defaultMaterialTheme = createMuiTheme({
   palette: {
@@ -19,7 +18,6 @@ function CssThemeExample() {
         label="Lime DateTimePicker"
         value={selectedDate}
         onChange={handleDateChange}
-        animateYearScrolling={false}
       />
     </ThemeProvider>
   );

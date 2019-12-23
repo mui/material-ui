@@ -23,10 +23,9 @@ const DayWrapper: React.FC<DayWrapperProps> = ({
       role="presentation"
       onClick={dayInCurrentMonth && !disabled ? handleClick : undefined}
       onKeyPress={dayInCurrentMonth && !disabled ? handleClick : undefined}
+      children={children}
       {...other}
-    >
-      {children}
-    </div>
+    />
   );
 };
 

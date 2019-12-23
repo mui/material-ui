@@ -4,7 +4,12 @@ import LuxonUtils from '@date-io/luxon';
 import MomentUtils from '@date-io/moment';
 import DateFnsUtils from '@date-io/date-fns';
 import MuiPickersUtilsProvider from '../MuiPickersUtilsProvider';
-import { WithUtilsProps } from '../_shared/WithUtils';
+import { IUtils } from '@date-io/core/IUtils';
+import { MaterialUiPickersDate } from '../typings/date';
+
+interface WithUtilsProps {
+  utils: IUtils<MaterialUiPickersDate>;
+}
 
 const getUtilClass = () => {
   switch (process.env.UTILS) {
@@ -20,7 +25,7 @@ const getUtilClass = () => {
 };
 
 export const UtilClassToUse: any = getUtilClass();
-export const utilsToUse = new UtilClassToUse();
+export const utilsToUse: IUtils<MaterialUiPickersDate> = new UtilClassToUse();
 
 const getComponentWithUtils = <P extends WithUtilsProps>(element: React.ReactElement<P>) =>
   React.cloneElement(element, { utils: utilsToUse } as any);

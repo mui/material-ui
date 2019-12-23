@@ -152,7 +152,7 @@ class Layout extends Component<LayoutProps> {
                   key={option}
                   className={classes.utilsMenuItem}
                   selected={index === this.state.selectedIndex}
-                  onClick={event => this.handleUtilsChange(event, index)}
+                  onClick={(event: any) => this.handleUtilsChange(event, index)}
                 >
                   {option}
                 </MenuItem>
@@ -160,7 +160,11 @@ class Layout extends Component<LayoutProps> {
             </Menu>
 
             <Tooltip title="Toggle light/dark theme" enterDelay={300}>
-              <IconButton data-testid="toggle-theme-btn" color="inherit" onClick={toggleThemeType}>
+              <IconButton
+                data-mui-test="toggle-theme-btn"
+                color="inherit"
+                onClick={toggleThemeType}
+              >
                 <LightbulbOutlineIcon />
               </IconButton>
             </Tooltip>

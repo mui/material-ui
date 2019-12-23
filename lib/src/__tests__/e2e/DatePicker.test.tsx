@@ -12,7 +12,6 @@ describe('e2e - DatePicker default year format', () => {
     jest.clearAllMocks();
     component = mount(
       <DatePicker
-        animateYearScrolling={false}
         value={utilsToUse.date('2018-01-01T00:00:00.000')}
         onChange={onChangeMock}
         views={['year']}
@@ -75,10 +74,10 @@ describe('e2e - DatePicker inline variant', () => {
       <DatePicker
         autoOk
         variant="inline"
-        animateYearScrolling={false}
         onChange={onChangeMock}
         onClose={onCloseMock}
         onOpen={onOpenMock}
+        loadingIndicator={<div data-mui-test="loading" />}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
       />
     );
@@ -124,7 +123,14 @@ describe('e2e - DatePicker without month change', () => {
   const date = utilsToUse.date('2018-01-01T00:00:00.000Z');
 
   beforeEach(() => {
-    component = mount(<DatePicker open onChange={onChangeMock} value={date} />);
+    component = mount(
+      <DatePicker
+        open
+        loadingIndicator={<div data-mui-test="loading" />}
+        onChange={onChangeMock}
+        value={date}
+      />
+    );
   });
 
   it('Should not add to loading queue if callback is undefined', () => {
@@ -132,12 +138,8 @@ describe('e2e - DatePicker without month change', () => {
       .find('CalendarHeader button')
       .first()
       .simulate('click');
-    expect(
-      component
-        .find('Calendar')
-        .first()
-        .state('loadingQueue')
-    ).toEqual(0);
+
+    expect(component.find('[data-mui-test="loading"]').length).toEqual(0);
   });
 });
 
@@ -145,8 +147,8 @@ describe('e2e - DatePicker month change sync', () => {
   let component: ReactWrapper<DatePickerProps>;
   const onChangeMock = jest.fn();
   const onMonthChangeMock = jest.fn();
-  const date = utilsToUse.date('2018-01-01T00:00:00.000Z');
 
+  const date = utilsToUse.date('2018-01-01T00:00:00.000Z');
   beforeEach(() => {
     component = mount(
       <DatePicker open onChange={onChangeMock} onMonthChange={onMonthChangeMock} value={date} />
@@ -155,27 +157,21 @@ describe('e2e - DatePicker month change sync', () => {
 
   it('Should not add to loading queue when synchronous', () => {
     component
-      .find('CalendarHeader button')
+      .find('button[data-mui-test="previous-month"]')
       .first()
       .simulate('click');
-    expect(
-      component
-        .find('Calendar')
-        .first()
-        .state('loadingQueue')
-    ).toEqual(0);
+
+    expect(component.find('[data-mui-test="loading-progress"]').length).toBe(0);
   });
 });
 
 describe('e2e - DatePicker month change async', () => {
+  jest.useFakeTimers();
   let component: ReactWrapper<DatePickerProps>;
   const onChangeMock = jest.fn();
 
-  const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-  const promise = sleep(50);
-  const onMonthChangeAsyncMock = jest.fn(async () => {
-    await promise;
-  });
+  const sleep = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, ms));
+  const onMonthChangeAsyncMock = jest.fn(() => sleep(10));
 
   const date = utilsToUse.date('2018-01-01T00:00:00.000Z');
 
@@ -191,31 +187,16 @@ describe('e2e - DatePicker month change async', () => {
   });
 
   it('Should add to loading queue when loading asynchronous data', () => {
-    component
-      .find('CalendarHeader button')
-      .first()
-      .simulate('click');
+    component.find('button[data-mui-test="previous-month"]').simulate('click');
 
-    expect(
-      component
-        .find('Calendar')
-        .first()
-        .state('loadingQueue')
-    ).toEqual(1);
+    expect(component.find('[data-mui-test="loading-progress"]').length).toBeGreaterThan(1);
   });
 
-  it('Should empty loading queue after loading asynchronous data', async () => {
-    component
-      .find('CalendarHeader button')
-      .first()
-      .simulate('click');
-    await sleep(100);
-    expect(
-      component
-        .find('Calendar')
-        .first()
-        .state('loadingQueue')
-    ).toEqual(0);
+  it.skip('Should empty loading queue after loading asynchronous data', async () => {
+    component.find('button[data-mui-test="previous-month"]').simulate('click');
+    jest.runTimersToTime(10);
+
+    expect(component.find('[data-mui-test="loading-progress"]').length).toBe(0);
   });
 });
 
@@ -231,4 +212,28 @@ test('Custom toolbar component', () => {
   );
 
   expect(component.find('#custom-toolbar').length).toBe(1);
+});
+
+test('Selected date is disabled', () => {
+  const component = mount(
+    <DatePicker
+      open
+      value={utilsToUse.date('01-01-2019')}
+      maxDate={utilsToUse.date('01-01-2018')}
+      onChange={jest.fn()}
+    />
+  );
+
+  expect(
+    component
+      .find('[data-mui-test="calendar-year-text"]')
+      .first()
+      .text()
+  ).toBe('2018');
+  expect(
+    component
+      .find('[data-mui-test="calendar-month-text"]')
+      .first()
+      .text()
+  ).toBe('January');
 });

@@ -43,11 +43,11 @@ const useStyles = makeStyles(theme => ({
     minWidth: 340,
   },
   searchBar: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
+    marginTop: 8,
+    marginBottom: 8,
 
     [theme.breakpoints.up('sm')]: {
-      marginTop: -theme.spacing(1),
+      marginTop: -8,
     },
   },
 }));

@@ -20,7 +20,7 @@ export const useStyles = makeStyles(
       justifyContent: 'center',
       cursor: 'pointer',
       outline: 'none',
-      height: 75,
+      height: 64,
       transition: theme.transitions.create('font-size', { duration: '100ms' }),
       '&:focus': {
         color: theme.palette.primary.main,
@@ -54,6 +54,7 @@ export const Month: React.FC<MonthProps> = ({
 
   return (
     <Typography
+      data-mui-test="month"
       role="button"
       component="div"
       className={clsx(classes.root, {

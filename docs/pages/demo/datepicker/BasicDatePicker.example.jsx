@@ -9,8 +9,7 @@ function BasicDatePicker(props) {
       <DatePicker
         label="Basic example"
         value={selectedDate}
-        onChange={handleDateChange}
-        animateYearScrolling
+        onChange={date => handleDateChange(date)}
       />
 
       <DatePicker
@@ -19,7 +18,7 @@ function BasicDatePicker(props) {
         clearable
         disableFuture
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
       />
 
       <DatePicker
@@ -32,7 +31,7 @@ function BasicDatePicker(props) {
         label="Date of birth"
         views={['year', 'month', 'date']}
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
       />
     </Fragment>
   );

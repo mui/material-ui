@@ -5,6 +5,7 @@
     "declaration": true,
     "target": "es5",
     "lib": ["dom", "es2016"],
+    "types": ["jest"],
     "skipLibCheck": true,
     "jsx": "react",
     "moduleResolution": "node",
@@ -16,6 +17,6 @@
     "suppressImplicitAnyIndexErrors": true,
     "resolveJsonModule": true
   },
-  "include": ["src/**/*.ts*", "typings.d.ts"],
-  "exclude": ["./src/__tests__/**/*", "build"]
+  "include": ["src/**/*.ts*", "./typings.d.ts"],
+  "exclude": ["./src/__tests__/**/*", "build", "cypress/**/*.ts*"]
 }

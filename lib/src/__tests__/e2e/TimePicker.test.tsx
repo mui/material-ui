@@ -33,7 +33,7 @@ describe('e2e - TimePicker', () => {
 
     expect(
       component
-        .find('WithStyles(ToolbarButton)')
+        .find('ToolbarButton')
         .at(0)
         .text()
     ).toBe('11');
@@ -41,7 +41,7 @@ describe('e2e - TimePicker', () => {
 
   it('Should change minutes (touch)', () => {
     component
-      .find('WithStyles(ToolbarButton)')
+      .find('ToolbarButton')
       .at(1)
       .simulate('click');
 
@@ -57,7 +57,7 @@ describe('e2e - TimePicker', () => {
 
     expect(
       component
-        .find('WithStyles(ToolbarButton)')
+        .find('ToolbarButton')
         .at(1)
         .text()
     ).toBe('53');
@@ -65,7 +65,7 @@ describe('e2e - TimePicker', () => {
 
   it('Should change meridiem mode', () => {
     component
-      .find('WithStyles(ToolbarButton)')
+      .find('ToolbarButton')
       .at(3)
       .simulate('click');
 
@@ -93,7 +93,7 @@ describe('e2e - TimePicker with seconds', () => {
   it('Should show seconds number', () => {
     expect(
       component
-        .find('WithStyles(ToolbarButton)')
+        .find('ToolbarButton')
         .at(2)
         .text()
     ).toBe('12');
@@ -101,7 +101,7 @@ describe('e2e - TimePicker with seconds', () => {
 
   it('Should change seconds', () => {
     component
-      .find('WithStyles(ToolbarButton)')
+      .find('ToolbarButton')
       .at(2)
       .simulate('click');
 

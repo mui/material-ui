@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ShallowWrapper } from 'enzyme';
 import { shallow, utilsToUse } from '../test-utils';
-import { Month, MonthProps } from '../../views/Month/Month';
+import { Month, MonthProps } from '../../views/Calendar/Month';
 
 describe('Month', () => {
   let component: ShallowWrapper<MonthProps>;

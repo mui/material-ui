@@ -2,8 +2,8 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import Popover, { PopoverProps as PopoverPropsType } from '@material-ui/core/Popover';
 import { WrapperProps } from './Wrapper';
-import { useKeyDown } from '../_shared/hooks/useKeyDown';
 import { TextFieldProps } from '@material-ui/core/TextField';
+import { useKeyDownHandler } from '../_shared/hooks/useKeyDown';
 
 export interface InlineWrapperProps<T = TextFieldProps> extends WrapperProps<T> {
   /** Popover props passed to material-ui Popover (with variant="inline") */
@@ -25,9 +25,8 @@ export const InlineWrapper: React.FC<InlineWrapperProps> = ({
   ...other
 }) => {
   const ref = React.useRef();
-
-  useKeyDown(open, {
-    Enter: onAccept,
+  const handleKeydown = useKeyDownHandler(open, {
+    13: onAccept, // Enter
   });
 
   return (
@@ -38,6 +37,7 @@ export const InlineWrapper: React.FC<InlineWrapperProps> = ({
         open={open}
         onClose={onDismiss}
         anchorEl={ref.current}
+        onEscapeKeyDown={handleKeydown}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'center',

@@ -1,6 +1,7 @@
 import { useUtils } from '../_shared/hooks/useUtils';
 import { TimePickerToolbar } from './TimePickerToolbar';
 import { PureDateInput } from '../_shared/PureDateInput';
+import { BaseClockProps } from '../views/Clock/ClockView';
 import { KeyboardDateInput } from '../_shared/KeyboardDateInput';
 import { timePickerDefaultProps } from '../constants/prop-types';
 import { usePickerState } from '../_shared/hooks/usePickerState';
@@ -14,20 +15,7 @@ import {
 
 type TimePickerView = 'hours' | 'minutes' | 'seconds';
 
-export interface BaseTimePickerProps {
-  /**
-   * 12h/24h view for hour selection clock
-   * @default true
-   */
-  ampm?: boolean;
-  /**
-   * Step over minutes
-   * @default 1
-   */
-  minutesStep?: number;
-}
-
-export interface TimePickerViewsProps extends BaseTimePickerProps {
+export interface TimePickerViewsProps extends BaseClockProps {
   /** Array of views to show */
   views?: ('hours' | 'minutes' | 'seconds')[];
   /** First view to show in timepicker */

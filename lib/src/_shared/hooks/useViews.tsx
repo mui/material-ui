@@ -12,20 +12,24 @@ export function useViews(
     openTo && arrayIncludes(views, openTo) ? openTo : views[0]
   );
 
+  const nextView = views[views.indexOf(openView!) + 1];
+  const openNext = React.useCallback(() => {
+    if (nextView) {
+      setOpenView(nextView);
+    }
+  }, [nextView]);
+
   const handleChangeAndOpenNext = React.useCallback(
     (date: MaterialUiPickersDate, isFinish?: boolean) => {
-      const nextViewToOpen = views[views.indexOf(openView!) + 1];
-      if (isFinish && nextViewToOpen) {
-        // do not close picker if needs to show next view
-        onChange(date, false);
-        setOpenView(nextViewToOpen);
-        return;
-      }
+      // do not close picker if needs to show next view
+      onChange(date, Boolean(isFinish && !nextView));
 
-      onChange(date, Boolean(isFinish));
+      if (isFinish) {
+        openNext();
+      }
     },
-    [onChange, openView, views]
+    [nextView, onChange, openNext]
   );
 
-  return { handleChangeAndOpenNext, openView, setOpenView };
+  return { nextView, openNext, handleChangeAndOpenNext, openView, setOpenView };
 }
