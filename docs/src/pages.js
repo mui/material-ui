@@ -209,7 +209,6 @@ const pages = [
       { pathname: '/discover-more/team' },
       { pathname: '/discover-more/changelog' },
       { pathname: '/discover-more/languages' },
-      { pathname: '/discover-more/governance' },
     ],
   },
   {
