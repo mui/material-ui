@@ -46,16 +46,11 @@ git checkout master
 git pull upstream master
 ```
 
-4. Install dependencies:
+4. Install the dependencies:
 
 ```sh
 yarn install
 ```
-
-or
-
-````sh
-yarn
 
 5. Create a new topic branch:
 
