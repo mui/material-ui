@@ -1,5 +1,48 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.8.1
+###### *Dec 24, 2019*
+
+Big thanks to the 24 contributors who made this release possible.
+
+### `@material-ui/core@v4.8.1`
+
+- [Drawer] Fix PaperProps className merge (#18866) @kristenmills
+- [InputBase] Add rowsMin to typings (#18922) @lcswillems
+- [Paper] Add a variant prop  (#18824) @netochaves
+- [Popover] Fix bug open animation (#18896) @KevinAsher
+- [Select] Fix bug on focus in controlled open (#18857) @netochaves
+- [TextField] onBlur event argument can be undefined (#18867) @abnersajr
+- [Typography] Improve custom component types support (#18868) @fyodore82
+- [theme] Add warning, success and info colors to the palette (#18820) @r3dm1ke
+- [l10n] Add Korean (ko-KR) locale (#18952) @inspiredjw
+- [l10n] Add Azerbaijan (az-AZ) locale (#18859) @rommelmamedov
+- [l10n] Add Czech (cs-CZ) and Slovak (sk-SK) locales (#18876) @char0n
+- [l10n] Add Ukrainian (uk-UA) locale (#18832) @EvgenBabenko
+
+### `@material-ui/lab@v4.0.0-alpha.37`
+
+- [Skeleton] Delay the animation by 500ms (#18913) @bowann
+- [TreeView] Improve RTL support (#18855) @eladex
+- [TreeView] Support input in item child (#18894) @eggbread
+- [Autocomplete] Add ListboxProps prop (#18887) @ChrisWiles
+- [Autocomplete] Add blurOnSelect prop (#18827) @m4theushw
+- [Autocomplete] Add forcePopupIcon prop (#18886) @SandraMarcelaHerreraArriaga
+- [Autocomplete] Call onInputChange before onChange (#18897) @MarinePicaut
+- [Autocomplete] Fix padding to make visual height consistent (#18851) @takutolehr
+- [Autocomplete] Pass ListboxProps (#18916) @ChrisWiles
+- [Autocomplete] Prevent focusing control / opening dropdown on clear (#18889) @Monbrey
+- [Autocomplete] Support `ChipProps` prop (#18917) @ChrisWiles
+
+### Docs
+
+- [docs] Fix grammar issues in Babel plugin unwrap-createstyles (#18856) @RDIL
+- [docs] Update the translations (#18865) @mbrookes
+
+### Core
+
+- [core] Batch small changes (#18961) @oliviertassinari
+
 ## 4.8.0
 ###### *Dec 14, 2019*
 
