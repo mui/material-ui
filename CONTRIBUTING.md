@@ -23,10 +23,6 @@ If you decide to fix an issue, please be sure to check the comment thread in cas
 
 If somebody claims an issue but doesn’t follow up for more than a week, it’s fine to take it over but you should still leave a comment.
 
-## Package Manager
-
-Use [yarn](https://yarnpkg.com/en/docs) as a package manager to deal with project dependencies.
-
 ## Sending a Pull Request
 
 Material-UI is a community project, so Pull Requests are always welcome, but, before working on a large change, it is best to open an issue first to discuss it with the maintainers.
