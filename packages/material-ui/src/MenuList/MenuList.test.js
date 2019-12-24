@@ -20,7 +20,7 @@ function setStyleWidthForJsdomOrBrowser(style, width) {
 
 describe('<MenuList />', () => {
   let mount;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     mount = createMount({ strict: true });

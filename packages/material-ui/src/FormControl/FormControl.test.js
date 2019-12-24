@@ -11,7 +11,7 @@ import useFormControl from './useFormControl';
 
 describe('<FormControl />', () => {
   let mount;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
   let classes;
 
   function TestComponent(props) {

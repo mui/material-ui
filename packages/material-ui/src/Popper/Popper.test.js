@@ -14,7 +14,7 @@ import Popper from './Popper';
 describe('<Popper />', () => {
   let mount;
   let rtlTheme;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
   const defaultProps = {
     anchorEl: () => document.createElement('svg'),
     children: <span>Hello World</span>,

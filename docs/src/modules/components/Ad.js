@@ -86,7 +86,6 @@ const inHouseAds = [
 
 function Ad(props) {
   const { classes } = props;
-  const { current: random } = React.useRef(Math.random());
   const t = useSelector(state => state.options.t);
 
   const timerAdblock = React.useRef();
@@ -161,23 +160,64 @@ function Ad(props) {
   if (adblock) {
     minHeight = 'auto';
 
-    if (Math.random() >= 0.8) {
+    if (Math.random() < 0.2) {
       children = getAdblock(classes, t);
     } else {
-      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * random)]} />;
+      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * Math.random())]} />;
     }
   }
 
   if (!children) {
     if (carbonOut || codeFundOut) {
-      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * random)]} />;
+      children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * Math.random())]} />;
       minHeight = 'auto';
-    } else if (random >= 0.65) {
+    } else if (Math.random() < 0.35) {
       children = <AdCodeFund />;
     } else {
       children = <AdCarbon />;
     }
   }
+
+  React.useEffect(() => {
+    // Avoid a flood of events.
+    if (Math.random < 0.1) {
+      return null;
+    }
+
+    const delay = setTimeout(() => {
+      let type;
+
+      if (children.type === AdCodeFund) {
+        type = 'codefund';
+      } else if (children.type === AdCarbon) {
+        type = 'carbon';
+      } else if (children.type === AdInHouse) {
+        type = 'in-house';
+      } else {
+        type = 'disable-adblock';
+      }
+
+      window.ga('send', {
+        hitType: 'event',
+        eventCategory: 'ad',
+        eventAction: 'display',
+        eventLabel: type,
+      });
+
+      if (type === 'in-house') {
+        window.ga('send', {
+          hitType: 'event',
+          eventCategory: 'in-house-ad',
+          eventAction: 'display',
+          eventLabel: children.props.ad.name,
+        });
+      }
+    }, 2000);
+
+    return () => {
+      clearTimeout(delay);
+    };
+  }, [children.type, children.props.ad]);
 
   return (
     <span className={classes.root} style={{ minHeight }}>

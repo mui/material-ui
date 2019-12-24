@@ -97,8 +97,7 @@ export const styles = theme => {
     /* Styles applied to the bar2 element if `variant="indeterminate or query"`. */
     bar2Indeterminate: {
       width: 'auto',
-      animation: '$indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
-      animationDelay: '1.15s',
+      animation: '$indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite',
     },
     /* Styles applied to the bar2 element if `variant="buffer"`. */
     bar2Buffer: {

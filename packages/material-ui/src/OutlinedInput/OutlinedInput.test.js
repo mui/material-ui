@@ -9,7 +9,7 @@ import InputBase from '../InputBase';
 describe('<OutlinedInput />', () => {
   let classes;
   let mount;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<OutlinedInput />);

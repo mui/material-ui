@@ -8,7 +8,7 @@ import Ripple from './Ripple';
 
 describe('<Ripple />', () => {
   let classes;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<TouchRipple />);

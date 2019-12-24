@@ -8,7 +8,7 @@ import Rating from './Rating';
 
 describe('<Rating />', () => {
   let mount;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
   let classes;
   const defaultProps = {
     name: 'rating-test',

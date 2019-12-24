@@ -4,25 +4,19 @@ import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-d
 import Button from '@material-ui/core/Button';
 import { Omit } from '@material-ui/types';
 
-// The use of React.forwardRef will no longer be required for react-router-dom v6.
-// See https://github.com/ReactTraining/react-router/issues/6056
-const Link1 = React.forwardRef<HTMLAnchorElement, RouterLinkProps>((props, ref) => (
-  <RouterLink innerRef={ref} {...props} />
+const LinkBehavior = React.forwardRef<any, Omit<RouterLinkProps, 'to'>>((props, ref) => (
+  <RouterLink ref={ref} to="/getting-started/installation/" {...props} />
 ));
-
-const Link2 = React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'innerRef' | 'to'>>(
-  (props, ref) => <RouterLink innerRef={ref} to="/getting-started/installation/" {...props} />,
-);
 
 export default function ButtonRouter() {
   return (
     <Router>
       <div>
-        <Button color="primary" component={Link1} to="/">
+        <Button color="primary" component={RouterLink} to="/">
           With prop forwarding
         </Button>
         <br />
-        <Button color="primary" component={Link2}>
+        <Button color="primary" component={LinkBehavior}>
           Without prop forwarding
         </Button>
       </div>

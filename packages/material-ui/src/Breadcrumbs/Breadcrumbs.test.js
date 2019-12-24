@@ -9,7 +9,7 @@ import { createClientRender } from 'test/utils/createClientRender';
 describe('<Breadcrumbs />', () => {
   let mount;
   let classes;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     mount = createMount({ strict: true });

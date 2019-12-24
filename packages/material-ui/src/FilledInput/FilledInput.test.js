@@ -9,7 +9,7 @@ import InputBase from '../InputBase';
 describe('<FilledInput />', () => {
   let classes;
   let mount;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     mount = createMount({ strict: true });

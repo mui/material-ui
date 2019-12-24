@@ -46,8 +46,6 @@ export const styles = theme => ({
     objectFit: 'cover',
     // Hide alt text.
     color: 'transparent',
-    // Same color as the Skeleton.
-    backgroundColor: theme.palette.action.hover,
     // Hide the image broken icon, only works on Chrome.
     textIndent: 10000,
   },
