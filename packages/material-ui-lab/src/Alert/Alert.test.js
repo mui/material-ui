@@ -1,19 +1,27 @@
 import React from 'react';
-import { expect } from 'chai';
-import { createClientRender } from 'test/utils/createClientRender';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import Alert from './Alert';
+import Paper from '@material-ui/core/Paper';
 
 describe('<Alert />', () => {
-  const render = createClientRender({ strict: true });
+  let mount;
   let classes;
-  const defaultProps = {
-    name: 'alert-test',
-    value: 2,
-  };
 
-  it('should render', () => {
-    const { container } = render(<Alert {...defaultProps} />);
-
-    expect(container.firstChild).to.not.have.class(classes.root);
+  before(() => {
+    mount = createMount({ strict: true });
+    classes = getClasses(<Alert />);
   });
+
+  after(() => {
+    mount.cleanUp();
+  });
+
+  describeConformance(<Alert />, () => ({
+    classes,
+    inheritComponent: Paper,
+    mount,
+    refInstanceof: window.HTMLDivElement,
+    skip: ['componentProp'],
+  }));
 });

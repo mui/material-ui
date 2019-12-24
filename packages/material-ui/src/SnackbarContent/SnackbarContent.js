@@ -78,7 +78,7 @@ SnackbarContent.propTypes = {
    */
   message: PropTypes.node,
   /**
-   * The role of the SnackbarContent. If the Snackbar requires focus
+   * The role attribute of the element. If the Snackbar requires focus
    * to be closed, the `alertdialog` role should be used instead.
    */
   role: PropTypes.oneOf(['alert', 'alertdialog']),

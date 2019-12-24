@@ -1,40 +1,55 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
+import { PaperProps } from '@material-ui/core/Paper';
 
-export interface AlertProps
-  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, AlertClassKey> {
+export type Color = 'success' | 'info' | 'warning' | 'error';
+
+export interface AlertProps extends StandardProps<PaperProps, AlertClassKey, 'variant'> {
   /**
-   * Element placed before the children.
+   * The action to display.
    */
-  closeIcon?: React.ReactNode;
+  action?: React.ReactNode;
   /*
-   * Main color for the Alert, picked from theme palette
+   * Main color for the Alert, picked from theme palette.
    */
-  color?: 'primary' | 'secondary' | 'error';
+  color?: Color;
+  /**
+   * The icon element placed before the children.
+   */
+  icon?: React.ReactNode | false;
+  /**
+   * The role attribute of the element.
+   */
+  role?: string;
+  /**
+   * The component maps the color prop to a range of different icons.
+   * For instance, success to `<SuccessOutlined>`.
+   * If you wish to change that mapping, you can provide your own.
+   * Alternatively, you can use the `icon` prop.
+   */
+  iconMapping?: Partial<Record<Color, React.ReactNode>>;
   /*
-   * Elevation property that is passed to underlying Paper component
+   * The variant of the Alert.
    */
-  elevation?: number;
-  /**
-   * Callback fired when the component requests to be closed.
-   *
-   * @param {object} event The event source of the callback.
-   */
-  onClose?: (event: React.SyntheticEvent) => void;
-  /**
-   * Element placed before the children.
-   */
-  startIcon?: React.ReactNode | false;
-  /**
-   * The type of Alert
-   */
-  type?: 'success' | 'info' | 'warning' | 'error';
-  /*
-   * The variant of the Alert
-   */
-  variant?: 'text' | 'filled' | 'outline' | 'banner';
+  variant?: 'text' | 'filled' | 'outlined';
 }
 
-export type AlertClassKey = 'root';
+export type AlertClassKey =
+  | 'root'
+  | 'textSuccess'
+  | 'textInfo'
+  | 'textWarning'
+  | 'textError'
+  | 'outlinedSuccess'
+  | 'outlinedInfo'
+  | 'outlinedWarning'
+  | 'outlinedError'
+  | 'filledSuccess'
+  | 'filledInfo'
+  | 'filledWarning'
+  | 'filledError'
+  | 'icon'
+  | 'message'
+  | 'action';
 
 export default function Alert(props: AlertProps): JSX.Element;

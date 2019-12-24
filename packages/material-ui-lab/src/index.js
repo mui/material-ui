@@ -2,12 +2,6 @@
 export { default as Alert } from './Alert';
 export * from './Alert';
 
-export { default as AlertActions } from './AlertActions';
-export * from './AlertActions';
-
-export { default as AlertContent } from './AlertContent';
-export * from './AlertContent';
-
 export { default as AlertTitle } from './AlertTitle';
 export * from './AlertTitle';
 

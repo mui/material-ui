@@ -5,6 +5,6 @@ import createSvgIcon from './createSvgIcon';
  * @ignore - internal component.
  */
 export default createSvgIcon(
-  <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />,
-  'Warning',
+  <path d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z" />,
+  'ReportProblemOutlined',
 );

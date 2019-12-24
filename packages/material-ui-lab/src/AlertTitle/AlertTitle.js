@@ -4,18 +4,24 @@ import { withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import clsx from 'clsx';
 
-export const styles = () => ({
+export const styles = theme => ({
   root: {
-    padding: '0',
+    fontWeight: theme.typography.fontWeightMedium,
+    marginTop: -2,
   },
 });
 
 const AlertTitle = React.forwardRef(function AlertTitle(props, ref) {
-  const { classes, children, className } = props;
+  const { classes, className, ...other } = props;
+
   return (
-    <Typography component="div" variant="h6" ref={ref} className={clsx(classes.root, className)}>
-      {children}
-    </Typography>
+    <Typography
+      gutterBottom
+      component="div"
+      ref={ref}
+      className={clsx(classes.root, className)}
+      {...other}
+    />
   );
 });
 
