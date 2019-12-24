@@ -12,7 +12,7 @@ Cada ponto de quebra (uma chave) corresponde a uma largura de tela *fixa* (um va
 - **lg,** grande: 1280px
 - **xl,** extra-grande: 1920px
 
-Estes [valores de ponto de quebra](/customization/default-theme/?expend-path=$.breakpoints.values) são usados para determinar intervalos de ponto de quebra. Um intervalo inicia a partir do valor do ponto de quebra, incluindo seu valor inicial, até o próximo valor de ponto de quebra menos um:
+Estes [valores de ponto de quebra](/customization/default-theme/?expand-path=$.breakpoints.values) são usados para determinar intervalos de ponto de quebra. Um intervalo inicia a partir do valor do ponto de quebra, incluindo seu valor inicial, até o próximo valor de ponto de quebra menos um:
 
 ```js
 valor           |0px     600px    960px    1280px   1920px
@@ -21,7 +21,7 @@ largura da tela |--------|--------|--------|--------|-------->
 intervalo       |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
-Esses valores sempre podem ser customizados. Você os encontrará no tema, no objeto [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values).
+Esses valores sempre podem ser customizados. Você os encontrará no tema, no objeto [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values).
 
 Os pontos de quebra são usados internamente em vários componentes para torná-los responsivos, mas você também pode tirar proveito deles para controlar o leiaute da sua aplicação através do componente [Grade](/components/grid/) e [Hidden](/components/hidden/).
 
@@ -201,7 +201,7 @@ Alguns detalhes de implementação que podem ser interessantes para estar ciente
 
 #### Argumentos
 
-1. `options` (*Object* [opcional]): 
+1. `options` (*Object* [opcional]):
   - `options.withTheme` (*Boolean* [opcional]): Padrão `false`. Fornecer o objeto `theme` para o componente como uma propriedade.
   - `options.noSSR` (*Boolean* [opcional]): Padrão `false`. Para realizar a reconciliação de renderização do lado do servidor, ele precisa renderizar duas vezes. Uma primeira vez sem nada e uma segunda vez com os filhos. Este ciclo de renderização de dupla passagem tem uma desvantagem. A interface do usuário pode piscar. Você pode definir esse sinalizador para `true` se você não estiver fazendo a renderização do lado do servidor.
   - `options.initialWidth` (*Breakpoint* [opcional]): Como `window.innerWidth` não esta disponível no servidor, retornamos uma correspondência padrão durante a primeira montagem. Você pode querer usar uma heurística para aproximar a largura da tela no navegador do cliente. Por exemplo, você poderia estar usando o user-agent ou o client-hint. https://caniuse.com/#search=client%20hint, também podemos definir a largura inicial globalmente usando [`propriedades customizadas`](/customization/globals/#default-props) no tema. Para definir o initialWidth, precisamos passar uma propriedade customizada com esta forma:
@@ -242,4 +242,4 @@ export default withWidth()(MyComponent);
 
 ## Valores padrão
 
-Você pode explorar os valores padrão dos pontos de quebra usando [o explorador de tema](/customization/default-theme/?expend-path=$.breakpoints) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.breakpoints`).
+Você pode explorar os valores padrão dos pontos de quebra usando [o explorador de tema](/customization/default-theme/?expand-path=$.breakpoints) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.breakpoints`).

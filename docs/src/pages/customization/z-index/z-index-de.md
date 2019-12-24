@@ -14,4 +14,4 @@ Einige Material-UI-Komponenten verwenden den `z-Index`. Es wird eine Standard-z-
 - snackbar: 1400
 - tooltip: 1500
 
-Diese Werte können immer angepasst werden. Sie finden sie im Theme unter dem [`zIndex`](/customization/default-theme/?expend-path=$.zIndex) Schlüssel des Themes. Von der individuellen Anpassung einzelner Werte wird abgeraten. Wenn Sie einen ändern, müssen Sie wahrscheinlich alle ändern.
+Diese Werte können immer angepasst werden. Sie finden sie im Theme unter dem [`zIndex`](/customization/default-theme/?expand-path=$.zIndex) Schlüssel des Themes. Von der individuellen Anpassung einzelner Werte wird abgeraten. Wenn Sie einen ändern, müssen Sie wahrscheinlich alle ändern.

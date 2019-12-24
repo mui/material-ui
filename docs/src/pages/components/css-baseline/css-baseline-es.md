@@ -29,7 +29,7 @@ export default function MyApp() {
 The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
 
 - Se elimina el margen en todos los navegadores.
-- Se aplica el color de fondo predeterminado de Material Design. Utiliza [`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background) para dispositivos estándares y un fondo blanco para dispositivos de impresión.
+- Se aplica el color de fondo predeterminado de Material Design. Utiliza [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) para dispositivos estándares y un fondo blanco para dispositivos de impresión.
 
 ### Disposición
 

@@ -44,5 +44,5 @@ import { palette } from '@material-ui/system';
 
 | Inportname | Eigenschaften | CSS-Eigenschaft   | Theme-Schlüssel                                                  |
 |:---------- |:------------- |:----------------- |:---------------------------------------------------------------- |
-| `color`    | `color`       | `color`           | [`palette`](/customization/default-theme/?expend-path=$.palette) |
-| `bgcolor`  | `bgcolor`     | `backgroundColor` | [`palette`](/customization/default-theme/?expend-path=$.palette) |
+| `color`    | `color`       | `color`           | [`palette`](/customization/default-theme/?expand-path=$.palette) |
+| `bgcolor`  | `bgcolor`     | `backgroundColor` | [`palette`](/customization/default-theme/?expand-path=$.palette) |
