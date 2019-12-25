@@ -9,7 +9,7 @@ export interface AlertProps extends StandardProps<PaperProps, AlertClassKey, 'va
    * The action to display.
    */
   action?: React.ReactNode;
-  /*
+  /**
    * Main color for the Alert, picked from theme palette.
    */
   color?: Color;
@@ -28,7 +28,7 @@ export interface AlertProps extends StandardProps<PaperProps, AlertClassKey, 'va
    * Alternatively, you can use the `icon` prop.
    */
   iconMapping?: Partial<Record<Color, React.ReactNode>>;
-  /*
+  /**
    * The variant of the Alert.
    */
   variant?: 'text' | 'filled' | 'outlined';

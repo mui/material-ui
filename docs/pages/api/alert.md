@@ -27,9 +27,11 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">action</span> | <span class="prop-type">node</span> |  | The action to display. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">color</span> | <span class="prop-type">'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'</span> | <span class="prop-default">'success'</span> | Main color for the Alert, picked from theme palette. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> |  | The icon element placed before the children. |
 | <span class="prop-name">iconMapping</span> | <span class="prop-type">{ error?: node, info?: node, success?: node, warning?: node }</span> | <span class="prop-default">{  success: &lt;SuccessOutlinedIcon fontSize="inherit" />,  warning: &lt;ReportProblemOutlinedIcon fontSize="inherit" />,  error: &lt;ErrorOutlinedIcon fontSize="inherit" />,  info: &lt;InfoOutlinedIcon fontSize="inherit" />,}</span> | The component maps the color prop to a range of different icons. For instance, success to `<SuccessOutlined>`. If you wish to change that mapping, you can provide your own. Alternatively, you can use the `icon` prop. |
 | <span class="prop-name">role</span> | <span class="prop-type">string</span> | <span class="prop-default">'alert'</span> | The role attribute of the element. |
+| <span class="prop-name">variant</span> | <span class="prop-type">'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'text'</span> | <span class="prop-default">'text'</span> | The variant of the Alert. |
 
 The `ref` is forwarded to the root element.
 

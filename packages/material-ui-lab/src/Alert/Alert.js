@@ -207,7 +207,7 @@ Alert.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * @ignore
+   * Main color for the Alert, picked from theme palette.
    */
   color: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
   /**
@@ -231,7 +231,7 @@ Alert.propTypes = {
    */
   role: PropTypes.string,
   /**
-   * @ignore
+   * The variant of the Alert.
    */
   variant: PropTypes.oneOf(['filled', 'outlined', 'text']),
 };
