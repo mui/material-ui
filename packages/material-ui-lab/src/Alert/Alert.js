@@ -7,6 +7,8 @@ import SuccessOutlinedIcon from '../internal/svg-icons/SuccessOutlined';
 import ReportProblemOutlinedIcon from '../internal/svg-icons/ReportProblemOutlined';
 import ErrorOutlinedIcon from '../internal/svg-icons/ErrorOutlined';
 import InfoOutlinedIcon from '../internal/svg-icons/InfoOutlined';
+import CloseIcon from '../internal/svg-icons/Close';
+import IconButton from '@material-ui/core/IconButton';
 import { capitalize } from '@material-ui/core/utils';
 
 export const styles = theme => ({
@@ -156,9 +158,11 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     children,
     classes,
     className,
+    closeText = 'Close',
     color = 'success',
     icon,
     iconMapping = defaultIconMapping,
+    onClose,
     role = 'alert',
     variant = 'text',
     ...other
@@ -180,6 +184,19 @@ const Alert = React.forwardRef(function Alert(props, ref) {
       ) : null}
       <div className={classes.message}>{children}</div>
       {action != null ? <div className={classes.action}>{action}</div> : null}
+      {action == null && onClose ? (
+        <div className={classes.action}>
+          <IconButton
+            size="small"
+            aria-label={closeText}
+            title={closeText}
+            color="inherit"
+            onClick={onClose}
+          >
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </div>
+      ) : null}
     </Paper>
   );
 });
@@ -207,6 +224,12 @@ Alert.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * Override the default text for the *close popup* icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   */
+  closeText: PropTypes.string,
+  /**
    * Main color for the Alert, picked from theme palette.
    */
   color: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
@@ -226,6 +249,13 @@ Alert.propTypes = {
     success: PropTypes.node,
     warning: PropTypes.node,
   }),
+  /**
+   * Callback fired when the component requests to be closed.
+   * When provided and no action prop is set, a close icon is displayed.
+   *
+   * @param {object} event The event source of the callback.
+   */
+  onClose: PropTypes.func,
   /**
    * The role attribute of the element.
    */

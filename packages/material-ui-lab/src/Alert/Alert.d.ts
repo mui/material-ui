@@ -10,6 +10,12 @@ export interface AlertProps extends StandardProps<PaperProps, AlertClassKey, 'va
    */
   action?: React.ReactNode;
   /**
+   * Override the default text for the *close popup* icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   */
+  closeText?: string;
+  /**
    * Main color for the Alert, picked from theme palette.
    */
   color?: Color;
@@ -28,6 +34,13 @@ export interface AlertProps extends StandardProps<PaperProps, AlertClassKey, 'va
    * Alternatively, you can use the `icon` prop.
    */
   iconMapping?: Partial<Record<Color, React.ReactNode>>;
+  /**
+   * Callback fired when the component requests to be closed.
+   * When provided and no action prop is set, a close icon is displayed.
+   *
+   * @param {object} event The event source of the callback.
+   */
+  onClose?: (event: React.SyntheticEvent) => void;
   /**
    * The variant of the Alert.
    */
