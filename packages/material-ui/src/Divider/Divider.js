@@ -12,7 +12,7 @@ export const styles = (theme) => ({
     borderWidth: 0,
     borderStyle: 'solid',
     borderColor: theme.palette.divider,
-    borderBottomWidth: 1,
+    borderBottomWidth: 'thin',
   },
   /* Styles applied to the root element if `absolute={true}`. */
   absolute: {
@@ -38,7 +38,7 @@ export const styles = (theme) => ({
   vertical: {
     height: '100%',
     borderBottomWidth: 0,
-    borderRightWidth: 1,
+    borderRightWidth: 'thin',
   },
   /* Styles applied to the root element if `flexItem={true}`. */
   flexItem: {
