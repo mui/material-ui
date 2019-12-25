@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
@@ -161,13 +161,13 @@ const Badge = React.forwardRef(function Badge(props, ref) {
     children,
     classes,
     className,
-    color = 'default',
+    color: colorProp = 'default',
     component: ComponentProp = 'span',
     invisible: invisibleProp,
     max = 99,
     overlap = 'rectangle',
     showZero = false,
-    variant = 'standard',
+    variant: variantProp = 'standard',
     ...other
   } = props;
 
@@ -175,16 +175,29 @@ const Badge = React.forwardRef(function Badge(props, ref) {
 
   if (
     invisibleProp == null &&
-    ((badgeContent === 0 && !showZero) || (badgeContent == null && variant !== 'dot'))
+    ((badgeContent === 0 && !showZero) || (badgeContent == null && variantProp !== 'dot'))
   ) {
     invisible = true;
   }
 
-  let displayValue = '';
+  let nextDisplayValue = '';
 
-  if (variant !== 'dot') {
-    displayValue = badgeContent > max ? `${max}+` : badgeContent;
+  if (variantProp !== 'dot') {
+    nextDisplayValue = badgeContent > max ? `${max}+` : badgeContent;
   }
+
+  // Retain the appearance of badge while invisible, to keep same appearance until disappearing.
+  // These should not be an attribute with transitions, or it will cause an undesirable animation at next appearing.
+  const nextNotTransitionedAttrs = {
+    displayValue: nextDisplayValue,
+    color: colorProp,
+    variant: variantProp,
+  };
+
+  const lastNotTransitionedPropsRef = useRef(nextNotTransitionedAttrs);
+  const { displayValue, color, variant } = invisible
+    ? lastNotTransitionedPropsRef.current
+    : nextNotTransitionedAttrs;
 
   return (
     <ComponentProp className={clsx(classes.root, className)} ref={ref} {...other}>
