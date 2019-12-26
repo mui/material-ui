@@ -5,7 +5,7 @@ import { withStyles, lighten, darken } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import SuccessOutlinedIcon from '../internal/svg-icons/SuccessOutlined';
 import ReportProblemOutlinedIcon from '../internal/svg-icons/ReportProblemOutlined';
-import ErrorOutlinedIcon from '../internal/svg-icons/ErrorOutlined';
+import ErrorOutlineIcon from '../internal/svg-icons/ErrorOutline';
 import InfoOutlinedIcon from '../internal/svg-icons/InfoOutlined';
 import CloseIcon from '../internal/svg-icons/Close';
 import IconButton from '@material-ui/core/IconButton';
@@ -148,7 +148,7 @@ export const styles = theme => ({
 const defaultIconMapping = {
   success: <SuccessOutlinedIcon fontSize="inherit" />,
   warning: <ReportProblemOutlinedIcon fontSize="inherit" />,
-  error: <ErrorOutlinedIcon fontSize="inherit" />,
+  error: <ErrorOutlineIcon fontSize="inherit" />,
   info: <InfoOutlinedIcon fontSize="inherit" />,
 };
 
