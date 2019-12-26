@@ -207,7 +207,7 @@ Alert.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The action to display.
+   * The action to display. It renders after the message, at the end of the alert.
    */
   action: PropTypes.node,
   /**

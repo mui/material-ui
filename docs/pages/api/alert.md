@@ -24,7 +24,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">action</span> | <span class="prop-type">node</span> |  | The action to display. |
+| <span class="prop-name">action</span> | <span class="prop-type">node</span> |  | The action to display. It renders after the message, at the end of the alert. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the component. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">closeText</span> | <span class="prop-type">string</span> | <span class="prop-default">'Close'</span> | Override the default text for the *close popup* icon button.<br>For localization purposes, you can use the provided [translations](/guides/localization/). |

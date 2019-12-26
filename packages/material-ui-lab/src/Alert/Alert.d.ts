@@ -6,7 +6,7 @@ export type Color = 'success' | 'info' | 'warning' | 'error';
 
 export interface AlertProps extends StandardProps<PaperProps, AlertClassKey, 'variant'> {
   /**
-   * The action to display.
+   * The action to display. It renders after the message, at the end of the alert.
    */
   action?: React.ReactNode;
   /**
