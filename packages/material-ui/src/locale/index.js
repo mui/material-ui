@@ -324,6 +324,27 @@ export const ptBR = {
   },
 };
 
+export const ptPT = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Página anterior',
+      labelRowsPerPage: 'Linhas por página:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} de ${count}`,
+      nextIconButtonText: 'Próxima página',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Estrela${value !== 1 ? 's' : ''}`,
+    },
+    MuiAutocomplete: {
+      clearText: 'Limpar',
+      closeText: 'Fechar',
+      loadingText: 'A carregar…',
+      noOptionsText: 'Sem opções',
+      openText: 'Abrir',
+    },
+  },
+};
+
 export const roRO = {
   props: {
     MuiTablePagination: {
