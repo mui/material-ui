@@ -6,7 +6,7 @@ export interface DialogContentProps
   dividers?: boolean;
 }
 
-export type DialogContentClassKey = 'root';
+export type DialogContentClassKey = 'root' | 'dividers';
 
 declare const DialogContent: React.ComponentType<DialogContentProps>;
 
