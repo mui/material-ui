@@ -66,6 +66,42 @@ describe('<Grid />', () => {
     });
   });
 
+  describe('prop: spacingXs', () => {
+    it('should have a spacing for xs breakpoint', () => {
+      const wrapper = shallow(<Grid container spacingXs={1} />);
+      assert.strictEqual(wrapper.hasClass(classes['spacing-xs-1']), true);
+    });
+  });
+
+  describe('prop: spacingSm', () => {
+    it('should have a spacing for sm breakpoint', () => {
+      const wrapper = shallow(<Grid container spacingSm={1} />);
+      assert.strictEqual(wrapper.hasClass(classes['spacing-sm-1']), true);
+    });
+  });
+
+  describe('prop: spacingMd', () => {
+    it('should have a spacing for md breakpoint', () => {
+      const wrapper = shallow(<Grid container spacingMd={1} />);
+      assert.strictEqual(wrapper.hasClass(classes['spacing-md-1']), true);
+    });
+  });
+
+  describe('prop: spacingLg', () => {
+    it('should have a spacing for lg breakpoint', () => {
+      const wrapper = shallow(<Grid container spacingLg={1} />);
+      assert.strictEqual(wrapper.hasClass(classes['spacing-lg-1']), true);
+    });
+  });
+
+  describe('prop: spacingXl', () => {
+    it('should have a spacing for xl breakpoint', () => {
+      const wrapper = shallow(<Grid container spacingXl={1} />);
+      console.log('Wrapper:',wrapper)
+      assert.strictEqual(wrapper.hasClass(classes['spacing-xl-1']), true);
+    });
+  });
+
   describe('prop: alignItems', () => {
     it('should apply the align-item class', () => {
       const wrapper = shallow(<Grid alignItems="center" container />);
