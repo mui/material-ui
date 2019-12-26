@@ -12,6 +12,7 @@ export const koKR: object;
 export const nlNL: object;
 export const plPL: object;
 export const ptBR: object;
+export const ptPT: object;
 export const roRO: object;
 export const ruRU: object;
 export const skSK: object;
