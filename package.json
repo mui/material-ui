@@ -16,12 +16,12 @@
   ],
   "scripts": {
     "test": "jest test/index.test.ts",
-    "build": "tsc",
+    "build": "pnpify tsc",
     "release": "yarn build && standard-version"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.0.0",
-    "@commitlint/config-conventional": "^8.0.0",
+    "@commitlint/cli": "^8.3.3",
+    "@commitlint/config-conventional": "^8.3.3",
     "@types/babel__core": "^7.1.2",
     "@types/doctrine": "^0.0.3",
     "@types/jest": "^24.0.15",
@@ -29,13 +29,14 @@
     "@types/node": "^12.6.2",
     "@types/react": "^16.8.23",
     "@types/uuid": "^3.4.5",
-    "husky": "^3.0.0",
+    "@yarnpkg/pnpify": "2.0.0-rc.7",
+    "husky": "4.0.0-beta.3",
     "jest": "^24.8.0",
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
     "react": "^16.8.6",
-    "standard-version": "^6.0.1",
-    "ts-jest": "^24.0.2"
+    "standard-version": "https://github.com/merceyz/standard-version.git#pnp",
+    "ts-jest": "^24.2.0"
   },
   "dependencies": {
     "@babel/core": "^7.5.4",
@@ -47,10 +48,15 @@
     "typescript": "3.5.2",
     "uuid": "^3.3.2"
   },
+  "dependenciesMeta": {
+    "core-js": {
+      "built": false
+    }
+  },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "pre-commit": "yarn pretty-quick --staged",
+      "commit-msg": "yarn commitlint -E HUSKY_GIT_PARAMS"
     }
   }
 }
