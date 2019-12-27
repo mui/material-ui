@@ -97,7 +97,6 @@ describe('<Grid />', () => {
   describe('prop: spacingXl', () => {
     it('should have a spacing for xl breakpoint', () => {
       const wrapper = shallow(<Grid container spacingXl={1} />);
-      console.log('Wrapper:',wrapper)
       assert.strictEqual(wrapper.hasClass(classes['spacing-xl-1']), true);
     });
   });

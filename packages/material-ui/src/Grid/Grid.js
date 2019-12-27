@@ -19,7 +19,6 @@ const SPACINGS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
 function generateGrid(styles, theme, breakpoint) {
-
   GRID_SIZES.forEach(size => {
     const key = `grid-${breakpoint}-${size}`;
 
@@ -60,8 +59,7 @@ function getOffset(val, div = 1) {
   return `${parse / div}${String(val).replace(String(parse), '') || 'px'}`;
 }
 
-function generateGutter(styles,theme, breakpoint) {
-
+function generateGutter(styles, theme, breakpoint) {
   SPACINGS.forEach(spacing => {
     const themeSpacing = theme.spacing(spacing);
 
@@ -76,12 +74,11 @@ function generateGutter(styles,theme, breakpoint) {
         padding: getOffset(themeSpacing, 2),
       },
     };
-  }); 
+  });
 }
 
-function generateGlobalStyles(globalStyles, theme, breakpoint){
-
-  const styles ={};
+function generateGlobalStyles(globalStyles, theme, breakpoint) {
+  const styles = {};
   generateGrid(styles, theme, breakpoint);
   generateGutter(styles, theme, breakpoint);
 
@@ -342,33 +339,33 @@ Grid.propTypes = {
   /**
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
-   * It's applied for the `xs` breakpoint and wider screens if not overridden. 
-   */
-  spacingXs: PropTypes.oneOf(SPACINGS),
-  /**
-   * Defines the space between the type `item` component.
-   * It can only be used on a type `container` component.
-   * It's applied for the `sm` breakpoint and wider screens if not overridden. 
-   */
-  spacingSm: PropTypes.oneOf(SPACINGS),
-  /**
-   * Defines the space between the type `item` component.
-   * It can only be used on a type `container` component.
-   * It's applied for the `md` breakpoint and wider screens if not overridden. 
-   */
-  spacingMd: PropTypes.oneOf(SPACINGS),
-  /**
-   * Defines the space between the type `item` component.
-   * It can only be used on a type `container` component.
-   * It's applied for the `lg` breakpoint and wider screens if not overridden. 
+   * It's applied for the `lg` breakpoint and wider screens if not overridden.
    */
   spacingLg: PropTypes.oneOf(SPACINGS),
   /**
    * Defines the space between the type `item` component.
    * It can only be used on a type `container` component.
-   * It's applied for the `xl` breakpoint. 
+   * It's applied for the `md` breakpoint and wider screens if not overridden.
+   */
+  spacingMd: PropTypes.oneOf(SPACINGS),
+  /**
+   * Defines the space between the type `item` component.
+   * It can only be used on a type `container` component.
+   * It's applied for the `sm` breakpoint and wider screens if not overridden.
+   */
+  spacingSm: PropTypes.oneOf(SPACINGS),
+  /**
+   * Defines the space between the type `item` component.
+   * It can only be used on a type `container` component.
+   * It's applied for the `xl` breakpoint.
    */
   spacingXl: PropTypes.oneOf(SPACINGS),
+  /**
+   * Defines the space between the type `item` component.
+   * It can only be used on a type `container` component.
+   * It's applied for the `xs` breakpoint and wider screens if not overridden.
+   */
+  spacingXs: PropTypes.oneOf(SPACINGS),
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
@@ -405,11 +402,11 @@ if (process.env.NODE_ENV !== 'production') {
     md: requireProp('item'),
     sm: requireProp('item'),
     spacing: requireProp('container'),
-    spacingXs:requireProp('container'),
-    spacingSm:requireProp('container'),
-    spacingMd:requireProp('container'),
-    spacingLg:requireProp('container'),
-    spacingXl:requireProp('container'),
+    spacingLg: requireProp('container'),
+    spacingMd: requireProp('container'),
+    spacingSm: requireProp('container'),
+    spacingXl: requireProp('container'),
+    spacingXs: requireProp('container'),
     wrap: requireProp('container'),
     xs: requireProp('item'),
     zeroMinWidth: requireProp('item'),
