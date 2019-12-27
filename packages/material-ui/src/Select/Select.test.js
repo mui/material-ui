@@ -148,8 +148,10 @@ describe('<Select />', () => {
       getByRole('button').focus();
 
       fireEvent.keyDown(document.activeElement, { key });
+      expect(getByRole('listbox', { hidden: false })).to.be.ok;
 
-      expect(getByRole('listbox')).to.be.ok;
+      fireEvent.keyUp(document.activeElement, { key });
+      expect(getByRole('listbox', { hidden: false })).to.be.ok;
     });
   });
 
@@ -485,7 +487,9 @@ describe('<Select />', () => {
       getByRole('button').focus();
 
       fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      expect(queryByRole('listbox')).not.to.be.ok;
 
+      fireEvent.keyUp(document.activeElement, { key: 'ArrowDown' });
       expect(queryByRole('listbox')).not.to.be.ok;
     });
   });
@@ -587,6 +591,39 @@ describe('<Select />', () => {
 
     after(() => {
       clock.restore();
+    });
+
+    it('should not focus on close controlled select', () => {
+      function ControlledWrapper() {
+        const [open, setOpen] = React.useState(false);
+
+        return (
+          <div>
+            <button type="button" id="open-select" onClick={() => setOpen(true)}>
+              Open select
+            </button>
+            <Select
+              MenuProps={{ transitionDuration: 0 }}
+              open={open}
+              onClose={() => setOpen(false)}
+              value=""
+            >
+              <MenuItem onClick={() => setOpen(false)}>close</MenuItem>
+            </Select>
+          </div>
+        );
+      }
+      const { container, getByRole } = render(<ControlledWrapper />);
+      const openSelect = container.querySelector('#open-select');
+      openSelect.focus();
+      fireEvent.click(openSelect);
+
+      const option = getByRole('option');
+      expect(option).to.have.focus;
+      fireEvent.click(option);
+
+      expect(container.querySelectorAll('.Mui-focused').length).to.equal(0);
+      expect(openSelect).to.have.focus;
     });
 
     it('should allow to control closing by passing onClose props', () => {
@@ -870,5 +907,21 @@ describe('<Select />', () => {
 
       expect(getByLabelText('A select')).to.have.property('tagName', 'SELECT');
     });
+  });
+
+  it('prevents the default when releasing Space on the children', () => {
+    const keyUpSpy = spy(event => event.defaultPrevented);
+    render(
+      <Select value="one" open>
+        <MenuItem onKeyUp={keyUpSpy} value="one">
+          One
+        </MenuItem>
+      </Select>,
+    );
+
+    fireEvent.keyUp(document.activeElement, { key: ' ' });
+
+    expect(keyUpSpy.callCount).to.equal(1);
+    expect(keyUpSpy.returnValues[0]).to.equal(true);
   });
 });

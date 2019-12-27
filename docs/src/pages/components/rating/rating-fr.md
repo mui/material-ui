@@ -1,9 +1,9 @@
 ---
 title: Rating React component
-components: Rating
+components: Rating (Notation)
 ---
 
-# Rating
+# Rating (Notation)
 
 <p class="description">Ratings provide insight regarding others’ opinions and experiences with a product. Users can also rate products they’ve purchased.</p>
 

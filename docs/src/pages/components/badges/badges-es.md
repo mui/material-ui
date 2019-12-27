@@ -3,7 +3,7 @@ title: Componente Badge
 components: Badge
 ---
 
-# Placas
+# Badge
 
 <p class="description">El componente Badge genera un pequeño badge en la esquina superior derecha de su(s) hijo(s).</p>
 
@@ -15,7 +15,7 @@ Ejemplos de insignias que contienen texto, utilizando colores primarios y secund
 
 ## Placas personalizadas
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/demos/badges/CustomizedBadge.js"}}
 
@@ -49,4 +49,4 @@ Puede usar la propiedad `overlap` para colocar la insignia relativa a la esquina
 
 Puede usar las propiedades `horizontalAlignment` y `verticalAlignment` para mover la insignia a cualquier esquina del elemento envuelto.
 
-{{"demo": "pages/components/badges/BadgeAlignment.js"}}
+{{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}

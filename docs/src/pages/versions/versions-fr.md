@@ -16,7 +16,7 @@ Ici vous pouvez trouver la dernière documentation non publiée et le code. Vous
 
 ## Stratégie de gestion des versions
 
-Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around Material-UI to thrive.
+La stabilité garantit des composants réutilisables et les librairies, tutoriels, outils ainsi que les pratiques acquises ne deviennes pas soudainement obsolètes. La stabilité est essentielle au développement de l’écosystème Material-UI.
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
@@ -32,7 +32,7 @@ A regular schedule of releases helps you plan and coordinate your updates with t
 
 In general, you can expect the following release cycle:
 
-- A **major** release every 12 months.
+- Une version **majeure** tous les 12 mois.
 - 1-3 **mineur** versions pour chaque version majeure.
 - A **patch** release every week (anytime for urgent bugfix).
 

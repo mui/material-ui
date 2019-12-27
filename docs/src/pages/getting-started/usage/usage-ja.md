@@ -51,7 +51,7 @@ Material-UIはオプションで[CssBaseline](/components/css-baseline/)コン�
 
 ## バージョン管理されたドキュメント
 
-このドキュメントは常に最新の安定版のMaterial-UIを反映しています。 You can find older versions of the documentation on a [separate page](https://material-ui.com/versions/).
+このドキュメントは常に最新の安定版のMaterial-UIを反映しています。 古いバージョンのドキュメントは、[別のページ ](https://material-ui.com/versions/)にあります。
 
 ## 次のステップ
 

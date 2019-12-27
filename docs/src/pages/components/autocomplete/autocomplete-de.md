@@ -92,6 +92,12 @@ In the event that you need to lock certain tag so that they can't be removed in 
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
 
+## Größen
+
+Fancy smaller inputs? Use the `size` prop.
+
+{{"demo": "pages/components/autocomplete/Sizes.js"}}
+
 ## Customized Autocomplete
 
 This demo reproduces the GitHub's label picker:
@@ -121,7 +127,7 @@ It supports the following options:
   - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
   - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
   - `config.stringify` (*Func* [optional]): Defaults to `JSON.stringify`.
-  - `config.trim` (*Boolean* [optional]): Defaults to `false`. Remove trailing spaces.
+  - `config.trim ` (*Boolean* [optional]): Standardeinstellung ist `false`. Remove trailing spaces.
 
 In the following demo, the options need to start with the query prefix:
 
@@ -138,7 +144,7 @@ const filterOptions = createFilterOptions({
 
 ### Erweitert
 
-For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). For instance:
+For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). Zum Beispiel:
 
 ```jsx
 import matchSorter from 'match-sorter';

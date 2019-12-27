@@ -18,7 +18,7 @@ const styles = {
 };
 
 function DemoLanguages(props) {
-  const { classes, codeOpen, codeVariant, demo, gaEventCategory, onLanguageClick } = props;
+  const { classes, codeOpen, codeVariant, demo, gaEventLabel, onLanguageClick } = props;
   const hasTSVariant = demo.rawTS;
   const t = useSelector(state => state.options.t);
 
@@ -41,8 +41,9 @@ function DemoLanguages(props) {
           className={classes.toggleButton}
           value={CODE_VARIANTS.JS}
           aria-label={t('showJSSource')}
-          data-ga-event-category={gaEventCategory}
+          data-ga-event-category="demo"
           data-ga-event-action="source-js"
+          data-ga-event-label={gaEventLabel}
         >
           <JavaScriptIcon />
         </ToggleButton>
@@ -51,8 +52,9 @@ function DemoLanguages(props) {
           value={CODE_VARIANTS.TS}
           disabled={!hasTSVariant}
           aria-label={t('showTSSource')}
-          data-ga-event-category={gaEventCategory}
+          data-ga-event-category="demo"
           data-ga-event-action="source-ts"
+          data-ga-event-label={gaEventLabel}
         >
           <TypeScriptIcon />
         </ToggleButton>
@@ -66,7 +68,7 @@ DemoLanguages.propTypes = {
   codeOpen: PropTypes.bool.isRequired,
   codeVariant: PropTypes.string.isRequired,
   demo: PropTypes.object.isRequired,
-  gaEventCategory: PropTypes.string.isRequired,
+  gaEventLabel: PropTypes.string.isRequired,
   onLanguageClick: PropTypes.func,
 };
 

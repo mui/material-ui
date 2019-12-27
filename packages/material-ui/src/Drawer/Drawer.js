@@ -113,7 +113,7 @@ const Drawer = React.forwardRef(function Drawer(props, ref) {
     ModalProps: { BackdropProps: BackdropPropsProp, ...ModalProps } = {},
     onClose,
     open = false,
-    PaperProps,
+    PaperProps = {},
     SlideProps,
     transitionDuration = defaultTransitionDuration,
     variant = 'temporary',
@@ -134,10 +134,15 @@ const Drawer = React.forwardRef(function Drawer(props, ref) {
     <Paper
       elevation={variant === 'temporary' ? elevation : 0}
       square
-      className={clsx(classes.paper, classes[`paperAnchor${capitalize(anchor)}`], {
-        [classes[`paperAnchorDocked${capitalize(anchor)}`]]: variant !== 'temporary',
-      })}
       {...PaperProps}
+      className={clsx(
+        classes.paper,
+        classes[`paperAnchor${capitalize(anchor)}`],
+        {
+          [classes[`paperAnchorDocked${capitalize(anchor)}`]]: variant !== 'temporary',
+        },
+        PaperProps.className,
+      )}
     >
       {children}
     </Paper>

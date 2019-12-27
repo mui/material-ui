@@ -3,7 +3,7 @@ title: Componente React Caixa de Seleção
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Caixas de Seleção
+# Checkbox (Caixa de Seleção)
 
 <p class="description">Caixas de Seleção permitem o usuário selecionar um ou mais itens de um conjunto.</p>
 

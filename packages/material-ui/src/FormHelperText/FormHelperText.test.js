@@ -8,7 +8,7 @@ import FormControl from '../FormControl';
 
 describe('<FormHelperText />', () => {
   let mount;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
   let classes;
 
   before(() => {

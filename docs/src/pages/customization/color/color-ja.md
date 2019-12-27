@@ -41,13 +41,13 @@ import HUE from '@material-ui/core/colors/HUE';
 const color = HUE[SHADE];
 ```
 
-{{"demo": "pages/customization/color/Color.js", "hideHeader": true}}
+{{"demo": "pages/customization/color/Color.js", "hideHeader": true, "bg": "inline"}}
 
-## Color tool
+## カラーツール
 
 [ material.io/design/colorをテストするには](https://material.io/design/color/) Material-UIのドキュメントの配色では、以下のパレットとスライダーを使用してカラーを選択するだけです。 または、プライマリおよびセカンダリテキストフィールドに16進値を入力できます。
 
-{{"demo": "pages/customization/color/ColorTool.js", "hideHeader": true}}
+{{"demo": "pages/customization/color/ColorTool.js", "hideHeader": true, "bg": true}}
 
 The output shown in the color sample can be pasted directly into a [`createMuiTheme()`](/customization/theming/#createmuitheme-options-theme) function (to be used with [`ThemeProvider`](/customization/theming/#theme-provider)):
 

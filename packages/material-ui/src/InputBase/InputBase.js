@@ -191,6 +191,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     renderSuffix,
     rows,
     rowsMax,
+    rowsMin,
     startAdornment,
     type = 'text',
     value: valueProp,
@@ -367,7 +368,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       ref: null,
     };
   } else if (multiline) {
-    if (rows && !rowsMax) {
+    if (rows && !rowsMax && !rowsMin) {
       InputComponent = 'textarea';
     } else {
       inputProps = {
@@ -548,7 +549,9 @@ InputBase.propTypes = {
    */
   name: PropTypes.string,
   /**
-   * @ignore
+   * Callback fired when the input is blurred.
+   *
+   * Notice that the first argument (event) might be undefined.
    */
   onBlur: PropTypes.func,
   /**
@@ -599,6 +602,10 @@ InputBase.propTypes = {
    * Maximum number of rows to display when multiline option is set to true.
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /**
+   * Minimum number of rows to display when multiline option is set to true.
+   */
+  rowsMin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * Start `InputAdornment` for this component.
    */

@@ -158,6 +158,22 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the root element if `disableElevation={true}`. */
+  disableElevation: {
+    boxShadow: 'none',
+    '&:hover': {
+      boxShadow: 'none',
+    },
+    '&$focusVisible': {
+      boxShadow: 'none',
+    },
+    '&:active': {
+      boxShadow: 'none',
+    },
+    '&$disabled': {
+      boxShadow: 'none',
+    },
+  },
   /* Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
   focusVisible: {},
   /* Pseudo-class applied to the root element if `disabled={true}`. */
@@ -251,6 +267,7 @@ const Button = React.forwardRef(function Button(props, ref) {
     color = 'default',
     component = 'button',
     disabled = false,
+    disableElevation = false,
     disableFocusRipple = false,
     endIcon: endIconProp,
     focusVisibleClassName,
@@ -282,6 +299,7 @@ const Button = React.forwardRef(function Button(props, ref) {
           [classes[`${variant}${capitalize(color)}`]]: color !== 'default' && color !== 'inherit',
           [classes[`${variant}Size${capitalize(size)}`]]: size !== 'medium',
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
+          [classes.disableElevation]: disableElevation,
           [classes.disabled]: disabled,
           [classes.fullWidth]: fullWidth,
           [classes.colorInherit]: color === 'inherit',
@@ -332,6 +350,10 @@ Button.propTypes = {
    * If `true`, the button will be disabled.
    */
   disabled: PropTypes.bool,
+  /**
+   * If `true`, no elevation is used.
+   */
+  disableElevation: PropTypes.bool,
   /**
    * If `true`, the  keyboard focus ripple will be disabled.
    * `disableRipple` must also be true.

@@ -34,11 +34,7 @@ export default function SimpleCard() {
           Word of the Day
         </Typography>
         <Typography variant="h5" component="h2">
-          be
-          {bull}
-          nev
-          {bull}o{bull}
-          lent
+          be{bull}nev{bull}o{bull}lent
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
           adjective

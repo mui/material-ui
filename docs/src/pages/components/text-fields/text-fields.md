@@ -3,7 +3,7 @@ title: Text Field React component
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
-# Text Fields
+# Text Field
 
 <p class="description">Text fields let users enter and edit text.</p>
 
@@ -23,7 +23,7 @@ but Material-UI will continue to support it.
 
 ## Form props
 
-Standard form attributes are supported e.g. `required`, `readOnly`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
+Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
@@ -58,6 +58,12 @@ These can be used to add a prefix, a suffix or an action to an input.
 For instance, you can use an icon button to hide or reveal the password.
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
+
+## Sizes
+
+Fancy smaller inputs? Use the `size` prop.
+
+{{"demo": "pages/components/text-fields/TextFieldSizes.js"}}
 
 ## Layout
 

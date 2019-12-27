@@ -241,6 +241,6 @@ function MyComponent(props) {
 export default withWidth()(MyComponent);
 ```
 
-## Default values
+## デフォルト値
 
 You can explore the default values of the breakpoints using [the theme explorer](/customization/default-theme/?expend-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).

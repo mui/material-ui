@@ -3,7 +3,7 @@ title: Button コンポーネント
 components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 ---
 
-# Button
+# Button (ボタン)
 
 <p class="description">Buttonを使用すると、ユーザーは1回のタップでアクションを実行したり選択したりできます。</p>
 
@@ -23,6 +23,10 @@ components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
+You can remove the elevation with the `disableElevation` prop.
+
+{{"demo": "pages/components/buttons/DisableElevation.js"}}
+
 ## Text Buttons
 
 [Text button](https://material.io/design/components/buttons.html#text-button)は、一般的にそれほど目立たせる必要のないアクションに対して用いられます。例えば、次のようなコンポーネントの中で用いられます。
@@ -38,19 +42,25 @@ Cardの中でText Buttonを用いることで、Cardの内容に重点を置く�
 
 [Outlined buttons](https://material.io/design/components/buttons.html#outlined-button) are medium-emphasis buttons. 重要なアクションを含みますが、アプリ内では最も重要ではない、といった場合に使われます。
 
-### 代替手段
-
 Outlined buttonは、Contained buttonと比べると強調が弱く、 Text buttonと比べると強調の強いボタンです。
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
 ## Grouped Buttons
 
-ButtonGroupコンポーネントは、アウトラインボタン（デフォルト）または含まれているボタンをグループ化するために使用できます。
+The `ButtonGroup` component can be used to group buttons.
 
 {{"demo": "pages/components/buttons/GroupedButtons.js"}}
 
-## Split Button
+### Group sizes and colors
+
+{{"demo": "pages/components/buttons/GroupSizesColors.js"}}
+
+### Group orientation
+
+{{"demo": "pages/components/buttons/GroupOrientation.js"}}
+
+### Split Button
 
 ButtonGroupは分割ボタンの作成にも使用できます。 この例のようにドロップダウンでボタンの動作を変更することも、関連する動作をすぐに起動するために使用することもできます。
 
@@ -84,39 +94,39 @@ FABを使用するのは、それが画面の主なアクションを提示す�
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
-## Buttons with icons and label
+## アイコンとラベルの付いたButton
 
-ロゴはプレーンテキストよりも認識しやすいため、ボタンにアイコンを追加してアプリケーションのUXを強化したい場合があります。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。
+プレーンテキストよりもロゴを認識しやすいため、アプリケーションのUXを向上させるために特定のボタンのアイコンを表示したい場合があります。 たとえば、削除ボタンがある場合は、ゴミ箱アイコンでラベルを付けることができます。
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
 ## Icon Buttons
 
-アイコンだけのボタンは、App BarやToolbarでよく使われます。
+アイコンボタンは通常、アプリバーとツールバーにあります。
 
-アイコンは、アイテムを一つ選択したり、アイテムに星を追加または削除するなど選択/解除できるトグルボタンにも適しています。
+アイコンは、アイテムへの星の追加や削除など、単一の選択肢を選択または選択解除できるトグルボタンにも適しています。
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## Customized buttons
+## カスタムButton
 
 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
+👑 インスピレーションを求めているなら, [MUI Treasury's customization examples](https://mui-treasury.com/components/button)を確認できます。
 
-## Complex Buttons
+## 複雑なButton
 
-The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`. You can take advantage of this lower level component to build custom interactions.
+テキストボタン、包含ボタン、フローティングアクションボタン、およびアイコンボタンは、同じコンポーネント（ `ButtonBase`上に構築されています。 この低レベルのコンポーネントを利用してカスタムインタラクションを構築できます。
 
 {{"demo": "pages/components/buttons/ButtonBases.js"}}
 
 ## サードパーティ製ルーティングライブラリ
 
-One common use case is to use the button to trigger navigation to a new page. The `ButtonBase` component provides a property to handle this use case: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
+一般的な使用例の1つは、ボタンを使用して新しいページへのナビゲーションを開始することです。 `ButtonBase` コンポーネントは、このユースケースを処理するためのプロパティを提供します 。 108/5000 ただし、特定のフォーカスについては` ButtonBase `には提供されているDOMノードが必要です。 これは、refをコンポーネントに添付し、 コンポーネントがこのrefを基になるDOMノードに転送することを期待することによって実現されます。 Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
-Here is an [integration example with react-router](/guides/composition/#button).
+こちらは [react-routerとの統合例](/guides/composition/#button).
 
 ## 制限事項
 

@@ -1,14 +1,9 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
+import { PopperProps } from '@material-ui/core/Popper';
 import { UseAutocompleteProps, CreateFilterOptions, createFilterOptions } from '../useAutocomplete';
 
 export { createFilterOptions };
-
-export interface PopperProps extends React.HTMLAttributes<HTMLElement> {
-  anchorEl?: HTMLElement;
-  open: boolean;
-  popperRef: React.Ref<unknown>;
-}
 
 export interface RenderOptionState {
   inputValue: string;
@@ -43,6 +38,10 @@ export interface AutocompleteProps
       'defaultValue' | 'onChange' | 'children'
     > {
   /**
+   * Props applied to the [`Chip`](/api/chip/) element.
+   */
+  ChipProps?: object;
+  /**
    * The icon to display in place of the default close icon.
    */
   closeIcon?: React.ReactNode;
@@ -68,9 +67,17 @@ export interface AutocompleteProps
    */
   disablePortal?: boolean;
   /**
+   * Force the visibility display of the popup icon.
+   */
+  forcePopupIcon?: true | false | 'auto';
+  /**
    * The component used to render the listbox.
    */
   ListboxComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
+  /**
+   * Props applied to the Listbox element.
+   */
+  ListboxProps?: object;
   /**
    * If `true`, the component is in a loading state.
    */
@@ -135,12 +142,17 @@ export interface AutocompleteProps
    * @returns {ReactNode}
    */
   renderTags?: (value: any, getTagProps: GetTagProps) => React.ReactNode;
+  /**
+   * The size of the autocomplete.
+   */
+  size?: 'small' | 'medium';
 }
 
 export type AutocompleteClassKey =
   | 'root'
   | 'focused'
   | 'tag'
+  | 'tagSizeSmall'
   | 'inputRoot'
   | 'input'
   | 'inputFocused'

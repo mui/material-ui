@@ -3,7 +3,7 @@ title: Button React component
 components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 ---
 
-# Buttons
+# Button
 
 <p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
 
@@ -25,6 +25,10 @@ The last example of this demo show how to use an upload button.
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
+You can remove the elevation with the `disableElevation` prop.
+
+{{"demo": "pages/components/buttons/DisableElevation.js"}}
+
 ## Text Buttons
 
 [Text buttons](https://material.io/design/components/buttons.html#text-button)
@@ -43,8 +47,6 @@ In cards, text buttons help maintain an emphasis on card content.
 are medium-emphasis buttons. They contain actions that are important,
 but aren’t the primary action in an app.
 
-### Alternatives
-
 Outlined buttons are also a lower emphasis alternative to contained buttons,
 or a higher emphasis alternative to text buttons.
 
@@ -52,11 +54,19 @@ or a higher emphasis alternative to text buttons.
 
 ## Grouped Buttons
 
-The ButtonGroup component can be used to group outlined (the default) or contained buttons.
+The `ButtonGroup` component can be used to group buttons.
 
 {{"demo": "pages/components/buttons/GroupedButtons.js"}}
 
-## Split Button
+### Group sizes and colors
+
+{{"demo": "pages/components/buttons/GroupSizesColors.js"}}
+
+### Group orientation
+
+{{"demo": "pages/components/buttons/GroupOrientation.js"}}
+
+### Split Button
 
 ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
 

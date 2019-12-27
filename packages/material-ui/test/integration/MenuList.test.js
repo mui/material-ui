@@ -7,7 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 
 describe('<MenuList> integration', () => {
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   if (/Chrome\/49\.0/.test(window.navigator.userAgent)) {
     // fails repeatedly on chrome 49 in karma but works when manually testing

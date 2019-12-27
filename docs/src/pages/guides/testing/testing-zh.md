@@ -10,31 +10,31 @@ Material-UI has a wide **a wide range** of tests so we can iterate with confiden
 
 ## 用户空间
 
-What about writing tests in userspace? The Material-UI styling infrastructure uses some helper functions built on top of [enzyme](https://github.com/airbnb/enzyme) to make the process easier, which we are exposing. You can take advantage of them if you so choose. We use almost exclusively full DOM rendering APIs. We encourage you to do the same especially if your components rely on custom themes. Tests using shallow rendering APIs become more brittle with the amount of provider components they require.
+在用户空间编写测试会如何呢？ Material-UI样式基础架构使用构建在 [enzyme](https://github.com/airbnb/enzyme) 之上的一些辅助函数来使过程更容易，我们正在暴露。 若你愿意，你可以对它们加之利用。 我们几乎只使用完整的 DOM 渲染 API。 尤其若您的组件依赖于自定义主题，我们建议您执行相同的操作。 那些使用浅层渲染 API 的测试会变得更脆弱，因为他们需要一定量的 provider 组件。
 
 ### 完整的 DOM 渲染
 
-Full DOM rendering is ideal for use cases where you have components that may interact with DOM APIs or may require the full lifecycle in order to fully test the component (e.g., `componentDidMount` etc.).
+当你有组件可能会与 DOM API 产生交互，或者当为了完整测试组件而要求完整的生命周期时，用例会更趋向使用完整的 DOM 渲染（例如，`componentDidMount` 等等。）。
 
-The `createMount()` function is provided for this situation. Aside from wrapping the enzyme API, it provides a `cleanUp` function.
+为这种情况提供了 `createMount()` 函数。 除了封装 enzyme 的 API，它还提供了一个 `cleanUp` 函数。
 
 ### Shallow rendering（浅层渲染）
 
-Shallow rendering is useful to constrain your testing to a component as a unit. This also ensures that your tests aren't indirectly asserting behavior of child components. Shallow rendering was created to test components in isolation. This means without leaking child implementation details such as the context.
+当把测试的组件当做一个小的单元时，浅层渲染起到了很好的约束作用。 这样也确保了你的测试不会间接地断言子组件的行为。 浅层渲染的目的是单独测试组件。 也就是说子元素的具体实现，如上下文信息，不会被泄漏。
 
-The `createShallow()` function can be used for this situation. Aside from wrapping the enzyme API, it provides a `dive` and `untilSelector` option.
+`createShallow()` 函数可用于此情况。 除了包装酶API，它提供 `dive`untilSelector`直到选择` 选项。
 
 ### 渲染为字符串
 
-Rendering to a string is useful to test the behavior of the components that are used on the server. You can take advantage of this to assert the generated HTML string.
+当在测试服务器组件行为时，渲染为字符串会有帮助。 你可以依此来断言所生成的 HTML 字符串。
 
-The `createRender()` function is ideal for this. This is just an alias for the enzyme API, which is only exposed for consistency.
+`createRender()` 函数非常适合这种情况。 这只是enzyme API的别名，只是为了保持一致性而暴露。
 
 ## API
 
 ### `createMount([options]) => mount`
 
-Generate an enhanced mount function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/mount.html) for further details on the `mount` function.
+在特定的情况下，您能够生成一个加强版的 mount 函数。 有关 `mount` 功能的更多详细信息，请参阅 [enzyme API文档](https://airbnb.io/enzyme/docs/api/mount.html)。
 
 #### 参数
 
@@ -44,7 +44,7 @@ Generate an enhanced mount function with the needed context. Please refer to the
 
 #### 返回结果
 
-`mount` (*mount*): A mount function.
+`mount` (*mount*)：安装功能。
 
 #### 示例
 
@@ -79,7 +79,7 @@ describe('<MyComponent />', () => {
 
 ### `createShallow([options]) => shallow`
 
-Generate an enhanced shallow function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/shallow.html) for further details on the `shallow` function.
+在特定的情况下，您能够生成一个加强版的浅层函数。 有关 `shallow`函数的更多详细信息, 请参考[enzyme API 文档 ](https://airbnb.io/enzyme/docs/api/shallow.html),
 
 #### 参数
 
@@ -91,7 +91,7 @@ Generate an enhanced shallow function with the needed context. Please refer to t
 
 #### 返回结果
 
-`shallow` (*shallow*): A shallow function.
+`shallow` （*shallow*）：浅函数。
 
 #### 示例
 
@@ -113,7 +113,7 @@ describe('<MyComponent />', () => {
 
 ### `createRender([options]) => render`
 
-Generate a render to string function with the needed context. Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api/render.html) for further details on the `render` function.
+在特定的情况下，您能够生成一个加强版的字符串函数。 有关 `render` 功能的更多详细信息，请参阅 [enzyme API文档](https://airbnb.io/enzyme/docs/api/render.html)。
 
 #### 参数
 
@@ -123,7 +123,7 @@ Generate a render to string function with the needed context. Please refer to th
 
 #### 返回结果
 
-`render` (*Function*): A render to string function.
+`render` (*Function*)：渲染到字符串函数。
 
 #### 示例
 

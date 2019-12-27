@@ -1,4 +1,4 @@
-# Theming
+# 主题
 
 <p class="description">定制自己的 Material-UI 主题， You can change the colors, the typography and much more.</p>
 
@@ -12,28 +12,28 @@
 
 如果你想要自定义样式，则需要使用 `MuiThemeProvider` 组件才能将样式注入到你的应用中。 但是，这是可选的，因为 Material-UI 组件带有默认主题。
 
-`MuiThemeProvider` 依赖于React的Context上下文将样式传递给组件， 因此您需要确保 `MuiThemeProvider` 是您想要自定义的组件的父级元素。 You can learn more about this in [the API section](/styles/api/#themeprovider).
+`MuiThemeProvider` 依赖于React的Context上下文将样式传递给组件， 因此您需要确保 `MuiThemeProvider` 是您想要自定义的组件的父级元素。 您可以在 [API 章节](/styles/api/#themeprovider) 中了解有关此内容的更多信息 。
 
 ## 主题配置变量
 
 更改主题配置变量是将Material-UI与您的需求相匹配的最有效方法。 以下列出了一些重要的样式变量：
 
 - [Palette（调色）](/customization/palette/)
-- [Typography（文字铸排）](/customization/typography/)
+- [Typography](/customization/typography/)
 - [Spacing（间距）](/customization/spacing/)
 - [断点](/customization/breakpoints/)
 - [z-index](/customization/z-index/)
 - [全局样式](/customization/globals/)
 
-You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
+您可以查看[默认样式部分](/customization/default-theme/)完整查看默认样式。
 
 ### 自定义变量
 
-When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). It can be convenient to add additional variables to the theme so you can use them everywhere. 就像这样：
+When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider). 可以方便地向样式添加其他变量，以便您可以在任何地方使用它们。 就像这样：
 
 {{"demo": "pages/customization/theming/CustomStyles.js"}}
 
-## Accessing the theme in a component
+## 访问组件中的主题
 
 You [can access](/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
 
@@ -43,22 +43,22 @@ You [can access](/styles/advanced/#accessing-the-theme-in-a-component) the theme
 
 {{"demo": "pages/customization/theming/ThemeNesting.js"}}
 
-The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
+内部主题将 **覆盖** 外部主题。 You can extend the outer theme by providing a function:
 
 {{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
-### A note on performance
+### 关于性能
 
 The performance implications of nesting the `ThemeProvider` component are linked to JSS's work behind the scenes. The main point to understand is that the injected CSS is cached with the following tuple `(styles, theme)`.
 
-- `theme`: If you provide a new theme at each render, a new CSS object will be computed and injected. Both for UI consistency and performance, it's better to render a limited number of theme objects.
-- `styles`: The larger the styles object is, the more work is needed.
+- `theme`: 每次渲染时，如果你提供了一个新的主题，一个新的CSS对象将会被生成并注入。 不管是为了更统一的UI风格还是性能，都应该尽量不要每次生成新的主题 object。
+- `styles`: 样式 object 越大，需要的运算越多。
 
 ## API
 
 ### `createMuiTheme(options, ...args) => theme`
 
-Generate a theme base on the options received.
+根据接收的选项生成样式。
 
 #### 参数
 
@@ -67,7 +67,7 @@ Generate a theme base on the options received.
 
 #### 返回结果
 
-`theme` (*Object*): A complete, ready to use theme object.
+`theme` （*Object*）：一个完整的，随时可用的主题对象。
 
 #### 示例
 

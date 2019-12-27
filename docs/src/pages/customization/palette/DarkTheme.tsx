@@ -1,43 +1,59 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { useTheme, createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import {
+  createStyles,
+  makeStyles,
+  ThemeProvider,
+  useTheme,
+  createMuiTheme,
+  Theme,
+} from '@material-ui/core/styles';
 
-function WithTheme() {
-  const theme = useTheme();
-  const primaryText = theme.palette.text.primary;
-  const primaryColor = theme.palette.primary.main;
-
-  const styles = {
-    primaryText: {
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      padding: theme.spacing(3),
+      textAlign: 'center',
       backgroundColor: theme.palette.background.default,
-      padding: theme.spacing(1, 2),
-      color: primaryText,
+      color: theme.palette.text.primary,
     },
-    primaryColor: {
-      backgroundColor: primaryColor,
-      padding: theme.spacing(1, 2),
-      color: theme.palette.common.white,
-    },
-  };
+  }),
+);
+
+function Demo() {
+  const classes = useStyles();
+  const theme = useTheme();
 
   return (
-    <div style={{ width: 300 }}>
-      <Typography style={styles.primaryColor}>{`Primary color ${primaryColor}`}</Typography>
-      <Typography style={styles.primaryText}>{`Primary text ${primaryText}`}</Typography>
+    <div className={classes.root}>
+      <Typography>{`${theme.palette.type} theme`}</Typography>
     </div>
   );
 }
 
-const theme = createMuiTheme({
+const lightTheme = createMuiTheme({
   palette: {
-    type: 'dark', // Switching the dark mode on is a single property value change.
+    // This is the default, so only included for comparison.
+    type: 'light',
+  },
+});
+
+const darkTheme = createMuiTheme({
+  palette: {
+    // Switching the dark mode on is a single property value change.
+    type: 'dark',
   },
 });
 
 export default function DarkTheme() {
   return (
-    <ThemeProvider theme={theme}>
-      <WithTheme />
-    </ThemeProvider>
+    <div style={{ width: '100%' }}>
+      <ThemeProvider theme={darkTheme}>
+        <Demo />
+      </ThemeProvider>
+      <ThemeProvider theme={lightTheme}>
+        <Demo />
+      </ThemeProvider>
+    </div>
   );
 }

@@ -83,6 +83,7 @@ import { SwitchClassKey } from '../Switch';
 import { TabClassKey } from '../Tab';
 import { TableBodyClassKey } from '../TableBody';
 import { TableCellClassKey } from '../TableCell';
+import { TableContainerClassKey } from '../TableContainer';
 import { TableClassKey } from '../Table';
 import { TableFooterClassKey } from '../TableFooter';
 import { TableHeadClassKey } from '../TableHead';
@@ -185,6 +186,7 @@ export interface ComponentNameToClassKey {
   MuiTable: TableClassKey;
   MuiTableBody: TableBodyClassKey;
   MuiTableCell: TableCellClassKey;
+  MuiTableContainer: TableContainerClassKey;
   MuiTableFooter: TableFooterClassKey;
   MuiTableHead: TableHeadClassKey;
   MuiTablePagination: TablePaginationClassKey;

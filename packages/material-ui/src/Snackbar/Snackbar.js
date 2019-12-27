@@ -131,11 +131,13 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   const [exited, setExited] = React.useState(true);
 
   const handleClose = useEventCallback((...args) => {
-    onClose(...args);
+    if (onClose) {
+      onClose(...args);
+    }
   });
 
   const setAutoHideTimer = useEventCallback(autoHideDurationParam => {
-    if (!handleClose || autoHideDurationParam == null) {
+    if (!onClose || autoHideDurationParam == null) {
       return;
     }
 
@@ -312,7 +314,7 @@ Snackbar.propTypes = {
    * for example ignoring `clickaway`.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} reason Can be:`"timeout"` (`autoHideDuration` expired) or: `"clickaway"`.
+   * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`.
    */
   onClose: PropTypes.func,
   /**

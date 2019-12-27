@@ -6,7 +6,7 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import NotchedOutline from './NotchedOutline';
 
 describe('<NotchedOutline />', () => {
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   let classes;
   const defaultProps = {

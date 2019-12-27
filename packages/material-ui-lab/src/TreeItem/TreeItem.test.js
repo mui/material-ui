@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createEvent, createClientRender, fireEvent } from 'test/utils/createClientRender';
 import TreeItem from './TreeItem';
 import TreeView from '../TreeView';
 
@@ -646,5 +646,30 @@ describe('<TreeItem />', () => {
         expect(getByTestId('six')).to.have.attribute('aria-expanded', 'false');
       });
     });
+  });
+
+  it('should be able to type in an child input', () => {
+    const { getByRole } = render(
+      <TreeView defaultExpanded={['one']}>
+        <TreeItem nodeId="one" label="one" data-testid="one">
+          <TreeItem
+            nodeId="two"
+            label={
+              <div>
+                <input type="text" />
+              </div>
+            }
+            data-testid="two"
+          />
+        </TreeItem>
+      </TreeView>,
+    );
+    const input = getByRole('textbox');
+    const keydownEvent = createEvent.keyDown(input, {
+      key: 'a',
+    });
+    keydownEvent.preventDefault = spy();
+    fireEvent(input, keydownEvent);
+    expect(keydownEvent.preventDefault.callCount).to.equal(0);
   });
 });

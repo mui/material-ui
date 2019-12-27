@@ -198,7 +198,19 @@ export default function AppTableOfContents(props) {
   // Corresponds to 10 frames at 60 Hz
   useThrottledOnScroll(itemsServer.length > 0 ? findActiveIndex : null, 166);
 
-  const handleClick = hash => () => {
+  const handleClick = hash => event => {
+    // Ignore click for new tab/new window behavior
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 || // ignore everything but left-click
+      event.metaKey ||
+      event.ctrlKey ||
+      event.altKey ||
+      event.shiftKey
+    ) {
+      return;
+    }
+
     // Used to disable findActiveIndex if the page scrolls due to a click
     clickedRef.current = true;
     unsetClickedRef.current = setTimeout(() => {

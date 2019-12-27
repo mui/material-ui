@@ -7,7 +7,7 @@ import Skeleton from './Skeleton';
 
 describe('<Skeleton />', () => {
   let mount;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
   let classes;
 
   before(() => {

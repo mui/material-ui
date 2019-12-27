@@ -40,10 +40,12 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
   const handleClickAway = useEventCallback(event => {
-    // Ignore events that have been `event.preventDefault()` marked.
-    if (event.defaultPrevented) {
-      return;
-    }
+    // The handler doesn't take event.defaultPrevented into account:
+    //
+    // event.preventDefault() is meant to stop default behaviours like
+    // clicking a checkbox to check it, hitting a button to submit a form,
+    // and hitting left arrow to move the cursor in a text input etc.
+    // Only special HTML elements have these default behaviors.
 
     // IE 11 support, which trigger the handleClickAway even after the unbind
     if (!mountedRef.current) {
@@ -80,13 +82,14 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
   React.useEffect(() => {
     if (touchEvent !== false) {
       const mappedTouchEvent = mapEventPropToEvent(touchEvent);
+      const doc = ownerDocument(nodeRef.current);
 
-      document.addEventListener(mappedTouchEvent, handleClickAway);
-      document.addEventListener('touchmove', handleTouchMove);
+      doc.addEventListener(mappedTouchEvent, handleClickAway);
+      doc.addEventListener('touchmove', handleTouchMove);
 
       return () => {
-        document.removeEventListener(mappedTouchEvent, handleClickAway);
-        document.removeEventListener('touchmove', handleTouchMove);
+        doc.removeEventListener(mappedTouchEvent, handleClickAway);
+        doc.removeEventListener('touchmove', handleTouchMove);
       };
     }
 
@@ -96,10 +99,12 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
   React.useEffect(() => {
     if (mouseEvent !== false) {
       const mappedMouseEvent = mapEventPropToEvent(mouseEvent);
-      document.addEventListener(mappedMouseEvent, handleClickAway);
+      const doc = ownerDocument(nodeRef.current);
+
+      doc.addEventListener(mappedMouseEvent, handleClickAway);
 
       return () => {
-        document.removeEventListener(mappedMouseEvent, handleClickAway);
+        doc.removeEventListener(mappedMouseEvent, handleClickAway);
       };
     }
 

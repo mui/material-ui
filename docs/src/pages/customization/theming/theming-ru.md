@@ -19,7 +19,7 @@
 Изменение переменных конфигурации темы (theme configuration variables) — наиболее эффективный способ настройки Material-UI под ваши потребности. В следующих разделах рассматриваются наиболее важные переменные темы:
 
 - [Палитра](/customization/palette/)
-- [Оформление текста](/customization/typography/)
+- [Typography](/customization/typography/)
 - [Интервал](/customization/spacing/)
 - [Контрольные точки](/customization/breakpoints/)
 - [z-index](/customization/z-index/)

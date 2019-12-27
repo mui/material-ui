@@ -11,7 +11,7 @@ A [barra de aplicativos superior](https://material.io/design/components/app-bars
 
 It can transform into a contextual action bar or be used as a navbar.
 
-## Barra de Aplicativos Simples
+## App Bar simples
 
 {{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 
@@ -21,11 +21,11 @@ Um campo de busca principal.
 
 {{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
 
-## Barra de Aplicativos com menu
+## App Bar com menu
 
 {{"demo": "pages/components/app-bar/MenuAppBar.js", "bg": true}}
 
-## Barra de Aplicativos com campo de busca
+## App Bar com campo de busca
 
 Uma barra de pesquisa na lateral.
 
@@ -41,7 +41,7 @@ Uma barra de aplicativos proeminente.
 
 {{"demo": "pages/components/app-bar/ProminentAppBar.js", "bg": true}}
 
-## Barra de Aplicativos Inferior
+## Barra de Aplicativos inferior
 
 {{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
 

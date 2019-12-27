@@ -204,7 +204,7 @@ To reduce the number of packages to install when using Material-UI, and to simpl
 
 To remove the need to systematically supply a theme, the default Material-UI theme is applied to the re-exported `makeStyles`, `styled`, `withTheme`, `useTheme`, and `withStyles` modules.
 
-For instance:
+Por ejemplo:
 
 ```js
 // Re-export with a default theme

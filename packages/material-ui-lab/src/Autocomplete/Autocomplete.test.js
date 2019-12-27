@@ -11,7 +11,7 @@ import TextField from '@material-ui/core/TextField';
 describe('<Autocomplete />', () => {
   let mount;
   let classes;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Autocomplete renderInput={() => null} />);
@@ -203,6 +203,27 @@ describe('<Autocomplete />', () => {
       );
 
       expect(handleOpen.callCount).to.equal(1);
+    });
+
+    it('does not open on clear', () => {
+      const handleOpen = spy();
+      const handleChange = spy();
+      const { container } = render(
+        <Autocomplete
+          onOpen={handleOpen}
+          onChange={handleChange}
+          open={false}
+          options={['one', 'two']}
+          value="one"
+          renderInput={params => <TextField {...params} />}
+        />,
+      );
+
+      const clear = container.querySelector('button');
+      fireEvent.click(clear);
+
+      expect(handleOpen.callCount).to.equal(0);
+      expect(handleChange.callCount).to.equal(1);
     });
 
     ['ArrowDown', 'ArrowUp'].forEach(key => {
@@ -564,8 +585,8 @@ describe('<Autocomplete />', () => {
       fireEvent.click(input);
 
       const listbox = getByRole('listbox');
-      const firstItem = listbox.querySelector('li');
-      fireEvent.click(firstItem);
+      const firstOption = listbox.querySelector('li');
+      fireEvent.click(firstOption);
 
       expect(handleChange.args[0][1]).to.equal('one');
     });
@@ -661,7 +682,7 @@ describe('<Autocomplete />', () => {
     });
   });
 
-  describe('controlled input', () => {
+  describe('controlled', () => {
     it('controls the input value', () => {
       const handleChange = spy();
       function MyComponent() {
@@ -686,6 +707,22 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][0]).to.equal('a');
       expect(document.activeElement.value).to.equal('');
+    });
+
+    it('should fire the input change event before the change event', () => {
+      const handleChange = spy();
+      const handleInputChange = spy();
+      render(
+        <Autocomplete
+          onChange={handleChange}
+          onInputChange={handleInputChange}
+          options={['foo']}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(handleInputChange.calledBefore(handleChange)).to.equal(true);
     });
   });
 
@@ -718,6 +755,168 @@ describe('<Autocomplete />', () => {
       fireEvent.change(document.activeElement, { target: { value: 'one' } });
       options = queryAllByRole('option');
       expect(options.length).to.equal(1);
+    });
+  });
+
+  describe('prop: freeSolo', () => {
+    it('pressing twice enter should not call onChange listener twice', () => {
+      const handleChange = spy();
+      const options = [{ name: 'foo' }];
+      render(
+        <Autocomplete
+          freeSolo
+          onChange={handleChange}
+          options={options}
+          getOptionLabel={option => option.name}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(options[0]);
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(handleChange.callCount).to.equal(1);
+    });
+  });
+
+  describe('prop: onInputChange', () => {
+    it('provides a reason on input change', () => {
+      const handleInputChange = spy();
+      const options = [{ name: 'foo' }];
+      render(
+        <Autocomplete
+          onInputChange={handleInputChange}
+          options={options}
+          getOptionLabel={option => option.name}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      fireEvent.change(document.activeElement, { target: { value: 'a' } });
+      expect(handleInputChange.callCount).to.equal(1);
+      expect(handleInputChange.args[0][1]).to.equal('a');
+      expect(handleInputChange.args[0][2]).to.equal('input');
+    });
+
+    it('provides a reason on select reset', () => {
+      const handleInputChange = spy();
+      const options = [{ name: 'foo' }];
+      render(
+        <Autocomplete
+          onInputChange={handleInputChange}
+          options={options}
+          getOptionLabel={option => option.name}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(handleInputChange.callCount).to.equal(1);
+      expect(handleInputChange.args[0][1]).to.equal(options[0].name);
+      expect(handleInputChange.args[0][2]).to.equal('reset');
+    });
+  });
+
+  describe('prop: blurOnSelect', () => {
+    it('[blurOnSelect=true] should blur the input when clicking or touching options', () => {
+      const options = [{ name: 'foo' }];
+      const { getByRole, queryByTitle } = render(
+        <Autocomplete
+          options={options}
+          getOptionLabel={option => option.name}
+          renderInput={params => <TextField {...params} autoFocus />}
+          blurOnSelect
+        />,
+      );
+      const textbox = getByRole('textbox');
+      let firstOption = getByRole('option');
+      expect(textbox).to.have.focus;
+      fireEvent.click(firstOption);
+      expect(textbox).to.not.have.focus;
+
+      const opener = queryByTitle('Open');
+      fireEvent.click(opener);
+      expect(textbox).to.have.focus;
+      firstOption = getByRole('option');
+      fireEvent.touchStart(firstOption);
+      fireEvent.click(firstOption);
+      expect(textbox).to.not.have.focus;
+    });
+
+    it('[blurOnSelect="touch"] should only blur the input when an option is touched', () => {
+      const options = [{ name: 'foo' }];
+      const { getByRole, queryByTitle } = render(
+        <Autocomplete
+          options={options}
+          getOptionLabel={option => option.name}
+          renderInput={params => <TextField {...params} autoFocus />}
+          blurOnSelect="touch"
+        />,
+      );
+      const textbox = getByRole('textbox');
+      let firstOption = getByRole('option');
+      fireEvent.click(firstOption);
+      expect(textbox).to.have.focus;
+
+      const opener = queryByTitle('Open');
+      fireEvent.click(opener);
+      firstOption = getByRole('option');
+      fireEvent.touchStart(firstOption);
+      fireEvent.click(firstOption);
+      expect(textbox).to.not.have.focus;
+    });
+
+    it('[blurOnSelect="mouse"] should only blur the input when an option is clicked', () => {
+      const options = [{ name: 'foo' }];
+      const { getByRole, queryByTitle } = render(
+        <Autocomplete
+          options={options}
+          getOptionLabel={option => option.name}
+          renderInput={params => <TextField {...params} autoFocus />}
+          blurOnSelect="mouse"
+        />,
+      );
+      const textbox = getByRole('textbox');
+      let firstOption = getByRole('option');
+      fireEvent.touchStart(firstOption);
+      fireEvent.click(firstOption);
+      expect(textbox).to.have.focus;
+
+      const opener = queryByTitle('Open');
+      fireEvent.click(opener);
+      firstOption = getByRole('option');
+      fireEvent.click(firstOption);
+      expect(textbox).to.not.have.focus;
+    });
+  });
+
+  describe('prop: getOptionLabel', () => {
+    it('is considered for falsy values when filtering the the list of options', () => {
+      const { getAllByRole } = render(
+        <Autocomplete
+          options={[0, 10, 20]}
+          getOptionLabel={option => (option === 0 ? 'Any' : option.toString())}
+          renderInput={params => <TextField {...params} autoFocus />}
+          value={0}
+        />,
+      );
+
+      const options = getAllByRole('option');
+      expect(options).to.have.length(3);
+    });
+
+    it('is not considered for nullish values when filtering the list of options', () => {
+      const { getAllByRole } = render(
+        <Autocomplete
+          options={[null, 10, 20]}
+          getOptionLabel={option => (option === null ? 'Any' : option.toString())}
+          renderInput={params => <TextField {...params} autoFocus />}
+          value={null}
+        />,
+      );
+
+      const options = getAllByRole('option');
+      expect(options).to.have.length(3);
     });
   });
 });

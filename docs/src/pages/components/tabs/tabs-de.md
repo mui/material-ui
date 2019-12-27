@@ -69,7 +69,7 @@ Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf de
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js", "bg": true}}
 
-👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/tabs).
+👑 Wenn Sie nach Inspiration suchen, sehen sie sich [MUI Treasury's Anpassungs-Beispiele](https://mui-treasury.com/components/tabs) an.
 
 ## Vertikale Tabs
 

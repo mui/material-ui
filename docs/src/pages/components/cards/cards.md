@@ -3,7 +3,7 @@ title: Card React component
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
-# Cards
+# Card
 
 <p class="description">Cards contain content and actions about a single subject.</p>
 
@@ -16,6 +16,12 @@ They should be easy to scan for relevant and actionable information. Elements, l
 Although cards can support multiple actions, UI controls, and an overflow menu, use restraint and remember that cards are entry points to more complex and detailed information.
 
 {{"demo": "pages/components/cards/SimpleCard.js", "bg": true}}
+
+### Outlined Card
+
+Set `variant="outlined` to render an outlined card.
+
+{{"demo": "pages/components/cards/OutlinedCard.js", "bg": true}}
 
 ## Complex Interaction
 

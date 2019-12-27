@@ -24,7 +24,7 @@ The following components have props applying higher density:
 - [InputLabel](/api/input-label/)
 - [ListItem](/api/list-item/)
 - [OutlinedInput](/api/outlined-input/)
-- [Table](/api/table/)
+- [Table (tаблица)](/api/table/)
 - [Текстовое поля](/api/text-field/)
 - [Toolbar](/api/toolbar/)
 

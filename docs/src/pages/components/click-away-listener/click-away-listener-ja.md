@@ -7,7 +7,7 @@ components: ClickAwayListener
 
 <p class="description">クリックイベントが要素の外部で発生したかどうかを検出します。 ドキュメント内のどこかで発生したクリックを受信します。</p>
 
-- 📦 [1.5 kB gzipped](/size-snapshot).
+- [1.5 kB gzipped](/size-snapshot).
 
 ## 例
 

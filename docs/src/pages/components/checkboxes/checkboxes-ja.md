@@ -3,7 +3,7 @@ title: CheckBox コンポーネント
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Checkbox
+# Checkbox (チェックボックス)
 
 <p class="description">Checkboxコンポーネントにより、ユーザーの選択が一つ以上の項目から設定します。</p>
 

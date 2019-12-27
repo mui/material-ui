@@ -10,7 +10,7 @@ import BottomNavigationAction from './BottomNavigationAction';
 describe('<BottomNavigationAction />', () => {
   let mount;
   let classes;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     mount = createMount({ strict: true });

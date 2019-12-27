@@ -18,7 +18,7 @@ Create React App est un projet génial pour apprendre React. Regardez [les alter
 
 Le code source de ce site de documentation est également disponible sur GitHub. C'est un projet légèrement plus complexe. Découvrez le [`/docs`](https://github.com/mui-org/material-ui/tree/master/docs) dossier pour instructions de construction.
 
-## More advanced example projects
+## Exemples de projets plus avancés
 
 If you want to start with a more complete and real-world example, you could take a look at the [premium themes & templates](https://themes.material-ui.com/) or:
 

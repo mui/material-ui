@@ -5,7 +5,7 @@ import withStyles from '../styles/withStyles';
 import capitalize from '../utils/capitalize';
 
 const RADIUS_STANDARD = 10;
-const RADIUS_DOT = 3;
+const RADIUS_DOT = 4;
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -34,8 +34,6 @@ export const styles = theme => ({
     padding: '0 6px',
     height: RADIUS_STANDARD * 2,
     borderRadius: RADIUS_STANDARD,
-    backgroundColor: theme.palette.color,
-    color: theme.palette.textColor,
     zIndex: 1, // Render the badge on top of potential ripples.
     transition: theme.transitions.create('transform', {
       easing: theme.transitions.easing.easeInOut,
@@ -59,6 +57,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the root element if `variant="dot"`. */
   dot: {
+    borderRadius: RADIUS_DOT,
     height: RADIUS_DOT * 2,
     minWidth: RADIUS_DOT * 2,
     padding: 0,

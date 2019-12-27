@@ -113,7 +113,7 @@ import { Link } from 'react-router-dom';
 
 ### With TypeScript
 
-You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-component-prop).
+Вы можете найти подробности в [ руководстве по TypeScript ](/guides/typescript/#usage-of-component-prop).
 
 ## Routing libraries
 

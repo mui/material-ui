@@ -23,7 +23,7 @@ function TabPanel(props: TabPanelProps) {
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
-      <Box p={3}>{children}</Box>
+      {value === index && <Box p={3}>{children}</Box>}
     </Typography>
   );
 }

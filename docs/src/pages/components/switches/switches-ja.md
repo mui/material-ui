@@ -3,7 +3,7 @@ title: Reactコンポーネントの切り替え
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# スイッチ
+# Switch
 
 <p class="description">スイッチは、単一の設定の状態をオンまたはオフに切り替えます。</p>
 

@@ -25,4 +25,4 @@ Be aware that some CSS features [require](https://github.com/cssinjs/jss/issues/
 
 ## React
 
-Material-UI支持最新版本的React，从16.8.0开始(带有hook的版本)。 Have a look at the older [versions](https://material-ui.com/versions/) for backward compatibility.
+Material-UI支持最新版本的React，从16.8.0开始(带有hook的版本)。 我们同时提供了向后兼容的[版本](https://material-ui.com/versions/)。

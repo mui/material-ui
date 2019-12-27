@@ -15,7 +15,7 @@ Um exemplo simples sem frescuras.
 
 {{"demo": "pages/components/tabs/SimpleTabs.js", "bg": true}}
 
-### Etiquetas embrulhadas
+### Rótulos com quebras
 
 Os rótulos longos serão quebrados automaticamente nas guias. Se o rótulo for muito longo para a guia, ele irá exceder e o texto não ficará visível.
 

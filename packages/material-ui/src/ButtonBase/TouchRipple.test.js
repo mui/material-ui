@@ -11,7 +11,7 @@ const cb = () => {};
 describe('<TouchRipple />', () => {
   let classes;
   let mount;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   /**
    * @param {object} other props to spread to TouchRipple

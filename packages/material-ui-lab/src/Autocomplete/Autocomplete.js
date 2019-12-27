@@ -25,16 +25,43 @@ export const styles = theme => ({
   /* Styles applied to the tag elements, e.g. the chips. */
   tag: {
     margin: 3,
+    maxWidth: 'calc(100% - 6px)',
+  },
+  /* Styles applied to the tag elements, e.g. the chips if `size="small"`. */
+  tagSizeSmall: {
+    margin: 2,
+    maxWidth: 'calc(100% - 4px)',
   },
   /* Styles applied to the Input element. */
   inputRoot: {
     flexWrap: 'wrap',
     paddingRight: 62,
+    '& $input': {
+      width: 0,
+      minWidth: 30,
+    },
+    '&[class*="MuiInput-root"]': {
+      paddingBottom: 1,
+      '& $input': {
+        padding: 4,
+      },
+      '& $input:first-child': {
+        padding: '6px 0',
+      },
+    },
+    '&[class*="MuiInput-root"][class*="MuiInput-marginDense"]': {
+      '& $input': {
+        padding: '4px 4px 5px',
+      },
+      '& $input:first-child': {
+        padding: '3px 0 6px',
+      },
+    },
     '&[class*="MuiOutlinedInput-root"]': {
-      padding: 8,
+      padding: 9,
       paddingRight: 62,
       '& $input': {
-        padding: '10.5px 4px',
+        padding: '9.5px 4px',
       },
       '& $input:first-child': {
         paddingLeft: 6,
@@ -43,23 +70,28 @@ export const styles = theme => ({
         right: 7,
       },
     },
+    '&[class*="MuiOutlinedInput-root"][class*="MuiOutlinedInput-marginDense"]': {
+      padding: 6,
+      paddingRight: 62,
+      '& $input': {
+        padding: '4.5px 4px',
+      },
+    },
     '&[class*="MuiFilledInput-root"]': {
       paddingTop: 19,
       paddingLeft: 8,
       '& $input': {
-        paddingLeft: 4,
-        paddingTop: 10,
+        padding: '9px 4px',
       },
       '& $endAdornment': {
         right: 7,
       },
     },
-    '& $input:not(:first-child)': {
-      paddingLeft: 4,
-    },
-    '& $input': {
-      width: 0,
-      minWidth: 30,
+    '&[class*="MuiFilledInput-root"][class*="MuiFilledInput-marginDense"]': {
+      paddingBottom: 1,
+      '& $input': {
+        padding: '4.5px 4px',
+      },
     },
   },
   /* Styles applied to the input element. */
@@ -109,6 +141,7 @@ export const styles = theme => ({
   /* Styles applied to the `Paper` component. */
   paper: {
     ...theme.typography.body1,
+    overflow: 'hidden',
     margin: '4px 0',
     '& > ul': {
       maxHeight: '40vh',
@@ -175,7 +208,7 @@ export const styles = theme => ({
 
 function DisablePortal(props) {
   // eslint-disable-next-line react/prop-types
-  const { popperRef, anchorEl, open, ...other } = props;
+  const { anchorEl, open, ...other } = props;
   return <div {...other} />;
 }
 
@@ -185,6 +218,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     autoComplete = false,
     autoHighlight = false,
     autoSelect = false,
+    blurOnSelect = false,
+    ChipProps,
     classes,
     className,
     clearOnEscape = false,
@@ -201,14 +236,17 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     disablePortal = false,
     filterOptions,
     filterSelectedOptions = false,
+    forcePopupIcon = 'auto',
     freeSolo = false,
     getOptionDisabled,
     getOptionLabel = x => x,
+    getOptionSelected,
     groupBy,
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
     ListboxComponent = 'ul',
+    ListboxProps,
     loading = false,
     loadingText = 'Loading…',
     multiple = false,
@@ -227,17 +265,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     renderInput,
     renderOption: renderOptionProp,
     renderTags,
+    size = 'medium',
     value: valueProp,
     ...other
   } = props;
   /* eslint-enable no-unused-vars */
 
-  const popperRef = React.useRef(null);
-  React.useEffect(() => {
-    if (popperRef.current) {
-      popperRef.current.update();
-    }
-  });
   const PopperComponent = disablePortal ? DisablePortal : PopperComponentProp;
 
   const {
@@ -265,7 +298,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
 
   if (multiple && value.length > 0) {
     const getCustomizedTagProps = params => ({
-      className: classes.tag,
+      className: clsx(classes.tag, {
+        [classes.tagSizeSmall]: size === 'small',
+      }),
       ...getTagProps(params),
     });
 
@@ -273,7 +308,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
       startAdornment = renderTags(value, getCustomizedTagProps);
     } else {
       startAdornment = value.map((option, index) => (
-        <Chip label={getOptionLabel(option)} {...getCustomizedTagProps({ index })} />
+        <Chip
+          label={getOptionLabel(option)}
+          size={size}
+          {...getCustomizedTagProps({ index })}
+          {...ChipProps}
+        />
       ));
     }
   }
@@ -320,6 +360,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
         {renderInput({
           id,
           disabled,
+          size: size === 'small' ? 'small' : undefined,
           InputLabelProps: getInputLabelProps(),
           InputProps: {
             ref: setAnchorEl,
@@ -340,7 +381,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   </IconButton>
                 )}
 
-                {freeSolo ? null : (
+                {(!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false ? (
                   <IconButton
                     {...getPopupIndicatorProps()}
                     disabled={disabled}
@@ -352,7 +393,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   >
                     {popupIcon}
                   </IconButton>
-                )}
+                ) : null}
               </div>
             ),
           },
@@ -374,7 +415,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
             width: anchorEl ? anchorEl.clientWidth : null,
           }}
           role="presentation"
-          popperRef={popperRef}
           anchorEl={anchorEl}
           open
         >
@@ -386,7 +426,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
               <div className={classes.noOptions}>{noOptionsText}</div>
             ) : null}
             {groupedOptions.length > 0 ? (
-              <ListboxComponent className={classes.listbox} {...getListboxProps()}>
+              <ListboxComponent
+                className={classes.listbox}
+                {...getListboxProps()}
+                {...ListboxProps}
+              >
                 {groupedOptions.map((option, index) => {
                   if (groupBy) {
                     return renderGroup({
@@ -428,6 +472,19 @@ Autocomplete.propTypes = {
    * a different option or changes the character string in the input.
    */
   autoSelect: PropTypes.bool,
+  /**
+   * Control if the input should be blurred when an option is selected:
+   *
+   * - `false` the input is not blurred.
+   * - `true` the input is always blurred.
+   * - `touch` the input is blurred after a touch event.
+   * - `mouse` the input is blurred after a mouse event.
+   */
+  blurOnSelect: PropTypes.oneOfType([PropTypes.oneOf(['mouse', 'touch']), PropTypes.bool]),
+  /**
+   * Props applied to the [`Chip`](/api/chip/) element.
+   */
+  ChipProps: PropTypes.object,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
@@ -505,6 +562,10 @@ Autocomplete.propTypes = {
    */
   filterSelectedOptions: PropTypes.bool,
   /**
+   * Force the visibility display of the popup icon.
+   */
+  forcePopupIcon: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.bool]),
+  /**
    * If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
    */
   freeSolo: PropTypes.bool,
@@ -517,6 +578,11 @@ Autocomplete.propTypes = {
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
    */
   getOptionLabel: PropTypes.func,
+  /**
+   * Used to determine if an option is selected.
+   * Uses strict equality by default.
+   */
+  getOptionSelected: PropTypes.func,
   /**
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
@@ -542,6 +608,10 @@ Autocomplete.propTypes = {
    * The component used to render the listbox.
    */
   ListboxComponent: PropTypes.elementType,
+  /**
+   * Props applied to the Listbox element.
+   */
+  ListboxProps: PropTypes.object,
   /**
    * If `true`, the component is in a loading state.
    */
@@ -580,7 +650,8 @@ Autocomplete.propTypes = {
    * Callback fired when the input value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} value
+   * @param {string} value The new value of the text input
+   * @param {string} reason Can be: "input" (user input), "reset" (programmatic change), `"clear"`.
    */
   onInputChange: PropTypes.func,
   /**
@@ -646,6 +717,10 @@ Autocomplete.propTypes = {
    * @returns {ReactNode}
    */
   renderTags: PropTypes.func,
+  /**
+   * The size of the autocomplete.
+   */
+  size: PropTypes.oneOf(['medium', 'small']),
   /**
    * The value of the autocomplete.
    *

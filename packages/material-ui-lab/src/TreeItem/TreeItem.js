@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, useTheme } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
 
@@ -113,6 +113,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const nodeRef = React.useRef(null);
   const contentRef = React.useRef(null);
   const handleRef = useForkRef(nodeRef, ref);
+  const theme = useTheme();
 
   let icon = iconProp;
 
@@ -193,6 +194,31 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     return false;
   };
 
+  const handleNextArrow = event  => {
+    if (expandable) {
+      if (expanded) {
+        focusNextNode(nodeId);
+      } else {
+        toggleExpansion(event);
+      }
+    }
+    return true;
+  };
+
+  const handlePreviousArrow = event  => {
+    if (expanded) {
+      toggleExpansion(event, nodeId);
+      return true;
+    }
+
+      const parent = getParent(nodeId);
+      if (parent) {
+        focus(parent);
+        return true;
+      }
+    return false;
+  };
+
   const handleKeyDown = event => {
     let flag = false;
     const key = event.key;
@@ -239,27 +265,18 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         flag = true;
         break;
       case 'ArrowRight':
-        if (expandable) {
-          if (expanded) {
-            focusNextNode(nodeId);
-          } else {
-            toggleExpansion(event);
-          }
+        if(theme.direction === 'rtl') {
+          flag = handlePreviousArrow(event)
+        } else {
+          flag = handleNextArrow(event);
         }
-        flag = true;
         break;
       case 'ArrowLeft':
-        if (expanded) {
-          toggleExpansion(event, nodeId);
-          flag = true;
+        if(theme.direction === 'rtl'){
+          flag = handleNextArrow(event);
         } else {
-          const parent = getParent(nodeId);
-          if (parent) {
-            focus(parent);
-            flag = true;
-          }
+          flag = handlePreviousArrow(event);
         }
-
         break;
       case 'Home':
         if (multiSelect && ctrlPressed && event.shiftKey) {

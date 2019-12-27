@@ -199,8 +199,8 @@ export const styles = theme => {
     },
     /* Styles applied to the label `span` element`. */
     label: {
-      display: 'flex',
-      alignItems: 'center',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
       paddingLeft: 12,
       paddingRight: 12,
       whiteSpace: 'nowrap',

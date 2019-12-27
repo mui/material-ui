@@ -8,7 +8,7 @@ import { stub } from 'sinon';
  * @param {boolean} [options.expectUseLayoutEffectWarning]
  */
 export default function createServerRender(options = {}) {
-  const { expectUseLayoutEffectWarning } = options;
+  const { expectUseLayoutEffectWarning = false } = options;
 
   beforeEach(() => {
     stub(console, 'error').callsFake((message, ...args) => {

@@ -3,7 +3,7 @@ title: Select React component
 components: Select, NativeSelect
 ---
 
-# Selecciones
+# Select
 
 <p class="description">Los componentes seleccionados se utilizan para recopilar información relegado por el usuario de una lista de opciones.</p>
 
@@ -23,7 +23,7 @@ Dado que la experiencia del usuario puede mejorarse en móvil usando la selecci�
 
 El componente `TextField` es un control de formulario completo, incluyendo una etiqueta, el campo de texto y texto de ayuda. You can find an example with the select mode [in this section](/components/text-fields/#select).
 
-## Customized selects
+## Selecciones personalizadas
 
 Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 

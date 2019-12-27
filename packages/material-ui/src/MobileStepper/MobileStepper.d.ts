@@ -3,7 +3,8 @@ import { StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { LinearProgressProps } from '../LinearProgress';
 
-export interface MobileStepperProps extends StandardProps<PaperProps, MobileStepperClassKey> {
+export interface MobileStepperProps
+  extends StandardProps<PaperProps, MobileStepperClassKey, 'variant'> {
   activeStep?: number;
   backButton: React.ReactElement;
   LinearProgressProps?: Partial<LinearProgressProps>;

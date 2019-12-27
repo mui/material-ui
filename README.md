@@ -6,7 +6,7 @@
 
 <div align="center">
 
-[React](https://reactjs.org/) components that implement [Google's Material Design](https://material.io/design/introduction/).
+[React](https://reactjs.org/) components for faster and easier web development. Build your own design system, or start with [Material Design](https://material.io/design/introduction/).
 
 [![npm package](https://img.shields.io/npm/v/@material-ui/core/latest.svg)](https://www.npmjs.com/package/@material-ui/core)
 [![npm downloads](https://img.shields.io/npm/dm/@material-ui/core.svg)](https://www.npmjs.com/package/@material-ui/core)
@@ -65,8 +65,7 @@ via [Patreon](https://www.patreon.com/oliviertassinari)
 via [OpenCollective](https://opencollective.com/material-ui)
 
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Ff4053300-e0ea-11e7-acf0-0fa7c0509f4e.png&height=100" alt="callemall" title="The easy way to message your group" width="100" loading="lazy"></a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.crosswordsolver.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/crosswordsolver/avatar.png" alt="crosswordsolver" title="Crossword Puzzle Solver" width="100" loading="lazy"></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Ff4053300-e0ea-11e7-acf0-0fa7c0509f4e.png&height=100" alt="call-em-all" title="The easy way to message your group" width="100" loading="lazy"></a>
 </p>
 
 Gold Sponsors are those who have pledged $500/month and more to Material-UI.

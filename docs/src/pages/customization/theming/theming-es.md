@@ -19,7 +19,7 @@ Si desea personalizar el tema, deberá de usar el componente ` ThemeProvider ` p
 Cambiar las variables de configuración del tema es la forma más efectiva de adaptar Material-UI a sus necesidades. Las siguientes secciones cubren las variables de tema más importantes:
 
 - [Paleta](/customization/palette/)
-- [Tipografía](/customization/typography/)
+- [Typography](/customization/typography/)
 - [Espaciado](/customization/spacing/)
 - [Puntos de interrupción](/customization/breakpoints/)
 - [z-index](/customization/z-index/)

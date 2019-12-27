@@ -82,6 +82,7 @@ const blacklistFilename = [
   'docs-components-tree-view/CustomizedTreeView.png',
 
   // Redux isolation
+  'docs-components-badges/BadgeAlignment.png',
   'docs-components-chips/ChipsPlayground.png',
   'docs-components-popover/AnchorPlayground.png',
   'docs-components-popper/ScrollPlayground.png',

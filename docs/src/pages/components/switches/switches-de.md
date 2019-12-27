@@ -3,7 +3,7 @@ title: Switch React Komponente
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Schalter (Switch)
+# Switch
 
 <p class="description">Schalter ändern den Status einer einzelnen Einstellung ein oder aus.</p>
 
@@ -43,7 +43,7 @@ Sie können die Platzierung des Etiketts ändern:
 
 ## When to use
 
-- [Kontrollkästchen vs. Schalter (Switch)](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
+- [Kontrollkästchen vs. Schalter](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
 ## Barrierefreiheit
 

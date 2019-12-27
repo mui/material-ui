@@ -1,5 +1,148 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.8.1
+###### *Dec 24, 2019*
+
+Big thanks to the 24 contributors who made this release possible.
+
+### `@material-ui/core@v4.8.1`
+
+- [Drawer] Fix PaperProps className merge (#18866) @kristenmills
+- [InputBase] Add rowsMin to typings (#18922) @lcswillems
+- [Paper] Add a variant prop  (#18824) @netochaves
+- [Popover] Fix bug open animation (#18896) @KevinAsher
+- [Select] Fix bug on focus in controlled open (#18857) @netochaves
+- [TextField] onBlur event argument can be undefined (#18867) @abnersajr
+- [Typography] Improve custom component types support (#18868) @fyodore82
+- [theme] Add warning, success and info colors to the palette (#18820) @r3dm1ke
+- [l10n] Add Korean (ko-KR) locale (#18952) @inspiredjw
+- [l10n] Add Azerbaijan (az-AZ) locale (#18859) @rommelmamedov
+- [l10n] Add Czech (cs-CZ) and Slovak (sk-SK) locales (#18876) @char0n
+- [l10n] Add Ukrainian (uk-UA) locale (#18832) @EvgenBabenko
+
+### `@material-ui/lab@v4.0.0-alpha.37`
+
+- [Skeleton] Delay the animation by 500ms (#18913) @bowann
+- [TreeView] Improve RTL support (#18855) @eladex
+- [TreeView] Support input in item child (#18894) @eggbread
+- [Autocomplete] Add ListboxProps prop (#18887) @ChrisWiles
+- [Autocomplete] Add blurOnSelect prop (#18827) @m4theushw
+- [Autocomplete] Add forcePopupIcon prop (#18886) @SandraMarcelaHerreraArriaga
+- [Autocomplete] Call onInputChange before onChange (#18897) @MarinePicaut
+- [Autocomplete] Fix padding to make visual height consistent (#18851) @takutolehr
+- [Autocomplete] Pass ListboxProps (#18916) @ChrisWiles
+- [Autocomplete] Prevent focusing control / opening dropdown on clear (#18889) @Monbrey
+- [Autocomplete] Support `ChipProps` prop (#18917) @ChrisWiles
+
+### Docs
+
+- [docs] Fix grammar issues in Babel plugin unwrap-createstyles (#18856) @RDIL
+- [docs] Update the translations (#18865) @mbrookes
+
+### Core
+
+- [core] Batch small changes (#18961) @oliviertassinari
+
+## 4.8.0
+###### *Dec 14, 2019*
+
+Big thanks to the 29 contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- 💄 Add orientation support to the button group (#18762) @SandraMarcelaHerreraArriaga.
+- 💄 Add stacking support to the avatar (#18707) @oliviertassinari.
+- 💄 Add disable elevation support to the button (#18744) @netochaves.
+- 💄 Add size small support to the radio and checkbox (#18688) @SandraMarcelaHerreraArriaga.
+- 🌎 Add 3 new locales (id-Id, ro-RO, nl-NL) @fuadinaqi, @raduchiriac, @JimKoene.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v4.8.0`
+
+- [Avatar] Add missing 'fallback' AvatarClassKey (#18717) @kLabz
+- [ButtonGroup] Add orientation prop (#18762) @SandraMarcelaHerreraArriaga
+- [Button] disableElevation prop (#18744) @netochaves
+- [ClickAwayListener] Fix preventDefault logic (#18768) @jayknott
+- [Container] Add disableGutters prop (#15872) @divyanshutomar
+- [Drawer] Fix PaperProps className merge conflict (#18740) @siriwatknp
+- [Modal] Fix scroll jump issue (#18808) @cvara
+- [Popper] Fix position when changing state or updated (#18813) @Amagon96
+- [Radio][Checkbox] Add size="small" support (#18688) @SandraMarcelaHerreraArriaga
+- [Select] Fix incorrect auto-sizing of native select (#18787) @IvanFrescas
+- [Select] Fix listbox closing on Space keyUp (#18754) @eps1lon
+- [Table] Add TableContainer component (#18699) @r3dm1ke
+- [TextField] Fix missing size prop in TypeScript types @sarpt
+- [TextareaAutosize] Add rowsMin prop (#18804) @lcswillems
+- [ToggleButton] Add size prop type definition (#18778) @sarfata
+- [Tooltip] Add `popperArrow` to `TooltipClassKey` (#18772) @umidbekkarimov
+- [Typography] Fix lineHeight for h1-h5 (#18663) @LorenzHenk
+- [l10n] Add Indonesian (id-Id) locale (#18817) @fuadinaqi
+- [l10n] Add Romanian (roRO) locale (#18825) @raduchiriac
+- [l10n] Add dutch translations (#18758) @JimKoene
+- [useMediaQuery] Support custom window (#18741) @siriwatknp
+
+### `@material-ui/lab@v4.0.0-alpha.36`
+
+- [AvatarGroup] Introduce new component (#18707) @oliviertassinari
+- [Autocomplete] Fix double change event issue (#18786) @tplai
+- [Autocomplete] Add reason to onInputChange callback (#18796) @Tybot204
+- [Autocomplete] Expand virtualized example to have grouped items (#18763) @Janpot
+
+### Docs
+
+- [blog] November 2019 Update (#18805) @oliviertassinari
+- [docs] Change `readOnly` to `disabled` in text-fields.md example (#18792) @sterjoski
+- [docs] Fix chip outlined variant (#18806) @scotttrinh
+- [docs] Improve Avatar fallback description (#18720) @mbrookes
+- [docs] Improve homepage accessibility (#18745) @mbrookes
+- [docs] Improve table of contents cmd+click (#18765) @Janpot
+- [docs] Remove unused dependencies (#18753) @eps1lon
+- [docs] Revert hiding duplicate link (#18767) @mbrookes
+- [docs] Simplify MiniDrawer demo (#18814) @shc023
+
+### Core
+
+- [core] Fix @material-ui/lab homepage url (#18823) @francisrod01
+- [core] Batch small changes (#18780) @oliviertassinari
+
+## 4.7.2
+###### *Dec 7, 2019*
+
+Big thanks to the 18 contributors who made this release possible.
+
+### `@material-ui/core@v4.7.2`
+
+- [Tooltip] Add missing classes type definitions (#18645) @dufia
+- [Tooltip] Fix arrow placement in RTL languages (#18706) @mosijava
+- [Tooltip] Fix onMouseOver event leak (#18687) @r3dm1ke
+- [ClickAwayListener] Support other documents (#18701) @Izhaki
+- [Avatar] Fallback images when fails to load (#18711) @netochaves
+- [Chip] Support text-overflow ellipsis by default (#18708) @suliskh
+- [Container] Add missing default theme props Type (#18654) @max10rogerio
+- [Modal] Document the 'Focus trap' limitation (#18643) @PutziSan
+- [Portal] Support any children node (#18692) @luffywuliao
+- [TablePagination] Fix responsive display issue (#18668) @r3dm1ke
+- [TextField] InputAdornment shouldn't wrap (#18641) @TrejGun
+- [l10n] Add Polish translation (#18685) @eXtreme
+- [theme] Fix wrong ResponsiveFontSizesOptions type (#18661) @pstadler
+- [useMediaQuery] Fix hydrationCompleted true before hydrated (#18683) @toddmazierski
+
+### `@material-ui/lab@v4.0.0-alpha.35`
+
+- [Autocomplete] Add getOptionSelected prop (#18695) @DarkKnight1992
+- [Autocomplete] Add size prop (#18624) @oliviertassinari
+- [Autocomplete] Prevent tag overflow (#18662) @fbarbare
+
+### Docs
+
+- [docs] Break up blog template into smaller sections (#18627) @mbrookes
+- [docs] Update the translations (#18644) @mbrookes
+- [docs] `ssrMatchMedia` required for client rending as well (#18680) @moshest
+
+### Core
+
+- [core] Batch changes (#18629) @oliviertassinari
+
 ## 4.7.1
 ###### *Dec 1, 2019*
 
@@ -58,6 +201,15 @@ Here are some highlights ✨:
 - [core] Export everything from the second level (#18306) @merceyz
 - [core] Fix dependabot not ignoring babel-plugin-preval (#18553) @eps1lon
 - [core] Ignore url-loader >= 3 updates (#18639) @eps1lon
+
+## 3.9.4
+###### *Nov 28, 2019*
+
+### `@material-ui/core@v3.9.4`
+
+- [Portal] Fix circular PortalProps Types (#18602)
+
+  Fix TypeScript 3.7 support
 
 ## 4.7.0
 ###### *Nov 22, 2019*

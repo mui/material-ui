@@ -52,7 +52,7 @@ For advanced customization use cases, we expose a `useAutocomplete()` hook. It a
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
 ```
 
-- 📦 [4.5 kB gzipped](/size-snapshot).
+- [4.5 kB gzipped](/size-snapshot).
 
 {{"demo": "pages/components/autocomplete/UseAutocomplete.js", "defaultCodeOpen": false}}
 
@@ -88,9 +88,15 @@ In the event that you need to lock certain tag so that they can't be removed in 
 
 {{"demo": "pages/components/autocomplete/FixedTags.js"}}
 
-### Checkbox
+### チェックボックス
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
+
+## サイズ
+
+Fancy smaller inputs? `size`propを使用します。
+
+{{"demo": "pages/components/autocomplete/Sizes.js"}}
 
 ## Customized Autocomplete
 
@@ -121,7 +127,7 @@ It supports the following options:
   - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
   - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
   - `config.stringify` (*Func* [optional]): Defaults to `JSON.stringify`.
-  - `config.trim` (*Boolean* [optional]): Defaults to `false`. Remove trailing spaces.
+  - `config.trim` (*ブール値* [任意]): デフォルト値 `false`. Remove trailing spaces.
 
 In the following demo, the options need to start with the query prefix:
 

@@ -41,6 +41,7 @@ export interface TooltipProps
 export type TooltipClassKey =
   | 'popper'
   | 'popperInteractive'
+  | 'popperArrow'
   | 'tooltip'
   | 'tooltipArrow'
   | 'arrow'

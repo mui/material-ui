@@ -3,7 +3,7 @@ title: Dialog React-Komponente
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
-# Dialoge
+# Dialog
 
 <p class="description">Dialoge informieren Benutzer über eine Aufgabe und können wichtige Informationen enthalten, Entscheidungen erfordern oder mehrere Aufgaben umfassen.</p>
 
@@ -95,23 +95,27 @@ Durch Berühren von „Abbrechen“ in einem Bestätigungsdialogfeld oder durch 
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## Draggable dialog
+## Ziehbarer Dialog
 
-You can create a draggable dialog by using [react-draggable](https://github.com/mzabriskie/react-draggable). To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. This will make the entire dialog draggable.
+Sie können einen ziehbaren Dialog erstellen, indem Sie [react-draggable](https://github.com/mzabriskie/react-draggable) nutzen. Dazu können Sie die importierte `Draggable` Komponente als `PaperComponent` der `Dialog` Komponente übergeben. Dadurch wird der gesamte Dialog verschiebbar.
 
 {{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## Blättern von langen Inhalten
 
-When dialogs become too long for the user’s viewport or device, they scroll.
+Wenn Dialoge für das Ansichtsfenster oder das Gerät des Benutzers zu lang werden, scrollen diese.
 
 - `scroll=paper`: Der Inhalt des Dialogs scrollt innerhalb des Papierelements.
 - `scroll=body`: Der Inhalt des Dialogs scrollt innerhalb des Body-Elements.
 
-Try the demo below to see what we mean:
+Probieren Sie die Demo aus, um zu sehen, was wir meinen:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
+## Einschränkungen
+
+Follow the [Modal limitations section](/components/modal/#limitations).
+
 ## Barrierefreiheit
 
-Follow the [Modal accessibility section](/components/modal/#accessibility).
+Folgen Sie dem [Modal Zugänglichkeit Abschnitt](/components/modal/#accessibility).

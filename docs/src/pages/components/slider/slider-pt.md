@@ -67,7 +67,7 @@ The track can be inverted with `track="inverted"`.
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
 
-The component handles most of the work necessary to make it accessible. However, you need to make sure that:
+O componente lida com a maior parte do trabalho necessário para torná-lo acessível. No entanto, você precisa se certificar de que:
 
 - Cada miniatura possui propriedades de rótulo amigável para o usuário (`aria-label`, `aria-labelledby` ou `getAriaLabel`).
 - Cada marcador tem um texto amigável para o seu valor atual. Isso não é necessário se o valor corresponder ao rótulo exibido no slider. Você pode alterar o nome com as propriedades `getAriaValueText` ou `aria-valuetext`.

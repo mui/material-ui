@@ -64,7 +64,7 @@ const DeepChild = withTheme(DeepChildRaw);
 
 ### Theme nesting
 
-You can nest multiple theme providers. This can be really useful when dealing with different areas of your application that have distinct appearance from each other.
+Usted puedes anidar multiples proveedores de tema. This can be really useful when dealing with different areas of your application that have distinct appearance from each other.
 
 ```jsx
 <ThemeProvider theme={outerTheme}>

@@ -23,17 +23,11 @@ const currencies = [
 ];
 
 const useStyles = makeStyles(theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-  },
-  menu: {
-    width: 200,
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: 200,
+    },
   },
 }));
 
@@ -46,22 +40,15 @@ export default function MultilineTextFields() {
   };
 
   return (
-    <form className={classes.container} noValidate autoComplete="off">
+    <form className={classes.root} noValidate autoComplete="off">
       <div>
         <TextField
           id="standard-select-currency"
           select
           label="Select"
-          className={classes.textField}
           value={currency}
           onChange={handleChange}
-          SelectProps={{
-            MenuProps: {
-              className: classes.menu,
-            },
-          }}
           helperText="Please select your currency"
-          margin="normal"
         >
           {currencies.map(option => (
             <MenuItem key={option.value} value={option.value}>
@@ -73,17 +60,12 @@ export default function MultilineTextFields() {
           id="standard-select-currency-native"
           select
           label="Native select"
-          className={classes.textField}
           value={currency}
           onChange={handleChange}
           SelectProps={{
             native: true,
-            MenuProps: {
-              className: classes.menu,
-            },
           }}
           helperText="Please select your currency"
-          margin="normal"
         >
           {currencies.map(option => (
             <option key={option.value} value={option.value}>
@@ -97,16 +79,9 @@ export default function MultilineTextFields() {
           id="filled-select-currency"
           select
           label="Select"
-          className={classes.textField}
           value={currency}
           onChange={handleChange}
-          SelectProps={{
-            MenuProps: {
-              className: classes.menu,
-            },
-          }}
           helperText="Please select your currency"
-          margin="normal"
           variant="filled"
         >
           {currencies.map(option => (
@@ -119,17 +94,12 @@ export default function MultilineTextFields() {
           id="filled-select-currency-native"
           select
           label="Native select"
-          className={classes.textField}
           value={currency}
           onChange={handleChange}
           SelectProps={{
             native: true,
-            MenuProps: {
-              className: classes.menu,
-            },
           }}
           helperText="Please select your currency"
-          margin="normal"
           variant="filled"
         >
           {currencies.map(option => (
@@ -144,16 +114,9 @@ export default function MultilineTextFields() {
           id="outlined-select-currency"
           select
           label="Select"
-          className={classes.textField}
           value={currency}
           onChange={handleChange}
-          SelectProps={{
-            MenuProps: {
-              className: classes.menu,
-            },
-          }}
           helperText="Please select your currency"
-          margin="normal"
           variant="outlined"
         >
           {currencies.map(option => (
@@ -166,17 +129,12 @@ export default function MultilineTextFields() {
           id="outlined-select-currency-native"
           select
           label="Native select"
-          className={classes.textField}
           value={currency}
           onChange={handleChange}
           SelectProps={{
             native: true,
-            MenuProps: {
-              className: classes.menu,
-            },
           }}
           helperText="Please select your currency"
-          margin="normal"
           variant="outlined"
         >
           {currencies.map(option => (

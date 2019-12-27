@@ -74,6 +74,7 @@ const pages = [
           { pathname: '/components/progress' },
           { pathname: '/components/dialogs' },
           { pathname: '/components/snackbars' },
+          { pathname: '/components/backdrop' },
         ],
       },
       {
@@ -153,9 +154,9 @@ const pages = [
     children: [
       {
         pathname: '/customization',
-        subheader: '/customization/theming',
+        subheader: '/customization/theme',
         children: [
-          { pathname: '/customization/theming', title: 'Overview' },
+          { pathname: '/customization/theming' },
           { pathname: '/customization/palette' },
           { pathname: '/customization/typography' },
           { pathname: '/customization/spacing' },
@@ -214,6 +215,7 @@ const pages = [
   {
     pathname: '/blog',
     children: [
+      { pathname: '/blog/november-2019-update' },
       { pathname: '/blog/october-2019-update' },
       { pathname: '/blog/september-2019-update' },
       { pathname: '/blog/august-2019-update' },

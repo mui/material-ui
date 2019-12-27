@@ -4,14 +4,11 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: 200,
+    root: {
+      '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: 200,
+      },
     },
   }),
 );
@@ -24,40 +21,23 @@ export default function StateTextFields() {
   };
 
   return (
-    <form className={classes.container} noValidate autoComplete="off">
+    <form className={classes.root} noValidate autoComplete="off">
       <div>
-        <TextField
-          id="standard-name"
-          label="Name"
-          className={classes.textField}
-          value={name}
-          onChange={handleChange}
-          margin="normal"
-        />
-        <TextField
-          id="standard-uncontrolled"
-          label="Uncontrolled"
-          defaultValue="foo"
-          className={classes.textField}
-          margin="normal"
-        />
+        <TextField id="standard-name" label="Name" value={name} onChange={handleChange} />
+        <TextField id="standard-uncontrolled" label="Uncontrolled" defaultValue="foo" />
       </div>
       <div>
         <TextField
           id="filled-name"
           label="Name"
-          className={classes.textField}
           value={name}
           onChange={handleChange}
-          margin="normal"
           variant="filled"
         />
         <TextField
           id="filled-uncontrolled"
           label="Uncontrolled"
           defaultValue="foo"
-          className={classes.textField}
-          margin="normal"
           variant="filled"
         />
       </div>
@@ -65,18 +45,14 @@ export default function StateTextFields() {
         <TextField
           id="outlined-name"
           label="Name"
-          className={classes.textField}
           value={name}
           onChange={handleChange}
-          margin="normal"
           variant="outlined"
         />
         <TextField
           id="outlined-uncontrolled"
           label="Uncontrolled"
           defaultValue="foo"
-          className={classes.textField}
-          margin="normal"
           variant="outlined"
         />
       </div>

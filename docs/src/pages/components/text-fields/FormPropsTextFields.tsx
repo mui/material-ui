@@ -4,54 +4,33 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: 200,
+    root: {
+      '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: 200,
+      },
     },
   }),
 );
 
-export default function UncontrolledTextField() {
+export default function FormPropsTextFields() {
   const classes = useStyles();
 
   return (
-    <form className={classes.container} noValidate autoComplete="off">
+    <form className={classes.root} noValidate autoComplete="off">
       <div>
-        <TextField
-          required
-          id="standard-required"
-          label="Required"
-          defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
-        />
-        <TextField
-          disabled
-          id="standard-disabled"
-          label="Disabled"
-          defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
-        />
+        <TextField required id="standard-required" label="Required" defaultValue="Hello World" />
+        <TextField disabled id="standard-disabled" label="Disabled" defaultValue="Hello World" />
         <TextField
           id="standard-password-input"
           label="Password"
-          className={classes.textField}
           type="password"
           autoComplete="current-password"
-          margin="normal"
         />
         <TextField
           id="standard-read-only-input"
           label="Read Only"
           defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
           InputProps={{
             readOnly: true,
           }}
@@ -60,26 +39,16 @@ export default function UncontrolledTextField() {
           id="standard-number"
           label="Number"
           type="number"
-          className={classes.textField}
           InputLabelProps={{
             shrink: true,
           }}
-          margin="normal"
         />
-        <TextField
-          id="standard-search"
-          label="Search field"
-          type="search"
-          className={classes.textField}
-          margin="normal"
-        />
+        <TextField id="standard-search" label="Search field" type="search" />
         <TextField
           id="standard-helperText"
           label="Helper text"
           defaultValue="Default Value"
-          className={classes.textField}
           helperText="Some important text"
-          margin="normal"
         />
       </div>
       <div>
@@ -88,8 +57,6 @@ export default function UncontrolledTextField() {
           id="filled-required"
           label="Required"
           defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
           variant="filled"
         />
         <TextField
@@ -97,25 +64,19 @@ export default function UncontrolledTextField() {
           id="filled-disabled"
           label="Disabled"
           defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
           variant="filled"
         />
         <TextField
           id="filled-password-input"
           label="Password"
-          className={classes.textField}
           type="password"
           autoComplete="current-password"
-          margin="normal"
           variant="filled"
         />
         <TextField
           id="filled-read-only-input"
           label="Read Only"
           defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
           InputProps={{
             readOnly: true,
           }}
@@ -125,28 +86,17 @@ export default function UncontrolledTextField() {
           id="filled-number"
           label="Number"
           type="number"
-          className={classes.textField}
           InputLabelProps={{
             shrink: true,
           }}
-          margin="normal"
           variant="filled"
         />
-        <TextField
-          id="filled-search"
-          label="Search field"
-          type="search"
-          className={classes.textField}
-          margin="normal"
-          variant="filled"
-        />
+        <TextField id="filled-search" label="Search field" type="search" variant="filled" />
         <TextField
           id="filled-helperText"
           label="Helper text"
           defaultValue="Default Value"
-          className={classes.textField}
           helperText="Some important text"
-          margin="normal"
           variant="filled"
         />
       </div>
@@ -156,8 +106,6 @@ export default function UncontrolledTextField() {
           id="outlined-required"
           label="Required"
           defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
           variant="outlined"
         />
         <TextField
@@ -165,25 +113,19 @@ export default function UncontrolledTextField() {
           id="outlined-disabled"
           label="Disabled"
           defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
           variant="outlined"
         />
         <TextField
           id="outlined-password-input"
           label="Password"
-          className={classes.textField}
           type="password"
           autoComplete="current-password"
-          margin="normal"
           variant="outlined"
         />
         <TextField
           id="outlined-read-only-input"
           label="Read Only"
           defaultValue="Hello World"
-          className={classes.textField}
-          margin="normal"
           InputProps={{
             readOnly: true,
           }}
@@ -193,28 +135,17 @@ export default function UncontrolledTextField() {
           id="outlined-number"
           label="Number"
           type="number"
-          className={classes.textField}
           InputLabelProps={{
             shrink: true,
           }}
-          margin="normal"
           variant="outlined"
         />
-        <TextField
-          id="outlined-search"
-          label="Search field"
-          type="search"
-          className={classes.textField}
-          margin="normal"
-          variant="outlined"
-        />
+        <TextField id="outlined-search" label="Search field" type="search" variant="outlined" />
         <TextField
           id="outlined-helperText"
           label="Helper text"
           defaultValue="Default Value"
-          className={classes.textField}
           helperText="Some important text"
-          margin="normal"
           variant="outlined"
         />
       </div>

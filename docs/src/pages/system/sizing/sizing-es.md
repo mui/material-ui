@@ -1,4 +1,4 @@
-# Sizing
+# Dimensionamiento
 
 <p class="description">Easily make an element as wide or as tall (relative to its parent) with the width and height utilities.</p>
 

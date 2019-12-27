@@ -112,9 +112,9 @@ import { Link } from 'react-router-dom';
 
 ⚠️ However, this strategy suffers from a limitation: prop collisions. The component providing the `component` prop (e.g. ListItem) might not forward all the props (for example dense) to the root element.
 
-### With TypeScript
+### Mit TypeScript
 
-You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-component-prop).
+Die Details finden Sie im [TypeScript-Handbuch](/guides/typescript/#usage-of-component-prop).
 
 ## Routing libraries
 
@@ -128,11 +128,11 @@ The integration with third-party routing libraries is achieved with the `compone
 
 {{"demo": "pages/guides/composition/LinkRouter.js"}}
 
-### List
+### List (liste)
 
 {{"demo": "pages/guides/composition/ListRouter.js"}}
 
-## Caveat with refs
+## Vorbehalt bei Refs
 
 This section covers caveats when using a custom component as `children` or for the `component` prop.
 
@@ -169,7 +169,7 @@ Only the two most common use cases are covered. For more information see [this s
 <Tooltip title="Hello, again."><SomeContent /></Tooltip>;
 ```
 
-To find out if the Material-UI component you're using has this requirement, check out the the props API documentation for that component. If you need to forward refs the description will link to this section.
+Um herauszufinden, ob die Material-UI - Komponente, die Sie verwenden, diese Anforderung hat, überprüfen Sie API - Dokumentation für diese Komponente. Wenn Sie Refs weiterleiten müssen, wird die Beschreibung mit diesem Abschnitt verknüpft.
 
 ### Caveat with StrictMode
 

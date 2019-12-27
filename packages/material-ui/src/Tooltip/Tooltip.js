@@ -20,43 +20,59 @@ function round(value) {
 function arrowGenerator() {
   return {
     '&[x-placement*="bottom"] $arrow': {
+      flip: false,
       top: 0,
       left: 0,
       marginTop: '-0.95em',
+      marginLeft: 4,
+      marginRight: 4,
       width: '2em',
       height: '1em',
       '&::before': {
+        flip: false,
         borderWidth: '0 1em 1em 1em',
         borderColor: 'transparent transparent currentcolor transparent',
       },
     },
     '&[x-placement*="top"] $arrow': {
+      flip: false,
       bottom: 0,
       left: 0,
       marginBottom: '-0.95em',
+      marginLeft: 4,
+      marginRight: 4,
       width: '2em',
       height: '1em',
       '&::before': {
+        flip: false,
         borderWidth: '1em 1em 0 1em',
         borderColor: 'currentcolor transparent transparent transparent',
       },
     },
     '&[x-placement*="right"] $arrow': {
+      flip: false,
       left: 0,
       marginLeft: '-0.95em',
+      marginTop: 4,
+      marginBottom: 4,
       height: '2em',
       width: '1em',
       '&::before': {
+        flip: false,
         borderWidth: '1em 1em 1em 0',
         borderColor: 'transparent currentcolor transparent transparent',
       },
     },
     '&[x-placement*="left"] $arrow': {
+      flip: false,
       right: 0,
       marginRight: '-0.95em',
+      marginTop: 4,
+      marginBottom: 4,
       height: '2em',
       width: '1em',
       '&::before': {
+        flip: false,
         borderWidth: '1em 0 1em 1em',
         borderColor: 'transparent transparent transparent currentcolor',
       },
@@ -280,7 +296,11 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const handleEnter = event => {
     const childrenProps = children.props;
 
-    if (event.type === 'mouseover' && childrenProps.onMouseOver) {
+    if (
+      event.type === 'mouseover' &&
+      childrenProps.onMouseOver &&
+      event.currentTarget === childNode
+    ) {
       childrenProps.onMouseOver(event);
     }
 
@@ -330,7 +350,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
 
     const childrenProps = children.props;
-    if (childrenProps.onFocus) {
+    if (childrenProps.onFocus && event.currentTarget === childNode) {
       childrenProps.onFocus(event);
     }
   };
@@ -360,13 +380,17 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     const childrenProps = children.props;
 
     if (event.type === 'blur') {
-      if (childrenProps.onBlur) {
+      if (childrenProps.onBlur && event.currentTarget === childNode) {
         childrenProps.onBlur(event);
       }
       handleBlur(event);
     }
 
-    if (event.type === 'mouseleave' && childrenProps.onMouseLeave) {
+    if (
+      event.type === 'mouseleave' &&
+      childrenProps.onMouseLeave &&
+      event.currentTarget === childNode
+    ) {
       childrenProps.onMouseLeave(event);
     }
 

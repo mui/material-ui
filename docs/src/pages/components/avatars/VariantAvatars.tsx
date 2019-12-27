@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     square: {
-      color: '#fff',
+      color: theme.palette.getContrastText(deepOrange[500]),
       backgroundColor: deepOrange[500],
     },
     rounded: {

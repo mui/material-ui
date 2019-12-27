@@ -3,7 +3,7 @@ title: Divider React component
 components: Divider
 ---
 
-# Dividers
+# Divider (区切り線)
 
 <p class="description">Divider(区切り線) は、リストおよびレイアウトのコンテンツをグループ化する細い線です。</p>
 

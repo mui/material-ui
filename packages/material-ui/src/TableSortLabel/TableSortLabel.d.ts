@@ -11,7 +11,7 @@ export type TableSortLabelTypeMap<
     active?: boolean;
     direction?: 'asc' | 'desc';
     hideSortIcon?: boolean;
-    IconComponent?: React.ComponentType<SvgIconProps>;
+    IconComponent?: React.ComponentType<{ className: string }>;
   };
   defaultComponent: D;
   classKey: TableSortLabelClassKey;

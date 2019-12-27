@@ -16,7 +16,7 @@ Aquí puedes encontrar la version inédita mas reciente de la documentación y c
 
 ## Estrategia para versionado
 
-Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around Material-UI to thrive.
+La estabilidad asegura que componentes y librerias reutilizables, tutoriales, herramientas, y prácticas aprendidas no se vuelven obsoletos de forma inesperada. La estabilidad es esencial para que el ecosistema alrededor de Material-UI prospere.
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
@@ -32,7 +32,7 @@ A regular schedule of releases helps you plan and coordinate your updates with t
 
 En general, espera el siguiente ciclo de lanzamiento:
 
-- A **major** release every 12 months.
+- Un lanzamiento ** mayor ** cada 12 meses.
 - 1-3 lanzamiento ** menor ** por cada lanzamiento mayor.
 - Un Lanzamiento de **parche** cada semana (en cualquier momento para la corrección de errores urgente).
 

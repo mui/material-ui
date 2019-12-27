@@ -27,13 +27,7 @@
 - 请不要在一个Issue中打包多个话题 - 取而代之的，是每一个话题都应该有他自己的Issue。
 - 请不要在Issue评论中回复“+1” 它相当于向维护者发送垃圾信息，也无法使问题取得进展。 可以用GitHub的表情来替代 (👍).
 
-### Spectrum <img src="/static/images/logos/spectrum.svg" width="24" height="24" alt="Spectrum logo" loading="lazy" />
-
-可以在Spectrum上和社区交谈 如果您认为您的帖子可以成为一个StackOverflow问题，请移步去StackOverflow。 我们锁定/删除问题是为了避免重复。
-
-[Start a discussion](https://spectrum.chat/material-ui)
-
-### Blog 📝
+### 博客 📝
 
 Stay up to date with the development of the library by following the blog.
 
@@ -133,6 +127,6 @@ The end result? All of the capabilities you expect from commercial-grade softwar
 - 建议可能不需要 Material-UI 的替代方法
 - 由于时间或相关性而拒绝合作
 
-请注意，工作必须与 Material-UI 相关。 我们不接受一般的 React 开发工作。 Our contracting price is $300/hour or $1,500/day.
+请注意，工作必须与 Material-UI 相关。 我们不接受一般的 React 开发工作。 Our contracting price is $200/hour or $1,500/day.
 
 [给我们发送电子邮件](mailto:custom-work@material-ui.com)

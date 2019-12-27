@@ -135,6 +135,29 @@ describe('ModalManager', () => {
       assert.strictEqual(fixedNode.style.paddingRight, '14px');
     });
 
+    it('should disable the scroll even when not overflowing', () => {
+      // simulate non-overflowing container
+      const container2 = document.createElement('div');
+      Object.defineProperty(container2, 'scrollHeight', {
+        value: 100,
+        writable: false,
+      });
+      Object.defineProperty(container2, 'clientHeight', {
+        value: 100,
+        writable: false,
+      });
+      document.body.appendChild(container2);
+
+      const modal = {};
+      modalManager.add(modal, container2);
+      modalManager.mount(modal, {});
+      assert.strictEqual(container2.style.overflow, 'hidden');
+      modalManager.remove(modal);
+      assert.strictEqual(container2.style.overflow, '');
+
+      document.body.removeChild(container2);
+    });
+
     it('should restore styles correctly if none existed before', () => {
       const modal = {};
       modalManager.add(modal, container1);

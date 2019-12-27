@@ -3,7 +3,7 @@ title: React-компонент Кнопка
 components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 ---
 
-# Кнопки
+# Button (кнопки)
 
 <p class="description">Кнопки позволяют пользователям выполнять действия и делать выбор одним нажатием.</p>
 
@@ -23,6 +23,10 @@ components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
+You can remove the elevation with the `disableElevation` prop.
+
+{{"demo": "pages/components/buttons/DisableElevation.js"}}
+
 ## Текстовые кнопки
 
 [Текстовые кнопки](https://material.io/design/components/buttons.html#text-button) обычно используются для менее выраженных действий, в том числе расположенных:
@@ -38,19 +42,25 @@ components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 
 [Контурные кнопки](https://material.io/design/components/buttons.html#outlined-button) - это кнопки со средним акцентом. Они содержат действия, которые важны, но не являются основными в приложении.
 
-### Альтернатива
-
 Выделенные кнопки также являются альтернативой выделенным кнопкам или могут использоваться как альтернатива текстовым кнопкам.
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
 
 ## Сгруппированные кнопки
 
-Компонент ButtonGroup можно использовать для группировки контурных (по умолчанию) или блочных кнопок.
+The `ButtonGroup` component can be used to group buttons.
 
 {{"demo": "pages/components/buttons/GroupedButtons.js"}}
 
-## Split Button
+### Group sizes and colors
+
+{{"demo": "pages/components/buttons/GroupSizesColors.js"}}
+
+### Group orientation
+
+{{"demo": "pages/components/buttons/GroupOrientation.js"}}
+
+### Split Button
 
 ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
 
@@ -74,7 +84,7 @@ ButtonGroup can also be used to create a split button. The dropdown can change t
 
 {{"demo": "pages/components/buttons/FloatingActionButtonZoom.js", "bg": true}}
 
-## Upload button
+## Кнопка загрузки файла
 
 {{"demo": "pages/components/buttons/UploadButtons.js"}}
 
@@ -84,21 +94,21 @@ Fancy larger or smaller buttons? Use the `size` property.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
-## Buttons with icons and label
+## Кнопки с иконками и текстом
 
-Sometimes you might want to have icons for certain button to enhance the UX of the application as we recognize logos more easily than plain text. For example, if you have a delete button you can label it with a dustbin icon.
+Иногда вы можете захотеть добавить текст для определенной кнопки, чтобы улучшить UX, поскольку мы распознаем логотипы легче, чем обычный текст. Например, если у вас есть кнопка удаления, вы можете пометить ее значком мусорной корзины.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Icon Buttons
+## Кнопки с иконками
 
-Icon buttons are commonly found in app bars and toolbars.
+Кнопки с иконками обычно находятся на панелях навигации и на панелях инструментов.
 
-Icons are also appropriate for toggle buttons that allow a single choice to be selected or deselected, such as adding or removing a star to an item.
+Значки также подходят для кнопок переключения, которые позволяют выбрать элемент или отменить выбор, например, добавление или удаление звезды для элемента.
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## Customized buttons
+## Настраиваемые кнопки
 
 Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
@@ -106,15 +116,15 @@ Icons are also appropriate for toggle buttons that allow a single choice to be s
 
 👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
 
-## Complex Buttons
+## Сложные кнопки
 
-The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`. You can take advantage of this lower level component to build custom interactions.
+Текстовые кнопки, плавающие кнопки действий, блочные кнопки построены на основе одного и того же компонента: `ButtonBase`. Вы можете воспользоваться этим более низкоуровневым компонентом для создания пользовательских взаимодействий.
 
 {{"demo": "pages/components/buttons/ButtonBases.js"}}
 
 ## Сторонняя библиотека маршрутизации
 
-One common use case is to use the button to trigger navigation to a new page. The `ButtonBase` component provides a property to handle this use case: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
+One common use case is to use the button to trigger navigation to a new page. `ButtonBase` компонент предоставляет свойство для обработки этого варианта использования: `component`. However for certain focus polyfills `ButtonBase` requires the DOM node of the provided component. This is achieved by attaching a ref to the component and expecting that the component forwards this ref to the underlying DOM node. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
 
 Here is an [integration example with react-router](/guides/composition/#button).
 

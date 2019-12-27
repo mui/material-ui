@@ -14,6 +14,7 @@ export type InputClassKey =
   | 'colorSecondary'
   | 'underline'
   | 'error'
+  | 'marginDense'
   | 'multiline'
   | 'fullWidth'
   | 'input'

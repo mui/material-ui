@@ -32,7 +32,7 @@ Um cronograma regular de lançamentos ajuda você a planejar e coordenar suas at
 
 Em geral, você pode esperar o seguinte ciclo de lançamento:
 
-- A **major** release every 12 months.
+- A **principal** versão a cada 12 meses.
 - 1-3 ** menor ** lançamentos para cada versão principal.
 - Uma versão **patch** a cada semana (ou imediatamente para um bugfix urgente).
 

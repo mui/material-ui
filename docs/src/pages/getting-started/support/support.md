@@ -28,12 +28,6 @@ If you think you have found a bug, or have a new feature idea, please start by m
 - Please don't group multiple topics in one issue – each should have its own issue instead.
 - Please don't comment "+1" on an issue. It spams the maintainers and doesn't help move the issue forward. Use GitHub reactions instead (👍).
 
-### Spectrum <img src="/static/images/logos/spectrum.svg" width="24" height="24" alt="Spectrum logo" loading="lazy" />
-
-Chat with the community on Spectrum. If you feel your thread could be a StackOverflow question, go to StackOverflow instead. We lock/delete questions that are better asked on StackOverflow to avoid duplicates.
-
-[Start a discussion](https://spectrum.chat/material-ui)
-
 ### Blog 📝
 
 Stay up to date with the development of the library by following the blog.
@@ -138,6 +132,6 @@ Tweak Material-UI to meet specific requirements. Give us a summary of your needs
 
 Note that work must be Material-UI related.
 We don't accept general React development work.
-Our contracting price is $300/hour or $1,500/day.
+Our contracting price is $200/hour or $1,500/day.
 
 [Send us an email](mailto:custom-work@material-ui.com)

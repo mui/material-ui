@@ -13,7 +13,7 @@ Estou feliz que você tenha perguntado! A resposta é não. Os principais concei
 Material-UI foi iniciado [4 anos atrás](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). O ecossistema evoluiu muito desde então, também aprendemos muito. [@nathanmarks](https://github.com/nathanmarks/) iniciou uma tarefa ambiciosa, reconstruindo o Material-UI do **zero**, aproveitando esse conhecimento para resolver problemas de longa data. Para citar algumas das principais mudanças:
 
 - Nova solução de estilo usando CSS-in-JS (melhor poder de [customização](/customization/components/), melhor desempenho)
-- New theme handling (nesting, self-supporting, etc.)
+- Novo tratamento de tema (aninhamento, auto-suporte, etc.)
 - Documentação rápida e brilhante graças a [Next.js](https://github.com/zeit/next.js)
 - Melhor [cobertura de teste](/guides/testing/) (99%+, executado em todos os principais navegadores, [testes de regressão visual](https://www.argos-ci.com/mui-org/material-ui))
 - Suporte completo [a renderização do lado do servidor](/guides/server-rendering/)
@@ -187,4 +187,4 @@ Caminho de atualização do RaisedButton:
 
 ### Continua…
 
-Você migrou sua aplicação com sucesso e deseja ajudar a comunidade? There is an open issue in order to finish this migration guide [#7195](https://github.com/mui-org/material-ui/issues/7195). Any pull request is welcomed 😊.
+Você migrou sua aplicação com sucesso e deseja ajudar a comunidade? There is an open issue in order to finish this migration guide [#7195](https://github.com/mui-org/material-ui/issues/7195). Qualquer pull request é bem-vindo 😊.

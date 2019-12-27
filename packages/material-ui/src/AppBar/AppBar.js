@@ -25,6 +25,10 @@ export const styles = theme => {
       top: 0,
       left: 'auto',
       right: 0,
+      '@media print': {
+        // Prevent the app bar to be visible on each printed page.
+        position: 'absolute',
+      },
     },
     /* Styles applied to the root element if `position="absolute"`. */
     positionAbsolute: {

@@ -3,7 +3,7 @@ title: Dialog React component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
-# Dialogs
+# Dialog
 
 <p class="description">Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.</p>
 
@@ -120,6 +120,10 @@ When dialogs become too long for the user’s viewport or device, they scroll.
 Try the demo below to see what we mean:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
+
+## Limitations
+
+Follow the [Modal limitations section](/components/modal/#limitations).
 
 ## Accessibility
 

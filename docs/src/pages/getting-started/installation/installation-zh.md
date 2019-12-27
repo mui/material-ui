@@ -28,7 +28,7 @@ Material-UI 的设计与 [Roboto](https://fonts.google.com/specimen/Roboto) 字�
 
 ## 字体图标
 
-In order to use the font `Icon` component, you must first add the [Material icons](https://material.io/tools/icons/) font. 这是如何去做的 [一些说明](/components/icons/#font-icons) 例如，使用 Google Web Fonts：
+为了使用字体`图标` 组件，你必须添加 [Material icons](https://material.io/tools/icons/) 字体. 这是如何去做的 [一些说明](/components/icons/#font-icons) 例如，使用 Google Web Fonts：
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
