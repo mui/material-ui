@@ -238,6 +238,12 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
   };
 
+  const handleClear = event => {
+    if (onChange && parseFloat(event.target.value) === valueProp) {
+      onChange(event, null);
+    }
+  };
+
   const handleFocus = event => {
     if (isFocusVisible(event)) {
       setFocusVisible(true);
@@ -306,6 +312,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={handleChange}
+          onClick={handleClear}
           value={propsItem.value}
           id={id}
           type="radio"
