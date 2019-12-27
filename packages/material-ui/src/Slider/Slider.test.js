@@ -409,26 +409,40 @@ describe('<Slider />', () => {
       const marks = [{ value: 5 }, { value: 10 }, { value: 15 }];
 
       const { container: container1 } = render(
-        <Slider disabled min={0} max={20} value={12} marks={marks} />,
+        <Slider min={0} max={20} value={12} marks={marks} />,
       );
       expect(getActives(container1)).to.deep.equal([true, true, false]);
 
       const { container: container2 } = render(
-        <Slider disabled min={0} max={20} value={[8, 12]} marks={marks} />,
+        <Slider min={0} max={20} value={[8, 12]} marks={marks} />,
       );
       expect(getActives(container2)).to.deep.equal([false, true, false]);
     });
 
     it('uses closed intervals for the within check', () => {
       const { container: container1 } = render(
-        <Slider disabled value={10} min={0} max={10} marks step={5} />,
+        <Slider value={10} min={0} max={10} marks step={5} />,
       );
       expect(getActives(container1)).to.deep.equal([true, true, true]);
 
       const { container: container2 } = render(
-        <Slider disabled value={9.99999} min={0} max={10} marks step={5} />,
+        <Slider value={9.99999} min={0} max={10} marks step={5} />,
       );
       expect(getActives(container2)).to.deep.equal([true, true, false]);
+    });
+
+    it('should support inverted track', () => {
+      const marks = [{ value: 5 }, { value: 10 }, { value: 15 }];
+
+      const { container: container1 } = render(
+        <Slider min={0} max={20} value={12} marks={marks} track="inverted" />,
+      );
+      expect(getActives(container1)).to.deep.equal([false, false, true]);
+
+      const { container: container2 } = render(
+        <Slider min={0} max={20} value={[8, 12]} marks={marks} track="inverted" />,
+      );
+      expect(getActives(container2)).to.deep.equal([true, false, true]);
     });
   });
 
