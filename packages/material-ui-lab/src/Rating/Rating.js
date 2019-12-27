@@ -129,7 +129,7 @@ IconContainer.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-const defaultIcon = <Star fontSize="small" />;
+const defaultIcon = <Star fontSize="inherit" />;
 
 function defaultLabelText(value) {
   return `${value} Star${value !== 1 ? 's' : ''}`;
