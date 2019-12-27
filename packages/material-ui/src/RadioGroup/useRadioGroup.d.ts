@@ -4,8 +4,6 @@ import { RadioGroupProps } from './RadioGroup';
 // shut off automatic exporting
 export {};
 
-type ContextFromPropsKey = 'name' | 'onChange' | 'value';
-
-export interface RadioGroupState extends Pick<RadioGroupProps, ContextFromPropsKey> {}
+export interface RadioGroupState extends Pick<RadioGroupProps, 'name' | 'onChange' | 'value'> {}
 
 export default function useRadioGroup(): RadioGroupState;
