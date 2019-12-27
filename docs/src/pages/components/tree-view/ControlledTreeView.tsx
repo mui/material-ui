@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 export default function ControlledTreeView() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState<string[]>([]);
-  const [seleced, setSelected] = React.useState<string[]>([]);
+  const [selected, setSelected] = React.useState<string[]>([]);
 
   const handleToggle = (event: React.ChangeEvent<{}>, nodeIds: string[]) => {
     setExpanded(nodeIds);
