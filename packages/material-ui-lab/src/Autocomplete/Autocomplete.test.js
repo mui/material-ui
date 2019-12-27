@@ -889,4 +889,34 @@ describe('<Autocomplete />', () => {
       expect(textbox).to.not.have.focus;
     });
   });
+
+  describe('prop: getOptionLabel', () => {
+    it('is considered for falsy values when filtering the the list of options', () => {
+      const { getAllByRole } = render(
+        <Autocomplete
+          options={[0, 10, 20]}
+          getOptionLabel={option => (option === 0 ? 'Any' : option.toString())}
+          renderInput={params => <TextField {...params} autoFocus />}
+          value={0}
+        />,
+      );
+
+      const options = getAllByRole('option');
+      expect(options).to.have.length(3);
+    });
+
+    it('is not considered for nullish values when filtering the list of options', () => {
+      const { getAllByRole } = render(
+        <Autocomplete
+          options={[null, 10, 20]}
+          getOptionLabel={option => (option === null ? 'Any' : option.toString())}
+          renderInput={params => <TextField {...params} autoFocus />}
+          value={null}
+        />,
+      );
+
+      const options = getAllByRole('option');
+      expect(options).to.have.length(3);
+    });
+  });
 });
