@@ -5,6 +5,7 @@ import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Rating from './Rating';
+import Star from '../internal/svg-icons/Star';
 
 describe('<Rating />', () => {
   let mount;
@@ -65,5 +66,19 @@ describe('<Rating />', () => {
       clientX: 21,
     });
     expect(container.querySelectorAll(`.${classes.iconHover}`).length).to.equal(2);
+  });
+  describe('props: customIcons', () => {
+    it('should render with custom icons', () => {
+      const customIcons = [
+        <Star fontSize="small" />,
+        <Star style={{ fontSize: '30' }} />,
+        <Star style={{ fontSize: '40' }} />,
+      ];
+      const { container } = render(
+        <Rating name="read-only" value={1} customIcons={customIcons} readOnly />,
+      );
+      expect(container.querySelectorAll(`.${classes.customIcons}`).length).to.equal(1);
+      expect(container.querySelectorAll(`.${classes.icon}`).length).to.equal(3);
+    });
   });
 });
