@@ -233,7 +233,7 @@ export default function useAutocomplete(props) {
   const open = isOpenControlled ? openProp : openState;
 
   const inputValueFilter =
-    !multiple && value && inputValue === getOptionLabel(value) ? '' : inputValue;
+    !multiple && value != null && inputValue === getOptionLabel(value) ? '' : inputValue;
 
   let popupOpen = open;
 
