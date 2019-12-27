@@ -69,26 +69,22 @@ describe('<Rating />', () => {
 
   it('should clear the rating', () => {
     const handleChange = spy();
-    const { getByLabelText } = render(
-      <Rating {...defaultProps} onChange={handleChange} />,
-    );
+    const { getByLabelText } = render(<Rating {...defaultProps} onChange={handleChange} />);
 
     const input = getByLabelText('2 Stars');
     fireEvent.click(input);
-    
+
     expect(handleChange.callCount).to.equal(1);
     expect(handleChange.args[0][1]).to.deep.equal(null);
   });
 
   it('should select the rating', () => {
     const handleChange = spy();
-    const { getByLabelText } = render(
-      <Rating {...defaultProps} onChange={handleChange} />,
-    );
+    const { getByLabelText } = render(<Rating {...defaultProps} onChange={handleChange} />);
 
     const input = getByLabelText('3 Stars');
     fireEvent.click(input);
-    
+
     expect(handleChange.callCount).to.equal(1);
     expect(handleChange.args[0][1]).to.deep.equal(3);
   });
