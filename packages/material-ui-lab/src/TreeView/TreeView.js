@@ -141,7 +141,8 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     const firstCharIds = [];
     const firstChars = [];
     // This really only works since the ids are strings
-    Object.entries(firstCharMap.current).forEach(([nodeId, firstChar]) => {
+    Object.keys(firstCharMap.current).forEach(nodeId => {
+      const firstChar = firstCharMap.current[nodeId];
       const map = nodeMap.current[nodeId];
       const visible = map.parent ? isExpanded(map.parent) : true;
 

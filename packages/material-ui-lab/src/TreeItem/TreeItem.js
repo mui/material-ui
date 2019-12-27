@@ -41,12 +41,13 @@ export const styles = theme => ({
   },
   /* Styles applied to the tree node icon and collapse/expand icon. */
   iconContainer: {
-    marginRight: 2,
+    marginRight: 4,
     width: 15,
     display: 'flex',
+    flexShrink: 0,
     justifyContent: 'center',
     '& svg': {
-      flex: 1,
+      fontSize: 18,
     },
   },
   /* Styles applied to the label element. */
@@ -194,7 +195,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     return false;
   };
 
-  const handleNextArrow = event  => {
+  const handleNextArrow = event => {
     if (expandable) {
       if (expanded) {
         focusNextNode(nodeId);
@@ -205,17 +206,17 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     return true;
   };
 
-  const handlePreviousArrow = event  => {
+  const handlePreviousArrow = event => {
     if (expanded) {
       toggleExpansion(event, nodeId);
       return true;
     }
 
-      const parent = getParent(nodeId);
-      if (parent) {
-        focus(parent);
-        return true;
-      }
+    const parent = getParent(nodeId);
+    if (parent) {
+      focus(parent);
+      return true;
+    }
     return false;
   };
 
@@ -265,14 +266,14 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
         flag = true;
         break;
       case 'ArrowRight':
-        if(theme.direction === 'rtl') {
-          flag = handlePreviousArrow(event)
+        if (theme.direction === 'rtl') {
+          flag = handlePreviousArrow(event);
         } else {
           flag = handleNextArrow(event);
         }
         break;
       case 'ArrowLeft':
-        if(theme.direction === 'rtl'){
+        if (theme.direction === 'rtl') {
           flag = handleNextArrow(event);
         } else {
           flag = handlePreviousArrow(event);
