@@ -16,7 +16,7 @@
 
 ## バージョン管理戦略
 
-Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around Material-UI to thrive.
+安定性により、再利用可能なコンポーネントとライブラリ、チュートリアル、ツール、および学習プラクティスが予期せず陳腐化することがなくなります。 Material-UIを取り巻くエコシステムが繁栄するには、安定性が不可欠です。
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 

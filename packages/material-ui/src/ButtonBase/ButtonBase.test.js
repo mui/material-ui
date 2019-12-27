@@ -28,7 +28,7 @@ function simulatePointerDevice() {
 }
 
 describe('<ButtonBase />', () => {
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
   /**
    * @type {ReturnType<typeof createMount>}
    */

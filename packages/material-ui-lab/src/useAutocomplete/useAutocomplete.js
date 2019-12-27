@@ -108,6 +108,7 @@ export default function useAutocomplete(props) {
     setDefaultId(`mui-autocomplete-${Math.round(Math.random() * 1e5)}`);
   }, []);
 
+  const ignoreFocus = React.useRef(false);
   const firstFocus = React.useRef(true);
   const inputRef = React.useRef(null);
   const listboxRef = React.useRef(null);
@@ -435,12 +436,13 @@ export default function useAutocomplete(props) {
         newValue.splice(itemIndex, 1);
       }
     }
+
+    resetInputValue(event, newValue);
+
     handleValue(event, newValue);
     if (!disableCloseOnSelect) {
       handleClose(event);
     }
-
-    resetInputValue(event, newValue);
 
     selectedIndexRef.current = -1;
   };
@@ -509,11 +511,14 @@ export default function useAutocomplete(props) {
   };
 
   const handleClear = event => {
-    handleValue(event, multiple ? [] : null);
-    if (disableOpenOnFocus) {
-      handleClose();
-    }
+    ignoreFocus.current = true;
     setInputValue('');
+
+    if (onInputChange) {
+      onInputChange(event, '', 'clear');
+    }
+
+    handleValue(event, multiple ? [] : null);
   };
 
   const handleKeyDown = event => {
@@ -614,7 +619,7 @@ export default function useAutocomplete(props) {
   const handleFocus = event => {
     setFocused(true);
 
-    if (!disableOpenOnFocus) {
+    if (!disableOpenOnFocus && !ignoreFocus.current) {
       handleOpen(event);
     }
   };
@@ -622,6 +627,7 @@ export default function useAutocomplete(props) {
   const handleBlur = event => {
     setFocused(false);
     firstFocus.current = true;
+    ignoreFocus.current = false;
 
     if (debug && inputValue !== '') {
       return;
@@ -639,6 +645,14 @@ export default function useAutocomplete(props) {
   const handleInputChange = event => {
     const newValue = event.target.value;
 
+    if (inputValue !== newValue) {
+      setInputValue(newValue);
+
+      if (onInputChange) {
+        onInputChange(event, newValue, 'input');
+      }
+    }
+
     if (newValue === '') {
       if (disableOpenOnFocus) {
         handleClose(event);
@@ -649,16 +663,6 @@ export default function useAutocomplete(props) {
       }
     } else {
       handleOpen(event);
-    }
-
-    if (inputValue === newValue) {
-      return;
-    }
-
-    setInputValue(newValue);
-
-    if (onInputChange) {
-      onInputChange(event, newValue, 'input');
     }
   };
 
@@ -706,8 +710,6 @@ export default function useAutocomplete(props) {
   });
 
   const handlePopupIndicator = event => {
-    inputRef.current.focus();
-
     if (open) {
       handleClose(event);
     } else {
@@ -715,13 +717,14 @@ export default function useAutocomplete(props) {
     }
   };
 
+  // Prevent input blur when interacting with the combobox
   const handleMouseDown = event => {
     if (event.target.nodeName !== 'INPUT') {
-      // Prevent blur
       event.preventDefault();
     }
   };
 
+  // Focus the input when first interacting with the combobox
   const handleClick = () => {
     if (
       firstFocus.current &&

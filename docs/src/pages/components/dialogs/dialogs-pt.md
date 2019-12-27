@@ -3,7 +3,7 @@ title: Componente React para Diálogos
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
-# Diálogos
+# Dialog (diálogo)
 
 <p class="description">As caixas de diálogo informa aos usuários sobre uma tarefa e podem conter informações críticas, exigir decisões ou envolver várias tarefas.</p>
 
@@ -111,6 +111,10 @@ Quando os diálogos se tornam muito longos para a janela de visualização (view
 Experimente a demonstração abaixo para ver o que queremos dizer:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
+
+## Limitações
+
+Follow the [Modal limitations section](/components/modal/#limitations).
 
 ## Acessibilidade
 

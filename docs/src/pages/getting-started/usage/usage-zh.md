@@ -36,7 +36,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ### 响应式元标记
 
-Material-UI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries. 如要确保所有设备的正确渲染和触摸缩放，请将响应式可视区域的元标记添加到您的`<head>`元素中。
+Material-UI 是先在移动设备上开发的，我们采用了首先为移动设备编写代码，然后根据需要使用 CSS media queries（CSS媒体查询）扩展组件的策略。 如要确保所有设备的正确渲染和触摸缩放，请将响应式可视区域的元标记添加到您的`<head>`元素中。
 
 ```html
 <meta
@@ -51,7 +51,7 @@ Material-UI 提供了可选的 [CssBaseline](/components/css-baseline/) 组件�
 
 ## 不同版本的文档
 
-本文档始终展示了最新最稳定的 Material-UI 版本。 You can find older versions of the documentation on a [separate page](https://material-ui.com/versions/).
+本文档始终展示了最新最稳定的 Material-UI 版本。 您可以在一个 [单独的页面](https://material-ui.com/versions/) 上找到旧版本的文档。
 
 ## 下一步
 

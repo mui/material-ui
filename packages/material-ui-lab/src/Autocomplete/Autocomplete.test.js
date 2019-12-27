@@ -11,7 +11,7 @@ import TextField from '@material-ui/core/TextField';
 describe('<Autocomplete />', () => {
   let mount;
   let classes;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Autocomplete renderInput={() => null} />);
@@ -203,6 +203,27 @@ describe('<Autocomplete />', () => {
       );
 
       expect(handleOpen.callCount).to.equal(1);
+    });
+
+    it('does not open on clear', () => {
+      const handleOpen = spy();
+      const handleChange = spy();
+      const { container } = render(
+        <Autocomplete
+          onOpen={handleOpen}
+          onChange={handleChange}
+          open={false}
+          options={['one', 'two']}
+          value="one"
+          renderInput={params => <TextField {...params} />}
+        />,
+      );
+
+      const clear = container.querySelector('button');
+      fireEvent.click(clear);
+
+      expect(handleOpen.callCount).to.equal(0);
+      expect(handleChange.callCount).to.equal(1);
     });
 
     ['ArrowDown', 'ArrowUp'].forEach(key => {
@@ -661,7 +682,7 @@ describe('<Autocomplete />', () => {
     });
   });
 
-  describe('controlled input', () => {
+  describe('controlled', () => {
     it('controls the input value', () => {
       const handleChange = spy();
       function MyComponent() {
@@ -686,6 +707,22 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][0]).to.equal('a');
       expect(document.activeElement.value).to.equal('');
+    });
+
+    it('should fire the input change event before the change event', () => {
+      const handleChange = spy();
+      const handleInputChange = spy();
+      render(
+        <Autocomplete
+          onChange={handleChange}
+          onInputChange={handleInputChange}
+          options={['foo']}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(handleInputChange.calledBefore(handleChange)).to.equal(true);
     });
   });
 

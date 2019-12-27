@@ -23,7 +23,7 @@ The tree view also offers a controlled API.
 
 {{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
 
-### Gmail clone
+### Gmail клон
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}
 

@@ -3,7 +3,7 @@ title: Switch React component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Switch (переключатели)
+# Switch (переключатель)
 
 <p class="description">Переключатели изменяют состояние одного отдельного параметра между "включено" и "выключено".</p>
 
@@ -43,7 +43,7 @@ Fancy smaller switches? Use the `size` property.
 
 ## Бесплатно
 
-- [Checkboxes vs. Switch (переключатели)](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
+- [Чекбоксы. Switch (переключатели)](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
 ## Доступность
 

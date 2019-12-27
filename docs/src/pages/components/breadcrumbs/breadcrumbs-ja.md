@@ -5,7 +5,7 @@ components: Breadcrumbs, Link, Typography
 
 # Breadcrumbs
 
-<p class="description">ブレッドクラムを使用すると、値の範囲から選択できます。</p>
+<p class="description">Breadcrumbsを使用すると、値の範囲から選択できます。</p>
 
 ## シンプルなbreadcurmbs
 
@@ -17,27 +17,27 @@ Keep the last breadcrumb interactive.
 
 {{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
 
-## Custom separator
+## カスタムセパレーター (Custom separator）
 
-In the following examples, we are using two string separators, and an SVG icon.
+次の例では、2つの文字列セパレータとSVGアイコンを使用しています。
 
 {{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
-## Breadcrumbs with icons
+## アイコン付きBreadcrumbs
 
 {{"demo": "pages/components/breadcrumbs/IconBreadcrumbs.js"}}
 
-## Collapsed breadcrumbs
+## 折りたたみBreadcrumbs
 
 {{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## Customized breadcrumbs
+## カスタマイズされた breadcrumbs
 
 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 
-## Integration with react-router
+## react-routerとの統合
 
 {{"demo": "pages/components/breadcrumbs/RouterBreadcrumbs.js", "bg": true}}
 
@@ -45,7 +45,7 @@ In the following examples, we are using two string separators, and an SVG icon.
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#breadcrumb)
 
-Be sure to add a `aria-label` description on the `Breadcrumbs` component.
+`Breadcrumbs`コンポーネントには、必ず`aria-label`を追加してください。
 
 このコンポーネントのアクセシビリティは、
 

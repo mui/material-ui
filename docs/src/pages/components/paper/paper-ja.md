@@ -9,4 +9,10 @@ components: Paper
 
 アプリケーションの背景は、1枚の紙の平らで不透明なテクスチャに似ており、アプリケーションの動作は、複数のシートにサイズ変更、シャッフル、およびバインドされる紙の能力を模倣します。
 
-{{"demo": "pages/components/paper/PaperSheet.js", "bg": true}}
+{{"demo": "pages/components/paper/SimplePaper.js", "bg": true}}
+
+## バリアント
+
+If you need an outlined surface, use the `variant` prop.
+
+{{"demo": "pages/components/paper/Variants.js", "bg": "inline"}}

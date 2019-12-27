@@ -24,13 +24,9 @@ function ListItemLink(props: ListItemLinkProps) {
 
   const renderLink = React.useMemo(
     () =>
-      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'innerRef' | 'to'>>(
-        (itemProps, ref) => (
-          // With react-router-dom@^6.0.0 use `ref` instead of `innerRef`
-          // See https://github.com/ReactTraining/react-router/issues/6056
-          <RouterLink to={to} {...itemProps} innerRef={ref} />
-        ),
-      ),
+      React.forwardRef<any, Omit<RouterLinkProps, 'to'>>((itemProps, ref) => (
+        <RouterLink to={to} ref={ref} {...itemProps} />
+      )),
     [to],
   );
 

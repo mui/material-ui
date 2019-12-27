@@ -41,7 +41,7 @@ describe('useMediaQuery', () => {
     return;
   }
 
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
   let values;
 
   beforeEach(() => {

@@ -1,3 +1,62 @@
+export const azAZ = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Əvvəlki səhifə',
+      labelRowsPerPage: 'Səhifəyə düşən sətrlər:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} dən ${count}`,
+      nextIconButtonText: 'Növbəti səhifə',
+    },
+    MuiRating: {
+      getLabelText: value => {
+        let pluralForm = 'Ulduz';
+        const lastDigit = value % 10;
+
+        if (lastDigit > 1 && lastDigit < 5) {
+          pluralForm = 'Ulduzlar';
+        }
+
+        return `${value} ${pluralForm}`;
+      },
+    },
+    MuiAutocomplete: {
+      clearText: 'Silmək',
+      closeText: 'Bağlamaq',
+      loadingText: 'Yüklənir…',
+      noOptionsText: 'Seçimlər mövcud deyil',
+      openText: 'Открыть',
+    },
+  },
+};
+
+export const csCZ = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Předchozí stránka',
+      labelRowsPerPage: 'Řádků na stránce:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} z ${count}`,
+      nextIconButtonText: 'Další stránka',
+    },
+    MuiRating: {
+      getLabelText: value => {
+        if (value === 1) {
+          return `${value} hvězdička`;
+        }
+        if (value >= 2 && value <= 4) {
+          return `${value} hvězdičky`;
+        }
+        return `${value} hvězdiček`;
+      },
+    },
+    MuiAutocomplete: {
+      clearText: 'Vymazat',
+      closeText: 'Zavřít',
+      loadingText: 'Načítání…',
+      noOptionsText: 'Žádné možnosti',
+      openText: 'Otevřít',
+    },
+  },
+};
+
 export const deDE = {
   props: {
     MuiTablePagination: {
@@ -170,6 +229,27 @@ export const jaJP = {
   },
 };
 
+export const koKR = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: '이전 페이지',
+      labelRowsPerPage: '페이지 당 행:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} / ${count}`,
+      nextIconButtonText: '다음 페이지',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} 점`,
+    },
+    MuiAutocomplete: {
+      clearText: '지우기',
+      closeText: '닫기',
+      loadingText: '불러오는 중…',
+      noOptionsText: '옵션 없음',
+      openText: '열기',
+    },
+  },
+};
+
 export const nlNL = {
   props: {
     MuiTablePagination: {
@@ -244,6 +324,27 @@ export const ptBR = {
   },
 };
 
+export const ptPT = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Página anterior',
+      labelRowsPerPage: 'Linhas por página:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} de ${count}`,
+      nextIconButtonText: 'Próxima página',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Estrela${value !== 1 ? 's' : ''}`,
+    },
+    MuiAutocomplete: {
+      clearText: 'Limpar',
+      closeText: 'Fechar',
+      loadingText: 'A carregar…',
+      noOptionsText: 'Sem opções',
+      openText: 'Abrir',
+    },
+  },
+};
+
 export const roRO = {
   props: {
     MuiTablePagination: {
@@ -293,6 +394,35 @@ export const ruRU = {
       loadingText: 'Загрузка…',
       noOptionsText: 'Нет доступных вариантов',
       openText: 'Открыть',
+    },
+  },
+};
+
+export const skSK = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Predchádzajúca stránka',
+      labelRowsPerPage: 'Riadkov na stránke:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} z ${count}`,
+      nextIconButtonText: 'Ďalšia stránka',
+    },
+    MuiRating: {
+      getLabelText: value => {
+        if (value === 1) {
+          return `${value} hviezdička`;
+        }
+        if (value >= 2 && value <= 4) {
+          return `${value} hviezdičky`;
+        }
+        return `${value} hviezdičiek`;
+      },
+    },
+    MuiAutocomplete: {
+      clearText: 'Vymazať',
+      closeText: 'Zavrieť',
+      loadingText: 'Načítanie…',
+      noOptionsText: 'Žiadne možnosti',
+      openText: 'Otvoriť',
     },
   },
 };

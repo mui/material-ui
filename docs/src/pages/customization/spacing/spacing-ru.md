@@ -46,7 +46,7 @@ theme.spacing(2); // = 8
 
 ## Multiple arity
 
-Вспомогательная функция ` theme.spacing () ` принимает до 4 аргументов. You can use the arguments to reduce the boilerplate. Instead of doing:
+Вспомогательная функция ` theme.spacing () ` принимает до 4 аргументов. Вы можете использовать аргументы, чтобы уменьшить шаблон. Instead of doing:
 
 ```js
 padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'

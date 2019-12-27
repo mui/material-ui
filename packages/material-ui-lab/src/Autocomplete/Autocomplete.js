@@ -219,6 +219,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     autoHighlight = false,
     autoSelect = false,
     blurOnSelect = false,
+    ChipProps,
     classes,
     className,
     clearOnEscape = false,
@@ -235,6 +236,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     disablePortal = false,
     filterOptions,
     filterSelectedOptions = false,
+    forcePopupIcon = 'auto',
     freeSolo = false,
     getOptionDisabled,
     getOptionLabel = x => x,
@@ -244,6 +246,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     includeInputInList = false,
     inputValue: inputValueProp,
     ListboxComponent = 'ul',
+    ListboxProps,
     loading = false,
     loadingText = 'Loading…',
     multiple = false,
@@ -305,7 +308,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
       startAdornment = renderTags(value, getCustomizedTagProps);
     } else {
       startAdornment = value.map((option, index) => (
-        <Chip label={getOptionLabel(option)} size={size} {...getCustomizedTagProps({ index })} />
+        <Chip
+          label={getOptionLabel(option)}
+          size={size}
+          {...getCustomizedTagProps({ index })}
+          {...ChipProps}
+        />
       ));
     }
   }
@@ -373,7 +381,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   </IconButton>
                 )}
 
-                {freeSolo ? null : (
+                {(!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false ? (
                   <IconButton
                     {...getPopupIndicatorProps()}
                     disabled={disabled}
@@ -385,7 +393,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   >
                     {popupIcon}
                   </IconButton>
-                )}
+                ) : null}
               </div>
             ),
           },
@@ -418,7 +426,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
               <div className={classes.noOptions}>{noOptionsText}</div>
             ) : null}
             {groupedOptions.length > 0 ? (
-              <ListboxComponent className={classes.listbox} {...getListboxProps()}>
+              <ListboxComponent
+                className={classes.listbox}
+                {...getListboxProps()}
+                {...ListboxProps}
+              >
                 {groupedOptions.map((option, index) => {
                   if (groupBy) {
                     return renderGroup({
@@ -469,6 +481,10 @@ Autocomplete.propTypes = {
    * - `mouse` the input is blurred after a mouse event.
    */
   blurOnSelect: PropTypes.oneOfType([PropTypes.oneOf(['mouse', 'touch']), PropTypes.bool]),
+  /**
+   * Props applied to the [`Chip`](/api/chip/) element.
+   */
+  ChipProps: PropTypes.object,
   /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
@@ -546,6 +562,10 @@ Autocomplete.propTypes = {
    */
   filterSelectedOptions: PropTypes.bool,
   /**
+   * Force the visibility display of the popup icon.
+   */
+  forcePopupIcon: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.bool]),
+  /**
    * If `true`, the Autocomplete is free solo, meaning that the user input is not bound to provided options.
    */
   freeSolo: PropTypes.bool,
@@ -589,6 +609,10 @@ Autocomplete.propTypes = {
    */
   ListboxComponent: PropTypes.elementType,
   /**
+   * Props applied to the Listbox element.
+   */
+  ListboxProps: PropTypes.object,
+  /**
    * If `true`, the component is in a loading state.
    */
   loading: PropTypes.bool,
@@ -627,7 +651,7 @@ Autocomplete.propTypes = {
    *
    * @param {object} event The event source of the callback.
    * @param {string} value The new value of the text input
-   * @param {string} reason One of "input" (user input) or "reset" (programmatic change)
+   * @param {string} reason Can be: "input" (user input), "reset" (programmatic change), `"clear"`.
    */
   onInputChange: PropTypes.func,
   /**

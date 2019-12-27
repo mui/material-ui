@@ -3,7 +3,7 @@ title: Composant React Badge
 components: Badge
 ---
 
-# Badges
+# Badge
 
 <p class="description">Emblema gera um pequeno emblema para o canto superior direito do seu filho(s).</p>
 
@@ -13,29 +13,29 @@ Exemples de badges contenant du texte, utilisant les couleurs primaires et secon
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
-## Customized badges
+## Badges custom
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Voici un exemple de personnalisation du composant. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
-## Badge visibility
+## Visibilité du badge
 
-The visibility of badges can be controlled using the `invisible` property.
+La visibilité des badges peut être contrôlée à l'aide de la propriété `invisible`.
 
-The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
+Le badge se cache automatiquement quand badgeContent est nul. Vous pouvez la remplacer avec la propriété `showZero`.
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-## Maximum Value
+## Valeur maximale
 
-You can use the `max` property to cap the value of the badge content.
+Vous pouvez utiliser la propriété `max` pour limiter la valeur du contenu du badge.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
-## Dot Badge
+## Badge à points
 
-The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
+La propriété `dot` change un badge en petit point. Il peut être utilisé comme une notification indiquant que quelque chose a changé sans donner un nombre.
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
@@ -49,4 +49,4 @@ You can use the `overlap` property to place the badge relative to the corner of 
 
 You can use the `horizontalAlignment` and `verticalAlignment` properties to move the badge to any corner of the wrapped element.
 
-{{"demo": "pages/components/badges/BadgeAlignment.js"}}
+{{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}

@@ -37,7 +37,7 @@ const customQueries = { queryDescriptionOf, getDescriptionOf, findDescriptionOf 
  * TODO: type return RenderResult in setProps
  */
 function clientRender(element, options = {}) {
-  const { baseElement, strict = false, wrapper: InnerWrapper = React.Fragment } = options;
+  const { baseElement, strict = true, wrapper: InnerWrapper = React.Fragment } = options;
 
   const Mode = strict ? React.StrictMode : React.Fragment;
   function Wrapper({ children }) {

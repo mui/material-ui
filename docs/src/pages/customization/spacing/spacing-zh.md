@@ -44,7 +44,7 @@ const theme = createMuiTheme({
 theme.spacing(2); // = 8
 ```
 
-## Multiple arity
+## 多个参数
 
 ` theme.spacing() ` 最多接受4个参数。 You can use the arguments to reduce the boilerplate. Instead of doing:
 
@@ -52,7 +52,7 @@ theme.spacing(2); // = 8
 padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'
 ```
 
-you can do:
+你可以这样做：
 
 ```js
 padding: theme.spacing(1, 2), // '8px 16px'

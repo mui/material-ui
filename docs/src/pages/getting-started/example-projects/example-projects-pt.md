@@ -26,7 +26,7 @@ If you want to start with a more complete and real-world example, you could take
 
 - [React Most Wanted](https://github.com/TarikHuber/react-most-wanted):
     
-  - Created with Create React App
+  - Criado com o Create React App
   - Custom Create React App script to start a new project with just a single CLI command
   - Build for Firebase including Authentication using the official Firebase Web Auth UI
   - Routing with React Router including error handling (404) and lazy loading

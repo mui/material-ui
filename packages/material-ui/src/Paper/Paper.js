@@ -22,6 +22,10 @@ export const styles = theme => {
     rounded: {
       borderRadius: theme.shape.borderRadius,
     },
+    /* Styles applied to the root element if `variant="outlined"` */
+    outlined: {
+      border: `1px solid ${theme.palette.divider}`,
+    },
     ...elevations,
   };
 };
@@ -33,6 +37,7 @@ const Paper = React.forwardRef(function Paper(props, ref) {
     component: Component = 'div',
     square = false,
     elevation = 1,
+    variant = 'elevation',
     ...other
   } = props;
 
@@ -46,9 +51,10 @@ const Paper = React.forwardRef(function Paper(props, ref) {
     <Component
       className={clsx(
         classes.root,
-        classes[`elevation${elevation}`],
         {
           [classes.rounded]: !square,
+          [classes[`elevation${elevation}`]]: variant === 'elevation',
+          [classes.outlined]: variant === 'outlined',
         },
         className,
       )}
@@ -86,6 +92,10 @@ Paper.propTypes = {
    * If `true`, rounded corners are disabled.
    */
   square: PropTypes.bool,
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['elevation', 'outlined']),
 };
 
 export default withStyles(styles, { name: 'MuiPaper' })(Paper);

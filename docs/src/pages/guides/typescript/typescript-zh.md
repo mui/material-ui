@@ -17,31 +17,31 @@ In order for types to work, you have to at least have the following options enab
 }
 ```
 
-The strict mode options are the same that are required for every types package published in the `@types/` namespace. Using a less strict `tsconfig.json` or omitting some of the libraries might cause errors. To get the best type experience with the types we recommend setting `"strict": true`.
+The strict mode options are the same that are required for every types package published in the `@types/` namespace. 使用不太严格的 `tsconfig.json` 或省略某些库可能会带来一些错误。 To get the best type experience with the types we recommend setting `"strict": true`.
 
 ## `withStyles` 的使用
 
-Using `withStyles` in TypeScript can be a little tricky, but there are some utilities to make the experience as painless as possible.
+在 TypeScript 中使用 `withStyles` 可能有点棘手，但有一些实用程序可以帮助提高使用感受。
 
 ### 使用 `createStyles` 来杜绝类型扩展
 
-A frequent source of confusion is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
+有一个造成混淆的常见原因是 TypeScript的 [类型扩展](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening)，因此这个示例不会像预期那样工作：
 
 ```ts
 const styles = {
-  root: {
+  root： {
     display: 'flex',
     flexDirection: 'column',
   }
 };
 
-withStyles(styles);
+withStyles（styles）;
 //         ^^^^^^
-//         Types of property 'flexDirection' are incompatible.
-//           Type 'string' is not assignable to type '"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'.
+//        属性 'flexDirection' 的类型是不兼容的。
+//           'string' 类型不能赋予给这些类型：'"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'。
 ```
 
-The problem is that the type of the `flexDirection` property is inferred as `string`, which is too arbitrary. To fix this, you can pass the styles object directly to `withStyles`:
+问题是 `flexDirection` 属性的类型被推断为 `string`，这样太随意了。 要解决此问题，您可以将样式对象直接传递给 `withStyles`：
 
 ```ts
 withStyles({
@@ -52,7 +52,7 @@ withStyles({
 });
 ```
 
-However type widening rears its ugly head once more if you try to make the styles depend on the theme:
+然而，如果您尝试让样式随主题而变化，类型扩展会再次显示其不怎么雅观的部分：
 
 ```ts
 withStyles(({ palette, spacing }) => ({
@@ -66,12 +66,12 @@ withStyles(({ palette, spacing }) => ({
 }));
 ```
 
-This is because TypeScript [widens the return types of function expressions](https://github.com/Microsoft/TypeScript/issues/241).
+这是因为 TypeScript [扩展了函数表达式](https://github.com/Microsoft/TypeScript/issues/241)的返回类型。
 
 Because of this, using the `createStyles` helper function to construct your style rules object is recommended:
 
 ```ts
-// Non-dependent styles
+// 不依赖于主题的样式
 const styles = createStyles({
   root: {
     display: 'flex',
@@ -79,7 +79,7 @@ const styles = createStyles({
   },
 });
 
-// Theme-dependent styles
+// 依赖于主题的样式
 const styles = ({ palette, spacing }: Theme) => createStyles({
   root: {
     display: 'flex',
@@ -91,11 +91,11 @@ const styles = ({ palette, spacing }: Theme) => createStyles({
 });
 ```
 
-`createStyles` is just the identity function; it doesn't "do anything" at runtime, just helps guide type inference at compile time.
+`createStyles` 只是身份函数；它不会在运行时“做任何事情”，只是在编译时指导类型推断。
 
 ### Media queries（媒体查询）
 
-`withStyles` allows a styles object with top level media-queries like so:
+`withStyles` 允许样式对象具有顶级媒体查询的权限，如下所示：
 
 ```ts
 const styles = createStyles({
@@ -110,11 +110,11 @@ const styles = createStyles({
 });
 ```
 
-However to allow these styles to pass TypeScript, the definitions have to be ambiguous concerning names for CSS classes and actual CSS property names. Due to this class names that are equal to CSS properties should be avoided.
+但是，为了允许这些样式传递 TypeScript，鉴于CSS 类的名称和实际的 CSS 属性名称不一致，定义必须是模糊的。 由于类名称应与 CSS 属性相同，因此应避免使用。
 
 ```ts
-// error because TypeScript thinks `@media (min-width: 960px)` is a class name
-// and `content` is the css property
+// 这样是错误的，由于 TypeScript 认为 `@media (min-width: 960px)` 是一个类名
+// 并且 `content` 是 css 属性
 const ambiguousStyles = createStyles({
   content: {
     minHeight: '100vh',
@@ -126,7 +126,7 @@ const ambiguousStyles = createStyles({
   },
 });
 
-// works just fine
+// 这样定义就可以
 const ambiguousStyles = createStyles({
   contentClass: {
     minHeight: '100vh',
@@ -141,7 +141,7 @@ const ambiguousStyles = createStyles({
 
 ### 使用 `WithStyles` 来扩充你的属性
 
-Since a component decorated with `withStyles(styles)` gets a special `classes` prop injected, you will want to define its props accordingly:
+由于用 `withStyles(styles)` 装饰的组件被注入了一个特殊的 `classes` 属性，您需要相应地定义其属性：
 
 ```ts
 const styles = (theme: Theme) => createStyles({
@@ -151,10 +151,10 @@ const styles = (theme: Theme) => createStyles({
 });
 
 interface Props {
-  // non-style props
+  // 未被注入样式的属性
   foo: number;
   bar: boolean;
-  // injected style props
+  // 被注入样式的属性
   classes: {
     root: string;
     paper: string;
@@ -163,7 +163,7 @@ interface Props {
 }
 ```
 
-However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) because it requires you to maintain the class names (`'root'`, `'paper'`, `'button'`, ...) in two different places. We provide a type operator `WithStyles` to help with this, so that you can just write:
+然而，这是不是很 [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) ，因为它需要你在两个不同的地方保持类名（`'root'`， `'paper'`， `'button'`，...）。 我们提供了一个类型操作符 `WithStyles` 来帮助解决这个问题，因此您可以直接写入：:
 
 ```ts
 import { WithStyles, createStyles } from '@material-ui/core';
@@ -182,7 +182,7 @@ interface Props extends WithStyles<typeof styles> {
 
 ### 装饰组件
 
-Applying `withStyles(styles)` as a function works as expected:
+将 `withStyles(styles)` 作为函数来如期使用：
 
 ```tsx
 const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) => (
@@ -205,13 +205,13 @@ const DecoratedClass = withStyles(styles)(
 );
 ```
 
-Unfortunately due to a [current limitation of TypeScript decorators](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles(styles)` can't be used as a decorator in TypeScript.
+不幸的是，由于[TypeScript 装饰器现有的限制 ](https://github.com/Microsoft/TypeScript/issues/4881)， `withStyles(styles)` 不能用在 TypeScript 中作为一个装饰器。
 
 ## 自定义 `主题`
 
-When adding custom properties to the `Theme`, you may continue to use it in a strongly typed way by exploiting [TypeScript's module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
+将自定义属性添加到`主题`中时，您可以通过以强类型的方式实现 [TypeScript 的模块扩充](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)而继续使用它 。
 
-The following example adds an `appDrawer` property that is merged into the one exported by `material-ui`:
+以下示例添加了一个 `appDrawer` 属性，并将其合并到由 `material-ui` 提供的属性中：
 
 ```ts
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
@@ -224,7 +224,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
       breakpoint: Breakpoint
     }
   }
-  // allow configuration using `createMuiTheme`
+  // 使用 `createMuiTheme` 来配置
   interface ThemeOptions {
     appDrawer?: {
       width?: React.CSSProperties['width']
@@ -234,7 +234,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 }
 ```
 
-And a custom theme factory with additional defaulted options:
+以及一个带有其他默认选项的自定义主题仓库：
 
 **./styles/createMyTheme**:
 
@@ -252,7 +252,7 @@ export default function createMyTheme(options: ThemeOptions) {
 }
 ```
 
-This could be used like:
+也可以这样使用：
 
 ```ts
 import createMyTheme from './styles/createMyTheme';
@@ -264,12 +264,12 @@ const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 
 Material-UI allows you to replace a component's root node via a `component` prop. For example, a Button's root node can be replaced with a React Router's Link, and any additional props that are passed to Button, such as `to`, will be spread to the Link component. For a code example concerning Button and react-router-dom checkout [these demos](/guides/composition/#routing-libraries).
 
-Not every component fully supports any component type you pass in. If you encounter a component that rejects its `component` props in TypeScript please open an issue. There is an ongoing effort to fix this by making component props generic.
+但是，并不是每个组件都完全支持您传入的任何组件类型。 如果您在 TypeScript 中遇到一个不接受其 `component` 属性的组件，请新建一个 issue。 通过使组件道具具有通用性，一直在努力解决这个问题。
 
 ## 处理`值`和事件处理器
 
-Many components concerned with user input offer a `value` prop or event handlers which include the current `value`. In most situations that `value` is only handled within React which allows it be of any type, such as objects or arrays.
+很多与用户输入有关的组件会提供一个 `value` 属性或者包含当前`值`的事件处理器。 大多数情况下`值`只在 React 内被处理，这样的话它能够是任何类型，譬如 objects 或者 arrays。
 
-However, that type cannot be verified at compile time in situations where it depends on the component's children e.g. for `Select` or `RadioGroup`. This means that the soundest option is to type it as `unknown` and let the developer decide how they want to narrow that type down. We do not offer the possibility to use a generic type in those cases for [the same reasons `event.target` is not generic in React](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682).
+然而，如果是它依赖于组件子项的情况，此类型无法在编译时被验证，例如对于 `Select` 或者 `RadioGroup` 来说。 这意味着留给我们的最合适的选项是将其输入为 `unknown` 并让开发者自行决定如何来缩小该类型。 与 [`event.target` 在 React 中并不通用的原因](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/11508#issuecomment-256045682)相同，我们并不推荐您在这些案例中尝试使用一个通用的类型。
 
-The demos include typed variants that use type casting. It is an acceptable tradeoff because the types are all located in a single file and are very basic. You have to decide for yourself if the same tradeoff is acceptable for you. The library types are be strict by default and loose via opt-in.
+The demos include typed variants that use type casting. 鉴于所有的类型都位于一个文件中，并且都是非常基本的，这样的折衷可以接受。 您必须自行决定是否能够接受同样的折衷。 The library types are be strict by default and loose via opt-in.

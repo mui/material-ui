@@ -3,7 +3,7 @@ title: Диалог, компонент React
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
-# Диалоги
+# Dialog (диалог)
 
 <p class="description">Диалоги информируют пользователей о задаче и могут содержать критическую информацию, требовать решения или включать несколько задач.</p>
 
@@ -97,13 +97,13 @@ function MyComponent() {
 
 ## Перетаскиваемый диалог
 
-Вы можете создать перетаскиваемый диалог, используя [react-draggable](https://github.com/mzabriskie/react-draggable). To do so, you can pass the the imported `Draggable` component as the `PaperComponent` of the `Dialog` component. This will make the entire dialog draggable.
+Вы можете создать перетаскиваемый диалог, используя [react-draggable](https://github.com/mzabriskie/react-draggable). Для этого вы можете передать импортированный компонент `Draggable` как компонент `PaperComponent` компонента `Dialog`. Это сделает весь диалог перетаскиваемым.
 
 {{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## Прокрутка длинного контента
 
-When dialogs become too long for the user’s viewport or device, they scroll.
+Когда диалоги становятся слишком длинными для окна просмотра или устройства пользователя, они их прокручивают.
 
 - `scroll = paper` содержимое диалогового окна прокручивается внутри элемента paper.
 - `scroll = body` содержимое диалога прокручивается внутри элемента body.
@@ -112,6 +112,10 @@ When dialogs become too long for the user’s viewport or device, they scroll.
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
+## Ограничения
+
+Follow the [Modal limitations section](/components/modal/#limitations).
+
 ## Доступность
 
-Follow the [Modal accessibility section](/components/modal/#accessibility).
+Смотри [раздел доступности модальных окон](/components/modal/#accessibility).

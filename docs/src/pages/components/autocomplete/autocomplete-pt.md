@@ -92,6 +92,12 @@ In the event that you need to lock certain tag so that they can't be removed in 
 
 {{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
 
+## Tamanhos
+
+Fancy smaller inputs? Use a propriedade `size`.
+
+{{"demo": "pages/components/autocomplete/Sizes.js"}}
+
 ## Customized Autocomplete
 
 This demo reproduces the GitHub's label picker:
@@ -121,7 +127,7 @@ It supports the following options:
   - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
   - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
   - `config.stringify` (*Func* [optional]): Defaults to `JSON.stringify`.
-  - `config.trim` (*Boolean* [optional]): Defaults to `false`. Remove trailing spaces.
+  - `config.trim` (*Boolean* [opcional]): Padrão `false`. Remove trailing spaces.
 
 In the following demo, the options need to start with the query prefix:
 

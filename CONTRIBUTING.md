@@ -31,7 +31,7 @@ When in doubt, keep your Pull Requests small. To give a Pull Request the best ch
 
 1. Fork the repository.
 
-2. Clone the fork to your local machine and add upstream remote
+2. Clone the fork to your local machine and add upstream remote:
 
 ```sh
 git clone git@github.com:<yourname>/material-ui.git
@@ -46,19 +46,25 @@ git checkout master
 git pull upstream master
 ```
 
-4. Create a new topic branch:
+4. Install the dependencies:
+
+```sh
+yarn install
+```
+
+5. Create a new topic branch:
 
 ```sh
 git checkout -b my-topic-branch
-```
+````
 
-5. Make changes, commit and push to your fork:
+6. Make changes, commit and push to your fork:
 
 ```sh
 git push -u
 ```
 
-6. Go to [the repository](https://github.com/mui-org/material-ui) and make a Pull Request.
+7. Go to [the repository](https://github.com/mui-org/material-ui) and make a Pull Request.
 
 The core team is monitoring for Pull Requests. We will review your Pull Request and either merge it, request changes to it, or close it with an explanation.
 

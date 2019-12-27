@@ -1,4 +1,4 @@
-# Advanced
+# Дополнительные параметры
 
 <p class="description">В этом разделе описывается более сложное использование @material-ui/core/styles.</p>
 

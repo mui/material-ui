@@ -253,7 +253,6 @@ function Demo(props) {
 
   const showSourceHint = demoHovered && !sourceHintSeen;
   const DemoComponent = demoData.Component;
-  const gaCategory = demoOptions.demo;
   const demoName = getDemoName(demoData.githubLocation);
   const demoSandboxedStyle = React.useMemo(
     () => ({
@@ -339,7 +338,7 @@ function Demo(props) {
               demo={demo}
               codeOpen={codeOpen}
               codeVariant={codeVariant}
-              gaEventCategory={gaCategory}
+              gaEventLabel={demoOptions.demo}
               onLanguageClick={handleCodeLanguageClick}
             />
             <div className={classes.headerButtons}>
@@ -353,28 +352,13 @@ function Demo(props) {
               >
                 <IconButton
                   aria-label={showCodeLabel}
-                  data-ga-event-category={gaCategory}
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
                   data-ga-event-action="expand"
                   onClick={handleClickCodeOpen}
                   color={demoHovered ? 'primary' : 'default'}
                 >
                   <CodeIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              <Tooltip
-                classes={{ popper: classes.tooltip }}
-                title={t('viewGitHub')}
-                placement="top"
-              >
-                <IconButton
-                  aria-label={t('viewGitHub')}
-                  data-ga-event-category={gaCategory}
-                  data-ga-event-action="github"
-                  href={demoData.githubLocation}
-                  target="_blank"
-                  rel="noopener nofollow"
-                >
-                  <GitHubIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
               {demoOptions.hideEditButton ? null : (
@@ -385,7 +369,8 @@ function Demo(props) {
                 >
                   <IconButton
                     aria-label={t('codesandbox')}
-                    data-ga-event-category={gaCategory}
+                    data-ga-event-category="demo"
+                    data-ga-event-label={demoOptions.demo}
                     data-ga-event-action="codesandbox"
                     onClick={handleClickCodeSandbox}
                   >
@@ -393,6 +378,23 @@ function Demo(props) {
                   </IconButton>
                 </Tooltip>
               )}
+              <Tooltip
+                classes={{ popper: classes.tooltip }}
+                title={t('viewGitHub')}
+                placement="top"
+              >
+                <IconButton
+                  aria-label={t('viewGitHub')}
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="github"
+                  href={demoData.githubLocation}
+                  target="_blank"
+                  rel="noopener nofollow"
+                >
+                  <GitHubIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
               <IconButton
                 onClick={handleClickMore}
                 aria-owns={anchorEl ? 'demo-menu-more' : undefined}
@@ -417,7 +419,8 @@ function Demo(props) {
                 }}
               >
                 <MenuItem
-                  data-ga-event-category={gaCategory}
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
                   data-ga-event-action="copy"
                   onClick={handleClickCopy}
                 >
@@ -425,7 +428,8 @@ function Demo(props) {
                 </MenuItem>
                 {demoOptions.hideEditButton ? null : (
                   <MenuItem
-                    data-ga-event-category={gaCategory}
+                    data-ga-event-category="demo"
+                    data-ga-event-label={demoOptions.demo}
                     data-ga-event-action="stackblitz"
                     onClick={handleClickStackBlitz}
                   >
@@ -433,14 +437,16 @@ function Demo(props) {
                   </MenuItem>
                 )}
                 <MenuItem
-                  data-ga-event-category={gaCategory}
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
                   data-ga-event-action="copy-js-source-link"
                   onClick={createHandleCodeSourceLink(`${demoName}.js`)}
                 >
                   {t('copySourceLinkJS')}
                 </MenuItem>
                 <MenuItem
-                  data-ga-event-category={gaCategory}
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
                   data-ga-event-action="copy-ts-source-link"
                   onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
                 >

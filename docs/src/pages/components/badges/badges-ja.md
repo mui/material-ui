@@ -1,9 +1,9 @@
 ---
-title: Badge React component
+title: バッジReactコンポーネント
 components: Badge
 ---
 
-# Badges
+# Badge (バッジ)
 
 <p class="description">バッジは、その子供の右上に小さなバッジを生成します。</p>
 
@@ -15,7 +15,7 @@ components: Badge
 
 ## Customized badges （カスタマイズされたバッジ）
 
-コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドドキュメントページ](/customization/components/)ご覧ください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドドキュメントページ](/customization/components/)ご覧ください。
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -49,4 +49,4 @@ BadgeContentが0の場合、バッジは自動的に非表示になります。 
 
 `horizontalAlignment` および `verticalAlignment` プロパティを使用して、ラップされた要素の任意のコーナーにバッジを移動できます。
 
-{{"demo": "pages/components/badges/BadgeAlignment.js"}}
+{{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}

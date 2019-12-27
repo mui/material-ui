@@ -71,9 +71,9 @@ yarn add @material-ui/styles
 ### Styles（样式表单）
 
 - ⚠️ Material-UI 依赖于 JSS v10版本。 JSS v10版本与v9版本不向后兼容。 请保证您的开发环境中未安装 JSS v9版本。 (Removing `react-jss` from your `package.json` can help). StylesProvider 组件替代了 JssProvider 组件。
-- Remove the first option argument of `withTheme()`. (The first argument was a placeholder for a potential future option that never arose.)
+- 请移除 `withTheme()` 中的第一个可选的参数。 (The first argument was a placeholder for a potential future option that never arose.)
   
-    It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
+    它与[emotion 的 API](https://emotion.sh/docs/introduction) 以及 [styled-components 的 API ](https://www.styled-components.com) 相匹配。
 
 ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
@@ -232,7 +232,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   - 您必须要在图标按钮上设置 `edge` 属性。
 - [List] `dense` no longer reduces the top and bottom padding of the `List` element.
 
-- [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
+- [ListItem] 加强 `disabled` 和 `focusVisible` 样式规则的 CSS 特性。
 
 ### Menu（菜单）
 

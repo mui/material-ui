@@ -206,7 +206,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   
     This also applies to `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` as well as `ListItem` if the `button` prop is true.
 
-### Card
+### Card (カード)
 
 - [CardActions] Rename the `disableActionSpacing` prop to `disableSpacing`.
 - [CardActions] Remove the `disableActionSpacing` CSS class.
@@ -238,7 +238,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 - [ExpansionPanel] Increase the CSS specificity of the `disabled` and `expanded` style rules.
 - [ExpansionPanel] Rename the `CollapseProps` prop to `TransitionProps`.
 
-### List
+### List (リスト)
 
 - [List] Rework the list components to match the specification:
   

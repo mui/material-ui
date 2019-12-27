@@ -292,8 +292,8 @@ const Popover = React.forwardRef(function Popover(props, ref) {
       }
 
       return {
-        top: `${top}px`,
-        left: `${left}px`,
+        top: `${Math.round(top)}px`,
+        left: `${Math.round(left)}px`,
         transformOrigin: getTransformOriginValue(elemTransformOrigin),
       };
     },
@@ -527,7 +527,7 @@ Popover.propTypes = {
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} reason Can be:`"escapeKeyDown"`, `"backdropClick"`
+   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose: PropTypes.func,
   /**

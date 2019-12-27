@@ -593,6 +593,39 @@ describe('<Select />', () => {
       clock.restore();
     });
 
+    it('should not focus on close controlled select', () => {
+      function ControlledWrapper() {
+        const [open, setOpen] = React.useState(false);
+
+        return (
+          <div>
+            <button type="button" id="open-select" onClick={() => setOpen(true)}>
+              Open select
+            </button>
+            <Select
+              MenuProps={{ transitionDuration: 0 }}
+              open={open}
+              onClose={() => setOpen(false)}
+              value=""
+            >
+              <MenuItem onClick={() => setOpen(false)}>close</MenuItem>
+            </Select>
+          </div>
+        );
+      }
+      const { container, getByRole } = render(<ControlledWrapper />);
+      const openSelect = container.querySelector('#open-select');
+      openSelect.focus();
+      fireEvent.click(openSelect);
+
+      const option = getByRole('option');
+      expect(option).to.have.focus;
+      fireEvent.click(option);
+
+      expect(container.querySelectorAll('.Mui-focused').length).to.equal(0);
+      expect(openSelect).to.have.focus;
+    });
+
     it('should allow to control closing by passing onClose props', () => {
       function ControlledWrapper() {
         const [open, setOpen] = React.useState(false);

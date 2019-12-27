@@ -4,23 +4,26 @@
 
 ## Intenções
 
-Uma intenção de cor é um mapeamento de uma paleta para uma determinada intenção dentro da sua aplicação.
-
-O tema expõe as seguintes intenções de cores:
+Uma intenção de cor é um mapeamento de uma paleta para uma determinada intenção dentro da sua aplicação. O tema expõe as seguintes intenções de cores:
 
 - primário - usado para representar os elementos de interface primários para um usuário.
 - secundário - usado para representar os elementos de interface secundários para um usuário.
 - erro - usado para representar os elementos de interface dos quais o usuário deve estar ciente.
+- warning - used to represent potentially dangerous actions or important messages.
+- info - used to present information to the user that is neutral and not necessarily important.
+- success - used to indicate the successful completion of an action that user triggered.
 
 A paleta padrão usa as sombras prefixadas com `A` (`A200`, etc.) para a intenção secundária, e as cores não pré-fixadas para as outras intenções.
 
 Se você quiser aprender mais sobre cor, você pode conferir [a seção de cores](/customization/color/).
 
-## Paleta personalizada
+{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline"}}
 
-Você pode sobrescrever os valores padrão da paleta incluindo um objeto `palette` como parte do seu tema.
+### Customização
 
-Se algum dos objetos de intenção [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary) ou [`palette.error`](/customization/default-theme/?expend-path=$.palette.error) forem fornecidos, eles sobrescreverão os padrões.
+Você pode sobrescrever os valores padrão da paleta incluindo um objeto palette como parte do seu tema.
+
+If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary), [`palette.error`](/customization/default-theme/?expend-path=$.palette.error), [`palette.warning`](/customization/default-theme/?expend-path=$.palette.warning), [`palette.info`](/customization/default-theme/?expend-path=$.palette.info) or [`palette.successs`](/customization/default-theme/?expend-path=$.palette.successs) 'intention' objects are provided, they will replace the defaults.
 
 O valor da intenção pode ser um objeto [cor](/customization/color/), ou um objeto com uma ou mais das chaves especificadas pela seguinte interface TypeScript:
 
@@ -48,56 +51,6 @@ const theme = createMuiTheme({
 });
 ```
 
-Se a chave de intenção receber um objeto de cor como no exemplo acima, o mapeamento a seguir será usado para preencher as chaves necessárias:
-
-```js
-palette: {
-  primary: {
-    light: palette.primary[300],
-    main: palette.primary[500],
-    dark: palette.primary[700],
-    contrastText: getContrastText(palette.primary[500]),
-  },
-  secondary: {
-    light: palette.secondary.A200,
-    main: palette.secondary.A400,
-    dark: palette.secondary.A700,
-    contrastText: getContrastText(palette.secondary.A400),
-  },
-  error: {
-    light: palette.error[300],
-    main: palette.error[500],
-    dark: palette.error[700],
-    contrastText: getContrastText(palette.error[500]),
-  },
-},
-```
-
-Este exemplo ilustra como você pode recriar os valores padrão da paleta:
-
-```js
-import { createMuiTheme } from '@material-ui/core/styles';
-import indigo from '@material-ui/core/colors/indigo';
-import pink from '@material-ui/core/colors/pink';
-import red from '@material-ui/core/colors/red';
-
-// Todas as chaves a seguir são opcionais, pois os valores padrão são fornecidos.
-const theme = createMuiTheme({
-  palette: {
-    primary: indigo,
-    secondary: pink,
-    error: red,
-    // Usado por `getContrastText ()` para maximizar o contraste entre o segundo plano e
-    // o texto.
-    contrastThreshold: 3,
-    // Usado para alterar a luminosidade de uma cor em aproximadamente
-    // dois índices em sua paleta de tons.
-    // Por exemplo, mude de Red 500 para Red 300 ou Red 700.
-    tonalOffset: 0.2,
-  },
-});
-```
-
 **Fornecendo as cores diretamente**
 
 Se você deseja fornecer cores mais personalizadas, você pode criar seu próprio objeto de cor, ou fornecer cores diretamente para algumas ou todas as chaves da intenção:
@@ -108,33 +61,38 @@ import { createMuiTheme } from '@material-ui/core/styles';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      // light: será calculada com base em palette.primary.main,
+      // light: will be calculated from palette.primary.main,
       main: '#ff4400',
-      // dark: será calculada com base em palette.primary.main,
-      // contrastText: será calculada para contrastar com palette.primary.main
+      // dark: will be calculated from palette.primary.main,
+      // contrastText: will be calculated to contrast with palette.primary.main
     },
     secondary: {
       light: '#0066ff',
       main: '#0044ff',
-      // dark: será calculada com base em palette.secondary.main,
+      // dark: will be calculated from palette.secondary.main,
       contrastText: '#ffcc00',
     },
-    // error: irá usar a cor padrão
+    // Used by `getContrastText()` to maximize the contrast between
+    // the background and the text.
+    contrastThreshold = 3,
+    // Used by the functions below to shift a color's luminance by approximately
+    // two indexes within its tonal palette.
+    // Por exemplo, mude de Red 500 para Red 300 ou Red 700.
+    tonalOffset: 0.2,
   },
 });
 ```
 
-Como no exemplo acima, se o objeto intenção contiver cores personalizadas usando qualquer uma das chaves `main`, `light`, `dark` e `contrastText`, esses valores se mapeiam da seguinte maneira:
+As in the example above, if the intention object contains custom colors using any of the "main", "light", "dark" or "contrastText" keys, these map as follows:
 
-- Se a chave `dark` e / ou `light` são omitidas, seus valores serão calculados com base em `main`, de acordo com o valor de `tonalOffset`.
+- If the "dark" and / or "light" keys are omitted, their value(s) will be calculated from "main", according to the "tonalOffset" value.
+- If "contrastText" is omitted, its value will be calculated to contrast with "main", according to the"contrastThreshold" value.
 
-- Se `contrastText` é omitido, seu valor será calculado para contrastar com `main`, de acordo com o valor de `contrastThreshold`.
+Both the "tonalOffset" and "contrastThreshold" values may be customized as needed. A higher value for "tonalOffset" will make calculated values for "light" lighter, and "dark" darker. A higher value for "contrastThreshold" increases the point at which a background color is considered light, and given a dark "contrastText".
 
-Tanto os valores de `tonalOffset` e `contrastThreshold` poderão ser customizados conforme o necessário. Um valor mais alto para `tonalOffset` fará valores calculados para `light` mais claro e `escuro` mais escuro. Um valor mais alto para `contrastThreshold` aumenta o ponto no qual uma cor de fundo é considerada clara, e recebe um `contrastText` escuro.
+Note that "contrastThreshold" follows a non-linear curve.
 
-Observe que `contrastThreshold ` segue uma curva não linear.
-
-## Exemplo
+### Exemplo
 
 {{"demo": "pages/customization/palette/Palette.js"}}
 
@@ -142,26 +100,19 @@ Observe que `contrastThreshold ` segue uma curva não linear.
 
 Precisa de inspiração? A equipe do Material Design construiu uma incrível [ferramenta de configuração de paleta](/customization/color/#color-tool) para te ajudar.
 
-## Tipo (Tema claro / escuro)
+## Dark mode
 
-O Material-UI vem com duas variantes de temas, claro (padrão) e escuro.
-
-Você pode aplicar o tema escuro definindo `type` como `dark`. Embora seja apenas uma alteração no valor de uma única propriedade, internamente ela altera as seguintes chaves:
-
-- `palette.text`
-- `palette.divider`
-- `palette.background`
-- `palette.action`
+Material-UI comes with two palette types, light (the default) and dark. You can make the theme dark by setting `type: 'dark'`. While it's only a single property value change, internally it modifies several palette values.
 
 ```js
-const theme = createMuiTheme({
+const darkTheme = createMuiTheme({
   palette: {
     type: 'dark',
   },
 });
 ```
 
-{{"demo": "pages/customization/palette/DarkTheme.js"}}
+{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "defaultCodeOpen": false}}
 
 ### User preference
 
@@ -199,4 +150,4 @@ function App() {
 
 ## Valores padrão
 
-You can explore the default values of the palette using [the theme explorer](/customization/default-theme/?expend-path=$.palette) or by opening the dev tools console on this page (`window.theme.palette`).
+Você pode explorar os valores padrão da paleta usando [o explorador de tema](/customization/default-theme/?expend-path=$.palette) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.palette`).

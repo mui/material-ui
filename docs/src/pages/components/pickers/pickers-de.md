@@ -20,7 +20,7 @@ components: TextField
 
 ## Native Picker
 
-⚠️ Unterstützung von systemeigenen Eingabesteuerelementen durch Browser [ist nicht perfekt](https://caniuse.com/#feat=input-datetime). Have a look at [@material-ui/pickers](https://material-ui-pickers.dev/) for a richer solution.
+⚠️ Unterstützung von systemeigenen Eingabesteuerelementen durch Browser [ist nicht perfekt](https://caniuse.com/#feat=input-datetime). Schau dir [@material-ui/pickers](https://material-ui-pickers.dev/) an, um eine umfassendere Lösung zu finden.
 
 ### Datumsauswahlen
 

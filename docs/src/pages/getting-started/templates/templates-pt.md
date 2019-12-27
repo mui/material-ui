@@ -1,10 +1,10 @@
 ---
-title: Modelos de React grátis
+title: 9+ Free React Templates
 ---
 
 # Modelos React
 
-<p class="description">Uma seleção básica de modelos react para ajudar a você começar a criar o seu aplicativo. A coleção contém painel de controle, administrativo e muito mais.</p>
+<p class="description">A selection of free react templates to help you get started building your app. The collection contains react dashboard, admin, and more.</p>
 
 Os modelos podem ser combinados com uma das [aplicações de exemplo](https://github.com/mui-org/material-ui/tree/master/examples) para gerar um projeto inicial completo.
 

@@ -8,7 +8,7 @@ import TableContext from './TableContext';
 
 describe('<Table />', () => {
   let mount;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
   let classes;
 
   before(() => {

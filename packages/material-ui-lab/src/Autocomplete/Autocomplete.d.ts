@@ -38,6 +38,10 @@ export interface AutocompleteProps
       'defaultValue' | 'onChange' | 'children'
     > {
   /**
+   * Props applied to the [`Chip`](/api/chip/) element.
+   */
+  ChipProps?: object;
+  /**
    * The icon to display in place of the default close icon.
    */
   closeIcon?: React.ReactNode;
@@ -63,9 +67,17 @@ export interface AutocompleteProps
    */
   disablePortal?: boolean;
   /**
+   * Force the visibility display of the popup icon.
+   */
+  forcePopupIcon?: true | false | 'auto';
+  /**
    * The component used to render the listbox.
    */
   ListboxComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement>>;
+  /**
+   * Props applied to the Listbox element.
+   */
+  ListboxProps?: object;
   /**
    * If `true`, the component is in a loading state.
    */

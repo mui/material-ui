@@ -31,7 +31,7 @@
     "jscodeshift-add-imports": "^1.0.1"
   },
   "devDependencies": {
-    "jscodeshift": "^0.6.4"
+    "jscodeshift": "^0.7.0"
   },
   "sideEffects": false,
   "publishConfig": {

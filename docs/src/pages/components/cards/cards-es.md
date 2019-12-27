@@ -3,7 +3,7 @@ title: Componente de React Card (Tarjeta)
 components: Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Collapse, Paper
 ---
 
-# Tarjetas
+# Card (tarjeta)
 
 <p class="description">Las tarjetas contienen información y acciones sobre un tema.</p>
 
@@ -16,6 +16,12 @@ They should be easy to scan for relevant and actionable information. Elements, l
 Aunque las tarjetas pueden permitir múltiples acciones, controles de la interfaz y varios menús, debemos usarlas con precaución ya que son puntos de ingreso a información mas detallada.
 
 {{"demo": "pages/components/cards/SimpleCard.js", "bg": true}}
+
+### Outlined Card
+
+Set `variant="outlined` to render an outlined card.
+
+{{"demo": "pages/components/cards/OutlinedCard.js", "bg": true}}
 
 ## Interacción compleja
 

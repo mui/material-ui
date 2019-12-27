@@ -11,7 +11,7 @@ import Chip from './Chip';
 describe('<Chip />', () => {
   let classes;
   let mount;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Chip />);

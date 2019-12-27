@@ -25,7 +25,7 @@ Discrete sliders can be adjusted to a specific value by referencing its value in
 
 ## 自定义滑块
 
-以下是自定义组件的一些例子。 You can learn more about this in the [overrides documentation page](/customization/components/).
+以下是自定义组件的一些例子。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 

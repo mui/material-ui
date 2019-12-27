@@ -9,7 +9,7 @@ import Portal from './Portal';
 
 describe('<Portal />', () => {
   const serverRender = createServerRender();
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   describe('server-side', () => {
     // Only run the test on node.

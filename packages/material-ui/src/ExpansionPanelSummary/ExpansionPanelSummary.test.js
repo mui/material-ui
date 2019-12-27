@@ -11,7 +11,7 @@ import ButtonBase from '../ButtonBase';
 describe('<ExpansionPanelSummary />', () => {
   let mount;
   let classes;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     // requires mocking the TransitionComponent of `ExpansionPanel`

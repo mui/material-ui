@@ -6,7 +6,7 @@ description: Here are the most significant improvements in November.
 
 **Olivier Tassinari**
 
-*November 12, 2019*
+*December 12, 2019*
 
 Here are the most significant improvements in November:
 

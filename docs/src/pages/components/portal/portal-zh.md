@@ -7,9 +7,9 @@ components: Portal
 
 <p class="description">Portal 组件将其子节点渲染到当前组件层次结构之外的新 "子树" 中。</p>
 
-- 📦 [1.3 kB gzipped](/size-snapshot)
+- 📦 [1.3kB 已压缩的包](/size-snapshot)
 
-The children of the portal component will be appended to the `container` specified. The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components.
+Portal 组件的子节点将被添加到指定的 `容器` 中。 The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components.
 
 ## 示例
 

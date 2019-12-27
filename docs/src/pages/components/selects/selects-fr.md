@@ -3,7 +3,7 @@ title: Select React component
 components: Select, NativeSelect
 ---
 
-# Selects
+# Select
 
 <p class="description">Select components are used for collecting user provided information from a list of options.</p>
 
@@ -43,9 +43,9 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
-## With a Dialog
+## Avec un dialogue
 
-While it's discouraged by the Material Design specification, you can use a select inside a dialog.
+Bien que cela soit découragé par la spécification Material Design, vous pouvez utiliser une sélection dans une boîte de dialogue.
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 

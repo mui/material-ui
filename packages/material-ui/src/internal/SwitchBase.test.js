@@ -19,7 +19,7 @@ const shouldSuccessOnce = name => func => () => {
 };
 
 describe('<SwitchBase />', () => {
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
   let mount;
   let classes;
 

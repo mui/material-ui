@@ -27,12 +27,6 @@ Usamos issues do GitHub exclusivamente para rastrear bugs e solicitações de re
 - Não agrupe vários tópicos em uma issue - cada um deve ter sua própria issue.
 - Por favor, não comente "+1" em uma issue. Isso engana os mantenedores e não ajuda a avançar com a issue. Use as reações do GitHub (👍).
 
-### Spectrum <img src="/static/images/logos/spectrum.svg" width="24" height="24" alt="Spectrum logo" loading="lazy" />
-
-Converse com a comunidade no Spectrum. Se você acha que sua thread pode ser uma pergunta do StackOverflow, acesse o StackOverflow. Bloqueamos/excluímos as perguntas que são melhor resolvidas no StackOverflow para evitar duplicatas.
-
-[Inicie uma discussão](https://spectrum.chat/material-ui)
-
 ### Blog 📝
 
 Mantenha-se atualizado com o desenvolvimento da biblioteca seguindo o blog.
@@ -133,6 +127,6 @@ Tweak Material-UI to meet specific requirements. Give us a summary of your needs
 - Suggest alternatives that might not require Material-UI
 - Decline the work due to timing or relevancy
 
-Note that work must be Material-UI related. We don't accept general React development work. Our contracting price is $300/hour or $1,500/day.
+Note that work must be Material-UI related. We don't accept general React development work. Our contracting price is $200/hour or $1,500/day.
 
 [Send us an email](mailto:custom-work@material-ui.com)

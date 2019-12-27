@@ -9,7 +9,7 @@ components: AppBar, Toolbar, Menu
 
 [顶部应用栏](https://material.io/design/components/app-bars-top.html) 提供与当前屏幕相关的内容和操作。 它用于展示品牌、屏幕标题、导航和操作选项。
 
-It can transform into a contextual action bar or be used as a navbar.
+它可以转换为上下文相关的操作栏或直接用作导航栏。
 
 ## 简单的应用栏
 
