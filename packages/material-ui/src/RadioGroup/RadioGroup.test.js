@@ -1,16 +1,19 @@
 import React from 'react';
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import { spy } from 'sinon';
 import * as PropTypes from 'prop-types';
 import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
+import { createClientRender } from 'test/utils/createClientRender';
 import FormGroup from '../FormGroup';
 import Radio from '../Radio';
 import RadioGroup from './RadioGroup';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
+import useRadioGroup from './useRadioGroup';
 
 describe('<RadioGroup />', () => {
   let mount;
+  const render = createClientRender({ strict: true });
 
   before(() => {
     // StrictModeViolation: test uses #simulate
@@ -253,6 +256,61 @@ describe('<RadioGroup />', () => {
         assert.strictEqual(isNthChecked(wrapper, 0), false);
         assert.strictEqual(isNthChecked(wrapper, 1), true);
         assert.strictEqual(handleChange.firstCall.args[1], '[object Object]');
+      });
+    });
+  });
+
+  describe('useRadioGroup', () => {
+    const RadioGroupController = React.forwardRef((_, ref) => {
+      const radioGroup = useRadioGroup();
+      React.useImperativeHandle(ref, () => radioGroup, [radioGroup]);
+      return null;
+    });
+
+    const RadioGroupControlled = React.forwardRef(function RadioGroupControlled(props, ref) {
+      return (
+        <RadioGroup {...props}>
+          <RadioGroupController ref={ref} />
+        </RadioGroup>
+      );
+    });
+
+    describe('from props', () => {
+      it('should have the name prop from the instance', () => {
+        const radioGroupRef = React.createRef();
+        const { setProps } = render(<RadioGroupControlled name="group" ref={radioGroupRef} />);
+
+        expect(radioGroupRef.current).to.have.property('name', 'group');
+
+        setProps({ name: 'anotherGroup' });
+        expect(radioGroupRef.current).to.have.property('name', 'anotherGroup');
+      });
+
+      it('should have the value prop from the instance', () => {
+        const radioGroupRef = React.createRef();
+        const { setProps } = render(<RadioGroupControlled ref={radioGroupRef} value="" />);
+
+        expect(radioGroupRef.current).to.have.property('value', '');
+
+        setProps({ value: 'one' });
+        expect(radioGroupRef.current).to.have.property('value', 'one');
+      });
+    });
+
+    describe('callbacks', () => {
+      describe('onChange', () => {
+        it('should set the value state', () => {
+          const radioGroupRef = React.createRef();
+          render(<RadioGroupControlled ref={radioGroupRef} defaultValue="zero" />);
+
+          expect(radioGroupRef.current).to.have.property('value', 'zero');
+
+          radioGroupRef.current.onChange({ target: { value: 'one' } });
+          expect(radioGroupRef.current).to.have.property('value', 'one');
+
+          radioGroupRef.current.onChange({ target: { value: 'two' } });
+          expect(radioGroupRef.current).to.have.property('value', 'two');
+        });
       });
     });
   });
