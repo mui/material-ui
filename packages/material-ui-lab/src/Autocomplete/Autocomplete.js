@@ -301,6 +301,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
       className: clsx(classes.tag, {
         [classes.tagSizeSmall]: size === 'small',
       }),
+      disabled,
       ...getTagProps(params),
     });
 
