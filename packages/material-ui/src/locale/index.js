@@ -17,6 +17,7 @@ export const azAZ = {
 
         return `${value} ${pluralForm}`;
       },
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Silmək',
@@ -46,6 +47,7 @@ export const csCZ = {
         }
         return `${value} hvězdiček`;
       },
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Vymazat',
@@ -67,6 +69,7 @@ export const deDE = {
     },
     MuiRating: {
       getLabelText: value => `${value} ${value !== 1 ? 'Sterne' : 'Stern'}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Leeren',
@@ -91,6 +94,7 @@ export const enUS = {};
     },
     MuiRating: {
       getLabelText: value => `${value} Star${value !== 1 ? 's' : ''}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Clear',
@@ -112,6 +116,7 @@ export const esES = {
     },
     MuiRating: {
       getLabelText: value => `${value} Estrella${value !== 1 ? 's' : ''}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Limpiar',
@@ -133,6 +138,7 @@ export const faIR = {
     },
     MuiRating: {
       getLabelText: value => `${value} ستاره`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'پاک‌کردن',
@@ -154,6 +160,7 @@ export const frFR = {
     },
     MuiRating: {
       getLabelText: value => `${value} Etoile${value !== 1 ? 's' : ''}`,
+      emptyLabelText: 'Vide',
     },
     MuiAutocomplete: {
       clearText: 'Vider',
@@ -176,6 +183,7 @@ export const idID = {
     },
     MuiRating: {
       getLabelText: value => `${value} Bintang`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Hapus',
@@ -197,6 +205,7 @@ export const itIT = {
     },
     MuiRating: {
       getLabelText: value => `${value} Stell${value !== 1 ? 'a' : 'e'}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Svuota',
@@ -218,6 +227,7 @@ export const jaJP = {
     },
     MuiRating: {
       getLabelText: value => `${value} ${value !== 1 ? '出演者' : '星'}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'クリア',
@@ -239,6 +249,7 @@ export const koKR = {
     },
     MuiRating: {
       getLabelText: value => `${value} 점`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: '지우기',
@@ -260,6 +271,7 @@ export const nlNL = {
     },
     MuiRating: {
       getLabelText: value => `${value} Ster${value !== 1 ? 'ren' : ''}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Wissen',
@@ -292,6 +304,7 @@ export const plPL = {
 
         return `${value} ${pluralForm}`;
       },
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Wyczyść',
@@ -313,6 +326,7 @@ export const ptBR = {
     },
     MuiRating: {
       getLabelText: value => `${value} Estrela${value !== 1 ? 's' : ''}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Limpar',
@@ -334,6 +348,7 @@ export const ptPT = {
     },
     MuiRating: {
       getLabelText: value => `${value} Estrela${value !== 1 ? 's' : ''}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Limpar',
@@ -355,6 +370,7 @@ export const roRO = {
     },
     MuiRating: {
       getLabelText: value => `${value} St${value !== 1 ? 'ele' : 'ea'}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Șterge',
@@ -387,6 +403,7 @@ export const ruRU = {
 
         return `${value} ${pluralForm}`;
       },
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Очистить',
@@ -416,6 +433,7 @@ export const skSK = {
         }
         return `${value} hviezdičiek`;
       },
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Vymazať',
@@ -437,6 +455,7 @@ export const svSE = {
     },
     MuiRating: {
       getLabelText: value => `${value} ${value !== 1 ? 'Stjärnor' : 'Stjärna'}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Rensa',
@@ -459,6 +478,7 @@ export const trTR = {
     },
     MuiRating: {
       getLabelText: value => `${value} Yıldız`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Temizle',
@@ -491,6 +511,7 @@ export const ukUA = {
 
         return `${value} ${pluralForm}`;
       },
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Очистити',
@@ -512,6 +533,7 @@ export const zhCN = {
     },
     MuiRating: {
       getLabelText: value => `${value} 星${value !== 1 ? '星' : ''}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: '明确',
