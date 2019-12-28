@@ -53,7 +53,7 @@ function VariableSizeIconContainer(props) {
   const { value, ...other } = props;
   return (
     <span {...other}>
-      <FavoriteIcon style={{ fontSize: (value * value) / 2 }} />
+      <FavoriteIcon style={{ fontSize: (value + 10) * 2 }} />
     </span>
   );
 }
