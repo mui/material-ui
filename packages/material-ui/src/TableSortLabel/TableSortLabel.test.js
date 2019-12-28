@@ -48,13 +48,6 @@ describe('<TableSortLabel />', () => {
       assert.strictEqual(iconChildren.length, 1);
     });
 
-    it('by default should have desc direction class', () => {
-      const wrapper = shallow(<TableSortLabel />);
-      const icon = wrapper.find(`.${classes.icon}`).first();
-      assert.strictEqual(icon.hasClass(classes.iconDirectionAsc), false);
-      assert.strictEqual(icon.hasClass(classes.iconDirectionDesc), true);
-    });
-
     it('when given direction desc should have desc direction class', () => {
       const wrapper = shallow(<TableSortLabel direction="desc" />);
       const icon = wrapper.find(`.${classes.icon}`).first();
