@@ -67,18 +67,25 @@ describe('<Rating />', () => {
     });
     expect(container.querySelectorAll(`.${classes.iconHover}`).length).to.equal(2);
   });
-  describe('props: customIcons', () => {
+  describe('props: IconContainerComponent', () => {
     it('should render with custom icons', () => {
-      const customIcons = [
-        <Star fontSize="small" />,
-        <Star style={{ fontSize: '30' }} />,
-        <Star style={{ fontSize: '40' }} />,
-      ];
+      function IconContainer() {
+        return (
+          <span>
+            <Star />
+          </span>
+        );
+      }
       const { container } = render(
-        <Rating name="read-only" value={1} customIcons={customIcons} readOnly />,
+        <Rating
+          name="read-only"
+          value={1}
+          max={5}
+          IconContainerComponent={IconContainer}
+          readOnly
+        />,
       );
-      expect(container.querySelectorAll(`.${classes.customIcons}`).length).to.equal(1);
-      expect(container.querySelectorAll(`.${classes.icon}`).length).to.equal(3);
+      expect(container.querySelectorAll(`.${classes.icon}`).length).to.equal(5);
     });
   });
 });
