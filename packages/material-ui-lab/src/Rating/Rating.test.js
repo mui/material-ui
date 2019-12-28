@@ -67,7 +67,8 @@ describe('<Rating />', () => {
     });
     expect(container.querySelectorAll(`.${classes.iconHover}`).length).to.equal(2);
   });
-  describe('props: IconContainerComponent', () => {
+
+  describe('prop: IconContainerComponent', () => {
     it('should render with custom icons', () => {
       function IconContainer() {
         return (
