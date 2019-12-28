@@ -90,6 +90,17 @@ function flattenPages(pages, current = []) {
   }, current);
 }
 
+// To replace with .findIndex() once we stop IE 11 support.
+function findIndex(array, comp) {
+  for (let i = 0; i < array.length; i += 1) {
+    if (comp(array[i])) {
+      return i;
+    }
+  }
+
+  return -1;
+}
+
 function MarkdownDocs(props) {
   const {
     blog,
@@ -145,7 +156,7 @@ function MarkdownDocs(props) {
 
   const { activePage, pages } = React.useContext(PageContext);
   const pageList = flattenPages(pages);
-  const currentPageNum = pageList.findIndex(page => page.pathname === activePage.pathname);
+  const currentPageNum = findIndex(pageList, page => page.pathname === activePage.pathname);
   const currentPage = pageList[currentPageNum];
   const prevPage = pageList[currentPageNum - 1];
   const nextPage = pageList[currentPageNum + 1];
