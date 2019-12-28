@@ -107,13 +107,6 @@ export const styles = theme => ({
   iconActive: {
     transform: 'scale(1.2)',
   },
-  customIcons: {
-    display: 'flex',
-    alignItems: 'center',
-    '& > label > span > svg': {
-      margin: theme.spacing(2),
-    },
-  },
   /* Styles applied to the icon wrapping elements when decimals are necessary. */
   decimal: {
     position: 'relative',
@@ -143,9 +136,8 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     emptyIcon,
     getLabelText = defaultLabelText,
     icon = defaultIcon,
-    customIcons,
     IconContainerComponent = IconContainer,
-    max = customIcons && customIcons.length > 0 ? customIcons.length : 5,
+    max = 5,
     name: nameProp,
     onChange,
     onChangeActive,
@@ -168,7 +160,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   }, []);
 
   const valueProp = roundValueToPrecision(valueProp2, precision);
-  const isCustomIcons = Boolean(customIcons && customIcons.length > 0);
   const theme = useTheme();
   const [{ hover, focus }, setState] = React.useState({
     hover: -1,
@@ -285,8 +276,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   };
 
   const item = (propsItem, state) => {
-    const seletedIcon = isCustomIcons ? customIcons[propsItem.value - 1] : icon;
-
     const id = `${name}-${String(propsItem.value).replace('.', '-')}`;
     const container = (
       <IconContainerComponent
@@ -299,7 +288,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           [classes.iconActive]: state.active,
         })}
       >
-        {emptyIcon && !state.filled ? emptyIcon : seletedIcon}
+        {emptyIcon && !state.filled ? emptyIcon : icon}
       </IconContainerComponent>
     );
 
@@ -340,7 +329,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           [classes.disabled]: disabled,
           [classes.focusVisible]: focusVisible,
           [classes.readOnly]: readOnly,
-          [classes.customIcons]: isCustomIcons,
         },
         className,
       )}
@@ -420,7 +408,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
             hover: itemValue <= hover,
             focus: itemValue <= focus,
             checked: itemValue === valueProp,
-            isCustomIcons,
           },
         );
       })}
@@ -441,25 +428,6 @@ Rating.propTypes = {
   /**
    * If `true`, the rating will be disabled.
    */
-  /**
-   * customIcons is an array of icons elements
-   */
-  customIcons: chainPropTypes(PropTypes.arrayOf(PropTypes.element), props => {
-    if (props.customIcons && !Array.isArray(props.customIcons)) {
-      return new Error(['Material-UI: the props `customIcons` must be an array']);
-    }
-    if (Array.isArray(props.customIcons) && !props.customIcons.length > 0) {
-      return new Error([
-        'Material-UI: the props `customIcons` must be an array with at least one element inside',
-      ]);
-    }
-    if (props.customIcons && !props.customIcons.every(icon => typeof icon === 'function')) {
-      return new Error([
-        'Material-UI: the props `customIcons` must be an array with each index as a React Element',
-      ]);
-    }
-    return null;
-  }),
   disabled: PropTypes.bool,
   /**
    * The icon to display when empty.
