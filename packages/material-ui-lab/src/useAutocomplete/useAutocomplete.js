@@ -232,8 +232,8 @@ export default function useAutocomplete(props) {
   const [openState, setOpenState] = React.useState(false);
   const open = isOpenControlled ? openProp : openState;
 
-  const inputValueFilter =
-    !multiple && value && inputValue === getOptionLabel(value) ? '' : inputValue;
+  const inputValueIsSelectedValue =
+    !multiple && value != null && inputValue === getOptionLabel(value);
 
   let popupOpen = open;
 
@@ -250,7 +250,9 @@ export default function useAutocomplete(props) {
           }
           return true;
         }),
-        { inputValue: inputValueFilter },
+        // we use the empty string to manipulate `filterOptions` to not filter any options
+        // i.e. the filter predicate always returns true
+        { inputValue: inputValueIsSelectedValue ? '' : inputValue },
       )
     : [];
 
@@ -585,7 +587,7 @@ export default function useAutocomplete(props) {
               inputRef.current.value.length,
             );
           }
-        } else if (freeSolo && inputValueFilter !== '') {
+        } else if (freeSolo && inputValue !== '' && inputValueIsSelectedValue === false) {
           selectNewValue(event, inputValue);
         }
         break;

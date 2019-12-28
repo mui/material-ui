@@ -746,11 +746,15 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         if (track === false) {
           markActive = values.indexOf(mark.value) !== -1;
         } else {
-          const isMarkActive = range
-            ? mark.value >= values[0] && mark.value <= values[values.length - 1]
-            : mark.value <= values[0];
           markActive =
-            (isMarkActive && track === 'normal') || (!isMarkActive && track === 'inverted');
+            (track === 'normal' &&
+              (range
+                ? mark.value >= values[0] && mark.value <= values[values.length - 1]
+                : mark.value <= values[0])) ||
+            (track === 'inverted' &&
+              (range
+                ? mark.value <= values[0] || mark.value >= values[values.length - 1]
+                : mark.value >= values[0]));
         }
 
         return (

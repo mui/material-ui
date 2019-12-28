@@ -8,7 +8,7 @@ import { fade } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import createChainedFunction from '../utils/createChainedFunction';
 import withStyles from '../styles/withStyles';
-import RadioGroupContext from '../RadioGroup/RadioGroupContext';
+import useRadioGroup from '../RadioGroup/useRadioGroup';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -67,7 +67,7 @@ const Radio = React.forwardRef(function Radio(props, ref) {
     size = 'medium',
     ...other
   } = props;
-  const radioGroup = React.useContext(RadioGroupContext);
+  const radioGroup = useRadioGroup();
 
   let checked = checkedProp;
   const onChange = createChainedFunction(onChangeProp, radioGroup && radioGroup.onChange);

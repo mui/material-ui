@@ -37,7 +37,7 @@
     "test:karma": "cross-env NODE_ENV=test karma start test/karma.conf.js",
     "test:regressions": "webpack --config test/regressions/webpack.config.js && rimraf test/regressions/screenshots/chrome/* && vrtest run --config test/vrtest.config.js --record",
     "test:umd": "node packages/material-ui/test/umd/run.js",
-    "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.js' 'docs/**/*.test.js' --exclude '**/node_modules/**'",
+    "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.js' 'docs/**/*.test.js' 'scripts/**/*.test.js' --exclude '**/node_modules/**'",
     "test:watch": "yarn test:unit --watch",
     "typescript": "lerna run typescript --parallel"
   },
