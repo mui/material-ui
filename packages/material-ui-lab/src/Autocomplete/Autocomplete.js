@@ -173,6 +173,7 @@ export const styles = theme => ({
     alignItems: 'center',
     cursor: 'pointer',
     paddingTop: 6,
+    boxSizing: 'border-box',
     outline: '0',
     WebkitTapHighlightColor: 'transparent',
     paddingBottom: 6,
