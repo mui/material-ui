@@ -20,11 +20,7 @@ const StyledRating = withStyles({
   },
 })(Rating);
 
-function getLabelText(value: number) {
-  return `${value} Heart${value !== 1 ? 's' : ''}`;
-}
-
-const customSatisfactionIcons: { [index: string]: { icon: React.ReactElement; label: string } } = {
+const customIcons: { [index: string]: { icon: React.ReactElement; label: string } } = {
   1: {
     icon: <SentimentVeryDissatisfiedIcon />,
     label: 'Very Dissatisfied',
@@ -47,15 +43,9 @@ const customSatisfactionIcons: { [index: string]: { icon: React.ReactElement; la
   },
 };
 
-function getCustomLabelText(value: number) {
-  const { label } = customSatisfactionIcons[value];
-  return `${label}`;
-}
-
 function IconContainer(props: IconContainerProps) {
   const { value, ...other } = props;
-  const { icon } = customSatisfactionIcons[value];
-  return <span {...other}>{icon}</span>;
+  return <span {...other}>{customIcons[value].icon}</span>;
 }
 
 export default function CustomizedRatings() {
@@ -75,7 +65,7 @@ export default function CustomizedRatings() {
         <StyledRating
           name="customized-color"
           value={2}
-          getLabelText={getLabelText}
+          getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
           precision={0.5}
           icon={<FavoriteIcon fontSize="inherit" />}
         />
@@ -87,11 +77,10 @@ export default function CustomizedRatings() {
       <Box component="fieldset" mb={3} borderColor="transparent">
         <Typography component="legend">Custom icon set</Typography>
         <Rating
-          getLabelText={getCustomLabelText}
-          IconContainerComponent={IconContainer}
-          max={Object.keys(customSatisfactionIcons).length}
-          name="custom-satisfaction-icon-set"
+          name="customized-icons"
           value={2}
+          getLabelText={(value: number) => customIcons[value].label}
+          IconContainerComponent={IconContainer}
         />
       </Box>
     </div>

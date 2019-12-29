@@ -21,11 +21,7 @@ const StyledRating = withStyles({
   },
 })(Rating);
 
-function getLabelText(value) {
-  return `${value} Heart${value !== 1 ? 's' : ''}`;
-}
-
-const customSatisfactionIcons = {
+const customIcons = {
   1: {
     icon: <SentimentVeryDissatisfiedIcon />,
     label: 'Very Dissatisfied',
@@ -48,15 +44,9 @@ const customSatisfactionIcons = {
   },
 };
 
-function getCustomLabelText(value) {
-  const { label } = customSatisfactionIcons[value];
-  return `${label}`;
-}
-
 function IconContainer(props) {
   const { value, ...other } = props;
-  const { icon } = customSatisfactionIcons[value];
-  return <span {...other}>{icon}</span>;
+  return <span {...other}>{customIcons[value].icon}</span>;
 }
 
 IconContainer.propTypes = {
@@ -80,7 +70,7 @@ export default function CustomizedRatings() {
         <StyledRating
           name="customized-color"
           value={2}
-          getLabelText={getLabelText}
+          getLabelText={value => `${value} Heart${value !== 1 ? 's' : ''}`}
           precision={0.5}
           icon={<FavoriteIcon fontSize="inherit" />}
         />
@@ -92,11 +82,10 @@ export default function CustomizedRatings() {
       <Box component="fieldset" mb={3} borderColor="transparent">
         <Typography component="legend">Custom icon set</Typography>
         <Rating
-          getLabelText={getCustomLabelText}
-          IconContainerComponent={IconContainer}
-          max={Object.keys(customSatisfactionIcons).length}
-          name="custom-satisfaction-icon-set"
+          name="customized-icons"
           value={2}
+          getLabelText={value => customIcons[value].label}
+          IconContainerComponent={IconContainer}
         />
       </Box>
     </div>
