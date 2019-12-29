@@ -53,7 +53,7 @@ When multiple snackbar updates are necessary, they should appear one at a time.
 
 Snackbars should appear above FABs (on mobile).
 
-{{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
 
 ### Change Transition
 
