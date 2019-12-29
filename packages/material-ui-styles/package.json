@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@emotion/hash": "^0.7.1",
+    "@emotion/hash": "^0.7.4",
     "@material-ui/types": "^4.1.1",
     "@material-ui/utils": "^4.7.1",
     "clsx": "^1.0.2",
