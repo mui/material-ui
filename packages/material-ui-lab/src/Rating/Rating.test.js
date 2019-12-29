@@ -77,15 +77,9 @@ describe('<Rating />', () => {
         );
       }
       const { container } = render(
-        <Rating
-          name="read-only"
-          value={1}
-          max={5}
-          IconContainerComponent={IconContainer}
-          readOnly
-        />,
+        <Rating name="custom-icon-set" value={1} max={5} IconContainerComponent={IconContainer} />,
       );
-      expect(container.querySelectorAll(`.${classes.icon}`).length).to.equal(5);
+      expect(container.querySelectorAll(`.${classes.label}`).length).to.equal(5);
     });
   });
 });
