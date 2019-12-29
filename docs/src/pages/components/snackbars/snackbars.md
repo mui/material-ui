@@ -86,7 +86,7 @@ It also enables you to **stack** them on top of one another (although this is di
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
 
-- How long should toasts stay up for? A good length of time to keep messages up is 5 seconds plus 1 extra second for every 120 words, rounding up. This is how fast the average American reads. So if you use the `autoHideDuration` prop, set 6000 ms or more.
+- By default, the toast won't auto-hide. However, if you decide to use the `autoHideDuration` prop, it's recommended giving users [enough time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html).
 - Since alerts are not required to receive focus, content authors should not require users to close a Snackbar if the role is set to `alert="role"` through the SnackbarContent. This is the default role.
 - If a Snackbar requires focus to close it, then content authors should use `role= "alertdialog"`.
 
