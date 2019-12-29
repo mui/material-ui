@@ -494,8 +494,7 @@ const appList = [
   },
   {
     title: 'Typekev',
-    description:
-      'The personal website of a React and Blockchain developer. The code is open-source.',
+    description: 'The personal site of Kevin Gonzalez, featuring his witty chatbot.',
     image: 'typekev.jpg',
     link: 'https://typekev.com/',
     source: 'https://github.com/typekev/typekev-site',
