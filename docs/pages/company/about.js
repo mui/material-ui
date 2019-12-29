@@ -1,5 +1,5 @@
 import React from 'react';
-import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
+import TopLayoutCompany from 'docs/src/modules/components/TopLayoutCompany';
 
 const req = require.context('docs/src/pages/company/about', false, /\.(md|js|tsx)$/);
 const reqSource = require.context(
@@ -10,14 +10,5 @@ const reqSource = require.context(
 const reqPrefix = 'pages/company/about';
 
 export default function Page() {
-  return (
-    <MarkdownDocs
-      disableAd
-      disableToc
-      disableEdit
-      req={req}
-      reqSource={reqSource}
-      reqPrefix={reqPrefix}
-    />
-  );
+  return <TopLayoutCompany req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }

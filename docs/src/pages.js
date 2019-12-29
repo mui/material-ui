@@ -236,6 +236,8 @@ const pages = [
   },
   { pathname: '/versions', displayNav: false },
   { pathname: '/', displayNav: false, title: false },
+  { pathname: '/company/about', displayNav: false, title: false },
+  { pathname: '/company/contact', displayNav: false, title: false },
 ];
 
 export default pages;

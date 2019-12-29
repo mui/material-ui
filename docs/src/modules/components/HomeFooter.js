@@ -23,7 +23,7 @@ const styles = theme => ({
     marginBottom: theme.spacing(4),
     '& img': {
       width: 28,
-      height: 28,
+      height: 22,
       marginRight: theme.spacing(1.5),
     },
   },
@@ -60,7 +60,9 @@ function HomeFooter(props) {
             <Grid item xs={12} sm={3}>
               <div className={classes.logo}>
                 <img src="/static/images/material-ui-logo.svg" alt="" />
-                <Typography>Material-UI</Typography>
+                <Link variant="body1" color="inherit" href="/">
+                  Material-UI
+                </Link>
               </div>
             </Grid>
             <Grid item xs={6} sm={3} className={classes.list}>

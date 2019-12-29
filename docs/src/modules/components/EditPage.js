@@ -4,15 +4,13 @@ import { useSelector } from 'react-redux';
 import { Router, useRouter } from 'next/router';
 import Button from '@material-ui/core/Button';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/edit/master';
+import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 
 export default function EditPage(props) {
   const { markdownLocation } = props;
   const t = useSelector(state => state.options.t);
   const userLanguage = useSelector(state => state.options.userLanguage);
   const router = useRouter();
-  const { canonical } = pathnameToLanguage(Router._rewriteUrlForNextExport(router.asPath));
 
   return (
     <Button
@@ -21,6 +19,8 @@ export default function EditPage(props) {
         if (userLanguage === 'en') {
           return;
         }
+
+        const { canonical } = pathnameToLanguage(Router._rewriteUrlForNextExport(router.asPath));
         window.location = `/aa${canonical}`;
       }}
       href={userLanguage === 'en' ? `${SOURCE_CODE_ROOT_URL}${markdownLocation}` : null}

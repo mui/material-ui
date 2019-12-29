@@ -8,24 +8,16 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Head from 'docs/src/modules/components/Head';
+import useMarkdownDocs from 'docs/src/modules/components/useMarkdownDocs';
 import AppContent from 'docs/src/modules/components/AppContent';
-import Demo from 'docs/src/modules/components/Demo';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import Ad from 'docs/src/modules/components/Ad';
 import EditPage from 'docs/src/modules/components/EditPage';
-import useMarkdownDocsContents from 'docs/src/modules/components/useMarkdownDocsContents';
 import PageContext from 'docs/src/modules/components/PageContext';
-import {
-  getHeaders,
-  getTitle,
-  getDescription,
-  demoRegexp,
-} from 'docs/src/modules/utils/parseMarkdown';
+import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/parseMarkdown';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
-import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
@@ -35,10 +27,6 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
-  },
-  markdownElement: {
-    marginBottom: theme.spacing(2),
-    padding: theme.spacing(0, 1),
   },
   markdownElementBlog: {
     maxWidth: 700,
@@ -77,8 +65,6 @@ const styles = theme => ({
   },
 });
 
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master/docs/src';
-
 function flattenPages(pages, current = []) {
   return pages.reduce((items, item) => {
     if (item.children && item.children.length > 1) {
@@ -116,43 +102,16 @@ function MarkdownDocs(props) {
   } = props;
 
   const t = useSelector(state => state.options.t);
-  const userLanguage = useSelector(state => state.options.userLanguage);
 
-  let demos;
-  let markdown = markdownProp;
+  const markdownDocs = useMarkdownDocs({
+    markdown: markdownProp,
+    markdownLocation: markdownLocationProp,
+    req,
+    reqPrefix,
+    reqSource,
+  });
 
-  if (req) {
-    demos = {};
-    const markdowns = {};
-    req.keys().forEach(filename => {
-      if (filename.indexOf('.md') !== -1) {
-        const match = filename.match(/-([a-z]{2})\.md$/);
-
-        if (match && LANGUAGES_IN_PROGRESS.indexOf(match[1]) !== -1) {
-          markdowns[match[1]] = req(filename);
-        } else {
-          markdowns.en = req(filename);
-        }
-      } else if (filename.indexOf('.tsx') !== -1) {
-        const demoName = `${reqPrefix}/${filename.replace(/\.\//g, '').replace(/\.tsx/g, '.js')}`;
-
-        demos[demoName] = {
-          ...demos[demoName],
-          tsx: req(filename).default,
-          rawTS: reqSource(filename),
-        };
-      } else {
-        const demoName = `${reqPrefix}/${filename.replace(/\.\//g, '')}`;
-
-        demos[demoName] = {
-          ...demos[demoName],
-          js: req(filename).default,
-          raw: reqSource(filename),
-        };
-      }
-    });
-    markdown = markdowns[userLanguage] || markdowns.en;
-  }
+  const headers = getHeaders(markdownDocs.markdown);
 
   const { activePage, pages } = React.useContext(PageContext);
   const pageList = flattenPages(pages);
@@ -161,22 +120,13 @@ function MarkdownDocs(props) {
   const prevPage = pageList[currentPageNum - 1];
   const nextPage = pageList[currentPageNum + 1];
 
-  const headers = getHeaders(markdown);
-  // eslint-disable-next-line no-underscore-dangle
-  global.__MARKED_UNIQUE__ = {};
-
-  const { contents, markdownLocation } = useMarkdownDocsContents({
-    markdown,
-    markdownLocationProp,
-  });
-
   return (
     <AppFrame>
       <Head
-        title={`${headers.title || getTitle(markdown)} - Material-UI`}
-        description={headers.description || getDescription(markdown)}
+        title={`${headers.title || getTitle(markdownDocs.markdown)} - Material-UI`}
+        description={headers.description || getDescription(markdownDocs.markdown)}
       />
-      {disableToc ? null : <AppTableOfContents contents={contents} />}
+      {disableToc ? null : <AppTableOfContents contents={markdownDocs.contents} />}
       {disableAd ? null : (
         <Portal
           container={() => {
@@ -188,77 +138,13 @@ function MarkdownDocs(props) {
           <Ad />
         </Portal>
       )}
-      <svg style={{ display: 'none' }} xmlns="http://www.w3.org/2000/svg">
-        <symbol id="anchor-link-icon" viewBox="0 0 16 16">
-          <path d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z" />
-        </symbol>
-      </svg>
       <AppContent disableAd={disableAd} disableToc={disableToc}>
         {!disableEdit ? (
           <div className={classes.header}>
-            <EditPage
-              markdownLocation={markdownLocation}
-              sourceCodeRootUrl={SOURCE_CODE_ROOT_URL}
-            />
+            <EditPage markdownLocation={markdownDocs.location} />
           </div>
         ) : null}
-        {contents.map((content, index) => {
-          if (demos && demoRegexp.test(content)) {
-            let demoOptions;
-            try {
-              demoOptions = JSON.parse(`{${content}}`);
-            } catch (err) {
-              console.error('JSON.parse fails with: ', `{${content}}`);
-              console.error(err);
-              return null;
-            }
-
-            const name = demoOptions.demo;
-            if (!demos || !demos[name]) {
-              const errorMessage = [
-                `Missing demo: ${name}. You can use one of the following:`,
-                Object.keys(demos),
-              ].join('\n');
-
-              if (userLanguage === 'en') {
-                throw new Error(errorMessage);
-              }
-
-              if (process.env.NODE_ENV !== 'production') {
-                console.error(errorMessage);
-              }
-
-              const warnIcon = (
-                <span role="img" aria-label={t('emojiWarning')}>
-                  ⚠️
-                </span>
-              );
-              return (
-                <div key={content}>
-                  {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-                  {warnIcon} Missing demo `{name}` {warnIcon}
-                </div>
-              );
-            }
-
-            return (
-              <Demo
-                key={content}
-                demo={demos[name]}
-                demoOptions={demoOptions}
-                githubLocation={`${SOURCE_CODE_ROOT_URL}/${name}`}
-              />
-            );
-          }
-
-          return (
-            <MarkdownElement
-              className={clsx(classes.markdownElement, { [classes.markdownElementBlog]: blog })}
-              key={index}
-              text={content}
-            />
-          );
-        })}
+        <div className={clsx({ [classes.markdownElementBlog]: blog })}>{markdownDocs.element}</div>
         <footer className={classes.footer}>
           {!currentPage ||
           currentPage.displayNav === false ||
