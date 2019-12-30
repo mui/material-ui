@@ -336,37 +336,38 @@ const Popover = React.forwardRef(function Popover(props, ref) {
   }, []);
 
   React.useEffect(() => {
-    if (open && paperRef.current){
+    if (open && paperRef.current) {
       setPositioningStyles(paperRef.current);
     }
   });
-React.useImperativeHandle(
-  action,
-  () =>
-  open ? {
-    updatePosition: () => {
-      setPositioningStyles(paperRef.current);
-    },
-  }
-  : null,
-  [open, setPositioningStyles],
-);
+  React.useImperativeHandle(
+    action,
+    () =>
+      open
+        ? {
+            updatePosition: () => {
+              setPositioningStyles(paperRef.current);
+            },
+          }
+        : null,
+    [open, setPositioningStyles],
+  );
 
   React.useEffect(() => {
     if (!open) {
       return undefined;
     }
 
-   const handleResize = debounce(() => {
-     setPositioningStyles(paperRef.current);
-   });
+    const handleResize = debounce(() => {
+      setPositioningStyles(paperRef.current);
+    });
 
-   window.addEventListener('resize',handleResize);
+    window.addEventListener('resize', handleResize);
     return () => {
       handleResize.clear();
-      window.removeEventListener('rezise',handleResize);
+      window.removeEventListener('rezise', handleResize);
     };
-  }, [open,setPositioningStyles]);
+  }, [open, setPositioningStyles]);
 
   let transitionDuration = transitionDurationProp;
 
