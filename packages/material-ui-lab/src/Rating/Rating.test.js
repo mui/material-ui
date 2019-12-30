@@ -1,6 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
-import { stub } from 'sinon';
+import { stub, spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
@@ -65,5 +65,37 @@ describe('<Rating />', () => {
       clientX: 21,
     });
     expect(container.querySelectorAll(`.${classes.iconHover}`).length).to.equal(2);
+  });
+
+  it('should clear the rating', () => {
+    const handleChange = spy();
+    const { getByLabelText } = render(<Rating {...defaultProps} onChange={handleChange} />);
+
+    const input = getByLabelText('2 Stars');
+    fireEvent.click(input, {
+      clientX: 1,
+    });
+
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.args[0][1]).to.deep.equal(null);
+  });
+
+  it('should select the rating', () => {
+    const handleChange = spy();
+    const { getByLabelText } = render(<Rating {...defaultProps} onChange={handleChange} />);
+
+    const input = getByLabelText('3 Stars');
+    fireEvent.click(input);
+
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleChange.args[0][1]).to.deep.equal(3);
+  });
+
+  it('should select the empty input if value is null', () => {
+    const { container, getByLabelText } = render(<Rating {...defaultProps} value={null} />);
+    const input = getByLabelText('Empty');
+    const checked = container.querySelector('input[name="rating-test"]:checked');
+    expect(input).to.equal(checked);
+    expect(input.value).to.equal('');
   });
 });

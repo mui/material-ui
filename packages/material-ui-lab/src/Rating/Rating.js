@@ -22,6 +22,10 @@ function getDecimalPrecision(num) {
 }
 
 function roundValueToPrecision(value, precision) {
+  if (value == null) {
+    return value;
+  }
+
   const nearest = Math.round(value / precision) * precision;
   return Number(nearest.toFixed(getDecimalPrecision(precision)));
 }
@@ -134,6 +138,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     className,
     disabled = false,
     emptyIcon,
+    emptyLabelText = 'Empty',
     getLabelText = defaultLabelText,
     icon = defaultIcon,
     IconContainerComponent = IconContainer,
@@ -146,7 +151,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     precision = 1,
     readOnly = false,
     size = 'medium',
-    value: valueProp2 = null,
+    value: valueProp = null,
     ...other
   } = props;
 
@@ -159,14 +164,14 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     setDefaultName(`mui-rating-${Math.round(Math.random() * 1e5)}`);
   }, []);
 
-  const valueProp = roundValueToPrecision(valueProp2, precision);
+  const valueRounded = roundValueToPrecision(valueProp, precision);
   const theme = useTheme();
   const [{ hover, focus }, setState] = React.useState({
     hover: -1,
     focus: -1,
   });
 
-  let value = valueProp;
+  let value = valueRounded;
   if (hover !== -1) {
     value = hover;
   }
@@ -188,7 +193,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
 
     const rootNode = rootRef.current;
     const { right, left } = rootNode.getBoundingClientRect();
-    const { width } = rootNode.firstChild.getBoundingClientRect();
+    const { width } = rootNode.querySelector(`.${classes.label}`).getBoundingClientRect();
     let percent;
 
     if (theme.direction === 'rtl') {
@@ -235,6 +240,23 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   const handleChange = event => {
     if (onChange) {
       onChange(event, parseFloat(event.target.value));
+    }
+  };
+
+  const handleClear = event => {
+    // Ignore keyboard events
+    // https://github.com/facebook/react/issues/7407
+    if (event.clientX === 0 && event.clientY === 0) {
+      return;
+    }
+
+    setState({
+      hover: -1,
+      focus: -1,
+    });
+
+    if (onChange && parseFloat(event.target.value) === valueRounded) {
+      onChange(event, null);
     }
   };
 
@@ -306,6 +328,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={handleChange}
+          onClick={handleClear}
           value={propsItem.value}
           id={id}
           type="radio"
@@ -336,18 +359,18 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       aria-label={readOnly ? getLabelText(value) : null}
       {...other}
     >
-      {!readOnly && !disabled && value == null && (
+      {!readOnly && !disabled && valueRounded == null && (
         <React.Fragment>
           <input
-            value="0"
-            id={`${name}-0`}
+            value=""
+            id={`${name}-empty`}
             type="radio"
             name={name}
             defaultChecked
             className={classes.visuallyhidden}
           />
-          <label htmlFor={`${name}-0`} className={classes.pristine}>
-            <span className={classes.visuallyhidden}>{getLabelText(0)}</span>
+          <label className={classes.pristine} htmlFor={`${name}-empty`}>
+            <span className={classes.visuallyhidden}>{emptyLabelText}</span>
           </label>
         </React.Fragment>
       )}
@@ -390,7 +413,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
                     filled: itemDecimalValue <= value,
                     hover: itemDecimalValue <= hover,
                     focus: itemDecimalValue <= focus,
-                    checked: itemDecimalValue === valueProp,
+                    checked: itemDecimalValue === valueRounded,
                   },
                 );
               })}
@@ -407,7 +430,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
             filled: itemValue <= value,
             hover: itemValue <= hover,
             focus: itemValue <= focus,
-            checked: itemValue === valueProp,
+            checked: itemValue === valueRounded,
           },
         );
       })}
@@ -433,6 +456,10 @@ Rating.propTypes = {
    * The icon to display when empty.
    */
   emptyIcon: PropTypes.node,
+  /**
+   * The label read when the rating input is empty.
+   */
+  emptyLabelText: PropTypes.node,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
    *

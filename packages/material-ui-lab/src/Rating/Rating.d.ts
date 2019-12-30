@@ -14,7 +14,7 @@ export interface RatingProps
   IconContainerComponent?: React.ElementType<IconContainerProps>;
   max?: number;
   name?: string;
-  onChange?: (event: React.ChangeEvent<{}>, value: number) => void;
+  onChange?: (event: React.ChangeEvent<{}>, value: number | null) => void;
   onChangeActive?: (event: React.ChangeEvent<{}>, value: number) => void;
   precision?: number;
   readOnly?: boolean;
