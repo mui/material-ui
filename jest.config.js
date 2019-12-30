@@ -1,4 +1,3 @@
-require('@yarnpkg/pnpify').patchFs();
 const { defaults } = require('ts-jest/presets');
 const path = require('path');
 

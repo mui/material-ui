@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "test": "jest test/index.test.ts",
-    "build": "pnpify tsc",
+    "build": "tsc",
     "release": "yarn build && standard-version"
   },
   "devDependencies": {
@@ -29,7 +29,6 @@
     "@types/node": "^12.6.2",
     "@types/react": "^16.8.23",
     "@types/uuid": "^3.4.5",
-    "@yarnpkg/pnpify": "2.0.0-rc.7",
     "husky": "4.0.0-beta.3",
     "jest": "^24.8.0",
     "prettier": "^1.18.2",
