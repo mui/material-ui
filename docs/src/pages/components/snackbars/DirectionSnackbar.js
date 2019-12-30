@@ -42,10 +42,7 @@ export default function DirectionSnackbar() {
         open={open}
         onClose={handleClose}
         TransitionComponent={transition}
-        ContentProps={{
-          'aria-describedby': 'message-id',
-        }}
-        message={<span id="message-id">I love snacks</span>}
+        message="I love snacks"
       />
     </div>
   );
