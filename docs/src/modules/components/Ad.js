@@ -25,9 +25,11 @@ const styles = theme => ({
   },
 });
 
-function getAdblock(classes, t) {
+function Adblock(props) {
+  const t = useSelector(state => state.options.t);
+
   return (
-    <Paper component="span" elevation={0} className={classes.paper}>
+    <Paper component="span" elevation={0} {...props}>
       <Typography variant="body2" display="block" component="span" gutterBottom>
         {t('likeMui')}
       </Typography>
@@ -86,9 +88,9 @@ const inHouseAds = [
 
 function Ad(props) {
   const { classes } = props;
-  const t = useSelector(state => state.options.t);
 
   const timerAdblock = React.useRef();
+  const { current: randomSplit } = React.useRef(Math.random());
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
   const [codeFundOut, setCodeFundOut] = React.useState(null);
@@ -157,11 +159,11 @@ function Ad(props) {
     children = <span />;
   }
 
-  if (adblock) {
+  if (!children && adblock) {
     minHeight = 'auto';
 
     if (Math.random() < 0.2) {
-      children = getAdblock(classes, t);
+      children = <Adblock className={classes.paper} />;
     } else {
       children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * Math.random())]} />;
     }
@@ -171,7 +173,7 @@ function Ad(props) {
     if (carbonOut || codeFundOut) {
       children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * Math.random())]} />;
       minHeight = 'auto';
-    } else if (Math.random() < 0.35) {
+    } else if (randomSplit < 0.35) {
       children = <AdCodeFund />;
     } else {
       children = <AdCarbon />;
@@ -180,8 +182,8 @@ function Ad(props) {
 
   React.useEffect(() => {
     // Avoid a flood of events.
-    if (Math.random < 0.1) {
-      return null;
+    if (Math.random() < 0.9) {
+      return undefined;
     }
 
     const delay = setTimeout(() => {
@@ -192,9 +194,17 @@ function Ad(props) {
       } else if (children.type === AdCarbon) {
         type = 'carbon';
       } else if (children.type === AdInHouse) {
-        type = 'in-house';
+        if (!adblock && codeFundOut) {
+          type = 'in-house-codefund';
+        } else if (!adblock && carbonOut) {
+          type = 'in-house-carbon';
+        } else {
+          type = 'in-house';
+        }
+      } else if (children.type === Adblock) {
+        type = 'in-house-adblock';
       } else {
-        type = 'disable-adblock';
+        return;
       }
 
       window.ga('send', {
@@ -212,12 +222,12 @@ function Ad(props) {
           eventLabel: children.props.ad.name,
         });
       }
-    }, 2000);
+    }, 2500);
 
     return () => {
       clearTimeout(delay);
     };
-  }, [children.type, children.props.ad]);
+  }, [children.type, children.props.ad, codeFundOut, carbonOut, adblock]);
 
   return (
     <span className={classes.root} style={{ minHeight }}>
@@ -230,4 +240,4 @@ Ad.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Ad);
+export default React.memo(withStyles(styles)(Ad));

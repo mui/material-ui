@@ -132,7 +132,7 @@ export interface UseAutocompleteProps {
   /**
    * Callback fired when the value changes.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    * @param {any} value
    */
   onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
@@ -147,7 +147,7 @@ export interface UseAutocompleteProps {
    * Callback fired when the input value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} value The new value of the text input
+   * @param {string} value The new value of the text input.
    * @param {string} reason Can be: "input" (user input), "reset" (programmatic change), `"clear"`.
    */
   onInputChange?: (event: React.ChangeEvent<{}>, value: any, reason: 'input' | 'reset') => void;
