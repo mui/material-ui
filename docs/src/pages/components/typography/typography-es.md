@@ -42,7 +42,7 @@ For more info check out the [typeface](https://github.com/KyleAMathews/typefaces
 
 ## Tema
 
-In some situations you might not be able to use the `Typography` component. Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expend-path=$.typography) keys of the theme.
+In some situations you might not be able to use the `Typography` component. Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expand-path=$.typography) keys of the theme.
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 

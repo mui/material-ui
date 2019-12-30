@@ -187,4 +187,4 @@ const theme = createMuiTheme({
 
 ## Valores padrão
 
-Você pode explorar os valores padrão da tipografia usando [o explorador de tema](/customization/default-theme/?expend-path=$.typography) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.typography`).
+Você pode explorar os valores padrão da tipografia usando [o explorador de tema](/customization/default-theme/?expand-path=$.typography) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.typography`).

@@ -23,7 +23,7 @@
 
 You may override the default palette values by including a palette object as part of your theme.
 
-If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary), [`palette.error`](/customization/default-theme/?expend-path=$.palette.error), [`palette.warning`](/customization/default-theme/?expend-path=$.palette.warning), [`palette.info`](/customization/default-theme/?expend-path=$.palette.info) or [`palette.successs`](/customization/default-theme/?expend-path=$.palette.successs) 'intention' objects are provided, they will replace the defaults.
+If any of the [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary), [`palette.error`](/customization/default-theme/?expand-path=$.palette.error), [`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning), [`palette.info`](/customization/default-theme/?expand-path=$.palette.info) or [`palette.successs`](/customization/default-theme/?expand-path=$.palette.successs) 'intention' objects are provided, they will replace the defaults.
 
 The intention value can either be a [color](/customization/color/) object, or an object with one or more of the keys specified by the following TypeScript interface:
 
@@ -150,4 +150,4 @@ function App() {
 
 ## Default values
 
-You can explore the default values of the palette using [the theme explorer](/customization/default-theme/?expend-path=$.palette) or by opening the dev tools console on this page (`window.theme.palette`).
+You can explore the default values of the palette using [the theme explorer](/customization/default-theme/?expand-path=$.palette) or by opening the dev tools console on this page (`window.theme.palette`).

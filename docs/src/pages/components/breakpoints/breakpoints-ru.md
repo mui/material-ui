@@ -12,7 +12,7 @@ For optimal user experience, material design interfaces need to be able to adapt
 - **lg,** large: 1280px
 - **xl,** extra-large: 1920px
 
-Эти [ значения точек останова ](/customization/default-theme/?expend-path=$.breakpoints.values) используются для определения диапазонов точек останова. Диапазон начинается с значения первой точки останова включительно до следующей точки останова не включая её:
+Эти [ значения точек останова ](/customization/default-theme/?expand-path=$.breakpoints.values) используются для определения диапазонов точек останова. Диапазон начинается с значения первой точки останова включительно до следующей точки останова не включая её:
 
 ```js
 значение             |0px     600px    960px    1280px   1920px
@@ -21,7 +21,7 @@ For optimal user experience, material design interfaces need to be able to adapt
 диапазон             |   xs   |   m   |   md |   lg   |   xl
 ```
 
-Эти значения всегда можно изменить. Вы найдете их в теме, в объекте [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values).
+Эти значения всегда можно изменить. Вы найдете их в теме, в объекте [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values).
 
 The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/layout/grid/) and [Hidden](/layout/hidden/) components.
 
@@ -201,7 +201,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 #### Аргументы
 
-1. `options` (*Object* [optional]): 
+1. `options` (*Object* [optional]):
     - `options.withTheme` (*Boolean* [optional]): Defaults to `false`. Provide the `theme` object to the component as a property.
     - `options.noSSR` (*Boolean* [optional]): Defaults to `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. The UI might blink. You can set this flag to `true` if you are not doing server-side rendering.
     - `options.initialWidth` (*Breakpoint* [optional]): As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/themes/#default-props) on the theme. In order to set the initialWidth we need to pass a custom property with this shape:
@@ -212,7 +212,7 @@ const theme = createMuiTheme({
     // withWidth component ⚛️
     MuiWithWidth: {
       // Initial width property
-      initialWidth: 'lg', // Breakpoint being globally set 
+      initialWidth: 'lg', // Breakpoint being globally set
     },
   },
 });

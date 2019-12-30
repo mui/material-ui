@@ -42,7 +42,7 @@ Weitere Informationen finden Sie im [Schriftprojekt](https://github.com/KyleAMat
 
 ## Theme
 
-In einigen Situationen können Sie möglicherweise die Komponente `Typography` nicht benutzen. Hoffentlich können Sie die Hauptfunktionalitäten der [`Typografie`](/customization/default-theme/?expend-path=$.typography) des Themas nutzen.
+In einigen Situationen können Sie möglicherweise die Komponente `Typography` nicht benutzen. Hoffentlich können Sie die Hauptfunktionalitäten der [`Typografie`](/customization/default-theme/?expand-path=$.typography) des Themas nutzen.
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 

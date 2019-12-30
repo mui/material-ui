@@ -221,7 +221,8 @@ function DefaultTheme(props) {
 
   React.useEffect(() => {
     const URL = url.parse(document.location.href, true);
-    const expandPath = URL.query['expend-path'];
+    // 'expend-path' is for backwards compatibility of any external links with a prior typo.
+    const expandPath = URL.query['expand-path'] || URL.query['expend-path'];
 
     if (!expandPath) {
       return;

@@ -29,7 +29,7 @@ export default function MyApp() {
 Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrões para toda a página. Mais especificamente:
 
 - The margin in all browsers is removed.
-- A cor de fundo padrão do material design é aplicada. Isto usando [`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background) para dispositivos padrão e um fundo branco para dispositivos de impressão.
+- A cor de fundo padrão do material design é aplicada. Isto usando [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) para dispositivos padrão e um fundo branco para dispositivos de impressão.
 
 ### Leiaute
 

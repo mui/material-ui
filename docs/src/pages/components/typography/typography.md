@@ -50,7 +50,7 @@ Material-UI default typography configuration only relies on 300, 400, 500, and 7
 ## Theme
 
 In some situations you might not be able to use the `Typography` component.
-Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expend-path=$.typography) keys of the theme.
+Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expand-path=$.typography) keys of the theme.
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 

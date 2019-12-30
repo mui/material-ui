@@ -83,7 +83,7 @@ export default function CustomizedDividers() {
           size="small"
           value={formats}
           onChange={handleFormat}
-          arial-label="text formatting"
+          aria-label="text formatting"
         >
           <ToggleButton value="bold" aria-label="bold">
             <FormatBoldIcon />

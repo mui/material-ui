@@ -42,7 +42,7 @@ import 'typeface-roboto';
 
 ## 主题
 
-在某些情况下，您可能无法使用 `Typography` 组件。 希望您可以利用主题的 [`排版`](/customization/default-theme/?expend-path=$.typography) 键。
+在某些情况下，您可能无法使用 `Typography` 组件。 希望您可以利用主题的 [`排版`](/customization/default-theme/?expand-path=$.typography) 键。
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 

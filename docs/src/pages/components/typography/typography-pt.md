@@ -42,7 +42,7 @@ Para mais informações confira o projeto [typeface](https://github.com/KyleAMat
 
 ## Tema
 
-Em algumas situações, talvez você não consiga usar o componente `Tipografia`. Com sorte, você possa talvez tirar proveito das chaves de [`typography`](/customization/default-theme/?expend-path=$.typography) do tema.
+Em algumas situações, talvez você não consiga usar o componente `Tipografia`. Com sorte, você possa talvez tirar proveito das chaves de [`typography`](/customization/default-theme/?expand-path=$.typography) do tema.
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 
