@@ -128,7 +128,8 @@ suite
       const dynamicSheet = jss.createStyleSheet(dynamicStyles, {
         link: true,
       });
-      dynamicSheet.update({}).attach();
+      dynamicSheet.update({});
+      dynamicSheet.attach();
       sheetsRegistry.add(dynamicSheet);
     }
 
