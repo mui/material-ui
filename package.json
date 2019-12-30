@@ -32,7 +32,7 @@
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
     "react": "^16.8.6",
-    "standard-version": "https://github.com/merceyz/standard-version.git#pnp",
+    "standard-version": "7.1.0",
     "ts-jest": "^24.2.0"
   },
   "dependencies": {
