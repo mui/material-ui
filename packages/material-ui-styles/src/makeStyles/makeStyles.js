@@ -109,7 +109,8 @@ function attach({ state, theme, stylesOptions, stylesCreator, name }, props) {
       ...options,
     });
 
-    dynamicSheet.update(props).attach();
+    dynamicSheet.update(props);
+    dynamicSheet.attach();
 
     state.dynamicSheet = dynamicSheet;
     state.classes = mergeClasses({
