@@ -6,6 +6,7 @@ import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
 import { fade, lighten, darken } from '../styles/colorManipulator';
 import { useIsFocusVisible } from '../utils/focusVisible';
+import ownerDocument from '../utils/ownerDocument';
 import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
 import capitalize from '../utils/capitalize';
@@ -616,20 +617,12 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     }
 
     touchId.current = undefined;
-    document.body.removeEventListener('mousemove', handleTouchMove);
-    document.body.removeEventListener('mouseup', handleTouchEnd);
-    // eslint-disable-next-line no-use-before-define
-    document.body.removeEventListener('mouseenter', handleMouseEnter);
-    document.body.removeEventListener('touchmove', handleTouchMove);
-    document.body.removeEventListener('touchend', handleTouchEnd);
-  });
 
-  const handleMouseEnter = useEventCallback(event => {
-    // If the slider was being interacted with but the mouse went off the window
-    // and then re-entered while unclicked then end the interaction.
-    if (event.buttons === 0) {
-      handleTouchEnd(event);
-    }
+    const doc = ownerDocument(sliderRef.current);
+    doc.removeEventListener('mousemove', handleTouchMove);
+    doc.removeEventListener('mouseup', handleTouchEnd);
+    doc.removeEventListener('touchmove', handleTouchMove);
+    doc.removeEventListener('touchend', handleTouchEnd);
   });
 
   const handleTouchStart = useEventCallback(event => {
@@ -651,23 +644,24 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       onChange(event, newValue);
     }
 
-    document.body.addEventListener('touchmove', handleTouchMove);
-    document.body.addEventListener('touchend', handleTouchEnd);
+    const doc = ownerDocument(sliderRef.current);
+    doc.addEventListener('touchmove', handleTouchMove);
+    doc.addEventListener('touchend', handleTouchEnd);
   });
 
   React.useEffect(() => {
     const { current: slider } = sliderRef;
     slider.addEventListener('touchstart', handleTouchStart);
+    const doc = ownerDocument(slider);
 
     return () => {
       slider.removeEventListener('touchstart', handleTouchStart);
-      document.body.removeEventListener('mousemove', handleTouchMove);
-      document.body.removeEventListener('mouseup', handleTouchEnd);
-      document.body.removeEventListener('mouseenter', handleMouseEnter);
-      document.body.removeEventListener('touchmove', handleTouchMove);
-      document.body.removeEventListener('touchend', handleTouchEnd);
+      doc.removeEventListener('mousemove', handleTouchMove);
+      doc.removeEventListener('mouseup', handleTouchEnd);
+      doc.removeEventListener('touchmove', handleTouchMove);
+      doc.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [handleMouseEnter, handleTouchEnd, handleTouchMove, handleTouchStart]);
+  }, [handleTouchEnd, handleTouchMove, handleTouchStart]);
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -705,9 +699,9 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       onChange(event, newValue);
     }
 
-    document.body.addEventListener('mousemove', handleTouchMove);
-    document.body.addEventListener('mouseenter', handleMouseEnter);
-    document.body.addEventListener('mouseup', handleTouchEnd);
+    const doc = ownerDocument(sliderRef.current);
+    doc.addEventListener('mousemove', handleTouchMove);
+    doc.addEventListener('mouseup', handleTouchEnd);
   });
 
   const trackOffset = valueToPercent(range ? values[0] : min, min, max);
