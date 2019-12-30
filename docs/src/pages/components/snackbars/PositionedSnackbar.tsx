@@ -39,7 +39,10 @@ export default function PositionedSnackbar() {
         key={`${vertical},${horizontal}`}
         open={open}
         onClose={handleClose}
-        message="I love snacks"
+        ContentProps={{
+          'aria-describedby': 'message-id',
+        }}
+        message={<span id="message-id">I love snacks</span>}
       />
     </div>
   );

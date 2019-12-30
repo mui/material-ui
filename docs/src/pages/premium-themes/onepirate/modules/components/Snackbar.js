@@ -46,9 +46,10 @@ function Snackbar(props) {
   return (
     <MuiSnackbar
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      autoHideDuration={6000}
+      autoHideDuration={6e3}
       transition={Transition}
       ContentProps={{
+        'aria-describedby': 'snackbar',
         classes: {
           root: classes.content,
           message: classes.contentMessage,
@@ -58,7 +59,7 @@ function Snackbar(props) {
       message={
         <React.Fragment>
           <InfoIcon className={classes.info} />
-          <span>{message}</span>
+          <span id="snackbar">{message}</span>
         </React.Fragment>
       }
       action={[

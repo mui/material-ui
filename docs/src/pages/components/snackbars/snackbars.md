@@ -53,7 +53,7 @@ When multiple snackbar updates are necessary, they should appear one at a time.
 
 Snackbars should appear above FABs (on mobile).
 
-{{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
+{{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 500}}
 
 ### Change Transition
 
@@ -86,20 +86,27 @@ It also enables you to **stack** them on top of one another (although this is di
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
 
-- By default, the toast won't auto-hide. However, if you decide to use the `autoHideDuration` prop, it's recommended giving users [enough time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html).
-- Since alerts are not required to receive focus, content authors should not require users to close a Snackbar if the role is set to `role="alert"` through the SnackbarContent. This is the default role.
-- If a Snackbar requires focus to close it, then content authors should use `role= "alertdialog"`.
+- Since alerts are not required to receive focus, content authors should not require users to close a Snackbar if the role is set to `alert` through the SnackbarContent `role` prop. This is the default role.
+- If a Snackbar requires focus to close it, then content authors should use the `role` of `alertdialog`.
 
 ```jsx
-<SnackbarContent role="alert" message="This is a Snackbar message." />
+<SnackbarContent
+  message="This is a Snackbar message."
+  role="alert"
+/>
 ```
 
 ```jsx
 <Snackbar
   ContentProps={{
+    'aria-describedby': 'snackbar-fab-message-id',
     'role': 'alertdialog',
   }}
-  message="Archived"
-  action={<Button color="inherit" size="small">Undo</Button>}
+  message={<span id="snackbar-fab-message-id">Archived</span>}
+  action={
+    <Button color="inherit" size="small">
+      Undo
+    </Button>
+  }
 />
 ```

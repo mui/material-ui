@@ -64,7 +64,10 @@ export default function ConsecutiveSnackbars() {
         autoHideDuration={6000}
         onClose={handleClose}
         onExited={handleExited}
-        message={messageInfo ? messageInfo.message : undefined}
+        ContentProps={{
+          'aria-describedby': 'message-id',
+        }}
+        message={<span id="message-id">{messageInfo ? messageInfo.message : undefined}</span>}
         action={[
           <Button key="undo" color="secondary" size="small" onClick={handleClose}>
             UNDO

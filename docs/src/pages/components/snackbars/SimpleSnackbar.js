@@ -38,7 +38,10 @@ export default function SimpleSnackbar() {
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
-        message="Note archived"
+        ContentProps={{
+          'aria-describedby': 'message-id',
+        }}
+        message={<span id="message-id">Note archived</span>}
         action={[
           <Button key="undo" color="secondary" size="small" onClick={handleClose}>
             UNDO
