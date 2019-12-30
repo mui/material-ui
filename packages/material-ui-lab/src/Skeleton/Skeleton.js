@@ -28,11 +28,11 @@ export const styles = theme => ({
   circle: {
     borderRadius: '50%',
   },
-  /* Styles applied to the root element if `disabledAnimate={false}`. */
-  animate: {
-    animation: '$animate 1.5s ease-in-out 0.5s infinite',
+  /* Styles applied to the root element if `animation="pulse"`. */
+  pulse: {
+    animation: '$pulse 1.5s ease-in-out 0.5s infinite',
   },
-  '@keyframes animate': {
+  '@keyframes pulse': {
     '0%': {
       opacity: 1,
     },
@@ -43,14 +43,38 @@ export const styles = theme => ({
       opacity: 1,
     },
   },
+  /* Styles applied to the root element if `animation="wave"`. */
+  wave: {
+    position: 'relative',
+    overflow: 'hidden',
+    '&::after': {
+      animation: '$wave 1.5s linear 0.5s infinite',
+      background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent)',
+      content: '""',
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      top: 0,
+      zIndex: 1,
+    },
+  },
+  '@keyframes wave': {
+    '0%': {
+      transform: 'translateX(-100%)',
+    },
+    '100%': {
+      transform: 'translateX(100%)',
+    },
+  },
 });
 
 const Skeleton = React.forwardRef(function Skeleton(props, ref) {
   const {
+    animation = 'pulse',
     classes,
     className,
     component: Component = 'div',
-    disableAnimate = false,
     height,
     variant = 'text',
     width,
@@ -64,7 +88,7 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
         classes.root,
         classes[variant],
         {
-          [classes.animate]: !disableAnimate,
+          [classes[animation]]: animation !== false,
         },
         className,
       )}
@@ -80,6 +104,11 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
 
 Skeleton.propTypes = {
   /**
+   * The animation.
+   * If `false` the animation effect is disabled.
+   */
+  animation: PropTypes.oneOf(['pulse', 'wave', false]),
+  /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
@@ -93,10 +122,6 @@ Skeleton.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * If `true` the animation effect is disabled.
-   */
-  disableAnimate: PropTypes.bool,
   /**
    * Height of the skeleton.
    * Useful when you don't want to adapt the skeleton to a text element but for instance a card.
