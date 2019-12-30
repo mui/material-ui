@@ -198,7 +198,7 @@ const appList = [
     image: 'eostoolkit.jpg',
     link: 'https://www.eostoolkit.io/',
     source: 'https://github.com/generEOS/eostoolkit',
-    stars: 43,
+    stars: 48,
     similarWebVisits: 123,
     dateAdded: '2019-01-01',
   },
@@ -318,7 +318,7 @@ const appList = [
     link: 'https://marmelab.com/react-admin-demo/',
     source: 'https://github.com/marmelab/react-admin',
     dateAdded: '2018-01-21',
-    stars: 6786,
+    stars: 10751,
   },
   {
     title: 'Builder Book',
@@ -328,7 +328,7 @@ const appList = [
     image: 'builderbook.jpg',
     link: 'https://builderbook.org/',
     source: 'https://github.com/builderbook/builderbook',
-    stars: 1042,
+    stars: 1576,
     dateAdded: '2018-01-05',
   },
   {
@@ -494,12 +494,11 @@ const appList = [
   },
   {
     title: 'Typekev',
-    description:
-      'The personal website of a React and Blockchain developer. The code is open-source.',
+    description: 'The personal site of Kevin Gonzalez, featuring his witty chatbot.',
     image: 'typekev.jpg',
     link: 'https://typekev.com/',
     source: 'https://github.com/typekev/typekev-site',
-    stars: 8,
+    stars: 10,
     dateAdded: '2018-01-23',
   },
   {
@@ -528,7 +527,7 @@ const appList = [
     image: 'swimmy.jpg',
     link: 'https://swimmy.io/',
     source: 'https://github.com/swimmy/swimmy.io',
-    stars: 4,
+    stars: 8,
     dateAdded: '2018-01-27',
   },
   {
@@ -555,7 +554,7 @@ const appList = [
     image: 'npm-registry-browser.jpg',
     link: 'https://topheman.github.io/npm-registry-browser/',
     source: 'https://github.com/topheman/npm-registry-browser',
-    stars: 78,
+    stars: 90,
     dateAdded: '2018-01-15',
   },
   {
@@ -566,7 +565,7 @@ const appList = [
     image: 'snippets.jpg',
     link: 'https://chrome.google.com/webstore/detail/snippets/dcibnkkafifbanoclgjbkmkbogijndin',
     source: 'https://github.com/richardscarrott/snippets',
-    stars: 38,
+    stars: 42,
     dateAdded: '2018-01-19',
   },
   {
@@ -577,7 +576,7 @@ const appList = [
     link: 'https://tree.valleyease.me/',
     image: 'tree.jpg',
     source: 'https://github.com/ValleyZw/tree',
-    stars: 9,
+    stars: 24,
     dateAdded: '2018-01-35',
   },
   {
@@ -596,7 +595,7 @@ const appList = [
     link: 'https://mqtt-explorer.com/',
     source: 'https://github.com/thomasnordquist/MQTT-Explorer',
     image: 'mqtt-explorer.png',
-    stars: 121,
+    stars: 510,
     dateAdded: '2019-03-25',
   },
   {
@@ -617,7 +616,7 @@ const appList = [
     image: 'tagspaces.jpg',
     link: 'https://www.tagspaces.org/',
     source: 'https://github.com/tagspaces/tagspaces',
-    stars: 1824,
+    stars: 1874,
     dateAdded: '2019-11-01',
   },
 ];

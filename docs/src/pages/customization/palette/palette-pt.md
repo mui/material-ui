@@ -23,7 +23,7 @@ Se você quiser aprender mais sobre cor, você pode conferir [a seção de cores
 
 Você pode sobrescrever os valores padrão da paleta incluindo um objeto palette como parte do seu tema.
 
-If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary), [`palette.error`](/customization/default-theme/?expend-path=$.palette.error), [`palette.warning`](/customization/default-theme/?expend-path=$.palette.warning), [`palette.info`](/customization/default-theme/?expend-path=$.palette.info) or [`palette.successs`](/customization/default-theme/?expend-path=$.palette.successs) 'intention' objects are provided, they will replace the defaults.
+If any of the [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary), [`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary), [`palette.error`](/customization/default-theme/?expand-path=$.palette.error), [`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning), [`palette.info`](/customization/default-theme/?expand-path=$.palette.info) or [`palette.successs`](/customization/default-theme/?expand-path=$.palette.successs) 'intention' objects are provided, they will replace the defaults.
 
 O valor da intenção pode ser um objeto [cor](/customization/color/), ou um objeto com uma ou mais das chaves especificadas pela seguinte interface TypeScript:
 
@@ -150,4 +150,4 @@ function App() {
 
 ## Valores padrão
 
-Você pode explorar os valores padrão da paleta usando [o explorador de tema](/customization/default-theme/?expend-path=$.palette) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.palette`).
+Você pode explorar os valores padrão da paleta usando [o explorador de tema](/customization/default-theme/?expand-path=$.palette) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.palette`).

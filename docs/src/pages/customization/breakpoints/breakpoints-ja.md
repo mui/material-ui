@@ -12,7 +12,7 @@
 - **lg,** large: 1280px
 - **xl,** extra-large: 1920px
 
-これらの[ブレークポイント値](/customization/default-theme/?expend-path=$.breakpoints.values)は、ブレークポイントの範囲を決定するために使用されます。 範囲は、ブレークポイント値を含む範囲から、次のブレークポイント値を除く範囲までです。
+これらの[ブレークポイント値](/customization/default-theme/?expand-path=$.breakpoints.values)は、ブレークポイントの範囲を決定するために使用されます。 範囲は、ブレークポイント値を含む範囲から、次のブレークポイント値を除く範囲までです。
 
 ```js
 value         |0px     600px    960px    1280px   1920px
@@ -21,7 +21,7 @@ screen width  |--------|--------|--------|--------|-------->
 range         |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
-これらの値はいつでもカスタマイズできます。 これらは、テーマの[`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values)オブジェクトにあります。
+これらの値はいつでもカスタマイズできます。 これらは、テーマの[`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values)オブジェクトにあります。
 
 ブレークポイントは、さまざまなコンポーネントで応答性を高めるために内部的に使用されますが、[Grid](/components/grid/)および[Hidden](/components/hidden/)コンポーネントを使用してアプリケーションのレイアウトを制御する場合にも利用できます。
 
@@ -201,7 +201,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 #### 引数
 
-1. `オプション` (*オプジェクト* [任意]): 
+1. `オプション` (*オプジェクト* [任意]):
   - `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. `theme`オブジェクトをプロパティとしてコンポーネントに提供します。
   - `options.noSSR` (*ブール値* [任意]): デフォルト値 `false`. サーバー側のレンダリング調整を実行するには、2回レンダリングする必要があります。 1回目は何もない状態で、2回目は子要素と一緒です。 このダブルパスレンダリングサイクルには欠点があります。 UIが点滅することがあります。 サーバサイドレンダリングを実行しない場合は、このフラグを`true`に設定できます。
   - ` options.initialWidth ` （*Breakpoint* [optional]）： As ` window.innerWidth `サーバーでは使用できません デフォルトでは、最初のマウント時に空のコンポーネントがレンダリングされます。 ヒューリスティックを使用して、次の値を近似できます。 クライアント・ブラウザの画面幅。 たとえば、ユーザーエージェントまたはクライアントヒントを使用できます。 https://caniuse.com/#search=client%20hint、[`テーマにカスタムプロパティを使用して初期幅
@@ -243,4 +243,4 @@ export default withWidth()(MyComponent);
 
 ## デフォルト値
 
-You can explore the default values of the breakpoints using [the theme explorer](/customization/default-theme/?expend-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).
+You can explore the default values of the breakpoints using [the theme explorer](/customization/default-theme/?expand-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).
