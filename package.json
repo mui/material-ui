@@ -20,8 +20,6 @@
     "release": "yarn build && standard-version"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.3.3",
-    "@commitlint/config-conventional": "^8.3.3",
     "@types/babel__core": "^7.1.2",
     "@types/doctrine": "^0.0.3",
     "@types/jest": "^24.0.15",
@@ -54,8 +52,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn pretty-quick --staged",
-      "commit-msg": "yarn commitlint -E HUSKY_GIT_PARAMS"
+      "pre-commit": "yarn pretty-quick --staged"
     }
   }
 }

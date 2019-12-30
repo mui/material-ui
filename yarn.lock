@@ -199,170 +199,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:^8.3.3":
-  version: 8.3.3
-  resolution: "@commitlint/cli@npm:8.3.3"
-  dependencies:
-    "@commitlint/format": ^8.3.2
-    "@commitlint/lint": ^8.3.2
-    "@commitlint/load": ^8.3.3
-    "@commitlint/read": ^8.3.2
-    babel-polyfill: 6.26.0
-    chalk: 2.4.2
-    get-stdin: 7.0.0
-    lodash: 4.17.15
-    meow: 5.0.0
-    resolve-from: 5.0.0
-    resolve-global: 1.0.0
-  bin:
-    commitlint: ./lib/cli.js
-  checksum: cee89e2cd881744a2713e1532fe7c49b9f6848341fee129d7ed9071769b65260c079f17bdf908ae73ac63dd4d0dc36b3a73036eaf03b4df87e3c3a94c06c3b2a
-  languageName: node
-  linkType: hard
-
-"@commitlint/config-conventional@npm:^8.3.3":
-  version: 8.3.3
-  resolution: "@commitlint/config-conventional@npm:8.3.3"
-  dependencies:
-    conventional-changelog-conventionalcommits: 4.2.1
-  checksum: ec44151030911d09e0d02bd262dcf3be6a6ec5ef6fe9ac26f098936611e7a96b8e9527d63b3ac2ae96489019f3e1c1a31d5bfb02c367798592e97e52ed29abdf
-  languageName: node
-  linkType: hard
-
-"@commitlint/ensure@npm:^8.3.0":
-  version: 8.3.0
-  resolution: "@commitlint/ensure@npm:8.3.0"
-  dependencies:
-    lodash: 4.17.15
-  checksum: 0b76fa4fd08b796b6c3d1a063d0f328a3c3dddb404fc97d4a7d499c910a8d75aa694fc04ecf0d922e0052411da535c0f9c8c83bf7dc982831b742745bf2a24a6
-  languageName: node
-  linkType: hard
-
-"@commitlint/execute-rule@npm:^8.3.2":
-  version: 8.3.2
-  resolution: "@commitlint/execute-rule@npm:8.3.2"
-  checksum: 2160a7f67c010186e6097b0873a4fba757f1ccf21c4d5778be496b4ce310838224339ca63f0250ed6a1f40fe20539c894d1a749620dd8eb6292bcd156356d8ba
-  languageName: node
-  linkType: hard
-
-"@commitlint/format@npm:^8.3.2":
-  version: 8.3.2
-  resolution: "@commitlint/format@npm:8.3.2"
-  dependencies:
-    chalk: ^2.0.1
-  checksum: 4a731e47cd9c5aa357306121bd3d27a424e98d4d37cd163b7a99d9b9238bc0a15ed7dfbbe06109a9428432c5459152184091f953363fa9a285be57de7b0e9e3e
-  languageName: node
-  linkType: hard
-
-"@commitlint/is-ignored@npm:^8.3.2":
-  version: 8.3.2
-  resolution: "@commitlint/is-ignored@npm:8.3.2"
-  dependencies:
-    "@types/semver": ^6.0.1
-    semver: 6.3.0
-  checksum: 2e0df54bef43442d373d688f754dfb875691427000c2f31d3cdc2c3fea53623563fbecb872cd077f5cf552d91bf784bc132ba196cedd7103953e8bef97ea8999
-  languageName: node
-  linkType: hard
-
-"@commitlint/lint@npm:^8.3.2":
-  version: 8.3.2
-  resolution: "@commitlint/lint@npm:8.3.2"
-  dependencies:
-    "@commitlint/is-ignored": ^8.3.2
-    "@commitlint/parse": ^8.3.2
-    "@commitlint/rules": ^8.3.2
-    babel-runtime: ^6.23.0
-    lodash: 4.17.15
-  checksum: 8426dcca1f7418e8d7046903bcf95c7bcb29326d394319ff22e3d7b7aa7889cb26e7079dc5be866610cb8560dd18c80654839a29d955bbe6fa4c28b0e54eb19f
-  languageName: node
-  linkType: hard
-
-"@commitlint/load@npm:^8.3.3":
-  version: 8.3.3
-  resolution: "@commitlint/load@npm:8.3.3"
-  dependencies:
-    "@commitlint/execute-rule": ^8.3.2
-    "@commitlint/resolve-extends": ^8.3.2
-    babel-runtime: ^6.23.0
-    chalk: 2.4.2
-    cosmiconfig: ^5.2.0
-    lodash: 4.17.15
-    resolve-from: ^5.0.0
-  checksum: 6f5e954dca5f597b8aa31e56e245fcfeb1d2b15fc167abc242e5953381c25c1a10baa966c634cce69cc842cb2e31cb17ef17268472bf2000246e04d092728ce4
-  languageName: node
-  linkType: hard
-
-"@commitlint/message@npm:^8.3.2":
-  version: 8.3.2
-  resolution: "@commitlint/message@npm:8.3.2"
-  checksum: f8865e2aad5ca4c2ebe9b3086de37c8d1179a1c5c1a4aa0114dbcfedeedda391316294bd071f20d118c2c91ef67b8a1ac92ae91ba1ba45e32885fb7fe802eac6
-  languageName: node
-  linkType: hard
-
-"@commitlint/parse@npm:^8.3.2":
-  version: 8.3.2
-  resolution: "@commitlint/parse@npm:8.3.2"
-  dependencies:
-    conventional-changelog-angular: ^1.3.3
-    conventional-commits-parser: ^3.0.0
-    lodash: ^4.17.11
-  checksum: 316c720172bd44e47795b7772de674ec4d10032a074bc569c76e2deb155a10fd9cffcb8fe05af551e4ef789a2d45fe79d5ecded4a73e83cab0f05bb0c23942da
-  languageName: node
-  linkType: hard
-
-"@commitlint/read@npm:^8.3.2":
-  version: 8.3.2
-  resolution: "@commitlint/read@npm:8.3.2"
-  dependencies:
-    "@commitlint/top-level": ^8.3.2
-    "@marionebl/sander": ^0.6.0
-    babel-runtime: ^6.23.0
-    git-raw-commits: ^2.0.0
-  checksum: 4a094a3922fd237e91fe9d362f537c6171c578ac02d7174d880b1459fe32b2041f8a0d3071741935046be5cfe751f646290399bb56f663a5d40cf0f1dd797284
-  languageName: node
-  linkType: hard
-
-"@commitlint/resolve-extends@npm:^8.3.2":
-  version: 8.3.2
-  resolution: "@commitlint/resolve-extends@npm:8.3.2"
-  dependencies:
-    "@types/node": ^12.0.2
-    import-fresh: ^3.0.0
-    lodash: 4.17.15
-    resolve-from: ^5.0.0
-    resolve-global: ^1.0.0
-  checksum: 42bfaba89dad68bb69a137547487bad544e045f8815db9965c91dd414ad67e91151f6d8df325cb54055ac5209f80ecce947807afcf53efce523a854bd72c568c
-  languageName: node
-  linkType: hard
-
-"@commitlint/rules@npm:^8.3.2":
-  version: 8.3.2
-  resolution: "@commitlint/rules@npm:8.3.2"
-  dependencies:
-    "@commitlint/ensure": ^8.3.0
-    "@commitlint/message": ^8.3.2
-    "@commitlint/to-lines": ^8.3.2
-    babel-runtime: ^6.23.0
-  checksum: 17f64e8df92a584c85fb9ddbd4c993e1202f58d4a9d0676683fbe63d849ede93eb58e8746874429766093e5bf17e1a9e9116884147da97257f77572ea301d941
-  languageName: node
-  linkType: hard
-
-"@commitlint/to-lines@npm:^8.3.2":
-  version: 8.3.2
-  resolution: "@commitlint/to-lines@npm:8.3.2"
-  checksum: 4748a1960fddd3ad3f08abeef17a5aa7fa968368705067ae5390bd6d87b14f94f6eba7a3f7c7631f483e8e5abe98b5cad3ff73886dadf31fa53d91fb0381d623
-  languageName: node
-  linkType: hard
-
-"@commitlint/top-level@npm:^8.3.2":
-  version: 8.3.2
-  resolution: "@commitlint/top-level@npm:8.3.2"
-  dependencies:
-    find-up: ^4.0.0
-  checksum: ae754983b50291be24cb35b5c2aa5c106720b061e28f670cda7ed51772bf9d00df0be8441c71be6898d5ba1cb104d1b8440c69d006d7312adf642e842e38b81b
-  languageName: node
-  linkType: hard
-
 "@jest/console@npm:^24.7.1":
   version: 24.7.1
   resolution: "@jest/console@npm:24.7.1"
@@ -529,17 +365,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@marionebl/sander@npm:^0.6.0":
-  version: 0.6.1
-  resolution: "@marionebl/sander@npm:0.6.1"
-  dependencies:
-    graceful-fs: ^4.1.3
-    mkdirp: ^0.5.1
-    rimraf: ^2.5.2
-  checksum: fe71417182aa135a2070b15b03d2eda26a9d01b92b0171db6fdd21c010fcbecf802b86097dd4dffc485e677d582ff352c4e56844b86f85d08886fdbac91599f5
-  languageName: node
-  linkType: hard
-
 "@types/babel__core@npm:^7.1.0, @types/babel__core@npm:^7.1.2":
   version: 7.1.2
   resolution: "@types/babel__core@npm:7.1.2"
@@ -637,7 +462,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^12.0.2, @types/node@npm:^12.6.2":
+"@types/node@npm:*, @types/node@npm:^12.6.2":
   version: 12.6.2
   resolution: "@types/node@npm:12.6.2"
   checksum: 78e2369a8068e59fa0c29938f674c522d0bbd012c3ec33d659353e1f28bd59518f590ed1793f62359377dfefe93d000ef3ce8011c84d363a496b617558777018
@@ -665,13 +490,6 @@ __metadata:
     "@types/prop-types": "*"
     csstype: ^2.2.0
   checksum: ceeaed939bfaf2e8dfb9d9b5ca7079852984fb112707e6ad4ff9ed75ec82005915182ada87f1aedb89e6c6e05670eff54ee741a476dc202040294a21702f82ba
-  languageName: node
-  linkType: hard
-
-"@types/semver@npm:^6.0.1":
-  version: 6.2.0
-  resolution: "@types/semver@npm:6.2.0"
-  checksum: 85cc0b7c05f7cd9ebc193c632f851da4f45e3981b09cc7ae2094c2030e6497bf19049980c7ccf796edb00daf8391a5f7e8088c7945b1260ff69a428d2b491fb3
   languageName: node
   linkType: hard
 
@@ -1034,17 +852,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-polyfill@npm:6.26.0":
-  version: 6.26.0
-  resolution: "babel-polyfill@npm:6.26.0"
-  dependencies:
-    babel-runtime: ^6.26.0
-    core-js: ^2.5.0
-    regenerator-runtime: ^0.10.5
-  checksum: 34d8894005621c35dd84054bbcf416258100f050a0d2744d9ca20dcf42bbe76593243ce46e90a8c51f6206b7e18137282a65eca6ac2cbe229c35966273844e54
-  languageName: node
-  linkType: hard
-
 "babel-preset-jest@npm:^24.6.0":
   version: 24.6.0
   resolution: "babel-preset-jest@npm:24.6.0"
@@ -1054,16 +861,6 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0
   checksum: 711067aa936b4a4f7ee3bee4ce0b9e2c14327910c64a0c03849ec092f1f735ca6737d6fd8653e608be1bcea1b798cd1f6daaec33a8c7acd9714069ee22b71378
-  languageName: node
-  linkType: hard
-
-"babel-runtime@npm:^6.23.0, babel-runtime@npm:^6.26.0":
-  version: 6.26.0
-  resolution: "babel-runtime@npm:6.26.0"
-  dependencies:
-    core-js: ^2.4.0
-    regenerator-runtime: ^0.11.0
-  checksum: 1d7c6511be06e3726295fcf9f5eb50c20e4d2e50a6d302557aed928e9e93bd330f7785de85d9600906ae1d2b90ae073e5b9e237f76309c7427f659f4e9b69e8d
   languageName: node
   linkType: hard
 
@@ -1432,16 +1229,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-changelog-angular@npm:^1.3.3":
-  version: 1.6.6
-  resolution: "conventional-changelog-angular@npm:1.6.6"
-  dependencies:
-    compare-func: ^1.3.1
-    q: ^1.5.1
-  checksum: 181e32990882b700c9eccc1a82f5a90d09f9297e7af59d22c02ab03198e6437a15da2f41d1de96b4ab132aeaf3aa5d8ddd55119e894a94ba2a99b5e3ec6b4c36
-  languageName: node
-  linkType: hard
-
 "conventional-changelog-angular@npm:^5.0.6":
   version: 5.0.6
   resolution: "conventional-changelog-angular@npm:5.0.6"
@@ -1624,7 +1411,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"conventional-commits-parser@npm:^3.0.0, conventional-commits-parser@npm:^3.0.8":
+"conventional-commits-parser@npm:^3.0.8":
   version: 3.0.8
   resolution: "conventional-commits-parser@npm:3.0.8"
   dependencies:
@@ -1675,13 +1462,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^2.4.0, core-js@npm:^2.5.0":
-  version: 2.6.11
-  resolution: "core-js@npm:2.6.11"
-  checksum: cff155fcf8e0720c3f3f295ee9ed933173a3ccf19b4aa9c2ef9b757e862ff5d4e9dcf2ef6504a8cf2c87f77487f1221004652688dfa65aed2606722802e4b464
-  languageName: node
-  linkType: hard
-
 "core-util-is@npm:1.0.2, core-util-is@npm:~1.0.0":
   version: 1.0.2
   resolution: "core-util-is@npm:1.0.2"
@@ -1689,7 +1469,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cosmiconfig@npm:^5.2.0, cosmiconfig@npm:^5.2.1":
+"cosmiconfig@npm:^5.2.1":
   version: 5.2.1
   resolution: "cosmiconfig@npm:5.2.1"
   dependencies:
@@ -2449,17 +2229,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-stdin@npm:7.0.0, get-stdin@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "get-stdin@npm:7.0.0"
-  checksum: 06ad4cec9955c13c0c3cb6fe75b58076eae922aa1097cad340d2fd36d76c9675fa07f132c3d93a1a3768d9f6400ca8b87b31d27522b9ee1a46def58a27fc586f
-  languageName: node
-  linkType: hard
-
 "get-stdin@npm:^4.0.1":
   version: 4.0.1
   resolution: "get-stdin@npm:4.0.1"
   checksum: d5d69c9b3ff0ba72a785106de749b136defce4f2fb1078aa0bcd6c23a9c87d6ebb6dbe568a99cc7aa980e3defc2244e4c3dbf5efc202d3e67a9fb15a9f0b0bd9
+  languageName: node
+  linkType: hard
+
+"get-stdin@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "get-stdin@npm:7.0.0"
+  checksum: 06ad4cec9955c13c0c3cb6fe75b58076eae922aa1097cad340d2fd36d76c9675fa07f132c3d93a1a3768d9f6400ca8b87b31d27522b9ee1a46def58a27fc586f
   languageName: node
   linkType: hard
 
@@ -2510,21 +2290,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"git-raw-commits@npm:^2.0.0":
-  version: 2.0.3
-  resolution: "git-raw-commits@npm:2.0.3"
-  dependencies:
-    dargs: ^4.0.1
-    lodash.template: ^4.0.2
-    meow: ^5.0.0
-    split2: ^2.0.0
-    through2: ^3.0.0
-  bin:
-    git-raw-commits: cli.js
-  checksum: 1fa844b38f18e8c39e8fed9df969bd2d03301f5d9fa2772dcff241e9617dad371267ce6e97f73f22b1a985f463ec4c12bab1008d851e6fb66e784adb2c62c2ca
-  languageName: node
-  linkType: hard
-
 "git-remote-origin-url@npm:^2.0.0":
   version: 2.0.0
   resolution: "git-remote-origin-url@npm:2.0.0"
@@ -2570,15 +2335,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"global-dirs@npm:^0.1.1":
-  version: 0.1.1
-  resolution: "global-dirs@npm:0.1.1"
-  dependencies:
-    ini: ^1.3.4
-  checksum: b288f9c9f2e9ae2241b2999837507440b2d90056443d5bf11249a1fff6aa95c791a946995bdec247374583f945d7e1c553214a80dad02a7d4d2fd2dd8f414d59
-  languageName: node
-  linkType: hard
-
 "globals@npm:^11.1.0":
   version: 11.12.0
   resolution: "globals@npm:11.12.0"
@@ -2593,7 +2349,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graceful-fs@npm:^4.1.3, graceful-fs@npm:^4.2.2":
+"graceful-fs@npm:^4.2.2":
   version: 4.2.3
   resolution: "graceful-fs@npm:4.2.3"
   checksum: ed0570de762f98ddeaff67a54375d9869eda6ac5fd0c55e1783ce13fbf8ed3c6f1243bc459a7c848d20a916e20985c0c80a544f18a2a9a14ab8dee4a77285fcd
@@ -2811,16 +2567,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"import-fresh@npm:^3.0.0":
-  version: 3.2.1
-  resolution: "import-fresh@npm:3.2.1"
-  dependencies:
-    parent-module: ^1.0.0
-    resolve-from: ^4.0.0
-  checksum: f837512456d4e238bce99a06792e26dc646fb4ffb0c4f9563bbaf44e24d2e1749ff7e748bea9faea7239fe079c406d7aa090d2326051c5f07d00b17e4269957b
-  languageName: node
-  linkType: hard
-
 "import-local@npm:^2.0.0":
   version: 2.0.0
   resolution: "import-local@npm:2.0.0"
@@ -2873,7 +2619,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ini@npm:^1.3.2, ini@npm:^1.3.4, ini@npm:~1.3.0":
+"ini@npm:^1.3.2, ini@npm:~1.3.0":
   version: 1.3.5
   resolution: "ini@npm:1.3.5"
   checksum: 17073c00b99107e03e7592fa8c9aa24894cccf9635162641899191e67c057ad8e42760ccfc0b009de084c82aaa09ccaa455f8275a2cccdd75815da894d9eb9c2
@@ -3969,7 +3715,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:4.17.15, lodash@npm:^4.17.11, lodash@npm:^4.17.13, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.2.1":
+"lodash@npm:^4.17.11, lodash@npm:^4.17.13, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.2.1":
   version: 4.17.15
   resolution: "lodash@npm:4.17.15"
   checksum: b018ec8d4c95f14a4b57005a247eca1bc25639322939471a1958d3bc721b4f18e90edb6ea564854593a8bc1f94956a0352cf0cd372991b98c42d61c0cd11e5a3
@@ -4083,23 +3829,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"meow@npm:5.0.0, meow@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "meow@npm:5.0.0"
-  dependencies:
-    camelcase-keys: ^4.0.0
-    decamelize-keys: ^1.0.0
-    loud-rejection: ^1.0.0
-    minimist-options: ^3.0.1
-    normalize-package-data: ^2.3.4
-    read-pkg-up: ^3.0.0
-    redent: ^2.0.0
-    trim-newlines: ^2.0.0
-    yargs-parser: ^10.0.0
-  checksum: 40f13141a9900d4be230ad1163f7bf3cfa31fe86e17cdb698a1b82e754cce303f90af815501525fb9261e8a935f731953ccb6693f8f8127c9b172db261a4ea6b
-  languageName: node
-  linkType: hard
-
 "meow@npm:^3.3.0":
   version: 3.7.0
   resolution: "meow@npm:3.7.0"
@@ -4132,6 +3861,23 @@ __metadata:
     redent: ^2.0.0
     trim-newlines: ^2.0.0
   checksum: abb1391d0200ab5d989443961f1495ed9741554032b1a5c288c519ffea40cbe427c04b548141ab2a97d182f5688f9a8a31ada10686f38b0d7b56c9d6cdcf3b56
+  languageName: node
+  linkType: hard
+
+"meow@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "meow@npm:5.0.0"
+  dependencies:
+    camelcase-keys: ^4.0.0
+    decamelize-keys: ^1.0.0
+    loud-rejection: ^1.0.0
+    minimist-options: ^3.0.1
+    normalize-package-data: ^2.3.4
+    read-pkg-up: ^3.0.0
+    redent: ^2.0.0
+    trim-newlines: ^2.0.0
+    yargs-parser: ^10.0.0
+  checksum: 40f13141a9900d4be230ad1163f7bf3cfa31fe86e17cdb698a1b82e754cce303f90af815501525fb9261e8a935f731953ccb6693f8f8127c9b172db261a4ea6b
   languageName: node
   linkType: hard
 
@@ -4773,15 +4519,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parent-module@npm:^1.0.0":
-  version: 1.0.1
-  resolution: "parent-module@npm:1.0.1"
-  dependencies:
-    callsites: ^3.0.0
-  checksum: e907b3f9e1fb2de30e18e66890b5d0e147e7057cae91bd0a9ff6898ec0ed00d9c3bbfc2badbaa5c83cc44020b981789fad2b6a403976ad0ce988ff5dcb1bd9e6
-  languageName: node
-  linkType: hard
-
 "parse-github-repo-url@npm:^1.3.0":
   version: 1.4.1
   resolution: "parse-github-repo-url@npm:1.4.1"
@@ -5286,20 +5023,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"regenerator-runtime@npm:^0.10.5":
-  version: 0.10.5
-  resolution: "regenerator-runtime@npm:0.10.5"
-  checksum: 36fbe8a0fdeb309830a07a6e0db0c2b0a64415c1ee1764ea7fdbe023177f3c32acdad4953c0daadcb9be9de159c2ae64bbb30d279e00f8e0279acb2a7165bda3
-  languageName: node
-  linkType: hard
-
-"regenerator-runtime@npm:^0.11.0":
-  version: 0.11.1
-  resolution: "regenerator-runtime@npm:0.11.1"
-  checksum: 213cc0c8e362abdcc48a30c981b72db365c7d52abecdbdbbf7d5b49c281b51a8a55a56ee9f9acc13988f719b713f03e4cc0cab659dd96f95731be9a63a230e0d
-  languageName: node
-  linkType: hard
-
 "regex-not@npm:^1.0.0, regex-not@npm:^1.0.2":
   version: 1.0.2
   resolution: "regex-not@npm:1.0.2"
@@ -5422,33 +5145,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve-from@npm:5.0.0, resolve-from@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "resolve-from@npm:5.0.0"
-  checksum: 05d21710106faaa80b9cd7f92e3a1f3a03e3856511105eada4de21b6ba755d8447b247057d2325a342f5ae2503dfff092d3108a02fc4980dd60eff12d6311f4c
-  languageName: node
-  linkType: hard
-
 "resolve-from@npm:^3.0.0":
   version: 3.0.0
   resolution: "resolve-from@npm:3.0.0"
   checksum: f6cc584252bcbbad78387e5453896552b141d134700706ff0e2a29eec7a23fad5a926bb51349bf9eadc34608d6a6a5d64ededa291058c298975b79ce621c14d8
-  languageName: node
-  linkType: hard
-
-"resolve-from@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "resolve-from@npm:4.0.0"
-  checksum: fdaf0f40e1a0a11dc81dfb1e6b5fa73f77c04860cd5f00f448768ec30247a0195b4ab09f7eb6c4cad1f272f2290451c02bec27bd001df321d78c5654a81912b7
-  languageName: node
-  linkType: hard
-
-"resolve-global@npm:1.0.0, resolve-global@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "resolve-global@npm:1.0.0"
-  dependencies:
-    global-dirs: ^0.1.1
-  checksum: 9485c5eef6be884b5cd66e27d76e649292048ba65d4fdd54572795113a5617484a3ae006d03882048fd2c535dfb5932ac45ff6672f8f4b7bbdb727c8a58156e8
   languageName: node
   linkType: hard
 
@@ -5479,17 +5179,6 @@ __metadata:
   version: 0.1.15
   resolution: "ret@npm:0.1.15"
   checksum: 4fb39958f5f94fad5ddb8e778d3af3629fbcb5588494106402138b63b339e0bdbbc66690f6b574b072b355a702ce3f068df9e9e383a7a4e20cc237bea6bdab9a
-  languageName: node
-  linkType: hard
-
-"rimraf@npm:^2.5.2":
-  version: 2.7.1
-  resolution: "rimraf@npm:2.7.1"
-  dependencies:
-    glob: ^7.1.3
-  bin:
-    rimraf: ./bin.js
-  checksum: 580678159cca56caf1a5600414716c66ffae68e2c8e31991080f304cf19a3c6b84983cd11405da22bd8b508dd60d492d573bb4e76b7ac8c080cf03f54fcb529e
   languageName: node
   linkType: hard
 
@@ -6350,8 +6039,6 @@ __metadata:
     "@babel/plugin-syntax-class-properties": ^7.2.0
     "@babel/plugin-syntax-jsx": ^7.2.0
     "@babel/types": ^7.5.0
-    "@commitlint/cli": ^8.3.3
-    "@commitlint/config-conventional": ^8.3.3
     "@types/babel__core": ^7.1.2
     "@types/doctrine": ^0.0.3
     "@types/jest": ^24.0.15
