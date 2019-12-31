@@ -36,7 +36,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">lg</span> | <span class="prop-type">false<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;true<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12</span> | <span class="prop-default">false</span> | Defines the number of grids the component is going to use. It's applied for the `lg` breakpoint and wider screens if not overridden. |
 | <span class="prop-name">md</span> | <span class="prop-type">false<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;true<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12</span> | <span class="prop-default">false</span> | Defines the number of grids the component is going to use. It's applied for the `md` breakpoint and wider screens if not overridden. |
 | <span class="prop-name">sm</span> | <span class="prop-type">false<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;true<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12</span> | <span class="prop-default">false</span> | Defines the number of grids the component is going to use. It's applied for the `sm` breakpoint and wider screens if not overridden. |
-| <span class="prop-name">spacing</span> | <span class="prop-type">0<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;object</span> | <span class="prop-default">0</span> | Defines the space between the type `item` component. If an object is specified, it should contain spacings for one or more breakpoints. i.e., `{sm:2, md:3}`.  It can only be used on a type `container` component. |
+| <span class="prop-name">spacing</span> | <span class="prop-type">0<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;object</span> | <span class="prop-default">0</span> | Defines the space between the type `item` component. If an object is specified, it should contain spacings for one or more breakpoints. i.e., `{sm:2, md:3}`. It can only be used on a type `container` component. |
 | <span class="prop-name">wrap</span> | <span class="prop-type">'nowrap'<br>&#124;&nbsp;'wrap'<br>&#124;&nbsp;'wrap-reverse'</span> | <span class="prop-default">'wrap'</span> | Defines the `flex-wrap` style property. It's applied for all screen sizes. |
 | <span class="prop-name">xl</span> | <span class="prop-type">false<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;true<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12</span> | <span class="prop-default">false</span> | Defines the number of grids the component is going to use. It's applied for the `xl` breakpoint and wider screens. |
 | <span class="prop-name">xs</span> | <span class="prop-type">false<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;true<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12</span> | <span class="prop-default">false</span> | Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority. |
@@ -75,7 +75,17 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">justify-xs-flex-end</span> | <span class="prop-name">.MuiGrid-justify-xs-flex-end</span> | 
 | <span class="prop-name">justify-xs-space-between</span> | <span class="prop-name">.MuiGrid-justify-xs-space-between</span> | 
 | <span class="prop-name">justify-xs-space-around</span> | <span class="prop-name">.MuiGrid-justify-xs-space-around</span> | 
-| <span class="prop-name">justify-xs-space-evenly</span> | <span class="prop-name">.MuiGrid-justify-xs-space-evenly</span> | 
+| <span class="prop-name">justify-xs-space-evenly</span> | <span class="prop-name">.MuiGrid-justify-xs-space-evenly</span> |
+| <span class="prop-name">spacing-xs-1</span> | <span class="prop-name">.MuiGrid-spacing-xs-1</span> | 
+| <span class="prop-name">spacing-xs-2</span> | <span class="prop-name">.MuiGrid-spacing-xs-2</span> | 
+| <span class="prop-name">spacing-xs-3</span> | <span class="prop-name">.MuiGrid-spacing-xs-3</span> | 
+| <span class="prop-name">spacing-xs-4</span> | <span class="prop-name">.MuiGrid-spacing-xs-4</span> | 
+| <span class="prop-name">spacing-xs-5</span> | <span class="prop-name">.MuiGrid-spacing-xs-5</span> | 
+| <span class="prop-name">spacing-xs-6</span> | <span class="prop-name">.MuiGrid-spacing-xs-6</span> | 
+| <span class="prop-name">spacing-xs-7</span> | <span class="prop-name">.MuiGrid-spacing-xs-7</span> | 
+| <span class="prop-name">spacing-xs-8</span> | <span class="prop-name">.MuiGrid-spacing-xs-8</span> | 
+| <span class="prop-name">spacing-xs-9</span> | <span class="prop-name">.MuiGrid-spacing-xs-9</span> | 
+| <span class="prop-name">spacing-xs-10</span> | <span class="prop-name">.MuiGrid-spacing-xs-10</span> | 
 | <span class="prop-name">grid-xs-auto</span> | <span class="prop-name">.MuiGrid-grid-xs-auto</span> | 
 | <span class="prop-name">grid-xs-true</span> | <span class="prop-name">.MuiGrid-grid-xs-true</span> | 
 | <span class="prop-name">grid-xs-1</span> | <span class="prop-name">.MuiGrid-grid-xs-1</span> | 
@@ -89,17 +99,7 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">grid-xs-9</span> | <span class="prop-name">.MuiGrid-grid-xs-9</span> | 
 | <span class="prop-name">grid-xs-10</span> | <span class="prop-name">.MuiGrid-grid-xs-10</span> | 
 | <span class="prop-name">grid-xs-11</span> | <span class="prop-name">.MuiGrid-grid-xs-11</span> | 
-| <span class="prop-name">grid-xs-12</span> | <span class="prop-name">.MuiGrid-grid-xs-12</span> | 
-| <span class="prop-name">spacing-xs-1</span> | <span class="prop-name">.MuiGrid-spacing-xs-1</span> | 
-| <span class="prop-name">spacing-xs-2</span> | <span class="prop-name">.MuiGrid-spacing-xs-2</span> | 
-| <span class="prop-name">spacing-xs-3</span> | <span class="prop-name">.MuiGrid-spacing-xs-3</span> | 
-| <span class="prop-name">spacing-xs-4</span> | <span class="prop-name">.MuiGrid-spacing-xs-4</span> | 
-| <span class="prop-name">spacing-xs-5</span> | <span class="prop-name">.MuiGrid-spacing-xs-5</span> | 
-| <span class="prop-name">spacing-xs-6</span> | <span class="prop-name">.MuiGrid-spacing-xs-6</span> | 
-| <span class="prop-name">spacing-xs-7</span> | <span class="prop-name">.MuiGrid-spacing-xs-7</span> | 
-| <span class="prop-name">spacing-xs-8</span> | <span class="prop-name">.MuiGrid-spacing-xs-8</span> | 
-| <span class="prop-name">spacing-xs-9</span> | <span class="prop-name">.MuiGrid-spacing-xs-9</span> | 
-| <span class="prop-name">spacing-xs-10</span> | <span class="prop-name">.MuiGrid-spacing-xs-10</span> | 
+| <span class="prop-name">grid-xs-12</span> | <span class="prop-name">.MuiGrid-grid-xs-12</span> |  
 
 You can override the style of the component thanks to one of these customization points:
 
