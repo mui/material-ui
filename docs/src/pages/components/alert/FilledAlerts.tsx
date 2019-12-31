@@ -19,16 +19,16 @@ export default function SimpleAlerts() {
   return (
     <div className={classes.root}>
       <Alert variant="filled" severity="error">
-        This is an error alert—check it out!
+        This is an error alert — check it out!
       </Alert>
       <Alert variant="filled" severity="warning">
-        This is a warning alert—check it out!
+        This is a warning alert — check it out!
       </Alert>
       <Alert variant="filled" severity="info">
-        This is an info alert—check it out!
+        This is an info alert — check it out!
       </Alert>
       <Alert variant="filled" severity="success">
-        This is a success alert—check it out!
+        This is a success alert — check it out!
       </Alert>
     </div>
   );
