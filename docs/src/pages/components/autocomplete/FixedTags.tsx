@@ -14,7 +14,7 @@ export default function FixedTags() {
       defaultValue={[top100Films[6], top100Films[13]]}
       renderTags={(value: FilmOptionType[], getTagProps) =>
         value.map((option: FilmOptionType, index: number) => (
-          <Chip disabled={index === 0} label={option.title} {...getTagProps({ index })} />
+          <Chip label={option.title} {...getTagProps({ index })} disabled={index === 0} />
         ))
       }
       style={{ width: 500 }}
