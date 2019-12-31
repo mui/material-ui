@@ -16,9 +16,13 @@ export interface AlertProps extends StandardProps<PaperProps, AlertClassKey, 'va
    */
   closeText?: string;
   /**
-   * Main color for the Alert, picked from theme palette.
+   * The main color for the alert. Unless provided, the value is taken from the `severity` prop.
    */
   color?: Color;
+  /**
+   * The severity for the alert.
+   */
+  severity?: Color;
   /**
    * The icon element placed before the children.
    */
@@ -42,7 +46,7 @@ export interface AlertProps extends StandardProps<PaperProps, AlertClassKey, 'va
    */
   onClose?: (event: React.SyntheticEvent) => void;
   /**
-   * The variant of the Alert.
+   * The variant to use.
    */
   variant?: 'text' | 'filled' | 'outlined';
 }

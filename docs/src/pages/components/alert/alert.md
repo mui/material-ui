@@ -50,6 +50,12 @@ Setting the icon prop to false will remove the icon altogether.
 
 You can use the Snackbar to [display a toast](/components/snackbars/#customized-snackbars) with the Alert.
 
+## Color
+
+You can use a different severity and color value.
+
+{{"demo": "pages/components/alert/ColorAlerts.js"}}
+
 ## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#alert)

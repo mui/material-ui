@@ -16,19 +16,19 @@ export default function DescriptionAlerts() {
 
   return (
     <div className={classes.root}>
-      <Alert color="error">
+      <Alert severity="error">
         <AlertTitle>Error</AlertTitle>
         This is an error alert—check it out!
       </Alert>
-      <Alert color="warning">
+      <Alert severity="warning">
         <AlertTitle>Warning</AlertTitle>
         This is a warning alert—check it out!
       </Alert>
-      <Alert color="info">
+      <Alert severity="info">
         <AlertTitle>Info</AlertTitle>
         This is an info alert—check it out!
       </Alert>
-      <Alert color="success">
+      <Alert severity="success">
         <AlertTitle>Success</AlertTitle>
         This is a success alert—check it out!
       </Alert>

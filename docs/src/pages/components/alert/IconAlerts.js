@@ -18,13 +18,13 @@ export default function IconAlerts() {
 
   return (
     <div className={classes.root}>
-      <Alert icon={<CheckIcon fontSize="inherit" />} color="success">
+      <Alert icon={<CheckIcon fontSize="inherit" />} severity="success">
         This is a success alert—check it out!
       </Alert>
       <Alert iconMapping={{ success: <CheckCircleOutlineIcon fontSize="inherit" /> }}>
         This is a success alert—check it out!
       </Alert>
-      <Alert icon={false} color="success">
+      <Alert icon={false} severity="success">
         This is a success alert—check it out!
       </Alert>
     </div>

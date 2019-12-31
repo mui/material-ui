@@ -159,11 +159,12 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     classes,
     className,
     closeText = 'Close',
-    color = 'success',
+    color,
     icon,
     iconMapping = defaultIconMapping,
     onClose,
     role = 'alert',
+    severity = 'success',
     variant = 'text',
     ...other
   } = props;
@@ -173,13 +174,17 @@ const Alert = React.forwardRef(function Alert(props, ref) {
       role={role}
       square
       elevation={0}
-      className={clsx(classes.root, classes[`${variant}${capitalize(color)}`], className)}
+      className={clsx(
+        classes.root,
+        classes[`${variant}${capitalize(color || severity)}`],
+        className,
+      )}
       ref={ref}
       {...other}
     >
       {icon !== false ? (
         <div className={classes.icon}>
-          {icon || iconMapping[color] || defaultIconMapping[color]}
+          {icon || iconMapping[severity] || defaultIconMapping[severity]}
         </div>
       ) : null}
       <div className={classes.message}>{children}</div>
@@ -230,7 +235,7 @@ Alert.propTypes = {
    */
   closeText: PropTypes.string,
   /**
-   * Main color for the Alert, picked from theme palette.
+   * The main color for the alert. Unless provided, the value is taken from the `severity` prop.
    */
   color: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
   /**
@@ -261,7 +266,11 @@ Alert.propTypes = {
    */
   role: PropTypes.string,
   /**
-   * The variant of the Alert.
+   * The severity for the alert.
+   */
+  severity: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+  /**
+   * The variant to use.
    */
   variant: PropTypes.oneOf(['filled', 'outlined', 'text']),
 };
