@@ -18,7 +18,7 @@ import requirePropFactory from '../utils/requirePropFactory';
 const SPACINGS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-function generateGrid(styles, theme, breakpoint) {
+function generateGrid(styles, breakpoint) {
   GRID_SIZES.forEach(size => {
     const key = `grid-${breakpoint}-${size}`;
 
@@ -79,7 +79,7 @@ function generateGutter(styles, theme, breakpoint) {
 
 function generateGlobalStyles(globalStyles, theme, breakpoint) {
   const styles = {};
-  generateGrid(styles, theme, breakpoint);
+  generateGrid(styles, breakpoint);
   generateGutter(styles, theme, breakpoint);
 
   // No need for a media query for the first size.
@@ -212,11 +212,6 @@ const Grid = React.forwardRef(function Grid(props, ref) {
     md = false,
     sm = false,
     spacing = 0,
-    spacingXs = 0,
-    spacingSm = 0,
-    spacingMd = 0,
-    spacingLg = 0,
-    spacingXl = 0,
     wrap = 'wrap',
     xl = false,
     xs = false,
@@ -230,12 +225,18 @@ const Grid = React.forwardRef(function Grid(props, ref) {
       [classes.container]: container,
       [classes.item]: item,
       [classes.zeroMinWidth]: zeroMinWidth,
-      [classes[`spacing-xs-${String(spacing)}`]]: container && spacing !== 0,
-      [classes[`spacing-xs-${String(spacingXs)}`]]: container && spacingXs !== 0,
-      [classes[`spacing-sm-${String(spacingSm)}`]]: container && spacingSm !== 0,
-      [classes[`spacing-md-${String(spacingMd)}`]]: container && spacingMd !== 0,
-      [classes[`spacing-lg-${String(spacingLg)}`]]: container && spacingLg !== 0,
-      [classes[`spacing-xl-${String(spacingXl)}`]]: container && spacingXl !== 0,
+      [classes[`spacing-xs-${String(spacing)}`]]:
+        container && typeof spacing === 'number' && spacing !== 0,
+      [classes[`spacing-xs-${String(spacing.xs)}`]]:
+        container && typeof spacing === 'object' && spacing.xs !== 0,
+      [classes[`spacing-sm-${String(spacing.sm)}`]]:
+        container && typeof spacing === 'object' && spacing.sm !== 0,
+      [classes[`spacing-md-${String(spacing.md)}`]]:
+        container && typeof spacing === 'object' && spacing.md !== 0,
+      [classes[`spacing-lg-${String(spacing.lg)}`]]:
+        container && typeof spacing === 'object' && spacing.lg !== 0,
+      [classes[`spacing-xl-${String(spacing.xl)}`]]:
+        container && typeof spacing === 'object' && spacing.xl !== 0,
       [classes[`direction-xs-${String(direction)}`]]: direction !== 'row',
       [classes[`wrap-xs-${String(wrap)}`]]: wrap !== 'wrap',
       [classes[`align-items-xs-${String(alignItems)}`]]: alignItems !== 'stretch',
@@ -333,39 +334,11 @@ Grid.propTypes = {
   sm: PropTypes.oneOf([false, 'auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]),
   /**
    * Defines the space between the type `item` component.
+   * If an object is specified, it should contain spacings for one or more breakpoints. i.e., `{sm:2, md:3}`.
    * It can only be used on a type `container` component.
+   *
    */
-  spacing: PropTypes.oneOf(SPACINGS),
-  /**
-   * Defines the space between the type `item` component.
-   * It can only be used on a type `container` component.
-   * It's applied for the `lg` breakpoint and wider screens if not overridden.
-   */
-  spacingLg: PropTypes.oneOf(SPACINGS),
-  /**
-   * Defines the space between the type `item` component.
-   * It can only be used on a type `container` component.
-   * It's applied for the `md` breakpoint and wider screens if not overridden.
-   */
-  spacingMd: PropTypes.oneOf(SPACINGS),
-  /**
-   * Defines the space between the type `item` component.
-   * It can only be used on a type `container` component.
-   * It's applied for the `sm` breakpoint and wider screens if not overridden.
-   */
-  spacingSm: PropTypes.oneOf(SPACINGS),
-  /**
-   * Defines the space between the type `item` component.
-   * It can only be used on a type `container` component.
-   * It's applied for the `xl` breakpoint.
-   */
-  spacingXl: PropTypes.oneOf(SPACINGS),
-  /**
-   * Defines the space between the type `item` component.
-   * It can only be used on a type `container` component.
-   * It's applied for the `xs` breakpoint and wider screens if not overridden.
-   */
-  spacingXs: PropTypes.oneOf(SPACINGS),
+  spacing: PropTypes.oneOfType([PropTypes.oneOf(SPACINGS), PropTypes.object]),
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
@@ -402,11 +375,6 @@ if (process.env.NODE_ENV !== 'production') {
     md: requireProp('item'),
     sm: requireProp('item'),
     spacing: requireProp('container'),
-    spacingLg: requireProp('container'),
-    spacingMd: requireProp('container'),
-    spacingSm: requireProp('container'),
-    spacingXl: requireProp('container'),
-    spacingXs: requireProp('container'),
     wrap: requireProp('container'),
     xs: requireProp('item'),
     zeroMinWidth: requireProp('item'),
