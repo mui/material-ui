@@ -171,8 +171,8 @@ const styles = theme => ({
 
 #### Arguments
 
-1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.).
-2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.).
+1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### Returns
 
