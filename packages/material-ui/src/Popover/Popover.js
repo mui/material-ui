@@ -307,27 +307,30 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     ],
   );
 
-  const setPositioningStyles = React.useCallback(
-    element => {
-      const positioning = getPositioningStyle(element);
+  const setPositioningStyles = React.useCallback(() => {
+    const element = paperRef.current;
 
-      if (positioning.top !== null) {
-        element.style.top = positioning.top;
-      }
-      if (positioning.left !== null) {
-        element.style.left = positioning.left;
-      }
-      element.style.transformOrigin = positioning.transformOrigin;
-    },
-    [getPositioningStyle],
-  );
+    if (!element) {
+      return;
+    }
+
+    const positioning = getPositioningStyle(element);
+
+    if (positioning.top !== null) {
+      element.style.top = positioning.top;
+    }
+    if (positioning.left !== null) {
+      element.style.left = positioning.left;
+    }
+    element.style.transformOrigin = positioning.transformOrigin;
+  }, [getPositioningStyle]);
 
   const handleEntering = (element, isAppearing) => {
     if (onEntering) {
       onEntering(element, isAppearing);
     }
 
-    setPositioningStyles(element);
+    setPositioningStyles();
   };
 
   const handlePaperRef = React.useCallback(instance => {
@@ -336,17 +339,18 @@ const Popover = React.forwardRef(function Popover(props, ref) {
   }, []);
 
   React.useEffect(() => {
-    if (open && paperRef.current) {
-      setPositioningStyles(paperRef.current);
+    if (open) {
+      setPositioningStyles();
     }
   });
+
   React.useImperativeHandle(
     action,
     () =>
       open
         ? {
             updatePosition: () => {
-              setPositioningStyles(paperRef.current);
+              setPositioningStyles();
             },
           }
         : null,
@@ -359,7 +363,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     }
 
     const handleResize = debounce(() => {
-      setPositioningStyles(paperRef.current);
+      setPositioningStyles();
     });
 
     window.addEventListener('resize', handleResize);
