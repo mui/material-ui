@@ -31,7 +31,7 @@ components: Pagination
 
 ### ARIA
 
-The root node has a role of "navigation" and aria-label "Pagination navigation" by default. The page items have an aria-label that identifies the purpose of the item ("go to first page", "oo to previous page", "go to page 1" etc.). You can override these using the `getItemAriaLabel` prop.
+The root node has a role of "navigation" and aria-label "Pagination navigation" by default. The page items have an aria-label that identifies the purpose of the item ("go to first page", "go to previous page", "go to page 1" etc.). You can override these using the `getItemAriaLabel` prop.
 
 ### Keyboard
 
