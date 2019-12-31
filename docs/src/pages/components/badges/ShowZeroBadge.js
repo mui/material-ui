@@ -6,24 +6,22 @@ import MailIcon from '@material-ui/icons/Mail';
 const useStyles = makeStyles(theme => ({
   root: {
     '& > *': {
-      margin: theme.spacing(2),
+      margin: theme.spacing(1),
     },
   },
 }));
 
-const defaultProps = {
-  color: 'secondary',
-  children: <MailIcon />,
-};
-
-export default function BadgeMax() {
+export default function ShowZeroBadge() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Badge badgeContent={99} {...defaultProps} />
-      <Badge badgeContent={100} {...defaultProps} />
-      <Badge badgeContent={1000} max={999} {...defaultProps} />
+      <Badge color="secondary" badgeContent={0}>
+        <MailIcon />
+      </Badge>
+      <Badge color="secondary" badgeContent={0} showZero>
+        <MailIcon />
+      </Badge>
     </div>
   );
 }

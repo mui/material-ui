@@ -3,7 +3,6 @@ import { assert } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Badge from './Badge';
-import { act } from 'react-dom/test-utils';
 
 function findBadge(wrapper) {
   return wrapper.find('span').at(1);
@@ -56,20 +55,6 @@ describe('<Badge />', () => {
   it('renders children', () => {
     const wrapper = mount(<Badge className="testClassName" {...defaultProps} />);
     assert.strictEqual(wrapper.contains(defaultProps.children), true);
-  });
-
-  it('retains text, color and variant while invisible for disappearing transition', () => {
-    const wrapper = mount(<Badge {...defaultProps} color="primary" variant="dot" />);
-    act(() => {
-      wrapper.setProps({ badgeContent: 0, color: 'secondary', variant: 'standard' });
-    });
-    assert.strictEqual(findBadge(wrapper).text(), '');
-    assert.strictEqual(findBadge(wrapper).hasClass(classes.colorPrimary), true);
-    assert.strictEqual(findBadge(wrapper).hasClass(classes.dot), true);
-    act(() => {
-      wrapper.setProps({ showZero: true });
-    });
-    assert.strictEqual(findBadge(wrapper).text(), '0');
   });
 
   describe('prop: color', () => {
