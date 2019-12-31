@@ -79,8 +79,9 @@ function generateGutter(styles, theme, breakpoint) {
 
 function generateGlobalStyles(globalStyles, theme, breakpoint) {
   const styles = {};
-  generateGrid(styles, breakpoint);
+
   generateGutter(styles, theme, breakpoint);
+  generateGrid(styles, breakpoint);
 
   // No need for a media query for the first size.
   if (breakpoint === 'xs') {
