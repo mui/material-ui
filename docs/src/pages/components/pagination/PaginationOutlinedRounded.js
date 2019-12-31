@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 
 const useStyles = makeStyles(theme => ({
@@ -16,9 +15,7 @@ export default function BasicPagination() {
 
   return (
     <div className={classes.root}>
-      <Typography>Rounded outlined standard</Typography>
       <Pagination variant="outlined" shape="rounded" count={10} showFirstButton showLastButton />
-      <Typography>Rounded outlined primary</Typography>
       <Pagination
         variant="outlined"
         shape="rounded"
@@ -27,7 +24,6 @@ export default function BasicPagination() {
         showFirstButton
         showLastButton
       />
-      <Typography>Rounded outlined secondary</Typography>
       <Pagination
         variant="outlined"
         shape="rounded"
@@ -36,7 +32,6 @@ export default function BasicPagination() {
         showFirstButton
         showLastButton
       />
-      <Typography>Rounded outlined disabled</Typography>
       <Pagination
         variant="outlined"
         shape="rounded"
