@@ -2,26 +2,16 @@ import React from 'react';
 
 export default function usePagination(props) {
   const {
-    children,
-    classes,
-    className,
-    color = 'standard',
-    component,
     count,
     disabled = false,
-    getItemAriaLabel: getAriaLabel,
     hideNextButton = false,
     hidePrevButton = false,
     showFirstButton = false,
-    renderItem,
     showLastButton = false,
-    size,
     onChange: handleChange,
     page: pageProp = 1,
     queryString = 'page',
-    shape = 'round',
     siblingRange = 1,
-    variant = 'text',
     ...other
   } = props;
 
@@ -42,15 +32,9 @@ export default function usePagination(props) {
   }, [pageProp, queryString]);
 
   const itemProps = {
-    color,
-    getAriaLabel,
     disabled,
     onChange: handleChange,
     page,
-    shape,
-    size,
-    queryString,
-    variant,
   };
 
   const items = [];
@@ -147,12 +131,7 @@ export default function usePagination(props) {
   }
 
   return {
-    children,
-    classes,
-    className,
-    component,
     items,
-    renderItem,
     ...other,
   };
 }
