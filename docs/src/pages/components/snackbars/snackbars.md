@@ -86,4 +86,4 @@ It also enables you to **stack** them on top of one another (although this is di
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
 
-- By default, the snackbar won't auto-hide. However, if you decide to use the `autoHideDuration` prop, it's recommended giving users [enough time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html).
+- By default, the snackbar won't auto-hide. However, if you decide to use the `autoHideDuration` prop, it's recommended to give the user [sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) to respond.
