@@ -17,23 +17,9 @@ export default function BasicPagination() {
 
   return (
     <div className={classes.root}>
-      <Pagination
-        size="small"
-        count={10}
-        showFirstButton
-        showLastButton
-      />
-      <Pagination
-        count={10}
-        showFirstButton
-        showLastButton
-      />
-      <Pagination
-        size="large"
-        count={10}
-        showFirstButton
-        showLastButton
-      />
+      <Pagination count={10} size="small" />
+      <Pagination count={10} />
+      <Pagination count={10} size="large" />
     </div>
   );
 }

@@ -116,8 +116,8 @@ usePagination.propTypes = {
    */
   renderItem: PropTypes.func,
   /**
-    * The shape of the pagination items.
-    */
+   * The shape of the pagination items.
+   */
   shape: PropTypes.oneOf(['round', 'rounded']),
   /**
    * If `true`, show the first-page button.

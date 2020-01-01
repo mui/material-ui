@@ -15,10 +15,8 @@ export default function BasicPagination() {
 
   return (
     <div className={classes.root}>
-      <Pagination count={10} variant="outlined" />
-      <Pagination count={10} variant="outlined" color="primary" />
-      <Pagination count={10} variant="outlined" color="secondary" />
-      <Pagination count={10} variant="outlined" disabled />
+      <Pagination count={10} showFirstButton showLastButton />
+      <Pagination count={10} hidePrevButton hideNextButton />
     </div>
   );
 }

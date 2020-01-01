@@ -30,12 +30,16 @@ export default function usePagination(props) {
   React.useEffect(() => {
     // Get the value of the querystring with key `queryString`.
     // IE11 Does not support URLSearchParams()
-    const queryValue = window.location.search.substr(1).split("&").reduce((acc, item) => (
-      acc + item.split("=")[0] === queryString ? item.split("=")[1] : ''
-    ), '');
+    const queryValue = window.location.search
+      .substr(1)
+      .split('&')
+      .reduce(
+        (acc, item) => (acc + item.split('=')[0] === queryString ? item.split('=')[1] : ''),
+        '',
+      );
 
-    setPage(queryValue === '' ? pageProp : Number(queryValue))
-  }, [pageProp, queryString])
+    setPage(queryValue === '' ? pageProp : Number(queryValue));
+  }, [pageProp, queryString]);
 
   const itemProps = {
     color,
@@ -150,5 +154,5 @@ export default function usePagination(props) {
     items,
     renderItem,
     ...other,
-  }
+  };
 }

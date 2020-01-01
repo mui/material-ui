@@ -50,7 +50,7 @@ const styles = theme => ({
   outlined: {
     border: `1px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-      }`,
+    }`,
     '&:hover, &:focus': {
       backgroundColor: fade(theme.palette.action.active, 0.05),
       '&$disabled': {
@@ -223,17 +223,12 @@ function PaginationItem(props) {
     ...other
   } = props;
 
-  const buttonClass = clsx(
-    classes.button,
-    classes[variant],
-    classes[shape],
-    {
-      [classes[`${variant}${capitalize(color)}`]]: color !== 'standard',
-      [classes.disabled]: disabled,
-      [classes.selected]: selected,
-      [classes[`size${capitalize(size)}`]]: size !== 'medium',
-    }
-  );
+  const buttonClass = clsx(classes.button, classes[variant], classes[shape], {
+    [classes[`${variant}${capitalize(color)}`]]: color !== 'standard',
+    [classes.disabled]: disabled,
+    [classes.selected]: selected,
+    [classes[`size${capitalize(size)}`]]: size !== 'medium',
+  });
 
   return (
     <React.Fragment>
@@ -242,24 +237,25 @@ function PaginationItem(props) {
           <div className={classes.ellipsis}>...</div>
         </li>
       ) : (
-          <li className={clsx(classes.root, className)} {...other}>
-            <ButtonBase
-              aria-label={getAriaLabel ? getAriaLabel(type, page, selected) : ariaLabel(type, page, selected)}
-              aria-current={selected ? "page" : undefined}
-              component={handleChange ? 'div' : 'a'}
-              href={handleChange ? undefined : `?${queryString}=${page}`}
-              onClick={handleChange ? event => handleChange(event, page) : undefined}
-              className={buttonClass}
-            >
-              {type === 'page' && page}
-              {type === 'previous' && <NavigateBeforeIcon />}
-              {type === 'next' && <NavigateNextIcon />}
-              {type === 'first' && <FirstPageIcon />}
-              {type === 'last' && <LastPageIcon />}
-            </ButtonBase>
-          </li>
-        )}
-
+        <li className={clsx(classes.root, className)} {...other}>
+          <ButtonBase
+            aria-label={
+              getAriaLabel ? getAriaLabel(type, page, selected) : ariaLabel(type, page, selected)
+            }
+            aria-current={selected ? 'page' : undefined}
+            component={handleChange ? 'div' : 'a'}
+            href={handleChange ? undefined : `?${queryString}=${page}`}
+            onClick={handleChange ? event => handleChange(event, page) : undefined}
+            className={buttonClass}
+          >
+            {type === 'page' && page}
+            {type === 'previous' && <NavigateBeforeIcon />}
+            {type === 'next' && <NavigateNextIcon />}
+            {type === 'first' && <FirstPageIcon />}
+            {type === 'last' && <LastPageIcon />}
+          </ButtonBase>
+        </li>
+      )}
     </React.Fragment>
   );
 }

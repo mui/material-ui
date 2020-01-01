@@ -15,10 +15,10 @@ export default function BasicPagination() {
 
   return (
     <div className={classes.root}>
-      <Pagination count={10} showFirstButton showLastButton />
-      <Pagination color="primary" count={10} showFirstButton showLastButton />
-      <Pagination color="secondary" count={10} showFirstButton showLastButton />
-      <Pagination count={10} showFirstButton showLastButton disabled />
+      <Pagination count={10} />
+      <Pagination count={10} color="primary" />
+      <Pagination count={10} color="secondary" />
+      <Pagination count={10} disabled />
     </div>
   );
 }

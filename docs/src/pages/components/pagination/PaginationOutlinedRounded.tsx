@@ -17,37 +17,10 @@ export default function BasicPagination() {
 
   return (
     <div className={classes.root}>
-      <Pagination
-        variant="outlined"
-        shape="rounded"
-        count={10}
-        showFirstButton
-        showLastButton
-      />
-      <Pagination
-        variant="outlined"
-        shape="rounded"
-        color="primary"
-        count={10}
-        showFirstButton
-        showLastButton
-      />
-      <Pagination
-        variant="outlined"
-        shape="rounded"
-        color="secondary"
-        count={10}
-        showFirstButton
-        showLastButton
-      />
-      <Pagination
-        variant="outlined"
-        shape="rounded"
-        count={10}
-        showFirstButton
-        showLastButton
-        disabled
-      />
+      <Pagination count={10} variant="outlined" shape="rounded" />
+      <Pagination count={10} variant="outlined" shape="rounded" color="primary" />
+      <Pagination count={10} variant="outlined" shape="rounded" color="secondary" />
+      <Pagination count={10} variant="outlined" shape="rounded" disabled />
     </div>
   );
 }

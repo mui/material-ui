@@ -11,6 +11,11 @@ components: Pagination
 
 {{"demo": "pages/components/pagination/Pagination.js"}}
 
+## Buttons
+
+You can optionally enable first-page and last-page buttons, or disable the previous-page and next-page buttons.
+{{"demo": "pages/components/pagination/PaginationButtons.js"}}
+
 ## Outlined pagination
 
 {{"demo": "pages/components/pagination/PaginationOutlined.js"}}

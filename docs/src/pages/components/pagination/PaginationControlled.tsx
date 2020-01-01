@@ -23,21 +23,8 @@ export default function BasicPagination() {
 
   return (
     <div className={classes.root}>
-      <Pagination
-        page={page}
-        onChange={handleChange}
-        count={10}
-        showFirstButton
-        showLastButton
-      />
-      <Pagination
-        page={page}
-        onChange={handleChange}
-        count={10}
-        showFirstButton
-        showLastButton
-        disabled
-      />
+      <Pagination count={10} page={page} onChange={handleChange} />
+      <Pagination count={10} page={page} onChange={handleChange} disabled />
       <Typography>Page: {page}</Typography>
     </div>
   );
