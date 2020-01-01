@@ -40,7 +40,8 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
     </ul>
   );
 });
-usePagination.propTypes = {
+
+Pagination.propTypes = {
   /**
    * Number of always visible pages at the beginning and end.
    */
