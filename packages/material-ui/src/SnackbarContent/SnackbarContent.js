@@ -78,10 +78,9 @@ SnackbarContent.propTypes = {
    */
   message: PropTypes.node,
   /**
-   * The role attribute of the element. If the Snackbar requires focus
-   * to be closed, the `alertdialog` role should be used instead.
+   * The ARIA role attribute of the element.
    */
-  role: PropTypes.oneOf(['alert', 'alertdialog']),
+  role: PropTypes.string,
 };
 
 export default withStyles(styles, { name: 'MuiSnackbarContent' })(SnackbarContent);

@@ -10,7 +10,7 @@ export interface AlertProps extends StandardProps<PaperProps, AlertClassKey, 'va
    */
   action?: React.ReactNode;
   /**
-   * Override the default text for the *close popup* icon button.
+   * Override the default label for the *close popup* icon button.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
@@ -20,27 +20,28 @@ export interface AlertProps extends StandardProps<PaperProps, AlertClassKey, 'va
    */
   color?: Color;
   /**
-   * The severity for the alert.
+   * The severity of the alert. This defines the color and icon used.
    */
   severity?: Color;
   /**
-   * The icon element placed before the children.
+   * Override the icon displayed before the children.
+   * Unless provided, the icon is mapped to the value of the `severity` prop.
    */
   icon?: React.ReactNode | false;
   /**
-   * The role attribute of the element.
+   * The ARIA role attribute of the element.
    */
   role?: string;
   /**
-   * The component maps the color prop to a range of different icons.
-   * For instance, success to `<SuccessOutlined>`.
-   * If you wish to change that mapping, you can provide your own.
-   * Alternatively, you can use the `icon` prop.
+   * The component maps the `severity` prop to a range of different icons,
+   * for instance success to `<SuccessOutlined>`.
+   * If you wish to change this mapping, you can provide your own.
+   * Alternatively, you can use the `icon` prop to override the icon displayed.
    */
   iconMapping?: Partial<Record<Color, React.ReactNode>>;
   /**
    * Callback fired when the component requests to be closed.
-   * When provided and no action prop is set, a close icon is displayed.
+   * When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.
    *
    * @param {object} event The event source of the callback.
    */
@@ -48,15 +49,15 @@ export interface AlertProps extends StandardProps<PaperProps, AlertClassKey, 'va
   /**
    * The variant to use.
    */
-  variant?: 'text' | 'filled' | 'outlined';
+  variant?: 'standard' | 'filled' | 'outlined';
 }
 
 export type AlertClassKey =
   | 'root'
-  | 'textSuccess'
-  | 'textInfo'
-  | 'textWarning'
-  | 'textError'
+  | 'standardSuccess'
+  | 'standardInfo'
+  | 'standardWarning'
+  | 'standardError'
   | 'outlinedSuccess'
   | 'outlinedInfo'
   | 'outlinedWarning'

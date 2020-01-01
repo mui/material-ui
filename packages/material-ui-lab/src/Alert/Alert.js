@@ -20,32 +20,32 @@ export const styles = theme => ({
     display: 'flex',
     padding: '6px 16px',
   },
-  /* Styles applied to the root element if `variant="text"` and `color="success"`. */
-  textSuccess: {
+  /* Styles applied to the root element if `variant="standard"` and `color="success"`. */
+  standardSuccess: {
     color: darken(theme.palette.success.main, 0.6),
     backgroundColor: lighten(theme.palette.success.main, 0.9),
     '& $icon': {
       color: theme.palette.success.main,
     },
   },
-  /* Styles applied to the root element if `variant="text"` and `color="info"`. */
-  textInfo: {
+  /* Styles applied to the root element if `variant="standard"` and `color="info"`. */
+  standardInfo: {
     color: darken(theme.palette.info.main, 0.6),
     backgroundColor: lighten(theme.palette.info.main, 0.9),
     '& $icon': {
       color: theme.palette.info.main,
     },
   },
-  /* Styles applied to the root element if `variant="text"` and `color="warning"`. */
-  textWarning: {
+  /* Styles applied to the root element if `variant="standard"` and `color="warning"`. */
+  standardWarning: {
     color: darken(theme.palette.warning.main, 0.6),
     backgroundColor: lighten(theme.palette.warning.main, 0.9),
     '& $icon': {
       color: theme.palette.warning.main,
     },
   },
-  /* Styles applied to the root element if `variant="text"` and `color="error"`. */
-  textError: {
+  /* Styles applied to the root element if `variant="standard"` and `color="error"`. */
+  standardError: {
     color: darken(theme.palette.error.main, 0.6),
     backgroundColor: lighten(theme.palette.error.main, 0.9),
     '& $icon': {
@@ -165,7 +165,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
     onClose,
     role = 'alert',
     severity = 'success',
-    variant = 'text',
+    variant = 'standard',
     ...other
   } = props;
 
@@ -229,7 +229,7 @@ Alert.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * Override the default text for the *close popup* icon button.
+   * Override the default label for the *close popup* icon button.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
@@ -239,14 +239,15 @@ Alert.propTypes = {
    */
   color: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
   /**
-   * The icon element placed before the children.
+   * Override the icon displayed before the children.
+   * Unless provided, the icon is mapped to the value of the `severity` prop.
    */
   icon: PropTypes.node,
   /**
-   * The component maps the color prop to a range of different icons.
-   * For instance, success to `<SuccessOutlined>`.
-   * If you wish to change that mapping, you can provide your own.
-   * Alternatively, you can use the `icon` prop.
+   * The component maps the `severity` prop to a range of different icons,
+   * for instance success to `<SuccessOutlined>`.
+   * If you wish to change this mapping, you can provide your own.
+   * Alternatively, you can use the `icon` prop to override the icon displayed.
    */
   iconMapping: PropTypes.shape({
     error: PropTypes.node,
@@ -256,23 +257,23 @@ Alert.propTypes = {
   }),
   /**
    * Callback fired when the component requests to be closed.
-   * When provided and no action prop is set, a close icon is displayed.
+   * When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.
    *
    * @param {object} event The event source of the callback.
    */
   onClose: PropTypes.func,
   /**
-   * The role attribute of the element.
+   * The ARIA role attribute of the element.
    */
   role: PropTypes.string,
   /**
-   * The severity for the alert.
+   * The severity of the alert. This defines the color and icon used.
    */
   severity: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
   /**
    * The variant to use.
    */
-  variant: PropTypes.oneOf(['filled', 'outlined', 'text']),
+  variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
 export default withStyles(styles, { name: 'MuiAlert' })(Alert);
