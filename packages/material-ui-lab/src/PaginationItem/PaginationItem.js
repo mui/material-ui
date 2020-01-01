@@ -10,9 +10,11 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { capitalize } from '@material-ui/core/utils';
 
 const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     listStyleType: 'none',
   },
+  /* Styles applied to the button element. */
   button: {
     borderRadius: '50%',
     width: 32,
@@ -44,9 +46,7 @@ const styles = theme => ({
       pointerEvents: 'none',
     },
   },
-  rounded: {
-    borderRadius: theme.shape.borderRadius,
-  },
+  /* Styles applied to the button element if `outlined="true"`. */
   outlined: {
     border: `1px solid ${
       theme.palette.type === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
@@ -74,6 +74,7 @@ const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the button element if `variant="text"` and `color="primary"`. */
   textPrimary: {
     '&:hover, &:focus': {
       color: theme.palette.primary.main,
@@ -99,6 +100,7 @@ const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the button element if `variant="text"` and `color="secondary"`. */
   textSecondary: {
     '&:hover, &:focus': {
       color: theme.palette.secondary.main,
@@ -124,6 +126,7 @@ const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the button element if `variant="outlined"` and `color="primary"`. */
   outlinedPrimary: {
     '&:hover, &:focus': {
       color: theme.palette.primary.main,
@@ -147,6 +150,7 @@ const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the button element if `variant="outlined"` and `color="secondary"`. */
   outlinedSecondary: {
     '&:hover, &:focus': {
       color: theme.palette.secondary.main,
@@ -170,14 +174,21 @@ const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the button element if `rounded="true"`. */
+  rounded: {
+    borderRadius: theme.shape.borderRadius,
+  },
+  /* Styles applied to the button element if `size="small"`. */
   sizeSmall: {
     width: 24,
     height: 24,
   },
+  /* Styles applied to the button element if `size="large"`. */
   sizeLarge: {
     width: 40,
     height: 40,
   },
+  /* Styles applied to the ellipsis element. */
   ellipsis: {
     textAlign: 'center',
     width: 24,
@@ -202,9 +213,6 @@ function ariaLabel(type, page, selected) {
   return `Go to ${type} page`;
 }
 
-/**
- * @ignore - internal component.
- */
 function PaginationItem(props) {
   const {
     classes,

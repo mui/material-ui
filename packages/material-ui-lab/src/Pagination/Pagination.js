@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import usePagination from './usePagination';
-import PaginationItem from './PaginationItem';
+import PaginationItem from '../PaginationItem';
 
 export const styles = {
   /* Styles applied to the root element. */
