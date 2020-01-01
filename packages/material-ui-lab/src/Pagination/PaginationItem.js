@@ -213,7 +213,6 @@ function PaginationItem(props) {
     disabled,
     getAriaLabel,
     page,
-    queryString,
     onChange: handleChange,
     selected,
     shape = 'round',
@@ -244,7 +243,7 @@ function PaginationItem(props) {
               }
               aria-current={selected ? 'page' : undefined}
               component={handleChange ? 'div' : 'a'}
-              href={handleChange ? undefined : `?${queryString}=${page}`}
+              href={handleChange ? undefined : page}
               onClick={handleChange ? event => handleChange(event, page) : undefined}
               className={buttonClass}
             >

@@ -114,10 +114,6 @@ Pagination.propTypes = {
    */
   page: PropTypes.number.isRequired,
   /**
-   * The query string appended to the URL to identify the page.
-   */
-  queryString: PropTypes.string,
-  /**
    * Render the item.
    *
    * @param {object} params

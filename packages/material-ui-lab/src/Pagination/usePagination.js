@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function usePagination(props) {
   const {
     count,
@@ -9,27 +7,10 @@ export default function usePagination(props) {
     showFirstButton = false,
     showLastButton = false,
     onChange: handleChange,
-    page: pageProp = 1,
-    queryString = 'page',
+    page = 1,
     siblingRange = 1,
     ...other
   } = props;
-
-  const [page, setPage] = React.useState(pageProp);
-
-  React.useEffect(() => {
-    // Get the value of the querystring with key `queryString`.
-    // IE11 Does not support URLSearchParams()
-    const queryValue = window.location.search
-      .substr(1)
-      .split('&')
-      .reduce(
-        (acc, item) => (acc + item.split('=')[0] === queryString ? item.split('=')[1] : ''),
-        '',
-      );
-
-    setPage(queryValue === '' ? pageProp : Number(queryValue));
-  }, [pageProp, queryString]);
 
   const itemProps = {
     disabled,
