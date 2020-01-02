@@ -195,7 +195,7 @@ export default function useAutocomplete(props) {
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
-      if (isControlled !== (valueProp != null)) {
+      if (isControlled !== (valueProp !== undefined)) {
         console.error(
           [
             `Material-UI: A component is changing ${
