@@ -97,8 +97,8 @@ yarn add @material-ui/styles
 - Rename `convertHexToRGB` to `hexToRgb`.
 
   ```diff
-  - import { convertHexToRgb } from '@material-ui/core/styles/colorManipulator';
-  + import { hexToRgb } from '@material-ui/core/styles';
+  -import { convertHexToRgb } from '@material-ui/core/styles/colorManipulator';
+  +import { hexToRgb } from '@material-ui/core/styles';
   ```
 
 - Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). You should apply the following changes in your codebase.
