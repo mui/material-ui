@@ -91,7 +91,7 @@ export default withWidth()(MyComponent);
 
 #### 返回结果
 
-`media query` ：准备与JSS一起使用的媒体查询字符串。
+`media query` ：可以与 JSS 一起使用的媒体查询字符串，其匹配的屏幕宽度大于等于 breakpoint key 给出的屏幕大小。
 
 #### 例子
 
@@ -116,7 +116,7 @@ const styles = theme => ({
 
 #### 返回结果
 
-`media query` ：媒体查询字符串已经可以与JSS一起使用，其匹配的屏幕宽度小于breakpoint key给出的屏幕大小。
+`media query` ：可以与 JSS 一起使用的媒体查询字符串，其匹配的屏幕宽度小于 breakpoint key 给出的屏幕大小。
 
 #### 例子
 
@@ -142,7 +142,7 @@ const styles = theme => ({
 
 #### 返回结果
 
-`media query` ：媒体查询字符串已经可以与JSS一起使用，其匹配的屏幕宽度大于breakpoint key给出的屏幕大小。
+`media query` ：可以与 JSS 一起使用的媒体查询字符串，其匹配的屏幕宽度为 breakpoint key 给出的屏幕大小。
 
 #### 例子
 
@@ -169,7 +169,7 @@ const styles = theme => ({
 
 #### 返回结果
 
-`media query`: A media query string ready to be used with JSS, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
+`media query`: 可以与 JSS 一起使用的媒体查询字符串, 它匹配的屏幕宽度大于第一个参数给定的屏幕大小，而小于第二个参数给定的屏幕大小。
 
 #### 例子
 
