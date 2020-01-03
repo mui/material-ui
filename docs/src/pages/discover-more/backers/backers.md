@@ -10,7 +10,7 @@ The core of Material-UI is a crowd-funded open-source project, licensed under th
 
 *3/3 slots available*
 
-Diamond Sponsors are those who have pledged $2,000/month and more to Material-UI.
+Diamond Sponsors are those who have pledged $2,000/month or more to Material-UI.
 Please contact us at diamond@material-ui.com to subscribe to this tier.
 
 ### Gold 🏆
@@ -28,7 +28,7 @@ via [OpenCollective](https://opencollective.com/material-ui)
   <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Ff4053300-e0ea-11e7-acf0-0fa7c0509f4e.png&height=100" alt="call-em-all" title="The easy way to message your group" width="100" loading="lazy" /></a>
 </p>
 
-Gold Sponsors are those who have pledged $500/month and more to Material-UI.
+Gold Sponsors are those who have pledged $500/month or more to Material-UI.
 
 ### Silver
 

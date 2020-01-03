@@ -134,7 +134,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
           >
             <TableSortLabel
               active={orderBy === headCell.id}
-              direction={order}
+              direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
             >
               {headCell.label}
@@ -249,8 +249,8 @@ export default function EnhancedTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
-    const isDesc = orderBy === property && order === 'desc';
-    setOrder(isDesc ? 'asc' : 'desc');
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
 

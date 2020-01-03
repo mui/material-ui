@@ -237,7 +237,7 @@ Typography.propTypes = {
     'inherit',
   ]),
   /**
-   * We are empirically mapping the variant prop to a range of different DOM element types.
+   * The component maps the variant prop to a range of different DOM element types.
    * For instance, subtitle1 to `<h6>`.
    * If you wish to change that mapping, you can provide your own.
    * Alternatively, you can use the `component` prop.

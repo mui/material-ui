@@ -61,6 +61,17 @@ export function createFilterOptions(config = {}) {
   };
 }
 
+// To replace with .findIndex() once we stop IE 11 support.
+function findIndex(array, comp) {
+  for (let i = 0; i < array.length; i += 1) {
+    if (comp(array[i])) {
+      return i;
+    }
+  }
+
+  return -1;
+}
+
 const defaultFilterOptions = createFilterOptions();
 
 // Number of options to jump in list box when pageup and pagedown keys are used.
@@ -180,6 +191,25 @@ export default function useAutocomplete(props) {
     return !isControlled ? defaultValue || (multiple ? [] : null) : null;
   });
   const value = isControlled ? valueProp : valueState;
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (isControlled !== (valueProp !== undefined)) {
+        console.error(
+          [
+            `Material-UI: A component is changing ${
+              isControlled ? 'a ' : 'an un'
+            }controlled useAutocomplete to be ${isControlled ? 'un' : ''}controlled.`,
+            'Elements should not switch from uncontrolled to controlled (or vice versa).',
+            'Decide between using a controlled or uncontrolled useAutocomplete ' +
+              'element for the lifetime of the component.',
+            'More info: https://fb.me/react-controlled-components',
+          ].join('\n'),
+        );
+      }
+    }, [valueProp, isControlled]);
+  }
 
   const { current: isInputValueControlled } = React.useRef(inputValueProp != null);
   const [inputValueState, setInputValue] = React.useState('');
@@ -424,13 +454,7 @@ export default function useAutocomplete(props) {
       const item = newValue;
       newValue = Array.isArray(value) ? [...value] : [];
 
-      let itemIndex = -1;
-      // To replace with .findIndex() once we stop IE 11 support.
-      for (let i = 0; i < newValue.length; i += 1) {
-        if (getOptionSelected(item, newValue[i])) {
-          itemIndex = i;
-        }
-      }
+      const itemIndex = findIndex(newValue, valueItem => getOptionSelected(item, valueItem));
 
       if (itemIndex === -1) {
         newValue.push(item);

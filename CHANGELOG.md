@@ -1,5 +1,51 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.8.2
+###### *Dec 30, 2019*
+
+Big thanks to the 22 contributors who made this release possible.
+
+### `@material-ui/core@v4.8.2`
+
+- [Badge] Fix doc about anchorOrigin (#18982) @ypresto
+- [DialogContent] Add missing `dividers` class types (#18984) @NickCis
+- [RadioGroup] Add useRadioGroup Hook (#18920) @NMinhNguyen
+- [Slider] Fix discrete mark highlighting (#18993) @ulises-lara
+- [Slider] Improve the pointer event logic (#19010) @oliviertassinari
+- [TablePagination] Fix duplicate key error (#18988) @afzalsayed96
+- [TableSortLabel] Relax IconComponent prop requirements in TypeScript (#18936) @Igorbek
+- [TableSortLabel] Sort asc by default (#19013) @oliviertassinari
+- [l10n] Add Portuguese (pt-PT) locale (#18987) @hrafaelveloso
+
+### `@material-ui/lab@v4.8.2`
+
+- [styles] Fix jss StyleSheet attach() call (#19042) @mceIdo
+
+### `@material-ui/lab@v4.0.0-alpha.38`
+
+- [Skeleton] Add wave animation support (#19014) @oliviertassinari
+- [Autocomplete] Fix option height border-box (#19000) @MariyaVdovenko
+- [Autocomplete] Zero (0) integer key display throws (#18994) @hoop71
+- [Rating] Clear value if selected value is clicked (#18999) @ivowork
+- [Rating] Add a demo with different icons (#19004) @hoop71
+
+### Docs
+
+- [docs] Add TS demo for MenuPopupState (#18998) @eps1lon
+- [docs] Add yarn install instructions in CONTRIBUTING.md (#18970) @hiteshkundal
+- [docs] Clarify not all components have 'component' prop (#19015) @JamieS1211
+- [docs] Fix syntax error in palette customization example (#19008) @mumairofficial
+- [docs] Fix typo in toggle-button.md (#19002) @noahbenham
+- [docs] Update showcase lists (#19039) @typekev
+- [docs] Fix url address in modules/watrerfall/Batcher.js (#18997) @hiteshkundal
+
+### Core
+
+- [core] Don't force a remote when listing prettier changes (#18794) @Janpot
+- [core] Bump handlebars from 4.1.2 to 4.5.3 (#18989) @dependabot-preview
+- [core] Batch small changes (#19016) @oliviertassinari
+- [core] Batch small changes (#19012) @mbrookes
+
 ## 4.8.1
 ###### *Dec 24, 2019*
 

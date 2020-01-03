@@ -59,7 +59,7 @@ describe('<SvgIcon />', () => {
         </SvgIcon>,
       );
       assert.strictEqual(wrapper.find('title').text(), 'Network');
-      assert.strictEqual(wrapper.props()['aria-hidden'], 'false');
+      assert.strictEqual(wrapper.props()['aria-hidden'], null);
     });
   });
 

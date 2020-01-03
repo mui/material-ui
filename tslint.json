@@ -1,15 +1,15 @@
 {
-    "defaultSeverity": "error",
-    "extends": ["dtslint/dtslint.json"],
-    "jsRules": {},
-    "rules": {
-        "deprecation": true,
-        "file-name-casing": false,
-        "no-boolean-literal-compare": false,
-        "no-empty-interface": false,
-        "no-unnecessary-callback-wrapper": false,
-        "no-unnecessary-generics": false,
-        "no-redundant-jsdoc": false,
-        "semicolon": [true, "always", "ignore-bound-class-methods"]
-    }
+  "defaultSeverity": "error",
+  "extends": ["dtslint/dtslint.json"],
+  "jsRules": {},
+  "rules": {
+    "deprecation": true,
+    "file-name-casing": false,
+    "no-boolean-literal-compare": false,
+    "no-empty-interface": false,
+    "no-unnecessary-callback-wrapper": false,
+    "no-unnecessary-generics": false,
+    "no-redundant-jsdoc": false,
+    "semicolon": [true, "always", "ignore-bound-class-methods"]
+  }
 }

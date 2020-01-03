@@ -302,6 +302,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
       className: clsx(classes.tag, {
         [classes.tagSizeSmall]: size === 'small',
       }),
+      disabled,
       ...getTagProps(params),
     });
 
@@ -636,7 +637,7 @@ Autocomplete.propTypes = {
   /**
    * Callback fired when the value changes.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    * @param {any} value
    */
   onChange: PropTypes.func,
@@ -651,7 +652,7 @@ Autocomplete.propTypes = {
    * Callback fired when the input value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} value The new value of the text input
+   * @param {string} value The new value of the text input.
    * @param {string} reason Can be: "input" (user input), "reset" (programmatic change), `"clear"`.
    */
   onInputChange: PropTypes.func,
