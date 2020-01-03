@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const defaultProps = {
-  color: 'secondary',
+  color: 'secondary' as 'secondary',
   children: <MailIcon />,
 };
 

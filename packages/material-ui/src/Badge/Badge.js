@@ -186,10 +186,6 @@ const Badge = React.forwardRef(function Badge(props, ref) {
     displayValue = badgeContent > max ? `${max}+` : badgeContent;
   }
 
-  if (invisible && badgeContent === 0 && variant !== 'dot') {
-    displayValue = '1';
-  }
-
   return (
     <ComponentProp className={clsx(classes.root, className)} ref={ref} {...other}>
       {children}
