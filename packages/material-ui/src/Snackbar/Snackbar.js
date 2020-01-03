@@ -253,7 +253,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
 
 Snackbar.propTypes = {
   /**
-   * The action to display.
+   * The action to display. It renders after the message, at the end of the snackbar.
    */
   action: PropTypes.node,
   /**

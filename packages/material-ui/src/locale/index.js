@@ -26,6 +26,9 @@ export const azAZ = {
       noOptionsText: 'Seçimlər mövcud deyil',
       openText: 'Открыть',
     },
+    MuiAlert: {
+      closeText: 'Bağlamaq',
+    },
   },
 };
 
@@ -56,6 +59,9 @@ export const csCZ = {
       noOptionsText: 'Žádné možnosti',
       openText: 'Otevřít',
     },
+    MuiAlert: {
+      closeText: 'Zavřít',
+    },
   },
 };
 
@@ -78,13 +84,15 @@ export const deDE = {
       noOptionsText: 'Keine Optionen',
       openText: 'Öffnen',
     },
+    MuiAlert: {
+      closeText: 'Schließen',
+    },
   },
 };
 
 // default
-export const enUS = {};
-
-/**
+export const enUS = {
+  /**
   props: {
     MuiTablePagination: {
       backIconButtonText: 'Previous page',
@@ -103,8 +111,12 @@ export const enUS = {};
       noOptionsText: 'No options',
       openText: 'Open',
     },
+    MuiAlert: {
+      closeText: 'Close',
+    },
   },
 */
+};
 
 export const esES = {
   props: {
@@ -124,6 +136,9 @@ export const esES = {
       loadingText: 'Cargando…',
       noOptionsText: 'Sin opciones',
       openText: 'Abierto',
+    },
+    MuiAlert: {
+      closeText: 'Cerrar',
     },
   },
 };
@@ -147,6 +162,9 @@ export const faIR = {
       noOptionsText: 'بی‌نتیجه',
       openText: 'بازکردن',
     },
+    MuiAlert: {
+      closeText: 'بستن',
+    },
   },
 };
 
@@ -168,6 +186,9 @@ export const frFR = {
       loadingText: 'Chargement…',
       noOptionsText: 'Pas de résultats',
       openText: 'Ouvrir',
+    },
+    MuiAlert: {
+      closeText: 'Fermer',
     },
   },
 };
@@ -192,6 +213,9 @@ export const idID = {
       noOptionsText: 'Tidak ada opsi',
       openText: 'Buka',
     },
+    MuiAlert: {
+      closeText: 'Tutup',
+    },
   },
 };
 
@@ -214,6 +238,9 @@ export const itIT = {
       noOptionsText: 'Nessuna opzione',
       openText: 'Apri',
     },
+    MuiAlert: {
+      closeText: 'Chiudi',
+    },
   },
 };
 
@@ -235,6 +262,9 @@ export const jaJP = {
       loadingText: '積み込み…',
       noOptionsText: '結果がありません',
       openText: '開いた',
+    },
+    MuiAlert: {
+      closeText: '閉じる',
     },
   },
 };
@@ -280,6 +310,9 @@ export const nlNL = {
       noOptionsText: 'Geen opties',
       openText: 'Openen',
     },
+    MuiAlert: {
+      closeText: 'Sluiten',
+    },
   },
 };
 
@@ -313,6 +346,9 @@ export const plPL = {
       noOptionsText: 'Brak opcji',
       openText: 'Otwórz',
     },
+    MuiAlert: {
+      closeText: 'Zamknij',
+    },
   },
 };
 
@@ -334,6 +370,9 @@ export const ptBR = {
       loadingText: 'Carregando…',
       noOptionsText: 'Sem opções',
       openText: 'Abrir',
+    },
+    MuiAlert: {
+      closeText: 'Fechar',
     },
   },
 };
@@ -379,6 +418,9 @@ export const roRO = {
       noOptionsText: 'Nicio opțiune',
       openText: 'Deschide',
     },
+    MuiAlert: {
+      closeText: 'Închide',
+    },
   },
 };
 
@@ -412,6 +454,9 @@ export const ruRU = {
       noOptionsText: 'Нет доступных вариантов',
       openText: 'Открыть',
     },
+    MuiAlert: {
+      closeText: 'Закрыть',
+    },
   },
 };
 
@@ -442,6 +487,9 @@ export const skSK = {
       noOptionsText: 'Žiadne možnosti',
       openText: 'Otvoriť',
     },
+    MuiAlert: {
+      closeText: 'Zavrieť',
+    },
   },
 };
 
@@ -463,6 +511,9 @@ export const svSE = {
       loadingText: 'Laddar…',
       noOptionsText: 'Inga alternativ',
       openText: 'Öppen',
+    },
+    MuiAlert: {
+      closeText: 'Stäng',
     },
   },
 };
@@ -486,6 +537,9 @@ export const trTR = {
       loadingText: 'Yükleniyor…',
       noOptionsText: 'Seçenek yok',
       openText: 'Aç',
+    },
+    MuiAlert: {
+      closeText: 'Kapat',
     },
   },
 };
@@ -520,6 +574,9 @@ export const ukUA = {
       noOptionsText: 'Немає варіантів',
       openText: 'Розгорнути',
     },
+    MuiAlert: {
+      closeText: 'Згорнути',
+    },
   },
 };
 
@@ -541,6 +598,9 @@ export const zhCN = {
       loadingText: '载入中…',
       noOptionsText: '没有选择',
       openText: '打开',
+    },
+    MuiAlert: {
+      closeText: '关',
     },
   },
 };

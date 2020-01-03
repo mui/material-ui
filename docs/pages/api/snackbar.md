@@ -24,7 +24,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">action</span> | <span class="prop-type">node</span> |  | The action to display. |
+| <span class="prop-name">action</span> | <span class="prop-type">node</span> |  | The action to display. It renders after the message, at the end of the snackbar. |
 | <span class="prop-name">anchorOrigin</span> | <span class="prop-type">{ horizontal: 'left'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'right', vertical: 'top'<br>&#124;&nbsp;'bottom' }</span> | <span class="prop-default">{ vertical: 'bottom', horizontal: 'center' }</span> | The anchor of the `Snackbar`. |
 | <span class="prop-name">autoHideDuration</span> | <span class="prop-type">number</span> |  | The number of milliseconds to wait before automatically calling the `onClose` function. `onClose` should then set the state of the `open` prop to hide the Snackbar. This behavior is disabled by default with the `null` value. |
 | <span class="prop-name">children</span> | <span class="prop-type">element</span> |  | Replace the `SnackbarContent` component. |
