@@ -43,10 +43,7 @@ export default function TransitionsSnackbar() {
         open={state.open}
         onClose={handleClose}
         TransitionComponent={state.Transition}
-        ContentProps={{
-          'aria-describedby': 'message-id',
-        }}
-        message={<span id="message-id">I love snacks</span>}
+        message="I love snacks"
       />
     </div>
   );

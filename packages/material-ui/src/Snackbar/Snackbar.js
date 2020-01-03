@@ -99,7 +99,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   const {
     action,
     anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'center' },
-    autoHideDuration,
+    autoHideDuration = null,
     children,
     classes,
     className,

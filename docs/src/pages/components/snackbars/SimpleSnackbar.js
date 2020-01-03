@@ -30,10 +30,7 @@ export default function SimpleSnackbar() {
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
-        ContentProps={{
-          'aria-describedby': 'message-id',
-        }}
-        message={<span id="message-id">Note archived</span>}
+        message="Note archived"
         action={
           <React.Fragment>
             <Button color="secondary" size="small" onClick={handleClose}>

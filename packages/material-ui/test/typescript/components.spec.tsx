@@ -716,7 +716,7 @@ const SnackbarTest = () => (
         horizontal: 'left',
       }}
       open={true}
-      autoHideDuration={6e3}
+      autoHideDuration={6000}
       onClose={e => log(e)}
       ContentProps={
         {
