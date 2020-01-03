@@ -98,7 +98,7 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 #### Returns
 
-`media query`: A media query string ready to be used with JSS.
+`media query`: A media query string ready to be used with JSS,  which matches screen widths greater than and including the screen size given by the breakpoint key.
 
 #### Examples
 
@@ -123,7 +123,7 @@ const styles = theme => ({
 
 #### Returns
 
-`media query`: A media query string ready to be used with JSS, which matches screen widths less than and including the screen size given by the breakpoint key.
+`media query`: A media query string ready to be used with JSS, which matches screen widths less than the screen size given by the breakpoint key.
 
 #### Examples
 
@@ -149,7 +149,7 @@ const styles = theme => ({
 
 #### Returns
 
-`media query`: A media query string ready to be used with JSS, which matches screen widths greater than and including the screen size given by the breakpoint key.
+`media query`: A media query string ready to be used with JSS, which matches screen widths including the screen size given by the breakpoint key.
 
 #### Examples
 
