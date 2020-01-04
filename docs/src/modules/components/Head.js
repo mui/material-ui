@@ -12,6 +12,11 @@ export default function Head(props) {
 
   return (
     <NextHead>
+      {/* Use minimum-scale=1 to enable GPU rasterization. */}
+      <meta
+        name="viewport"
+        content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+      />
       <title>{title}</title>
       <meta name="description" content={description} />
       {/* Twitter */}
