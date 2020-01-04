@@ -17,8 +17,8 @@ const NextComposed = React.forwardRef(function NextComposed(props, ref) {
 });
 
 NextComposed.propTypes = {
-  as: PropTypes.string,
-  href: PropTypes.string,
+  as: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   prefetch: PropTypes.bool,
 };
 
@@ -26,30 +26,34 @@ NextComposed.propTypes = {
 // https://nextjs.org/docs/#with-link
 function Link(props) {
   const {
+    href,
     activeClassName = 'active',
     className: classNameProps,
     innerRef,
     naked,
     ...other
   } = props;
-  const router = useRouter();
 
+  const router = useRouter();
+  const pathname = typeof href === 'string' ? href : href.pathname;
   const className = clsx(classNameProps, {
-    [activeClassName]: router.pathname === props.href && activeClassName,
+    [activeClassName]: router.pathname === pathname && activeClassName,
   });
 
   if (naked) {
-    return <NextComposed className={className} ref={innerRef} {...other} />;
+    return <NextComposed className={className} ref={innerRef} href={href} {...other} />;
   }
 
-  return <MuiLink component={NextComposed} className={className} ref={innerRef} {...other} />;
+  return (
+    <MuiLink component={NextComposed} className={className} ref={innerRef} href={href} {...other} />
+  );
 }
 
 Link.propTypes = {
   activeClassName: PropTypes.string,
-  as: PropTypes.string,
+  as: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   className: PropTypes.string,
-  href: PropTypes.string,
+  href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   naked: PropTypes.bool,
   onClick: PropTypes.func,
