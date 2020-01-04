@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
 import * as React from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
