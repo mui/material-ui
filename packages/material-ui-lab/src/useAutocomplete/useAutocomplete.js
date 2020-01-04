@@ -612,6 +612,10 @@ export default function useAutocomplete(props) {
             );
           }
         } else if (freeSolo && inputValue !== '' && inputValueIsSelectedValue === false) {
+          if (multiple) {
+            // Allow people to add new values before they submit the form.
+            event.preventDefault();
+          }
           selectNewValue(event, inputValue);
         }
         break;
