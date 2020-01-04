@@ -547,7 +547,7 @@ export default function useAutocomplete(props) {
     handleValue(event, multiple ? [] : null);
   };
 
-  const handleKeyDown = event => {
+  const handleKeyDown = other => event => {
     if (focusedTag !== -1 && ['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
       setFocusedTag(-1);
       focusTag(-1);
@@ -643,6 +643,10 @@ export default function useAutocomplete(props) {
         }
         break;
       default:
+    }
+
+    if (other.onKeyDown) {
+      other.onKeyDown(event);
     }
   };
 
@@ -796,11 +800,12 @@ export default function useAutocomplete(props) {
   }
 
   return {
-    getRootProps: () => ({
+    getRootProps: (other = {}) => ({
       'aria-owns': popupOpen ? `${id}-popup` : null,
       role: 'combobox',
       'aria-expanded': popupOpen,
-      onKeyDown: handleKeyDown,
+      ...other,
+      onKeyDown: handleKeyDown(other),
       onMouseDown: handleMouseDown,
       onClick: handleClick,
     }),
