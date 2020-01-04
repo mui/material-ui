@@ -356,8 +356,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           },
           className,
         )}
-        {...getRootProps()}
-        {...other}
+        {...getRootProps(other)}
       >
         {renderInput({
           id,
