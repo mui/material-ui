@@ -136,8 +136,10 @@ export default function CustomizedHook() {
     setAnchorEl,
   } = useAutocomplete({
     id: 'customized-hook-demo',
+    defaultValue: [top100Films[1]],
     multiple: true,
     options: top100Films,
+    getOptionLabel: option => option.title,
   });
 
   return (

@@ -198,7 +198,7 @@ export type UseAutocompleteVariableProps<T> =
        * The value must have reference equality with the option in order to be selected.
        * You can customize the equality behavior with the `getOptionSelected` prop.
        */
-      value?: T;
+      value?: T | null;
       /**
        * The default input value. Use when the component is not controlled.
        */
@@ -209,7 +209,7 @@ export type UseAutocompleteVariableProps<T> =
        * @param {object} event The event source of the callback
        * @param {T} value
        */
-      onChange?: (event: React.ChangeEvent<{}>, value: T) => void;
+      onChange?: (event: React.ChangeEvent<{}>, value: T | null) => void;
     };
 
 export type UseAutocompleteProps<T> = UseAutocompleteBaseProps<T> & UseAutocompleteVariableProps<T>;
