@@ -33,7 +33,7 @@ renderer.heading = (text, level) => {
     `<h${level}>`,
     `<a class="anchor-link" id="${hash}"></a>`,
     text,
-    `<a class="anchor-link-style" aria-hidden="true" href="#${hash}">`,
+    `<a class="anchor-link-style" aria-hidden="true" aria-label="anchor" href="#${hash}">`,
     '<svg><use xlink:href="#anchor-link-icon" /></svg>',
     '</a>',
     `</h${level}>`,
