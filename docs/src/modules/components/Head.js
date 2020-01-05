@@ -15,7 +15,7 @@ export default function Head(props) {
       {/* Use minimum-scale=1 to enable GPU rasterization. */}
       <meta
         name="viewport"
-        content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+        content="minimum-scale=1, initial-scale=1, width=device-width"
       />
       <title>{title}</title>
       <meta name="description" content={description} />
