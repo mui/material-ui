@@ -92,6 +92,42 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  it('should trigger a form expectedly', () => {
+    const handleSubmit = spy();
+    const { setProps } = render(
+      <Autocomplete
+        options={['one', 'two']}
+        onKeyDown={event => {
+          if (!event.defaultPrevented && event.key === 'Enter') {
+            handleSubmit();
+          }
+        }}
+        renderInput={props2 => <TextField {...props2} autoFocus />}
+      />,
+    );
+    fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+    expect(handleSubmit.callCount).to.equal(1);
+
+    fireEvent.change(document.activeElement, { target: { value: 'o' } });
+    fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+    fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+    expect(handleSubmit.callCount).to.equal(1);
+    fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+    expect(handleSubmit.callCount).to.equal(2);
+
+    setProps({ key: 'test-2', multiple: true, freeSolo: true });
+    fireEvent.change(document.activeElement, { target: { value: 'o' } });
+    fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+    expect(handleSubmit.callCount).to.equal(2);
+    fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+    expect(handleSubmit.callCount).to.equal(3);
+
+    setProps({ key: 'test-3', freeSolo: true });
+    fireEvent.change(document.activeElement, { target: { value: 'o' } });
+    fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+    expect(handleSubmit.callCount).to.equal(4);
+  });
+
   describe('WAI-ARIA conforming markup', () => {
     specify('when closed', () => {
       const { getAllByRole, getByRole, queryByRole } = render(

@@ -59,11 +59,8 @@ export default function FabIntegrationSnackbar() {
         </Fab>
         <Snackbar
           open
-          autoHideDuration={4000}
-          ContentProps={{
-            'aria-describedby': 'snackbar-fab-message-id',
-          }}
-          message={<span id="snackbar-fab-message-id">Archived</span>}
+          autoHideDuration={6000}
+          message="Archived"
           action={
             <Button color="inherit" size="small">
               Undo

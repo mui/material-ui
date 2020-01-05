@@ -114,6 +114,7 @@ const pages = [
         subheader: '/components/lab',
         children: [
           { pathname: '/components/about-the-lab' },
+          { pathname: '/components/alert' },
           { pathname: '/components/autocomplete' },
           { pathname: '/components/rating' },
           { pathname: '/components/skeleton' },

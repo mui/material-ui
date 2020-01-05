@@ -96,6 +96,9 @@ export const styles = theme => ({
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
+    // Fix mouseLeave issue.
+    // https://github.com/facebook/react/issues/4492
+    pointerEvents: 'none',
   },
   /* Styles applied to the icon wrapping elements when empty. */
   iconEmpty: {

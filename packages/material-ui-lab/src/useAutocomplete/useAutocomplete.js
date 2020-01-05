@@ -192,6 +192,25 @@ export default function useAutocomplete(props) {
   });
   const value = isControlled ? valueProp : valueState;
 
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (isControlled !== (valueProp !== undefined)) {
+        console.error(
+          [
+            `Material-UI: A component is changing ${
+              isControlled ? 'a ' : 'an un'
+            }controlled useAutocomplete to be ${isControlled ? 'un' : ''}controlled.`,
+            'Elements should not switch from uncontrolled to controlled (or vice versa).',
+            'Decide between using a controlled or uncontrolled useAutocomplete ' +
+              'element for the lifetime of the component.',
+            'More info: https://fb.me/react-controlled-components',
+          ].join('\n'),
+        );
+      }
+    }, [valueProp, isControlled]);
+  }
+
   const { current: isInputValueControlled } = React.useRef(inputValueProp != null);
   const [inputValueState, setInputValue] = React.useState('');
   const inputValue = isInputValueControlled ? inputValueProp : inputValueState;
@@ -528,7 +547,7 @@ export default function useAutocomplete(props) {
     handleValue(event, multiple ? [] : null);
   };
 
-  const handleKeyDown = event => {
+  const handleKeyDown = other => event => {
     if (focusedTag !== -1 && ['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
       setFocusedTag(-1);
       focusTag(-1);
@@ -593,6 +612,10 @@ export default function useAutocomplete(props) {
             );
           }
         } else if (freeSolo && inputValue !== '' && inputValueIsSelectedValue === false) {
+          if (multiple) {
+            // Allow people to add new values before they submit the form.
+            event.preventDefault();
+          }
           selectNewValue(event, inputValue);
         }
         break;
@@ -620,6 +643,10 @@ export default function useAutocomplete(props) {
         }
         break;
       default:
+    }
+
+    if (other.onKeyDown) {
+      other.onKeyDown(event);
     }
   };
 
@@ -773,11 +800,12 @@ export default function useAutocomplete(props) {
   }
 
   return {
-    getRootProps: () => ({
+    getRootProps: (other = {}) => ({
       'aria-owns': popupOpen ? `${id}-popup` : null,
       role: 'combobox',
       'aria-expanded': popupOpen,
-      onKeyDown: handleKeyDown,
+      ...other,
+      onKeyDown: handleKeyDown(other),
       onMouseDown: handleMouseDown,
       onClick: handleClick,
     }),

@@ -616,13 +616,14 @@ describe('<Popover />', () => {
       clock = useFakeTimers();
 
       windowInnerHeight = window.innerHeight;
+      window.innerHeight = 8;
+
       const mockedAnchor = document.createElement('div');
       stub(mockedAnchor, 'getBoundingClientRect').callsFake(() => ({
         left: 0,
         top: 9,
       }));
       const handleEntering = spy();
-      window.innerHeight = 8;
       wrapper = mount(
         <Popover
           anchorEl={mockedAnchor}
@@ -681,13 +682,10 @@ describe('<Popover />', () => {
     it('should be able to manually recalculate position', () => {
       let popoverActions;
       wrapper.setProps({
-        open: false,
+        open: true,
         action: actions => {
           popoverActions = actions;
         },
-      });
-      wrapper.setProps({
-        open: true,
       });
       const beforeStyle = {
         top: element.style.top,

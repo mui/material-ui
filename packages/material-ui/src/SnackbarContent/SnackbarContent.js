@@ -61,7 +61,7 @@ const SnackbarContent = React.forwardRef(function SnackbarContent(props, ref) {
 
 SnackbarContent.propTypes = {
   /**
-   * The action to display.
+   * The action to display. It renders after the message, at the end of the snackbar.
    */
   action: PropTypes.node,
   /**
@@ -78,10 +78,9 @@ SnackbarContent.propTypes = {
    */
   message: PropTypes.node,
   /**
-   * The role of the SnackbarContent. If the Snackbar requires focus
-   * to be closed, the `alertdialog` role should be used instead.
+   * The ARIA role attribute of the element.
    */
-  role: PropTypes.oneOf(['alert', 'alertdialog']),
+  role: PropTypes.string,
 };
 
 export default withStyles(styles, { name: 'MuiSnackbarContent' })(SnackbarContent);

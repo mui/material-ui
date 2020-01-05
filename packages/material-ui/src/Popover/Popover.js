@@ -307,27 +307,30 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     ],
   );
 
-  const setPositioningStyles = React.useCallback(
-    element => {
-      const positioning = getPositioningStyle(element);
+  const setPositioningStyles = React.useCallback(() => {
+    const element = paperRef.current;
 
-      if (positioning.top !== null) {
-        element.style.top = positioning.top;
-      }
-      if (positioning.left !== null) {
-        element.style.left = positioning.left;
-      }
-      element.style.transformOrigin = positioning.transformOrigin;
-    },
-    [getPositioningStyle],
-  );
+    if (!element) {
+      return;
+    }
+
+    const positioning = getPositioningStyle(element);
+
+    if (positioning.top !== null) {
+      element.style.top = positioning.top;
+    }
+    if (positioning.left !== null) {
+      element.style.left = positioning.left;
+    }
+    element.style.transformOrigin = positioning.transformOrigin;
+  }, [getPositioningStyle]);
 
   const handleEntering = (element, isAppearing) => {
     if (onEntering) {
       onEntering(element, isAppearing);
     }
 
-    setPositioningStyles(element);
+    setPositioningStyles();
   };
 
   const handlePaperRef = React.useCallback(instance => {
@@ -335,32 +338,40 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     paperRef.current = ReactDOM.findDOMNode(instance);
   }, []);
 
-  const updatePosition = React.useMemo(() => {
+  React.useEffect(() => {
+    if (open) {
+      setPositioningStyles();
+    }
+  });
+
+  React.useImperativeHandle(
+    action,
+    () =>
+      open
+        ? {
+            updatePosition: () => {
+              setPositioningStyles();
+            },
+          }
+        : null,
+    [open, setPositioningStyles],
+  );
+
+  React.useEffect(() => {
     if (!open) {
       return undefined;
     }
 
-    return debounce(() => {
-      setPositioningStyles(paperRef.current);
+    const handleResize = debounce(() => {
+      setPositioningStyles();
     });
-  }, [open, setPositioningStyles]);
 
-  React.useImperativeHandle(action, () => (open ? { updatePosition } : null), [
-    open,
-    updatePosition,
-  ]);
-
-  React.useEffect(() => {
-    if (!updatePosition) {
-      return undefined;
-    }
-
-    window.addEventListener('resize', updatePosition);
+    window.addEventListener('resize', handleResize);
     return () => {
-      window.removeEventListener('resize', updatePosition);
-      updatePosition.clear();
+      handleResize.clear();
+      window.removeEventListener('rezise', handleResize);
     };
-  }, [updatePosition]);
+  }, [open, setPositioningStyles]);
 
   let transitionDuration = transitionDurationProp;
 

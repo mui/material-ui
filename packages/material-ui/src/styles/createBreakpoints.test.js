@@ -23,7 +23,7 @@ describe('createBreakpoints', () => {
       assert.strictEqual(breakpoints.down('md'), '@media (max-width:1279.95px)');
     });
 
-    it('should use the specified key if it is not a recognized breakpoint', () => {
+    it('should accept a number', () => {
       assert.strictEqual(breakpoints.down(600), '@media (max-width:599.95px)');
     });
 
@@ -37,6 +37,13 @@ describe('createBreakpoints', () => {
       assert.strictEqual(
         breakpoints.between('sm', 'md'),
         '@media (min-width:600px) and (max-width:1279.95px)',
+      );
+    });
+
+    it('should accept numbers', () => {
+      assert.strictEqual(
+        breakpoints.between(600, 800),
+        '@media (min-width:600px) and (max-width:799.95px)',
       );
     });
 

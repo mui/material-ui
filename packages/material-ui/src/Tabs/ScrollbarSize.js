@@ -35,7 +35,6 @@ export default function ScrollbarSize(props) {
     });
 
     window.addEventListener('resize', handleResize);
-
     return () => {
       handleResize.clear();
       window.removeEventListener('resize', handleResize);
