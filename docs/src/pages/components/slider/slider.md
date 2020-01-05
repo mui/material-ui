@@ -9,7 +9,13 @@ components: Slider
 
 [Sliders](https://material.io/design/components/sliders.html) reflect a range of values along a bar, from which users may select a single value. They are ideal for adjusting settings such as volume, brightness, or applying image filters.
 
-- 📦 [22 kB gzipped](/size-snapshot) (but only 8 kB without @material-ui/styles).
+- 📦 [22 kB gzipped](/size-snapshot) (but only +8 kB when used together with other Material-UI components).
+
+## Continuous sliders
+
+Continuous sliders allow users to select a value along a subjective range.
+
+{{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
 ## Discrete sliders
 
@@ -24,25 +30,23 @@ By order of demos:
 
 {{"demo": "pages/components/slider/DiscreteSlider.js"}}
 
+## Range slider
+
+The slider can be used to set the start and end of a range by supplying an array of values to the `value` prop.
+
+{{"demo": "pages/components/slider/RangeSlider.js"}}
+
+## Slider with input field
+
+In this example an input allows a discrete value to be set.
+
+{{"demo": "pages/components/slider/InputSlider.js"}}
+
 ## Customized sliders
 
 Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
-
-## Continuous sliders
-
-Continuous sliders allow users to select a value along a subjective range.
-
-{{"demo": "pages/components/slider/ContinuousSlider.js"}}
-
-## Range sliders
-
-{{"demo": "pages/components/slider/RangeSlider.js"}}
-
-## With input field
-
-{{"demo": "pages/components/slider/InputSlider.js"}}
 
 ## Vertical sliders
 
