@@ -52,6 +52,8 @@ const LANGUAGES_LABEL = [
   },
 ];
 
+const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master/docs/src';
+
 module.exports = {
   CODE_VARIANTS,
   ACTION_TYPES,
@@ -59,4 +61,5 @@ module.exports = {
   LANGUAGES_SSR,
   LANGUAGES_LABEL,
   LANGUAGES_IN_PROGRESS,
+  SOURCE_CODE_ROOT_URL,
 };

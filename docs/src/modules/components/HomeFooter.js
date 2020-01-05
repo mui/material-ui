@@ -1,3 +1,4 @@
+/* eslint-disable material-ui/no-hardcoded-labels */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
@@ -22,7 +23,7 @@ const styles = theme => ({
     marginBottom: theme.spacing(4),
     '& img': {
       width: 28,
-      height: 28,
+      height: 22,
       marginRight: theme.spacing(1.5),
     },
   },
@@ -56,13 +57,15 @@ function HomeFooter(props) {
       <Container maxWidth="md">
         <footer className={classes.footer}>
           <Grid container>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={3}>
               <div className={classes.logo}>
                 <img src="/static/images/material-ui-logo.svg" alt="" />
-                <Typography color="primary">Material-UI</Typography>
+                <Link variant="body1" color="inherit" href="/">
+                  Material-UI
+                </Link>
               </div>
             </Grid>
-            <Grid item xs={6} sm={4} className={classes.list}>
+            <Grid item xs={6} sm={3} className={classes.list}>
               <Typography component="h2" gutterBottom>
                 {t('footerCommunity')}
               </Typography>
@@ -97,7 +100,7 @@ function HomeFooter(props) {
                 </li>
               </ul>
             </Grid>
-            <Grid item xs={6} sm={4} className={classes.list}>
+            <Grid item xs={6} sm={3} className={classes.list}>
               <Typography component="h2" gutterBottom>
                 {t('footerResources')}
               </Typography>
@@ -115,6 +118,23 @@ function HomeFooter(props) {
                 <li>
                   <Link color="inherit" variant="body2" href="/components/material-icons/">
                     {t('pages./components/material-icons')}
+                  </Link>
+                </li>
+              </ul>
+            </Grid>
+            <Grid item xs={6} sm={3} className={classes.list}>
+              <Typography component="h2" gutterBottom>
+                {t('footerCompany')}
+              </Typography>
+              <ul>
+                <li>
+                  <Link color="inherit" variant="body2" href="/company/about/">
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link color="inherit" variant="body2" href="/company/contact/">
+                    Contact Us
                   </Link>
                 </li>
               </ul>

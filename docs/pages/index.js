@@ -31,9 +31,9 @@ function loadDependencies() {
 const useStyles = makeStyles(theme => ({
   root: {
     flex: '1 0 100%',
-  },
-  drawer: {
-    width: 0,
+    '& #main-content': {
+      outline: 0,
+    },
   },
   hero: {
     paddingTop: 64,
@@ -111,7 +111,7 @@ export default function HomePage() {
   const classes = useStyles();
 
   return (
-    <AppFrame classes={{ drawer: classes.drawer }}>
+    <AppFrame>
       <div className={classes.root}>
         <Head />
         <main id="main-content" tabIndex="-1">

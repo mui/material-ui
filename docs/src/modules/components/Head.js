@@ -1,14 +1,14 @@
 import React from 'react';
 import NextHead from 'next/head';
-import { Router as Router2, useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 export default function Head(props) {
-  const router = useRouter();
   const t = useSelector(state => state.options.t);
-  const userLanguage = useSelector(state => state.options.userLanguage);
   const { description = t('strapline'), title = t('headTitle'), children } = props;
+  const userLanguage = useSelector(state => state.options.userLanguage);
+  const router = useRouter();
 
   return (
     <NextHead>
@@ -30,7 +30,7 @@ export default function Head(props) {
       <meta property="og:title" content={title} />
       <meta
         property="og:url"
-        content={`https://material-ui.com${Router2._rewriteUrlForNextExport(router.asPath)}`}
+        content={`https://material-ui.com${Router._rewriteUrlForNextExport(router.asPath)}`}
       />
       <meta property="og:description" content={description} />
       <meta property="og:image" content="https://material-ui.com/static/brand.png" />

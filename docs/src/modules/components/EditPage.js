@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
-
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/edit/master';
+import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 
 export default function EditPage(props) {
   const { markdownLocation } = props;

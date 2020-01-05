@@ -11,6 +11,7 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     maxWidth: '100%',
     margin: '0 auto',
+    outline: 0,
     [theme.breakpoints.up('sm')]: {
       paddingRight: theme.spacing(1),
       maxWidth: 'calc(100% - 175px)',
@@ -40,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function AppContent(props) {
-  const { children, disableAd, disableToc } = props;
+  const { children, className, disableAd, disableToc } = props;
   const classes = useStyles();
 
   return (
@@ -48,10 +49,14 @@ export default function AppContent(props) {
       component="main"
       id="main-content"
       tabIndex={-1}
-      className={clsx(classes.root, {
-        [classes.ad]: !disableAd,
-        [classes.disableToc]: disableToc,
-      })}
+      className={clsx(
+        classes.root,
+        {
+          [classes.ad]: !disableAd,
+          [classes.disableToc]: disableToc,
+        },
+        className,
+      )}
     >
       {children}
     </Container>
@@ -60,6 +65,7 @@ export default function AppContent(props) {
 
 AppContent.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   disableAd: PropTypes.bool.isRequired,
   disableToc: PropTypes.bool.isRequired,
 };
