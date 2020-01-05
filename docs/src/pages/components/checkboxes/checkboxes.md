@@ -17,9 +17,9 @@ If you have a single option, avoid using a checkbox and use an on/off switch ins
 
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
-## Checkboxes with FormControlLabel
+## Checkbox with FormControlLabel
 
-`Checkbox` can be provided with a label description thanks to the `FormControlLabel` component.
+`Checkbox` can be provided with a label thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
