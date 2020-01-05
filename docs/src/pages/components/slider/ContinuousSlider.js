@@ -36,7 +36,10 @@ export default function ContinuousSlider() {
           <VolumeUp />
         </Grid>
       </Grid>
-      <Slider disabled defaultValue={30} aria-labelledby="continuous-slider" />
+      <Typography id="disabled-slider" gutterBottom>
+        Disabled slider
+      </Typography>
+      <Slider disabled defaultValue={30} aria-labelledby="disabled-slider" />
     </div>
   );
 }
