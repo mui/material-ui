@@ -71,8 +71,8 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">iconSmall</span> | <span class="prop-name">.MuiChip-iconSmall</span> | Styles applied to the `icon` element if `size="small"`.
 | <span class="prop-name">iconColorPrimary</span> | <span class="prop-name">.MuiChip-iconColorPrimary</span> | Styles applied to the `icon` element if `color="primary"`.
 | <span class="prop-name">iconColorSecondary</span> | <span class="prop-name">.MuiChip-iconColorSecondary</span> | Styles applied to the `icon` element if `color="secondary"`.
-| <span class="prop-name">label</span> | <span class="prop-name">.MuiChip-label</span> | Styles applied to the label `span` element`.
-| <span class="prop-name">labelSmall</span> | <span class="prop-name">.MuiChip-labelSmall</span> | 
+| <span class="prop-name">label</span> | <span class="prop-name">.MuiChip-label</span> | Styles applied to the label `span` element.
+| <span class="prop-name">labelSmall</span> | <span class="prop-name">.MuiChip-labelSmall</span> | Styles applied to the label `span` element if `size="small"`.
 | <span class="prop-name">deleteIcon</span> | <span class="prop-name">.MuiChip-deleteIcon</span> | Styles applied to the `deleteIcon` element.
 | <span class="prop-name">deleteIconSmall</span> | <span class="prop-name">.MuiChip-deleteIconSmall</span> | Styles applied to the `deleteIcon` element if `size="small"`.
 | <span class="prop-name">deleteIconColorPrimary</span> | <span class="prop-name">.MuiChip-deleteIconColorPrimary</span> | Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`.

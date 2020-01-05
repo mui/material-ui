@@ -5,6 +5,7 @@ import { Typography } from '@material-ui/core';
 import clsx from 'clsx';
 
 export const styles = theme => ({
+  /* Styles applied to the root element. */
   root: {
     fontWeight: theme.typography.fontWeightMedium,
     marginTop: -2,

@@ -197,7 +197,7 @@ export const styles = theme => {
     iconColorSecondary: {
       color: 'inherit',
     },
-    /* Styles applied to the label `span` element`. */
+    /* Styles applied to the label `span` element. */
     label: {
       overflow: 'hidden',
       textOverflow: 'ellipsis',
@@ -205,6 +205,7 @@ export const styles = theme => {
       paddingRight: 12,
       whiteSpace: 'nowrap',
     },
+    /* Styles applied to the label `span` element if `size="small"`. */
     labelSmall: {
       paddingLeft: 8,
       paddingRight: 8,
