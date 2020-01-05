@@ -5615,10 +5615,10 @@ define-property@^2.0.2:
     is-descriptor "^1.0.2"
     isobject "^3.0.1"
 
-definitelytyped-header-parser@3.8.1, definitelytyped-header-parser@^3.8.1:
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/definitelytyped-header-parser/-/definitelytyped-header-parser-3.8.1.tgz#b24d83c03c8f2a09918aab241861d5bea2dd0b10"
-  integrity sha512-+uZhvbiVrNUHY1v3wlmnrWY3+jd4o8rLEho93CHrghbSzTixK5o7QdL66Rb2hmW/9nikGAarn1mBRhRyKKfyzQ==
+definitelytyped-header-parser@3.8.2, definitelytyped-header-parser@^3.8.2:
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/definitelytyped-header-parser/-/definitelytyped-header-parser-3.8.2.tgz#ac9b5710da976c6258997c15376d2180b6bd0e5c"
+  integrity sha512-kQePPP/cqQX3H6DrX5nCo2vMjJeboPsjEG8OOl43TZbTOr9zLlapWJ/oRCLnMCiyERsBRZXyLMtBXGM+1zmtgQ==
   dependencies:
     "@types/parsimmon" "^1.3.0"
     parsimmon "^1.2.0"
@@ -5890,23 +5890,23 @@ dot-prop@^4.1.0, dot-prop@^4.1.1, dot-prop@^4.2.0:
   dependencies:
     is-obj "^1.0.0"
 
-dts-critic@^2.2.3:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/dts-critic/-/dts-critic-2.2.3.tgz#37b6b604dd2df77d960e59ab501aadc165ef6309"
-  integrity sha512-65raFj90yesT1yl3zNVsx/ywGSs2ghytSGjZpaddnG8OLsezh/Cz3UaLHSEJFH5+K2vcuud4l0l5WeoXId0ptg==
+dts-critic@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/dts-critic/-/dts-critic-2.2.4.tgz#3ef70be891eede2bdf2ff9e293d9ec398b9cf772"
+  integrity sha512-yGHhVKo66iyPBFUYRyXX1uW+XEG3/HDP1pHCR3VlPl9ho8zRHy6lzS5k+gCSuINqjNsV8UjZSUXUuTuw0wHp7g==
   dependencies:
     command-exists "^1.2.8"
-    definitelytyped-header-parser "^3.8.1"
+    definitelytyped-header-parser "^3.8.2"
     semver "^6.2.0"
     yargs "^12.0.5"
 
 dtslint@^2.0.0:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-2.0.2.tgz#16f918b3705f6016bce5c3d4dbb29b286a76ca73"
-  integrity sha512-ij6Y8uI/mYXrCk9mBcPDJeBQXI7jPMG7p08RFbnug63tesEdKzh+9PQhtCv27LMV+bw7vH5V2MPciSAr5tWtrA==
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/dtslint/-/dtslint-2.0.3.tgz#56147e45fdf7aefdedb9052033fb24fbe48abbb7"
+  integrity sha512-6zTTsVPhomVfy+G+tGZfduzbLkGTKE/iid3IUy7fflaT4Atv0EqIcKKtkuUjrP45fWslI789E4u9e8ymn6Xyew==
   dependencies:
-    definitelytyped-header-parser "3.8.1"
-    dts-critic "^2.2.3"
+    definitelytyped-header-parser "3.8.2"
+    dts-critic "^2.2.4"
     fs-extra "^6.0.1"
     request "^2.88.0"
     strip-json-comments "^2.0.1"
