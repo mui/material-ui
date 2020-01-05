@@ -13,24 +13,19 @@ const useStyles = makeStyles(theme => ({
 export default function SimpleBackdrop() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleToggle = () => {
+    setOpen(!open);
+  };
 
   return (
     <div>
-      <button
-        type="button"
-        onClick={() => {
-          setOpen(!open);
-        }}
-      >
+      <button type="button" onClick={handleToggle}>
         Show backdrop
       </button>
-      <Backdrop
-        className={classes.backdrop}
-        open={open}
-        onClick={() => {
-          setOpen(false);
-        }}
-      >
+      <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
         <CircularProgress color="inherit" />
       </Backdrop>
     </div>
