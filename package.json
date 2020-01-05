@@ -111,7 +111,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
     "lerna": "^3.16.4",
-    "mocha": "^6.2.0",
+    "mocha": "^7.0.0",
     "nyc": "^15.0.0",
     "prettier": "1.17.0",
     "pretty-bytes": "^5.3.0",
