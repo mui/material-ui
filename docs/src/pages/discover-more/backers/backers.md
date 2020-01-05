@@ -1,19 +1,22 @@
 # Sponsors & Backers
 
-<p class="description">Support Material-UI core’s development through crowdfunding.</p>
+<p class="description">Join the development fund.</p>
 
 The core of Material-UI is a crowd-funded open-source project, licensed under the permissive MIT license. Sponsorship increases the rate of bug fixes, documentation improvements, and feature development.
 
-## Material-UI's sponsors
+## Credits
 
-### Diamond 💎
+#### Diamond 💎
 
-*3/3 slots available*
+via [Patreon](#diamond)
 
 Diamond Sponsors are those who have pledged $2,000/month or more to Material-UI.
-Please contact us at diamond@material-ui.com to subscribe to this tier.
 
-### Gold 🏆
+#### Corporate memberships
+
+via [OpenCollective](#corporate-memberships)
+
+#### Gold 🏆
 
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
@@ -30,7 +33,7 @@ via [OpenCollective](https://opencollective.com/material-ui)
 
 Gold Sponsors are those who have pledged $500/month or more to Material-UI.
 
-### Silver
+#### Silver
 
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
@@ -42,7 +45,7 @@ via [OpenCollective](https://opencollective.com/material-ui)
 
 Silver Sponsors are those who have pledged $250/month to $500/month to Material-UI.
 
-### Bronze
+#### Bronze
 
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
@@ -54,7 +57,7 @@ via [OpenCollective](https://opencollective.com/material-ui)
 
 Bronze Sponsors are those who have pledged $100/month to $250/month to Material-UI.
 
-### Backers
+#### Backers
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
@@ -62,17 +65,36 @@ via [OpenCollective](https://opencollective.com/material-ui)
   <object type="image/svg+xml" data="https://opencollective.com/material-ui/tiers/backer.svg?avatarHeight=50&width=600">Backers</object>
 </p>
 
+## Diamond 💎
+
+*3/3 slots available*
+
+Your name or company logo will be put at the top left of every documentation page on material-ui.com (5m+ pageviews and 350k+ unique visitors per month).
+
+A diamond sponsors slot costs $2,000/month.
+Please contact us at diamond@material-ui.com to subscribe to this tier.
+
+## Corporate memberships
+
+It's like having developers work for you - on Material-UI!
+
+This membership level is for organisations who want the option to monitor in more detail what will get funded with their contributions.
+They will get direct access to the Material-UI team for strategical discussions.
+Roadmaps and priorities will be aligned with your requirements as much as possible.
+
+Material-UI will actively reach out to Corporate members to discuss a bi-annual planning for grants (project & people supported) and review past supported projects/efforts.
+
+In addition to this, corporate members get a prominent name and logo mention on material-ui.com.
+
+For more information, contact us at sponsors@material-ui.com.
+
 ## FAQ
 
-#### Why is Material-UI a "crowd-funded open-source project"?
+#### What's the difference between Patreon and OpenCollective?
 
-The core of Material-UI is open-source to give users great freedom in how they use the software, and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use-cases. To make Material-UI a project that users can rely on for years to come, it needs to be well directed and financially sustainable.
+Funds received via Patreon or other forms go to a for-profit entity that employs some of the [core team](/discover-more/team/) members. It directly support [our mission](/company/about/#our-mission).
 
-The absolute best way to support Material-UI’s ongoing development efforts is to become a sponsor. Crowd-sourced funding enables us to spend the most time directly working on improving Material-UI core, which you and other Material-UI users then benefit from.
-
-#### How is sponsorship money spent?
-
-Sponsorship money is used to fund software development, testing, documentation, and releases of the Material-UI software suite.
+Funds donated via OpenCollective (sponsorship) are managed transparently and aimed to sustain the MIT core of Material-UI. Material-UI benefits from the Open Collective's fiscal sponsorship (hosted as a non-profit), in exchange for 10% of the donations.
 
 #### Is sponsorship required to use Material-UI?
 
@@ -80,12 +102,17 @@ Users are not legally required to give back to the Material-UI project, but it i
 
 By significantly reducing the amount of work needed to achieve business goals and reducing running costs, Material-UI results in huge time and money savings for users. We encourage organizations to contribute a portion of these savings back, enabling the project to advance more rapidly and result in even greater savings for your organization.
 
-#### What's the difference between Patreon and OpenCollective?
+#### How is sponsorship money spent?
 
-Funds received via Patreon or other forms, directly support [Olivier Tassinari](https://github.com/oliviertassinari) and the core team mission.
-The funds go to a for-profit entity that employs some of the core team members.
+Sponsorship money is used to fund software development, testing, documentation, and releases of the Material-UI software suite.
+We aim for one developper full-time for every $4k/month to $10k/month funding we collect.
+The funds are managed transparently.
 
-Funds donated via OpenCollective are managed transparently and aimed to sustain the MIT core of Material-UI. Material-UI benefits from the Open Collective's fiscal sponsorship (hosted as a non-profit), in exchange for 10% of the donations.
+#### Why is Material-UI a "crowd-funded open-source project"?
+
+The core of Material-UI is open-source to give users great freedom in how they use the software, and to enable the community to have influence over how the project progresses to make it appropriate for a wide range of use-cases. To make Material-UI a project that users can rely on for years to come, it needs to be well directed and financially sustainable.
+
+The absolute best way to support Material-UI’s ongoing development efforts is to become a sponsor. Crowd-sourced funding enables us to spend the most time directly working on improving Material-UI core, which you and other Material-UI users then benefit from.
 
 ## Services
 
