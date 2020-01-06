@@ -8,13 +8,13 @@ The core of Material-UI is a crowd-funded open-source project, licensed under th
 
 #### Diamond 💎
 
-via [Patreon](#diamond)
+[learn more](#diamond)
 
 Diamond Sponsors are those who have pledged $2,000/month or more to Material-UI.
 
 #### Corporate memberships
 
-via [OpenCollective](#corporate-memberships)
+[learn more](#corporate-memberships)
 
 #### Gold 🏆
 
