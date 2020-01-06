@@ -182,7 +182,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
               isControlled ? 'a ' : 'an un'
             }controlled Rating to be ${isControlled ? 'un' : ''}controlled.`,
             'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled Slider ' +
+            'Decide between using a controlled or uncontrolled Rating ' +
               'element for the lifetime of the component.',
             'More info: https://fb.me/react-controlled-components',
           ].join('\n'),
