@@ -18,32 +18,18 @@ export default function DiscreteSlider() {
 
   return (
     <div className={classes.root}>
-      <Typography id="discrete-slider" gutterBottom>
-        Temperature
+      <Typography id="discrete-slider-small-steps" gutterBottom>
+        Small steps
       </Typography>
       <Slider
-        defaultValue={30}
+        defaultValue={0.00000005}
         getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider"
-        valueLabelDisplay="auto"
-        step={10}
+        aria-labelledby="discrete-slider-small-steps"
+        step={0.00000001}
         marks
-        min={10}
-        max={110}
-      />
-      <Typography id="discrete-slider" gutterBottom>
-        Disabled
-      </Typography>
-      <Slider
-        defaultValue={30}
-        getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider"
+        min={-0.00000005}
+        max={0.0000001}
         valueLabelDisplay="auto"
-        step={10}
-        marks
-        min={10}
-        max={110}
-        disabled
       />
     </div>
   );

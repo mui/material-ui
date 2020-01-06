@@ -7,7 +7,29 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: 300,
   },
+  margin: {
+    height: theme.spacing(3),
+  },
 }));
+
+const marks = [
+  {
+    value: 0,
+    label: '0°C',
+  },
+  {
+    value: 20,
+    label: '20°C',
+  },
+  {
+    value: 37,
+    label: '37°C',
+  },
+  {
+    value: 100,
+    label: '100°C',
+  },
+];
 
 function valuetext(value) {
   return `${value}°C`;
@@ -18,32 +40,16 @@ export default function DiscreteSlider() {
 
   return (
     <div className={classes.root}>
-      <Typography id="discrete-slider" gutterBottom>
-        Temperature
+      <Typography id="discrete-slider-custom" gutterBottom>
+        Custom marks
       </Typography>
       <Slider
-        defaultValue={30}
+        defaultValue={20}
         getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider"
-        valueLabelDisplay="auto"
+        aria-labelledby="discrete-slider-custom"
         step={10}
-        marks
-        min={10}
-        max={110}
-      />
-      <Typography id="discrete-slider" gutterBottom>
-        Disabled
-      </Typography>
-      <Slider
-        defaultValue={30}
-        getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider"
         valueLabelDisplay="auto"
-        step={10}
-        marks
-        min={10}
-        max={110}
-        disabled
+        marks={marks}
       />
     </div>
   );
