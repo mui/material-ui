@@ -17,7 +17,7 @@ export default function Head(props) {
       <title>{title}</title>
       <meta name="description" content={description} />
       {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@MaterialUI" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
