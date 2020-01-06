@@ -43,7 +43,7 @@ A prominent app bar.
 
 ## Barre inférieure
 
-{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 400}}
 
 ## Fixed placement
 
@@ -93,19 +93,19 @@ You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
 The app bar hides on scroll down to leave more space for reading.
 
-{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true}}
 
 ### Barre d'application élevable
 
 The app bar elevates on scroll to communicate that the user is not at the top of the page.
 
-{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true}}
 
 ### Back to top
 
 A floating action buttons appears on scroll to make it easy to get back to the top of the page.
 
-{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true}}
 
 ### `useScrollTrigger([options]) => trigger`
 

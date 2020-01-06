@@ -262,7 +262,7 @@ const theme = createMyTheme({ appDrawer: { breakpoint: 'md' }});
 
 ## Usage of `component` prop
 
-Material-UI allows you to replace a component's root node via a `component` prop. For example, a Button's root node can be replaced with a React Router's Link, and any additional props that are passed to Button, such as `to`, will be spread to the Link component. For a code example concerning Button and react-router-dom checkout [these demos](/guides/composition/#routing-libraries).
+Many Material-UI components allow you to replace their root node via a `component` prop, this will be detailed in the component's API documentation. For example, a Button's root node can be replaced with a React Router's Link, and any additional props that are passed to Button, such as `to`, will be spread to the Link component. For a code example concerning Button and react-router-dom checkout [these demos](/guides/composition/#routing-libraries).
 
 すべてのコンポーネントが、渡すコンポーネントタイプを完全にサポートしているわけではありません。 次のような問題が発生した場合 TypeScriptで `component`プロパティを拒否するコンポーネントの問題を開いてください。 コンポーネントプロップを汎用化することで、この問題を解決するための取り組みが続けられています。
 

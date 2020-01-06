@@ -24,6 +24,7 @@
   "letUsKnow": "请告诉我们吧！",
   "footerCommunity": "社区",
   "footerResources": "资源",
+  "footerCompany": "Company",
   "homeFooterRelease": "当前 {{versionNumber}}. 根据 {{license}} 发布。",
   "license": "MIT 许可证",
   "likeMui": "帮助我们继续运行",
@@ -199,7 +200,7 @@
     "/guides/testing": "测试",
     "/guides/flow": "Flow",
     "/guides/right-to-left": "源文语言从右至左读",
-    "/guides/localization": "Localization",
+    "/guides/localization": "本地化",
     "/discover-more": "发现更多",
     "/discover-more/showcase": "展示",
     "/discover-more/related-projects": "相关的项目",
@@ -209,7 +210,6 @@
     "/discover-more/team": "团队",
     "/discover-more/community": "社区",
     "/discover-more/changelog": "更新日志",
-    "/discover-more/governance": "监管",
     "/discover-more/languages": "语言",
     "/versions": "版本",
     "/styles": "Styles（样式表单）",
@@ -218,9 +218,9 @@
     "https://themes.material-ui.com/": "高级版主题",
     "/components/material-icons": "Material Icons (材料图标)",
     "/components/textarea-autosize": "Textarea自动调整大小",
-    "/components/rating": "Rating",
+    "/components/rating": "评价",
     "/components/skeleton": "骨架屏",
     "/components/tree-view": "树视图",
-    "/customization/density": "间距(density)"
+    "/customization/density": "间距 (density)"
   }
 }

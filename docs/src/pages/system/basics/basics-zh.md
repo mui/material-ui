@@ -2,7 +2,7 @@
 
 <p class="description">Styled system & style functions for building powerful design systems.</p>
 
-## 开始
+## 开始使用
 
 `@material-ui/system` 提供了一些底层工具函数，我们称之为 "*style functions*"，它们可以用于建立强大的设计系统。 以下是这个库的一些特点：
 

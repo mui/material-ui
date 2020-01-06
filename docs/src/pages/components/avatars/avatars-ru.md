@@ -9,19 +9,19 @@ components: Avatar, AvatarGroup, Badge
 
 ## Аватары изображений
 
-Image avatars can be created by passing standard `img` props `src` or `srcSet` to the component.
+Аватары можно создать, передав стандартные свойства компонента `img`, такие как `src` или `srcSet`.
 
 {{"demo": "pages/components/avatars/ImageAvatars.js"}}
 
 ## Буквенные аватары
 
-Avatars containing simple characters can be created by passing a string as `children`.
+Аватары, содержащие простые символы, можно создать, передав вашу строку как `children`.
 
 {{"demo": "pages/components/avatars/LetterAvatars.js"}}
 
 ## Размеры
 
-You can change the size of the avatar with the `height` and `width` CSS properties.
+Вы можете изменить размер аватара используя `height` и `width` свойств CSS.
 
 {{"demo": "pages/components/avatars/SizeAvatars.js"}}
 
@@ -33,7 +33,7 @@ You can change the size of the avatar with the `height` and `width` CSS properti
 
 ## Variants
 
-If you need square or rounded avatars, use the `variant` prop.
+Если вам нужны квадратные или округлые аватары, используйте проп `variant`.
 
 {{"demo": "pages/components/avatars/VariantAvatars.js"}}
 
@@ -49,10 +49,10 @@ If there is an error loading the avatar image, the component falls back to an al
 
 ## Сгруппированные
 
-`AvatarGroup` renders its children as a stack.
+`AvatarGroup` отображает дочерние элементы в виде стека.
 
 {{"demo": "pages/components/avatars/GroupAvatars.js"}}
 
-## With badge
+## Со значком
 
 {{"demo": "pages/components/avatars/BadgeAvatars.js"}}

@@ -196,13 +196,13 @@ It should preferably be used at **the root of your component tree**.
 
 #### Props
 
-| Name              | Type   | Default | Description                                                                                                                                                                                                                                                                                                                          |
-|:----------------- |:------ |:------- |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| children&nbsp;*   | node   |         | Your component tree.                                                                                                                                                                                                                                                                                                                 |
-| disableGeneration | bool   | false   | You can disable the generation of the styles with this option. It can be useful when traversing the React tree outside of the HTML rendering step on the server. Let's say you are using react-apollo to extract all the queries made by the interface server-side. You can significantly speed up the traversal with this property. |
-| generateClassName | func   |         | JSS's class name generator.                                                                                                                                                                                                                                                                                                          |
-| injectFirst       | bool   | false   | By default, the styles are injected last in the `<head>` element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Material-UI's styles, set this prop.                                                                                                                 |
-| jss               | object |         | JSS's instance.                                                                                                                                                                                                                                                                                                                      |
+| Имя               | Тип    | По-умолчанию | Описание                                                                                                                                                                                                                                                                                                                             |
+|:----------------- |:------ |:------------ |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| children&nbsp;*   | node   |              | Your component tree.                                                                                                                                                                                                                                                                                                                 |
+| disableGeneration | bool   | false        | You can disable the generation of the styles with this option. It can be useful when traversing the React tree outside of the HTML rendering step on the server. Let's say you are using react-apollo to extract all the queries made by the interface server-side. You can significantly speed up the traversal with this property. |
+| generateClassName | func   |              | JSS's class name generator.                                                                                                                                                                                                                                                                                                          |
+| injectFirst       | bool   | false        | By default, the styles are injected last in the `<head>` element of the page. As a result, they gain more specificity than any other style sheet. If you want to override Material-UI's styles, set this prop.                                                                                                                 |
+| jss               | object |              | JSS's instance.                                                                                                                                                                                                                                                                                                                      |
 
 
 #### Примеры
@@ -227,10 +227,10 @@ This component takes a `theme` property, and makes it available down the React t
 
 #### Props
 
-| Name            | Type                                     | Default | Description                                                           |
-|:--------------- |:---------------------------------------- |:------- |:--------------------------------------------------------------------- |
-| children&nbsp;* | node                                     |         | Your component tree.                                                  |
-| theme&nbsp;*    | union:&nbsp;object&nbsp;&#124;&nbsp;func |         | A theme object. You can provide a function to extend the outer theme. |
+| Имя             | Тип                                      | По-умолчанию | Описание                                                              |
+|:--------------- |:---------------------------------------- |:------------ |:--------------------------------------------------------------------- |
+| children&nbsp;* | node                                     |              | Your component tree.                                                  |
+| theme&nbsp;*    | union:&nbsp;object&nbsp;&#124;&nbsp;func |              | A theme object. You can provide a function to extend the outer theme. |
 
 
 #### Примеры

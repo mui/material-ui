@@ -31,6 +31,6 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 
 ## Acessibilidade
 
-ToggleButtonGroup possui `role="group"`. Você deve fornecer um rótulo acessível com `arial-label="label"`, `aria-labelledby="id"` ou `<label>`.
+ToggleButtonGroup possui `role="group"`. You should provide an accessible label with `aria-label="label"`, `aria-labelledby="id"` or `<label>`.
 
 ToggleButton define `aria-pressed="<bool>"` de acordo com o estado do botão. Você deve rotular cada botão com `aria-label`.

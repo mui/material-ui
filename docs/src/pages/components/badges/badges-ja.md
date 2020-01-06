@@ -7,7 +7,7 @@ components: Badge
 
 <p class="description">バッジは、その子供の右上に小さなバッジを生成します。</p>
 
-## 簡単なバッジ
+## Basic badges
 
 プライマリー色とセカンダリーを使用した、テキストを含むバッジの例。 バッジが子要素に適用されます。
 
@@ -23,30 +23,32 @@ components: Badge
 
 バッジの可視性は、 `invisible` プロパティを使用して制御できます。
 
-BadgeContentが0の場合、バッジは自動的に非表示になります。 `showZero` プロパティでこれをオーバーライドできます。
-
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-## 最大値
+The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
 
-バッジコンテンツの値に上限を設定するには、 `max` プロパティを使用します。
+{{"demo": "pages/components/badges/ShowZeroBadge.js"}}
+
+## Maximum value
+
+You can use the `max` property to cap the value of the badge content.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
-## ドットバッジ
+## Dot badge
 
-`dot`プロパティは、バッジを小さなドットに変更します。 これは、何かが変更されたことをカウントせずに通知するために使用できます。
+The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
 ## バッジの重複
 
-`オーバーラップ` プロパティを使用して、ラップされた要素の角を基準にしてバッジを配置できます。
+You can use the `overlap` property to place the badge relative to the corner of the wrapped element.
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
 ## バッジの配置
 
-`horizontalAlignment` および `verticalAlignment` プロパティを使用して、ラップされた要素の任意のコーナーにバッジを移動できます。
+You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}
