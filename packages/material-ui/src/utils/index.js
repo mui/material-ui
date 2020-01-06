@@ -8,4 +8,5 @@ export { default as setRef } from './setRef';
 export { default as unsupportedProp } from './unsupportedProp';
 export { default as useEventCallback } from './useEventCallback';
 export { default as useForkRef } from './useForkRef';
+export { default as useControlled } from './useControlled';
 export { useIsFocusVisible } from './focusVisible';
