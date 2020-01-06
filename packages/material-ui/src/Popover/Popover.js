@@ -97,7 +97,8 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     container: containerProp,
     elevation = 8,
     getContentAnchorEl,
-    marginThreshold = 16,
+    marginThresholdVertical = 16,
+    marginThresholdHorizontal = 16,
     onEnter,
     onEntered,
     onEntering,
@@ -253,12 +254,11 @@ const Popover = React.forwardRef(function Popover(props, ref) {
       const containerWindow = ownerWindow(getAnchorEl(anchorEl));
 
       // Window thresholds taking required margin into account
-      const heightThreshold = containerWindow.innerHeight - marginThreshold;
-      const widthThreshold = containerWindow.innerWidth - marginThreshold;
+      const heightThreshold = containerWindow.innerHeight - marginThresholdVertical;
 
       // Check if the vertical axis needs shifting
-      if (top < marginThreshold) {
-        const diff = top - marginThreshold;
+      if (top < marginThresholdVertical) {
+        const diff = top - marginThresholdVertical;
         top -= diff;
         elemTransformOrigin.vertical += diff;
       } else if (bottom > heightThreshold) {
@@ -280,9 +280,11 @@ const Popover = React.forwardRef(function Popover(props, ref) {
         }
       }
 
+      const widthThreshold = containerWindow.innerWidth - marginThresholdHorizontal;
+
       // Check if the horizontal axis needs shifting
-      if (left < marginThreshold) {
-        const diff = left - marginThreshold;
+      if (left < marginThresholdHorizontal) {
+        const diff = left - marginThresholdHorizontal;
         left -= diff;
         elemTransformOrigin.horizontal += diff;
       } else if (right > widthThreshold) {
@@ -303,7 +305,8 @@ const Popover = React.forwardRef(function Popover(props, ref) {
       getAnchorOffset,
       getContentAnchorOffset,
       getTransformOrigin,
-      marginThreshold,
+      marginThresholdVertical,
+      marginThresholdHorizontal,
     ],
   );
 
@@ -531,9 +534,13 @@ Popover.propTypes = {
    */
   getContentAnchorEl: PropTypes.func,
   /**
-   * Specifies how close to the edge of the window the popover can appear.
+   * Specifies how close to the edge (vertical) of the window the popover can appear.
    */
-  marginThreshold: PropTypes.number,
+  marginThresholdVertical: PropTypes.number,
+  /**
+   * Specifies how close to the edge (horizontal) of the window the popover can appear.
+   */
+  marginThresholdHorizontal: PropTypes.number,
   /**
    * Callback fired when the component requests to be closed.
    *
