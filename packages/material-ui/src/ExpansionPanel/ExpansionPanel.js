@@ -7,6 +7,7 @@ import Collapse from '../Collapse';
 import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
 import ExpansionPanelContext from './ExpansionPanelContext';
+import useControlled from '../utils/useControlled';
 
 export const styles = theme => {
   const transition = {
@@ -94,28 +95,11 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
     ...other
   } = props;
 
-  const { current: isControlled } = React.useRef(expandedProp != null);
-  const [expandedState, setExpandedState] = React.useState(defaultExpanded);
-  const expanded = isControlled ? expandedProp : expandedState;
-
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (isControlled !== (expandedProp != null)) {
-        console.error(
-          [
-            `Material-UI: A component is changing ${
-              isControlled ? 'a ' : 'an un'
-            }controlled ExpansionPanel to be ${isControlled ? 'un' : ''}controlled.`,
-            'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled ExpansionPanel ' +
-              'element for the lifetime of the component.',
-            'More info: https://fb.me/react-controlled-components',
-          ].join('\n'),
-        );
-      }
-    }, [expandedProp, isControlled]);
-  }
+  const { value: expanded, setValue: setExpandedState, isControlled } = useControlled({
+    controlled: expandedProp,
+    default: defaultExpanded,
+    name: 'ExpansionPanel',
+  });
 
   const handleChange = React.useCallback(
     event => {
@@ -127,7 +111,7 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
         onChange(event, !expanded);
       }
     },
-    [expanded, isControlled, onChange],
+    [expanded, isControlled, onChange, setExpandedState],
   );
 
   const [summary, ...children] = React.Children.toArray(childrenProp);

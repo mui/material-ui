@@ -5,7 +5,7 @@ const useControlled = ({ controlled, default: defaultProp, name }) => {
   const { current: isControlled } = React.useRef(controlled !== undefined);
   const { current: defaultValue } = React.useRef(defaultProp);
   const [valueState, setValue] = React.useState(() => {
-    return !isControlled ? defaultValue || null : null;
+    return !isControlled && defaultValue !== undefined ? defaultValue : null;
   });
   const value = isControlled ? controlled : valueState;
 
