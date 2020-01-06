@@ -1,5 +1,48 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.8.3
+###### *Jan 6, 2020*
+
+Big thanks to the 19 contributors who made this release possible.
+
+Here are some highlights since 4.8.0 ✨:
+
+- 💄 Introduce a new Alert component in the lab (#18702) @dimitropoulos.
+- 💄 Improve skeleton animation, add wave support (#18913, #19014) @bowann, @oliviertassinari.
+- 🔍 13 patches on the Autocomplete component.
+- 🌎 Add 6 new locales (ko-KR, az-AZ, cs-CZ, sk-SK, uk-UA, pt-PT).
+
+### `@material-ui/core@v4.8.3`
+
+- [Badge] Improve demos (#18981) @ypresto
+- [Collapse] Add `hidden` class key to Collapse typings (#19044) @pvdstel
+- [Grid] Update TypeScript classes definitions (#19050) @Rikpat
+- [Popover] Fix position when changing state or updated (#19046) @SandraMarcelaHerreraArriaga
+- [Snackbar] Improve accessibility (#19043) @oliviertassinari
+- [theme] Support breakpoints.between(a, b) with number (#19003) @ulises-lara
+
+### `@material-ui/lab@v4.0.0-alpha.39`
+
+- [Alert] Introduce new component (#18702) @dimitropoulos
+- [Autocomplete] Fix disabled + multiple combination support (#19041) @cvanem
+- [Autocomplete] Fix form submit with freeSolo and multiple (#19072) @haseebdaone
+- [Autocomplete] Warn when mixing uncontrolled and controlled (#19060) @m4theushw
+- [Rating] Fix hover state stuck (#19071) @fyodore82
+
+### Docs
+
+- [example] Make sure next.js Links can accept url objects as href (#19073) @Janpot
+- [docs] Add company page (#18964) @oliviertassinari
+- [docs] Add hexToRgb rename to v3 to v4 changelog (#19058) @zettca
+- [docs] Disable in-context translations (#19056) @mbrookes
+- [docs] Fix grammar (#19062) @RDIL
+- [docs] Improve Next.js usage (#19075) @chrisweb
+- [docs] Improve theme.breakpoints description (#19065) @littleee
+
+### Core
+
+- [core] Fix missing type peer deps (#17211) @eps1lon
+
 ## 4.8.2
 ###### *Dec 30, 2019*
 
@@ -17,7 +60,7 @@ Big thanks to the 22 contributors who made this release possible.
 - [TableSortLabel] Sort asc by default (#19013) @oliviertassinari
 - [l10n] Add Portuguese (pt-PT) locale (#18987) @hrafaelveloso
 
-### `@material-ui/lab@v4.8.2`
+### `@material-ui/styles@v4.8.2`
 
 - [styles] Fix jss StyleSheet attach() call (#19042) @mceIdo
 
