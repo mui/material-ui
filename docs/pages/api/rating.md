@@ -25,6 +25,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">defaultValue</span> | <span class="prop-type">number</span> | <span class="prop-default">null</span> | The default value. Use when the component is not controlled. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the rating will be disabled. |
 | <span class="prop-name">emptyIcon</span> | <span class="prop-type">node</span> |  | The icon to display when empty. |
 | <span class="prop-name">emptyLabelText</span> | <span class="prop-type">node</span> | <span class="prop-default">'Empty'</span> | The label read when the rating input is empty. |
@@ -38,7 +39,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">precision</span> | <span class="prop-type">number</span> | <span class="prop-default">1</span> | The minimum increment value change allowed. |
 | <span class="prop-name">readOnly</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Removes all hover effects and pointer events. |
 | <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'</span> | <span class="prop-default">'medium'</span> | The size of the rating. |
-| <span class="prop-name">value</span> | <span class="prop-type">number</span> | <span class="prop-default">null</span> | The rating value. |
+| <span class="prop-name">value</span> | <span class="prop-type">number</span> |  | The rating value. |
 
 The `ref` is forwarded to the root element.
 
