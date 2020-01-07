@@ -24,7 +24,7 @@ Here are the most significant improvements in December:
 
   ![Stacking](/static/blog/december-2019-update/stacking.png)
 
-- ↕️ We have [vertical](/components/buttons/#group-orientation) support to the button group.
+- ↕️ We have added [vertical](/components/buttons/#group-orientation) support to the button group.
 
   ![Vertical button](/static/blog/december-2019-update/vertical-buttons.png)
 
