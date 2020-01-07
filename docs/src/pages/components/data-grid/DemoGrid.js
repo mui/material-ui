@@ -24,6 +24,7 @@ export default function DemoGrid() {
         { field: 'country', label: 'Country' },
       ]}
       rowsData={data}
+      pagination
       defaultColumnOptions={{ sortable: true, resizable: true }}
     />
   );

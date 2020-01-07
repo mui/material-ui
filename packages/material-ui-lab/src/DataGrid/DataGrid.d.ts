@@ -21,6 +21,10 @@ export type SortingType = Array<{
 
 export interface DataProviderGetListParams {
   sorting: SortingType;
+  pagination: {
+    start: number;
+    end: number;
+  };
 }
 
 export interface DataProviderType {
@@ -47,6 +51,7 @@ export interface DataGridProps
   defaultSorting?: SortingType;
   /**
    * If `true`, the loading state is displayed.
+   * If `false` the component shows the loading state, while it waits for new data being loaded.
    */
   loading?: boolean;
   /**
@@ -58,10 +63,26 @@ export interface DataGridProps
    */
   text?: any;
   /**
+   * If `true`, the pagination is enabled.
+   */
+  pagination?: boolean;
+  /**
+   * The initial page to be displayed.
+   */
+  defaultPage?: number;
+  /**
+   * The initial rows per page size. Must be one of the paginationPageSize options.
+   */
+  defaultRowsPerPage?: 10 | 25 | 50 | 100 | 250 | 500 | number;
+  /**
+   * The possible pagination size options to be selected by the user.
+   */
+  paginationRowsPerPageOptions?: Array<number | { value: number; label: string }>;
+  /**
    * Callback fired when the user change the column sort.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} value The new sorting value.
+   * @param {SortingType} value The new sorting value.
    */
   onSortingChange?: (event: React.ChangeEvent<{}>, value: SortingType) => void;
   /**

@@ -29,12 +29,16 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">columns</span> | <span class="prop-type">Array&lt;{ children?: Array&lt;object&gt;, field: string, label?: string, resizable?: bool, sortable?: bool, sortingComparator?: func, sortingOrder?: Array&lt;'asc'<br>&#124;&nbsp;'desc'<br>&#124;&nbsp;null&gt; }&gt;</span> | <span class="prop-default">[]</span> | The columns configuration. |
 | <span class="prop-name">dataProvider</span> | <span class="prop-type">{ getList: func }</span> |  | Manage the communication with the data store. |
 | <span class="prop-name">defaultColumnOptions</span> | <span class="prop-type">{ resizable?: bool, sortable?: bool, sortingComparator?: func, sortingOrder?: Array&lt;'asc'<br>&#124;&nbsp;'desc'<br>&#124;&nbsp;null&gt; }</span> | <span class="prop-default">{  resizable: false,  sortable: false,  sortingOrder: ['asc', 'desc', null],}</span> | The default options that get applied to each column. |
+| <span class="prop-name">defaultPage</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | The initial page to be displayed. |
+| <span class="prop-name">defaultRowsPerPage</span> | <span class="prop-type">number</span> | <span class="prop-default">50</span> | The initial rows per page size. Must be one of the paginationPageSize options. |
 | <span class="prop-name">defaultSorting</span> | <span class="prop-type">Array&lt;{ field: string, sort: 'asc'<br>&#124;&nbsp;'desc' }&gt;</span> | <span class="prop-default">[]</span> | The default sorting state. (Uncontrolled) |
-| <span class="prop-name">loading</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the loading state is displayed. |
-| <span class="prop-name">onSortingChange</span> | <span class="prop-type">func</span> |  | Callback fired when the user change the column sort.<br><br>**Signature:**<br>`function(event: object, value: string) => void`<br>*event:* The event source of the callback.<br>*value:* The new sorting value. |
+| <span class="prop-name">loading</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the loading state is displayed. If `false` the component shows the loading state, while it waits for new data being loaded. |
+| <span class="prop-name">onSortingChange</span> | <span class="prop-type">func</span> |  | Callback fired when the user change the column sort.<br><br>**Signature:**<br>`function(event: object, value: SortingType) => void`<br>*event:* The event source of the callback.<br>*value:* The new sorting value. |
+| <span class="prop-name">pagination</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the pagination is enabled. |
+| <span class="prop-name">paginationRowsPerPageOptions</span> | <span class="prop-type">Array&lt;number<br>&#124;&nbsp;{ label: string, value: number }&gt;</span> | <span class="prop-default">[10, 25, 50, 100, 250, 500]</span> | The possible pagination size options to be selected by the user. |
 | <span class="prop-name">rowsData</span> | <span class="prop-type">array</span> | <span class="prop-default">[]</span> | The data record array to be rendered. |
 | <span class="prop-name">sorting</span> | <span class="prop-type">Array&lt;{ field: string, sort: 'asc'<br>&#124;&nbsp;'desc' }&gt;</span> |  | Sorting state. (Controlled) |
-| <span class="prop-name">text</span> | <span class="prop-type">any</span> | <span class="prop-default">{  loading: 'Loading',}</span> | The localization strings. |
+| <span class="prop-name">text</span> | <span class="prop-type">any</span> | <span class="prop-default">{  loading: 'Loading',  reload: 'Reload',}</span> | The localization strings. |
 
 The `ref` is forwarded to the root element.
 
@@ -48,9 +52,9 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiDataGrid-root</span> | Styles applied to the root element.
-| <span class="prop-name">bodyContainer</span> | <span class="prop-name">.MuiDataGrid-bodyContainer</span> | 
-| <span class="prop-name">headerLabel</span> | <span class="prop-name">.MuiDataGrid-headerLabel</span> | 
-| <span class="prop-name">resize</span> | <span class="prop-name">.MuiDataGrid-resize</span> | 
+| <span class="prop-name">bodyContainer</span> | <span class="prop-name">.MuiDataGrid-bodyContainer</span> |
+| <span class="prop-name">headerLabel</span> | <span class="prop-name">.MuiDataGrid-headerLabel</span> |
+| <span class="prop-name">resize</span> | <span class="prop-name">.MuiDataGrid-resize</span> |
 
 You can override the style of the component thanks to one of these customization points:
 

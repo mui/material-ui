@@ -7,6 +7,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import TableLoading from './TableLoading';
 import { ownerDocument, useEventCallback, useForkRef } from '@material-ui/core/utils';
+import Button from '@material-ui/core/Button';
 
 export const styles = () => ({
   /* Styles applied to the root element. */
@@ -37,7 +38,8 @@ export const styles = () => ({
     },
   },
   bodyContainer: {
-    // overflow: 'auto',
+    maxHeight: 200,
+    overflow: 'auto',
   },
   headerLabel: {
     overflow: 'hidden',
@@ -128,44 +130,57 @@ const defaultColumnOptionsDefault = {
   sortingOrder: ['asc', 'desc', null],
 };
 
+const RowSize = 28;
+
 const defaultDataProviderFactory = ({ rowsData, defaultColumnOptions, columnsKeyBy }) => ({
-  getList: params => {
-    const newRowsData = [...rowsData];
+  getList: params =>
+    new Promise(resolve => {
+      // Clone
+      let newRowsData = [...rowsData];
 
-    if (params.sorting.length > 0) {
-      // TODO we might need to use a stable sort logic.
-      newRowsData.sort((rowA, rowB) => {
-        return params.sorting.reduce((acc, sortingItem) => {
-          if (acc !== null) {
-            return acc;
-          }
+      if (params.sorting.length > 0) {
+        // TODO we might need to use a stable sort logic.
+        newRowsData.sort((rowA, rowB) => {
+          return params.sorting.reduce((acc, sortingItem) => {
+            if (acc !== null) {
+              return acc;
+            }
 
-          const field = sortingItem.field;
-          const sortingComparator =
-            columnsKeyBy[field].sortingComparator || defaultColumnOptions.sortingComparator;
+            const field = sortingItem.field;
+            const sortingComparator =
+              columnsKeyBy[field].sortingComparator || defaultColumnOptions.sortingComparator;
 
-          if (sortingComparator) {
-            return sortingComparator(rowA, rowB, sortingItem.sort);
-          }
+            if (sortingComparator) {
+              return sortingComparator(rowA, rowB, sortingItem.sort);
+            }
 
-          if (rowA[field] < rowB[field]) {
-            return -1 * (sortingItem.sort === 'asc' ? 1 : -1);
-          }
+            if (rowA[field] < rowB[field]) {
+              return -1 * (sortingItem.sort === 'asc' ? 1 : -1);
+            }
 
-          if (rowA[field] > rowB[field]) {
-            return 1 * (sortingItem.sort === 'asc' ? 1 : -1);
-          }
+            if (rowA[field] > rowB[field]) {
+              return 1 * (sortingItem.sort === 'asc' ? 1 : -1);
+            }
 
-          return null;
-        }, null);
+            return null;
+          }, null);
+        });
+      }
+
+      if (params.pagination) {
+        newRowsData = newRowsData.slice(params.pagination.start, params.pagination.end);
+      }
+
+      resolve({
+        rows: newRowsData,
+        total: rowsData.length,
       });
-    }
-
-    return newRowsData;
-  },
+    }),
 });
 
 const emptyArray = [];
+
+const defaultPaginationRowsPerPageOptions = [10, 25, 50, 100, 250, 500];
 
 const DataGrid = React.forwardRef(function DataGrid(props, ref) {
   const {
@@ -175,12 +190,17 @@ const DataGrid = React.forwardRef(function DataGrid(props, ref) {
     dataProvider: dataProviderProp,
     defaultColumnOptions: defaultColumnOptionsProp = defaultColumnOptionsDefault,
     defaultSorting = [],
-    loading = false,
+    loading: loadingProp = false,
     onSortingChange,
+    pagination = false,
+    defaultPage = 0,
+    defaultRowsPerPage = 50,
+    paginationRowsPerPageOptions: rowsPerPageOptions = defaultPaginationRowsPerPageOptions,
     rowsData = emptyArray,
     sorting: sortingProp,
     text = {
       loading: 'Loading',
+      reload: 'Reload',
     },
     ...other
   } = props;
@@ -341,21 +361,90 @@ const DataGrid = React.forwardRef(function DataGrid(props, ref) {
     }
 
     setSortingState(newSorting);
+    setPageState(defaultPage);
 
     if (onSortingChange) {
       onSortingChange(event, newSorting);
     }
   };
 
-  const [data, setData] = React.useState([]);
+  const [loadingState, setLoading] = React.useState(false);
+  const [retryCounter, setRetryCounter] = React.useState(0);
+
+  const loading = loadingState || loadingProp;
+
+  const [errorMessage, setErrorMessage] = React.useState(null);
+
+  const [data, setData] = React.useState({ rows: [], total: 0 });
+
+  const [pageState, setPageState] = React.useState(defaultPage);
+  const [rowsPerPageState, setRowsPerPage] = React.useState(defaultRowsPerPage);
+
+  const handlePageChange = (event, page) => {
+    setPageState(page);
+  };
+
+  const handleRowPerPageChange = event => {
+    const rowsPerPage = event.target.value;
+    setRowsPerPage(rowsPerPage);
+
+    const newPotentialPage = (rowsPerPageState * pageState) / rowsPerPage;
+
+    if (data.total && rowsPerPage * pageState >= data.total) {
+      // Avoid overflow.
+      handlePageChange(event, Math.ceil(data.total / rowsPerPage) - 1);
+    } else if (newPotentialPage === Math.round(newPotentialPage)) {
+      // Show the same rows as before with then new page size.
+      handlePageChange(event, newPotentialPage);
+    }
+  };
 
   React.useEffect(() => {
-    const newData = dataProvider.getList({
-      sorting,
-    });
+    let active = true;
 
-    setData(newData);
-  }, [dataProvider, sorting]);
+    // Shows the loading state, if the delay is longer than 500ms to reduce user interruption
+    const loadingTimer = setTimeout(() => {
+      setLoading(true);
+    }, 1000);
+
+    dataProvider
+      .getList({
+        sorting,
+        pagination: pagination
+          ? {
+              start: pageState * rowsPerPageState,
+              end: (pageState + 1) * rowsPerPageState,
+            }
+          : undefined,
+      })
+      .then(newData => {
+        if (active) {
+          setData(newData);
+        }
+      })
+      .catch(reason => {
+        if (active) {
+          setErrorMessage(`Could not load data: ${reason}`);
+        }
+      })
+      .finally(() => {
+        clearTimeout(loadingTimer);
+
+        if (active) {
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      active = false;
+      clearTimeout(loadingTimer);
+    };
+  }, [dataProvider, sorting, pageState, rowsPerPageState, retryCounter, pagination]);
+
+  const handleRetryClick = () => {
+    setErrorMessage('');
+    setRetryCounter(x => x + 1);
+  };
 
   return (
     <div className={clsx(classes.root, className)} ref={handleRef} {...other}>
@@ -406,53 +495,63 @@ const DataGrid = React.forwardRef(function DataGrid(props, ref) {
         </thead>
       </table>
       <TableLoading loading={loading} />
-      {loading && data.length === 0 ? text.loading : null}
+      {loading ? text.loading : null}
       <div className={classes.bodyContainer}>
         <List
-          height={300}
-          itemCount={data.length}
+          height={pagination ? RowSize * rowsPerPageState : 300} // Show the whole current page, if pagiantion is turned on
+          itemCount={data.rows.length}
           outerElementType="div"
           innerElementType="div"
           overscanCount={10}
-          itemSize={() => {
-            return 28;
-          }}
+          itemSize={() => RowSize}
           width={600}
         >
           {({ index, style }) => (
             <div key={index} style={style} role="row">
               {columns.map(column => (
-                <span key={column.field}>{data[index][column.field]}</span>
+                <span key={column.field}>{data.rows[index][column.field]}</span>
               ))}
             </div>
           )}
         </List>
         {/*
-                 -        <table>
-                 -          <tbody>
-                 -            {rowsData.map((row, index) => (
-                 -              <tr key={index}>
-                 -                {columns.map(column => (
-                 -                  <td key={column.field}>{row[column.field]}</td>
-                 -                ))}
-                 -              </tr>
-                 -            ))}
-                 -          </tbody>
-                 -        </table>
-                 */}
+                  -        <table>
+                  -          <tbody>
+                  -            {rowsData.map((row, index) => (
+                  -              <tr key={index}>
+                  -                {columns.map(column => (
+                  -                  <td key={column.field}>{row[column.field]}</td>
+                  -                ))}
+                  -              </tr>
+                  -            ))}
+                  -          </tbody>
+                  -        </table>
+                  */}
       </div>
-      <table>
-        <tfoot>
-          <tr>
-            <TablePagination
-              count={rowsData.length}
-              onChangePage={() => {}}
-              page={0}
-              rowsPerPage={25}
-            />
-          </tr>
-        </tfoot>
-      </table>
+      {pagination ? (
+        <table>
+          <tfoot>
+            <tr>
+              <TablePagination
+                count={data.total}
+                onChangePage={handlePageChange}
+                onChangeRowsPerPage={handleRowPerPageChange}
+                page={pageState}
+                rowsPerPage={rowsPerPageState}
+                rowsPerPageOptions={rowsPerPageOptions}
+              />
+            </tr>
+          </tfoot>
+        </table>
+      ) : null}
+      {errorMessage && (
+        <div>
+          <span>{errorMessage}</span>
+          <Button onClick={handleRetryClick} color="secondary">
+            {text.reload}
+          </Button>
+        </div>
+      )}
     </div>
   );
 });
@@ -505,6 +604,14 @@ DataGrid.propTypes = {
     sortingOrder: PropTypes.arrayOf(PropTypes.oneOf(['asc', 'desc', null])),
   }),
   /**
+   * The initial page to be displayed.
+   */
+  defaultPage: PropTypes.number,
+  /**
+   * The initial rows per page size. Must be one of the paginationPageSize options.
+   */
+  defaultRowsPerPage: PropTypes.number,
+  /**
    * The default sorting state. (Uncontrolled)
    */
   defaultSorting: PropTypes.arrayOf(
@@ -515,15 +622,32 @@ DataGrid.propTypes = {
   ),
   /**
    * If `true`, the loading state is displayed.
+   * If `false` the component shows the loading state, while it waits for new data being loaded.
    */
   loading: PropTypes.bool,
   /**
    * Callback fired when the user change the column sort.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} value The new sorting value.
+   * @param {SortingType} value The new sorting value.
    */
   onSortingChange: PropTypes.func,
+  /**
+   * If `true`, the pagination is enabled.
+   */
+  pagination: PropTypes.bool,
+  /**
+   * The possible pagination size options to be selected by the user.
+   */
+  paginationRowsPerPageOptions: PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        value: PropTypes.number.isRequired,
+      }),
+    ]),
+  ),
   /**
    * The data record array to be rendered.
    */

@@ -15,7 +15,8 @@ const data = Array.from(new Array(100)).map(() => ({
 export default function PagingGrid() {
   return (
     <DataGrid
-      style={{ maxHeight: 500, width: '100%' }}
+      pagination
+      style={{ width: '100%' }}
       columns={[
         { field: 'name', label: 'Name' },
         { field: 'rating', label: 'Rating' },
