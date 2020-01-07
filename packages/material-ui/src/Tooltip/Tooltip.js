@@ -11,6 +11,7 @@ import Popper from '../Popper';
 import useForkRef from '../utils/useForkRef';
 import setRef from '../utils/setRef';
 import { useIsFocusVisible } from '../utils/focusVisible';
+import useControlled from '../utils/useControlled';
 import useTheme from '../styles/useTheme';
 
 function round(value) {
@@ -209,28 +210,12 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const leaveTimer = React.useRef();
   const touchTimer = React.useRef();
 
-  const { current: isControlled } = React.useRef(openProp != null);
-  const [openState, setOpenState] = React.useState(false);
-  let open = isControlled ? openProp : openState;
-
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (isControlled !== (openProp != null)) {
-        console.error(
-          [
-            `Material-UI: A component is changing ${
-              isControlled ? 'a ' : 'an un'
-            }controlled Tooltip to be ${isControlled ? 'un' : ''}controlled.`,
-            'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled Tooltip ' +
-              'element for the lifetime of the component.',
-            'More info: https://fb.me/react-controlled-components',
-          ].join('\n'),
-        );
-      }
-    }, [openProp, isControlled]);
-  }
+  const { value, setValue: setOpenState, isControlled } = useControlled({
+    controlled: openProp,
+    default: false,
+    name: 'Tooltip',
+  });
+  let open = value;
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
