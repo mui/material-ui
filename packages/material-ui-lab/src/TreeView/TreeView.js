@@ -52,6 +52,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     default: defaultExpanded,
     name: 'TreeView',
   });
+
   const expanded = expandedState || defaultExpandedDefault;
 
   const prevChildIds = React.useRef([]);
