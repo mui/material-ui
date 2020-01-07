@@ -7,7 +7,13 @@ import CollapseIcon from '@material-ui/icons/ChevronRight';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
 import clsx from 'clsx';
-import { makeStyles, withStyles, createMuiTheme, lighten } from '@material-ui/core/styles';
+import {
+  makeStyles,
+  withStyles,
+  createMuiTheme,
+  lighten,
+  useTheme,
+} from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
@@ -218,6 +224,7 @@ function DefaultTheme(props) {
   const [checked, setChecked] = React.useState(false);
   const [expandPaths, setExpandPaths] = React.useState(null);
   const t = useSelector(state => state.options.t);
+  const { palette } = useTheme();
 
   React.useEffect(() => {
     const URL = url.parse(document.location.href, true);
@@ -240,7 +247,9 @@ function DefaultTheme(props) {
     );
   }, []);
 
-  const data = React.useMemo(createMuiTheme, []);
+  const data = React.useMemo(() => {
+    return createMuiTheme({ palette: { type: palette.type } });
+  }, [palette.type]);
 
   const allNodeIds = useNodeIdsLazy(data);
   React.useDebugValue(allNodeIds);

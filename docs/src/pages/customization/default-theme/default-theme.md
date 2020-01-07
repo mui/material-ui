@@ -8,6 +8,8 @@ Explore the documentation theme object:
 
 {{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideHeader": true}}
 
+> Tip: toggle between light/dark to see above how Material-UI uses different colors for each theme.
+
 > Tip: you can play with the documentation theme object in **your console**,
 as the `theme` variable is exposed on all the documentation pages.
 Please note that the documentation site is using a custom theme.
