@@ -24,8 +24,8 @@ export default function Tags() {
       <Autocomplete
         multiple
         id="tags-standard"
-        options={top100Films}
-        getOptionLabel={(option: FilmOptionType) => option.title}
+        options={top100Films as FilmOptionType[]}
+        getOptionLabel={option => option.title}
         defaultValue={[top100Films[13]]}
         renderInput={params => (
           <TextField
@@ -40,8 +40,8 @@ export default function Tags() {
       <Autocomplete
         multiple
         id="tags-outlined"
-        options={top100Films}
-        getOptionLabel={(option: FilmOptionType) => option.title}
+        options={top100Films as FilmOptionType[]}
+        getOptionLabel={option => option.title}
         defaultValue={[top100Films[13]]}
         filterSelectedOptions
         renderInput={params => (

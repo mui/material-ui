@@ -141,11 +141,11 @@ export interface AutocompleteProps<T>
   /**
    * Render the selected value.
    *
-   * @param {T} value The `value` provided to the component.
+   * @param {T[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
    * @returns {ReactNode}
    */
-  renderTags?: (value: any, getTagProps: GetTagProps) => React.ReactNode;
+  renderTags?: (value: T[], getTagProps: GetTagProps) => React.ReactNode;
   /**
    * The size of the autocomplete.
    */

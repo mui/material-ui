@@ -15,10 +15,10 @@ export default function CheckboxesTags() {
     <Autocomplete
       multiple
       id="checkboxes-tags-demo"
-      options={top100Films}
+      options={top100Films as FilmOptionType[]}
       disableCloseOnSelect
-      getOptionLabel={(option: FilmOptionType) => option.title}
-      renderOption={(option: FilmOptionType, { selected }) => (
+      getOptionLabel={option => option.title}
+      renderOption={(option, { selected }) => (
         <React.Fragment>
           <Checkbox
             icon={icon}

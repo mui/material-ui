@@ -713,7 +713,7 @@ Autocomplete.propTypes = {
   /**
    * Render the selected value.
    *
-   * @param {T} value The `value` provided to the component.
+   * @param {T[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
    * @returns {ReactNode}
    */

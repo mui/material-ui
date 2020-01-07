@@ -15,9 +15,11 @@ export default function Grouped() {
   return (
     <Autocomplete
       id="grouped-demo"
-      options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
-      groupBy={(option: FilmOptionType) => option.firstLetter}
-      getOptionLabel={(option: FilmOptionType) => option.title}
+      options={
+        options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter)) as FilmOptionType[]
+      }
+      groupBy={option => option.firstLetter}
+      getOptionLabel={option => option.title}
       style={{ width: 300 }}
       renderInput={params => (
         <TextField {...params} label="With categories" variant="outlined" fullWidth />

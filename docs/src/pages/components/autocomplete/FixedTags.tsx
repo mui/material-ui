@@ -9,11 +9,11 @@ export default function FixedTags() {
     <Autocomplete
       multiple
       id="fixed-tags-demo"
-      options={top100Films}
-      getOptionLabel={(option: FilmOptionType) => option.title}
+      options={top100Films as FilmOptionType[]}
+      getOptionLabel={option => option.title}
       defaultValue={[top100Films[6], top100Films[13]]}
-      renderTags={(value: FilmOptionType[], getTagProps) =>
-        value.map((option: FilmOptionType, index: number) => (
+      renderTags={(value, getTagProps) =>
+        value.map((option, index) => (
           <Chip label={option.title} {...getTagProps({ index })} disabled={index === 0} />
         ))
       }

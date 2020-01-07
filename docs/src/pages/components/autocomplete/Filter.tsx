@@ -12,8 +12,8 @@ export default function Filter() {
   return (
     <Autocomplete
       id="filter-demo"
-      options={top100Films}
-      getOptionLabel={(option: FilmOptionType) => option.title}
+      options={top100Films as FilmOptionType[]}
+      getOptionLabel={option => option.title}
       filterOptions={filterOptions}
       style={{ width: 300 }}
       renderInput={params => (

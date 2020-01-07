@@ -10,8 +10,8 @@ export default function Highlights() {
     <Autocomplete
       id="highlights-demo"
       style={{ width: 300 }}
-      options={top100Films}
-      getOptionLabel={(option: FilmOptionType) => option.title}
+      options={top100Films as FilmOptionType[]}
+      getOptionLabel={option => option.title}
       renderInput={params => (
         <TextField {...params} label="Highlights" variant="outlined" fullWidth margin="normal" />
       )}

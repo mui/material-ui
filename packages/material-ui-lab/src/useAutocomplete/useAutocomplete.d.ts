@@ -120,17 +120,6 @@ export interface UseAutocompleteBaseProps<T> {
    */
   inputValue?: string;
   /**
-   * If `true`, `value` must be an array and the menu will support multiple selections.
-   */
-  multiple?: boolean;
-  /**
-   * Callback fired when the value changes.
-   *
-   * @param {object} event The event source of the callback.
-   * @param {any} value
-   */
-  onChange?: (event: React.ChangeEvent<{}>, value: any) => void;
-  /**
    * Callback fired when the popup requests to be closed.
    * Use in controlled mode (see open).
    *
@@ -182,7 +171,7 @@ export type UseAutocompleteVariableProps<T> =
       /**
        * Callback fired when the value changes.
        *
-       * @param {object} event The event source of the callback
+       * @param {object} event The event source of the callback.
        * @param {T[]} value
        */
       onChange?: (event: React.ChangeEvent<{}>, value: T[]) => void;
@@ -206,7 +195,7 @@ export type UseAutocompleteVariableProps<T> =
       /**
        * Callback fired when the value changes.
        *
-       * @param {object} event The event source of the callback
+       * @param {object} event The event source of the callback.
        * @param {T} value
        */
       onChange?: (event: React.ChangeEvent<{}>, value: T | null) => void;
