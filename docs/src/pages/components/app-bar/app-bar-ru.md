@@ -43,7 +43,7 @@ components: AppBar, Toolbar, Menu
 
 ## Нижняя панели навигации
 
-{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 400}}
 
 ## Фиксированное положение
 
@@ -93,19 +93,19 @@ function App() {
 
 Панель навигации прячется при прокрутке вниз, освобождая место для чтения.
 
-{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true}}
 
 ### Надвинуть панель навигации
 
 Панель навигации наползает на содержимое при прокрутке, сообщая пользователю, что он находится не в начале страницы.
 
-{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true}}
 
 ### Вернуться в начало страницы
 
 Плавающая кнопка появляется при прокрутке, позволяя легко вернуться в начало страницы.
 
-{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true}}
 
 ### `useScrollTrigger ([options]) => триггер`
 

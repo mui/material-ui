@@ -7,7 +7,7 @@ components: Badge
 
 <p class="description"><code>Badge</code> gera um pequeno emblema no canto superior direito de seu(s) filho(s).</p>
 
-## Emblemas Simples
+## Basic badges
 
 Exemplos de emblemas contendo texto, usando cores primárias e secundárias. O emblema é aplicado aos seus filhos.
 
@@ -23,30 +23,32 @@ Aqui está um exemplo de customização do componente. Você pode aprender mais 
 
 A visibilidade dos emblemas pode ser controlada usando a propriedade `invisible`.
 
-O emblema se esconde automaticamente quando o badgeContent é zero. Você pode sobrescrever isso com a propriedade `showZero`.
-
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-## Valor Máximo
+The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
 
-Você pode usar a propriedade `max` para limitar o valor do conteúdo do emblema.
+{{"demo": "pages/components/badges/ShowZeroBadge.js"}}
+
+## Maximum value
+
+You can use the `max` property to cap the value of the badge content.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
-## Emblema com Ponto
+## Dot badge
 
-A propriedade `dot` altera um emblema para um pequeno ponto. Isto pode ser usado como uma notificação de que algo mudou sem fornecer uma contagem.
+The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
 ## Sobreposição de emblema
 
-Você pode usar a propriedade `overlap` para colocar o emblema em relação ao canto do elemento envolvido.
+You can use the `overlap` property to place the badge relative to the corner of the wrapped element.
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
 ## Alinhamento de emblema
 
-Você pode usar as propriedades `horizontalAlignment` e `verticalAlignment` para mover o emblema para qualquer canto do elemento agrupado.
+You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}

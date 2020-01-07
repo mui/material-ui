@@ -66,4 +66,4 @@ import { borders } from '@material-ui/system';
 | `borderRight`      | `borderRight`  | `border-right`  | `borders`                                                        |
 | `borderBottom`     | `borderBottom` | `border-bottom` | `borders`                                                        |
 | `borderColor`      | `borderColor`  | `border-color`  | [`palette`](/customization/default-theme/?expand-path=$.palette) |
-| `borderRadius`     | `borderRadius` | `border-radius` | [`shape`](/system/borders/)                                      |
+| `borderRadius`     | `borderRadius` | `border-radius` | [`shape`](/customization/default-theme/?expand-path=$.shape)     |

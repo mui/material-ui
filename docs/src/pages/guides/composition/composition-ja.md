@@ -80,9 +80,7 @@ function ListItemLink(props) {
   const renderLink = React.useMemo(
     () =>
       React.forwardRef((linkProps, ref) => (
-        // With react-router-dom@^6.0.0 use `ref` instead of `innerRef`
-        // See https://github.com/ReactTraining/react-router/issues/6056
-        <Link to={to} {...linkProps} innerRef={ref} />
+        <Link ref={ref} to={to} {...linkProps} />
       )),
     [to],
   );
@@ -120,7 +118,7 @@ You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-
 
 The integration with third-party routing libraries is achieved with the `component` prop. The behavior is identical to the description of the prop above. Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router). It covers the Button, Link, and List components, you should be able to apply the same strategy with all the components.
 
-### Button
+### Button (ボタン)
 
 {{"demo": "pages/guides/composition/ButtonRouter.js"}}
 

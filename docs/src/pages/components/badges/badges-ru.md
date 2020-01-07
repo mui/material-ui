@@ -7,7 +7,7 @@ components: Badge
 
 <p class="description">Значок генерирует маленький значок в правом верхнем углу своего дочернего(их) элемента(ов).</p>
 
-## Простые значки
+## Basic badges
 
 Примеры значков, содержащих текст, с использованием первичных и вторичных цветов. Знак применяется к своим детям.
 
@@ -23,19 +23,21 @@ components: Badge
 
 Видимость значков можно контролировать с помощью свойства `invisible`.
 
-Значок автоматически скрывается, когда свойство badgeContent равно нулю. You can override this with the `showZero` property.
-
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-## Максимальное значение
+The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
 
-Вы можете использовать свойство `max` чтобы ограничить значение содержимого значка.
+{{"demo": "pages/components/badges/ShowZeroBadge.js"}}
+
+## Maximum value
+
+You can use the `max` property to cap the value of the badge content.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
-## Точечный значок
+## Dot badge
 
-Свойство `точка` превращает значок в маленькую точку. Это можно использовать как уведомление о том, что что-то изменилось без подсчета.
+The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
@@ -47,6 +49,6 @@ You can use the `overlap` property to place the badge relative to the corner of 
 
 ## Выравнивание значка
 
-You can use the `horizontalAlignment` and `verticalAlignment` properties to move the badge to any corner of the wrapped element.
+You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}

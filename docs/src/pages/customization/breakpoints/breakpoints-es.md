@@ -91,7 +91,7 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 #### Devuelve
 
-`media query`: A media query string ready to be used with JSS.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than and including the screen size given by the breakpoint key.
 
 #### Ejemplos
 
@@ -116,7 +116,7 @@ const styles = theme => ({
 
 #### Devuelve
 
-`media query`: A media query string ready to be used with JSS, which matches screen widths less than and including the screen size given by the breakpoint key.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths less than and including the screen size given by the breakpoint key.
 
 #### Ejemplos
 
@@ -142,7 +142,7 @@ const styles = theme => ({
 
 #### Devuelve
 
-`media query`: A media query string ready to be used with JSS, which matches screen widths greater than and including the screen size given by the breakpoint key.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths including the screen size given by the breakpoint key.
 
 #### Ejemplos
 
@@ -164,12 +164,12 @@ const styles = theme => ({
 
 #### Argumentos
 
-1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.).
-2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.).
+1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### Devuelve
 
-`media query`: A media query string ready to be used with JSS, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
 
 #### Ejemplos
 
@@ -201,7 +201,7 @@ Some implementation details that might be interesting to being aware of:
 
 #### Argumentos
 
-1. `options` (*Object* [optional]):
+1. `options` (*Object* [optional]): 
   - `options.withTheme` (*Boolean* [optional]): Default `false`. Provide the `theme` object to the component as a property.
   - `options.noSSR` (*Boolean* [optional]): Default `false`. In order to perform the server-side rendering reconciliation, it needs to render twice. A first time with nothing and a second time with the children. This double pass rendering cycle comes with a drawback. The UI might blink. You can set this flag to `true` if you are not doing server-side rendering.
   - `options.initialWidth` (*Breakpoint* [optional]): As `window.innerWidth` is unavailable on the server, we default to rendering an empty component during the first mount. You might want to use an heuristic to approximate the screen width of the client browser screen width. For instance, you could be using the user-agent or the client-hints. https://caniuse.com/#search=client%20hint, we also can set the initial width globally using [`custom properties`](/customization/globals/#default-props) on the theme. In order to set the initialWidth we need to pass a custom property with this shape:

@@ -21,14 +21,20 @@ components: Skeleton
 
 ## 变种(Variants)
 
-The component supports 3 variants.
+The component supports 3 shape variants.
 
 {{"demo": "pages/components/skeleton/Variants.js"}}
 
-## YouTube 示例
+## Animations
+
+By default, the skeleton pulsate, but you can change the animation for a wave or disable it entirely.
+
+{{"demo": "pages/components/skeleton/Animations.js"}}
+
+## YouTube example
 
 {{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
 
-## Facebook 示例
+## Facebook example
 
 {{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}

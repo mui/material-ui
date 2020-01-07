@@ -37,9 +37,11 @@ const theme = createMuiTheme({
 | Indonesian              | id-ID               | `idID` |
 | Italian                 | it-IT               | `itIT` |
 | Japanese                | ja-JP               | `jaJP` |
+| Korean                  | ko-KR               | `koKR` |
 | Persian                 | fa-IR               | `faIR` |
 | Polish                  | pl-PL               | `plPL` |
 | Portuguese (Brazil)     | pt-BR               | `ptBR` |
+| Portuguese              | pt-PT               | `ptPT` |
 | Romanian                | ro-RO               | `roRO` |
 | Russian                 | ru-RU               | `ruRU` |
 | Slovak                  | sk-SK               | `skSK` |

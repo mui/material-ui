@@ -42,7 +42,7 @@ Material-UIを初めて学ぶときは、公式のドキュメントよりもサ
   
   - 📘 [書籍](https://www.amazon.com/gp/product/1789615224/)
 
-[![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
+[![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/)
 
 - **Builder Book**: Modern JavaScriptスタックとMaterial-UIを使用して、フルスタックのJavaScript Webアプリケーションを最初から構築する方法を説明します。 
   - 📘 [書籍](https://builderbook.org/book)

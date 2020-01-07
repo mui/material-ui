@@ -78,7 +78,7 @@ For this demo, we need to load the [Google Maps JavaScript](https://developers.g
 
 ## Multiple values
 
-Also knowned as tags, the user is allowed to enter more than 1 value.
+Also known as tags, the user is allowed to enter more than one value.
 
 {{"demo": "pages/components/autocomplete/Tags.js"}}
 

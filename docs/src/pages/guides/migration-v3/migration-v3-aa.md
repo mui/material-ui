@@ -64,28 +64,30 @@ crwdns95950:0crwdne95950:0
     crwdns101284:0crwdne101284:0
 
 ```diff
-  crwdns95988:0crwdne95988:0 crwdns95990:0crwdne95990:0
-  crwdns95992:0$muicrwdnd95992:0{
+  crwdns107369:0crwdne107369:0
+
+  crwdns107371:0{ convertHexToRgb }crwdnd107371:0{ hexToRgb }crwdne107371:0 crwdns107373:0crwdne107373:0
+  crwdns107375:0$muicrwdnd107375:0{
         opacity: 0.1,
-      }crwdnd95992:0{
+      }crwdnd107375:0{
         opacity: 0.3,
-      }crwdne95992:0
-  crwdns95994:0crwdne95994:0
+      }crwdne107375:0
+  crwdns107377:0crwdne107377:0
 
-  crwdns95996:0{ main: color }crwdnd95996:0{ main: color }crwdnd95996:0{ background }crwdnd95996:0{
+  crwdns107379:0{ main: color }crwdnd107379:0{ main: color }crwdnd107379:0{ background }crwdnd107379:0{
   - useNextVariants: true,
-  }crwdne95996:0
+  }crwdne107379:0
 
-  crwdns95998:0crwdne95998:0
+  crwdns107381:0crwdne107381:0
 
-crwdns96000:0[Grid]crwdne96000:0
-     crwdns96002:0crwdne96002:0
-     crwdns96004:0crwdne96004:0
-crwdns96006:0[Container]crwdne96006:0
+crwdns107383:0[Grid]crwdne107383:0
+     crwdns107385:0crwdne107385:0
+     crwdns107387:0crwdne107387:0
+crwdns107389:0[Container]crwdne107389:0
 
-  crwdns96008:0crwdne96008:0 crwdns96010:0crwdne96010:0
+  crwdns107391:0crwdne107391:0 crwdns107393:0crwdne107393:0
 
-crwdns101748:0{ children }crwdnd101748:0{handleChange}crwdnd101748:0{children}crwdne101748:0
+crwdns107395:0{ children }crwdnd107395:0{handleChange}crwdnd107395:0{children}crwdne107395:0
 ```
 
 crwdns101286:0crwdne101286:0

@@ -7,7 +7,9 @@ Como o escopo dos problemas que o Material-UI resolve é limitado, tentamos inte
 ## Recursos de Design
 
 - **Sketch**: [Editor de tema](https://material.io/resources/theme-editor/) para Material Design feito pelo Google.
-- **Figma**: [Figma UI Kit](https://material.5ly.co/) para Material-UI feito pelo time Fively.
+- **Figma**: 
+  - https://material.5ly.co/ for Material-UI made by Fively Team.
+  - https://ui-kit.co/ a starter kit for your Material Design 2 project.
 - **Framer**: [Framer X Kit](https://packages.framer.com/package/material-ui/material-ui) for Material-UI.
 
 Você não encontrou os recursos de design que sua equipe está procurando? Nos conte!

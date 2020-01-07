@@ -43,7 +43,7 @@ Uma barra de aplicativos proeminente.
 
 ## Barra de Aplicativos inferior
 
-{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 400}}
 
 ## Local de filtros
 
@@ -93,19 +93,19 @@ Você pode usar o hook `useScrollTrigger()` para responder às ações de rolage
 
 A barra de aplicativos sumirá ao descer a página para deixar mais espaço de leitura.
 
-{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true}}
 
 ### Barra de aplicativos elevada
 
 A barra de aplicativos eleva-se na rolagem para comunicar que o usuário não está na parte superior da página.
 
-{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true}}
 
 ### Voltar ao topo
 
 Um botão de ação flutuante aparece na rolagem para facilitar o retorno ao topo da página.
 
-{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true}}
 
 ### `useScrollTrigger([options]) => trigger`
 

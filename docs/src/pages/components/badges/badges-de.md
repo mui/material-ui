@@ -7,7 +7,7 @@ components: Badge
 
 <p class="description">Badge generiert ein kleines Abzeichen an der oberen rechten Ecke seiner Kinder.</p>
 
-## Einfache Badges
+## Basic badges
 
 Beispiele für Text Badges in Primär- und Sekundärfarben. The badge is applied to its children.
 
@@ -23,17 +23,19 @@ Hier ist ein Beispiel zum Anpassen der Komponente. You can learn more about this
 
 Die Sichtbarkeit von Badges kann über die Eigenschaft `invisible` gesteuert werden.
 
-The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
-
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-## Maximalwert
+The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
 
-Sie können die Eigenschaft `max` verwenden, um den Wert des Badge-Inhalts zu begrenzen.
+{{"demo": "pages/components/badges/ShowZeroBadge.js"}}
+
+## Maximum value
+
+You can use the `max` property to cap the value of the badge content.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
-## Punkt-Badge
+## Dot badge
 
 The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
 
@@ -47,6 +49,6 @@ You can use the `overlap` property to place the badge relative to the corner of 
 
 ## Badge alignment
 
-You can use the `horizontalAlignment` and `verticalAlignment` properties to move the badge to any corner of the wrapped element.
+You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}

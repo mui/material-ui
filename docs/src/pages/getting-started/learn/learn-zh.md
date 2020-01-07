@@ -42,7 +42,7 @@
   
   - 📘 [书](https://www.amazon.com/gp/product/1789615224/)
 
-[![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380)
+[![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/)
 
 - **Builder Book**：学习如何使用 Modern JavaScript 堆栈和 Material-UI 来从头开始创建一个全栈 JavaScript Web 应用程序。 
   - 📘 [Builder Book](https://builderbook.org/book)
