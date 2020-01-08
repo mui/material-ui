@@ -1,12 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks, react-hooks/exhaustive-deps */
 import React from 'react';
 
-const useControlled = ({ controlled, default: defaultProp, name }) => {
+export default function useControlled({ controlled, default: defaultProp, name }) {
   const { current: isControlled } = React.useRef(controlled !== undefined);
-  const { current: defaultValue } = React.useRef(defaultProp);
-  const [valueState, setValue] = React.useState(() => {
-    return !isControlled && defaultValue !== undefined ? defaultValue : null;
-  });
+  const [valueState, setValue] = React.useState(defaultProp);
   const value = isControlled ? controlled : valueState;
 
   if (process.env.NODE_ENV !== 'production') {
@@ -24,7 +21,9 @@ const useControlled = ({ controlled, default: defaultProp, name }) => {
           ].join('\n'),
         );
       }
-    }, [controlled, isControlled, name]);
+    }, [controlled]);
+
+    const { current: defaultValue } = React.useRef(defaultProp);
 
     React.useEffect(() => {
       if (defaultValue !== defaultProp) {
@@ -39,6 +38,4 @@ const useControlled = ({ controlled, default: defaultProp, name }) => {
   }
 
   return { value, setValue, isControlled };
-};
-
-export default useControlled;
+}

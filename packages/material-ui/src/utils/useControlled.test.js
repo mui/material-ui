@@ -64,6 +64,16 @@ describe('useControlled', () => {
     );
   });
 
+  it('warns when switching from controlled to uncontrolled', () => {
+    const { setProps } = render(<TestComponent value="foobar">{() => null}</TestComponent>);
+    expect(consoleErrorMock.callCount()).to.equal(0);
+    setProps({ value: undefined });
+    expect(consoleErrorMock.callCount()).to.equal(1);
+    expect(consoleErrorMock.args()[0][0]).to.contains(
+      'A component is changing a controlled TestComponent to be uncontrolled.',
+    );
+  });
+
   it('warns when changing the defaultValue prop after initial rendering', () => {
     const { setProps } = render(<TestComponent>{() => null}</TestComponent>);
     expect(consoleErrorMock.callCount()).to.equal(0);
