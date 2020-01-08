@@ -16,7 +16,7 @@ export function createFilterOptions<T>(
   config?: CreateFilterOptionsConfig<T>,
 ): (options: T[], state: FilterOptionsState) => T[];
 
-export interface UseAutocompleteBaseProps<T> {
+export interface UseAutocompleteCommonProps<T> {
   /**
    * If `true`, the portion of the selected suggestion that has not been typed by the user,
    * known as the completion string, appears inline after the input cursor in the textbox.
@@ -151,57 +151,59 @@ export interface UseAutocompleteBaseProps<T> {
   options?: T[];
 }
 
-export type UseAutocompleteVariableProps<T> =
-  | {
-      /**
-       * If `true`, `value` must be an array and the menu will support multiple selections.
-       */
-      multiple: true;
-      /**
-       * The value of the autocomplete.
-       *
-       * The value must have reference equality with the option in order to be selected.
-       * You can customize the equality behavior with the `getOptionSelected` prop.
-       */
-      value?: T[];
-      /**
-       * The default input value. Use when the component is not controlled.
-       */
-      defaultValue?: T[];
-      /**
-       * Callback fired when the value changes.
-       *
-       * @param {object} event The event source of the callback.
-       * @param {T[]} value
-       */
-      onChange?: (event: React.ChangeEvent<{}>, value: T[]) => void;
-    }
-  | {
-      /**
-       * If `true`, `value` must be an array and the menu will support multiple selections.
-       */
-      multiple?: false;
-      /**
-       * The value of the autocomplete.
-       *
-       * The value must have reference equality with the option in order to be selected.
-       * You can customize the equality behavior with the `getOptionSelected` prop.
-       */
-      value?: T | null;
-      /**
-       * The default input value. Use when the component is not controlled.
-       */
-      defaultValue?: T;
-      /**
-       * Callback fired when the value changes.
-       *
-       * @param {object} event The event source of the callback.
-       * @param {T} value
-       */
-      onChange?: (event: React.ChangeEvent<{}>, value: T | null) => void;
-    };
+export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonProps<T> {
+  /**
+   * If `true`, `value` must be an array and the menu will support multiple selections.
+   */
+  multiple: true;
+  /**
+   * The value of the autocomplete.
+   *
+   * The value must have reference equality with the option in order to be selected.
+   * You can customize the equality behavior with the `getOptionSelected` prop.
+   */
+  value?: T[];
+  /**
+   * The default input value. Use when the component is not controlled.
+   */
+  defaultValue?: T[];
+  /**
+   * Callback fired when the value changes.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {T[]} value
+   */
+  onChange?: (event: React.ChangeEvent<{}>, value: T[]) => void;
+}
 
-export type UseAutocompleteProps<T> = UseAutocompleteBaseProps<T> & UseAutocompleteVariableProps<T>;
+export interface UseAutocompleteSingleProps<T> extends UseAutocompleteCommonProps<T> {
+  /**
+   * If `true`, `value` must be an array and the menu will support multiple selections.
+   */
+  multiple?: false;
+  /**
+   * The value of the autocomplete.
+   *
+   * The value must have reference equality with the option in order to be selected.
+   * You can customize the equality behavior with the `getOptionSelected` prop.
+   */
+  value?: T | null;
+  /**
+   * The default input value. Use when the component is not controlled.
+   */
+  defaultValue?: T;
+  /**
+   * Callback fired when the value changes.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {T} value
+   */
+  onChange?: (event: React.ChangeEvent<{}>, value: T | null) => void;
+}
+
+export type UseAutocompleteProps<T> =
+  | UseAutocompleteSingleProps<T>
+  | UseAutocompleteMultipleProps<T>;
 
 export default function useAutocomplete<T>(
   props: UseAutocompleteProps<T>,

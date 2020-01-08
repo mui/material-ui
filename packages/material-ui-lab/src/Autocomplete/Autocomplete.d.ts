@@ -2,9 +2,9 @@ import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 import { PopperProps } from '@material-ui/core/Popper';
 import {
-  UseAutocompleteBaseProps,
+  UseAutocompleteCommonProps,
   createFilterOptions,
-  UseAutocompleteVariableProps,
+  UseAutocompleteProps,
 } from '../useAutocomplete';
 
 export { createFilterOptions };
@@ -35,7 +35,7 @@ export interface RenderInputParams {
 }
 
 export interface AutocompleteProps<T>
-  extends UseAutocompleteBaseProps<T>,
+  extends UseAutocompleteCommonProps<T>,
     StandardProps<
       React.HTMLAttributes<HTMLDivElement>,
       AutocompleteClassKey,
@@ -176,5 +176,5 @@ export type AutocompleteClassKey =
   | 'groupUl';
 
 export default function Autocomplete<T>(
-  props: AutocompleteProps<T> & UseAutocompleteVariableProps<T>,
+  props: AutocompleteProps<T> & UseAutocompleteProps<T>,
 ): JSX.Element;
