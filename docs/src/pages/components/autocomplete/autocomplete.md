@@ -181,4 +181,4 @@ The component implements the WAI-ARIA authoring practices.
 
 ## Disable Chrome Autofill
 
-The Chrome browser has an autofill implemented that recognizes previous inputs by a user to the same id element on the page. This results in a poor experience for users as the Autocompelete component is overlaid by the chrome autofill mechanism. If you do not pass an `id` prop to the `Autocomplete` component then one will be generated at random preventing Chrome from attempting to autofill the input.
+The Chrome browser has an autofill implementation that suggests previous user responses for an input with the same id. This results in a poor experience for users as the Autocompelete component is overlaid by the chrome autofill mechanism. If you do not pass an `id` prop to the `Autocomplete` component then one will be generated at random preventing Chrome from attempting to autofill the input.
