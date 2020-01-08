@@ -36,7 +36,9 @@ Any other props supplied will be provided to the root element (native element).
 - Style sheet name: `MuiAlertTitle`.
 - Style sheet details:
 
-- `root`
+| Rule name | Global class | Description |
+|:-----|:-------------|:------------|
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiAlertTitle-root</span> | Styles applied to the root element.
 
 You can override the style of the component thanks to one of these customization points:
 

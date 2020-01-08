@@ -87,7 +87,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   }, [children]);
 
   const isExpanded = React.useCallback(id => expanded.indexOf(id) !== -1, [expanded]);
-  const isTabable = id => tabable === id;
+  const isTabbable = id => tabable === id;
   const isFocused = id => focused === id;
 
   const getLastNode = React.useCallback(
@@ -335,7 +335,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         icons: { defaultCollapseIcon, defaultExpandIcon, defaultParentIcon, defaultEndIcon },
         isExpanded,
         isFocused,
-        isTabable,
+        isTabbable,
         setFocusByFirstCharacter,
         toggle,
       }}

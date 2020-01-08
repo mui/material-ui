@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     container: {
       display: 'flex',
+      flexWrap: 'wrap',
     },
     paper: {
       padding: theme.spacing(2),

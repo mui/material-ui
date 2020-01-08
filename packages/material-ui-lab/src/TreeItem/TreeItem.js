@@ -15,6 +15,7 @@ export const styles = theme => ({
     margin: 0,
     padding: 0,
     outline: 0,
+    WebkitTapHighlightColor: 'transparent',
     '&:focus > $content': {
       backgroundColor: theme.palette.grey[400],
     },
@@ -86,7 +87,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     icons: contextIcons,
     isExpanded,
     isFocused,
-    isTabable,
+    isTabbable,
     setFocusByFirstCharacter,
     toggle,
   } = React.useContext(TreeViewContext);
@@ -100,7 +101,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const expandable = Boolean(Array.isArray(children) ? children.length : children);
   const expanded = isExpanded ? isExpanded(nodeId) : false;
   const focused = isFocused ? isFocused(nodeId) : false;
-  const tabable = isTabable ? isTabable(nodeId) : false;
+  const tabbable = isTabbable ? isTabbable(nodeId) : false;
   const icons = contextIcons || {};
   const theme = useTheme();
 
@@ -234,7 +235,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   };
 
   const handleFocus = event => {
-    if (!focused && tabable) {
+    if (!focused && tabbable) {
       focus(nodeId);
     }
 
@@ -281,7 +282,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       onFocus={handleFocus}
       aria-expanded={expandable ? expanded : null}
       ref={handleRef}
-      tabIndex={tabable ? 0 : -1}
+      tabIndex={tabbable ? 0 : -1}
       {...other}
     >
       <div className={classes.content} onClick={handleClick} ref={contentRef}>

@@ -33,7 +33,7 @@ renderer.heading = (text, level) => {
     `<h${level}>`,
     `<a class="anchor-link" id="${hash}"></a>`,
     text,
-    `<a class="anchor-link-style" aria-hidden="true" href="#${hash}">`,
+    `<a class="anchor-link-style" aria-hidden="true" aria-label="anchor" href="#${hash}">`,
     '<svg><use xlink:href="#anchor-link-icon" /></svg>',
     '</a>',
     `</h${level}>`,
@@ -119,6 +119,7 @@ const styles = theme => ({
     fontFamily: theme.typography.fontFamily,
     fontSize: 16,
     color: theme.palette.text.primary,
+    wordBreak: 'break-word',
     '& .anchor-link': {
       marginTop: -96, // Offset for the anchor.
       position: 'absolute',

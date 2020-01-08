@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import textToHash from 'docs/src/modules/utils/textToHash';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import Link from 'docs/src/modules/components/Link';
+import PageContext from 'docs/src/modules/components/PageContext';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -155,6 +156,7 @@ export default function AppTableOfContents(props) {
     itemsClientRef.current = getItemsClient(itemsServer);
   }, [itemsServer]);
 
+  const { activePage } = React.useContext(PageContext);
   const [activeState, setActiveState] = React.useState(null);
   const clickedRef = React.useRef(false);
   const unsetClickedRef = React.useRef(null);
@@ -233,7 +235,7 @@ export default function AppTableOfContents(props) {
     <Link
       display="block"
       color={activeState === item.hash ? 'textPrimary' : 'textSecondary'}
-      href={`#${item.hash}`}
+      href={`${activePage.pathname}#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
       className={clsx(

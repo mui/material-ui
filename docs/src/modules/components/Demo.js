@@ -300,7 +300,7 @@ function Demo(props) {
     !demoOptions.hideHeader &&
     demoOptions.defaultCodeOpen !== false &&
     jsx !== demoData.raw &&
-    jsx.split(/\n/).length <= 16;
+    jsx.split(/\n/).length <= 17;
 
   let showCodeLabel;
   if (codeOpen) {

@@ -13,7 +13,7 @@ function renderFullPage(html, css) {
       <head>
         <title>My page</title>
         <style id="jss-server-side">${css}</style>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no" />
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       </head>
       <body>

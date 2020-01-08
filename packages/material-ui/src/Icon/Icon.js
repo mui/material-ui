@@ -36,6 +36,7 @@ export const styles = theme => ({
   colorDisabled: {
     color: theme.palette.action.disabled,
   },
+  /* Styles applied to the root element if `fontSize="inherit"`. */
   fontSizeInherit: {
     fontSize: 'inherit',
   },
