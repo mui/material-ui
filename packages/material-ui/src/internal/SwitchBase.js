@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
-import { useControlled } from '@material-ui/core/utils';
+import useControlled from '../utils/useControlled';
 import useFormControl from '../FormControl/useFormControl';
 import withStyles from '../styles/withStyles';
 import IconButton from '../IconButton';
