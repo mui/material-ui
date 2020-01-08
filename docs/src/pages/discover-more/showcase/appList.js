@@ -619,6 +619,13 @@ const appList = [
     stars: 1874,
     dateAdded: '2019-11-01',
   },
+  {
+    title: 'HiFiveWork',
+    description: 'HiFiveWork, the cool tool for leave management',
+    image: 'hifivework.png',
+    link: 'https://www.hifivework.com/#/',
+    dateAdded: '2020-01-08',
+  },
 ];
 
 export default appList;
