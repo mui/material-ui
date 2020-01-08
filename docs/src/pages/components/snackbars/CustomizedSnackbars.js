@@ -39,14 +39,14 @@ export default function CustomizedSnackbars() {
         Open success snackbar
       </Button>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} color="success">
+        <Alert onClose={handleClose} severity="success">
           This is a success message!
         </Alert>
       </Snackbar>
-      <Alert color="error">This is an error message!</Alert>
-      <Alert color="warning">This is a warning message!</Alert>
-      <Alert color="info">This is an information message!</Alert>
-      <Alert color="success">This is a success message!</Alert>
+      <Alert severity="error">This is an error message!</Alert>
+      <Alert severity="warning">This is a warning message!</Alert>
+      <Alert severity="info">This is an information message!</Alert>
+      <Alert severity="success">This is a success message!</Alert>
     </div>
   );
 }
