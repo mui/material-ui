@@ -7,13 +7,7 @@ import CollapseIcon from '@material-ui/icons/ChevronRight';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
 import clsx from 'clsx';
-import {
-  makeStyles,
-  withStyles,
-  createMuiTheme,
-  lighten,
-  useTheme,
-} from '@material-ui/core/styles';
+import { makeStyles, withStyles, createMuiTheme, lighten } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
@@ -224,7 +218,7 @@ function DefaultTheme(props) {
   const [checked, setChecked] = React.useState(false);
   const [expandPaths, setExpandPaths] = React.useState(null);
   const t = useSelector(state => state.options.t);
-  const { palette } = useTheme();
+  const [darkTheme, setDarkTheme] = React.useState(false);
 
   React.useEffect(() => {
     const URL = url.parse(document.location.href, true);
@@ -248,8 +242,8 @@ function DefaultTheme(props) {
   }, []);
 
   const data = React.useMemo(() => {
-    return createMuiTheme({ palette: { type: palette.type } });
-  }, [palette.type]);
+    return createMuiTheme({ palette: { type: darkTheme ? 'dark' : 'light' } });
+  }, [darkTheme]);
 
   const allNodeIds = useNodeIdsLazy(data);
   React.useDebugValue(allNodeIds);
@@ -274,6 +268,18 @@ function DefaultTheme(props) {
           />
         }
         label={t('expandAll')}
+      />
+      <FormControlLabel
+        className={classes.switch}
+        control={
+          <Switch
+            checked={darkTheme}
+            onChange={(event, newValue) => {
+              setDarkTheme(newValue);
+            }}
+          />
+        }
+        label={t('useDarkTheme')}
       />
       <Inspector data={data} expandPaths={expandPaths} expandLevel={checked ? 100 : 1} />
     </div>
