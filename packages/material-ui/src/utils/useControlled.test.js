@@ -5,7 +5,7 @@ import consoleErrorMock from 'test/utils/consoleErrorMock';
 import useControlled from './useControlled';
 
 const TestComponent = ({ value: valueProp, defaultValue, children }) => {
-  const { value, setValue } = useControlled({
+  const [value, setValue] = useControlled({
     controlled: valueProp,
     default: defaultValue,
     name: 'TestComponent',

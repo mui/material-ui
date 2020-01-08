@@ -187,7 +187,7 @@ export default function useAutocomplete(props) {
     }
   }
 
-  const { value, setValue, isControlled } = useControlled({
+  const [value, setValue] = useControlled({
     controlled: valueProp,
     default: defaultValue || (multiple ? [] : null),
     name: componentName,
@@ -426,9 +426,8 @@ export default function useAutocomplete(props) {
     if (onChange) {
       onChange(event, newValue);
     }
-    if (!isControlled) {
-      setValue(newValue);
-    }
+
+    setValue(newValue);
   };
 
   const selectNewValue = (event, newValue) => {

@@ -210,14 +210,17 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const leaveTimer = React.useRef();
   const touchTimer = React.useRef();
 
-  const { value, setValue: setOpenState, isControlled } = useControlled({
+  const [openState, setOpenState] = useControlled({
     controlled: openProp,
     default: false,
     name: 'Tooltip',
   });
-  let open = value;
+  let open = openState;
 
   if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const { current: isControlled } = React.useRef(openProp !== undefined);
+
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (
@@ -237,7 +240,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
           ].join('\n'),
         );
       }
-    }, [isControlled, title, childNode]);
+    }, [title, childNode, isControlled]);
   }
 
   const [defaultId, setDefaultId] = React.useState();
@@ -269,9 +272,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     // The mouseover event will trigger for every nested element in the tooltip.
     // We can skip rerendering when the tooltip is already open.
     // We are using the mouseover event instead of the mouseenter event to fix a hide/show issue.
-    if (!isControlled) {
-      setOpenState(true);
-    }
+    setOpenState(true);
 
     if (onOpen) {
       onOpen(event);
@@ -347,9 +348,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }, 500);
     // Use 500 ms per https://github.com/reach/reach-ui/blob/3b5319027d763a3082880be887d7a29aee7d3afc/packages/tooltip/src/index.js#L214
 
-    if (!isControlled) {
-      setOpenState(false);
-    }
+    setOpenState(false);
 
     if (onClose) {
       onClose(event);

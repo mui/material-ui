@@ -47,7 +47,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const nodeMap = React.useRef({});
   const firstCharMap = React.useRef({});
 
-  const { value: expandedState, setValue: setExpandedState, isControlled } = useControlled({
+  const [expandedState, setExpandedState] = useControlled({
     controlled: expandedProp,
     default: defaultExpanded,
     name: 'TreeView',
@@ -184,9 +184,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       onNodeToggle(event, newExpanded);
     }
 
-    if (!isControlled) {
-      setExpandedState(newExpanded);
-    }
+    setExpandedState(newExpanded);
   };
 
   const expandAllSiblings = (event, id) => {
@@ -202,9 +200,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
     const newExpanded = [...expanded, ...diff];
 
-    if (!isControlled) {
-      setExpandedState(newExpanded);
-    }
+    setExpandedState(newExpanded);
 
     if (onNodeToggle) {
       onNodeToggle(event, newExpanded);

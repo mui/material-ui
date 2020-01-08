@@ -13,10 +13,4 @@ export interface UseControlledProps {
   name: string;
 }
 
-export default function useControlled(
-  props: UseControlledProps,
-): {
-  value: any;
-  setValue: () => void;
-  isControlled: boolean;
-};
+export default function useControlled(props: UseControlledProps): [any, () => void];

@@ -372,7 +372,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const [active, setActive] = React.useState(-1);
   const [open, setOpen] = React.useState(-1);
 
-  const { value: valueDerived, setValue: setValueState, isControlled } = useControlled({
+  const [valueDerived, setValueState] = useControlled({
     controlled: valueProp,
     default: defaultValue,
     name: 'Slider',
@@ -487,10 +487,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       focusThumb({ sliderRef, activeIndex: newValue.indexOf(previousValue) });
     }
 
-    if (!isControlled) {
-      setValueState(newValue);
-    }
-
+    setValueState(newValue);
     setFocusVisible(index);
 
     if (onChange) {
@@ -574,9 +571,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     });
 
     focusThumb({ sliderRef, activeIndex, setActive });
-    if (!isControlled) {
-      setValueState(newValue);
-    }
+    setValueState(newValue);
+
     if (onChange) {
       onChange(event, newValue);
     }
@@ -621,9 +617,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
 
-    if (!isControlled) {
-      setValueState(newValue);
-    }
+    setValueState(newValue);
+
     if (onChange) {
       onChange(event, newValue);
     }
@@ -657,9 +652,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
 
-    if (!isControlled) {
-      setValueState(newValue);
-    }
+    setValueState(newValue);
+
     if (onChange) {
       onChange(event, newValue);
     }

@@ -9,7 +9,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
   const { actions, children, name, value: valueProp, onChange, ...other } = props;
   const rootRef = React.useRef(null);
 
-  const { value, setValue, isControlled } = useControlled({
+  const [value, setValue] = useControlled({
     controlled: valueProp,
     default: props.defaultValue,
     name: 'RadioGroup',
@@ -36,9 +36,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
   const handleRef = useForkRef(ref, rootRef);
 
   const handleChange = event => {
-    if (!isControlled) {
-      setValue(event.target.value);
-    }
+    setValue(event.target.value);
 
     if (onChange) {
       onChange(event, event.target.value);
