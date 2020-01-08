@@ -37,7 +37,7 @@ function textCriteriaMatches(nextFocus, textCriteria) {
     text = nextFocus.textContent;
   }
   text = text.trim().toLowerCase();
-  if (text.length === 0) {
+  if (text.length === 0 || nextFocus.querySelector('label')) {
     return false;
   }
   if (textCriteria.repeating) {
