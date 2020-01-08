@@ -637,7 +637,7 @@ Autocomplete.propTypes = {
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {T[]} value
+   * @param {T} value
    */
   onChange: PropTypes.func,
   /**
