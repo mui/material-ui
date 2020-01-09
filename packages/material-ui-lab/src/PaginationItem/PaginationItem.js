@@ -251,7 +251,7 @@ function PaginationItem(props) {
               }
               aria-current={selected ? 'page' : undefined}
               component={handleChange ? 'div' : 'a'}
-              href={handleChange ? undefined : page}
+              href={handleChange ? undefined : ''}
               onClick={handleChange ? event => handleChange(event, page) : undefined}
               className={buttonClass}
             >
