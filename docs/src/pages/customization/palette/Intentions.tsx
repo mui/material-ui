@@ -1,7 +1,13 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { createStyles, makeStyles, Theme, useTheme, rgbToHex } from '@material-ui/core/styles';
+import {
+  createStyles,
+  makeStyles,
+  Theme,
+  createMuiTheme,
+  rgbToHex,
+} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -27,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Intentions() {
   const classes = useStyles();
-  const theme = useTheme();
+  const theme = createMuiTheme();
 
   const item = (color: string, name: string) => (
     <Grid item xs={6} sm={4} className={classes.color}>
