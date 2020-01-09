@@ -1,6 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 import {
   createStyles,
   makeStyles,
@@ -13,16 +14,15 @@ import {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      padding: theme.spacing(3),
       backgroundColor: theme.palette.background.default,
       color: theme.palette.text.primary,
+      overflow: 'auto',
+      [theme.breakpoints.up('md')]: {
+        padding: theme.spacing(3),
+      },
     },
     paper: {
       padding: theme.spacing(3),
-    },
-    divider: {
-      marginTop: theme.spacing(2),
-      marginBottom: theme.spacing(2),
     },
     color: {
       display: 'flex',
@@ -34,10 +34,8 @@ const useStyles = makeStyles((theme: Theme) =>
         borderRadius: theme.shape.borderRadius,
       },
     },
-    container: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(3, 1fr)',
-      gridGap: theme.spacing(3),
+    group: {
+      marginTop: theme.spacing(3),
     },
   }),
 );
@@ -46,36 +44,65 @@ function Demo() {
   const classes = useStyles();
   const theme = useTheme();
 
-  const item = (color: string, name: string) => (
-    <div className={classes.color}>
-      <div style={{ backgroundColor: color }} />
+  const item = (
+    color: string,
+    name: string,
+    expanded: boolean = false,
+    border: boolean = false,
+  ) => (
+    <Grid item xs={12} md={expanded ? 8 : 4} className={classes.color}>
+      <div
+        style={{
+          backgroundColor: color,
+          border: border ? `1px solid ${theme.palette.divider}` : undefined,
+        }}
+      />
       <div>
         <Typography variant="body2">{name}</Typography>
         <Typography variant="body2" color="textSecondary">
           {color}
         </Typography>
       </div>
-    </div>
+    </Grid>
   );
 
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <Typography variant="h6" align="center" gutterBottom>{`${
-          theme.palette.type
-        } theme`}</Typography>
-        <div className={classes.container}>
+        <Typography gutterBottom>Typography</Typography>
+        <Grid container spacing={2}>
           {item(theme.palette.text.primary, 'palette.text.primary')}
           {item(theme.palette.text.secondary, 'palette.text.secondary')}
           {item(theme.palette.text.disabled, 'palette.text.disabled')}
+        </Grid>
+        <Grid container spacing={2}>
           {item(theme.palette.text.hint, 'palette.text.hint')}
+        </Grid>
+        <Typography gutterBottom className={classes.group}>
+          Buttons
+        </Typography>
+        <Grid container spacing={2}>
           {item(theme.palette.action.active, 'palette.action.active')}
           {item(theme.palette.action.hover, 'palette.action.hover')}
           {item(theme.palette.action.selected, 'palette.action.selected')}
+        </Grid>
+        <Grid container spacing={2}>
           {item(theme.palette.action.disabled, 'palette.action.disabled')}
-          {item(theme.palette.action.disabledBackground, 'palette.action.disabledBackground')}
+          {item(theme.palette.action.disabledBackground, 'palette.action.disabledBackground', true)}
+        </Grid>
+        <Typography gutterBottom className={classes.group}>
+          Background
+        </Typography>
+        <Grid container spacing={2}>
+          {item(theme.palette.background.default, 'palette.background.default', false)}
+          {item(theme.palette.background.paper, 'palette.background.paper', false, true)}
+        </Grid>
+        <Typography gutterBottom className={classes.group}>
+          Divider
+        </Typography>
+        <Grid container spacing={2}>
           {item(theme.palette.divider, 'palette.divider')}
-        </div>
+        </Grid>
       </Paper>
     </div>
   );
