@@ -1,4 +1,5 @@
 export const azAZ: object;
+export const bgBG: object;
 export const csCZ: object;
 export const deDE: object;
 export const enUS: object;

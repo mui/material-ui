@@ -32,6 +32,31 @@ export const azAZ = {
   },
 };
 
+export const bgBG = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Предишна страница',
+      labelRowsPerPage: 'Редове на страница:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} от ${count}`,
+      nextIconButtonText: 'Следваща страница',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Звезд${value !== 1 ? 'и' : 'а'}`,
+      emptyLabelText: 'Изчисти',
+    },
+    MuiAutocomplete: {
+      clearText: 'Изчисти',
+      closeText: 'Затвори',
+      loadingText: 'Зареждане…',
+      noOptionsText: 'Няма налични опции',
+      openText: 'Отвори',
+    },
+    MuiAlert: {
+      closeText: 'Затвори',
+    },
+  },
+};
+
 export const csCZ = {
   props: {
     MuiTablePagination: {
