@@ -75,9 +75,6 @@ function Demo() {
           {item(theme.palette.text.secondary, 'palette.text.secondary')}
           {item(theme.palette.text.disabled, 'palette.text.disabled')}
         </Grid>
-        <Grid container spacing={2}>
-          {item(theme.palette.text.hint, 'palette.text.hint')}
-        </Grid>
         <Typography gutterBottom className={classes.group}>
           Buttons
         </Typography>
