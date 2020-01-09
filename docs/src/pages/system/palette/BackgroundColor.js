@@ -1,8 +1,9 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-export default function BackgroundColor() {
+function Demo() {
   return (
     <Grid container spacing={1}>
       <Grid item xs={12} sm={4}>
@@ -51,5 +52,15 @@ export default function BackgroundColor() {
         </Box>
       </Grid>
     </Grid>
+  );
+}
+
+const theme = createMuiTheme();
+
+export default function BackgroundColor() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Demo />
+    </ThemeProvider>
   );
 }
