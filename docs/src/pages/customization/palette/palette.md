@@ -99,7 +99,7 @@ As in the example above, if the intention object contains custom colors using an
 - If the "dark" and / or "light" keys are omitted, their value(s) will be calculated from "main",
   according to the "tonalOffset" value.
 - If "contrastText" is omitted, its value will be calculated to contrast with "main",
-  according to the"contrastThreshold" value.
+  according to the "contrastThreshold" value.
 
 Both the "tonalOffset" and "contrastThreshold" values may be customized as needed.
 A higher value for "tonalOffset" will make calculated values for "light" lighter, and "dark" darker.
