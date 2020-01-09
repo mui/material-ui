@@ -10,6 +10,7 @@ import ownerDocument from '../utils/ownerDocument';
 import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
 import capitalize from '../utils/capitalize';
+import useControlled from '../utils/useControlled';
 import ValueLabel from './ValueLabel';
 
 function asc(a, b) {
@@ -371,28 +372,11 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const [active, setActive] = React.useState(-1);
   const [open, setOpen] = React.useState(-1);
 
-  const { current: isControlled } = React.useRef(valueProp != null);
-  const [valueState, setValueState] = React.useState(defaultValue);
-  const valueDerived = isControlled ? valueProp : valueState;
-
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (isControlled !== (valueProp != null)) {
-        console.error(
-          [
-            `Material-UI: A component is changing ${
-              isControlled ? 'a ' : 'an un'
-            }controlled Slider to be ${isControlled ? 'un' : ''}controlled.`,
-            'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled Slider ' +
-              'element for the lifetime of the component.',
-            'More info: https://fb.me/react-controlled-components',
-          ].join('\n'),
-        );
-      }
-    }, [valueProp, isControlled]);
-  }
+  const [valueDerived, setValueState] = useControlled({
+    controlled: valueProp,
+    default: defaultValue,
+    name: 'Slider',
+  });
 
   const range = Array.isArray(valueDerived);
   const instanceRef = React.useRef();
@@ -503,10 +487,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       focusThumb({ sliderRef, activeIndex: newValue.indexOf(previousValue) });
     }
 
-    if (!isControlled) {
-      setValueState(newValue);
-    }
-
+    setValueState(newValue);
     setFocusVisible(index);
 
     if (onChange) {
@@ -590,9 +571,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     });
 
     focusThumb({ sliderRef, activeIndex, setActive });
-    if (!isControlled) {
-      setValueState(newValue);
-    }
+    setValueState(newValue);
+
     if (onChange) {
       onChange(event, newValue);
     }
@@ -637,9 +617,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
 
-    if (!isControlled) {
-      setValueState(newValue);
-    }
+    setValueState(newValue);
+
     if (onChange) {
       onChange(event, newValue);
     }
@@ -663,25 +642,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     };
   }, [handleTouchEnd, handleTouchMove, handleTouchStart]);
 
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (isControlled !== (valueProp != null)) {
-        console.error(
-          [
-            `Material-UI: A component is changing ${
-              isControlled ? 'a ' : 'an un'
-            }controlled Slider to be ${isControlled ? 'un' : ''}controlled.`,
-            'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled Slider ' +
-              'element for the lifetime of the component.',
-            'More info: https://fb.me/react-controlled-components',
-          ].join('\n'),
-        );
-      }
-    }, [valueProp, isControlled]);
-  }
-
   const handleMouseDown = useEventCallback(event => {
     if (onMouseDown) {
       onMouseDown(event);
@@ -692,9 +652,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
 
-    if (!isControlled) {
-      setValueState(newValue);
-    }
+    setValueState(newValue);
+
     if (onChange) {
       onChange(event, newValue);
     }

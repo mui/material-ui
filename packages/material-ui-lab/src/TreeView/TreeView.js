@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import TreeViewContext from './TreeViewContext';
 import { withStyles } from '@material-ui/core/styles';
+import { useControlled } from '@material-ui/core/utils';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -46,28 +47,13 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const nodeMap = React.useRef({});
   const firstCharMap = React.useRef({});
 
-  const { current: isControlled } = React.useRef(expandedProp !== undefined);
-  const [expandedState, setExpandedState] = React.useState(defaultExpanded);
-  const expanded = (isControlled ? expandedProp : expandedState) || defaultExpandedDefault;
+  const [expandedState, setExpandedState] = useControlled({
+    controlled: expandedProp,
+    default: defaultExpanded,
+    name: 'TreeView',
+  });
 
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (isControlled !== (expandedProp != null)) {
-        console.error(
-          [
-            `Material-UI: A component is changing ${
-              isControlled ? 'a ' : 'an un'
-            }controlled TreeView to be ${isControlled ? 'un' : ''}controlled.`,
-            'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled TreeView ' +
-              'element for the lifetime of the component.',
-            'More info: https://fb.me/react-controlled-components',
-          ].join('\n'),
-        );
-      }
-    }, [expandedProp, isControlled]);
-  }
+  const expanded = expandedState || defaultExpandedDefault;
 
   const prevChildIds = React.useRef([]);
   React.useEffect(() => {
@@ -198,9 +184,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       onNodeToggle(event, newExpanded);
     }
 
-    if (!isControlled) {
-      setExpandedState(newExpanded);
-    }
+    setExpandedState(newExpanded);
   };
 
   const expandAllSiblings = (event, id) => {
@@ -216,9 +200,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
     const newExpanded = [...expanded, ...diff];
 
-    if (!isControlled) {
-      setExpandedState(newExpanded);
-    }
+    setExpandedState(newExpanded);
 
     if (onNodeToggle) {
       onNodeToggle(event, newExpanded);

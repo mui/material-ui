@@ -293,7 +293,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     setAnchorEl,
     inputValue,
     groupedOptions,
-  } = useAutocomplete(props);
+  } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
 
   let startAdornment;
 

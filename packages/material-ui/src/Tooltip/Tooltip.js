@@ -11,6 +11,7 @@ import Popper from '../Popper';
 import useForkRef from '../utils/useForkRef';
 import setRef from '../utils/setRef';
 import { useIsFocusVisible } from '../utils/focusVisible';
+import useControlled from '../utils/useControlled';
 import useTheme from '../styles/useTheme';
 
 function round(value) {
@@ -209,30 +210,17 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const leaveTimer = React.useRef();
   const touchTimer = React.useRef();
 
-  const { current: isControlled } = React.useRef(openProp != null);
-  const [openState, setOpenState] = React.useState(false);
-  let open = isControlled ? openProp : openState;
+  const [openState, setOpenState] = useControlled({
+    controlled: openProp,
+    default: false,
+    name: 'Tooltip',
+  });
+  let open = openState;
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (isControlled !== (openProp != null)) {
-        console.error(
-          [
-            `Material-UI: A component is changing ${
-              isControlled ? 'a ' : 'an un'
-            }controlled Tooltip to be ${isControlled ? 'un' : ''}controlled.`,
-            'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled Tooltip ' +
-              'element for the lifetime of the component.',
-            'More info: https://fb.me/react-controlled-components',
-          ].join('\n'),
-        );
-      }
-    }, [openProp, isControlled]);
-  }
+    const { current: isControlled } = React.useRef(openProp !== undefined);
 
-  if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (
@@ -252,7 +240,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
           ].join('\n'),
         );
       }
-    }, [isControlled, title, childNode]);
+    }, [title, childNode, isControlled]);
   }
 
   const [defaultId, setDefaultId] = React.useState();
@@ -284,9 +272,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     // The mouseover event will trigger for every nested element in the tooltip.
     // We can skip rerendering when the tooltip is already open.
     // We are using the mouseover event instead of the mouseenter event to fix a hide/show issue.
-    if (!isControlled) {
-      setOpenState(true);
-    }
+    setOpenState(true);
 
     if (onOpen) {
       onOpen(event);
@@ -362,9 +348,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }, 500);
     // Use 500 ms per https://github.com/reach/reach-ui/blob/3b5319027d763a3082880be887d7a29aee7d3afc/packages/tooltip/src/index.js#L214
 
-    if (!isControlled) {
-      setOpenState(false);
-    }
+    setOpenState(false);
 
     if (onClose) {
       onClose(event);

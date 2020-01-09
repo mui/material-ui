@@ -1,7 +1,7 @@
 /* eslint-disable no-constant-condition */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { setRef, useEventCallback } from '@material-ui/core/utils';
+import { setRef, useEventCallback, useControlled } from '@material-ui/core/utils';
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
 // Give up on IE 11 support for this feature
@@ -108,6 +108,7 @@ export default function useAutocomplete(props) {
     open: openProp,
     options = [],
     value: valueProp,
+    componentName = 'useAutocomplete',
   } = props;
 
   const [defaultId, setDefaultId] = React.useState();
@@ -186,30 +187,11 @@ export default function useAutocomplete(props) {
     }
   }
 
-  const { current: isControlled } = React.useRef(valueProp !== undefined);
-  const [valueState, setValue] = React.useState(() => {
-    return !isControlled ? defaultValue || (multiple ? [] : null) : null;
+  const [value, setValue] = useControlled({
+    controlled: valueProp,
+    default: defaultValue || (multiple ? [] : null),
+    name: componentName,
   });
-  const value = isControlled ? valueProp : valueState;
-
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (isControlled !== (valueProp !== undefined)) {
-        console.error(
-          [
-            `Material-UI: A component is changing ${
-              isControlled ? 'a ' : 'an un'
-            }controlled useAutocomplete to be ${isControlled ? 'un' : ''}controlled.`,
-            'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled useAutocomplete ' +
-              'element for the lifetime of the component.',
-            'More info: https://fb.me/react-controlled-components',
-          ].join('\n'),
-        );
-      }
-    }, [valueProp, isControlled]);
-  }
 
   const { current: isInputValueControlled } = React.useRef(inputValueProp != null);
   const [inputValueState, setInputValue] = React.useState('');
@@ -444,9 +426,8 @@ export default function useAutocomplete(props) {
     if (onChange) {
       onChange(event, newValue);
     }
-    if (!isControlled) {
-      setValue(newValue);
-    }
+
+    setValue(newValue);
   };
 
   const selectNewValue = (event, newValue) => {
@@ -930,6 +911,10 @@ useAutocomplete.propTypes = {
    * If `true`, clear all values when the user presses escape and the popup is closed.
    */
   clearOnEscape: PropTypes.bool,
+  /**
+   * The component name that is using this hook. Used for warnings.
+   */
+  componentName: PropTypes.string,
   /**
    * If `true`, the popup will ignore the blur event if the input if filled.
    * You can inspect the popup markup with your browser tools.

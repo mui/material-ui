@@ -49,6 +49,10 @@ export interface UseAutocompleteProps {
    */
   clearOnEscape?: boolean;
   /**
+   * The component name that is using this hook. Used for warnings.
+   */
+  componentName?: string;
+  /**
    * If `true`, the popup will ignore the blur event if the input if filled.
    * You can inspect the popup markup with your browser tools.
    * Consider this option when you need to customize the component.
