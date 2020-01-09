@@ -253,8 +253,8 @@ export const itIT = {
       nextIconButtonText: 'Pagina successiva',
     },
     MuiRating: {
-      getLabelText: value => `${value} Stell${value !== 1 ? 'a' : 'e'}`,
-      emptyLabelText: 'Empty',
+      getLabelText: value => `${value} Stell${value !== 1 ? 'e' : 'a'}`,
+      emptyLabelText: 'Vuoto',
     },
     MuiAutocomplete: {
       clearText: 'Svuota',
