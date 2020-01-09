@@ -167,6 +167,28 @@ Search within 10,000 randomly generated options. The list is virtualized thanks 
 
 ## Limitations
 
+### autocomplete/autofill
+
+The browsers have heuristics to help the users fill the form inputs.
+However, it can harm the UX of the component.
+
+By default, the components disable the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
+
+However, in addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details).
+In the event you want the avoid autofill, you can try the following:
+
+- Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
+- Set `autoComplete="new-password"`:
+  ```jsx
+  <TextField
+    {...params}
+    inputProps={{
+      ...params.inputProps,
+      autoComplete: 'new-password',
+    }}
+  />
+  ```
+
 ### iOS VoiceOver
 
 VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well.
@@ -178,7 +200,3 @@ You can work around the issue with the `disablePortal` prop.
 
 We encourage the usage of a label for the textbox.
 The component implements the WAI-ARIA authoring practices.
-
-## Disable Chrome Autofill
-
-The Chrome browser has an autofill implementation that suggests previous user responses for an input with the same id. This results in a poor experience for users as the Autocompelete component is overlaid by the chrome autofill mechanism. If you do not pass an `id` prop to the `Autocomplete` component then one will be generated at random preventing Chrome from attempting to autofill the input.

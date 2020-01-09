@@ -49,7 +49,7 @@ export default function CountrySelect() {
           fullWidth
           inputProps={{
             ...params.inputProps,
-            autoComplete: 'disabled', // disable autocomplete and autofill
+            autoComplete: 'new-password', // disable autocomplete and autofill
           }}
         />
       )}
