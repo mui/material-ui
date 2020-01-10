@@ -26,9 +26,10 @@ export default function usePagination(props) {
       // Natural start
       page - siblingRange,
       // Lower boundary when page is high
-      count - boundaryRange - siblingRange * 2 - 2),
+      count - boundaryRange - siblingRange * 2 - 2,
+    ),
     // Greater than startPages
-    boundaryRange + 3
+    boundaryRange + 3,
   );
 
   const siblingsEnd = Math.min(
@@ -36,13 +37,44 @@ export default function usePagination(props) {
       // Natural end
       page + siblingRange,
       // Upper boundary when page is low
-      boundaryRange + siblingRange * 2 + 3
+      boundaryRange + siblingRange * 2 + 3,
     ),
     // Less than endPages
-    endPages[0] - 2
+    endPages[0] - 2,
   );
 
   const siblingPages = range(siblingsStart, siblingsEnd);
+
+  // itemList = ['first', 'previous', 1, 'ellipsis', 4, 5, 6, 'ellipsis', 10, 'next', 'last']
+  const itemList = [
+    ...(showFirstButton ? ['first'] : []),
+    ...(hidePrevButton ? [] : ['previous']),
+    ...startPages,
+
+    // Start ellipsis
+    // eslint-disable-next-line no-nested-ternary
+    ...(siblingsStart > boundaryRange + 3
+      ? ['ellipsis']
+      : 2 + boundaryRange < count - boundaryRange - 1
+      ? [2 + boundaryRange]
+      : []),
+
+    ...siblingPages,
+
+    // End ellipsis
+    // eslint-disable-next-line no-nested-ternary
+    ...(siblingsEnd < count - boundaryRange - 2
+      ? ['ellipsis']
+      : count - boundaryRange - 1 > boundaryRange + 1
+      ? [count - boundaryRange - 1]
+      : []),
+
+    ...endPages,
+    ...(hideNextButton ? [] : ['next']),
+    ...(showLastButton ? ['last'] : []),
+  ];
+
+  console.log(itemList);
 
   const itemProps = {
     disabled,
@@ -50,94 +82,19 @@ export default function usePagination(props) {
     page,
   };
 
-  const items = [];
-
-  // First page button
-  if (showFirstButton) {
-    items.push({
-      ...itemProps,
-      disabled: disabled || page <= 1,
-      type: 'first',
-    });
-  }
-
-  // Previous page button
-  if (!hidePrevButton) {
-    items.push({
-      ...itemProps,
-      disabled: disabled || page <= 1,
-      type: 'previous',
-    });
-  }
-
-  // Start pages
-  startPages.forEach(i => (
-    items.push({
-      ...itemProps,
-      page: i,
-      selected: page === i,
-    })
-  ));
-
-  // Start ellipsis
-  if (siblingsStart > boundaryRange + 3) {
-    items.push({ type: 'ellipsis' });
-  } else if (2 + boundaryRange < count - boundaryRange - 1) {
-    items.push({
-      ...itemProps,
-      page: 2 + boundaryRange,
-      selected: page === 2 + boundaryRange,
-    });
-  }
-
-  // Sibling pages
-  siblingPages.forEach(i => (
-    items.push({
-      ...itemProps,
-      page: i,
-      selected: page === i,
-    })
-  ));
-
-  // End ellipsis
-  if (siblingsEnd < count - boundaryRange - 2) {
-    items.push({ type: 'ellipsis' });
-  } else if (count - boundaryRange - 1 > boundaryRange + 1) {
-    items.push({
-      ...itemProps,
-      page: count - boundaryRange - 1,
-      selected: page === count - boundaryRange - 1,
-    });
-  }
-
-  // End pages
-  endPages.forEach(i => (
-    items.push({
-      ...itemProps,
-      page: i,
-      selected: page === i,
-    })
-  ));
-
-  // Next page button
-  if (!hideNextButton) {
-    items.push({
-      ...itemProps,
-      disabled: disabled || page >= count,
-      type: 'next',
-    });
-  }
-
-  // Last page button
-  if (showLastButton) {
-    items.push({
-      ...itemProps,
-      disabled: disabled || page >= count,
-      type: 'last',
-    });
-  }
-
-  console.log(items)
+  const items = itemList.map(item => {
+    return typeof item === 'number'
+      ? {
+          ...itemProps,
+          page: item,
+          selected: item === page,
+        }
+      : {
+          ...itemProps,
+          type: item,
+          disabled: disabled || (item === 'next' || item === 'last' ? page >= count : page <= 1),
+        };
+  });
 
   return {
     items,

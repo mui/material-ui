@@ -26,7 +26,13 @@ export default function PaginationRanges() {
       <Pagination count={10} page={page} onChange={handleChange} />
       <Pagination count={10} page={page} onChange={handleChange} siblingRange={0} />
       <Pagination count={10} page={page} onChange={handleChange} boundaryRange={1} />
-      <Pagination count={10} page={page} onChange={handleChange} siblingRange={0} boundaryRange={1} />
+      <Pagination
+        count={10}
+        page={page}
+        onChange={handleChange}
+        siblingRange={0}
+        boundaryRange={1}
+      />
       <Typography>Page: {page}</Typography>
     </div>
   );
