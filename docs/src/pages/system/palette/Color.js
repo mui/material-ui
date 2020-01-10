@@ -1,9 +1,8 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
-function Demo() {
+export default function Color() {
   return (
     <Typography component="div" variant="body1">
       <Box color="primary.main">primary.main</Box>
@@ -16,15 +15,5 @@ function Demo() {
       <Box color="text.secondary">text.secondary</Box>
       <Box color="text.disabled">text.disabled</Box>
     </Typography>
-  );
-}
-
-const theme = createMuiTheme();
-
-export default function Color() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Demo />
-    </ThemeProvider>
   );
 }

@@ -135,7 +135,7 @@ ObjectEntry.propTypes = {
 };
 
 function Inspector(props) {
-  const { data, expandPaths } = props;
+  const { data, expandPaths, ...other } = props;
 
   const keyPrefix = '$ROOT';
   const defaultExpanded = React.useMemo(() => {
@@ -153,6 +153,7 @@ function Inspector(props) {
       defaultEndIcon={<div style={{ width: 24 }} />}
       defaultExpanded={defaultExpanded}
       defaultExpandIcon={<CollapseIcon />}
+      {...other}
     >
       {Object.keys(data).map(objectKey => {
         return (
@@ -175,14 +176,13 @@ Inspector.propTypes = {
 
 const styles = theme => ({
   root: {
-    backgroundColor: '#333',
-    borderRadius: 4,
-    color: '#fff',
-    display: 'block',
-    padding: theme.spacing(2),
-    paddingTop: 0,
-    minHeight: theme.spacing(40),
     width: '100%',
+  },
+  inspector: {
+    backgroundColor: '#333',
+    color: '#fff',
+    borderRadius: theme.shape.borderRadius,
+    padding: theme.spacing(1),
   },
   switch: {
     paddingBottom: theme.spacing(1),
@@ -281,7 +281,7 @@ function DefaultTheme(props) {
         }
         label={t('useDarkTheme')}
       />
-      <Inspector data={data} expandPaths={expandPaths} expandLevel={checked ? 100 : 1} />
+      <Inspector className={classes.inspector} data={data} expandPaths={expandPaths} />
     </div>
   );
 }
