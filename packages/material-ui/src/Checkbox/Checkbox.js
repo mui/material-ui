@@ -53,6 +53,54 @@ export const styles = theme => ({
       color: theme.palette.action.disabled,
     },
   },
+  /* Styles applied to the root element if `color="warning"`. */
+  colorWarning: {
+    '&$checked': {
+      color: theme.palette.warning.main,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.warning.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+    },
+    '&$disabled': {
+      color: theme.palette.action.disabled,
+    },
+  },
+  /* Styles applied to the root element if `color="info"`. */
+  colorInfo: {
+    '&$checked': {
+      color: theme.palette.info.main,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.info.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+    },
+    '&$disabled': {
+      color: theme.palette.action.disabled,
+    },
+  },
+  /* Styles applied to the root element if `color="success"`. */
+  colorSuccess: {
+    '&$checked': {
+      color: theme.palette.success.main,
+      '&:hover': {
+        backgroundColor: fade(theme.palette.success.main, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+    },
+    '&$disabled': {
+      color: theme.palette.action.disabled,
+    },
+  },
 });
 
 const defaultCheckedIcon = <CheckBoxIcon />;
@@ -118,7 +166,7 @@ Checkbox.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'default']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'warning', 'info', 'success', 'default']),
   /**
    * If `true`, the switch will be disabled.
    */

@@ -22,6 +22,24 @@ export default function Checkboxes() {
         color="primary"
         inputProps={{ 'aria-label': 'secondary checkbox' }}
       />
+      <Checkbox
+        defaultChecked
+        value="warning"
+        color="warning"
+        inputProps={{ 'aria-label': 'warning checkbox' }}
+      />
+      <Checkbox
+        defaultChecked
+        value="info"
+        color="info"
+        inputProps={{ 'aria-label': 'info checkbox' }}
+      />
+      <Checkbox
+        defaultChecked
+        value="success"
+        color="success"
+        inputProps={{ 'aria-label': 'success checkbox' }}
+      />
       <Checkbox value="uncontrolled" inputProps={{ 'aria-label': 'uncontrolled-checkbox' }} />
       <Checkbox disabled value="disabled" inputProps={{ 'aria-label': 'disabled checkbox' }} />
       <Checkbox

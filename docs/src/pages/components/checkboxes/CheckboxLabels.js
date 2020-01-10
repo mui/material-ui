@@ -23,6 +23,9 @@ export default function CheckboxLabels() {
   const [state, setState] = React.useState({
     checkedA: true,
     checkedB: true,
+    checkedW: true,
+    checkedI: true,
+    checkedS: true,
     checkedF: true,
     checkedG: true,
   });
@@ -49,6 +52,39 @@ export default function CheckboxLabels() {
           />
         }
         label="Primary"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={state.checkedW}
+            onChange={handleChange('checkedW')}
+            value="checkedW"
+            color="warning"
+          />
+        }
+        label="Warning"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={state.checkedI}
+            onChange={handleChange('checkedI')}
+            value="checkedI"
+            color="info"
+          />
+        }
+        label="Info"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={state.checkedS}
+            onChange={handleChange('checkedS')}
+            value="checkedS"
+            color="success"
+          />
+        }
+        label="success"
       />
       <FormControlLabel control={<Checkbox value="checkedC" />} label="Uncontrolled" />
       <FormControlLabel disabled control={<Checkbox value="checkedD" />} label="Disabled" />
