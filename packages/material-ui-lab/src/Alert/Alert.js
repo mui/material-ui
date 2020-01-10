@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { hsl, parseToHsl } from 'polished';
 import { withStyles, lighten, darken } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import SuccessOutlinedIcon from '../internal/svg-icons/SuccessOutlined';
@@ -15,7 +14,6 @@ import { capitalize } from '@material-ui/core/utils';
 export const styles = theme => {
   const getColor = theme.palette.type === 'light' ? darken : lighten;
   const getBackgroundColor = theme.palette.type === 'light' ? lighten : darken;
-  const getColorWithLightness = (color, lightness) => hsl({ ...parseToHsl(color), lightness });
 
   return {
     /* Styles applied to the root element. */
@@ -94,25 +92,25 @@ export const styles = theme => {
     filledSuccess: {
       color: '#fff',
       fontWeight: theme.typography.fontWeightMedium,
-      backgroundColor: getColorWithLightness(theme.palette.success.main, 0.45),
+      backgroundColor: theme.palette.success.main,
     },
     /* Styles applied to the root element if `variant="filled"` and `color="info"`. */
     filledInfo: {
       color: '#fff',
       fontWeight: theme.typography.fontWeightMedium,
-      backgroundColor: getColorWithLightness(theme.palette.info.main, 0.45),
+      backgroundColor: theme.palette.info.main,
     },
     /* Styles applied to the root element if `variant="filled"` and `color="warning"`. */
     filledWarning: {
       color: '#fff',
       fontWeight: theme.typography.fontWeightMedium,
-      backgroundColor: getColorWithLightness(theme.palette.warning.main, 0.45),
+      backgroundColor: theme.palette.warning.main,
     },
     /* Styles applied to the root element if `variant="filled"` and `color="error"`. */
     filledError: {
       color: '#fff',
       fontWeight: theme.typography.fontWeightMedium,
-      backgroundColor: getColorWithLightness(theme.palette.error.main, 0.45),
+      backgroundColor: theme.palette.error.main,
     },
     /* Styles applied to the icon wrapper element. */
     icon: {
