@@ -7,7 +7,7 @@ export type IconButtonTypeMap<
   D extends React.ElementType = 'button'
 > = ExtendButtonBaseTypeMap<{
   props: P & {
-    color?: PropTypes.Color;
+    color?: 'primary' | 'secondary' | 'success' | 'warning' | 'info' | 'default' | 'inherit';
     disableFocusRipple?: boolean;
     edge?: 'start' | 'end' | false;
     size?: 'small' | 'medium';

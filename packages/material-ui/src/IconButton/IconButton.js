@@ -72,6 +72,39 @@ export const styles = theme => ({
       },
     },
   },
+  /* Styles applied to the root element if `color="warning"`. */
+  colorWarning: {
+    color: theme.palette.warning.main,
+    '&:hover': {
+      backgroundColor: fade(theme.palette.warning.main, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
+  },
+  /* Styles applied to the root element if `color="info"`. */
+  colorInfo: {
+    color: theme.palette.info.main,
+    '&:hover': {
+      backgroundColor: fade(theme.palette.info.main, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
+  },
+  /* Styles applied to the root element if `color="success"`. */
+  colorSuccess: {
+    color: theme.palette.success.main,
+    '&:hover': {
+      backgroundColor: fade(theme.palette.success.main, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
+  },
   /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the root element if `size="small"`. */
@@ -164,7 +197,15 @@ IconButton.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+  color: PropTypes.oneOf([
+    'primary',
+    'secondary',
+    'success',
+    'warning',
+    'info',
+    'default',
+    'inherit',
+  ]),
   /**
    * If `true`, the button will be disabled.
    */
