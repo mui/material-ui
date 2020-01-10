@@ -27,7 +27,7 @@ regarding the available icon options.
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The icon element. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">color</span> | <span class="prop-type">'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'inherit'</span> | <span class="prop-default">'default'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the button will be disabled. |
 | <span class="prop-name">disableFocusRipple</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the  keyboard focus ripple will be disabled. `disableRipple` must also be true. |
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> |  | If `true`, the ripple effect will be disabled. |
@@ -51,6 +51,9 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 | <span class="prop-name">colorInherit</span> | <span class="prop-name">.MuiIconButton-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
 | <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiIconButton-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiIconButton-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">colorWarning</span> | <span class="prop-name">.MuiIconButton-colorWarning</span> | Styles applied to the root element if `color="warning"`.
+| <span class="prop-name">colorInfo</span> | <span class="prop-name">.MuiIconButton-colorInfo</span> | Styles applied to the root element if `color="info"`.
+| <span class="prop-name">colorSuccess</span> | <span class="prop-name">.MuiIconButton-colorSuccess</span> | Styles applied to the root element if `color="success"`.
 | <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
 | <span class="prop-name">sizeSmall</span> | <span class="prop-name">.MuiIconButton-sizeSmall</span> | Styles applied to the root element if `size="small"`.
 | <span class="prop-name">label</span> | <span class="prop-name">.MuiIconButton-label</span> | Styles applied to the children container element.

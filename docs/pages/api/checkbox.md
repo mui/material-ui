@@ -27,7 +27,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">checked</span> | <span class="prop-type">bool</span> |  | If `true`, the component is checked. |
 | <span class="prop-name">checkedIcon</span> | <span class="prop-type">node</span> | <span class="prop-default">&lt;CheckBoxIcon /></span> | The icon to display when the component is checked. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'default'</span> | <span class="prop-default">'secondary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
+| <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'default'</span> | <span class="prop-default">'secondary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the switch will be disabled. |
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> |  | If `true`, the ripple effect will be disabled. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> | <span class="prop-default">&lt;CheckBoxOutlineBlankIcon /></span> | The icon to display when the component is unchecked. |
@@ -59,6 +59,9 @@ Any other props supplied will be provided to the root element ([IconButton](/api
 | <span class="prop-name">indeterminate</span> | <span class="prop-name">.MuiCheckbox-indeterminate</span> | Pseudo-class applied to the root element if `indeterminate={true}`.
 | <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiCheckbox-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiCheckbox-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">colorWarning</span> | <span class="prop-name">.MuiCheckbox-colorWarning</span> | Styles applied to the root element if `color="warning"`.
+| <span class="prop-name">colorInfo</span> | <span class="prop-name">.MuiCheckbox-colorInfo</span> | Styles applied to the root element if `color="info"`.
+| <span class="prop-name">colorSuccess</span> | <span class="prop-name">.MuiCheckbox-colorSuccess</span> | Styles applied to the root element if `color="success"`.
 
 You can override the style of the component thanks to one of these customization points:
 
