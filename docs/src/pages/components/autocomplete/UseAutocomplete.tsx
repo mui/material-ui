@@ -46,7 +46,7 @@ export default function UseAutocomplete() {
     groupedOptions,
   } = useAutocomplete({
     id: 'use-autocomplete-demo',
-    options: top100Films as FilmOptionType[],
+    options: top100Films,
     getOptionLabel: option => option.title,
   });
 
@@ -69,10 +69,6 @@ export default function UseAutocomplete() {
   );
 }
 
-interface FilmOptionType {
-  title: string;
-  year: number;
-}
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
   { title: 'The Shawshank Redemption', year: 1994 },

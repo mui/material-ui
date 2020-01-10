@@ -5,7 +5,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 
 export default function Playground() {
   const defaultProps = {
-    options: top100Films as FilmOptionType[],
+    options: top100Films,
     getOptionLabel: (option: FilmOptionType) => option.title,
   };
   const flatProps = {

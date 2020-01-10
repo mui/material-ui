@@ -9,7 +9,7 @@ export default function FixedTags() {
     <Autocomplete
       multiple
       id="fixed-tags-demo"
-      options={top100Films as FilmOptionType[]}
+      options={top100Films}
       getOptionLabel={option => option.title}
       defaultValue={[top100Films[6], top100Films[13]]}
       renderTags={(value, getTagProps) =>
@@ -29,11 +29,6 @@ export default function FixedTags() {
       )}
     />
   );
-}
-
-interface FilmOptionType {
-  title: string;
-  year: number;
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top

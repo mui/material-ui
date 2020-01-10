@@ -24,7 +24,7 @@ export default function Sizes() {
       <Autocomplete
         id="size-small-standard"
         size="small"
-        options={top100Films as FilmOptionType[]}
+        options={top100Films}
         getOptionLabel={option => option.title}
         defaultValue={top100Films[13]}
         renderInput={params => (
@@ -41,7 +41,7 @@ export default function Sizes() {
         multiple
         id="size-small-standard-multi"
         size="small"
-        options={top100Films as FilmOptionType[]}
+        options={top100Films}
         getOptionLabel={option => option.title}
         defaultValue={[top100Films[13]]}
         renderInput={params => (
@@ -57,7 +57,7 @@ export default function Sizes() {
       <Autocomplete
         id="size-small-outlined"
         size="small"
-        options={top100Films as FilmOptionType[]}
+        options={top100Films}
         getOptionLabel={option => option.title}
         defaultValue={top100Films[13]}
         renderInput={params => (
@@ -74,7 +74,7 @@ export default function Sizes() {
         multiple
         id="size-small-outlined-multi"
         size="small"
-        options={top100Films as FilmOptionType[]}
+        options={top100Films}
         getOptionLabel={option => option.title}
         defaultValue={[top100Films[13]]}
         renderInput={params => (
@@ -90,7 +90,7 @@ export default function Sizes() {
       <Autocomplete
         id="size-small-filled"
         size="small"
-        options={top100Films as FilmOptionType[]}
+        options={top100Films}
         getOptionLabel={option => option.title}
         defaultValue={top100Films[13]}
         renderTags={(value, getTagProps) =>
@@ -117,7 +117,7 @@ export default function Sizes() {
         multiple
         id="size-small-filled-multi"
         size="small"
-        options={top100Films as FilmOptionType[]}
+        options={top100Films}
         getOptionLabel={option => option.title}
         defaultValue={[top100Films[13]]}
         renderTags={(value, getTagProps) =>
@@ -142,11 +142,6 @@ export default function Sizes() {
       />
     </div>
   );
-}
-
-interface FilmOptionType {
-  title: string;
-  year: number;
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top

@@ -24,7 +24,7 @@ export default function Tags() {
       <Autocomplete
         multiple
         id="tags-standard"
-        options={top100Films as FilmOptionType[]}
+        options={top100Films}
         getOptionLabel={option => option.title}
         defaultValue={[top100Films[13]]}
         renderInput={params => (
@@ -40,7 +40,7 @@ export default function Tags() {
       <Autocomplete
         multiple
         id="tags-outlined"
-        options={top100Films as FilmOptionType[]}
+        options={top100Films}
         getOptionLabel={option => option.title}
         defaultValue={[top100Films[13]]}
         filterSelectedOptions
@@ -77,11 +77,6 @@ export default function Tags() {
       />
     </div>
   );
-}
-
-interface FilmOptionType {
-  title: string;
-  year: number;
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top

@@ -15,7 +15,7 @@ export default function CheckboxesTags() {
     <Autocomplete
       multiple
       id="checkboxes-tags-demo"
-      options={top100Films as FilmOptionType[]}
+      options={top100Films}
       disableCloseOnSelect
       getOptionLabel={option => option.title}
       renderOption={(option, { selected }) => (
@@ -41,11 +41,6 @@ export default function CheckboxesTags() {
       )}
     />
   );
-}
-
-interface FilmOptionType {
-  title: string;
-  year: number;
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top

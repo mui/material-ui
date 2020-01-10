@@ -7,7 +7,7 @@ export default function ComboBox() {
   return (
     <Autocomplete
       id="combo-box-demo"
-      options={top100Films as FilmOptionType[]}
+      options={top100Films}
       getOptionLabel={option => option.title}
       style={{ width: 300 }}
       renderInput={params => (
@@ -15,11 +15,6 @@ export default function ComboBox() {
       )}
     />
   );
-}
-
-interface FilmOptionType {
-  title: string;
-  year: number;
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top

@@ -15,9 +15,7 @@ export default function Grouped() {
   return (
     <Autocomplete
       id="grouped-demo"
-      options={
-        options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter)) as FilmOptionType[]
-      }
+      options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
       groupBy={option => option.firstLetter}
       getOptionLabel={option => option.title}
       style={{ width: 300 }}
@@ -26,12 +24,6 @@ export default function Grouped() {
       )}
     />
   );
-}
-
-interface FilmOptionType {
-  firstLetter: string;
-  title: string;
-  year: number;
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
