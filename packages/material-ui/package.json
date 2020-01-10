@@ -57,6 +57,7 @@
     "convert-css-length": "^2.0.1",
     "hoist-non-react-statics": "^3.2.1",
     "normalize-scroll-left": "^0.2.0",
+    "polished": "^3.4.2",
     "popper.js": "^1.14.1",
     "prop-types": "^15.7.2",
     "react-is": "^16.8.0",
