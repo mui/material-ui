@@ -172,6 +172,12 @@ Search within 10,000 randomly generated options. The list is virtualized thanks 
 VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well.
 You can work around the issue with the `disablePortal` prop.
 
+### TypeScript
+
+To fully take advantage of type inference, you need to set the `multiple` prop to `undefined`, `false` or `true`.
+See [this discussion](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) for me details.
+TypeScript might solve this bug in the future.
+
 ## Accessibility
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)

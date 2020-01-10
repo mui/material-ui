@@ -11,7 +11,7 @@ export default function Playground() {
   const flatProps = {
     options: top100Films.map(option => option.title),
   };
-  const [value, setValue] = React.useState<FilmOptionType | null>(null);
+  const [value, setValue] = React.useState(null);
 
   return (
     <div style={{ width: 300 }}>
@@ -62,7 +62,7 @@ export default function Playground() {
         {...defaultProps}
         id="controlled-demo"
         value={value}
-        onChange={(event: any, newValue: FilmOptionType | null) => {
+        onChange={(event, newValue) => {
           setValue(newValue);
         }}
         renderInput={params => (
