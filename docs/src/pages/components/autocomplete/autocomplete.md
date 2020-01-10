@@ -175,7 +175,7 @@ You can work around the issue with the `disablePortal` prop.
 ### TypeScript
 
 To fully take advantage of type inference, you need to set the `multiple` prop to `undefined`, `false` or `true`.
-See [this discussion](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) for me details.
+See [this discussion](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) for more details.
 TypeScript might solve this bug in the future.
 
 ## Accessibility
