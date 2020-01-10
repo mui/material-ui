@@ -626,6 +626,14 @@ const appList = [
     link: 'https://www.hifivework.com/#/',
     dateAdded: '2020-01-08',
   },
+  {
+    title: 'Ticmart',
+    description: 'Best price for lab product Inspection and Compliance',
+    image: 'icw_logo.png',
+    link: 'https://www.ticmart.icw.io/',
+    similarWebVisits: 200,
+    dateAdded: '2020-01-11',
+  },
 ];
 
 export default appList;
