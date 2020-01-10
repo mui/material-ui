@@ -15,6 +15,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import Menu from "@material-ui/core/Menu";
+import MenuItem from "@material-ui/core/MenuItem";
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -42,10 +44,26 @@ const useStyles = makeStyles(theme => ({
 export default function RecipeReviewCard() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const [menuExpanded, setMenuExpanded] = React.useState(null);
 
+  
   const handleExpandClick = () => {
+
     setExpanded(!expanded);
   };
+
+  const handleMenuOpen = event => {
+    setMenuExpanded(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setMenuExpanded(null);
+  };
+
+  const handleMenuClick = () => {
+    console.log('click on menu');
+    handleMenuClose();
+  }
 
   return (
     <Card className={classes.card}>
@@ -57,12 +75,22 @@ export default function RecipeReviewCard() {
         }
         action={
           <IconButton aria-label="settings">
-            <MoreVertIcon />
+            <MoreVertIcon onClick={handleMenuOpen} />
           </IconButton>
         }
         title="Shrimp and Chorizo Paella"
         subheader="September 14, 2016"
       />
+      <Menu
+          id="simple-menu"
+          anchorEl={menuExpanded}
+          open={Boolean(menuExpanded)}
+          onClose={handleMenuClose}
+        >
+        <MenuItem onClick={handleMenuClick}>Go Shrimp</MenuItem>
+        <MenuItem onClick={handleMenuClick}>Go Chorizo</MenuItem>
+        <MenuItem onClick={handleMenuClick}>Go Paella</MenuItem>
+      </Menu>
       <CardMedia
         className={classes.media}
         image="/static/images/cards/paella.jpg"
