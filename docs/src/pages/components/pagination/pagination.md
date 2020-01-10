@@ -24,13 +24,18 @@ You can optionally enable first-page and last-page buttons, or disable the previ
 
 {{"demo": "pages/components/pagination/PaginationOutlinedRounded.js"}}
 
-## Pagination size
-
-{{"demo": "pages/components/pagination/PaginationSize.js"}}
-
 ## Controlled pagination
 
 {{"demo": "pages/components/pagination/PaginationControlled.js"}}
+
+## Pagination ranges
+
+You can specify how many digits to display either side of current page with the `siblingRange` prop, and adjacent to the start and end page number with the `boundaryRange` prop.
+{{"demo": "pages/components/pagination/PaginationRanges.js"}}
+
+## Pagination size
+
+{{"demo": "pages/components/pagination/PaginationSize.js"}}
 
 ## Accessibility
 
