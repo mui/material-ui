@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { setRef, useEventCallback, useControlled } from '@material-ui/core/utils';
 
+const EMPTY_OPTION_LIST = [];
+
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
 // Give up on IE 11 support for this feature
 function stripDiacritics(string) {
@@ -106,7 +108,7 @@ export default function useAutocomplete(props) {
     onOpen,
     onInputChange,
     open: openProp,
-    options = [],
+    options = EMPTY_OPTION_LIST,
     value: valueProp,
     componentName = 'useAutocomplete',
   } = props;
@@ -238,7 +240,7 @@ export default function useAutocomplete(props) {
 
   React.useEffect(() => {
     resetInputValue(null, value);
-  }, [value, resetInputValue]);
+  }, [value, resetInputValue, options]);
 
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [openState, setOpenState] = React.useState(false);

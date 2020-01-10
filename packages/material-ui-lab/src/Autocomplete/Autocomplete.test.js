@@ -608,6 +608,37 @@ describe('<Autocomplete />', () => {
       checkHighlightIs('three');
     });
 
+    it('should update label when options change', () => {
+      const optionsRef = { current: [] };
+
+      const { container, setProps } = render(
+        <Autocomplete
+          defaultValue="one"
+          getOptionLabel={option => {
+            const fullOption = optionsRef.current.find(opt => opt.value === option);
+            return fullOption ? fullOption.label : '';
+          }}
+          renderInput={params => <TextField {...params} />}
+        />,
+      );
+
+      const input = container.querySelector('input');
+      expect(input.value).to.equal('');
+
+      optionsRef.current = [
+        {
+          value: 'one',
+          label: 'One',
+        },
+        {
+          value: 'two',
+          label: 'Two',
+        },
+      ];
+      setProps({ options: optionsRef.current });
+      expect(input.value).to.equal('One');
+    });
+
     it('should not select undefined ', () => {
       const handleChange = spy();
       const { container, getByRole } = render(
