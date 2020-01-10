@@ -355,6 +355,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     onChangeCommitted,
     onMouseDown,
     orientation = 'horizontal',
+    scale = Identity,
     step = 1,
     ThumbComponent = 'span',
     track = 'normal',
@@ -742,7 +743,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             className={classes.valueLabel}
             value={
               typeof valueLabelFormat === 'function'
-                ? valueLabelFormat(value, index)
+                ? valueLabelFormat(scale(value), index)
                 : valueLabelFormat
             }
             index={index}
@@ -762,10 +763,12 @@ const Slider = React.forwardRef(function Slider(props, ref) {
               aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
               aria-labelledby={ariaLabelledby}
               aria-orientation={orientation}
-              aria-valuemax={max}
-              aria-valuemin={min}
-              aria-valuenow={value}
-              aria-valuetext={getAriaValueText ? getAriaValueText(value, index) : ariaValuetext}
+              aria-valuemax={scale(max)}
+              aria-valuemin={scale(min)}
+              aria-valuenow={scale(value)}
+              aria-valuetext={
+                getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
+              }
               onKeyDown={handleKeyDown}
               onFocus={handleFocus}
               onBlur={handleBlur}
@@ -895,6 +898,10 @@ Slider.propTypes = {
    * The slider orientation.
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * A transformation function, to change the scale of the slider.
+   */
+  scale: PropTypes.func,
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.
