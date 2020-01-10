@@ -25,6 +25,9 @@ export type IconButtonClassKey =
   | 'colorInherit'
   | 'colorPrimary'
   | 'colorSecondary'
+  | 'colorWarning'
+  | 'colorInfo'
+  | 'colorSuccess'
   | 'disabled'
   | 'sizeSmall'
   | 'label';
