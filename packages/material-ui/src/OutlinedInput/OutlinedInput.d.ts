@@ -10,6 +10,7 @@ export interface OutlinedInputProps extends StandardProps<InputBaseProps, Outlin
 export type OutlinedInputClassKey =
   | 'root'
   | 'colorSecondary'
+  | 'colorInherit'
   | 'focused'
   | 'disabled'
   | 'adornedStart'

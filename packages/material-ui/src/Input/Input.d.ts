@@ -12,6 +12,7 @@ export type InputClassKey =
   | 'focused'
   | 'disabled'
   | 'colorSecondary'
+  | 'colorInherit'
   | 'underline'
   | 'error'
   | 'marginDense'

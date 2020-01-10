@@ -68,6 +68,8 @@ export const styles = theme => {
     },
     /* Styles applied to the root element if the color is secondary. */
     colorSecondary: {},
+    /* Styles applied to the root element if the color is inherit. */
+    colorInherit: {},
     /* Styles applied to the root element if `fullWidth={true}`. */
     fullWidth: {
       width: '100%',
@@ -496,7 +498,7 @@ InputBase.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'inherit']),
   /**
    * The default `input` element value. Use when the component is not controlled.
    */

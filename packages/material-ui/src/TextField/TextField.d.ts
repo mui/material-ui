@@ -17,7 +17,7 @@ export interface BaseTextFieldProps
   > {
   autoComplete?: string;
   autoFocus?: boolean;
-  color?: 'primary' | 'secondary';
+  color?: 'primary' | 'secondary' | 'inherit';
   children?: React.ReactNode;
   defaultValue?: unknown;
   disabled?: boolean;

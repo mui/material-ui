@@ -41,6 +41,12 @@ export const styles = theme => {
         borderBottomColor: theme.palette.secondary.main,
       },
     },
+    /* Styles applied to the root element if color inherit. */
+    colorInherit: {
+      '&$underline:after': {
+        borderBottomColor: 'inherit',
+      },
+    },
     /* Styles applied to the root element if `disableUnderline={false}`. */
     underline: {
       '&:after': {
@@ -201,7 +207,7 @@ FilledInput.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'inherit']),
   /**
    * The default `input` element value. Use when the component is not controlled.
    */

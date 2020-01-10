@@ -29,6 +29,12 @@ export const styles = theme => ({
       color: theme.palette.secondary.main,
     },
   },
+  /* Styles applied to the root element if the color is inherit. */
+  colorInherit: {
+    '&$focused': {
+      color: 'inherit',
+    },
+  },
   /* Pseudo-class applied to the root element if `focused={true}`. */
   focused: {},
   /* Pseudo-class applied to the root element if `disabled={true}`. */
@@ -117,7 +123,7 @@ FormLabel.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'inherit']),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.

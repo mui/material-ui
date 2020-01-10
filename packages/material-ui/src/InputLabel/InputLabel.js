@@ -150,7 +150,7 @@ InputLabel.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'inherit']),
   /**
    * If `true`, the transition animation is disabled.
    */

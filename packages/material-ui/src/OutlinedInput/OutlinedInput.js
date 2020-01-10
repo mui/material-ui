@@ -41,6 +41,12 @@ export const styles = theme => {
         borderColor: theme.palette.secondary.main,
       },
     },
+    /* Styles applied to the root element if the color is inherit. */
+    colorInherit: {
+      '&$focused $notchedOutline': {
+        borderColor: 'inherit',
+      },
+    },
     /* Styles applied to the root element if the component is focused. */
     focused: {},
     /* Styles applied to the root element if `disabled={true}`. */
@@ -161,7 +167,7 @@ OutlinedInput.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'inherit']),
   /**
    * The default `input` element value. Use when the component is not controlled.
    */

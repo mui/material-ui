@@ -6,7 +6,7 @@ export interface FilledInputProps extends StandardProps<InputBaseProps, FilledIn
   disableUnderline?: boolean;
 }
 
-export type FilledInputClassKey = InputBaseClassKey | 'colorSecondary' | 'underline';
+export type FilledInputClassKey = InputBaseClassKey | 'colorSecondary' | 'inherit' | 'underline';
 
 declare const FilledInput: React.ComponentType<FilledInputProps>;
 
