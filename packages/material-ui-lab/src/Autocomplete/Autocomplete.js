@@ -524,7 +524,7 @@ Autocomplete.propTypes = {
   /**
    * The default input value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.any,
+  defaultValue: PropTypes.oneOfType([PropTypes.any, PropTypes.array]),
   /**
    * If `true`, the input can't be cleared.
    */
@@ -553,9 +553,9 @@ Autocomplete.propTypes = {
   /**
    * A filter function that determines the options that are eligible.
    *
-   * @param {any[]} options The options to render.
+   * @param {T[]} options The options to render.
    * @param {object} state The state of the component.
-   * @returns {any[]}
+   * @returns {T[]}
    */
   filterOptions: PropTypes.func,
   /**
@@ -588,7 +588,7 @@ Autocomplete.propTypes = {
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {any} options The option to group.
+   * @param {T} options The option to group.
    * @returns {string}
    */
   groupBy: PropTypes.func,
@@ -637,7 +637,7 @@ Autocomplete.propTypes = {
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {any} value
+   * @param {T} value
    */
   onChange: PropTypes.func,
   /**
@@ -705,7 +705,7 @@ Autocomplete.propTypes = {
   /**
    * Render the option, use `getOptionLabel` by default.
    *
-   * @param {any} option The option to render.
+   * @param {T} option The option to render.
    * @param {object} state The state of the component.
    * @returns {ReactNode}
    */
@@ -713,7 +713,7 @@ Autocomplete.propTypes = {
   /**
    * Render the selected value.
    *
-   * @param {any} value The `value` provided to the component.
+   * @param {T[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
    * @returns {ReactNode}
    */
@@ -728,7 +728,7 @@ Autocomplete.propTypes = {
    * The value must have reference equality with the option in order to be selected.
    * You can customize the equality behavior with the `getOptionSelected` prop.
    */
-  value: PropTypes.any,
+  value: PropTypes.oneOfType([PropTypes.any, PropTypes.array]),
 };
 
 export default withStyles(styles, { name: 'MuiAutocomplete' })(Autocomplete);

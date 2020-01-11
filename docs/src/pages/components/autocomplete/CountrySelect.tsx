@@ -29,13 +29,13 @@ export default function CountrySelect() {
     <Autocomplete
       id="country-select-demo"
       style={{ width: 300 }}
-      options={countries}
+      options={countries as CountryType[]}
       classes={{
         option: classes.option,
       }}
       autoHighlight
-      getOptionLabel={(option: CountryType) => option.label}
-      renderOption={(option: CountryType) => (
+      getOptionLabel={option => option.label}
+      renderOption={option => (
         <React.Fragment>
           <span>{countryToFlag(option.code)}</span>
           {option.label} ({option.code}) +{option.phone}

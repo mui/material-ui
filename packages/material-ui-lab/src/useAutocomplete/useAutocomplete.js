@@ -1004,9 +1004,9 @@ useAutocomplete.propTypes = {
   /**
    * Callback fired when the text input value changes.
    *
-   * @param {object} event The event source of the callback
-   * @param {string} value The new value of the text input
-   * @param {string} reason One of "input" (user input) or "reset" (programmatic change)
+   * @param {object} event The event source of the callback.
+   * @param {string} value The new value of the text input.
+   * @param {string} reason One of "input" (user input) or "reset" (programmatic change).
    */
   onInputChange: PropTypes.func,
   /**

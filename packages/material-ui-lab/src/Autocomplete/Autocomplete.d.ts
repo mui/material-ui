@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
 import { PopperProps } from '@material-ui/core/Popper';
-import { UseAutocompleteProps, CreateFilterOptions, createFilterOptions } from '../useAutocomplete';
+import {
+  UseAutocompleteCommonProps,
+  createFilterOptions,
+  UseAutocompleteProps,
+} from '../useAutocomplete';
 
 export { createFilterOptions };
 
@@ -30,8 +34,8 @@ export interface RenderInputParams {
   inputProps: object;
 }
 
-export interface AutocompleteProps
-  extends UseAutocompleteProps,
+export interface AutocompleteProps<T>
+  extends UseAutocompleteCommonProps<T>,
     StandardProps<
       React.HTMLAttributes<HTMLDivElement>,
       AutocompleteClassKey,
@@ -129,19 +133,19 @@ export interface AutocompleteProps
   /**
    * Render the option, use `getOptionLabel` by default.
    *
-   * @param {any} option The option to render.
+   * @param {T} option The option to render.
    * @param {object} state The state of the component.
    * @returns {ReactNode}
    */
-  renderOption?: (option: any, state: RenderOptionState) => React.ReactNode;
+  renderOption?: (option: T, state: RenderOptionState) => React.ReactNode;
   /**
    * Render the selected value.
    *
-   * @param {any} value The `value` provided to the component.
+   * @param {T[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
    * @returns {ReactNode}
    */
-  renderTags?: (value: any, getTagProps: GetTagProps) => React.ReactNode;
+  renderTags?: (value: T[], getTagProps: GetTagProps) => React.ReactNode;
   /**
    * The size of the autocomplete.
    */
@@ -171,4 +175,6 @@ export type AutocompleteClassKey =
   | 'groupLabel'
   | 'groupUl';
 
-export default function Autocomplete(props: AutocompleteProps): JSX.Element;
+export default function Autocomplete<T>(
+  props: AutocompleteProps<T> & UseAutocompleteProps<T>,
+): JSX.Element;

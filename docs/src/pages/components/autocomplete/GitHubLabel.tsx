@@ -153,7 +153,7 @@ export default function GitHubLabel() {
           <span>Labels</span>
           <SettingsIcon />
         </ButtonBase>
-        {value.map((label: LabelType) => (
+        {value.map(label => (
           <div
             key={label.name}
             className={classes.tag}
@@ -191,7 +191,7 @@ export default function GitHubLabel() {
           disablePortal
           renderTags={() => null}
           noOptionsText="No labels"
-          renderOption={(option: LabelType, { selected }) => (
+          renderOption={(option, { selected }) => (
             <React.Fragment>
               <DoneIcon
                 className={classes.iconSelected}
@@ -217,7 +217,7 @@ export default function GitHubLabel() {
             bi = bi === -1 ? value.length + labels.indexOf(b) : bi;
             return ai - bi;
           })}
-          getOptionLabel={(option: LabelType) => option.name}
+          getOptionLabel={option => option.name}
           renderInput={params => (
             <InputBase
               ref={params.InputProps.ref}
