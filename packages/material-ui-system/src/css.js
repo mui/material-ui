@@ -17,11 +17,11 @@ function styleFunctionWalk(styleFunction, theme) {
   const apply = (css) => {
     const output = {
       ...styleFunction({ theme, ...css }),
-      ...omit(css, [styleFunction.filterProps]),
+      ...omit(css, styleFunction.filterProps),
     };
 
     for (const key in css) {
-      if (typeof css[key] === 'object') {
+      if (!styleFunction.filterProps[key] && typeof css[key] === 'object') {
         output[key] = apply(css[key]);
       }
     }
