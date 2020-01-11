@@ -172,7 +172,7 @@ Search within 10,000 randomly generated options. The list is virtualized thanks 
 The browsers have heuristics to help the users fill the form inputs.
 However, it can harm the UX of the component.
 
-By default, the components disable the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
+By default, the component disable the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
 
 However, in addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details).
 In the event you want the avoid autofill, you can try the following:
