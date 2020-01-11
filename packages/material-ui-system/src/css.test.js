@@ -18,11 +18,23 @@ describe('css', () => {
         css: {
           color: 'red',
           padding: 10,
+          '&:hover': {
+            color: 'blue',
+            '> button': {
+              color: 'pink',
+            },
+          },
         },
       }),
       {
         padding: 10,
         color: 'red',
+        '&:hover': {
+          color: 'blue',
+          '> button': {
+            color: 'pink'
+          },
+        },
       },
     );
   });

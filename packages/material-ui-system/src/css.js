@@ -13,15 +13,31 @@ function omit(input, fields) {
   return output;
 }
 
+function styleFunctionWalk(styleFunction, theme) {
+  const apply = (css) => {
+    const output = {
+      ...styleFunction({ theme, ...css }),
+      ...omit(css, [styleFunction.filterProps]),
+    };
+
+    for (const key in css) {
+      if (typeof css[key] === 'object') {
+        output[key] = apply(css[key]);
+      }
+    }
+
+    return output;
+  }
+
+  return apply;
+}
+
 function css(styleFunction) {
   const newStyleFunction = props => {
     const output = styleFunction(props);
 
     if (props.css) {
-      return {
-        ...merge(output, styleFunction({ theme: props.theme, ...props.css })),
-        ...omit(props.css, [styleFunction.filterProps]),
-      };
+      return merge(output, styleFunctionWalk(styleFunction, props.theme)(props.css))
     }
 
     return output;
