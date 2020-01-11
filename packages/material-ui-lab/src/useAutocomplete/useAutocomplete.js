@@ -216,7 +216,7 @@ export default function useAutocomplete(props) {
               `The component expect a string but received ${typeof optionLabel}.`,
               `For the input option: ${JSON.stringify(
                 newValue,
-              )}, \`getOptionLabel\` returns: ${newInputValue}.`,
+              )}, \`getOptionLabel\` returns: ${optionLabel}.`,
             ].join('\n'),
           );
         }
