@@ -43,8 +43,6 @@ export default function usePagination(props) {
     endPages[0] - 2,
   );
 
-  const siblingPages = range(siblingsStart, siblingsEnd);
-
   // itemList = ['first', 'previous', 1, 'ellipsis', 4, 5, 6, 'ellipsis', 10, 'next', 'last']
   const itemList = [
     ...(showFirstButton ? ['first'] : []),
@@ -56,25 +54,24 @@ export default function usePagination(props) {
     ...(siblingsStart > boundaryRange + 3
       ? ['ellipsis']
       : 2 + boundaryRange < count - boundaryRange - 1
-      ? [2 + boundaryRange]
-      : []),
+        ? [2 + boundaryRange]
+        : []),
 
-    ...siblingPages,
+    // Sibling pages
+    ...range(siblingsStart, siblingsEnd),
 
     // End ellipsis
     // eslint-disable-next-line no-nested-ternary
     ...(siblingsEnd < count - boundaryRange - 2
       ? ['ellipsis']
       : count - boundaryRange - 1 > boundaryRange + 1
-      ? [count - boundaryRange - 1]
-      : []),
+        ? [count - boundaryRange - 1]
+        : []),
 
     ...endPages,
     ...(hideNextButton ? [] : ['next']),
     ...(showLastButton ? ['last'] : []),
   ];
-
-  console.log(itemList);
 
   const itemProps = {
     disabled,
@@ -82,18 +79,34 @@ export default function usePagination(props) {
     page,
   };
 
+  function buttonPage(type) {
+    switch (type) {
+      case 'first':
+        return 1;
+      case 'previous':
+        return page - 1;
+      case 'next':
+        return page + 1;
+      case 'last':
+        return count;
+      default:
+    }
+
+  }
+
   const items = itemList.map(item => {
     return typeof item === 'number'
       ? {
-          ...itemProps,
-          page: item,
-          selected: item === page,
-        }
+        ...itemProps,
+        page: item,
+        selected: item === page,
+      }
       : {
-          ...itemProps,
-          type: item,
-          disabled: disabled || (item === 'next' || item === 'last' ? page >= count : page <= 1),
-        };
+        ...itemProps,
+        type: item,
+        page: buttonPage(item),
+        disabled: disabled || (item === 'next' || item === 'last' ? page >= count : page <= 1),
+      };
   });
 
   return {
