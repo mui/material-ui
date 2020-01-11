@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const webpackBaseConfig = require('../../docs/webpackBaseConfig');
 
 module.exports = Object.assign({}, webpackBaseConfig, {
@@ -8,6 +9,8 @@ module.exports = Object.assign({}, webpackBaseConfig, {
     path: path.resolve(__dirname, '../../tmp'),
     filename: 'tests.js',
   },
+  // Avoid bundling the whole @material-ui/icons package. x2 the bundling speed.
+  plugins: [new webpack.IgnorePlugin(/material-icons\/SearchIcons\.js/)],
   module: Object.assign({}, webpackBaseConfig.module, {
     rules: webpackBaseConfig.module.rules.concat([
       {
