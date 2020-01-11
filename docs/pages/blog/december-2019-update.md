@@ -10,7 +10,7 @@ description: Here are the most significant improvements in December.
 
 Here are the most significant improvements in December:
 
-- 🚨 We have introduce a new [Alert](https://material-ui.com/components/alert/) component in the lab, thanks to **[@dimitropoulos](https://github.com/dimitropoulos)** ([#18702](https://github.com/mui-org/material-ui/pull/18702)). The component also supports composition with a [Snackbar](/components/snackbars/#customized-snackbars).
+- 🚨 We have introduced a new [Alert](https://material-ui.com/components/alert/) component in the lab, thanks to **[@dimitropoulos](https://github.com/dimitropoulos)** ([#18702](https://github.com/mui-org/material-ui/pull/18702)). The component also supports composition with a [Snackbar](/components/snackbars/#customized-snackbars).
 
   ![Alert](/static/blog/december-2019-update/alert.png)
 

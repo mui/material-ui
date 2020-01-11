@@ -13,7 +13,7 @@ filename: /packages/material-ui-lab/src/Alert/Alert.js
 ```js
 import Alert from '@material-ui/lab/Alert';
 // or
-import { Alert } from '@material-ui/lab';
+import Alert from '@material-ui/lab/Alert';
 ```
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
