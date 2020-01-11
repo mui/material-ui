@@ -32,7 +32,7 @@ describe('css', () => {
         '&:hover': {
           color: 'blue',
           '> button': {
-            color: 'pink'
+            color: 'pink',
           },
         },
       },

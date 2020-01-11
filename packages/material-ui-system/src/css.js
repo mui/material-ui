@@ -14,7 +14,7 @@ function omit(input, fields) {
 }
 
 function handleCss(styleFunction, theme) {
-  const apply = (css) => {
+  const apply = css => {
     const output = {
       ...styleFunction({ theme, ...css }),
       ...omit(css, styleFunction.filterProps),
@@ -27,7 +27,7 @@ function handleCss(styleFunction, theme) {
     }
 
     return output;
-  }
+  };
 
   return apply;
 }
@@ -37,7 +37,7 @@ function css(styleFunction) {
     const output = styleFunction(props);
 
     if (props.css) {
-      return merge(output, handleCss(styleFunction, props.theme)(props.css))
+      return merge(output, handleCss(styleFunction, props.theme)(props.css));
     }
 
     return output;
