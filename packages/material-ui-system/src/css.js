@@ -13,7 +13,7 @@ function omit(input, fields) {
   return output;
 }
 
-function styleFunctionWalk(styleFunction, theme) {
+function handleCss(styleFunction, theme) {
   const apply = (css) => {
     const output = {
       ...styleFunction({ theme, ...css }),
@@ -37,7 +37,7 @@ function css(styleFunction) {
     const output = styleFunction(props);
 
     if (props.css) {
-      return merge(output, styleFunctionWalk(styleFunction, props.theme)(props.css))
+      return merge(output, handleCss(styleFunction, props.theme)(props.css))
     }
 
     return output;
