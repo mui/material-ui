@@ -54,8 +54,8 @@ export default function usePagination(props) {
     ...(siblingsStart > boundaryRange + 3
       ? ['ellipsis']
       : 2 + boundaryRange < count - boundaryRange - 1
-        ? [2 + boundaryRange]
-        : []),
+      ? [2 + boundaryRange]
+      : []),
 
     // Sibling pages
     ...range(siblingsStart, siblingsEnd),
@@ -65,8 +65,8 @@ export default function usePagination(props) {
     ...(siblingsEnd < count - boundaryRange - 2
       ? ['ellipsis']
       : count - boundaryRange - 1 > boundaryRange + 1
-        ? [count - boundaryRange - 1]
-        : []),
+      ? [count - boundaryRange - 1]
+      : []),
 
     ...endPages,
     ...(hideNextButton ? [] : ['next']),
@@ -91,22 +91,21 @@ export default function usePagination(props) {
         return count;
       default:
     }
-
   }
 
   const items = itemList.map(item => {
     return typeof item === 'number'
       ? {
-        ...itemProps,
-        page: item,
-        selected: item === page,
-      }
+          ...itemProps,
+          page: item,
+          selected: item === page,
+        }
       : {
-        ...itemProps,
-        type: item,
-        page: buttonPage(item),
-        disabled: disabled || (item === 'next' || item === 'last' ? page >= count : page <= 1),
-      };
+          ...itemProps,
+          type: item,
+          page: buttonPage(item),
+          disabled: disabled || (item === 'next' || item === 'last' ? page >= count : page <= 1),
+        };
   });
 
   return {

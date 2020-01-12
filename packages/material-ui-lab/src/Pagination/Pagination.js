@@ -28,12 +28,11 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
     renderItem = (item, index) => <PaginationItem {...item} key={index.toString()} />,
     shape = 'round',
     size,
-    queryString = 'page',
     variant = 'text',
     ...other
   } = usePagination(props);
 
-  const itemProps = { color, getAriaLabel, shape, size, queryString, variant };
+  const itemProps = { color, getAriaLabel, shape, size, variant };
 
   return (
     <ul

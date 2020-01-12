@@ -250,9 +250,7 @@ function PaginationItem(props) {
               getAriaLabel ? getAriaLabel(type, page, selected) : ariaLabel(type, page, selected)
             }
             aria-current={selected ? 'page' : undefined}
-            component={handleChange ? 'div' : 'a'}
-            href={handleChange ? undefined : ''}
-            onClick={handleChange ? event => handleChange(event, page) : undefined}
+            onClick={event => handleChange(event, page)}
             className={buttonClass}
           >
             {type === 'page' && page}
@@ -299,15 +297,11 @@ PaginationItem.propTypes = {
    * @param {object} event The event source of the callback.
    * @param {number} page The page selected.
    */
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   /**
    * The current page number.
    */
-  page: PropTypes.number,
-  /**
-   * The query string used to identify the page.
-   */
-  queryString: PropTypes.string,
+  page: PropTypes.number.isRequired,
   /**
    * If `true` the pagination item is selected.
    */
@@ -330,4 +324,4 @@ PaginationItem.propTypes = {
   variant: PropTypes.oneOf(['text', 'outlined']),
 };
 
-export default withStyles(styles, { name: 'PrivatePaginationItem' })(PaginationItem);
+export default withStyles(styles, { name: 'MuiPaginationItem' })(PaginationItem);
