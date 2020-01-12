@@ -127,7 +127,7 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-size-snapshot": "^0.10.0",
     "rollup-plugin-terser": "^5.1.1",
-    "sinon": "^7.0.0",
+    "sinon": "^8.0.4",
     "size-limit": "^0.21.0",
     "ts-node": "^8.3.0",
     "tslint": "5.14.0",
