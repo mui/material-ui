@@ -33,6 +33,7 @@ const Step = React.forwardRef(function Step(props, ref) {
     completed = false,
     connector,
     disabled = false,
+    expanded = false,
     index,
     last,
     orientation,
@@ -85,6 +86,7 @@ const Step = React.forwardRef(function Step(props, ref) {
           alternativeLabel,
           completed,
           disabled,
+          expanded,
           last,
           icon: index + 1,
           orientation,
@@ -132,6 +134,10 @@ Step.propTypes = {
    * `StepButton` is a child of `Step`. Is passed to child components.
    */
   disabled: PropTypes.bool,
+  /**
+   * Expand the step.
+   */
+  expanded: PropTypes.bool,
   /**
    * @ignore
    * Used internally for numbering.

@@ -31,6 +31,7 @@ const StepContent = React.forwardRef(function StepContent(props, ref) {
     classes,
     className,
     completed,
+    expanded,
     last,
     optional,
     orientation,
@@ -57,7 +58,7 @@ const StepContent = React.forwardRef(function StepContent(props, ref) {
   return (
     <div className={clsx(classes.root, { [classes.last]: last }, className)} ref={ref} {...other}>
       <TransitionComponent
-        in={active}
+        in={active || expanded}
         className={classes.transition}
         timeout={transitionDuration}
         unmountOnExit
@@ -97,6 +98,10 @@ StepContent.propTypes = {
    * @ignore
    */
   completed: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  expanded: PropTypes.bool,
   /**
    * @ignore
    */
