@@ -15,7 +15,7 @@ function omit(input, fields) {
 
 function handleCss(styleFunction, theme) {
   const apply = styles => {
-    const cssStyles = omit(styles, styleFunction.filterProps)
+    const cssStyles = omit(styles, styleFunction.filterProps);
     const output = {
       ...styleFunction({ theme, ...styles }),
       ...cssStyles,
