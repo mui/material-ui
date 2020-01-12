@@ -62,6 +62,11 @@ RadioGroup.propTypes = {
    */
   children: PropTypes.node,
   /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * The default `input` element value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
