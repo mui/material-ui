@@ -336,6 +336,10 @@ export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
 
+    if (pageProps.versions) {
+      global.__VERSION__ = pageProps.versions;
+    }
+
     return (
       <AppWrapper pageProps={pageProps}>
         <Component {...pageProps} />
@@ -344,8 +348,12 @@ export default class MyApp extends App {
   }
 }
 
-MyApp.getInitialProps = ({ ctx }) => {
+MyApp.getInitialProps = async ({ ctx, Component }) => {
   let pageProps = {};
+
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx);
+  }
 
   if (!process.browser) {
     const redux = initRedux({
@@ -354,6 +362,7 @@ MyApp.getInitialProps = ({ ctx }) => {
       },
     });
     pageProps = {
+      ...pageProps,
       // No need to include other initial Redux state because when it
       // initialises on the client-side it'll create it again anyway
       reduxServerState: redux.getState(),
