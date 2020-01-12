@@ -4575,9 +4575,9 @@ compression-webpack-plugin@^2.0.0:
     webpack-sources "^1.0.1"
 
 compression-webpack-plugin@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/compression-webpack-plugin/-/compression-webpack-plugin-3.0.1.tgz#be7a343e6dfbccbd64a77c5fbe29627d140fc321"
-  integrity sha512-FOwoBVzDiwSdJDnZTKXDpAjJU90k8SbChgxnoiYwTo15xjIDJkSC8wFKuc13DymXjgasPEqzS5+2RUgSKXdKKA==
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/compression-webpack-plugin/-/compression-webpack-plugin-3.1.0.tgz#9f510172a7b5fae5aad3b670652e8bd7997aeeca"
+  integrity sha512-iqTHj3rADN4yHwXMBrQa/xrncex/uEQy8QHlaTKxGchT/hC0SdlJlmL/5eRqffmWq2ep0/Romw6Ld39JjTR/ug==
   dependencies:
     cacache "^13.0.1"
     find-cache-dir "^3.0.0"
