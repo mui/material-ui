@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
-import { Pagination } from '@material-ui/lab';
+import Typography from '@material-ui/core/Typography';
+import Pagination from '@material-ui/lab/Pagination';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,15 +14,11 @@ const useStyles = makeStyles(theme => ({
 export default function BasicPagination() {
   const classes = useStyles();
   const [page, setPage] = React.useState(1);
-
-  function handleChange(event, value) {
-    setPage(value);
-  }
+  const handleChange = (event, value) => setPage(value);
 
   return (
     <div className={classes.root}>
       <Pagination count={10} page={page} onChange={handleChange} />
-      <Pagination count={10} page={page} onChange={handleChange} disabled />
       <Typography>Page: {page}</Typography>
     </div>
   );

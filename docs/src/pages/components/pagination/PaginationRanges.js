@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography } from '@material-ui/core';
-import { Pagination } from '@material-ui/lab';
+import Pagination from '@material-ui/lab/Pagination';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -13,25 +12,13 @@ const useStyles = makeStyles(theme => ({
 
 export default function PaginationRanges() {
   const classes = useStyles();
-  const [page, setPage] = React.useState(1);
-
-  function handleChange(event, value) {
-    setPage(value);
-  }
 
   return (
     <div className={classes.root}>
-      <Pagination count={10} page={page} onChange={handleChange} />
-      <Pagination count={10} page={page} onChange={handleChange} siblingRange={0} />
-      <Pagination count={10} page={page} onChange={handleChange} boundaryRange={1} />
-      <Pagination
-        count={10}
-        page={page}
-        onChange={handleChange}
-        siblingRange={0}
-        boundaryRange={1}
-      />
-      <Typography>Page: {page}</Typography>
+      <Pagination count={10} />
+      <Pagination count={10} siblingRange={0} />
+      <Pagination count={10} boundaryRange={1} />
+      <Pagination count={10} siblingRange={0} boundaryRange={1} />
     </div>
   );
 }

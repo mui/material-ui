@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function usePagination(props) {
   const {
     boundaryRange = 0,
@@ -7,16 +9,48 @@ export default function usePagination(props) {
     hidePrevButton = false,
     showFirstButton = false,
     showLastButton = false,
-    onChange: handleChange,
-    page = 1,
+    onChange: handleChangeProp,
+    page: pageProp,
     siblingRange = 1,
     ...other
   } = props;
 
-  function range(start, end) {
+  const { current: isControlled } = React.useRef(pageProp != null);
+  const [pageState, setPageState] = React.useState(1);
+  const page = isControlled ? pageProp : pageState;
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (isControlled !== (pageProp != null)) {
+        console.error(
+          [
+            `Material-UI: A component is changing ${
+              isControlled ? 'a ' : 'an un'
+            }controlled Pagination to be ${isControlled ? 'un' : ''}controlled.`,
+            'Elements should not switch from uncontrolled to controlled (or vice versa).',
+            'Decide between using a controlled or uncontrolled Pagination ' +
+              'element for the lifetime of the component.',
+            'More info: https://fb.me/react-controlled-components',
+          ].join('\n'),
+        );
+      }
+    }, [pageProp, isControlled]);
+  }
+
+  const handleChange = (event, value) => {
+    if (!isControlled) {
+      setPageState(value);
+    }
+    if (handleChangeProp) {
+      handleChangeProp(event, value);
+    }
+  };
+
+  const range = (start, end) => {
     const length = end - start + 1;
     return Array.from({ length }, (_, i) => start + i);
-  }
+  };
 
   const startPages = range(1, Math.min(boundaryRange + 1, count));
   const endPages = range(Math.max(count - boundaryRange, boundaryRange + 2), count);
@@ -79,7 +113,7 @@ export default function usePagination(props) {
     page,
   };
 
-  function buttonPage(type) {
+  const buttonPage = type => {
     switch (type) {
       case 'first':
         return 1;
@@ -91,7 +125,7 @@ export default function usePagination(props) {
         return count;
       default:
     }
-  }
+  };
 
   const items = itemList.map(item => {
     return typeof item === 'number'

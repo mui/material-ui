@@ -11,11 +11,6 @@ components: Pagination
 
 {{"demo": "pages/components/pagination/Pagination.js"}}
 
-## Buttons
-
-You can optionally enable first-page and last-page buttons, or disable the previous-page and next-page buttons.
-{{"demo": "pages/components/pagination/PaginationButtons.js"}}
-
 ## Outlined pagination
 
 {{"demo": "pages/components/pagination/PaginationOutlined.js"}}
@@ -24,18 +19,25 @@ You can optionally enable first-page and last-page buttons, or disable the previ
 
 {{"demo": "pages/components/pagination/PaginationOutlinedRounded.js"}}
 
-## Controlled pagination
+## Pagination size
 
-{{"demo": "pages/components/pagination/PaginationControlled.js"}}
+{{"demo": "pages/components/pagination/PaginationSize.js"}}
+
+## Buttons
+
+You can optionally enable first-page and last-page buttons, or disable the previous-page and next-page buttons.
+
+{{"demo": "pages/components/pagination/PaginationButtons.js"}}
 
 ## Pagination ranges
 
 You can specify how many digits to display either side of current page with the `siblingRange` prop, and adjacent to the start and end page number with the `boundaryRange` prop.
+
 {{"demo": "pages/components/pagination/PaginationRanges.js"}}
 
-## Pagination size
+## Controlled pagination
 
-{{"demo": "pages/components/pagination/PaginationSize.js"}}
+{{"demo": "pages/components/pagination/PaginationControlled.js"}}
 
 ## Accessibility
 
