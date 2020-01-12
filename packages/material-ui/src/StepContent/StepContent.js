@@ -112,6 +112,7 @@ StepContent.propTypes = {
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The component used for the transition.
+   * [Follow our guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */
   TransitionComponent: PropTypes.elementType,
   /**
@@ -126,7 +127,7 @@ StepContent.propTypes = {
     PropTypes.oneOf(['auto']),
   ]),
   /**
-   * Props applied to the `Transition` element.
+   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
    */
   TransitionProps: PropTypes.object,
 };
