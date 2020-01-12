@@ -37,7 +37,7 @@ export const styles = theme => ({
     flexWrap: 'wrap',
     paddingRight: 62,
     '& $input': {
-      width: 0,
+      width: 'auto',
       minWidth: 30,
     },
     '&[class*="MuiInput-root"]': {
