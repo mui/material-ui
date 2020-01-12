@@ -22,10 +22,10 @@ export const styles = {
  * For the `Radio`, you should be using the `RadioGroup` component instead of this one.
  */
 const FormGroup = React.forwardRef(function FormGroup(props, ref) {
-  const { classes, className, row = false, ...other } = props;
+  const { classes, component: Component = 'div', className, row = false, ...other } = props;
 
   return (
-    <div
+    <Component
       className={clsx(
         classes.root,
         {
@@ -53,6 +53,11 @@ FormGroup.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * Display group of elements in a compact row.
    */
