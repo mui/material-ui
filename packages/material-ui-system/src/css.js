@@ -14,17 +14,18 @@ function omit(input, fields) {
 }
 
 function handleCss(styleFunction, theme) {
-  const apply = css => {
+  const apply = styles => {
+    const cssStyles = omit(styles, styleFunction.filterProps)
     const output = {
-      ...styleFunction({ theme, ...css }),
-      ...omit(css, styleFunction.filterProps),
+      ...styleFunction({ theme, ...styles }),
+      ...cssStyles,
     };
 
-    for (const key in css) {
-      if (!styleFunction.filterProps[key] && typeof css[key] === 'object') {
-        output[key] = apply(css[key]);
+    Object.keys(cssStyles).forEach(key => {
+      if (typeof cssStyles[key] === 'object') {
+        output[key] = apply(cssStyles[key]);
       }
-    }
+    });
 
     return output;
   };
@@ -34,7 +35,7 @@ function handleCss(styleFunction, theme) {
 
 function css(styleFunction) {
   const newStyleFunction = props => {
-    const output = styleFunction(props);
+    const output = styleFunction(props) || {};
 
     if (props.css) {
       return merge(output, handleCss(styleFunction, props.theme)(props.css));
