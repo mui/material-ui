@@ -80,9 +80,11 @@ This example also demonstrates how to delay the enter transition.
 
 ## TransitionComponent prop
 
-A few of the Material-UI components accept a `TransitionComponent` prop to customize the transition. You can use any of the above components or a home-made one.
+The components accept a `TransitionComponent` prop to customize the default transitions.
+You can use any of the above components or your own.
 It should respect the following conditions:
-Accepts an `in` prop. This corresponds to the open / close state.
-Call the `onEnter` callback prop when the enter transition starts.
-Call the `onExited` callback prop when the exit transition is completed.
+
+- Accepts an `in` prop. This corresponds to the open/close state.
+- Call the `onEnter` callback prop when the enter transition starts.
+- Call the `onExited` callback prop when the exit transition is completed.
 These two callbacks allow to unmount the children when in a closed state and fully transitioned.

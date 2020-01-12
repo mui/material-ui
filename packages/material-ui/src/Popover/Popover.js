@@ -593,7 +593,7 @@ Popover.propTypes = {
   }),
   /**
    * The component used for the transition.
-   * [Follow our guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */
   TransitionComponent: PropTypes.elementType,
   /**

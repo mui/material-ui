@@ -202,7 +202,7 @@ ExpansionPanel.propTypes = {
   square: PropTypes.bool,
   /**
    * The component used for the collapse effect.
-   * [Follow our guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */
   TransitionComponent: PropTypes.elementType,
   /**
