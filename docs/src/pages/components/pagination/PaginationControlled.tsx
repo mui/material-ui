@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function BasicPagination() {
+export default function PaginationControlled() {
   const classes = useStyles();
   const [page, setPage] = React.useState(1);
   const handleChange = (event, value) => setPage(value);

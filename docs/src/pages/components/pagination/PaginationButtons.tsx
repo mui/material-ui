@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function BasicPagination() {
+export default function PaginationButtons() {
   const classes = useStyles();
 
   return (
