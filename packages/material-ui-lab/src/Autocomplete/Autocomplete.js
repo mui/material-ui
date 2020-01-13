@@ -7,6 +7,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import Chip from '@material-ui/core/Chip';
+import Fade from '@material-ui/core/Fade';
 import CloseIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
@@ -417,35 +418,40 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           }}
           role="presentation"
           anchorEl={anchorEl}
+          transition
           open
         >
-          <PaperComponent className={classes.paper}>
-            {loading && groupedOptions.length === 0 ? (
-              <div className={classes.loading}>{loadingText}</div>
-            ) : null}
-            {groupedOptions.length === 0 && !freeSolo && !loading ? (
-              <div className={classes.noOptions}>{noOptionsText}</div>
-            ) : null}
-            {groupedOptions.length > 0 ? (
-              <ListboxComponent
-                className={classes.listbox}
-                {...getListboxProps()}
-                {...ListboxProps}
-              >
-                {groupedOptions.map((option, index) => {
-                  if (groupBy) {
-                    return renderGroup({
-                      key: option.key,
-                      children: option.options.map((option2, index2) =>
-                        renderListOption(option2, option.index + index2),
-                      ),
-                    });
-                  }
-                  return renderListOption(option, index);
-                })}
-              </ListboxComponent>
-            ) : null}
-          </PaperComponent>
+          {({ TransitionProps }) => (
+            <Fade {...TransitionProps} timeout={300}>
+              <PaperComponent className={classes.paper}>
+                {loading && groupedOptions.length === 0 ? (
+                  <div className={classes.loading}>{loadingText}</div>
+                ) : null}
+                {groupedOptions.length === 0 && !freeSolo && !loading ? (
+                  <div className={classes.noOptions}>{noOptionsText}</div>
+                ) : null}
+                {groupedOptions.length > 0 ? (
+                  <ListboxComponent
+                    className={classes.listbox}
+                    {...getListboxProps()}
+                    {...ListboxProps}
+                  >
+                    {groupedOptions.map((option, index) => {
+                      if (groupBy) {
+                        return renderGroup({
+                          key: option.key,
+                          children: option.options.map((option2, index2) =>
+                            renderListOption(option2, option.index + index2),
+                          ),
+                        });
+                      }
+                      return renderListOption(option, index);
+                    })}
+                  </ListboxComponent>
+                ) : null}
+              </PaperComponent>
+            </Fade>
+          )}
         </PopperComponent>
       ) : null}
     </React.Fragment>
