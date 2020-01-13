@@ -63,7 +63,7 @@
     "cross-env": "^6.0.0",
     "css-loader": "^3.1.0",
     "css-mediaquery": "^0.1.2",
-    "date-fns": "2.8.1",
+    "date-fns": "2.9.0",
     "docsearch.js": "^2.6.3",
     "doctrine": "^3.0.0",
     "express": "^4.17.1",
