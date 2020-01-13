@@ -82,56 +82,57 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
   } = props;
   const theme = useTheme();
   const align = theme.direction === 'rtl' ? 'right' : 'left';
-  const labelWidth = labelWidthProp > 0 ? labelWidthProp * 0.75 + 8 : 0;
 
-  if (label === undefined) {
+  if (label !== undefined) {
     return (
       <fieldset
         aria-hidden
-        style={{
-          [`padding${capitalize(align)}`]: 8 + (notched ? 0 : labelWidth / 2),
-          ...style,
-        }}
         className={clsx(classes.root, className)}
         ref={ref}
+        style={{
+          [`padding${capitalize(align)}`]: '8px',
+          ...style,
+        }}
         {...other}
       >
         <legend
-          className={classes.legend}
-          style={{
-            // IE 11: fieldset with legend does not render
-            // a border radius. This maintains consistency
-            // by always having a legend rendered
-            width: notched ? labelWidth : 0.01,
-          }}
+          className={clsx(classes.legendLabelled, {
+            [classes.legendNotched]: notched,
+          })}
         >
           {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
           {/* eslint-disable-next-line react/no-danger */}
-          <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+          {label ? <span>{label}</span> : <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
         </legend>
       </fieldset>
     );
   }
 
+  const labelWidth = labelWidthProp > 0 ? labelWidthProp * 0.75 + 8 : 0;
+
   return (
     <fieldset
       aria-hidden
-      className={clsx(classes.root, className)}
-      ref={ref}
       style={{
-        paddingLeft: '8px',
+        [`padding${capitalize(align)}`]: 8 + (notched ? 0 : labelWidth / 2),
         ...style,
       }}
+      className={clsx(classes.root, className)}
+      ref={ref}
       {...other}
     >
       <legend
-        className={clsx(classes.legendLabelled, {
-          [classes.legendNotched]: notched,
-        })}
+        className={classes.legend}
+        style={{
+          // IE 11: fieldset with legend does not render
+          // a border radius. This maintains consistency
+          // by always having a legend rendered
+          width: notched ? labelWidth : 0.01,
+        }}
       >
         {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
         {/* eslint-disable-next-line react/no-danger */}
-        {label ? <span>{label}</span> : <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
+        <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
       </legend>
     </fieldset>
   );
