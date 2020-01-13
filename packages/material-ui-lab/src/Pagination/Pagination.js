@@ -11,6 +11,7 @@ export const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
+    listStyleType: 'none',
     padding: 0, // Reset
     margin: 0, // Reset
   },
@@ -25,7 +26,7 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
     component: Component = 'ul',
     getItemAriaLabel: getAriaLabel,
     items,
-    renderItem = (item, index) => <PaginationItem {...item} key={index.toString()} />,
+    renderItem = item => <PaginationItem {...item} />,
     shape = 'round',
     size,
     variant = 'text',
@@ -43,7 +44,10 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
       ref={ref}
       {...other}
     >
-      {children || items.map((item, index) => renderItem({ ...item, ...itemProps }, index))}
+      {children ||
+        items.map((item, index) => (
+          <li>{renderItem({ key: index.toString(), ...item, ...itemProps })}</li>
+        ))}
     </ul>
   );
 });
@@ -73,13 +77,12 @@ Pagination.propTypes = {
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
-   * By default, it maps the variant to a good default headline component.
    */
   component: PropTypes.elementType,
   /**
    * The total number of pages.
    */
-  count: PropTypes.number.isRequired,
+  count: PropTypes.number,
   /**
    * If `true`, all the pagination component will be disabled.
    */
@@ -111,7 +114,7 @@ Pagination.propTypes = {
   /**
    * The current page.
    */
-  page: PropTypes.number.isRequired,
+  page: PropTypes.number,
   /**
    * Render the item.
    *

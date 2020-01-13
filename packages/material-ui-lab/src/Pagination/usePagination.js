@@ -3,7 +3,7 @@ import React from 'react';
 export default function usePagination(props) {
   const {
     boundaryRange = 0,
-    count,
+    count = 0,
     disabled = false,
     hideNextButton = false,
     hidePrevButton = false,
@@ -38,7 +38,7 @@ export default function usePagination(props) {
     }, [pageProp, isControlled]);
   }
 
-  const handleChange = (event, value) => {
+  const handleClick = (event, value) => {
     if (!isControlled) {
       setPageState(value);
     }
@@ -109,7 +109,7 @@ export default function usePagination(props) {
 
   const itemProps = {
     disabled,
-    onChange: handleChange,
+    onClick: handleClick,
     page,
   };
 

@@ -12,10 +12,6 @@ import { capitalize } from '@material-ui/core/utils';
 const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    listStyleType: 'none',
-  },
-  /* Styles applied to the button element. */
-  button: {
     borderRadius: '50%',
     width: 32,
     height: 32,
@@ -218,10 +214,11 @@ function PaginationItem(props) {
     classes,
     className,
     color = 'standard',
+    component,
     disabled,
     getAriaLabel,
     page,
-    onChange: handleChange,
+    onClick: handleClick,
     selected,
     shape = 'round',
     size = 'medium',
@@ -230,7 +227,7 @@ function PaginationItem(props) {
     ...other
   } = props;
 
-  const buttonClass = clsx(classes.button, classes[variant], classes[shape], {
+  const buttonClass = clsx(classes.root, classes[variant], classes[shape], {
     [classes[`${variant}${capitalize(color)}`]]: color !== 'standard',
     [classes.disabled]: disabled,
     [classes.selected]: selected,
@@ -240,26 +237,24 @@ function PaginationItem(props) {
   return (
     <React.Fragment>
       {type === 'ellipsis' ? (
-        <li className={clsx(classes.root, className)} {...other}>
-          <div className={classes.ellipsis}>...</div>
-        </li>
+        <div className={classes.ellipsis}>...</div>
       ) : (
-        <li className={clsx(classes.root, className)} {...other}>
-          <ButtonBase
-            aria-label={
-              getAriaLabel ? getAriaLabel(type, page, selected) : ariaLabel(type, page, selected)
-            }
-            aria-current={selected ? 'page' : undefined}
-            onClick={event => handleChange(event, page)}
-            className={buttonClass}
-          >
-            {type === 'page' && page}
-            {type === 'previous' && <NavigateBeforeIcon />}
-            {type === 'next' && <NavigateNextIcon />}
-            {type === 'first' && <FirstPageIcon />}
-            {type === 'last' && <LastPageIcon />}
-          </ButtonBase>
-        </li>
+        <ButtonBase
+          component={component}
+          aria-label={
+            getAriaLabel ? getAriaLabel(type, page, selected) : ariaLabel(type, page, selected)
+          }
+          aria-current={selected ? 'page' : undefined}
+          onClick={event => handleClick(event, page)}
+          className={buttonClass}
+          {...other}
+        >
+          {type === 'page' && page}
+          {type === 'previous' && <NavigateBeforeIcon />}
+          {type === 'next' && <NavigateNextIcon />}
+          {type === 'first' && <FirstPageIcon />}
+          {type === 'last' && <LastPageIcon />}
+        </ButtonBase>
       )}
     </React.Fragment>
   );
@@ -279,6 +274,11 @@ PaginationItem.propTypes = {
    */
   color: PropTypes.oneOf(['standard', 'primary', 'secondary']),
   /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * If `true`, the button will be disabled.
    */
   disabled: PropTypes.bool,
@@ -297,11 +297,11 @@ PaginationItem.propTypes = {
    * @param {object} event The event source of the callback.
    * @param {number} page The page selected.
    */
-  onChange: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   /**
    * The current page number.
    */
-  page: PropTypes.number.isRequired,
+  page: PropTypes.number,
   /**
    * If `true` the pagination item is selected.
    */
@@ -324,4 +324,4 @@ PaginationItem.propTypes = {
   variant: PropTypes.oneOf(['text', 'outlined']),
 };
 
-export default withStyles(styles, { name: 'MuiPaginationItem' })(PaginationItem);
+export default withStyles(styles, { name: 'PaginationItem' })(PaginationItem);
