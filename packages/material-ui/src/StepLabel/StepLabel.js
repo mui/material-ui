@@ -75,6 +75,7 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
     completed = false,
     disabled = false,
     error = false,
+    expanded,
     icon,
     last,
     optional,
@@ -143,12 +144,10 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
 StepLabel.propTypes = {
   /**
    * @ignore
-   * Sets the step as active. Is passed to child components.
    */
   active: PropTypes.bool,
   /**
    * @ignore
-   * Set internally by Stepper when it's supplied with the alternativeLabel prop.
    */
   alternativeLabel: PropTypes.bool,
   /**
@@ -166,7 +165,6 @@ StepLabel.propTypes = {
   className: PropTypes.string,
   /**
    * @ignore
-   * Mark the step as completed. Is passed to child components.
    */
   completed: PropTypes.bool,
   /**
@@ -178,6 +176,10 @@ StepLabel.propTypes = {
    * Mark the step as failed.
    */
   error: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  expanded: PropTypes.bool,
   /**
    * Override the default label of the step icon.
    */
