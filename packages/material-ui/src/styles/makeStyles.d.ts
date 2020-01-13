@@ -11,3 +11,5 @@ export default function makeStyles<
   styles: Styles<Theme, Props, ClassKey>,
   options?: Omit<WithStylesOptions<Theme>, 'withTheme'>,
 ): StylesHook<Styles<Theme, Props, ClassKey>>;
+
+export { StylesHook };
