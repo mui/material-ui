@@ -239,7 +239,7 @@ const styles = theme => ({
       '& .prop-default': {
         fontSize: 13,
         fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
-        borderBottom: `1px dotted ${theme.palette.text.hint}`,
+        borderBottom: `1px dotted ${theme.palette.divider}`,
       },
     },
     '& td': {
