@@ -124,10 +124,13 @@ export const styles = theme => ({
   popupIndicator: {
     padding: 2,
     marginRight: -2,
+    transition: '0.3s',
+    transform: 'rotate(0deg)',
     color: theme.palette.action.active,
   },
   /* Styles applied to the popup indictator if the popup is open. */
   popupIndicatorOpen: {
+    transition: '0.3s',
     transform: 'rotate(180deg)',
   },
   /* Styles applied to the popper element. */
