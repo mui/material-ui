@@ -68,6 +68,12 @@ const theme = createMuiTheme({
     },
   },
 });
+
+// ...
+<ThemeProvider theme={theme}>
+  <CssBaseline />
+  {children}
+</ThemeProvider>
 ```
 
 ## Font size
