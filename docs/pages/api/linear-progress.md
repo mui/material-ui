@@ -46,7 +46,7 @@ Any other props supplied will be provided to the root element (native element).
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
 | <span class="prop-name">root</span> | <span class="prop-name">.MuiLinearProgress-root</span> | Styles applied to the root element.
-| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiLinearProgress-colorPrimary</span> | Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant-"buffer"`.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiLinearProgress-colorPrimary</span> | Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant="buffer"`.
 | <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiLinearProgress-colorSecondary</span> | Styles applied to the root and bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`.
 | <span class="prop-name">determinate</span> | <span class="prop-name">.MuiLinearProgress-determinate</span> | Styles applied to the root element if `variant="determinate"`.
 | <span class="prop-name">indeterminate</span> | <span class="prop-name">.MuiLinearProgress-indeterminate</span> | Styles applied to the root element if `variant="indeterminate"`.
