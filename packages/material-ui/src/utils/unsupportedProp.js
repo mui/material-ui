@@ -1,4 +1,4 @@
-function unsupportedProp(props, propName, componentName, location, propFullName) {
+export default function unsupportedProp(props, propName, componentName, location, propFullName) {
   if (process.env.NODE_ENV === 'production') {
     return null;
   }
@@ -11,5 +11,3 @@ function unsupportedProp(props, propName, componentName, location, propFullName)
 
   return null;
 }
-
-export default unsupportedProp;
