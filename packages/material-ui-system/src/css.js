@@ -20,7 +20,7 @@ function css(styleFunction) {
     if (props.css) {
       return {
         ...merge(output, styleFunction({ theme: props.theme, ...props.css })),
-        ...omit(props.css, [styleFunction.filterProps]),
+        ...omit(props.css, styleFunction.filterProps),
       };
     }
 
