@@ -48,8 +48,8 @@ export const styles = theme => {
       visibility: 'hidden',
       maxWidth: 0,
       transition: theme.transitions.create('max-width', {
-        duration: 50,
-        delay: 0,
+        duration: theme.transitions.duration.shorter,
+        easing: theme.transitions.easing.easeOut,
       }),
       '& span': {
         paddingLeft: 4,
@@ -59,8 +59,8 @@ export const styles = theme => {
     legendNotched: {
       maxWidth: 1000,
       transition: theme.transitions.create('max-width', {
-        duration: 100,
-        delay: 60,
+        duration: theme.transitions.duration.shorter,
+        easing: theme.transitions.easing.easeOut,
       }),
     },
   };
