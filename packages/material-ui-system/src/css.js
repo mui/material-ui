@@ -13,32 +13,28 @@ function omit(input, fields) {
   return output;
 }
 
-function handleCss(styleFunction, theme) {
-  const apply = styles => {
-    const cssStyles = omit(styles, styleFunction.filterProps);
-    const output = {
-      ...styleFunction({ theme, ...styles }),
-      ...cssStyles,
-    };
-
-    Object.keys(cssStyles).forEach(key => {
-      if (typeof cssStyles[key] === 'object') {
-        output[key] = apply(cssStyles[key]);
-      }
-    });
-
-    return output;
-  };
-
-  return apply;
-}
-
 function css(styleFunction) {
   const newStyleFunction = props => {
     const output = styleFunction(props) || {};
 
     if (props.css) {
-      return merge(output, handleCss(styleFunction, props.theme)(props.css));
+      const apply = styles => {
+        const cssProps = omit(styles, styleFunction.filterProps);
+        const cssOutput = {
+          ...styleFunction({ theme: props.theme, ...styles }),
+          ...cssProps,
+        };
+
+        Object.keys(cssProps).forEach(key => {
+          if (cssProps[key] && typeof cssProps[key] === 'object') {
+            cssOutput[key] = apply(cssProps[key]);
+          }
+        });
+
+        return cssOutput;
+      };
+
+      return merge(output, apply(props.css));
     }
 
     return output;
