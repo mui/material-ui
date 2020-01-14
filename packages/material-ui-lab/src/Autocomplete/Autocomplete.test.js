@@ -814,6 +814,27 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
       expect(handleChange.callCount).to.equal(1);
     });
+
+    it('should not delete exiting tag when try to add it twice', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      const { container } = render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          freeSolo
+          renderInput={params => <TextField {...params} autoFocus />}
+          multiple
+        />,
+      );
+      fireEvent.change(document.activeElement, { target: { value: 'three' } });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(container.querySelectorAll('[class*="MuiChip-root"]')).to.have.length(3);
+      fireEvent.change(document.activeElement, { target: { value: 'three' } });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(container.querySelectorAll('[class*="MuiChip-root"]')).to.have.length(3);
+    });
   });
 
   describe('prop: onInputChange', () => {

@@ -430,7 +430,7 @@ export default function useAutocomplete(props) {
     setValue(newValue);
   };
 
-  const selectNewValue = (event, newValue) => {
+  const selectNewValue = (event, newValue, origin = 'option') => {
     if (multiple) {
       const item = newValue;
       newValue = Array.isArray(value) ? [...value] : [];
@@ -439,7 +439,7 @@ export default function useAutocomplete(props) {
 
       if (itemIndex === -1) {
         newValue.push(item);
-      } else {
+      } else if (origin !== 'freeSolo') {
         newValue.splice(itemIndex, 1);
       }
     }
@@ -597,7 +597,7 @@ export default function useAutocomplete(props) {
             // Allow people to add new values before they submit the form.
             event.preventDefault();
           }
-          selectNewValue(event, inputValue);
+          selectNewValue(event, inputValue, 'freeSolo');
         }
         break;
       case 'Escape':
