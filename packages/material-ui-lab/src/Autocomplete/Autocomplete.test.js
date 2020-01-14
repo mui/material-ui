@@ -818,21 +818,22 @@ describe('<Autocomplete />', () => {
     it('should not delete exiting tag when try to add it twice', () => {
       const handleChange = spy();
       const options = ['one', 'two'];
-      const { getAllByRole } = render(
+      const { container } = render(
         <Autocomplete
           defaultValue={options}
           options={options}
           onChange={handleChange}
+          freeSolo
           renderInput={params => <TextField {...params} autoFocus />}
           multiple
         />,
       );
       fireEvent.change(document.activeElement, { target: { value: 'three' } });
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(container.querySelectorAll('[class*="MuiChip-root"]')).to.have.length(3);
       fireEvent.change(document.activeElement, { target: { value: 'three' } });
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
-      const buttons = getAllByRole('button');
-      expect(buttons).to.have.length(4);
+      expect(container.querySelectorAll('[class*="MuiChip-root"]')).to.have.length(3);
     });
   });
 
