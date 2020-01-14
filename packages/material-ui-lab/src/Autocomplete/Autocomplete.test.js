@@ -814,6 +814,26 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
       expect(handleChange.callCount).to.equal(1);
     });
+
+    it('should not delete exiting tag when try to add it twice', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      const { getAllByRole } = render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          renderInput={params => <TextField {...params} autoFocus />}
+          multiple
+        />,
+      );
+      fireEvent.change(document.activeElement, { target: { value: 'three' } });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      fireEvent.change(document.activeElement, { target: { value: 'three' } });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      const buttons = getAllByRole('button');
+      expect(buttons).to.have.length(4);
+    });
   });
 
   describe('prop: onInputChange', () => {
