@@ -70,6 +70,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     onFocus,
     onKeyDown,
     TransitionComponent = Collapse,
+    TransitionProps,
     ...other
   } = props;
 
@@ -298,6 +299,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
           in={expanded}
           component="ul"
           role="group"
+          {...TransitionProps}
         >
           {children}
         </TransitionComponent>
@@ -362,8 +364,13 @@ TreeItem.propTypes = {
   onKeyDown: PropTypes.func,
   /**
    * The component used for the transition.
+   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */
   TransitionComponent: PropTypes.elementType,
+  /**
+   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiTreeItem' })(TreeItem);
