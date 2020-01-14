@@ -858,6 +858,7 @@ export default function useAutocomplete(props) {
       return {
         key: index,
         tabIndex: -1,
+        disabled,
         role: 'option',
         id: `${id}-option-${index}`,
         onMouseOver: handleOptionMouseOver,

@@ -83,6 +83,12 @@ export interface AutocompleteProps<T>
    */
   ListboxProps?: object;
   /**
+   * The component used to render the list item option.
+   *
+   * This will override `renderOption` as well as `getOptionLabel`. It allows greater control of the option rendering.
+   */
+  ListOptionComponent?: React.ComponentType<React.HTMLAttributes<HTMLElement> & T>;
+  /**
    * If `true`, the component is in a loading state.
    */
   loading?: boolean;

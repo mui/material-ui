@@ -248,6 +248,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     inputValue: inputValueProp,
     ListboxComponent = 'ul',
     ListboxProps,
+    ListOptionComponent = 'li',
     loading = false,
     loadingText = 'Loading…',
     multiple = false,
@@ -334,6 +335,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
 
   const renderListOption = (option, index) => {
     const optionProps = getOptionProps({ option, index });
+
+    if (ListOptionComponent !== 'li') {
+      return <ListOptionComponent {...option} {...optionProps} className={classes.option} />;
+    }
 
     return (
       <li {...optionProps} className={classes.option}>
@@ -613,6 +618,12 @@ Autocomplete.propTypes = {
    * Props applied to the Listbox element.
    */
   ListboxProps: PropTypes.object,
+  /**
+   * The component used to render the list item option.
+   *
+   * This will override `renderOption` as well as `getOptionLabel`. It allows greater control of the option rendering.
+   */
+  ListOptionComponent: PropTypes.elementType,
   /**
    * If `true`, the component is in a loading state.
    */

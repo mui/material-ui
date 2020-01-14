@@ -1,7 +1,10 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
+import Tooltip from '@material-ui/core/Tooltip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import Info from '@material-ui/icons/Info';
+import Button from '@material-ui/core/Button';
 
 export default function Playground() {
   const defaultProps = {
@@ -124,6 +127,36 @@ export default function Playground() {
         disablePortal
         renderInput={params => (
           <TextField {...params} label="disablePortal" margin="normal" fullWidth />
+        )}
+      />
+      <Autocomplete
+        {...defaultProps}
+        id="list-option"
+        debug
+        getOptionDisabled={({ year }) => year > 2000}
+        ListOptionComponent={({ title, year, ...props }) => {
+          if (year > 2000) {
+            return (
+              <Tooltip title={`Too Old ${year}`} placement="right-end">
+                <div>
+                  <Button endIcon={<Info />} component="li" {...props} fullWidth>
+                    {title} - {year}
+                  </Button>
+                </div>
+              </Tooltip>
+            );
+          }
+
+          return (
+            <Button component="li" {...props} fullWidth>
+              <span>
+                {title} - {year}
+              </span>
+            </Button>
+          );
+        }}
+        renderInput={params => (
+          <TextField {...params} label="DisableOld w/ tooltip" margin="normal" fullWidth />
         )}
       />
     </div>
