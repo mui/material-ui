@@ -33,7 +33,7 @@ export const styles = theme => {
     legend: {
       textAlign: 'left',
       padding: 0,
-      lineHeight: '11px',
+      lineHeight: '11px', // sync with `height` in `legend` styles
       transition: theme.transitions.create('width', {
         duration: theme.transitions.duration.shorter,
         easing: theme.transitions.easing.easeOut,
@@ -43,7 +43,7 @@ export const styles = theme => {
     legendLabelled: {
       textAlign: 'left',
       padding: 0,
-      lineHeight: '11px',
+      height: 11, // sync with `lineHeight` in `legend` styles
       fontSize: '0.75rem',
       visibility: 'hidden',
       maxWidth: 0,
