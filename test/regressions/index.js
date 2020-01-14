@@ -79,6 +79,8 @@ const blacklist = [
   'docs-components-selects/DialogSelect.png', // Needs interaction
   'docs-components-selects/GroupedSelect.png', // Needs interaction
   'docs-components-skeleton/Animations.png', // Animation disabled
+  'docs-components-skeleton/Facebook.png', // Flaky image loading
+  'docs-components-skeleton/YouTube.png', // Flaky image loading
   'docs-components-snackbars/ConsecutiveSnackbars.png', // Needs interaction
   'docs-components-snackbars/CustomizedSnackbars.png', // Redundant
   'docs-components-snackbars/DirectionSnackbar.png', // Needs interaction
@@ -91,6 +93,7 @@ const blacklist = [
   'docs-components-stepper/HorizontalNonLinearAlternativeLabelStepper.png', // Redundant
   'docs-components-stepper/HorizontalNonLinearStepper.png', // Redundant
   'docs-components-stepper/SwipeableTextMobileStepper.png', // Redundant
+  'docs-components-steppers/SwipeableTextMobileStepper.png', // Flaky image loading
   'docs-components-textarea-autosize', // Superseded by a dedicated regression test
   'docs-components-tooltips', // Needs interaction
   'docs-components-transitions', // Needs interaction
@@ -106,6 +109,7 @@ const blacklist = [
   'docs-discover-more-showcase', // Not needed
   'docs-discover-more-team', // Not needed
   'docs-getting-started-templates', // Not needed
+  'docs-getting-started-templates-album/Album.png', // Flaky image loading
   'docs-getting-started-templates-blog', // Not needed
   'docs-getting-started-templates-checkout/AddressForm.png', // Already tested once assembled
   'docs-getting-started-templates-checkout/PaymentForm.png', // Already tested once assembled
