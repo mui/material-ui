@@ -6,8 +6,6 @@ import useTheme from '../styles/useTheme';
 import capitalize from '../utils/capitalize';
 
 export const styles = theme => {
-  const align = theme.direction === 'rtl' ? 'right' : 'left';
-
   return {
     /* Styles applied to the root element. */
     root: {
@@ -23,11 +21,6 @@ export const styles = theme => {
       borderRadius: 'inherit',
       borderStyle: 'solid',
       borderWidth: 1,
-      // Match the Input Label
-      transition: theme.transitions.create([`padding-${align}`, 'border-color', 'border-width'], {
-        duration: theme.transitions.duration.shorter,
-        easing: theme.transitions.easing.easeOut,
-      }),
     },
     /* Styles applied to the legend element when `labelWidth` is provided. */
     legend: {
@@ -35,7 +28,7 @@ export const styles = theme => {
       padding: 0,
       lineHeight: '11px', // sync with `height` in `legend` styles
       transition: theme.transitions.create('width', {
-        duration: theme.transitions.duration.shorter,
+        duration: 150,
         easing: theme.transitions.easing.easeOut,
       }),
     },
@@ -48,19 +41,21 @@ export const styles = theme => {
       visibility: 'hidden',
       maxWidth: 0.01,
       transition: theme.transitions.create('max-width', {
-        duration: theme.transitions.duration.shorter,
+        duration: 50,
         easing: theme.transitions.easing.easeOut,
       }),
       '& span': {
-        paddingLeft: 4,
-        paddingRight: 6,
+        paddingLeft: 5,
+        paddingRight: 5,
       },
     },
+    /* Styles applied to the legend element is notched. */
     legendNotched: {
       maxWidth: 1000,
       transition: theme.transitions.create('max-width', {
-        duration: theme.transitions.duration.shorter,
+        duration: 100,
         easing: theme.transitions.easing.easeOut,
+        delay: 50,
       }),
     },
   };
@@ -111,7 +106,7 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
     <fieldset
       aria-hidden
       style={{
-        [`padding${capitalize(align)}`]: 8 + (notched ? 0 : labelWidth / 2),
+        [`padding${capitalize(align)}`]: 8,
         ...style,
       }}
       className={clsx(classes.root, className)}
