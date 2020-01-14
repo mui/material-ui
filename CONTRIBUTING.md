@@ -92,6 +92,7 @@ Because we will only merge a Pull Request for which all tests pass. The followin
 - The code is linted (run `yarn lint`).
 - If API documentation is being changed in the source (run `yarn docs:api`).
 - If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes.
+  See [about writing demos](#3-write-the-content-of-the-demo).
 - The Pull Request title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/#imperative) for a great explanation)
 
 #### Checks and how to fix them
