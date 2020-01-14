@@ -68,6 +68,10 @@ They support many different use cases (editable, filtering, grouping, sorting, s
 
 - [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/): Charts for Material-UI that visualizes data using a variety of series types, including bar, line, area, scatter, pie, and more ([paid license](https://js.devexpress.com/licensing/)).
 
+### Dialogs
+
+- [material-ui-confirm](https://github.com/jonatanklosko/material-ui-confirm): Provides easy to use confirmation dialogs to simplify confirming user actions without writing boilerplate code.
+
 ## Theming
 
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/): An online tool for creating Material-UI themes via Material Design Color Tool.
