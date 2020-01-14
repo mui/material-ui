@@ -10,20 +10,18 @@ const reqPrefix = 'pages/versions';
 export default function Page() {
   return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
-let cacheBranches = null;
 
 async function getBranches() {
+  let branches = [];
   try {
-    if (!cacheBranches) {
-      const result = await fetch('https://api.github.com/repos/mui-org/material-ui-docs/branches');
-      cacheBranches = await result.json();
-    }
+    const result = await fetch('https://api.github.com/repos/mui-org/material-ui-docs/branches');
+    branches = await result.json();
   } catch (err) {
     // Swallow the exceptions.
   }
 
-  cacheBranches = cacheBranches || [];
-  return cacheBranches;
+  branches = branches || [];
+  return branches;
 }
 
 Page.getInitialProps = async () => {

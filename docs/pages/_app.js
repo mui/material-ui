@@ -269,7 +269,6 @@ function findActivePage(currentPages, pathname) {
 
 function AppWrapper(props) {
   const { children, pageProps } = props;
-
   const router = useRouter();
   const [redux] = React.useState(() => initRedux(pageProps.reduxServerState));
 
@@ -313,7 +312,7 @@ function AppWrapper(props) {
           ))}
         </NextHead>
         <ReduxProvider store={redux}>
-          <PageContext.Provider value={{ activePage, pages }}>
+          <PageContext.Provider value={{ activePage, pages, versions: pageProps.versions }}>
             <StylesProvider jss={jss}>
               <ThemeProvider>{children}</ThemeProvider>
             </StylesProvider>
@@ -335,10 +334,6 @@ AppWrapper.propTypes = {
 export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
-
-    if (pageProps.versions) {
-      global.__VERSION__ = pageProps.versions;
-    }
 
     return (
       <AppWrapper pageProps={pageProps}>

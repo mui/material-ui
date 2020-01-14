@@ -8,6 +8,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
+import PageContext from 'docs/src/modules/components/PageContext';
 
 const GITHUB_RELEASE_BASE_URL = 'https://github.com/mui-org/material-ui/releases/tag/';
 
@@ -21,21 +22,13 @@ const styles = {
 
 function StableVersions(props) {
   const { classes } = props;
-  // eslint-disable-next-line no-underscore-dangle
-  const [docs, setDocs] = React.useState(global.__VERSION__);
-
-  React.useEffect(() => {
-    (async () => {
-      // eslint-disable-next-line no-underscore-dangle
-      setDocs(global.__VERSION__);
-    })();
-  }, []);
+  const { versions } = React.useContext(PageContext);
 
   return (
     <div className={classes.root}>
       <Table>
         <TableBody>
-          {docs.map(doc => (
+          {versions.map(doc => (
             <TableRow key={doc.version}>
               <TableCell>
                 <Typography variant="body2">
