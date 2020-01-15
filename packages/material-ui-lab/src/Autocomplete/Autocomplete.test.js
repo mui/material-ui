@@ -39,6 +39,24 @@ describe('<Autocomplete />', () => {
       document.activeElement.blur();
       expect(input.value).to.equal('');
     });
+
+    it('should apply the hasClearIcon class', () => {
+      const { container } = render(
+        <Autocomplete renderInput={params => <TextField {...params} />} />,
+      );
+      expect(container.querySelector('[class*="MuiAutocomplete-root"]')).to.have.class(
+        classes.hasClearIcon,
+      );
+    });
+
+    it('should apply the hasPopupIcon class', () => {
+      const { container } = render(
+        <Autocomplete renderInput={params => <TextField {...params} />} />,
+      );
+      expect(container.querySelector('[class*="MuiAutocomplete-root"]')).to.have.class(
+        classes.hasPopupIcon,
+      );
+    });
   });
 
   describe('multiple', () => {
@@ -547,6 +565,71 @@ describe('<Autocomplete />', () => {
         );
         expect(queryByTitle('Clear')).to.be.null;
       });
+
+      it('should not apply the hasClearIcon class', () => {
+        const { container } = render(
+          <Autocomplete
+            disabled
+            options={['one', 'two', 'three']}
+            renderInput={params => <TextField {...params} />}
+          />,
+        );
+        expect(container.querySelector('[class*="MuiAutocomplete-root"]')).not.to.have.class(
+          classes.hasClearIcon,
+        );
+      });
+
+      it('should still apply the hasPopupIcon class', () => {
+        const { container } = render(
+          <Autocomplete
+            disabled
+            options={['one', 'two', 'three']}
+            renderInput={params => <TextField {...params} />}
+          />,
+        );
+        expect(container.querySelector('[class*="MuiAutocomplete-root"]')).to.have.class(
+          classes.hasPopupIcon,
+        );
+      });
+    });
+
+    describe('prop: disableClearable', () => {
+      it('should not render the clear button', () => {
+        const { queryByTitle } = render(
+          <Autocomplete
+            disableClearable
+            options={['one', 'two', 'three']}
+            renderInput={params => <TextField {...params} />}
+          />,
+        );
+        expect(queryByTitle('Clear')).to.be.null;
+      });
+
+      it('should still apply the hasPopupIcon class', () => {
+        const { container } = render(
+          <Autocomplete
+            disableClearable
+            options={['one', 'two', 'three']}
+            renderInput={params => <TextField {...params} />}
+          />,
+        );
+        expect(container.querySelector('[class*="MuiAutocomplete-root"]')).to.have.class(
+          classes.hasPopupIcon,
+        );
+      });
+
+      it('should not apply the hasClearIcon class', () => {
+        const { container } = render(
+          <Autocomplete
+            disableClearable
+            options={['one', 'two', 'three']}
+            renderInput={params => <TextField {...params} />}
+          />,
+        );
+        expect(container.querySelector('[class*="MuiAutocomplete-root"]')).not.to.have.class(
+          classes.hasClearIcon,
+        );
+      });
     });
   });
 
@@ -834,6 +917,21 @@ describe('<Autocomplete />', () => {
       fireEvent.change(document.activeElement, { target: { value: 'three' } });
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
       expect(container.querySelectorAll('[class*="MuiChip-root"]')).to.have.length(3);
+    });
+
+    it('should not apply hasPopupIcon class', () => {
+      const handleChange = spy();
+      const options = [{ name: 'foo' }];
+      const { container } = render(
+        <Autocomplete
+          freeSolo
+          onChange={handleChange}
+          options={options}
+          getOptionLabel={option => option.name}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      expect(container).not.to.have.class(classes.hasPopupIcon);
     });
   });
 

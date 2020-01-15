@@ -91,6 +91,8 @@ Any other props supplied will be provided to the root element (native element).
 | <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Pseudo-class applied to the root element if focused.
 | <span class="prop-name">tag</span> | <span class="prop-name">.MuiAutocomplete-tag</span> | Styles applied to the tag elements, e.g. the chips.
 | <span class="prop-name">tagSizeSmall</span> | <span class="prop-name">.MuiAutocomplete-tagSizeSmall</span> | Styles applied to the tag elements, e.g. the chips if `size="small"`.
+| <span class="prop-name">hasPopupIcon</span> | <span class="prop-name">.MuiAutocomplete-hasPopupIcon</span> | Styles applied when the popup icon is rendered.
+| <span class="prop-name">hasClearIcon</span> | <span class="prop-name">.MuiAutocomplete-hasClearIcon</span> | Styles applied when the clear icon is rendered.
 | <span class="prop-name">inputRoot</span> | <span class="prop-name">.MuiAutocomplete-inputRoot</span> | Styles applied to the Input element.
 | <span class="prop-name">input</span> | <span class="prop-name">.MuiAutocomplete-input</span> | Styles applied to the input element.
 | <span class="prop-name">inputFocused</span> | <span class="prop-name">.MuiAutocomplete-inputFocused</span> | Styles applied to the input element if tag focused.
