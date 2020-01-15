@@ -26,27 +26,6 @@ describe('<Skeleton />', () => {
     refInstanceof: window.HTMLSpanElement,
   }));
 
-  describeConformance(<Skeleton variant="text" />, () => ({
-    classes,
-    inheritComponent: 'span',
-    mount,
-    refInstanceof: window.HTMLSpanElement,
-  }));
-
-  describeConformance(<Skeleton variant="rect" />, () => ({
-    classes,
-    inheritComponent: 'div',
-    mount,
-    refInstanceof: window.HTMLDivElement,
-  }));
-
-  describeConformance(<Skeleton variant="circle" />, () => ({
-    classes,
-    inheritComponent: 'div',
-    mount,
-    refInstanceof: window.HTMLDivElement,
-  }));
-
   it('should render', () => {
     const { container } = render(<Skeleton />);
 
