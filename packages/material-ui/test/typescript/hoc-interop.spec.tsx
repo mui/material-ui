@@ -22,15 +22,13 @@ const filledProps = {
 // baseline behavvior
 <TextField variant="filled" {...filledProps} />;
 // $ExpectError
-<TextField {...filledProps} />; // desired
+<TextField {...filledProps} />; // desired to throw
 
 // styled
 {
   const StyledTextField = styled(TextField)``;
-  // $ExpectError
-  <StyledTextField variant="filled" {...filledProps} />; // undesired, fixable by using older version 4.1.20
-  // $ExpectError
-  <StyledTextField {...filledProps} />; // desired
+  <StyledTextField variant="filled" {...filledProps} />; // desired to pass
+  <StyledTextField {...filledProps} />; // undesired, should throw
 }
 
 // @emotion/styled
@@ -38,8 +36,7 @@ const filledProps = {
   const StyledTextField = emotionStyled(TextField)``;
   // $ExpectError
   <StyledTextField variant="filled" {...filledProps} />; // undesired
-  // $ExpectError
-  <StyledTextField {...filledProps} />; // desired
+  <StyledTextField {...filledProps} />; // undesired, should throw
 }
 
 // react-router

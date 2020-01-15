@@ -67,8 +67,8 @@ export default function GoogleMaps() {
 
   const fetch = React.useMemo(
     () =>
-      throttle((input, callback) => {
-        (autocompleteService.current as any).getPlacePredictions(input, callback);
+      throttle((request: { input: string }, callback: (results?: PlaceType[]) => void) => {
+        (autocompleteService.current as any).getPlacePredictions(request, callback);
       }, 200),
     [],
   );
