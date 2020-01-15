@@ -51,11 +51,6 @@ export type Overwrite<T, U> = Omit<T, keyof U> & U;
 // https://stackoverflow.com/a/49928360/3406963 without generic branch types
 export type IsAny<T> = 0 extends (1 & T) ? true : false;
 
-/**
- * Returns an empty object type if T is any, otherwise returns T
- */
-export type CoerceEmptyInterface<T> = IsAny<T> extends true ? {} : T;
-
 export type Or<A, B, C = false> = A extends true
   ? true
   : B extends true
