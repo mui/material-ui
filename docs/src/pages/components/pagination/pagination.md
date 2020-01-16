@@ -9,15 +9,15 @@ components: Pagination
 
 ## Pagination
 
-{{"demo": "pages/components/pagination/Pagination.js"}}
+{{"demo": "pages/components/pagination/BasicPagination.js"}}
 
 ## Outlined pagination
 
 {{"demo": "pages/components/pagination/PaginationOutlined.js"}}
 
-## Outlined rounded pagination
+## Rounded pagination
 
-{{"demo": "pages/components/pagination/PaginationOutlinedRounded.js"}}
+{{"demo": "pages/components/pagination/PaginationRounded.js"}}
 
 ## Pagination size
 

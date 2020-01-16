@@ -209,7 +209,7 @@ function ariaLabel(type, page, selected) {
   return `Go to ${type} page`;
 }
 
-function PaginationItem(props) {
+const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
   const {
     classes,
     className,
@@ -258,7 +258,7 @@ function PaginationItem(props) {
       )}
     </React.Fragment>
   );
-}
+});
 
 PaginationItem.propTypes = {
   /**
@@ -279,7 +279,7 @@ PaginationItem.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the button will be disabled.
+   * If `true`, the item will be disabled.
    */
   disabled: PropTypes.bool,
   /**

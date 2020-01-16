@@ -11,7 +11,7 @@ export const styles = {
     display: 'flex',
     flexWrap: 'wrap',
     alignItems: 'center',
-    listStyleType: 'none',
+    listStyle: 'none',
     padding: 0, // Reset
     margin: 0, // Reset
   },
@@ -46,7 +46,7 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
     >
       {children ||
         items.map((item, index) => (
-          <li>{renderItem({ key: index.toString(), ...item, ...itemProps })}</li>
+          <li key={index.toString()}>{renderItem({ ...item, ...itemProps })}</li>
         ))}
     </ul>
   );
