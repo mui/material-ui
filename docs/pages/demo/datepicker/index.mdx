@@ -2,37 +2,36 @@ import Ad from '_shared/Ad';
 import Example from '_shared/Example';
 import PageMeta from '_shared/PageMeta';
 import LinkedComponents from '_shared/LinkedComponents';
+import { Hidden } from '@material-ui/core';
 
 import * as CustomDay from './CustomDay.example';
 import * as ServerRequest from './ServerRequest.example';
 import * as ViewsDatePicker from './ViewsDatePicker.example';
 import * as BasicDatePicker from './BasicDatePicker.example';
 import * as StaticDatePicker from './StaticDatePicker.example';
-import * as InlineDatePicker from './InlineDatePicker.example';
-import * as KeyboardDatePicker from './KeyboardDatePicker.example';
+import * as DatePickers from './DatePickers.example';
+import * as AdvancedKeyboard from './AdvancedKeyboard.example';
 
 <PageMeta component="Datepicker" />
 
 ## Date picker
 
-Date pickers use a dialog window or an inline popover to select a single date.
-The selected day is indicated by a filled circle. The current day is indicated by a different
-color and type weight.
+[Date pickers](https://material.io/components/pickers/) let users select a date, or a range of dates. They should be suitable for the context in which they appear.
 
 <Ad />
 
 #### Basic usage
 
+Will be rendered to modal dialog on mobile and textfield with popover on desktop.
+
 <Example testId="datepicker-example" source={BasicDatePicker} />
 
-#### Keyboard Input
+#### Responsiveness
 
-It is recommended to use keyboard input with mask for a better desktop experience. Make sure that mask will be automatically
-generated from passed `format`. It's recommended to use only robust formats for keyboard input.
+Date/Time pickers experience is extremely different on mobile and desktop. Here is how components will look on different devices.
+The default `Datepicker` component is responsive, which means that `Mobile` or `Desktop` mode will be rendered according to device viewport.
 
-> Make sure that `onChange` has a second parameter here. So if you will not do `onChange={date => handleDateChange(date)}` you will get the console warning that [useState hook does not accept a second callback argument.](https://github.com/facebook/react/issues/14174)
-
-<Example source={KeyboardDatePicker} />
+<Example source={DatePickers} />
 
 #### Different views
 
@@ -45,16 +44,20 @@ Thus you can easily create
 
 <Example source={ViewsDatePicker} />
 
-#### Inline mode
-
-<Example source={InlineDatePicker} />
-
 #### Static mode
 
-It is possible to render any picker inline. This will be really helpful to build custom popover/modal containers.
-For that use `variant="static"`.
+It is possible to render any picker without modal or popover. This can be really helpful to build custom popover/modal containers.
+For that use `StaticDatePicker`.
 
-<Example paddingBottom source={StaticDatePicker} />
+<Hidden smDown>
+  <Example paddingBottom source={StaticDatePicker} />
+</Hidden>
+
+#### Advanced keyboard input
+
+We are providing default localized formats, but you can change this behaviour with `format` and `mask` props.
+
+<Example source={AdvancedKeyboard} />
 
 #### Customization
 

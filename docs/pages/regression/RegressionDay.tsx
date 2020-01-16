@@ -8,5 +8,5 @@ export const createRegressionDay = (utils: IUtils<any>) => (
   dayInCurrentMonth: boolean,
   dayComponent: React.ReactElement<IconButtonProps>
 ) => {
-  return <span data-day={utils.format(day, 'dd/MM/yyyy')}>{dayComponent}</span>;
+  return <span data-day={utils.formatByString(day, 'dd/MM/yyyy')}>{dayComponent}</span>;
 };

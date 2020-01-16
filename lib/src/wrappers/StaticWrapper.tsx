@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { DIALOG_WIDTH } from '../constants/dimensions';
+import { WrapperVariantContext } from './WrapperVariantContext';
 
 const useStyles = makeStyles(
   theme => ({
@@ -18,5 +19,9 @@ const useStyles = makeStyles(
 export const StaticWrapper: React.FC = ({ children }) => {
   const classes = useStyles();
 
-  return <div className={classes.staticWrapperRoot} children={children} />;
+  return (
+    <WrapperVariantContext.Provider value="static">
+      <div className={classes.staticWrapperRoot} children={children} />
+    </WrapperVariantContext.Provider>
+  );
 };

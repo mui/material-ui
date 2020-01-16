@@ -5,6 +5,8 @@ import MomentUtils from '@date-io/moment';
 import DateFnsUtils from '@date-io/date-fns';
 import MuiPickersUtilsProvider from '../MuiPickersUtilsProvider';
 import { IUtils } from '@date-io/core/IUtils';
+import { createMuiTheme } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core/styles';
 import { MaterialUiPickersDate } from '../typings/date';
 
 interface WithUtilsProps {
@@ -34,7 +36,11 @@ export const shallow = <P extends WithUtilsProps>(element: React.ReactElement<P>
   enzyme.shallow(getComponentWithUtils(element));
 
 export const mount = <P extends WithUtilsProps>(element: React.ReactElement<P>) =>
-  enzyme.mount(<MuiPickersUtilsProvider utils={UtilClassToUse}>{element}</MuiPickersUtilsProvider>);
+  enzyme.mount(
+    <ThemeProvider theme={createMuiTheme()}>
+      <MuiPickersUtilsProvider utils={UtilClassToUse}>{element}</MuiPickersUtilsProvider>
+    </ThemeProvider>
+  );
 
 export const shallowRender = (render: (props: any) => React.ReactElement<any>) => {
   return enzyme.shallow(render({ utils: utilsToUse, classes: {} as any, theme: {} as any }));

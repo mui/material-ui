@@ -1,5 +1,5 @@
 import { Theme } from '@material-ui/core';
-import { StyleRules } from '@material-ui/styles';
+import { StyleRules } from '@material-ui/core/styles';
 
 export const createOverrides = (theme: Theme): StyleRules<any> => ({
   body: {

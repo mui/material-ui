@@ -149,25 +149,25 @@ export const CalendarHeader: React.SFC<CalendarWithHeaderProps> = ({
         <div className={classes.monthTitleContainer}>
           <FadeTransitionGroup
             reduceAnimations={reduceAnimations}
-            transKey={utils.getMonthText(month)}
+            transKey={utils.format(month, 'month')}
           >
             <Typography
               data-mui-test="calendar-month-text"
               align="center"
               variant="subtitle1"
               className={classes.monthText}
-              children={utils.getMonthText(month)}
+              children={utils.format(month, 'month')}
             />
           </FadeTransitionGroup>
           <FadeTransitionGroup
             reduceAnimations={reduceAnimations}
-            transKey={utils.getYearText(month)}
+            transKey={utils.format(month, 'year')}
           >
             <Typography
               data-mui-test="calendar-year-text"
               align="center"
               variant="subtitle1"
-              children={utils.getYearText(month)}
+              children={utils.format(month, 'year')}
             />
           </FadeTransitionGroup>
 

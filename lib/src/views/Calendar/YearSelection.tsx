@@ -3,8 +3,8 @@ import Year from './Year';
 import { DateType } from '@date-io/type';
 import { makeStyles } from '@material-ui/core/styles';
 import { useUtils } from '../../_shared/hooks/useUtils';
-import { VariantContext } from '../../wrappers/Wrapper';
 import { MaterialUiPickersDate } from '../../typings/date';
+import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 
 export interface YearSelectionProps {
   date: MaterialUiPickersDate;
@@ -23,7 +23,6 @@ export const useStyles = makeStyles(
       flexDirection: 'row',
       flexWrap: 'wrap',
       overflowY: 'auto',
-      justifyContent: 'center',
       height: '100%',
     },
   },
@@ -41,14 +40,14 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
 }) => {
   const utils = useUtils();
   const classes = useStyles();
-  const currentVariant = React.useContext(VariantContext);
-  const selectedYearRef = React.useRef<HTMLElement>(null);
+  const wrapperVariant = React.useContext(WrapperVariantContext);
+  const selectedYearRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     if (selectedYearRef.current && selectedYearRef.current.scrollIntoView) {
       try {
         selectedYearRef.current.scrollIntoView({
-          block: currentVariant === 'static' ? 'nearest' : 'center',
+          block: wrapperVariant === 'static' ? 'nearest' : 'center',
         });
       } catch (e) {
         // call without arguments in case when scrollIntoView works improperly (e.g. Firefox 52-57)
@@ -79,7 +78,7 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
 
           return (
             <Year
-              key={utils.getYearText(year)}
+              key={utils.format(year, 'year')}
               selected={selected}
               value={yearNumber}
               onSelect={onYearSelect}
@@ -89,7 +88,7 @@ export const YearSelection: React.FC<YearSelectionProps> = ({
                   (disableFuture && utils.isAfterYear(year, utils.date()))
               )}
             >
-              {utils.getYearText(year)}
+              {utils.format(year, 'year')}
             </Year>
           );
         })}

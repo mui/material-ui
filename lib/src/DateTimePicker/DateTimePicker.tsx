@@ -1,28 +1,22 @@
 import { useUtils } from '../_shared/hooks/useUtils';
-import { PureDateInput } from '../_shared/PureDateInput';
-import { BaseClockProps } from '../views/Clock/ClockView';
+import { BaseClockViewProps } from '../views/Clock/ClockView';
 import { BaseDatePickerProps } from '../DatePicker/DatePicker';
 import { DateTimePickerToolbar } from './DateTimePickerToolbar';
-import { KeyboardDateInput } from '../_shared/KeyboardDateInput';
-import { usePickerState } from '../_shared/hooks/usePickerState';
+import { ResponsiveWrapper } from '../wrappers/ResponsiveWrapper';
 import { pick12hOr24hFormat } from '../_helpers/text-field-helper';
 import { dateTimePickerDefaultProps } from '../constants/prop-types';
-import { useKeyboardPickerState } from '../_shared/hooks/useKeyboardPickerState';
+import { InlineWrapper, ModalWrapper, StaticWrapper } from '../wrappers/Wrapper';
 import {
-  WithKeyboardInputProps,
-  makePickerWithState,
-  WithPureInputProps,
+  makePickerWithStateAndWrapper,
+  WithDateInputProps,
+  WithViewsProps,
 } from '../Picker/makePickerWithState';
 
 export type DateTimePickerView = 'year' | 'date' | 'month' | 'hours' | 'minutes' | 'seconds';
 
-export type BaseDateTimePickerProps = BaseClockProps & BaseDatePickerProps;
+export type BaseDateTimePickerProps = BaseClockViewProps & BaseDatePickerProps;
 
 export interface DateTimePickerViewsProps extends BaseDateTimePickerProps {
-  /** Array of views to show */
-  views?: ('year' | 'date' | 'month' | 'hours' | 'minutes')[];
-  /** First view to show in DatePicker */
-  openTo?: 'year' | 'date' | 'month' | 'hours' | 'minutes';
   /** To show tabs */
   hideTabs?: boolean;
   /** Date tab icon */
@@ -31,55 +25,67 @@ export interface DateTimePickerViewsProps extends BaseDateTimePickerProps {
   timeIcon?: React.ReactNode;
 }
 
-export type DateTimePickerProps = WithPureInputProps & DateTimePickerViewsProps;
+export type DateTimePickerProps = WithDateInputProps &
+  DateTimePickerViewsProps &
+  WithViewsProps<'year' | 'date' | 'month' | 'hours' | 'minutes'>;
 
-export type KeyboardDateTimePickerProps = WithKeyboardInputProps & DateTimePickerViewsProps;
-
-const defaultProps: DateTimePickerViewsProps = {
-  ...dateTimePickerDefaultProps,
-  // @ts-ignore
-  wider: true,
-  ampmInClock: true,
-  orientation: 'portrait',
-  openTo: 'date',
-  views: ['year', 'date', 'hours', 'minutes'],
-};
-
-function useOptions(props: DateTimePickerProps | KeyboardDateTimePickerProps) {
+function useDefaultProps({
+  ampm = false,
+  format,
+  orientation = 'portrait',
+  openTo = 'date',
+  views = ['year', 'date', 'hours', 'minutes'],
+}: DateTimePickerProps) {
   const utils = useUtils();
 
-  if (props.orientation !== 'portrait') {
+  if (orientation !== 'portrait') {
     throw new Error('We are not supporting custom orientation for DateTimePicker yet :(');
   }
 
   return {
-    getDefaultFormat: () =>
-      pick12hOr24hFormat(props.format, props.ampm, {
-        '12h': utils.dateTime12hFormat,
-        '24h': utils.dateTime24hFormat,
-      }),
+    ...dateTimePickerDefaultProps,
+    openTo,
+    views,
+    wider: true,
+    ampmInClock: true,
+    orientation,
+    showToolbar: true,
+    refuse: ampm ? /[^\dap]+/gi : /[^\d]+/gi,
+    format: pick12hOr24hFormat(format, ampm, {
+      '12h': utils.formats.keyboardDateTime12h,
+      '24h': utils.formats.keyboardDateTime24h,
+    }),
   };
 }
 
-export const DateTimePicker = makePickerWithState<DateTimePickerProps>({
-  useOptions,
-  Input: PureDateInput,
-  useState: usePickerState,
-  DefaultToolbarComponent: DateTimePickerToolbar,
-});
+export const DateTimePicker = makePickerWithStateAndWrapper<DateTimePickerProps>(
+  ResponsiveWrapper,
+  {
+    useDefaultProps,
+    DefaultToolbarComponent: DateTimePickerToolbar,
+  }
+);
 
-export const KeyboardDateTimePicker = makePickerWithState<KeyboardDateTimePickerProps>({
-  useOptions,
-  Input: KeyboardDateInput,
-  useState: useKeyboardPickerState,
-  DefaultToolbarComponent: DateTimePickerToolbar,
-  getCustomProps: props => ({
-    refuse: props.ampm ? /[^\dap]+/gi : /[^\d]+/gi,
-  }),
-});
+export const DesktopDateTimePicker = makePickerWithStateAndWrapper<DateTimePickerProps>(
+  InlineWrapper,
+  {
+    useDefaultProps,
+    DefaultToolbarComponent: DateTimePickerToolbar,
+  }
+);
 
-DateTimePicker.defaultProps = defaultProps;
-DateTimePicker.displayName = 'DateTimePicker';
+export const MobileDateTimePicker = makePickerWithStateAndWrapper<DateTimePickerProps>(
+  ModalWrapper,
+  {
+    useDefaultProps,
+    DefaultToolbarComponent: DateTimePickerToolbar,
+  }
+);
 
-KeyboardDateTimePicker.defaultProps = defaultProps;
-KeyboardDateTimePicker.displayName = 'DateTimePicker';
+export const StaticDateTimePicker = makePickerWithStateAndWrapper<DateTimePickerProps>(
+  StaticWrapper,
+  {
+    useDefaultProps,
+    DefaultToolbarComponent: DateTimePickerToolbar,
+  }
+);

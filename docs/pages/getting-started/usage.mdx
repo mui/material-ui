@@ -13,6 +13,8 @@ import { CODESANDBOX_EXAMPLE_ID } from '_constants';
 
 #### Quick start
 
+**Note** `onChange` has a second parameter. So if you will not do `onChange={date => handleDateChange(date)}` you will get the console warning that [useState hook does not accept a second callback argument.](https://github.com/facebook/react/issues/14174)
+
 ```jsx
 import React, { useState } from 'react';
 import DateFnsUtils from '@date-io/date-fns'; // choose your lib
@@ -28,9 +30,9 @@ function App() {
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <DatePicker value={selectedDate} onChange={handleDateChange} />
-      <TimePicker value={selectedDate} onChange={handleDateChange} />
-      <DateTimePicker value={selectedDate} onChange={handleDateChange} />
+      <DatePicker value={selectedDate} onChange={date => handleDateChange(date)} />
+      <TimePicker value={selectedDate} onChange={date => handleDateChange(date)} />
+      <DateTimePicker value={selectedDate} onChange={date => handleDateChange(date)} />
     </MuiPickersUtilsProvider>
   );
 }

@@ -19,7 +19,6 @@ function ControllingProgrammaticallyExample() {
       <Button onClick={() => setIsOpen(true)}> Open picker </Button>
 
       <DatePicker
-        variant="inline"
         open={isOpen}
         onOpen={() => setIsOpen(true)}
         onClose={() => setIsOpen(false)}

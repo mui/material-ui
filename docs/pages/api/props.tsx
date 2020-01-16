@@ -67,10 +67,19 @@ const Docs: React.FC<WithRouterProps> = ({ router }) => {
 
       {!internalComponents.includes(componentName) && (
         <>
-          <h4> Modal Wrapper </h4>
-          <Typography gutterBottom>Available only with variant "dialog" </Typography>
+          <h4> Mobile Wrapper </h4>
+          <Typography gutterBottom>
+            Props available on mobile device with {componentName} or with `Mobile{componentName}`
+          </Typography>
 
-          <PropTypesTable disableHeader src="ModalWrapper" />
+          <PropTypesTable disableHeader src="MobileWrapper" />
+
+          <h4> Desktop Wrapper </h4>
+          <Typography gutterBottom>
+            Props available on mobile device with `{componentName}` or with `Desktop{componentName}`
+          </Typography>
+
+          <PropTypesTable disableHeader src="DesktopWrapper" />
         </>
       )}
     </>

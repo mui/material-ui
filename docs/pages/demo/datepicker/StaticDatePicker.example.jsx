@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
-import { DatePicker } from '@material-ui/pickers';
+import { StaticDatePicker } from '@material-ui/pickers';
 
-const StaticDatePicker = () => {
+const StaticDatePickerExample = () => {
   const [date, handleDateChange] = useState(new Date());
 
   return (
     <>
-      <DatePicker
+      <StaticDatePicker
         autoOk
-        variant="static"
         openTo="year"
         value={date}
         onChange={date => handleDateChange(date)}
       />
 
-      <DatePicker
+      <StaticDatePicker
         autoOk
         orientation="landscape"
-        variant="static"
         openTo="date"
         value={date}
         onChange={date => handleDateChange(date)}
@@ -26,4 +24,4 @@ const StaticDatePicker = () => {
   );
 };
 
-export default StaticDatePicker;
+export default StaticDatePickerExample;

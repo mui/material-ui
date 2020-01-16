@@ -3,13 +3,32 @@ import { PickerView } from '../../Picker/Picker';
 import { arrayIncludes } from '../../_helpers/utils';
 import { MaterialUiPickersDate } from '../../typings/date';
 
-export function useViews(
-  views: PickerView[],
-  openTo: PickerView,
-  onChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void
-) {
-  const [openView, setOpenView] = React.useState(
+export function useViews({
+  views,
+  openTo,
+  onChange,
+  isMobileKeyboardViewOpen,
+  toggleMobileKeyboardView,
+}: {
+  views: PickerView[];
+  openTo: PickerView;
+  onChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
+  isMobileKeyboardViewOpen: boolean;
+  toggleMobileKeyboardView: () => void;
+}) {
+  const [openView, _setOpenView] = React.useState(
     openTo && arrayIncludes(views, openTo) ? openTo : views[0]
+  );
+
+  const setOpenView = React.useCallback(
+    (...args: Parameters<typeof _setOpenView>) => {
+      if (isMobileKeyboardViewOpen) {
+        toggleMobileKeyboardView();
+      }
+
+      _setOpenView(...args);
+    },
+    [isMobileKeyboardViewOpen, toggleMobileKeyboardView]
   );
 
   const nextView = views[views.indexOf(openView!) + 1];
@@ -17,7 +36,7 @@ export function useViews(
     if (nextView) {
       setOpenView(nextView);
     }
-  }, [nextView]);
+  }, [nextView, setOpenView]);
 
   const handleChangeAndOpenNext = React.useCallback(
     (date: MaterialUiPickersDate, isFinish?: boolean) => {
@@ -31,5 +50,11 @@ export function useViews(
     [nextView, onChange, openNext]
   );
 
-  return { nextView, openNext, handleChangeAndOpenNext, openView, setOpenView };
+  return {
+    nextView,
+    openNext,
+    handleChangeAndOpenNext,
+    openView,
+    setOpenView,
+  };
 }

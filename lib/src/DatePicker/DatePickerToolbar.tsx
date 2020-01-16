@@ -24,6 +24,8 @@ export const DatePickerToolbar: React.FC<ToolbarComponentProps> = ({
   date,
   views,
   isLandscape,
+  isMobileKeyboardViewOpen,
+  toggleMobileKeyboardView,
   title = 'SELECT DATE',
 }) => {
   const utils = useUtils();
@@ -31,18 +33,24 @@ export const DatePickerToolbar: React.FC<ToolbarComponentProps> = ({
 
   const dateText = React.useMemo(() => {
     if (isYearOnlyView(views as DatePickerView[])) {
-      return utils.getYearText(date);
+      return utils.format(date, 'year');
     }
 
     if (isYearAndMonthViews(views as DatePickerView[])) {
-      return utils.getMonthText(date);
+      return utils.format(date, 'month');
     }
 
-    return utils.getDatePickerHeaderText(date);
+    return utils.format(date, 'normalDate');
   }, [date, utils, views]);
 
   return (
-    <PickerToolbar title={title} isLandscape={isLandscape} penIconClassName={classes.penIcon}>
+    <PickerToolbar
+      title={title}
+      isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
+      toggleMobileKeyboardView={toggleMobileKeyboardView}
+      isLandscape={isLandscape}
+      penIconClassName={classes.penIcon}
+    >
       <Typography
         variant="h4"
         children={dateText}

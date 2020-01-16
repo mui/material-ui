@@ -32,17 +32,22 @@
     "email": "dmtr.kovalenko@outlook.com"
   },
   "peerDependencies": {
-    "@date-io/core": "^1.3.6",
+    "@types/react": "^16.8.6",
     "@material-ui/core": "^4.0.0",
-    "prop-types": "^15.6.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@babel/runtime": "^7.6.0",
     "clsx": "^1.0.2",
     "react-transition-group": "^4.0.0",
-    "rifm": "^0.7.0"
+    "rifm": "^0.7.0",
+    "prop-types": "^15.7.2"
   },
   "size-limit": [
     {
@@ -75,13 +80,13 @@
     "@babel/preset-react": "^7.0.0",
     "@cypress/browserify-preprocessor": "^2.1.1",
     "@cypress/webpack-preprocessor": "^4.1.1",
-    "@date-io/core": "^1.2.0",
-    "@date-io/date-fns": "^1.3.0",
-    "@date-io/luxon": "^1.3.0",
-    "@date-io/moment": "^1.3.0",
+    "@date-io/core": "^2.0.0",
+    "@date-io/date-fns": "^2.0.0",
+    "@date-io/luxon": "^2.0.0",
+    "@date-io/moment": "^2.0.0",
     "@material-ui/core": "^4.5.1",
     "@material-ui/icons": "^3.0.2",
-    "@material-ui/styles": "^4.5.0",
+    "@material-ui/styles": "^4.8.2",
     "@types/enzyme": "^3.1.17",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/fs-extra": "^5.0.4",

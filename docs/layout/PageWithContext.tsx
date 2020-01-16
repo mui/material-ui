@@ -10,8 +10,8 @@ import { UtilsContext } from '../_shared/UtilsServiceContext';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { NotificationManager } from 'utils/NotificationManager';
 import { Theme, createMuiTheme, CssBaseline } from '@material-ui/core';
-import { ThemeProvider, jssPreset, StylesProvider } from '@material-ui/styles';
 import { createUtilsService, UtilsLib, utilsMap } from '../utils/utilsService';
+import { ThemeProvider, jssPreset, StylesProvider } from '@material-ui/core/styles';
 
 export type ThemeType = 'light' | 'dark';
 export type Direction = Theme['direction'];

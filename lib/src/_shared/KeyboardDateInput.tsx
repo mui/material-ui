@@ -1,58 +1,19 @@
 import * as React from 'react';
-import TextField, { TextFieldProps } from '@material-ui/core/TextField';
-import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
-import InputAdornment, { InputAdornmentProps } from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import { Rifm } from 'rifm';
-import { ExtendMui } from '../typings/extendMui';
+import { useUtils } from './hooks/useUtils';
+import { DateInputProps } from './PureDateInput';
 import { KeyboardIcon } from './icons/KeyboardIcon';
-import { makeMaskFromFormat, maskedDateFormatter } from '../_helpers/text-field-helper';
+import {
+  makeMaskFromFormat,
+  maskedDateFormatter,
+  getDisplayDate,
+} from '../_helpers/text-field-helper';
 
-export interface KeyboardDateInputProps
-  extends ExtendMui<TextFieldProps, 'variant' | 'onError' | 'onChange' | 'value'> {
-  format: string;
-  onChange: (value: string | null) => void;
-  openPicker: () => void;
-  validationError?: React.ReactNode;
-  inputValue: string;
-  inputProps?: TextFieldProps['inputProps'];
-  InputProps?: TextFieldProps['InputProps'];
-  /** Override input component */
-  TextFieldComponent?: React.ComponentType<TextFieldProps>;
-  /** Icon displaying for open picker button */
-  keyboardIcon?: React.ReactNode;
-  /** Pass material-ui text field variant down, bypass internal variant prop */
-  inputVariant?: TextFieldProps['variant'];
-  /**
-   * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__)
-   */
-  mask?: string;
-  /**
-   * Char string that will be replaced with number (for "_" mask will be "__/__/____")
-   * @default '_'
-   */
-  maskChar?: string;
-  /**
-   * Refuse values regexp
-   * @default /[^\d]+/gi
-   */
-  refuse?: RegExp;
-  /**
-   * Props to pass to keyboard input adornment
-   * @type {Partial<InputAdornmentProps>}
-   */
-  InputAdornmentProps?: Partial<InputAdornmentProps>;
-  /**
-   * Props to pass to keyboard adornment button
-   * @type {Partial<IconButtonProps>}
-   */
-  KeyboardButtonProps?: Partial<IconButtonProps>;
-  /** Custom formatter to be passed into Rifm component */
-  rifmFormatter?: (str: string) => string;
-}
-
-export const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> = ({
-  inputValue,
-  inputVariant,
+export const KeyboardDateInput: React.FC<DateInputProps> = ({
+  rawValue,
   validationError,
   KeyboardButtonProps,
   InputAdornmentProps,
@@ -63,12 +24,29 @@ export const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> 
   maskChar = '_',
   refuse = /[^\d]+/gi,
   format,
-  keyboardIcon,
   disabled,
   rifmFormatter,
   TextFieldComponent = TextField,
+  keyboardIcon = <KeyboardIcon />,
+  variant,
+  emptyLabel,
+  invalidLabel,
+  labelFunc,
+  hideOpenPickerButton,
+  ignoreInvalidInputs,
   ...other
 }) => {
+  const utils = useUtils();
+  const getInputValue = () =>
+    getDisplayDate(rawValue, utils, {
+      format,
+      emptyLabel,
+      invalidLabel,
+      labelFunc,
+    });
+
+  const [innerInputValue, setInnerInputValue] = React.useState<string | null>(getInputValue());
+
   const inputMask = mask || makeMaskFromFormat(format, maskChar);
   // prettier-ignore
   const formatter = React.useMemo(
@@ -76,36 +54,57 @@ export const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> 
     [inputMask, maskChar, refuse]
   );
 
+  React.useEffect(() => {
+    if (rawValue === null || utils.isValid(rawValue)) {
+      setInnerInputValue(getInputValue());
+    }
+  }, [rawValue]); // eslint-disable-line
+
   const position =
     InputAdornmentProps && InputAdornmentProps.position ? InputAdornmentProps.position : 'end';
 
   const handleChange = (text: string) => {
     const finalString = text === '' || text === inputMask ? null : text;
-    onChange(finalString);
+    setInnerInputValue(finalString);
+
+    const date = finalString === null ? null : utils.parse(finalString, format);
+    if (ignoreInvalidInputs && !utils.isValid(date)) {
+      return;
+    }
+
+    onChange(date, finalString || undefined);
   };
 
   return (
     <Rifm
       key={inputMask}
-      value={inputValue}
+      value={innerInputValue || ''}
       onChange={handleChange}
       refuse={refuse}
       format={rifmFormatter || formatter}
     >
       {({ onChange, value }) => (
         <TextFieldComponent
+          variant={variant as any}
           disabled={disabled}
           error={Boolean(validationError)}
           helperText={validationError}
+          data-mui-test="keyboard-date-input"
           {...other}
           value={value}
           onChange={onChange}
-          variant={inputVariant as any}
           InputProps={{
             ...InputProps,
-            [`${position}Adornment`]: (
+            [`${position}Adornment`]: hideOpenPickerButton ? (
+              undefined
+            ) : (
               <InputAdornment position={position} {...InputAdornmentProps}>
-                <IconButton disabled={disabled} {...KeyboardButtonProps} onClick={onOpen}>
+                <IconButton
+                  data-mui-test="open-picker-from-keyboard"
+                  disabled={disabled}
+                  {...KeyboardButtonProps}
+                  onClick={onOpen}
+                >
                   {keyboardIcon}
                 </IconButton>
               </InputAdornment>
@@ -115,10 +114,6 @@ export const KeyboardDateInput: React.FunctionComponent<KeyboardDateInputProps> 
       )}
     </Rifm>
   );
-};
-
-KeyboardDateInput.defaultProps = {
-  keyboardIcon: <KeyboardIcon />,
 };
 
 export default KeyboardDateInput;

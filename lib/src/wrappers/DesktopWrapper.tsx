@@ -1,16 +1,23 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import Popover, { PopoverProps as PopoverPropsType } from '@material-ui/core/Popover';
+import KeyboardDateInput from '../_shared/KeyboardDateInput';
+import Popover, { PopoverProps } from '@material-ui/core/Popover';
 import { WrapperProps } from './Wrapper';
-import { TextFieldProps } from '@material-ui/core/TextField';
+import { InnerMobileWrapperProps } from './MobileWrapper';
+import { WrapperVariantContext } from './WrapperVariantContext';
 import { useKeyDownHandler } from '../_shared/hooks/useKeyDown';
 
-export interface InlineWrapperProps<T = TextFieldProps> extends WrapperProps<T> {
-  /** Popover props passed to material-ui Popover (with variant="inline") */
-  PopoverProps?: Partial<PopoverPropsType>;
+export interface InnerDesktopWrapperProps {
+  /** Popover props passed to material-ui Popover */
+  PopoverProps?: Partial<PopoverProps>;
 }
 
-export const InlineWrapper: React.FC<InlineWrapperProps> = ({
+export interface DesktopWrapperProps
+  extends InnerDesktopWrapperProps,
+    WrapperProps,
+    Partial<InnerMobileWrapperProps> {}
+
+export const DesktopWrapper: React.FC<DesktopWrapperProps> = ({
   open,
   wider,
   children,
@@ -21,7 +28,13 @@ export const InlineWrapper: React.FC<InlineWrapperProps> = ({
   onAccept,
   showTabs,
   DateInputProps,
-  InputComponent,
+  okLabel,
+  cancelLabel,
+  clearLabel,
+  todayLabel,
+  showTodayButton,
+  clearable,
+  DialogProps,
   ...other
 }) => {
   const ref = React.useRef();
@@ -30,8 +43,8 @@ export const InlineWrapper: React.FC<InlineWrapperProps> = ({
   });
 
   return (
-    <React.Fragment>
-      <InputComponent {...other} {...DateInputProps} inputRef={ref} />
+    <WrapperVariantContext.Provider value="desktop">
+      <KeyboardDateInput {...other} {...DateInputProps} inputRef={ref} />
 
       <Popover
         open={open}
@@ -49,11 +62,11 @@ export const InlineWrapper: React.FC<InlineWrapperProps> = ({
         children={children}
         {...PopoverProps}
       />
-    </React.Fragment>
+    </WrapperVariantContext.Provider>
   );
 };
 
-InlineWrapper.propTypes = {
+DesktopWrapper.propTypes = {
   onOpen: PropTypes.func,
   onClose: PropTypes.func,
   PopoverProps: PropTypes.object,

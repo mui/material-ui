@@ -32,14 +32,6 @@ describe('e2e - DateTimePicker', () => {
     expect(component.find('WithStyles(ForwardRef(Dialog))').prop('open')).toBeTruthy();
   });
 
-  it('Should update state when passing new value from outside', () => {
-    component.setProps({ value: '2018-01-01T00:00:00.000Z' });
-    component.update(); // make additional react tick to update text field
-
-    const expectedString = utilsToUse.format(utilsToUse.date('2018-01-01T00:00:00.000Z'), format);
-    expect(component.find('input').props().value).toBe(expectedString);
-  });
-
   it('Should change internal state on update', () => {
     component.find('input').simulate('click');
     component

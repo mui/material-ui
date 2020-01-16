@@ -2,6 +2,7 @@ import Ad from '_shared/Ad';
 import Example from '_shared/Example';
 import PageMeta from '_shared/PageMeta';
 import LinkedComponents from '_shared/LinkedComponents';
+import { Hidden } from '@material-ui/core';
 
 import * as BasicTimePicker from './BasicTimePicker.example';
 import * as InlineTimePicker from './InlineTimePicker.example';
@@ -13,7 +14,7 @@ import * as KeyboardTimePicker from './KeyboardTimePicker.example';
 
 ## Time Picker
 
-Time pickers use a dialog to select a single time (in the hours:minutes format).
+Time pickers let user select a single time (in the hours:minutes format).
 The selected time is indicated by the filled circle at the end of the clock hand.
 
 <Ad />
@@ -24,20 +25,22 @@ A time picker should adjust to a user’s preferred time setting, i.e. the 12-ho
 
 <Example source={BasicTimePicker} />
 
-#### Keyboard input
-
-<Example source={KeyboardTimePicker} />
-
-#### Inline mode
+#### Responsiveness
 
 <Example source={InlineTimePicker} />
+
+#### Advanced keyboard input
+
+<Example source={KeyboardTimePicker} />
 
 #### Static mode
 
 It is possible to render any picker inline. This will be really helpful to build custom popover/modal containers.
 For that use `variant="static"`.
 
-<Example paddingBottom source={StaticTimePicker} />
+<Hidden smDown>
+  <Example paddingBottom source={StaticTimePicker} />
+</Hidden>
 
 #### Seconds
 

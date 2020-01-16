@@ -77,6 +77,8 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
   isLandscape,
   setOpenView,
   ampmInClock,
+  isMobileKeyboardViewOpen,
+  toggleMobileKeyboardView,
   title = 'SELECT TIME',
 }) => {
   const utils = useUtils();
@@ -92,6 +94,8 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
       landscapeDirection="row"
       title={title}
       isLandscape={isLandscape}
+      isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
+      toggleMobileKeyboardView={toggleMobileKeyboardView}
       penIconClassName={clsx({ [classes.penIconLandscape]: isLandscape })}
     >
       <div
@@ -105,7 +109,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
             variant={clockTypographyVariant}
             onClick={() => setOpenView('hours')}
             selected={openView === 'hours'}
-            label={utils.getHourText(date, Boolean(ampm))}
+            label={ampm ? utils.format(date, 'hours12h') : utils.format(date, 'hours24h')}
           />
         )}
 
@@ -123,7 +127,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
             variant={clockTypographyVariant}
             onClick={() => setOpenView('minutes')}
             selected={openView === 'minutes'}
-            label={utils.getMinuteText(date)}
+            label={utils.format(date, 'minutes')}
           />
         )}
 
@@ -136,7 +140,7 @@ export const TimePickerToolbar: React.FC<ToolbarComponentProps> = ({
             variant={clockTypographyVariant}
             onClick={() => setOpenView('seconds')}
             selected={openView === 'seconds'}
-            label={utils.getSecondText(date)}
+            label={utils.format(date, 'seconds')}
           />
         )}
       </div>

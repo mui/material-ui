@@ -2,6 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, fade } from '@material-ui/core/styles';
+import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 
 export interface YearProps {
   children: React.ReactNode;
@@ -9,7 +10,7 @@ export interface YearProps {
   onSelect: (value: any) => void;
   selected?: boolean;
   value: any;
-  forwardedRef?: React.Ref<HTMLElement | null>;
+  forwardedRef?: React.Ref<HTMLDivElement>;
 }
 
 export const useStyles = makeStyles(
@@ -19,6 +20,9 @@ export const useStyles = makeStyles(
       display: 'flex',
       justifyContent: 'center',
       padding: '8px 0',
+    },
+    yearContainerDesktop: {
+      flexBasis: '25%',
     },
     yearLabel: {
       height: 36,
@@ -58,10 +62,17 @@ export const Year: React.FC<YearProps> = ({
   ...other
 }) => {
   const classes = useStyles();
+  const wrapperVariant = React.useContext(WrapperVariantContext);
   const handleClick = React.useCallback(() => onSelect(value), [onSelect, value]);
 
   return (
-    <div role="button" onClick={handleClick} className={classes.yearContainer}>
+    <div
+      role="button"
+      onClick={handleClick}
+      className={clsx(classes.yearContainer, {
+        [classes.yearContainerDesktop]: wrapperVariant === 'desktop',
+      })}
+    >
       <Typography
         variant="subtitle1"
         tabIndex={disabled ? -1 : 0}
@@ -81,6 +92,6 @@ export const Year: React.FC<YearProps> = ({
 
 Year.displayName = 'Year';
 
-export default React.forwardRef<HTMLElement, YearProps>((props, ref) => (
+export default React.forwardRef<HTMLDivElement, YearProps>((props, ref) => (
   <Year {...props} forwardedRef={ref} />
 ));

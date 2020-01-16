@@ -1,5 +1,4 @@
 import { MaterialUiPickersDate } from './date';
-import { WrapperVariant } from '../wrappers/Wrapper';
 import { ParsableDate } from '../constants/prop-types';
 import { ToolbarComponentProps } from '../Picker/Picker';
 
@@ -7,7 +6,7 @@ export interface BasePickerProps {
   /** Picker value */
   value: ParsableDate;
   /** onChange callback @DateIOType */
-  onChange: (date: MaterialUiPickersDate) => void;
+  onChange: (date: MaterialUiPickersDate | null, keyboardInputValue?: string) => void;
   /**
    * Auto accept date on selection
    * @default false
@@ -19,20 +18,8 @@ export interface BasePickerProps {
   disabled?: boolean;
   /** Make picker read only */
   readOnly?: boolean;
-  /** Dynamic formatter of text field value @DateIOType */
-  labelFunc?: (date: MaterialUiPickersDate, invalidLabel: string) => string;
   /** Date that will be initially highlighted if null was passed */
   initialFocusedDate?: ParsableDate;
-  /**
-   * Message displaying in text field if date is invalid (doesn't work in keyboard mode)
-   * @default 'unknown'
-   */
-  invalidLabel?: string;
-  /**
-   * Message displaying in text field, if null passed (doesn't work in keyboard mode)
-   * @default ' '
-   */
-  emptyLabel?: string;
   /** Callback fired when date is accepted @DateIOType */
   onAccept?: (date: MaterialUiPickersDate) => void;
   /** Callback fired when new error should be displayed
@@ -46,14 +33,10 @@ export interface BasePickerProps {
   /** Controlled picker open state */
   open?: boolean;
   /**
-   * Hide toolbar and show only date/time views
-   * @default false
+   * Show toolbar even in desktop mode
    */
-  disableToolbar?: boolean;
-  /**
-   * Force rendering in particular orientation
-   * @default "portrait"
-   */
+  showToolbar?: boolean;
+  /** Force rendering in particular orientation */
   orientation?: 'portrait' | 'landscape';
   /** Component that will replace default toolbar renderer */
   ToolbarComponent?: React.ComponentType<ToolbarComponentProps>;
@@ -62,5 +45,9 @@ export interface BasePickerProps {
    * @default "SELECT DATE"
    */
   title?: string;
-  variant?: WrapperVariant;
+  /**
+   * Compare dates by the exact timestamp, instead of start/end of date
+   * @default false
+   */
+  strictCompareDates?: boolean;
 }

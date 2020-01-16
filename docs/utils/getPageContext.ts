@@ -1,5 +1,5 @@
 import { SheetsRegistry } from 'jss';
-import { createGenerateClassName } from '@material-ui/styles';
+import { createGenerateClassName } from '@material-ui/core/styles';
 
 export interface PageContext {
   generateClassName: any;

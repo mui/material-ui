@@ -6,25 +6,19 @@ function BasicTimePicker() {
 
   return (
     <Fragment>
-      <TimePicker autoOk label="12 hours" value={selectedDate} onChange={handleDateChange} />
-
       <TimePicker
-        clearable
-        ampm={false}
-        label="24 hours"
+        ampm
+        mask="__:__ _M"
+        label="12 hours"
         value={selectedDate}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
       />
 
-      {/* Alternative way to show am/pm */}
       <TimePicker
-        showTodayButton
-        ampmInClock
-        todayLabel="now"
-        label="Step = 5"
+        mask="__:__"
+        label="24 hours"
         value={selectedDate}
-        minutesStep={5}
-        onChange={handleDateChange}
+        onChange={date => handleDateChange(date)}
       />
     </Fragment>
   );

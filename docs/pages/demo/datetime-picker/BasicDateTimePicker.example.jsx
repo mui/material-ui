@@ -7,27 +7,11 @@ function BasicDateTimePicker() {
   return (
     <Fragment>
       <DateTimePicker
+        mask="____/__/__ __:__"
         label="DateTimePicker"
-        inputVariant="outlined"
+        variant="outlined"
         value={selectedDate}
         onChange={handleDateChange}
-      />
-
-      <DateTimePicker
-        autoOk
-        ampm={false}
-        disableFuture
-        value={selectedDate}
-        onChange={handleDateChange}
-        label="24h clock"
-      />
-
-      <DateTimePicker
-        value={selectedDate}
-        disablePast
-        onChange={handleDateChange}
-        label="With Today Button"
-        showTodayButton
       />
     </Fragment>
   );

@@ -7,7 +7,7 @@ describe('DatePicker - different props', () => {
     const component = mount(
       <DatePicker
         open
-        disableToolbar
+        showToolbar
         onChange={jest.fn()}
         value={utilsToUse.date('2018-01-01T00:00:00.000Z')}
       />

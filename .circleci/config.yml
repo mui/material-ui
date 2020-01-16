@@ -11,7 +11,7 @@ defaults: &js_defaults
 
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@1.6.0
+  cypress: cypress-io/cypress@1
 
 ####################
 # Custom jobs
@@ -89,7 +89,7 @@ jobs:
 
   cypress_tests:
     description: Run cypress tests
-    executor: cypress/browsers-chrome69
+    executor: cypress/browsers-chrome73-ff68
     steps:
       - attach_workspace:
           at: .

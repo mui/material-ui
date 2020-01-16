@@ -10,6 +10,7 @@ import { useStyles as ToolbarButtonStyles } from '../_shared/ToolbarButton';
 import { useStyles as PickerToolbarStyles } from '../_shared/PickerToolbar';
 import { useStyles as ClockNumberStyles } from '../views/Clock/ClockNumber';
 import { useStyles as MuiPickersMonthStyles } from '../views/Calendar/Month';
+import { useStyles as CalendarViewStyles } from '../views/Calendar/CalendarView';
 import { useStyles as DTTabsStyles } from '../DateTimePicker/DateTimePickerTabs';
 import { useStyles as MuiPickersToolbarTextStyles } from '../_shared/ToolbarText';
 import { useStyles as DatePickerRootStyles } from '../DatePicker/DatePickerToolbar';
@@ -41,6 +42,7 @@ export interface MuiPickersOverrides {
   MuiPickerDTHeader?: Classes<typeof DTHeaderStyles>;
   MuiPickerDTTabs?: Classes<typeof DTTabsStyles>;
   MuiPickersCalendar?: Classes<typeof CalendarStyles>;
+  MuiPickersCalendarView?: Classes<typeof CalendarViewStyles>;
   MuiPickersCalendarHeader?: Classes<typeof CalendarHeaderStyles>;
   MuiPickersSlideTransition?: Classes<typeof SlideTransitionStyles>;
   MuiPickersYearSelectionStyles?: Classes<typeof MuiPickersYearSelectionStyles>;

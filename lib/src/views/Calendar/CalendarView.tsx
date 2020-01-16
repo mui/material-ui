@@ -1,31 +1,43 @@
 import * as React from 'react';
-import CalendarHeader from './CalendarHeader';
 import { YearSelection } from './YearSelection';
-import { makeStyles } from '@material-ui/styles';
+import { CalendarHeader } from './CalendarHeader';
 import { MonthSelection } from './MonthSelection';
 import { DatePickerView } from '../../DatePicker';
 import { SlideDirection } from './SlideTransition';
 import { Calendar, CalendarProps } from './Calendar';
 import { useUtils } from '../../_shared/hooks/useUtils';
+import { VIEW_HEIGHT } from '../../constants/dimensions';
 import { ParsableDate } from '../../constants/prop-types';
 import { MaterialUiPickersDate } from '../../typings/date';
-import { CircularProgress, Grid } from '@material-ui/core';
 import { FadeTransitionGroup } from './FadeTransitionGroup';
 import { useParsedDate } from '../../_shared/hooks/useParsedDate';
+import { CircularProgress, Grid, makeStyles } from '@material-ui/core';
+import { WrapperVariantContext } from '../../wrappers/WrapperVariantContext';
 
 export interface CalendarViewProps
   extends Omit<
     CalendarProps,
-    'reduceAnimations' | 'slideDirection' | 'currentMonth' | 'minDate' | 'maxDate'
+    | 'reduceAnimations'
+    | 'slideDirection'
+    | 'currentMonth'
+    | 'minDate'
+    | 'maxDate'
+    | 'wrapperVariant'
   > {
   date: MaterialUiPickersDate;
   view: DatePickerView;
   views: DatePickerView[];
   changeView: (view: DatePickerView) => void;
   onChange: (date: MaterialUiPickersDate, isFinish?: boolean) => void;
-  /** Min date */
+  /**
+   * Min selectable date
+   * @default Date(1900-01-01)
+   */
   minDate?: ParsableDate;
-  /** Max date */
+  /**
+   * Max selectable date
+   * @default Date(2100-01-01)
+   */
   maxDate?: ParsableDate;
   /** Do not show heavy animations, significantly improves performance on slow devices
    * @default /(android)/i.test(navigator.userAgent)
@@ -81,15 +93,19 @@ function calendarStateReducer(
   }
 }
 
-const useClasses = makeStyles({
-  viewTransitionContainer: {
-    overflowY: 'auto',
+export const useStyles = makeStyles(
+  {
+    viewTransitionContainer: {
+      overflowY: 'auto',
+    },
+    gridFullHeight: {
+      flex: 1,
+      minHeight: VIEW_HEIGHT - 60,
+      height: '100%',
+    },
   },
-  gridFullHeight: {
-    flex: 1,
-    height: '100%',
-  },
-});
+  { name: 'MuiPickersCalendarView' }
+);
 
 export const CalendarView: React.FC<CalendarViewProps> = ({
   date,
@@ -104,9 +120,10 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
   ...other
 }) => {
   const utils = useUtils();
-  const classes = useClasses();
+  const classes = useStyles();
   const minDate = useParsedDate(unparsedMinDate);
   const maxDate = useParsedDate(unparsedMaxDate);
+  const wrapperVariant = React.useContext(WrapperVariantContext);
 
   const [{ currentMonth, loadingQueue, slideDirection }, dispatch] = React.useReducer(
     calendarStateReducer,
@@ -206,6 +223,7 @@ export const CalendarView: React.FC<CalendarViewProps> = ({
                 onChange={onChange}
                 minDate={minDate}
                 maxDate={maxDate}
+                wrapperVariant={wrapperVariant}
               />
             ))}
         </div>

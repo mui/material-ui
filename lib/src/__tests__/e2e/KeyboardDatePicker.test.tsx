@@ -2,15 +2,15 @@ import * as React from 'react';
 import addDays from 'date-fns/addDays';
 import { ReactWrapper } from 'enzyme';
 import { mount } from '../test-utils';
-import { KeyboardDatePicker, KeyboardDatePickerProps } from '../../DatePicker/DatePicker';
+import { DesktopDatePicker, DatePickerProps } from '../../DatePicker/DatePicker';
 
 describe('e2e -- DatePicker keyboard input', () => {
   const onChangeMock = jest.fn();
-  let component: ReactWrapper<KeyboardDatePickerProps>;
+  let component: ReactWrapper<DatePickerProps>;
 
   beforeEach(() => {
     component = mount(
-      <KeyboardDatePicker
+      <DesktopDatePicker
         label="Masked input"
         placeholder="10/10/2018"
         format={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
@@ -40,7 +40,7 @@ describe('e2e -- DatePicker keyboard input', () => {
 describe('e2e -- KeyboardDatePicker validation errors', () => {
   it('Should render error message if date is unparseable', () => {
     const component = mount(
-      <KeyboardDatePicker
+      <DesktopDatePicker
         format={process.env.UTILS === 'moment' ? 'DD/MM/YYYY' : 'dd/MM/yyyy'}
         value={new Date(NaN)}
         onChange={jest.fn()}
@@ -52,7 +52,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
 
   it('Should render error message if date is after disableFuture', () => {
     const component = mount(
-      <KeyboardDatePicker
+      <DesktopDatePicker
         onChange={jest.fn()}
         disableFuture
         value={addDays(new Date(), 2)}
@@ -67,7 +67,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
 
   it('Should render error message if date is before disablePast', () => {
     const component = mount(
-      <KeyboardDatePicker
+      <DesktopDatePicker
         onChange={jest.fn()}
         disablePast
         value={addDays(new Date(), -2)}
@@ -82,7 +82,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
 
   it('Should not render error message if date is after maxDate without strict comparison', () => {
     const component = mount(
-      <KeyboardDatePicker
+      <DesktopDatePicker
         onChange={jest.fn()}
         maxDate={new Date('2018-01-01T00:00:00.000Z')}
         value={new Date('2018-01-01T01:00:00.000Z')}
@@ -95,7 +95,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
 
   it('Should render error message if date is after maxDate with strict comparison', () => {
     const component = mount(
-      <KeyboardDatePicker
+      <DesktopDatePicker
         onChange={jest.fn()}
         maxDate={new Date('2018-01-01T00:00:00.000Z')}
         value={new Date('2018-01-01T01:00:00.000Z')}
@@ -111,7 +111,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
 
   it('Should not render error message if date is after minDate without strict comparison', () => {
     const component = mount(
-      <KeyboardDatePicker
+      <DesktopDatePicker
         onChange={jest.fn()}
         minDate={new Date('2018-01-01T01:00:00.000Z')}
         value={new Date('2018-01-01T00:00:00.000Z')}
@@ -124,7 +124,7 @@ describe('e2e -- KeyboardDatePicker validation errors', () => {
 
   it('Should render error message if date is after minDate with strict comparison', () => {
     const component = mount(
-      <KeyboardDatePicker
+      <DesktopDatePicker
         onChange={jest.fn()}
         minDate={new Date('2018-01-01T01:00:00.000Z')}
         value={new Date('2018-01-01T00:00:00.000Z')}

@@ -1,23 +1,20 @@
 import React, { useState } from 'react';
-import { TimePicker } from '@material-ui/pickers';
+import { StaticTimePicker } from '@material-ui/pickers';
 
-const StaticTimePicker = () => {
+const StaticTimePickerExample = () => {
   const [date, handleDateChange] = useState(new Date());
 
   return (
     <>
-      <TimePicker
+      <StaticTimePicker
         autoOk
-        variant="static"
         openTo="hours"
         value={date}
         onChange={date => handleDateChange(date)}
       />
 
-      <TimePicker
-        autoOk
-        ampm={false}
-        variant="static"
+      <StaticTimePicker
+        ampm
         orientation="landscape"
         openTo="minutes"
         value={date}
@@ -27,4 +24,4 @@ const StaticTimePicker = () => {
   );
 };
 
-export default StaticTimePicker;
+export default StaticTimePickerExample;

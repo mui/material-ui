@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ReactWrapper } from 'enzyme';
 import { clickOKButton } from './commands';
-import { TimePicker, TimePickerProps } from '../../TimePicker/TimePicker';
 import { mount, utilsToUse, toHaveBeenCalledExceptMoment } from '../test-utils';
+import { MobileTimePicker, TimePicker, TimePickerProps } from '../../TimePicker/TimePicker';
 
 const fakeTouchEvent = {
   buttons: 1,
@@ -19,7 +19,12 @@ describe('e2e - TimePicker', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     component = mount(
-      <TimePicker open value={utilsToUse.date('2018-01-01T00:00:00.000')} onChange={onChangeMock} />
+      <MobileTimePicker
+        ampm
+        open
+        value={utilsToUse.date('2018-01-01T00:00:00.000')}
+        onChange={onChangeMock}
+      />
     );
   });
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import KawaiiIcon from '_shared/svgIcons/KawaiiIcon';
-import { styled } from '@material-ui/styles';
+import { styled } from '@material-ui/core/styles';
 import { Grid, Typography, NoSsr } from '@material-ui/core';
 
 const CenteredGrid = styled(Grid)({

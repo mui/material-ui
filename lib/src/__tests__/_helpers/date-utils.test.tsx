@@ -2,8 +2,8 @@ import { utilsToUse } from '../test-utils';
 import { findClosestEnabledDate } from '../../_helpers/date-utils';
 
 describe('findClosestEnabledDate', () => {
-  const day18thText = utilsToUse.getDayText(utilsToUse.date('2018-08-18'));
-  const only18th = (date: any) => utilsToUse.getDayText(date) !== day18thText;
+  const day18thText = utilsToUse.format(utilsToUse.date('2018-08-18'), 'dayOfMonth');
+  const only18th = (date: any) => utilsToUse.format(date, 'dayOfMonth') !== day18thText;
 
   it('Should fallback to today if all dates are disabled', () => {
     const result = findClosestEnabledDate({
@@ -73,7 +73,6 @@ describe('findClosestEnabledDate', () => {
       disablePast: true,
     });
 
-    expect(utilsToUse.getDayText(result)).toBe(day18thText);
     expect(utilsToUse.isBefore(result, today)).toBe(false);
     expect(utilsToUse.isBefore(result, utilsToUse.addDays(today, 31))).toBe(true);
   });
@@ -91,7 +90,6 @@ describe('findClosestEnabledDate', () => {
     });
 
     expect(utilsToUse.isBeforeDay(result, today)).toBe(true);
-    expect(utilsToUse.getDayText(result)).toBe(day18thText);
     expect(utilsToUse.isBefore(result, utilsToUse.addDays(today, -31))).toBe(false);
   });
 

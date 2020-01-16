@@ -11,7 +11,7 @@ import { GITHUB_URL } from '_constants';
 import { createOverrides } from './styleOverrides';
 import { withRouter, WithRouterProps } from 'next/router';
 import { utilsMap, UtilsLib } from '../utils/utilsService';
-import { withStyles, WithStyles, createStyles } from '@material-ui/styles';
+import { withStyles, WithStyles, createStyles } from '@material-ui/core/styles';
 import {
   Hidden,
   Drawer,

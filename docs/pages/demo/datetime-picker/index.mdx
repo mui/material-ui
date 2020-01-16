@@ -4,24 +4,30 @@ import PageMeta from '_shared/PageMeta';
 import LinkedComponents from '_shared/LinkedComponents';
 
 import * as BasicDateTimePicker from './BasicDateTimePicker.example';
-import * as InlineDateTimePicker from './InlineDateTimePicker.example';
+import * as DateTimePickers from './DateTimePickers.example';
 import * as CustomDateTimePicker from './CustomDateTimePicker.example';
 
 <PageMeta component="Date & Time picker" />
 
 ## Date & Time picker
 
-This component combines Material Design date & time selection components. It allows to select both date and time with the same control.
+This component combines date & time pickers. It allows to select both date and time with the same control.
+
+**Note:** This component is not listed in [material design guidelines](https://material.io/components/)
 
 <Ad />
 
 #### Basic usage
 
+Allows choosing date then time. There are too many views, so tabs are required to visually distinguish date/time steps.
+
 <Example source={BasicDateTimePicker} />
 
-#### Inline mode
+#### Responsiveness
 
-<Example source={InlineDateTimePicker} />
+DateTimePicker is a complex control, so you may consider using `MobileDateTimePicker` for desktop users as well.
+
+<Example source={DateTimePickers} />
 
 #### Customization
 

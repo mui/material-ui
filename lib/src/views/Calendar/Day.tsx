@@ -89,6 +89,7 @@ export const Day: React.FC<DayProps> = ({
 
   return (
     <ButtonBase
+      data-mui-test="day"
       centerRipple
       className={className}
       tabIndex={hidden || disabled ? -1 : 0}
