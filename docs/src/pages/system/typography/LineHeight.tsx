@@ -8,8 +8,8 @@ export default function LineHeight() {
       <Box lineHeight="normal" m={1}>
         Normal height.
       </Box>
-      <Box lineHeight={10} m={1}>
-        line-height: 10
+      <Box lineHeight={2} m={1}>
+        line-height: 2
       </Box>
     </Typography>
   );
