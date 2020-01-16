@@ -9,7 +9,7 @@ export default function LineHeight() {
         Normal height.
       </Box>
       <Box lineHeight={10} m={1}>
-        10 px.
+        line-height: 10
       </Box>
     </Typography>
   );
