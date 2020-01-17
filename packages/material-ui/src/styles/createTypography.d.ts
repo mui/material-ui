@@ -31,12 +31,11 @@ export interface FontStyleOptions extends Partial<FontStyle> {
   allVariants?: CSSProperties;
 }
 
-export type TypographyStyle = Required<
-  Pick<CSSProperties, 'fontFamily' | 'fontSize' | 'fontWeight' | 'fontStyle' | 'color'>
-> &
-  Partial<Pick<CSSProperties, 'letterSpacing' | 'lineHeight' | 'textTransform'>>;
-
-export interface TypographyStyleOptions extends Partial<TypographyStyle> {}
+// TODO: which one should actually be allowed to be subject to module augmentation?
+// current type vs interface decision is kept for historical reasons until we
+// made a decision
+export type TypographyStyle = CSSProperties;
+export interface TypographyStyleOptions extends TypographyStyle {}
 
 export interface TypographyUtils {
   pxToRem: (px: number) => string;
