@@ -1,45 +1,29 @@
-import React from 'react';
+import { useControlled } from '@material-ui/core/utils';
 
 export default function usePagination(props) {
   const {
     boundaryRange = 0,
+    componentName = 'usePagination',
     count = 0,
     disabled = false,
     hideNextButton = false,
     hidePrevButton = false,
-    showFirstButton = false,
-    showLastButton = false,
     onChange: handleChangeProp,
     page: pageProp,
+    showFirstButton = false,
+    showLastButton = false,
     siblingRange = 1,
     ...other
   } = props;
 
-  const { current: isControlled } = React.useRef(pageProp != null);
-  const [pageState, setPageState] = React.useState(1);
-  const page = isControlled ? pageProp : pageState;
-
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (isControlled !== (pageProp != null)) {
-        console.error(
-          [
-            `Material-UI: A component is changing ${
-              isControlled ? 'a ' : 'an un'
-            }controlled Pagination to be ${isControlled ? 'un' : ''}controlled.`,
-            'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled Pagination ' +
-              'element for the lifetime of the component.',
-            'More info: https://fb.me/react-controlled-components',
-          ].join('\n'),
-        );
-      }
-    }, [pageProp, isControlled]);
-  }
+  const [page, setPageState] = useControlled({
+    controlled: pageProp,
+    default: 1,
+    name: componentName,
+  });
 
   const handleClick = (event, value) => {
-    if (!isControlled) {
+    if (!pageProp) {
       setPageState(value);
     }
     if (handleChangeProp) {
@@ -124,6 +108,7 @@ export default function usePagination(props) {
       case 'last':
         return count;
       default:
+        return null;
     }
   };
 
