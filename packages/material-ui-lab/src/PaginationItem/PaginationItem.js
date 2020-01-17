@@ -234,29 +234,28 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
     [classes[`size${capitalize(size)}`]]: size !== 'medium',
   });
 
-  return (
-    <React.Fragment>
-      {type === 'ellipsis' ? (
-        <div className={classes.ellipsis}>...</div>
-      ) : (
-        <ButtonBase
-          component={component}
-          aria-label={
-            getAriaLabel ? getAriaLabel(type, page, selected) : ariaLabel(type, page, selected)
-          }
-          aria-current={selected ? 'page' : undefined}
-          onClick={event => handleClick(event, page)}
-          className={buttonClass}
-          {...other}
-        >
-          {type === 'page' && page}
-          {type === 'previous' && <NavigateBeforeIcon />}
-          {type === 'next' && <NavigateNextIcon />}
-          {type === 'first' && <FirstPageIcon />}
-          {type === 'last' && <LastPageIcon />}
-        </ButtonBase>
-      )}
-    </React.Fragment>
+  return type === 'ellipsis' ? (
+    <div ref={ref} className={classes.ellipsis}>
+      …
+    </div>
+  ) : (
+    <ButtonBase
+      ref={ref}
+      component={component}
+      aria-label={
+        getAriaLabel ? getAriaLabel(type, page, selected) : ariaLabel(type, page, selected)
+      }
+      aria-current={selected ? 'page' : undefined}
+      onClick={event => handleClick(event, page)}
+      className={buttonClass}
+      {...other}
+    >
+      {type === 'page' && page}
+      {type === 'previous' && <NavigateBeforeIcon />}
+      {type === 'next' && <NavigateNextIcon />}
+      {type === 'first' && <FirstPageIcon />}
+      {type === 'last' && <LastPageIcon />}
+    </ButtonBase>
   );
 });
 
