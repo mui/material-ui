@@ -61,6 +61,7 @@ export default function usePagination(props) {
     endPages[0] - 2,
   );
 
+  // Basic list of items to render
   // itemList = ['first', 'previous', 1, 'ellipsis', 4, 5, 6, 'ellipsis', 10, 'next', 'last']
   const itemList = [
     ...(showFirstButton ? ['first'] : []),
@@ -91,12 +92,7 @@ export default function usePagination(props) {
     ...(showLastButton ? ['last'] : []),
   ];
 
-  const itemProps = {
-    disabled,
-    onClick: handleClick,
-    page,
-  };
-
+  // Map the button type to its page number
   const buttonPage = type => {
     switch (type) {
       case 'first':
@@ -112,15 +108,17 @@ export default function usePagination(props) {
     }
   };
 
+  // Convert the basic item list to PaginationItem props objects
   const items = itemList.map(item => {
     return typeof item === 'number'
       ? {
-          ...itemProps,
+          disabled,
+          onClick: handleClick,
           page: item,
           selected: item === page,
         }
       : {
-          ...itemProps,
+          onClick: handleClick,
           type: item,
           page: buttonPage(item),
           disabled: disabled || (item === 'next' || item === 'last' ? page >= count : page <= 1),
