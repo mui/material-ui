@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
+import { fade } from '../styles/colorManipulator';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -15,13 +16,13 @@ export const styles = theme => ({
     '&$selected': {
       backgroundColor:
         theme.palette.type === 'light'
-          ? 'rgba(0, 0, 0, 0.04)' // grey[100]
+          ? fade(theme.palette.primary.main, 0.04)
           : 'rgba(255, 255, 255, 0.08)',
     },
     '&$hover:hover': {
       backgroundColor:
         theme.palette.type === 'light'
-          ? 'rgba(0, 0, 0, 0.07)' // grey[200]
+          ? 'rgba(0, 0, 0, 0.04)'
           : 'rgba(255, 255, 255, 0.14)',
     },
   },
