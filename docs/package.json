@@ -33,11 +33,8 @@
     "@types/next": "^8.0.1",
     "@types/prismjs": "^1.9.1",
     "@types/react": "^16.8.13",
-    "@types/react-jss": "^8.6.2",
     "@types/react-kawaii": "^0.11.0",
     "@types/sinon": "^7.0.13",
-    "@types/styled-jsx": "^2.2.8",
-    "@types/w3c-permissions": "^1.0.1",
     "@zeit/next-bundle-analyzer": "^0.1.2",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-mdx": "^1.2.0",
@@ -76,8 +73,7 @@
     "safe-json-stringify": "^1.2.0",
     "sinon": "^7.3.2",
     "ts-loader": "^6.0.2",
-    "typescript": "^3.4.4",
-    "unist-util-visit": "^1.4.0"
+    "typescript": "^3.4.4"
   },
   "devDependencies": {
     "@types/react-redux": "^7.1.1",

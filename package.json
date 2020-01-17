@@ -18,11 +18,12 @@
   "scripts": {
     "start": "yarn dev",
     "dev": "yarn workspace docs dev",
-    "release": "yarn workspace @material-ui/pickers release && git push && git push --tags",
-    "e2e:open": "cypress open",
     "e2e:run": "cypress run",
+    "e2e:open": "cypress open",
     "docgen": "node docs/scripts/docgen.js",
-    "lint": "eslint './**/*.ts*' './**/*.js' './**/*.jsx'"
+    "lint": "eslint './**/*.ts*' './**/*.js' './**/*.jsx'",
+    "build": "yarn workspaces run build & yarn workspaces run build:typescript",
+    "release": "yarn workspace @material-ui/pickers release && git push && git push --tags"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,11 @@
     "eslint-plugin-react-hooks": "^1.6.0",
     "husky": "^1.1.2",
     "lint-staged": "^7.3.0",
-    "prettier": "^1.14.3"
+    "prettier": "^1.14.3",
+    "@cypress/webpack-preprocessor": "^4.1.0",
+    "@percy/cypress": "^1.0.9",
+    "cypress": "^3.2.0",
+    "wait-on": "^3.2.0"
   },
   "husky": {
     "hooks": {
@@ -61,12 +66,5 @@
     "**/coverage",
     "videos/",
     "**/build"
-  ],
-  "dependencies": {
-    "@cypress/webpack-preprocessor": "^4.1.0",
-    "@percy/cypress": "^1.0.9",
-    "cypress": "^3.2.0",
-    "ts-loader": "^6.0.2",
-    "wait-on": "^3.2.0"
-  }
+  ]
 }
