@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cookies from 'next-cookies';
+// @ts-ignore
 import flush from 'styled-jsx/server';
 import Document, { Head, Main, NextScript, NextDocumentContext } from 'next/document';
 import { prismThemes } from '../utils/prism';
