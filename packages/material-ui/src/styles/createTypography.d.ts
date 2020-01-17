@@ -1,7 +1,7 @@
 import { Palette } from './createPalette';
 import { CSSProperties } from './withStyles';
 
-export type ThemeStyle =
+export type Variant =
   | 'h1'
   | 'h2'
   | 'h3'
@@ -42,13 +42,10 @@ export interface TypographyUtils {
   pxToRem: (px: number) => string;
 }
 
-export interface Typography
-  extends Record<ThemeStyle, TypographyStyle>,
-    FontStyle,
-    TypographyUtils {}
+export interface Typography extends Record<Variant, TypographyStyle>, FontStyle, TypographyUtils {}
 
 export interface TypographyOptions
-  extends Partial<Record<ThemeStyle, TypographyStyleOptions> & FontStyleOptions> {}
+  extends Partial<Record<Variant, TypographyStyleOptions> & FontStyleOptions> {}
 
 export default function createTypography(
   palette: Palette,
