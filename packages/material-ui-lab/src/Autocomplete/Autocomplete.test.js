@@ -39,6 +39,14 @@ describe('<Autocomplete />', () => {
       document.activeElement.blur();
       expect(input.value).to.equal('');
     });
+
+    it('should apply the icon classes', () => {
+      const { container } = render(
+        <Autocomplete renderInput={params => <TextField {...params} />} />,
+      );
+      expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasClearIcon);
+      expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
+    });
   });
 
   describe('multiple', () => {
@@ -546,6 +554,33 @@ describe('<Autocomplete />', () => {
           />,
         );
         expect(queryByTitle('Clear')).to.be.null;
+      });
+
+      it('should not apply the hasClearIcon class', () => {
+        const { container } = render(
+          <Autocomplete
+            disabled
+            options={['one', 'two', 'three']}
+            renderInput={params => <TextField {...params} />}
+          />,
+        );
+        expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.hasClearIcon);
+        expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
+      });
+    });
+
+    describe('prop: disableClearable', () => {
+      it('should not render the clear button', () => {
+        const { queryByTitle, container } = render(
+          <Autocomplete
+            disableClearable
+            options={['one', 'two', 'three']}
+            renderInput={params => <TextField {...params} />}
+          />,
+        );
+        expect(queryByTitle('Clear')).to.be.null;
+        expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
+        expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.hasClearIcon);
       });
     });
   });
