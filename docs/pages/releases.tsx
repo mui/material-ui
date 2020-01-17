@@ -67,7 +67,7 @@ const Releases: NextFC<ReleasesProps> = ({ tags }) => {
                 <strong> Unpublished </strong>
               </TableCell>
               <TableCell>
-                <ExternalLink href="https://material-ui-pickers.mui-org.now.sh/" />
+                <ExternalLink href="https://dev.material-ui-pickers.dev/" />
               </TableCell>
               <TableCell>
                 This is unpublished <b> future in-development </b> version.
