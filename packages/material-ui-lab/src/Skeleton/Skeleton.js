@@ -74,7 +74,7 @@ const Skeleton = React.forwardRef(function Skeleton(props, ref) {
     animation = 'pulse',
     classes,
     className,
-    component: Component = 'div',
+    component: Component = 'span',
     height,
     variant = 'text',
     width,
