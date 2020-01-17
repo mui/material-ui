@@ -42,7 +42,7 @@ You can specify how many digits to display either side of current page with the 
 ## Router integration
 
 {{"demo": "pages/components/pagination/PaginationLink.js"}}
-{{"demo": "pages/components/pagination/PaginationLink2.js"}}
+{{"demo": "pages/components/pagination/PaginationLinkChildren.js"}}
 
 ## Accessibility
 

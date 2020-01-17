@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function PaginationLink2() {
+export default function PaginationLinkChildren() {
   const { items } = usePagination({
     count: 10,
   });
