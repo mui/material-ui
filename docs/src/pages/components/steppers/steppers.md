@@ -50,13 +50,13 @@ determine when all steps are completed (or even if they need to be completed).
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepper.js", "bg": true}}
 
-### Non Linear - Alternative Label
+### Non-linear - Alternative Label
 
 Labels can be placed below the step icon by setting the `alternativeLabel` prop on the `Stepper` component.
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearAlternativeLabelStepper.js", "bg": true}}
 
-### Non Linear - Error Step
+### Non-linear - Error Step
 
 {{"demo": "pages/components/steppers/HorizontalNonLinearStepperWithError.js", "bg": true}}
 
