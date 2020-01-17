@@ -5,6 +5,7 @@ export default function usePagination(props) {
     boundaryRange = 0,
     componentName = 'usePagination',
     count = 0,
+    defaultPage = 1,
     disabled = false,
     hideNextButton = false,
     hidePrevButton = false,
@@ -18,7 +19,7 @@ export default function usePagination(props) {
 
   const [page, setPageState] = useControlled({
     controlled: pageProp,
-    default: 1,
+    default: defaultPage,
     name: componentName,
   });
 

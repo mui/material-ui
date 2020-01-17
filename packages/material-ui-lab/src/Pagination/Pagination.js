@@ -84,6 +84,10 @@ Pagination.propTypes = {
    */
   count: PropTypes.number,
   /**
+   * The page selected by default when the component is uncontrolled.
+   */
+  defaultPage: PropTypes.number,
+  /**
    * If `true`, all the pagination component will be disabled.
    */
   disabled: PropTypes.bool,

@@ -17,10 +17,10 @@ export default function PaginationRanges() {
 
   return (
     <div className={classes.root}>
-      <Pagination count={12} siblingRange={0} />
-      <Pagination count={12} /> {/* Default: siblingRange={1} boundaryRange={0} */}
-      <Pagination count={12} siblingRange={0} boundaryRange={1} />
-      <Pagination count={12} boundaryRange={1} />
+      <Pagination count={11} defaultPage={6} siblingRange={0} />
+      <Pagination count={11} defaultPage={6} /> {/* Default ranges */}
+      <Pagination count={11} defaultPage={6} siblingRange={0} boundaryRange={1} />
+      <Pagination count={11} defaultPage={6} boundaryRange={1} />
     </div>
   );
 }
