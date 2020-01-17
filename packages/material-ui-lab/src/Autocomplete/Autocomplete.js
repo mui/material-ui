@@ -40,10 +40,10 @@ export const styles = theme => ({
   inputRoot: {
     flexWrap: 'wrap',
     '$hasPopupIcon &, $hasClearIcon &': {
-      paddingRight: 31,
+      paddingRight: 26 + 4,
     },
     '$hasPopupIcon$hasClearIcon &': {
-      paddingRight: 62,
+      paddingRight: 52 + 4,
     },
     '& $input': {
       width: 0,
@@ -69,10 +69,10 @@ export const styles = theme => ({
     '&[class*="MuiOutlinedInput-root"]': {
       padding: 9,
       '$hasPopupIcon &, $hasClearIcon &': {
-        paddingRight: 31,
+        paddingRight: 26 + 4 + 9,
       },
       '$hasPopupIcon$hasClearIcon &': {
-        paddingRight: 62,
+        paddingRight: 52 + 4 + 9,
       },
       '& $input': {
         padding: '9.5px 4px',
@@ -81,17 +81,11 @@ export const styles = theme => ({
         paddingLeft: 6,
       },
       '& $endAdornment': {
-        right: 7,
+        right: 9,
       },
     },
     '&[class*="MuiOutlinedInput-root"][class*="MuiOutlinedInput-marginDense"]': {
       padding: 6,
-      '$hasPopupIcon &, $hasClearIcon &': {
-        paddingRight: 31,
-      },
-      '$hasPopupIcon$hasClearIcon &': {
-        paddingRight: 62,
-      },
       '& $input': {
         padding: '4.5px 4px',
       },
@@ -99,11 +93,17 @@ export const styles = theme => ({
     '&[class*="MuiFilledInput-root"]': {
       paddingTop: 19,
       paddingLeft: 8,
+      '$hasPopupIcon &, $hasClearIcon &': {
+        paddingRight: 26 + 4 + 9,
+      },
+      '$hasPopupIcon$hasClearIcon &': {
+        paddingRight: 52 + 4 + 9,
+      },
       '& $input': {
         padding: '9px 4px',
       },
       '& $endAdornment': {
-        right: 7,
+        right: 9,
       },
     },
     '&[class*="MuiFilledInput-root"][class*="MuiFilledInput-marginDense"]': {
