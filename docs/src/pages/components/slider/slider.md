@@ -66,7 +66,7 @@ The track can be inverted with `track="inverted"`.
 
 ## Non-linear scale
 
-You can use the `scale` prop to represent the `value` in a different scale.
+You can use the `scale` prop to represent the `value` on a different scale.
 For instance, in the following demo, the value *x* represents the power of *10^x*.
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
