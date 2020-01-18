@@ -50,7 +50,7 @@ Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
 While importing directly in this manner doesn't use the exports in [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js), this file can serve as a handy reference as to which modules are public.
 
 Be aware that we only support first and second level imports.
-Anything deeper is considered private and can cause issues, such as module duplication in your bundle.
+Anything deeper is considered private.
 
 ```js
 // ✅ OK
@@ -98,8 +98,7 @@ Pick one of the following plugins:
       'babel-plugin-import',
       {
         'libraryName': '@material-ui/core',
-        // Use "'libraryDirectory': ''," if your bundler does not support ES modules
-        'libraryDirectory': 'esm',
+        'libraryDirectory': '',
         'camel2DashComponentName': false
       },
       'core'
@@ -108,8 +107,7 @@ Pick one of the following plugins:
       'babel-plugin-import',
       {
         'libraryName': '@material-ui/icons',
-        // Use "'libraryDirectory': ''," if your bundler does not support ES modules
-        'libraryDirectory': 'esm',
+        'libraryDirectory': '',
         'camel2DashComponentName': false
       },
       'icons'
@@ -131,13 +129,11 @@ Pick one of the following plugins:
       'babel-plugin-transform-imports',
       {
         '@material-ui/core': {
-          // Use "transform: '@material-ui/core/${member}'," if your bundler does not support ES modules
-          'transform': '@material-ui/core/esm/${member}',
+          'transform': '@material-ui/core/${member}',
           'preventFullImport': true
         },
         '@material-ui/icons': {
-          // Use "transform: '@material-ui/icons/${member}'," if your bundler does not support ES modules
-          'transform': '@material-ui/icons/esm/${member}',
+          'transform': '@material-ui/icons/${member}',
           'preventFullImport': true
         }
       }
