@@ -137,7 +137,11 @@ export interface UseAutocompleteCommonProps<T> {
    * @param {string} value The new value of the text input.
    * @param {string} reason Can be: "input" (user input), "reset" (programmatic change), `"clear"`.
    */
-  onInputChange?: (event: React.ChangeEvent<{}>, value: string, reason: 'input' | 'reset') => void;
+  onInputChange?: (
+    event: React.ChangeEvent<{}>,
+    value: string,
+    reason: 'input' | 'reset' | 'clear',
+  ) => void;
   /**
    * Callback fired when the popup requests to be opened.
    * Use in controlled mode (see open).
