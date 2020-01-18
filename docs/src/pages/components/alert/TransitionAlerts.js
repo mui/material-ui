@@ -45,7 +45,7 @@ export default function ActionAlerts() {
           setOpen(!open);
         }}
       >
-        {open?"Close":"Re-open"}
+        {open ? 'Close' : 'Re-open'}
       </Button>
     </div>
   );
