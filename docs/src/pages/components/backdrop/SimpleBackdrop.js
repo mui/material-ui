@@ -23,7 +23,7 @@ export default function SimpleBackdrop() {
 
   return (
     <div>
-      <Button variant="contained" onClick={handleToggle}>
+      <Button variant="outlined" color="primary" onClick={handleToggle}>
         Show backdrop
       </Button>
       <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
