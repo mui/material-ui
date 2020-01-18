@@ -78,8 +78,7 @@ const Tag = styled(({ label, onDelete, ...props }) => (
 
 const Listbox = styled('ul')`
   width: 300px;
-  margin: 0;
-  margin-top: 2px;
+  margin: 2px 0 0;
   padding: 0;
   position: absolute;
   list-style: none;
