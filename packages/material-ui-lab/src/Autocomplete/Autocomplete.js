@@ -285,6 +285,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     renderInput,
     renderOption: renderOptionProp,
     renderTags,
+    selectOnFocus = !props.freeSolo,
     size = 'medium',
     value: valueProp,
     ...other
@@ -742,6 +743,10 @@ Autocomplete.propTypes = {
    * @returns {ReactNode}
    */
   renderTags: PropTypes.func,
+  /**
+   * If `true`, the input's text will be selected on focus.
+   */
+  selectOnFocus: PropTypes.bool,
   /**
    * The size of the autocomplete.
    */
