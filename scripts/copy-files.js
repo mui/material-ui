@@ -42,7 +42,7 @@ async function createModulePackages({ from, to }) {
       ]);
 
       if (!typingsExist) {
-        throw new Error(`index.d.ts for ${directoryPackage} is missing`);
+        console.error(`index.d.ts for ${directoryPackage} is missing`);
       }
 
       return packageJsonPath;
