@@ -153,6 +153,10 @@ export interface UseAutocompleteCommonProps<T> {
    * Array of options.
    */
   options?: T[];
+  /**
+   * If `true`, the input's text will be selected on focus.
+   */
+  selectOnFocus?: boolean;
 }
 
 export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonProps<T> {
