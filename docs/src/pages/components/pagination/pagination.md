@@ -1,6 +1,6 @@
 ---
 title: Pagination React component
-components: Pagination
+components: Pagination, PaginationItem
 ---
 
 # Pagination
