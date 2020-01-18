@@ -107,6 +107,7 @@ export default function useAutocomplete(props) {
     onInputChange,
     open: openProp,
     options = [],
+    selectOnFocus = !props.freeSolo,
     value: valueProp,
     componentName = 'useAutocomplete',
   } = props;
@@ -746,7 +747,10 @@ export default function useAutocomplete(props) {
       inputRef.current.selectionEnd - inputRef.current.selectionStart === 0
     ) {
       inputRef.current.focus();
-      inputRef.current.select();
+
+      if (selectOnFocus) {
+        inputRef.current.select();
+      }
     }
 
     firstFocus.current = false;
