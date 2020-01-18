@@ -44,10 +44,10 @@ export default function ActionAlerts() {
       <Button
         variant="outlined"
         onClick={() => {
-          setOpen(true);
+          setOpen(!open);
         }}
       >
-        Re-open
+        {open?"Close":"Re-open"}
       </Button>
     </div>
   );
