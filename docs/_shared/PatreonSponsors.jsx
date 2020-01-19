@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 const PatreonSponsors = () => {
   const classes = useStyles();
   if (patrons.length === 0) {
-    return 'There is no sponsors yet 😢';
+    return <>There is no sponsors yet 😢</>;
   }
 
   function getPatronSecondaryText(patron) {
