@@ -13,7 +13,6 @@ import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -171,11 +170,7 @@ function Demo(props) {
   };
 
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
-  const [snackBarMessage, setSnackBarMessage] = React.useState(undefined);
-
-  const Alert = SnackBarProps => {
-    return <MuiAlert elevation={6} variant="filled" {...SnackBarProps} />;
-  };
+  const [snackbarMessage, setSnackbarMessage] = React.useState(undefined);
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -241,7 +236,7 @@ function Demo(props) {
   const handleClickCopy = async () => {
     try {
       await copy(demoData.raw);
-      setSnackBarMessage('The code has been copied!');
+      setSnackbarMessage('The code has been copied');
       setSnackbarOpen(true);
     } finally {
       handleCloseMore();
@@ -291,7 +286,7 @@ function Demo(props) {
   const createHandleCodeSourceLink = anchor => async () => {
     try {
       await copy(`${window.location.href.split('#')[0]}#${anchor}`);
-      setSnackBarMessage('Link to the source code has been copied!');
+      setSnackbarMessage('Link to the source code has been copied');
       setSnackbarOpen(true);
     } finally {
       handleCloseMore();
@@ -487,12 +482,9 @@ function Demo(props) {
         open={snackbarOpen}
         autoHideDuration={3000}
         onClose={handleClose}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-      >
-        <Alert onClose={handleClose}>
-          {snackBarMessage}
-        </Alert>
-      </Snackbar>
+        message={snackbarMessage}
+      />       
+      
     </div>
   );
 }
