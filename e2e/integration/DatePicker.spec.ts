@@ -51,7 +51,7 @@ describe('DatePicker', () => {
 
     it('Should open mobile keyboard input by clicking on button', () => {
       cy.get(ids.clearable).click({ force: true });
-      cy.get('[data-mui-test="toggle-mobile-keyboard-view"]').click();
+      cy.get('[data-mui-test="toggle-mobile-keyboard-view"]').click({ force: true });
 
       cy.get('[data-mui-test="mobile-wrapper-dialog"] [data-mui-test="keyboard-date-input"] input')
         .should('have.value', '2019/02/11')
