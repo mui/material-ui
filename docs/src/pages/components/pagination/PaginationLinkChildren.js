@@ -12,8 +12,8 @@ export default function PaginationLinkChildren() {
   return (
     <Router>
       <Pagination>
-        {items.map((item, index) => (
-          <li key={index.toString()}>
+        {items.map(item => (
+          <li key={item.type || item.page.toString()}>
             <PaginationItem
               to={`/cars${item.page === 1 ? '' : `?page=${item.page}`}`}
               component={Link}

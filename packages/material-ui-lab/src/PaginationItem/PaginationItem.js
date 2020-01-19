@@ -251,7 +251,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
     ...other
   } = props;
 
-  return type === 'ellipsis' ? (
+  return type === 'start-ellipsis' || type === 'end-ellipsis' ? (
     <div
       ref={ref}
       className={clsx(classes.ellipsis, {
