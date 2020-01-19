@@ -12,6 +12,7 @@ import NoSsr from '@material-ui/core/NoSsr';
 import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import Snackbar from '@material-ui/core/Snackbar';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -168,6 +169,9 @@ function Demo(props) {
     setDemoHovered(event.type === 'mouseenter');
   };
 
+  const [openSnackBar, setSnackbarOpen] = React.useState(false);
+
+
   const handleCodeLanguageClick = (event, clickedCodeVariant) => {
     if (codeVariant !== clickedCodeVariant) {
       dispatch({
@@ -225,6 +229,7 @@ function Demo(props) {
   const handleClickCopy = async () => {
     try {
       await copy(demoData.raw);
+      setSnackbarOpen(true)
     } finally {
       handleCloseMore();
     }
@@ -463,7 +468,13 @@ function Demo(props) {
           text={`\`\`\`${demoData.sourceLanguage}\n${codeOpen ? demoData.raw : jsx}\n\`\`\``}
         />
       </Collapse>
+      <Snackbar
+        open={openSnackBar}
+        //onClose={handleClose}
+        message="Your text has been copied!"
+      />
     </div>
+    
   );
 }
 
