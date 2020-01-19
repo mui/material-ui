@@ -489,7 +489,7 @@ function Demo(props) {
         onClose={handleClose}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
       >
-        <Alert severity="success" onClose={handleClose}>
+        <Alert onClose={handleClose}>
           {SnackBarMessage}
         </Alert>
       </Snackbar>
