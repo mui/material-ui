@@ -482,7 +482,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     }
   }
 
-  // Avoid the creation of a new Proper.js instance at each render
+  // Avoid the creation of a new Popper.js instance at each render.
   const popperOptions = React.useMemo(
     () => ({
       modifiers: {
