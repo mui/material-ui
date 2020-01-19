@@ -762,9 +762,6 @@ describe('<Select />', () => {
 
       it('should throw if non array', function test() {
         if (!/jsdom/.test(window.navigator.userAgent)) {
-          // afterEach is not run since the only test in this block is skipped
-          // this is likely a bug in mocha
-          consoleErrorMock.reset();
           // can't catch render errors in the browser for unknown reason
           // tried try-catch + error boundary + window onError preventDefault
           this.skip();
