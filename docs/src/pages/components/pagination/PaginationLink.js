@@ -11,8 +11,8 @@ export default function PaginationLink() {
         count={10}
         renderItem={item => (
           <PaginationItem
-            to={`/cars${item.page === 1 ? '' : `?page=${item.page}`}`}
             component={Link}
+            to={`/cars${item.page === 1 ? '' : `?page=${item.page}`}`}
             {...item}
           />
         )}

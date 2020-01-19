@@ -15,8 +15,8 @@ export default function PaginationLinkChildren() {
         {items.map(item => (
           <li key={item.type || item.page.toString()}>
             <PaginationItem
-              to={`/cars${item.page === 1 ? '' : `?page=${item.page}`}`}
               component={Link}
+              to={`/cars${item.page === 1 ? '' : `?page=${item.page}`}`}
               {...item}
             />
           </li>
