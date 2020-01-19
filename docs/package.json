@@ -99,7 +99,7 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.1",
     "react-spring": "^8.0.27",
-    "react-swipeable-views": "^0.13.3",
+    "react-swipeable-views": "^0.13.4",
     "react-text-mask": "^5.0.2",
     "react-virtualized": "^9.21.1",
     "react-window": "^1.8.5",

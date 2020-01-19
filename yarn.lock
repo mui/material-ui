@@ -12521,7 +12521,7 @@ react-swipeable-views-utils@^0.13.4:
     react-event-listener "^0.6.0"
     react-swipeable-views-core "^0.13.1"
 
-react-swipeable-views@^0.13.3:
+react-swipeable-views@^0.13.4:
   version "0.13.4"
   resolved "https://registry.yarnpkg.com/react-swipeable-views/-/react-swipeable-views-0.13.4.tgz#ebbe50a8592b185dbedf9e0060eaee09cf6b2c67"
   integrity sha512-Qwmaj8LASEgxp3i4FBEgs1LM/Yqk7mFRp0fRgXH515NIEePUcjrrkuwvvmvwNQLDbN6PNv4QAuosEaTRyjEOUA==
