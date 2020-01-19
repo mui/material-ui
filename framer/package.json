@@ -11,7 +11,7 @@
     "case": "1.6.2",
     "deepmerge": "^4.0.0",
     "docs": "^4.0.0",
-    "mustache": "^3.1.0",
+    "mustache": "^4.0.0",
     "react-docgen": "^5.0.0-beta.1"
   },
   "scripts": {
