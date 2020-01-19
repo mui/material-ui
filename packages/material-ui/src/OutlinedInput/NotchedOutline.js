@@ -46,7 +46,7 @@ export const styles = theme => {
       height: 11, // sync with `lineHeight` in `legend` styles
       fontSize: '0.75rem',
       visibility: 'hidden',
-      maxWidth: 0,
+      maxWidth: 0.01,
       transition: theme.transitions.create('max-width', {
         duration: theme.transitions.duration.shorter,
         easing: theme.transitions.easing.easeOut,
@@ -89,10 +89,7 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
         aria-hidden
         className={clsx(classes.root, className)}
         ref={ref}
-        style={{
-          [`padding${capitalize(align)}`]: '8px',
-          ...style,
-        }}
+        style={style}
         {...other}
       >
         <legend
@@ -108,7 +105,7 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
     );
   }
 
-  const labelWidth = labelWidthProp > 0 ? labelWidthProp * 0.75 + 8 : 0;
+  const labelWidth = labelWidthProp > 0 ? labelWidthProp * 0.75 + 8 : 0.01;
 
   return (
     <fieldset
