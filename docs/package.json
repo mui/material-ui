@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "build:typescript": "tsc -p tsconfig.json && tsc -p tsconfig.js.json",
-    "start": "next start"
+    "start": "next start",
+    "generate-backers": "node scripts/generate-backers.js",
+    "build:typescript": "tsc -p tsconfig.json && tsc -p tsconfig.js.json"
   },
   "keywords": [],
   "author": "",

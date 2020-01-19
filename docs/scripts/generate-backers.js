@@ -3,11 +3,10 @@ require('dotenv').config();
 
 const fse = require('fs-extra');
 const path = require('path');
-const patreonApi = require('patreon').patreon;
-const patreonAPIClient = patreonApi(process.env.PATREON_CREATOR_TOKEN);
+const { patreon: patreonApi } = require('patreon');
 
-patreonAPIClient('/campaigns/1559688/pledges')
-  .then(({ rawJson }) =>
+function processPatreonPledges(rawJson) {
+  return (
     rawJson.data
       // sort by pledge amount
       .sort((a, b) => a.attributes.amount_cents - b.attributes.amount_cents)
@@ -18,8 +17,24 @@ patreonAPIClient('/campaigns/1559688/pledges')
 
         return user.attributes;
       })
-  )
-  .then(users =>
-    fse.writeFile(path.resolve(__dirname, '..', 'patrons.json'), JSON.stringify(users))
-  )
-  .catch(console.error);
+  );
+}
+
+async function main() {
+  if (!process.argv[2]) {
+    throw new Error(
+      'Please provide creator access token as argument. Example: yarn generate-backers {your token here}'
+    );
+  }
+
+  const patreonAPIClient = patreonApi(process.argv[2]);
+  const { rawJson } = await patreonAPIClient('/campaigns/1559688/pledges');
+  const processedPatreonResponse = processPatreonPledges(rawJson);
+
+  await fse.writeFile(
+    path.resolve(__dirname, '..', 'patrons.json'),
+    JSON.stringify(processedPatreonResponse)
+  );
+}
+
+main().catch(console.error);
