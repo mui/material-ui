@@ -12,10 +12,11 @@ import { capitalize } from '@material-ui/core/utils';
 const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
+    fontSize: theme.typography.pxToRem(14),
     borderRadius: '50%',
     width: 32,
     height: 32,
-    margin: '0 4px',
+    margin: '0 3px',
     color: theme.palette.text.primary,
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.short,
@@ -40,6 +41,18 @@ const styles = theme => ({
       color: fade(theme.palette.text.primary, 0.5),
       backgroundColor: 'transparent',
       pointerEvents: 'none',
+    },
+    '&$sizeSmall': {
+      width: 24,
+      height: 24,
+      margin: '0 2px',
+      fontSize: theme.typography.pxToRem(13),
+    },
+    '&$sizeLarge': {
+      width: 40,
+      height: 40,
+      margin: '0 4px',
+      fontSize: theme.typography.pxToRem(15),
     },
   },
   /* Styles applied to the button element if `outlined="true"`. */
@@ -174,28 +187,27 @@ const styles = theme => ({
   rounded: {
     borderRadius: theme.shape.borderRadius,
   },
-  /* Styles applied to the button element if `size="small"`. */
-  sizeSmall: {
-    width: 24,
-    height: 24,
-  },
-  /* Styles applied to the button element if `size="large"`. */
-  sizeLarge: {
-    width: 40,
-    height: 40,
-  },
   /* Styles applied to the ellipsis element. */
   ellipsis: {
+    fontSize: theme.typography.pxToRem(14),
     textAlign: 'center',
-    width: 24,
-    margin: '0 8px',
-    '&sizeSmall': {
-      margin: 0,
+    width: 38,
+    '&$disabled': {
+      color: fade(theme.palette.text.primary, 0.5),
     },
-    '&sizeLarge': {
-      margin: '0 16px',
+    '&$sizeSmall': {
+      fontSize: theme.typography.pxToRem(13),
+      width: 28,
+    },
+    '&$sizeLarge': {
+      fontSize: theme.typography.pxToRem(15),
+      width: 48,
     },
   },
+  /* Pseudo-class applied to the root element if `size="small"`. */
+  sizeSmall: {},
+  /* Pseudo-class applied to the root element if `size="large"`. */
+  sizeLarge: {},
   /* Pseudo-class applied to the root element if `disabled={true}`. */
   disabled: {},
   /* Pseudo-class applied to the root element if `selected={true}`. */
@@ -215,7 +227,7 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
     className,
     color = 'standard',
     component,
-    disabled,
+    disabled = 'false',
     getAriaLabel,
     page,
     onClick: handleClick,
@@ -227,15 +239,14 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
     ...other
   } = props;
 
-  const buttonClass = clsx(classes.root, classes[variant], classes[shape], {
-    [classes[`${variant}${capitalize(color)}`]]: color !== 'standard',
-    [classes.disabled]: disabled,
-    [classes.selected]: selected,
-    [classes[`size${capitalize(size)}`]]: size !== 'medium',
-  });
-
   return type === 'ellipsis' ? (
-    <div ref={ref} className={classes.ellipsis}>
+    <div
+      ref={ref}
+      className={clsx(classes.ellipsis, {
+        [classes.disabled]: disabled,
+        [classes[`size${capitalize(size)}`]]: size !== 'medium',
+      })}
+    >
       …
     </div>
   ) : (
@@ -247,7 +258,12 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
       }
       aria-current={selected ? 'page' : undefined}
       onClick={event => handleClick(event, page)}
-      className={buttonClass}
+      className={clsx(classes.root, classes[variant], classes[shape], {
+        [classes[`${variant}${capitalize(color)}`]]: color !== 'standard',
+        [classes.disabled]: disabled,
+        [classes.selected]: selected,
+        [classes[`size${capitalize(size)}`]]: size !== 'medium',
+      })}
       {...other}
     >
       {type === 'page' && page}

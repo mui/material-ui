@@ -122,7 +122,10 @@ export default function usePagination(props = {}) {
           onClick: handleClick,
           type: item,
           page: buttonPage(item),
-          disabled: disabled || (item === 'next' || item === 'last' ? page >= count : page <= 1),
+          disabled:
+            disabled ||
+            (!item === 'ellipsis' &&
+              (item === 'next' || item === 'last' ? page >= count : page <= 1)),
         };
   });
 
