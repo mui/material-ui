@@ -242,7 +242,7 @@ function Demo(props) {
   const handleClickCopy = async () => {
     try {
       await copy(demoData.raw);
-      setSnackBarMessage("The code has been copied");
+      setSnackBarMessage("The code has been copied!");
       setSnackbarOpen(true);
     } catch {
 
@@ -294,7 +294,7 @@ function Demo(props) {
   const createHandleCodeSourceLink = anchor => async () => {
     try {
       await copy(`${window.location.href.split('#')[0]}#${anchor}`);
-      setSnackBarMessage("Link to the source code has been copied");
+      setSnackBarMessage("Link to the source code has been copied!");
       setSnackbarOpen(true);
     } finally {
       handleCloseMore();
@@ -486,7 +486,7 @@ function Demo(props) {
           text={`\`\`\`${demoData.sourceLanguage}\n${codeOpen ? demoData.raw : jsx}\n\`\`\``}
         />
       </Collapse>
-      <Snackbar open={SnackbarOpen} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar open={SnackbarOpen} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{vertical: 'bottom', horizontal: 'left',}}>
         <Alert severity="success" onClose={handleClose}>
           {SnackBarMessage}
         </Alert>
