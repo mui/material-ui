@@ -101,7 +101,7 @@
     "fs-extra": "^8.1.0",
     "glob": "^7.1.2",
     "glob-gitignore": "^1.0.11",
-    "jsdom": "^15.1.1",
+    "jsdom": "^16.0.0",
     "jsonlint": "^1.6.3",
     "karma": "^4.3.0",
     "karma-browserstack-launcher": "~1.4.0",
