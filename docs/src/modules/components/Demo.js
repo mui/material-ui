@@ -170,7 +170,7 @@ function Demo(props) {
     setDemoHovered(event.type === 'mouseenter');
   };
 
-  const [SnackbarOpen, setSnackbarOpen] = React.useState(false);
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
   const [snackBarMessage, setSnackBarMessage] = React.useState(undefined);
 
   const Alert = SnackBarProps => {
@@ -484,13 +484,13 @@ function Demo(props) {
         />
       </Collapse>
       <Snackbar
-        open={SnackbarOpen}
+        open={snackbarOpen}
         autoHideDuration={3000}
         onClose={handleClose}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
       >
         <Alert onClose={handleClose}>
-          {SnackBarMessage}
+          {snackBarMessage}
         </Alert>
       </Snackbar>
     </div>
