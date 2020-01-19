@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { fade, withStyles } from '@material-ui/core/styles';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import FirstPageIcon from '@material-ui/icons/FirstPage';
-import LastPageIcon from '@material-ui/icons/LastPage';
-import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import FirstPageIcon from '../internal/svg-icons/FirstPage';
+import LastPageIcon from '../internal/svg-icons/LastPage';
+import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';
+import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
 import { capitalize } from '@material-ui/core/utils';
 
 const styles = theme => ({
