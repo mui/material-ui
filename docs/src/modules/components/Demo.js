@@ -13,7 +13,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from "@material-ui/lab/Alert";
+import MuiAlert from '@material-ui/lab/Alert';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -173,9 +173,9 @@ function Demo(props) {
   const [SnackbarOpen, setSnackbarOpen] = React.useState(false);
   const [SnackBarMessage, setSnackBarMessage] = React.useState(undefined);
 
-  const Alert = function (props) {
+  const Alert = function(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
-  }
+  };
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -183,7 +183,6 @@ function Demo(props) {
     }
     setSnackbarOpen(false);
   };
-
 
   const handleCodeLanguageClick = (event, clickedCodeVariant) => {
     if (codeVariant !== clickedCodeVariant) {
@@ -242,10 +241,9 @@ function Demo(props) {
   const handleClickCopy = async () => {
     try {
       await copy(demoData.raw);
-      setSnackBarMessage("The code has been copied!");
+      setSnackBarMessage('The code has been copied!');
       setSnackbarOpen(true);
     } catch {
-
     } finally {
       handleCloseMore();
     }
@@ -294,7 +292,7 @@ function Demo(props) {
   const createHandleCodeSourceLink = anchor => async () => {
     try {
       await copy(`${window.location.href.split('#')[0]}#${anchor}`);
-      setSnackBarMessage("Link to the source code has been copied!");
+      setSnackBarMessage('Link to the source code has been copied!');
       setSnackbarOpen(true);
     } finally {
       handleCloseMore();
@@ -486,13 +484,17 @@ function Demo(props) {
           text={`\`\`\`${demoData.sourceLanguage}\n${codeOpen ? demoData.raw : jsx}\n\`\`\``}
         />
       </Collapse>
-      <Snackbar open={SnackbarOpen} autoHideDuration={3000} onClose={handleClose} anchorOrigin={{vertical: 'bottom', horizontal: 'left',}}>
+      <Snackbar
+        open={SnackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      >
         <Alert severity="success" onClose={handleClose}>
           {SnackBarMessage}
         </Alert>
       </Snackbar>
     </div>
-    
   );
 }
 
