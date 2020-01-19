@@ -170,7 +170,8 @@ function Demo(props) {
     setDemoHovered(event.type === 'mouseenter');
   };
 
-  const [openSnackBar, setSnackbarOpen] = React.useState(false);
+  const [SnackbarOpen, setSnackbarOpen] = React.useState(false);
+  const [SnackBarMessage, setSnackBarMessage] = React.useState(undefined);
 
   const Alert = function (props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -180,7 +181,6 @@ function Demo(props) {
     if (reason === 'clickaway') {
       return;
     }
-
     setSnackbarOpen(false);
   };
 
@@ -242,7 +242,8 @@ function Demo(props) {
   const handleClickCopy = async () => {
     try {
       await copy(demoData.raw);
-      setSnackbarOpen(true)
+      setSnackBarMessage("The code has been copied");
+      setSnackbarOpen(true);
     } catch {
 
     } finally {
@@ -293,6 +294,8 @@ function Demo(props) {
   const createHandleCodeSourceLink = anchor => async () => {
     try {
       await copy(`${window.location.href.split('#')[0]}#${anchor}`);
+      setSnackBarMessage("Link to the source code has been copied");
+      setSnackbarOpen(true);
     } finally {
       handleCloseMore();
     }
@@ -483,9 +486,9 @@ function Demo(props) {
           text={`\`\`\`${demoData.sourceLanguage}\n${codeOpen ? demoData.raw : jsx}\n\`\`\``}
         />
       </Collapse>
-      <Snackbar open={openSnackBar} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar open={SnackbarOpen} autoHideDuration={6000} onClose={handleClose}>
         <Alert severity="success" onClose={handleClose}>
-          This is a success message!
+          {SnackBarMessage}
         </Alert>
       </Snackbar>
     </div>
