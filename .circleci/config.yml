@@ -11,7 +11,7 @@ defaults: &defaults
     REACT_DIST_TAG: << parameters.react-dist-tag >>
   working_directory: /tmp/material-ui
   docker:
-    - image: circleci/node:8.16
+    - image: circleci/node:10
 # CircleCI has disabled the cache across forks for security reasons.
 # Following their official statement, it was a quick solution, they
 # are working on providing this feature back with appropriate security measures.
@@ -24,6 +24,11 @@ defaults: &defaults
 commands:
   install_js:
     steps:
+      - run:
+          name: View install environment
+          command: |
+            node --version
+            yarn --version
       - run:
           name: Resolve react version
           command: |
@@ -154,7 +159,7 @@ jobs:
   test_regressions:
     <<: *defaults
     docker:
-      - image: circleci/node:8.16
+      - image: circleci/node:10
       - image: selenium/standalone-chrome:3.11.0
     steps:
       - checkout
