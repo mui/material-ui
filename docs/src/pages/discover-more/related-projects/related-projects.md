@@ -18,7 +18,7 @@ You didn't find the design assets your team is looking for? Let us know!
 
 ## IDE Tools
 
-- [Material-UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs) VSCode extension providing codemod commands for everyday work with Material UI ✨
+- [Material-UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs) VSCode extension providing codemod commands for everyday work with Material-UI ✨
 
 ## Images and illustrations
 
