@@ -236,7 +236,7 @@ function Demo(props) {
   const handleClickCopy = async () => {
     try {
       await copy(demoData.raw);
-      setSnackbarMessage(t("copiedSource"));
+      setSnackbarMessage(t('copiedSource'));
       setSnackbarOpen(true);
     } finally {
       handleCloseMore();
@@ -286,7 +286,7 @@ function Demo(props) {
   const createHandleCodeSourceLink = anchor => async () => {
     try {
       await copy(`${window.location.href.split('#')[0]}#${anchor}`);
-      setSnackbarMessage(t("copiedSourceLink"));
+      setSnackbarMessage(t('copiedSourceLink'));
       setSnackbarOpen(true);
     } finally {
       handleCloseMore();
@@ -483,8 +483,7 @@ function Demo(props) {
         autoHideDuration={3000}
         onClose={handleClose}
         message={snackbarMessage}
-      />       
-      
+      />
     </div>
   );
 }
