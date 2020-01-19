@@ -173,8 +173,8 @@ function Demo(props) {
   const [SnackbarOpen, setSnackbarOpen] = React.useState(false);
   const [SnackBarMessage, setSnackBarMessage] = React.useState(undefined);
 
-  const Alert = function(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  const Alert = (SnackBarProps) => {
+    return <MuiAlert elevation={6} variant="filled" {...SnackBarProps} />;
   };
 
   const handleClose = (event, reason) => {
@@ -243,7 +243,6 @@ function Demo(props) {
       await copy(demoData.raw);
       setSnackBarMessage('The code has been copied!');
       setSnackbarOpen(true);
-    } catch {
     } finally {
       handleCloseMore();
     }
