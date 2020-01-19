@@ -236,7 +236,7 @@ function Demo(props) {
   const handleClickCopy = async () => {
     try {
       await copy(demoData.raw);
-      setSnackbarMessage('The code has been copied');
+      setSnackbarMessage(t("copiedSource"));
       setSnackbarOpen(true);
     } finally {
       handleCloseMore();
@@ -286,7 +286,7 @@ function Demo(props) {
   const createHandleCodeSourceLink = anchor => async () => {
     try {
       await copy(`${window.location.href.split('#')[0]}#${anchor}`);
-      setSnackbarMessage('Link to the source code has been copied');
+      setSnackbarMessage(t("copiedSourceLink"));
       setSnackbarOpen(true);
     } finally {
       handleCloseMore();
