@@ -173,7 +173,7 @@ function Demo(props) {
   const [SnackbarOpen, setSnackbarOpen] = React.useState(false);
   const [SnackBarMessage, setSnackBarMessage] = React.useState(undefined);
 
-  const Alert = (SnackBarProps) => {
+  const Alert = SnackBarProps => {
     return <MuiAlert elevation={6} variant="filled" {...SnackBarProps} />;
   };
 
