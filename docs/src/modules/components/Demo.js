@@ -13,6 +13,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from "@material-ui/lab/Alert";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -171,6 +172,18 @@ function Demo(props) {
 
   const [openSnackBar, setSnackbarOpen] = React.useState(false);
 
+  const Alert = function (props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackbarOpen(false);
+  };
+
 
   const handleCodeLanguageClick = (event, clickedCodeVariant) => {
     if (codeVariant !== clickedCodeVariant) {
@@ -230,6 +243,8 @@ function Demo(props) {
     try {
       await copy(demoData.raw);
       setSnackbarOpen(true)
+    } catch {
+
     } finally {
       handleCloseMore();
     }
@@ -468,11 +483,11 @@ function Demo(props) {
           text={`\`\`\`${demoData.sourceLanguage}\n${codeOpen ? demoData.raw : jsx}\n\`\`\``}
         />
       </Collapse>
-      <Snackbar
-        open={openSnackBar}
-        //onClose={handleClose}
-        message="Your text has been copied!"
-      />
+      <Snackbar open={openSnackBar} autoHideDuration={6000} onClose={handleClose}>
+        <Alert severity="success" onClose={handleClose}>
+          This is a success message!
+        </Alert>
+      </Snackbar>
     </div>
     
   );
