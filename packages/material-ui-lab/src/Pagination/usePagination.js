@@ -24,12 +24,14 @@ export default function usePagination(props = {}) {
   });
 
   const handleClick = (event, value) => {
-    if (!pageProp) {
-      setPageState(value);
-    }
-    if (handleChangeProp) {
-      handleChangeProp(event, value);
-    }
+    setTimeout(() => {
+      if (!pageProp) {
+        setPageState(value);
+      }
+      if (handleChangeProp) {
+        handleChangeProp(event, value);
+      }
+    }, 240);
   };
 
   const range = (start, end) => {
@@ -74,8 +76,8 @@ export default function usePagination(props = {}) {
     ...(siblingsStart > boundaryRange + 3
       ? ['start-ellipsis']
       : 2 + boundaryRange < count - boundaryRange - 1
-        ? [2 + boundaryRange]
-        : []),
+      ? [2 + boundaryRange]
+      : []),
 
     // Sibling pages
     ...range(siblingsStart, siblingsEnd),
@@ -85,8 +87,8 @@ export default function usePagination(props = {}) {
     ...(siblingsEnd < count - boundaryRange - 2
       ? ['end-ellipsis']
       : count - boundaryRange - 1 > boundaryRange + 1
-        ? [count - boundaryRange - 1]
-        : []),
+      ? [count - boundaryRange - 1]
+      : []),
 
     ...endPages,
     ...(hideNextButton ? [] : ['next']),
@@ -113,20 +115,20 @@ export default function usePagination(props = {}) {
   const items = itemList.map(item => {
     return typeof item === 'number'
       ? {
-        disabled,
-        onClick: handleClick,
-        page: item,
-        selected: item === page,
-      }
+          disabled,
+          onClick: handleClick,
+          page: item,
+          selected: item === page,
+        }
       : {
-        onClick: handleClick,
-        type: item,
-        page: buttonPage(item),
-        disabled:
-          disabled ||
-          (!item === 'ellipsis' &&
-            (item === 'next' || item === 'last' ? page >= count : page <= 1)),
-      };
+          onClick: handleClick,
+          type: item,
+          page: buttonPage(item),
+          disabled:
+            disabled ||
+            (!item === 'ellipsis' &&
+              (item === 'next' || item === 'last' ? page >= count : page <= 1)),
+        };
   });
 
   return {
