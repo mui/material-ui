@@ -16,10 +16,10 @@ export const styles = theme => ({
     '&$selected': {
       backgroundColor:
         theme.palette.type === 'light'
-          ? fade(theme.palette.primary.main, 0.04)
+          ? fade(theme.palette.secondary.main, 0.04)
           : 'rgba(255, 255, 255, 0.08)',
     },
-    '&$hover:hover': {
+    '&$hover:not($selected):hover': {
       backgroundColor:
         theme.palette.type === 'light'
           ? theme.palette.action.hover
