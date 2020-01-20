@@ -22,7 +22,7 @@ export const styles = theme => ({
     '&$hover:hover': {
       backgroundColor:
         theme.palette.type === 'light'
-          ? 'rgba(0, 0, 0, 0.04)'
+          ? theme.palette.action.hover
           : 'rgba(255, 255, 255, 0.14)',
     },
   },
