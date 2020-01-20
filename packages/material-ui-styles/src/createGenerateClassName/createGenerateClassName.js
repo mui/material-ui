@@ -31,7 +31,7 @@ export default function createGenerateClassName(options = {}) {
     disableGlobal = false,
     productionPrefix = 'jss',
     seed = '',
-    fullRuleNamesInProd = false
+    fullRuleNamesInProd = false,
   } = options;
 
   const seedPrefix = seed === '' ? '' : `${seed}-`;
