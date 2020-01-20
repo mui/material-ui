@@ -235,6 +235,7 @@ export const componentSettings = {
       'getAriaValueText',
       'onChange',
       'onChangeCommitted',
+      'scale',
       'ThumbComponent',
       'value',
       'ValueLabelComponent',
