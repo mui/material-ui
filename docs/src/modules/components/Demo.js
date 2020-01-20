@@ -11,7 +11,6 @@ import Collapse from '@material-ui/core/Collapse';
 import NoSsr from '@material-ui/core/NoSsr';
 import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
-//import GitHubIcon from '@material-ui/icons/GitHub';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import Snackbar from '@material-ui/core/Snackbar';
 import Menu from '@material-ui/core/Menu';
