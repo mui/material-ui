@@ -18,6 +18,9 @@ const styles = theme => ({
     height: 32,
     margin: '0 3px',
     color: theme.palette.text.primary,
+    transition: theme.transitions.create('background-color', {
+      duration: theme.transitions.duration.short,
+    }),
     '&:hover, &:focus': {
       backgroundColor: fade(theme.palette.action.active, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
@@ -273,7 +276,6 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
           [classes.selected]: selected,
           [classes[`size${capitalize(size)}`]]: size !== 'medium',
         })}
-        disableRipple
         {...other}
       >
         {type === 'page' && page}
