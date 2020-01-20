@@ -61,7 +61,6 @@ const Radio = React.forwardRef(function Radio(props, ref) {
     checked: checkedProp,
     classes,
     color = 'secondary',
-    disabled = false,
     name: nameProp,
     onChange: onChangeProp,
     size = 'medium',
@@ -99,7 +98,6 @@ const Radio = React.forwardRef(function Radio(props, ref) {
       checked={checked}
       onChange={onChange}
       ref={ref}
-      disabled={disabled}
       {...other}
     />
   );
