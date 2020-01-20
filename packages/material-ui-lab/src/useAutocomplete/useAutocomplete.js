@@ -182,8 +182,11 @@ export default function useAutocomplete(props) {
       const elementBottom = element.offsetTop + element.offsetHeight;
       if (elementBottom > scrollBottom) {
         listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
-      } else if (element.offsetTop < listboxNode.scrollTop) {
-        listboxNode.scrollTop = element.offsetTop;
+      } else if (
+        element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0) <
+        listboxNode.scrollTop
+      ) {
+        listboxNode.scrollTop = element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0);
       }
     }
   }
