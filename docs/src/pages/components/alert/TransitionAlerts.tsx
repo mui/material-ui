@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function TransitionAlerts() {
+export default function ActionAlerts() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
@@ -42,7 +42,6 @@ export default function TransitionAlerts() {
         </Alert>
       </Collapse>
       <Button
-        disabled={open}
         variant="outlined"
         onClick={() => {
           setOpen(true);
