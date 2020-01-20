@@ -12,6 +12,7 @@ A function which returns [a class name generator function](https://cssinjs.org/j
   - `options.disableGlobal` (*Boolean* [optional]): Defaults to `false`. Disable the generation of deterministic class names.
   - `options.productionPrefix` (*String* [optional]): Defaults to `'jss'`. The string used to prefix the class names in production.
   - `options.seed` (*String* [optional]): Defaults to `''`. The string used to uniquely identify the generator. It can be used to avoid class name collisions when using multiple generators in the same document.
+  - `options.fullRuleNamesInProd` (*Boolean* [optional]): Defaults to `false`. Use Component-ruleName-ruleCount based class names in production. Note that this may be slightly less optimal, but allows for development in a prod-like environment for integration tests.
 
 #### Returns
 

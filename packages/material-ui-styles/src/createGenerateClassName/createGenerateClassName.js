@@ -27,7 +27,13 @@ const pseudoClasses = [
 // It's inspired by
 // https://github.com/cssinjs/jss/blob/4e6a05dd3f7b6572fdd3ab216861d9e446c20331/src/utils/createGenerateClassName.js
 export default function createGenerateClassName(options = {}) {
-  const { disableGlobal = false, productionPrefix = 'jss', seed = '' } = options;
+  const {
+    disableGlobal = false,
+    productionPrefix = 'jss',
+    seed = '',
+    fullRuleNamesInProd = false
+  } = options;
+
   const seedPrefix = seed === '' ? '' : `${seed}-`;
   let ruleCounter = 0;
 
@@ -62,7 +68,7 @@ export default function createGenerateClassName(options = {}) {
       return `${prefix}-${ruleCounter}`;
     }
 
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production' && !options.fullRuleNamesInProd) {
       return `${seedPrefix}${productionPrefix}${ruleCounter}`;
     }
 
