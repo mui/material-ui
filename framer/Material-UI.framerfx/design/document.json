@@ -737,7 +737,7 @@
               "color" : "primary",
               "disabled" : false,
               "label" : "Switch",
-              "size" : "small"
+              "size" : "medium"
             },
             "codeOverrideEnabled" : false,
             "constraintsLocked" : false,
@@ -821,7 +821,7 @@
               "color" : "secondary",
               "disabled" : false,
               "label" : "Checkbox",
-              "size" : "small"
+              "size" : "medium"
             },
             "codeOverrideEnabled" : false,
             "constraintsLocked" : false,
@@ -3570,7 +3570,7 @@
               "color" : "secondary",
               "disabled" : false,
               "label" : "Radio",
-              "size" : "small"
+              "size" : "medium"
             },
             "codeOverrideEnabled" : false,
             "constraintsLocked" : false,
@@ -3671,63 +3671,6 @@
             "top" : null,
             "visible" : true,
             "width" : 203,
-            "widthType" : 0
-          },
-          {
-            "__class" : "CodeComponentNode",
-            "aspectRatio" : null,
-            "bottom" : 23,
-            "centerAnchorX" : 0.54183006535947709,
-            "centerAnchorY" : 0.93167701863354035,
-            "children" : [
-
-            ],
-            "clip" : true,
-            "codeComponentIdentifier" : ".\/Radio.tsx_Radio",
-            "codeComponentProps" : {
-              "color" : "secondary",
-              "disabled" : false,
-              "label" : "Radio",
-              "size" : "small"
-            },
-            "codeOverrideEnabled" : false,
-            "constraintsLocked" : false,
-            "deviceType" : null,
-            "exportOptions" : [
-
-            ],
-            "fillColor" : "rgba(255,255,255,1)",
-            "fillEnabled" : false,
-            "fillImage" : null,
-            "fillImageOriginalName" : null,
-            "fillImagePixelHeight" : null,
-            "fillImagePixelWidth" : null,
-            "fillImageResize" : "fill",
-            "fillType" : "color",
-            "height" : 42,
-            "heightType" : 0,
-            "id" : "cykJGhhcT",
-            "intrinsicHeight" : 42,
-            "intrinsicWidth" : null,
-            "left" : null,
-            "locked" : false,
-            "name" : null,
-            "opacity" : 1,
-            "originalid" : null,
-            "parentid" : "l0xy8PUi0",
-            "previewSettings" : null,
-            "radius" : 0,
-            "radiusBottomLeft" : 0,
-            "radiusBottomRight" : 0,
-            "radiusIsRelative" : false,
-            "radiusPerCorner" : false,
-            "radiusTopLeft" : 0,
-            "radiusTopRight" : 0,
-            "right" : 297,
-            "rotation" : 0,
-            "top" : null,
-            "visible" : true,
-            "width" : 107,
             "widthType" : 0
           }
         ],
@@ -6428,13 +6371,13 @@
             "codeComponentIdentifier" : ".\/Slider.tsx_Slider",
             "codeComponentProps" : {
               "color" : "primary",
-              "disabled" : true,
+              "disabled" : false,
               "max" : 100,
               "min" : 0,
               "orientation" : "horizontal",
               "step" : 1,
               "track" : "normal",
-              "valueLabelDisplay" : "on"
+              "valueLabelDisplay" : "off"
             },
             "codeOverrideEnabled" : false,
             "constraintsLocked" : false,
