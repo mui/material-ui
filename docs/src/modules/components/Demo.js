@@ -244,6 +244,10 @@ function Demo(props) {
     }
   };
 
+  const handleClickGithub = () => {
+    window.open(demoData.githubLocation);
+  };
+
   const handleClickStackBlitz = () => {
     const demoConfig = getDemoConfig(demoData);
     const form = document.createElement('form');
@@ -394,23 +398,6 @@ function Demo(props) {
                   </IconButton>
                 </Tooltip>
               )}
-              {/* <Tooltip
-                classes={{ popper: classes.tooltip }}
-                title={t('viewGitHub')}
-                placement="top"
-              >
-                <IconButton
-                  aria-label={t('viewGitHub')}
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="github"
-                  href={demoData.githubLocation}
-                  target="_blank"
-                  rel="noopener nofollow"
-                >
-                  <GitHubIcon fontSize="small" />
-                </IconButton>
-              </Tooltip> */}
               <Tooltip
                 classes={{ popper: classes.tooltip }}
                 title={t('copySource')}
@@ -452,10 +439,10 @@ function Demo(props) {
                 <MenuItem
                   data-ga-event-category="demo"
                   data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="copy"
-                  onClick={handleClickCopy}
+                  data-ga-event-action="github"
+                  onClick={handleClickGithub}
                 >
-                  {t('copySource')}
+                  {t('viewGitHub')}
                 </MenuItem>
                 {demoOptions.hideEditButton ? null : (
                   <MenuItem
