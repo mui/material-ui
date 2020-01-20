@@ -11,7 +11,8 @@ import Collapse from '@material-ui/core/Collapse';
 import NoSsr from '@material-ui/core/NoSsr';
 import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
-import GitHubIcon from '@material-ui/icons/GitHub';
+//import GitHubIcon from '@material-ui/icons/GitHub';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
 import Snackbar from '@material-ui/core/Snackbar';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -393,7 +394,7 @@ function Demo(props) {
                   </IconButton>
                 </Tooltip>
               )}
-              <Tooltip
+              {/* <Tooltip
                 classes={{ popper: classes.tooltip }}
                 title={t('viewGitHub')}
                 placement="top"
@@ -408,6 +409,21 @@ function Demo(props) {
                   rel="noopener nofollow"
                 >
                   <GitHubIcon fontSize="small" />
+                </IconButton>
+              </Tooltip> */}
+              <Tooltip
+                classes={{ popper: classes.tooltip }}
+                title={t('copySource')}
+                placement="top"
+              >
+                <IconButton
+                  aria-label={t('copySource')}
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="copy"
+                  onClick={handleClickCopy}
+                >
+                  <FileCopyIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
               <IconButton
