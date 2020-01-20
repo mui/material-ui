@@ -631,7 +631,7 @@ const appList = [
     description: 'NBA trade machine and social analysis tools for the basketball community.',
     image: 'tradenba.jpg',
     link: 'https://tradenba.com/',
-    similarWebVisits: 145800,
+    similarWebVisits: 145,
     dateAdded: '2020-01-20',
   },
 ];
