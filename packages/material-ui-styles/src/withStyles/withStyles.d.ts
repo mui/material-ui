@@ -52,8 +52,6 @@ export type StyleRules<Props extends object = {}, ClassKey extends string = stri
   ClassKey,
   // JSS property bag
   | CSSProperties
-  // JSS property bag based on a theme
-  | (() => CSSProperties)
   // JSS property bag where values are based on props
   | CreateCSSProperties<Props>
   // JSS property bag based on props
