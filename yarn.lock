@@ -830,7 +830,7 @@
     pirates "^4.0.0"
     source-map-support "^0.5.16"
 
-"@babel/runtime-corejs2@7.1.2", "@babel/runtime-corejs2@^7.4.4", "@babel/runtime-corejs2@^7.7.4":
+"@babel/runtime-corejs2@7.1.2", "@babel/runtime-corejs2@^7.4.4", "@babel/runtime-corejs2@^7.7.4", "@babel/runtime-corejs2@^7.8.3":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.8.3.tgz#b62a61e0c41a90d2d91181fda6de21cecd3a9734"
   integrity sha512-yxJXBKdIogkfF+wgeJrvU7Afp5ugBi92NzSgNPWWKVoQAlixH3gwMP6yYYr7SV1Dbc0HmNw7WUJkV5ksvtQuHg==
