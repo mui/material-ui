@@ -469,19 +469,17 @@ describe('<Tooltip />', () => {
 
   it('should use the same popper.js instance between two renders', () => {
     const popperRef = React.createRef();
-    const { setProps } = render(
+    const { forceUpdate } = render(
       <Tooltip
         {...defaultProps}
-        open={false}
+        open
         PopperProps={{
           popperRef,
         }}
       />,
     );
-    setProps({ open: true });
-    const render1 = popperRef.current;
-    setProps({ open: true });
-    const render2 = popperRef.current;
-    expect(render1).to.equal(render2);
+    const firstPopperInstance = popperRef.current;
+    forceUpdate();
+    expect(firstPopperInstance).to.equal(popperRef.current);
   });
 });
