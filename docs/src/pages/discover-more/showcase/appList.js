@@ -626,6 +626,14 @@ const appList = [
     link: 'https://www.hifivework.com/#/',
     dateAdded: '2020-01-08',
   },
+  {
+    title: 'TradeNBA',
+    description: 'NBA trade machine and social analysis tools for the basketball community.',
+    image: 'tradenba.jpg',
+    link: 'https://tradenba.com/',
+    similarWebVisits: 145,
+    dateAdded: '2020-01-20',
+  },
 ];
 
 export default appList;
