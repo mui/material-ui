@@ -3,7 +3,7 @@ title: Select React component
 components: Select, NativeSelect
 ---
 
-# Selecciones
+# Select
 
 <p class="description">Los componentes seleccionados se utilizan para recopilar información relegado por el usuario de una lista de opciones.</p>
 
@@ -18,6 +18,10 @@ Los menús son colocados sobre sus emisores de elementos tales que el elemento d
 Dado que la experiencia del usuario puede mejorarse en móvil usando la selección nativa de la plataforma, permitimos ese patrón.
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
+
+## Campos de texto
+
+El componente `TextField` es un control de formulario completo, incluyendo una etiqueta, el campo de texto y texto de ayuda. You can find an example with the select mode [in this section](/components/text-fields/#select).
 
 ## Selecciones personalizadas
 
@@ -45,6 +49,29 @@ While it's discouraged by the Material Design specification, you can use a selec
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 
-## Campos de texto
+## Grouping
 
-El componente `TextField` es un control de formulario completo, incluyendo una etiqueta, el campo de texto y texto de ayuda. You can find an example with the select mode [in this section](/components/text-fields/#textfield).
+Display categories with the `ListSubheader` component or the native `<optgroup>` element.
+
+{{"demo": "pages/components/selects/GroupedSelect.js"}}
+
+## Accesibilidad
+
+To properly label your `Select` input you need an extra element with an `id` that contains a label. That `id` needs to match the `labelId` of the `Select` e.g.
+
+```jsx
+<InputLabel id="label">Age</InputLabel>
+<Select labelId="label" id="select" value="20">
+  <MenuItem value="10">Ten</MenuItem>
+  <MenuItem value="20">Twenty</MenuItem>
+</Select>
+```
+
+Alternatively a `TextField` with an `id` and `label` creates the proper markup and ids for you:
+
+```jsx
+<TextField id="select" label="Age" value="20">
+  <MenuItem value="10">Ten</MenuItem>
+  <MenuItem value="20">Twenty</MenuItem>
+</TextField>
+```

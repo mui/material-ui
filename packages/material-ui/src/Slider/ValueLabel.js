@@ -20,7 +20,6 @@ const styles = theme => ({
       duration: theme.transitions.duration.shortest,
     }),
     top: -34,
-    left: 'calc(-50% + -4px)',
     transformOrigin: 'bottom center',
     transform: 'scale(0)',
     position: 'absolute',
@@ -45,16 +44,7 @@ const styles = theme => ({
  * @ignore - internal component.
  */
 function ValueLabel(props) {
-  const {
-    children,
-    classes,
-    className,
-    index,
-    open,
-    value,
-    valueLabelDisplay,
-    valueLabelFormat,
-  } = props;
+  const { children, classes, className, open, value, valueLabelDisplay } = props;
 
   if (valueLabelDisplay === 'off') {
     return children;
@@ -73,11 +63,7 @@ function ValueLabel(props) {
     },
     <span className={clsx(classes.offset, className)}>
       <span className={classes.circle}>
-        <span className={classes.label}>
-          {typeof valueLabelFormat === 'function'
-            ? valueLabelFormat(value, index)
-            : valueLabelFormat}
-        </span>
+        <span className={classes.label}>{value}</span>
       </span>
     </span>,
   );

@@ -1,14 +1,13 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */
-
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
 import withStyles from '../styles/withStyles';
-import { useForkRef } from '../utils/reactHelpers';
+import capitalize from '../utils/capitalize';
+import useForkRef from '../utils/useForkRef';
 import TextareaAutosize from '../TextareaAutosize';
 import { isFilled } from './utils';
 
@@ -67,6 +66,8 @@ export const styles = theme => {
         paddingTop: 4 - 1,
       },
     },
+    /* Styles applied to the root element if the color is secondary. */
+    colorSecondary: {},
     /* Styles applied to the root element if `fullWidth={true}`. */
     fullWidth: {
       width: '100%',
@@ -81,12 +82,12 @@ export const styles = theme => {
       background: 'none',
       height: '1.1875em', // Reset (19px), match the native input line-height
       margin: 0, // Reset for Safari
-      // Remove grey highlight
       WebkitTapHighlightColor: 'transparent',
       display: 'block',
       // Make the flex item shrink with Firefox
       minWidth: 0,
       width: '100%', // Fix IE 11 width issue
+      animationName: '$auto-fill-cancel',
       '&::-webkit-input-placeholder': placeholder,
       '&::-moz-placeholder': placeholder, // Firefox 19+
       '&:-ms-input-placeholder': placeholder, // IE 11
@@ -116,14 +117,20 @@ export const styles = theme => {
       '&$disabled': {
         opacity: 1, // Reset iOS opacity
       },
+      '&:-webkit-autofill': {
+        animationDuration: '5000s',
+        animationName: '$auto-fill',
+      },
+    },
+    '@keyframes auto-fill': {
+      from: {},
+    },
+    '@keyframes auto-fill-cancel': {
+      from: {},
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense: {
       paddingTop: 4 - 1,
-    },
-    /* Styles applied to the `input` element if `select={true}`. */
-    inputSelect: {
-      paddingRight: 24,
     },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
@@ -159,7 +166,8 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     autoComplete,
     autoFocus,
     classes,
-    className: classNameProp,
+    className,
+    color,
     defaultValue,
     disabled,
     endAdornment,
@@ -167,7 +175,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     fullWidth = false,
     id,
     inputComponent = 'input',
-    inputProps: { className: inputPropsClassName, ...inputPropsProp } = {},
+    inputProps: inputPropsProp = {},
     inputRef: inputRefProp,
     margin,
     multiline = false,
@@ -183,25 +191,29 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     renderSuffix,
     rows,
     rowsMax,
-    select = false,
+    rowsMin,
     startAdornment,
     type = 'text',
-    value,
+    value: valueProp,
     ...other
   } = props;
 
+  const value = inputPropsProp.value != null ? inputPropsProp.value : valueProp;
   const { current: isControlled } = React.useRef(value != null);
 
   const inputRef = React.useRef();
   const handleInputRefWarning = React.useCallback(instance => {
-    warning(
-      !instance || instance instanceof HTMLInputElement || instance.focus,
-      [
-        'Material-UI: you have provided a `inputComponent` to the input component',
-        'that does not correctly handle the `inputRef` prop.',
-        'Make sure the `inputRef` prop is called with a HTMLInputElement.',
-      ].join('\n'),
-    );
+    if (process.env.NODE_ENV !== 'production') {
+      if (instance && !(instance instanceof HTMLInputElement) && !instance.focus) {
+        console.error(
+          [
+            'Material-UI: you have provided a `inputComponent` to the input component',
+            'that does not correctly handle the `inputRef` prop.',
+            'Make sure the `inputRef` prop is called with a HTMLInputElement.',
+          ].join('\n'),
+        );
+      }
+    }
   }, []);
   const handleInputPropsRefProp = useForkRef(inputPropsProp.ref, handleInputRefWarning);
   const handleInputRefProp = useForkRef(inputRefProp, handleInputPropsRefProp);
@@ -224,7 +236,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['disabled', 'error', 'hiddenLabel', 'margin', 'required', 'filled'],
+    states: ['color', 'disabled', 'error', 'hiddenLabel', 'margin', 'required', 'filled'],
   });
   fcs.focused = muiFormControl ? muiFormControl.focused : focused;
 
@@ -239,17 +251,20 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     }
   }, [muiFormControl, disabled, focused, onBlur]);
 
+  const onFilled = muiFormControl && muiFormControl.onFilled;
+  const onEmpty = muiFormControl && muiFormControl.onEmpty;
+
   const checkDirty = React.useCallback(
     obj => {
       if (isFilled(obj)) {
-        if (muiFormControl && muiFormControl.onFilled) {
-          muiFormControl.onFilled();
+        if (onFilled) {
+          onFilled();
         }
-      } else if (muiFormControl && muiFormControl.onEmpty) {
-        muiFormControl.onEmpty();
+      } else if (onEmpty) {
+        onEmpty();
       }
     },
-    [muiFormControl],
+    [onFilled, onEmpty],
   );
 
   useEnhancedEffect(() => {
@@ -269,6 +284,9 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     if (onFocus) {
       onFocus(event);
     }
+    if (inputPropsProp.onFocus) {
+      inputPropsProp.onFocus(event);
+    }
 
     if (muiFormControl && muiFormControl.onFocus) {
       muiFormControl.onFocus(event);
@@ -280,6 +298,9 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
   const handleBlur = event => {
     if (onBlur) {
       onBlur(event);
+    }
+    if (inputPropsProp.onBlur) {
+      inputPropsProp.onBlur(event);
     }
 
     if (muiFormControl && muiFormControl.onBlur) {
@@ -305,11 +326,21 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       });
     }
 
+    if (inputPropsProp.onChange) {
+      inputPropsProp.onChange(event, ...args);
+    }
+
     // Perform in the willUpdate
     if (onChange) {
       onChange(event, ...args);
     }
   };
+
+  // Check the input state on mount, in case it was filled by the user
+  // or auto filled by the browser before the hydration (for SSR).
+  React.useEffect(() => {
+    checkDirty(inputRef.current);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleClick = event => {
     if (inputRef.current && event.currentTarget === event.target) {
@@ -337,7 +368,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
       ref: null,
     };
   } else if (multiline) {
-    if (rows && !rowsMax) {
+    if (rows && !rowsMax && !rowsMin) {
       InputComponent = 'textarea';
     } else {
       inputProps = {
@@ -354,10 +385,24 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
     };
   }
 
+  const handleAutoFill = event => {
+    // Provide a fake value as Chrome might not let you access it for security reasons.
+    checkDirty(
+      event.animationName.indexOf('auto-fill-cancel') !== -1 ? inputRef.current : { value: 'x' },
+    );
+  };
+
+  React.useEffect(() => {
+    if (muiFormControl) {
+      muiFormControl.setAdornedStart(Boolean(startAdornment));
+    }
+  }, [muiFormControl, startAdornment]);
+
   return (
     <div
       className={clsx(
         classes.root,
+        classes[`color${capitalize(fcs.color || 'primary')}`],
         {
           [classes.disabled]: fcs.disabled,
           [classes.error]: fcs.error,
@@ -369,7 +414,7 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           [classes.adornedStart]: startAdornment,
           [classes.adornedEnd]: endAdornment,
         },
-        classNameProp,
+        className,
       )}
       onClick={handleClick}
       ref={ref}
@@ -382,35 +427,35 @@ const InputBase = React.forwardRef(function InputBase(props, ref) {
           aria-describedby={ariaDescribedby}
           autoComplete={autoComplete}
           autoFocus={autoFocus}
+          defaultValue={defaultValue}
+          disabled={fcs.disabled}
+          id={id}
+          onAnimationStart={handleAutoFill}
+          name={name}
+          placeholder={placeholder}
+          readOnly={readOnly}
+          required={fcs.required}
+          rows={rows}
+          value={value}
+          onKeyDown={onKeyDown}
+          onKeyUp={onKeyUp}
+          {...inputProps}
           className={clsx(
             classes.input,
             {
               [classes.disabled]: fcs.disabled,
               [classes.inputTypeSearch]: type === 'search',
               [classes.inputMultiline]: multiline,
-              [classes.inputSelect]: select,
               [classes.inputMarginDense]: fcs.margin === 'dense',
               [classes.inputHiddenLabel]: fcs.hiddenLabel,
               [classes.inputAdornedStart]: startAdornment,
               [classes.inputAdornedEnd]: endAdornment,
             },
-            inputPropsClassName,
+            inputPropsProp.className,
           )}
-          defaultValue={defaultValue}
-          disabled={fcs.disabled}
-          id={id}
-          name={name}
           onBlur={handleBlur}
           onChange={handleChange}
           onFocus={handleFocus}
-          onKeyDown={onKeyDown}
-          onKeyUp={onKeyUp}
-          placeholder={placeholder}
-          readOnly={readOnly}
-          required={fcs.required}
-          rows={rows}
-          value={value}
-          {...inputProps}
         />
       </FormControlContext.Provider>
       {endAdornment}
@@ -448,6 +493,10 @@ InputBase.propTypes = {
    * The CSS class name of the wrapper element.
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * The default `input` element value. Use when the component is not controlled.
    */
@@ -500,7 +549,9 @@ InputBase.propTypes = {
    */
   name: PropTypes.string,
   /**
-   * @ignore
+   * Callback fired when the input is blurred.
+   *
+   * Notice that the first argument (event) might be undefined.
    */
   onBlur: PropTypes.func,
   /**
@@ -552,9 +603,9 @@ InputBase.propTypes = {
    */
   rowsMax: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
-   * Should be `true` when the component hosts a select.
+   * Minimum number of rows to display when multiline option is set to true.
    */
-  select: PropTypes.bool,
+  rowsMin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * Start `InputAdornment` for this component.
    */

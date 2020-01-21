@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import withStyles from '../styles/withStyles';
 import { darken, lighten } from '../styles/colorManipulator';
 import useTheme from '../styles/useTheme';
@@ -23,11 +22,11 @@ export const styles = theme => {
       overflow: 'hidden',
       height: 4,
     },
-    /* Styles applied to the root & bar2 element if `color="primary"`; bar2 if `variant-"buffer"`. */
+    /* Styles applied to the root and bar2 element if `color="primary"`; bar2 if `variant="buffer"`. */
     colorPrimary: {
       backgroundColor: backgroundPrimary,
     },
-    /* Styles applied to the root & bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`. */
+    /* Styles applied to the root and bar2 elements if `color="secondary"`; bar2 if `variant="buffer"`. */
     colorSecondary: {
       backgroundColor: backgroundSecondary,
     },
@@ -51,19 +50,19 @@ export const styles = theme => {
       width: '100%',
       animation: '$buffer 3s infinite linear',
     },
-    /* Styles applied to the additional bar element if `variant="buffer"` & `color="primary"`. */
+    /* Styles applied to the additional bar element if `variant="buffer"` and `color="primary"`. */
     dashedColorPrimary: {
       backgroundImage: `radial-gradient(${backgroundPrimary} 0%, ${backgroundPrimary} 16%, transparent 42%)`,
       backgroundSize: '10px 10px',
       backgroundPosition: '0px -23px',
     },
-    /* Styles applied to the additional bar element if `variant="buffer"` & `color="secondary"`. */
+    /* Styles applied to the additional bar element if `variant="buffer"` and `color="secondary"`. */
     dashedColorSecondary: {
       backgroundImage: `radial-gradient(${backgroundSecondary} 0%, ${backgroundSecondary} 16%, transparent 42%)`,
       backgroundSize: '10px 10px',
       backgroundPosition: '0px -23px',
     },
-    /* Styles applied to the layered bar1 & bar2 elements. */
+    /* Styles applied to the layered bar1 and bar2 elements. */
     bar: {
       width: '100%',
       position: 'absolute',
@@ -98,8 +97,7 @@ export const styles = theme => {
     /* Styles applied to the bar2 element if `variant="indeterminate or query"`. */
     bar2Indeterminate: {
       width: 'auto',
-      animation: '$indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite',
-      animationDelay: '1.15s',
+      animation: '$indeterminate2 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) 1.15s infinite',
     },
     /* Styles applied to the bar2 element if `variant="buffer"`. */
     bar2Buffer: {
@@ -168,7 +166,7 @@ export const styles = theme => {
 const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
   const {
     classes,
-    className: classNameProp,
+    className,
     color = 'primary',
     value,
     valueBuffer,
@@ -188,9 +186,8 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
         transform = -transform;
       }
       inlineStyles.bar1.transform = `translateX(${transform}%)`;
-    } else {
-      warning(
-        false,
+    } else if (process.env.NODE_ENV !== 'production') {
+      console.error(
         'Material-UI: you need to provide a value prop ' +
           'when using the determinate or buffer variant of LinearProgress .',
       );
@@ -203,9 +200,8 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
         transform = -transform;
       }
       inlineStyles.bar2.transform = `translateX(${transform}%)`;
-    } else {
-      warning(
-        false,
+    } else if (process.env.NODE_ENV !== 'production') {
+      console.error(
         'Material-UI: you need to provide a valueBuffer prop ' +
           'when using the buffer variant of LinearProgress.',
       );
@@ -223,7 +219,7 @@ const LinearProgress = React.forwardRef(function LinearProgress(props, ref) {
           [classes.buffer]: variant === 'buffer',
           [classes.query]: variant === 'query',
         },
-        classNameProp,
+        className,
       )}
       role="progressbar"
       {...rootProps}

@@ -5,7 +5,7 @@ import { refType } from '@material-ui/utils';
 import { useFormControl } from '../FormControl';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -15,7 +15,6 @@ export const styles = theme => ({
     cursor: 'pointer',
     // For correct alignment with the text.
     verticalAlign: 'middle',
-    // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
     marginLeft: -11,
     marginRight: 16, // used for row presentation of radio/checkbox
@@ -57,7 +56,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(props, ref) 
   const {
     checked,
     classes,
-    className: classNameProp,
+    className,
     control,
     disabled: disabledProp,
     inputRef,
@@ -95,7 +94,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(props, ref) 
           [classes[`labelPlacement${capitalize(labelPlacement)}`]]: labelPlacement !== 'end',
           [classes.disabled]: disabled,
         },
-        classNameProp,
+        className,
       )}
       ref={ref}
       {...other}

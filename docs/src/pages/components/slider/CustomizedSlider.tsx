@@ -1,16 +1,13 @@
 import React from 'react';
 import { withStyles, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
-import PopperJs from 'popper.js';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: 300 + theme.spacing(3) * 2,
-      padding: theme.spacing(3),
     },
     margin: {
       height: theme.spacing(3),
@@ -27,23 +24,8 @@ interface Props {
 function ValueLabelComponent(props: Props) {
   const { children, open, value } = props;
 
-  const popperRef = React.useRef<PopperJs | null>(null);
-  React.useEffect(() => {
-    if (popperRef.current) {
-      popperRef.current.update();
-    }
-  });
-
   return (
-    <Tooltip
-      PopperProps={{
-        popperRef,
-      }}
-      open={open}
-      enterTouchDelay={0}
-      placement="top"
-      title={value}
-    >
+    <Tooltip open={open} enterTouchDelay={0} placement="top" title={value}>
       {children}
     </Tooltip>
   );
@@ -201,7 +183,7 @@ export default function CustomizedSlider() {
   const classes = useStyles();
 
   return (
-    <Paper className={classes.root}>
+    <div className={classes.root}>
       <Typography gutterBottom>iOS</Typography>
       <IOSSlider aria-label="ios slider" defaultValue={60} marks={marks} valueLabelDisplay="on" />
       <div className={classes.margin} />
@@ -221,6 +203,6 @@ export default function CustomizedSlider() {
         getAriaLabel={index => (index === 0 ? 'Minimum price' : 'Maximum price')}
         defaultValue={[20, 40]}
       />
-    </Paper>
+    </div>
   );
 }

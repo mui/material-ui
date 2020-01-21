@@ -2,20 +2,16 @@ import React from 'react';
 import { assert, expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { getClasses } from '@material-ui/core/test-utils';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 import TouchRipple from './TouchRipple';
 import Ripple from './Ripple';
 
 describe('<Ripple />', () => {
   let classes;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<TouchRipple />);
-  });
-
-  after(() => {
-    cleanup();
   });
 
   it('should have the ripple className', () => {

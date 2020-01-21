@@ -8,13 +8,13 @@ export default function FadeMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  function handleClick(event: React.MouseEvent<HTMLElement>) {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
-  }
+  };
 
-  function handleClose() {
+  const handleClose = () => {
     setAnchorEl(null);
-  }
+  };
 
   return (
     <div>

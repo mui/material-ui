@@ -3,7 +3,7 @@ title: Chip コンポーネント
 components: Chip
 ---
 
-# Chips
+# Chip
 
 <p class="description">Chipsは、入力、属性、やアクションを表すコンパクトな要素です。</p>
 
@@ -30,7 +30,7 @@ Outlined chipsは代替スタイルを提供します。
 
 値の配列から複数のチップをレンダリングする例。 チップを削除すると、それがアレイから削除されます。 何のため、ことに注意してください `のonClick` プロパティが定義されていないchipはフォーカスされないだけでなく、 クリックされたか、触られた間、gaindepthもありません。
 
-{{"demo": "pages/components/chips/ChipsArray.js"}}
+{{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 
 ## Small Chip
 
@@ -38,7 +38,7 @@ Outlined chipsは代替スタイルを提供します。
 
 ### デフォルトのバリアント
 
-{{"demo":"pages/components/chips/SmallChips.js"}}
+{{"demo": "pages/components/chips/SmallChips.js"}}
 
 ### アウトライン化されたバリアント
 
@@ -47,3 +47,7 @@ Outlined chipsは代替スタイルを提供します。
 ## Chip Playground
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideHeader": true}}
+
+## アクセシビリティ
+
+If the Chip is deletable or clickable then it is a button in tab order. When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.

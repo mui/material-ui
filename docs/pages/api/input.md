@@ -28,6 +28,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` element will be focused during the first mount. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">className</span> | <span class="prop-type">string</span> |  | The CSS class name of the wrapper element. |
+| <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'</span> |  | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">defaultValue</span> | <span class="prop-type">any</span> |  | The default `input` element value. Use when the component is not controlled. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` element will be disabled. |
 | <span class="prop-name">disableUnderline</span> | <span class="prop-type">bool</span> |  | If `true`, the input will not have an underline. |
@@ -62,18 +63,20 @@ Any other props supplied will be provided to the root element ([InputBase](/api/
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiInput-root</span> | Styles applied to the root element.
-| <span class="prop-name">formControl</span> | <span class="prop-name">MuiInput-formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
-| <span class="prop-name">focused</span> | <span class="prop-name">Mui-focused</span> | Styles applied to the root element if the component is focused.
-| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Styles applied to the root element if `disabled={true}`.
-| <span class="prop-name">underline</span> | <span class="prop-name">MuiInput-underline</span> | Styles applied to the root element if `disableUnderline={false}`.
-| <span class="prop-name">error</span> | <span class="prop-name">Mui-error</span> | Styles applied to the root element if `error={true}`.
-| <span class="prop-name">multiline</span> | <span class="prop-name">MuiInput-multiline</span> | Styles applied to the root element if `multiline={true}`.
-| <span class="prop-name">fullWidth</span> | <span class="prop-name">MuiInput-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
-| <span class="prop-name">input</span> | <span class="prop-name">MuiInput-input</span> | Styles applied to the `input` element.
-| <span class="prop-name">inputMarginDense</span> | <span class="prop-name">MuiInput-inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
-| <span class="prop-name">inputMultiline</span> | <span class="prop-name">MuiInput-inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
-| <span class="prop-name">inputTypeSearch</span> | <span class="prop-name">MuiInput-inputTypeSearch</span> | Styles applied to the `input` element if `type="search"`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiInput-root</span> | Styles applied to the root element.
+| <span class="prop-name">formControl</span> | <span class="prop-name">.MuiInput-formControl</span> | Styles applied to the root element if the component is a descendant of `FormControl`.
+| <span class="prop-name">focused</span> | <span class="prop-name">.Mui-focused</span> | Styles applied to the root element if the component is focused.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Styles applied to the root element if `disabled={true}`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiInput-colorSecondary</span> | Styles applied to the root element if color secondary.
+| <span class="prop-name">underline</span> | <span class="prop-name">.MuiInput-underline</span> | Styles applied to the root element if `disableUnderline={false}`.
+| <span class="prop-name">error</span> | <span class="prop-name">.Mui-error</span> | Styles applied to the root element if `error={true}`.
+| <span class="prop-name">marginDense</span> | <span class="prop-name">.MuiInput-marginDense</span> | Styles applied to the `input` element if `margin="dense"`.
+| <span class="prop-name">multiline</span> | <span class="prop-name">.MuiInput-multiline</span> | Styles applied to the root element if `multiline={true}`.
+| <span class="prop-name">fullWidth</span> | <span class="prop-name">.MuiInput-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
+| <span class="prop-name">input</span> | <span class="prop-name">.MuiInput-input</span> | Styles applied to the `input` element.
+| <span class="prop-name">inputMarginDense</span> | <span class="prop-name">.MuiInput-inputMarginDense</span> | Styles applied to the `input` element if `margin="dense"`.
+| <span class="prop-name">inputMultiline</span> | <span class="prop-name">.MuiInput-inputMultiline</span> | Styles applied to the `input` element if `multiline={true}`.
+| <span class="prop-name">inputTypeSearch</span> | <span class="prop-name">.MuiInput-inputTypeSearch</span> | Styles applied to the `input` element if `type="search"`.
 
 You can override the style of the component thanks to one of these customization points:
 

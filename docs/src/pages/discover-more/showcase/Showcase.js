@@ -10,20 +10,13 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import { GitHub as GithubIcon } from '@material-ui/docs';
+import GitHubIcon from '@material-ui/icons/GitHub';
 import Link from 'docs/src/modules/components/Link';
 import appList from './appList';
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    // Hide the demo container padding
-    margin: -theme.spacing(3),
-    // Maintain alignment with the markdown text
-    [theme.breakpoints.down('xs')]: {
-      padding: 30,
-    },
   },
   formControl: {
     marginBottom: theme.spacing(4),
@@ -80,9 +73,9 @@ function Showcase(props) {
   const sortFunction = sortFunctions[sortFunctionName];
   const t = useSelector(state => state.options.t);
 
-  function handleChangeSort(event) {
+  const handleChangeSort = event => {
     setSortFunctionName(event.target.value);
-  }
+  };
 
   return (
     <div className={classes.root}>
@@ -105,7 +98,7 @@ function Showcase(props) {
                   target="_blank"
                   aria-label={`${app.title} ${t('sourceCode')}`}
                 >
-                  <GithubIcon />
+                  <GitHubIcon />
                 </IconButton>
               ) : null}
             </Typography>

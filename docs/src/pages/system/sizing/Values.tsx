@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 
 export default function Values() {
   return (
-    <Box width="100%" bgcolor="background.paper">
+    <Box width="100%">
       <Box width={1 / 4} bgcolor="grey.300" p={1} my={0.5}>
         Width 1/4
       </Box>

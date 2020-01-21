@@ -12,7 +12,7 @@ Vous connaissez peut-être [normalize.css](https://github.com/necolas/normalize.
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-function MyApp() {
+export default function MyApp() {
   return (
     <React.Fragment>
       <CssBaseline />
@@ -20,8 +20,6 @@ function MyApp() {
     </React.Fragment>
   );
 }
-
-export default MyApp;
 ```
 
 ## Approche
@@ -31,7 +29,7 @@ export default MyApp;
 The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
 
 - La marge dans tous les navigateurs est supprimée.
-- La couleur d'arrière-plan par défaut de Material Design est appliquée. Ceci est réalisé à l'aide de [`thème.la palette.arrière-plan.par défaut`](/customization/default-theme/?expend-path=$.palette.background) pour les appareils standard et un fond blanc pour les périphériques d'impression.
+- La couleur d'arrière-plan par défaut de Material Design est appliquée. It's using [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) for standard devices and a white background for print devices.
 
 ### Disposition
 

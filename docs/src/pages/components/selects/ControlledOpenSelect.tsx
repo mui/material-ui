@@ -24,35 +24,33 @@ export default function ControlledOpenSelect() {
   const [age, setAge] = React.useState<string | number>('');
   const [open, setOpen] = React.useState(false);
 
-  function handleChange(event: React.ChangeEvent<{ value: unknown }>) {
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setAge(event.target.value as number);
-  }
+  };
 
-  function handleClose() {
+  const handleClose = () => {
     setOpen(false);
-  }
+  };
 
-  function handleOpen() {
+  const handleOpen = () => {
     setOpen(true);
-  }
+  };
 
   return (
-    <form autoComplete="off">
+    <div>
       <Button className={classes.button} onClick={handleOpen}>
         Open the select
       </Button>
       <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="demo-controlled-open-select">Age</InputLabel>
+        <InputLabel id="demo-controlled-open-select-label">Age</InputLabel>
         <Select
+          labelId="demo-controlled-open-select-label"
+          id="demo-controlled-open-select"
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
           value={age}
           onChange={handleChange}
-          inputProps={{
-            name: 'age',
-            id: 'demo-controlled-open-select',
-          }}
         >
           <MenuItem value="">
             <em>None</em>
@@ -62,6 +60,6 @@ export default function ControlledOpenSelect() {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-    </form>
+    </div>
   );
 }

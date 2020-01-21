@@ -73,15 +73,13 @@ const theme = {
   },
 };
 
-function App() {
+export default function App() {
   return (
     <ThemeProvider theme={theme}>
       {/* children */}
     </ThemeProvider>
   )
 }
-
-export default App
 ```
 
 Now, you can provide a spacing multiplier value:
@@ -338,7 +336,7 @@ It can help building a mental model for this "style function" concept.
 In practice, a Box component can save you a lot of time.
 In this example, we demonstrate how to reproduce a Banner component.
 
-{{"demo": "pages/system/basics/RealWorld.js"}}
+{{"demo": "pages/system/basics/RealWorld.js", "bg": true}}
 
 ## Prior art
 

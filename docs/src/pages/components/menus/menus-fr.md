@@ -31,7 +31,7 @@ The `Menu` component uses the `Popover` component internally. However, you might
 
 The primary responsibility of the `MenuList` component is to handle the focus.
 
-{{"demo": "pages/components/menus/MenuListComposition.js"}}
+{{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
 ## Customized menus
 
@@ -51,7 +51,7 @@ If the height of a menu prevents all menu items from being displayed, the menu c
 
 There is [a flexbox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) that prevents `text-overflow: ellipsis` from working in a flexbox layout. You can use the `Typography` component with `noWrap` to workaround this issue:
 
-{{"demo": "pages/components/menus/TypographyMenu.js"}}
+{{"demo": "pages/components/menus/TypographyMenu.js", "bg": true}}
 
 ## Changer la transition
 
@@ -59,9 +59,15 @@ Utilisez une transition différente.
 
 {{"demo": "pages/components/menus/FadeMenu.js"}}
 
+## Context menu
+
+Here is an example of a context menu. (Right click to open.)
+
+{{"demo": "pages/components/menus/ContextMenu.js"}}
+
 ## Projets complémentaires
 
-Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti des avantages suivants:
+Pour des cas d'utilisation plus avancés, vous pourrez peut-être tirer parti des projects suivants:
 
 ### Assistant PopupState
 

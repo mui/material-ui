@@ -17,14 +17,6 @@ Linkコンポーネントは、 [Typography](/api/typography/) コンポーネ�
 - リンクが目立つようにするには、`color="primary"`とします。
 - ほとんどの場合、リンクはタイポグラフィコンポーネントの子として使用されるため、`variant="inherit"` となります。
 
-## アクセシビリティ
-
-- リンクのコンテンツを提供するときは、「ここをクリック」や「移動」などの一般的な説明は避けてください。 代わりに、 [特定の説明](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text)使用します。
-- 最高のユーザーエクスペリエンスを得るには、ページ上のテキストからリンクを目立たせる必要があります。
-- リンクに意味のあるhrefがない場合、[`<button>`要素を使用してレンダリングする必要があります。](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md)
-
-{{"demo": "pages/components/links/ButtonLink.js"}}
-
 ## セキュリティ
 
 リンクで `target="_blank"` を使用する場合は、サードパーティのコンテンツにリンクする際に、`rel="noopener"` または`rel="noreferrer"`を必ず設定することを[推奨します。](https://developers.google.com/web/tools/lighthouse/audits/noopener)
@@ -34,8 +26,16 @@ Linkコンポーネントは、 [Typography](/api/typography/) コンポーネ�
 
 ## サードパーティ製ルーティングライブラリ
 
-一般的な使用例の1つは、サーバーとの.htmlラウンドトリップを行わずに、クライアントのみでナビゲーションを実行することです。 `Link` コンポーネントには、このユースケースを処理するためのプロパティが用意されています。：`component`
+One common use case is to perform navigation on the client only, without an HTTP round-trip to the server. `Link` コンポーネントには、このユースケースを処理するためのプロパティが用意されています。：`component`
 
-{{"demo": "pages/components/links/LinkRouter.js", "defaultCodeOpen": true}}
+こちらは [react-routerとの統合例](/guides/composition/#link).
 
-*注：予期しないアンマウントを防ぐために、リンクコンポーネントを作成する必要があります。 You can read more about it in the [component prop guide](/guides/composition/#component-property).*
+## アクセシビリティ
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#link)
+
+- リンクのコンテンツを提供するときは、「ここをクリック」や「移動」などの一般的な説明は避けてください。 代わりに、 [特定の説明](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text)使用します。
+- 最高のユーザーエクスペリエンスを得るには、ページ上のテキストからリンクを目立たせる必要があります。
+- リンクに意味のあるhrefがない場合、[`<button>`要素を使用してレンダリングする必要があります。](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md)
+
+{{"demo": "pages/components/links/ButtonLink.js"}}

@@ -3,7 +3,7 @@ title: Snackbar React component
 components: Snackbar, SnackbarContent
 ---
 
-# Snackbars
+# Snackbar
 
 <p class="description">Snackbars provide brief messages about app processes. The component is also known as a toast.</p>
 
@@ -23,7 +23,7 @@ A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 
 ## Customized snackbars
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
@@ -51,7 +51,7 @@ When multiple snackbar updates are necessary, they should appear one at a time.
 
 Snackbars should appear above FABs (on mobile).
 
-{{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
 
 ### Изменить Transition
 
@@ -73,6 +73,12 @@ You can change the direction of the [Slide](/components/transitions/#slide) tran
 
 ![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
 
-In the following example, we demonstrate how to use [notistack](https://github.com/iamhosseindhv/notistack). notistack makes it easy to display snackbars (so you don't have to deal with open/close state of them). It also enables you to stack them on top of one another (although this is discouraged by the specification).
+This example demonstrates how to use [notistack](https://github.com/iamhosseindhv/notistack). notistack has an **imperative API** that makes it easy to display snackbars, without having to handle their open/close state. It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design specification).
 
-{{"demo": "pages/components/snackbars/IntegrationNotistack.js"}}
+{{"demo": "pages/components/snackbars/IntegrationNotistack.js", "defaultCodeOpen": false}}
+
+## Доступность
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
+
+- By default, the snackbar won't auto-hide. However, if you decide to use the `autoHideDuration` prop, it's recommended to give the user [sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) to respond.

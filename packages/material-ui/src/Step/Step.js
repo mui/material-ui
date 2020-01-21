@@ -1,7 +1,7 @@
 import React from 'react';
+import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
 export const styles = {
@@ -29,28 +29,31 @@ const Step = React.forwardRef(function Step(props, ref) {
     alternativeLabel,
     children,
     classes,
-    className: classNameProp,
+    className,
     completed = false,
     connector,
     disabled = false,
+    expanded = false,
     index,
     last,
     orientation,
     ...other
   } = props;
 
-  const className = clsx(
-    classes.root,
-    classes[orientation],
-    {
-      [classes.alternativeLabel]: alternativeLabel,
-      [classes.completed]: completed,
-    },
-    classNameProp,
-  );
-
   return (
-    <div className={className} ref={ref} {...other}>
+    <div
+      className={clsx(
+        classes.root,
+        classes[orientation],
+        {
+          [classes.alternativeLabel]: alternativeLabel,
+          [classes.completed]: completed,
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    >
       {connector &&
         alternativeLabel &&
         index !== 0 &&
@@ -67,19 +70,23 @@ const Step = React.forwardRef(function Step(props, ref) {
           return null;
         }
 
-        warning(
-          child.type !== React.Fragment,
-          [
-            "Material-UI: the Step component doesn't accept a Fragment as a child.",
-            'Consider providing an array instead.',
-          ].join('\n'),
-        );
+        if (process.env.NODE_ENV !== 'production') {
+          if (isFragment(child)) {
+            console.error(
+              [
+                "Material-UI: the Step component doesn't accept a Fragment as a child.",
+                'Consider providing an array instead.',
+              ].join('\n'),
+            );
+          }
+        }
 
         return React.cloneElement(child, {
           active,
           alternativeLabel,
           completed,
           disabled,
+          expanded,
           last,
           icon: index + 1,
           orientation,
@@ -127,6 +134,10 @@ Step.propTypes = {
    * `StepButton` is a child of `Step`. Is passed to child components.
    */
   disabled: PropTypes.bool,
+  /**
+   * Expand the step.
+   */
+  expanded: PropTypes.bool,
   /**
    * @ignore
    * Used internally for numbering.

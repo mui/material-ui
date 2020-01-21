@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 import Typography from '../Typography';
 import InputAdornment from './InputAdornment';
 import TextField from '../TextField';
@@ -12,16 +12,12 @@ import Input from '../Input';
 
 describe('<InputAdornment />', () => {
   let mount;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
   let classes;
 
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<InputAdornment position="start">foo</InputAdornment>);
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   describeConformance(<InputAdornment position="start">foo</InputAdornment>, () => ({
@@ -156,7 +152,7 @@ describe('<InputAdornment />', () => {
         );
         expect(consoleErrorMock.callCount()).to.equal(1);
         expect(consoleErrorMock.args()[0][0]).to.equal(
-          'Warning: Material-UI: The `InputAdornment` variant infers the variant ' +
+          'Material-UI: The `InputAdornment` variant infers the variant ' +
             'prop you do not have to provide one.',
         );
       });

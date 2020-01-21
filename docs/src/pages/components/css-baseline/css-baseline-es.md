@@ -12,16 +12,14 @@ Tal vez tengas familiaridad con [normalize.css](https://github.com/necolas/norma
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-function MyApp() {
+export default function MyApp() {
   return (
     <React.Fragment>
       <CssBaseline />
-      {/* El resto de tu aplicación */}
+      {/* The rest of your application */}
     </React.Fragment>
   );
 }
-
-export default MyApp;
 ```
 
 ## Enfoque
@@ -31,7 +29,7 @@ export default MyApp;
 The `<html>` and `<body>` elements are updated to provide better page-wide defaults. More specifically:
 
 - Se elimina el margen en todos los navegadores.
-- Se aplica el color de fondo predeterminado de Material Design. Utiliza [`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background) para dispositivos estándares y un fondo blanco para dispositivos de impresión.
+- Se aplica el color de fondo predeterminado de Material Design. It's using [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) for standard devices and a white background for print devices.
 
 ### Disposición
 

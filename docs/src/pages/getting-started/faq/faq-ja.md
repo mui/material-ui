@@ -2,7 +2,21 @@
 
 <p class="description">特定の問題で立ち往生していますか？ Check some of these common gotchas first in the FAQ.</p>
 
-もし探しているものがまだ見つからない場合、 [Spectrum](https://spectrum.chat/material-ui)にある我々のコミュニティに質問ができます 使い方の質問やその他重要ではない問題は、Github issuesではなく[StackOverflow](https://stackoverflow.com/questions/tagged/material-ui)を使ってください。 `material-ui`というStackOverflowタグがあります。 質問にはそのタグをつけてください。
+If you still can't find what you're looking for, you can refer to our [support page](/getting-started/support/).
+
+## Material-UIは最高です。 プロジェクトを支援するにはどのようにできますか？
+
+Material-UIをサポートする方法はたくさんあります。
+
+- **ライブラリを布教する** Evangelize Material-UI by [linking to material-ui.com](https://material-ui.com/) on your website, every backlink matters. Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
+- **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
+- **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
+- **Make changes happen**. 
+  - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
+  - Reviewing and commenting on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
+  - Help [translate](https://translate.material-ui.com) the documentation.
+  - Fixing bugs, adding features, and [improving our documentation](https://github.com/mui-org/material-ui/tree/master/docs) by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
+- **Support us financially on [OpenCollective](https://opencollective.com/material-ui)**. If you use Material-UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.
 
 ## productionビルドでコンポーネントが正しくレンダリングされないのはなぜですか？
 
@@ -22,7 +36,7 @@
 
 ## モーダルを開くと、fixed positionされたDOMが移動するのはなぜですか？
 
-Scroll is blocked as soon as a modal is opened. モーダルが唯一のインタラクティブなコンテンツであるべき場合、backgroundとの連動を防ぎます。しかし、スクロールバーを取り除くことで**fixed positionされたDOM**を動かすことができます。 この場合、Material-UIにこれらのDOMを処理するように伝えるために、グローバルな `.mui-fixed`クラス名を適用することができます。
+Scrolling is blocked as soon as a modal is opened. モーダルが唯一のインタラクティブなコンテンツであるべき場合、backgroundとの連動を防ぎます。しかし、スクロールバーを取り除くことで**fixed positionされたDOM**を動かすことができます。 この場合、Material-UIにこれらのDOMを処理するように伝えるために、グローバルな `.mui-fixed`クラス名を適用することができます。
 
 ## 波紋アニメーションをグローバルに無効にする方法は？
 
@@ -44,7 +58,7 @@ const theme = createMuiTheme({
 
 ## 移行をグローバルに無効にするにはどうすればよいですか？
 
-テーマに次の項目を指定すると、推移をグローバルに無効にできます。
+Material-UI uses the same theme helper for creating all its transitions. So you can disable all the transitions by overriding the helper in your theme:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -57,18 +71,14 @@ const theme = createMuiTheme({
 });
 ```
 
-テスト中やローエンドデバイスなどで、条件付きでこの動作を有効にしたい場合があります。この場合は、テーマの値を動的に変更できます。
+It can be useful to disable transitions during visual testing or to improve performance on low-end devices.
 
-トランジション、アニメーション、およびリプル効果をすべて無効にすると、さらに一歩進めることができます。
+You can go one step further by disabling all the transitions and animations effect:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
-  transitions: {
-    // So we have `transition: none;` everywhere
-    create: () => 'none',
-  },
   overrides: {
     // Name of the component ⚛️
     MuiCssBaseline: {
@@ -81,21 +91,23 @@ const theme = createMuiTheme({
       },
     },
   },
-  props: {
-    // Name of the component ⚛️
-    MuiButtonBase: {
-      // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application!
-    },
-  },
 });
+```
+
+Notice that the usage of `CssBaseline` is required for the above approach to work. If you choose not to use it, you can still disable transitions and animations by including these CSS rules:
+
+```css
+*, *::before, *::after {
+  transition: 'none !important';
+  animation: 'none !important';
+}
 ```
 
 ## アプリのスタイルを設定するにはJSSを使用する必要がありますか？
 
-いいえ、必須ではありません。 しかし、この依存性は組み込まれているため、追加のバンドルサイズのオーバーヘッドはありません。
+いいえ、必須ではありません。 But this dependency comes built in, so carries no additional bundle size overhead.
 
-しかし、おそらくすでに別のスタイルライブラリを使用してアプリケーションにいくつかのMaterial-UIコンポーネントを追加している、 またはすでに別のAPIを使用している場合には、新しいものを学びたくはないでしょう？ その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。
+Perhaps, however, you're adding some Material-UI components to an app that already uses another styling solution, or are already familiar with a different API, and don't want to learn a new one? その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。
 
 ## インラインスタイルとCSSのどちらを使用すべきか
 
@@ -108,7 +120,7 @@ const theme = createMuiTheme({
 
 ## react-routerの使い方は？
 
-How to use a [third-party routing library](/components/buttons/#third-party-routing-library) is documented with the `ButtonBase` component. A lot of the interactive components use it internally: `Link`, `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. それらの例を参考にしてください。
+We detail the [integration with third-party routing libraries](/guides/composition/#routing-libraries) like react-router, Gatsby or Next.js in our guide.
 
 ## どうやってDOM要素にアクセスできますか？
 
@@ -133,7 +145,7 @@ refを使用してDOM要素にアクセスできることを示します。
 
 次のような警告メッセージがコンソールに表示される場合は、ページ上で`@material-ui/styles`のインスタンスがいくつか初期化されている可能性があります。
 
-> It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and makes your application bigger without a good reason.
+> It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
 
 ### 考えられる理由:
 
@@ -145,7 +157,7 @@ refを使用してDOM要素にアクセスできることを示します。
 
 ### node_modulesの重複モジュール
 
-依存関係のどこかにあるduplicated@material-ui/styles モジュールに問題があると考えられる場合、これをチェックする方法がいくつかあります。 You can use `npm ls @material-ui/styles`, `yarn list @material-ui/styles` or `find -L ./node_modules | grep /@material-ui/styles/package.json` commands in your application folder.
+If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this. You can use `npm ls @material-ui/styles`, `yarn list @material-ui/styles` or `find -L ./node_modules | grep /@material-ui/styles/package.json` commands in your application folder.
 
 これらのコマンドで重複が識別されない場合は、バンドルを分析して@material-ui/stylesの複数のインスタンスを探してください。 これらのコマンドで重複が識別されない場合は、バンドルを分析して@material-ui/stylesの複数のインスタンスを探してください。
 
@@ -165,7 +177,7 @@ Webパックを使用している場合は、@material-ui/stylesモジュール�
 
 ### Lernaでの使用
 
-@material-ui/stylesをLerna monorepoの複数のパッケージで動作させるための一つの解決策は、共有されている依存関係をmonorepoファイルのルートに [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) することです。 --hoistフラグを指定してbootstrap option を実行してみてください。
+One possible fix to get @material-ui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. --hoistフラグを指定してbootstrap option を実行してみてください。
 
 ```sh
 lerna bootstrap --hoist
@@ -215,7 +227,7 @@ Lernaルートフォルダー内のpackage.jsonファイルの例
 
 ## サーバーでアプリが正しくレンダリングされない
 
-動作しない場合は、99%のケースで設定の問題になります。 欠落しているプロパティー、誤った呼び出し順序、または欠落しているコンポーネント。 Server side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
+動作しない場合は、99%のケースで設定の問題になります。 A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
 ### CSSは最初のロードでのみ機能し、その後欠落します
 
@@ -270,7 +282,7 @@ function handleRender(req, res) {
 ```
 
 - しかし、異なるリクエスト間で**createGenerateClassName()**を共有すべきではありません。 マイナーバージョンの不一致でも、スタイルの問題が発生する可能性があります。 バージョン番号を確認するには、アプリケーションを構築する環境と配備環境で`npm list@material-ui/core`を実行します
-    
+  
     Package.jsonの依存関係に特定のMUIバージョンを指定することで、異なる環境で同じバージョンを使用することもできます。
 
 *修正の例（package.json）：*
@@ -290,19 +302,6 @@ function handleRender(req, res) {
 ## 私が見ている色とこのサイトで見ている色が違うのはなぜですか？
 
 ドキュメントサイトはカスタムテーマを使用しています。 したがって、カラーパレットがあるMaterial-UIが提供しているデフォルトのテーマは異なります。 テーマのカスタマイズについて学ぶには、この[ページ](/customization/theming/)を参照してください。
-
-## Material-UIは最高です。 プロジェクトを支援するにはどのようにできますか？
-
-Material-UIをサポートする方法はたくさんあります。
-
-- [ドキュメント](https://github.com/mui-org/material-ui/tree/master/docs)を改善する 
-- 他の人が始めるのを手伝う
-- [ライブラリを布教する](https://twitter.com/MaterialUI) 
-- [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui)や[Spectrum](https://spectrum.chat/material-ui)で質問に答える
-
-商用プロジェクトでMaterial-UIを使用していて、スポンサーになることによってその継続的な開発を支援したい場合は、 あるいはサブや趣味のプロジェクトで**スポンサー**になりたい場合は、[OpenCollective](https://opencollective.com/material-ui)を使って行うことができます。
-
-集められた資金はすべて透過的に管理され、スポンサーはREADMEとMaterial-UIのホームページで表彰されます。
 
 ## Component Xがrefオブジェクトの代わりにpropでDOMノードを必要とするのはなぜですか？
 
@@ -340,7 +339,7 @@ function Portal({ children, container }) {
 }
 ```
 
-この単純なヒューリスティックな` Portal ` refはエフェクトが実行される前に最新であるため、マウント後に再レンダリングされる可能性があります。 ただし、refが最新であるからといって、定義済みインスタンスを指しているわけではありません。 refがref転送コンポーネントに接続されている場合、DOMノードがいつ使用可能になるかは不明です。 上記の例では、`Portal`は効果を一度だけ実行しますが、`ref.current`はまだ`null`です。 これは特に 遅延（Suspense）のReact.lazy components の場合に顕著です。 上記の実装では、DOMノードの変更も考慮できませんでした。
+この単純なヒューリスティックな` Portal ` refはエフェクトが実行される前に最新であるため、マウント後に再レンダリングされる可能性があります。 ただし、refが最新であるからといって、定義済みインスタンスを指しているわけではありません。 refがref転送コンポーネントに接続されている場合、DOMノードがいつ使用可能になるかは不明です。 In the example above, the `Portal` would run an effect once, but might not re-render because `ref.current` is still `null`. This is especially apparent for React.lazy components in Suspense. 上記の実装では、DOMノードの変更も考慮できませんでした。
 
 このため、Reactが`Portal`をいつ再レンダリングするかを決定できるように、実際のDOMノードを持つプロップが必要です。
 

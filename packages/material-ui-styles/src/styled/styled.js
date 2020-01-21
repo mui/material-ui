@@ -34,11 +34,13 @@ function styled(Component) {
 
     let classNamePrefix = name;
 
-    if (process.env.NODE_ENV !== 'production' && !name) {
-      // Provide a better DX outside production.
-      const displayName = getDisplayName(Component);
-      if (displayName !== undefined) {
-        classNamePrefix = displayName;
+    if (process.env.NODE_ENV !== 'production') {
+      if (!name) {
+        // Provide a better DX outside production.
+        const displayName = getDisplayName(Component);
+        if (displayName !== undefined) {
+          classNamePrefix = displayName;
+        }
       }
     }
 

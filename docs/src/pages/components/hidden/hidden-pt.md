@@ -5,9 +5,9 @@ components: Hidden
 
 # Hidden
 
-<p class="description">Quickly and responsively toggle the visibility value of components and more with the hidden utilities.</p>
+<p class="description">Modifique rapidamente e de forma responsiva a visibilidade dos componentes e muito mais com o utilitário hidden.</p>
 
-Todos os elementos são visíveis a menos que **estejam explicitamente ocultos**. To ease integration with Material-UI's [responsive breakpoints](/customization/breakpoints/), this component can be used to hide any content, or you can use it in conjunction with the [`Grid`](/components/grid/) component.
+Todos os elementos são visíveis a menos que **estejam explicitamente ocultos**. Para facilitar a integração com [pontos de quebra responsivos](/customization/breakpoints/) do Material-UI's, este componente pode ser utilizado para ocultar qualquer conteúdo, ou você pode usa-lo de forma conjunta com um componente [`Grid`](/components/grid/).
 
 ## Como funciona
 
@@ -37,13 +37,13 @@ Se você estiver usando a renderização do lado do servidor, poderá definir `i
 
 Usando qualquer propriedade de ponto de quebra com `up`, o componente *children* será ocultado *em ou acima* do ponto de quebra.
 
-{{"demo": "pages/components/hidden/BreakpointUp.js"}}
+{{"demo": "pages/components/hidden/BreakpointUp.js", "bg": true}}
 
 ## Ponto de quebra abaixo
 
 Usando qualquer propriedade de ponto de quebra com `down`, o componente *children* será ocultado *em ou abaixo* do ponto de quebra.
 
-{{"demo": "pages/components/hidden/BreakpointDown.js"}}
+{{"demo": "pages/components/hidden/BreakpointDown.js", "bg": true}}
 
 ## Ponto de quebra somente
 
@@ -54,10 +54,10 @@ A propriedade `only` pode ser usada de duas maneiras:
 - com um único ponto de quebra
 - com um array de pontos de quebra
 
-{{"demo": "pages/components/hidden/BreakpointOnly.js"}}
+{{"demo": "pages/components/hidden/BreakpointOnly.js", "bg": true}}
 
 ## Integração com Grade
 
 É bastante comum alterar um `Grid` em pontos de quebra responsivos diferentes e, em muitos casos, você deseja ocultar alguns desses elementos.
 
-{{"demo": "pages/components/hidden/GridIntegration.js"}}
+{{"demo": "pages/components/hidden/GridIntegration.js", "bg": true}}

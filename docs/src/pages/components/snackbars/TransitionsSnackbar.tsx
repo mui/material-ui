@@ -4,7 +4,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Fade from '@material-ui/core/Fade';
 import Slide from '@material-ui/core/Slide';
 import Grow from '@material-ui/core/Grow';
-import { TransitionProps } from '@material-ui/core/transitions/transition';
+import { TransitionProps } from '@material-ui/core/transitions';
 
 function SlideTransition(props: TransitionProps) {
   return <Slide {...props} direction="up" />;
@@ -27,12 +27,12 @@ export default function TransitionsSnackbar() {
     });
   };
 
-  function handleClose() {
+  const handleClose = () => {
     setState({
       ...state,
       open: false,
     });
-  }
+  };
 
   return (
     <div>
@@ -43,10 +43,7 @@ export default function TransitionsSnackbar() {
         open={state.open}
         onClose={handleClose}
         TransitionComponent={state.Transition}
-        ContentProps={{
-          'aria-describedby': 'message-id',
-        }}
-        message={<span id="message-id">I love snacks</span>}
+        message="I love snacks"
       />
     </div>
   );

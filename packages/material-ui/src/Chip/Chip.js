@@ -1,18 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
 import CancelIcon from '../internal/svg-icons/Cancel';
 import withStyles from '../styles/withStyles';
 import { emphasize, fade } from '../styles/colorManipulator';
-import { useForkRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
-import { capitalize } from '../utils/helpers';
-import '../Avatar/Avatar'; // So we don't have any override priority issue.
+import capitalize from '../utils/capitalize';
+import ButtonBase from '../ButtonBase';
 
 export const styles = theme => {
-  const height = 32;
-  const smallHeight = 24;
   const backgroundColor =
     theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[700];
   const deleteIconColor = fade(theme.palette.text.primary, 0.26);
@@ -25,10 +22,10 @@ export const styles = theme => {
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
-      height,
+      height: 32,
       color: theme.palette.getContrastText(backgroundColor),
       backgroundColor,
-      borderRadius: height / 2,
+      borderRadius: 32 / 2,
       whiteSpace: 'nowrap',
       transition: theme.transitions.create(['background-color', 'box-shadow']),
       // label will inherit this from root, then `clickable` class overrides this for both
@@ -40,10 +37,37 @@ export const styles = theme => {
       padding: 0, // Remove `button` padding
       verticalAlign: 'middle',
       boxSizing: 'border-box',
+      '&$disabled': {
+        opacity: 0.5,
+        pointerEvents: 'none',
+      },
+      '& $avatar': {
+        marginLeft: 5,
+        marginRight: -6,
+        width: 24,
+        height: 24,
+        color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
+        fontSize: theme.typography.pxToRem(12),
+      },
+      '& $avatarColorPrimary': {
+        color: theme.palette.primary.contrastText,
+        backgroundColor: theme.palette.primary.dark,
+      },
+      '& $avatarColorSecondary': {
+        color: theme.palette.secondary.contrastText,
+        backgroundColor: theme.palette.secondary.dark,
+      },
+      '& $avatarSmall': {
+        marginLeft: 4,
+        marginRight: -4,
+        width: 18,
+        height: 18,
+        fontSize: theme.typography.pxToRem(10),
+      },
     },
     /* Styles applied to the root element if `size="small"`. */
     sizeSmall: {
-      height: smallHeight,
+      height: 24,
     },
     /* Styles applied to the root element if `color="primary"`. */
     colorPrimary: {
@@ -55,16 +79,18 @@ export const styles = theme => {
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.secondary.contrastText,
     },
+    /* Pseudo-class applied to the root element if `disabled={true}`. */
+    disabled: {},
     /* Styles applied to the root element if `onClick` is defined or `clickable={true}`. */
     clickable: {
-      WebkitTapHighlightColor: 'transparent', // Remove grey highlight
+      userSelect: 'none',
+      WebkitTapHighlightColor: 'transparent',
       cursor: 'pointer',
       '&:hover, &:focus': {
         backgroundColor: emphasize(backgroundColor, 0.08),
       },
       '&:active': {
         boxShadow: theme.shadows[1],
-        backgroundColor: emphasize(backgroundColor, 0.12),
       },
     },
     /* Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`. */
@@ -72,17 +98,11 @@ export const styles = theme => {
       '&:hover, &:focus': {
         backgroundColor: emphasize(theme.palette.primary.main, 0.08),
       },
-      '&:active': {
-        backgroundColor: emphasize(theme.palette.primary.main, 0.12),
-      },
     },
     /* Styles applied to the root element if `onClick` and `color="secondary"` is defined or `clickable={true}`. */
     clickableColorSecondary: {
       '&:hover, &:focus': {
         backgroundColor: emphasize(theme.palette.secondary.main, 0.08),
-      },
-      '&:active': {
-        backgroundColor: emphasize(theme.palette.secondary.main, 0.12),
       },
     },
     /* Styles applied to the root element if `onDelete` is defined. */
@@ -113,7 +133,22 @@ export const styles = theme => {
         backgroundColor: fade(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       },
       '& $avatar': {
-        marginLeft: -1,
+        marginLeft: 4,
+      },
+      '& $avatarSmall': {
+        marginLeft: 2,
+      },
+      '& $icon': {
+        marginLeft: 4,
+      },
+      '& $iconSmall': {
+        marginLeft: 2,
+      },
+      '& $deleteIcon': {
+        marginRight: 5,
+      },
+      '& $deleteIconSmall': {
+        marginRight: 3,
       },
     },
     /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
@@ -132,42 +167,27 @@ export const styles = theme => {
         backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
       },
     },
+    // TODO remove in V5
     /* Styles applied to the `avatar` element. */
-    avatar: {
-      marginRight: -4,
-      width: height,
-      height,
-      color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
-      fontSize: theme.typography.pxToRem(16),
-    },
-    avatarSmall: {
-      width: smallHeight,
-      height: smallHeight,
-      fontSize: theme.typography.pxToRem(12),
-    },
+    avatar: {},
+    /* Styles applied to the `avatar` element if `size="small"`. */
+    avatarSmall: {},
     /* Styles applied to the `avatar` element if `color="primary"`. */
-    avatarColorPrimary: {
-      color: theme.palette.primary.contrastText,
-      backgroundColor: theme.palette.primary.dark,
-    },
+    avatarColorPrimary: {},
     /* Styles applied to the `avatar` element if `color="secondary"`. */
-    avatarColorSecondary: {
-      color: theme.palette.secondary.contrastText,
-      backgroundColor: theme.palette.secondary.dark,
-    },
-    /* Styles applied to the `avatar` elements children. */
-    avatarChildren: {
-      height: 18,
-    },
+    avatarColorSecondary: {},
     /* Styles applied to the `icon` element. */
     icon: {
       color: theme.palette.type === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
       marginLeft: 5,
-      marginRight: -8,
+      marginRight: -6,
     },
+    /* Styles applied to the `icon` element if `size="small"`. */
     iconSmall: {
-      width: 16,
-      marginRight: -5,
+      width: 18,
+      height: 18,
+      marginLeft: 4,
+      marginRight: -4,
     },
     /* Styles applied to the `icon` element if `color="primary"`. */
     iconColorPrimary: {
@@ -177,35 +197,37 @@ export const styles = theme => {
     iconColorSecondary: {
       color: 'inherit',
     },
-    /* Styles applied to the label `span` element`. */
+    /* Styles applied to the label `span` element. */
     label: {
-      display: 'flex',
-      alignItems: 'center',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
       paddingLeft: 12,
       paddingRight: 12,
-      userSelect: 'none',
       whiteSpace: 'nowrap',
-      cursor: 'inherit',
     },
+    /* Styles applied to the label `span` element if `size="small"`. */
     labelSmall: {
       paddingLeft: 8,
       paddingRight: 8,
     },
     /* Styles applied to the `deleteIcon` element. */
     deleteIcon: {
-      // Remove grey highlight
       WebkitTapHighlightColor: 'transparent',
       color: deleteIconColor,
+      height: 22,
+      width: 22,
       cursor: 'pointer',
-      height: 'auto',
-      margin: '0 5px 0 -8px',
+      margin: '0 5px 0 -6px',
       '&:hover': {
         color: fade(deleteIconColor, 0.4),
       },
     },
+    /* Styles applied to the `deleteIcon` element if `size="small"`. */
     deleteIconSmall: {
       height: 16,
-      margin: '0 1px 0 -9px',
+      width: 16,
+      marginRight: 4,
+      marginLeft: -4,
     },
     /* Styles applied to the deleteIcon element if `color="primary"` and `variant="default"`. */
     deleteIconColorPrimary: {
@@ -245,16 +267,16 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   const {
     avatar: avatarProp,
     classes,
-    className: classNameProp,
+    className,
     clickable: clickableProp,
     color = 'default',
-    component: Component = 'div',
+    component: ComponentProp,
     deleteIcon: deleteIconProp,
+    disabled = false,
     icon: iconProp,
     label,
     onClick,
     onDelete,
-    onKeyDown,
     onKeyUp,
     size = 'medium',
     variant = 'default',
@@ -262,34 +284,13 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   } = props;
 
   const chipRef = React.useRef(null);
+  const handleRef = useForkRef(chipRef, ref);
 
   const handleDeleteIconClick = event => {
     // Stop the event from bubbling up to the `Chip`
     event.stopPropagation();
     if (onDelete) {
       onDelete(event);
-    }
-  };
-
-  const handleKeyDown = event => {
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
-
-    // Ignore events from children of `Chip`.
-    if (event.currentTarget !== event.target) {
-      return;
-    }
-
-    const key = event.key;
-    if (
-      key === ' ' ||
-      key === 'Enter' ||
-      key === 'Backspace' ||
-      key === 'Delete' ||
-      key === 'Escape'
-    ) {
-      event.preventDefault();
     }
   };
 
@@ -304,9 +305,7 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     }
 
     const key = event.key;
-    if (onClick && (key === ' ' || key === 'Enter')) {
-      onClick(event);
-    } else if (onDelete && (key === 'Backspace' || key === 'Delete')) {
+    if (onDelete && (key === 'Backspace' || key === 'Delete')) {
       onDelete(event);
     } else if (key === 'Escape' && chipRef.current) {
       chipRef.current.blur();
@@ -316,21 +315,8 @@ const Chip = React.forwardRef(function Chip(props, ref) {
   const clickable = clickableProp !== false && onClick ? true : clickableProp;
   const small = size === 'small';
 
-  const className = clsx(
-    classes.root,
-    {
-      [classes.sizeSmall]: small,
-      [classes[`color${capitalize(color)}`]]: color !== 'default',
-      [classes.clickable]: clickable,
-      [classes[`clickableColor${capitalize(color)}`]]: clickable && color !== 'default',
-      [classes.deletable]: onDelete,
-      [classes[`deletableColor${capitalize(color)}`]]: onDelete && color !== 'default',
-      [classes.outlined]: variant === 'outlined',
-      [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
-      [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
-    },
-    classNameProp,
-  );
+  const Component = ComponentProp || (clickable ? ButtonBase : 'div');
+  const moreProps = Component === ButtonBase ? { component: 'div' } : {};
 
   let deleteIcon = null;
   if (onDelete) {
@@ -363,7 +349,6 @@ const Chip = React.forwardRef(function Chip(props, ref) {
         [classes.avatarSmall]: small,
         [classes[`avatarColor${capitalize(color)}`]]: color !== 'default',
       }),
-      childrenClassName: clsx(classes.avatarChildren, avatarProp.props.childrenClassName),
     });
   }
 
@@ -377,23 +362,40 @@ const Chip = React.forwardRef(function Chip(props, ref) {
     });
   }
 
-  warning(
-    !avatar || !icon,
-    'Material-UI: the Chip component can not handle the avatar ' +
-      'and the icon prop at the same time. Pick one.',
-  );
-
-  const handleRef = useForkRef(chipRef, ref);
+  if (process.env.NODE_ENV !== 'production') {
+    if (avatar && icon) {
+      console.error(
+        'Material-UI: the Chip component can not handle the avatar ' +
+          'and the icon prop at the same time. Pick one.',
+      );
+    }
+  }
 
   return (
     <Component
       role={clickable || onDelete ? 'button' : undefined}
-      className={className}
+      className={clsx(
+        classes.root,
+        {
+          [classes.disabled]: disabled,
+          [classes.sizeSmall]: small,
+          [classes[`color${capitalize(color)}`]]: color !== 'default',
+          [classes.clickable]: clickable,
+          [classes[`clickableColor${capitalize(color)}`]]: clickable && color !== 'default',
+          [classes.deletable]: onDelete,
+          [classes[`deletableColor${capitalize(color)}`]]: onDelete && color !== 'default',
+          [classes.outlined]: variant === 'outlined',
+          [classes.outlinedPrimary]: variant === 'outlined' && color === 'primary',
+          [classes.outlinedSecondary]: variant === 'outlined' && color === 'secondary',
+        },
+        className,
+      )}
+      aria-disabled={disabled ? true : undefined}
       tabIndex={clickable || onDelete ? 0 : undefined}
       onClick={onClick}
-      onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={handleRef}
+      {...moreProps}
       {...other}
     >
       {avatar || icon}
@@ -429,7 +431,7 @@ Chip.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If true, the chip will appear clickable, and will raise when pressed,
+   * If `true`, the chip will appear clickable, and will raise when pressed,
    * even if the onClick prop is not defined.
    * If false, the chip will not be clickable, even if onClick prop is defined.
    * This can be used, for example,
@@ -449,6 +451,10 @@ Chip.propTypes = {
    * Override the default delete icon element. Shown only if `onDelete` is set.
    */
   deleteIcon: PropTypes.element,
+  /**
+   * If `true`, the chip should be displayed in a disabled state.
+   */
+  disabled: PropTypes.bool,
   /**
    * Icon element.
    */

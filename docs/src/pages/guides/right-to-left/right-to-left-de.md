@@ -37,9 +37,9 @@ Nachdem Sie eine neue JSS-Instanz mit dem Plugin erstellt haben, müssen Sie die
 ```jsx
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
-// Konfiguriere JSS
+// Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
 function RTL(props) {

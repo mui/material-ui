@@ -44,8 +44,9 @@ export const styles = theme => ({
 
 const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
   const {
+    children,
     classes,
-    className: classNameProp,
+    className,
     component: Component = 'p',
     disabled,
     error,
@@ -77,17 +78,26 @@ const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
           [classes.focused]: fcs.focused,
           [classes.required]: fcs.required,
         },
-        classNameProp,
+        className,
       )}
       ref={ref}
       {...other}
-    />
+    >
+      {children === ' ' ? (
+        // eslint-disable-next-line react/no-danger
+        <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+      ) : (
+        children
+      )}
+    </Component>
   );
 });
 
 FormHelperText.propTypes = {
   /**
    * The content of the component.
+   *
+   * If `' '` is provided, the component reserves one line height for displaying a future message.
    */
   children: PropTypes.node,
   /**

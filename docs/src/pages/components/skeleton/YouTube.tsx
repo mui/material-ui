@@ -1,5 +1,4 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -16,11 +15,11 @@ const data = [
   },
   {
     src:
-      'https://i.ytimg.com/vi/ycHr1G0Gffg/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLAS6ZJ5RYa2R3Ksp9d8cLzY_8DMOA',
-    title: 'Top Latino Songs 2019 - Luis Fonsi, Ozuna, Nicky Jam…',
-    channel: 'Dj Yanky Plus',
-    views: '2.1 M views',
-    createdAt: '4 months ago',
+      'https://i.ytimg.com/vi/_Uu12zY01ts/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCpX6Jan2rxrCAZxJYDXppTP4MoQA',
+    title: 'Queen - Greatest Hits',
+    channel: 'Queen Official',
+    views: '40 M views',
+    createdAt: '3 years ago',
   },
   {
     src:
@@ -49,7 +48,7 @@ function Media(props: MediaProps) {
             <Skeleton variant="rect" width={210} height={118} />
           )}
           {item ? (
-            <Box paddingRight={2}>
+            <Box pr={2}>
               <Typography gutterBottom variant="body2">
                 {item.title}
               </Typography>
@@ -61,10 +60,10 @@ function Media(props: MediaProps) {
               </Typography>
             </Box>
           ) : (
-            <React.Fragment>
+            <Box pt={0.5}>
               <Skeleton />
               <Skeleton width="60%" />
-            </React.Fragment>
+            </Box>
           )}
         </Box>
       ))}
@@ -74,13 +73,9 @@ function Media(props: MediaProps) {
 
 export default function YouTube() {
   return (
-    <Box overflow="hidden" clone>
-      <Paper>
-        <Box px={3}>
-          <Media loading />
-          <Media />
-        </Box>
-      </Paper>
+    <Box overflow="hidden">
+      <Media loading />
+      <Media />
     </Box>
   );
 }

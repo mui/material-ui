@@ -6,7 +6,7 @@ Examples in this guide use [global methods from Mocha](https://mochajs.org/api/g
 
 ## Internal
 
-Material-UI has a wide **a wide range** of tests so we can
+Material-UI has **a wide range** of tests so we can
 iterate with confidence on the components, for instance, the visual regression tests provided by [Argos-CI](https://www.argos-ci.com/mui-org/material-ui) have proven to be really helpful.
 To learn more about the internal tests, you can have a look at the [README](https://github.com/mui-org/material-ui/blob/master/test/README.md).
 
@@ -59,16 +59,16 @@ Please refer to the [enzyme API documentation](https://airbnb.io/enzyme/docs/api
 
 ```jsx
 import { createMount } from '@material-ui/core/test-utils';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 describe('<MyComponent />', () => {
   let mount;
 
   function MySuccessButton({ children }) {
     return (
-      <MuiThemeProvider theme={{ success: { main: '#fff' } }}>
+      <ThemeProvider theme={{ success: { main: '#fff' } }}>
         {children}
-      </MuiThemeProvider>
+      </ThemeProvider>
     );
   }
 

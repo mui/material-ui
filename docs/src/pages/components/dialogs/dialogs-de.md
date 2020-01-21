@@ -3,7 +3,7 @@ title: Dialog React-Komponente
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
-# Dialoge
+# Dialog
 
 <p class="description">Dialoge informieren Benutzer über eine Aufgabe und können wichtige Informationen enthalten, Entscheidungen erfordern oder mehrere Aufgaben umfassen.</p>
 
@@ -95,9 +95,11 @@ Durch Berühren von „Abbrechen“ in einem Bestätigungsdialogfeld oder durch 
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## Barrierefreiheit
+## Ziehbarer Dialog
 
-Folgen Sie dem [Modal Zugänglichkeit Abschnitt](/components/modal/#accessibility).
+Sie können einen ziehbaren Dialog erstellen, indem Sie [react-draggable](https://github.com/mzabriskie/react-draggable) nutzen. Dazu können Sie die importierte `Draggable` Komponente als `PaperComponent` der `Dialog` Komponente übergeben. Dadurch wird der gesamte Dialog verschiebbar.
+
+{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## Blättern von langen Inhalten
 
@@ -110,12 +112,10 @@ Probieren Sie die Demo aus, um zu sehen, was wir meinen:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
-## Ziehbarer Dialog
+## Einschränkungen
 
-Sie können einen ziehbaren Dialog erstellen, indem Sie [react-draggable](https://github.com/mzabriskie/react-draggable) nutzen. Dazu können Sie die importierte `Draggable` Komponente als `PaperComponent` der `Dialog` Komponente übergeben. Dadurch wird der gesamte Dialog verschiebbar.
+Follow the [Modal limitations section](/components/modal/#limitations).
 
-{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
+## Barrierefreiheit
 
-## Performance
-
-Folgen Sie den [Modal Zugänglichkeit Abschnitt](/components/modal/#performance).
+Folgen Sie dem [Modal Zugänglichkeit Abschnitt](/components/modal/#accessibility).

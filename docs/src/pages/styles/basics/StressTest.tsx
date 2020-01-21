@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider, useTheme, makeStyles, createStyles } from '@material-ui/styles';
+import { ThemeProvider, useTheme, makeStyles, createStyles } from '@material-ui/core/styles';
 
 interface MyTheme {
   color: string;
@@ -40,14 +40,14 @@ const Component = React.memo((props: ComponentProps) => {
 
 export default function StressTest() {
   const [backgroundColor, setBackgroundColor] = React.useState('#2196f3');
-  function handleBackgroundColorChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleBackgroundColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBackgroundColor(event.target.value);
-  }
+  };
 
   const [color, setColor] = React.useState('#ffffff');
-  function handleColorChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setColor(event.target.value);
-  }
+  };
 
   const theme = React.useMemo(() => ({ color }), [color]);
 

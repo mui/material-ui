@@ -30,9 +30,9 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     appBar: {
-      marginLeft: drawerWidth,
       [theme.breakpoints.up('sm')]: {
         width: `calc(100% - ${drawerWidth}px)`,
+        marginLeft: drawerWidth,
       },
     },
     menuButton: {
@@ -66,9 +66,9 @@ export default function ResponsiveDrawer(props: ResponsiveDrawerProps) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  function handleDrawerToggle() {
+  const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-  }
+  };
 
   const drawer = (
     <div>

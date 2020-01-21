@@ -1,5 +1,4 @@
 import React from 'react';
-import warning from 'warning';
 import { getDynamicStyles } from 'jss';
 import mergeClasses from '../mergeClasses';
 import multiKeyStore from './multiKeyStore';
@@ -110,8 +109,8 @@ function attach({ state, theme, stylesOptions, stylesCreator, name }, props) {
       ...options,
     });
 
-    warning(props, 'Material-UI: props missing.');
-    dynamicSheet.update(props).attach();
+    dynamicSheet.update(props);
+    dynamicSheet.attach();
 
     state.dynamicSheet = dynamicSheet;
     state.classes = mergeClasses({

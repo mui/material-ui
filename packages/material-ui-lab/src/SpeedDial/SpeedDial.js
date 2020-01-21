@@ -1,12 +1,21 @@
 import React from 'react';
+import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
 import { duration, withStyles } from '@material-ui/core/styles';
 import Zoom from '@material-ui/core/Zoom';
 import Fab from '@material-ui/core/Fab';
-import { isMuiElement, useForkRef } from '@material-ui/core/utils';
-import * as utils from './utils';
+import { capitalize, isMuiElement, useForkRef } from '@material-ui/core/utils';
+
+function getOrientation(direction) {
+  if (direction === 'up' || direction === 'down') {
+    return 'vertical';
+  }
+  if (direction === 'right' || direction === 'left') {
+    return 'horizontal';
+  }
+  return undefined;
+}
 
 function clamp(value, min, max) {
   if (value < min) {
@@ -21,75 +30,84 @@ function clamp(value, min, max) {
 const dialRadius = 32;
 const spacingActions = 16;
 
-export const styles = {
+export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    zIndex: 1050,
+    zIndex: theme.zIndex.speedDial,
     display: 'flex',
+    alignItems: 'center',
     pointerEvents: 'none',
   },
-  /* Styles applied to the Button component. */
+  /* Styles applied to the Fab component. */
   fab: {
     pointerEvents: 'auto',
   },
-  /* Styles applied to the root and action container elements when direction="up" */
+  /* Styles applied to the root if direction="up" */
   directionUp: {
     flexDirection: 'column-reverse',
+    '& $actions': {
+      flexDirection: 'column-reverse',
+      marginBottom: -dialRadius,
+      paddingBottom: spacingActions + dialRadius,
+    },
   },
-  /* Styles applied to the root and action container elements when direction="down" */
+  /* Styles applied to the root if direction="down" */
   directionDown: {
     flexDirection: 'column',
+    '& $actions': {
+      flexDirection: 'column',
+      marginTop: -dialRadius,
+      paddingTop: spacingActions + dialRadius,
+    },
   },
-  /* Styles applied to the root and action container elements when direction="left" */
+  /* Styles applied to the root if direction="left" */
   directionLeft: {
     flexDirection: 'row-reverse',
+    '& $actions': {
+      flexDirection: 'row-reverse',
+      marginRight: -dialRadius,
+      paddingRight: spacingActions + dialRadius,
+    },
   },
-  /* Styles applied to the root and action container elements when direction="right" */
+  /* Styles applied to the root if direction="right" */
   directionRight: {
     flexDirection: 'row',
+    '& $actions': {
+      flexDirection: 'row',
+      marginLeft: -dialRadius,
+      paddingLeft: spacingActions + dialRadius,
+    },
   },
   /* Styles applied to the actions (`children` wrapper) element. */
   actions: {
     display: 'flex',
     pointerEvents: 'auto',
-    '&$directionUp': {
-      marginBottom: -dialRadius,
-      paddingBottom: spacingActions + dialRadius,
-    },
-    '&$directionRight': {
-      marginLeft: -dialRadius,
-      paddingLeft: spacingActions + dialRadius,
-    },
-    '&$directionDown': {
-      marginTop: -dialRadius,
-      paddingTop: spacingActions + dialRadius,
-    },
-    '&$directionLeft': {
-      marginRight: -dialRadius,
-      paddingRight: spacingActions + dialRadius,
-    },
   },
   /* Styles applied to the actions (`children` wrapper) element if `open={false}`. */
   actionsClosed: {
     transition: 'top 0s linear 0.2s',
     pointerEvents: 'none',
   },
-};
+});
 
 const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
   const {
     ariaLabel,
-    ButtonProps: { ref: origDialButtonRef, ...ButtonProps } = {},
+    FabProps: { ref: origDialButtonRef, ...FabProps } = {},
     children: childrenProp,
     classes,
-    className: classNameProp,
-    hidden = false,
-    icon: iconProp,
-    onClick,
-    onClose,
-    onKeyDown,
-    open,
+    className,
     direction = 'up',
+    hidden = false,
+    icon,
+    onBlur,
+    onClose,
+    onFocus,
+    onKeyDown,
+    onMouseEnter,
+    onMouseLeave,
+    onOpen,
+    open,
     openIcon,
     TransitionComponent = Zoom,
     transitionDuration = {
@@ -99,6 +117,14 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     TransitionProps,
     ...other
   } = props;
+
+  const eventTimer = React.useRef();
+
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(eventTimer.current);
+    };
+  }, []);
 
   /**
    * an index in actions.current
@@ -112,7 +138,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
    * that is not orthogonal to the direction.
    * @type {utils.ArrowKey?}
    */
-  const nextItemArrowKey = React.useRef(undefined);
+  const nextItemArrowKey = React.useRef();
 
   /**
    * refs to the Button that have an action associated to them in this SpeedDial
@@ -120,6 +146,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
    * @type {HTMLButtonElement[]}
    */
   const actions = React.useRef([]);
+  actions.current = [actions.current[0]];
 
   const handleOwnFabRef = React.useCallback(fabFef => {
     actions.current[0] = fabFef;
@@ -142,109 +169,157 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
     };
   };
 
-  const closeActions = (event, key) => {
-    actions.current[0].focus();
-
-    if (onClose) {
-      onClose(event, key);
+  const handleKeyDown = event => {
+    if (onKeyDown) {
+      onKeyDown(event);
     }
-  };
 
-  const handleKeyboardNavigation = event => {
     const key = event.key.replace('Arrow', '').toLowerCase();
     const { current: nextItemArrowKeyCurrent = key } = nextItemArrowKey;
 
     if (event.key === 'Escape') {
-      closeActions(event, 'esc');
-    } else if (utils.sameOrientation(key, direction)) {
+      if (onClose) {
+        actions.current[0].focus();
+        onClose(event, 'escapeKeyDown');
+      }
+      return;
+    }
+
+    if (
+      getOrientation(key) === getOrientation(nextItemArrowKeyCurrent) &&
+      getOrientation(key) !== undefined
+    ) {
       event.preventDefault();
 
       const actionStep = key === nextItemArrowKeyCurrent ? 1 : -1;
 
       // stay within array indices
       const nextAction = clamp(focusedAction.current + actionStep, 0, actions.current.length - 1);
-      const nextActionRef = actions.current[nextAction];
-      nextActionRef.focus();
+      actions.current[nextAction].focus();
       focusedAction.current = nextAction;
       nextItemArrowKey.current = nextItemArrowKeyCurrent;
     }
+  };
 
-    if (onKeyDown) {
-      onKeyDown(event, key);
+  React.useEffect(() => {
+    // actions were closed while navigation state was not reset
+    if (!open) {
+      focusedAction.current = 0;
+      nextItemArrowKey.current = undefined;
+    }
+  }, [open]);
+
+  const handleClose = event => {
+    if (event.type === 'mouseleave' && onMouseLeave) {
+      onMouseLeave(event);
+    }
+
+    if (event.type === 'blur' && onBlur) {
+      onBlur(event);
+    }
+
+    clearTimeout(eventTimer.current);
+
+    if (onClose) {
+      if (event.type === 'blur') {
+        event.persist();
+        eventTimer.current = setTimeout(() => {
+          onClose(event, 'blur');
+        });
+      } else {
+        onClose(event, 'mouseLeave');
+      }
     }
   };
 
-  // actions were closed while navigation state was not reset
-  if (!open && nextItemArrowKey.current !== undefined) {
-    focusedAction.current = 0;
-    nextItemArrowKey.current = undefined;
-  }
+  const handleClick = event => {
+    if (FabProps.onClick) {
+      FabProps.onClick(event);
+    }
+
+    clearTimeout(eventTimer.current);
+
+    if (open) {
+      if (onClose) {
+        onClose(event, 'toggle');
+      }
+    } else if (onOpen) {
+      onOpen(event, 'toggle');
+    }
+  };
+
+  const handleOpen = event => {
+    if (event.type === 'mouseenter' && onMouseEnter) {
+      onMouseEnter(event);
+    }
+
+    if (event.type === 'focus' && onFocus) {
+      onFocus(event);
+    }
+
+    // When moving the focus between two items,
+    // a chain if blur and focus event is triggered.
+    // We only handle the last event.
+    clearTimeout(eventTimer.current);
+
+    if (onOpen && !open) {
+      event.persist();
+      // Wait for a future focus or click event
+      eventTimer.current = setTimeout(() => {
+        const eventMap = {
+          focus: 'focus',
+          mouseenter: 'mouseEnter',
+        };
+
+        onOpen(event, eventMap[event.type]);
+      });
+    }
+  };
 
   // Filter the label for valid id characters.
   const id = ariaLabel.replace(/^[^a-z]+|[^\w:.-]+/gi, '');
 
-  const orientation = utils.getOrientation(direction);
-
-  let totalValidChildren = 0;
-  React.Children.forEach(childrenProp, child => {
-    if (React.isValidElement(child)) totalValidChildren += 1;
-  });
-
-  actions.current = [];
-  let validChildCount = 0;
-  const children = React.Children.map(childrenProp, child => {
-    if (!React.isValidElement(child)) {
-      return null;
+  const allItems = React.Children.toArray(childrenProp).filter(child => {
+    if (process.env.NODE_ENV !== 'production') {
+      if (isFragment(child)) {
+        console.error(
+          [
+            "Material-UI: the SpeedDial component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n'),
+        );
+      }
     }
 
-    warning(
-      child.type !== React.Fragment,
-      [
-        "Material-UI: the SpeedDial component doesn't accept a Fragment as a child.",
-        'Consider providing an array instead.',
-      ].join('\n'),
-    );
+    return React.isValidElement(child);
+  });
 
-    const delay = 30 * (open ? validChildCount : totalValidChildren - validChildCount);
-    validChildCount += 1;
-
-    const { ButtonProps: { ref: origButtonRef, ...ChildButtonProps } = {} } = child.props;
-    const NewChildButtonProps = {
-      ...ChildButtonProps,
-      ref: createHandleSpeedDialActionButtonRef(validChildCount - 1, origButtonRef),
-    };
+  const children = allItems.map((child, index) => {
+    const { FabProps: { ref: origButtonRef, ...ChildFabProps } = {} } = child.props;
 
     return React.cloneElement(child, {
-      ButtonProps: NewChildButtonProps,
-      delay,
-      onKeyDown: handleKeyboardNavigation,
+      FabProps: {
+        ...ChildFabProps,
+        ref: createHandleSpeedDialActionButtonRef(index, origButtonRef),
+      },
+      delay: 30 * (open ? index : allItems.length - index),
       open,
-      id: `${id}-item-${validChildCount}`,
+      id: `${id}-action-${index}`,
     });
   });
 
-  const icon = () => {
-    if (React.isValidElement(iconProp) && isMuiElement(iconProp, ['SpeedDialIcon'])) {
-      return React.cloneElement(iconProp, { open });
-    }
-    return iconProp;
-  };
-
-  const actionsPlacementClass = clsx({
-    [classes.directionUp]: direction === 'up',
-    [classes.directionDown]: direction === 'down',
-    [classes.directionLeft]: direction === 'left',
-    [classes.directionRight]: direction === 'right',
-  });
-
-  let clickProp = { onClick };
-
-  if (typeof document !== 'undefined' && 'ontouchstart' in document.documentElement) {
-    clickProp = { onTouchEnd: onClick };
-  }
-
   return (
-    <div className={clsx(classes.root, actionsPlacementClass, classNameProp)} ref={ref} {...other}>
+    <div
+      className={clsx(classes.root, classes[`direction${capitalize(direction)}`], className)}
+      ref={ref}
+      role="presentation"
+      onKeyDown={handleKeyDown}
+      onBlur={handleClose}
+      onFocus={handleOpen}
+      onMouseEnter={handleOpen}
+      onMouseLeave={handleClose}
+      {...other}
+    >
       <TransitionComponent
         in={!hidden}
         timeout={transitionDuration}
@@ -253,24 +328,25 @@ const SpeedDial = React.forwardRef(function SpeedDial(props, ref) {
       >
         <Fab
           color="primary"
-          onKeyDown={handleKeyboardNavigation}
           aria-label={ariaLabel}
           aria-haspopup="true"
-          aria-expanded={open ? 'true' : 'false'}
+          aria-expanded={open}
           aria-controls={`${id}-actions`}
-          {...clickProp}
-          {...ButtonProps}
-          className={clsx(classes.fab, ButtonProps.className)}
+          {...FabProps}
+          onClick={handleClick}
+          className={clsx(classes.fab, FabProps.className)}
           ref={handleFabRef}
         >
-          {icon()}
+          {React.isValidElement(icon) && isMuiElement(icon, ['SpeedDialIcon'])
+            ? React.cloneElement(icon, { open })
+            : icon}
         </Fab>
       </TransitionComponent>
       <div
         id={`${id}-actions`}
         role="menu"
-        aria-orientation={orientation}
-        className={clsx(classes.actions, { [classes.actionsClosed]: !open }, actionsPlacementClass)}
+        aria-orientation={getOrientation(direction)}
+        className={clsx(classes.actions, { [classes.actionsClosed]: !open })}
       >
         {children}
       </div>
@@ -284,14 +360,10 @@ SpeedDial.propTypes = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The aria-label of the `Button` element.
+   * The aria-label of the button element.
    * Also used to provide the `id` for the `SpeedDial` element and its children.
    */
   ariaLabel: PropTypes.string.isRequired,
-  /**
-   * Props applied to the [`Button`](/api/button/) element.
-   */
-  ButtonProps: PropTypes.object,
   /**
    * SpeedDialActions to display when the SpeedDial is `open`.
    */
@@ -310,39 +382,63 @@ SpeedDial.propTypes = {
    */
   direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
   /**
+   * Props applied to the [`Fab`](/api/fab/) element.
+   */
+  FabProps: PropTypes.object,
+  /**
    * If `true`, the SpeedDial will be hidden.
    */
   hidden: PropTypes.bool,
   /**
-   * The icon to display in the SpeedDial Floating Action Button. The `SpeedDialIcon` component
+   * The icon to display in the SpeedDial Fab. The `SpeedDialIcon` component
    * provides a default Icon with animation.
    */
   icon: PropTypes.node,
   /**
    * @ignore
    */
-  onClick: PropTypes.func,
+  onBlur: PropTypes.func,
   /**
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} key The key pressed.
+   * @param {string} reason Can be: `"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`.
    */
   onClose: PropTypes.func,
   /**
    * @ignore
    */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
   onKeyDown: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onMouseEnter: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onMouseLeave: PropTypes.func,
+  /**
+   * Callback fired when the component requests to be open.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"toggle"`, `"focus"`, `"mouseEnter"`.
+   */
+  onOpen: PropTypes.func,
   /**
    * If `true`, the SpeedDial is open.
    */
   open: PropTypes.bool.isRequired,
   /**
-   * The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open.
+   * The icon to display in the SpeedDial Fab when the SpeedDial is open.
    */
   openIcon: PropTypes.node,
   /**
    * The component used for the transition.
+   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */
   TransitionComponent: PropTypes.elementType,
   /**
@@ -358,7 +454,7 @@ SpeedDial.propTypes = {
     }),
   ]),
   /**
-   * Props applied to the `Transition` element.
+   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
    */
   TransitionProps: PropTypes.object,
 };

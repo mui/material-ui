@@ -3,7 +3,7 @@ title: Dialog Reactコンポーネント
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
-# ダイアログ
+# Dialog (ダイアログ)
 
 <p class="description">ダイアログは、タスクについてユーザーに通知します。重要な情報を含める、決定を求める、または複数のタスクを伴うことができます。</p>
 
@@ -20,7 +20,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 - オプションを選択するとすぐにそのオプションが確定され、メニューが閉じます
 - ダイアログの外側に触れるか、戻るを押すと、操作がキャンセルされてダイアログが閉じます。
 
-{{"demo":"pages/components/dialogs/SimpleDialog.js"}}
+{{"demo": "pages/components/dialogs/SimpleDialog.js"}}
 
 ## 通知
 
@@ -40,7 +40,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
-## Transições
+## Transitions
 
 トランジションを入れ替えることもできます。次の例では、`Slide`. を使用します。
 
@@ -93,11 +93,13 @@ function MyComponent() {
 
 確認ダイアログで[キャンセル] をタッチするか[戻る] を押すと、操作がキャンセルされ、変更が破棄されてダイアログが閉じます。
 
-{{"demo":"pages/components/dialogs/ConfirmationDialog.js"}}
+{{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## アクセシビリティ
+## ドラッグ可能なダイアログ
 
-[モーダルアクセシビリティのセクション](/components/modal/#accessibility)従ってください。
+[react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。
+
+{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## 長いコンテンツをスクロールする
 
@@ -110,12 +112,10 @@ function MyComponent() {
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
-## ドラッグ可能なダイアログ
+## 制限事項
 
-[react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。
+Follow the [Modal limitations section](/components/modal/#limitations).
 
-{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
+## アクセシビリティ
 
-## パフォーマンス
-
-Follow the [Modal performance section](/components/modal/#performance).
+[モーダルアクセシビリティのセクション](/components/modal/#accessibility)従ってください。

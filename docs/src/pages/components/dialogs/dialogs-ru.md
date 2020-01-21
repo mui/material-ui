@@ -3,7 +3,7 @@ title: Диалог, компонент React
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
-# Диалоги
+# Dialog (диалог)
 
 <p class="description">Диалоги информируют пользователей о задаче и могут содержать критическую информацию, требовать решения или включать несколько задач.</p>
 
@@ -13,7 +13,7 @@ components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions
 
 ## Простые диалоги
 
-Simple dialogs can provide additional details or actions about a list item. For example, they can display avatars, icons, clarifying subtext, or orthogonal actions (such as adding an account).
+Простые диалоговые окна могут предоставить дополнительные сведения или действия об элементе списка. Например, они могут отображать аватары, иконки, уточнение подтекста, или действия (например, добавление учетной записи).
 
 Особенности механики касаний:
 
@@ -26,7 +26,7 @@ Simple dialogs can provide additional details or actions about a list item. For 
 
 Оповещения - это срочные сообщения, требующие подтверждения, которые информируют пользователя о ситуации.
 
-Most alerts don't need titles. They summarize a decision in a sentence or two by either:
+Большинство предупреждений не нужны заголовки. They summarize a decision in a sentence or two by either:
 
 - Задать вопрос (например, «Удалить этот разговор?»)
 - Создать заявления, связанное с кнопками действий
@@ -40,7 +40,7 @@ Use title bar alerts only for high-risk situations, such as the potential loss o
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
-## Transições
+## Переходы
 
 Вы также можете поменять анимацию, в следующем примере используется `Slide`.
 
@@ -52,11 +52,11 @@ Use title bar alerts only for high-risk situations, such as the potential loss o
 
 {{"demo": "pages/components/dialogs/FormDialog.js"}}
 
-## Customized dialogs
+## Индивидуальные диалоги
 
 Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-The dialog has a close button added to aide usability.
+Данный диалог имеет кнопку закрытия, добавленную для удобства использования.
 
 {{"demo": "pages/components/dialogs/CustomizedDialogs.js"}}
 
@@ -95,9 +95,11 @@ function MyComponent() {
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## Доступность
+## Перетаскиваемый диалог
 
-Смотри [раздел доступности модальных окон](/components/modal/#accessibility).
+Вы можете создать перетаскиваемый диалог, используя [react-draggable](https://github.com/mzabriskie/react-draggable). Для этого вы можете передать импортированный компонент `Draggable` как компонент `PaperComponent` компонента `Dialog`. Это сделает весь диалог перетаскиваемым.
+
+{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## Прокрутка длинного контента
 
@@ -110,12 +112,10 @@ function MyComponent() {
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
-## Перетаскиваемый диалог
+## Ограничения
 
-Вы можете создать перетаскиваемый диалог, используя [react-draggable](https://github.com/mzabriskie/react-draggable). Для этого вы можете передать импортированный компонент `Draggable` как компонент `PaperComponent` компонента `Dialog`. Это сделает весь диалог перетаскиваемым.
+Follow the [Modal limitations section](/components/modal/#limitations).
 
-{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
+## Доступность
 
-## Производительность
-
-Перейдите в раздел [Modal performance section](/components/modal/#performance).
+Смотри [раздел доступности модальных окон](/components/modal/#accessibility).

@@ -43,13 +43,13 @@ const StyledMenuItem = withStyles(theme => ({
 export default function CustomizedMenus() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  function handleClick(event) {
+  const handleClick = event => {
     setAnchorEl(event.currentTarget);
-  }
+  };
 
-  function handleClose() {
+  const handleClose = () => {
     setAnchorEl(null);
-  }
+  };
 
   return (
     <div>
@@ -71,19 +71,19 @@ export default function CustomizedMenus() {
       >
         <StyledMenuItem>
           <ListItemIcon>
-            <SendIcon />
+            <SendIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Sent mail" />
         </StyledMenuItem>
         <StyledMenuItem>
           <ListItemIcon>
-            <DraftsIcon />
+            <DraftsIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Drafts" />
         </StyledMenuItem>
         <StyledMenuItem>
           <ListItemIcon>
-            <InboxIcon />
+            <InboxIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Inbox" />
         </StyledMenuItem>

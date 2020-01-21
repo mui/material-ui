@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
 
 export const styles = theme => {
@@ -25,6 +25,10 @@ export const styles = theme => {
       top: 0,
       left: 'auto',
       right: 0,
+      '@media print': {
+        // Prevent the app bar to be visible on each printed page.
+        position: 'absolute',
+      },
     },
     /* Styles applied to the root element if `position="absolute"`. */
     positionAbsolute: {
@@ -35,6 +39,7 @@ export const styles = theme => {
     },
     /* Styles applied to the root element if `position="sticky"`. */
     positionSticky: {
+      // ⚠️ sticky is not supported by IE 11.
       position: 'sticky',
       top: 0,
       left: 'auto',
@@ -43,6 +48,7 @@ export const styles = theme => {
     /* Styles applied to the root element if `position="static"`. */
     positionStatic: {
       position: 'static',
+      transform: 'translateZ(0)', // Make sure we can see the elevation.
     },
     /* Styles applied to the root element if `position="relative"`. */
     positionRelative: {

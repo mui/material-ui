@@ -1,5 +1,4 @@
 import React from 'react';
-import { isWidthUp } from '@material-ui/core/withWidth';
 
 import {
   withStyles,
@@ -58,6 +57,7 @@ import {
   Grow,
   TableFooter,
   withWidth,
+  isWidthUp,
   Zoom,
   ClickAwayListener,
   ListSubheader,

@@ -1,15 +1,15 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import Breadcrumbs from './Breadcrumbs';
-import BreadcrumbSeparator from './BreadcrumbSeparator';
-import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
+import { createClientRender } from 'test/utils/createClientRender';
 
 describe('<Breadcrumbs />', () => {
   let mount;
   let classes;
+  const render = createClientRender();
 
   before(() => {
     mount = createMount({ strict: true });
@@ -20,63 +20,66 @@ describe('<Breadcrumbs />', () => {
     );
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<Breadcrumbs>Conformance?</Breadcrumbs>, () => ({
     classes,
     inheritComponent: 'nav',
     mount,
     refInstanceof: window.HTMLElement,
     testComponentPropWith: 'div',
+    after: () => mount.cleanUp(),
   }));
 
-  it('should render seperators', () => {
-    const wrapper = mount(
+  it('should render inaccessible seperators between each listitem', () => {
+    const { getAllByRole, getByRole } = render(
       <Breadcrumbs>
-        <span />
-        <span />
+        <span>first</span>
+        <span>second</span>
       </Breadcrumbs>,
     );
-    assert.strictEqual(wrapper.find(BreadcrumbSeparator).length, 1);
+
+    expect(getAllByRole('listitem', { hidden: false })).to.have.length(2);
+    expect(getByRole('list')).to.have.text('first/second');
   });
 
-  it('should render an ellipse', () => {
-    const wrapper = mount(
+  it('should render an ellipse between `itemsAfterCollapse` and `itemsBeforeCollapse`', () => {
+    const { getAllByRole, getByRole } = render(
       <Breadcrumbs>
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
+        <span>first</span>
+        <span>second</span>
+        <span>third</span>
+        <span>fourth</span>
+        <span>fifth</span>
+        <span>sixth</span>
+        <span>seventh</span>
+        <span>eighth</span>
+        <span>ninth</span>
       </Breadcrumbs>,
     );
-    assert.strictEqual(wrapper.find(BreadcrumbSeparator).length, 2);
-    assert.strictEqual(wrapper.find(BreadcrumbCollapsed).length, 1);
+
+    const listitems = getAllByRole('listitem', { hidden: false });
+    expect(listitems).to.have.length(3);
+    expect(getByRole('list')).to.have.text('first//ninth');
+    expect(listitems[1].querySelector('[data-mui-test="MoreHorizIcon"]')).to.be.ok;
   });
 
   it('should expand when `BreadcrumbCollapsed` is clicked', () => {
-    const wrapper = mount(
+    const { getAllByRole } = render(
       <Breadcrumbs>
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
-        <span />
+        <span>first</span>
+        <span>second</span>
+        <span>third</span>
+        <span>fourth</span>
+        <span>fifth</span>
+        <span>sixth</span>
+        <span>seventh</span>
+        <span>eighth</span>
+        <span>ninth</span>
       </Breadcrumbs>,
     );
-    assert.strictEqual(wrapper.find(BreadcrumbSeparator).length, 2);
-    wrapper.find(BreadcrumbCollapsed).simulate('click');
-    assert.strictEqual(wrapper.find(BreadcrumbSeparator).length, 8);
+
+    getAllByRole('listitem', { hidden: false })[2].click();
+
+    expect(getAllByRole('listitem', { hidden: false })).to.have.length(3);
   });
 
   describe('warnings', () => {
@@ -88,21 +91,20 @@ describe('<Breadcrumbs />', () => {
       consoleErrorMock.reset();
     });
 
-    it('should support invalid input', () => {
-      const wrapper = mount(
+    it('should warn about invalid input', () => {
+      const { getAllByRole, getByRole } = render(
         <Breadcrumbs maxItems={3} itemsAfterCollapse={2} itemsBeforeCollapse={2}>
-          <span />
-          <span />
-          <span />
-          <span />
+          <span>first</span>
+          <span>second</span>
+          <span>third</span>
+          <span>fourth</span>
         </Breadcrumbs>,
       );
-      assert.strictEqual(wrapper.find(BreadcrumbSeparator).length, 3);
-      assert.strictEqual(wrapper.find(BreadcrumbCollapsed).length, 0);
-      assert.strictEqual(consoleErrorMock.callCount(), 2);
-      assert.include(
-        consoleErrorMock.args()[0][0],
-        'you have provided an invalid combination of props to the',
+      expect(getAllByRole('listitem', { hidden: false })).to.have.length(4);
+      expect(getByRole('list')).to.have.text('first/second/third/fourth');
+      expect(consoleErrorMock.callCount()).to.equal(2); // strict mode renders twice
+      expect(consoleErrorMock.args()[0][0]).to.include(
+        'you have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
       );
     });
   });

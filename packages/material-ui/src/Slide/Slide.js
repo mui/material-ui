@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import debounce from '../utils/debounce';
 import { Transition } from 'react-transition-group';
 import { elementAcceptingRef } from '@material-ui/utils';
-import { useForkRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
 import useTheme from '../styles/useTheme';
 import { duration } from '../styles/transitions';
 import { reflow, getTransitionProps } from '../transitions/utils';
@@ -173,22 +173,21 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   React.useEffect(() => {
     // Skip configuration where the position is screen size invariant.
-    if (!inProp && direction !== 'down' && direction !== 'right') {
-      const handleResize = debounce(() => {
-        if (childrenRef.current) {
-          setTranslateValue(direction, childrenRef.current);
-        }
-      });
-
-      window.addEventListener('resize', handleResize);
-
-      return () => {
-        handleResize.clear();
-        window.removeEventListener('resize', handleResize);
-      };
+    if (inProp || direction === 'down' || direction === 'right') {
+      return undefined;
     }
 
-    return undefined;
+    const handleResize = debounce(() => {
+      if (childrenRef.current) {
+        setTranslateValue(direction, childrenRef.current);
+      }
+    });
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      handleResize.clear();
+      window.removeEventListener('resize', handleResize);
+    };
   }, [direction, inProp]);
 
   React.useEffect(() => {

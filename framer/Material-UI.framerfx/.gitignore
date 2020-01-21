@@ -1,0 +1,17 @@
+# General
+.DS_Store
+Icon\r
+
+# Framer
+/.backups
+/.cache
+/build
+/dist
+node_modules
+.config.json
+.project.log
+.framer-lock
+.npmrc
+.yarnrc
+yarn-error.log
+canvas.tsx

@@ -3,7 +3,7 @@ title: Checkbox React component
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Checkboxes
+# Checkbox
 
 <p class="description">Checkboxes allow the user to select one or more items from a set.</p>
 
@@ -36,13 +36,19 @@ You can change the placement of the label:
 Here is an example of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
+{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
+
+## When to use
+
+- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Checkboxes vs. Switches](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
 ## Accessibility
 
-All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#checkbox)
 
-When a label can't be used, it's necessary to add an attribute directly to the input component.
+- All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
+- When a label can't be used, it's necessary to add an attribute directly to the input component.
 In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
 
 ```jsx
@@ -51,7 +57,3 @@ In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-l
   inputProps={{ 'aria-label': 'Checkbox A' }}
 />
 ```
-
-## Guidance
-
-- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

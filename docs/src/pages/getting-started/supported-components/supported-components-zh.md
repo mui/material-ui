@@ -2,7 +2,7 @@
 
 <p class="description">以下是 Material Design 组件和功能的列表. 我们将那些Material-UI 支持的组件和功能用高亮✓来显示.</p>
 
-虽然我们尽量遵循一些可行的指南（当指南有争议性的时候我们会更多地依赖于常识，而这种情况会比您想象中的发生更多），但是我们并不指望能够做到支持每一个组件或者每一个组件下的功能。我们更倾向于通过提供一些构建好的模块，让开发者创造更实用的用户界面以及用户体验。
+While we strive to follow the guidelines where practical (applying common sense where guidelines contradict - a more common occurrence than one might expect), we do not expect to support every component, nor every feature of every component, but rather to provide the building blocks to allow developers to create compelling user interfaces and experiences.
 
 如果您希望加对一个组件或一个未高亮显示的功能加以支持, 请搜索相关的 [ GitHub 问题 ](https://github.com/mui-org/material-ui/issues), 或创建一个新的问题来讨论该方法, 然后再提交pull request。
 
@@ -59,7 +59,7 @@
     - **开关 ✓**
     - Reorder
 - **[Menus](https://material.io/design/components/menus.html) ✓** 
-  - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed) 
+  - ** [下拉菜单](https://material.io/design/components/menus.html#dropdown-menu) ✓ ** （可以组成） 
     - [Cascade](https://material.io/design/components/menus.html#dropdown-menu)
   - [Exposed dropdown menus](https://material.io/design/components/menus.html#exposed-dropdown-menu) 
     - **Text field dropdown menu ✓** (Select)
@@ -73,9 +73,9 @@
   - **[Checkbox](https://material.io/design/components/selection-controls.html#checkboxes) ✓**
   - **[Radio button](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
-- **[Sliders](https://material.io/design/components/sliders.html) ~** ([Lab](/components/about-the-lab/)) 
+- **[Sliders](https://material.io/design/components/sliders.html) ✓** 
   - **[Continuous](https://material.io/design/components/sliders.html#continuous-slider) ✓**
-  - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ~**
+  - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ✓**
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*旧 Material v1*)
 - **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legacy Material v1*) 
   - **[List](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**

@@ -1,19 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import FormGroup from '../FormGroup';
-import { useForkRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
+import useControlled from '../utils/useControlled';
 import RadioGroupContext from './RadioGroupContext';
 
 const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
   const { actions, children, name, value: valueProp, onChange, ...other } = props;
   const rootRef = React.useRef(null);
-  const { current: isControlled } = React.useRef(valueProp != null);
-  const [valueState, setValue] = React.useState(() => {
-    if (!isControlled) {
-      return props.defaultValue;
-    }
-    return null;
+
+  const [value, setValue] = useControlled({
+    controlled: valueProp,
+    default: props.defaultValue,
+    name: 'RadioGroup',
   });
 
   React.useImperativeHandle(
@@ -34,40 +33,22 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
     [],
   );
 
-  React.useEffect(() => {
-    warning(
-      isControlled === (valueProp != null),
-      [
-        `Material-UI: A component is changing ${
-          isControlled ? 'a ' : 'an un'
-        }controlled RadioGroup to be ${isControlled ? 'un' : ''}controlled.`,
-        'Input elements should not switch from uncontrolled to controlled (or vice versa).',
-        'Decide between using a controlled or uncontrolled RadioGroup ' +
-          'element for the lifetime of the component.',
-        'More info: https://fb.me/react-controlled-components',
-      ].join('\n'),
-    );
-  }, [valueProp, isControlled]);
-
-  const value = isControlled ? valueProp : valueState;
+  const handleRef = useForkRef(ref, rootRef);
 
   const handleChange = event => {
-    if (!isControlled) {
-      setValue(event.target.value);
-    }
+    setValue(event.target.value);
 
     if (onChange) {
       onChange(event, event.target.value);
     }
   };
-  const context = { name, onChange: handleChange, value };
-
-  const handleRef = useForkRef(ref, rootRef);
 
   return (
-    <FormGroup role="radiogroup" ref={handleRef} {...other}>
-      <RadioGroupContext.Provider value={context}>{children}</RadioGroupContext.Provider>
-    </FormGroup>
+    <RadioGroupContext.Provider value={{ name, onChange: handleChange, value }}>
+      <FormGroup role="radiogroup" ref={handleRef} {...other}>
+        {children}
+      </FormGroup>
+    </RadioGroupContext.Provider>
   );
 });
 

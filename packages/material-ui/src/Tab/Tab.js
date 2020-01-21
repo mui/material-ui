@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import unsupportedProp from '../utils/unsupportedProp';
 
 export const styles = theme => ({
@@ -17,13 +17,13 @@ export const styles = theme => ({
     minHeight: 48,
     flexShrink: 0,
     padding: '6px 12px',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       padding: '6px 24px',
     },
     overflow: 'hidden',
     whiteSpace: 'normal',
     textAlign: 'center',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       fontSize: theme.typography.pxToRem(13),
       minWidth: 160,
     },
@@ -44,7 +44,7 @@ export const styles = theme => ({
       opacity: 1,
     },
     '&$disabled': {
-      opacity: 0.4,
+      opacity: 0.5,
     },
   },
   /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="primary"`. */

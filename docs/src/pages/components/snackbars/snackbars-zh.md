@@ -51,7 +51,7 @@ Snackbars contain a single line of text directly related to the operation perfor
 
 消息条应当显示在悬浮按钮的上方（这是在移动设备上）。
 
-{{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
 
 ### 更改过渡动画
 
@@ -73,6 +73,12 @@ Snackbars contain a single line of text directly related to the operation perfor
 
 ![评星](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars) ![npm下载](https://img.shields.io/npm/dm/notistack.svg)
 
-在下面的示例中, 我们演示如何使用 [notistack](https://github.com/iamhosseindhv/notistack)。 notistack 可以很容易地显示消息条（因此您不必处理它们的打开/关闭状态）。 It also enables you to stack them on top of one another (although this is discouraged by the specification).
+This example demonstrates how to use [notistack](https://github.com/iamhosseindhv/notistack). notistack has an **imperative API** that makes it easy to display snackbars, without having to handle their open/close state. It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design specification).
 
-{{"demo": "pages/components/snackbars/IntegrationNotistack.js"}}
+{{"demo": "pages/components/snackbars/IntegrationNotistack.js", "defaultCodeOpen": false}}
+
+## 可访问性
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
+
+- By default, the snackbar won't auto-hide. However, if you decide to use the `autoHideDuration` prop, it's recommended to give the user [sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) to respond.

@@ -4,11 +4,13 @@ import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
-import { fade } from '../styles/colorManipulator';
+import { fade, lighten, darken } from '../styles/colorManipulator';
 import { useIsFocusVisible } from '../utils/focusVisible';
+import ownerDocument from '../utils/ownerDocument';
 import useEventCallback from '../utils/useEventCallback';
-import { useForkRef } from '../utils/reactHelpers';
-import { capitalize } from '../utils/helpers';
+import useForkRef from '../utils/useForkRef';
+import capitalize from '../utils/capitalize';
+import useControlled from '../utils/useControlled';
 import ValueLabel from './ValueLabel';
 
 function asc(a, b) {
@@ -16,13 +18,7 @@ function asc(a, b) {
 }
 
 function clamp(value, min, max) {
-  if (value < min) {
-    return min;
-  }
-  if (value > max) {
-    return max;
-  }
-  return value;
+  return Math.min(Math.max(min, value), max);
 }
 
 function findClosest(values, currentValue) {
@@ -83,8 +79,8 @@ function getDecimalPrecision(num) {
   return decimalPart ? decimalPart.length : 0;
 }
 
-function roundValueToStep(value, step) {
-  const nearest = Math.round(value / step) * step;
+function roundValueToStep(value, step, min) {
+  const nearest = Math.round((value - min) / step) * step + min;
   return Number(nearest.toFixed(getDecimalPrecision(step)));
 }
 
@@ -136,22 +132,30 @@ export const styles = theme => ({
     height: 2,
     width: '100%',
     boxSizing: 'content-box',
-    padding: '11px 0',
+    padding: '13px 0',
     display: 'inline-block',
     position: 'relative',
     cursor: 'pointer',
     touchAction: 'none',
     color: theme.palette.primary.main,
-    // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
     '&$disabled': {
+      pointerEvents: 'none',
       cursor: 'default',
       color: theme.palette.grey[400],
     },
     '&$vertical': {
       width: 2,
       height: '100%',
-      padding: '0 11px',
+      padding: '0 13px',
+    },
+    // The primary input mechanism of the device includes a pointing device of limited accuracy.
+    '@media (pointer: coarse)': {
+      // Reach 42px touch target, about ~8mm on screen.
+      padding: '20px 0',
+      '&$vertical': {
+        padding: '0 20px',
+      },
     },
   },
   /* Styles applied to the root element if `color="primary"`. */
@@ -172,7 +176,7 @@ export const styles = theme => ({
   },
   /* Pseudo-class applied to the root element if `orientation="vertical"`. */
   vertical: {},
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
+  /* Pseudo-class applied to the root and thumb element if `disabled={true}`. */
   disabled: {},
   /* Styles applied to the rail element. */
   rail: {
@@ -199,6 +203,25 @@ export const styles = theme => ({
       width: 2,
     },
   },
+  /* Styles applied to the track element if `track={false}`. */
+  trackFalse: {
+    '& $track': {
+      display: 'none',
+    },
+  },
+  /* Styles applied to the track element if `track="inverted"`. */
+  trackInverted: {
+    '& $track': {
+      backgroundColor:
+        // Same logic as the LinearProgress track color
+        theme.palette.type === 'light'
+          ? lighten(theme.palette.primary.main, 0.62)
+          : darken(theme.palette.primary.main, 0.5),
+    },
+    '& $rail': {
+      opacity: 1,
+    },
+  },
   /* Styles applied to the thumb element. */
   thumb: {
     position: 'absolute',
@@ -216,6 +239,16 @@ export const styles = theme => ({
     transition: theme.transitions.create(['box-shadow'], {
       duration: theme.transitions.duration.shortest,
     }),
+    '&::after': {
+      position: 'absolute',
+      content: '""',
+      borderRadius: '50%',
+      // reach 42px hit target (2 * 15 + thumb diameter)
+      left: -15,
+      top: -15,
+      right: -15,
+      bottom: -15,
+    },
     '&$focusVisible,&:hover': {
       boxShadow: `0px 0px 0px 8px ${fade(theme.palette.primary.main, 0.16)}`,
       '@media (hover: none)': {
@@ -225,8 +258,7 @@ export const styles = theme => ({
     '&$active': {
       boxShadow: `0px 0px 0px 14px ${fade(theme.palette.primary.main, 0.16)}`,
     },
-    '$disabled &': {
-      pointerEvents: 'none',
+    '&$disabled': {
       width: 8,
       height: 8,
       marginLeft: -4,
@@ -239,7 +271,7 @@ export const styles = theme => ({
       marginLeft: -5,
       marginBottom: -6,
     },
-    '$vertical$disabled &': {
+    '$vertical &$disabled': {
       marginLeft: -3,
       marginBottom: -4,
     },
@@ -281,13 +313,19 @@ export const styles = theme => ({
     ...theme.typography.body2,
     color: theme.palette.text.secondary,
     position: 'absolute',
-    top: 22,
+    top: 26,
     transform: 'translateX(-50%)',
     whiteSpace: 'nowrap',
     '$vertical &': {
       top: 'auto',
-      left: 22,
+      left: 26,
       transform: 'translateY(50%)',
+    },
+    '@media (pointer: coarse)': {
+      top: 40,
+      '$vertical &': {
+        left: 31,
+      },
     },
   },
   /* Styles applied to the mark label element if active (depending on the value). */
@@ -317,8 +355,10 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     onChangeCommitted,
     onMouseDown,
     orientation = 'horizontal',
+    scale = Identity,
     step = 1,
     ThumbComponent = 'span',
+    track = 'normal',
     value: valueProp,
     ValueLabelComponent = ValueLabel,
     valueLabelDisplay = 'off',
@@ -326,15 +366,19 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     ...other
   } = props;
   const theme = useTheme();
-  const { current: isControlled } = React.useRef(valueProp != null);
   const touchId = React.useRef();
   // We can't use the :active browser pseudo-classes.
   // - The active state isn't triggered when clicking on the rail.
   // - The active state isn't transfered when inversing a range slider.
   const [active, setActive] = React.useState(-1);
   const [open, setOpen] = React.useState(-1);
-  const [valueState, setValueState] = React.useState(defaultValue);
-  const valueDerived = isControlled ? valueProp : valueState;
+
+  const [valueDerived, setValueState] = useControlled({
+    controlled: valueProp,
+    default: defaultValue,
+    name: 'Slider',
+  });
+
   const range = Array.isArray(valueDerived);
   const instanceRef = React.useRef();
   let values = range ? [...valueDerived].sort(asc) : [valueDerived];
@@ -424,10 +468,11 @@ const Slider = React.forwardRef(function Slider(props, ref) {
         return;
     }
 
+    // Prevent scroll of the page
     event.preventDefault();
 
     if (step) {
-      newValue = roundValueToStep(newValue, step);
+      newValue = roundValueToStep(newValue, step, min);
     }
 
     newValue = clamp(newValue, min, max);
@@ -443,10 +488,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       focusThumb({ sliderRef, activeIndex: newValue.indexOf(previousValue) });
     }
 
-    if (!isControlled) {
-      setValueState(newValue);
-    }
-
+    setValueState(newValue);
     setFocusVisible(index);
 
     if (onChange) {
@@ -482,7 +524,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       let newValue;
       newValue = percentToValue(percent, min, max);
       if (step) {
-        newValue = roundValueToStep(newValue, step);
+        newValue = roundValueToStep(newValue, step, min);
       } else {
         const marksValues = marks.map(mark => mark.value);
         const closestIndex = findClosest(marksValues, newValue);
@@ -530,9 +572,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     });
 
     focusThumb({ sliderRef, activeIndex, setActive });
-    if (!isControlled) {
-      setValueState(newValue);
-    }
+    setValueState(newValue);
+
     if (onChange) {
       onChange(event, newValue);
     }
@@ -557,24 +598,12 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     }
 
     touchId.current = undefined;
-    document.body.removeEventListener('mousemove', handleTouchMove);
-    document.body.removeEventListener('mouseup', handleTouchEnd);
-    // eslint-disable-next-line no-use-before-define
-    document.body.removeEventListener('mouseenter', handleMouseEnter);
-    document.body.removeEventListener('touchmove', handleTouchMove);
-    document.body.removeEventListener('touchend', handleTouchEnd);
-  });
 
-  const handleMouseEnter = useEventCallback(event => {
-    // If the slider was being interacted with but the mouse went off the window
-    // and then re-entered while unclicked then end the interaction.
-    //
-    // In Firefox, the event can be triggered when a new DOM node is inserted and hovered.
-    // We need to make sure that the relatedTarget (The EventTarget the pointing device exited from)
-    // is not null (it should be the html element)
-    if (event.buttons === 0 && event.relatedTarget !== null) {
-      handleTouchEnd(event);
-    }
+    const doc = ownerDocument(sliderRef.current);
+    doc.removeEventListener('mousemove', handleTouchMove);
+    doc.removeEventListener('mouseup', handleTouchEnd);
+    doc.removeEventListener('touchmove', handleTouchMove);
+    doc.removeEventListener('touchend', handleTouchEnd);
   });
 
   const handleTouchStart = useEventCallback(event => {
@@ -589,42 +618,34 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
 
-    if (!isControlled) {
-      setValueState(newValue);
-    }
+    setValueState(newValue);
+
     if (onChange) {
       onChange(event, newValue);
     }
 
-    document.body.addEventListener('touchmove', handleTouchMove);
-    document.body.addEventListener('touchend', handleTouchEnd);
+    const doc = ownerDocument(sliderRef.current);
+    doc.addEventListener('touchmove', handleTouchMove);
+    doc.addEventListener('touchend', handleTouchEnd);
   });
 
   React.useEffect(() => {
-    if (disabled) {
-      return () => {};
-    }
-
     const { current: slider } = sliderRef;
     slider.addEventListener('touchstart', handleTouchStart);
+    const doc = ownerDocument(slider);
 
     return () => {
       slider.removeEventListener('touchstart', handleTouchStart);
-      document.body.removeEventListener('mousemove', handleTouchMove);
-      document.body.removeEventListener('mouseup', handleTouchEnd);
-      document.body.removeEventListener('mouseenter', handleMouseEnter);
-      document.body.removeEventListener('touchmove', handleTouchMove);
-      document.body.removeEventListener('touchend', handleTouchEnd);
+      doc.removeEventListener('mousemove', handleTouchMove);
+      doc.removeEventListener('mouseup', handleTouchEnd);
+      doc.removeEventListener('touchmove', handleTouchMove);
+      doc.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [disabled, handleMouseEnter, handleTouchEnd, handleTouchMove, handleTouchStart]);
+  }, [handleTouchEnd, handleTouchMove, handleTouchStart]);
 
   const handleMouseDown = useEventCallback(event => {
     if (onMouseDown) {
       onMouseDown(event);
-    }
-
-    if (disabled) {
-      return;
     }
 
     event.preventDefault();
@@ -632,16 +653,15 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
 
-    if (!isControlled) {
-      setValueState(newValue);
-    }
+    setValueState(newValue);
+
     if (onChange) {
       onChange(event, newValue);
     }
 
-    document.body.addEventListener('mousemove', handleTouchMove);
-    document.body.addEventListener('mouseenter', handleMouseEnter);
-    document.body.addEventListener('mouseup', handleTouchEnd);
+    const doc = ownerDocument(sliderRef.current);
+    doc.addEventListener('mousemove', handleTouchMove);
+    doc.addEventListener('mouseup', handleTouchEnd);
   });
 
   const trackOffset = valueToPercent(range ? values[0] : min, min, max);
@@ -661,6 +681,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
           [classes.disabled]: disabled,
           [classes.marked]: marks.length > 0 && marks.some(mark => mark.label),
           [classes.vertical]: orientation === 'vertical',
+          [classes.trackInverted]: track === 'inverted',
+          [classes.trackFalse]: track === false,
         },
         className,
       )}
@@ -673,9 +695,21 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       {marks.map(mark => {
         const percent = valueToPercent(mark.value, min, max);
         const style = axisProps[axis].offset(percent);
-        const markActive = range
-          ? mark.value >= values[0] && mark.value <= values[values.length - 1]
-          : mark.value <= values[0];
+
+        let markActive;
+        if (track === false) {
+          markActive = values.indexOf(mark.value) !== -1;
+        } else {
+          markActive =
+            (track === 'normal' &&
+              (range
+                ? mark.value >= values[0] && mark.value <= values[values.length - 1]
+                : mark.value <= values[0])) ||
+            (track === 'inverted' &&
+              (range
+                ? mark.value <= values[0] || mark.value >= values[values.length - 1]
+                : mark.value >= values[0]));
+        }
 
         return (
           <React.Fragment key={mark.value}>
@@ -707,14 +741,19 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             valueLabelFormat={valueLabelFormat}
             valueLabelDisplay={valueLabelDisplay}
             className={classes.valueLabel}
-            value={value}
+            value={
+              typeof valueLabelFormat === 'function'
+                ? valueLabelFormat(scale(value), index)
+                : valueLabelFormat
+            }
             index={index}
-            open={open === index || active === index}
+            open={open === index || active === index || valueLabelDisplay === 'on'}
             disabled={disabled}
           >
             <ThumbComponent
               className={clsx(classes.thumb, classes[`thumbColor${capitalize(color)}`], {
                 [classes.active]: active === index,
+                [classes.disabled]: disabled,
                 [classes.focusVisible]: focusVisible === index,
               })}
               tabIndex={disabled ? null : 0}
@@ -724,10 +763,12 @@ const Slider = React.forwardRef(function Slider(props, ref) {
               aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
               aria-labelledby={ariaLabelledby}
               aria-orientation={orientation}
-              aria-valuemax={max}
-              aria-valuemin={min}
-              aria-valuenow={value}
-              aria-valuetext={getAriaValueText ? getAriaValueText(value, index) : ariaValuetext}
+              aria-valuemax={scale(max)}
+              aria-valuemin={scale(min)}
+              aria-valuenow={scale(value)}
+              aria-valuetext={
+                getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
+              }
               onKeyDown={handleKeyDown}
               onFocus={handleFocus}
               onBlur={handleBlur}
@@ -858,7 +899,14 @@ Slider.propTypes = {
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
+   * A transformation function, to change the scale of the slider.
+   */
+  scale: PropTypes.func,
+  /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
+   * The `min` prop serves as the origin for the valid values.
+   * We recommend (max - min) to be evenly divisible by the step.
+   *
    * When step is `null`, the thumb can only be slid onto marks provided with the `marks` prop.
    */
   step: PropTypes.number,
@@ -866,6 +914,14 @@ Slider.propTypes = {
    * The component used to display the value label.
    */
   ThumbComponent: PropTypes.elementType,
+  /**
+   * The track presentation:
+   *
+   * - `normal` the track will render a bar representing the slider value.
+   * - `inverted` the track will render a bar representing the remaining slider value.
+   * - `false` the track will render without a bar.
+   */
+  track: PropTypes.oneOf(['normal', false, 'inverted']),
   /**
    * The value of the slider.
    * For ranged sliders, provide an array with two values.

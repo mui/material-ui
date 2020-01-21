@@ -47,7 +47,17 @@ function focusTriggersKeyboardModality(node) {
   return false;
 }
 
-function handleKeyDown() {
+/**
+ * Keep track of our keyboard modality state with `hadKeyboardEvent`.
+ * If the most recent user interaction was via the keyboard;
+ * and the key press did not include a meta, alt/option, or control key;
+ * then the modality is keyboard. Otherwise, the modality is not keyboard.
+ * @param {KeyboardEvent} event
+ */
+function handleKeyDown(event) {
+  if (event.metaKey || event.altKey || event.ctrlKey) {
+    return;
+  }
   hadKeyboardEvent = true;
 }
 
@@ -57,7 +67,6 @@ function handleKeyDown() {
  * This avoids the situation where a user presses a key on an already focused
  * element, and then clicks on a different element, focusing it with a
  * pointing device, while we still think we're in keyboard modality.
- * @param {Event} e
  */
 function handlePointerDown() {
   hadKeyboardEvent = false;
@@ -75,20 +84,20 @@ function handleVisibilityChange() {
   }
 }
 
-function prepare(ownerDocument) {
-  ownerDocument.addEventListener('keydown', handleKeyDown, true);
-  ownerDocument.addEventListener('mousedown', handlePointerDown, true);
-  ownerDocument.addEventListener('pointerdown', handlePointerDown, true);
-  ownerDocument.addEventListener('touchstart', handlePointerDown, true);
-  ownerDocument.addEventListener('visibilitychange', handleVisibilityChange, true);
+function prepare(doc) {
+  doc.addEventListener('keydown', handleKeyDown, true);
+  doc.addEventListener('mousedown', handlePointerDown, true);
+  doc.addEventListener('pointerdown', handlePointerDown, true);
+  doc.addEventListener('touchstart', handlePointerDown, true);
+  doc.addEventListener('visibilitychange', handleVisibilityChange, true);
 }
 
-export function teardown(ownerDocument) {
-  ownerDocument.removeEventListener('keydown', handleKeyDown, true);
-  ownerDocument.removeEventListener('mousedown', handlePointerDown, true);
-  ownerDocument.removeEventListener('pointerdown', handlePointerDown, true);
-  ownerDocument.removeEventListener('touchstart', handlePointerDown, true);
-  ownerDocument.removeEventListener('visibilitychange', handleVisibilityChange, true);
+export function teardown(doc) {
+  doc.removeEventListener('keydown', handleKeyDown, true);
+  doc.removeEventListener('mousedown', handlePointerDown, true);
+  doc.removeEventListener('pointerdown', handlePointerDown, true);
+  doc.removeEventListener('touchstart', handlePointerDown, true);
+  doc.removeEventListener('visibilitychange', handleVisibilityChange, true);
 }
 
 function isFocusVisible(event) {
@@ -119,7 +128,6 @@ function handleBlurVisible() {
   window.clearTimeout(hadFocusVisibleRecentlyTimeout);
   hadFocusVisibleRecentlyTimeout = window.setTimeout(() => {
     hadFocusVisibleRecently = false;
-    window.clearTimeout(hadFocusVisibleRecentlyTimeout);
   }, 100);
 }
 

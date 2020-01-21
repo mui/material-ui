@@ -1,4 +1,4 @@
-import { PropInjector, CoerceEmptyInterface } from '@material-ui/types';
+import { PropInjector } from '@material-ui/types';
 import { Theme } from './createMuiTheme';
 import {
   CreateCSSProperties,
@@ -27,6 +27,8 @@ export {
 /**
  * Adapter for `StyleRules` from `@material-ui/styles` for backwards compatibility.
  * Order of generic arguments is just reversed.
+ *
+ * TODO: to normalize in v5
  */
 export type StyleRules<
   ClassKey extends string = string,
@@ -47,7 +49,4 @@ export default function withStyles<
 >(
   style: Styles<Theme, Props, ClassKey>,
   options?: Options,
-): PropInjector<
-  WithStyles<ClassKey, Options['withTheme']>,
-  StyledComponentProps<ClassKey> & CoerceEmptyInterface<Props>
->;
+): PropInjector<WithStyles<ClassKey, Options['withTheme']>, StyledComponentProps<ClassKey> & Props>;

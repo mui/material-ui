@@ -9,4 +9,8 @@ const PageContext = React.createContext({
   pages: [],
 });
 
+if (process.env.NODE_ENV !== 'production') {
+  PageContext.displayName = 'PageContext';
+}
+
 export default PageContext;

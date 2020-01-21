@@ -16,16 +16,16 @@ const StyledMenu = styled(({ className, ...props }) => (
   }
 `;
 
-function StyledComponentsPortal() {
+export default function StyledComponentsPortal() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  function handleClick(event) {
+  const handleClick = event => {
     setAnchorEl(event.currentTarget);
-  }
+  };
 
-  function handleClose() {
+  const handleClose = () => {
     setAnchorEl(null);
-  }
+  };
 
   return (
     <div>
@@ -60,5 +60,3 @@ function StyledComponentsPortal() {
     </div>
   );
 }
-
-export default StyledComponentsPortal;

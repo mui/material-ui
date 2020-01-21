@@ -6,13 +6,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 export default function SimpleMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-  function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
-  }
+  };
 
-  function handleClose() {
+  const handleClose = () => {
     setAnchorEl(null);
-  }
+  };
 
   return (
     <div>

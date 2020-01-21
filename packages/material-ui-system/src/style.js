@@ -26,7 +26,7 @@ function style(options) {
       if (typeof themeMapping === 'function') {
         value = themeMapping(propValueFinal);
       } else if (Array.isArray(themeMapping)) {
-        value = themeMapping[propValueFinal];
+        value = themeMapping[propValueFinal] || propValueFinal;
       } else {
         value = getPath(themeMapping, propValueFinal) || propValueFinal;
 

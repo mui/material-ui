@@ -1,4 +1,4 @@
-# Material-UI - Nossa Visão
+# Our Vision
 
 <p class="description">Nossa visão é fornecer uma implementação elegante de React utilizando as diretrizes do Material Design que podem ser personalizadas para se adequarem totalmente à sua marca.</p>
 

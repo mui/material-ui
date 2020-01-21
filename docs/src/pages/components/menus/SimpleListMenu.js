@@ -26,18 +26,18 @@ export default function SimpleListMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-  function handleClickListItem(event) {
+  const handleClickListItem = event => {
     setAnchorEl(event.currentTarget);
-  }
+  };
 
-  function handleMenuItemClick(event, index) {
+  const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setAnchorEl(null);
-  }
+  };
 
-  function handleClose() {
+  const handleClose = () => {
     setAnchorEl(null);
-  }
+  };
 
   return (
     <div className={classes.root}>

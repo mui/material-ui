@@ -3,7 +3,7 @@ title: Text Field コンポーネント
 components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 ---
 
-# Text Fields
+# Text Field (テキストフィールド)
 
 <p class="description">Text fieldを使用すると、ユーザーはテキストを入力および編集できます。</p>
 
@@ -13,21 +13,67 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 `TextField` ラッパーコンポーネントは、ラベル、入力、およびヘルプテキストを含む完全なフォームコントロールです。
 
-{{"demo": "pages/components/text-fields/TextFields.js"}}
+It supports standard, outlined and filled styling.
 
-> **Note:** ：このバージョンのテキストフィールドについては、[Material Design guidelines](https://material.io/)では説明されていませんが、Material-UIでは引き続きサポートされます。
+{{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 
-## アウトライン (Outlined)
+**Note:** The standard variant of the `TextField` is no longer documented in the [Material Design guidelines](https://material.io/) ([here's why](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)), but Material-UI will continue to support it.
 
-`TextField` はアウトラインスタイルをサポートします。
+## Form props
 
-{{"demo": "pages/components/text-fields/OutlinedTextFields.js"}}
+Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field’s input, such as how the input will be used.
 
-## Filled
+{{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
-`TextField` はアウトラインスタイルをサポートします。
+## Validation
 
-{{"demo": "pages/components/text-fields/FilledTextFields.js"}}
+The `error` prop toggles the error state, the `helperText` prop can then be used to provide feedback to the user about the error.
+
+{{"demo": "pages/components/text-fields/ValidationTextFields.js"}}
+
+## Multiline
+
+The `multiline` prop transforms the text field into a [textarea](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) or a [TextareaAutosize](/components/textarea-autosize/).
+
+{{"demo": "pages/components/text-fields/MultilineTextFields.js"}}
+
+## Select (選択)
+
+The `select` prop makes the text field use the [Select](/components/selects/) component internally.
+
+{{"demo": "pages/components/text-fields/SelectTextFields.js"}}
+
+## アイコン
+
+There are multiple ways to display an icon with a text field.
+
+{{"demo": "pages/components/text-fields/InputWithIcon.js"}}
+
+### 入力装飾 (Input Adornments)
+
+The main way is with an `InputAdornment`. これらは、入力に接頭辞、接尾辞、またはアクションを追加するために使用できます。 たとえば、アイコンボタンを使用してパスワードを表示または非表示にすることができます。
+
+{{"demo": "pages/components/text-fields/InputAdornments.js"}}
+
+## サイズ
+
+Fancy smaller inputs? `size`propを使用します。
+
+{{"demo": "pages/components/text-fields/TextFieldSizes.js"}}
+
+## レイアウト
+
+`margin` can be used to alter the vertical spacing of inputs. Using `none` (default) will not apply margins to the `FormControl`, whereas `dense` and `normal` will. `dense` and `normal` alter other styles to meet the specification.
+
+`fullWidth` can be used to make the input take up the full width of its container.
+
+{{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
+
+## Uncontrolled vs Controlled
+
+The component can be controlled or uncontrolled
+
+{{"demo": "pages/components/text-fields/StateTextFields.js"}}
 
 ## コンポーネント
 
@@ -37,9 +83,15 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 {{"demo": "pages/components/text-fields/ComposedTextField.js"}}
 
-## Inputs
+## 入力
 
 {{"demo": "pages/components/text-fields/Inputs.js"}}
+
+## カラー
+
+The `color` prop changes the highlight color of the text field when focused.
+
+{{"demo": "pages/components/text-fields/ColorTextFields.js"}}
 
 ## カスタマイズされた入力 (Customized inputs)
 
@@ -49,35 +101,9 @@ components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, Inp
 
 カスタマイズはCSSにとどまりません。コンポジションを使用してカスタムコンポーネントを作成し、アプリに独特の雰囲気を与えることができます。 以下は、Googleマップに触発された [`InputBase`](/api/input-base/) コンポーネントを使用した例です。
 
-{{"demo": "pages/components/text-fields/CustomizedInputBase.js"}}
+{{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
-## 入力装飾 (Input Adornments)
-
-`Input` は `InputAdornment `提供を許可します。 これらは、入力に接頭辞、接尾辞、またはアクションを追加するために使用できます。 たとえば、アイコンボタンを使用してパスワードを表示または非表示にすることができます。
-
-{{"demo": "pages/components/text-fields/InputAdornments.js"}}
-
-### アイコン付き
-
-アイコンは、先頭または末尾として指定できます。
-
-{{"demo": "pages/components/text-fields/InputWithIcon.js"}}
-
-### Filled Input Adornments
-
-{{"demo": "pages/components/text-fields/FilledInputAdornments.js"}}
-
-### Outlined Input Adornments
-
-{{"demo": "pages/components/text-fields/OutlinedInputAdornments.js"}}
-
-## レイアウト
-
-` TextField `、` FormControl `を使用すると、` margin `を指定して入力の縦方向の間隔を変更できます。 `none`（デフォルト）を使用すると`FormControl`に余白は適用されませんが、 `dense`と `normal`は他のスタイルを仕様に合わせて変更します。
-
-{{"demo": "pages/components/text-fields/TextFieldMargins.js"}}
-
-## 制限
+## 制限事項
 
 ### シュリンク
 
@@ -166,10 +192,11 @@ function MyInputComponent(props) {
 </FormControl>
 ```
 
-## Complementary projects
+## 補完プロジェクト
 
-より高度なユースケースのためにあなたは利用することができるかもしれません：
+より高度な使用例では、以下を利用できます。
 
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Redux FormでMaterial UIを使用しやすくするラッパーコンポーネントのセット。
 - [formik-material-ui](https://github.com/stackworx/formik-material-ui) formikでMaterial-UIを使うためのバインディング。
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui) Redux FormでMaterial UIを使用しやすくするラッパーコンポーネントのセット。
 - [final-form-material-ui](https://github.com/Deadly0/final-form-material-ui) Final FormでMaterial UIを使いやすくするためのラッパーコンポーネントのセット。
+- [mui-rff](https://github.com/lookfirst/mui-rff) A set of wrapper components to facilitate using Material UI with React Final Form.

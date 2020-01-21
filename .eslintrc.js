@@ -1,3 +1,4 @@
+const confusingBrowserGlobals = require('confusing-browser-globals');
 const path = require('path');
 
 module.exports = {
@@ -32,12 +33,17 @@ module.exports = {
     'consistent-this': ['error', 'self'],
     'linebreak-style': 'off', // Doesn't play nicely with Windows
     'no-alert': 'error',
-    // Strict, airbnb is using warn
-    'no-console': 'error',
+    // Strict, airbnb is using warn; allow warn and error for dev environments
+    'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-constant-condition': 'error',
     // Airbnb use error
     'no-param-reassign': 'off',
     'no-prototype-builtins': 'off',
+    // Airbnb restricts isNaN and isFinite which are necessary for IE 11
+    // we have to be disciplined about the usage and ensure the Number type for its
+    // arguments
+    'no-restricted-globals': ['error'].concat(confusingBrowserGlobals),
+    'no-underscore-dangle': ['error', { allow: ['_rewriteUrlForNextExport'] }],
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
     'prefer-destructuring': 'off', // Destructuring harm grep potential.
 
@@ -111,6 +117,15 @@ module.exports = {
         'mocha/no-skipped-tests': 'error',
         'mocha/no-top-level-hooks': 'error',
         'mocha/valid-suite-description': 'error',
+      },
+    },
+    {
+      files: ['docs/src/modules/components/**/*.js'],
+      rules: {
+        'material-ui/no-hardcoded-labels': [
+          'error',
+          { allow: ['Material-UI', 'Twitter', 'GitHub', 'StackOverflow'] },
+        ],
       },
     },
   ],

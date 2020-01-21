@@ -171,7 +171,8 @@ function OverridesTheme() {
 // withTheme
 const ComponentWithTheme = withTheme(({ theme }: WithTheme) => <div>{theme.spacing(1)}</div>);
 
-<ComponentWithTheme />;
+const componentWithThemeRef = React.createRef<HTMLDivElement>();
+<ComponentWithTheme ref={componentWithThemeRef} />;
 
 // withStyles + withTheme
 type AllTheProps = WithTheme & WithStyles<typeof styles>;
@@ -638,4 +639,13 @@ withStyles(theme =>
       },
     };
   });
+}
+
+function themeProviderTest() {
+  <ThemeProvider theme={{ foo: 1 }}>{null}</ThemeProvider>;
+  // $ExpectError
+  <ThemeProvider<Theme> theme={{ foo: 1 }}>{null}</ThemeProvider>;
+  <ThemeProvider<Theme> theme={{ props: { MuiAppBar: { 'aria-atomic': 'true' } } }}>
+    {null}
+  </ThemeProvider>;
 }

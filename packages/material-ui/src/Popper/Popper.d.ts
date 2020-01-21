@@ -23,7 +23,11 @@ export interface PopperProps extends React.HTMLAttributes<HTMLDivElement> {
     | React.ReactNode
     | ((props: {
         placement: PopperPlacementType;
-        TransitionProps?: TransitionProps;
+        TransitionProps?: {
+          in: boolean;
+          onEnter: () => {};
+          onExited: () => {};
+        };
       }) => React.ReactNode);
   container?: PortalProps['container'];
   disablePortal?: PortalProps['disablePortal'];

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider, useTheme, makeStyles } from '@material-ui/styles';
+import { ThemeProvider, useTheme, makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   root: props => ({
@@ -35,14 +35,14 @@ Component.propTypes = {
 
 export default function StressTest() {
   const [backgroundColor, setBackgroundColor] = React.useState('#2196f3');
-  function handleBackgroundColorChange(event) {
+  const handleBackgroundColorChange = event => {
     setBackgroundColor(event.target.value);
-  }
+  };
 
   const [color, setColor] = React.useState('#ffffff');
-  function handleColorChange(event) {
+  const handleColorChange = event => {
     setColor(event.target.value);
-  }
+  };
 
   const theme = React.useMemo(() => ({ color }), [color]);
 

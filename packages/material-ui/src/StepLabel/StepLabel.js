@@ -57,7 +57,7 @@ export const styles = theme => ({
       paddingRight: 0,
     },
   },
-  /* Pseudo-class applied to the root & icon container and `Typography` if `alternativeLabel={true}`. */
+  /* Pseudo-class applied to the root and icon container and `Typography` if `alternativeLabel={true}`. */
   alternativeLabel: {},
   /* Styles applied to the container element which wraps `Typography` and `optional`. */
   labelContainer: {
@@ -71,10 +71,11 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
     alternativeLabel = false,
     children,
     classes,
-    className: classNameProp,
+    className,
     completed = false,
     disabled = false,
     error = false,
+    expanded,
     icon,
     last,
     optional,
@@ -100,7 +101,7 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
           [classes.alternativeLabel]: alternativeLabel,
           [classes.error]: error,
         },
-        classNameProp,
+        className,
       )}
       ref={ref}
       {...other}
@@ -143,12 +144,10 @@ const StepLabel = React.forwardRef(function StepLabel(props, ref) {
 StepLabel.propTypes = {
   /**
    * @ignore
-   * Sets the step as active. Is passed to child components.
    */
   active: PropTypes.bool,
   /**
    * @ignore
-   * Set internally by Stepper when it's supplied with the alternativeLabel prop.
    */
   alternativeLabel: PropTypes.bool,
   /**
@@ -166,7 +165,6 @@ StepLabel.propTypes = {
   className: PropTypes.string,
   /**
    * @ignore
-   * Mark the step as completed. Is passed to child components.
    */
   completed: PropTypes.bool,
   /**
@@ -178,6 +176,10 @@ StepLabel.propTypes = {
    * Mark the step as failed.
    */
   error: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  expanded: PropTypes.bool,
   /**
    * Override the default label of the step icon.
    */

@@ -44,7 +44,7 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
     children,
     classes,
     className,
-    collapsedHeight = '0px',
+    collapsedHeight: collapsedHeightProp = '0px',
     component: Component = 'div',
     in: inProp,
     onEnter,
@@ -60,6 +60,8 @@ const Collapse = React.forwardRef(function Collapse(props, ref) {
   const timer = React.useRef();
   const wrapperRef = React.useRef(null);
   const autoTransitionDuration = React.useRef();
+  const collapsedHeight =
+    typeof collapsedHeightProp === 'number' ? `${collapsedHeightProp}px` : collapsedHeightProp;
 
   React.useEffect(() => {
     return () => {
@@ -205,7 +207,7 @@ Collapse.propTypes = {
   /**
    * The height of the container when collapsed.
    */
-  collapsedHeight: PropTypes.string,
+  collapsedHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.

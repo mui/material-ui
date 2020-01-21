@@ -1,8 +1,6 @@
-/* eslint-disable no-restricted-globals */
-
 import React from 'react';
+import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
-import warning from 'warning';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
 import debounce from '../utils/debounce';
@@ -103,11 +101,14 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   const clientSize = vertical ? 'clientHeight' : 'clientWidth';
   const size = vertical ? 'height' : 'width';
 
-  warning(
-    !centered || !scrollable,
-    'Material-UI: you can not use the `centered={true}` and `variant="scrollable"` properties ' +
-      'at the same time on a `Tabs` component.',
-  );
+  if (process.env.NODE_ENV !== 'production') {
+    if (centered && scrollable) {
+      console.error(
+        'Material-UI: you can not use the `centered={true}` and `variant="scrollable"` properties ' +
+          'at the same time on a `Tabs` component.',
+      );
+    }
+  }
 
   const [mounted, setMounted] = React.useState(false);
   const [indicatorStyle, setIndicatorStyle] = React.useState({});
@@ -148,18 +149,21 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
 
       if (children.length > 0) {
         const tab = children[valueToIndex.get(value)];
-        warning(
-          tab,
-          [
-            `Material-UI: the value provided \`${value}\` to the Tabs component is invalid.`,
-            'None of the Tabs children have this value.',
-            valueToIndex.keys
-              ? `You can provide one of the following values: ${Array.from(
-                  valueToIndex.keys(),
-                ).join(', ')}.`
-              : null,
-          ].join('\n'),
-        );
+        if (process.env.NODE_ENV !== 'production') {
+          if (!tab) {
+            console.error(
+              [
+                `Material-UI: the value provided \`${value}\` to the Tabs component is invalid.`,
+                'None of the Tabs children have this value.',
+                valueToIndex.keys
+                  ? `You can provide one of the following values: ${Array.from(
+                      valueToIndex.keys(),
+                    ).join(', ')}.`
+                  : null,
+              ].join('\n'),
+            );
+          }
+        }
         tabMeta = tab ? tab.getBoundingClientRect() : null;
       }
     }
@@ -355,8 +359,9 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     action,
     () => ({
       updateIndicator: updateIndicatorState,
+      updateScrollButtons: updateScrollButtonState,
     }),
-    [updateIndicatorState],
+    [updateIndicatorState, updateScrollButtonState],
   );
 
   const indicator = (
@@ -378,13 +383,16 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       return null;
     }
 
-    warning(
-      child.type !== React.Fragment,
-      [
-        "Material-UI: the Tabs component doesn't accept a Fragment as a child.",
-        'Consider providing an array instead.',
-      ].join('\n'),
-    );
+    if (process.env.NODE_ENV !== 'production') {
+      if (isFragment(child)) {
+        console.error(
+          [
+            "Material-UI: the Tabs component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n'),
+        );
+      }
+    }
 
     const childValue = child.props.value === undefined ? childIndex : child.props.value;
     valueToIndex.set(childValue, childIndex);
@@ -447,7 +455,7 @@ Tabs.propTypes = {
   /**
    * Callback fired when the component mounts.
    * This is useful when you want to trigger an action programmatically.
-   * It currently only supports `updateIndicator()` action.
+   * It supports two actions: `updateIndicator()` and `updateScrollButtons()`
    *
    * @param {object} actions This object contains all possible actions
    * that can be triggered programmatically.

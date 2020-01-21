@@ -2,21 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import ownerDocument from '../utils/ownerDocument';
-import { useForkRef, setRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
+import setRef from '../utils/setRef';
 import useEventCallback from '../utils/useEventCallback';
 import { elementAcceptingRef, exactProp } from '@material-ui/utils';
-
-function useMountedRef() {
-  const mountedRef = React.useRef(false);
-  React.useEffect(() => {
-    mountedRef.current = true;
-    return () => {
-      mountedRef.current = false;
-    };
-  }, []);
-
-  return mountedRef;
-}
 
 function mapEventPropToEvent(eventProp) {
   return eventProp.substring(2).toLowerCase();
@@ -28,10 +17,17 @@ function mapEventPropToEvent(eventProp) {
  */
 const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref) {
   const { children, mouseEvent = 'onClick', touchEvent = 'onTouchEnd', onClickAway } = props;
-  const mountedRef = useMountedRef();
   const movedRef = React.useRef(false);
-
   const nodeRef = React.useRef(null);
+  const mountedRef = React.useRef(false);
+
+  React.useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
   const handleNodeRef = useForkRef(nodeRef, ref);
   // can be removed once we drop support for non ref forwarding class components
   const handleOwnRef = React.useCallback(
@@ -44,10 +40,12 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
   const handleRef = useForkRef(children.ref, handleOwnRef);
 
   const handleClickAway = useEventCallback(event => {
-    // Ignore events that have been `event.preventDefault()` marked.
-    if (event.defaultPrevented) {
-      return;
-    }
+    // The handler doesn't take event.defaultPrevented into account:
+    //
+    // event.preventDefault() is meant to stop default behaviours like
+    // clicking a checkbox to check it, hitting a button to submit a form,
+    // and hitting left arrow to move the cursor in a text input etc.
+    // Only special HTML elements have these default behaviors.
 
     // IE 11 support, which trigger the handleClickAway even after the unbind
     if (!mountedRef.current) {
@@ -60,18 +58,18 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
       return;
     }
 
-    const { current: node } = nodeRef;
     // The child might render null.
-    if (!node) {
+    if (!nodeRef.current) {
       return;
     }
 
-    const doc = ownerDocument(node);
+    // Multi window support
+    const doc = ownerDocument(nodeRef.current);
 
     if (
       doc.documentElement &&
       doc.documentElement.contains(event.target) &&
-      !node.contains(event.target)
+      !nodeRef.current.contains(event.target)
     ) {
       onClickAway(event);
     }
@@ -84,13 +82,14 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
   React.useEffect(() => {
     if (touchEvent !== false) {
       const mappedTouchEvent = mapEventPropToEvent(touchEvent);
+      const doc = ownerDocument(nodeRef.current);
 
-      document.addEventListener(mappedTouchEvent, handleClickAway);
-      document.addEventListener('touchmove', handleTouchMove);
+      doc.addEventListener(mappedTouchEvent, handleClickAway);
+      doc.addEventListener('touchmove', handleTouchMove);
 
       return () => {
-        document.removeEventListener(mappedTouchEvent, handleClickAway);
-        document.removeEventListener('touchmove', handleTouchMove);
+        doc.removeEventListener(mappedTouchEvent, handleClickAway);
+        doc.removeEventListener('touchmove', handleTouchMove);
       };
     }
 
@@ -100,10 +99,12 @@ const ClickAwayListener = React.forwardRef(function ClickAwayListener(props, ref
   React.useEffect(() => {
     if (mouseEvent !== false) {
       const mappedMouseEvent = mapEventPropToEvent(mouseEvent);
-      document.addEventListener(mappedMouseEvent, handleClickAway);
+      const doc = ownerDocument(nodeRef.current);
+
+      doc.addEventListener(mappedMouseEvent, handleClickAway);
 
       return () => {
-        document.removeEventListener(mappedMouseEvent, handleClickAway);
+        doc.removeEventListener(mappedMouseEvent, handleClickAway);
       };
     }
 

@@ -8,11 +8,8 @@ export type ExpansionPanelSummaryTypeMap<
   D extends React.ElementType = 'div'
 > = ExtendButtonBaseTypeMap<{
   props: P & {
-    disabled?: boolean;
-    expanded?: boolean;
     expandIcon?: React.ReactNode;
     IconButtonProps?: Partial<IconButtonProps>;
-    onChange?: React.ReactEventHandler<{}>;
   };
   defaultComponent: D;
   classKey: ExpansionPanelSummaryClassKey;

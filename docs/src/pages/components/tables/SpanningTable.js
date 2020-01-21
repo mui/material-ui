@@ -3,22 +3,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 const TAX_RATE = 0.07;
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing(3),
-    overflowX: 'auto',
-  },
+const useStyles = makeStyles({
   table: {
     minWidth: 700,
   },
-}));
+});
 
 function ccyFormat(num) {
   return `${num.toFixed(2)}`;
@@ -51,14 +47,20 @@ export default function SpanningTable() {
   const classes = useStyles();
 
   return (
-    <Paper className={classes.root}>
-      <Table className={classes.table}>
+    <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="spanning table">
         <TableHead>
+          <TableRow>
+            <TableCell align="center" colSpan={3}>
+              Details
+            </TableCell>
+            <TableCell align="right">Price</TableCell>
+          </TableRow>
           <TableRow>
             <TableCell>Desc</TableCell>
             <TableCell align="right">Qty.</TableCell>
-            <TableCell align="right">@</TableCell>
-            <TableCell align="right">Price</TableCell>
+            <TableCell align="right">Unit</TableCell>
+            <TableCell align="right">Sum</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -87,6 +89,6 @@ export default function SpanningTable() {
           </TableRow>
         </TableBody>
       </Table>
-    </Paper>
+    </TableContainer>
   );
 }

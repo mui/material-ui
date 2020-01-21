@@ -3,7 +3,7 @@ title: Checkbox React-Komponente
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Kontrollkästchen
+# Checkbox (kontrollkästchen)
 
 <p class="description">Kontrollkästchen ermöglichen dem Benutzer die Auswahl eines oder mehrerer Elemente aus einem Satz.</p>
 
@@ -33,13 +33,19 @@ Sie können die Platzierung des Etiketts ändern:
 
 Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
-{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
+{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
+
+## When to use
+
+- [Kontrollkästchen vs. Optionsfeld (Radio Buttons)](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Kontrollkästchen vs. Schalter](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
 ## Barrierefreiheit
 
-Alle Formularsteuerelemente sollten Beschriftungen haben. Dazu gehören Optionsfelder, Kontrollkästchen und Schalter. In den meisten Fällen wird dazu das Element `<label>` ([FormControlLabel](/api/form-control-label/)) verwendet.
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#checkbox)
 
-Wenn ein Label nicht verwendet werden kann, muss der Eingabekomponente ein Attribut direkt hinzugefügt werden. In diesem Fall können Sie das zusätzliche Attribut (z. B. `aria-label`, `aria-labelby`, `title`) über die Eigenschaft `inputProps` anwenden.
+- Alle Formularsteuerelemente sollten Beschriftungen haben. Dazu gehören Optionsfelder, Kontrollkästchen und Schalter. In den meisten Fällen wird dazu das Element `<label>` ([FormControlLabel](/api/form-control-label/)) verwendet.
+- Wenn ein Label nicht verwendet werden kann, muss der Eingabekomponente ein Attribut direkt hinzugefügt werden. In diesem Fall können Sie das zusätzliche Attribut (z. B. `aria-label`, `aria-labelby`, `title`) über die Eigenschaft `inputProps` anwenden.
 
 ```jsx
 <Checkbox
@@ -47,7 +53,3 @@ Wenn ein Label nicht verwendet werden kann, muss der Eingabekomponente ein Attri
   inputProps={{ 'aria-label': 'Checkbox A' }}
 />
 ```
-
-## Anleitung
-
-- [Kontrollkästchen vs. Optionsfeld (Radio Buttons)](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

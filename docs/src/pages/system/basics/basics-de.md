@@ -68,15 +68,13 @@ const theme = {
   },
 };
 
-function App() {
+export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      {/* Kinder*/}
+      {/* children */}
     </ThemeProvider>
   )
 }
-
-export default App
 ```
 
 Jetzt können Sie einen Abstandsmultiplikatorwert angeben:
@@ -212,7 +210,7 @@ const Box = styled.div`
 />
 
 /**
- * Outputs:
+ * Ausgaben:
  *
  * padding: 16px;
  * @media (min-width: 600px) {
@@ -328,7 +326,7 @@ styled-system hat hervorragende Arbeit geleistet im Erklären [wie es funktionie
 
 In Praxis kann eine Box-Komponente viel Zeit sparen. In diesem Beispiel wird gezeigt, wie eine Bannerkomponente reproduziert wird.
 
-{{"demo": "pages/system/basics/RealWorld.js"}}
+{{"demo": "pages/system/basics/RealWorld.js", "bg": true}}
 
 ## Stand der Technik
 

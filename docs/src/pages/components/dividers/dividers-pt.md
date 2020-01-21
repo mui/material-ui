@@ -3,7 +3,7 @@ title: Componente React para Divisores
 components: Divider
 ---
 
-# Divisores
+# Divider (divisor)
 
 <p class="description">Um divisor é uma linha fina que agrupa conteúdo em listas e leiautes.</p>
 
@@ -11,22 +11,28 @@ components: Divider
 
 ## Divisores de lista
 
-The divider renders as an `<hr>` by default. Você pode salvar a renderização desse elemento DOM usando a propriedade `divider` no componente `ListItem`.
+O divisor renderiza como um `<hr>` por padrão. Você pode salvar a renderização desse elemento DOM usando a propriedade `divider` no componente `ListItem`.
 
-{{"demo": "pages/components/dividers/ListDividers.js"}}
+{{"demo": "pages/components/dividers/ListDividers.js", "bg": true}}
 
 ## Especificação HTML5
 
-In a list, you should ensure the `Divider` is rendered as an `<li>` to match the HTML5 specification. Os exemplos abaixo mostram duas maneiras de conseguir isso.
+Em uma lista, você deve garantir que o `Divisor` seja renderizado como um elemento `<li>` para corresponder à especificação HTML5. Os exemplos abaixo mostram duas maneiras de conseguir isso.
 
 ## Divisores de inserção
 
-{{"demo": "pages/components/dividers/InsetDividers.js"}}
+{{"demo": "pages/components/dividers/InsetDividers.js", "bg": true}}
 
 ## Divisores de subtítulo
 
-{{"demo": "pages/components/dividers/SubheaderDividers.js"}}
+{{"demo": "pages/components/dividers/SubheaderDividers.js", "bg": true}}
 
 ## Divisores médios
 
-{{"demo": "pages/components/dividers/MiddleDividers.js"}}
+{{"demo": "pages/components/dividers/MiddleDividers.js", "bg": true}}
+
+## Vertical Dividers
+
+You can also render a divider vertically using the `orientation` prop.
+
+{{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}

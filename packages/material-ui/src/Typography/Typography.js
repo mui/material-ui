@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -194,7 +194,7 @@ Typography.propTypes = {
   /**
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
-   * By default, it maps the variant to a good default headline component.
+   * Overrides the behavior of the `variantMapping` prop.
    */
   component: PropTypes.elementType,
   /**
@@ -237,7 +237,7 @@ Typography.propTypes = {
     'inherit',
   ]),
   /**
-   * We are empirically mapping the variant prop to a range of different DOM element types.
+   * The component maps the variant prop to a range of different DOM element types.
    * For instance, subtitle1 to `<h6>`.
    * If you wish to change that mapping, you can provide your own.
    * Alternatively, you can use the `component` prop.

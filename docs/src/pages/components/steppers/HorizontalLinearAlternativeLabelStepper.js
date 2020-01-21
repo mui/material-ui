@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '90%',
+    width: '100%',
   },
   backButton: {
     marginRight: theme.spacing(1),
@@ -32,7 +32,7 @@ function getStepContent(stepIndex) {
     case 2:
       return 'This is the bit I really care about!';
     default:
-      return 'Uknown stepIndex';
+      return 'Unknown stepIndex';
   }
 }
 
@@ -41,17 +41,17 @@ export default function HorizontalLabelPositionBelowStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
-  function handleNext() {
+  const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
-  }
+  };
 
-  function handleBack() {
+  const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
-  }
+  };
 
-  function handleReset() {
+  const handleReset = () => {
     setActiveStep(0);
-  }
+  };
 
   return (
     <div className={classes.root}>

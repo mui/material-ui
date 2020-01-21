@@ -19,10 +19,22 @@ components: Skeleton
 )}
 ```
 
-## YouTubeの例
+## バリアント
 
-{{"demo": "pages/components/skeleton/YouTube.js"}}
+The component supports 3 shape variants.
 
-## Facebookの例
+{{"demo": "pages/components/skeleton/Variants.js"}}
 
-{{"demo": "pages/components/skeleton/Facebook.js"}}
+## Animations
+
+By default, the skeleton pulsate, but you can change the animation for a wave or disable it entirely.
+
+{{"demo": "pages/components/skeleton/Animations.js"}}
+
+## YouTube example
+
+{{"demo": "pages/components/skeleton/YouTube.js", "defaultCodeOpen": false}}
+
+## Facebook example
+
+{{"demo": "pages/components/skeleton/Facebook.js", "defaultCodeOpen": false, "bg": true}}

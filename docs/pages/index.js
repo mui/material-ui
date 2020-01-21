@@ -8,6 +8,7 @@ import HomeSteps from 'docs/src/modules/components/HomeSteps';
 import HomeQuickWord from 'docs/src/modules/components/HomeQuickWord';
 import HomeBackers from 'docs/src/modules/components/HomeBackers';
 import HomeUsers from 'docs/src/modules/components/HomeUsers';
+import HomePro from 'docs/src/modules/components/HomePro';
 import HomeFooter from 'docs/src/modules/components/HomeFooter';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import Link from 'docs/src/modules/components/Link';
@@ -30,9 +31,9 @@ function loadDependencies() {
 const useStyles = makeStyles(theme => ({
   root: {
     flex: '1 0 100%',
-  },
-  drawer: {
-    width: 0,
+    '& #main-content': {
+      outline: 0,
+    },
   },
   hero: {
     paddingTop: 64,
@@ -46,8 +47,8 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(8),
     [theme.breakpoints.up('md')]: {
-      paddingTop: theme.spacing(20),
-      paddingBottom: theme.spacing(20),
+      paddingTop: theme.spacing(22),
+      paddingBottom: theme.spacing(22),
       flexDirection: 'row',
       alignItems: 'flex-start',
       textAlign: 'left',
@@ -70,8 +71,8 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(2),
     [theme.breakpoints.up('md')]: {
       marginRight: theme.spacing(8),
-      width: 220,
-      height: 200,
+      width: 195,
+      height: 175,
     },
   },
   button: {
@@ -110,17 +111,13 @@ export default function HomePage() {
   const classes = useStyles();
 
   return (
-    <AppFrame classes={{ drawer: classes.drawer }}>
+    <AppFrame>
       <div className={classes.root}>
         <Head />
         <main id="main-content" tabIndex="-1">
           <div className={classes.hero}>
             <Container maxWidth="md" className={classes.content}>
-              <img
-                src="/static/images/material-ui-logo.svg"
-                alt="Material-UI Logo"
-                className={classes.logo}
-              />
+              <img src="/static/logo_raw.svg" alt="" className={classes.logo} />
               <div>
                 <Typography
                   variant="h3"
@@ -162,6 +159,7 @@ export default function HomePage() {
               Follow
             </a>
           </div>
+          <HomePro />
           <HomeQuickWord />
           <HomeSteps />
           <HomeBackers />

@@ -34,8 +34,7 @@ describe('createMuiTheme', () => {
       const muiTheme = createMuiTheme();
       assert.strictEqual(
         muiTheme.shadows[2],
-        '0px 1px 5px 0px rgba(0,0,0,0.2),' +
-          '0px 2px 2px 0px rgba(0,0,0,0.14),0px 3px 1px -2px rgba(0,0,0,0.12)',
+        '0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12)',
       );
     });
 
@@ -116,5 +115,20 @@ describe('createMuiTheme', () => {
         /the `MuiButton` component increases the CSS specificity of the `disabled` internal state./,
       );
     });
+  });
+
+  it('shallow merges multiple arguments', () => {
+    const muiTheme = createMuiTheme({ foo: 'I am foo' }, { bar: 'I am bar' });
+    assert.strictEqual(muiTheme.foo, 'I am foo');
+    assert.strictEqual(muiTheme.bar, 'I am bar');
+  });
+
+  it('deep merges multiple arguments', () => {
+    const muiTheme = createMuiTheme(
+      { custom: { foo: 'I am foo' } },
+      { custom: { bar: 'I am bar' } },
+    );
+    assert.strictEqual(muiTheme.custom.foo, 'I am foo');
+    assert.strictEqual(muiTheme.custom.bar, 'I am bar');
   });
 });

@@ -1,57 +1,83 @@
 import React from 'react';
-import { assert } from 'chai';
-import { createMount } from '@material-ui/core/test-utils';
-import NestedMenu from './fixtures/menus/NestedMenu';
+import { expect } from 'chai';
+import { createClientRender, within } from 'test/utils/createClientRender';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
+function NestedMenu(props) {
+  // eslint-disable-next-line react/prop-types
+  const { firstMenuOpen, secondMenuOpen } = props;
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const canBeOpen = Boolean(anchorEl);
+
+  return (
+    <div>
+      <button type="button" ref={setAnchorEl}>
+        anchor
+      </button>
+      <Menu
+        anchorEl={anchorEl}
+        MenuListProps={{ id: 'second-menu' }}
+        open={Boolean(secondMenuOpen && canBeOpen)}
+        transitionDuration={0}
+      >
+        <MenuItem>Second Menu</MenuItem>
+      </Menu>
+      <Menu
+        anchorEl={anchorEl}
+        MenuListProps={{ id: 'first-menu' }}
+        open={Boolean(firstMenuOpen && canBeOpen)}
+        transitionDuration={0}
+      >
+        <MenuItem>Profile 1</MenuItem>
+        <MenuItem>My account</MenuItem>
+        <MenuItem>Logout</MenuItem>
+      </Menu>
+    </div>
+  );
+}
 
 describe('<NestedMenu> integration', () => {
-  let mount;
+  // StrictModeViolation: uses Popover
+  const render = createClientRender({ strict: false });
 
-  before(() => {
-    // StrictModeViolation: test uses Popover
-    mount = createMount({ strict: false });
+  it('should not be open', () => {
+    const { queryAllByRole } = render(<NestedMenu />);
+
+    expect(queryAllByRole('menu')).to.have.length(0);
   });
 
-  after(() => {
-    mount.cleanUp();
+  it('should focus the first item of the first menu when nothing has been selected', () => {
+    const { getByRole } = render(<NestedMenu firstMenuOpen />);
+
+    expect(getByRole('menu')).to.have.id('first-menu');
+    expect(within(getByRole('menu')).getAllByRole('menuitem')[0]).to.have.focus;
   });
 
-  describe('mounted open', () => {
-    let wrapper;
+  it('should focus the first item of the second menu when nothing has been selected', () => {
+    const { getByRole } = render(<NestedMenu secondMenuOpen />);
 
-    before(() => {
-      wrapper = mount(<NestedMenu />);
-    });
+    expect(getByRole('menu')).to.have.id('second-menu');
+    expect(within(getByRole('menu')).getAllByRole('menuitem')[0]).to.have.focus;
+  });
 
-    it('should not be open', () => {
-      const firstMenu = document.getElementById('first-menu');
-      const secondMenu = document.getElementById('second-menu');
-      assert.strictEqual(firstMenu, null);
-      assert.strictEqual(secondMenu, null);
-    });
+  it('should open the first menu after it was closed', () => {
+    const { getByRole, setProps } = render(<NestedMenu firstMenuOpen />);
 
-    it('should focus the list as nothing has been selected', () => {
-      wrapper.setProps({ firstMenuOpen: true });
+    setProps({ firstMenuOpen: false });
+    setProps({ firstMenuOpen: true });
 
-      const portalLayer = document.querySelector('[data-mui-test="Modal"]');
-      assert.strictEqual(document.activeElement, portalLayer.querySelectorAll('ul')[0]);
-    });
+    expect(getByRole('menu')).to.have.id('first-menu');
+    expect(within(getByRole('menu')).getAllByRole('menuitem')[0]).to.have.focus;
+  });
 
-    it('should focus the list of second menu', () => {
-      wrapper.setProps({ firstMenuOpen: false, secondMenuOpen: true });
-      const secondMenu = document.getElementById('second-menu');
-      assert.strictEqual(document.activeElement, secondMenu.querySelectorAll('ul')[0]);
-    });
+  it('should be able to open second menu again', () => {
+    const { getByRole, setProps } = render(<NestedMenu secondMenuOpen />);
 
-    it('should open the first menu again', () => {
-      wrapper.setProps({ firstMenuOpen: true, secondMenuOpen: false });
-      const firstMenu = document.getElementById('first-menu');
-      assert.strictEqual(document.activeElement, firstMenu.querySelectorAll('ul')[0]);
-    });
+    setProps({ secondMenuOpen: false });
+    setProps({ secondMenuOpen: true });
 
-    it('should be able to open second menu again', () => {
-      wrapper.setProps({ firstMenuOpen: false, secondMenuOpen: true });
-      const secondMenu = document.getElementById('second-menu');
-      assert.strictEqual(document.activeElement, secondMenu.querySelectorAll('ul')[0]);
-    });
+    expect(getByRole('menu')).to.have.id('second-menu');
+    expect(within(getByRole('menu')).getAllByRole('menuitem')[0]).to.have.focus;
   });
 });

@@ -3,14 +3,16 @@ import { StandardProps } from '..';
 
 export interface PaperProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, PaperClassKey> {
-  component?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
+  component?: React.ElementType<React.HTMLAttributes<HTMLElement>>;
   elevation?: number;
   square?: boolean;
+  variant?: 'elevation' | 'outlined';
 }
 
 export type PaperClassKey =
   | 'root'
   | 'rounded'
+  | 'outlined'
   | 'elevation0'
   | 'elevation1'
   | 'elevation2'

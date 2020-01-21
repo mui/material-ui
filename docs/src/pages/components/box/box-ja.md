@@ -6,7 +6,7 @@ title: Box Reactコンポーネント
 
 <p class="description">Boxコンポーネントは、CSSユーティリティーのほとんどのニーズに対応するラッパーコンポーネントとして機能します</p>
 
-Boxコンポーネントは、`@material-ui/system`で公開される[すべてのスタイル関数](/system/basics/#all-inclusive) をパッケージ化します。 これは`@material-ui/styles`の[`styled()`](/styles/api/#styled-style-function-component) 関数を使用して作成されています。
+Boxコンポーネントは、`@material-ui/system`で公開される[すべてのスタイル関数](/system/basics/#all-inclusive) をパッケージ化します。 It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/core/styles`.
 
 ## 例
 

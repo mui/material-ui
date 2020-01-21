@@ -1,9 +1,5 @@
 import React from 'react';
-import warning from 'warning';
 import { getThemeProps, useTheme } from '@material-ui/styles';
-
-// This variable will be true once the server-side hydration is completed.
-let hydrationCompleted = false;
 
 function useMediaQuery(queryInput, options = {}) {
   const theme = useTheme();
@@ -13,14 +9,17 @@ function useMediaQuery(queryInput, options = {}) {
     props: {},
   });
 
-  warning(
-    typeof queryInput !== 'function' || theme !== null,
-    [
-      'Material-UI: the `query` argument provided is invalid.',
-      'You are providing a function without a theme in the context.',
-      'One of the parent elements needs to use a ThemeProvider.',
-    ].join('\n'),
-  );
+  if (process.env.NODE_ENV !== 'production') {
+    if (typeof queryInput === 'function' && theme === null) {
+      console.error(
+        [
+          'Material-UI: the `query` argument provided is invalid.',
+          'You are providing a function without a theme in the context.',
+          'One of the parent elements needs to use a ThemeProvider.',
+        ].join('\n'),
+      );
+    }
+  }
 
   let query = typeof queryInput === 'function' ? queryInput(theme) : queryInput;
   query = query.replace(/^@media( ?)/m, '');
@@ -32,14 +31,19 @@ function useMediaQuery(queryInput, options = {}) {
   const supportMatchMedia =
     typeof window !== 'undefined' && typeof window.matchMedia !== 'undefined';
 
-  const { defaultMatches = false, noSsr = false, ssrMatchMedia = null } = {
+  const {
+    defaultMatches = false,
+    matchMedia = supportMatchMedia ? window.matchMedia : null,
+    noSsr = false,
+    ssrMatchMedia = null,
+  } = {
     ...props,
     ...options,
   };
 
   const [match, setMatch] = React.useState(() => {
-    if ((hydrationCompleted || noSsr) && supportMatchMedia) {
-      return window.matchMedia(query).matches;
+    if (noSsr && supportMatchMedia) {
+      return matchMedia(query).matches;
     }
     if (ssrMatchMedia) {
       return ssrMatchMedia(query).matches;
@@ -52,13 +56,12 @@ function useMediaQuery(queryInput, options = {}) {
 
   React.useEffect(() => {
     let active = true;
-    hydrationCompleted = true;
 
     if (!supportMatchMedia) {
       return undefined;
     }
 
-    const queryList = window.matchMedia(query);
+    const queryList = matchMedia(query);
     const updateMatch = () => {
       // Workaround Safari wrong implementation of matchMedia
       // TODO can we remove it?
@@ -73,13 +76,9 @@ function useMediaQuery(queryInput, options = {}) {
       active = false;
       queryList.removeListener(updateMatch);
     };
-  }, [query, supportMatchMedia]);
+  }, [query, matchMedia, supportMatchMedia]);
 
   return match;
-}
-
-export function testReset() {
-  hydrationCompleted = false;
 }
 
 export default useMediaQuery;

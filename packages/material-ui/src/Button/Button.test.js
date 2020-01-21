@@ -1,24 +1,20 @@
 import React from 'react';
-import { assert, expect } from 'chai';
-import { createMount, createRender, getClasses } from '@material-ui/core/test-utils';
+import { expect } from 'chai';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { act, cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { act, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import createServerRender from 'test/utils/createServerRender';
 import Button from './Button';
 import ButtonBase from '../ButtonBase';
 
 describe('<Button />', () => {
   let mount;
-  // StrictModeViolation uses ButtonBase
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
   let classes;
 
   before(() => {
-    mount = createMount({ strict: false });
+    mount = createMount({ strict: true });
     classes = getClasses(<Button>Hello World</Button>);
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   describeConformance(<Button>Conformance?</Button>, () => ({
@@ -44,8 +40,12 @@ describe('<Button />', () => {
     expect(button).not.to.have.class(classes.contained);
     expect(button).not.to.have.class(classes.containedPrimary);
     expect(button).not.to.have.class(classes.containedSecondary);
-    expect(button).not.to.have.class(classes.sizeSmall);
-    expect(button).not.to.have.class(classes.sizeLarge);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
   });
 
   it('can render a text primary button', () => {
@@ -167,24 +167,126 @@ describe('<Button />', () => {
     expect(button).to.have.class(classes.containedSecondary);
   });
 
-  it('should render a small button', () => {
+  it('should render a small text button', () => {
     const { getByRole } = render(<Button size="small">Hello World</Button>);
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.text);
-    expect(button).to.have.class(classes.sizeSmall);
-    expect(button).not.to.have.class(classes.sizeLarge);
+    expect(button).to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
   });
 
-  it('should render a large button', () => {
+  it('should render a large text button', () => {
     const { getByRole } = render(<Button size="large">Hello World</Button>);
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.text);
-    expect(button).not.to.have.class(classes.sizeSmall);
-    expect(button).to.have.class(classes.sizeLarge);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
+  });
+
+  it('should render a small outlined button', () => {
+    const { getByRole } = render(
+      <Button variant="outlined" size="small">
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
+  });
+
+  it('should render a large outlined button', () => {
+    const { getByRole } = render(
+      <Button variant="outlined" size="large">
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
+  });
+
+  it('should render a small contained button', () => {
+    const { getByRole } = render(
+      <Button variant="contained" size="small">
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).to.have.class(classes.containedSizeSmall);
+    expect(button).not.to.have.class(classes.containedSizeLarge);
+  });
+
+  it('should render a large contained button', () => {
+    const { getByRole } = render(
+      <Button variant="contained" size="large">
+        Hello World
+      </Button>,
+    );
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.textSizeSmall);
+    expect(button).not.to.have.class(classes.textSizeLarge);
+    expect(button).not.to.have.class(classes.outlinedSizeSmall);
+    expect(button).not.to.have.class(classes.outlinedSizeLarge);
+    expect(button).not.to.have.class(classes.containedSizeSmall);
+    expect(button).to.have.class(classes.containedSizeLarge);
+  });
+
+  it('should render a button with startIcon', () => {
+    const { getByRole } = render(<Button startIcon={<span>icon</span>}>Hello World</Button>);
+    const button = getByRole('button');
+    const label = button.querySelector(`.${classes.label}`);
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.text);
+    expect(label.firstChild).not.to.have.class(classes.endIcon);
+    expect(label.firstChild).to.have.class(classes.startIcon);
+  });
+
+  it('should render a button with endIcon', () => {
+    const { getByRole } = render(<Button endIcon={<span>icon</span>}>Hello World</Button>);
+    const button = getByRole('button');
+    const label = button.querySelector(`.${classes.label}`);
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.text);
+    expect(label.lastChild).not.to.have.class(classes.startIcon);
+    expect(label.lastChild).to.have.class(classes.endIcon);
   });
 
   it('should have a ripple by default', () => {
@@ -205,6 +307,13 @@ describe('<Button />', () => {
     const button = getByRole('button');
 
     expect(button.querySelector('.touch-ripple')).to.be.null;
+  });
+
+  it('can disable the elevation', () => {
+    const { getByRole } = render(<Button disableElevation>Hello World</Button>);
+    const button = getByRole('button');
+
+    expect(button).to.have.class(classes.disableElevation);
   });
 
   it('should have a focusRipple by default', () => {
@@ -243,19 +352,16 @@ describe('<Button />', () => {
   });
 
   describe('server-side', () => {
-    let serverRender;
     // Only run the test on node.
     if (!/jsdom/.test(window.navigator.userAgent)) {
       return;
     }
 
-    before(() => {
-      serverRender = createRender();
-    });
+    const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
 
     it('should server-side render', () => {
       const markup = serverRender(<Button>Hello World</Button>);
-      assert.strictEqual(markup.text(), 'Hello World');
+      expect(markup.text()).to.equal('Hello World');
     });
   });
 });

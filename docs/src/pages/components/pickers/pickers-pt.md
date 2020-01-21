@@ -20,7 +20,7 @@ components: TextField
 
 ## Seletores nativos
 
-⚠️ O suporte dos navegadores aos controles de entrada nativos [não é perfeito](https://caniuse.com/#feat=input-datetime). Dê uma olhada em [@material-ui/pickers](#material-ui-pickers) para obter uma melhor solução.
+⚠️ O suporte dos navegadores aos controles de entrada nativos [não é perfeito](https://caniuse.com/#feat=input-datetime). Dê uma olhada em [@material-ui/pickers](https://material-ui-pickers.dev/) para obter uma melhor solução.
 
 ### Selecionadores de data
 

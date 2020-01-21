@@ -21,7 +21,7 @@ Here are some examples of customizing the component. You can learn more about th
 ## Hover feedback
 
 You can display a label on hover to help users pick the correct rating value.
-The first demo uses the `onChangeActive` prop while the last one uses the `IconContainerComponent` prop.
+The demo uses the `onChangeActive` prop.
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 
@@ -39,6 +39,8 @@ Fancy larger or smaller ratings? Use the `size` prop.
 {{"demo": "pages/components/rating/RatingSize.js"}}
 
 ## Accessibility
+
+(WAI tutorial: https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating)
 
 The accessibility of this component relies on:
 

@@ -3,7 +3,7 @@ title: Rating React component
 components: Rating
 ---
 
-# Rating
+# Rating (Рейтинг)
 
 <p class="description">Ratings provide insight regarding others’ opinions and experiences with a product. Users can also rate products they’ve purchased.</p>
 
@@ -36,6 +36,8 @@ Fancy larger or smaller ratings? Use the `size` prop.
 {{"demo": "pages/components/rating/RatingSize.js"}}
 
 ## Доступность
+
+(WAI tutorial: https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating)
 
 Доступность этого компонента зависит от:
 

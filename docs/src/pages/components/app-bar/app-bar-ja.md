@@ -9,57 +9,103 @@ components: AppBar, Toolbar, Menu
 
 [top App Bar](https://material.io/design/components/app-bars-top.html) は、現在の画面に関連するコンテンツとアクションを提供します。 ブランディング、画面タイトル、ナビゲーション、およびアクションに使用されます。
 
-状況に応じて変化するアクションバーや、ナビゲーションバーとして使用することができます。
+It can transform into a contextual action bar or be used as a navbar.
 
 ## シンプルなアプリバー
 
-{{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
+{{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 
 ## 基本的な検索フィールド付きApp Bar
 
 基本的な検索バー
 
-{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
 
 ## メニュー付き App Bar
 
-{{"demo": "pages/components/app-bar/MenuAppBar.js"}}
+{{"demo": "pages/components/app-bar/MenuAppBar.js", "bg": true}}
 
 ## 検索フィールド付きApp Bar
 
 サイド検索バー
 
-{{"demo": "pages/components/app-bar/SearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/SearchAppBar.js", "bg": true}}
 
 ## Dense App Bar (デスクトップのみ)
 
-{{"demo": "pages/components/app-bar/DenseAppBar.js"}}
+{{"demo": "pages/components/app-bar/DenseAppBar.js", "bg": true}}
+
+## Prominent
+
+A prominent app bar.
+
+{{"demo": "pages/components/app-bar/ProminentAppBar.js", "bg": true}}
 
 ## 下部アプリバー
 
-{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 400}}
+
+## ラベルの配置
+
+アプリバーの位置を固定してレンダリングすると、要素の寸法はページの残りの部分に影響しません。 これにより、コンテンツの一部がアプリバーの背後で見えなくなる可能性があります。 以下に3つの解決策を示します。
+
+1. 固定の代わりに `position = "sticky"` を使用できます。 stickyはIE 11ではサポートされていません。
+2. You can render a second `<Toolbar />` component:
+
+```jsx
+function App() {
+  return (
+    <React.Fragment>
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <Toolbar />
+    </React.Fragment>
+  );
+}
+```
+
+3. You can use `theme.mixins.toolbar` CSS:
+
+```jsx
+const useStyles = makeStyles(theme => ({
+  offset: theme.mixins.toolbar,
+}))
+
+function App() {
+  const classes = useStyles();
+  return (
+    <React.Fragment>
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <div className={classes.offset} />
+    </React.Fragment>
+  )
+};
+```
 
 ## スクロール
 
-You can use the `useScrollTrigger()` hook to respond to user scroll actions.
+`useScrollTrigger()` hookを使用して、ユーザーのスクロールアクションに 対応できます。
 
 ### App Barを隠す
 
-The app bar hides on scroll down to leave more space for reading.
+アプリバーは下にスクロールすると非表示になり、読み込めるスペースが増えます。
 
-{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true}}
 
 ### App Barを固定する
 
-The app bar elevates on scroll to communicate that the user is not at the top of the page.
+アプリバーはスクロール時に上昇し、ユーザーがページの上部にいないことを伝えます。
 
-{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true}}
 
-### Back to top
+### トップへ戻る
 
-A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+スクロール時にフローティングアクションボタンが表示され、ページの上部に簡単に戻ることができます。
 
-{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true}}
 
 ### `useScrollTrigger([options]) => trigger`
 
@@ -73,7 +119,7 @@ A floating action buttons appears on scroll to make it easy to get back to the t
 
 #### 戻り値
 
-` trigger `：スクロール位置が基準に合っているのか
+` trigger `：スクロール位置が基準に合っていますか？
 
 #### 例
 

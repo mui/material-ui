@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => {
@@ -23,6 +22,10 @@ export const styles = theme => {
     rounded: {
       borderRadius: theme.shape.borderRadius,
     },
+    /* Styles applied to the root element if `variant="outlined"` */
+    outlined: {
+      border: `1px solid ${theme.palette.divider}`,
+    },
     ...elevations,
   };
 };
@@ -30,28 +33,35 @@ export const styles = theme => {
 const Paper = React.forwardRef(function Paper(props, ref) {
   const {
     classes,
-    className: classNameProp,
+    className,
     component: Component = 'div',
     square = false,
     elevation = 1,
+    variant = 'elevation',
     ...other
   } = props;
 
-  warning(
-    elevation >= 0 && elevation < 25,
-    `Material-UI: this elevation \`${elevation}\` is not implemented.`,
-  );
+  if (process.env.NODE_ENV !== 'production') {
+    if (classes[`elevation${elevation}`] === undefined) {
+      console.error(`Material-UI: this elevation \`${elevation}\` is not implemented.`);
+    }
+  }
 
-  const className = clsx(
-    classes.root,
-    classes[`elevation${elevation}`],
-    {
-      [classes.rounded]: !square,
-    },
-    classNameProp,
+  return (
+    <Component
+      className={clsx(
+        classes.root,
+        {
+          [classes.rounded]: !square,
+          [classes[`elevation${elevation}`]]: variant === 'elevation',
+          [classes.outlined]: variant === 'outlined',
+        },
+        className,
+      )}
+      ref={ref}
+      {...other}
+    />
   );
-
-  return <Component className={className} ref={ref} {...other} />;
 });
 
 Paper.propTypes = {
@@ -82,6 +92,10 @@ Paper.propTypes = {
    * If `true`, rounded corners are disabled.
    */
   square: PropTypes.bool,
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['elevation', 'outlined']),
 };
 
 export default withStyles(styles, { name: 'MuiPaper' })(Paper);

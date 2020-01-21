@@ -1,8 +1,22 @@
 # Perguntas Frequentes
 
-<p class="description">Preso em um determinado problema? Check some of these common gotchas first in the FAQ.</p>
+<p class="description">Preso em um determinado problema? Confira primeiro algumas dicas nas Perguntas Frequentes.</p>
 
-Se você não encontrou o que procurava, você pode perguntar para a comunidade no [Spectrum](https://spectrum.chat/material-ui). Para perguntas sobre como fazer e outros assuntos, use [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) em vez de abrir issues no Github. Há uma tag no StackOverflow chamada `material-ui` que você pode usar para marcar suas perguntas.
+Se mesmo assim você não encontrar o que você está procurando, você pode consultar a nossa [página de suporte](/getting-started/support/).
+
+## Material-UI é incrível. Como posso apoiar o projeto?
+
+Existem muitas maneiras de apoiar o Material-UI:
+
+- **Espalhe a palavra**. Evangelize Material-UI by [linking to material-ui.com](https://material-ui.com/) on your website, every backlink matters. Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
+- **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
+- **Help new users**. You can answer questions on [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
+- **Make changes happen**. 
+  - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
+  - Reviewing and commenting on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
+  - Help [translate](https://translate.material-ui.com) the documentation.
+  - Fixing bugs, adding features, and [improving our documentation](https://github.com/mui-org/material-ui/tree/master/docs) by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
+- **Support us financially on [OpenCollective](https://opencollective.com/material-ui)**. If you use Material-UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective. All funds donated are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.
 
 ## Por que meus componentes não estão renderizando corretamente em compilações de produção?
 
@@ -22,7 +36,7 @@ No geral, é simples livrar-se desse problema encapsulando cada aplicação Mate
 
 ## Por que os elementos posicionados como fixos se movem quando um modal é aberto?
 
-Scroll is blocked as soon as a modal is opened. Isso evita a interação com o segundo plano quando o modal deve ser o único conteúdo interativo, no entanto, remover a barra de rolagem pode fazer com que seus **elementos posicionados como fixos** se movam. Nesta situação, você pode aplicar um nome de classe global `.mui-fixed ` para informar ao Material-UI para manipular esses elementos.
+Scrolling is blocked as soon as a modal is opened. Isso evita a interação com o segundo plano quando o modal deve ser o único conteúdo interativo, no entanto, remover a barra de rolagem pode fazer com que seus **elementos posicionados como fixos** se movam. Nesta situação, você pode aplicar um nome de classe global `.mui-fixed ` para informar ao Material-UI para manipular esses elementos.
 
 ## Como posso desativar o efeito cascata globalmente?
 
@@ -33,10 +47,10 @@ import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
   props: {
-    // Name of the component ⚛️
+    // Nome do componente ⚛️
     MuiButtonBase: {
-      // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 💣!
+      // As propriedades para aplicar
+      disableRipple: true, // Sem efeito cascata, em toda aplicação 💣!
     },
   },
 });
@@ -44,7 +58,7 @@ const theme = createMuiTheme({
 
 ## Como posso desativar as transições globalmente?
 
-Você pode desativar as transições globalmente aplicando as seguintes configurações no seu tema:
+Material-UI uses the same theme helper for creating all its transitions. So you can disable all the transitions by overriding the helper in your theme:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
@@ -57,22 +71,18 @@ const theme = createMuiTheme({
 });
 ```
 
-Às vezes, você desejará ativar esse comportamento condicionalmente, por exemplo, durante o teste ou em dispositivos de baixo custo, nesses casos, você pode alterar dinamicamente o valor do tema.
+It can be useful to disable transitions during visual testing or to improve performance on low-end devices.
 
-Você pode ir além, desabilitando todas as transições, animações e o efeito cascata:
+You can go one step further by disabling all the transitions and animations effect:
 
 ```js
 import { createMuiTheme } from '@material-ui/core';
 
 const theme = createMuiTheme({
-  transitions: {
-    // Então temos `transition: none;` em todo lugar
-    create: () => 'none',
-  },
   overrides: {
-    // Nome do componente ⚛️
+    // Name of the component ⚛️
     MuiCssBaseline: {
-      // Nome da regra
+      // Name of the rule
       '@global': {
         '*, *::before, *::after': {
           transition: 'none !important',
@@ -81,21 +91,23 @@ const theme = createMuiTheme({
       },
     },
   },
-  props: {
-    // Nome do componente ⚛️
-    MuiButtonBase: {
-      // As propriedades para aplicar
-      disableRipple: true, // Sem efeito cascata, em toda aplicação!
-    },
-  },
 });
+```
+
+Notice that the usage of `CssBaseline` is required for the above approach to work. If you choose not to use it, you can still disable transitions and animations by including these CSS rules:
+
+```css
+*, *::before, *::after {
+  transition: 'none !important';
+  animation: 'none !important';
+}
 ```
 
 ## Preciso usar o JSS para estilizar minha aplicação?
 
-Não, não é obrigatório. Mas essa dependência vem embutida, portanto, não sobrecarrega o tamanho do pacote.
+Não, não é obrigatório. But this dependency comes built in, so carries no additional bundle size overhead.
 
-No entanto, talvez você esteja adicionando os componentes Material-UI para uma aplicação que já usa outra solução de estilos, ou já esta familiarizado com uma API diferente, e não quer aprender uma nova? Nesse caso, dirija-se à seção de [interoperabilidade da biblioteca de estilos](/guides/interoperability/), onde mostramos como é simples reestilizar os componentes do Material-UI com bibliotecas de estilos alternativas.
+Perhaps, however, you're adding some Material-UI components to an app that already uses another styling solution, or are already familiar with a different API, and don't want to learn a new one? Nesse caso, dirija-se à seção de [interoperabilidade da biblioteca de estilos](/guides/interoperability/), onde mostramos como é simples reestilizar os componentes do Material-UI com bibliotecas de estilos alternativas.
 
 ## Quando devo usar o estilo em linha vs CSS?
 
@@ -108,7 +120,7 @@ Como regra geral, use apenas o estilo em linha para propriedades de estilo dinâ
 
 ## Como usar react-router?
 
-How to use a [third-party routing library](/components/buttons/#third-party-routing-library) is documented with the `ButtonBase` component. A lot of the interactive components use it internally: `Link`, `Button`, `MenuItem`, `<ListItem button />`, `Tab`, etc. Você pode usar a mesma solução com eles.
+We detail the [integration with third-party routing libraries](/guides/composition/#routing-libraries) like react-router, Gatsby or Next.js in our guide.
 
 ## Como posso acessar o elemento DOM?
 
@@ -133,7 +145,7 @@ indicando que você pode acessar o elemento DOM como uma referência.
 
 Se você está vendo uma mensagem de aviso no console como a abaixo, você provavelmente tem várias instâncias de `@material-ui/styles` inicializadas na página.
 
-> It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and makes your application bigger without a good reason.
+> It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
 
 ### Possíveis razões
 
@@ -145,7 +157,7 @@ Existem várias razões comuns para isso acontecer:
 
 ### Módulo duplicado em node_modules
 
-Se você acha que o problema está no módulo @material-ui/styles duplicado em algum lugar de suas dependências, existem várias maneiras de verificar isso. Você pode usar os comandos `npm ls @material-ui/styles`, `yarn list @material-ui/styles` ou `find -L ./node_modules | grep /@material-ui/styles/package.json` na pasta da sua aplicação.
+If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this. Você pode usar os comandos `npm ls @material-ui/styles`, `yarn list @material-ui/styles` ou `find -L ./node_modules | grep /@material-ui/styles/package.json` na pasta da sua aplicação.
 
 Se nenhum desses comandos identificou a duplicação, tente analisar seu pacote para encontrar instâncias duplicadas do @material-ui/styles. Você pode somente checar em fontes do seu pacote, ou usar uma ferramenta como [source-map-explorer](https://github.com/danvk/source-map-explorer) ou [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
 
@@ -165,7 +177,7 @@ Se você estiver usando o webpack, você pode mudar a maneira como ele irá reso
 
 ### Uso com Lerna
 
-Uma possível correção para que o @material-ui/styles seja executado em uma Lerna monorepo através de pacotes, é fazer [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) das dependências compartilhadas para a raiz do seu arquivo monorepo. Tente executar a opção de auto inicialização com o parâmetro --hoist.
+One possible fix to get @material-ui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. Tente executar a opção de auto inicialização com o parâmetro --hoist.
 
 ```sh
 lerna bootstrap --hoist
@@ -215,7 +227,7 @@ Se você tiver várias aplicações em execução em uma página, considere o us
 
 ## Minha aplicaçao não é renderizada corretamente no servidor
 
-Se isso não funcionar, em 99% dos casos é um problema de configuração. Uma propriedade ausente, uma ordem de chamada incorreta ou um componente ausente. Server side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup, check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
+Se isso não funcionar, em 99% dos casos é um problema de configuração. A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup. Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
 ### O CSS funciona apenas no primeiro carregamento, em seguida, para de funcionar
 
@@ -255,12 +267,12 @@ O valor de nomes de classe depende da lógica empregada pelo [gerador de nome de
 *exemplo de correção:*
 
 ```diff
-- // Crie um novo gerador de nome de classe.
+- // Cria um novo gerador de nome de classe.
 -const generateClassName = createGenerateClassName();
 
 function handleRender(req, res) {
 
-+ // Crie um novo gerador de nome de classe.
++ // Cria um novo gerador de nome de classe.
 + const generateClassName = createGenerateClassName();
 
   //…
@@ -270,7 +282,7 @@ function handleRender(req, res) {
 ```
 
 - Você precisa verificar se seu cliente e servidor estão executando o **exatamente a mesma versão** do Material-UI. É possível que uma incompatibilidade de versões menores possa causar problemas de estilo. Para verificar números de versão, execute `npm list @material-ui/core` no ambiente em que você cria sua aplicação e também em seu ambiente de implementação.
-    
+  
     Você também pode garantir a mesma versão em diferentes ambientes, definindo uma versão específica do MUI nas dependências do seu package.json.
 
 *exemplo de correção (package.json):*
@@ -289,20 +301,7 @@ function handleRender(req, res) {
 
 ## Por que as cores que estou vendo são diferentes do que vejo aqui?
 
-O site de documentação está usando um tema customizado. Assim, a paleta de cores é diferente do tema padrão que é fornecido pelo Material-UI. Please refer to [this page](/customization/theming/) to learn about theme customization.
-
-## Material-UI é incrível. Como posso apoiar o projeto?
-
-Existem muitas maneiras de apoiar o Material-UI:
-
-- Melhore [a documentação](https://github.com/mui-org/material-ui/tree/master/docs).
-- Ajude os outros a começarem.
-- [Espalhe a palavra](https://twitter.com/MaterialUI).
-- Responda a perguntas no [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui) ou no [Spectrum](https://spectrum.chat/material-ui).
-
-Se você usa o Material-UI em um projeto comercial e gostaria de apoiar seu desenvolvimento contínuo tornando-se um **Patrocinador**, ou em um projeto paralelo ou passatempo e gostaria de se tornar um apoiador, você pode fazê-lo através do [OpenCollective](https://opencollective.com/material-ui).
-
-Todos os fundos conquistados são geridos de forma transparente e os Patrocinadores recebem reconhecimento no README e na página inicial do Material-UI.
+O site de documentação está usando um tema customizado. Assim, a paleta de cores é diferente do tema padrão que é fornecido pelo Material-UI. Por favor, consulte [esta página](/customization/theming/) para aprender sobre customização de temas.
 
 ## Por que o componente X requer um nó DOM em um prop em vez de um objeto ref?
 
@@ -340,7 +339,7 @@ function Portal({ children, container }) {
 }
 ```
 
-Com esta simples heurística `Portal` pode renderizar novamente depois de montado porque os refs estão atualizados antes de qualquer efeito ser executado. No entanto, só porque um ref está atualizado não significa que ele aponta para uma instância definida. Se o ref estiver anexado a um componente de encaminhamento de ref não estará claro quando o nó DOM estará disponível. No exemplo acima, o `Portal` iria executar um efeito uma vez, mas não pode re-renderizar porque `ref.current` ainda esta `null`. Isso é especialmente aparente para componentes React.lazy no Suspense. A implementação acima também não poderia explicar uma alteração no nó DOM.
+Com esta simples heurística `Portal` pode renderizar novamente depois de montado porque os refs estão atualizados antes de qualquer efeito ser executado. No entanto, só porque um ref está atualizado não significa que ele aponta para uma instância definida. Se o ref estiver anexado a um componente de encaminhamento de ref não estará claro quando o nó DOM estará disponível. In the example above, the `Portal` would run an effect once, but might not re-render because `ref.current` is still `null`. This is especially apparent for React.lazy components in Suspense. A implementação acima também não poderia explicar uma alteração no nó DOM.
 
 É por isso que precisamos de uma propriedade com o nó DOM real para que o React possa tomar cuidado ao determinar quando o `Portal` deve renderizar novamente:
 
@@ -360,11 +359,11 @@ function App() {
 }
 ```
 
-## What's the clsx dependency for?
+## Para que serve a dependência do clsx?
 
 [clsx](https://github.com/lukeed/clsx) is a tiny utility for constructing `className` strings conditionally.
 
-Instead of writing:
+Em vez de escrever:
 
 ```jsx
 return (
@@ -374,7 +373,7 @@ return (
 );
 ```
 
-you can do:
+você pode fazer:
 
 ```jsx
 import clsx from 'clsx';

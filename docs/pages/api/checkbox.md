@@ -28,7 +28,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">checkedIcon</span> | <span class="prop-type">node</span> | <span class="prop-default">&lt;CheckBoxIcon /></span> | The icon to display when the component is checked. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'default'</span> | <span class="prop-default">'secondary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> |  | If `true`, the switch will be disabled. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the switch will be disabled. |
 | <span class="prop-name">disableRipple</span> | <span class="prop-type">bool</span> |  | If `true`, the ripple effect will be disabled. |
 | <span class="prop-name">icon</span> | <span class="prop-type">node</span> | <span class="prop-default">&lt;CheckBoxOutlineBlankIcon /></span> | The icon to display when the component is unchecked. |
 | <span class="prop-name">id</span> | <span class="prop-type">string</span> |  | The id of the `input` element. |
@@ -38,6 +38,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">inputRef</span> | <span class="prop-type">ref</span> |  | Pass a ref to the `input` element. |
 | <span class="prop-name">onChange</span> | <span class="prop-type">func</span> |  | Callback fired when the state is changed.<br><br>**Signature:**<br>`function(event: object) => void`<br>*event:* The event source of the callback. You can pull out the new checked state by accessing `event.target.checked` (boolean). |
 | <span class="prop-name">required</span> | <span class="prop-type">bool</span> |  | If `true`, the `input` element will be required. |
+| <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'</span> | <span class="prop-default">'medium'</span> | The size of the checkbox. `small` is equivalent to the dense checkbox styling. |
 | <span class="prop-name">type</span> | <span class="prop-type">string</span> |  | The input component prop `type`. |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The value of the component. The DOM API casts this to a string. |
 
@@ -52,12 +53,12 @@ Any other props supplied will be provided to the root element ([IconButton](/api
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiCheckbox-root</span> | Styles applied to the root element.
-| <span class="prop-name">checked</span> | <span class="prop-name">Mui-checked</span> | Pseudo-class applied to the root element if `checked={true}`.
-| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">indeterminate</span> | <span class="prop-name">MuiCheckbox-indeterminate</span> | Pseudo-class applied to the root element if `indeterminate={true}`.
-| <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiCheckbox-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorSecondary</span> | <span class="prop-name">MuiCheckbox-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiCheckbox-root</span> | Styles applied to the root element.
+| <span class="prop-name">checked</span> | <span class="prop-name">.Mui-checked</span> | Pseudo-class applied to the root element if `checked={true}`.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span class="prop-name">indeterminate</span> | <span class="prop-name">.MuiCheckbox-indeterminate</span> | Pseudo-class applied to the root element if `indeterminate={true}`.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiCheckbox-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiCheckbox-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
 
 You can override the style of the component thanks to one of these customization points:
 

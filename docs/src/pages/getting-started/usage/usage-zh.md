@@ -28,7 +28,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 是的，这就是您开始使用所需的一切，您也可以在这个实时的交互式的演示中所查看：
 
-{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
+{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true, "bg": true}}
 
 ## 全局变量
 
@@ -51,12 +51,12 @@ Material-UI 提供了可选的 [CssBaseline](/components/css-baseline/) 组件�
 
 ## 不同版本的文档
 
-本文档始终展示了最新最稳定的 Material-UI 版本。 您可以在一个[单独的页面上](/versions/)找到旧版本的文档。
+本文档始终展示了最新最稳定的 Material-UI 版本。 您可以在一个 [单独的页面](https://material-ui.com/versions/) 上找到旧版本的文档。
 
 ## 下一步
 
 现在您已经了解了基本设置，现在是时候了解更多关于：
 
 - 如何提供 [Material Design字体和排版](/components/typography/)。
-- How to take advantage of the [theming solution](/customization/theming/).
+- 如何利用[主题解决方案](/customization/theming/) 。
 - 如何 [覆盖](/customization/components/) 组件的呈现和观感。

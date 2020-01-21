@@ -58,12 +58,26 @@ describe('<Avatar />', () => {
     });
   });
 
+  describe('image avatar with unrendered children', () => {
+    it('should render a div containing an img, not children', () => {
+      const wrapper = mount(<Avatar src="something.jpg">MB</Avatar>);
+      assert.strictEqual(wrapper.find('img').length, 1);
+      assert.strictEqual(wrapper.text(), '');
+    });
+
+    it('should be able to add more props to the image', () => {
+      const onError = () => {};
+      const wrapper = mount(<Avatar src="something.jpg" imgProps={{ onError }} />);
+      assert.strictEqual(wrapper.find('img').props().onError, onError);
+    });
+  });
+
   describe('font icon avatar', () => {
     let wrapper;
 
     before(() => {
       wrapper = shallow(
-        <Avatar className="my-avatar" data-my-prop="woofAvatar" childrenClassName="my-children">
+        <Avatar className="my-avatar" data-my-prop="woofAvatar">
           <span className="my-icon-font">icon</span>
         </Avatar>,
       );
@@ -86,10 +100,6 @@ describe('<Avatar />', () => {
     it('should apply the colorDefault class', () => {
       assert.strictEqual(wrapper.hasClass(classes.colorDefault), true);
     });
-
-    it('should apply the childrenClassName class', () => {
-      assert.strictEqual(wrapper.childAt(0).hasClass('my-children'), true);
-    });
   });
 
   describe('svg icon avatar', () => {
@@ -97,7 +107,7 @@ describe('<Avatar />', () => {
 
     before(() => {
       wrapper = shallow(
-        <Avatar className="my-avatar" data-my-prop="woofAvatar" childrenClassName="my-children">
+        <Avatar className="my-avatar" data-my-prop="woofAvatar">
           <CancelIcon />
         </Avatar>,
       );
@@ -116,10 +126,6 @@ describe('<Avatar />', () => {
 
     it('should apply the colorDefault class', () => {
       assert.strictEqual(wrapper.hasClass(classes.colorDefault), true);
-    });
-
-    it('should apply the childrenClassName class', () => {
-      assert.strictEqual(wrapper.childAt(0).hasClass('my-children'), true);
     });
   });
 

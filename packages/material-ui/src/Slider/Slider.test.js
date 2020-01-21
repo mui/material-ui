@@ -4,8 +4,8 @@ import { spy, stub } from 'sinon';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Slider from './Slider';
 
@@ -29,15 +29,11 @@ describe('<Slider />', () => {
 
   let mount;
   let classes;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Slider value={0} />);
     mount = createMount({ strict: true });
-  });
-
-  after(() => {
-    cleanup();
   });
 
   describeConformance(<Slider value={0} />, () => ({
@@ -169,8 +165,7 @@ describe('<Slider />', () => {
   describe('range', () => {
     it('should support keyboard', () => {
       const { getAllByRole } = render(<Slider defaultValue={[20, 30]} />);
-      const thumb1 = getAllByRole('slider')[0];
-      const thumb2 = getAllByRole('slider')[1];
+      const [thumb1, thumb2] = getAllByRole('slider');
 
       thumb1.focus();
       fireEvent.keyDown(document.activeElement, {
@@ -260,6 +255,18 @@ describe('<Slider />', () => {
     });
   });
 
+  describe('prop: track', () => {
+    it('should render the track classes for false', () => {
+      const { container } = render(<Slider track={false} value={50} />);
+      expect(container.firstChild).to.have.class(classes.trackFalse);
+    });
+
+    it('should render the track classes for inverted', () => {
+      const { container } = render(<Slider track="inverted" value={50} />);
+      expect(container.firstChild).to.have.class(classes.trackInverted);
+    });
+  });
+
   describe('keyboard', () => {
     it('should handle all the keys', () => {
       const { getByRole } = render(<Slider defaultValue={50} />);
@@ -299,22 +306,37 @@ describe('<Slider />', () => {
       key: 'ArrowRight',
     };
 
+    it('should use min as the step origin', () => {
+      const { getByRole } = render(<Slider defaultValue={150} step={100} max={750} min={150} />);
+      const thumb = getByRole('slider');
+      thumb.focus();
+
+      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      expect(thumb).to.have.attribute('aria-valuenow', '250');
+
+      fireEvent.keyDown(document.activeElement, moveLeftEvent);
+      expect(thumb).to.have.attribute('aria-valuenow', '150');
+    });
+
     it('should reach right edge value', () => {
       const { getByRole } = render(<Slider defaultValue={90} min={6} max={108} step={10} />);
       const thumb = getByRole('slider');
       thumb.focus();
 
       fireEvent.keyDown(document.activeElement, moveRightEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '100');
+      expect(thumb).to.have.attribute('aria-valuenow', '96');
+
+      fireEvent.keyDown(document.activeElement, moveRightEvent);
+      expect(thumb).to.have.attribute('aria-valuenow', '106');
 
       fireEvent.keyDown(document.activeElement, moveRightEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '108');
 
       fireEvent.keyDown(document.activeElement, moveLeftEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '100');
+      expect(thumb).to.have.attribute('aria-valuenow', '96');
 
       fireEvent.keyDown(document.activeElement, moveLeftEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '90');
+      expect(thumb).to.have.attribute('aria-valuenow', '86');
     });
 
     it('should reach left edge value', () => {
@@ -323,16 +345,13 @@ describe('<Slider />', () => {
       thumb.focus();
 
       fireEvent.keyDown(document.activeElement, moveLeftEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '10');
-
-      fireEvent.keyDown(document.activeElement, moveLeftEvent);
       expect(thumb).to.have.attribute('aria-valuenow', '6');
 
       fireEvent.keyDown(document.activeElement, moveRightEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '20');
+      expect(thumb).to.have.attribute('aria-valuenow', '16');
 
       fireEvent.keyDown(document.activeElement, moveRightEvent);
-      expect(thumb).to.have.attribute('aria-valuenow', '30');
+      expect(thumb).to.have.attribute('aria-valuenow', '26');
     });
 
     it('should round value to step precision', () => {
@@ -390,26 +409,40 @@ describe('<Slider />', () => {
       const marks = [{ value: 5 }, { value: 10 }, { value: 15 }];
 
       const { container: container1 } = render(
-        <Slider disabled min={0} max={20} value={12} marks={marks} />,
+        <Slider min={0} max={20} value={12} marks={marks} />,
       );
       expect(getActives(container1)).to.deep.equal([true, true, false]);
 
       const { container: container2 } = render(
-        <Slider disabled min={0} max={20} value={[8, 12]} marks={marks} />,
+        <Slider min={0} max={20} value={[8, 12]} marks={marks} />,
       );
       expect(getActives(container2)).to.deep.equal([false, true, false]);
     });
 
     it('uses closed intervals for the within check', () => {
       const { container: container1 } = render(
-        <Slider disabled value={10} min={0} max={10} marks step={5} />,
+        <Slider value={10} min={0} max={10} marks step={5} />,
       );
       expect(getActives(container1)).to.deep.equal([true, true, true]);
 
       const { container: container2 } = render(
-        <Slider disabled value={9.99999} min={0} max={10} marks step={5} />,
+        <Slider value={9.99999} min={0} max={10} marks step={5} />,
       );
       expect(getActives(container2)).to.deep.equal([true, true, false]);
+    });
+
+    it('should support inverted track', () => {
+      const marks = [{ value: 5 }, { value: 10 }, { value: 15 }];
+
+      const { container: container1 } = render(
+        <Slider min={0} max={20} value={12} marks={marks} track="inverted" />,
+      );
+      expect(getActives(container1)).to.deep.equal([false, false, true]);
+
+      const { container: container2 } = render(
+        <Slider min={0} max={20} value={[8, 12]} marks={marks} track="inverted" />,
+      );
+      expect(getActives(container2)).to.deep.equal([true, false, true]);
     });
   });
 
@@ -423,13 +456,13 @@ describe('<Slider />', () => {
   it('should handle RTL', () => {
     const handleChange = spy();
     const { container, getByRole } = render(
-      <MuiThemeProvider
+      <ThemeProvider
         theme={createMuiTheme({
           direction: 'rtl',
         })}
       >
         <Slider value={30} onChange={handleChange} />
-      </MuiThemeProvider>,
+      </ThemeProvider>,
     );
     const thumb = getByRole('slider');
     expect(thumb.style.right).to.equal('30%');
@@ -476,6 +509,24 @@ describe('<Slider />', () => {
         'you need to use the `getAriaLabel` prop instead of',
       );
     });
+
+    it('should warn when switching from controlled to uncontrolled', () => {
+      const { setProps } = render(<Slider value={[20, 50]} />);
+
+      setProps({ value: undefined });
+      expect(consoleErrorMock.args()[0][0]).to.include(
+        'A component is changing a controlled Slider to be uncontrolled.',
+      );
+    });
+
+    it('should warn when switching between uncontrolled to controlled', () => {
+      const { setProps } = render(<Slider />);
+
+      setProps({ value: [20, 50] });
+      expect(consoleErrorMock.args()[0][0]).to.include(
+        'A component is changing an uncontrolled Slider to be controlled.',
+      );
+    });
   });
 
   it('should support getAriaValueText', () => {
@@ -483,16 +534,39 @@ describe('<Slider />', () => {
     const { getAllByRole } = render(
       <Slider value={[20, 50]} getAriaValueText={getAriaValueText} />,
     );
+    const sliders = getAllByRole('slider');
 
-    expect(getAllByRole('slider')[0]).to.have.attribute('aria-valuetext', '20°C');
-    expect(getAllByRole('slider')[1]).to.have.attribute('aria-valuetext', '50°C');
+    expect(sliders[0]).to.have.attribute('aria-valuetext', '20°C');
+    expect(sliders[1]).to.have.attribute('aria-valuetext', '50°C');
   });
 
   it('should support getAriaLabel', () => {
     const getAriaLabel = index => `Label ${index}`;
     const { getAllByRole } = render(<Slider value={[20, 50]} getAriaLabel={getAriaLabel} />);
+    const sliders = getAllByRole('slider');
 
-    expect(getAllByRole('slider')[0]).to.have.attribute('aria-label', 'Label 0');
-    expect(getAllByRole('slider')[1]).to.have.attribute('aria-label', 'Label 1');
+    expect(sliders[0]).to.have.attribute('aria-label', 'Label 0');
+    expect(sliders[1]).to.have.attribute('aria-label', 'Label 1');
+  });
+
+  describe('prop: ValueLabelComponent', () => {
+    it('receives the formatted value', () => {
+      function ValueLabelComponent(props) {
+        const { value } = props;
+        return <span data-testid="value-label">{value}</span>;
+      }
+      ValueLabelComponent.propTypes = { value: PropTypes.string };
+
+      const { getByTestId } = render(
+        <Slider
+          value={10}
+          ValueLabelComponent={ValueLabelComponent}
+          valueLabelDisplay="on"
+          valueLabelFormat={n => n.toString(2)}
+        />,
+      );
+
+      expect(getByTestId('value-label')).to.have.text('1010');
+    });
   });
 });

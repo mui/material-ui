@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
-import { ButtonProps } from '@material-ui/core/Button';
+import { FabProps } from '@material-ui/core/Fab';
 import { TooltipProps } from '@material-ui/core/Tooltip';
 
 export interface SpeedDialActionProps
   extends StandardProps<Partial<TooltipProps>, SpeedDialActionClassKey, 'children'> {
   /**
-   * Props applied to the [`Button`](/api/button/) component.
+   * Props applied to the [`Fab`](/api/fab/) component.
    */
-  ButtonProps?: Partial<ButtonProps>;
+  FabProps?: Partial<FabProps>;
   /**
    * Adds a transition delay, to allow a series of SpeedDialActions to be animated.
    */
   delay?: number;
   /**
-   * The Icon to display in the SpeedDial Floating Action Button.
+   * The Icon to display in the SpeedDial Fab.
    */
   icon?: React.ReactNode;
   /**
@@ -35,6 +35,12 @@ export interface SpeedDialActionProps
   tooltipOpen?: boolean;
 }
 
-export type SpeedDialActionClassKey = 'root' | 'button' | 'buttonClosed';
+export type SpeedDialActionClassKey =
+  | 'fab'
+  | 'fabClosed'
+  | 'staticTooltip'
+  | 'staticTooltipClosed'
+  | 'staticTooltipLabel'
+  | 'tooltipPlacementLeft';
 
 export default function SpeedDialAction(props: SpeedDialActionProps): JSX.Element;

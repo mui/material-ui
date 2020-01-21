@@ -2,7 +2,7 @@ import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
+import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
 import App from './App';
 import theme from './theme';
 
@@ -13,8 +13,7 @@ function renderFullPage(html, css) {
       <head>
         <title>My page</title>
         <style id="jss-server-side">${css}</style>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <!-- Fonts to support Material Design -->
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       </head>
       <body>

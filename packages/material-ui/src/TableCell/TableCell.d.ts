@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { StandardProps } from '..';
+import { Padding, Size } from '../Table';
+
+export { Padding, Size };
 
 /**
  * `<TableCell>` will be rendered as an `<th>`or `<td>` depending
@@ -21,10 +24,6 @@ export interface TableCellProps
 
 export type TableCellBaseProps = React.ThHTMLAttributes<HTMLTableHeaderCellElement> &
   React.TdHTMLAttributes<HTMLTableDataCellElement>;
-
-export type Padding = 'default' | 'checkbox' | 'none';
-
-export type Size = 'small' | 'medium';
 
 export type SortDirection = 'asc' | 'desc' | false;
 

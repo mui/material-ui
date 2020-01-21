@@ -5,10 +5,12 @@ import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
+import Box from '@material-ui/core/Box';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
 import AppDrawerNavItem from 'docs/src/modules/components/AppDrawerNavItem';
+import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import Link from 'docs/src/modules/components/Link';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -19,7 +21,7 @@ function PersistScroll(props) {
   const rootRef = React.useRef();
 
   React.useEffect(() => {
-    const parent = rootRef.current ? rootRef.current.parentNode : null;
+    const parent = rootRef.current ? rootRef.current.parentElement : null;
     const activeElement = document.querySelector('.drawer-active');
 
     if (!parent || !activeElement || !activeElement.scrollIntoView) {
@@ -28,7 +30,7 @@ function PersistScroll(props) {
 
     const activeBox = activeElement.getBoundingClientRect();
 
-    if (savedScrollTop === null || activeBox.top - savedScrollTop < 0) {
+    if (savedScrollTop !== null || activeBox.top < savedScrollTop) {
       // Center the selected item in the list container.
       activeElement.scrollIntoView();
       // Fix a Chrome issue, reset the tabbable ring back to the top of the document.
@@ -148,13 +150,21 @@ function AppDrawer(props) {
             Material-UI
           </Link>
           {process.env.LIB_VERSION ? (
-            <Link color="textSecondary" variant="caption" href="/versions" onClick={onClose}>
+            <Link
+              color="textSecondary"
+              variant="caption"
+              href="https://material-ui.com/versions/"
+              onClick={onClose}
+            >
               {`v${process.env.LIB_VERSION}`}
             </Link>
           ) : null}
         </div>
       </div>
       <Divider />
+      <Box mx={3} my={2}>
+        <DiamondSponsors />
+      </Box>
       {renderNavItems({ props, pages, activePage, depth: 0, t })}
     </PersistScroll>
   );

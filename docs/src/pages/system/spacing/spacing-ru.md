@@ -70,21 +70,21 @@ const theme = {
 
 ## Пример
 
+{{"demo": "pages/system/spacing/Demo.js", "defaultCodeOpen": false, "bg": true}}
+
 ```jsx
 <Box p={1}>…
 <Box m={1}>…
 <Box p={2}>…
 ```
 
-{{"demo": "pages/system/spacing/Demo.js"}}
-
 ## Horizontal centering
+
+{{"demo": "pages/system/spacing/HorizontalCentering.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box mx="auto">…
 ```
-
-{{"demo": "pages/system/spacing/HorizontalCentering.js"}}
 
 ## API
 
@@ -94,20 +94,20 @@ import { spacing } from '@material-ui/system';
 
 | Импорт    | Свойство | Свойство CSS                    | В теме                                                           |
 |:--------- |:-------- |:------------------------------- |:---------------------------------------------------------------- |
-| `spacing` | `m`      | `margin`                        | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing` | `mt`     | `margin-top`                    | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing` | `mr`     | `margin-right`                  | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing` | `mb`     | `margin-bottom`                 | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing` | `ml`     | `margin-left`                   | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing` | `mx`     | `margin-left`, `margin-right`   | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing` | `my`     | `margin-top`, `margin-bottom`   | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing` | `p`      | `padding`                       | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing` | `pt`     | `padding-top`                   | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing` | `pr`     | `padding-right`                 | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing` | `pb`     | `padding-bottom`                | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing` | `pl`     | `padding-left`                  | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing` | `px`     | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
-| `spacing` | `py`     | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expend-path=$.spacing) |
+| `spacing` | `m`      | `margin`                        | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `mt`     | `margin-top`                    | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `mr`     | `margin-right`                  | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `mb`     | `margin-bottom`                 | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `ml`     | `margin-left`                   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `mx`     | `margin-left`, `margin-right`   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `my`     | `margin-top`, `margin-bottom`   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `p`      | `padding`                       | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `pt`     | `padding-top`                   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `pr`     | `padding-right`                 | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `pb`     | `padding-bottom`                | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `pl`     | `padding-left`                  | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `px`     | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| `spacing` | `py`     | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
 
 
 *Some people find the prop shorthand confusing, you can use the full version if you prefer:*

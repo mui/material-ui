@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 import Benchmark from 'benchmark';
 import fs from 'fs';
 import path from 'path';

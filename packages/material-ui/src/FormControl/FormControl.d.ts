@@ -4,12 +4,14 @@ import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
 export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
+    color?: 'primary' | 'secondary';
     disabled?: boolean;
     error?: boolean;
     fullWidth?: boolean;
     hiddenLabel?: boolean;
     margin?: PropTypes.Margin;
     required?: boolean;
+    size?: 'small' | 'medium';
     variant?: 'standard' | 'outlined' | 'filled';
   };
   defaultComponent: D;

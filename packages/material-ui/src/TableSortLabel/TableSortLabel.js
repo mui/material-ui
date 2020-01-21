@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -15,13 +15,12 @@ export const styles = theme => ({
     flexDirection: 'inherit',
     alignItems: 'center',
     '&:focus': {
-      color: theme.palette.text.primary,
+      color: theme.palette.text.secondary,
     },
     '&:hover': {
-      color: theme.palette.text.primary,
+      color: theme.palette.text.secondary,
       '& $icon': {
-        opacity: 1,
-        color: theme.palette.text.secondary,
+        opacity: 0.5,
       },
     },
     '&$active': {
@@ -29,7 +28,7 @@ export const styles = theme => ({
       // && instead of & is a workaround for https://github.com/cssinjs/jss/issues/1045
       '&& $icon': {
         opacity: 1,
-        color: theme.palette.text.primary,
+        color: theme.palette.text.secondary,
       },
     },
   },
@@ -37,7 +36,7 @@ export const styles = theme => ({
   active: {},
   /* Styles applied to the icon component. */
   icon: {
-    height: 18,
+    fontSize: 18,
     marginRight: 4,
     marginLeft: 4,
     opacity: 0,
@@ -45,7 +44,6 @@ export const styles = theme => ({
       duration: theme.transitions.duration.shorter,
     }),
     userSelect: 'none',
-    width: 18,
   },
   /* Styles applied to the icon component if `direction="desc"`. */
   iconDirectionDesc: {
@@ -66,7 +64,7 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(props, ref) {
     children,
     classes,
     className,
-    direction = 'desc',
+    direction = 'asc',
     hideSortIcon = false,
     IconComponent = ArrowDownwardIcon,
     ...other

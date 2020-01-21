@@ -1,5 +1,5 @@
 ---
-description: Here are the most significant changes in April.
+description: Here are the most significant improvements in April.
 ---
 
 # April 2019 Update
@@ -8,7 +8,7 @@ description: Here are the most significant changes in April.
 
 *May 7, 2019*
 
-Here are the most significant changes in April:
+Here are the most significant improvements in April:
 
 - 📚 We have migrated [most](https://github.com/mui-org/material-ui/issues/14897) of our demos to TypeScript. **@eps1lon** has lead the effort. You can switch between the JavaScript demo and the TypeScript demo using this toggle button:
 
@@ -61,6 +61,8 @@ But this summary is just scratching the surface. We have accepted 243 commits fr
   - Timeline
 - Something big 🌈
 
+- ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
+
 <hr />
 
-Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development made possible thanks to the support of these awesome [backers](/discover-more/backers/). Please join them ✨.
+Material-UI is an MIT-licensed open source project. It’s an independent project with ongoing development helped by the support of these awesome [backers](/discover-more/backers/). Please join them ✨.

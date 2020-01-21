@@ -4,7 +4,7 @@
 
 ## Encapsulando componentes
 
-Para fornecer o máximo de flexibilidade e desempenho, precisamos de uma maneira de conhecer a natureza dos elementos filhos que um componente recebe. To solve this problem we tag some of the components with a `muiName` static property when needed.
+Para fornecer o máximo de flexibilidade e desempenho, precisamos de uma maneira de conhecer a natureza dos elementos filhos que um componente recebe. Para resolver esse problema, identificamos alguns dos componentes com uma propriedade estática `muiName` quando necessário.
 
 Você pode, no entanto, precisar encapsular um componente para melhorá-lo, que pode entrar em conflito com a solução `muiName`. Se você encapsular um componente, verifique se este tem um conjunto de propriedades estáticas.
 
@@ -19,65 +19,68 @@ WrappedIcon.muiName = Icon.muiName;
 
 {{"demo": "pages/guides/composition/Composition.js"}}
 
-## Propriedade component
+## Propriedade Componente
 
-Material-UI permite que você altere o nó raiz que será renderizado por meio de uma propriedade chamada `component`.
+Material-UI permite que você altere o elemento raiz que será renderizado por meio de uma propriedade chamada `component`.
 
 ### Como é que funciona?
 
 O componente será renderizado assim:
 
 ```js
-return React.createElement(this.props.component, props)
+return React.createElement(props.component, props)
 ```
 
-Por exemplo, por padrão um componente `List` irá renderizar um elemento `<ul>`. Isso pode ser alterado passando um [componente React](https://reactjs.org/docs/components-and-props.html#function-and-class-components) para a propriedade `component`. O exemplo a seguir irá renderizar o componente `List` com um elemento `<nav>` como nó raiz:
+Por exemplo, por padrão um componente `List` irá renderizar um elemento `<ul>`. Isso pode ser alterado passando um [componente React](https://reactjs.org/docs/components-and-props.html#function-and-class-components) para a propriedade `component`. O exemplo a seguir irá renderizar o componente `List` como um elemento `<nav>` como raiz:
 
 ```jsx
 <List component="nav">
-  <ListItem>
+  <ListItem button>
     <ListItemText primary="Trash" />
   </ListItem>
-  <ListItem>
+  <ListItem button>
     <ListItemText primary="Spam" />
   </ListItem>
 </List>
 ```
 
-Esse padrão é muito poderoso e permite uma grande flexibilidade, bem como uma maneira de interoperar com outras bibliotecas, como [`react-router`](#react-router-demo) ou sua biblioteca de formulários favorita. Mas também **vem com uma pequena advertência!**
+Esse padrão é muito poderoso e permite uma grande flexibilidade, além de uma maneira de interoperar com outras bibliotecas, como a sua biblioteca de formulários ou roteamento favorita. Mas também **vem com uma pequena advertência!**
 
 ### Advertência com o uso de funções em linha
 
-Usando uma função em linha como um argumento para a propriedade `component`, pode resultar em uma **montagem inesperada**, usando dessa forma, um novo componente será passado para a propriedade `component` toda vez que o React renderizar. Por exemplo, se você quiser cria um `ListItem` customizado que atua como link, você poderia fazer o seguinte:
+Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders. Por exemplo, se você quiser cria um `ListItem` customizado que atua como link, você poderia fazer o seguinte:
 
 ```jsx
 import { Link } from 'react-router-dom';
 
-const ListItemLink = ({ icon, primary, secondary, to }) => (
-  <li>
-    <ListItem button component={props => <Link to={to} {...props} />}>
-      {icon && <ListItemIcon>{icon}</ListItemIcon>}
-      <ListItemText inset primary={primary} secondary={secondary} />
-    </ListItem>
-  </li>
-);
+function ListItemLink(props) {
+  const { icon, primary, to } = props;
+
+  return (
+    <li>
+      <ListItem button component={props => <Link to={to} {...props} />}>
+        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemText primary={primary} />
+      </ListItem>
+    </li>
+  );
+}
 ```
 
 ⚠️ No entanto, como estamos usando uma função em linha para alterar o componente renderizado, o React desmontará o link toda vez que o `ListItemLink` é renderizado. Não só irá o React atualizar o DOM desnecessariamente, como o efeito cascata do `ListItem` também não funcionará corretamente.
 
-A solução é simples: **evite funções em linha e passe um componente estático para a propriedade `component`**. Let's change the `ListItemLink` to the following:
+The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` to the following:
 
 ```jsx
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
   const renderLink = React.useMemo(
     () =>
-      React.forwardRef((itemProps, ref) => (
-        // com react-router-dom@^5.0.0 use `ref` ao invés de `innerRef`
-        <RouterLink to={to} {...itemProps} innerRef={ref} />
+      React.forwardRef((linkProps, ref) => (
+        <Link ref={ref} to={to} {...linkProps} />
       )),
     [to],
   );
@@ -95,9 +98,9 @@ function ListItemLink(props) {
 
 `renderLink` agora sempre referenciará o mesmo componente.
 
-### Advertência com abreviações
+### Caveat with prop forwarding
 
-Você pode aproveitar o encaminhamento de propriedades para simplificar o código. Neste exemplo, não criamos nenhum componente intermediário:
+You can take advantage of the prop forwarding to simplify the code. Neste exemplo, não criamos nenhum componente intermediário:
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -105,17 +108,27 @@ import { Link } from 'react-router-dom';
 <ListItem button component={Link} to="/">
 ```
 
-⚠️ No entanto, esta estratégia sofre de uma pequena limitação: colisão de propriedades. O componente que fornece a propriedade `component` (por exemplo, ListItem) pode não encaminhar todas as suas propriedades para o elemento raiz.
-
-### Demonstração com React Router
-
-Aqui está uma demonstração com [React Router DOM](https://github.com/ReactTraining/react-router):
-
-{{"demo": "pages/guides/composition/ComponentProperty.js"}}
+⚠️ However, this strategy suffers from a limitation: prop collisions. The component providing the `component` prop (e.g. ListItem) might not forward all the props (for example dense) to the root element.
 
 ### Usando TypeScript
 
-Você pode encontrar os detalhes no [guia TypeScript](/guides/typescript/#usage-of-component-property).
+Você pode encontrar os detalhes no [guia TypeScript](/guides/typescript/#usage-of-component-prop).
+
+## Bibliotecas de roteamento
+
+The integration with third-party routing libraries is achieved with the `component` prop. The behavior is identical to the description of the prop above. Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router). It covers the Button, Link, and List components, you should be able to apply the same strategy with all the components.
+
+### Button
+
+{{"demo": "pages/guides/composition/ButtonRouter.js"}}
+
+### Link
+
+{{"demo": "pages/guides/composition/LinkRouter.js"}}
+
+### Lista
+
+{{"demo": "pages/guides/composition/ListRouter.js"}}
 
 ## Advertência com refs
 

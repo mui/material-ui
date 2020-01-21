@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
 
-export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'hr'> {
+export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
-    disableAnimate?: boolean;
+    animation?: 'pulse' | 'wave' | false;
     height?: number | string;
     variant?: 'text' | 'rect' | 'circle';
     width?: number | string;

@@ -28,7 +28,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 そうです。これは本当に始めるのに必要な全てです。この編集可能なデモで確認できるように:
 
-{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
+{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true, "bg": true}}
 
 ## Globals
 
@@ -36,7 +36,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ### Responsive meta tag
 
-Material-UIは最初にモバイルで開発されました。最初にモバイル端末用のコードを記述し、次にCSSメディアクエリを使用して必要に応じてコンポーネントを拡張するという方法を用いています。 すべてのデバイスで適切なレンダリングとタッチズームを確実なものにするには、responsive viewport metaタグを`<head>`に追加します。
+Material-UI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries. すべてのデバイスで適切なレンダリングとタッチズームを確実なものにするには、responsive viewport metaタグを`<head>`に追加します。
 
 ```html
 <meta
@@ -51,7 +51,7 @@ Material-UIはオプションで[CssBaseline](/components/css-baseline/)コン�
 
 ## バージョン管理されたドキュメント
 
-このドキュメントは常に最新の安定版のMaterial-UIを反映しています。 古いバージョンのドキュメントは、[別のページ ](/versions/)にあります。
+このドキュメントは常に最新の安定版のMaterial-UIを反映しています。 古いバージョンのドキュメントは、[別のページ ](https://material-ui.com/versions/)にあります。
 
 ## 次のステップ
 

@@ -1,6 +1,5 @@
 import React from 'react';
-import { createMuiTheme, useTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { createMuiTheme, ThemeProvider, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {

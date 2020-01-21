@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import withStyles from '../styles/withStyles';
+import { elementTypeAcceptingRef } from '@material-ui/utils';
 import { useIsFocusVisible } from '../utils/focusVisible';
-import { useForkRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
 import Typography from '../Typography';
 
 export const styles = {
@@ -29,7 +30,6 @@ export const styles = {
   /* Styles applied to the root element if `component="button"`. */
   button: {
     position: 'relative',
-    // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
     backgroundColor: 'transparent', // Reset default value
     // We disable the focus ring for mouse, touch and keyboard users.
@@ -142,7 +142,7 @@ Link.propTypes = {
    * The component used for the root node.
    * Either a string to use a DOM element or a component.
    */
-  component: PropTypes.elementType,
+  component: elementTypeAcceptingRef,
   /**
    * @ignore
    */

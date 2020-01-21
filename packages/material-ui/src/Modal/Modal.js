@@ -5,8 +5,8 @@ import { getThemeProps, useTheme } from '@material-ui/styles';
 import { elementAcceptingRef } from '@material-ui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import Portal from '../Portal';
-import { createChainedFunction } from '../utils/helpers';
-import { useForkRef } from '../utils/reactHelpers';
+import createChainedFunction from '../utils/createChainedFunction';
+import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
 import zIndex from '../styles/zIndex';
 import ModalManager, { ariaHidden } from './ModalManager';
@@ -183,7 +183,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   };
 
   const handleKeyDown = event => {
-    // We don't take event.defaultPrevented into account:
+    // The handler doesn't take event.defaultPrevented into account:
     //
     // event.preventDefault() is meant to stop default behaviours like
     // clicking a checkbox to check it, hitting a button to submit a form,
@@ -207,12 +207,8 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   const inlineStyle = styles(theme || { zIndex });
   const childProps = {};
-  // FixMe: Always apply document role. Revisit once React Flare is released
-  if (children.role === undefined) {
-    childProps.role = children.role || 'document';
-  }
-  if (children.tabIndex === undefined) {
-    childProps.tabIndex = children.tabIndex || '-1';
+  if (children.props.tabIndex === undefined) {
+    childProps.tabIndex = children.props.tabIndex || '-1';
   }
 
   // It's a Transition like component
@@ -342,7 +338,7 @@ Modal.propTypes = {
    * The `reason` parameter can optionally be used to control the response to `onClose`.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} reason Can be:`"escapeKeyDown"`, `"backdropClick"`.
+   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
    */
   onClose: PropTypes.func,
   /**

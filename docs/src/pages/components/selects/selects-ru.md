@@ -3,7 +3,7 @@ title: Select React component
 components: Select, NativeSelect
 ---
 
-# Selects
+# Select (Список)
 
 <p class="description">Компонент Select используются для сбора информации, предоставленной пользователем, из списка параметров.</p>
 
@@ -19,9 +19,13 @@ As the user experience can be improved on mobile using the native select of the 
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
+## Текстовые поля
+
+`TextField` представляет собой полноценный элемент управления формы, включая метку (label), само поле ввода и вспомогательный текст. You can find an example with the select mode [in this section](/components/text-fields/#select).
+
 ## Customized selects
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 The first step is to style the `InputBase` component. Once it's styled, you can either use it directly as a text field or provide it to the select `input` property to have a `select` field.
 
@@ -45,6 +49,29 @@ While it's discouraged by the Material Design specification, you can use a selec
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 
-## Текстовые поля
+## Grouping
 
-`TextField` представляет собой полноценный элемент управления формы, включая метку (label), само поле ввода и вспомогательный текст. You can find an example with the select mode [in this section](/components/text-fields/#textfield).
+Display categories with the `ListSubheader` component or the native `<optgroup>` element.
+
+{{"demo": "pages/components/selects/GroupedSelect.js"}}
+
+## Доступность
+
+To properly label your `Select` input you need an extra element with an `id` that contains a label. That `id` needs to match the `labelId` of the `Select` e.g.
+
+```jsx
+<InputLabel id="label">Age</InputLabel>
+<Select labelId="label" id="select" value="20">
+  <MenuItem value="10">Ten</MenuItem>
+  <MenuItem value="20">Twenty</MenuItem>
+</Select>
+```
+
+Alternatively a `TextField` with an `id` and `label` creates the proper markup and ids for you:
+
+```jsx
+<TextField id="select" label="Age" value="20">
+  <MenuItem value="10">Ten</MenuItem>
+  <MenuItem value="20">Twenty</MenuItem>
+</TextField>
+```

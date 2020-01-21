@@ -19,65 +19,68 @@ WrappedIcon.muiName = Icon.muiName;
 
 {{"demo": "pages/guides/composition/Composition.js"}}
 
-## 组件属性
+## Component prop
 
-在 Material-UI 中，通过一个叫 `component` 的属性，您可以更改渲染后呈现的根节点。
+Material-UI allows you to change the root element that will be rendered via a prop called `component`.
 
 ### 它是如何工作的呢？
 
 该组件将这样渲染：
 
 ```js
-return React.createElement(this.props.component, props)
+return React.createElement(props.component, props)
 ```
 
-例如，在默认情况下，`List` 组件会渲染 `<ul>` 元素。 通过将一个 [React 组件](https://reactjs.org/docs/components-and-props.html#function-and-class-components)传递给 `component` 属性，就可以改变此默认行为。 下面的例子则将 `List` 组件和一个`<nav>` 元素渲染为根节点：
+例如，在默认情况下，`List` 组件会渲染 `<ul>` 元素。 This can be changed by passing a [React component](https://reactjs.org/docs/components-and-props.html#function-and-class-components) to the `component` prop. The following example will render the `List` component with a `<nav>` element as root element instead:
 
 ```jsx
 <List component="nav">
-  <ListItem>
+  <ListItem button>
     <ListItemText primary="Trash" />
   </ListItem>
-  <ListItem>
+  <ListItem button>
     <ListItemText primary="Spam" />
   </ListItem>
 </List>
 ```
 
-这种模式非常强大，它拥有很强的灵活性，也涵盖了与其他库互操作的方法，例如 [`react-router`](#react-router-demo) 或者你最喜欢的表格库。 但它也**带有一个小小的警告!**
+This pattern is very powerful and allows for great flexibility, as well as a way to interoperate with other libraries, such as your favorite routing or forms library. 但它也**带有一个小小的警告!**
 
 ### 当与内联函数一起使用时要注意
 
-使用内联函数作为 `component` 属性的参数可能会导致 **意外的卸载**，因为每次React呈现时都会将新组件传递给 `component` 属性。 例如，如果要创建自定义` ListItem `作为链接，您可以执行以下操作：
+Using an inline function as an argument for the `component` prop may result in **unexpected unmounting**, since a new component is passed every time React renders. 例如，如果要创建自定义` ListItem `作为链接，您可以执行以下操作：
 
 ```jsx
 import { Link } from 'react-router-dom';
 
-const ListItemLink = ({ icon, primary, secondary, to }) => (
-  <li>
-    <ListItem button component={props => <Link to={to} {...props} />}>
-      {icon && <ListItemIcon>{icon}</ListItemIcon>}
-      <ListItemText inset primary={primary} secondary={secondary} />
-    </ListItem>
-  </li>
-);
+function ListItemLink(props) {
+  const { icon, primary, to } = props;
+
+  return (
+    <li>
+      <ListItem button component={props => <Link to={to} {...props} />}>
+        <ListItemIcon>{icon}</ListItemIcon>
+        <ListItemText primary={primary} />
+      </ListItem>
+    </li>
+  );
+}
 ```
 
 ⚠️然而，由于我们使用内联函数来更改呈现的组件，因此，在每一次` ListItemLink `被渲染时，React都会先将它卸载。 不只是React会更新那些不必要的DOM，`ListItem` 的涟漪效应也将无法正常工作。
 
-解决方法很简单： **避免内联函数并将静态组件传递给 `component` 属性**。 Let's change the `ListItemLink` to the following:
+The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` to the following:
 
 ```jsx
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
   const renderLink = React.useMemo(
     () =>
-      React.forwardRef((itemProps, ref) => (
-        // with react-router-dom@^5.0.0 use `ref` instead of `innerRef`
-        <RouterLink to={to} {...itemProps} innerRef={ref} />
+      React.forwardRef((linkProps, ref) => (
+        <Link ref={ref} to={to} {...linkProps} />
       )),
     [to],
   );
@@ -95,9 +98,9 @@ function ListItemLink(props) {
 
 ` renderLink `现在将始终引用相同的组件。
 
-### 简化代码时要注意
+### Caveat with prop forwarding
 
-您可以利用属性传递来简化代码。 在此示例中，我们不创建任何中间组件：
+You can take advantage of the prop forwarding to simplify the code. 在此示例中，我们不创建任何中间组件：
 
 ```jsx
 import { Link } from 'react-router-dom';
@@ -105,17 +108,27 @@ import { Link } from 'react-router-dom';
 <ListItem button component={Link} to="/">
 ```
 
-⚠️但是，这种策略受到一些限制：属性冲突。 提供`component` 属性的组件 (例如：ListItem) 可能不会将其所有属性传递到根元素 (例如：dense) 。
-
-### React Router 示例
-
-这是一个带有[ React Router DOM](https://github.com/ReactTraining/react-router) 的示例 ：
-
-{{"demo": "pages/guides/composition/ComponentProperty.js"}}
+⚠️ However, this strategy suffers from a limitation: prop collisions. The component providing the `component` prop (e.g. ListItem) might not forward all the props (for example dense) to the root element.
 
 ### 使用 TypeScript
 
-您可以在[ TypeScript指南 ](/guides/typescript/#usage-of-component-property)中找到详细信息 。
+您可以在[ TypeScript指南中找到详细信息](/guides/typescript/#usage-of-component-prop) 。
+
+## Routing libraries
+
+The integration with third-party routing libraries is achieved with the `component` prop. The behavior is identical to the description of the prop above. Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router). It covers the Button, Link, and List components, you should be able to apply the same strategy with all the components.
+
+### Buttons（按钮）
+
+{{"demo": "pages/guides/composition/ButtonRouter.js"}}
+
+### Link
+
+{{"demo": "pages/guides/composition/LinkRouter.js"}}
+
+### Lists（列表）
+
+{{"demo": "pages/guides/composition/ListRouter.js"}}
 
 ## 使用refs时要注意
 

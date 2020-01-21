@@ -9,7 +9,7 @@ components: Slider
 
 [Sliders](https://material.io/design/components/sliders.html) reflect a range of values along a bar, from which users may select a single value. ボリューム、輝度などの設定を調整したり、画像フィルターを適用したりするのに理想的です。
 
-- 📦 [22 kB gzipped](/size-snapshot) (but only 8 kB without @material-ui/styles).
+- 📦 [22 kB gzipped](/size-snapshot) (@material-ui/stylesなしの場合8 kB).
 
 ## 個別のスライダー
 
@@ -47,7 +47,25 @@ components: Slider
 
 {{"demo": "pages/components/slider/VerticalSlider.js"}}
 
+## Track
+
+The track shows the range available for user selection.
+
+### Removed track
+
+The track can be turned off with `track={false}`.
+
+{{"demo": "pages/components/slider/TrackFalseSlider.js"}}
+
+### Inverted track
+
+The track can be inverted with `track="inverted"`.
+
+{{"demo": "pages/components/slider/TrackInvertedSlider.js"}}
+
 ## アクセシビリティ
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
 
 コンポーネントは、アクセス可能にするために必要なほとんどの作業を処理します。 ただし、次の点を確認する必要があります。
 

@@ -203,8 +203,11 @@ function HomeSteps(props) {
             <NoSsr>
               <img
                 className={classes.img}
-                alt="themes"
+                alt={t('themesButton')}
                 src={`/static/images/themes-${theme.palette.type}.jpg`}
+                loading="eager"
+                width={500}
+                height={307}
               />
             </NoSsr>
           </Link>

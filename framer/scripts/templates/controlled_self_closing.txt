@@ -1,0 +1,49 @@
+{{=« »=}}
+import * as React from 'react';
+import { PropertyControls, ControlType } from 'framer';
+import Mui«componentName» from '@material-ui/core/«componentName»';
+
+// Define type of property
+interface Props {
+«& tsInterface»
+}
+
+export class «componentName» extends React.Component<Props> {
+  // Set default properties
+  static defaultProps = {
+«& defaultProps»
+  };
+
+  // Items shown in property panel
+  static propertyControls: PropertyControls<Props> = {
+«& propertyControls»
+  };
+
+  state = {
+    checked: false,
+  };
+
+  handleChange = () => {
+    this.setState({
+      checked: !this.state.checked,
+    });
+  };
+
+  render() {
+    const { height, width, ...other } = this.props;
+
+    return (
+      <div
+        style={{
+          width,
+          height,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Mui«componentName» checked={this.state.checked} onChange={this.handleChange} {...other} />
+      </div>
+    );
+  }
+}

@@ -4,6 +4,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
 import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
@@ -17,7 +18,6 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 const useStyles1 = makeStyles(theme => ({
   root: {
     flexShrink: 0,
-    color: theme.palette.text.secondary,
     marginLeft: theme.spacing(2.5),
   },
 }));
@@ -27,21 +27,21 @@ function TablePaginationActions(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onChangePage } = props;
 
-  function handleFirstPageButtonClick(event) {
+  const handleFirstPageButtonClick = event => {
     onChangePage(event, 0);
-  }
+  };
 
-  function handleBackButtonClick(event) {
+  const handleBackButtonClick = event => {
     onChangePage(event, page - 1);
-  }
+  };
 
-  function handleNextButtonClick(event) {
+  const handleNextButtonClick = event => {
     onChangePage(event, page + 1);
-  }
+  };
 
-  function handleLastPageButtonClick(event) {
+  const handleLastPageButtonClick = event => {
     onChangePage(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-  }
+  };
 
   return (
     <div className={classes.root}>
@@ -100,18 +100,11 @@ const rows = [
   createData('Oreo', 437, 18.0),
 ].sort((a, b) => (a.calories < b.calories ? -1 : 1));
 
-const useStyles2 = makeStyles(theme => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing(3),
-  },
+const useStyles2 = makeStyles({
   table: {
     minWidth: 500,
   },
-  tableWrapper: {
-    overflowX: 'auto',
-  },
-}));
+});
 
 export default function CustomPaginationActionsTable() {
   const classes = useStyles2();
@@ -120,56 +113,57 @@ export default function CustomPaginationActionsTable() {
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
-  function handleChangePage(event, newPage) {
+  const handleChangePage = (event, newPage) => {
     setPage(newPage);
-  }
+  };
 
-  function handleChangeRowsPerPage(event) {
+  const handleChangeRowsPerPage = event => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
-  }
+  };
 
   return (
-    <Paper className={classes.root}>
-      <div className={classes.tableWrapper}>
-        <Table className={classes.table}>
-          <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
-              <TableRow key={row.name}>
-                <TableCell component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-              </TableRow>
-            ))}
-
-            {emptyRows > 0 && (
-              <TableRow style={{ height: 48 * emptyRows }}>
-                <TableCell colSpan={6} />
-              </TableRow>
-            )}
-          </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25]}
-                colSpan={3}
-                count={rows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                SelectProps={{
-                  inputProps: { 'aria-label': 'rows per page' },
-                  native: true,
-                }}
-                onChangePage={handleChangePage}
-                onChangeRowsPerPage={handleChangeRowsPerPage}
-                ActionsComponent={TablePaginationActions}
-              />
+    <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="custom pagination table">
+        <TableBody>
+          {(rowsPerPage > 0
+            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : rows
+          ).map(row => (
+            <TableRow key={row.name}>
+              <TableCell component="th" scope="row">
+                {row.name}
+              </TableCell>
+              <TableCell align="right">{row.calories}</TableCell>
+              <TableCell align="right">{row.fat}</TableCell>
             </TableRow>
-          </TableFooter>
-        </Table>
-      </div>
-    </Paper>
+          ))}
+
+          {emptyRows > 0 && (
+            <TableRow style={{ height: 53 * emptyRows }}>
+              <TableCell colSpan={6} />
+            </TableRow>
+          )}
+        </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TablePagination
+              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+              colSpan={3}
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              SelectProps={{
+                inputProps: { 'aria-label': 'rows per page' },
+                native: true,
+              }}
+              onChangePage={handleChangePage}
+              onChangeRowsPerPage={handleChangeRowsPerPage}
+              ActionsComponent={TablePaginationActions}
+            />
+          </TableRow>
+        </TableFooter>
+      </Table>
+    </TableContainer>
   );
 }

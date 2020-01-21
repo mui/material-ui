@@ -1,10 +1,10 @@
 ---
-title: Free React Templates
+title: 9+ Free React Templates
 ---
 
 # React Templates
 
-<p class="description">A selection of basic react templates to help you get started building your app. The collection contains react dashboard, admin, and more.</p>
+<p class="description">A selection of free react templates to help you get started building your app. The collection contains react dashboard, react admin, and more.</p>
 
 The templates can be combined with one of the [example applications](https://github.com/mui-org/material-ui/tree/master/examples) to form a complete starter.
 
@@ -14,13 +14,13 @@ for reuse in other pages.
 For multi-part examples, a table in the README at the linked source code location describes
 the purpose of each file.
 
-{{"demo": "pages/getting-started/templates/Templates.js", "hideHeader": true}}
+{{"demo": "pages/getting-started/templates/Templates.js", "hideHeader": true, "bg": true}}
 
 If while using these examples you make changes or enhancements that could improve the
 developer experience, or you would like to contribute an additional example,
 please consider creating a [pull request on GitHub](https://github.com/mui-org/material-ui/pulls).
 
-So far we have demos for dashboard, sign in page, sign up page, blog page, checkout flow, album page, pricing page, and sticky footer page.
+So far we have demos for a dashboard, sign in page, sign up page, blog page, checkout flow, album page, pricing page, and sticky footer page.
 
 ## Premium Themes
 

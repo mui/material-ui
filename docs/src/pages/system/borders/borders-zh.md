@@ -8,6 +8,8 @@
 
 ### 添加剂
 
+{{"demo": "pages/system/borders/BorderAdditive.js", "defaultCodeOpen": false, "bg": true}}
+
 ```jsx
 <Box border={1}>…
 <Box borderTop={1}>…
@@ -16,9 +18,9 @@
 <Box borderLeft={1}>…
 ```
 
-{{"demo": "pages/system/borders/BorderAdditive.js"}}
-
 ### 减法
+
+{{"demo": "pages/system/borders/BorderSubtractive.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box border={0}>…
@@ -28,9 +30,9 @@
 <Box borderLeft={0}>…
 ```
 
-{{"demo": "pages/system/borders/BorderSubtractive.js"}}
-
 ## 描边颜色
+
+{{"demo": "pages/system/borders/BorderColor.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box borderColor="primary.main">…
@@ -40,17 +42,15 @@
 <Box borderColor="text.primary">…
 ```
 
-{{"demo": "pages/system/borders/BorderColor.js"}}
-
 ## 边界半径
+
+{{"demo": "pages/system/borders/BorderRadius.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box borderRadius="50%">…
 <Box borderRadius="borderRadius">…
 <Box borderRadius={16}>…
 ```
-
-{{"demo": "pages/system/borders/BorderRadius.js"}}
 
 ## API
 
@@ -65,5 +65,5 @@ import { borders } from '@material-ui/system';
 | `borderLeft`   | `borderLeft`   | `border-left`   | `borders`                                                        |
 | `borderRight`  | `borderRight`  | `border-right`  | `borders`                                                        |
 | `borderBottom` | `borderBottom` | `border-bottom` | `borders`                                                        |
-| `borderColor`  | `borderColor`  | `border-color`  | [`palette`](/customization/default-theme/?expend-path=$.palette) |
-| `borderRadius` | `borderRadius` | `border-radius` | [`shape`](/customization/default-theme/?expend-path=$.shape)     |
+| `borderColor`  | `borderColor`  | `border-color`  | [`palette`](/customization/default-theme/?expand-path=$.palette) |
+| `borderRadius` | `borderRadius` | `border-radius` | [`shape`](/customization/default-theme/?expand-path=$.shape)     |

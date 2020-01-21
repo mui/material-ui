@@ -13,11 +13,11 @@ components: Grid
 
 グリッドシステムは `Grid` コンポーネントで実装されています。
 
-- 高い柔軟性のために [CSSのFlexible Boxモジュール](https://www. w3. org/TR/css-flexbox-1/) を使用します。
+- 高い柔軟性のために [CSSのFlexible Boxモジュール](https://www.w3.org/TR/css-flexbox-1/) を使用します。
 - レイアウトには* containers * と * items*の2種類あります 。
 - アイテムの幅はパーセンテージで設定されているので、それらは常に親要素に対して流動的でサイズが決まっています。
 - アイテムには、個々のアイテム間の間隔を空けるための余白があります。
-- Xs、sm、md、lg、およびxlの5つのグリッドブレークポイントがあります。
+- xs、sm、md、lg、およびxlの5つのグリッドブレークポイントがあります。
 
 **flexboxに不慣れ**な場合、 [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) を読むことをおすすめします。
 
@@ -27,7 +27,7 @@ components: Grid
 
 この出力変換関数は、[テーマを使う](/customization/spacing/)ことでカスタマイズできます。
 
-{{"demo": "pages/components/grid/SpacingGrid.js"}}
+{{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
 
 ## Fluid grids
 
@@ -37,31 +37,31 @@ Fluid gridsでは、コンテンツの尺度とサイズを変更する列を使
 
 列幅はすべてのブレークポイント（つまり `xs` ）に適用されます。
 
-{{"demo": "pages/components/grid/CenteredGrid.js"}}
+{{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
 
 ### ブレークポイント付きGrid
 
 一部の列では複数の幅が定義されているため、定義されたブレークポイントでレイアウトが変更されます。
 
-{{"demo": "pages/components/grid/FullWidthGrid.js"}}
+{{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
 ## インタラクティブ
 
 以下は、さまざまな設定の視覚的な結果を調べることができるインタラクティブなデモです。
 
-{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true}}
+{{"demo": "pages/components/grid/InteractiveGrid.js", "hideHeader": true, "bg": true}}
 
 ## 自動レイアウト
 
 自動レイアウトにより、 *items* が使用可能なスペースを均等に共有します。 それはまた、あなたが1つの *item* 幅を設定することができ、他のものはそれの周りに自動的にサイズ変更されることを意味します。
 
-{{"demo": "pages/components/grid/AutoGrid.js"}}
+{{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
 
 ## 複雑なグリッド
 
 以下のデモは、Material Designには従っていませんが、グリッドを使用して複雑なレイアウトを構築する方法を示しています。
 
-{{"demo": "pages/components/grid/ComplexGrid.js"}}
+{{"demo": "pages/components/grid/ComplexGrid.js", "bg": true}}
 
 ## Nested Grid
 
@@ -71,7 +71,7 @@ Fluid gridsでは、コンテンツの尺度とサイズを変更する列を使
 
 https://www.w3.org/TR/css-flexbox-1/#box-model
 
-{{"demo": "pages/components/grid/NestedGrid.js"}}
+{{"demo": "pages/components/grid/NestedGrid.js", "bg": true}}
 
 ## 制限事項
 
@@ -110,14 +110,14 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
   <Typography noWrap>
 ```
 
-{{"demo": "pages/components/grid/AutoGridNoWrap.js"}}
+{{"demo": "pages/components/grid/AutoGridNoWrap.js", "bg": true}}
 
 ### direction: column | column-reverse
 
-`Grid`コンポーネントは`row`, `row-reverse`, `column`, `column-reverse`のいずれかの値を持つ`direction`プロパティを持っています。 しかし、` column `および` column-reverse `コンテナではサポートされていない機能がいくつかあります。 コンポーネントは、所与のブレークポイントに使用するグリッドの数定義するプロパティ （`Xs`、 `、Sm`、 `Md`、 `Lg`、及び `Xl`）幅の制御に焦点を当てている と実行 しない ` column ` および ` column-reverse` コンテナ内の高さにも同様の影響があります。 ` column ` または `column-reverse` コンテナ内で使用された場合、これらのプロパティは `Grid` 要素の幅に望ましくない影響を与える可能性があります。
+`Grid`コンポーネントは`row`, `row-reverse`, `column`, `column-reverse`のいずれかの値を持つ`direction`プロパティを持っています。 しかし、` column `および` column-reverse `コンテナではサポートされていない機能がいくつかあります。 コンポーネントは、所与のブレークポイントに使用するグリッドの数定義するプロパティ （`Xs`、 `Sm`、 `Md`、 `Lg`、及び `Xl`）幅の制御に焦点を当てている と実行 しない ` column ` および ` column-reverse` コンテナ内の高さにも同様の影響があります。 ` column ` または `column-reverse` コンテナ内で使用された場合、これらのプロパティは `Grid` 要素の幅に望ましくない影響を与える可能性があります。
 
 ## CSS Grid Layout
 
 Material-UI自体はCSSグリッド機能自体を提供しませんが、以下に示すように、CSSグリッドを使用してページをレイアウトすることは簡単にできます。
 
-{{"demo": "pages/components/grid/CSSGrid.js"}}
+{{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}

@@ -47,9 +47,27 @@ Os sliders contínuos permitem que os usuários selecionem um valor ao longo de 
 
 {{"demo": "pages/components/slider/VerticalSlider.js"}}
 
+## Track
+
+The track shows the range available for user selection.
+
+### Removed track
+
+The track can be turned off with `track={false}`.
+
+{{"demo": "pages/components/slider/TrackFalseSlider.js"}}
+
+### Inverted track
+
+The track can be inverted with `track="inverted"`.
+
+{{"demo": "pages/components/slider/TrackInvertedSlider.js"}}
+
 ## Acessibilidade
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
 
 O componente lida com a maior parte do trabalho necessário para torná-lo acessível. No entanto, você precisa se certificar de que:
 
-- Each thumb has a user-friendly label (`aria-label`, `aria-labelledby` or `getAriaLabel` prop).
-- Each thumb has a user-friendly text for its current value. Isso não é necessário se o valor corresponder ao rótulo exibido no slider. Você pode alterar o nome com as propriedades `getAriaValueText` ou `aria-valuetext`.
+- Cada miniatura possui propriedades de rótulo amigável para o usuário (`aria-label`, `aria-labelledby` ou `getAriaLabel`).
+- Cada marcador tem um texto amigável para o seu valor atual. Isso não é necessário se o valor corresponder ao rótulo exibido no slider. Você pode alterar o nome com as propriedades `getAriaValueText` ou `aria-valuetext`.

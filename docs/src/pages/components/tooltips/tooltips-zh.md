@@ -3,7 +3,7 @@ title: 文字提示 React 组件
 components: Tooltip
 ---
 
-# 文字提示
+# Tooltip（文字提示）
 
 <p class="description">当用户鼠标悬浮，聚焦或者轻触一个元素时，文字提示会显示有意义的文本。</p>
 
@@ -19,21 +19,27 @@ The `Tooltip` has 12 **placements** choice. They don’t have directional arrows
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
-## Customized tooltips
+## 自定义文字提示
 
 以下是自定义组件的一些例子。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
+
+## 带箭头的提示
+
+您可以通过添加`arrow` 属性给你的提示标签增加箭头指示器，从而可以更突出所指示的元素
+
+{{"demo": "pages/components/tooltips/ArrowTooltips.js"}}
 
 ## 自定义子元素
 
 The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
 
 ```jsx
-function MyComponent(props) {
-  //  Spread the properties to the underlying DOM element.
-  return <div {...props}>Bin</div>
-}
+const MyComponent = React.forwardRef(function MyComponent(props, ref) {
+  //  Spread the props to the underlying DOM element.
+  return <div {...props} ref={ref}>Bin</div>
+});
 
 // ...
 
@@ -56,9 +62,9 @@ function MyComponent(props) {
 
 {{"demo": "pages/components/tooltips/ControlledTooltips.js"}}
 
-## 可变的容器宽度
+## 可变宽度
 
-`Tooltip` 为了保证较好的阅读性，会自动将较长的文字折行。
+`Tooltip` 为了保证较好的阅读星，会自动将较长的文字折行。
 
 {{"demo": "pages/components/tooltips/VariableWidth.js"}}
 
@@ -68,13 +74,27 @@ A tooltip can be interactive. It won't close when the user hovers over the toolt
 
 {{"demo": "pages/components/tooltips/InteractiveTooltips.js"}}
 
-## 对于 disabled 的元素
+## 停用元素
 
-默认情况下，`<Button>`等disabled的元素不会触发用户交互，因此`Tooltip`不会在hover等正常事件上激活显示。 要允许已禁用的元素激活文字提示，请添加一个简单的包装元素，如`span`。
+默认情况下，`<Button>`等disabled的元素不会触发用户交互，因此`Tooltip`不会在hover等正常事件上激活显示。 To accommodate disabled elements, add a simple wrapper element, such as a `span`.
+
+> ⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
-## 过渡动画
+> If you're not wrapping a Material-UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property *pointer-events: none;* to your element when disabled:
+
+```jsx
+<Tooltip title="You don't have permission to do this">
+  <span>
+    <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
+      {'A disabled button'}
+    </button>
+  </span>
+</Tooltip>
+```
+
+## Transitions（过渡动画）
 
 使用不同的过渡动画。
 

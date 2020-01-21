@@ -31,7 +31,7 @@ Die Komponente `Menü` verwendet intern die Komponente `Popover`. Möglicherweis
 
 Die Hauptaufgabe der `MenuList` Komponente besteht darin, den Fokus festzulegen.
 
-{{"demo": "pages/components/menus/MenuListComposition.js"}}
+{{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
 ## Menüs anpassen
 
@@ -51,13 +51,19 @@ Wenn die Höhe eines Menüs die Anzeige aller Menüelemente verhindert, kann das
 
 Es gibt [einen FlexBox bug](https://bugs.chromium.org/p/chromium/issues/detail?id=327437), das verhindert, dass `text-overflow: ellipsis` in einem FlexBox Layout funktioniert. Sie können die Komponente `Typography` mit `noWrap` benutzen, um dieses Problem zu umgehen:
 
-{{"demo": "pages/components/menus/TypographyMenu.js"}}
+{{"demo": "pages/components/menus/TypographyMenu.js", "bg": true}}
 
 ## Übergang ändern
 
 Verwenden Sie einen anderen Übergang.
 
 {{"demo": "pages/components/menus/FadeMenu.js"}}
+
+## Context menu
+
+Here is an example of a context menu. (Right click to open.)
+
+{{"demo": "pages/components/menus/ContextMenu.js"}}
 
 ## Ergänzende Projekte
 

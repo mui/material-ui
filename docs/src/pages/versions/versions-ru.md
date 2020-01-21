@@ -6,13 +6,13 @@
 
 The most recent version is recommended in production.
 
-{{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
+{{"demo": "pages/versions/StableVersions.js", "hideHeader": true, "bg": "inline"}}
 
 ## Последние версии
 
 Здесь вы можете найти последнюю неопубликованную документацию и код. You can use it to see what changes are coming and provide better feedback to Material-UI contributors.
 
-{{"demo": "pages/versions/LatestVersion.js", "hideHeader": true}}
+{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true, "bg": "inline"}}
 
 ## Versioning strategy
 
@@ -20,7 +20,7 @@ Stability ensures that reusable components and libraries, tutorials, tools, and 
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
-Material-UI strictly follows [Semantic Versioning 2.0.0](https://semver.org/). Material-UI version numbers have three parts: `major.minor.patch`. The version number is incremented based on the level of change included in the release.
+Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Material-UI version numbers have three parts: `major.minor.patch`. The version number is incremented based on the level of change included in the release.
 
 - **Major releases** contain significant new features, some but minimal developer assistance is expected during the update. When updating to a new major release, you may need to run update scripts, refactor code, run additional tests, and learn new APIs.
 - **Minor releases** contain important new features. Minor releases are fully backward-compatible; no developer assistance is expected during update, but you can optionally modify your apps and libraries to begin using new APIs, features, and capabilities that were added in the release.
@@ -32,26 +32,27 @@ A regular schedule of releases helps you plan and coordinate your updates with t
 
 In general, you can expect the following release cycle:
 
-- A **major** release every 6-12 months.
+- A **major** release every 12 months.
 - 1-3 **minor** releases for each major release.
 - A **patch** release every week (anytime for urgent bugfix).
 
 ## График выпуска
 
-> Disclaimer: The dates are offered as general guidance and may be adjusted by us when necessary to ensure delivery of a high-quality code.
-
-| Date       | Version                    |
-|:---------- |:-------------------------- |
-| May 2018 ✅ | `@material-ui/core` v1.0.0 |
-| May 2019 ✅ | `@material-ui/core` v4.0.0 |
-| ? ⏳        | `@material-ui/core` v5.0.0 |
+| Date           | Version | Status   |
+|:-------------- |:------- |:-------- |
+| May 2018       | v1.0.0  | Released |
+| Septembre 2018 | v3.0.0  | Released |
+| May 2019       | v4.0.0  | Released |
+| Q3 2020        | v5.0.0  | ⏳        |
 
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
+> ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.
+
 ## Политика поддержки
 
-Only the latest version of Material-UI is supported. We don't yet have the resources to offer [LTS](https://en.wikipedia.org/wiki/Long-term_support) releases.
+Find details on the [supported versions](/getting-started/support/#supported-versions).
 
 ## Deprecation practices
 
@@ -64,7 +65,7 @@ To make these transitions as easy as possible:
 
 ### Deprecation policy
 
-- Deprecated features iare announced n the changelog, and when possible, with warnings at runtime.
+- Deprecated features are announced in the changelog, and when possible, with warnings at runtime.
 - When a deprecation is announced, recommended update path is provided.
 - Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
 - Peer dependency updates (React) that require changes to your apps are only made in a major release.

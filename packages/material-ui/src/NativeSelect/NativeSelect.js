@@ -39,12 +39,22 @@ export const styles = theme => ({
     '&:not([multiple]) option, &:not([multiple]) optgroup': {
       backgroundColor: theme.palette.background.paper,
     },
+    '&&': {
+      paddingRight: 24,
+    },
   },
   /* Styles applied to the select component if `variant="filled"`. */
-  filled: {},
+  filled: {
+    '&&': {
+      paddingRight: 32,
+    },
+  },
   /* Styles applied to the select component if `variant="outlined"`. */
   outlined: {
     borderRadius: theme.shape.borderRadius,
+    '&&': {
+      paddingRight: 32,
+    },
   },
   /* Styles applied to the select component `selectMenu` class. */
   selectMenu: {
@@ -58,12 +68,16 @@ export const styles = theme => ({
   /* Styles applied to the icon component. */
   icon: {
     // We use a position absolute over a flexbox in order to forward the pointer events
-    // to the input.
+    // to the input and to support wrapping tags..
     position: 'absolute',
     right: 0,
     top: 'calc(50% - 12px)', // Center vertically
     color: theme.palette.action.active,
     pointerEvents: 'none', // Don't block pointer events on the select under the icon.
+  },
+  /* Styles applied to the icon component if the popup is open. */
+  iconOpen: {
+    transform: 'rotate(180deg)',
   },
   /* Styles applied to the icon component if `variant="filled"`. */
   iconFilled: {
@@ -101,7 +115,6 @@ const NativeSelect = React.forwardRef(function NativeSelect(props, ref) {
     // Most of the logic is implemented in `NativeSelectInput`.
     // The `Select` component is a simple API wrapper to expose something better to play with.
     inputComponent: NativeSelectInput,
-    select: true,
     inputProps: {
       children,
       classes,

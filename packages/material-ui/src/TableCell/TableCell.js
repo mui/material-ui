@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import { darken, fade, lighten } from '../styles/colorManipulator';
 import TableContext from '../Table/TableContext';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
@@ -22,22 +22,17 @@ export const styles = theme => ({
         : darken(fade(theme.palette.divider, 1), 0.68)
     }`,
     textAlign: 'left',
-    padding: '14px 40px 14px 16px',
-    '&:last-child': {
-      paddingRight: 16,
-    },
+    padding: 16,
   },
   /* Styles applied to the root element if `variant="head"` or `context.table.head`. */
   head: {
-    color: theme.palette.text.secondary,
-    fontSize: theme.typography.pxToRem(12),
-    lineHeight: theme.typography.pxToRem(21),
+    color: theme.palette.text.primary,
+    lineHeight: theme.typography.pxToRem(24),
     fontWeight: theme.typography.fontWeightMedium,
   },
   /* Styles applied to the root element if `variant="body"` or `context.table.body`. */
   body: {
     color: theme.palette.text.primary,
-    fontWeight: theme.typography.fontWeightRegular,
   },
   /* Styles applied to the root element if `variant="footer"` or `context.table.footer`. */
   footer: {
@@ -101,11 +96,15 @@ export const styles = theme => ({
     position: 'sticky',
     top: 0,
     left: 0,
-    zIndex: 1,
+    zIndex: 2,
     backgroundColor: theme.palette.background.default,
   },
 });
 
+/**
+ * The component renders a `<th>` element when the parent context is a header
+ * or otherwise a `<td>` element.
+ */
 const TableCell = React.forwardRef(function TableCell(props, ref) {
   const {
     align = 'inherit',
@@ -148,11 +147,9 @@ const TableCell = React.forwardRef(function TableCell(props, ref) {
       ref={ref}
       className={clsx(
         classes.root,
+        classes[variant],
         {
-          [classes.head]: variant === 'head',
           [classes.stickyHeader]: variant === 'head' && table && table.stickyHeader,
-          [classes.body]: variant === 'body',
-          [classes.footer]: variant === 'footer',
           [classes[`align${capitalize(align)}`]]: align !== 'inherit',
           [classes[`padding${capitalize(padding)}`]]: padding !== 'default',
           [classes[`size${capitalize(size)}`]]: size !== 'medium',

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, useTheme } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import TreeViewContext from '../TreeView/TreeViewContext';
 
@@ -15,6 +15,7 @@ export const styles = theme => ({
     margin: 0,
     padding: 0,
     outline: 0,
+    WebkitTapHighlightColor: 'transparent',
     '&:focus > $content': {
       backgroundColor: theme.palette.grey[400],
     },
@@ -69,6 +70,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     onFocus,
     onKeyDown,
     TransitionComponent = Collapse,
+    TransitionProps,
     ...other
   } = props;
 
@@ -81,11 +83,12 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     focusPreviousNode,
     handleFirstChars,
     handleLeftArrow,
-    handleNodeMap,
+    addNodeToNodeMap,
+    removeNodeFromNodeMap,
     icons: contextIcons,
     isExpanded,
     isFocused,
-    isTabable,
+    isTabbable,
     setFocusByFirstCharacter,
     toggle,
   } = React.useContext(TreeViewContext);
@@ -96,11 +99,12 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
 
   let icon = iconProp;
 
-  const expandable = Boolean(children);
+  const expandable = Boolean(Array.isArray(children) ? children.length : children);
   const expanded = isExpanded ? isExpanded(nodeId) : false;
   const focused = isFocused ? isFocused(nodeId) : false;
-  const tabable = isTabable ? isTabable(nodeId) : false;
+  const tabbable = isTabbable ? isTabbable(nodeId) : false;
   const icons = contextIcons || {};
+  const theme = useTheme();
 
   if (!icon) {
     if (expandable) {
@@ -111,10 +115,10 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       }
 
       if (!icon) {
-        icon = icon || icons.defaultParentIcon;
+        icon = icons.defaultParentIcon;
       }
     } else {
-      icon = icons.defaultEndIcon;
+      icon = endIcon || icons.defaultEndIcon;
     }
   }
 
@@ -124,7 +128,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
 
     if (expandable) {
-      toggle(nodeId);
+      toggle(event, nodeId);
     }
 
     if (onClick) {
@@ -132,35 +136,52 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     }
   };
 
+  const printableCharacter = (event, key) => {
+    if (key === '*') {
+      expandAllSiblings(event, nodeId);
+      return true;
+    }
+
+    if (isPrintableCharacter(key)) {
+      setFocusByFirstCharacter(nodeId, key);
+      return true;
+    }
+    return false;
+  };
+
+  const handleNextArrow = event => {
+    if (expandable) {
+      if (expanded) {
+        focusNextNode(nodeId);
+      } else {
+        toggle(event);
+      }
+    }
+  };
+
+  const handlePreviousArrow = event => {
+    handleLeftArrow(nodeId, event);
+  };
+
   const handleKeyDown = event => {
     let flag = false;
     const key = event.key;
 
-    const printableCharacter = () => {
-      if (key === '*') {
-        expandAllSiblings(nodeId);
-        flag = true;
-      } else if (isPrintableCharacter(key)) {
-        setFocusByFirstCharacter(nodeId, key);
-        flag = true;
-      }
-    };
-
-    if (event.altKey || event.ctrlKey || event.metaKey) {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.currentTarget !== event.target) {
       return;
     }
     if (event.shift) {
       if (key === ' ' || key === 'Enter') {
         event.stopPropagation();
       } else if (isPrintableCharacter(key)) {
-        printableCharacter();
+        flag = printableCharacter(event, key);
       }
     } else {
       switch (key) {
         case 'Enter':
         case ' ':
           if (nodeRef.current === event.currentTarget && expandable) {
-            toggle();
+            toggle(event);
             flag = true;
           }
           event.stopPropagation();
@@ -174,17 +195,20 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
           flag = true;
           break;
         case 'ArrowRight':
-          if (expandable) {
-            if (expanded) {
-              focusNextNode(nodeId);
-            } else {
-              toggle();
-            }
+          if (theme.direction === 'rtl') {
+            handlePreviousArrow(event);
+          } else {
+            handleNextArrow(event);
+            flag = true;
           }
-          flag = true;
           break;
         case 'ArrowLeft':
-          handleLeftArrow(nodeId, event);
+          if (theme.direction === 'rtl') {
+            handleNextArrow(event);
+            flag = true;
+          } else {
+            handlePreviousArrow(event);
+          }
           break;
         case 'Home':
           focusFirstNode();
@@ -196,7 +220,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
           break;
         default:
           if (isPrintableCharacter(key)) {
-            printableCharacter();
+            flag = printableCharacter(event, key);
           }
       }
     }
@@ -212,7 +236,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   };
 
   const handleFocus = event => {
-    if (!focused && tabable) {
+    if (!focused && tabbable) {
       focus(nodeId);
     }
 
@@ -222,11 +246,20 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   };
 
   React.useEffect(() => {
-    const childIds = React.Children.map(children, child => child.props.nodeId);
-    if (handleNodeMap) {
-      handleNodeMap(nodeId, childIds);
+    const childIds = React.Children.map(children, child => child.props.nodeId) || [];
+    if (addNodeToNodeMap) {
+      addNodeToNodeMap(nodeId, childIds);
     }
-  }, [children, nodeId, handleNodeMap]);
+  }, [children, nodeId, addNodeToNodeMap]);
+
+  React.useEffect(() => {
+    if (removeNodeFromNodeMap) {
+      return () => {
+        removeNodeFromNodeMap(nodeId);
+      };
+    }
+    return undefined;
+  }, [nodeId, removeNodeFromNodeMap]);
 
   React.useEffect(() => {
     if (handleFirstChars && label) {
@@ -250,7 +283,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       onFocus={handleFocus}
       aria-expanded={expandable ? expanded : null}
       ref={handleRef}
-      tabIndex={tabable ? 0 : -1}
+      tabIndex={tabbable ? 0 : -1}
       {...other}
     >
       <div className={classes.content} onClick={handleClick} ref={contentRef}>
@@ -266,6 +299,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
           in={expanded}
           component="ul"
           role="group"
+          {...TransitionProps}
         >
           {children}
         </TransitionComponent>
@@ -330,8 +364,13 @@ TreeItem.propTypes = {
   onKeyDown: PropTypes.func,
   /**
    * The component used for the transition.
+   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */
   TransitionComponent: PropTypes.elementType,
+  /**
+   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiTreeItem' })(TreeItem);

@@ -17,7 +17,7 @@ const StyledTextField = styled(TextField)`
       border-color: green;
     }
   }
-`;
+` as typeof TextField;
 
 export default function GlobalClassName() {
   return (

@@ -17,6 +17,7 @@ export interface BaseTextFieldProps
   > {
   autoComplete?: string;
   autoFocus?: boolean;
+  color?: 'primary' | 'secondary';
   children?: React.ReactNode;
   defaultValue?: unknown;
   disabled?: boolean;
@@ -35,6 +36,7 @@ export interface BaseTextFieldProps
   required?: boolean;
   rows?: string | number;
   rowsMax?: string | number;
+  size?: 'small' | 'medium';
   select?: boolean;
   SelectProps?: Partial<SelectProps>;
   type?: string;

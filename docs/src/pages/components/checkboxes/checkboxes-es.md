@@ -3,7 +3,7 @@ title: Checkbox React component
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Casillas de Verificación
+# Checkbox
 
 <p class="description">Los Checkbox permiten al usuario seleccionar uno o más elementos de un conjunto.</p>
 
@@ -33,13 +33,19 @@ Puede cambiar la ubicación de la etiqueta:
 
 Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
+{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
+
+## When to use
+
+- [Checkboxes vs. Botones de selección](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Checkboxes vs. Interruptores](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
 ## Accesibilidad
 
-Todos los controles de formulario deben tener etiquetas, y esto incluye radio buttons, checkboxes, and switches. En la mayoría de los casos, esto se hace usando el elemento `<label>` ([FormControlLabel](/api/form-control-label/)).
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#checkbox)
 
-Cuando no se puede usar una etiqueta, es necesario agregar un atributo directamente al componente de entrada. En este caso, puede aplicar el atributo adicional (por ejemplo, `aria-label`, `aria-labelledby`, `title`) a través de la propiedad `inputProps`.
+- Todos los controles de formulario deben tener etiquetas, y esto incluye radio buttons, checkboxes, and switches. En la mayoría de los casos, esto se hace usando el elemento `<label>` ([FormControlLabel](/api/form-control-label/)).
+- Cuando no se puede usar una etiqueta, es necesario agregar un atributo directamente al componente de entrada. En este caso, puede aplicar el atributo adicional (por ejemplo, `aria-label`, `aria-labelledby`, `title`) a través de la propiedad `inputProps`.
 
 ```jsx
 <Checkbox
@@ -47,7 +53,3 @@ Cuando no se puede usar una etiqueta, es necesario agregar un atributo directame
   inputProps={{ 'aria-label': 'Checkbox A' }}
 />
 ```
-
-## Guía
-
-- [Checkboxes vs. Botones de selección](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

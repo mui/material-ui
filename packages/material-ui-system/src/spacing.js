@@ -1,4 +1,3 @@
-import warning from 'warning';
 import responsivePropType from './responsivePropType';
 import { handleBreakpoints } from './breakpoints';
 import merge from './merge';
@@ -84,14 +83,17 @@ function getTransformer(theme) {
 
   if (Array.isArray(themeSpacing)) {
     return abs => {
-      warning(
-        abs <= themeSpacing.length - 1,
-        [
-          `@material-ui/system: the value provided (${abs}) overflows.`,
-          `The supported values are: ${JSON.stringify(themeSpacing)}.`,
-          `${abs} > ${themeSpacing.length - 1}, you need to add the missing values.`,
-        ].join('\n'),
-      );
+      if (process.env.NODE_ENV !== 'production') {
+        if (abs > themeSpacing.length - 1) {
+          console.error(
+            [
+              `@material-ui/system: the value provided (${abs}) overflows.`,
+              `The supported values are: ${JSON.stringify(themeSpacing)}.`,
+              `${abs} > ${themeSpacing.length - 1}, you need to add the missing values.`,
+            ].join('\n'),
+          );
+        }
+      }
 
       return themeSpacing[abs];
     };
@@ -101,13 +103,14 @@ function getTransformer(theme) {
     return themeSpacing;
   }
 
-  warning(
-    false,
-    [
-      `@material-ui/system: the \`theme.spacing\` value (${themeSpacing}) is invalid.`,
-      'It should be a number, an array or a function.',
-    ].join('\n'),
-  );
+  if (process.env.NODE_ENV !== 'production') {
+    console.error(
+      [
+        `@material-ui/system: the \`theme.spacing\` value (${themeSpacing}) is invalid.`,
+        'It should be a number, an array or a function.',
+      ].join('\n'),
+    );
+  }
 
   return () => undefined;
 }

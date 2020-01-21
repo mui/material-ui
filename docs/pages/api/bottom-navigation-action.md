@@ -42,11 +42,11 @@ Any other props supplied will be provided to the root element ([ButtonBase](/api
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiBottomNavigationAction-root</span> | Styles applied to the root element.
-| <span class="prop-name">selected</span> | <span class="prop-name">Mui-selected</span> | Pseudo-class applied to the root element if selected.
-| <span class="prop-name">iconOnly</span> | <span class="prop-name">MuiBottomNavigationAction-iconOnly</span> | Pseudo-class applied to the root element if `showLabel={false}` and not selected.
-| <span class="prop-name">wrapper</span> | <span class="prop-name">MuiBottomNavigationAction-wrapper</span> | Styles applied to the span element that wraps the icon and label.
-| <span class="prop-name">label</span> | <span class="prop-name">MuiBottomNavigationAction-label</span> | Styles applied to the label's span element.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiBottomNavigationAction-root</span> | Styles applied to the root element.
+| <span class="prop-name">selected</span> | <span class="prop-name">.Mui-selected</span> | Pseudo-class applied to the root element if selected.
+| <span class="prop-name">iconOnly</span> | <span class="prop-name">.MuiBottomNavigationAction-iconOnly</span> | Pseudo-class applied to the root element if `showLabel={false}` and not selected.
+| <span class="prop-name">wrapper</span> | <span class="prop-name">.MuiBottomNavigationAction-wrapper</span> | Styles applied to the span element that wraps the icon and label.
+| <span class="prop-name">label</span> | <span class="prop-name">.MuiBottomNavigationAction-label</span> | Styles applied to the label's span element.
 
 You can override the style of the component thanks to one of these customization points:
 

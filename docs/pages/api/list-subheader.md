@@ -43,12 +43,12 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiListSubheader-root</span> | Styles applied to the root element.
-| <span class="prop-name">colorPrimary</span> | <span class="prop-name">MuiListSubheader-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
-| <span class="prop-name">colorInherit</span> | <span class="prop-name">MuiListSubheader-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
-| <span class="prop-name">gutters</span> | <span class="prop-name">MuiListSubheader-gutters</span> | Styles applied to the inner `component` element if `disableGutters={false}`.
-| <span class="prop-name">inset</span> | <span class="prop-name">MuiListSubheader-inset</span> | Styles applied to the root element if `inset={true}`.
-| <span class="prop-name">sticky</span> | <span class="prop-name">MuiListSubheader-sticky</span> | Styles applied to the root element if `disableSticky={false}`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiListSubheader-root</span> | Styles applied to the root element.
+| <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiListSubheader-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
+| <span class="prop-name">colorInherit</span> | <span class="prop-name">.MuiListSubheader-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
+| <span class="prop-name">gutters</span> | <span class="prop-name">.MuiListSubheader-gutters</span> | Styles applied to the inner `component` element if `disableGutters={false}`.
+| <span class="prop-name">inset</span> | <span class="prop-name">.MuiListSubheader-inset</span> | Styles applied to the root element if `inset={true}`.
+| <span class="prop-name">sticky</span> | <span class="prop-name">.MuiListSubheader-sticky</span> | Styles applied to the root element if `disableSticky={false}`.
 
 You can override the style of the component thanks to one of these customization points:
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import { expect } from 'chai';
 import { getClasses } from '@material-ui/core/test-utils';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { createClientRender } from 'test/utils/createClientRender';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import NotchedOutline from './NotchedOutline';
 
 describe('<NotchedOutline />', () => {
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
 
   let classes;
   const defaultProps = {
@@ -16,10 +16,6 @@ describe('<NotchedOutline />', () => {
 
   before(() => {
     classes = getClasses(<NotchedOutline {...defaultProps} />);
-  });
-
-  after(() => {
-    cleanup();
   });
 
   it('should pass props', () => {
@@ -40,25 +36,25 @@ describe('<NotchedOutline />', () => {
 
   it('should set alignment rtl', () => {
     const { container: container1 } = render(
-      <MuiThemeProvider
+      <ThemeProvider
         theme={createMuiTheme({
           direction: 'ltr',
         })}
       >
         <NotchedOutline {...defaultProps} />
-      </MuiThemeProvider>,
+      </ThemeProvider>,
     );
     expect(container1.querySelector('fieldset').style.paddingLeft).to.equal('8px');
     expect(container1.querySelector('legend').style.width).to.equal('35px');
 
     const { container: container2 } = render(
-      <MuiThemeProvider
+      <ThemeProvider
         theme={createMuiTheme({
           direction: 'rtl',
         })}
       >
         <NotchedOutline {...defaultProps} />
-      </MuiThemeProvider>,
+      </ThemeProvider>,
     );
     expect(container2.querySelector('fieldset').style.paddingRight).to.equal('8px');
     expect(container2.querySelector('legend').style.width).to.equal('35px');

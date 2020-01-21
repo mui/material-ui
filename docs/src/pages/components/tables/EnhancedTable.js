@@ -5,6 +5,7 @@ import { lighten, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
@@ -84,7 +85,7 @@ function EnhancedTableHead(props) {
         <TableCell padding="checkbox">
           <Checkbox
             indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={numSelected === rowCount}
+            checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
             inputProps={{ 'aria-label': 'select all desserts' }}
           />
@@ -98,7 +99,7 @@ function EnhancedTableHead(props) {
           >
             <TableSortLabel
               active={orderBy === headCell.id}
-              direction={order}
+              direction={orderBy === headCell.id ? order : 'asc'}
               onClick={createSortHandler(headCell.id)}
             >
               {headCell.label}
@@ -140,14 +141,8 @@ const useToolbarStyles = makeStyles(theme => ({
           color: theme.palette.text.primary,
           backgroundColor: theme.palette.secondary.dark,
         },
-  spacer: {
-    flex: '1 1 100%',
-  },
-  actions: {
-    color: theme.palette.text.secondary,
-  },
   title: {
-    flex: '0 0 auto',
+    flex: '1 1 100%',
   },
 }));
 
@@ -161,33 +156,29 @@ const EnhancedTableToolbar = props => {
         [classes.highlight]: numSelected > 0,
       })}
     >
-      <div className={classes.title}>
-        {numSelected > 0 ? (
-          <Typography color="inherit" variant="subtitle1">
-            {numSelected} selected
-          </Typography>
-        ) : (
-          <Typography variant="h6" id="tableTitle">
-            Nutrition
-          </Typography>
-        )}
-      </div>
-      <div className={classes.spacer} />
-      <div className={classes.actions}>
-        {numSelected > 0 ? (
-          <Tooltip title="Delete">
-            <IconButton aria-label="delete">
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Tooltip title="Filter list">
-            <IconButton aria-label="filter list">
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
-        )}
-      </div>
+      {numSelected > 0 ? (
+        <Typography className={classes.title} color="inherit" variant="subtitle1">
+          {numSelected} selected
+        </Typography>
+      ) : (
+        <Typography className={classes.title} variant="h6" id="tableTitle">
+          Nutrition
+        </Typography>
+      )}
+
+      {numSelected > 0 ? (
+        <Tooltip title="Delete">
+          <IconButton aria-label="delete">
+            <DeleteIcon />
+          </IconButton>
+        </Tooltip>
+      ) : (
+        <Tooltip title="Filter list">
+          <IconButton aria-label="filter list">
+            <FilterListIcon />
+          </IconButton>
+        </Tooltip>
+      )}
     </Toolbar>
   );
 };
@@ -199,7 +190,6 @@ EnhancedTableToolbar.propTypes = {
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing(3),
   },
   paper: {
     width: '100%',
@@ -207,9 +197,6 @@ const useStyles = makeStyles(theme => ({
   },
   table: {
     minWidth: 750,
-  },
-  tableWrapper: {
-    overflowX: 'auto',
   },
   visuallyHidden: {
     border: 0,
@@ -233,22 +220,22 @@ export default function EnhancedTable() {
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  function handleRequestSort(event, property) {
-    const isDesc = orderBy === property && order === 'desc';
-    setOrder(isDesc ? 'asc' : 'desc');
+  const handleRequestSort = (event, property) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
-  }
+  };
 
-  function handleSelectAllClick(event) {
+  const handleSelectAllClick = event => {
     if (event.target.checked) {
       const newSelecteds = rows.map(n => n.name);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
-  }
+  };
 
-  function handleClick(event, name) {
+  const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];
 
@@ -266,20 +253,20 @@ export default function EnhancedTable() {
     }
 
     setSelected(newSelected);
-  }
+  };
 
-  function handleChangePage(event, newPage) {
+  const handleChangePage = (event, newPage) => {
     setPage(newPage);
-  }
+  };
 
-  function handleChangeRowsPerPage(event) {
-    setRowsPerPage(+event.target.value);
+  const handleChangeRowsPerPage = event => {
+    setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
-  }
+  };
 
-  function handleChangeDense(event) {
+  const handleChangeDense = event => {
     setDense(event.target.checked);
-  }
+  };
 
   const isSelected = name => selected.indexOf(name) !== -1;
 
@@ -289,11 +276,12 @@ export default function EnhancedTable() {
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <EnhancedTableToolbar numSelected={selected.length} />
-        <div className={classes.tableWrapper}>
+        <TableContainer>
           <Table
             className={classes.table}
             aria-labelledby="tableTitle"
             size={dense ? 'small' : 'medium'}
+            aria-label="enhanced table"
           >
             <EnhancedTableHead
               classes={classes}
@@ -338,25 +326,19 @@ export default function EnhancedTable() {
                   );
                 })}
               {emptyRows > 0 && (
-                <TableRow style={{ height: 49 * emptyRows }}>
+                <TableRow style={{ height: (dense ? 33 : 53) * emptyRows }}>
                   <TableCell colSpan={6} />
                 </TableRow>
               )}
             </TableBody>
           </Table>
-        </div>
+        </TableContainer>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
           page={page}
-          backIconButtonProps={{
-            'aria-label': 'previous page',
-          }}
-          nextIconButtonProps={{
-            'aria-label': 'next page',
-          }}
           onChangePage={handleChangePage}
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />

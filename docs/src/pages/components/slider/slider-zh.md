@@ -25,7 +25,7 @@ Discrete sliders can be adjusted to a specific value by referencing its value in
 
 ## 自定义滑块
 
-以下是自定义组件的一些例子。 You can learn more about this in the [overrides documentation page](/customization/components/).
+以下是自定义组件的一些例子。 您可以在[重写文档页面](/customization/components/)中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
@@ -47,7 +47,25 @@ Discrete sliders can be adjusted to a specific value by referencing its value in
 
 {{"demo": "pages/components/slider/VerticalSlider.js"}}
 
-## 无障碍设计
+## Track
+
+The track shows the range available for user selection.
+
+### Removed track
+
+The track can be turned off with `track={false}`.
+
+{{"demo": "pages/components/slider/TrackFalseSlider.js"}}
+
+### Inverted track
+
+The track can be inverted with `track="inverted"`.
+
+{{"demo": "pages/components/slider/TrackInvertedSlider.js"}}
+
+## 可访问性
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
 
 The component handles most of the work necessary to make it accessible. However, you need to make sure that:
 

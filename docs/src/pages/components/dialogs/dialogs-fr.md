@@ -3,7 +3,7 @@ title: Composant React Dialogue
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
-# Dialogs (Dialogues)
+# Dialog (dialogue)
 
 <p class="description">Les boîtes de dialogue informent les utilisateurs sur une tâche et peuvent contenir des informations critiques, nécessiter des décisions ou impliquer plusieurs tâches.</p>
 
@@ -95,9 +95,11 @@ Appuyer sur “Annuler” dans une boîte de dialogue de confirmation ou appuyer
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## Accessibilité
+## Dialogue glissable
 
-Suivez la [section d'accessibilité de la Modal](/components/modal/#accessibility).
+Vous pouvez créer une boîte de dialogue déplaçable à l’aide de [react-draggable](https://github.com/mzabriskie/react-draggable). Pour ce faire, vous pouvez passer le composant importé `Draggable` en tant que proprieté `PaperComponent` du composant `Dialog`. Cela rend la totalité de la boîte de dialogue déplaçable.
+
+{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## Défiler de longues contenu
 
@@ -110,12 +112,10 @@ Essayez la démo ci-dessous pour voir ce que nous voulons dire:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
-## Dialogue glissable
+## Limites
 
-Vous pouvez créer une boîte de dialogue déplaçable à l’aide de [react-draggable](https://github.com/mzabriskie/react-draggable). Pour ce faire, vous pouvez passer le composant importé `Draggable` en tant que proprieté `PaperComponent` du composant `Dialog`. Cela rend la totalité de la boîte de dialogue déplaçable.
+Follow the [Modal limitations section](/components/modal/#limitations).
 
-{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
+## Accessibilité
 
-## Performances
-
-Suivez la [section de performance de la Modal](/components/modal/#performance).
+Suivez la [section d'accessibilité de la Modal](/components/modal/#accessibility).

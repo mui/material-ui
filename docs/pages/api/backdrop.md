@@ -41,8 +41,8 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiBackdrop-root</span> | Styles applied to the root element.
-| <span class="prop-name">invisible</span> | <span class="prop-name">MuiBackdrop-invisible</span> | Styles applied to the root element if `invisible={true}`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiBackdrop-root</span> | Styles applied to the root element.
+| <span class="prop-name">invisible</span> | <span class="prop-name">.MuiBackdrop-invisible</span> | Styles applied to the root element if `invisible={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 
@@ -51,4 +51,8 @@ You can override the style of the component thanks to one of these customization
 - With a theme and an [`overrides` property](/customization/globals/#css).
 
 If that's not sufficient, you can check the [implementation of the component](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Backdrop/Backdrop.js) for more detail.
+
+## Demos
+
+- [Backdrop](/components/backdrop/)
 

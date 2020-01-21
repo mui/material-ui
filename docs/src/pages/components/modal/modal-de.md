@@ -9,14 +9,14 @@ components: Modal
 
 Die Komponente rendered seine `Kinder` - Knoten vor einer Hintergrund - Komponente. The `Modal` offers important features:
 
-- 💄 Manages modal stacking when one-at-a-time just isn't enough.
-- 🔐 Creates a backdrop, for disabling interaction below the modal.
-- 🔐 It disables scrolling of the page content while open.
+- 💄 Verwaltet modales Stacking, wenn eins zu einem Zeitpunkt nicht ausreicht.
+- 🔐 Erstellt einen Hintergrund zum Deaktivieren der Interaktion unter dem Modal.
+- 🔐 Es deaktiviert das Blättern des Seiteninhalts, während es geöffnet ist.
 - ♿️ Der Fokus wird richtig verwaltet. Wechseln des Fokus zum modalen Inhalt und diesen halten belassen, bis der Modal geschlossen ist.
 - ♿️ Fügt die entsprechenden ARIA-Rollen automatisch hinzu.
 - 📦 [5 kB gzipped](/size-snapshot).
 
-> **Terminologieanmerkung**. Der Begriff "modal" bedeutet manchmal "Dialog", aber das ist eine Fehlbezeichnung. Ein modales Fenster beschreibt Teile einer Benutzeroberfläche. Ein Element wird als modal betrachtet, wenn es [die Interaktion mit dem Rest der Anwendung blockiert](https://en.wikipedia.org/wiki/Modal_window).
+> **Terminologieanmerkung**. Der Begriff "modal" bedeutet manchmal "Dialog", aber das ist eine Fehlbezeichnung. A modal window describes parts of a UI. Ein Element wird als modal betrachtet, wenn es [die Interaktion mit dem Rest der Anwendung blockiert](https://en.wikipedia.org/wiki/Modal_window).
 
 Wenn Sie ein modales Dialogfeld erstellen, möchten Sie wahrscheinlich die [Dialog-](/components/dialogs/) Komponente verwenden, anstatt direkt ein Modal zu verwenden. Modal ist ein untergeordnetes Konstrukt, das von den folgenden Komponenten genutzt wird:
 
@@ -48,28 +48,43 @@ Alternatively, you can use [react-spring](https://github.com/react-spring/react-
 
 {{"demo": "pages/components/modal/SpringModal.js"}}
 
-## Barrierefreiheit
-
-- Be sure to add `aria-labelledby="id..."`, referencing the modal title, to the `Modal`. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
-
-```jsx
-<Modal
-  aria-labelledby="modal-title"
-  aria-describedby="modal-description"
->
-  <h2 id="modal-title">
-    My Title
-  </h2>
-  <p id="modal-description">
-    My Description
-  </p>
-</Modal>
-```
-
-- The [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
-
 ## Server-side modal
 
-React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to see the modal, you need to disable the portal feature with the `disablePortal` prop:
+React [doesn't support](https://github.com/facebook/react/issues/13097) the [`createPortal()`](https://reactjs.org/docs/portals.html) API on the server. In order to display the modal, you need to disable the portal feature with the `disablePortal` prop:
 
 {{"demo": "pages/components/modal/ServerModal.js"}}
+
+## Einschränkungen
+
+### Focus trap
+
+The modal moves the focus back to the body of the component if the focus tries to escape it.
+
+This is done for accessibility purposes, however, it might create issues. In the event the users need to interact with another part of the page, e.g. with a chatbot window, you can disable the behavior:
+
+```jsx
+<Modal disableEnforceFocus />
+```
+
+## Barrierefreiheit
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
+
+- Achten Sie darauf, eine Referenzierung des modalen Titels durch `aria-labelledby = "id..."` zu dem `Modal` hinzufügen. Additionally, you may give a description of your modal with the `aria-describedby="id..."` prop on the `Modal`.
+    
+    ```jsx
+    <Modal
+    aria-labelledby="modal-title"
+    aria-describedby="modal-description"
+    >
+    <h2 id="modal-title">
+      My Title
+    </h2>
+    <p id="modal-description">
+      My Description
+    </p>
+    </Modal>
+    ```
+
+- The [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) can help you set the initial focus on the most relevant element, based on your modal content.
+- A modal window overlys on either the primary window or another modal window. Windows under a modal are **inert**. That is, users cannot interact with content outside an active modal window.

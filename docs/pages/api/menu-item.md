@@ -41,10 +41,10 @@ Any other props supplied will be provided to the root element ([ListItem](/api/l
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiMenuItem-root</span> | Styles applied to the root element.
-| <span class="prop-name">gutters</span> | <span class="prop-name">MuiMenuItem-gutters</span> | Styles applied to the root element if `disableGutters={false}`.
-| <span class="prop-name">selected</span> | <span class="prop-name">Mui-selected</span> | Styles applied to the root element if `selected={true}`.
-| <span class="prop-name">dense</span> | <span class="prop-name">MuiMenuItem-dense</span> | Styles applied to the root element if dense.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiMenuItem-root</span> | Styles applied to the root element.
+| <span class="prop-name">gutters</span> | <span class="prop-name">.MuiMenuItem-gutters</span> | Styles applied to the root element if `disableGutters={false}`.
+| <span class="prop-name">selected</span> | <span class="prop-name">.Mui-selected</span> | Styles applied to the root element if `selected={true}`.
+| <span class="prop-name">dense</span> | <span class="prop-name">.MuiMenuItem-dense</span> | Styles applied to the root element if dense.
 
 You can override the style of the component thanks to one of these customization points:
 
@@ -61,6 +61,5 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
-- [Autocomplete](/components/autocomplete/)
 - [Menus](/components/menus/)
 

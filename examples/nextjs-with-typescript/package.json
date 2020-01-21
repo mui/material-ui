@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "latest",
-    "@material-ui/styles": "latest",
     "clsx": "latest",
     "next": "latest",
     "react": "latest",

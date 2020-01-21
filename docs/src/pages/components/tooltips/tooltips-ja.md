@@ -3,7 +3,7 @@ title: Tooltip React component
 components: Tooltip
 ---
 
-# Tooltip
+# Tooltip (ツールチップ)
 
 <p class="description">ユーザーが要素上にマウスを移動したり、要素をフォーカスしたり、タップしたりすると、ツールチップにわかりやすいテキストが表示されます。</p>
 
@@ -25,15 +25,21 @@ components: Tooltip
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
+## Arrow Tooltips
+
+You can use the `arrow` prop to give your tooltip an arrow indicating which element it refers to.
+
+{{"demo": "pages/components/tooltips/ArrowTooltips.js"}}
+
 ## Custom child element
 
-ツールチップは、DOMイベントリスナーをその子要素に適用する必要があります。 子がカスタムReact要素の場合は、そのプロパティを基になるDOM要素に確実に分散させる必要があります。
+ツールチップは、DOMイベントリスナーをその子要素に適用する必要があります。 If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
 
 ```jsx
-function MyComponent(props) {
-  //  Spread the properties to the underlying DOM element.
-  return <div {...props}>Bin</div>
-}
+const MyComponent = React.forwardRef(function MyComponent(props, ref) {
+  //  Spread the props to the underlying DOM element.
+  return <div {...props} ref={ref}>Bin</div>
+});
 
 // ...
 
@@ -70,11 +76,25 @@ function MyComponent(props) {
 
 ## 無効な要素
 
-デフォルトでは無効になっている要素`<button>`はユーザーの操作をトリガーしないため、 `Tooltip`は、ホバーなどの通常のイベントでアクティブになりません。 無効な要素に対応するために、 `span`ような単純なラッパー要素を追加します。
+デフォルトでは無効になっている要素`<button>`はユーザーの操作をトリガーしないため、 `Tooltip`は、ホバーなどの通常のイベントでアクティブになりません。 To accommodate disabled elements, add a simple wrapper element, such as a `span`.
+
+> ⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
 
-## トランジション
+> If you're not wrapping a Material-UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property *pointer-events: none;* to your element when disabled:
+
+```jsx
+<Tooltip title="You don't have permission to do this">
+  <span>
+    <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
+      {'A disabled button'}
+    </button>
+  </span>
+</Tooltip>
+```
+
+## Transitions
 
 別のトランジションを使用します。
 

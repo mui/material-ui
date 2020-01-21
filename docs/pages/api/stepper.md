@@ -24,7 +24,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">activeStep</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | Set the active step (zero based index). |
+| <span class="prop-name">activeStep</span> | <span class="prop-type">number</span> | <span class="prop-default">0</span> | Set the active step (zero based index). Set to -1 to disable all the steps. |
 | <span class="prop-name">alternativeLabel</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If set to 'true' and orientation is horizontal, then the step label will be positioned under the icon. |
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">node</span> |  | Two or more `<Step />` components. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
@@ -43,10 +43,10 @@ Any other props supplied will be provided to the root element ([Paper](/api/pape
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiStepper-root</span> | Styles applied to the root element.
-| <span class="prop-name">horizontal</span> | <span class="prop-name">MuiStepper-horizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
-| <span class="prop-name">vertical</span> | <span class="prop-name">MuiStepper-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
-| <span class="prop-name">alternativeLabel</span> | <span class="prop-name">MuiStepper-alternativeLabel</span> | Styles applied to the root element if `alternativeLabel={true}`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiStepper-root</span> | Styles applied to the root element.
+| <span class="prop-name">horizontal</span> | <span class="prop-name">.MuiStepper-horizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
+| <span class="prop-name">vertical</span> | <span class="prop-name">.MuiStepper-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
+| <span class="prop-name">alternativeLabel</span> | <span class="prop-name">.MuiStepper-alternativeLabel</span> | Styles applied to the root element if `alternativeLabel={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

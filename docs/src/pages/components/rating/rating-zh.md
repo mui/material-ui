@@ -1,9 +1,9 @@
 ---
 title: Rating React component
-components: Rating
+components: 评分
 ---
 
-# Rating
+# 评分
 
 <p class="description">Ratings provide insight regarding others’ opinions and experiences with a product. Users can also rate products they’ve purchased.</p>
 
@@ -36,6 +36,8 @@ Fancy larger or smaller ratings? Use the `size` prop.
 {{"demo": "pages/components/rating/RatingSize.js"}}
 
 ## 可访问性
+
+(WAI tutorial: https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating)
 
 这个组件的可访问性依赖于：
 

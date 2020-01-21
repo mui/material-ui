@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 import fse from 'fs-extra';
 import yargs from 'yargs';
 import path from 'path';

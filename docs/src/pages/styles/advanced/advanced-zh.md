@@ -1,13 +1,16 @@
 # 高级
 
-<p class="description">本节包含了更多 @material-ui/styles 的进阶用法。</p>
+<p class="description">本节包含了更多 @material-ui/core/styles 的进阶用法。</p>
 
 ## 主题
 
 添加` ThemeProvider `到应用程序的顶层，将主题传递到React组件树。 然后，您可以在样式函数中访问主题对象。
 
+> 此示例创建一个新主题。 有关如何自定义默认 Material-UI 主题的信息，参见[主题部分](/customization/theming/)。
+
 ```jsx
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+import DeepChild from './my_components/DeepChild';
 
 const theme = {
   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -30,8 +33,10 @@ function Theming() {
 
 #### `useTheme` hook
 
+用于函数组件：
+
 ```jsx
-import { useTheme } from '@material-ui/styles';
+import { useTheme } from '@material-ui/core/styles';
 
 function DeepChild() {
   const theme = useTheme();
@@ -43,8 +48,10 @@ function DeepChild() {
 
 #### `withTheme` HOC
 
+For use in class or function components:
+
 ```jsx
-import { withTheme } from '@material-ui/styles';
+import { withTheme } from '@material-ui/core/styles';
 
 function DeepChildRaw(props) {
   return <span>{`spacing ${props.theme.spacing}`}</span>;
@@ -70,7 +77,7 @@ const DeepChild = withTheme(DeepChildRaw);
 
 {{"demo": "pages/styles/advanced/ThemeNesting.js"}}
 
-内部主题将 **覆盖** 外部主题。 您可以通过提供一个函数来扩展外部主题：
+内部主题将 **覆盖** 外部主题。 You can extend the outer theme by providing a function:
 
 ```jsx
 <ThemeProvider theme={…} >
@@ -110,7 +117,7 @@ function Parent() {
 
 但是，类名通常是不确定的。 父组件如何覆盖嵌套元素的样式？
 
-### withStyles
+### `withStyles`
 
 这是最简单的情况。 包装组件接受` classes ` 属性， 它简单地合并了样式表提供的类名。
 
@@ -131,7 +138,7 @@ function Parent() {
 }
 ```
 
-### makeStyles
+### `makeStyles`
 
 Hook API需要多写一点模版代码。 您需要转发父级组件的属性到hook作为第一个参数。
 
@@ -175,22 +182,20 @@ JSS使用插件来扩展其核心，允许您挑选所需的功能， 并且只�
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 import rtl from 'jss-rtl'
 
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
 });
 
-function App() {
+export default function App() {
   return (
     <StylesProvider jss={jss}>
       ...
     </StylesProvider>
   );
 }
-
-export default App;
 ```
 
 ## 字符串模板
@@ -227,10 +232,10 @@ const useStyles = makeStyles({
 `StylesProvider`组件的属性 `injectFirst` 会把style标签注入到head的**前部**(意味着更低的权重)。
 
 ```jsx
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
-  {/* 你的组件树。
+  {/* Your component tree.
       样式化组件可以覆盖 Material-UI 的样式。 */}
 </StylesProvider>
 ```
@@ -241,7 +246,7 @@ import { StylesProvider } from '@material-ui/styles';
 
 ```jsx
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStylesBase = makeStyles({
   root: {
@@ -287,7 +292,7 @@ The simplest approach is to add an HTML comment to the `<head>` that determines 
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -295,14 +300,12 @@ const jss = create({
   insertionPoint: 'jss-insertion-point',
 });
 
-function App() {
+export default function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
-
-export default App;
 ```
 
-#### 其他 HTML 元素
+#### Other HTML elements
 
 创建生产环境时, [Create React App](https://github.com/facebook/create-react-app) 会剥离 HTML 注释。 To get around this issue, you can provide a DOM element (other than a comment) as the JSS insertion point, for example, a `<noscript>` element:
 
@@ -315,7 +318,7 @@ export default App;
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -323,11 +326,9 @@ const jss = create({
   insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
-function App() {
+export default function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
-
-export default App;
 ```
 
 #### JS createComment
@@ -336,7 +337,7 @@ codesandbox.io prevents access to the `<head>` element. To get around this issue
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const styleNode = document.createComment('jss-insertion-point');
 document.head.insertBefore(styleNode, document.head.firstChild);
@@ -347,11 +348,9 @@ const jss = create({
   insertionPoint: 'jss-insertion-point',
 });
 
-function App() {
+export default function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
-
-export default App;
 ```
 
 ## 服务器端呈现
@@ -360,7 +359,7 @@ This example returns a string of HTML and inlines the critical CSS required, rig
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheets } from '@material-ui/core/styles';
 
 function render() {
   const sheets = new ServerStyleSheets();
@@ -382,13 +381,13 @@ function render() {
 }
 ```
 
-You can [follow the server side guide](/guides/server-rendering/) for a more detailed example, or read the [`ServerStyleSheets`](/styles/api/#serverstylesheets) API documentation.
+You can [follow the server side guide](/guides/server-rendering/) for a more detailed example, or read the [`ServerStyleSheets` API documentation](/styles/api/#serverstylesheets).
 
 ### Gatsby
 
-There is [an official plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Refer to the plugin's page for setup and usage instructions.
+There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Refer to the plugin's page for setup and usage instructions.
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
+Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
@@ -402,7 +401,7 @@ The class names are generated by [the class name generator](/styles/api/#createg
 
 ### 默认值
 
-By default, the class names generated by `@material-ui/styles` are **non-deterministic**; you can't rely on them to stay the same. Let's take the following style as an example:
+By default, the class names generated by `@material-ui/core/styles` are **non-deterministic**; you can't rely on them to stay the same. Let's take the following style as an example:
 
 ```js
 const useStyles = makeStyles({
@@ -536,7 +535,7 @@ You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/
 
 ### 如何实现CSP？
 
-为了将CSP与Material-UI（和JSS）一起使用，您需要使用nonce。 A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS有[一个很棒的教程](https://github.com/cssinjs/jss/blob/master/docs/csp.md)关于如何使用Express和React Helmet实现这一目标。 对于基本纲要，请继续阅读。
+为了将CSP与Material-UI（和JSS）一起使用，您需要使用nonce。 A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS 有一个关于如何使用 Express 和 React Helmet 实现这一目标的[很棒的教程](https://github.com/cssinjs/jss/blob/master/docs/csp.md)。 对于基本纲要，请继续阅读。
 
 CSP nonce是Base 64编码的字符串。 你可以这样生成一个：
 
@@ -563,8 +562,14 @@ If you are using Server-Side Rendering (SSR), you should pass the nonce in the `
 />
 ```
 
-然后，您必须将此随机数传递给JSS，以便将其添加到后续`<style>`标记中。 The client-side gets the nonce from a header. 无论是否使用SSR，都必须包含此标头。
+然后，您必须将此随机数传递给JSS，以便将其添加到后续`<style>`标记中。
 
-```jsx
-<meta property="csp-nonce" content={nonce} />
+The way that you do this is by passing a `<meta property="csp-nonce" content={nonce} />` tag in the `<head>` of your HTML. JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
+
+无论是否使用SSR，都必须包含此标头。 Here is an example of what a fictional header could look like:
+
+```html
+<head>
+  <meta property="csp-nonce" content="this-is-a-nonce-123" />
+</head>
 ```

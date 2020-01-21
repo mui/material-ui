@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/utils",
-  "version": "4.4.0",
+  "version": "4.7.1",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Utils - Utility functions for Material-UI.",
@@ -39,7 +39,7 @@
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "prop-types": "^15.7.2",
-    "react-is": "^16.8.6"
+    "react-is": "^16.8.0"
   },
   "devDependencies": {},
   "sideEffects": false,

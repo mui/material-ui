@@ -1,13 +1,16 @@
-# Advanced
+# Дополнительные параметры
 
-<p class="description">This section covers more advanced usage of @material-ui/styles.</p>
+<p class="description">В этом разделе описывается более сложное использование @material-ui/core/styles.</p>
 
-## Theming
+## Темизация
 
-Add a `ThemeProvider` to the top level of your app to pass the theme down the React component tree. Then, you can access the theme object in style functions.
+Add a `ThemeProvider` to the top level of your app to pass a theme down the React component tree. Then, you can access the theme object in style functions.
+
+> This example creates a new theme. See the [theming section](/customization/theming/) for how to customize the default Material-UI theme.
 
 ```jsx
-import { ThemeProvider } from '@material-ui/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+import DeepChild from './my_components/DeepChild';
 
 const theme = {
   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -24,14 +27,16 @@ function Theming() {
 
 {{"demo": "pages/styles/advanced/Theming.js"}}
 
-### Accessing the theme in a component
+### Доступ к теме в компоненте
 
-You might need to access the theme variables inside your React components.
+Вы можете получить доступ к переменным темы внутри ваших React-компонент.
 
 #### `useTheme` hook
 
+Для использования в функциональных компонентах:
+
 ```jsx
-import { useTheme } from '@material-ui/styles';
+import { useTheme } from '@material-ui/core/styles';
 
 function DeepChild() {
   const theme = useTheme();
@@ -43,8 +48,10 @@ function DeepChild() {
 
 #### `withTheme` HOC
 
+Для использования в классовых или функциональных компонентах:
+
 ```jsx
-import { withTheme } from '@material-ui/styles';
+import { withTheme } from '@material-ui/core/styles';
 
 function DeepChildRaw(props) {
   return <span>{`spacing ${props.theme.spacing}`}</span>;
@@ -57,7 +64,7 @@ const DeepChild = withTheme(DeepChildRaw);
 
 ### Вложенные темы
 
-You can nest multiple theme providers. This can be really useful when dealing with different areas of your application that have distinct appearance from each other.
+Вы можете вкладывать несколько theme providers друг в друга. Это может быть очень полезно при работе с различными областями вашего приложения, которые отличаются друг от друга.
 
 ```jsx
 <ThemeProvider theme={outerTheme}>
@@ -70,7 +77,7 @@ You can nest multiple theme providers. This can be really useful when dealing wi
 
 {{"demo": "pages/styles/advanced/ThemeNesting.js"}}
 
-The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
+Внутренняя тема переопределит вашу **внешнюю тему**. Вы можете расширить внешнюю тему, предоставив функцию:
 
 ```jsx
 <ThemeProvider theme={…} >
@@ -81,7 +88,7 @@ The inner theme will **override** the outer theme. You can extend the outer them
 </ThemeProvider>
 ```
 
-## Overriding styles - `classes` prop
+## Переопределение стилей - `classes` prop
 
 The `makeStyles` (hook generator) and `withStyles` (HOC) APIs allow the creation of multiple style rules per style sheet. Each style rule has its own class name. The class names are provided to the component with the `classes` variable. This is particularly useful when styling nested elements in a component.
 
@@ -110,7 +117,7 @@ function Parent() {
 
 However, the class names are often non-deterministic. How can a parent component override the style of a nested element?
 
-### withStyles
+### `withStyles`
 
 This is the simplest case. the wrapped component accepts a `classes` prop, it simply merges the class names provided with the style sheet.
 
@@ -131,7 +138,7 @@ function Parent() {
 }
 ```
 
-### makeStyles
+### `makeStyles`
 
 The hook API requires a bit more work. You have to forward the parent props to the hook as a first argument.
 
@@ -159,9 +166,9 @@ function Parent() {
 
 ## JSS plugins
 
-JSS uses plugins to extend its core, allowing you to cherry-pick the features you need, and only pay the performance overhead for what you are using.
+JSS использует плагины для расширения своего ядра, позволяя вам выбирать нужные функции, и нести издержки производительности только за ту функциональность, которую вы используете.
 
-Not all the plugins are available in Material-UI by default. The following (which is a subset of [jss-preset-default](https://cssinjs.org/jss-preset-default/)) are included:
+Не все плагины доступны в Material-UI по умолчанию. Следующее плагины включены по умолчанию (они является частью [jss-preset-default](https://cssinjs.org/jss-preset-default/) ):
 
 - [jss-plugin-rule-value-function](https://cssinjs.org/jss-plugin-rule-value-function/)
 - [jss-plugin-global](https://cssinjs.org/jss-plugin-global/)
@@ -171,31 +178,29 @@ Not all the plugins are available in Material-UI by default. The following (whic
 - [jss-plugin-vendor-prefixer](https://cssinjs.org/jss-plugin-vendor-prefixer/)
 - [jss-plugin-props-sort](https://cssinjs.org/jss-plugin-props-sort/)
 
-Of course, you are free to use additional plugins. Here is an example with the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
+Of course, you are free to use additional plugins. Вот пример с плагином [jss-rtl](https://github.com/alitaheri/jss-rtl).
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 import rtl from 'jss-rtl'
 
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
 });
 
-function App() {
+export default function App() {
   return (
     <StylesProvider jss={jss}>
       ...
     </StylesProvider>
   );
 }
-
-export default App;
 ```
 
 ## String templates
 
-If you prefer CSS syntax over JSS, you can use the [jss-plugin-template](https://cssinjs.org/jss-plugin-template/) plugin.
+Если вы предпочитаете CSS-синтаксис над JSS, вы можете использовать плагин [jss-plugin-template](https://cssinjs.org/jss-plugin-template/).
 
 ```jsx
 const useStyles = makeStyles({
@@ -212,11 +217,11 @@ const useStyles = makeStyles({
 });
 ```
 
-Note that this doesn't support selectors, or nested rules.
+Обратите внимание, что это решение не поддерживает селекторы или вложенные правила.
 
 {{"demo": "pages/styles/advanced/StringTemplates.js"}}
 
-## CSS injection order
+## Порядок внедрения CSS
 
 > It's **really important** to understand how the CSS specificity is calculated by the browser, as it's one of the key elements to know when overriding styles. You are encouraged to read this MDN paragraph: [How is specificity calculated?](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#How_is_specificity_calculated)
 
@@ -227,7 +232,7 @@ By default, the style tags are injected **last** in the `<head>` element of the 
 The `StylesProvider` component has an `injectFirst` prop to inject the style tags **first** in the head (less priority):
 
 ```jsx
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree.
@@ -241,7 +246,7 @@ The injection of style tags happens in the **same order** as the `makeStyles` / 
 
 ```jsx
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStylesBase = makeStyles({
   root: {
@@ -287,7 +292,7 @@ The simplest approach is to add an HTML comment to the `<head>` that determines 
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -295,14 +300,12 @@ const jss = create({
   insertionPoint: 'jss-insertion-point',
 });
 
-function App() {
+export default function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
-
-export default App;
 ```
 
-#### Другой HTML-элемент
+#### Other HTML elements
 
 [Create React App](https://github.com/facebook/create-react-app) strips HTML comments when creating the production build. To get around this issue, you can provide a DOM element (other than a comment) as the JSS insertion point, for example, a `<noscript>` element:
 
@@ -315,7 +318,7 @@ export default App;
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -323,11 +326,9 @@ const jss = create({
   insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
-function App() {
+export default function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
-
-export default App;
 ```
 
 #### JS createComment
@@ -336,7 +337,7 @@ codesandbox.io prevents access to the `<head>` element. To get around this issue
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 const styleNode = document.createComment('jss-insertion-point');
 document.head.insertBefore(styleNode, document.head.firstChild);
@@ -347,11 +348,9 @@ const jss = create({
   insertionPoint: 'jss-insertion-point',
 });
 
-function App() {
+export default function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
-
-export default App;
 ```
 
 ## Server-side rendering
@@ -360,7 +359,7 @@ This example returns a string of HTML and inlines the critical CSS required, rig
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheets } from '@material-ui/core/styles';
 
 function render() {
   const sheets = new ServerStyleSheets();
@@ -382,13 +381,13 @@ function render() {
 }
 ```
 
-You can [follow the server side guide](/guides/server-rendering/) for a more detailed example, or read the [`ServerStyleSheets`](/styles/api/#serverstylesheets) API documentation.
+You can [follow the server side guide](/guides/server-rendering/) for a more detailed example, or read the [`ServerStyleSheets` API documentation](/styles/api/#serverstylesheets).
 
 ### Gatsby
 
-There is [an official plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Refer to the plugin's page for setup and usage instructions.
+There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Refer to the plugin's page for setup and usage instructions.
 
-Refer to [this example project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
+Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
@@ -400,9 +399,9 @@ Refer to [this example project](https://github.com/mui-org/material-ui/blob/mast
 
 The class names are generated by [the class name generator](/styles/api/#creategenerateclassname-options-class-name-generator).
 
-### Default
+### По-умолчанию
 
-By default, the class names generated by `@material-ui/styles` are **non-deterministic**; you can't rely on them to stay the same. Let's take the following style as an example:
+By default, the class names generated by `@material-ui/core/styles` are **non-deterministic**; you can't rely on them to stay the same. Let's take the following style as an example:
 
 ```js
 const useStyles = makeStyles({
@@ -563,8 +562,14 @@ If you are using Server-Side Rendering (SSR), you should pass the nonce in the `
 />
 ```
 
-Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags. The client-side gets the nonce from a header. You must include this header regardless of whether or not SSR is used.
+Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags.
 
-```jsx
-<meta property="csp-nonce" content={nonce} />
+The way that you do this is by passing a `<meta property="csp-nonce" content={nonce} />` tag in the `<head>` of your HTML. JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
+
+You must include this header regardless of whether or not SSR is used. Here is an example of what a fictional header could look like:
+
+```html
+<head>
+  <meta property="csp-nonce" content="this-is-a-nonce-123" />
+</head>
 ```

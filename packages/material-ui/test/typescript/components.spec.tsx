@@ -285,7 +285,7 @@ const CardMediaTest = () => (
 const ChipsTest = () => (
   <div>
     <Chip label="Basic Chip" />
-    <Chip avatar={<Avatar>MB</Avatar>} label="Clickable Chip" onClick={e => log(e)} />
+    <Chip avatar={<Avatar>M</Avatar>} label="Clickable Chip" onClick={e => log(e)} />
     <Chip avatar={<Avatar src={'image.bmp'} />} label="Deletable Chip" onDelete={e => log(e)} />
     <Chip
       avatar={
@@ -716,7 +716,7 @@ const SnackbarTest = () => (
         horizontal: 'left',
       }}
       open={true}
-      autoHideDuration={6e3}
+      autoHideDuration={6000}
       onClose={e => log(e)}
       ContentProps={
         {
@@ -997,7 +997,7 @@ const TransitionTest = () => (
 
 const BackdropTest = () => <Backdrop open onTouchMove={() => {}} />;
 
-const PopoverTest = () => <Popover open ModalClasses={{ root: 'foo', hidden: 'bar' }} />;
+const PopoverTest = () => <Popover open />;
 
 const InputLabelTest = () => (
   <InputLabel

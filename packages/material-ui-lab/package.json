@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/lab",
-  "version": "4.0.0-alpha.26",
+  "version": "4.0.0-alpha.39",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Lab - Incubator for Material-UI React components.",
@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://github.com/mui-org/material-ui/next/master/packages/material-ui-lab",
+  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/material-ui-lab",
   "scripts": {
     "build": "yarn build:cjs && yarn build:esm && yarn build:es && yarn build:copy-files",
     "build:cjs": "cross-env NODE_ENV=production BABEL_ENV=cjs babel --config-file ../../babel.config.js ./src --out-dir ./build --ignore \"**/*.test.js\"",
@@ -34,16 +34,22 @@
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "peerDependencies": {
-    "@material-ui/core": "^4.4.0",
+    "@material-ui/core": "^4.7.0",
+    "@types/react": "^16.8.6",
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/utils": "^4.4.0",
+    "@material-ui/utils": "^4.7.1",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
-    "warning": "^4.0.3"
+    "react-is": "^16.8.0"
   },
   "devDependencies": {},
   "sideEffects": false,

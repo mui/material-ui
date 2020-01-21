@@ -4,31 +4,32 @@ import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 
 const columns = [
-  { id: 'name', label: 'Name', minWidth: 200 },
+  { id: 'name', label: 'Name', minWidth: 170 },
   { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
   {
     id: 'population',
     label: 'Population',
-    minWidth: 120,
+    minWidth: 170,
     align: 'right',
     format: value => value.toLocaleString(),
   },
   {
     id: 'size',
     label: 'Size\u00a0(km\u00b2)',
-    minWidth: 120,
+    minWidth: 170,
     align: 'right',
     format: value => value.toLocaleString(),
   },
   {
     id: 'density',
     label: 'Density',
-    minWidth: 120,
+    minWidth: 170,
     align: 'right',
     format: value => value.toFixed(2),
   },
@@ -61,9 +62,8 @@ const useStyles = makeStyles({
   root: {
     width: '100%',
   },
-  tableWrapper: {
-    maxHeight: 407,
-    overflow: 'auto',
+  container: {
+    maxHeight: 440,
   },
 });
 
@@ -72,19 +72,19 @@ export default function StickyHeadTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  function handleChangePage(event, newPage) {
+  const handleChangePage = (event, newPage) => {
     setPage(newPage);
-  }
+  };
 
-  function handleChangeRowsPerPage(event) {
+  const handleChangeRowsPerPage = event => {
     setRowsPerPage(+event.target.value);
     setPage(0);
-  }
+  };
 
   return (
     <Paper className={classes.root}>
-      <div className={classes.tableWrapper}>
-        <Table stickyHeader>
+      <TableContainer className={classes.container}>
+        <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
               {columns.map(column => (
@@ -115,19 +115,13 @@ export default function StickyHeadTable() {
             })}
           </TableBody>
         </Table>
-      </div>
+      </TableContainer>
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}
         page={page}
-        backIconButtonProps={{
-          'aria-label': 'previous page',
-        }}
-        nextIconButtonProps={{
-          'aria-label': 'next page',
-        }}
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}
       />

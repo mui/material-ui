@@ -3,7 +3,7 @@ title: Button React component
 components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 ---
 
-# Buttons
+# Button
 
 <p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
 
@@ -25,6 +25,10 @@ The last example of this demo show how to use an upload button.
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
+You can remove the elevation with the `disableElevation` prop.
+
+{{"demo": "pages/components/buttons/DisableElevation.js"}}
+
 ## Text Buttons
 
 [Text buttons](https://material.io/design/components/buttons.html#text-button)
@@ -43,8 +47,6 @@ In cards, text buttons help maintain an emphasis on card content.
 are medium-emphasis buttons. They contain actions that are important,
 but aren’t the primary action in an app.
 
-### Alternatives
-
 Outlined buttons are also a lower emphasis alternative to contained buttons,
 or a higher emphasis alternative to text buttons.
 
@@ -52,11 +54,19 @@ or a higher emphasis alternative to text buttons.
 
 ## Grouped Buttons
 
-The ButtonGroup component can be used to group outlined (the default) or contained buttons.
+The `ButtonGroup` component can be used to group buttons.
 
 {{"demo": "pages/components/buttons/GroupedButtons.js"}}
 
-## Split Button
+### Group sizes and colors
+
+{{"demo": "pages/components/buttons/GroupSizesColors.js"}}
+
+### Group orientation
+
+{{"demo": "pages/components/buttons/GroupOrientation.js"}}
+
+### Split Button
 
 ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
 
@@ -84,7 +94,11 @@ The Zoom transition can be used to achieve this. Note that since both the exitin
 animations are triggered at the same time, we use `enterDelay` to allow the outgoing Floating Action Button's
 animation to finish before the new one enters.
 
-{{"demo": "pages/components/buttons/FloatingActionButtonZoom.js"}}
+{{"demo": "pages/components/buttons/FloatingActionButtonZoom.js", "bg": true}}
+
+## Upload button
+
+{{"demo": "pages/components/buttons/UploadButtons.js"}}
 
 ## Sizes
 
@@ -112,7 +126,7 @@ deselected, such as adding or removing a star to an item.
 Here are some examples of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/components/buttons/CustomizedButtons.js"}}
+{{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
 👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/button).
 
@@ -125,7 +139,7 @@ You can take advantage of this lower level component to build custom interaction
 
 ## Third-party routing library
 
-One common use case is to use the button to trigger a navigation to a new page.
+One common use case is to use the button to trigger navigation to a new page.
 The `ButtonBase` component provides a property to handle this use case: `component`.
 However for certain focus polyfills `ButtonBase` requires the DOM node of the provided
 component. This is achieved by attaching a ref to the component and expecting that the
@@ -133,9 +147,38 @@ component forwards this ref to the underlying DOM node.
 Given that many of the interactive components rely on `ButtonBase`, you should be
 able to take advantage of it everywhere.
 
-Here is an integration example with react-router:
+Here is an [integration example with react-router](/guides/composition/#button).
 
-{{"demo": "pages/components/buttons/ButtonRouter.js", "defaultCodeOpen": true}}
+## Limitations
 
-_Note: Creating the Button components is necessary to prevent unexpected unmounting.
-You can read more about it in the [component prop guide](/guides/composition/#component-property)._
+### Cursor not-allowed
+
+The ButtonBase component sets `pointer-events: none;` on disabled buttons, which prevents the appearance of a disabled cursor.
+
+If you wish to use `not-allowed`, you have two options:
+
+1. **CSS only**. You can remove the pointer events style on the disabled state of the `<button>` element:
+
+  ```css
+  .MuiButtonBase-root:disabled {
+    cursor: not-allowed;
+    pointer-events: auto;
+  }
+  ```
+
+  However:
+
+  - You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/components/tooltips/#disabled-elements)
+  - The cursor won't change if you render something other than a button element, for instance, a link `<a>` element.
+
+2. **DOM change**. You can wrap the button:
+
+  ```jsx
+  <span style={{ cursor: 'not-allowed' }}>
+    <Button component={Link} disabled>
+      disabled
+    </Button>
+  </span>
+  ```
+
+  This has the advantage of supporting any element, for instance, a link `<a>` element.

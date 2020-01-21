@@ -88,13 +88,13 @@ export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
-  function handleDrawerOpen() {
+  const handleDrawerOpen = () => {
     setOpen(true);
-  }
+  };
 
-  function handleDrawerClose() {
+  const handleDrawerClose = () => {
     setOpen(false);
-  }
+  };
 
   return (
     <div className={classes.root}>
@@ -134,7 +134,6 @@ export default function MiniDrawer() {
             [classes.drawerClose]: !open,
           }),
         }}
-        open={open}
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>

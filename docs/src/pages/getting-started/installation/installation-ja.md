@@ -28,7 +28,7 @@ Material-UIは[Roboto](https://fonts.google.com/specimen/Roboto)フォントを�
 
 ## フォントアイコン
 
-フォント`アイコン`を使うには、最初に[Material icons](https://material.io/tools/icons/)を追加する必要があります。 こちらは、その時の[手続き](/components/icons/#font-icons)です。 たとえば、Google Web Fontsを用いて、
+In order to use the font `Icon` component, you must first add the [Material icons](https://material.io/tools/icons/) font. こちらは、その時の[手続き](/components/icons/#font-icons)です。 たとえば、Google Web Fontsを用いて、
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />

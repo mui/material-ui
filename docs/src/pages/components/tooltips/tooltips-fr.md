@@ -3,7 +3,7 @@ title: Composant React Info-bulle
 components: Tooltip
 ---
 
-# Tooltips (Info-bulle)
+# Tooltip (Info-bulle)
 
 <p class="description">Les info-bulles affichent un texte informatif lorsque les utilisateurs survolent, se concentrent ou tapent sur un élément.</p>
 
@@ -25,15 +25,21 @@ Here are some examples of customizing the component. Vous pouvez en savoir plus 
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
+## Arrow Tooltips
+
+You can use the `arrow` prop to give your tooltip an arrow indicating which element it refers to.
+
+{{"demo": "pages/components/tooltips/ArrowTooltips.js"}}
+
 ## Élément enfant personnalisé
 
 The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
 
 ```jsx
-function MyComponent(props) {
-  //  Spread the properties to the underlying DOM element.
-  return <div {...props}>Bin</div>
-}
+const MyComponent = React.forwardRef(function MyComponent(props, ref) {
+  //  Spread the props to the underlying DOM element.
+  return <div {...props} ref={ref}>Bin</div>
+});
 
 // ...
 
@@ -62,7 +68,7 @@ Le `Tooltip` enveloppements long texte par défaut pour le rendre lisible.
 
 {{"demo": "pages/components/tooltips/VariableWidth.js"}}
 
-## Interactive
+## Interactif
 
 A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
 
@@ -70,9 +76,23 @@ A tooltip can be interactive. It won't close when the user hovers over the toolt
 
 ## Éléments désactivés
 
-Par éléments désactivés par défaut comme `<button>` ne déclenchent pas les interactions utilisateur si un `infobulle` ne sera pas activée sur les événements normaux comme vol stationnaire. Pour recevoir des éléments handicapés, ajoutez un simple élément d'emballage comme un `durée`.
+Par éléments désactivés par défaut comme `<button>` ne déclenchent pas les interactions utilisateur si un `infobulle` ne sera pas activée sur les événements normaux comme vol stationnaire. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
+
+> ⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
+
+> If you're not wrapping a Material-UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property *pointer-events: none;* to your element when disabled:
+
+```jsx
+<Tooltip title="You don't have permission to do this">
+  <span>
+    <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
+      {'A disabled button'}
+    </button>
+  </span>
+</Tooltip>
+```
 
 ## Les transitions
 

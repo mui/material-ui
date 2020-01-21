@@ -5,9 +5,10 @@ import { refType } from '@material-ui/utils';
 import SwitchBase from '../internal/SwitchBase';
 import RadioButtonIcon from './RadioButtonIcon';
 import { fade } from '../styles/colorManipulator';
-import { capitalize, createChainedFunction } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
+import createChainedFunction from '../utils/createChainedFunction';
 import withStyles from '../styles/withStyles';
-import RadioGroupContext from '../RadioGroup/RadioGroupContext';
+import useRadioGroup from '../RadioGroup/useRadioGroup';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -60,11 +61,13 @@ const Radio = React.forwardRef(function Radio(props, ref) {
     checked: checkedProp,
     classes,
     color = 'secondary',
+    disabled = false,
     name: nameProp,
     onChange: onChangeProp,
+    size = 'medium',
     ...other
   } = props;
-  const radioGroup = React.useContext(RadioGroupContext);
+  const radioGroup = useRadioGroup();
 
   let checked = checkedProp;
   const onChange = createChainedFunction(onChangeProp, radioGroup && radioGroup.onChange);
@@ -83,8 +86,10 @@ const Radio = React.forwardRef(function Radio(props, ref) {
     <SwitchBase
       color={color}
       type="radio"
-      icon={defaultIcon}
-      checkedIcon={defaultCheckedIcon}
+      icon={React.cloneElement(defaultIcon, { fontSize: size === 'small' ? 'small' : 'default' })}
+      checkedIcon={React.cloneElement(defaultCheckedIcon, {
+        fontSize: size === 'small' ? 'small' : 'default',
+      })}
       classes={{
         root: clsx(classes.root, classes[`color${capitalize(color)}`]),
         checked: classes.checked,
@@ -94,6 +99,7 @@ const Radio = React.forwardRef(function Radio(props, ref) {
       checked={checked}
       onChange={onChange}
       ref={ref}
+      disabled={disabled}
       {...other}
     />
   );
@@ -157,6 +163,11 @@ Radio.propTypes = {
    * If `true`, the `input` element will be required.
    */
   required: PropTypes.bool,
+  /**
+   * The size of the radio.
+   * `small` is equivalent to the dense radio styling.
+   */
+  size: PropTypes.oneOf(['small', 'medium']),
   /**
    * The input component prop `type`.
    */

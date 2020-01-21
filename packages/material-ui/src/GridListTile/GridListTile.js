@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import debounce from '../utils/debounce';
 import withStyles from '../styles/withStyles';
-import { isMuiElement } from '../utils/reactHelpers';
+import isMuiElement from '../utils/isMuiElement';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -39,7 +39,10 @@ const fit = (imgEl, classes) => {
     return;
   }
 
-  if (imgEl.width / imgEl.height > imgEl.parentNode.offsetWidth / imgEl.parentNode.offsetHeight) {
+  if (
+    imgEl.width / imgEl.height >
+    imgEl.parentElement.offsetWidth / imgEl.parentElement.offsetHeight
+  ) {
     imgEl.classList.remove(...classes.imgFullWidth.split(' '));
     imgEl.classList.add(...classes.imgFullHeight.split(' '));
   } else {

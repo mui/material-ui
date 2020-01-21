@@ -3,7 +3,7 @@ import { assert, expect } from 'chai';
 import { useFakeTimers, spy } from 'sinon';
 import PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender, within } from 'test/utils/createClientRender';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { createMount, findOutermostIntrinsic } from '@material-ui/core/test-utils';
 import { ThemeProvider } from '@material-ui/styles';
@@ -25,10 +25,6 @@ describe('<Modal />', () => {
 
   beforeEach(() => {
     document.body.setAttribute('style', savedBodyStyle);
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   after(() => {
@@ -53,8 +49,18 @@ describe('<Modal />', () => {
   );
 
   describe('props', () => {
+    let container;
+
+    before(() => {
+      container = document.createElement('div');
+      document.body.appendChild(container);
+    });
+
+    after(() => {
+      document.body.removeChild(container);
+    });
+
     it('should consume theme default props', () => {
-      const container = document.createElement('div');
       const theme = createMuiTheme({ props: { MuiModal: { container } } });
       mount(
         <ThemeProvider theme={theme}>
@@ -236,11 +242,7 @@ describe('<Modal />', () => {
         throw new Error('missing container');
       }
 
-      assert.strictEqual(
-        container2.getAttribute('role'),
-        'document',
-        'should add the document role',
-      );
+      assert.strictEqual(container2.getAttribute('role'), null, 'should not add any role');
       assert.strictEqual(container2.getAttribute('tabindex'), '-1');
     });
   });
@@ -570,7 +572,9 @@ describe('<Modal />', () => {
         function WithRemovableElement({ hideButton = false }) {
           return (
             <Modal open>
-              <div>{!hideButton && <button type="button">I am going to disappear</button>}</div>
+              <div role="dialog">
+                {!hideButton && <button type="button">I am going to disappear</button>}
+              </div>
             </Modal>
           );
         }
@@ -583,15 +587,17 @@ describe('<Modal />', () => {
         };
 
         const { getByRole, setProps } = render(<WithRemovableElement />);
-        expect(getByRole('document')).to.be.focused;
+        const dialog = getByRole('dialog');
+        const toggleButton = getByRole('button');
+        expect(dialog).to.have.focus;
 
-        getByRole('button').focus();
-        expect(getByRole('button')).to.be.focused;
+        toggleButton.focus();
+        expect(toggleButton).to.have.focus;
 
         setProps({ hideButton: true });
-        expect(getByRole('document')).to.not.be.focused;
+        expect(dialog).not.to.have.focus;
         clock.tick(500); // wait for the interval check to kick in.
-        expect(getByRole('document')).to.be.focused;
+        expect(dialog).to.have.focus;
       });
     });
   });
@@ -825,12 +831,14 @@ describe('<Modal />', () => {
 
   describe('prop: disablePortal', () => {
     it('should render the content into the parent', () => {
-      const { container } = render(
-        <Modal open disablePortal>
-          <div />
-        </Modal>,
+      const { getByTestId } = render(
+        <div data-testid="parent">
+          <Modal open disablePortal>
+            <div data-testid="child" />
+          </Modal>
+        </div>,
       );
-      expect(container.querySelector('[role="document"]')).to.be.ok;
+      expect(within(getByTestId('parent')).getByTestId('child')).to.be.ok;
     });
   });
 });

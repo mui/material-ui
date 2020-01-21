@@ -8,10 +8,13 @@ export type ButtonTypeMap<
 > = ExtendButtonBaseTypeMap<{
   props: P & {
     color?: PropTypes.Color;
+    disableElevation?: boolean;
     disableFocusRipple?: boolean;
+    endIcon?: React.ReactNode;
     fullWidth?: boolean;
     href?: string;
     size?: 'small' | 'medium' | 'large';
+    startIcon?: React.ReactNode;
     variant?: 'text' | 'outlined' | 'contained';
   };
   defaultComponent: D;
@@ -37,11 +40,23 @@ export type ButtonClassKey =
   | 'contained'
   | 'containedPrimary'
   | 'containedSecondary'
+  | 'disableElevation'
   | 'focusVisible'
   | 'disabled'
   | 'colorInherit'
+  | 'textSizeSmall'
+  | 'textSizeLarge'
+  | 'outlinedSizeSmall'
+  | 'outlinedSizeLarge'
+  | 'containedSizeSmall'
+  | 'containedSizeLarge'
   | 'sizeSmall'
   | 'sizeLarge'
-  | 'fullWidth';
+  | 'fullWidth'
+  | 'startIcon'
+  | 'endIcon'
+  | 'iconSizeSmall'
+  | 'iconSizeMedium'
+  | 'iconSizeLarge';
 
 export default Button;

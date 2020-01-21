@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 
 /**
  * @ignore - internal component.
@@ -63,7 +63,7 @@ NativeSelectInput.propTypes = {
   /**
    * The icon that displays the arrow.
    */
-  IconComponent: PropTypes.elementType,
+  IconComponent: PropTypes.elementType.isRequired,
   /**
    * Use that prop to pass a ref to the native select element.
    * @deprecated

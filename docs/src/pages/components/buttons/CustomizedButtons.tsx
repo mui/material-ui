@@ -5,8 +5,8 @@ import {
   withStyles,
   makeStyles,
   Theme,
+  ThemeProvider,
 } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import { green, purple } from '@material-ui/core/colors';
 
@@ -35,6 +35,7 @@ const BootstrapButton = withStyles({
     '&:hover': {
       backgroundColor: '#0069d9',
       borderColor: '#0062cc',
+      boxShadow: 'none',
     },
     '&:active': {
       boxShadow: 'none',

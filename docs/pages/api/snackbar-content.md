@@ -24,9 +24,10 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
-| <span class="prop-name">action</span> | <span class="prop-type">node</span> |  | The action to display. |
+| <span class="prop-name">action</span> | <span class="prop-type">node</span> |  | The action to display. It renders after the message, at the end of the snackbar. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">message</span> | <span class="prop-type">node</span> |  | The message to display. |
+| <span class="prop-name">role</span> | <span class="prop-type">string</span> | <span class="prop-default">'alert'</span> | The ARIA role attribute of the element. |
 
 The `ref` is forwarded to the root element.
 
@@ -39,9 +40,9 @@ Any other props supplied will be provided to the root element ([Paper](/api/pape
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiSnackbarContent-root</span> | Styles applied to the root element.
-| <span class="prop-name">message</span> | <span class="prop-name">MuiSnackbarContent-message</span> | Styles applied to the message wrapper element.
-| <span class="prop-name">action</span> | <span class="prop-name">MuiSnackbarContent-action</span> | Styles applied to the action wrapper element if `action` is provided.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiSnackbarContent-root</span> | Styles applied to the root element.
+| <span class="prop-name">message</span> | <span class="prop-name">.MuiSnackbarContent-message</span> | Styles applied to the message wrapper element.
+| <span class="prop-name">action</span> | <span class="prop-name">.MuiSnackbarContent-action</span> | Styles applied to the action wrapper element if `action` is provided.
 
 You can override the style of the component thanks to one of these customization points:
 

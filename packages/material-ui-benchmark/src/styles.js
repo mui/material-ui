@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 import Benchmark from 'benchmark';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
@@ -25,7 +24,7 @@ align-items: center;
 justify-content: center;
 position: relative;
 background-color: transparent;
-outline: none;
+outline: 0;
 border: 0;
 margin: 0;
 border-radius: 0;
@@ -129,7 +128,8 @@ suite
       const dynamicSheet = jss.createStyleSheet(dynamicStyles, {
         link: true,
       });
-      dynamicSheet.update({}).attach();
+      dynamicSheet.update({});
+      dynamicSheet.attach();
       sheetsRegistry.add(dynamicSheet);
     }
 

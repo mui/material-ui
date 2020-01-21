@@ -24,10 +24,16 @@ export const styles = theme => {
     focused: {},
     /* Styles applied to the root element if `disabled={true}`. */
     disabled: {},
+    /* Styles applied to the root element if color secondary. */
+    colorSecondary: {
+      '&$underline:after': {
+        borderBottomColor: theme.palette.secondary.main,
+      },
+    },
     /* Styles applied to the root element if `disableUnderline={false}`. */
     underline: {
       '&:after': {
-        borderBottom: `2px solid ${theme.palette.primary[light ? 'dark' : 'light']}`,
+        borderBottom: `2px solid ${theme.palette.primary.main}`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE 11 "''" https://github.com/cssinjs/jss/issues/242
@@ -74,6 +80,8 @@ export const styles = theme => {
     },
     /* Styles applied to the root element if `error={true}`. */
     error: {},
+    /* Styles applied to the `input` element if `margin="dense"`. */
+    marginDense: {},
     /* Styles applied to the root element if `multiline={true}`. */
     multiline: {},
     /* Styles applied to the root element if `fullWidth={true}`. */
@@ -139,6 +147,10 @@ Input.propTypes = {
    * The CSS class name of the wrapper element.
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
   /**
    * The default `input` element value. Use when the component is not controlled.
    */

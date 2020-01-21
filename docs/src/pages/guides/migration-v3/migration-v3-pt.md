@@ -70,17 +70,25 @@ yarn add @material-ui/styles
 
 ### Estilos
 
-- ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com o v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Removing `react-jss` from your `package.json` can help). O componente StylesProvider substitui o componente JssProvider.
-- Remove the first option argument of `withTheme()`. (The first argument was a placeholder for a potential future option that never arose.)
+- ⚠️ Material-UI depende do JSS v10. JSS v10 não é compatível com o v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Remover `react-jss` do seu `package.json` pode ajudar). O componente StylesProvider substitui o componente JssProvider.
+- Remova a primeira opção de argumento do `withTheme()`. (The first argument was a placeholder for a potential future option that never arose.)
   
-    It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://www.styled-components.com).
+    Corresponde à [emotion API](https://emotion.sh/docs/introduction) e [styled-components API](https://www.styled-components.com).
 
 ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
-- Escopo da [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). Você deve aplicar as seguintes alterações na sua base de código.
-  Ele ajuda a isolar a lógica da animação:
+
+- Rename `convertHexToRGB` to `hexToRgb`.
+
+  ```diff
+  -import { convertHexToRgb } from '@material-ui/core/styles/colorManipulator';
+  +import { hexToRgb } from '@material-ui/core/styles';
+  ```
+
+- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). You should apply the following changes in your codebase.
+  It helps isolating the animation logic:
 
   ```diff
     rippleVisible: {
@@ -98,10 +106,10 @@ yarn add @material-ui/styles
     },
   ```
 
-### Tema
+### Theme
 
-- O método` theme.palette.augmentColor () `não produz mais um efeito colateral em sua cor de entrada.
-  Para usá-lo corretamente, agora você precisa usar o valor retornado.
+- The `theme.palette.augmentColor()` method no longer performs a side effect on its input color.
+  To use it correctly, you have to use the returned value.
 
   ```diff
   -const background = { main: color };
@@ -111,7 +119,7 @@ yarn add @material-ui/styles
   console.log({ background });
   ```
 
-- Você pode remover com segurança a próxima variante da criação de temas:
+- You can safely remove the next variant from the theme creation:
 
   ```diff
   typography: {
@@ -119,7 +127,7 @@ yarn add @material-ui/styles
   },
   ```
 
--` theme.spacing.unit` está com o uso obsoleto, você pode usar a nova API:
+- `theme.spacing.unit` usage is deprecated, you can use the new API:
 
   ```diff
   label: {
@@ -130,24 +138,24 @@ yarn add @material-ui/styles
   }
   ```
 
- * Dica: você pode fornecer mais de 1 argumento:` theme.spacing (1, 2) // = '8px 16px'` *.
+  *Tip: you can provide more than 1 argument: `theme.spacing(1, 2) // = '8px 16px'`*.
 
-  Você pode usar o [auxiliar de migração] (https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) em seu projeto para tornar isso mais suave.
+  You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
 
-### Leiaute
+### Layout
 
-- [Grid] Para suportar valores de espaçamento arbitrários e para remover a necessidade de contar mentalmente por 8, estamos mudando a API de espaçamento:
+- [Grid] In order to support arbitrary spacing values and to remove the need to mentally count by 8, we are changing the spacing API:
 
   ```diff
     /**
-     * Define o espaço entre o tipo` componente do item.
-     * Só pode ser usado em um componente do tipo 'container'.
+     * Defines the space between the type `item` component.
+     * It can only be used on a type `container` component.
      */
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
-  Indo adiante, você pode usar o tema para implementar [uma função de transformação de espaçamento de grade customizada] (https://material-ui.com/system/spacing/#transformation).
-- [Container] Movido de `@material-ui/lab` to `@material-ui/core`.
+  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
+- [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
 
   ```diff
   -import Container from '@material-ui/lab/Container';
@@ -158,15 +166,15 @@ yarn add @material-ui/styles
 
 #### `value` type
 
-Tipo da propriedade `value` normalizado para os componentes de entrada utilizarem `unknown`. Isso afeta
+Normalized `value` prop type for input components to use `unknown`. This affects
 `InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
 
 ```diff
 function MySelect({ children }) {
--  function handleChange(event: any, value: string) {
-+  function handleChange(event: any, value: unknown) {
+- const handleChange = (event: any, value: string) => {
++ const handleChange = (event: any, value: unknown) => {
     // handle value
-  }
+  };
 
   return <Select onChange={handleChange}>{children}</Select>
 }
@@ -235,7 +243,8 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 ### Painel de expansão
 
 - [ExpansionPanelActions] Renomeie a classe CSS `action` para `spacing`.
-- [ExpansionPanel] Aumente a especificidade CSS da regra de estilo `disabled`.
+- [ExpansionPanel] Increase the CSS specificity of the `disabled` and `expanded` style rules.
+- [ExpansionPanel] Rename the `CollapseProps` prop to `TransitionProps`.
 
 ### Lista
 
@@ -246,7 +255,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   - A propriedade `edge` deve ser definida para botões de ícone.
 - [List] `dense` no longer reduces the top and bottom padding of the `List` element.
 
-- [ListItem] Increase the CSS specificity of the `disabled` and `focusVisible` style rules.
+- [ListItem] Aumente a especificidade CSS das regras de estilo `disabled` e `focusVisible`.
 
 ### Menu
 

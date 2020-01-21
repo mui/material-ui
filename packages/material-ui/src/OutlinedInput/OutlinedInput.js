@@ -14,6 +14,7 @@ export const styles = theme => {
     /* Styles applied to the root element. */
     root: {
       position: 'relative',
+      borderRadius: theme.shape.borderRadius,
       '&:hover $notchedOutline': {
         borderColor: theme.palette.text.primary,
       },
@@ -32,6 +33,12 @@ export const styles = theme => {
       },
       '&$disabled $notchedOutline': {
         borderColor: theme.palette.action.disabled,
+      },
+    },
+    /* Styles applied to the root element if the color is secondary. */
+    colorSecondary: {
+      '&$focused $notchedOutline': {
+        borderColor: theme.palette.secondary.main,
       },
     },
     /* Styles applied to the root element if the component is focused. */
@@ -65,15 +72,16 @@ export const styles = theme => {
     /* Styles applied to the `input` element. */
     input: {
       padding: '18.5px 14px',
+      '&:-webkit-autofill': {
+        WebkitBoxShadow: theme.palette.type === 'dark' ? '0 0 0 100px #266798 inset' : null,
+        WebkitTextFillColor: theme.palette.type === 'dark' ? '#fff' : null,
+        borderRadius: 'inherit',
+      },
     },
     /* Styles applied to the `input` element if `margin="dense"`. */
     inputMarginDense: {
       paddingTop: 10.5,
       paddingBottom: 10.5,
-    },
-    /* Styles applied to the `input` element if `select={true}`. */
-    inputSelect: {
-      paddingRight: 24,
     },
     /* Styles applied to the `input` element if `multiline={true}`. */
     inputMultiline: {
@@ -95,6 +103,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
     classes,
     fullWidth = false,
     inputComponent = 'input',
+    label,
     labelWidth = 0,
     multiline = false,
     notched,
@@ -107,6 +116,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
       renderSuffix={state => (
         <NotchedOutline
           className={classes.notchedOutline}
+          label={label}
           labelWidth={labelWidth}
           notched={
             typeof notched !== 'undefined'
@@ -151,6 +161,10 @@ OutlinedInput.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['primary', 'secondary']),
+  /**
    * The default `input` element value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
@@ -189,7 +203,13 @@ OutlinedInput.propTypes = {
    */
   inputRef: refType,
   /**
-   * The width of the label.
+   * The label of the input. It is only used for layout. The actual labelling
+   * is handled by `InputLabel`. If specified `labelWidth` is ignored.
+   */
+  label: PropTypes.node,
+  /**
+   * The width of the label. Is ignored if `label` is provided. Prefer `label`
+   * if the input label appears with a strike through.
    */
   labelWidth: PropTypes.number,
   /**

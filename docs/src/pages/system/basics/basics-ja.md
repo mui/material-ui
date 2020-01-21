@@ -45,7 +45,7 @@ const Box = styled.div`${spacing}${palette}`;
 export default Box;
 ```
 
-This Box component now supports new [spacing properties](/system/spacing/#api) and [color properties](/system/palette/#api). For instance, you can provide a padding property: `p` and a color property: `color`.
+このボックスコンポーネントは、新しい[間隔プロパティ](/system/spacing/#api)および[色プロパティ](/system/palette/#api)をサポートするようになりました。 For instance, you can provide a padding property: `p` and a color property: `color`.
 
 ```jsx
 <Box p="1rem" color="grey">Give me some space!</Box>
@@ -68,15 +68,13 @@ const theme = {
   },
 };
 
-function App() {
+export default function App() {
   return (
     <ThemeProvider theme={theme}>
       {/* children */}
     </ThemeProvider>
   )
 }
-
-export default App
 ```
 
 Now, you can provide a spacing multiplier value:
@@ -107,17 +105,17 @@ To make the Box component more useful, we have been building a collection of sty
 - [spacing](/system/spacing/#api)
 - [typography](/system/typography/#api)
 
-If you are already using `@material-ui/core`, you can use the [Box component](/components/box/) (using JSS internally):
+既に`@material-ui/core`を使用している場合は、[ボックスコンポーネント](/components/box/)を使用できます(内部でのJSSの使用)。
 
 ```jsx
 import Box from '@material-ui/core/Box';
 ```
 
-## Interoperability
+## 相互運用性
 
-`@material-ui/system` works with most CSS-in-JS libraries, including JSS, styled-components, and emotion.
+`@material-ui/system`は、JSS、スタイルコンポーネント、感情を含むほとんどのCSS-in-JSライブラリで動作します。
 
-If you are already using `@material-ui/core`, we encourage you to start with the **JSS** solution to minimize bundle size.
+すでに`@material-ui/core`を使用している場合は、バンドルサイズを最小化するために、**JSS**ソリューションから始めることをお勧めします。
 
 ### JSS
 
@@ -212,7 +210,7 @@ const Box = styled.div`
 />
 
 /**
- * Outputs:
+ * Saídas:
  *
  * padding: 16px;
  * @media (min-width: 600px) {
@@ -308,7 +306,7 @@ export const bgcolor = style({
 const palette = compose(textColor, bgcolor);
 ```
 
-## Variants
+## バリアント
 
 The `style()` helper can also be used to maps properties to style objects in a theme. In this example, the `variant` property supports all the keys present in `theme.typography`.
 
@@ -328,7 +326,7 @@ styled-system has done a great job at [explaining how it works](https://github.c
 
 In practice, a Box component can save you a lot of time. In this example, we demonstrate how to reproduce a Banner component.
 
-{{"demo": "pages/system/basics/RealWorld.js"}}
+{{"demo": "pages/system/basics/RealWorld.js", "bg": true}}
 
 ## Prior art
 

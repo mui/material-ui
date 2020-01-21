@@ -5,6 +5,7 @@ import loadScript from 'docs/src/modules/utils/loadScript';
 const styles = theme => ({
   '@global': {
     '#carbonads': {
+      display: 'block',
       overflow: 'hidden',
       backgroundColor: theme.palette.background.level2,
       padding: `${theme.spacing(1.5)}px ${theme.spacing(1.5)}px ${theme.spacing(
@@ -14,12 +15,14 @@ const styles = theme => ({
       '& .carbon-img': {
         float: 'left',
         marginLeft: -130,
+        width: 130,
+        height: 100,
         marginRight: theme.spacing(1.5),
       },
       '& img': {
         verticalAlign: 'middle',
       },
-      '& a': {
+      '& a, & a:hover': {
         color: theme.palette.text.primary,
         textDecoration: 'none',
       },

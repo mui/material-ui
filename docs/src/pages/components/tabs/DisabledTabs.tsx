@@ -6,9 +6,9 @@ import Tab from '@material-ui/core/Tab';
 export default function DisabledTabs() {
   const [value, setValue] = React.useState(2);
 
-  function handleChange(event: React.ChangeEvent<{}>, newValue: number) {
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
-  }
+  };
 
   return (
     <Paper square>

@@ -35,13 +35,13 @@ export default Main() {
 
 Expanda verticalmente a partir do topo do elemento filho. A propriedade `collapsedHeight` pode ser usada para definir a altura mínima quando não expandida.
 
-{{"demo": "pages/components/transitions/SimpleCollapse.js"}}
+{{"demo": "pages/components/transitions/SimpleCollapse.js", "bg": true}}
 
 ## Fade
 
 Fade in de transparente para opaco.
 
-{{"demo": "pages/components/transitions/SimpleFade.js"}}
+{{"demo": "pages/components/transitions/SimpleFade.js", "bg": true}}
 
 ## Grow
 
@@ -49,7 +49,7 @@ Expande para fora a partir do centro do elemento filho, enquanto também desvane
 
 O segundo exemplo demonstra como alterar `transform-origin` e condicionalmente aplica a propriedade `timeout` para alterar a velocidade de entrada.
 
-{{"demo": "pages/components/transitions/SimpleGrow.js"}}
+{{"demo": "pages/components/transitions/SimpleGrow.js", "bg": true}}
 
 ## Slide
 
@@ -57,7 +57,7 @@ Deslize a partir da borda da tela. A propriedade `direction` controla em qual bo
 
 A propriedade de transição do componente `mountOnEnter` impede que o componente filho seja montado até que `in` seja `true`. Isso evita que o componente relativamente posicionado role para a visão a partir da posição fora da tela. Da mesma forma, a propriedade `unmountOnExit` remove o componente do DOM após a transição ter sido exibida (`in` = `false`).
 
-{{"demo": "pages/components/transitions/SimpleSlide.js"}}
+{{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
 ## Zoom
 
@@ -65,4 +65,4 @@ Expandir para fora partindo do centro do elemento filho.
 
 Este exemplo também demonstra como atrasar a transição de entrada.
 
-{{"demo": "pages/components/transitions/SimpleZoom.js"}}
+{{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}

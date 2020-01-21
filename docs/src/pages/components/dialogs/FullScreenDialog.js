@@ -31,13 +31,13 @@ export default function FullScreenDialog() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
-  function handleClickOpen() {
+  const handleClickOpen = () => {
     setOpen(true);
-  }
+  };
 
-  function handleClose() {
+  const handleClose = () => {
     setOpen(false);
-  }
+  };
 
   return (
     <div>
@@ -53,7 +53,7 @@ export default function FullScreenDialog() {
             <Typography variant="h6" className={classes.title}>
               Sound
             </Typography>
-            <Button color="inherit" onClick={handleClose}>
+            <Button autoFocus color="inherit" onClick={handleClose}>
               save
             </Button>
           </Toolbar>

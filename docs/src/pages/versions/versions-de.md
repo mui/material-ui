@@ -6,21 +6,21 @@
 
 Die aktuellste Version wird in der Produktion empfohlen.
 
-{{"demo": "pages/versions/StableVersions.js", "hideHeader": true}}
+{{"demo": "pages/versions/StableVersions.js", "hideHeader": true, "bg": "inline"}}
 
 ## Neueste Versionen
 
 Hier finden Sie die neuesten unveröffentlichten Dokumentationen und Codes. Sie können damit feststellen, welche Änderungen bevorstehen, und den Mitwirkenden der Material-UI besseres Feedback geben.
 
-{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true}}
+{{"demo": "pages/versions/LatestVersions.js", "hideHeader": true, "bg": "inline"}}
 
 ## Versionierungsstrategie
 
-Stability ensures that reusable components and libraries, tutorials, tools, and learned practices don't become obsolete unexpectedly. Stability is essential for the ecosystem around Material-UI to thrive.
+Stabilität stellt sicher, dass wiederverwendbare Komponenten und Bibliotheken, Lernprogramme, Tools und erlernte Methoden nicht unerwartet veraltet werden. Stabilität ist wichtig für das Gedeihen des Ökosystems um Material-UI.
 
 This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
 
-Die Material-UI folgt strikt der [ Semantic Versioning 2.0.0](https://semver.org/). Die Versionsnummern der Material-UI bestehen aus drei Teilen: `Hauptversion.Nebenversion.Patch`. Die Versionsnummer wird basierend auf dem in der Version enthaltenen Änderungsstand erhöht.
+Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Die Versionsnummern der Material-UI bestehen aus drei Teilen: `Hauptversion.Nebenversion.Patch`. Die Versionsnummer wird basierend auf dem in der Version enthaltenen Änderungsstand erhöht.
 
 - **Hauptversionen** enthalten wichtige neue Funktionen, während des Updates wird jedoch eine minimale Entwicklerunterstützung erwartet. Bei der Aktualisierung auf eine neue Hauptversion müssen Sie möglicherweise Aktualisierungsskripts ausführen, Code umgestalten, zusätzliche Tests ausführen und neue APIs erlernen.
 - ** Nebenversionen ** enthalten wichtige neue Funktionen. Minor Releases sind vollständig abwärtskompatibel. Während des Updates wird keine Unterstützung durch Entwickler erwartet. Sie können jedoch optional Ihre Apps und Bibliotheken ändern, um neue APIs, Funktionen und Funktionen zu verwenden, die in der Version hinzugefügt wurden.
@@ -32,26 +32,27 @@ A regular schedule of releases helps you plan and coordinate your updates with t
 
 Im Allgemeinen können Sie den folgenden Release-Zyklus erwarten:
 
-- Ein Veröffentlichung einer **Hauptversion** alle 6 Monate.
+- Ein Veröffentlichung einer **Hauptversion ** alle 12 Monate.
 - 1-3 Veröffentlichungen von ** Nebenversionen** für jede Hauptversion.
 - Ein ** Patch ** Veröffentlichung jede Woche (jederzeit für dringende Bugfixes).
 
 ## Release Zeitplan
 
-> Haftungsausschluss: Die Daten werden als allgemeine Hinweise angeboten und können von uns bei Bedarf angepasst werden, um die Lieferung eines qualitativ hochwertigen Codes sicherzustellen.
-
-| Datum      | Version                    |
-|:---------- |:-------------------------- |
-| Mai 2018 ✅ | `@material-ui/core` v1.0.0 |
-| Mai 2019 ✅ | `@material-ui/core` v4.0.0 |
-| ? ⏳        | `@material-ui/core` v5.0.0 |
+| Datum          | Version | Status   |
+|:-------------- |:------- |:-------- |
+| May 2018       | v1.0.0  | Released |
+| Septembre 2018 | v3.0.0  | Released |
+| May 2019       | v4.0.0  | Released |
+| Q3 2020        | v5.0.0  | ⏳        |
 
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
 
+> ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.
+
 ## Support-Richtlinie
 
-Only the latest version of Material-UI is supported. Wir haben noch keine Ressourcen für [ LTS](https://en.wikipedia.org/wiki/Long-term_support) Veröffentlichungen.
+Find details on the [supported versions](/getting-started/support/#supported-versions).
 
 ## Verfallspraktiken
 
@@ -64,7 +65,7 @@ To make these transitions as easy as possible:
 
 ### Deprecation policy
 
-- Deprecated features iare announced n the changelog, and when possible, with warnings at runtime.
+- Deprecated features are announced in the changelog, and when possible, with warnings at runtime.
 - When a deprecation is announced, recommended update path is provided.
 - Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
 - Peer dependency updates (React) that require changes to your apps are only made in a major release.

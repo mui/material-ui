@@ -6,6 +6,8 @@
 
 The sizing style functions support different property input type:
 
+{{"demo": "pages/system/sizing/Values.js", "defaultCodeOpen": false}}
+
 ```jsx
 <Box width={1/4}> // Numbers in [0,1] are multiplied by 100 and converted to % values.
 <Box width={300}> // Numbers are converted to pixel values.
@@ -13,9 +15,9 @@ The sizing style functions support different property input type:
 <Box width={1}>   // 100%
 ```
 
-{{"demo": "pages/system/sizing/Values.js"}}
-
 ## Width
+
+{{"demo": "pages/system/sizing/Width.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box width="25%">…
@@ -25,9 +27,9 @@ The sizing style functions support different property input type:
 <Box width="auto">…
 ```
 
-{{"demo": "pages/system/sizing/Width.js"}}
-
 ## Height
+
+{{"demo": "pages/system/sizing/Height.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box height="25%">…
@@ -35,8 +37,6 @@ The sizing style functions support different property input type:
 <Box height="75%">…
 <Box height="100%">…
 ```
-
-{{"demo": "pages/system/sizing/Height.js"}}
 
 ## API
 

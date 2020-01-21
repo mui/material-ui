@@ -6,6 +6,8 @@ import describeConformance from '../test-utils/describeConformance';
 import Popover from '../Popover';
 import Menu from './Menu';
 import MenuList from '../MenuList';
+import consoleErrorMock from 'test/utils/consoleErrorMock';
+import PropTypes from 'prop-types';
 
 const MENU_LIST_HEIGHT = 100;
 
@@ -152,13 +154,12 @@ describe('<Menu />', () => {
   it('should open during the initial mount', () => {
     const wrapper = mount(
       <Menu {...defaultProps} open>
-        <div tabIndex={-1} />
+        <div role="menuitem" tabIndex={-1} />
       </Menu>,
     );
     const popover = wrapper.find(Popover);
     assert.strictEqual(popover.props().open, true);
-    const menuEl = document.querySelector('[data-mui-test="Menu"]');
-    assert.strictEqual(document.activeElement, menuEl);
+    assert.strictEqual(wrapper.find('[role="menuitem"]').props().autoFocus, true);
   });
 
   it('should not focus list if autoFocus=false', () => {
@@ -212,5 +213,45 @@ describe('<Menu />', () => {
     });
     assert.strictEqual(onCloseSpy.callCount, 1);
     assert.strictEqual(onCloseSpy.args[0][1], 'tabKeyDown');
+  });
+
+  it('ignores invalid children', () => {
+    const wrapper = mount(
+      <Menu {...defaultProps} open>
+        {null}
+        <span role="menuitem">hello</span>
+        {/* testing conditional rendering */}
+        {false && <span role="menuitem">hello</span>}
+        {undefined}
+        foo
+      </Menu>,
+    );
+
+    assert.lengthOf(wrapper.find('span[role="menuitem"]'), 1);
+  });
+
+  describe('warnings', () => {
+    before(() => {
+      consoleErrorMock.spy();
+    });
+
+    after(() => {
+      consoleErrorMock.reset();
+      PropTypes.resetWarningCache();
+    });
+
+    it('warns a Fragment is passed as a child', () => {
+      mount(
+        <Menu anchorEl={document.createElement('div')} open>
+          <React.Fragment />
+        </Menu>,
+      );
+
+      assert.strictEqual(consoleErrorMock.callCount(), 2);
+      assert.include(
+        consoleErrorMock.args()[0][0],
+        "Material-UI: the Menu component doesn't accept a Fragment as a child.",
+      );
+    });
   });
 });

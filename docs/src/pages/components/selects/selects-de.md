@@ -3,7 +3,7 @@ title: Auswahl React-Komponente
 components: Select, NativeSelect
 ---
 
-# Auswähler (Selects)
+# Selects (auswähler)
 
 <p class="description">Auswahllkomponenten werden zum Sammeln von vom Benutzer bereitgestellten Informationen aus einer Liste von Optionen verwendet.</p>
 
@@ -19,9 +19,13 @@ Da die Benutzererfahrung auf mobilen Geräten durch die native Auswahl der Platt
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
+## Text Felder (Text Fields)
+
+Die `TextField` Wrapper-Komponente ist ein vollständiges Formularsteuerelement, das eine Beschriftung, Eingabe und Hilfetext enthält. Ein Beispiel für den Auswahlmodus [in diesem Abschnitt](/components/text-fields/#select).
+
 ## Benutzerdefinierte Auswahl
 
-Here are some examples of customizing the component. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier sind einige Beispiele, wie man die Komponente anpassen kann. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 Der erste Schritt besteht darin, die `InputBase` Komponente zu formatieren. Anschließend können Sie es entweder direkt als Textfeld verwenden oder der Eigenschaft select `input` zuweisen, um ein Feld `select` zu erhalten.
 
@@ -45,6 +49,29 @@ Während es von der Material Design-Spezifikation nicht empfohlen wird, können 
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 
-## Text Felder (Text Fields)
+## Grouping
 
-Die `TextField` Wrapper-Komponente ist ein vollständiges Formularsteuerelement, das eine Beschriftung, Eingabe und Hilfetext enthält. Ein Beispiel für den Auswahlmodus [in diesem Abschnitt](/components/text-fields/#textfield).
+Display categories with the `ListSubheader` component or the native `<optgroup>` element.
+
+{{"demo": "pages/components/selects/GroupedSelect.js"}}
+
+## Barrierefreiheit
+
+To properly label your `Select` input you need an extra element with an `id` that contains a label. That `id` needs to match the `labelId` of the `Select` e.g.
+
+```jsx
+<InputLabel id="label">Age</InputLabel>
+<Select labelId="label" id="select" value="20">
+  <MenuItem value="10">Ten</MenuItem>
+  <MenuItem value="20">Twenty</MenuItem>
+</Select>
+```
+
+Alternatively a `TextField` with an `id` and `label` creates the proper markup and ids for you:
+
+```jsx
+<TextField id="select" label="Age" value="20">
+  <MenuItem value="10">Ten</MenuItem>
+  <MenuItem value="20">Twenty</MenuItem>
+</TextField>
+```

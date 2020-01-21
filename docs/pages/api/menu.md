@@ -25,12 +25,12 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">anchorEl</span> | <span class="prop-type">object<br>&#124;&nbsp;func</span> |  | The DOM element used to set the position of the menu. |
-| <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> |  | If `true` (default), the menu list (possibly a particular item depending on the menu variant) will receive focus on open. |
+| <span class="prop-name">autoFocus</span> | <span class="prop-type">bool</span> | <span class="prop-default">true</span> | If `true` (Default) will focus the `[role="menu"]` if no focusable child is found. Disabled children are not focusable. If you set this prop to `false` focus will be placed on the parent modal container. This has severe accessibility implications and should only be considered if you manage focus otherwise. |
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | Menu contents, normally `MenuItem`s. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">disableAutoFocusItem</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Same as `autoFocus=false`. |
+| <span class="prop-name">disableAutoFocusItem</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | When opening the menu will not focus the active item but the `[role="menu"]` unless `autoFocus` is also set to `false`. Not using the default means not following WAI-ARIA authoring practices. Please be considerate about possible accessibility implications. |
 | <span class="prop-name">MenuListProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`MenuList`](/api/menu-list/) element. |
-| <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback.<br>*reason:* Can be:`"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`. |
+| <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback.<br>*reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`, `"tabKeyDown"`. |
 | <span class="prop-name">onEnter</span> | <span class="prop-type">func</span> |  | Callback fired before the Menu enters. |
 | <span class="prop-name">onEntered</span> | <span class="prop-type">func</span> |  | Callback fired when the Menu has entered. |
 | <span class="prop-name">onEntering</span> | <span class="prop-type">func</span> |  | Callback fired when the Menu is entering. |
@@ -53,8 +53,8 @@ Any other props supplied will be provided to the root element ([Popover](/api/po
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">paper</span> | <span class="prop-name">MuiMenu-paper</span> | Styles applied to the `Paper` component.
-| <span class="prop-name">list</span> | <span class="prop-name">MuiMenu-list</span> | Styles applied to the `List` component via `MenuList`.
+| <span class="prop-name">paper</span> | <span class="prop-name">.MuiMenu-paper</span> | Styles applied to the `Paper` component.
+| <span class="prop-name">list</span> | <span class="prop-name">.MuiMenu-list</span> | Styles applied to the `List` component via `MenuList`.
 
 You can override the style of the component thanks to one of these customization points:
 

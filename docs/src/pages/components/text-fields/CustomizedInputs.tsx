@@ -3,11 +3,11 @@ import {
   createStyles,
   fade,
   Theme,
+  ThemeProvider,
   withStyles,
   makeStyles,
   createMuiTheme,
 } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
 import InputBase from '@material-ui/core/InputBase';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';

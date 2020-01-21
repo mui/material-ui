@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import warning from 'warning';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
 
@@ -29,30 +28,25 @@ const styles = theme => {
  * @ignore - internal component.
  */
 function HiddenCss(props) {
-  const {
-    children,
-    classes,
-    className,
-    lgDown,
-    lgUp,
-    mdDown,
-    mdUp,
-    only,
-    smDown,
-    smUp,
-    xlDown,
-    xlUp,
-    xsDown,
-    xsUp,
-    ...other
-  } = props;
+  const { children, classes, className, only, ...other } = props;
   const theme = useTheme();
 
-  warning(
-    Object.keys(other).length === 0 ||
-      (Object.keys(other).length === 1 && other.hasOwnProperty('ref')),
-    `Material-UI: unsupported props received ${Object.keys(other).join(', ')} by \`<Hidden />\`.`,
-  );
+  if (process.env.NODE_ENV !== 'production') {
+    const unknownProps = Object.keys(other).filter(propName => {
+      const isUndeclaredBreakpoint = !theme.breakpoints.keys.some(breakpoint => {
+        return `${breakpoint}Up` === propName || `${breakpoint}Down` === propName;
+      });
+      return isUndeclaredBreakpoint;
+    });
+
+    if (unknownProps.length > 0) {
+      console.error(
+        `Material-UI: unsupported props received by \`<Hidden implementation="css" />\`: ${unknownProps.join(
+          ', ',
+        )}. Did you forget to wrap this component in a ThemeProvider declaring these breakpoints?`,
+      );
+    }
+  }
 
   const clsx = [];
 
@@ -103,19 +97,19 @@ HiddenCss.propTypes = {
    */
   implementation: PropTypes.oneOf(['js', 'css']),
   /**
-   * If true, screens this size and down will be hidden.
+   * If `true`, screens this size and down will be hidden.
    */
   lgDown: PropTypes.bool,
   /**
-   * If true, screens this size and up will be hidden.
+   * If `true`, screens this size and up will be hidden.
    */
   lgUp: PropTypes.bool,
   /**
-   * If true, screens this size and down will be hidden.
+   * If `true`, screens this size and down will be hidden.
    */
   mdDown: PropTypes.bool,
   /**
-   * If true, screens this size and up will be hidden.
+   * If `true`, screens this size and up will be hidden.
    */
   mdUp: PropTypes.bool,
   /**
@@ -126,27 +120,27 @@ HiddenCss.propTypes = {
     PropTypes.arrayOf(PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl'])),
   ]),
   /**
-   * If true, screens this size and down will be hidden.
+   * If `true`, screens this size and down will be hidden.
    */
   smDown: PropTypes.bool,
   /**
-   * If true, screens this size and up will be hidden.
+   * If `true`, screens this size and up will be hidden.
    */
   smUp: PropTypes.bool,
   /**
-   * If true, screens this size and down will be hidden.
+   * If `true`, screens this size and down will be hidden.
    */
   xlDown: PropTypes.bool,
   /**
-   * If true, screens this size and up will be hidden.
+   * If `true`, screens this size and up will be hidden.
    */
   xlUp: PropTypes.bool,
   /**
-   * If true, screens this size and down will be hidden.
+   * If `true`, screens this size and down will be hidden.
    */
   xsDown: PropTypes.bool,
   /**
-   * If true, screens this size and up will be hidden.
+   * If `true`, screens this size and up will be hidden.
    */
   xsUp: PropTypes.bool,
 };

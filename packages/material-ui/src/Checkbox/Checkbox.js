@@ -7,7 +7,7 @@ import CheckBoxOutlineBlankIcon from '../internal/svg-icons/CheckBoxOutlineBlank
 import CheckBoxIcon from '../internal/svg-icons/CheckBox';
 import { fade } from '../styles/colorManipulator';
 import IndeterminateCheckBoxIcon from '../internal/svg-icons/IndeterminateCheckBox';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -64,17 +64,18 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
     checkedIcon = defaultCheckedIcon,
     classes,
     color = 'secondary',
+    disabled = false,
     icon = defaultIcon,
     indeterminate = false,
     indeterminateIcon = defaultIndeterminateIcon,
     inputProps,
+    size = 'medium',
     ...other
   } = props;
 
   return (
     <SwitchBase
       type="checkbox"
-      checkedIcon={indeterminate ? indeterminateIcon : checkedIcon}
       classes={{
         root: clsx(classes.root, classes[`color${capitalize(color)}`], {
           [classes.indeterminate]: indeterminate,
@@ -87,8 +88,14 @@ const Checkbox = React.forwardRef(function Checkbox(props, ref) {
         'data-indeterminate': indeterminate,
         ...inputProps,
       }}
-      icon={indeterminate ? indeterminateIcon : icon}
+      icon={React.cloneElement(indeterminate ? indeterminateIcon : icon, {
+        fontSize: size === 'small' ? 'small' : 'default',
+      })}
+      checkedIcon={React.cloneElement(indeterminate ? indeterminateIcon : checkedIcon, {
+        fontSize: size === 'small' ? 'small' : 'default',
+      })}
       ref={ref}
+      disabled={disabled}
       {...other}
     />
   );
@@ -158,6 +165,11 @@ Checkbox.propTypes = {
    * If `true`, the `input` element will be required.
    */
   required: PropTypes.bool,
+  /**
+   * The size of the checkbox.
+   * `small` is equivalent to the dense checkbox styling.
+   */
+  size: PropTypes.oneOf(['small', 'medium']),
   /**
    * The input component prop `type`.
    */

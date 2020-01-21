@@ -3,8 +3,9 @@ import { expect, assert } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import * as PropTypes from 'prop-types';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { createMount, createRender, getClasses } from '@material-ui/core/test-utils';
-import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import createServerRender from 'test/utils/createServerRender';
 import describeConformance from '../test-utils/describeConformance';
 import Tab from '../Tab';
 import Tabs from './Tabs';
@@ -35,17 +36,11 @@ describe('<Tabs />', () => {
 
   let mount;
   let classes;
-  const render = createClientRender({ strict: true });
-  let serverRender;
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<Tabs value={0} />);
     mount = createMount({ strict: true });
-    serverRender = createRender();
-  });
-
-  after(() => {
-    cleanup();
   });
 
   describeConformance(<Tabs value={0} />, () => ({
@@ -165,17 +160,6 @@ describe('<Tabs />', () => {
         expect(container.querySelector(`.${classes.indicator}`).style.width).to.equal('0px');
       });
 
-      it('should let the selected <Tab /> render the indicator server-side', () => {
-        const markup = serverRender(
-          <Tabs value={1}>
-            <Tab />
-            <Tab />
-          </Tabs>,
-        );
-        const indicator = markup.find(`button > .${classes.indicator}`);
-        expect(indicator).to.have.lengthOf(1);
-      });
-
       it('should render the indicator', () => {
         const { container, getAllByRole } = render(
           <Tabs value={1}>
@@ -196,7 +180,7 @@ describe('<Tabs />', () => {
             <Tab />
           </Tabs>,
         );
-        const tablistContainer = getByRole('tablist').parentNode;
+        const tablistContainer = getByRole('tablist').parentElement;
         const tab = getByRole('tablist').children[1];
 
         Object.defineProperty(tablistContainer, 'clientWidth', { value: 100 });
@@ -299,7 +283,7 @@ describe('<Tabs />', () => {
 
     it('should response to scroll events', () => {
       const { container, setProps, getByRole } = render(tabs);
-      const tablistContainer = getByRole('tablist').parentNode;
+      const tablistContainer = getByRole('tablist').parentElement;
 
       Object.defineProperty(tablistContainer, 'clientWidth', { value: 120 });
       tablistContainer.scrollLeft = 10;
@@ -329,7 +313,7 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      const tablistContainer = getByRole('tablist').parentNode;
+      const tablistContainer = getByRole('tablist').parentElement;
       expect(tablistContainer.style.overflow).to.equal('hidden');
       setProps({
         variant: 'scrollable',
@@ -389,7 +373,7 @@ describe('<Tabs />', () => {
         </Tabs>,
       );
 
-      const tablistContainer = getByRole('tablist').parentNode;
+      const tablistContainer = getByRole('tablist').parentElement;
 
       Object.defineProperty(tablistContainer, 'clientWidth', { value: 120 });
       tablistContainer.scrollLeft = 10;
@@ -427,7 +411,7 @@ describe('<Tabs />', () => {
             <Tab />
           </Tabs>,
         );
-        const tablistContainer = getByRole('tablist').parentNode;
+        const tablistContainer = getByRole('tablist').parentElement;
 
         Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 });
         Object.defineProperty(tablistContainer, 'scrollWidth', { value: 200 });
@@ -451,7 +435,7 @@ describe('<Tabs />', () => {
             <Tab />
           </Tabs>,
         );
-        const tablistContainer = getByRole('tablist').parentNode;
+        const tablistContainer = getByRole('tablist').parentElement;
 
         Object.defineProperty(tablistContainer, 'clientWidth', { value: 120 });
         Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
@@ -476,7 +460,7 @@ describe('<Tabs />', () => {
             <Tab />
           </Tabs>,
         );
-        const tablistContainer = getByRole('tablist').parentNode;
+        const tablistContainer = getByRole('tablist').parentElement;
 
         Object.defineProperty(tablistContainer, 'clientWidth', { value: 120 });
         Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
@@ -500,7 +484,7 @@ describe('<Tabs />', () => {
             <Tab />
           </Tabs>,
         );
-        const tablistContainer = getByRole('tablist').parentNode;
+        const tablistContainer = getByRole('tablist').parentElement;
 
         Object.defineProperty(tablistContainer, 'clientWidth', { value: 120 });
         Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
@@ -538,7 +522,7 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      const tablistContainer = getByRole('tablist').parentNode;
+      const tablistContainer = getByRole('tablist').parentElement;
       Object.defineProperty(tablistContainer, 'clientWidth', { value: 120 });
       Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
       tablistContainer.scrollLeft = 20;
@@ -579,8 +563,9 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      const tablistContainer = getByRole('tablist').parentNode;
-      const tab = getByRole('tablist').children[0];
+      const tablist = getByRole('tablist');
+      const tablistContainer = tablist.parentElement;
+      const tab = tablist.children[0];
 
       Object.defineProperty(tablistContainer, 'clientWidth', { value: 120 });
       Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
@@ -620,8 +605,9 @@ describe('<Tabs />', () => {
           <Tab />
         </Tabs>,
       );
-      const tablistContainer = getByRole('tablist').parentNode;
-      const tab = getByRole('tablist').children[1];
+      const tablist = getByRole('tablist');
+      const tablistContainer = tablist.parentElement;
+      const tab = tablist.children[1];
 
       Object.defineProperty(tablistContainer, 'clientHeight', { value: 100 });
       Object.defineProperty(tablistContainer, 'scrollHeight', { value: 100 });
@@ -648,6 +634,21 @@ describe('<Tabs />', () => {
       style = container.querySelector(`.${classes.indicator}`).style;
       expect(style.top).to.equal('60px');
       expect(style.height).to.equal('50px');
+    });
+  });
+
+  describe('server-side render', () => {
+    const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
+
+    it('should let the selected <Tab /> render the indicator server-side', () => {
+      const markup = serverRender(
+        <Tabs value={1}>
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+      const indicator = markup.find(`button > .${classes.indicator}`);
+      expect(indicator).to.have.lengthOf(1);
     });
   });
 });

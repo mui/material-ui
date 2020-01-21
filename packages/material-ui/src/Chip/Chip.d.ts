@@ -8,6 +8,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
     clickable?: boolean;
     color?: PropTypes.Color;
     deleteIcon?: React.ReactElement;
+    disabled?: boolean;
     icon?: React.ReactElement;
     label?: React.ReactNode;
     onDelete?: React.EventHandler<any>;
@@ -25,6 +26,7 @@ export type ChipClassKey =
   | 'sizeSmall'
   | 'colorPrimary'
   | 'colorSecondary'
+  | 'disabled'
   | 'clickable'
   | 'clickableColorPrimary'
   | 'clickableColorSecondary'
@@ -38,7 +40,6 @@ export type ChipClassKey =
   | 'avatarSmall'
   | 'avatarColorPrimary'
   | 'avatarColorSecondary'
-  | 'avatarChildren'
   | 'icon'
   | 'iconSmall'
   | 'iconColorPrimary'

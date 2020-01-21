@@ -7,6 +7,7 @@ import Fade from '../Fade';
 export const styles = {
   /* Styles applied to the root element. */
   root: {
+    // Improve scrollable dialog support.
     zIndex: -1,
     position: 'fixed',
     display: 'flex',
@@ -17,7 +18,6 @@ export const styles = {
     top: 0,
     left: 0,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    // Remove grey highlight
     WebkitTapHighlightColor: 'transparent',
     // Disable scroll capabilities.
     touchAction: 'none',

@@ -1,4 +1,4 @@
-import { compose, css, palette, StyleFunction, spacing } from '@material-ui/system';
+import { compose, css, palette, StyleFunction, spacing, style } from '@material-ui/system';
 import * as React from 'react';
 import styled from 'styled-components';
 
@@ -61,9 +61,11 @@ function cssRequiredTest() {
  * Testing inference of TypeScript + styled-components + @material-ui/system
  */
 function interopTest() {
+  const mixin = style({ prop: 'color' });
   // built-in style function
   const SystemSpacingBox = styled.div`
     ${spacing}
+    ${mixin}
   `;
   <SystemSpacingBox m={2} />;
 }

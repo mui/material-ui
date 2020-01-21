@@ -21,19 +21,25 @@ The `Tooltip` has 12 **placements** choice. They don’t have directional arrows
 
 ## Benutzerdefinierte Tooltips
 
-Here are some examples of customizing the component. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier sind einige Beispiele, wie man die Komponente anpassen kann. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
+
+## Arrow Tooltips
+
+You can use the `arrow` prop to give your tooltip an arrow indicating which element it refers to.
+
+{{"demo": "pages/components/tooltips/ArrowTooltips.js"}}
 
 ## Benutzerdefiniertes untergeordnetes Element
 
 The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its properties to the underlying DOM element.
 
 ```jsx
-function MyComponent(props) {
-  //  Spread the properties to the underlying DOM element.
-  return <div {...props}>Bin</div>
-}
+const MyComponent = React.forwardRef(function MyComponent(props, ref) {
+  //  Spread the props to the underlying DOM element.
+  return <div {...props} ref={ref}>Bin</div>
+});
 
 // ...
 
@@ -62,7 +68,7 @@ Der `Tooltip` umhüllt standardmäßig lange Texte, um diese lesbar zu machen.
 
 {{"demo": "pages/components/tooltips/VariableWidth.js"}}
 
-## Interaktiv
+## Interaktive Liste
 
 A tooltip can be interactive. It won't close when the user hovers over the tooltip before the `leaveDelay` is expired.
 
@@ -70,9 +76,23 @@ A tooltip can be interactive. It won't close when the user hovers over the toolt
 
 ## Deaktivierte Elemente
 
-Standardmäßig lösen deaktivierte Elemente wie `<button>` keine Benutzerinteraktionen aus, sodass ein `Tooltip` bei normalen Ereignissen wie Hover nicht aktiviert wird. Fügen Sie ein einfaches Wrapper-Element wie eine `span` hinzu, um deaktivierte Elemente aufzunehmen.
+Standardmäßig lösen deaktivierte Elemente wie `<button>` keine Benutzerinteraktionen aus, sodass ein `Tooltip` bei normalen Ereignissen wie Hover nicht aktiviert wird. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
+
+> ⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
 
 {{"demo": "pages/components/tooltips/DisabledTooltips.js"}}
+
+> If you're not wrapping a Material-UI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property *pointer-events: none;* to your element when disabled:
+
+```jsx
+<Tooltip title="You don't have permission to do this">
+  <span>
+    <button disabled={disabled} style={disabled ? { pointerEvents: "none" } : {}}>
+      {'A disabled button'}
+    </button>
+  </span>
+</Tooltip>
+```
 
 ## Übergänge
 

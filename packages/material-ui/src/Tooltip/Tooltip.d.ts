@@ -5,6 +5,7 @@ import { PopperProps } from '../Popper/Popper';
 
 export interface TooltipProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, TooltipClassKey, 'title'> {
+  arrow?: boolean;
   children: React.ReactElement;
   disableFocusListener?: boolean;
   disableHoverListener?: boolean;
@@ -40,7 +41,10 @@ export interface TooltipProps
 export type TooltipClassKey =
   | 'popper'
   | 'popperInteractive'
+  | 'popperArrow'
   | 'tooltip'
+  | 'tooltipArrow'
+  | 'arrow'
   | 'touch'
   | 'tooltipPlacementLeft'
   | 'tooltipPlacementRight'

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -21,6 +21,11 @@ export const styles = theme => ({
       paddingLeft: theme.spacing(4),
       paddingRight: theme.spacing(4),
     },
+  },
+  /* Styles applied to the root element if `disableGutters={true}`. */
+  disableGutters: {
+    paddingLeft: 0,
+    paddingRight: 0,
   },
   /* Styles applied to the root element if `fixed={true}`. */
   fixed: Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
@@ -70,6 +75,7 @@ const Container = React.forwardRef(function Container(props, ref) {
     classes,
     className,
     component: Component = 'div',
+    disableGutters = false,
     fixed = false,
     maxWidth = 'lg',
     ...other
@@ -81,6 +87,7 @@ const Container = React.forwardRef(function Container(props, ref) {
         classes.root,
         {
           [classes.fixed]: fixed,
+          [classes.disableGutters]: disableGutters,
           [classes[`maxWidth${capitalize(String(maxWidth))}`]]: maxWidth !== false,
         },
         className,
@@ -107,6 +114,10 @@ Container.propTypes = {
    * Either a string to use a DOM element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * If `true`, the left and right padding is removed.
+   */
+  disableGutters: PropTypes.bool,
   /**
    * Set the max-width to match the min-width of the current breakpoint.
    * This is useful if you'd prefer to design for a fixed set of sizes

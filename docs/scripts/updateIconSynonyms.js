@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-
 import 'isomorphic-fetch';
 import fse from 'fs-extra';
 import path from 'path';
@@ -24,7 +23,7 @@ async function run() {
       // remove the icon name strings from the tags
       icon.tags = not(icon.tags, icon.name.replace('_'));
       // Fix the 3 exceptions
-      icon.name = myDestRewriter({ base: `ic_${icon.name}` });
+      icon.name = myDestRewriter({ base: icon.name });
 
       acc[icon.name] = icon.tags;
       return acc;

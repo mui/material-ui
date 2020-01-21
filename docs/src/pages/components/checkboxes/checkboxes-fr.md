@@ -3,7 +3,7 @@ title: Checkbox React component
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Cases à cocher
+# Checkbox (case à cocher)
 
 <p class="description">Les cases à cocher permettent à l'utilisateur de sélectionner un ou plusieurs objets d'un ensembe.</p>
 
@@ -29,17 +29,23 @@ Vous pouvez changer l'emplacement du label:
 
 {{"demo": "pages/components/checkboxes/FormControlLabelPosition.js"}}
 
-## Customized checkbox
+## Case à cocher personnalisée
 
 Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
 
-{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js"}}
+{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
+
+## Quand les utiliser
+
+- [Cases à cocher vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)
+- [Cases à cocher vs. Switches (interrupteurs)](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
 ## Accessibilité
 
-Tous les contrôles de formulaire doivent avoir des labels, cela vaut également pour les boutons radio, les cases à cocher et les interrupteurs. Dans la plupart des cas, cela se fait en utilisant l'élément `<label>` ([FormControlLabel](/api/form-control-label/)).
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#checkbox)
 
-Lorsqu'un label ne peut pas être utilisé, il est nécessaire d'ajouter un attribut directement au composant input. Dans ce cas, vous pouvez appliquer l'attribut supplémentaire (ex: `aria-label`, `aria-labelledby`, `title`) via la propriété `inputProps`.
+- Tous les contrôles de formulaire doivent avoir des labels, cela vaut également pour les boutons radio, les cases à cocher et les interrupteurs. Dans la plupart des cas, cela se fait en utilisant l'élément `<label>` ([FormControlLabel](/api/form-control-label/)).
+- Lorsqu'un label ne peut pas être utilisé, il est nécessaire d'ajouter un attribut directement au composant input. Dans ce cas, vous pouvez appliquer l'attribut supplémentaire (ex: `aria-label`, `aria-labelledby`, `title`) via la propriété `inputProps`.
 
 ```jsx
 <Checkbox
@@ -47,7 +53,3 @@ Lorsqu'un label ne peut pas être utilisé, il est nécessaire d'ajouter un attr
   inputProps={{ 'aria-label': 'Checkbox A' }}
 />
 ```
-
-## Conseils
-
-- [Checkboxes vs. Radio Buttons](https://www.nngroup.com/articles/checkboxes-vs-radio-buttons/)

@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { StandardProps } from '@material-ui/core';
-import { ButtonProps } from '@material-ui/core/Button';
+import { FabProps } from '@material-ui/core/Fab';
 import { TransitionProps } from 'react-transition-group/Transition';
 import { TransitionHandlerProps } from '@material-ui/core/transitions';
+
+export type CloseReason = 'toggle' | 'blur' | 'mouseLeave' | 'escapeKeyDown';
+export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
 
 export interface SpeedDialProps
   extends StandardProps<
@@ -15,14 +18,10 @@ export interface SpeedDialProps
    */
   children?: React.ReactNode;
   /**
-   * The aria-label of the `Button` element.
+   * The aria-label of the button element.
    * Also used to provide the `id` for the `SpeedDial` element and its children.
    */
   ariaLabel: string;
-  /**
-   * Props applied to the [`Button`](/api/button/) element.
-   */
-  ButtonProps?: Partial<ButtonProps>;
   /**
    * The direction the actions open relative to the floating action button.
    */
@@ -32,7 +31,11 @@ export interface SpeedDialProps
    */
   hidden?: boolean;
   /**
-   * The icon to display in the SpeedDial Floating Action Button. The `SpeedDialIcon` component
+   * Props applied to the [`Fab`](/api/fab/) element.
+   */
+  FabProps?: Partial<FabProps>;
+  /**
+   * The icon to display in the SpeedDial Fab. The `SpeedDialIcon` component
    * provides a default Icon with animation.
    */
   icon?: React.ReactNode;
@@ -40,19 +43,27 @@ export interface SpeedDialProps
    * Callback fired when the component requests to be closed.
    *
    * @param {object} event The event source of the callback.
-   * @param {string} key The key pressed.
+   * @param {string} reason Can be: `"toggle"`, `"blur"`, `"mouseLeave"`, `"escapeKeyDown"`.
    */
-  onClose?: (event: React.SyntheticEvent<{}>, key: string) => void;
+  onClose?: (event: React.SyntheticEvent<{}>, reason: CloseReason) => void;
+  /**
+   * Callback fired when the component requests to be open.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {string} reason Can be: `"toggle"`, `"focus"`, `"mouseEnter"`.
+   */
+  onOpen?: (event: React.SyntheticEvent<{}>, reason: OpenReason) => void;
   /**
    * If `true`, the SpeedDial is open.
    */
   open: boolean;
   /**
-   * The icon to display in the SpeedDial Floating Action Button when the SpeedDial is open.
+   * The icon to display in the SpeedDial Fab when the SpeedDial is open.
    */
   openIcon?: React.ReactNode;
   /**
    * The component used for the transition.
+   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */
   TransitionComponent?: React.ComponentType<TransitionProps>;
   /**
@@ -61,19 +72,19 @@ export interface SpeedDialProps
    */
   transitionDuration?: TransitionProps['timeout'];
   /**
-   * Props applied to the `Transition` element.
+   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
    */
   TransitionProps?: TransitionProps;
 }
 
 export type SpeedDialClassKey =
   | 'root'
-  | 'actions'
-  | 'actionsClosed'
   | 'fab'
   | 'directionUp'
   | 'directionDown'
   | 'directionLeft'
-  | 'directionRight';
+  | 'directionRight'
+  | 'actions'
+  | 'actionsClosed';
 
 export default function SpeedDial(props: SpeedDialProps): JSX.Element;

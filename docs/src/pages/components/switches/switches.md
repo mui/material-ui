@@ -3,7 +3,7 @@ title: Switch React component
 components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
 ---
 
-# Switches
+# Switch
 
 <p class="description">Switches toggle the state of a single setting on or off.</p>
 
@@ -22,7 +22,7 @@ should be made clear from the corresponding inline label.
 ## Switches with FormGroup
 
 `FormGroup` is a helpful wrapper used to group selection controls components that provides an easier API.
-However, we encourage you to use a [Checkbox](#checkboxes) instead.
+However, we encourage you to use a [Checkbox](/components/checkboxes/) instead.
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
@@ -45,16 +45,20 @@ You can change the placement of the label:
 
 {{"demo": "pages/components/switches/FormControlLabelPosition.js"}}
 
+## When to use
+
+- [Checkboxes vs. Switches](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
+
 ## Accessibility
 
-All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
-
-When a label can't be used, it's necessary to add an attribute directly to the input component.
-In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
+- It will render an element with the `checkbox` role not `switch` role since this
+  role isn't widely supported yet. Please test first if assistive technology of your
+  target audience supports this role properly. Then you can change the role with
+  `<Switch inputProps={{ role: 'switch' }}>`
+- All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
+- When a label can't be used, it's necessary to add an attribute directly to the input component.
+  In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
 
 ```jsx
-<Switch
-  value="checkedA"
-  inputProps={{ 'aria-label': 'Switch A' }}
-/>
+<Switch value="checkedA" inputProps={{ 'aria-label': 'Switch A' }} />
 ```

@@ -1,10 +1,9 @@
-/* eslint-disable react/prop-types */
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated } from 'react-spring/web.cjs'; // web.cjs is required for IE 11 support
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -43,6 +42,13 @@ const Fade = React.forwardRef(function Fade(props, ref) {
     </animated.div>
   );
 });
+
+Fade.propTypes = {
+  children: PropTypes.element,
+  in: PropTypes.bool.isRequired,
+  onEnter: PropTypes.func,
+  onExited: PropTypes.func,
+};
 
 export default function SpringModal() {
   const classes = useStyles();

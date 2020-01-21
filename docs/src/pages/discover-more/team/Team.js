@@ -6,7 +6,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import { GitHub as GithubIcon, Twitter } from '@material-ui/docs';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import TwitterIcon from '@material-ui/icons/Twitter';
 
 const activeCore = [
   {
@@ -20,36 +21,29 @@ const activeCore = [
     name: 'Matt Brookes',
     github: 'mbrookes',
     twitter: 'randomtechdude',
-    flag: 'Core team',
+    flag: 'Core focus: *',
     city: 'London, UK',
   },
   {
     name: 'Sebastian Silbermann',
     github: 'eps1lon',
     twitter: 'sebsilbermann',
-    flag: 'Core team',
+    flag: 'Core focus: *',
     city: 'Dresden, Germany',
   },
   {
     name: 'Josh Wooding',
     github: 'joshwooding',
     twitter: 'JoshWooding_',
-    flag: 'Core team',
-    city: 'UK',
+    flag: 'Core focus: *',
+    city: 'London, UK',
   },
   {
-    name: 'Maik Marschner',
-    github: 'leMaik',
-    twitter: 'leMaikOfficial',
-    flag: 'Core Team',
-    city: 'Hannover, Germany',
-  },
-  {
-    name: 'Tom Crockett',
-    github: 'pelotom',
-    twitter: 'pelotom',
-    flag: 'Core Team',
-    city: 'Los Angeles, California, US',
+    name: 'Dmitriy Kovalenko',
+    github: 'dmtrKovalenko',
+    twitter: 'dmtrKovalenko',
+    flag: 'Core focus: pickers',
+    city: 'Kharkiv, Ukraine',
   },
 ];
 
@@ -71,21 +65,35 @@ const emeriti = [
     name: 'Kevin Ross',
     github: 'rosskevin',
     twitter: 'rosskevin',
-    flag: 'Core team',
+    flag: 'Core focus: *',
     city: 'Franklin, Tennessee, US',
   },
   {
     name: 'Sebastian Sebald',
     github: 'sebald',
     twitter: 'sebastiansebald',
-    flag: 'Core Team',
+    flag: 'Core focus: *',
     city: 'Freiburg, Germany',
   },
   {
     name: 'Ken Gregory',
     github: 'kgregory',
-    flag: 'Core Team',
+    flag: 'Core focus: *',
     city: 'New Jersey, US',
+  },
+  {
+    name: 'Tom Crockett',
+    github: 'pelotom',
+    twitter: 'pelotom',
+    flag: 'Core focus: *',
+    city: 'Los Angeles, California, US',
+  },
+  {
+    name: 'Maik Marschner',
+    github: 'leMaik',
+    twitter: 'leMaikOfficial',
+    flag: 'Core focus: *',
+    city: 'Hannover, Germany',
   },
 ];
 
@@ -96,13 +104,6 @@ const partners = [
     twitter: 'oleg008',
     flag: 'JSS',
     city: 'Berlin, Germany',
-  },
-  {
-    name: 'Dmitriy Kovalenko',
-    github: 'dmtrKovalenko',
-    twitter: 'dmtrKovalenko',
-    flag: '@material-ui/pickers',
-    city: 'Kharkiv, Ukraine',
   },
 ];
 
@@ -123,7 +124,7 @@ const styles = theme => ({
     padding: theme.spacing(1),
   },
   container: {
-    marginBottom: theme.spacing(4),
+    margin: theme.spacing(2, 0, 4),
   },
 });
 
@@ -134,7 +135,7 @@ function Group(props) {
       <Typography gutterBottom component="h2" variant="h5">
         {title}
       </Typography>
-      <Typography gutterBottom>{description}</Typography>
+      <Typography>{description}</Typography>
       <Grid container spacing={2} className={classes.container}>
         {members.map(member => (
           <Grid key={member.name} item xs={12} md={6}>
@@ -149,13 +150,15 @@ function Group(props) {
                 </Grid>
                 <Grid item>
                   <div className={classes.details}>
-                    <Typography component="h3" variant="h5">
+                    <Typography component="h3" variant="h6">
                       {member.name}
                     </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
+                    <Typography variant="body2" color="textSecondary">
                       {member.flag}
                     </Typography>
-                    <Typography color="textSecondary">{member.city}</Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      {member.city}
+                    </Typography>
                     <Grid container>
                       {member.github && (
                         <IconButton
@@ -164,7 +167,7 @@ function Group(props) {
                           href={`https://github.com/${member.github}`}
                           className={classes.icon}
                         >
-                          <GithubIcon fontSize="inherit" />
+                          <GitHubIcon fontSize="inherit" />
                         </IconButton>
                       )}
                       {member.twitter && (
@@ -174,7 +177,7 @@ function Group(props) {
                           href={`https://twitter.com/${member.twitter}`}
                           className={classes.icon}
                         >
-                          <Twitter fontSize="inherit" />
+                          <TwitterIcon fontSize="inherit" />
                         </IconButton>
                       )}
                     </Grid>

@@ -3,7 +3,7 @@ title: Componente React para Diálogos
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
-# Diálogos
+# Dialog (diálogo)
 
 <p class="description">As caixas de diálogo informa aos usuários sobre uma tarefa e podem conter informações críticas, exigir decisões ou envolver várias tarefas.</p>
 
@@ -95,9 +95,11 @@ Tocar em “Cancelar” em uma caixa de diálogo de confirmação ou pressionar 
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## Acessibilidade
+## Diálogo arrastável
 
-Siga a seção [Acessibilidade Modal](/components/modal/#accessibility).
+Você pode criar uma caixa de diálogo arrastável usando [react-draggable](https://github.com/mzabriskie/react-draggable). Para fazer isso, você deve passar o componente importado `Draggable` como `PaperComponent` do componente `Dialog`. Isso fará com que toda a caixa de diálogo seja arrastável.
+
+{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## Rolagem de conteúdo longo
 
@@ -110,12 +112,10 @@ Experimente a demonstração abaixo para ver o que queremos dizer:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
-## Diálogo arrastável
+## Limitações
 
-Você pode criar uma caixa de diálogo arrastável usando [react-draggable](https://github.com/mzabriskie/react-draggable). Para fazer isso, você deve passar o componente importado `Draggable` como `PaperComponent` do componente `Dialog`. Isso fará com que toda a caixa de diálogo seja arrastável.
+Follow the [Modal limitations section](/components/modal/#limitations).
 
-{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
+## Acessibilidade
 
-## Performance
-
-Siga a seção [Performance Modal](/components/modal/#performance).
+Siga a seção de [ Acessibilidade Modal](/components/modal/#accessibility).

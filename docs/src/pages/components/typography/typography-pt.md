@@ -42,7 +42,7 @@ Para mais informações confira o projeto [typeface](https://github.com/KyleAMat
 
 ## Tema
 
-Em algumas situações, talvez você não consiga usar o componente `Tipografia`. Com sorte, você possa talvez tirar proveito das chaves de [`typography`](/customization/default-theme/?expend-path=$.typography) do tema.
+Em algumas situações, talvez você não consiga usar o componente `Tipografia`. Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expand-path=$.typography) keys of the theme.
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 
@@ -53,7 +53,7 @@ O componente de Tipografia (Typography) usa a propriedade `variantMapping` para 
 - Você pode alterar o elemento subjacente para uma ocasião única com a propriedade `component`:
 
 ```jsx
-{/* There is already an h1 in the page, let's not duplicate it. */}
+{/ * Já existe um h1 na página, não vamos duplicá-lo. */}
 <Typography variant="h1" component="h2">
   h1. Título
 </Typography>
@@ -81,3 +81,11 @@ const theme = createMuiTheme({
   },
 });
 ```
+
+## Acessibilidade
+
+A few key factors to follow for an accessible typography:
+
+- **Color**. Provide enough contrast between text and its background, check out the minimum recommended [WCAG 2.0 color contrast ratio](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) (4.5:1).
+- **Font size**. Use [relative units (rem)](/customization/typography/#font-size) to accommodate the user's settings.
+- **Heading hierarchy**. [Don't skip](https://www.w3.org/WAI/tutorials/page-structure/headings/) heading levels. In order to solve this problem, you need to [separate the semantics from the style](#changing-the-semantic-element).

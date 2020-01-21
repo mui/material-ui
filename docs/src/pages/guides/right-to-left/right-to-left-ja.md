@@ -1,4 +1,4 @@
-# Right-to-left
+# 右から左
 
 <p class="description">To change the direction of Material-UI components you must follow the following steps. UIs for languages that are read from right-to-left (RTL), such as Arabic and Hebrew, should be mirrored.</p>
 
@@ -37,7 +37,7 @@ Once you have created a new JSS instance with the plugin, you need to make it av
 ```jsx
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });

@@ -18,6 +18,8 @@ Material-UI's styling solution is inspired by many other styling libraries such 
 
 ## Instalación
 
+> `@material-ui/styles` is re-exported as `@material-ui/core/styles` - you only need to install it if you wish to use it independently from Material-UI.
+
 Para instalarlo y guardarlo en las dependencias de tu ` package.json `, ejecuta:
 
 ```sh
@@ -36,7 +38,7 @@ There are 3 possible APIs you can use to generate and apply styles, however they
 
 ```jsx
 import React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
@@ -65,7 +67,7 @@ Note: this only applies to the calling syntax – style definitions still use a 
 
 ```jsx
 import React from 'react';
-import { styled } from '@material-ui/styles';
+import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const MyButton = styled(Button)({
@@ -90,7 +92,7 @@ export default function StyledComponents() {
 ```jsx
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
 const styles = {
@@ -126,7 +128,6 @@ You can nest selectors to target elements inside the current class or component.
 ```js
 const useStyles = makeStyles({
   root: {
-    padding: 16,
     color: 'red',
     '& p': {
       color: 'green',
@@ -138,7 +139,7 @@ const useStyles = makeStyles({
 });
 ```
 
-{{"demo": "pages/styles/basics/NestedStylesHook.js"}}
+{{"demo": "pages/styles/basics/NestedStylesHook.js", "defaultCodeOpen": false}}
 
 ## Adapting based on props
 
@@ -180,7 +181,7 @@ This button component has a color property that changes its color:
 
 {{"demo": "pages/styles/basics/AdaptingHOC.js"}}
 
-## Stress test
+### Stress test
 
 In the following stress test, you can update the *theme color* and the *background-color property* live:
 
@@ -194,3 +195,21 @@ const useStyles = makeStyles(theme => ({
 ```
 
 {{"demo": "pages/styles/basics/StressTest.js"}}
+
+## @material-ui/core/styles vs @material-ui/styles
+
+Material-UI's styles are powered by the [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) package, (built with JSS). This solution is [isolated](https://bundlephobia.com/result?p=@material-ui/styles). It doesn't have a default theme, and can be used to style React applications that are not using Material-UI components.
+
+To reduce the number of packages to install when using Material-UI, and to simplify the imports, `@material-ui/styles` modules are re-exported from `@material-ui/core/styles`.
+
+To remove the need to systematically supply a theme, the default Material-UI theme is applied to the re-exported `makeStyles`, `styled`, `withTheme`, `useTheme`, and `withStyles` modules.
+
+Por ejemplo:
+
+```js
+// Re-export with a default theme
+import { makeStyles } from '@material-ui/core/styles';
+
+// Original module with no default theme
+import { makeStyles } from '@material-ui/styles';
+```

@@ -1,11 +1,10 @@
 import React from 'react';
-import warning from 'warning';
+import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Typography from '../Typography';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
-import BreadcrumbSeparator from './BreadcrumbSeparator';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -23,7 +22,12 @@ export const styles = {
     listStyle: 'none',
   },
   /* Styles applied to the separator element. */
-  separator: {},
+  separator: {
+    display: 'flex',
+    userSelect: 'none',
+    marginLeft: 8,
+    marginRight: 8,
+  },
 };
 
 function insertSeparators(items, className, separator) {
@@ -31,9 +35,9 @@ function insertSeparators(items, className, separator) {
     if (index < items.length - 1) {
       acc = acc.concat(
         current,
-        <BreadcrumbSeparator key={`separator-${index}`} className={className}>
+        <li aria-hidden key={`separator-${index}`} className={className}>
           {separator}
-        </BreadcrumbSeparator>,
+        </li>,
       );
     } else {
       acc.push(current);
@@ -66,13 +70,14 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
     // This defends against someone passing weird input, to ensure that if all
     // items would be shown anyway, we just show all items without the EllipsisItem
     if (itemsBeforeCollapse + itemsAfterCollapse >= allItems.length) {
-      warning(
-        false,
-        [
-          'Material-UI: you have provided an invalid combination of props to the Breadcrumbs.',
-          `itemsAfterCollapse={${itemsAfterCollapse}} +itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
-        ].join('\n'),
-      );
+      if (process.env.NODE_ENV !== 'production') {
+        console.error(
+          [
+            'Material-UI: you have provided an invalid combination of props to the Breadcrumbs.',
+            `itemsAfterCollapse={${itemsAfterCollapse}} + itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
+          ].join('\n'),
+        );
+      }
       return allItems;
     }
 
@@ -84,7 +89,20 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
   };
 
   const allItems = React.Children.toArray(children)
-    .filter(child => React.isValidElement(child))
+    .filter(child => {
+      if (process.env.NODE_ENV !== 'production') {
+        if (isFragment(child)) {
+          console.error(
+            [
+              "Material-UI: the Breadcrumbs component doesn't accept a Fragment as a child.",
+              'Consider providing an array instead.',
+            ].join('\n'),
+          );
+        }
+      }
+
+      return React.isValidElement(child);
+    })
     .map((child, index) => (
       <li className={classes.li} key={`child-${index}`}>
         {child}
@@ -142,8 +160,8 @@ Breadcrumbs.propTypes = {
   itemsBeforeCollapse: PropTypes.number,
   /**
    * Specifies the maximum number of breadcrumbs to display. When there are more
-   * than the maximum number, only the first and last will be shown, with an
-   * ellipsis in between.
+   * than the maximum number, only the first `itemsBeforeCollapse` and last `itemsAfterCollapse`
+   * will be shown, with an ellipsis in between.
    */
   maxItems: PropTypes.number,
   /**

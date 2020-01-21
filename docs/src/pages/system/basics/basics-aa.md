@@ -49,9 +49,9 @@ crwdns98460:0crwdne98460:0
 crwdns98464:0crwdne98464:0 crwdns98466:0crwdne98466:0 crwdns98468:0crwdne98468:0
 
 ```jsx
-crwdns98470:0{ ThemeProvider }crwdnd98470:0{
+crwdns104096:0{ ThemeProvider }crwdnd104096:0{
     primary: '#007bff',
-  }crwdnd98470:0{theme}crwdne98470:0
+  }crwdnd104096:0{theme}crwdne104096:0
 ```
 
 crwdns98472:0crwdne98472:0
@@ -202,7 +202,7 @@ crwdns98644:0crwdne98644:0 crwdns98646:0crwdne98646:0
 
 crwdns98650:0crwdne98650:0 crwdns98652:0crwdne98652:0
 
-crwdns98654:0crwdne98654:0
+crwdns105875:0crwdne105875:0
 
 ## crwdns98656:0crwdne98656:0
 

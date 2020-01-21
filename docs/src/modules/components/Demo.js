@@ -4,21 +4,24 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import copy from 'clipboard-copy';
 import { useSelector, useDispatch } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, fade } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Collapse from '@material-ui/core/Collapse';
+import NoSsr from '@material-ui/core/NoSsr';
 import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
+import Snackbar from '@material-ui/core/Snackbar';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
-import { GitHub as GithubIcon } from '@material-ui/docs';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import DemoLanguages from 'docs/src/modules/components/DemoLanguages';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
+import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 
@@ -39,7 +42,6 @@ function addHiddenInput(form, name, value) {
 
 const styles = theme => ({
   root: {
-    position: 'relative',
     marginBottom: 40,
     marginLeft: -theme.spacing(2),
     marginRight: -theme.spacing(2),
@@ -50,14 +52,35 @@ const styles = theme => ({
     },
   },
   demo: {
+    position: 'relative',
     outline: 0,
     margin: 'auto',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: theme.palette.background.level2,
     display: 'flex',
     justifyContent: 'center',
-    padding: 20,
     [theme.breakpoints.up('sm')]: {
+      borderRadius: theme.shape.borderRadius,
+    },
+  },
+  /* Isolate the demo with an outline. */
+  demoBgOutlined: {
+    padding: theme.spacing(3),
+    border: `1px solid ${fade(theme.palette.action.active, 0.12)}`,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    [theme.breakpoints.up('sm')]: {
+      borderLeftWidth: 1,
+      borderRightWidth: 1,
+    },
+  },
+  /* Prepare the background to display an inner elevation. */
+  demoBgTrue: {
+    padding: theme.spacing(3),
+    backgroundColor: theme.palette.background.level2,
+  },
+  /* Make no difference between the demo and the markdown. */
+  demoBgInline: {
+    // Maintain alignment with the markdown text
+    [theme.breakpoints.down('xs')]: {
       padding: theme.spacing(3),
     },
   },
@@ -74,8 +97,12 @@ const styles = theme => ({
       flip: false,
       top: 0,
       right: theme.spacing(1),
+      height: theme.spacing(6),
     },
     justifyContent: 'space-between',
+  },
+  headerButtons: {
+    margin: '2px 0',
   },
   code: {
     display: 'none',
@@ -87,7 +114,7 @@ const styles = theme => ({
     },
     '& pre': {
       overflow: 'auto',
-      paddingTop: theme.spacing(5),
+      lineHeight: 1.5,
       margin: '0px !important',
       maxHeight: 1000,
     },
@@ -130,7 +157,6 @@ function Demo(props) {
   const dispatch = useDispatch();
   const t = useSelector(state => state.options.t);
   const codeVariant = useSelector(state => state.options.codeVariant);
-
   const demoData = getDemoData(codeVariant, demo, githubLocation);
 
   const [sourceHintSeen, setSourceHintSeen] = React.useState(false);
@@ -139,11 +165,18 @@ function Demo(props) {
   }, []);
 
   const [demoHovered, setDemoHovered] = React.useState(false);
-  function handleDemoHover(event) {
+  const handleDemoHover = event => {
     setDemoHovered(event.type === 'mouseenter');
-  }
+  };
 
-  function handleCodeLanguageClick(event, clickedCodeVariant) {
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  const [snackbarMessage, setSnackbarMessage] = React.useState(undefined);
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
+
+  const handleCodeLanguageClick = (event, clickedCodeVariant) => {
     if (codeVariant !== clickedCodeVariant) {
       dispatch({
         type: ACTION_TYPES.OPTIONS_CHANGE,
@@ -152,9 +185,9 @@ function Demo(props) {
         },
       });
     }
-  }
+  };
 
-  function handleClickCodeSandbox() {
+  const handleCodeSandboxClick = () => {
     const demoConfig = getDemoConfig(demoData);
     const parameters = compress({
       files: {
@@ -186,26 +219,28 @@ function Demo(props) {
     document.body.appendChild(form);
     form.submit();
     document.body.removeChild(form);
-  }
+  };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  function handleClickMore(event) {
+  const handleMoreClick = event => {
     setAnchorEl(event.currentTarget);
-  }
+  };
 
-  function handleCloseMore() {
+  const handleMoreClose = () => {
     setAnchorEl(null);
-  }
+  };
 
-  async function handleClickCopy() {
+  const handleCopyClick = async () => {
     try {
       await copy(demoData.raw);
+      setSnackbarMessage(t('copiedSource'));
+      setSnackbarOpen(true);
     } finally {
-      handleCloseMore();
+      handleMoreClose();
     }
-  }
+  };
 
-  function handleClickStackBlitz() {
+  const handleStackBlitzClick = () => {
     const demoConfig = getDemoConfig(demoData);
     const form = document.createElement('form');
     form.method = 'POST';
@@ -223,12 +258,11 @@ function Demo(props) {
     document.body.appendChild(form);
     form.submit();
     document.body.removeChild(form);
-    handleCloseMore();
-  }
+    handleMoreClose();
+  };
 
   const showSourceHint = demoHovered && !sourceHintSeen;
   const DemoComponent = demoData.Component;
-  const gaCategory = demoOptions.demo;
   const demoName = getDemoName(demoData.githubLocation);
   const demoSandboxedStyle = React.useMemo(
     () => ({
@@ -238,11 +272,21 @@ function Demo(props) {
     [demoOptions.height, demoOptions.maxWidth],
   );
 
+  if (demoOptions.bg == null) {
+    demoOptions.bg = 'outlined';
+  }
+
+  if (demoOptions.iframe) {
+    demoOptions.bg = true;
+  }
+
   const createHandleCodeSourceLink = anchor => async () => {
     try {
       await copy(`${window.location.href.split('#')[0]}#${anchor}`);
+      setSnackbarMessage(t('copiedSourceLink'));
+      setSnackbarOpen(true);
     } finally {
-      handleCloseMore();
+      handleMoreClose();
     }
   };
 
@@ -255,146 +299,36 @@ function Demo(props) {
     }
   }, [demoName]);
 
-  function handleClickCodeOpen() {
+  const handleCodeOpenClick = () => {
     document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`;
     setCodeOpen(open => !open);
     setSourceHintSeen(setSourceHintSeen(true));
-  }
+  };
 
   const match = useMediaQuery(theme => theme.breakpoints.up('sm'));
 
+  const jsx = getJsxPreview(demoData.raw || '');
+  const showPreview =
+    !demoOptions.hideHeader &&
+    demoOptions.defaultCodeOpen !== false &&
+    jsx !== demoData.raw &&
+    jsx.split(/\n/).length <= 17;
+
+  let showCodeLabel;
+  if (codeOpen) {
+    showCodeLabel = showPreview ? t('hideFullSource') : t('hideSource');
+  } else {
+    showCodeLabel = showPreview ? t('showFullSource') : t('showSource');
+  }
+
   return (
     <div className={classes.root}>
-      <div className={classes.anchorLink} id={`${demoName}.js`} />
-      <div className={classes.anchorLink} id={`${demoName}.tsx`} />
-      {demoOptions.hideHeader ? null : (
-        <div>
-          <div className={classes.header}>
-            <DemoLanguages
-              demo={demo}
-              codeOpen={codeOpen}
-              codeVariant={codeVariant}
-              gaEventCategory={gaCategory}
-              onLanguageClick={handleCodeLanguageClick}
-            />
-            <div>
-              <Tooltip
-                classes={{ popper: classes.tooltip }}
-                key={showSourceHint}
-                open={showSourceHint && match ? true : undefined}
-                PopperProps={{ disablePortal: true }}
-                title={codeOpen ? t('hideSource') : t('showSource')}
-                placement="top"
-              >
-                <IconButton
-                  aria-label={codeOpen ? t('hideSource') : t('showSource')}
-                  data-ga-event-category={gaCategory}
-                  data-ga-event-action="expand"
-                  onClick={handleClickCodeOpen}
-                  color={demoHovered ? 'primary' : 'default'}
-                >
-                  <CodeIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              <Tooltip
-                classes={{ popper: classes.tooltip }}
-                title={t('viewGitHub')}
-                placement="top"
-              >
-                <IconButton
-                  aria-label={t('viewGitHub')}
-                  data-ga-event-category={gaCategory}
-                  data-ga-event-action="github"
-                  href={demoData.githubLocation}
-                  target="_blank"
-                  rel="noopener nofollow"
-                >
-                  <GithubIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              {demoOptions.hideEditButton ? null : (
-                <Tooltip
-                  classes={{ popper: classes.tooltip }}
-                  title={t('codesandbox')}
-                  placement="top"
-                >
-                  <IconButton
-                    aria-label={t('codesandbox')}
-                    data-ga-event-category={gaCategory}
-                    data-ga-event-action="codesandbox"
-                    onClick={handleClickCodeSandbox}
-                  >
-                    <EditIcon fontSize="small" />
-                  </IconButton>
-                </Tooltip>
-              )}
-              <IconButton
-                onClick={handleClickMore}
-                aria-owns={anchorEl ? 'demo-menu-more' : undefined}
-                aria-haspopup="true"
-                aria-label={t('seeMore')}
-              >
-                <MoreVertIcon fontSize="small" />
-              </IconButton>
-              <Menu
-                id="demo-menu-more"
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleCloseMore}
-                getContentAnchorEl={null}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-              >
-                <MenuItem
-                  data-ga-event-category={gaCategory}
-                  data-ga-event-action="copy"
-                  onClick={handleClickCopy}
-                >
-                  {t('copySource')}
-                </MenuItem>
-                {demoOptions.hideEditButton ? null : (
-                  <MenuItem
-                    data-ga-event-category={gaCategory}
-                    data-ga-event-action="stackblitz"
-                    onClick={handleClickStackBlitz}
-                  >
-                    {t('stackblitz')}
-                  </MenuItem>
-                )}
-                <MenuItem
-                  data-ga-event-category={gaCategory}
-                  data-ga-event-action="copy-js-source-link"
-                  onClick={createHandleCodeSourceLink(`${demoName}.js`)}
-                >
-                  {t('copySourceLinkJS')}
-                </MenuItem>
-                <MenuItem
-                  data-ga-event-category={gaCategory}
-                  data-ga-event-action="copy-ts-source-link"
-                  onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
-                >
-                  {t('copySourceLinkTS')}
-                </MenuItem>
-              </Menu>
-            </div>
-          </div>
-          <Collapse in={codeOpen} unmountOnExit>
-            <MarkdownElement
-              className={classes.code}
-              text={`\`\`\`${demoData.sourceLanguage}\n${demoData.raw}\n\`\`\``}
-            />
-          </Collapse>
-        </div>
-      )}
       <div
         className={clsx(classes.demo, {
           [classes.demoHiddenHeader]: demoOptions.hideHeader,
+          [classes.demoBgOutlined]: demoOptions.bg === 'outlined',
+          [classes.demoBgTrue]: demoOptions.bg === true,
+          [classes.demoBgInline]: demoOptions.bg === 'inline',
         })}
         tabIndex={-1}
         onMouseEnter={handleDemoHover}
@@ -407,6 +341,148 @@ function Demo(props) {
           name={demoName}
         />
       </div>
+      <div className={classes.anchorLink} id={`${demoName}.js`} />
+      <div className={classes.anchorLink} id={`${demoName}.tsx`} />
+      {demoOptions.hideHeader ? null : (
+        <div className={classes.header}>
+          <NoSsr>
+            <DemoLanguages
+              demo={demo}
+              codeOpen={codeOpen}
+              codeVariant={codeVariant}
+              gaEventLabel={demoOptions.demo}
+              onLanguageClick={handleCodeLanguageClick}
+            />
+            <div className={classes.headerButtons}>
+              <Tooltip
+                classes={{ popper: classes.tooltip }}
+                key={showSourceHint}
+                open={showSourceHint && match ? true : undefined}
+                PopperProps={{ disablePortal: true }}
+                title={showCodeLabel}
+                placement="top"
+              >
+                <IconButton
+                  aria-label={showCodeLabel}
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="expand"
+                  onClick={handleCodeOpenClick}
+                  color={demoHovered ? 'primary' : 'default'}
+                >
+                  <CodeIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              {demoOptions.hideEditButton ? null : (
+                <Tooltip
+                  classes={{ popper: classes.tooltip }}
+                  title={t('codesandbox')}
+                  placement="top"
+                >
+                  <IconButton
+                    aria-label={t('codesandbox')}
+                    data-ga-event-category="demo"
+                    data-ga-event-label={demoOptions.demo}
+                    data-ga-event-action="codesandbox"
+                    onClick={handleCodeSandboxClick}
+                  >
+                    <EditIcon fontSize="small" />
+                  </IconButton>
+                </Tooltip>
+              )}
+              <Tooltip
+                classes={{ popper: classes.tooltip }}
+                title={t('copySource')}
+                placement="top"
+              >
+                <IconButton
+                  aria-label={t('copySource')}
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="copy"
+                  onClick={handleCopyClick}
+                >
+                  <FileCopyIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <IconButton
+                onClick={handleMoreClick}
+                aria-owns={anchorEl ? 'demo-menu-more' : undefined}
+                aria-haspopup="true"
+                aria-label={t('seeMore')}
+              >
+                <MoreVertIcon fontSize="small" />
+              </IconButton>
+              <Menu
+                id="demo-menu-more"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleMoreClose}
+                getContentAnchorEl={null}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+              >
+                <MenuItem
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="github"
+                  component="a"
+                  href={demoData.githubLocation}
+                  target="_blank"
+                  rel="noopener nofollow"
+                  onClick={handleMoreClose}
+                >
+                  {t('viewGitHub')}
+                </MenuItem>
+                {demoOptions.hideEditButton ? null : (
+                  <MenuItem
+                    data-ga-event-category="demo"
+                    data-ga-event-label={demoOptions.demo}
+                    data-ga-event-action="stackblitz"
+                    onClick={handleStackBlitzClick}
+                  >
+                    {t('stackblitz')}
+                  </MenuItem>
+                )}
+                <MenuItem
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="copy-js-source-link"
+                  onClick={createHandleCodeSourceLink(`${demoName}.js`)}
+                >
+                  {t('copySourceLinkJS')}
+                </MenuItem>
+                <MenuItem
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="copy-ts-source-link"
+                  onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
+                >
+                  {t('copySourceLinkTS')}
+                </MenuItem>
+              </Menu>
+            </div>
+          </NoSsr>
+        </div>
+      )}
+      <Collapse in={codeOpen || showPreview} unmountOnExit>
+        <MarkdownElement
+          className={classes.code}
+          text={`\`\`\`${demoData.sourceLanguage}\n${codeOpen ? demoData.raw : jsx}\n\`\`\``}
+        />
+      </Collapse>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleSnackbarClose}
+        message={snackbarMessage}
+      />
     </div>
   );
 }

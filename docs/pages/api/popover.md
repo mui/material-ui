@@ -35,8 +35,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">elevation</span> | <span class="prop-type">number</span> | <span class="prop-default">8</span> | The elevation of the popover. |
 | <span class="prop-name">getContentAnchorEl</span> | <span class="prop-type">func</span> |  | This function is called in order to retrieve the content anchor element. It's the opposite of the `anchorEl` prop. The content anchor element should be an element inside the popover. It's used to correctly scroll and set the position of the popover. The positioning strategy tries to make the content anchor element just above the anchor element. |
 | <span class="prop-name">marginThreshold</span> | <span class="prop-type">number</span> | <span class="prop-default">16</span> | Specifies how close to the edge of the window the popover can appear. |
-| <span class="prop-name">ModalClasses</span> | <span class="prop-type">object</span> |  | `classes` prop applied to the [`Modal`](/api/modal/) element. |
-| <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback.<br>*reason:* Can be:`"escapeKeyDown"`, `"backdropClick"` |
+| <span class="prop-name">onClose</span> | <span class="prop-type">func</span> |  | Callback fired when the component requests to be closed.<br><br>**Signature:**<br>`function(event: object, reason: string) => void`<br>*event:* The event source of the callback.<br>*reason:* Can be: `"escapeKeyDown"`, `"backdropClick"`. |
 | <span class="prop-name">onEnter</span> | <span class="prop-type">func</span> |  | Callback fired before the component is entering. |
 | <span class="prop-name">onEntered</span> | <span class="prop-type">func</span> |  | Callback fired when the component has entered. |
 | <span class="prop-name">onEntering</span> | <span class="prop-type">func</span> |  | Callback fired when the component is entering. |
@@ -46,9 +45,9 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name required">open&nbsp;*</span> | <span class="prop-type">bool</span> |  | If `true`, the popover is visible. |
 | <span class="prop-name">PaperProps</span> | <span class="prop-type">{ component?: element type }</span> | <span class="prop-default">{}</span> | Props applied to the [`Paper`](/api/paper/) element. |
 | <span class="prop-name">transformOrigin</span> | <span class="prop-type">{ horizontal: number<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'right', vertical: number<br>&#124;&nbsp;'top'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'bottom' }</span> | <span class="prop-default">{  vertical: 'top',  horizontal: 'left',}</span> | This is the point on the popover which will attach to the anchor's origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)]. |
-| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Grow</span> | The component used for the transition. |
+| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Grow</span> | The component used for the transition. [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">number<br>&#124;&nbsp;{ enter?: number, exit?: number }<br>&#124;&nbsp;'auto'</span> | <span class="prop-default">'auto'</span> | Set to 'auto' to automatically calculate transition time based on height. |
-| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the `Transition` element. |
+| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element. |
 
 The `ref` is forwarded to the root element.
 
@@ -61,7 +60,8 @@ Any other props supplied will be provided to the root element ([Modal](/api/moda
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">paper</span> | <span class="prop-name">MuiPopover-paper</span> | Styles applied to the `Paper` component.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiPopover-root</span> | Styles applied to the root element
+| <span class="prop-name">paper</span> | <span class="prop-name">.MuiPopover-paper</span> | Styles applied to the `Paper` component.
 
 You can override the style of the component thanks to one of these customization points:
 

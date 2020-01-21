@@ -1,4 +1,4 @@
-# Density
+# Densité
 
 <p class="description">How to apply density to Material-UI components.</p>
 
@@ -24,7 +24,7 @@ The following components have props applying higher density:
 - [InputLabel](/api/input-label/)
 - [ListItem](/api/list-item/)
 - [OutlinedInput](/api/outlined-input/)
-- [Table](/api/table/)
+- [Table (Tableaux)](/api/table/)
 - [TextField](/api/text-field/)
 - [Toolbar](/api/toolbar/)
 

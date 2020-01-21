@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 
 const SIZE = 44;
 
 function getRelativeValue(value, min, max) {
-  const clampedValue = Math.min(Math.max(min, value), max);
-  return (clampedValue - min) / (max - min);
+  return (Math.min(Math.max(min, value), max) - min) / (max - min);
 }
 
 function easeOut(t) {
@@ -27,7 +26,6 @@ export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     display: 'inline-block',
-    lineHeight: 1, // Keep the progress centered
   },
   /* Styles applied to the root element if `variant="static"`. */
   static: {
@@ -46,7 +44,9 @@ export const styles = theme => ({
     color: theme.palette.secondary.main,
   },
   /* Styles applied to the `svg` element. */
-  svg: {},
+  svg: {
+    display: 'block', // Keeps the progress centered
+  },
   /* Styles applied to the `circle` svg path. */
   circle: {
     stroke: 'currentColor',

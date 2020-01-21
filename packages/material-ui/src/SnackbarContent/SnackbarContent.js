@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Paper from '../Paper';
-import Typography from '../Typography';
 import { emphasize } from '../styles/colorManipulator';
 
 export const styles = theme => {
@@ -13,6 +12,7 @@ export const styles = theme => {
   return {
     /* Styles applied to the root element. */
     root: {
+      ...theme.typography.body2,
       color: theme.palette.getContrastText(backgroundColor),
       backgroundColor,
       display: 'flex',
@@ -42,17 +42,11 @@ export const styles = theme => {
 };
 
 const SnackbarContent = React.forwardRef(function SnackbarContent(props, ref) {
-  const { action, classes, className, message, ...other } = props;
+  const { action, classes, className, message, role = 'alert', ...other } = props;
 
   return (
     <Paper
-      component={Typography}
-      variant="body2"
-      variantMapping={{
-        body1: 'div',
-        body2: 'div',
-      }}
-      role="alertdialog"
+      role={role}
       square
       elevation={6}
       className={clsx(classes.root, className)}
@@ -67,7 +61,7 @@ const SnackbarContent = React.forwardRef(function SnackbarContent(props, ref) {
 
 SnackbarContent.propTypes = {
   /**
-   * The action to display.
+   * The action to display. It renders after the message, at the end of the snackbar.
    */
   action: PropTypes.node,
   /**
@@ -83,6 +77,10 @@ SnackbarContent.propTypes = {
    * The message to display.
    */
   message: PropTypes.node,
+  /**
+   * The ARIA role attribute of the element.
+   */
+  role: PropTypes.string,
 };
 
 export default withStyles(styles, { name: 'MuiSnackbarContent' })(SnackbarContent);

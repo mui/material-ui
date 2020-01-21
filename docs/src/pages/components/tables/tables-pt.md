@@ -1,15 +1,15 @@
 ---
 title: Componente React Tabelas
-components: Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
+components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 ---
 
-# Tabelas
+# Table (tabela)
 
-<p class="description">Tabelas exibem conjuntos de dados. Eles podem ser totalmente customizadas.</p>
+<p class="description">Tables display sets of data. Eles podem ser totalmente customizadas.</p>
 
-[Tabelas de dados](https://material.io/design/components/data-tables.html) apresentam informações de uma forma fácil de verificar, de modo que os usuários podem procurar por padrões e percepções. Elas podem ser incorporadas no conteúdo principal, assim como Cartões.
+[Tables](https://material.io/design/components/data-tables.html) display information in a way that’s easy to scan, so that users can look for patterns and insights. Elas podem ser incorporadas no conteúdo principal, assim como Cartões.
 
-Tabelas de dados podem incluir:
+Tables can include:
 
 - Uma visualização correspondente
 - Navegação
@@ -29,13 +29,13 @@ Para acessibilidade, a primeira coluna é ajustada para ser um elemento `<th>`, 
 
 Um exemplo simples sem frescuras.
 
-{{"demo": "pages/components/tables/SimpleTable.js"}}
+{{"demo": "pages/components/tables/SimpleTable.js", "bg": true}}
 
 ## Tabela Densa
 
 Um exemplo simples de uma tabela densa sem frescuras.
 
-{{"demo": "pages/components/tables/DenseTable.js"}}
+{{"demo": "pages/components/tables/DenseTable.js", "bg": true}}
 
 ## Classificando & Selecionando
 
@@ -43,37 +43,53 @@ Este exemplo demonstra o uso de linhas clicáveis e `Checkbox` para a seleção,
 
 A tabela recebeu uma largura fixa para demonstrar a rolagem horizontal. Para impedir que os controles de paginação rolem, o componente TablePagination é usado fora da tabela. (O [Exemplo 'da ação de paginação personalizada'](#custom-table-pagination-action) abaixo mostra a paginação dentro de TableFooter.)
 
-{{"demo": "pages/components/tables/EnhancedTable.js"}}
+{{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
 ## Tabelas Customizadas
 
-Aqui esta um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
 
-{{"demo": "pages/components/tables/CustomizedTables.js"}}
+{{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
-## Ação de paginação de tabela personalizada
+### Custom pagination options
+
+It's possible to customise the options shown in the "Rows per page" select using the `rowsPerPageOptions` prop. You should either provide an array of:
+
+- **numbers**, each number will be used for the option's label and value.
+    
+    ```jsx
+    <TablePagination rowsPerPageOptions={[10, 50]} />
+    ```
+
+- **objects**, the `value` and `label` keys will be used respectively for the value and label of the option (useful for language strings such as 'All').
+    
+    ```jsx
+    <TablePagination rowsPerPageOptions={[10, 50, { value: -1, label: 'All' }]} />
+    ```
+
+### Custom pagination actions
 
 A propriedade `Action` do componente `TablePagination` permite a implementação de ações customizadas.
 
-{{"demo": "pages/components/tables/CustomPaginationActionsTable.js"}}
+{{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
-## Fixed header
+## Cabeçalho fixo
 
-An example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop (⚠️ no IE 11 support).
+Um exemplo de uma tabela com linhas roláveis e cabeçalhos de coluna fixos. Ele aproveita do suporte de `stickyHeader` (⚠️ sem suporte ao IE 11).
 
-{{"demo": "pages/components/tables/StickyHeadTable.js"}}
+{{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
-## Spanning Table
+## Tabela de abrangência
 
-A simple example with spanning rows & columns.
+Um exemplo simples com abrangência de linhas & colunas.
 
-{{"demo": "pages/components/tables/SpanningTable.js"}}
+{{"demo": "pages/components/tables/SpanningTable.js", "bg": true}}
 
-## Virtualized Table
+## Tabela Virtualizada
 
-In the following example, we demonstrate how to use [react-virtualized](https://github.com/bvaughn/react-virtualized) with the `Table` component. Ela renderiza 200 linhas e pode facilmente lidar com mais. A virtualização ajuda a lidar com problemas de desempenho.
+No exemplo a seguir, nós demonstramos como usar [react-virtualized](https://github.com/bvaughn/react-virtualized) com o componente `Table`. Ela renderiza 200 linhas e pode facilmente lidar com mais. A virtualização ajuda a lidar com problemas de desempenho.
 
-{{"demo": "pages/components/tables/ReactVirtualizedTable.js"}}
+{{"demo": "pages/components/tables/ReactVirtualizedTable.js", "bg": true}}
 
 ## Projetos Complementares
 
@@ -83,11 +99,22 @@ Para usos mais avançados, você pode tirar vantagem com:
 
 ![estrelas](https://img.shields.io/github/stars/mbrn/material-table.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/material-table.svg)
 
-[material-table](https://github.com/mbrn/material-table) is a simple and powerful Datatable for React based on Material-UI Table with some additional features. They support many different use cases (editable, filtering, grouping, sorting, selection, i18n, tree data and more). You should check it out.
+[material-table](https://github.com/mbrn/material-table) é uma tabela de dados simples e poderosa para React baseado na tabela do Material-UI com alguns recursos adicionais. Eles suportam muitos formas de utilização (edição, filtragem, agrupamento, ordenação, seleção, i18n, árvore de dados e muito mais). Você deveria dar uma olhada.
 
-{{"demo": "pages/components/tables/MaterialTableDemo.js"}}
+{{"demo": "pages/components/tables/MaterialTableDemo.js", "bg": true}}
 
 ### Outros
 
-- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/): A data grid for Material-UI with paging, sorting, filtering, grouping and editing features ([paid license](https://js.devexpress.com/licensing/)).
-- [mui-datatables](https://github.com/gregnb/mui-datatables): Responsive data tables for Material-UI with filtering, sorting, search and more.
+- [dx-react-grid-material-ui](https://devexpress.github.io/devextreme-reactive/react/grid/) Uma grade de dados para Material-UI com paginação, ordenação, filtragem, agrupamento e funções de edição.([Com licenciamento de uso pago](https://js.devexpress.com/licensing/)).
+- [mui-datatables](https://github.com/gregnb/mui-datatables): Tabelas de dados responsivas para Material-UI com filtro, ordenação, pesquisa e muito mais.
+- [tubular-react](https://github.com/unosquare/tubular-react): Uma tabela de Material-UI com fonte de dados local ou remota. Com filtragem, classificação, pesquisa de texto livre, exportação para CSV localmente e agregações.
+
+## Acessibilidade
+
+(WAI tutorial: https://www.w3.org/WAI/tutorials/tables/)
+
+### Caption
+
+A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it’s about and decide if they want to read it.
+
+{{"demo": "pages/components/tables/AcccessibleTable.js", "bg": true}}

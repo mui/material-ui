@@ -1,22 +1,26 @@
 # Exibição
 
-<p class="description">Quickly and responsively toggle the display value of components and more with the display utilities. Inclui suporte para alguns dos valores mais comuns, bem como alguns extras para controlar a exibição durante a impressão.</p>
+<p class="description">Troque rapidamente, de forma responsiva, a propriedade 'display' dos seus componentes e faça muito mais com as ferramentas de exibição. Inclui suporte para alguns dos valores mais comuns, bem como alguns extras para controlar a exibição durante a impressão.</p>
 
 ## Exemplos
 
+### Inline
+
+{{"demo": "pages/system/display/Inline.js", "defaultCodeOpen": false, "bg": true}}
+
 ```jsx
 <Box component="div" display="inline">inline</Box>
 <Box component="div" display="inline">inline</Box>
 ```
 
-{{"demo": "pages/system/display/Inline.js"}}
+### Block
+
+{{"demo": "pages/system/display/Block.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
 <Box component="span" display="block">block</Box>
 <Box component="span" display="block">block</Box>
 ```
-
-{{"demo": "pages/system/display/Block.js"}}
 
 ## Ocultando elementos
 
@@ -37,6 +41,8 @@ Para um desenvolvimento mais rápido para dispositivos móveis, use classes de e
 | Visível em xl   | `display={{ xs: 'none', xl: 'block' }}`              |
 
 
+{{"demo": "pages/system/display/Hiding.js", "defaultCodeOpen": false}}
+
 ```jsx
 <Box display={{ xs: 'block', md: 'none' }}>
   ocultar em telas maiores que md
@@ -46,9 +52,9 @@ Para um desenvolvimento mais rápido para dispositivos móveis, use classes de e
 </Box>
 ```
 
-{{"demo": "pages/system/display/Hiding.js"}}
-
 ## Exibição na impressão
+
+{{"demo": "pages/system/display/Print.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box display="block" displayPrint="none">
@@ -59,9 +65,9 @@ Para um desenvolvimento mais rápido para dispositivos móveis, use classes de e
 </Box>
 ```
 
-{{"demo": "pages/system/display/Print.js"}}
-
 ## Estouro
+
+{{"demo": "pages/system/display/Overflow.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="div" overflow="hidden">
@@ -72,9 +78,9 @@ Para um desenvolvimento mais rápido para dispositivos móveis, use classes de e
 </Box>
 ```
 
-{{"demo": "pages/system/display/Overflow.js"}}
-
 ## Estouro de texto
+
+{{"demo": "pages/system/display/TextOverflow.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="div" textOverflow="clip">
@@ -85,9 +91,9 @@ Para um desenvolvimento mais rápido para dispositivos móveis, use classes de e
 </Box>
 ```
 
-{{"demo": "pages/system/display/TextOverflow.js"}}
-
 ## Visibilidade
+
+{{"demo": "pages/system/display/Visibility.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="div" visibility="visible">
@@ -98,9 +104,9 @@ Para um desenvolvimento mais rápido para dispositivos móveis, use classes de e
 </Box>
 ```
 
-{{"demo": "pages/system/display/Visibility.js"}}
-
 ## Espaço em branco
+
+{{"demo": "pages/system/display/WhiteSpace.js", "defaultCodeOpen": false}}
 
 ```jsx
 <Box component="div" whiteSpace="nowrap">
@@ -110,8 +116,6 @@ Para um desenvolvimento mais rápido para dispositivos móveis, use classes de e
   Espaço em branco normal
 </Box>
 ```
-
-{{"demo": "pages/system/display/WhiteSpace.js"}}
 
 ## API
 

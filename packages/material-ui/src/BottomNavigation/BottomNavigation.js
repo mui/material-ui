@@ -1,7 +1,7 @@
 import React from 'react';
+import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import warning from 'warning';
 import withStyles from '../styles/withStyles';
 
 export const styles = theme => ({
@@ -33,13 +33,16 @@ const BottomNavigation = React.forwardRef(function BottomNavigation(props, ref) 
           return null;
         }
 
-        warning(
-          child.type !== React.Fragment,
-          [
-            "Material-UI: the BottomNavigation component doesn't accept a Fragment as a child.",
-            'Consider providing an array instead.',
-          ].join('\n'),
-        );
+        if (process.env.NODE_ENV !== 'production') {
+          if (isFragment(child)) {
+            console.error(
+              [
+                "Material-UI: the BottomNavigation component doesn't accept a Fragment as a child.",
+                'Consider providing an array instead.',
+              ].join('\n'),
+            );
+          }
+        }
 
         const childValue = child.props.value === undefined ? childIndex : child.props.value;
 
@@ -80,8 +83,8 @@ BottomNavigation.propTypes = {
   /**
    * Callback fired when the value changes.
    *
-   * @param {object} event The event source of the callback
-   * @param {any} value We default to the index of the child
+   * @param {object} event The event source of the callback.
+   * @param {any} value We default to the index of the child.
    */
   onChange: PropTypes.func,
   /**

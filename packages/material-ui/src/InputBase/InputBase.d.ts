@@ -9,6 +9,7 @@ export interface InputBaseProps
   > {
   autoComplete?: string;
   autoFocus?: boolean;
+  color?: 'primary' | 'secondary';
   defaultValue?: unknown;
   disabled?: boolean;
   endAdornment?: React.ReactNode;
@@ -35,6 +36,7 @@ export interface InputBaseProps
   }) => React.ReactNode;
   rows?: string | number;
   rowsMax?: string | number;
+  rowsMin?: string | number;
   startAdornment?: React.ReactNode;
   type?: string;
   value?: unknown;
@@ -67,6 +69,7 @@ export type InputBaseClassKey =
   | 'marginDense'
   | 'multiline'
   | 'fullWidth'
+  | 'colorSecondary'
   | 'input'
   | 'inputMarginDense'
   | 'inputMultiline'

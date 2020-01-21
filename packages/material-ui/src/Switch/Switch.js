@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import { fade } from '../styles/colorManipulator';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 
 export const styles = theme => ({
@@ -42,7 +42,7 @@ export const styles = theme => ({
       duration: theme.transitions.duration.shortest,
     }),
     '&$checked': {
-      transform: 'translateX(50%)',
+      transform: 'translateX(20px)',
     },
     '&$disabled': {
       color: theme.palette.type === 'light' ? theme.palette.grey[400] : theme.palette.grey[800],
@@ -60,6 +60,9 @@ export const styles = theme => ({
       color: theme.palette.primary.main,
       '&:hover': {
         backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
       },
     },
     '&$disabled': {
@@ -79,6 +82,9 @@ export const styles = theme => ({
       color: theme.palette.secondary.main,
       '&:hover': {
         backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
       },
     },
     '&$disabled': {
@@ -103,6 +109,9 @@ export const styles = theme => ({
     },
     '& $switchBase': {
       padding: 4,
+      '&$checked': {
+        transform: 'translateX(16px)',
+      },
     },
   },
   /* Pseudo-class applied to the internal `SwitchBase` component's `checked` class. */
@@ -142,6 +151,7 @@ const Switch = React.forwardRef(function Switch(props, ref) {
     classes,
     className,
     color = 'secondary',
+    disabled = false,
     edge = false,
     size = 'medium',
     ...other
@@ -172,6 +182,7 @@ const Switch = React.forwardRef(function Switch(props, ref) {
           disabled: classes.disabled,
         }}
         ref={ref}
+        disabled={disabled}
         {...other}
       />
       <span className={classes.track} />

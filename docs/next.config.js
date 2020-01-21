@@ -8,6 +8,11 @@ const { LANGUAGES_SSR } = require('./src/modules/constants');
 
 const workspaceRoot = path.join(__dirname, '../');
 
+/**
+ * @type {'legacy' | 'sync' | 'concurrent'}
+ */
+const reactMode = 'legacy';
+
 module.exports = withTypescript({
   webpack: (config, options) => {
     const plugins = config.plugins.concat([
@@ -15,6 +20,7 @@ module.exports = withTypescript({
         'process.env': {
           LIB_VERSION: JSON.stringify(pkg.version),
           ENABLE_AD: JSON.stringify(process.env.ENABLE_AD),
+          REACT_MODE: JSON.stringify(reactMode),
         },
       }),
     ]);
@@ -33,6 +39,10 @@ module.exports = withTypescript({
 
     config.resolve.alias['react-dom$'] = 'react-dom/profiling';
     config.resolve.alias['scheduler/tracing'] = 'scheduler/tracing-profiling';
+
+    if (reactMode !== 'legacy') {
+      config.resolve.alias['react-transition-group'] = '@material-ui/react-transition-group';
+    }
 
     // next includes node_modules in webpack externals. Some of those have dependencies
     // on the aliases defined above. If a module is an external those aliases won't be used.

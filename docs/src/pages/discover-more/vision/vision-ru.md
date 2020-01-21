@@ -1,4 +1,4 @@
-# Material-UI’s Vision
+# Our Vision
 
 <p class="description">Наш образ вам давать элега́нтная реализация для React от Material Design рекомендации, который вы можoты настроить полностью для ваш бренд.</p>
 

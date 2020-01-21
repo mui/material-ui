@@ -24,7 +24,7 @@ function TabPanel(props: TabPanelProps) {
       aria-labelledby={`wrapped-tab-${index}`}
       {...other}
     >
-      <Box p={3}>{children}</Box>
+      {value === index && <Box p={3}>{children}</Box>}
     </Typography>
   );
 }
@@ -47,9 +47,9 @@ export default function TabsWrappedLabel() {
   const classes = useStyles();
   const [value, setValue] = React.useState('one');
 
-  function handleChange(event: React.ChangeEvent<{}>, newValue: string) {
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: string) => {
     setValue(newValue);
-  }
+  };
 
   return (
     <div className={classes.root}>

@@ -31,7 +31,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">size</span> | <span class="prop-type">'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'</span> | <span class="prop-default">'medium'</span> | The size of the buttons. |
 | <span class="prop-name">value</span> | <span class="prop-type">any</span> |  | The currently selected value within the group or an array of selected values when `exclusive` is false. |
 
-The component cannot hold a ref.
+The `ref` is forwarded to the root element.
 
 Any other props supplied will be provided to the root element (native element).
 
@@ -42,10 +42,10 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiToggleButtonGroup-root</span> | Styles applied to the root element.
-| <span class="prop-name">grouped</span> | <span class="prop-name">MuiToggleButtonGroup-grouped</span> | Styles applied to the children.
-| <span class="prop-name">groupedSizeSmall</span> | <span class="prop-name">MuiToggleButtonGroup-groupedSizeSmall</span> | Styles applied to the children if `size="small"`.
-| <span class="prop-name">groupedSizeLarge</span> | <span class="prop-name">MuiToggleButtonGroup-groupedSizeLarge</span> | Styles applied to the children if `size="large"`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiToggleButtonGroup-root</span> | Styles applied to the root element.
+| <span class="prop-name">grouped</span> | <span class="prop-name">.MuiToggleButtonGroup-grouped</span> | Styles applied to the children.
+| <span class="prop-name">groupedSizeSmall</span> | <span class="prop-name">.MuiToggleButtonGroup-groupedSizeSmall</span> | Styles applied to the children if `size="small"`.
+| <span class="prop-name">groupedSizeLarge</span> | <span class="prop-name">.MuiToggleButtonGroup-groupedSizeLarge</span> | Styles applied to the children if `size="large"`.
 
 You can override the style of the component thanks to one of these customization points:
 

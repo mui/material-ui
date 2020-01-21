@@ -1,0 +1,39 @@
+{{=« »=}}
+import * as React from 'react';
+import { addPropertyControls, ControlType } from 'framer';
+// tslint:disable-next-line: ban-ts-ignore
+// @ts-ignore
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+interface Props {
+«& tsInterface»
+}
+
+const defaultProps: Props =  {
+«& defaultProps»
+};
+
+export const Theme: React.SFC<Props> = (props: Props) => {
+  const { children, error, paletteType, primary, secondary, ...other } = props;
+
+  const theme = createMuiTheme({
+      palette: {
+        type: paletteType,
+        primary: { main: primary },
+        secondary: { main: secondary },
+        error: { main: error },
+      },
+  });
+
+  return (
+    <MuiThemeProvider theme={theme} {...other}>
+      {children}
+    </MuiThemeProvider>
+  );
+}
+
+Theme.defaultProps = defaultProps;
+
+addPropertyControls(Theme, {
+«& propertyControls»
+});

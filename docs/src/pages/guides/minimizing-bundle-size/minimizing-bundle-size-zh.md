@@ -20,13 +20,7 @@ import { Button, TextField } from '@material-ui/core';
 
 ### 选项1
 
-您可以使用路径导入，这样可以避免导入用不到的模块。 例如，相比这样导入：
-
-```js
-import { Button, TextField } from '@material-ui/core';
-```
-
-可以使用：
+您可以使用路径导入，这样可以避免导入用不到的模块。 For instance, use:
 
 ```js
 // 🚀 Fast
@@ -34,11 +28,17 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 ```
 
-This is the option we document in **all** the demos because it requires no configuration. It is encouraged for library authors extending the components. Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
+instead of top level imports (without a Babel plugin):
+
+```js
+import { Button, TextField } from '@material-ui/core';
+```
+
+This is the option we document in all the demos, since it requires no configuration. It is encouraged for library authors extending the components. Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
 
 尽管这样直接导入并不会使用 [`@material-ui/core/index.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/index.js) 中的导出模式，但是对于那些公开的模块来说，此文件仍可以作为一个方便的参考。
 
-请注意，我们只支持第一级和第二级的导入。 以下的这些例子是私有的，它们会给你的打包文件带来重复的模块。
+请注意，我们只支持第一级和第二级的导入。 Anything deeper is considered private and can cause issues, such as module duplication in your bundle.
 
 ```js
 // ✅ OK
@@ -58,19 +58,28 @@ import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
 
 ### 选项2
 
-This option provides the best DX and UX. However, you need to apply the following steps correctly.
+This option provides the best User Experience and Developer Experience:
+
+- UX: The Babel plugin enables top level tree-shaking even if your bundler doesn't support it.
+- DX: The Babel plugin makes startup time in dev mode as fast as Option 1.
+- DX: This syntax reduces the duplication of code, requiring only a single import for multiple modules. Overall, the code is easier to read, and you are less likely to make a mistake when importing a new module.
+```js
+import { Button, TextField } from '@material-ui/core';
+```
+
+However, you need to apply the two following steps correctly.
 
 #### 1。 Configure Babel
 
 请在以下插件中选择一个：
 
 - [babel-plugin-import](https://github.com/ant-design/babel-plugin-import) with the following configuration:
-    
-    `yarn add -D babel-plugin-import`
-    
-    Create a `.babelrc.js` file in the root directory of your project:
 
-```js
+  `yarn add -D babel-plugin-import`
+
+  Create a `.babelrc.js` file in the root directory of your project:
+
+  ```js
   const plugins = [
     [
       'babel-plugin-import',
@@ -125,7 +134,7 @@ This option provides the best DX and UX. However, you need to apply the followin
   module.exports = {plugins};
   ```
 
-If you are using Create React App, you will need to use a couple of projects that let you use `.babelrc` configuration, without ejecting. 
+If you are using Create React App, you will need to use a couple of projects that let you use `.babelrc` configuration, without ejecting.
 
   `yarn add -D react-app-rewired customize-cra`
 
@@ -137,7 +146,7 @@ If you are using Create React App, you will need to use a couple of projects tha
 
   module.exports = override(
     useBabelRc()
-  );  
+  );
   ```
 
   If you wish, `babel-plugin-import` can be configured through `config-overrides.js` instead of `.babelrc` by using this [configuration](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options).
@@ -151,40 +160,40 @@ If you are using Create React App, you will need to use a couple of projects tha
   }
 ```
 
-    Note: You may run into errors like these:
-    
+  Note: You may run into errors like these:
 
-        Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
-        Module not found: Can't resolve '@material-ui/core/createStyles' in '/your/project'
-      ```
-    
-      This is because `@material-ui/styles` is re-exported through `core`, but the full import is not allowed.
-    
-      You have an import like this in your code:
-    
-      `import {makeStyles, createStyles} from '@material-ui/core';`
-    
-      The fix is simple, define the import separately:
-    
-      `import {makeStyles, createStyles} from '@material-ui/core/styles';`
-    
-      Enjoy significantly faster start times.
-    
-    #### 2. Convert all your imports
-    
-    Finally, you can convert your exisiting codebase to this option with this [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) codemod.
-    It will perform the following diffs:
-    
-    ```diff
-    -import Button from '@material-ui/core/Button';
-    -import TextField from '@material-ui/core/TextField';
-    +import { Button, TextField } from '@material-ui/core';
-    
+  > Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
+
+  This is because `@material-ui/styles` is re-exported through `core`, but the full import is not allowed.
+
+  You have an import like this in your code:
+
+  ```js
+  import { makeStyles, createStyles } from '@material-ui/core';
+  ```
+
+  The fix is simple, define the import separately:
+
+  ```js
+  import { makeStyles, createStyles } from '@material-ui/core/styles';
+  ```
+
+  Enjoy significantly faster start times.
+
+#### 2。 Convert all your imports
+
+Finally, you can convert your existing codebase to this option with this [top-level-imports](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) codemod. It will perform the following diffs:
+
+```diff
+-import Button from '@material-ui/core/Button';
+-import TextField from '@material-ui/core/TextField';
++import { Button, TextField } from '@material-ui/core';
+```
 
 ## ECMAScript
 
 考虑到一些[支持的平台](/getting-started/supported-platforms/)，在 npm 上发布的包是和 [Babel](https://github.com/babel/babel) 一起被**编译**的。
 
-A second version of the components is also published, which you can find under the [`/es` folder](https://unpkg.com/@material-ui/core/es/). All the non-official syntax is transpiled to the [ECMA-262 standard](https://www.ecma-international.org/publications/standards/Ecma-262.htm), nothing more. This can be used to make separate bundles targeting different browsers. Older browsers will require more JavaScript features to be transpiled, which increases the size of the bundle. No polyfills are included for ES2015 runtime features. IE11+ and evergreen browsers support all the necessary features. If you need support for other browsers, consider using [`@babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill).
+A second version of the components is also published, which you can find under the [`/es` folder](https://unpkg.com/@material-ui/core/es/). 所有非官方的语义都被编译成[ECMA-262 的标准](https://www.ecma-international.org/publications/standards/Ecma-262.htm)，仅此而已。 这样一来，针对不同的浏览器，您可以编译出不同的打包文件。 一些旧的浏览器需编译一些 JavaScript 的功能，这样会增加打包文件的大小。 ES2015 运行的时候的功能中不包含垫片。 IE11+ 和一些长青浏览器会支持所有必要的功能。 如果您需要支持其他浏览器，请考虑使用 [`@ babel/polyfill`](https://www.npmjs.com/package/@babel/polyfill)。
 
 ⚠️ In order to minimize duplication of code in users' bundles, library authors are **strongly discouraged** from using the `/es` folder.

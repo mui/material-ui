@@ -3,7 +3,7 @@ title: Snackbar React component
 components: Snackbar, SnackbarContent
 ---
 
-# Snackbars
+# Snackbar
 
 <p class="description">Snackbars provide brief messages about app processes. The component is also known as a toast.</p>
 
@@ -53,7 +53,7 @@ When multiple snackbar updates are necessary, they should appear one at a time.
 
 Snackbars should appear above FABs (on mobile).
 
-{{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
 
 ### Change Transition
 
@@ -76,8 +76,14 @@ For more advanced use cases you might be able to take advantage of:
 ![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars)
 ![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
 
-In the following example, we demonstrate how to use [notistack](https://github.com/iamhosseindhv/notistack).
-notistack makes it easy to display snackbars (so you don't have to deal with open/close state of them).
-It also enables you to stack them on top of one another (although this is discouraged by the specification).
+This example demonstrates how to use [notistack](https://github.com/iamhosseindhv/notistack).
+notistack has an **imperative API** that makes it easy to display snackbars, without having to handle their open/close state.
+It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design specification).
 
-{{"demo": "pages/components/snackbars/IntegrationNotistack.js"}}
+{{"demo": "pages/components/snackbars/IntegrationNotistack.js", "defaultCodeOpen": false}}
+
+## Accessibility
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-1.1/#alert)
+
+- By default, the snackbar won't auto-hide. However, if you decide to use the `autoHideDuration` prop, it's recommended to give the user [sufficient time](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) to respond.

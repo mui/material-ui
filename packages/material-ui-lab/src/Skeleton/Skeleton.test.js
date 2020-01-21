@@ -2,21 +2,17 @@ import React from 'react';
 import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 import Skeleton from './Skeleton';
 
 describe('<Skeleton />', () => {
   let mount;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
   let classes;
 
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<Skeleton />);
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   after(() => {
@@ -25,9 +21,9 @@ describe('<Skeleton />', () => {
 
   describeConformance(<Skeleton />, () => ({
     classes,
-    inheritComponent: 'div',
+    inheritComponent: 'span',
     mount,
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLSpanElement,
   }));
 
   it('should render', () => {

@@ -1,10 +1,13 @@
 import React from 'react';
+import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
 import withStyles from '../styles/withStyles';
+import ExpansionPanelContext from './ExpansionPanelContext';
+import useControlled from '../utils/useControlled';
 
 export const styles = theme => {
   const transition = {
@@ -92,21 +95,29 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
     ...other
   } = props;
 
-  const { current: isControlled } = React.useRef(expandedProp != null);
-  const [expandedState, setExpandedState] = React.useState(defaultExpanded);
-  const expanded = isControlled ? expandedProp : expandedState;
+  const [expanded, setExpandedState] = useControlled({
+    controlled: expandedProp,
+    default: defaultExpanded,
+    name: 'ExpansionPanel',
+  });
 
-  const handleChange = event => {
-    if (!isControlled) {
+  const handleChange = React.useCallback(
+    event => {
       setExpandedState(!expanded);
-    }
 
-    if (onChange) {
-      onChange(event, !expanded);
-    }
-  };
+      if (onChange) {
+        onChange(event, !expanded);
+      }
+    },
+    [expanded, onChange, setExpandedState],
+  );
 
   const [summary, ...children] = React.Children.toArray(childrenProp);
+  const contextValue = React.useMemo(() => ({ expanded, disabled, toggle: handleChange }), [
+    expanded,
+    disabled,
+    handleChange,
+  ]);
 
   return (
     <Paper
@@ -123,11 +134,9 @@ const ExpansionPanel = React.forwardRef(function ExpansionPanel(props, ref) {
       square={square}
       {...other}
     >
-      {React.cloneElement(summary, {
-        disabled,
-        expanded,
-        onChange: handleChange,
-      })}
+      <ExpansionPanelContext.Provider value={contextValue}>
+        {summary}
+      </ExpansionPanelContext.Provider>
       <TransitionComponent in={expanded} timeout="auto" {...TransitionProps}>
         <div aria-labelledby={summary.props.id} id={summary.props['aria-controls']} role="region">
           {children}
@@ -143,7 +152,7 @@ ExpansionPanel.propTypes = {
    */
   children: chainPropTypes(PropTypes.node.isRequired, props => {
     const summary = React.Children.toArray(props.children)[0];
-    if (summary.type === React.Fragment) {
+    if (isFragment(summary)) {
       return new Error(
         "Material-UI: the ExpansionPanel doesn't accept a Fragment as a child. " +
           'Consider providing an array instead.',
@@ -193,10 +202,11 @@ ExpansionPanel.propTypes = {
   square: PropTypes.bool,
   /**
    * The component used for the collapse effect.
+   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */
   TransitionComponent: PropTypes.elementType,
   /**
-   * Props applied to the `Transition` element.
+   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
    */
   TransitionProps: PropTypes.object,
 };

@@ -26,7 +26,7 @@ function TabPanel(props) {
       aria-labelledby={`scrollable-prevent-tab-${index}`}
       {...other}
     >
-      <Box p={3}>{children}</Box>
+      {value === index && <Box p={3}>{children}</Box>}
     </Typography>
   );
 }
@@ -56,9 +56,9 @@ export default function ScrollableTabsButtonPrevent() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
-  function handleChange(event, newValue) {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
-  }
+  };
 
   return (
     <div className={classes.root}>

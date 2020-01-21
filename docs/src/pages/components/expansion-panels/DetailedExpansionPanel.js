@@ -73,7 +73,7 @@ export default function DetailedExpansionPanel() {
             <Typography variant="caption">
               Select your destination of choice
               <br />
-              <a href="#sub-labels-and-columns" className={classes.link}>
+              <a href="#secondary-heading-and-columns" className={classes.link}>
                 Learn more
               </a>
             </Typography>

@@ -1,5 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import optionsReducer from 'docs/src/modules/redux/optionsReducer';
 
@@ -22,7 +21,7 @@ function create(initialState) {
     process.browser &&
     !window.__REDUX_DEVTOOLS_EXTENSION__ &&
     // redux-logger needs this feature
-    Object['assign'] // eslint-disable-line dot-notation
+    Object.hasOwnProperty('assign')
   ) {
     // eslint-disable-next-line global-require
     const createLogger = require('redux-logger').createLogger;

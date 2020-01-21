@@ -9,8 +9,9 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
     disableFocusRipple?: boolean;
     disableRipple?: boolean;
     fullWidth?: boolean;
+    orientation?: 'vertical' | 'horizontal';
     size?: 'small' | 'medium' | 'large';
-    variant?: 'outlined' | 'contained';
+    variant?: 'text' | 'outlined' | 'contained';
   };
   defaultComponent: D;
   classKey: ButtonGroupClassKey;
@@ -21,12 +22,25 @@ declare const ButtonGroup: OverridableComponent<ButtonGroupTypeMap>;
 export type ButtonGroupClassKey =
   | 'root'
   | 'contained'
+  | 'disabled'
   | 'fullWidth'
+  | 'vertical'
   | 'grouped'
+  | 'groupedHorizontal'
+  | 'groupedVertical'
+  | 'groupedText'
+  | 'groupedTextHorizontal'
+  | 'groupedTextVertical'
+  | 'groupedTextPrimary'
+  | 'groupedTextSecondary'
   | 'groupedOutlined'
+  | 'groupedOutlinedHorizontal'
+  | 'groupedOutlinedVertical'
   | 'groupedOutlinedPrimary'
   | 'groupedOutlinedSecondary'
   | 'groupedContained'
+  | 'groupedContainedHorizontal'
+  | 'groupedContainedVertical'
   | 'groupedContainedPrimary'
   | 'groupedContainedSecondary';
 

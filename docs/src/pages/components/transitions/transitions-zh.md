@@ -35,13 +35,13 @@ export default Main() {
 
 Expand vertically from the top of the child element. The `collapsedHeight` property can be used to set the minimum height when not expanded.
 
-{{"demo": "pages/components/transitions/SimpleCollapse.js"}}
+{{"demo": "pages/components/transitions/SimpleCollapse.js", "bg": true}}
 
 ## Fade（淡入淡出）
 
 从透明淡入至不透明。
 
-{{"demo": "pages/components/transitions/SimpleFade.js"}}
+{{"demo": "pages/components/transitions/SimpleFade.js", "bg": true}}
 
 ## Grow（扩展）
 
@@ -49,7 +49,7 @@ Expand vertically from the top of the child element. The `collapsedHeight` prope
 
 第二个示例演示如何更改 `transform-origin` 属性，以及有条件地用 `timeout` 属性来改变元素进入的速度。
 
-{{"demo": "pages/components/transitions/SimpleGrow.js"}}
+{{"demo": "pages/components/transitions/SimpleGrow.js", "bg": true}}
 
 ## Slide（滑动）
 
@@ -57,7 +57,7 @@ Slide in from the edge of the screen. The `direction` property controls which ed
 
 过渡(Transition) 组件的 `mountOnEnter` 属性保证了只有 `in` 是`true`时，子组件才会被渲染。 这可以保证相对上定位好的组件不会从屏幕外面的位置滚动到视图中。 同样的， 在组件从屏幕中过渡完后，`unmountOnExit` 属性将次组件从 DOM 中移除。
 
-{{"demo": "pages/components/transitions/SimpleSlide.js"}}
+{{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
 ## Zoom（放大）
 
@@ -65,4 +65,4 @@ Slide in from the edge of the screen. The `direction` property controls which ed
 
 此示例还演示了如何延迟过渡的开始。
 
-{{"demo": "pages/components/transitions/SimpleZoom.js"}}
+{{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}

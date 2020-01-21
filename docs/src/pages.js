@@ -12,6 +12,7 @@ const pages = [
       { pathname: '/getting-started/faq', title: 'FAQs' },
       { pathname: '/getting-started/supported-components' },
       { pathname: '/getting-started/supported-platforms' },
+      { pathname: '/getting-started/support' },
     ],
   },
   {
@@ -32,7 +33,6 @@ const pages = [
         pathname: '/components',
         subheader: '/components/inputs',
         children: [
-          { pathname: '/components/autocomplete' },
           { pathname: '/components/buttons' },
           { pathname: '/components/checkboxes' },
           { pathname: '/components/pickers', title: 'Date / Time' },
@@ -74,6 +74,7 @@ const pages = [
           { pathname: '/components/progress' },
           { pathname: '/components/dialogs' },
           { pathname: '/components/snackbars' },
+          { pathname: '/components/backdrop' },
         ],
       },
       {
@@ -113,6 +114,8 @@ const pages = [
         subheader: '/components/lab',
         children: [
           { pathname: '/components/about-the-lab' },
+          { pathname: '/components/alert' },
+          { pathname: '/components/autocomplete' },
           { pathname: '/components/rating' },
           { pathname: '/components/skeleton' },
           { pathname: '/components/speed-dial' },
@@ -152,9 +155,9 @@ const pages = [
     children: [
       {
         pathname: '/customization',
-        subheader: '/customization/theming',
+        subheader: '/customization/theme',
         children: [
-          { pathname: '/customization/theming', title: 'Overview' },
+          { pathname: '/customization/theming' },
           { pathname: '/customization/palette' },
           { pathname: '/customization/typography' },
           { pathname: '/customization/spacing' },
@@ -182,6 +185,7 @@ const pages = [
       { pathname: '/guides/migration-v3', title: 'Migration From v3' },
       { pathname: '/guides/migration-v0x', title: 'Migration From v0.x' },
       { pathname: '/guides/testing' },
+      { pathname: '/guides/localization' },
       { pathname: '/guides/right-to-left', title: 'Right-to-left' },
       { pathname: '/guides/flow' },
     ],
@@ -204,15 +208,18 @@ const pages = [
       { pathname: '/discover-more/backers', title: 'Sponsors & Backers' },
       { pathname: '/discover-more/vision' },
       { pathname: '/discover-more/team' },
-      { pathname: '/discover-more/community' },
       { pathname: '/discover-more/changelog' },
       { pathname: '/discover-more/languages' },
-      { pathname: '/discover-more/governance' },
     ],
   },
   {
     pathname: '/blog',
     children: [
+      { pathname: '/blog/december-2019-update' },
+      { pathname: '/blog/november-2019-update' },
+      { pathname: '/blog/october-2019-update' },
+      { pathname: '/blog/september-2019-update' },
+      { pathname: '/blog/august-2019-update' },
       { pathname: '/blog/july-2019-update' },
       { pathname: '/blog/june-2019-update' },
       { pathname: '/blog/may-2019-update' },
@@ -231,6 +238,8 @@ const pages = [
   },
   { pathname: '/versions', displayNav: false },
   { pathname: '/', displayNav: false, title: false },
+  { pathname: '/company/about', displayNav: false, title: false },
+  { pathname: '/company/contact', displayNav: false, title: false },
 ];
 
 export default pages;

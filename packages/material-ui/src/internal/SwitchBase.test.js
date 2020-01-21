@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 import SwitchBase from './SwitchBase';
 import FormControl, { useFormControl } from '../FormControl';
 import IconButton from '../IconButton';
@@ -19,17 +19,13 @@ const shouldSuccessOnce = name => func => () => {
 };
 
 describe('<SwitchBase />', () => {
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
   let mount;
   let classes;
 
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<SwitchBase icon="unchecked" checkedIcon="checked" type="checkbox" />);
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   describeConformance(
@@ -169,21 +165,22 @@ describe('<SwitchBase />', () => {
         defaultChecked
       />,
     );
+    const checkbox = getByRole('checkbox');
 
     expect(container.firstChild).to.have.class(classes.checked);
-    expect(getByRole('checkbox')).to.have.property('checked', true);
+    expect(checkbox).to.have.property('checked', true);
     expect(getByTestId('checked-icon')).to.be.ok;
 
-    getByRole('checkbox').click();
+    checkbox.click();
 
     expect(container.firstChild).not.to.have.class(classes.checked);
-    expect(getByRole('checkbox')).to.have.property('checked', false);
+    expect(checkbox).to.have.property('checked', false);
     expect(getByTestId('unchecked-icon')).to.be.ok;
 
-    getByRole('checkbox').click();
+    checkbox.click();
 
     expect(container.firstChild).to.have.class(classes.checked);
-    expect(getByRole('checkbox')).to.have.property('checked', true);
+    expect(checkbox).to.have.property('checked', true);
     expect(getByTestId('checked-icon')).to.be.ok;
   });
 
@@ -339,13 +336,14 @@ describe('<SwitchBase />', () => {
           />
         </FormControl>,
       );
+      const checkbox = getByRole('checkbox');
 
-      getByRole('checkbox').focus();
+      checkbox.focus();
 
       expect(getByTestId('focus-monitor')).to.have.text('focused: true');
       expect(handleFocus.callCount).to.equal(1);
 
-      getByRole('checkbox').blur();
+      checkbox.blur();
 
       expect(getByTestId('focus-monitor')).to.have.text('focused: false');
       expect(handleBlur.callCount).to.equal(1);
@@ -371,9 +369,12 @@ describe('<SwitchBase />', () => {
         expect(consoleErrorMock.callCount()).to.equal(0);
 
         wrapper.setProps({ checked: true });
-        expect(consoleErrorMock.callCount()).to.equal(1);
+        expect(consoleErrorMock.callCount()).to.equal(2);
         expect(consoleErrorMock.args()[0][0]).to.include(
           'A component is changing an uncontrolled input of type %s to be controlled.',
+        );
+        expect(consoleErrorMock.args()[1][0]).to.include(
+          'A component is changing an uncontrolled SwitchBase to be controlled.',
         );
       }),
     );
@@ -387,9 +388,12 @@ describe('<SwitchBase />', () => {
         expect(consoleErrorMock.callCount()).to.equal(0);
 
         setProps({ checked: undefined });
-        expect(consoleErrorMock.callCount()).to.equal(1);
+        expect(consoleErrorMock.callCount()).to.equal(2);
         expect(consoleErrorMock.args()[0][0]).to.include(
           'A component is changing a controlled input of type %s to be uncontrolled.',
+        );
+        expect(consoleErrorMock.args()[1][0]).to.include(
+          'A component is changing a controlled SwitchBase to be uncontrolled.',
         );
       }),
     );

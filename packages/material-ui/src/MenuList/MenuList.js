@@ -1,10 +1,11 @@
 import React from 'react';
+import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import ownerDocument from '../utils/ownerDocument';
 import List from '../List';
 import getScrollbarSize from '../utils/getScrollbarSize';
-import { useForkRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
 
 function nextItem(list, item, disableListWrap) {
   if (list === item) {
@@ -34,9 +35,6 @@ function textCriteriaMatches(nextFocus, textCriteria) {
   if (text === undefined) {
     // jsdom doesn't support innerText
     text = nextFocus.textContent;
-  }
-  if (text === undefined) {
-    return false;
   }
   text = text.trim().toLowerCase();
   if (text.length === 0) {
@@ -79,13 +77,22 @@ function moveFocus(list, currentFocus, disableListWrap, traversalFunction, textC
 
 const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
 
+/**
+ * A permanently displayed menu following https://www.w3.org/TR/wai-aria-practices/#menubutton
+ * It's exposed to help customization of the [`Menu`](/api/menu/) component. If you
+ * use it separately you need to move focus into the component manually. Once
+ * the focus is placed inside the component it is fully keyboard accessible.
+ */
 const MenuList = React.forwardRef(function MenuList(props, ref) {
   const {
     actions,
     autoFocus = false,
+    autoFocusItem = false,
+    children,
     className,
     onKeyDown,
     disableListWrap = false,
+    variant = 'selectedMenu',
     ...other
   } = props;
   const listRef = React.useRef(null);
@@ -134,6 +141,7 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     const currentFocus = ownerDocument(list).activeElement;
 
     if (key === 'ArrowDown') {
+      // Prevent scroll of the page
       event.preventDefault();
       moveFocus(list, currentFocus, disableListWrap, nextItem);
     } else if (key === 'ArrowUp') {
@@ -184,6 +192,58 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
   }, []);
   const handleRef = useForkRef(handleOwnRef, ref);
 
+  /**
+   * the index of the item should receive focus
+   * in a `variant="selectedMenu"` it's the first `selected` item
+   * otherwise it's the very first item.
+   */
+  let activeItemIndex = -1;
+  // since we inject focus related props into children we have to do a lookahead
+  // to check if there is a `selected` item. We're looking for the last `selected`
+  // item and use the first valid item as a fallback
+  React.Children.forEach(children, (child, index) => {
+    if (!React.isValidElement(child)) {
+      return;
+    }
+
+    if (process.env.NODE_ENV !== 'production') {
+      if (isFragment(child)) {
+        console.error(
+          [
+            "Material-UI: the Menu component doesn't accept a Fragment as a child.",
+            'Consider providing an array instead.',
+          ].join('\n'),
+        );
+      }
+    }
+
+    if (!child.props.disabled) {
+      if (variant === 'selectedMenu' && child.props.selected) {
+        activeItemIndex = index;
+      } else if (activeItemIndex === -1) {
+        activeItemIndex = index;
+      }
+    }
+  });
+
+  const items = React.Children.map(children, (child, index) => {
+    if (index === activeItemIndex) {
+      const newChildProps = {};
+      if (autoFocusItem) {
+        newChildProps.autoFocus = true;
+      }
+      if (child.props.tabIndex === undefined && variant === 'selectedMenu') {
+        newChildProps.tabIndex = 0;
+      }
+
+      if (newChildProps !== null) {
+        return React.cloneElement(child, newChildProps);
+      }
+    }
+
+    return child;
+  });
+
   return (
     <List
       role="menu"
@@ -192,7 +252,9 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
       onKeyDown={handleKeyDown}
       tabIndex={autoFocus ? 0 : -1}
       {...other}
-    />
+    >
+      {items}
+    </List>
   );
 });
 
@@ -202,10 +264,14 @@ MenuList.propTypes = {
    */
   actions: PropTypes.shape({ current: PropTypes.object }),
   /**
-   * If `true`, the list will be focused during the first mount.
-   * Focus will also be triggered if the value changes from false to true.
+   * If `true`, will focus the `[role="menu"]` container and move into tab order
    */
   autoFocus: PropTypes.bool,
+  /**
+   * If `true`, will focus the first menuitem if `variant="menu"` or selected item
+   * if `variant="selectedMenu"`
+   */
+  autoFocusItem: PropTypes.bool,
   /**
    * MenuList contents, normally `MenuItem`s.
    */
@@ -222,6 +288,11 @@ MenuList.propTypes = {
    * @ignore
    */
   onKeyDown: PropTypes.func,
+  /**
+   * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
+   * and the vertical alignment relative to the anchor element.
+   */
+  variant: PropTypes.oneOf(['menu', 'selectedMenu']),
 };
 
 export default MenuList;

@@ -27,7 +27,8 @@ async function execGitCmd(args) {
 }
 
 async function listChangedFiles() {
-  const mergeBase = await execGitCmd(['rev-parse', 'origin/master']);
+  const comparedBranch = process.env.CIRCLECI ? 'origin/master' : 'master';
+  const mergeBase = await execGitCmd(['rev-parse', comparedBranch]);
   const gitDiff = await execGitCmd(['diff', '--name-only', mergeBase]);
   const gitLs = await execGitCmd(['ls-files', '--others', '--exclude-standard']);
   return new Set([...gitDiff, ...gitLs]);

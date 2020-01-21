@@ -9,12 +9,10 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 
 const useStyles = makeStyles(theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  formControl: {
-    margin: theme.spacing(1),
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
   },
 }));
 
@@ -53,6 +51,7 @@ function NumberFormatCustom(props) {
         });
       }}
       thousandSeparator
+      isNumericString
       prefix="$"
     />
   );
@@ -78,8 +77,8 @@ export default function FormattedInputs() {
   };
 
   return (
-    <div className={classes.container}>
-      <FormControl className={classes.formControl}>
+    <div className={classes.root}>
+      <FormControl>
         <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
         <Input
           value={values.textmask}
@@ -89,7 +88,6 @@ export default function FormattedInputs() {
         />
       </FormControl>
       <TextField
-        className={classes.formControl}
         label="react-number-format"
         value={values.numberformat}
         onChange={handleChange('numberformat')}

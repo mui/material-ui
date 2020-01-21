@@ -4,17 +4,17 @@ title: Box React component
 
 # Cuadro
 
-<p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
+<p class="description">El componente Box sirve como una envoltura para la mayoría de las necesidades CSS.</p>
 
-The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`. It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/styles`.
+El componente Box empaqua [todas las funciones de estilo](/system/basics/#all-inclusive) que están expuesta en `@material-ui/system`. It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/core/styles`.
 
-## Example
+## Ejemplo
 
-[The palette](/system/palette/) style function.
+[La función de estilo de la paleta](/system/palette/).
 
-## Overriding Material-UI components
+## Anulación de componentes de material-UI
 
-The Box component wraps your component. It creates a new DOM element, a `<div>` by default that can be changed with the `component` property. Let's say you want to use a `<span>` instead:
+El componente Box envuelve su componente. Crea un nuevo elemento DOM, un `<div>` por defecto que se puede cambiar con la propiedad `componente`. Digamos que quiere usar un `<span>` en lugar:
 
 ```jsx
 <Box component="span" m={1}>
@@ -22,13 +22,13 @@ The Box component wraps your component. It creates a new DOM element, a `<div>` 
 </Box>
 ```
 
-This works great when the changes can be isolated to a new DOM element. For instance, you can change the margin this way.
+Esto funciona muy bien cuando los cambios se pueden aislar a un nuevo elemento DOM. Por ejemplo, puede cambiar el margen de esta manera.
 
-However, sometimes you have to target the underlying DOM element. For instance, you want to change the text color of the button. The Button component defines its own color. CSS inheritance doesn't help. To workaround the problem, you have two options:
+Sin embargo, a veces tienes que apuntar al elemento DOM subyacente. Por ejemplo, desea cambiar el color del texto del botón. El componente Button define su propio color. La herencia por CSS no ayuda. Para solucionar el problema, tiene dos opciones:
 
-1. Use [`React.cloneElement()`](https://reactjs.org/docs/react-api.html#cloneelement)
+1. Utilice [`React.cloneElement ()`](https://reactjs.org/docs/react-api.html#cloneelement)
 
-The Box component has a `clone` property to enable the usage of the clone element method of React.
+El componente Box tiene una propiedad `clone` para permitir el uso del método de elemento clon de React.
 
 ```jsx
 <Box color="text.primary" clone>
@@ -36,9 +36,9 @@ The Box component has a `clone` property to enable the usage of the clone elemen
 </Box>
 ```
 
-2. Use render props
+2. Use props de render
 
-The Box children accepts a render props function. You can pull out the `className`.
+The Box children accepts a render props function. Puede extraer el `className`.
 
 ```jsx
 <Box color="text.primary">
@@ -46,7 +46,7 @@ The Box children accepts a render props function. You can pull out the `classNam
 </Box>
 ```
 
-> ⚠️ The CSS specificity relies on the import order. If you want the guarantee that the wrapped component's style will be overridden, you need to import the Box last.
+> ⚠️ La especificidad de CSS se basa en el orden de importación. Si desea la garantía de que se anulará el estilo del componente envuelto, debe importar el cuadro al final.
 
 ## API
 
@@ -54,11 +54,11 @@ The Box children accepts a render props function. You can pull out the `classNam
 import Box from '@material-ui/core/Box';
 ```
 
-| Name                                                    | Type                                                                                                              | Default                                 | Description                                                                                           |
-|:------------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:----------------------------------------------------------------------------------------------------- |
-| <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br />&nbsp;func<br /></span>                                 |                                         | Box render function or node.                                                                          |
-| <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | If `true`, the box will recycle its children DOM element. It's using `React.cloneElement` internally. |
-| <span class="prop-name">component</span>                | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br />&nbsp;func&nbsp;&#124;<br />&nbsp;object<br /></span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component.            |
+| Nombre                                               | Tipo                                                                                                              | Por defecto                             | Descripción                                                                                              |
+|:---------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:-------------------------------------------------------------------------------------------------------- |
+| <span class="prop-name required">hijos&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br />&nbsp;func<br /></span>                                 |                                         | Función de render de Box o nodo.                                                                         |
+| <span class="prop-name">clone</span>                 | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | Si `true`, el Box reciclará su elemento DOM secundario. Está usando `React.cloneElement` internamente.   |
+| <span class="prop-name">component</span>             | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br />&nbsp;func&nbsp;&#124;<br />&nbsp;object<br /></span> | <span class="prop-default">'div'</span> | El componente utilizado para el nodo raíz. Ya sea un 'string' para usar un elemento DOM o un componente. |
 
 
-Any other properties supplied will be used by [the style functions](/system/basics/#all-inclusive) or spread to the root element.
+Cualquier otra propiedad proporcionada será utilizada por [las funciones de estilo](/system/basics/#all-inclusive) o se extenderá al elemento raíz.

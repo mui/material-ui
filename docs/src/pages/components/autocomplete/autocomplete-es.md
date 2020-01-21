@@ -1,45 +1,174 @@
 ---
 title: Componente de Autocompletado de React
-components: TextField, Paper, MenuItem, Popper
+components: TextField, Popper, Autocomplete
 ---
 
 # Autocompletado
 
 <p class="description">El autocompletado es una caja de texto normal mejorada por un panel de opciones sugeridas.</p>
 
-Material-UI doesn't provide a high-level API for solving this problem. You are encouraged to use a solution the React community has built, following one of the examples below.
+El widget es útil para establecer el valor de un cuadro de texto de una sola línea en uno de los dos tipos de escenarios:
 
-## downshift
+1. El valor para el cuadro de texto debe elegirse de un conjunto predefinido de valores permitidos, por ejemplo, un campo de ubicación debe contener un nombre de ubicación válido: [cuadro combinado](#combo-box).
+2. El cuadro de texto puede contener cualquier valor arbitrario, pero es ventajoso sugerir posibles valores al usuario, por ejemplo, un campo de búsqueda puede sugerir búsquedas similares o anteriores para ahorrarle tiempo al usuario: [gratis solo](#free-solo).
 
-![estrellas](https://img.shields.io/github/stars/paypal/downshift.svg?style=social&label=Stars) ![descargas npm](https://img.shields.io/npm/dm/downshift.svg)
+## Combo box
 
-This example demonstrates how to use [downshift](https://github.com/downshift-js/downshift).
+El valor debe elegirse de un conjunto predefinido de valores permitidos.
 
-The last demo allows the user to clear the input and show a number of options on focus.
+{{"demo": "pages/components/autocomplete/ComboBox.js"}}
 
-{{"demo": "pages/components/autocomplete/IntegrationDownshift.js"}}
+### Playground
 
-## react-select
+Each of the following examples demonstrate one feature of the Autocomplete component.
 
-![estrellas](https://img.shields.io/github/stars/JedWatson/react-select.svg?style=social&label=Stars) ![descargas npm](https://img.shields.io/npm/dm/react-select.svg)
+{{"demo": "pages/components/autocomplete/Playground.js"}}
 
-This example demonstrates how to use [react-select](https://github.com/JedWatson/react-select).
+### Country select
 
-{{"demo": "pages/components/autocomplete/IntegrationReactSelect.js"}}
+Choose one country between 248.
 
-## react-autosuggest
+{{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
-![estrellas](https://img.shields.io/github/stars/moroshko/react-autosuggest.svg?style=social&label=Stars) ![descargas npm](https://img.shields.io/npm/dm/react-autosuggest.svg)
+## Free solo
 
-This example demonstrates how to use [react-autosuggest](https://github.com/moroshko/react-autosuggest). It also uses [autosuggest-highlight](https://www.npmjs.com/package/autosuggest-highlight) for the highlighting logic.
+Set `freeSolo` to true so the textbox can contain any arbitrary value.
 
-{{"demo": "pages/components/autocomplete/IntegrationAutosuggest.js"}}
+{{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
-## Proyectos relacionados
+## Grouped
 
-Para usos más avanzados tal vez puedas aprovercharte de:
+{{"demo": "pages/components/autocomplete/Grouped.js"}}
 
-- [material-ui-chip-input](https://mui.wertarbyte.com/#material-ui-chip-input): The chip input is used to allow selecting multiple text values.
-- [mui-downshift](https://github.com/techniq/mui-downshift): A thin layer over paypal's downshift to use Material-UI visual components.
-- [material-ui-autosuggest](https://github.com/plan-three/material-ui-autosuggest): A fuzzy-search component for React and Material-UI.
-- [react-select-material-ui](https://github.com/iulian-radu-at/react-select-material-ui): Extend react-select with Material-UI.
+## Disabled options
+
+{{"demo": "pages/components/autocomplete/DisabledOptions.js"}}
+
+## `useAutocomplete`
+
+For advanced customization use cases, we expose a `useAutocomplete()` hook. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
+
+```jsx
+import useAutocomplete from '@material-ui/lab/useAutocomplete';
+```
+
+- 📦 [4.5 kB comprimido](/size-snapshot).
+
+{{"demo": "pages/components/autocomplete/UseAutocomplete.js", "defaultCodeOpen": false}}
+
+### Customized hook
+
+{{"demo": "pages/components/autocomplete/CustomizedHook.js"}}
+
+Head to the [Customized Autocomplete](#customized-autocomplete) section for a customization example with the `Autocomplete` component instead of the hook.
+
+## Asynchronous requests
+
+{{"demo": "pages/components/autocomplete/Asynchronous.js"}}
+
+### Google Maps place
+
+A customized UI for Google Maps Places Autocomplete.
+
+{{"demo": "pages/components/autocomplete/GoogleMaps.js"}}
+
+For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/tutorial) API.
+
+> ⚠️ Before you can start using the Google Maps JavaScript API, you must sign up and create a billing account.
+
+## Multiple values
+
+Also known as tags, the user is allowed to enter more than one value.
+
+{{"demo": "pages/components/autocomplete/Tags.js"}}
+
+### Fixed options
+
+In the event that you need to lock certain tag so that they can't be removed in the interface, you can set the chips disabled.
+
+{{"demo": "pages/components/autocomplete/FixedTags.js"}}
+
+### Casillas de Verificación
+
+{{"demo": "pages/components/autocomplete/CheckboxesTags.js"}}
+
+## Tamaños
+
+Fancy smaller inputs? Use the `size` prop.
+
+{{"demo": "pages/components/autocomplete/Sizes.js"}}
+
+## Autocompletado personalizado
+
+This demo reproduces the GitHub's label picker:
+
+{{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
+
+Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
+
+## Destacados
+
+La siguiente demostración se basa en [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), una pequeña utilidad (1 kB) para resaltar texto en componentes de autosuggest y autocompletar.
+
+{{"demo": "pages/components/autocomplete/Highlights.js"}}
+
+## Filtro personalizado
+
+The component exposes a factory to create a filter method that can provided to the `filerOption` prop. You can use it to change the default option filter behavior.
+
+```js
+import { createFilterOptions } from '@material-ui/lab/Autocomplete';
+```
+
+It supports the following options:
+
+1. `config` (*Object* [optional]): 
+  - `config.ignoreAccents` (*Boolean* [optional]): Defaults to `true`. Remove diacritics.
+  - `config.ignoreCase` (*Boolean* [optional]): Defaults to `true`. Lowercase everything.
+  - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
+  - `config.stringify` (*Func* [optional]): Defaults to `JSON.stringify`.
+  - `config.trim` (*Boolean* [optional]): Default `false`. Remove trailing spaces.
+
+In the following demo, the options need to start with the query prefix:
+
+```js
+const filterOptions = createFilterOptions({
+  matchFrom: 'start',
+  stringify: option => option.title,
+});
+
+<Autocomplete filterOptions={filterOptions} />
+```
+
+{{"demo": "pages/components/autocomplete/Filter.js", "defaultCodeOpen": false}}
+
+### Avanzado
+
+For richer filtering mechanisms, like fuzzy matching, it's recommended to look at [match-sorter](https://github.com/kentcdodds/match-sorter). Por ejemplo:
+
+```jsx
+import matchSorter from 'match-sorter';
+
+const filterOptions = (options, { inputValue }) =>
+  matchSorter(options, inputValue);
+
+<Autocomplete filterOptions={filterOptions} />
+```
+
+## Virtualization
+
+Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
+
+{{"demo": "pages/components/autocomplete/Virtualize.js"}}
+
+## Limitaciones
+
+### iOS VoiceOver
+
+VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well. You can work around the issue with the `disablePortal` prop.
+
+## Accesibilidad
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
+
+We encourage the usage of a label for the textbox. The component implements the WAI-ARIA authoring practices.

@@ -68,7 +68,7 @@ yarn add @material-ui/styles
 
 - Every component forward their ref. This is implemented by using `React.forwardRef()`. This affects the internal component tree and display name and therefore might break shallow or snapshot tests. `innerRef` will no longer return a ref to the instance (or nothing if the inner component is a function component) but a ref to its root component. The corresponding API docs list the root component.
 
-### Styles
+### Стили
 
 - ⚠️ Material-UI depends on JSS v10. JSS v10 is not backward compatible with v9. Make sure JSS v9 is not installed in your environment. (Removing `react-jss` from your `package.json` can help). The StylesProvider component replaces the JssProvider one.
 - Remove the first option argument of `withTheme()`. (The first argument was a placeholder for a potential future option that never arose.)
@@ -79,6 +79,14 @@ yarn add @material-ui/styles
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
+
+- Rename `convertHexToRGB` to `hexToRgb`.
+
+  ```diff
+  -import { convertHexToRgb } from '@material-ui/core/styles/colorManipulator';
+  +import { hexToRgb } from '@material-ui/core/styles';
+  ```
+
 - Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). You should apply the following changes in your codebase.
   It helps isolating the animation logic:
 
@@ -163,10 +171,10 @@ Normalized `value` prop type for input components to use `unknown`. This affects
 
 ```diff
 function MySelect({ children }) {
--  function handleChange(event: any, value: string) {
-+  function handleChange(event: any, value: unknown) {
+- const handleChange = (event: any, value: string) => {
++ const handleChange = (event: any, value: unknown) => {
     // handle value
-  }
+  };
 
   return <Select onChange={handleChange}>{children}</Select>
 }
@@ -206,7 +214,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   
     This also applies to `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` as well as `ListItem` if the `button` prop is true.
 
-### Card
+### Card (карточка)
 
 - [CardActions] Rename the `disableActionSpacing` prop to `disableSpacing`.
 - [CardActions] Remove the `disableActionSpacing` CSS class.
@@ -235,7 +243,8 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 ### ExpansionPanel
 
 - [ExpansionPanelActions] Rename the `action` CSS class to `spacing`.
-- [ExpansionPanel] Increase the CSS specificity of the `disabled` style rule.
+- [ExpansionPanel] Increase the CSS specificity of the `disabled` and `expanded` style rules.
+- [ExpansionPanel] Rename the `CollapseProps` prop to `TransitionProps`.
 
 ### List
 
@@ -330,7 +339,7 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   +<Tabs variant="scrollable" />
   ```
 
-### Table
+### Table (tаблица)
 
 - [TableCell] Remove the deprecated `numeric` property:
   

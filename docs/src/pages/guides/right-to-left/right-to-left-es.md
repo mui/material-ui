@@ -37,7 +37,7 @@ Once you have created a new JSS instance with the plugin, you need to make it av
 ```jsx
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });

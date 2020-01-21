@@ -8,16 +8,24 @@ import consoleErrorMock from 'test/utils/consoleErrorMock';
 import Drawer from '../Drawer';
 import SwipeableDrawer, { reset } from './SwipeableDrawer';
 import SwipeArea from './SwipeArea';
-import { useForkRef } from '../utils/reactHelpers';
+import useForkRef from '../utils/useForkRef';
 
-function fireBodyMouseEvent(name, properties = {}) {
+function fireMouseEvent(name, element, properties = {}) {
   const event = document.createEvent('MouseEvents');
   event.initEvent(name, true, true);
   Object.keys(properties).forEach(key => {
     event[key] = properties[key];
   });
-  document.body.dispatchEvent(event);
+  if (element.dispatchEvent) {
+    element.dispatchEvent(event);
+  } else {
+    element.getDOMNode().dispatchEvent(event);
+  }
   return event;
+}
+
+function fireBodyMouseEvent(name, properties = {}) {
+  return fireMouseEvent(name, document.body, properties);
 }
 
 function fireSwipeAreaMouseEvent(wrapper, name, properties = {}) {
@@ -237,7 +245,9 @@ describe('<SwipeableDrawer />', () => {
 
           const handleClose = spy();
           wrapper.setProps({ open: true, onClose: handleClose });
-          fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [params.closeTouches[0]] });
+          fireMouseEvent('touchstart', wrapper.find(FakePaper), {
+            touches: [params.closeTouches[0]],
+          });
           fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[1]] });
           fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[2]] });
           fireBodyMouseEvent('touchend', { changedTouches: [params.closeTouches[2]] });
@@ -258,7 +268,10 @@ describe('<SwipeableDrawer />', () => {
           // simulate close swipe that doesn't swipe far enough
           const handleClose = spy();
           wrapper.setProps({ open: true, onClose: handleClose });
-          fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [params.closeTouches[0]] });
+          wrapper.update();
+          fireMouseEvent('touchstart', wrapper.find(FakePaper), {
+            touches: [params.closeTouches[0]],
+          });
           fireBodyMouseEvent('touchmove', { touches: [params.closeTouches[1]] });
           fireBodyMouseEvent('touchend', { changedTouches: [params.closeTouches[1]] });
           assert.strictEqual(handleClose.callCount, 0);
@@ -339,7 +352,10 @@ describe('<SwipeableDrawer />', () => {
         open: true,
         onClose: handleClose,
       });
-      fireSwipeAreaMouseEvent(wrapper, 'touchstart', { touches: [{ pageX: 250, clientY: 0 }] });
+      wrapper.update();
+      fireMouseEvent('touchstart', wrapper.find(FakePaper), {
+        touches: [{ pageX: 250, clientY: 0 }],
+      });
       fireBodyMouseEvent('touchmove', { touches: [{ pageX: 180, clientY: 0 }] });
       wrapper.setProps({
         open: false,
@@ -411,7 +427,9 @@ describe('<SwipeableDrawer />', () => {
       // simulate close swipe
       wrapper.setProps({ disableSwipeToOpen: true });
       assert.strictEqual(wrapper.find('[role="presentation"]').exists(), true);
-      fireBodyMouseEvent('touchstart', { touches: [{ pageX: 250, clientY: 0 }] });
+      fireMouseEvent('touchstart', wrapper.find(FakePaper), {
+        touches: [{ pageX: 250, clientY: 0 }],
+      });
       fireBodyMouseEvent('touchmove', { touches: [{ pageX: 150, clientY: 0 }] });
       fireBodyMouseEvent('touchend', { changedTouches: [{ pageX: 10, clientY: 0 }] });
       assert.strictEqual(handleClose.callCount, 1);
@@ -443,12 +461,20 @@ describe('<SwipeableDrawer />', () => {
         </div>,
       );
 
-      fireSwipeAreaMouseEvent(wrapper.find(SwipeableDrawer).at(0), 'touchstart', {
-        touches: [{ pageX: 0, clientY: 0 }],
-      });
-      fireSwipeAreaMouseEvent(wrapper.find(SwipeableDrawer).at(1), 'touchstart', {
-        touches: [{ pageX: 0, clientY: 0 }],
-      });
+      // use the same event object for both touch start events, one would propagate to the other swipe area in the browser
+      const touchStartEvent = fireSwipeAreaMouseEvent(
+        wrapper.find(SwipeableDrawer).at(0),
+        'touchstart',
+        {
+          touches: [{ pageX: 0, clientY: 0 }],
+        },
+      );
+      wrapper
+        .find(SwipeableDrawer)
+        .at(1)
+        .find(SwipeArea)
+        .getDOMNode()
+        .dispatchEvent(touchStartEvent);
       fireBodyMouseEvent('touchmove', { touches: [{ pageX: 20, clientY: 0 }] });
       fireBodyMouseEvent('touchmove', { touches: [{ pageX: 180, clientY: 0 }] });
       fireBodyMouseEvent('touchend', { changedTouches: [{ pageX: 180, clientY: 0 }] });

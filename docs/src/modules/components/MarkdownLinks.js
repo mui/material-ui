@@ -9,8 +9,8 @@ export async function handleEvent(event, as) {
     event.button !== 0 || // ignore everything but left-click
     event.metaKey ||
     event.ctrlKey ||
-    event.shiftKey ||
-    (event.nativeEvent && event.nativeEvent.which === 2)
+    event.altKey ||
+    event.shiftKey
   ) {
     return;
   }

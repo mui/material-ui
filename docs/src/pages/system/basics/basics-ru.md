@@ -53,7 +53,7 @@ This Box component now supports new [spacing properties](/system/spacing/#api) a
 
 The component can be styled providing any valid CSS values.
 
-### Theming
+### Темизация
 
 But most of the time, you want to rely on a theme's values to increase the UI consistency. It's preferable to have a predetermined set of padding and color values. Import the theme provider of your styling solution.
 
@@ -68,15 +68,13 @@ const theme = {
   },
 };
 
-function App() {
+export default function App() {
   return (
     <ThemeProvider theme={theme}>
       {/* children */}
     </ThemeProvider>
   )
 }
-
-export default App
 ```
 
 Now, you can provide a spacing multiplier value:
@@ -212,7 +210,7 @@ const Box = styled.div`
 />
 
 /**
- * Outputs:
+ * Saídas:
  *
  * padding: 16px;
  * @media (min-width: 600px) {
@@ -236,7 +234,7 @@ Not all CSS properties are supported. It's possible that you want to support new
 
 #### Аргументы
 
-1. `options` (*Object*): 
+1. `варианты` (*объекта*): 
   - `options.prop` (*String*): The property the style function will be triggered on.
   - `options.cssProperty` (*String|Boolean* [optional]): Defaults to `options.prop`. The CSS property used. You can disabled this option by providing `false`. When disabled, the property value will handle as a style object on it's own. It can be used for [rendering variants](#variants).
   - `options.themeKey` (*String* [optional]): The theme path prefix.
@@ -328,7 +326,7 @@ styled-system has done a great job at [explaining how it works](https://github.c
 
 In practice, a Box component can save you a lot of time. In this example, we demonstrate how to reproduce a Banner component.
 
-{{"demo": "pages/system/basics/RealWorld.js"}}
+{{"demo": "pages/system/basics/RealWorld.js", "bg": true}}
 
 ## Prior art
 

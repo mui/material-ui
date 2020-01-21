@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
-import { capitalize } from '../utils/helpers';
+import capitalize from '../utils/capitalize';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -36,6 +36,7 @@ export const styles = theme => ({
   colorDisabled: {
     color: theme.palette.action.disabled,
   },
+  /* Styles applied to the root element if `fontSize="inherit"`. */
   fontSizeInherit: {
     fontSize: 'inherit',
   },

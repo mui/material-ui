@@ -11,12 +11,24 @@ components: TreeView、TreeItem
 
 {{"demo": "pages/components/tree-view/FileSystemNavigator.js"}}
 
+## Controlled
+
+The tree view also offers a controlled API.
+
+{{"demo": "pages/components/tree-view/ControlledTreeView.js"}}
+
 ## カスタマイズされたツリービュー
 
 ### Custom icons, border and animation
 
 {{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
 
-### Gmail clone
+### Gmailクローン
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}
+
+## アクセシビリティ
+
+(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
+
+The component follows the WAI-ARIA authoring practices.

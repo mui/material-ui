@@ -30,9 +30,9 @@ export interface DialogTitleProps extends WithStyles<typeof styles> {
 }
 
 const DialogTitle = withStyles(styles)((props: DialogTitleProps) => {
-  const { children, classes, onClose } = props;
+  const { children, classes, onClose, ...other } = props;
   return (
-    <MuiDialogTitle disableTypography className={classes.root}>
+    <MuiDialogTitle disableTypography className={classes.root} {...other}>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
         <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
@@ -68,7 +68,7 @@ export default function CustomizedDialogs() {
 
   return (
     <div>
-      <Button variant="outlined" color="secondary" onClick={handleClickOpen}>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Open dialog
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
@@ -91,7 +91,7 @@ export default function CustomizedDialogs() {
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <Button autoFocus onClick={handleClose} color="primary">
             Save changes
           </Button>
         </DialogActions>

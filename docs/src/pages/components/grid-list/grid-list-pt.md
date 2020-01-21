@@ -31,4 +31,4 @@ Este exemplo demonstra uma lista de grade com imagens, em linha unica e rolável
 
 Este exemplo demonstra blocos "em destaque", usando as propriedades `rows` e `cols` para ajustar o tamanho do bloco, e a propriedade `padding` para ajustar o espaçamento. Os blocos tem uma barra de título customizada, posicionada no topo e com um gradiente personalizado `titleBackground`. A ação secundária `IconButton` está posicionada à esquerda.
 
-{{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true}}
+{{"demo": "pages/components/grid-list/AdvancedGridList.js", "hideEditButton": true, "defaultCodeOpen": false}}

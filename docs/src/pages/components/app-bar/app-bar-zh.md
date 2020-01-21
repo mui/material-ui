@@ -13,31 +13,77 @@ components: AppBar, Toolbar, Menu
 
 ## 简单的应用栏
 
-{{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
+{{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 
 ## 带一个主搜索输入框的应用栏
 
 一个主要搜索栏。
 
-{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
 
 ## 带有菜单的应用栏
 
-{{"demo": "pages/components/app-bar/MenuAppBar.js"}}
+{{"demo": "pages/components/app-bar/MenuAppBar.js", "bg": true}}
 
 ## 带有搜索输入框的应用栏
 
 一个侧边搜索栏。
 
-{{"demo": "pages/components/app-bar/SearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/SearchAppBar.js", "bg": true}}
 
 ## 紧凑模式 (仅限桌面模式)
 
-{{"demo": "pages/components/app-bar/DenseAppBar.js"}}
+{{"demo": "pages/components/app-bar/DenseAppBar.js", "bg": true}}
+
+## 突出模式
+
+一个突出模式的应用栏。
+
+{{"demo": "pages/components/app-bar/ProminentAppBar.js", "bg": true}}
 
 ## 底部应用栏
 
-{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 400}}
+
+## 固定放置
+
+当您固定放置应用栏时，元素的尺寸不会影响页面的其他部分。 这可能导致您的部分内容被挡在应用程序栏后面而看不见。 下面是3种可能的解决方案：
+
+1. 您可以使用 `position =“ sticky”` 代替 fixed。 ⚠️ IE 11不支持sticky。
+2. 您可以渲染第二个 `<Toolbar />` 组件：
+
+```jsx
+function App() {
+  return (
+    <React.Fragment>
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <Toolbar />
+    </React.Fragment>
+  );
+}
+```
+
+3. 您可以使用 `theme.mixins.toolbar` CSS：
+
+```jsx
+const useStyles = makeStyles(theme => ({
+  offset: theme.mixins.toolbar,
+}))
+
+function App() {
+  const classes = useStyles();
+  return (
+    <React.Fragment>
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <div className={classes.offset} />
+    </React.Fragment>
+  )
+};
+```
 
 ## 滚动
 
@@ -47,19 +93,19 @@ components: AppBar, Toolbar, Menu
 
 当向下滚动时，应用栏将会隐藏，这样一来会留有更多的空间进行阅读。
 
-{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true}}
 
 ### 变高的应用栏
 
-应用栏会在滚动时提升，以表明用户还未到页面的顶部。
+The app bar elevates on scroll to communicate that the user is not at the top of the page.
 
-{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true}}
 
 ### 回到顶部
 
 在滚动的时候，会出现一个浮动操作按钮，这样以便于返回页面的顶部。
 
-{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true}}
 
 ### `useScrollTrigger([options]) => trigger`
 
@@ -73,7 +119,7 @@ components: AppBar, Toolbar, Menu
 
 #### 返回结果
 
-`trigger` ：滚动的位置是否符合标准？
+`trigger`: Does the scroll position match the criteria?
 
 #### 例子
 
@@ -84,7 +130,7 @@ function HideOnScroll(props) {
   const trigger = useScrollTrigger();
   return (
     <Slide in={!trigger}>
-      <div>你好</div>
+      <div>Hello</div>
     </Slide>
   );
 }

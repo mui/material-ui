@@ -28,7 +28,7 @@ It uses [react-transition-group](https://github.com/reactjs/react-transition-gro
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content node to be collapsed. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| <span class="prop-name">collapsedHeight</span> | <span class="prop-type">string</span> | <span class="prop-default">'0px'</span> | The height of the container when collapsed. |
+| <span class="prop-name">collapsedHeight</span> | <span class="prop-type">string<br>&#124;&nbsp;number</span> | <span class="prop-default">'0px'</span> | The height of the container when collapsed. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">in</span> | <span class="prop-type">bool</span> |  | If `true`, the component will transition in. |
 | <span class="prop-name">timeout</span> | <span class="prop-type">number<br>&#124;&nbsp;{ enter?: number, exit?: number }<br>&#124;&nbsp;'auto'</span> | <span class="prop-default">duration.standard</span> | The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.<br>Set to 'auto' to automatically calculate transition time based on height. |
@@ -44,11 +44,11 @@ Any other props supplied will be provided to the root element ([Transition](http
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">container</span> | <span class="prop-name">MuiCollapse-container</span> | Styles applied to the container element.
-| <span class="prop-name">entered</span> | <span class="prop-name">MuiCollapse-entered</span> | Styles applied to the container element when the transition has entered.
-| <span class="prop-name">hidden</span> | <span class="prop-name">MuiCollapse-hidden</span> | Styles applied to the container element when the transition has exited and `collapsedHeight` != 0px.
-| <span class="prop-name">wrapper</span> | <span class="prop-name">MuiCollapse-wrapper</span> | Styles applied to the outer wrapper element.
-| <span class="prop-name">wrapperInner</span> | <span class="prop-name">MuiCollapse-wrapperInner</span> | Styles applied to the inner wrapper element.
+| <span class="prop-name">container</span> | <span class="prop-name">.MuiCollapse-container</span> | Styles applied to the container element.
+| <span class="prop-name">entered</span> | <span class="prop-name">.MuiCollapse-entered</span> | Styles applied to the container element when the transition has entered.
+| <span class="prop-name">hidden</span> | <span class="prop-name">.MuiCollapse-hidden</span> | Styles applied to the container element when the transition has exited and `collapsedHeight` != 0px.
+| <span class="prop-name">wrapper</span> | <span class="prop-name">.MuiCollapse-wrapper</span> | Styles applied to the outer wrapper element.
+| <span class="prop-name">wrapperInner</span> | <span class="prop-name">.MuiCollapse-wrapperInner</span> | Styles applied to the inner wrapper element.
 
 You can override the style of the component thanks to one of these customization points:
 

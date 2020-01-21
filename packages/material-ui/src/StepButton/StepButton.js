@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
 import StepLabel from '../StepLabel';
-import { isMuiElement } from '../utils/reactHelpers';
+import isMuiElement from '../utils/isMuiElement';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -34,7 +34,7 @@ const StepButton = React.forwardRef(function StepButton(props, ref) {
     alternativeLabel,
     children,
     classes,
-    className: classNameProp,
+    className,
     completed,
     disabled,
     icon,
@@ -63,7 +63,7 @@ const StepButton = React.forwardRef(function StepButton(props, ref) {
     <ButtonBase
       disabled={disabled}
       TouchRippleProps={{ className: classes.touchRipple }}
-      className={clsx(classes.root, classes[orientation], classNameProp)}
+      className={clsx(classes.root, classes[orientation], className)}
       ref={ref}
       {...other}
     >

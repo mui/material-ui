@@ -28,7 +28,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 Sim, isso é tudo o que você precisa para começar, como você pode ver nesta demonstração ao vivo e interativa:
 
-{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
+{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true, "bg": true}}
 
 ## Globais
 
@@ -36,7 +36,7 @@ A experiência de uso com o Material-UI pode ser melhorada com um punhado de con
 
 ### Meta tag para responsividade
 
-O Material-UI é desenvolvido primeiro em dispositivos móveis, uma estratégia na qual primeiro escrevemos código para dispositivos móveis e, em seguida, dimensionamos componentes conforme necessário, usando consultas de mídia CSS. Para garantir a renderização adequada e o zoom de toque para todos os dispositivos, adicione a meta tag de visualização responsiva ao seu elemento `<head>`.
+Material-UI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries. Para garantir a renderização adequada e o zoom de toque para todos os dispositivos, adicione a meta tag de visualização responsiva ao seu elemento `<head>`.
 
 ```html
 <meta
@@ -51,12 +51,12 @@ Material-UI fornece um componente opcional [CssBaseline](/components/css-baselin
 
 ## Versões da documentação
 
-Esta documentação sempre reflete a última versão estável do Material-UI. Você pode encontrar versões mais antigas da documentação em uma [página separada](/versions/).
+Esta documentação sempre reflete a última versão estável do Material-UI. Você pode encontrar versões mais antigas da documentação em uma [página separada](https://material-ui.com/versions/).
 
 ## Próximos passos
 
 Agora que você tem uma ideia da configuração básica, é hora de aprender mais sobre:
 
 - Como aplicar [a fonte e a tipografia do Material Design](/components/typography/).
-- How to take advantage of the [theming solution](/customization/theming/).
+- Como tirar proveito da [solução de tema](/customization/theming/).
 - Como [sobrescrever](/customization/components/) o visual e a aparência dos componentes.

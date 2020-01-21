@@ -3,7 +3,7 @@ title: React Select（选择器）组件
 components: Select, NativeSelect
 ---
 
-# Selects（选择器）
+# Select（选择器）
 
 <p class="description">选择器组件能从一个选项列表中去获得用户所提供的信息。</p>
 
@@ -18,6 +18,10 @@ components: Select, NativeSelect
 我们允许这种模式，如此一来，选择在移动设备上使用平台的原生选择器能够改进用户体验。
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
+
+## Text Fields（文本输入框）
+
+`TextField` wrapper 组件是一个完整的表单控件，包括标签，输入和帮助文本。 您可以在本节中找到具有[select模式](/components/text-fields/#select)的示例
 
 ## 自定义选择器
 
@@ -41,10 +45,33 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 ## 与对话框组件使用
 
-虽然 Material Design 的规范不鼓励这样做，但您还是可以在对话框组件中使用选择器。
+虽然Material Design的规范不鼓励这样做，但您还是可以在对话框组件中使用选择器。
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 
-## 文本输入框
+## Grouping
 
-`TextField` 包装器组件是一个完整的表单控件，它包括了标签、输入和帮助文本。 您可以在本节中找到具有[select模式](/components/text-fields/#textfield)的示例
+Display categories with the `ListSubheader` component or the native `<optgroup>` element.
+
+{{"demo": "pages/components/selects/GroupedSelect.js"}}
+
+## 可访问性
+
+To properly label your `Select` input you need an extra element with an `id` that contains a label. That `id` needs to match the `labelId` of the `Select` e.g.
+
+```jsx
+<InputLabel id="label">Age</InputLabel>
+<Select labelId="label" id="select" value="20">
+  <MenuItem value="10">Ten</MenuItem>
+  <MenuItem value="20">Twenty</MenuItem>
+</Select>
+```
+
+Alternatively a `TextField` with an `id` and `label` creates the proper markup and ids for you:
+
+```jsx
+<TextField id="select" label="Age" value="20">
+  <MenuItem value="10">Ten</MenuItem>
+  <MenuItem value="20">Twenty</MenuItem>
+</TextField>
+```

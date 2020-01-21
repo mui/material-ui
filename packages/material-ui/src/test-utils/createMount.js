@@ -35,10 +35,10 @@ class Mode extends React.Component {
 export default function createMount(options = {}) {
   const { mount = enzymeMount, strict: globalStrict, ...globalEnzymeOptions } = options;
 
-  const attachTo = window.document.createElement('div');
+  const attachTo = document.createElement('div');
   attachTo.className = 'app';
   attachTo.setAttribute('id', 'app');
-  window.document.body.insertBefore(attachTo, window.document.body.firstChild);
+  document.body.insertBefore(attachTo, document.body.firstChild);
 
   const mountWithContext = function mountWithContext(node, localOptions = {}) {
     const { disableUnnmount = false, strict = globalStrict, ...localEnzymeOptions } = localOptions;
@@ -59,7 +59,7 @@ export default function createMount(options = {}) {
   mountWithContext.attachTo = attachTo;
   mountWithContext.cleanUp = () => {
     ReactDOM.unmountComponentAtNode(attachTo);
-    attachTo.parentNode.removeChild(attachTo);
+    attachTo.parentElement.removeChild(attachTo);
   };
 
   return mountWithContext;

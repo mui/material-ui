@@ -46,6 +46,7 @@ You can find one composition example below and more going to [the demos](/compon
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The contents of the form control. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">color</span> | <span class="prop-type">'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'primary'</span> | The color of the component. It supports those theme colors that make sense for this component. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
 | <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the label, input and helper text should be displayed in a disabled state. |
 | <span class="prop-name">error</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the label should be displayed in an error state. |
@@ -53,6 +54,7 @@ You can find one composition example below and more going to [the demos](/compon
 | <span class="prop-name">hiddenLabel</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the label will be hidden. This is used to increase density for a `FilledInput`. Be sure to add `aria-label` to the `input` element. |
 | <span class="prop-name">margin</span> | <span class="prop-type">'none'<br>&#124;&nbsp;'dense'<br>&#124;&nbsp;'normal'</span> | <span class="prop-default">'none'</span> | If `dense` or `normal`, will adjust vertical spacing of this and contained components. |
 | <span class="prop-name">required</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the label will indicate that the input is required. |
+| <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'</span> |  | The size of the text field. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'standard'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'filled'</span> | <span class="prop-default">'standard'</span> | The variant to use. |
 
 The `ref` is forwarded to the root element.
@@ -66,10 +68,10 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiFormControl-root</span> | Styles applied to the root element.
-| <span class="prop-name">marginNormal</span> | <span class="prop-name">MuiFormControl-marginNormal</span> | Styles applied to the root element if `margin="normal"`.
-| <span class="prop-name">marginDense</span> | <span class="prop-name">MuiFormControl-marginDense</span> | Styles applied to the root element if `margin="dense"`.
-| <span class="prop-name">fullWidth</span> | <span class="prop-name">MuiFormControl-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiFormControl-root</span> | Styles applied to the root element.
+| <span class="prop-name">marginNormal</span> | <span class="prop-name">.MuiFormControl-marginNormal</span> | Styles applied to the root element if `margin="normal"`.
+| <span class="prop-name">marginDense</span> | <span class="prop-name">.MuiFormControl-marginDense</span> | Styles applied to the root element if `margin="dense"`.
+| <span class="prop-name">fullWidth</span> | <span class="prop-name">.MuiFormControl-fullWidth</span> | Styles applied to the root element if `fullWidth={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 

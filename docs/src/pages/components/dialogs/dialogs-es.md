@@ -3,7 +3,7 @@ title: Componente React Dialog
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 ---
 
-# Diálogos
+# Dialog (diálogo)
 
 <p class="description">Los diálogos informan a los usuarios sobre una tarea y pueden contener información importante, requerir decisiones, o involucrar múltiples tareas.</p>
 
@@ -95,9 +95,11 @@ Al tocar "Cancelar" en un cuadro de diálogo de confirmación, o al presionar At
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
-## Accesibilidad
+## Diálogo arrastrable
 
-Sigue la [Sección de accesibilidad de Modal](/components/modal/#accessibility).
+Puede crear un cuadro de diálogo arrastrable utilizando [react-draggable](https://github.com/mzabriskie/react-draggable). Para hacerlo, puede pasar el componente importado `Draggable` como `PaperComponent` del componente `Dialog`. Esto hará que todo el diálogo se pueda arrastrar.
+
+{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## Desplazando contenido largo
 
@@ -110,12 +112,10 @@ Prueba la demostración de abajo para ver lo que queremos decir:
 
 {{"demo": "pages/components/dialogs/ScrollDialog.js"}}
 
-## Diálogo arrastrable
+## Limitaciones
 
-Puede crear un cuadro de diálogo arrastrable utilizando [react-draggable](https://github.com/mzabriskie/react-draggable). Para hacerlo, puede pasar el componente importado `Draggable` como `PaperComponent` del componente `Dialog`. Esto hará que todo el diálogo se pueda arrastrar.
+Follow the [Modal limitations section](/components/modal/#limitations).
 
-{{"demo": "pages/components/dialogs/DraggableDialog.js"}}
+## Accesibilidad
 
-## Rendimiento
-
-Sigue la [Sección de rendimiento de Modal](/components/modal/#performance).
+Sigue la [Sección de accesibilidad de Modal](/components/modal/#accessibility).

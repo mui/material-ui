@@ -12,22 +12,26 @@ import useTheme from '../useTheme';
 const withStyles = (stylesOrCreator, options = {}) => Component => {
   const { defaultTheme, withTheme = false, name, ...stylesOptions } = options;
 
-  if (process.env.NODE_ENV !== 'production' && Component === undefined) {
-    throw new Error(
-      [
-        'You are calling withStyles(styles)(Component) with an undefined component.',
-        'You may have forgotten to import it.',
-      ].join('\n'),
-    );
+  if (process.env.NODE_ENV !== 'production') {
+    if (Component === undefined) {
+      throw new Error(
+        [
+          'You are calling withStyles(styles)(Component) with an undefined component.',
+          'You may have forgotten to import it.',
+        ].join('\n'),
+      );
+    }
   }
 
   let classNamePrefix = name;
 
-  if (process.env.NODE_ENV !== 'production' && !name) {
-    // Provide a better DX outside production.
-    const displayName = getDisplayName(Component);
-    if (displayName !== undefined) {
-      classNamePrefix = displayName;
+  if (process.env.NODE_ENV !== 'production') {
+    if (!name) {
+      // Provide a better DX outside production.
+      const displayName = getDisplayName(Component);
+      if (displayName !== undefined) {
+        classNamePrefix = displayName;
+      }
     }
   }
 
@@ -86,6 +90,11 @@ const withStyles = (stylesOrCreator, options = {}) => Component => {
       // );
     }),
   };
+
+  // The wrapper receives only user supplied props, which could be a subset of
+  // the actual props Component might receive due to merging with defaultProps.
+  // So copying it here would give us the same result in the wrapper as well.
+  WithStyles.defaultProps = Component.defaultProps;
 
   if (process.env.NODE_ENV !== 'production') {
     WithStyles.displayName = `WithStyles(${getDisplayName(Component)})`;

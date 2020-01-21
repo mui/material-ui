@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { exactProp } from '@material-ui/utils';
-import { setRef, useForkRef } from '../utils/reactHelpers';
+import setRef from '../utils/setRef';
+import useForkRef from '../utils/useForkRef';
 
 function getContainer(container) {
   container = typeof container === 'function' ? container() : container;
@@ -19,7 +20,7 @@ const useEnhancedEffect = typeof window !== 'undefined' ? React.useLayoutEffect 
 const Portal = React.forwardRef(function Portal(props, ref) {
   const { children, container, disablePortal = false, onRendered } = props;
   const [mountNode, setMountNode] = React.useState(null);
-  const handleRef = useForkRef(children.ref, ref);
+  const handleRef = useForkRef(React.isValidElement(children) ? children.ref : null, ref);
 
   useEnhancedEffect(() => {
     if (!disablePortal) {
@@ -45,10 +46,12 @@ const Portal = React.forwardRef(function Portal(props, ref) {
   }, [onRendered, mountNode, disablePortal]);
 
   if (disablePortal) {
-    React.Children.only(children);
-    return React.cloneElement(children, {
-      ref: handleRef,
-    });
+    if (React.isValidElement(children)) {
+      return React.cloneElement(children, {
+        ref: handleRef,
+      });
+    }
+    return children;
   }
 
   return mountNode ? ReactDOM.createPortal(children, mountNode) : mountNode;

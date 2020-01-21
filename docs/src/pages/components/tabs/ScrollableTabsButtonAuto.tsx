@@ -24,7 +24,7 @@ function TabPanel(props: TabPanelProps) {
       aria-labelledby={`scrollable-auto-tab-${index}`}
       {...other}
     >
-      <Box p={3}>{children}</Box>
+      {value === index && <Box p={3}>{children}</Box>}
     </Typography>
   );
 }
@@ -48,9 +48,9 @@ export default function ScrollableTabsButtonAuto() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
-  function handleChange(event: React.ChangeEvent<{}>, newValue: number) {
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
-  }
+  };
 
   return (
     <div className={classes.root}>

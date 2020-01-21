@@ -3,50 +3,52 @@ title: Componente Badge
 components: Badge
 ---
 
-# Placas
+# Badge
 
 <p class="description">El componente Badge genera un pequeño badge en la esquina superior derecha de su(s) hijo(s).</p>
 
-## Emblemas Simples
+## Basic badges
 
-Examples of badges containing text, using primary and secondary colors. The badge is applied to its children.
+Ejemplos de insignias que contienen texto, utilizando colores primarios y secundarios. La insignia se aplica a sus hijos.
 
-{{"demo": "pages/components/badges/SimpleBadge.js"}}
+{{"demo": "pages/demos/badges/SimpleBadge.js"}}
 
-## Customized badges
+## Placas personalizadas
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 
-{{"demo": "pages/components/badges/CustomizedBadges.js"}}
+{{"demo": "pages/demos/badges/CustomizedBadge.js"}}
 
-## Badge visibility
+## Visibilidad de la placa
 
-The visibility of badges can be controlled using the `invisible` property.
-
-The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
+La visibilidad del badge puede ser controlada usando la propiedad `invisible`.
 
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-## Maximum Value
+The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
+
+{{"demo": "pages/components/badges/ShowZeroBadge.js"}}
+
+## Maximum value
 
 You can use the `max` property to cap the value of the badge content.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
-## Dot Badge
+## Dot badge
 
 The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
-## Badge overlap
+## Superposición de insignia
 
 You can use the `overlap` property to place the badge relative to the corner of the wrapped element.
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
-## Badge alignment
+## Alineación de la insignia
 
-You can use the `horizontalAlignment` and `verticalAlignment` properties to move the badge to any corner of the wrapped element.
+You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
-{{"demo": "pages/components/badges/BadgeAlignment.js"}}
+{{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}

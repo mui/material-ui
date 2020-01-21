@@ -9,37 +9,83 @@ components: AppBar, Toolbar, Menu
 
 [La barre d'application](https://material.io/design/components/app-bars-top.html) de la page fournit le contenu et les actions liés à l'écran actuel. Il est utilisé pour la marque, les titres d'écran, la navigation et les actions.
 
-Il peut se transformer en une barre d’action contextuelle ou en tant que barre de navigation.
+It can transform into a contextual action bar or be used as a navbar.
 
-## Simple App Bar
+## Barre d'application simple
 
-{{"demo": "pages/components/app-bar/ButtonAppBar.js"}}
+{{"demo": "pages/components/app-bar/ButtonAppBar.js", "bg": true}}
 
-## App Bar with a primary search field
+## Barre d'application avec champ de recherche principal
 
-A primary searchbar.
+Une barre de recherche principale.
 
-{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/PrimarySearchAppBar.js", "bg": true}}
 
-## App Bar with menu
+## Barre d'application avec menu
 
-{{"demo": "pages/components/app-bar/MenuAppBar.js"}}
+{{"demo": "pages/components/app-bar/MenuAppBar.js", "bg": true}}
 
-## App Bar with search field
+## Barre d'application avec champ de recherche
 
-A side searchbar.
+Une barre de recherche latérale.
 
-{{"demo": "pages/components/app-bar/SearchAppBar.js"}}
+{{"demo": "pages/components/app-bar/SearchAppBar.js", "bg": true}}
 
-## Dense (desktop only)
+## Dense (bureau uniquement)
 
-{{"demo": "pages/components/app-bar/DenseAppBar.js"}}
+{{"demo": "pages/components/app-bar/DenseAppBar.js", "bg": true}}
 
-## Bottom App Bar
+## Prominent
 
-{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
+A prominent app bar.
 
-## Scrolling
+{{"demo": "pages/components/app-bar/ProminentAppBar.js", "bg": true}}
+
+## Barre inférieure
+
+{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 400}}
+
+## Fixed placement
+
+When you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:
+
+1. You can use `position="sticky"` instead of fixed. ⚠️ sticky is not supported by IE 11.
+2. You can render a second `<Toolbar />` component:
+
+```jsx
+function App() {
+  return (
+    <React.Fragment>
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <Toolbar />
+    </React.Fragment>
+  );
+}
+```
+
+3. You can use `theme.mixins.toolbar` CSS:
+
+```jsx
+const useStyles = makeStyles(theme => ({
+  offset: theme.mixins.toolbar,
+}))
+
+function App() {
+  const classes = useStyles();
+  return (
+    <React.Fragment>
+      <AppBar position="fixed">
+        <Toolbar>{/* content */}</Toolbar>
+      </AppBar>
+      <div className={classes.offset} />
+    </React.Fragment>
+  )
+};
+```
+
+## Défilement
 
 You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
@@ -47,19 +93,19 @@ You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
 The app bar hides on scroll down to leave more space for reading.
 
-{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true}}
 
 ### Barre d'application élevable
 
 The app bar elevates on scroll to communicate that the user is not at the top of the page.
 
-{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true}}
 
 ### Back to top
 
 A floating action buttons appears on scroll to make it easy to get back to the top of the page.
 
-{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true}}
 
 ### `useScrollTrigger([options]) => trigger`
 
@@ -73,7 +119,7 @@ A floating action buttons appears on scroll to make it easy to get back to the t
 
 #### Valeur de retour
 
-`trigger`: Does the scroll position match the criteria?
+`trigger`: Est-ce que la position de défilement respecte les critères ?
 
 #### Exemples
 

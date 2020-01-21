@@ -4,10 +4,10 @@ import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import withStyles from '../styles/withStyles';
 import ButtonBase from '../ButtonBase';
-import { isMuiElement, useForkRef } from '../utils/reactHelpers';
+import isMuiElement from '../utils/isMuiElement';
+import useForkRef from '../utils/useForkRef';
 import ListContext from '../List/ListContext';
 import ReactDOM from 'react-dom';
-import warning from 'warning';
 
 export const styles = theme => ({
   /* Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
@@ -99,7 +99,7 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     component: componentProp,
     ContainerComponent = 'li',
     ContainerProps: { className: ContainerClassName, ...ContainerProps } = {},
-    dense,
+    dense = false,
     disabled = false,
     disableGutters = false,
     divider = false,
@@ -118,9 +118,8 @@ const ListItem = React.forwardRef(function ListItem(props, ref) {
     if (autoFocus) {
       if (listItemRef.current) {
         listItemRef.current.focus();
-      } else {
-        warning(
-          false,
+      } else if (process.env.NODE_ENV !== 'production') {
+        console.error(
           'Material-UI: unable to set focus to a ListItem whose component has not been rendered.',
         );
       }
@@ -210,7 +209,8 @@ ListItem.propTypes = {
    */
   autoFocus: PropTypes.bool,
   /**
-   * If `true`, the list item will be a button (using `ButtonBase`).
+   * If `true`, the list item will be a button (using `ButtonBase`). Props intended
+   * for `ButtonBase` can then be applied to `ListItem`.
    */
   button: PropTypes.bool,
   /**

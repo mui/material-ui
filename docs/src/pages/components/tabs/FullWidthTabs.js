@@ -20,7 +20,7 @@ function TabPanel(props) {
       aria-labelledby={`full-width-tab-${index}`}
       {...other}
     >
-      <Box p={3}>{children}</Box>
+      {value === index && <Box p={3}>{children}</Box>}
     </Typography>
   );
 }
@@ -50,13 +50,13 @@ export default function FullWidthTabs() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
-  function handleChange(event, newValue) {
+  const handleChange = (event, newValue) => {
     setValue(newValue);
-  }
+  };
 
-  function handleChangeIndex(index) {
+  const handleChangeIndex = index => {
     setValue(index);
-  }
+  };
 
   return (
     <div className={classes.root}>

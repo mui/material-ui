@@ -1,18 +1,17 @@
 <p align="center">
-  <a href="https://material-ui.com/" rel="noopener" target="_blank"><img width="150" src="https://material-ui.com/static/images/material-ui-logo.svg" alt="Material-UI logo"></a></p>
+  <a href="https://material-ui.com/" rel="noopener" target="_blank"><img width="150" src="https://material-ui.com/static/logo.svg" alt="Material-UI logo"></a></p>
 </p>
 
 <h1 align="center">Material-UI</h1>
 
 <div align="center">
 
-[React](https://reactjs.org/) components that implement [Google's Material Design](https://www.google.com/design/spec/material-design/introduction.html).
+[React](https://reactjs.org/) components for faster and easier web development. Build your own design system, or start with [Material Design](https://material.io/design/introduction/).
 
 [![npm package](https://img.shields.io/npm/v/@material-ui/core/latest.svg)](https://www.npmjs.com/package/@material-ui/core)
 [![npm downloads](https://img.shields.io/npm/dm/@material-ui/core.svg)](https://www.npmjs.com/package/@material-ui/core)
 [![CircleCI](https://img.shields.io/circleci/project/github/mui-org/material-ui/master.svg)](https://circleci.com/gh/mui-org/material-ui/tree/master)
 [![Build Status](https://dev.azure.com/mui-org/Material-UI/_apis/build/status/mui-org.material-ui?branchName=master)](https://dev.azure.com/mui-org/Material-UI/_build/latest?definitionId=1&branchName=master)
-[![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/material-ui)
 [![Coverage Status](https://img.shields.io/codecov/c/github/mui-org/material-ui/master.svg)](https://codecov.io/gh/mui-org/material-ui/branch/master)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1320/badge)](https://bestpractices.coreinfrastructure.org/projects/1320)
 ![Code style](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)
@@ -45,36 +44,28 @@ yarn add @material-ui/core
 
 Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
 
-## Supporting Material-UI
+## Who sponsors Material-UI?
 
-Material-UI is an MIT-licensed open source project. It's an independent project with ongoing development made possible thanks to the support of these awesome [backers](/BACKERS.md). If you'd like to join them, please consider:
-- [Become a backer or sponsor on Patreon](https://www.patreon.com/oliviertassinari).
-- [Become a backer or sponsor on OpenCollective](https://opencollective.com/material-ui).
+### Diamond 💎
 
-#### What's the difference between Patreon and OpenCollective?
+Diamond Sponsors are those who have pledged $2,000/month or more to Material-UI.
 
-Funds donated via Patreon directly support [Olivier Tassinari](https://github.com/oliviertassinari)'s work on Material-UI.
-Funds donated via OpenCollective are managed transparently and will be used for compensating work and expenses for core team members.
-Your name/logo will receive proper recognition and exposure by donating on either platform.
-
-### Gold Sponsors
-
-Gold Sponsors are those who have pledged $500/month and more to Material-UI.
+### Gold 🏆
 
 via [Patreon](https://www.patreon.com/oliviertassinari)
 
 <p style="display: flex; justify-content: center;">
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="creative-tim" href="https://www.creative-tim.com/?partner=104080" rel="noopener nofollow" target="_blank" style="margin-right: 16px;"><img width="126" src="https://github.com/creativetimofficial.png?size=126" alt="creative-tim" title="Premium Themes"></a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage" rel="noopener nofollow" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/tidelift.png?size=96" alt="tidelift" title="Get Professionally Supported Material-UI"></a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev" rel="noopener nofollow" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/teambit.png?size=96" alt="bitsrc" title="The fastest way to share code"></a>
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="blokt" href="https://blokt.com/" rel="noopener nofollow" target="_blank" style="margin-right: 16px;"><img width="96" src="https://material-ui.com/static/images/blokt.jpg" alt="blokt" title="Leading Cryptocurrency News"></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="tidelift" href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=material_ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/tidelift.png?size=96" alt="tidelift" title="Enterprise-ready open source software" /></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="bitsrc" href="https://bit.dev" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img width="96" src="https://github.com/teambit.png?size=96" alt="bitsrc" title="The fastest way to share code" /></a>
 </p>
 
 via [OpenCollective](https://opencollective.com/material-ui)
 
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
-  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener nofollow" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Ff4053300-e0ea-11e7-acf0-0fa7c0509f4e.png&height=100" alt="callemall" title="The easy way to message your group"></a>
+  <a data-ga-event-category="sponsors" data-ga-event-action="logo" data-ga-event-label="callemall" href="https://www.call-em-all.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/proxy/images?src=https%3A%2F%2Fopencollective-production.s3-us-west-1.amazonaws.com%2Ff4053300-e0ea-11e7-acf0-0fa7c0509f4e.png&height=100" alt="call-em-all" title="The easy way to message your group" width="100" loading="lazy"></a>
 </p>
+
+Gold Sponsors are those who have pledged $500/month or more to Material-UI.
 
 ### There is more!
 
@@ -125,7 +116,10 @@ You can find complete templates & themes in our [premium themes](https://themes.
 
 ## Contributing
 
-We'd greatly appreciate any [contribution](/CONTRIBUTING.md) you make. :)
+Read our [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to Material-UI.
+
+Notice that contributions go far beyond pull requests and commits.
+Although we love giving you the opportunity to put your stamp on Material-UI, we also are thrilled to receive a variety of [other contributions](https://material-ui.com/getting-started/faq/#material-ui-is-awesome-how-can-i-support-the-project).
 
 ## Changelog
 
@@ -134,43 +128,9 @@ Please read the [changelog](https://github.com/mui-org/material-ui/releases).
 
 ## Roadmap
 
-The future plans and high priority features and enhancements can be found in the [ROADMAP.md](https://material-ui.com/discover-more/roadmap/) file.
-
-## Thanks
-
-Material-UI is only made possible thanks to these great services that sponsor our core infrastructure:
-
-[<img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" width="100">](https://github.com/)
-
-GitHub allows us to host the Git repository.
-
-[<img src="https://assets.brandfolder.com/otz6k5-cj8pew-e4rk9u/element.png?v=1501538594" width="120">](https://circleci.com/)
-
-CircleCI allows us to run the test suite.
-
-[<img src="https://cdn.netlify.com/15ecf59b59c9d04b88097c6b5d2c7e8a7d1302d0/1b6d6/img/press/logos/full-logo-light.svg" width="120">](https://www.netlify.com/)
-
-Netlify allows us to distribute the documentation.
-
-[<img src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png" width="120">](https://crowdin.com/)
-
-CrowdIn allows us to translate the documentation.
-
-[<img src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" width="120">](https://www.browserstack.com/)
-
-BrowserStack allows us to test in real browsers.
-
-[<img src="https://raw.githubusercontent.com/codecov/media/master/logos/icon-50.png" height="30">](https://codecov.io/)
-
-CodeCov allows us to monitor the test coverage.
+The future plans and high priority features and enhancements can be found in the [roadmap](https://material-ui.com/discover-more/roadmap/) file.
 
 ## License
 
 This project is licensed under the terms of the
 [MIT license](/LICENSE).
-
-## Security
-
-To report a security vulnerability, please use the
-[Tidelift security contact](https://tidelift.com/security).
-Tidelift will coordinate the fix and disclosure.

@@ -3,7 +3,7 @@
   <head>
     <title>My page</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no" />
+    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
     <script src="https://unpkg.com/react@latest/umd/react.development.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js" crossorigin="anonymous"></script>
@@ -19,7 +19,7 @@
 const {
   colors,
   CssBaseline,
-  MuiThemeProvider,
+  ThemeProvider,
   Typography,
   Container,
   makeStyles,
@@ -107,11 +107,11 @@ function App() {
 }
 
 ReactDOM.render(
-  <MuiThemeProvider theme={theme}>
+  <ThemeProvider theme={theme}>
     {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
     <CssBaseline />
     <App />
-  </MuiThemeProvider>,
+  </ThemeProvider>,
   document.querySelector('#root'),
 );
     </script>

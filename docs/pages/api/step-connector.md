@@ -37,16 +37,16 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">MuiStepConnector-root</span> | Styles applied to the root element.
-| <span class="prop-name">horizontal</span> | <span class="prop-name">MuiStepConnector-horizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
-| <span class="prop-name">vertical</span> | <span class="prop-name">MuiStepConnector-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
-| <span class="prop-name">alternativeLabel</span> | <span class="prop-name">MuiStepConnector-alternativeLabel</span> | Styles applied to the root element if `alternativeLabel={true}`.
-| <span class="prop-name">active</span> | <span class="prop-name">MuiStepConnector-active</span> | Pseudo-class applied to the root element if `active={true}`.
-| <span class="prop-name">completed</span> | <span class="prop-name">MuiStepConnector-completed</span> | Pseudo-class applied to the root element if `completed={true}`.
-| <span class="prop-name">disabled</span> | <span class="prop-name">Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">line</span> | <span class="prop-name">MuiStepConnector-line</span> | Styles applied to the line element.
-| <span class="prop-name">lineHorizontal</span> | <span class="prop-name">MuiStepConnector-lineHorizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
-| <span class="prop-name">lineVertical</span> | <span class="prop-name">MuiStepConnector-lineVertical</span> | Styles applied to the root element if `orientation="vertical"`.
+| <span class="prop-name">root</span> | <span class="prop-name">.MuiStepConnector-root</span> | Styles applied to the root element.
+| <span class="prop-name">horizontal</span> | <span class="prop-name">.MuiStepConnector-horizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
+| <span class="prop-name">vertical</span> | <span class="prop-name">.MuiStepConnector-vertical</span> | Styles applied to the root element if `orientation="vertical"`.
+| <span class="prop-name">alternativeLabel</span> | <span class="prop-name">.MuiStepConnector-alternativeLabel</span> | Styles applied to the root element if `alternativeLabel={true}`.
+| <span class="prop-name">active</span> | <span class="prop-name">.MuiStepConnector-active</span> | Pseudo-class applied to the root element if `active={true}`.
+| <span class="prop-name">completed</span> | <span class="prop-name">.MuiStepConnector-completed</span> | Pseudo-class applied to the root element if `completed={true}`.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.Mui-disabled</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span class="prop-name">line</span> | <span class="prop-name">.MuiStepConnector-line</span> | Styles applied to the line element.
+| <span class="prop-name">lineHorizontal</span> | <span class="prop-name">.MuiStepConnector-lineHorizontal</span> | Styles applied to the root element if `orientation="horizontal"`.
+| <span class="prop-name">lineVertical</span> | <span class="prop-name">.MuiStepConnector-lineVertical</span> | Styles applied to the root element if `orientation="vertical"`.
 
 You can override the style of the component thanks to one of these customization points:
 

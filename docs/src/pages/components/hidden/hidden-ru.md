@@ -5,9 +5,9 @@ components: Hidden
 
 # Hidden
 
-<p class="description">Quickly and responsively toggle the visibility value of components and more with the hidden utilities.</p>
+<p class="description">Быстро и адаптивно изменяйте видимость компонент и многое другое с помощью наших утилит управления видимостью.</p>
 
-Все элементы видны, если **они явно не скрыты**. To ease integration with Material-UI's [responsive breakpoints](/customization/breakpoints/), this component can be used to hide any content, or you can use it in conjunction with the [`Grid`](/components/grid/) component.
+Все элементы видны, если **они явно не скрыты**. Чтобы упростить интеграцию с [ точками остановки](/customization/breakpoints/) Material-UI, этот компонент можно использовать для скрытия любого контента, или использовать его в сочетании с нашим компонентом [`Grid`](/components/grid/).
 
 ## Как это работает
 
@@ -37,13 +37,13 @@ mdDown      |                     hide | show
 
 Используя любое свойство точки остановки от `up`, данные *дочерних элементов* будут скрыты *на уровне или выше* точки остановки.
 
-{{"demo": "pages/components/hidden/BreakpointUp.js"}}
+{{"demo": "pages/components/hidden/BreakpointUp.js", "bg": true}}
 
 ## Точка остановки Вниз
 
 Используя любое свойство точки остановки от `down`, данные *дочерних элементов* будут скрыты *на уровне или ниже* точки остановки.
 
-{{"demo": "pages/components/hidden/BreakpointDown.js"}}
+{{"demo": "pages/components/hidden/BreakpointDown.js", "bg": true}}
 
 ## Точка остановки Только (only)
 
@@ -54,10 +54,10 @@ mdDown      |                     hide | show
 - указать одну точку остановки
 - перечислить массив точек остановки
 
-{{"demo": "pages/components/hidden/BreakpointOnly.js"}}
+{{"demo": "pages/components/hidden/BreakpointOnly.js", "bg": true}}
 
 ## Интеграция с Grid (Сеткой)
 
 Весьма обычным является изменение `Grid` в разных точках остановки, и во многих случаях вы хотите скрыть некоторые из этих элементов.
 
-{{"demo": "pages/components/hidden/GridIntegration.js"}}
+{{"demo": "pages/components/hidden/GridIntegration.js", "bg": true}}

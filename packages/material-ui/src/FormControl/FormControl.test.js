@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 import Input from '../Input';
 import Select from '../Select';
 import FormControl from './FormControl';
@@ -11,7 +11,7 @@ import useFormControl from './useFormControl';
 
 describe('<FormControl />', () => {
   let mount;
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
   let classes;
 
   function TestComponent(props) {
@@ -23,10 +23,6 @@ describe('<FormControl />', () => {
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<FormControl />);
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   after(() => {

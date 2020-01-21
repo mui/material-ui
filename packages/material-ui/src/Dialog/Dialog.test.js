@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
-import { cleanup, createClientRender, fireEvent } from 'test/utils/createClientRender';
+import { createClientRender, fireEvent } from 'test/utils/createClientRender';
 import Modal from '../Modal';
 import Dialog from './Dialog';
 
@@ -48,7 +48,6 @@ describe('<Dialog />', () => {
 
   afterEach(() => {
     clock.restore();
-    cleanup();
   });
 
   describeConformance(<Dialog open>foo</Dialog>, () => ({
@@ -80,10 +79,10 @@ describe('<Dialog />', () => {
     const onClose = spy();
     function TestCase() {
       const [open, close] = React.useReducer(() => false, true);
-      function handleClose(...args) {
+      const handleClose = (...args) => {
         close();
         onClose(...args);
-      }
+      };
 
       return (
         <Dialog
@@ -97,9 +96,10 @@ describe('<Dialog />', () => {
       );
     }
     const { getByRole, queryByRole } = render(<TestCase />);
-    expect(getByRole('dialog')).to.be.ok;
+    const dialog = getByRole('dialog');
+    expect(dialog).to.be.ok;
 
-    getByRole('dialog').click();
+    dialog.click();
     fireEvent.keyDown(document.activeElement, { key: 'Esc' });
     expect(onEscapeKeyDown.calledOnce).to.equal(true);
     expect(onClose.calledOnce).to.equal(true);
@@ -121,9 +121,10 @@ describe('<Dialog />', () => {
         foo
       </Dialog>,
     );
-    expect(getByRole('dialog')).to.be.ok;
+    const dialog = getByRole('dialog');
+    expect(dialog).to.be.ok;
 
-    getByRole('dialog').click();
+    dialog.click();
     fireEvent.keyDown(document.activeElement, { key: 'Esc' });
     expect(onClose.callCount).to.equal(0);
 
@@ -142,11 +143,10 @@ describe('<Dialog />', () => {
   });
 
   describe('backdrop', () => {
-    it('has the document role', () => {
-      // FixMe: should have none. Revisit in React Flare
+    it('does have `role` `none presentation`', () => {
       render(<Dialog open>foo</Dialog>);
 
-      expect(findBackdrop(document.body)).to.have.attribute('role', 'document');
+      expect(findBackdrop(document.body)).to.have.attribute('role', 'none presentation');
     });
 
     it('calls onBackdropClick and onClose when clicked', () => {
@@ -262,6 +262,22 @@ describe('<Dialog />', () => {
 
       expect(getByTestId('paper')).to.have.class(classes.paper);
       expect(getByTestId('paper')).to.have.class('custom-paper-class');
+    });
+  });
+
+  describe('a11y', () => {
+    it('can be labelled by another element', () => {
+      const { getByRole } = render(
+        <Dialog open aria-labelledby="dialog-title">
+          <h1 id="dialog-title">Choose either one</h1>
+          <div>Actually you cant</div>
+        </Dialog>,
+      );
+
+      const dialog = getByRole('dialog');
+      expect(dialog).to.have.attr('aria-labelledby', 'dialog-title');
+      const label = document.getElementById(dialog.getAttribute('aria-labelledby'));
+      expect(label).to.have.text('Choose either one');
     });
   });
 });

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { cleanup, createClientRender } from 'test/utils/createClientRender';
+import { createClientRender } from 'test/utils/createClientRender';
 import Icon from '../Icon';
 import ButtonBase from '../ButtonBase';
 import IconButton from './IconButton';
@@ -17,10 +17,6 @@ describe('<IconButton />', () => {
   before(() => {
     mount = createMount({ strict: true });
     classes = getClasses(<IconButton />);
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   describeConformance(<IconButton>book</IconButton>, () => ({

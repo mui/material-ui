@@ -14,8 +14,9 @@ import TablePaginationActions from './TablePaginationActions';
 export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
-    color: theme.palette.text.secondary,
-    fontSize: theme.typography.pxToRem(12),
+    color: theme.palette.text.primary,
+    fontSize: theme.typography.pxToRem(14),
+    overflow: 'auto',
     // Increase the specificity to override TableCell.
     '&:last-child': {
       padding: 0,
@@ -23,8 +24,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the Toolbar component. */
   toolbar: {
-    height: 56,
-    minHeight: 56,
+    minHeight: 52,
     paddingRight: 2,
   },
   /* Styles applied to the spacer element. */
@@ -67,7 +67,8 @@ export const styles = theme => ({
   },
 });
 
-const defaultLabelDisplayedRows = ({ from, to, count }) => `${from}-${to} of ${count}`;
+const defaultLabelDisplayedRows = ({ from, to, count }) =>
+  `${from}-${to === -1 ? count : to} of ${count}`;
 const defaultRowsPerPageOptions = [10, 25, 50, 100];
 
 /**
@@ -77,13 +78,16 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
   const {
     ActionsComponent = TablePaginationActions,
     backIconButtonProps,
+    backIconButtonText = 'Previous page',
     classes,
+    className,
     colSpan: colSpanProp,
     component: Component = TableCell,
     count,
     labelDisplayedRows = defaultLabelDisplayedRows,
     labelRowsPerPage = 'Rows per page:',
     nextIconButtonProps,
+    nextIconButtonText = 'Next page',
     onChangePage,
     onChangeRowsPerPage,
     page,
@@ -102,11 +106,11 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
   const MenuItemComponent = SelectProps.native ? 'option' : MenuItem;
 
   return (
-    <Component className={classes.root} colSpan={colSpan} ref={ref} {...other}>
+    <Component className={clsx(classes.root, className)} colSpan={colSpan} ref={ref} {...other}>
       <Toolbar className={classes.toolbar}>
         <div className={classes.spacer} />
         {rowsPerPageOptions.length > 1 && (
-          <Typography color="inherit" variant="caption" className={classes.caption}>
+          <Typography color="inherit" variant="body2" className={classes.caption}>
             {labelRowsPerPage}
           </Typography>
         )}
@@ -124,15 +128,15 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
             {rowsPerPageOptions.map(rowsPerPageOption => (
               <MenuItemComponent
                 className={classes.menuItem}
-                key={rowsPerPageOption}
-                value={rowsPerPageOption}
+                key={rowsPerPageOption.value ? rowsPerPageOption.value : rowsPerPageOption}
+                value={rowsPerPageOption.value ? rowsPerPageOption.value : rowsPerPageOption}
               >
-                {rowsPerPageOption}
+                {rowsPerPageOption.label ? rowsPerPageOption.label : rowsPerPageOption}
               </MenuItemComponent>
             ))}
           </Select>
         )}
-        <Typography color="inherit" variant="caption" className={classes.caption}>
+        <Typography color="inherit" variant="body2" className={classes.caption}>
           {labelDisplayedRows({
             from: count === 0 ? 0 : page * rowsPerPage + 1,
             to: Math.min(count, (page + 1) * rowsPerPage),
@@ -142,9 +146,17 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
         </Typography>
         <ActionsComponent
           className={classes.actions}
-          backIconButtonProps={backIconButtonProps}
+          backIconButtonProps={{
+            title: backIconButtonText,
+            'aria-label': backIconButtonText,
+            ...backIconButtonProps,
+          }}
           count={count}
-          nextIconButtonProps={nextIconButtonProps}
+          nextIconButtonProps={{
+            title: nextIconButtonText,
+            'aria-label': nextIconButtonText,
+            ...nextIconButtonProps,
+          }}
           onChangePage={onChangePage}
           page={page}
           rowsPerPage={rowsPerPage}
@@ -165,10 +177,20 @@ TablePagination.propTypes = {
    */
   backIconButtonProps: PropTypes.object,
   /**
+   * Text label for the back arrow icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   */
+  backIconButtonText: PropTypes.string,
+  /**
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * @ignore
    */
@@ -184,17 +206,27 @@ TablePagination.propTypes = {
   count: PropTypes.number.isRequired,
   /**
    * Customize the displayed rows label.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   labelDisplayedRows: PropTypes.func,
   /**
    * Customize the rows per page label. Invoked with a `{ from, to, count, page }`
    * object.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
    */
   labelRowsPerPage: PropTypes.node,
   /**
    * Props applied to the next arrow [`IconButton`](/api/icon-button/) element.
    */
   nextIconButtonProps: PropTypes.object,
+  /**
+   * Text label for the next arrow icon button.
+   *
+   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   */
+  nextIconButtonText: PropTypes.string,
   /**
    * Callback fired when the page is changed.
    *

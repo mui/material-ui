@@ -28,7 +28,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 Ja, das ist tatsächlich alles, das Sie für den Start brauchen. In dieser interaktiven Live-Demo können Sie dies ausprobieren:
 
-{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true}}
+{{"demo": "pages/getting-started/usage/Usage.js", "hideHeader": true, "bg": true}}
 
 ## Globale Objekte
 
@@ -36,7 +36,7 @@ Die Nutzungserfahrung mit der Material-UI kann mit einer Vielzahl wichtiger Glob
 
 ### Responsiver meta-tag
 
-Material-UI wurde zuerst für Mobilgeräte entwickelt. Bei dieser Strategie schreiben wir zunächst Code für mobile Geräte und skalieren dann Komponenten nach Bedarf mithilfe sogenannter CSS media queries. Um eine korrektes Darstellen und Zoomen durch Berührungen für alle Geräte sicherzustellen, fügen Sie den auch viewport meta tag genannten responsiven Tag zu Ihrem `<head>`-Element.
+Material-UI is developed mobile-first, a strategy in which we first write code for mobile devices, and then scale up components as necessary using CSS media queries. Um eine korrektes Darstellen und Zoomen durch Berührungen für alle Geräte sicherzustellen, fügen Sie den auch viewport meta tag genannten responsiven Tag zu Ihrem `<head>`-Element.
 
 ```html
 <meta
@@ -51,12 +51,12 @@ Material-UI bietet eine optionale [CssBaseline](/components/css-baseline/)-Kompo
 
 ## Versionierte Dokumentation
 
-Diese Dokumentation benutzt immer die neueste stabile Version von Material-UI. Ältere Versionen der Dokumentation finden Sie auf einer [separaten Seite](/versions/).
+Diese Dokumentation benutzt immer die neueste stabile Version von Material-UI. Ältere Versionen der Dokumentation finden Sie auf einer [separaten Seite](https://material-ui.com/versions/).
 
 ## Nächste Schritte
 
 Nun, da Sie eine Vorstellung von den grundlegenden Schritten haben, ist es an der Zeit, mehr darüber zu erfahren:
 
 - Wie man [die Material Design Schriftart und Typografie](/components/typography/) bereitstellt.
-- How to take advantage of the [theming solution](/customization/theming/).
+- Wie man die [theming-Lösung nutzen kann](/customization/theming/).
 - Wie man das Aussehen und das Verhalten der Komponenten [überschreibt](/customization/components/).

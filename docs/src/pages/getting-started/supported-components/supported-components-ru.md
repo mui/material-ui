@@ -2,7 +2,7 @@
 
 <p class="description">The following is a list of Material Design components & features. Those currently supported by Material-UI are highlighted ✓.</p>
 
-While we strive to follow the guidelines where practical (applying common sense where guidelines contradict - a more common occurrence than one might expect), we do not expect to support every component, or every feature of every component, but rather to provide the building blocks to allow developers to create compelling user interfaces and experiences.
+While we strive to follow the guidelines where practical (applying common sense where guidelines contradict - a more common occurrence than one might expect), we do not expect to support every component, nor every feature of every component, but rather to provide the building blocks to allow developers to create compelling user interfaces and experiences.
 
 If you wish to add support for a component or feature not highlighted here, please search for the relevant [GitHub Issue](https://github.com/mui-org/material-ui/issues), or create a new one to discuss the approach before submitting a pull request.
 
@@ -73,9 +73,9 @@ If you wish to add support for a component or feature not highlighted here, plea
   - **[Checkbox](https://material.io/design/components/selection-controls.html#checkboxes) ✓**
   - **[Radio button](https://material.io/design/components/selection-controls.html#radio-buttons) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
-- **[Sliders](https://material.io/design/components/sliders.html) ~** ([Lab](/components/about-the-lab/)) 
+- **[Sliders](https://material.io/design/components/sliders.html) ✓** 
   - **[Continuous](https://material.io/design/components/sliders.html#continuous-slider) ✓**
-  - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ~**
+  - **[Discrete](https://material.io/design/components/sliders.html#discrete-slider) ✓**
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)
 - **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legacy Material v1*) 
   - **[List](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders) ✓**

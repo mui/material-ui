@@ -12,16 +12,14 @@ Você já deve estar familiarizado com [normalize.css](https://github.com/necola
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-function MyApp() {
+export default function MyApp() {
   return (
     <React.Fragment>
       <CssBaseline />
-      {/* O resto de sua aplicação */}
+      {/* The rest of your application */}
     </React.Fragment>
   );
 }
-
-export default MyApp;
 ```
 
 ## Abordagem
@@ -31,7 +29,7 @@ export default MyApp;
 Os elementos `<html>` e `<body>` são atualizados para fornecer melhores padrões para toda a página. Mais especificamente:
 
 - The margin in all browsers is removed.
-- A cor de fundo padrão do material design é aplicada. Isto usando [`theme.palette.background.default`](/customization/default-theme/?expend-path=$.palette.background) para dispositivos padrão e um fundo branco para dispositivos de impressão.
+- A cor de fundo padrão do material design é aplicada. It's using [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) for standard devices and a white background for print devices.
 
 ### Leiaute
 

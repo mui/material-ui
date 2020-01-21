@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/styles';
 import consoleErrorMock from 'test/utils/consoleErrorMock';
-import { act, cleanup, createClientRender } from 'test/utils/createClientRender';
-import { createRender } from '@material-ui/core/test-utils';
+import { act, createClientRender } from 'test/utils/createClientRender';
+import createServerRender from 'test/utils/createServerRender';
 import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
-import { spy } from 'sinon';
-import useMediaQuery, { testReset } from './useMediaQuery';
+import { spy, stub } from 'sinon';
+import useMediaQuery from './useMediaQuery';
 
 function createMatchMedia(width, ref) {
   const listeners = [];
@@ -41,16 +41,11 @@ describe('useMediaQuery', () => {
     return;
   }
 
-  const render = createClientRender({ strict: true });
+  const render = createClientRender();
   let values;
 
   beforeEach(() => {
-    testReset();
     values = spy();
-  });
-
-  afterEach(() => {
-    cleanup();
   });
 
   describe('without feature', () => {
@@ -73,7 +68,21 @@ describe('useMediaQuery', () => {
 
     beforeEach(() => {
       matchMediaInstances = [];
-      window.matchMedia = createMatchMedia(1200, matchMediaInstances);
+      const fakeMatchMedia = createMatchMedia(1200, matchMediaInstances);
+      // can't stub non-existent properties with sinon
+      // jsdom does not implement window.matchMedia
+      if (window.matchMedia === undefined) {
+        window.matchMedia = fakeMatchMedia;
+        window.matchMedia.restore = () => {
+          delete window.matchMedia;
+        };
+      } else {
+        stub(window, 'matchMedia').callsFake(fakeMatchMedia);
+      }
+    });
+
+    afterEach(() => {
+      window.matchMedia.restore();
     });
 
     describe('option: defaultMatches', () => {
@@ -159,7 +168,7 @@ describe('useMediaQuery', () => {
       });
     });
 
-    it('should try to reconcile only the first time', () => {
+    it('should try to reconcile each time', () => {
       const ref = React.createRef();
       const text = () => ref.current.textContent;
       const Test = () => {
@@ -178,7 +187,7 @@ describe('useMediaQuery', () => {
 
       render(<Test />);
       expect(text()).to.equal('false');
-      expect(values.callCount).to.equal(3);
+      expect(values.callCount).to.equal(4);
     });
 
     it('should be able to change the query dynamically', () => {
@@ -229,11 +238,7 @@ describe('useMediaQuery', () => {
   });
 
   describe('server-side', () => {
-    let serverRender;
-
-    before(() => {
-      serverRender = createRender();
-    });
+    const serverRender = createServerRender();
 
     it('should use the ssr match media ponyfill', () => {
       const ref = React.createRef();

@@ -1,5 +1,5 @@
-import * as astTypes from 'ast-types';
-import { utils as docgenUtils } from 'react-docgen';
+const astTypes = require('ast-types');
+const { utils: docgenUtils } = require('react-docgen');
 
 const { getPropertyName, isReactForwardRefCall, printValue, resolveToValue } = docgenUtils;
 
@@ -81,10 +81,10 @@ function getPropsPath(functionBody) {
   return propsPath;
 }
 
-export default function defaultPropsHandler(documentation, componentDefinition) {
+module.exports = function defaultPropsHandler(documentation, componentDefinition) {
   const renderBody = getRenderBody(componentDefinition);
   const props = getPropsPath(renderBody);
   if (props !== undefined) {
     getDefaultValuesFromProps(props.get('properties'), documentation);
   }
-}
+};

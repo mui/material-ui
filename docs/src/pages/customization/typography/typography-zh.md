@@ -6,7 +6,7 @@
 
 You can change the font family with the `theme.typography.fontFamily` property.
 
-For instance, this demo use the system font instead of the default Roboto font:
+For instance, this demo uses the system font instead of the default Roboto font:
 
 ```js
 const theme = createMuiTheme({
@@ -87,7 +87,7 @@ The computed font size by the browser follows this mathematical equation:
 
 ![font-size](/static/images/font-size.gif) <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
-### HTML font size
+### HTML字体大小
 
 You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/). An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
@@ -110,7 +110,7 @@ html {
 
 {{"demo": "pages/customization/typography/FontSizeTheme.js"}}
 
-### Responsive font sizes
+### 响应的字体大小
 
 The typography variants properties map directly to the generated CSS. You can use [media queries](/customization/breakpoints/#api) inside them:
 
@@ -185,6 +185,6 @@ const theme = createMuiTheme({
 
 {{"demo": "pages/customization/typography/TypographyVariants.js"}}
 
-## Default values
+## 默认值
 
-You can explore the default values of the typography using [the theme explorer](/customization/default-theme/?expend-path=$.typography) or by opening the dev tools console on this page (`window.theme.typography`).
+You can explore the default values of the typography using [the theme explorer](/customization/default-theme/?expand-path=$.typography) or by opening the dev tools console on this page (`window.theme.typography`).

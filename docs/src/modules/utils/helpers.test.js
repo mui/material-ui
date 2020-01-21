@@ -35,7 +35,7 @@ const styles = theme => ({
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as _ from '@unexisting/thing';
-import Autosuggest from 'react-autosuggest';
+import Draggable from 'react-draggable';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
 import TextField from '@material-ui/core/TextField';
@@ -50,7 +50,7 @@ const suggestions = [
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
       'prop-types': 'latest',
-      'react-autosuggest': 'latest',
+      'react-draggable': 'latest',
       'react-dom': 'latest',
       react: 'latest',
     });
@@ -117,6 +117,19 @@ import {
     assert.deepEqual(getDependencies(source), {
       'date-fns': 'next',
       '@material-ui/pickers': 'latest',
+      react: 'latest',
+      'react-dom': 'latest',
+    });
+  });
+
+  it('should include core if lab present', () => {
+    const source = `
+import lab from '@material-ui/lab';
+    `;
+
+    assert.deepEqual(getDependencies(source), {
+      '@material-ui/core': 'latest',
+      '@material-ui/lab': 'latest',
       react: 'latest',
       'react-dom': 'latest',
     });

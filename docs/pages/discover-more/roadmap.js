@@ -1,9 +1,14 @@
 import React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import markdown from '../../../ROADMAP.md';
 
-function Page() {
-  return <MarkdownDocs markdown={markdown} markdownLocation="/ROADMAP.md" />;
+const req = require.context('docs/src/pages/discover-more/roadmap', false, /\.(md|js|tsx)$/);
+const reqSource = require.context(
+  '!raw-loader!../../src/pages/discover-more/roadmap',
+  false,
+  /\.(js|tsx)$/,
+);
+const reqPrefix = 'pages/discover-more/roadmap';
+
+export default function Page() {
+  return <MarkdownDocs req={req} reqSource={reqSource} reqPrefix={reqPrefix} />;
 }
-
-export default Page;
