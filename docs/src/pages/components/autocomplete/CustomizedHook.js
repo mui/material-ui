@@ -33,6 +33,8 @@ const InputWrapper = styled('div')`
     font-size: 14px;
     line-height: 26px;
     padding: 2px 6px;
+    width: 0;
+    min-width: 30px;
     flex-grow: 1;
     border: 0;
     outline: 0;
