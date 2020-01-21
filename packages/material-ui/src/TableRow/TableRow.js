@@ -13,17 +13,11 @@ export const styles = theme => ({
     verticalAlign: 'middle',
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 0,
-    '&$selected': {
-      backgroundColor:
-        theme.palette.type === 'light'
-          ? fade(theme.palette.secondary.main, 0.04)
-          : 'rgba(255, 255, 255, 0.08)',
+    '&$hover:hover': {
+      backgroundColor: theme.palette.action.hover,
     },
-    '&$hover:not($selected):hover': {
-      backgroundColor:
-        theme.palette.type === 'light'
-          ? theme.palette.action.hover
-          : 'rgba(255, 255, 255, 0.14)',
+    '&$selected,&$selected:hover': {
+      backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.selectedOpacity),
     },
   },
   /* Pseudo-class applied to the root element if `selected={true}`. */
