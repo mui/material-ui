@@ -73,7 +73,11 @@ describe('<StepButton />', () => {
   });
 
   describe('event handlers', () => {
-    it('should forward mouseenter, mouseleave and touchstart', () => {
+    it('should forward mouseenter, mouseleave and touchstart', function touchTests() {
+      if (typeof Touch === 'undefined') {
+        this.skip();
+      }
+
       const handleMouseEnter = spy();
       const handleMouseLeave = spy();
       const handleTouchStart = spy();
@@ -101,14 +105,16 @@ describe('<StepButton />', () => {
       expect(handleTouchStart).to.have.property('callCount', 0);
 
       // fake touch
-      fireEvent.touchStart(button, { touches: [{}] });
+      const firstTouch = new Touch({ identifier: 0, target: button });
+      fireEvent.touchStart(button, { touches: [firstTouch] });
 
       expect(handleMouseEnter).to.have.property('callCount', 1);
       expect(handleMouseLeave).to.have.property('callCount', 1);
       expect(handleTouchStart).to.have.property('callCount', 1);
 
       fireEvent.mouseOver(button);
-      fireEvent.touchStart(button, { touches: [{}] });
+      const secondTouch = new Touch({ identifier: 1, target: button });
+      fireEvent.touchStart(button, { touches: [firstTouch, secondTouch] });
 
       expect(handleMouseEnter).to.have.property('callCount', 2);
       expect(handleMouseLeave).to.have.property('callCount', 1);
