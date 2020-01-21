@@ -7,7 +7,6 @@ import Checkbox from './Checkbox';
 import FormControl from '../FormControl';
 import IconButton from '../IconButton';
 
-
 describe('<Checkbox />', () => {
   const render = createClientRender();
   let classes;

@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender, fireEvent } from 'test/utils/createClientRender';
+import FormControl from '../FormControl';
 import Switch from './Switch';
 
 describe('<Switch />', () => {
@@ -86,5 +87,51 @@ describe('<Switch />', () => {
     fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
 
     expect(getByRole('checkbox')).to.have.property('checked', false);
+  });
+
+  describe('with FormControl', () => {
+    describe('enabled', () => {
+      it('should not have the disabled class', () => {
+        const { getByTestId } = render(
+          <FormControl>
+            <Switch data-testid="root" />
+          </FormControl>,
+        );
+
+        expect(getByTestId('root')).not.to.have.class(classes.disabled);
+      });
+
+      it('should be overridden by props', () => {
+        const { getByTestId } = render(
+          <FormControl>
+            <Switch data-testid="root" disabled />
+          </FormControl>,
+        );
+
+        expect(getByTestId('root')).to.have.class(classes.disabled);
+      });
+    });
+
+    describe('disabled', () => {
+      it('should have the disabled class', () => {
+        const { getByTestId } = render(
+          <FormControl disabled>
+            <Switch data-testid="root" />
+          </FormControl>,
+        );
+
+        expect(getByTestId('root')).to.have.class(classes.disabled);
+      });
+
+      it('should be overridden by props', () => {
+        const { getByTestId } = render(
+          <FormControl disabled>
+            <Switch data-testid="root" disabled={false} />
+          </FormControl>,
+        );
+
+        expect(getByTestId('root')).not.to.have.class(classes.disabled);
+      });
+    });
   });
 });
