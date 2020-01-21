@@ -103,6 +103,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
     classes,
     fullWidth = false,
     inputComponent = 'input',
+    label,
     labelWidth = 0,
     multiline = false,
     notched,
@@ -115,6 +116,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
       renderSuffix={state => (
         <NotchedOutline
           className={classes.notchedOutline}
+          label={label}
           labelWidth={labelWidth}
           notched={
             typeof notched !== 'undefined'
@@ -201,7 +203,13 @@ OutlinedInput.propTypes = {
    */
   inputRef: refType,
   /**
-   * The width of the label.
+   * The label of the input. It is only used for layout. The actual labelling
+   * is handled by `InputLabel`. If specified `labelWidth` is ignored.
+   */
+  label: PropTypes.node,
+  /**
+   * The width of the label. Is ignored if `label` is provided. Prefer `label`
+   * if the input label appears with a strike through.
    */
   labelWidth: PropTypes.number,
   /**

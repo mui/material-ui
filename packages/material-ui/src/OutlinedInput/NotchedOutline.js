@@ -18,6 +18,7 @@ export const styles = theme => {
       left: 0,
       margin: 0,
       padding: 0,
+      paddingLeft: 8,
       pointerEvents: 'none',
       borderRadius: 'inherit',
       borderStyle: 'solid',
@@ -28,12 +29,36 @@ export const styles = theme => {
         easing: theme.transitions.easing.easeOut,
       }),
     },
-    /* Styles applied to the legend element. */
+    /* Styles applied to the legend element when `labelWidth` is provided. */
     legend: {
       textAlign: 'left',
       padding: 0,
-      lineHeight: '11px',
+      lineHeight: '11px', // sync with `height` in `legend` styles
       transition: theme.transitions.create('width', {
+        duration: theme.transitions.duration.shorter,
+        easing: theme.transitions.easing.easeOut,
+      }),
+    },
+    /* Styles applied to the legend element. */
+    legendLabelled: {
+      textAlign: 'left',
+      padding: 0,
+      height: 11, // sync with `lineHeight` in `legend` styles
+      fontSize: '0.75rem',
+      visibility: 'hidden',
+      maxWidth: 0.01,
+      transition: theme.transitions.create('max-width', {
+        duration: theme.transitions.duration.shorter,
+        easing: theme.transitions.easing.easeOut,
+      }),
+      '& span': {
+        paddingLeft: 4,
+        paddingRight: 6,
+      },
+    },
+    legendNotched: {
+      maxWidth: 1000,
+      transition: theme.transitions.create('max-width', {
         duration: theme.transitions.duration.shorter,
         easing: theme.transitions.easing.easeOut,
       }),
@@ -49,6 +74,7 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
     children,
     classes,
     className,
+    label,
     labelWidth: labelWidthProp,
     notched,
     style,
@@ -56,7 +82,30 @@ const NotchedOutline = React.forwardRef(function NotchedOutline(props, ref) {
   } = props;
   const theme = useTheme();
   const align = theme.direction === 'rtl' ? 'right' : 'left';
-  const labelWidth = labelWidthProp > 0 ? labelWidthProp * 0.75 + 8 : 0;
+
+  if (label !== undefined) {
+    return (
+      <fieldset
+        aria-hidden
+        className={clsx(classes.root, className)}
+        ref={ref}
+        style={style}
+        {...other}
+      >
+        <legend
+          className={clsx(classes.legendLabelled, {
+            [classes.legendNotched]: notched,
+          })}
+        >
+          {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
+          {/* eslint-disable-next-line react/no-danger */}
+          {label ? <span>{label}</span> : <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />}
+        </legend>
+      </fieldset>
+    );
+  }
+
+  const labelWidth = labelWidthProp > 0 ? labelWidthProp * 0.75 + 8 : 0.01;
 
   return (
     <fieldset
@@ -100,6 +149,10 @@ NotchedOutline.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The label.
+   */
+  label: PropTypes.node,
   /**
    * The width of the label.
    */
