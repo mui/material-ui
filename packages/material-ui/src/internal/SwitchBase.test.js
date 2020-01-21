@@ -298,7 +298,7 @@ describe('<SwitchBase />', () => {
 
       it('should be overridden by props', () => {
         const { getByTestId } = render(
-          <FormControl>
+          <FormControl disabled>
             <SwitchBase
               disabled={false}
               data-testid="root"
