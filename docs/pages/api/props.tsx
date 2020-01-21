@@ -76,7 +76,7 @@ const Docs: React.FC<WithRouterProps> = ({ router }) => {
 
           <h4> Desktop Wrapper </h4>
           <Typography gutterBottom>
-            Props available on mobile device with `{componentName}` or with `Desktop{componentName}`
+            Props available on desktop device with `{componentName}` or with `Mobile{componentName}`
           </Typography>
 
           <PropTypesTable disableHeader src="DesktopWrapper" />
