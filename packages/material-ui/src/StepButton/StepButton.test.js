@@ -5,6 +5,7 @@ import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import StepButton from './StepButton';
+import Step from '../Step';
 import StepLabel from '../StepLabel';
 import ButtonBase from '../ButtonBase';
 import { fireEvent } from '@testing-library/dom';
@@ -113,5 +114,18 @@ describe('<StepButton />', () => {
       expect(handleMouseLeave).to.have.property('callCount', 1);
       expect(handleTouchStart).to.have.property('callCount', 2);
     });
+  });
+
+  it('can be used as a child of `Step`', () => {
+    // a simple smoke test to check that these two
+    // integrate without any errors/warnings
+    // TODO: move into integration test for Stepper component
+    const { getByRole } = render(
+      <Step>
+        <StepButton>Next</StepButton>
+      </Step>,
+    );
+
+    expect(getByRole('button')).to.be.ok;
   });
 });
