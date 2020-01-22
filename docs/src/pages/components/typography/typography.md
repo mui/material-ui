@@ -108,6 +108,7 @@ const CustomComponent: React.FC<TypographyProps<'a', { component: 'a' }>> =
   (props) => (/* ... */);
 ```
 Now the `CustomComponent` can be used with a `component` prop which should be set to `'a'`. In addition, the `CustomComponent` will have all props of `<a>` HTML element.
+
 It is possible to have generic `CustomComponent` which will accept any React component, custom and HTML elements. 
 ```ts
 function GenericCustomComponent<C extends React.ElementType> (props: TypographyProps<C, {component?: C}>) { 
