@@ -5,7 +5,6 @@ import describeConformance from '@material-ui/core/test-utils/describeConformanc
 import { createClientRender } from 'test/utils/createClientRender';
 import FormControl from '../FormControl';
 import Radio from './Radio';
-import IconButton from '../IconButton';
 
 describe('<Radio />', () => {
   const render = createClientRender();
@@ -17,17 +16,21 @@ describe('<Radio />', () => {
     mount = createMount({ strict: true });
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
+  describeConformance(<Radio />, () => ({
+    mount,
+    only: ['refForwarding'],
+    refInstanceof: window.HTMLSpanElement,
+    after: () => mount.cleanUp(),
+  }));
 
+  /* TODO Radio violates root component
   describeConformance(<Radio />, () => ({
     classes,
     inheritComponent: IconButton,
     mount,
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],
-  }));
+  })); */
 
   describe('styleSheet', () => {
     it('should have the classes required for SwitchBase', () => {
@@ -54,45 +57,45 @@ describe('<Radio />', () => {
   describe('with FormControl', () => {
     describe('enabled', () => {
       it('should not have the disabled class', () => {
-        const { getByTestId } = render(
+        const { getByRole } = render(
           <FormControl>
-            <Radio data-testid="root" />
+            <Radio />
           </FormControl>,
         );
 
-        expect(getByTestId('root')).not.to.have.class(classes.disabled);
+        expect(getByRole('radio')).not.to.have.attribute('disabled');
       });
 
       it('should be overridden by props', () => {
-        const { getByTestId } = render(
+        const { getByRole } = render(
           <FormControl>
-            <Radio data-testid="root" disabled />
+            <Radio disabled />
           </FormControl>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes.disabled);
+        expect(getByRole('radio')).to.have.attribute('disabled');
       });
     });
 
     describe('disabled', () => {
       it('should have the disabled class', () => {
-        const { getByTestId } = render(
+        const { getByRole } = render(
           <FormControl disabled>
-            <Radio data-testid="root" />
+            <Radio />
           </FormControl>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes.disabled);
+        expect(getByRole('radio')).to.have.attribute('disabled');
       });
 
       it('should be overridden by props', () => {
-        const { getByTestId } = render(
+        const { getByRole } = render(
           <FormControl disabled>
-            <Radio data-testid="root" disabled={false} />
+            <Radio disabled={false} />
           </FormControl>,
         );
 
-        expect(getByTestId('root')).not.to.have.class(classes.disabled);
+        expect(getByRole('radio')).not.to.have.attribute('disabled');
       });
     });
   });

@@ -5,7 +5,6 @@ import describeConformance from '../test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import Checkbox from './Checkbox';
 import FormControl from '../FormControl';
-import IconButton from '../IconButton';
 
 describe('<Checkbox />', () => {
   const render = createClientRender();
@@ -17,17 +16,21 @@ describe('<Checkbox />', () => {
     mount = createMount({ strict: true });
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
+  describeConformance(<Checkbox />, () => ({
+    mount,
+    only: ['refForwarding'],
+    refInstanceof: window.HTMLSpanElement,
+    after: () => mount.cleanUp(),
+  }));
 
+  /* TODO Checkbox violates root component
   describeConformance(<Checkbox checked />, () => ({
     classes,
     inheritComponent: IconButton,
     mount,
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],
-  }));
+  })); */
 
   it('should have the classes required for Checkbox', () => {
     assert.strictEqual(typeof classes.root, 'string');
@@ -45,45 +48,45 @@ describe('<Checkbox />', () => {
   describe('with FormControl', () => {
     describe('enabled', () => {
       it('should not have the disabled class', () => {
-        const { getByTestId } = render(
+        const { getByRole } = render(
           <FormControl>
-            <Checkbox data-testid="root" />
+            <Checkbox />
           </FormControl>,
         );
 
-        expect(getByTestId('root')).not.to.have.class(classes.disabled);
+        expect(getByRole('checkbox')).not.to.have.attribute('disabled');
       });
 
       it('should be overridden by props', () => {
-        const { getByTestId } = render(
+        const { getByRole } = render(
           <FormControl>
-            <Checkbox data-testid="root" disabled />
+            <Checkbox disabled />
           </FormControl>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes.disabled);
+        expect(getByRole('checkbox')).to.have.attribute('disabled');
       });
     });
 
     describe('disabled', () => {
       it('should have the disabled class', () => {
-        const { getByTestId } = render(
+        const { getByRole } = render(
           <FormControl disabled>
-            <Checkbox data-testid="root" />
+            <Checkbox />
           </FormControl>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes.disabled);
+        expect(getByRole('checkbox')).to.have.attribute('disabled');
       });
 
       it('should be overridden by props', () => {
-        const { getByTestId } = render(
+        const { getByRole } = render(
           <FormControl disabled>
-            <Checkbox data-testid="root" disabled={false} />
+            <Checkbox disabled={false} />
           </FormControl>,
         );
 
-        expect(getByTestId('root')).not.to.have.class(classes.disabled);
+        expect(getByRole('checkbox')).not.to.have.attribute('disabled');
       });
     });
   });

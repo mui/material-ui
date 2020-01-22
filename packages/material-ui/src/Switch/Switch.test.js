@@ -92,45 +92,45 @@ describe('<Switch />', () => {
   describe('with FormControl', () => {
     describe('enabled', () => {
       it('should not have the disabled class', () => {
-        const { getByTestId } = render(
+        const { getByRole } = render(
           <FormControl>
-            <Switch data-testid="root" />
+            <Switch />
           </FormControl>,
         );
 
-        expect(getByTestId('root')).not.to.have.class(classes.disabled);
+        expect(getByRole('checkbox')).not.to.have.attribute('disabled');
       });
 
       it('should be overridden by props', () => {
-        const { getByTestId } = render(
+        const { getByRole } = render(
           <FormControl>
-            <Switch data-testid="root" disabled />
+            <Switch disabled />
           </FormControl>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes.disabled);
+        expect(getByRole('checkbox')).to.have.attribute('disabled');
       });
     });
 
     describe('disabled', () => {
       it('should have the disabled class', () => {
-        const { getByTestId } = render(
+        const { getByRole } = render(
           <FormControl disabled>
-            <Switch data-testid="root" />
+            <Switch />
           </FormControl>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes.disabled);
+        expect(getByRole('checkbox')).to.have.attribute('disabled');
       });
 
       it('should be overridden by props', () => {
-        const { getByTestId } = render(
+        const { getByRole } = render(
           <FormControl disabled>
-            <Switch data-testid="root" disabled={false} />
+            <Switch disabled={false} />
           </FormControl>,
         );
 
-        expect(getByTestId('root')).not.to.have.class(classes.disabled);
+        expect(getByRole('checkbox')).not.to.have.attribute('disabled');
       });
     });
   });
