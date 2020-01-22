@@ -1,5 +1,107 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.9.0
+###### *Jan 22, 2020*
+
+Big thanks to the 43 contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- 🐛 Change the outlined input notch implementation to rely 100% on CSS (#17680) @eps1lon.
+- 🔍 11 patches on the Autocomplete component.
+- 📚 Simplify the usage of "copy demo" action (#19291) @theswerd.
+- 📚 Warn when defaultValue changes (#19070) @m4theushw.
+- 💅 Slight updates to better match the Material Design spec (#19277, #19342) @elmeerr.
+
+### `@material-ui/core@v4.9.0`
+
+- [Breadcrumbs] Remove private separator component (#19234) @hiteshkundal
+- [ButtonBase] Fix potential memory leak for multi-touch devices (#19333) @eps1lon
+- [DialogContentText] Fix component prop (#19102) @fyodore82
+- [l10n] Add Bulgarian (pg-BG) locale (#19138) @panayotoff
+- [l10n] Improve it-IT locale (#19143) @keul
+- [RadioGroup] Fix useRadioGroup.d.ts (#19001) @NMinhNguyen
+- [Slider] Add a custom scale support (#19158) @netochaves
+- [Slider] Center the value label (#19330) @LorenzHenk
+- [StepButton] Fix prop-types warning regarding `expanded` (#19332) @eps1lon
+- [Stepper] Add support for expanding all the steps (#19200) @hiteshkundal
+- [Tab] Remove font-size media-query (#19342) @elmeerr
+- [TableRow] Improve hover/selected styles (#19277) @elmeerr
+- [TextField] Fix outline offscreen label strikethrough (#17680) @eps1lon
+- [TextField] Improve transitions (#19228) @oliviertassinari
+- [TextField] Support padding for helperText (#19198) @hiteshkundal
+- [Tooltip] Fix popper.js re-instantiation (#19304) @netochaves
+
+### `@material-ui/styles@v4.8.0`
+
+- [styles] Overload function signature instead of conditional (#19320) @eps1lon
+
+### `@material-ui/types@v5.0.0`
+
+#### Breaking change
+
+- [types] Overload function signature instead of conditional (#19320) @eps1lon
+  Or, And, IsAny and IsEmptyInterface have been removed.
+- [types] Remove CoerceEmptyInterface (#19259) @eps1lon
+
+### `@material-ui/lab@v4.0.0-alpha.40`
+
+- [Alert] Improve Transition demo (#19283) @theswerd
+- [Alert] Use alert severity in demos (#19123) @sviande
+- [Rating] Add default value prop (#19103) @oliviertassinari
+- [Skeleton] Use span element (#19278) @oliviertassinari
+- [Autocomplete] Add missing 'clear' to onInputChange typing (#19286) @mvestergaard
+- [Autocomplete] Decrease padding when icon buttons aren't rendered (#19257) @jedwards1211
+- [Autocomplete] Document how to disable chrome autofill (#19126) @goleary
+- [Autocomplete] Don't delete tag if exists (in freesolo mode) (#19215) @adica
+- [Autocomplete] Extend support to textarea (#19232) @justtol
+- [Autocomplete] Fix group labels hiding items during keybd navigation (#19305) @aisamu
+- [Autocomplete] Fix misleading warning (#19177) @embeddedt
+- [Autocomplete] Fix option grouping (#19121) @liangchunn
+- [Autocomplete] Improve typings (#18854) @testarossaaaaa
+- [Autocomplete] Polish CustomizedHook demo (#19287) @JeremiAnastaziak
+- [Autocomplete] Add selectOnFocus prop (#19281) @Bebersohl
+
+### Docs
+
+- [blog] December 2019 Update (#19119) @oliviertassinari
+- [docs] Add "material-ui-confirm" to the related projects (#19237) @jonatanklosko
+- [docs] Add a new site to showcase (hifivework) (#19129) @lau-sam
+- [docs] Add a new site to showcase (tradenba) (#19307) @zachrdz
+- [docs] Add links to mui-treasury (#19334) @siriwatknp
+- [docs] Fix "Edit this page" link (#19170) @neletdev
+- [docs] Fix a tiny mistake in Chips playground (#19172) @OrBin
+- [docs] Fix broken TypeScript hash link in CONTRIBUTING.md (#19236) @hiteshkundal
+- [docs] Fix link in switches.md (#19256) @TurnerB24
+- [docs] Fix typo in the accessible table demo (#19321) @carbonid1
+- [docs] Improve EnhancedTable.tsx demo  (#19266) @sdgluck
+- [docs] Improve draggable dialog demo (#19339) @konekoya
+- [docs] Improve the demos copy experience (#19291) @theswerd
+- [docs] Improve the documentation of the dark theme (#19122) @m4theushw
+- [docs] Improve transition documentation (#19201) @hiteshkundal
+- [docs] Improve typography documentation (#19216) @kevin-lindsay-1
+- [docs] Merge brand.png and logo.png @oliviertassinari
+- [docs] Minor typo (#19219) @sourabhbagrecha
+- [docs] Minor typo fix in testing docs (#19146) @Ardeshir81
+- [docs] Remove Glamor link (#19178) @terryBaz
+- [docs] Update the translations (#19111) @mbrookes
+- [docs] Use button in backdrop demo (#19282) @theswerd
+- [docs] Use reasonable unitless line-height for Box (#19260) @minikomi
+
+### Core
+
+- [test] Improve visual regression tests (#19175) @oliviertassinari
+- [core] Batch small changes (#19097) @oliviertassinari
+- [core] Batch small changes (#19174) @oliviertassinari
+- [core] Distinguish JSSProperties and CSSProperties (#19263) @eps1lon
+- [core] Fix TypographyStyle not allowing media queries and allowing unsafe undefined access (#19269) @eps1lon
+- [core] Ignore a few flaky visual tests (#19226) @oliviertassinari
+- [core] Remove unecessary exports from styles/transitions.js (#19337) @JonKrone
+- [core] Simplify types of styled (#19243) @eps1lon
+- [core] Use node 10 in every CI/CD pipeline (#19301) @eps1lon
+- [core] Warn when defaultValue changes (#19070) @m4theushw
+- [build] Clarify transform-runtime, runtime version (#18512) @eps1lon
+
 ## 4.8.3
 ###### *Jan 6, 2020*
 
@@ -66,7 +168,17 @@ Big thanks to the 22 contributors who made this release possible.
 
 ### `@material-ui/lab@v4.0.0-alpha.38`
 
+#### Breaking changes
+
 - [Skeleton] Add wave animation support (#19014) @oliviertassinari
+
+  ```diff
+  -<Skeleton disableAnimation />
+  +<Skeleton animation={false} />
+  ```
+
+#### Change
+
 - [Autocomplete] Fix option height border-box (#19000) @MariyaVdovenko
 - [Autocomplete] Zero (0) integer key display throws (#18994) @hoop71
 - [Rating] Clear value if selected value is clicked (#18999) @ivowork
@@ -441,8 +553,8 @@ index 757d66a97..a4f36edd5 100644
 - [Autocomplete] Improve accessibility (#18204) @oliviertassinari
 - [Autocomplete] Improve focus logic (#18286) @oliviertassinari
 - [Autocomplete] Remove aria-activedescendant (#18281) @oliviertassinari
-- [useAutocomplete] Fix missing inputValue (#18268) @AbdallahElroby
-- [useAutocomplete] Handle Opera fullscreen mode (#18275) @xZliman
+- [Autocomplete] Fix missing inputValue (#18268) @AbdallahElroby
+- [Autocomplete] Handle Opera fullscreen mode (#18275) @xZliman
 
 ### Docs
 

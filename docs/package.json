@@ -32,7 +32,7 @@
     "@material-ui/react-transition-group": "^4.2.0",
     "@material-ui/styles": "^4.1.2",
     "@material-ui/system": "^4.3.0",
-    "@material-ui/types": "^4.1.1",
+    "@material-ui/types": "^5.0.0",
     "@trendmicro/react-interpolate": "^0.5.5",
     "@types/autosuggest-highlight": "^3.1.0",
     "@types/css-mediaquery": "^0.1.0",
