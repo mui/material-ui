@@ -1,122 +1,137 @@
 import React from 'react';
-import { assert } from 'chai';
+import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createShallow, createMount, getClasses } from '@material-ui/core/test-utils';
+import { createMount, getClasses } from '@material-ui/core/test-utils';
 import describeConformance from '../test-utils/describeConformance';
+import { createClientRender } from 'test/utils/createClientRender';
 import StepButton from './StepButton';
+import Step from '../Step';
 import StepLabel from '../StepLabel';
 import ButtonBase from '../ButtonBase';
+import { fireEvent } from '@testing-library/dom';
 
 describe('<StepButton />', () => {
   let classes;
-  let shallow;
-  let mount;
-  const defaultProps = { orientation: 'horizontal' };
+  const render = createClientRender();
 
   before(() => {
     classes = getClasses(<StepButton />);
-    shallow = createShallow({ dive: true });
-    mount = createMount({ strict: true });
   });
 
-  after(() => {
-    mount.cleanUp();
+  describe('internals', () => {
+    let mount;
+
+    before(() => {
+      mount = createMount({ strict: true });
+    });
+
+    after(() => {
+      mount.cleanUp();
+    });
+
+    describeConformance(<StepButton />, () => ({
+      classes,
+      inheritComponent: ButtonBase,
+      mount,
+      refInstanceof: window.HTMLButtonElement,
+      skip: ['componentProp'],
+    }));
+
+    it('passes active, completed, disabled to StepLabel', () => {
+      const wrapper = mount(
+        <StepButton active completed disabled>
+          Step One
+        </StepButton>,
+      );
+
+      const stepLabel = wrapper.find(StepLabel);
+      expect(stepLabel.props()).to.have.property('active', true);
+      expect(stepLabel.props()).to.have.property('completed', true);
+      expect(stepLabel.props()).to.have.property('disabled', true);
+      expect(stepLabel.props()).to.have.property('children', 'Step One');
+    });
+
+    it('should pass props to a provided StepLabel', () => {
+      const wrapper = mount(
+        <StepButton active completed disabled label="Step One">
+          <StepLabel>Step One</StepLabel>
+        </StepButton>,
+      );
+
+      const stepLabel = wrapper.find(StepLabel);
+      expect(stepLabel.props()).to.have.property('active', true);
+      expect(stepLabel.props()).to.have.property('completed', true);
+      expect(stepLabel.props()).to.have.property('disabled', true);
+      expect(stepLabel.props()).to.have.property('children', 'Step One');
+    });
   });
 
-  describeConformance(<StepButton {...defaultProps} />, () => ({
-    classes,
-    inheritComponent: ButtonBase,
-    mount,
-    refInstanceof: window.HTMLButtonElement,
-    skip: ['componentProp'],
-  }));
+  it('should disable the button', () => {
+    const { getByRole } = render(<StepButton disabled>Step One</StepButton>);
 
-  it('passes active, completed, disabled to StepLabel', () => {
-    const wrapper = shallow(
-      <StepButton active completed disabled {...defaultProps}>
-        Step One
-      </StepButton>,
-    );
-    const stepLabel = wrapper.find(StepLabel);
-    assert.strictEqual(stepLabel.props().active, true);
-    assert.strictEqual(stepLabel.props().completed, true);
-    assert.strictEqual(stepLabel.props().disabled, true);
-    assert.strictEqual(stepLabel.props().children, 'Step One');
-  });
-
-  it('should pass props to a provided StepLabel', () => {
-    const wrapper = shallow(
-      <StepButton active completed disabled label="Step One" {...defaultProps}>
-        <StepLabel>Step One</StepLabel>
-      </StepButton>,
-    );
-    const stepLabel = wrapper.find(StepLabel);
-    assert.strictEqual(stepLabel.props().active, true);
-    assert.strictEqual(stepLabel.props().completed, true);
-    assert.strictEqual(stepLabel.props().disabled, true);
-  });
-
-  it('should pass disabled prop to the ButtonBase', () => {
-    const wrapper = shallow(
-      <StepButton disabled {...defaultProps}>
-        Step One
-      </StepButton>,
-    );
-    const stepLabel = wrapper.find(ButtonBase);
-    assert.strictEqual(stepLabel.props().disabled, true);
+    expect(getByRole('button')).to.have.property('disabled', true);
   });
 
   describe('event handlers', () => {
-    describe('handleMouseEnter/Leave', () => {
-      const handleMouseEnter = spy();
-      const handleMouseLeave = spy();
+    it('should forward mouseenter, mouseleave and touchstart', function touchTests() {
+      if (typeof Touch === 'undefined') {
+        this.skip();
+      }
 
-      it('should fire event callbacks', () => {
-        const wrapper = shallow(
-          <StepButton
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            {...defaultProps}
-          >
-            Step One
-          </StepButton>,
-        );
-        wrapper.simulate('mouseEnter');
-        assert.strictEqual(handleMouseEnter.callCount, 1);
-        wrapper.simulate('mouseLeave');
-        assert.strictEqual(handleMouseEnter.callCount, 1);
-        assert.strictEqual(handleMouseLeave.callCount, 1);
-      });
-    });
-
-    it('should bubble callbacks used internally', () => {
       const handleMouseEnter = spy();
       const handleMouseLeave = spy();
       const handleTouchStart = spy();
-      const wrapper = shallow(
+      const { getByRole } = render(
         <StepButton
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           onTouchStart={handleTouchStart}
-          {...defaultProps}
         >
           Step One
         </StepButton>,
       );
-      wrapper.simulate('mouseEnter');
-      assert.strictEqual(handleMouseEnter.callCount, 1);
-      wrapper.simulate('mouseLeave');
-      assert.strictEqual(handleMouseEnter.callCount, 1);
-      assert.strictEqual(handleMouseLeave.callCount, 1);
-      wrapper.simulate('touchStart');
-      assert.strictEqual(handleMouseEnter.callCount, 1);
-      assert.strictEqual(handleMouseLeave.callCount, 1);
-      assert.strictEqual(handleTouchStart.callCount, 1);
-      wrapper.simulate('mouseEnter');
-      wrapper.simulate('touchStart');
-      assert.strictEqual(handleMouseEnter.callCount, 2);
-      assert.strictEqual(handleMouseLeave.callCount, 1);
-      assert.strictEqual(handleTouchStart.callCount, 2);
+      const button = getByRole('button');
+
+      fireEvent.mouseOver(button);
+
+      expect(handleMouseEnter).to.have.property('callCount', 1);
+      expect(handleMouseLeave).to.have.property('callCount', 0);
+      expect(handleTouchStart).to.have.property('callCount', 0);
+
+      fireEvent.mouseOut(button);
+
+      expect(handleMouseEnter).to.have.property('callCount', 1);
+      expect(handleMouseLeave).to.have.property('callCount', 1);
+      expect(handleTouchStart).to.have.property('callCount', 0);
+
+      // fake touch
+      const firstTouch = new Touch({ identifier: 0, target: button });
+      fireEvent.touchStart(button, { touches: [firstTouch] });
+
+      expect(handleMouseEnter).to.have.property('callCount', 1);
+      expect(handleMouseLeave).to.have.property('callCount', 1);
+      expect(handleTouchStart).to.have.property('callCount', 1);
+
+      fireEvent.mouseOver(button);
+      const secondTouch = new Touch({ identifier: 1, target: button });
+      fireEvent.touchStart(button, { touches: [firstTouch, secondTouch] });
+
+      expect(handleMouseEnter).to.have.property('callCount', 2);
+      expect(handleMouseLeave).to.have.property('callCount', 1);
+      expect(handleTouchStart).to.have.property('callCount', 2);
     });
+  });
+
+  it('can be used as a child of `Step`', () => {
+    // a simple smoke test to check that these two
+    // integrate without any errors/warnings
+    // TODO: move into integration test for Stepper component
+    const { getByRole } = render(
+      <Step>
+        <StepButton>Next</StepButton>
+      </Step>,
+    );
+
+    expect(getByRole('button')).to.be.ok;
   });
 });
