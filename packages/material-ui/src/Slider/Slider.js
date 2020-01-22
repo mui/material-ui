@@ -388,7 +388,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
           value: min + step * index,
         }))
-      : marksProp;
+      : (Array.isArray(marksProp) ? marksProp : []);
 
   instanceRef.current = {
     source: valueDerived, // Keep track of the input value to leverage immutable state comparison.
