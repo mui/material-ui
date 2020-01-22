@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import withStyles from '../styles/withStyles';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
+import { fade } from '../styles/colorManipulator';
 
 export const styles = theme => ({
   /* Styles applied to the root element. */
@@ -12,17 +13,11 @@ export const styles = theme => ({
     verticalAlign: 'middle',
     // We disable the focus ring for mouse, touch and keyboard users.
     outline: 0,
-    '&$selected': {
-      backgroundColor:
-        theme.palette.type === 'light'
-          ? 'rgba(0, 0, 0, 0.04)' // grey[100]
-          : 'rgba(255, 255, 255, 0.08)',
-    },
     '&$hover:hover': {
-      backgroundColor:
-        theme.palette.type === 'light'
-          ? 'rgba(0, 0, 0, 0.07)' // grey[200]
-          : 'rgba(255, 255, 255, 0.14)',
+      backgroundColor: theme.palette.action.hover,
+    },
+    '&$selected,&$selected:hover': {
+      backgroundColor: fade(theme.palette.secondary.main, theme.palette.action.selectedOpacity),
     },
   },
   /* Pseudo-class applied to the root element if `selected={true}`. */
