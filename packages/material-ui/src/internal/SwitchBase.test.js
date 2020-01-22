@@ -259,21 +259,10 @@ describe('<SwitchBase />', () => {
   describe('with FormControl', () => {
     describe('enabled', () => {
       it('should not have the disabled class', () => {
-        const { getByTestId } = render(
-          <FormControl>
-            <SwitchBase data-testid="root" icon="unchecked" checkedIcon="checked" type="checkbox" />
-          </FormControl>,
-        );
-
-        expect(getByTestId('root')).not.to.have.class(classes.disabled);
-      });
-
-      it('should be overridden by props', () => {
-        const { getByTestId } = render(
+        const { getByRole, getByTestId } = render(
           <FormControl>
             <SwitchBase
-              disabled
-              data-testid="root"
+              data-testid="IconButton"
               icon="unchecked"
               checkedIcon="checked"
               type="checkbox"
@@ -281,27 +270,34 @@ describe('<SwitchBase />', () => {
           </FormControl>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes.disabled);
+        expect(getByTestId('IconButton')).not.to.have.class(classes.disabled);
+        expect(getByRole('checkbox')).not.to.have.attribute('disabled');
+      });
+
+      it('should be overridden by props', () => {
+        const { getByRole, getByTestId } = render(
+          <FormControl>
+            <SwitchBase
+              disabled
+              data-testid="IconButton"
+              icon="unchecked"
+              checkedIcon="checked"
+              type="checkbox"
+            />
+          </FormControl>,
+        );
+
+        expect(getByTestId('IconButton')).to.have.class(classes.disabled);
+        expect(getByRole('checkbox')).to.have.attribute('disabled');
       });
     });
 
     describe('disabled', () => {
       it('should have the disabled class', () => {
-        const { getByTestId } = render(
-          <FormControl disabled>
-            <SwitchBase data-testid="root" icon="unchecked" checkedIcon="checked" type="checkbox" />
-          </FormControl>,
-        );
-
-        expect(getByTestId('root')).to.have.class(classes.disabled);
-      });
-
-      it('should be overridden by props', () => {
-        const { getByTestId } = render(
+        const { getByRole, getByTestId } = render(
           <FormControl disabled>
             <SwitchBase
-              disabled={false}
-              data-testid="root"
+              data-testid="IconButton"
               icon="unchecked"
               checkedIcon="checked"
               type="checkbox"
@@ -309,7 +305,25 @@ describe('<SwitchBase />', () => {
           </FormControl>,
         );
 
-        expect(getByTestId('root')).not.to.have.class(classes.disabled);
+        expect(getByTestId('IconButton')).to.have.class(classes.disabled);
+        expect(getByRole('checkbox')).to.have.attribute('disabled');
+      });
+
+      it('should be overridden by props', () => {
+        const { getByRole, getByTestId } = render(
+          <FormControl disabled>
+            <SwitchBase
+              disabled={false}
+              data-testid="IconButton"
+              icon="unchecked"
+              checkedIcon="checked"
+              type="checkbox"
+            />
+          </FormControl>,
+        );
+
+        expect(getByTestId('IconButton')).not.to.have.class(classes.disabled);
+        expect(getByRole('checkbox')).not.to.have.attribute('disabled');
       });
     });
   });
@@ -327,7 +341,6 @@ describe('<SwitchBase />', () => {
         <FormControl>
           <FocusMonitor data-testid="focus-monitor" />
           <SwitchBase
-            data-testid="root"
             onBlur={handleBlur}
             onFocus={handleFocus}
             icon="unchecked"
