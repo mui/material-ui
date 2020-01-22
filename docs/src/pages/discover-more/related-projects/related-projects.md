@@ -25,6 +25,14 @@ You didn't find the design assets your team is looking for? Let us know!
 
 This is a collection of third-party projects that extend Material-UI.
 
+### Inspiration & Example code
+- [mui-treasury](https://mui-treasury.com): a collection of ready-to-use components based on Material-UI. 
+
+### Layout
+- [@mui-treasury/layout](https://mui-treasury.com/layout/tutorials/dashboard-layout): Create instant layout for real-world application. If you want to build dashboard, personal blog or documentation site, have a look at this library.
+It provide simple API with responsively configurable to build layout without tears. Take a look at clone examples [Reactjs doc site](https://mui-treasury.com/layout/clones/reactjs?bgColor=b6c0d4), [Messenger chat](https://mui-treasury.com/layout/clones/messenger?bgColor=rgb(0,153,255)&dark=true)
+or [E-commerce shopping cart](https://mui-treasury.com/layout/clones/shopping-cart?bgColor=EAEEF1)
+
 ### Tables
 
 - [material-table](https://github.com/mbrn/material-table): A simple and powerful Datatable for React based on Material-UI Table with some additional features.
