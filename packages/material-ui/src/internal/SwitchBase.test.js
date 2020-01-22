@@ -261,16 +261,11 @@ describe('<SwitchBase />', () => {
       it('should not have the disabled class', () => {
         const { getByRole, getByTestId } = render(
           <FormControl>
-            <SwitchBase
-              data-testid="IconButton"
-              icon="unchecked"
-              checkedIcon="checked"
-              type="checkbox"
-            />
+            <SwitchBase data-testid="root" icon="unchecked" checkedIcon="checked" type="checkbox" />
           </FormControl>,
         );
 
-        expect(getByTestId('IconButton')).not.to.have.class(classes.disabled);
+        expect(getByTestId('root')).not.to.have.class(classes.disabled);
         expect(getByRole('checkbox')).not.to.have.attribute('disabled');
       });
 
@@ -279,7 +274,7 @@ describe('<SwitchBase />', () => {
           <FormControl>
             <SwitchBase
               disabled
-              data-testid="IconButton"
+              data-testid="root"
               icon="unchecked"
               checkedIcon="checked"
               type="checkbox"
@@ -287,7 +282,7 @@ describe('<SwitchBase />', () => {
           </FormControl>,
         );
 
-        expect(getByTestId('IconButton')).to.have.class(classes.disabled);
+        expect(getByTestId('root')).to.have.class(classes.disabled);
         expect(getByRole('checkbox')).to.have.attribute('disabled');
       });
     });
@@ -296,16 +291,11 @@ describe('<SwitchBase />', () => {
       it('should have the disabled class', () => {
         const { getByRole, getByTestId } = render(
           <FormControl disabled>
-            <SwitchBase
-              data-testid="IconButton"
-              icon="unchecked"
-              checkedIcon="checked"
-              type="checkbox"
-            />
+            <SwitchBase data-testid="root" icon="unchecked" checkedIcon="checked" type="checkbox" />
           </FormControl>,
         );
 
-        expect(getByTestId('IconButton')).to.have.class(classes.disabled);
+        expect(getByTestId('root')).to.have.class(classes.disabled);
         expect(getByRole('checkbox')).to.have.attribute('disabled');
       });
 
@@ -314,7 +304,7 @@ describe('<SwitchBase />', () => {
           <FormControl disabled>
             <SwitchBase
               disabled={false}
-              data-testid="IconButton"
+              data-testid="root"
               icon="unchecked"
               checkedIcon="checked"
               type="checkbox"
@@ -322,7 +312,7 @@ describe('<SwitchBase />', () => {
           </FormControl>,
         );
 
-        expect(getByTestId('IconButton')).not.to.have.class(classes.disabled);
+        expect(getByTestId('root')).not.to.have.class(classes.disabled);
         expect(getByRole('checkbox')).not.to.have.attribute('disabled');
       });
     });
