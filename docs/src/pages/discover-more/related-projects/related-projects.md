@@ -25,6 +25,10 @@ You didn't find the design assets your team is looking for? Let us know!
 
 This is a collection of third-party projects that extend Material-UI.
 
+### Layout
+
+- [@mui-treasury/layout](https://mui-treasury.com/layout): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs).
+
 ### Tables
 
 - [material-table](https://github.com/mbrn/material-table): A simple and powerful Datatable for React based on Material-UI Table with some additional features.

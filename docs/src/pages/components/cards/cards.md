@@ -48,3 +48,8 @@ Supplemental actions within the card are explicitly called out using icons, text
 Here's an example of a media control card.
 
 {{"demo": "pages/components/cards/MediaControlCard.js", "bg": true}}
+
+## Customization
+
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).
+
