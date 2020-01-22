@@ -383,14 +383,17 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const instanceRef = React.useRef();
   let values = range ? [...valueDerived].sort(asc) : [valueDerived];
   values = values.map(value => clamp(value, min, max));
+  let normalizedMarksProp = marksProp;
+  if (!Array.isArray(normalizedMarksProp) && normalizedMarksProp !== true) {
+    normalizedMarksProp = []; // Normalize marksProp to be an array
+  }
+
   const marks =
-    marksProp === true && step !== null
+    normalizedMarksProp === true && step !== null
       ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
           value: min + step * index,
         }))
-      : Array.isArray(marksProp)
-      ? marksProp
-      : [];
+      : normalizedMarksProp;
 
   instanceRef.current = {
     source: valueDerived, // Keep track of the input value to leverage immutable state comparison.
