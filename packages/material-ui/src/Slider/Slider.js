@@ -123,7 +123,6 @@ const axisProps = {
   },
 };
 
-const defaultMarks = [];
 const Identity = x => x;
 
 export const styles = theme => ({
@@ -347,7 +346,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     disabled = false,
     getAriaLabel,
     getAriaValueText,
-    marks: marksProp = defaultMarks,
+    marks: marksProp = false,
     max = 100,
     min = 0,
     name,
@@ -383,17 +382,12 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const instanceRef = React.useRef();
   let values = range ? [...valueDerived].sort(asc) : [valueDerived];
   values = values.map(value => clamp(value, min, max));
-  let normalizedMarksProp = marksProp;
-  if (!Array.isArray(normalizedMarksProp) && normalizedMarksProp !== true) {
-    normalizedMarksProp = []; // Normalize marksProp to be an array
-  }
-
   const marks =
-    normalizedMarksProp === true && step !== null
+    marksProp === true && step !== null
       ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
           value: min + step * index,
         }))
-      : normalizedMarksProp;
+      : marksProp || [];
 
   instanceRef.current = {
     source: valueDerived, // Keep track of the input value to leverage immutable state comparison.
@@ -510,57 +504,54 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     axis += '-reverse';
   }
 
-  const getFingerNewValue = React.useCallback(
-    ({ finger, move = false, values: values2, source }) => {
-      const { current: slider } = sliderRef;
-      const { width, height, bottom, left } = slider.getBoundingClientRect();
-      let percent;
+  const getFingerNewValue = ({ finger, move = false, values: values2, source }) => {
+    const { current: slider } = sliderRef;
+    const { width, height, bottom, left } = slider.getBoundingClientRect();
+    let percent;
 
-      if (axis.indexOf('vertical') === 0) {
-        percent = (bottom - finger.y) / height;
+    if (axis.indexOf('vertical') === 0) {
+      percent = (bottom - finger.y) / height;
+    } else {
+      percent = (finger.x - left) / width;
+    }
+
+    if (axis.indexOf('-reverse') !== -1) {
+      percent = 1 - percent;
+    }
+
+    let newValue;
+    newValue = percentToValue(percent, min, max);
+    if (step) {
+      newValue = roundValueToStep(newValue, step, min);
+    } else {
+      const marksValues = marks.map(mark => mark.value);
+      const closestIndex = findClosest(marksValues, newValue);
+      newValue = marksValues[closestIndex];
+    }
+
+    newValue = clamp(newValue, min, max);
+    let activeIndex = 0;
+
+    if (range) {
+      if (!move) {
+        activeIndex = findClosest(values2, newValue);
       } else {
-        percent = (finger.x - left) / width;
+        activeIndex = previousIndex.current;
       }
 
-      if (axis.indexOf('-reverse') !== -1) {
-        percent = 1 - percent;
-      }
+      const previousValue = newValue;
+      newValue = setValueIndex({
+        values: values2,
+        source,
+        newValue,
+        index: activeIndex,
+      }).sort(asc);
+      activeIndex = newValue.indexOf(previousValue);
+      previousIndex.current = activeIndex;
+    }
 
-      let newValue;
-      newValue = percentToValue(percent, min, max);
-      if (step) {
-        newValue = roundValueToStep(newValue, step, min);
-      } else {
-        const marksValues = marks.map(mark => mark.value);
-        const closestIndex = findClosest(marksValues, newValue);
-        newValue = marksValues[closestIndex];
-      }
-
-      newValue = clamp(newValue, min, max);
-      let activeIndex = 0;
-
-      if (range) {
-        if (!move) {
-          activeIndex = findClosest(values2, newValue);
-        } else {
-          activeIndex = previousIndex.current;
-        }
-
-        const previousValue = newValue;
-        newValue = setValueIndex({
-          values: values2,
-          source,
-          newValue,
-          index: activeIndex,
-        }).sort(asc);
-        activeIndex = newValue.indexOf(previousValue);
-        previousIndex.current = activeIndex;
-      }
-
-      return { newValue, activeIndex };
-    },
-    [max, min, axis, range, step, marks],
-  );
+    return { newValue, activeIndex };
+  };
 
   const handleTouchMove = useEventCallback(event => {
     const finger = trackFinger(event, touchId);
