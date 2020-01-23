@@ -104,8 +104,9 @@ A few key factors to follow for an accessible typography:
 Typography supports changing of the root node with `component` prop. To be able to use `TypographyProps` on their own (for example to type custom component) with the `component` prop, `TypographyProps` should be used with type arguments. Otherwise `component` prop will not be present in `TypographyProps`.
 For example 
 ```ts
-const CustomComponent: React.FC<TypographyProps<'a', { component: 'a' }>> = 
-  (props) => (/* ... */);
+function CustomComponent (props: TypographyProps<'a', { component: 'a' }>) { 
+  /* ... */
+}
 ```
 Now the `CustomComponent` can be used with a `component` prop which should be set to `'a'`. In addition, the `CustomComponent` will have all props of `<a>` HTML element.
 
