@@ -126,7 +126,7 @@ export default function usePagination(props = {}) {
           page: buttonPage(item),
           disabled:
             disabled ||
-            (!item === 'ellipsis' &&
+            (item !== 'ellipsis' &&
               (item === 'next' || item === 'last' ? page >= count : page <= 1)),
         };
   });
