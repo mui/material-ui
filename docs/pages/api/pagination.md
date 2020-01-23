@@ -45,7 +45,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">size</span> | <span class="prop-type">'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'</span> |  | The size of the pagination component. |
 | <span class="prop-name">variant</span> | <span class="prop-type">'text'<br>&#124;&nbsp;'outlined'</span> |  | The variant to use. |
 
-The component cannot hold a ref.
+The `ref` is forwarded to the root element.
 
 Any other props supplied will be provided to the root element (native element).
 
