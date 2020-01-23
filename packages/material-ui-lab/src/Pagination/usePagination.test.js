@@ -74,21 +74,21 @@ describe('usePagination', () => {
     const { items } = renderHook(() => usePagination({ count: 8 })).result.current;
     assert.strictEqual(items.length, 9);
     assert.strictEqual(items[2].page, 2);
-    assert.strictEqual(items[6].type, 'ellipsis');
+    assert.strictEqual(items[6].type, 'end-ellipsis');
     assert.strictEqual(items[6].page, null);
   });
   it('has a start ellipsis when page >= 5', () => {
     const { items } = renderHook(() => usePagination({ count: 8, page: 5 })).result.current;
-    assert.strictEqual(items[2].type, 'ellipsis');
+    assert.strictEqual(items[2].type, 'start-ellipsis');
     assert.strictEqual(items[2].page, null);
     assert.strictEqual(items[6].page, 7);
   });
   it('has start & end ellipsis when count >= 9', () => {
     const { items } = renderHook(() => usePagination({ count: 9, page: 5 })).result.current;
     assert.strictEqual(items.length, 9);
-    assert.strictEqual(items[2].type, 'ellipsis');
+    assert.strictEqual(items[2].type, 'start-ellipsis');
     assert.strictEqual(items[2].page, null);
-    assert.strictEqual(items[6].type, 'ellipsis');
+    assert.strictEqual(items[6].type, 'end-ellipsis');
     assert.strictEqual(items[6].page, null);
   });
   it('can have a reduced siblingRange', () => {
@@ -96,22 +96,22 @@ describe('usePagination', () => {
       usePagination({ count: 7, page: 4, siblingRange: 0 }),
     ).result.current;
     assert.strictEqual(items.length, 7);
-    assert.strictEqual(items[2].type, 'ellipsis');
+    assert.strictEqual(items[2].type, 'start-ellipsis');
     assert.strictEqual(items[3].page, 4);
-    assert.strictEqual(items[4].type, 'ellipsis');
+    assert.strictEqual(items[4].type, 'end-ellipsis');
   });
   it('can have an increased siblingRange', () => {
     const { items } = renderHook(() =>
       usePagination({ count: 11, page: 6, siblingRange: 2 }),
     ).result.current;
     assert.strictEqual(items.length, 11);
-    assert.strictEqual(items[2].type, 'ellipsis');
+    assert.strictEqual(items[2].type, 'start-ellipsis');
     assert.strictEqual(items[3].page, 4);
     assert.strictEqual(items[4].page, 5);
     assert.strictEqual(items[5].page, 6);
     assert.strictEqual(items[6].page, 7);
     assert.strictEqual(items[7].page, 8);
-    assert.strictEqual(items[8].type, 'ellipsis');
+    assert.strictEqual(items[8].type, 'end-ellipsis');
   });
   it('can have an increased boundaryRange', () => {
     const { items } = renderHook(() =>
@@ -120,8 +120,8 @@ describe('usePagination', () => {
     assert.strictEqual(items.length, 11);
     assert.strictEqual(items[1].page, 1);
     assert.strictEqual(items[2].page, 2);
-    assert.strictEqual(items[3].type, 'ellipsis');
-    assert.strictEqual(items[7].type, 'ellipsis');
+    assert.strictEqual(items[3].type, 'start-ellipsis');
+    assert.strictEqual(items[7].type, 'end-ellipsis');
     assert.strictEqual(items[8].page, 10);
     assert.strictEqual(items[9].page, 11);
   });
