@@ -41,7 +41,7 @@ describe('<Breadcrumbs />', () => {
     expect(getByRole('list')).to.have.text('first/second');
   });
 
-  it('should render an ellipse between `itemsAfterCollapse` and `itemsBeforeCollapse`', () => {
+  it('should render an ellipsis between `itemsAfterCollapse` and `itemsBeforeCollapse`', () => {
     const { getAllByRole, getByRole } = render(
       <Breadcrumbs>
         <span>first</span>

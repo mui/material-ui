@@ -36,10 +36,9 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
   const itemProps = { color, getAriaLabel, shape, size, variant };
 
   return (
-    <ul
+    <Component
       role="navigation"
       aria-label="Pagination navigation"
-      component={Component}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
@@ -48,7 +47,7 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
         items.map(item => (
           <li key={item.type || item.page.toString()}>{renderItem({ ...item, ...itemProps })}</li>
         ))}
-    </ul>
+    </Component>
   );
 });
 

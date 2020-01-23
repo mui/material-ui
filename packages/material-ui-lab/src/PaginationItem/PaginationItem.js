@@ -9,7 +9,7 @@ import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';
 import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
 import { capitalize } from '@material-ui/core/utils';
 
-const styles = theme => ({
+export const styles = theme => ({
   /* Styles applied to the root element. */
   root: {
     fontSize: theme.typography.pxToRem(14),
@@ -270,12 +270,18 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
       }
       aria-current={selected ? 'page' : undefined}
       onClick={event => handleClick(event, page)}
-      className={clsx(classes.root, classes[variant], classes[shape], {
-        [classes[`${variant}${capitalize(color)}`]]: color !== 'standard',
-        [classes.disabled]: disabled,
-        [classes.selected]: selected,
-        [classes[`size${capitalize(size)}`]]: size !== 'medium',
-      })}
+      className={clsx(
+        classes.root,
+        classes[variant],
+        classes[shape],
+        {
+          [classes[`${variant}${capitalize(color)}`]]: color !== 'standard',
+          [classes.disabled]: disabled,
+          [classes.selected]: selected,
+          [classes[`size${capitalize(size)}`]]: size !== 'medium',
+        },
+        className,
+      )}
       {...other}
     >
       {type === 'page' && page}
