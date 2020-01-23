@@ -4,6 +4,7 @@ import { getClasses, createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
 import { createClientRender } from 'test/utils/createClientRender';
 import FormControl from '../FormControl';
+import IconButton from '../IconButton';
 import Radio from './Radio';
 
 describe('<Radio />', () => {
@@ -17,20 +18,13 @@ describe('<Radio />', () => {
   });
 
   describeConformance(<Radio />, () => ({
-    mount,
-    only: ['refForwarding'],
-    refInstanceof: window.HTMLSpanElement,
-    after: () => mount.cleanUp(),
-  }));
-
-  /* TODO Radio violates root component
-  describeConformance(<Radio />, () => ({
     classes,
     inheritComponent: IconButton,
     mount,
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],
-  })); */
+    after: () => mount.cleanUp(),
+  }));
 
   describe('styleSheet', () => {
     it('should have the classes required for SwitchBase', () => {
