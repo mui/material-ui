@@ -126,7 +126,7 @@ jobs:
           command: yarn lint:ci
       - run:
           name: Lint JSON
-          command: yarn jsonlint
+          command: yarn --silent jsonlint
   test_types:
     <<: *defaults
     steps:
