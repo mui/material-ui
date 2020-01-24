@@ -5,6 +5,7 @@
     "allowJs": false,
     /* files are emmitted by babel */
     "noEmit": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "types": ["react"]
   }
 }
