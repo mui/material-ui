@@ -4,8 +4,8 @@ const fse = require('fs-extra');
 const glob = require('glob-gitignore');
 const path = require('path');
 
-const passMessage = chalk.gray;
-const failMessage = chalk.whiteBright;
+const passMessage = message => `✓ ${chalk.gray(message)}`;
+const failMessage = message => `✗ ${chalk.whiteBright(message)}`;
 
 async function run() {
   const workspaceRoot = path.resolve(__dirname, '..');
