@@ -224,6 +224,16 @@ describe('<FormControl />', () => {
         setProps({ margin: 'dense' });
         expect(formControlRef.current).to.have.property('margin', 'dense');
       });
+
+      it('should have the fullWidth prop from the instance', () => {
+        const formControlRef = React.createRef();
+        const { setProps } = render(<FormControlled ref={formControlRef} />);
+
+        expect(formControlRef.current).to.have.property('fullWidth', false);
+
+        setProps({ fullWidth: true });
+        expect(formControlRef.current).to.have.property('fullWidth', true);
+      });
     });
 
     describe('callbacks', () => {
