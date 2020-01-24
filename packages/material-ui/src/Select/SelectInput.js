@@ -417,7 +417,7 @@ SelectInput.propTypes = {
    */
   inputRef: refType,
   /**
-   * The idea of an element that acts as an additional label. The Select will
+   * The ID of an element that acts as an additional label. The Select will
    * be labelled by the additional label and the selected value.
    */
   labelId: PropTypes.string,
