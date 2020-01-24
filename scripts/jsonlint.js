@@ -17,7 +17,7 @@ async function run() {
 
   const filenames = glob.sync('**/*.json', {
     cwd: workspaceRoot,
-    ignore: eslintignore,
+    ignore: [...eslintignore, 'tsconfig*.json'],
   });
 
   let passed = true;
