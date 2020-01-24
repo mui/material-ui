@@ -66,6 +66,10 @@ The `ButtonGroup` component can be used to group buttons.
 
 {{"demo": "pages/components/buttons/GroupOrientation.js"}}
 
+### Group Enabling
+
+{{"demo": "pages/components/buttons/GroupDisabled.js"}}
+
 ### Split Button
 
 ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
