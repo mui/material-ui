@@ -72,7 +72,7 @@ The core team is monitoring for Pull Requests. We will review your Pull Request 
 
 CI runs a series of checks automatically when a Pull Request is opened. If you're not
 sure if your changes will pass, you can always open a Pull Request and the GitHub UI will display a summary of
-the results. If one of them fails, check out the section [Checks and how to fix them](#checksfix).
+the results. If any of them fail, refer to [Checks and how to fix them](#checks-and-how-to-fix-them).
 
 Make sure the following is true:
 
