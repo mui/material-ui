@@ -5,8 +5,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import HomeSteps from 'docs/src/modules/components/HomeSteps';
+import HomeThemes from 'docs/src/modules/components/HomeThemes';
 import HomeQuickWord from 'docs/src/modules/components/HomeQuickWord';
-import HomeBackers from 'docs/src/modules/components/HomeBackers';
+import HomeSponsors from 'docs/src/modules/components/HomeSponsors';
 import HomeUsers from 'docs/src/modules/components/HomeUsers';
 import HomePro from 'docs/src/modules/components/HomePro';
 import HomeFooter from 'docs/src/modules/components/HomeFooter';
@@ -162,7 +163,8 @@ export default function HomePage() {
           <HomePro />
           <HomeQuickWord />
           <HomeSteps />
-          <HomeBackers />
+          <HomeThemes />
+          <HomeSponsors />
           <HomeUsers />
         </main>
         <HomeFooter />
