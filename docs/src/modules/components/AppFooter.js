@@ -47,7 +47,7 @@ const styles = theme => ({
   },
 });
 
-function HomeFooter(props) {
+function AppFooter(props) {
   const { classes } = props;
   const t = useSelector(state => state.options.t);
 
@@ -174,8 +174,8 @@ function HomeFooter(props) {
   );
 }
 
-HomeFooter.propTypes = {
+AppFooter.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(HomeFooter);
+export default withStyles(styles)(AppFooter);

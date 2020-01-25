@@ -300,8 +300,6 @@ function AppWrapper(props) {
     fonts = [
       'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
     ];
-  } else if (pathname.match(/blog/)) {
-    fonts.push('https://fonts.googleapis.com/css?family=Roboto+Slab:300&display=swap');
   }
 
   return (

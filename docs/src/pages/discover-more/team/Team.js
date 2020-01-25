@@ -139,7 +139,7 @@ function Group(props) {
       <Grid container spacing={2} className={classes.container}>
         {members.map(member => (
           <Grid key={member.name} item xs={12} md={6}>
-            <Paper>
+            <Paper variant="outlined">
               <Grid container wrap="nowrap">
                 <Grid item>
                   <CardMedia
