@@ -98,6 +98,56 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.deep.equal([options[1]]);
       expect(document.activeElement).to.equal(getByRole('textbox'));
     });
+
+    it('should add new value when freeSolo & multiple on blur', () => {
+      const handleChange = spy();
+      const { container } = render(
+        <Autocomplete freeSolo multiple onChange={handleChange} renderInput={params => <TextField {...params} />} />,
+      );
+      const input = container.querySelector('input');
+      input.focus();
+      fireEvent.change(document.activeElement, { target: { value: 'a' } });
+      document.activeElement.blur();
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(['a']);
+    });
+
+    it('should not add new value on blur if value is empty', () => {
+      const handleChange = spy();
+      const { container } = render(
+        <Autocomplete freeSolo multiple onChange={handleChange} renderInput={params => <TextField {...params} />} />,
+      );
+      const input = container.querySelector('input');
+      input.focus();
+      fireEvent.change(document.activeElement, { target: { value: '' } });
+      document.activeElement.blur();
+      expect(handleChange.callCount).to.equal(0);
+    });
+
+    it('should not add new value on blur without freeSolo', () => {
+      const handleChange = spy();
+      const { container } = render(
+        <Autocomplete multiple onChange={handleChange} renderInput={params => <TextField {...params} />} />,
+      );
+      const input = container.querySelector('input');
+      input.focus();
+      fireEvent.change(document.activeElement, { target: { value: 'a' } });
+      document.activeElement.blur();
+      expect(handleChange.callCount).to.equal(0);
+    });
+
+    it('should not add new value on blur without multiple', () => {
+      const handleChange = spy();
+      const { container } = render(
+        <Autocomplete freeSolo onChange={handleChange} renderInput={params => <TextField {...params} />} />,
+      );
+      const input = container.querySelector('input');
+      input.focus();
+      fireEvent.change(document.activeElement, { target: { value: 'a' } });
+      document.activeElement.blur();
+      expect(input.value).to.equal('a');
+      expect(handleChange.args[0][1]).to.deep.equal('a');
+    });
   });
 
   it('should trigger a form expectedly', () => {
