@@ -29,10 +29,10 @@ describe('<Autocomplete />', () => {
 
   describe('combobox', () => {
     it('should clear the input when blur', () => {
-      const { container } = render(
+      const { getByRole } = render(
         <Autocomplete renderInput={params => <TextField {...params} />} />,
       );
-      const input = container.querySelector('input');
+      const input = getByRole('textbox');
       input.focus();
       fireEvent.change(document.activeElement, { target: { value: 'a' } });
       expect(input.value).to.equal('a');
@@ -49,12 +49,51 @@ describe('<Autocomplete />', () => {
     });
   });
 
-  describe('multiple', () => {
+  describe('prop: autoSelect', () => {
+    it('should add new value when autoSelect & multiple on blur', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      render(
+        <Autocomplete
+          autoSelect
+          multiple
+          value={[options[0]]}
+          options={options}
+          onChange={handleChange}
+          renderInput={params => <TextField autoFocus {...params} />}
+        />,
+      );
+      fireEvent.change(document.activeElement, { target: { value: 't' } });
+      fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+      document.activeElement.blur();
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(options);
+    });
+
+    it('should add new value when autoSelect & multiple & freeSolo on blur', () => {
+      const handleChange = spy();
+      render(
+        <Autocomplete
+          autoSelect
+          freeSolo
+          multiple
+          onChange={handleChange}
+          renderInput={params => <TextField autoFocus {...params} />}
+        />,
+      );
+      fireEvent.change(document.activeElement, { target: { value: 'a' } });
+      document.activeElement.blur();
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(['a']);
+    });
+  });
+
+  describe('prop: multiple', () => {
     it('should not crash', () => {
-      const { container } = render(
+      const { getByRole } = render(
         <Autocomplete renderInput={params => <TextField {...params} />} multiple />,
       );
-      const input = container.querySelector('input');
+      const input = getByRole('textbox');
       input.focus();
       document.activeElement.blur();
       input.focus();
@@ -97,74 +136,6 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal([options[1]]);
       expect(document.activeElement).to.equal(getByRole('textbox'));
-    });
-
-    it('should add new value when freeSolo & multiple on blur', () => {
-      const handleChange = spy();
-      const { container } = render(
-        <Autocomplete
-          freeSolo
-          multiple
-          onChange={handleChange}
-          renderInput={params => <TextField {...params} />}
-        />,
-      );
-      const input = container.querySelector('input');
-      input.focus();
-      fireEvent.change(document.activeElement, { target: { value: 'a' } });
-      document.activeElement.blur();
-      expect(handleChange.callCount).to.equal(1);
-      expect(handleChange.args[0][1]).to.deep.equal(['a']);
-    });
-
-    it('should not add new value on blur if value is empty', () => {
-      const handleChange = spy();
-      const { container } = render(
-        <Autocomplete
-          freeSolo
-          multiple
-          onChange={handleChange}
-          renderInput={params => <TextField {...params} />}
-        />,
-      );
-      const input = container.querySelector('input');
-      input.focus();
-      fireEvent.change(document.activeElement, { target: { value: '' } });
-      document.activeElement.blur();
-      expect(handleChange.callCount).to.equal(0);
-    });
-
-    it('should not add new value on blur without freeSolo', () => {
-      const handleChange = spy();
-      const { container } = render(
-        <Autocomplete
-          multiple
-          onChange={handleChange}
-          renderInput={params => <TextField {...params} />}
-        />,
-      );
-      const input = container.querySelector('input');
-      input.focus();
-      fireEvent.change(document.activeElement, { target: { value: 'a' } });
-      document.activeElement.blur();
-      expect(handleChange.callCount).to.equal(0);
-    });
-
-    it('should not add new value on blur without multiple', () => {
-      const handleChange = spy();
-      const { container } = render(
-        <Autocomplete
-          freeSolo
-          onChange={handleChange}
-          renderInput={params => <TextField {...params} />}
-        />,
-      );
-      const input = container.querySelector('input');
-      input.focus();
-      fireEvent.change(document.activeElement, { target: { value: 'a' } });
-      document.activeElement.blur();
-      expect(input.value).to.equal('a');
-      expect(handleChange.args[0][1]).to.deep.equal('a');
     });
   });
 
@@ -592,14 +563,15 @@ describe('<Autocomplete />', () => {
 
     describe('prop: disabled', () => {
       it('should disable the input', () => {
-        const { container } = render(
+        const { getByRole } = render(
           <Autocomplete
             disabled
             options={['one', 'two', 'three']}
             renderInput={params => <TextField {...params} />}
           />,
         );
-        expect(container.querySelector('input').disabled).to.be.true;
+        const input = getByRole('textbox');
+        expect(input.disabled).to.be.true;
       });
 
       it('should disable the popup button', () => {
@@ -713,14 +685,14 @@ describe('<Autocomplete />', () => {
 
     it('should not select undefined ', () => {
       const handleChange = spy();
-      const { container, getByRole } = render(
+      const { getByRole } = render(
         <Autocomplete
           onChange={handleChange}
           options={['one', 'two']}
           renderInput={params => <TextField {...params} />}
         />,
       );
-      const input = container.querySelector('input');
+      const input = getByRole('textbox');
       fireEvent.click(input);
 
       const listbox = getByRole('listbox');

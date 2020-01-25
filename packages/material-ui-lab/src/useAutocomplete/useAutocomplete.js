@@ -654,7 +654,7 @@ export default function useAutocomplete(props) {
 
     if (autoSelect && selectedIndexRef.current !== -1) {
       selectNewValue(event, filteredOptions[selectedIndexRef.current]);
-    } else if (freeSolo && inputValue !== '') {
+    } else if (autoSelect && freeSolo && inputValue !== '') {
       selectNewValue(event, inputValue, 'freeSolo');
     } else if (!freeSolo) {
       resetInputValue(event, value);
