@@ -19,8 +19,8 @@ const users = [
   },
   {
     logo: 'walmart-labs.svg',
-    logoWidth: 253,
-    logoHeight: 48,
+    logoWidth: 274,
+    logoHeight: 52,
     caption: 'Walmart Labs',
     class: 'walmart',
   },
@@ -54,6 +54,33 @@ const users = [
     logoWidth: 205,
     logoHeight: 29,
   },
+  {
+    logo: 'netflix.svg',
+    logoWidth: 111,
+    logoHeight: 29,
+    caption: 'Netflix',
+  },
+  {
+    logo: 'coursera.svg',
+    logoWidth: 169,
+    logoHeight: 23,
+    caption: 'Coursera',
+    class: 'coursera',
+  },
+  {
+    logo: 'amazon.svg',
+    logoWidth: 119,
+    logoHeight: 36,
+    caption: 'Amazon',
+    class: 'amazon',
+  },
+  {
+    logo: 'unity.svg',
+    logoWidth: 138,
+    logoHeight: 50,
+    caption: 'Unity',
+    class: 'unity',
+  },
 ];
 
 const styles = theme => ({
@@ -73,8 +100,17 @@ const styles = theme => ({
   img: {
     margin: theme.spacing(1.5, 3),
   },
+  amazon: {
+    margin: theme.spacing(2.4, 3, 1.5),
+  },
+  coursera: {
+    margin: theme.spacing(2.3, 3, 1.5),
+  },
+  unity: {
+    margin: theme.spacing(0.5, 3, 1.5),
+  },
   walmart: {
-    margin: theme.spacing(1.1, 3, 1.5),
+    margin: theme.spacing(0.9, 3, 1.5),
   },
 });
 
