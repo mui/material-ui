@@ -21,7 +21,7 @@ Only one floating action button is recommended per screen to represent the most 
 
 ## Size
 
-Use the `size` property for larger or smaller floating action buttons.
+Use the `size` prop for larger or smaller floating action buttons.
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtonSize.js"}}
 
