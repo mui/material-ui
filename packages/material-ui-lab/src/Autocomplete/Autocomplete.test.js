@@ -102,7 +102,12 @@ describe('<Autocomplete />', () => {
     it('should add new value when freeSolo & multiple on blur', () => {
       const handleChange = spy();
       const { container } = render(
-        <Autocomplete freeSolo multiple onChange={handleChange} renderInput={params => <TextField {...params} />} />,
+        <Autocomplete
+          freeSolo
+          multiple
+          onChange={handleChange}
+          renderInput={params => <TextField {...params} />}
+        />,
       );
       const input = container.querySelector('input');
       input.focus();
@@ -115,7 +120,12 @@ describe('<Autocomplete />', () => {
     it('should not add new value on blur if value is empty', () => {
       const handleChange = spy();
       const { container } = render(
-        <Autocomplete freeSolo multiple onChange={handleChange} renderInput={params => <TextField {...params} />} />,
+        <Autocomplete
+          freeSolo
+          multiple
+          onChange={handleChange}
+          renderInput={params => <TextField {...params} />}
+        />,
       );
       const input = container.querySelector('input');
       input.focus();
@@ -127,7 +137,11 @@ describe('<Autocomplete />', () => {
     it('should not add new value on blur without freeSolo', () => {
       const handleChange = spy();
       const { container } = render(
-        <Autocomplete multiple onChange={handleChange} renderInput={params => <TextField {...params} />} />,
+        <Autocomplete
+          multiple
+          onChange={handleChange}
+          renderInput={params => <TextField {...params} />}
+        />,
       );
       const input = container.querySelector('input');
       input.focus();
@@ -139,7 +153,11 @@ describe('<Autocomplete />', () => {
     it('should not add new value on blur without multiple', () => {
       const handleChange = spy();
       const { container } = render(
-        <Autocomplete freeSolo onChange={handleChange} renderInput={params => <TextField {...params} />} />,
+        <Autocomplete
+          freeSolo
+          onChange={handleChange}
+          renderInput={params => <TextField {...params} />}
+        />,
       );
       const input = container.querySelector('input');
       input.focus();
