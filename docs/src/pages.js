@@ -214,11 +214,7 @@ const pages = [
       { pathname: '/discover-more/languages' },
     ],
   },
-  { pathname: '/versions', displayNav: false },
-  { pathname: '/', displayNav: false, disableDrawer: true },
   { pathname: 'https://medium.com/material-ui', title: 'Blog' },
-  { pathname: '/company/about', displayNav: false, disableDrawer: true },
-  { pathname: '/company/contact', displayNav: false, disableDrawer: true },
 ];
 
 export default pages;
