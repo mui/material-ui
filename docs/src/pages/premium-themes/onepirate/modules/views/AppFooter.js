@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
   list: {
     margin: 0,
     listStyle: 'none',
-    paddingLeft: 0,
+    padding: 0,
   },
   listItem: {
     paddingTop: theme.spacing(0.5),
