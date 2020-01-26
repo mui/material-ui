@@ -49,6 +49,7 @@ Any other props supplied will be provided to the root element ([Paper](/api/pape
 | <span class="prop-name">colorDefault</span> | <span class="prop-name">.MuiAppBar-colorDefault</span> | Styles applied to the root element if `color="default"`.
 | <span class="prop-name">colorPrimary</span> | <span class="prop-name">.MuiAppBar-colorPrimary</span> | Styles applied to the root element if `color="primary"`.
 | <span class="prop-name">colorSecondary</span> | <span class="prop-name">.MuiAppBar-colorSecondary</span> | Styles applied to the root element if `color="secondary"`.
+| <span class="prop-name">colorInherit</span> | <span class="prop-name">.MuiAppBar-colorInherit</span> | Styles applied to the root element if `color="inherit"`.
 
 You can override the style of the component thanks to one of these customization points:
 
