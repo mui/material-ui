@@ -69,6 +69,11 @@ export const styles = theme => {
       backgroundColor: theme.palette.secondary.main,
       color: theme.palette.secondary.contrastText,
     },
+    /* Styles applied to the root element if `color="inherit"`. */
+    colorInherit: {
+      backgroundColor: 'inherit',
+      color: 'inherit',
+    },
   };
 };
 
@@ -83,8 +88,8 @@ const AppBar = React.forwardRef(function AppBar(props, ref) {
       className={clsx(
         classes.root,
         classes[`position${capitalize(position)}`],
+        classes[`color${capitalize(color)}`],
         {
-          [classes[`color${capitalize(color)}`]]: color !== 'inherit',
           'mui-fixed': position === 'fixed', // Useful for the Dialog
         },
         className,
