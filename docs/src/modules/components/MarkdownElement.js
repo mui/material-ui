@@ -181,9 +181,8 @@ const styles = theme => ({
       margin: '32px 0 16px',
     },
     '& p, & ul, & ol': {
-      lineHeight: 1.6,
       marginTop: 0,
-      marginBottom: '16px',
+      marginBottom: 16,
     },
     '& ul': {
       paddingLeft: 30,

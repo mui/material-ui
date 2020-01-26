@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
     marginTop: 70,
     width: 175,
     flexShrink: 0,
-    order: 2,
     position: 'sticky',
     height: 'calc(100vh - 70px)',
     overflowY: 'auto',

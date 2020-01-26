@@ -4,7 +4,7 @@ description: Material-UI v4 is out 🎉
 
 # Material-UI v4 is out 🎉
 
-*May 23, 2019*
+The core team. May 23, 2019.
 
 > React components for faster and easier web development. Build your own design system, or start with Material Design.
 

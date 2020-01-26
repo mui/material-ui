@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import clsx from 'clsx';
+import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Portal from '@material-ui/core/Portal';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -10,45 +10,41 @@ import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Head from 'docs/src/modules/components/Head';
 import useMarkdownDocs from 'docs/src/modules/components/useMarkdownDocs';
-import AppContent from 'docs/src/modules/components/AppContent';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import Ad from 'docs/src/modules/components/Ad';
 import EditPage from 'docs/src/modules/components/EditPage';
+import AppContainer from 'docs/src/modules/components/AppContainer';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { getHeaders, getTitle, getDescription } from 'docs/src/modules/utils/parseMarkdown';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
-  header: {
+  container: {
+    position: 'relative',
+  },
+  actions: {
     position: 'absolute',
     right: 16,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-end',
   },
-  markdownElementBlog: {
-    maxWidth: 700,
-    margin: 'auto',
-    padding: 0,
-    fontSize: theme.typography.pxToRem(18),
-    fontFamily: `Roboto Slab, ${theme.typography.fontFamily}`,
-    fontWeight: 300,
-    '& p, & ul, & ol': {
-      lineHeight: 1.7,
+  ad: {
+    '& .description': {
+      marginBottom: 196,
     },
-    '& strong': {
-      fontWeight: 400,
-      fontFamily: theme.typography.fontFamily,
+    '& .description.ad': {
+      marginBottom: 40,
     },
-    '& img': {
-      display: 'block',
-      margin: 'auto',
+  },
+  toc: {
+    [theme.breakpoints.up('md')]: {
+      width: 'calc(100% - 175px)',
     },
-    '& .blog-description': {
-      fontSize: theme.typography.pxToRem(14),
-      textAlign: 'center',
+    [theme.breakpoints.up('lg')]: {
+      width: 'calc(100% - 175px - 240px)',
     },
   },
   footer: {
@@ -89,10 +85,8 @@ function findIndex(array, comp) {
 
 function MarkdownDocs(props) {
   const {
-    blog,
     classes,
     disableAd = false,
-    disableEdit,
     disableToc = false,
     markdown: markdownProp,
     markdownLocation: markdownLocationProp,
@@ -126,7 +120,6 @@ function MarkdownDocs(props) {
         title={`${headers.title || getTitle(markdownDocs.markdown)} - Material-UI`}
         description={headers.description || getDescription(markdownDocs.markdown)}
       />
-      {disableToc ? null : <AppTableOfContents contents={markdownDocs.contents} />}
       {disableAd ? null : (
         <Portal
           container={() => {
@@ -138,60 +131,64 @@ function MarkdownDocs(props) {
           <Ad />
         </Portal>
       )}
-      <AppContent disableAd={disableAd} disableToc={disableToc}>
-        {!disableEdit ? (
-          <div className={classes.header}>
+      <div
+        className={clsx({
+          [classes.ad]: !disableAd,
+          [classes.toc]: !disableToc,
+        })}
+      >
+        <AppContainer className={classes.container}>
+          <div className={classes.actions}>
             <EditPage markdownLocation={markdownDocs.location} />
           </div>
-        ) : null}
-        <div className={clsx({ [classes.markdownElementBlog]: blog })}>{markdownDocs.element}</div>
-        <footer className={classes.footer}>
-          {!currentPage ||
-          currentPage.displayNav === false ||
-          (nextPage.displayNav === false && !prevPage) ? null : (
-            <React.Fragment>
-              <Divider />
-              <div className={classes.pagination}>
-                {prevPage ? (
-                  <Button
-                    component={Link}
-                    naked
-                    href={prevPage.pathname}
-                    size="large"
-                    className={classes.pageLinkButton}
-                    startIcon={<ChevronLeftIcon />}
-                  >
-                    {pageToTitleI18n(prevPage, t)}
-                  </Button>
-                ) : (
-                  <div />
-                )}
-                {nextPage.displayNav === false ? null : (
-                  <Button
-                    component={Link}
-                    naked
-                    href={nextPage.pathname}
-                    size="large"
-                    className={classes.pageLinkButton}
-                    endIcon={<ChevronRightIcon />}
-                  >
-                    {pageToTitleI18n(nextPage, t)}
-                  </Button>
-                )}
-              </div>
-            </React.Fragment>
-          )}
-        </footer>
-      </AppContent>
+          {markdownDocs.element}
+          <footer className={classes.footer}>
+            {!currentPage ||
+            currentPage.displayNav === false ||
+            (nextPage.displayNav === false && !prevPage) ? null : (
+              <React.Fragment>
+                <Divider />
+                <div className={classes.pagination}>
+                  {prevPage ? (
+                    <Button
+                      component={Link}
+                      naked
+                      href={prevPage.pathname}
+                      size="large"
+                      className={classes.pageLinkButton}
+                      startIcon={<ChevronLeftIcon />}
+                    >
+                      {pageToTitleI18n(prevPage, t)}
+                    </Button>
+                  ) : (
+                    <div />
+                  )}
+                  {nextPage.displayNav === false ? null : (
+                    <Button
+                      component={Link}
+                      naked
+                      href={nextPage.pathname}
+                      size="large"
+                      className={classes.pageLinkButton}
+                      endIcon={<ChevronRightIcon />}
+                    >
+                      {pageToTitleI18n(nextPage, t)}
+                    </Button>
+                  )}
+                </div>
+              </React.Fragment>
+            )}
+          </footer>
+        </AppContainer>
+      </div>
+      {disableToc ? null : <AppTableOfContents contents={markdownDocs.contents} />}
     </AppFrame>
   );
 }
 
 MarkdownDocs.propTypes = {
-  blog: PropTypes.bool,
   classes: PropTypes.object.isRequired,
   disableAd: PropTypes.bool,
-  disableEdit: PropTypes.bool,
   disableToc: PropTypes.bool,
   markdown: PropTypes.string,
   // You can define the direction location of the markdown file.
