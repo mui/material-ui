@@ -54,7 +54,7 @@
     "@material-ui/utils": "^4.7.1",
     "clsx": "^1.0.2",
     "csstype": "^2.5.2",
-    "hoist-non-react-statics": "^3.2.1",
+    "hoist-non-react-statics": "^3.3.2",
     "jss": "^10.0.3",
     "jss-plugin-camel-case": "^10.0.3",
     "jss-plugin-default-unit": "^10.0.3",
