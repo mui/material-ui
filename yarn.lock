@@ -13559,9 +13559,9 @@ simple-swizzle@^0.2.2:
     is-arrayish "^0.3.1"
 
 sinon@^8.0.4:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/sinon/-/sinon-8.1.0.tgz#30f82371ac6e7d4dccb77fa1525f5ea748c636ff"
-  integrity sha512-6/05TR+8QhEgTbyMWaConm8iPL609Eno7SqToPq63wC/jS/6NMEI4NxqtzlLkk3r/KcZT9xPXQodH0oJ917Hbg==
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/sinon/-/sinon-8.1.1.tgz#21fffd5ad0a2d072a8aa7f8a3cf7ed2ced497497"
+  integrity sha512-E+tWr3acRdoe1nXbHMu86SSqA1WGM7Yw3jZRLvlCMnXwTHP8lgFFVn5BnKnF26uc5SfZ3D7pA9sN7S3Y2jG4Ew==
   dependencies:
     "@sinonjs/commons" "^1.7.0"
     "@sinonjs/formatio" "^4.0.1"
