@@ -21,7 +21,7 @@ export default function TextButtons() {
       <Button color="primary">Primary</Button>
       <Button color="secondary">Secondary</Button>
       <Button disabled>Disabled</Button>
-      <Button href="#text-buttons">Link</Button>
+      <Button href="#text-buttons" color="primary">Link</Button>
     </div>
   );
 }
