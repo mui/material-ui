@@ -3,7 +3,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from './theme';
 
-function withRoot(Component) {
+export default function withRoot(Component) {
   function WithRoot(props) {
     return (
       <ThemeProvider theme={theme}>
@@ -16,5 +16,3 @@ function withRoot(Component) {
 
   return WithRoot;
 }
-
-export default withRoot;
