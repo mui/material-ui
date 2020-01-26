@@ -34,7 +34,9 @@ const pages = [
         subheader: '/components/inputs',
         children: [
           { pathname: '/components/buttons' },
+          { pathname: '/components/button-group' },
           { pathname: '/components/checkboxes' },
+          { pathname: '/components/floating-action-button' },
           { pathname: '/components/pickers', title: 'Date / Time' },
           { pathname: '/components/radio-buttons' },
           { pathname: '/components/selects' },
