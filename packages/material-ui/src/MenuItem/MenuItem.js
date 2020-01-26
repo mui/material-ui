@@ -19,7 +19,7 @@ export const styles = theme => ({
       minHeight: 'auto',
     },
   },
-  // TODO To remove in v5?
+  // TODO v5: remove
   /* Styles applied to the root element if `disableGutters={false}`. */
   gutters: {},
   /* Styles applied to the root element if `selected={true}`. */
