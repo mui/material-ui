@@ -90,10 +90,10 @@ const styles = theme => ({
     paddingTop: theme.spacing(5),
   },
   container: {
-    marginBottom: theme.spacing(10),
+    marginBottom: theme.spacing(4),
   },
   users: {
-    padding: theme.spacing(10, 4, 0)
+    padding: theme.spacing(10, 4, 0),
   },
   grid: {
     marginTop: theme.spacing(5),
@@ -115,8 +115,8 @@ const styles = theme => ({
     margin: theme.spacing(0.9, 3, 1.5),
   },
   button: {
-    margin: theme.spacing(2, 0, 0)
-  }
+    margin: theme.spacing(2, 0, 0),
+  },
 });
 
 function HomeUsers(props) {
@@ -165,7 +165,7 @@ function HomeUsers(props) {
           </div>
         </Container>
       </NoSsr>
-    </div >
+    </div>
   );
 }
 

@@ -9,6 +9,7 @@ import HomeThemes from 'docs/src/modules/components/HomeThemes';
 import HomeQuickWord from 'docs/src/modules/components/HomeQuickWord';
 import HomeSponsors from 'docs/src/modules/components/HomeSponsors';
 import HomeUsers from 'docs/src/modules/components/HomeUsers';
+import HomeQuotes from 'docs/src/modules/components/HomeQuotes';
 import HomePro from 'docs/src/modules/components/HomePro';
 import HomeFooter from 'docs/src/modules/components/HomeFooter';
 import AppFrame from 'docs/src/modules/components/AppFrame';
@@ -165,6 +166,7 @@ export default function HomePage() {
           <HomeSteps />
           <HomeThemes />
           <HomeSponsors />
+          <HomeQuotes />
           <HomeUsers />
         </main>
         <HomeFooter />

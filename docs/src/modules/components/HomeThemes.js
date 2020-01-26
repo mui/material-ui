@@ -87,7 +87,9 @@ function HomeThemes(props) {
             </NoSsr>
           </Link>
           <Grid container justify="center">
-            <Button variant="outlined" component={PremiumThemesLink} className={classes.button}>{t('themesButton')}</Button>
+            <Button variant="outlined" component={PremiumThemesLink} className={classes.button}>
+              {t('themesButton')}
+            </Button>
           </Grid>
         </Container>
       </NoSsr>
