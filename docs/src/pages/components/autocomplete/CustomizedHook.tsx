@@ -31,12 +31,13 @@ const InputWrapper = styled('div')`
 
   & input {
     font-size: 14px;
-    line-height: 26px;
-    padding: 2px 6px;
+    height: 30px;
+    padding: 4px 6px;
     width: 0;
     min-width: 30px;
     flex-grow: 1;
     border: 0;
+    margin: 0;
     outline: 0;
   }
 `;
