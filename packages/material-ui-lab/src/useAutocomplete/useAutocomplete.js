@@ -85,7 +85,7 @@ export default function useAutocomplete(props) {
     blurOnSelect = false,
     clearOnEscape = false,
     debug = false,
-    defaultValue,
+    defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
     disableListWrap = false,
@@ -193,7 +193,7 @@ export default function useAutocomplete(props) {
 
   const [value, setValue] = useControlled({
     controlled: valueProp,
-    default: defaultValue || (multiple ? [] : null),
+    default: defaultValue,
     name: componentName,
   });
 
