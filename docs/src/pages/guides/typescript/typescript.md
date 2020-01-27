@@ -275,7 +275,6 @@ To be able to use props of such Material-UI component on their own, props should
 Examples below are use `TypographyProps`. But the same will work for any component which has props defined with [`OverrideProps`](https://github.com/mui-org/material-ui/blob/f3a74baf0edcbf4eed16d6294046be1224f36e2c/packages/material-ui/src/Typography/Typography.d.ts#L35). 
 
 Below some `CustomComponent` is defined. And it has the same props as `Typography` component.
-
 ```ts
 function CustomComponent (props: TypographyProps<'a', { component: 'a' }>) { 
   /* ... */
