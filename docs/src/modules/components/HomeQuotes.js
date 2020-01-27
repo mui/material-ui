@@ -57,15 +57,15 @@ const quotes = [
 
 const styles = theme => ({
   root: {
-    padding: theme.spacing(2),
     minHeight: 160,
     paddingTop: theme.spacing(5),
+    margin: theme.spacing(0, 2),
   },
   container: {
     marginBottom: theme.spacing(4),
   },
   users: {
-    padding: theme.spacing(10, 4, 0),
+    padding: theme.spacing(10, 0, 0),
   },
   grid: {
     marginTop: theme.spacing(5),
@@ -81,7 +81,7 @@ const styles = theme => ({
 
 const startIndex = Math.floor(Math.random() * quotes.length);
 const selectedQuotes = [];
-for (let i = 0; i < 4; i++) {
+for (let i = 0; i < 3; i++) {
   selectedQuotes.push(quotes[(startIndex + i) % quotes.length]);
 }
 
@@ -101,9 +101,9 @@ function HomeQuotes(props) {
             <Typography variant="body1" align="center" gutterBottom>
               {t('praiseDescr')}
             </Typography>
-            <Grid container spacing={4} className={classes.grid}>
+            <Grid container spacing={2} className={classes.grid}>
               {selectedQuotes.map(quote => (
-                <Grid item xs={12} md={6} key={quote.username}>
+                <Grid item xs={12} md={4} key={quote.username}>
                   <HomeQuote
                     avatar={quote.avatar}
                     name={quote.name}
