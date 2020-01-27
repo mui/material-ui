@@ -270,16 +270,18 @@ prop, this will be detailed in the component's API documentation.
 For example, a Button's root node can be replaced with a React Router's Link, and any additional props that are passed to Button, such as `to`, will be spread to the Link component.
 For a code example concerning Button and react-router-dom checkout [these demos](/guides/composition/#routing-libraries).
 
-To be able to use props of such Material-UI component on their own, props should be used with type arguments. Otherwise `component` prop will not be present in the props of such Material-UI component.
+To be able to use props of such Material-UI component on their own, props should be used with type arguments. Otherwise `component` prop will not be present in the props of the Material-UI component.
 
-Examples below are use `TypographyProps`. BUt the same will work for any component which has props defined with [`OverrideProps`](https://github.com/mui-org/material-ui/blob/f3a74baf0edcbf4eed16d6294046be1224f36e2c/packages/material-ui/src/Typography/Typography.d.ts#L35). 
+Examples below are use `TypographyProps`. But the same will work for any component which has props defined with [`OverrideProps`](https://github.com/mui-org/material-ui/blob/f3a74baf0edcbf4eed16d6294046be1224f36e2c/packages/material-ui/src/Typography/Typography.d.ts#L35). 
+
+Below some `CustomComponent` is defined. And it has the same props as `Typography` component.
 
 ```ts
 function CustomComponent (props: TypographyProps<'a', { component: 'a' }>) { 
   /* ... */
 }
 ```
-Now the `CustomComponent` can be used with a `component` prop which should be set to `'a'`. In addition, the `CustomComponent` will have all props of `<a>` HTML element.
+Now the `CustomComponent` can be used with a `component` prop which should be set to `'a'`. In addition, the `CustomComponent` will have all props of `<a>` HTML element. Other props of the `Typography` component will also be present in porps of the `CustomComponent`.
 
 It is possible to have generic `CustomComponent` which will accept any React component, custom and HTML elements. 
 ```ts
@@ -299,8 +301,7 @@ const ThirdPartyComponent: FC<{prop1: string}> =
 ```
 The `prop1` became required for the `GenericCustomComponent` as the `ThirdPartyComponent` has it as a requirement.
 
-Not every component fully supports any component type you pass in. If you encounter a
-component that rejects its `component` props in TypeScript please open an issue.
+Not every component fully supports any component type you pass in. If you encounter a component that rejects its `component` props in TypeScript please open an issue.
 There is an ongoing effort to fix this by making component props generic.
 
 ## Handling `value` and event handlers
