@@ -32,11 +32,9 @@ describe('<Pagination />', () => {
 
   it('should call onClick when clicked', () => {
     const handleClick = spy();
-
     const { getByText } = render(<Pagination page={1} onClick={handleClick} />);
 
     fireEvent.click(getByText('1'));
-
     expect(handleClick.callCount).to.equal(1);
   });
 });
