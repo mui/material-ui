@@ -15,15 +15,19 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
   },
   avatar: {
-    width: 56,
-    height: 56,
+    width: 48,
+    height: 48,
   },
   twitter: {
     marginLeft: 'auto',
     color: theme.palette.primary.light,
   },
+  name: {
+    fontSize: 16,
+  },
   quote: {
-    flexGrow: 1,
+    paddingBottom: '16px !important',
+    paddingTop: 0,
   },
 }));
 
@@ -32,14 +36,14 @@ function HomeQuote(props) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
+    <Card variant="outlined" className={classes.card}>
       <CardContent>
         <Grid container spacing={3}>
           <Grid item>
             <Avatar src={avatar} alt={name} className={classes.avatar} />
           </Grid>
           <Grid item>
-            <Typography variant="h6" color="textPrimary">
+            <Typography variant="h6" color="textPrimary" className={classes.name}>
               {name}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary">
@@ -52,7 +56,7 @@ function HomeQuote(props) {
         </Grid>
       </CardContent>
       <CardContent className={classes.quote}>
-        <Typography color="textSecondary" variant="body1">
+        <Typography color="textPrimary" variant="body2">
           {quote}
         </Typography>
       </CardContent>

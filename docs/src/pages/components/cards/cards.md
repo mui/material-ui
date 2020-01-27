@@ -19,7 +19,7 @@ Although cards can support multiple actions, UI controls, and an overflow menu, 
 
 ### Outlined Card
 
-Set `variant="outlined` to render an outlined card.
+Set `variant="outlined"` to render an outlined card.
 
 {{"demo": "pages/components/cards/OutlinedCard.js", "bg": true}}
 
