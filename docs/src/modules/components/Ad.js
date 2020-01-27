@@ -60,7 +60,8 @@ const inHouseAds = [
     link:
       'https://themes.material-ui.com/?utm_source=material_ui&utm_medium=referral&utm_campaign=in-house-2',
     img: '/static/in-house/themes-2.jpg',
-    description: '<b>Premium Templates</b><br />Sart your project with the best themes, e.g admin & dashboard.',
+    description:
+      '<b>Premium Templates</b><br />Sart your project with the best themes, e.g admin & dashboard.',
   },
   {
     name: 'themes',
@@ -87,10 +88,11 @@ const inHouseAds = [
   },
   {
     name: 'sketch',
-    link: 'https://themes.material-ui.com/themes/sketch-react/?utm_source=material_ui&utm_medium=referral&utm_campaign=in-house-sketch',
+    link:
+      'https://themes.material-ui.com/themes/sketch-react/?utm_source=material_ui&utm_medium=referral&utm_campaign=in-house-sketch',
     img: '/static/in-house/sketch.png',
     description:
-      '<b>Sketch</b><br />A large UI kit with over 1,500 handcrafted Material-UI\'s symbols 💎.',
+      "<b>Sketch</b><br />A large UI kit with over 1,500 handcrafted Material-UI's symbols 💎.",
   },
 ];
 

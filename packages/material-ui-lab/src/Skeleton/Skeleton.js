@@ -64,7 +64,8 @@ export const styles = theme => ({
     '0%': {
       transform: 'translateX(-100%)',
     },
-    '60%': { // +0.5s of delay between each loop
+    '60%': {
+      // +0.5s of delay between each loop
       transform: 'translateX(100%)',
     },
     '100%': {
