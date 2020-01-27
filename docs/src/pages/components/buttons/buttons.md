@@ -21,8 +21,6 @@ components: Button, IconButton, ButtonBase
 are high-emphasis, distinguished by their use of elevation and fill.
 They contain actions that are primary to your app.
 
-The last example of this demo show how to use an upload button.
-
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
 You can remove the elevation with the `disableElevation` prop.
