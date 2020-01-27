@@ -12,8 +12,16 @@ const req = require.context('docs/src/modules/components', false, /\.md$/);
 const backers = mapTranslations(req, 'md');
 
 const styles = theme => ({
+  '@global': {
+    '.anchor-link-style': {
+      position: 'absolute',
+      top: -9999,
+      left: -9999,
+    }
+  },
   root: {
     minHeight: 600,
+    textAlign: 'center',
   },
   markdownElement: {
     padding: theme.spacing(4, 0),
