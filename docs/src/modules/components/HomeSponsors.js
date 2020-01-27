@@ -17,7 +17,7 @@ const styles = theme => ({
       position: 'absolute',
       top: -9999,
       left: -9999,
-    }
+    },
   },
   root: {
     minHeight: 600,
