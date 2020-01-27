@@ -35,7 +35,7 @@ const quotes = [
     avatar: 'https://pbs.twimg.com/profile_images/1220819548523331584/3T1G8g1q_400x400.jpg',
     name: 'Mohamed EL AYADI',
     username: '@MohamedELAYAD19',
-    tweet: "https://twitter.com/MohamedELAYAD19/status/1208118580430229504",
+    tweet: 'https://twitter.com/MohamedELAYAD19/status/1208118580430229504',
     quote:
       "Such a great library. I have used Material-UI for the last two years as the main react ui library in my projects (in more than 4 companies!) and I find that it's really great! A lot of good work and dedication are put in there. Salute to the team!",
   },
@@ -95,7 +95,7 @@ const useQuoteStyles = makeStyles(theme => ({
     height: '100%',
   },
   cardAction: {
-    height: '100%'
+    height: '100%',
   },
   avatar: {
     width: 48,
