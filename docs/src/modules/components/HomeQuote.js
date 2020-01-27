@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
   twitter: {
     marginLeft: 'auto',
-    color: theme.palette.primary.main,
+    color: theme.palette.primary.light,
   },
   quote: {
     flexGrow: 1,

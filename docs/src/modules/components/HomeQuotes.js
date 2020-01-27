@@ -30,7 +30,7 @@ const quotes = [
     name: 'Mohamed EL AYADI',
     username: '@MohamedELAYAD19',
     quote:
-      'Such a great library. I have used Material-UI for the last two years as the main react ui library in my projects (in more than 4 companies!) and I find that it\'s really great! A lot of good work and dedication are put in there. Salute to the team!',
+      "Such a great library. I have used Material-UI for the last two years as the main react ui library in my projects (in more than 4 companies!) and I find that it's really great! A lot of good work and dedication are put in there. Salute to the team!",
   },
   {
     avatar: 'https://pbs.twimg.com/profile_images/1144184864754851840/WIVBqpWM_400x400.jpg',
@@ -38,6 +38,20 @@ const quotes = [
     username: '@matthiasmargot',
     quote:
       'The DX on Material-UI is absolutely insane and that package has shaped my approach to Component API Design / Composition Design & Style System Design. I think those guys got it idiomatically right, wonderful product.',
+  },
+  {
+    avatar: 'https://pbs.twimg.com/profile_images/849731047625502720/nudIAz2B_400x400.jpg',
+    name: 'Rodrigo Ciprian',
+    username: '@rodrigocipriani',
+    quote:
+      'I always use Material-UI, it is really awesome, and it have a looot of very good and easy to use components.',
+  },
+  {
+    avatar: 'https://pbs.twimg.com/profile_images/1129370929409056769/Zkwjy9_I_400x400.jpg',
+    name: 'Samantha Durrant',
+    username: '@SamDurrant_',
+    quote:
+      'Began coding out the front end of my app today. Used MaterialUI for the first time and love how easy it is to make things look nice. It’s also really cool to see all the hard work building out the backend of my app come to life in the front end!',
   },
 ];
 
@@ -65,6 +79,12 @@ const styles = theme => ({
   },
 });
 
+const startIndex = Math.floor(Math.random() * quotes.length);
+const selectedQuotes = [];
+for (let i = 0; i < 4; i++) {
+  selectedQuotes.push(quotes[(startIndex + i) % quotes.length]);
+}
+
 function HomeQuotes(props) {
   const { classes } = props;
   const t = useSelector(state => state.options.t);
@@ -82,7 +102,7 @@ function HomeQuotes(props) {
               {t('praiseDescr')}
             </Typography>
             <Grid container spacing={4} className={classes.grid}>
-              {quotes.map(quote => (
+              {selectedQuotes.map(quote => (
                 <Grid item xs={12} md={6} key={quote.username}>
                   <HomeQuote
                     avatar={quote.avatar}
