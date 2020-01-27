@@ -71,8 +71,8 @@ The core team is monitoring for Pull Requests. We will review your Pull Request 
 ### How to increase the chance of being accepted?
 
 CI runs a series of checks automatically when a Pull Request is opened. If you're not
-sure if you changes will pass, you can always open a Pull Request and the GitHub UI will display a summary of
-the results. If one of them fails check out the section [Checks and how to fix them](#checksfix).
+sure if your changes will pass, you can always open a Pull Request and the GitHub UI will display a summary of
+the results. If any of them fail, refer to [Checks and how to fix them](#checks-and-how-to-fix-them).
 
 Make sure the following is true:
 
@@ -99,7 +99,7 @@ Because we will only merge a Pull Request for which all tests pass. The followin
 
 If any of the checks fails click on the _Details_
 link and review the logs of the build to find out why it failed. The following
-section gives an overview what each check is responsible for.
+section gives an overview of what each check is responsible for.
 
 ##### ci/codesandbox
 
@@ -166,7 +166,7 @@ on _Details_ to find out more about them.
 
 #### Caveats
 
-##### Accessiblity tree exclusion
+##### Accessibility tree exclusion
 
 Our tests also explicitly document which parts of the queried element are included in
 the accessibility (a11y) tree and which are excluded. This check is fairly expensive which

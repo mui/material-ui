@@ -653,7 +653,9 @@ export default function useAutocomplete(props) {
     }
 
     if (autoSelect && selectedIndexRef.current !== -1) {
-      handleValue(event, filteredOptions[selectedIndexRef.current]);
+      selectNewValue(event, filteredOptions[selectedIndexRef.current]);
+    } else if (autoSelect && freeSolo && inputValue !== '') {
+      selectNewValue(event, inputValue, 'freeSolo');
     } else if (!freeSolo) {
       resetInputValue(event, value);
     }

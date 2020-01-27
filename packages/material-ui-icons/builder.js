@@ -7,7 +7,6 @@ import Mustache from 'mustache';
 import Queue from 'modules/waterfall/Queue';
 import util from 'util';
 import glob from 'glob';
-import mkdirp from 'mkdirp';
 import SVGO from 'svgo';
 
 const globAsync = util.promisify(glob);
@@ -160,7 +159,7 @@ async function worker({ svgPath, options, renameFilter, template }) {
 
   if (!exists2) {
     console.log(`Making dir: ${outputFileDir}`);
-    mkdirp.sync(outputFileDir);
+    fse.mkdirpSync(outputFileDir);
   }
 
   const data = await fse.readFile(svgPath, { encoding: 'utf8' });

@@ -11,7 +11,7 @@ import HomeSponsors from 'docs/src/modules/components/HomeSponsors';
 import HomeUsers from 'docs/src/modules/components/HomeUsers';
 import HomeQuotes from 'docs/src/modules/components/HomeQuotes';
 import HomePro from 'docs/src/modules/components/HomePro';
-import HomeFooter from 'docs/src/modules/components/HomeFooter';
+import AppFooter from 'docs/src/modules/components/AppFooter';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import Link from 'docs/src/modules/components/Link';
 import Head from 'docs/src/modules/components/Head';
@@ -33,9 +33,6 @@ function loadDependencies() {
 const useStyles = makeStyles(theme => ({
   root: {
     flex: '1 0 100%',
-    '& #main-content': {
-      outline: 0,
-    },
   },
   hero: {
     paddingTop: 64,
@@ -169,7 +166,7 @@ export default function HomePage() {
           <HomeQuotes />
           <HomeUsers />
         </main>
-        <HomeFooter />
+        <AppFooter />
       </div>
       <script
         type="application/ld+json"

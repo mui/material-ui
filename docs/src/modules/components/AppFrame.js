@@ -77,6 +77,11 @@ function DeferredAppSearch() {
 }
 
 const styles = theme => ({
+  '@global': {
+    '#main-content': {
+      outline: 0,
+    },
+  },
   root: {
     display: 'flex',
     backgroundColor: theme.palette.background.level1,
@@ -184,8 +189,7 @@ function AppFrame(props) {
   let navIconClassName = '';
   let appBarClassName = classes.appBar;
 
-  if (activePage.title === false) {
-    // home route, don't shift app bar or dock drawer
+  if (!activePage || activePage.disableDrawer === true) {
     disablePermanent = true;
     appBarClassName += ` ${classes.appBarHome}`;
   } else {

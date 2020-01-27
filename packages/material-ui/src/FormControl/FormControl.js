@@ -162,6 +162,7 @@ const FormControl = React.forwardRef(function FormControl(props, ref) {
     error,
     filled,
     focused,
+    fullWidth,
     hiddenLabel,
     margin: (size === 'small' ? 'dense' : undefined) || margin,
     onBlur: () => {
