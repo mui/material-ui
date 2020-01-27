@@ -14,7 +14,6 @@ export default function Color() {
       <Box color="text.primary">text.primary</Box>
       <Box color="text.secondary">text.secondary</Box>
       <Box color="text.disabled">text.disabled</Box>
-      <Box color="text.hint">text.hint</Box>
     </Typography>
   );
 }

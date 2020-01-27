@@ -43,7 +43,7 @@ components: AppBar, Toolbar, Menu
 
 ## 底部应用栏
 
-{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 400}}
 
 ## 固定放置
 
@@ -93,19 +93,19 @@ function App() {
 
 当向下滚动时，应用栏将会隐藏，这样一来会留有更多的空间进行阅读。
 
-{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true}}
 
 ### 变高的应用栏
 
 The app bar elevates on scroll to communicate that the user is not at the top of the page.
 
-{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true}}
 
 ### 回到顶部
 
 在滚动的时候，会出现一个浮动操作按钮，这样以便于返回页面的顶部。
 
-{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true}}
 
 ### `useScrollTrigger([options]) => trigger`
 

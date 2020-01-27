@@ -7,7 +7,7 @@ components: Badge
 
 <p class="description">徽章会在其子项的右上角生成一个小徽章。</p>
 
-## 简单的徽章
+## Basic badges
 
 这个示例是个包含了文本的徽章，同时使用了主色和副色。 徽章会对其子元素生效。
 
@@ -23,30 +23,32 @@ components: Badge
 
 徽章组件的隐显可以通过 `invisible` 属性来设置。
 
-当 badgeContent 为零时，徽章组件将会自动隐藏。 您可以通过 `showZero` 属性来覆盖它。
-
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-## 最大值
+The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
 
-您可以使用 `max` 属性来限制徽章组件内容的取值。
+{{"demo": "pages/components/badges/ShowZeroBadge.js"}}
+
+## Maximum value
+
+You can use the `max` property to cap the value of the badge content.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
-## 圆点徽章组件
+## Dot badge
 
-`dot` 属性会徽章组件渲染成一个小点。 这样的组件可以作为一个提示的工具，来说明有些值已经改变，但是不需要计数。
+The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
 ## 徽章组件的覆盖
 
-您可以使用 `overlap` 这个属性，在封装的元素相对的一角来显示徽章组件。
+You can use the `overlap` property to place the badge relative to the corner of the wrapped element.
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
 ## 徽章组件的校准
 
-您可以使用 `horizontalAlignment` 和 `verticalAlignment` 这两个属性，在封装的组件任意角落显示徽章组件。
+You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}

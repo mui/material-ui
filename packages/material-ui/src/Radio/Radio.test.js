@@ -1,11 +1,14 @@
 import React from 'react';
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import { getClasses, createMount } from '@material-ui/core/test-utils';
 import describeConformance from '@material-ui/core/test-utils/describeConformance';
-import Radio from './Radio';
+import { createClientRender } from 'test/utils/createClientRender';
+import FormControl from '../FormControl';
 import IconButton from '../IconButton';
+import Radio from './Radio';
 
 describe('<Radio />', () => {
+  const render = createClientRender();
   let classes;
   let mount;
 
@@ -14,16 +17,13 @@ describe('<Radio />', () => {
     mount = createMount({ strict: true });
   });
 
-  after(() => {
-    mount.cleanUp();
-  });
-
   describeConformance(<Radio />, () => ({
     classes,
     inheritComponent: IconButton,
     mount,
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp'],
+    after: () => mount.cleanUp(),
   }));
 
   describe('styleSheet', () => {
@@ -45,6 +45,52 @@ describe('<Radio />', () => {
     it('should render a checked icon', () => {
       const wrapper = mount(<Radio checked />);
       assert.strictEqual(wrapper.find('svg[data-mui-test="RadioButtonCheckedIcon"]').length, 1);
+    });
+  });
+
+  describe('with FormControl', () => {
+    describe('enabled', () => {
+      it('should not have the disabled class', () => {
+        const { getByRole } = render(
+          <FormControl>
+            <Radio />
+          </FormControl>,
+        );
+
+        expect(getByRole('radio')).not.to.have.attribute('disabled');
+      });
+
+      it('should be overridden by props', () => {
+        const { getByRole } = render(
+          <FormControl>
+            <Radio disabled />
+          </FormControl>,
+        );
+
+        expect(getByRole('radio')).to.have.attribute('disabled');
+      });
+    });
+
+    describe('disabled', () => {
+      it('should have the disabled class', () => {
+        const { getByRole } = render(
+          <FormControl disabled>
+            <Radio />
+          </FormControl>,
+        );
+
+        expect(getByRole('radio')).to.have.attribute('disabled');
+      });
+
+      it('should be overridden by props', () => {
+        const { getByRole } = render(
+          <FormControl disabled>
+            <Radio disabled={false} />
+          </FormControl>,
+        );
+
+        expect(getByRole('radio')).not.to.have.attribute('disabled');
+      });
     });
   });
 });

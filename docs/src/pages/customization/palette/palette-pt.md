@@ -9,9 +9,9 @@ Uma intenção de cor é um mapeamento de uma paleta para uma determinada inten�
 - primário - usado para representar os elementos de interface primários para um usuário.
 - secundário - usado para representar os elementos de interface secundários para um usuário.
 - erro - usado para representar os elementos de interface dos quais o usuário deve estar ciente.
-- warning - used to represent potentially dangerous actions or important messages.
-- info - used to present information to the user that is neutral and not necessarily important.
-- success - used to indicate the successful completion of an action that user triggered.
+- aviso - usado para representar ações potencialmente perigosas ou mensagens importantes.
+- info - usado para apresentar ao usuário informações neutras e não necessariamente importantes.
+- success - usado para indicar a conclusão bem-sucedida de uma ação que o usuário acionou.
 
 A paleta padrão usa as sombras prefixadas com `A` (`A200`, etc.) para a intenção secundária, e as cores não pré-fixadas para as outras intenções.
 
@@ -74,7 +74,7 @@ const theme = createMuiTheme({
     },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
-    contrastThreshold = 3,
+    contrastThreshold: 3,
     // Used by the functions below to shift a color's luminance by approximately
     // two indexes within its tonal palette.
     // Por exemplo, mude de Red 500 para Red 300 ou Red 700.
@@ -150,4 +150,4 @@ function App() {
 
 ## Valores padrão
 
-Você pode explorar os valores padrão da paleta usando [o explorador de tema](/customization/default-theme/?expand-path=$.palette) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.palette`).
+You can explore the default values of the palette using [the theme explorer](/customization/default-theme/?expand-path=$.palette) or by opening the dev tools console on this page (`window.theme.palette`).

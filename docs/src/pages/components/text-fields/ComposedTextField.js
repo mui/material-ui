@@ -16,14 +16,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ComposedTextField() {
-  const [labelWidth, setLabelWidth] = React.useState(0);
   const [name, setName] = React.useState('Composed TextField');
-  const labelRef = React.useRef(null);
   const classes = useStyles();
-
-  React.useEffect(() => {
-    setLabelWidth(labelRef.current.offsetWidth);
-  }, []);
 
   const handleChange = event => {
     setName(event.target.value);
@@ -61,15 +55,8 @@ export default function ComposedTextField() {
         <FormHelperText id="component-error-text">Error</FormHelperText>
       </FormControl>
       <FormControl variant="outlined">
-        <InputLabel ref={labelRef} htmlFor="component-outlined">
-          Name
-        </InputLabel>
-        <OutlinedInput
-          id="component-outlined"
-          value={name}
-          onChange={handleChange}
-          labelWidth={labelWidth}
-        />
+        <InputLabel htmlFor="component-outlined">Name</InputLabel>
+        <OutlinedInput id="component-outlined" value={name} onChange={handleChange} label="Name" />
       </FormControl>
       <FormControl variant="filled">
         <InputLabel htmlFor="component-filled">Name</InputLabel>

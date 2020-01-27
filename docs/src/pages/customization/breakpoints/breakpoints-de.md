@@ -12,7 +12,7 @@ Jeder Haltepunkt (ein Schlüssel) stimmt mit einer *festen* Bildschirmbreite (ei
 - ** lg, ** groß: 1280px
 - ** xl ** extra groß: 1920px
 
-Diese [ Haltepunktwerte](/customization/default-theme/?expand-path=$.breakpoints.values) werden zur Bestimmung von Haltepunktbereichen verwendet. Ein Bereich beginnt mit dem Haltepunktwert einschließlich bis zum nächsten Haltepunktwert:
+These [breakpoint values](/customization/default-theme/?expand-path=$.breakpoints.values) are used to determine breakpoint ranges. Ein Bereich beginnt mit dem Haltepunktwert einschließlich bis zum nächsten Haltepunktwert:
 
 ```js
 Wert          |0px     600px    960px    1280px   1920px
@@ -21,7 +21,7 @@ Breite        |--------|--------|--------|--------|-------->
 Bereich       |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
-Diese Werte können immer angepasst werden. Sie finden sie im Theme unter dem [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) Schlüssel.
+Diese Werte können immer angepasst werden. You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) object.
 
 Die Haltepunkte werden intern in verschiedenen Komponenten verwendet, um sie ansprechbar zu machen, Sie können sie jedoch auch benutzten, um das Layout Ihrer Anwendung über das [Grid](/components/grid/) zu steuern und für [Hidden](/components/hidden/) Komponenten.
 
@@ -91,7 +91,7 @@ In der folgenden Demo ändern wir das gerenderte DOM-Element (* em*, <u> u</u>, 
 
 #### Rückgabewerte
 
-`media query`: Eine Medienabfragezeichenfolge, die zur Verwendung mit JSS bereit ist.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than and including the screen size given by the breakpoint key.
 
 #### Beispiele
 
@@ -116,7 +116,7 @@ const styles = theme => ({
 
 #### Rückgabewerte
 
-`media query`: Eine Medienabfragezeichenfolge, die für die Verwendung mit JSS bereit ist und der Bildschirmbreiten unter und einschließlich der durch die Haltepunkttaste angegebenen Bildschirmgröße entspricht.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths less than and including the screen size given by the breakpoint key.
 
 #### Beispiele
 
@@ -142,7 +142,7 @@ const styles = theme => ({
 
 #### Rückgabewerte
 
-`media query`: Eine Medienabfragezeichenfolge, die für die Verwendung mit JSS bereit ist und der Bildschirmbreiten über und einschließlich der durch die Haltepunkttaste angegebenen Bildschirmgröße entspricht.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths including the screen size given by the breakpoint key.
 
 #### Beispiele
 
@@ -164,12 +164,12 @@ const styles = theme => ({
 
 #### Argumente
 
-1. `start` (*String*): Eine Haltepunktschlüssel (`xs`, `sm`, etc.).
-2. `end` (*String*): Eine Haltepunktschlüssel (`xs`, `sm`, etc.).
+1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### Rückgabewerte
 
-`media query`: Eine Medienabfragezeichenfolge, die für die Verwendung mit JSS bereit ist und die Bildschirmbreiten größer als die im ersten Argument durch den Haltepunktschlüssel angegebene Bildschirmgröße und weniger als die im zweiten Argument durch den Haltepunktschlüssel angegebene Bildschirmgröße angleicht.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
 
 #### Beispiele
 
@@ -201,7 +201,7 @@ Einige Implementierungsdetails, die interessant sein könnten:
 
 #### Argumente
 
-1. `options` (*Object* [optional]):
+1. `options` (*Object* [optional]): 
   - `options.withTheme ` (*Boolean* [optional]): Standardeinstellung ist `false`. Übergeben Sie das `Theme` Objekt als Eigenschaft an die Komponente.
   - `options.noSSR ` (*Boolean* [optional]): Standardeinstellung ist `false`. Um den serverseitigen Renderingabgleich durchzuführen, muss er zweimal gerendert werden. Ein erstes Mal mit nichts und ein zweites Mal mit den Kind-Elementen. Dieser Zyklus mit zwei Durchgängen ist mit einem Nachteil verbunden. Die Benutzeroberfläche blinkt möglicherweise. Sie können dieses Flag auf ` true` setzen, wenn Sie kein serverseitiges Rendering durchführen.
   - ` options.initialWidth ` (*Breakpoint* [optional]): Da ` window.innerWidth ` auf dem Server nicht verfügbar ist, wird eine leere Komponente während der ersten Mounts standardmäßig gerendert. Vielleicht mögen Sie eine Heuristik verwenden, um annähernd die Bildschirmbreite des Client-Browsers zu bestimmen. Sie könnten beispielsweise den Benutzeragenten oder die Client-Hinweise verwenden. Mit https://caniuse.com/#search=client%20hint, können wir die anfängliche Breite global festlegen, indem Sie die [`benutzerdefinierten Eigenschaften`](/customization/globals/#default-props) zum Theme verwenden. Um die Anfangsbreite festzulegen, müssen wir eine benutzerdefinierte Eigenschaft mit dieser Form übergeben:

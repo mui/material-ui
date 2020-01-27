@@ -12,7 +12,7 @@
 - **lg,** large: 1280px
 - **xl,** extra-large: 1920px
 
-これらの[ブレークポイント値](/customization/default-theme/?expand-path=$.breakpoints.values)は、ブレークポイントの範囲を決定するために使用されます。 範囲は、ブレークポイント値を含む範囲から、次のブレークポイント値を除く範囲までです。
+These [breakpoint values](/customization/default-theme/?expand-path=$.breakpoints.values) are used to determine breakpoint ranges. 範囲は、ブレークポイント値を含む範囲から、次のブレークポイント値を除く範囲までです。
 
 ```js
 value         |0px     600px    960px    1280px   1920px
@@ -21,7 +21,7 @@ screen width  |--------|--------|--------|--------|-------->
 range         |   xs   |   sm   |   md   |   lg   |   xl
 ```
 
-これらの値はいつでもカスタマイズできます。 これらは、テーマの[`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values)オブジェクトにあります。
+これらの値はいつでもカスタマイズできます。 You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) object.
 
 ブレークポイントは、さまざまなコンポーネントで応答性を高めるために内部的に使用されますが、[Grid](/components/grid/)および[Hidden](/components/hidden/)コンポーネントを使用してアプリケーションのレイアウトを制御する場合にも利用できます。
 
@@ -91,7 +91,7 @@ export default withWidth()(MyComponent);
 
 #### 戻り値
 
-`media query`: ：JSSですぐに使用できるメディアクエリ文字列。
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than and including the screen size given by the breakpoint key.
 
 #### 例
 
@@ -116,7 +116,7 @@ const styles = theme => ({
 
 #### 戻り値
 
-`media query`: A media query string ready to be used with JSS, which matches screen widths less than and including the screen size given by the breakpoint key.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths less than and including the screen size given by the breakpoint key.
 
 #### 例
 
@@ -142,7 +142,7 @@ const styles = theme => ({
 
 #### 戻り値
 
-`media query`: A media query string ready to be used with JSS, which matches screen widths greater than and including the screen size given by the breakpoint key.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths including the screen size given by the breakpoint key.
 
 #### 例
 
@@ -164,12 +164,12 @@ const styles = theme => ({
 
 #### 引数
 
-1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.).
-2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.).
+1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### 戻り値
 
-`media query` ：JSSですぐに使用できるメディアクエリ文字列。最初の引数のブレークポイントキーで指定された画面サイズより大きく、2番目の引数のブレークポイントキーで指定された画面サイズより小さい画面幅に一致します。
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
 
 #### 例
 
@@ -201,7 +201,7 @@ type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 #### 引数
 
-1. `オプション` (*オプジェクト* [任意]):
+1. `オプション` (*オプジェクト* [任意]): 
   - `options.withTheme` (*ブール値* [任意]): デフォルト値 `false`. `theme`オブジェクトをプロパティとしてコンポーネントに提供します。
   - `options.noSSR` (*ブール値* [任意]): デフォルト値 `false`. サーバー側のレンダリング調整を実行するには、2回レンダリングする必要があります。 1回目は何もない状態で、2回目は子要素と一緒です。 このダブルパスレンダリングサイクルには欠点があります。 UIが点滅することがあります。 サーバサイドレンダリングを実行しない場合は、このフラグを`true`に設定できます。
   - ` options.initialWidth ` （*Breakpoint* [optional]）： As ` window.innerWidth `サーバーでは使用できません デフォルトでは、最初のマウント時に空のコンポーネントがレンダリングされます。 ヒューリスティックを使用して、次の値を近似できます。 クライアント・ブラウザの画面幅。 たとえば、ユーザーエージェントまたはクライアントヒントを使用できます。 https://caniuse.com/#search=client%20hint、[`テーマにカスタムプロパティを使用して初期幅

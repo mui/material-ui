@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { Alert } from '@material-ui/lab';
+import Alert from '@material-ui/lab/Alert';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import Button from '@material-ui/core/Button';
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function ActionAlerts() {
+export default function TransitionAlerts() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
@@ -42,6 +42,7 @@ export default function ActionAlerts() {
         </Alert>
       </Collapse>
       <Button
+        disabled={open}
         variant="outlined"
         onClick={() => {
           setOpen(true);

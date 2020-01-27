@@ -43,7 +43,7 @@ Un App Bar prominente.
 
 ## App bar en pie de página
 
-{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 400}}
 
 ## Posición Fija
 
@@ -93,19 +93,19 @@ Puede usar el `useScrollTrigger ()` para responder a las acciones de desplazamie
 
 La barra de aplicaciones se oculta al desplazarse hacia abajo para dejar más espacio para leer.
 
-{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true}}
 
 ### Elevar App Bar
 
 La barra de la aplicación se eleva al desplazarse para comunicar que el usuario no está en la parte superior de la página.
 
-{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true}}
 
 ### Ir arriba
 
 Aparece un botón de acción flotante al desplazarse para que sea fácil volver a la parte superior de la página.
 
-{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true}}
 
 ### `useScrollTrigger([options]) => trigger`
 

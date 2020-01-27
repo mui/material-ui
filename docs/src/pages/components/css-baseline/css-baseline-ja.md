@@ -29,7 +29,7 @@ export default function MyApp() {
 `<html>` および `<body>` 要素は、ページ全体のデフォルトが改善されるように更新されています。 具体的には:
 
 - すべてのブラウザの余白が削除されています。
-- デフォルトのマテリアルデザインの背景色が適用されます。 標準のデバイスや、白背景に印刷されたデバイスの為に[`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) が使われています。
+- デフォルトのマテリアルデザインの背景色が適用されます。 It's using [`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) for standard devices and a white background for print devices.
 
 ### レイアウト
 

@@ -7,7 +7,7 @@ components: Badge
 
 <p class="description">Emblema gera um pequeno emblema para o canto superior direito do seu filho(s).</p>
 
-## Badges simples
+## Basic badges
 
 Exemples de badges contenant du texte, utilisant les couleurs primaires et secondaires. Le badge est appliqué aux enfants.
 
@@ -23,19 +23,21 @@ Voici un exemple de personnalisation du composant. You can learn more about this
 
 La visibilité des badges peut être contrôlée à l'aide de la propriété `invisible`.
 
-Le badge se cache automatiquement quand badgeContent est nul. Vous pouvez la remplacer avec la propriété `showZero`.
-
 {{"demo": "pages/components/badges/BadgeVisibility.js"}}
 
-## Valeur maximale
+The badge auto hides with badgeContent is zero. You can override this with the `showZero` property.
 
-Vous pouvez utiliser la propriété `max` pour limiter la valeur du contenu du badge.
+{{"demo": "pages/components/badges/ShowZeroBadge.js"}}
+
+## Maximum value
+
+You can use the `max` property to cap the value of the badge content.
 
 {{"demo": "pages/components/badges/BadgeMax.js"}}
 
-## Badge à points
+## Dot badge
 
-La propriété `dot` change un badge en petit point. Il peut être utilisé comme une notification indiquant que quelque chose a changé sans donner un nombre.
+The `dot` property changes a badge into a small dot. This can be used as a notification that something has changed without giving a count.
 
 {{"demo": "pages/components/badges/DotBadge.js"}}
 
@@ -47,6 +49,6 @@ You can use the `overlap` property to place the badge relative to the corner of 
 
 ## Badge alignment
 
-You can use the `horizontalAlignment` and `verticalAlignment` properties to move the badge to any corner of the wrapped element.
+You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideHeader": true}}

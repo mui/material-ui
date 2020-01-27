@@ -1,10 +1,10 @@
 import { Breakpoints } from './createBreakpoints';
 import { Spacing } from './createSpacing';
-import { CSSProperties } from './withStyles';
+import * as React from 'react';
 
 export interface Mixins {
-  gutters: (styles?: CSSProperties) => CSSProperties;
-  toolbar: CSSProperties;
+  gutters: (styles?: React.CSSProperties) => React.CSSProperties;
+  toolbar: React.CSSProperties;
   // ... use interface declaration merging to add custom mixins
 }
 

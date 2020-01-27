@@ -32,10 +32,19 @@ export const styles = theme => ({
     margin: 2,
     maxWidth: 'calc(100% - 4px)',
   },
+  /* Styles applied when the popup icon is rendered. */
+  hasPopupIcon: {},
+  /* Styles applied when the clear icon is rendered. */
+  hasClearIcon: {},
   /* Styles applied to the Input element. */
   inputRoot: {
     flexWrap: 'wrap',
-    paddingRight: 62,
+    '$hasPopupIcon &, $hasClearIcon &': {
+      paddingRight: 26 + 4,
+    },
+    '$hasPopupIcon$hasClearIcon &': {
+      paddingRight: 52 + 4,
+    },
     '& $input': {
       width: 0,
       minWidth: 30,
@@ -59,7 +68,12 @@ export const styles = theme => ({
     },
     '&[class*="MuiOutlinedInput-root"]': {
       padding: 9,
-      paddingRight: 62,
+      '$hasPopupIcon &, $hasClearIcon &': {
+        paddingRight: 26 + 4 + 9,
+      },
+      '$hasPopupIcon$hasClearIcon &': {
+        paddingRight: 52 + 4 + 9,
+      },
       '& $input': {
         padding: '9.5px 4px',
       },
@@ -67,12 +81,11 @@ export const styles = theme => ({
         paddingLeft: 6,
       },
       '& $endAdornment': {
-        right: 7,
+        right: 9,
       },
     },
     '&[class*="MuiOutlinedInput-root"][class*="MuiOutlinedInput-marginDense"]': {
       padding: 6,
-      paddingRight: 62,
       '& $input': {
         padding: '4.5px 4px',
       },
@@ -80,11 +93,17 @@ export const styles = theme => ({
     '&[class*="MuiFilledInput-root"]': {
       paddingTop: 19,
       paddingLeft: 8,
+      '$hasPopupIcon &, $hasClearIcon &': {
+        paddingRight: 26 + 4 + 9,
+      },
+      '$hasPopupIcon$hasClearIcon &': {
+        paddingRight: 52 + 4 + 9,
+      },
       '& $input': {
         padding: '9px 4px',
       },
       '& $endAdornment': {
-        right: 7,
+        right: 9,
       },
     },
     '&[class*="MuiFilledInput-root"][class*="MuiFilledInput-marginDense"]': {
@@ -266,6 +285,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     renderInput,
     renderOption: renderOptionProp,
     renderTags,
+    selectOnFocus = !props.freeSolo,
     size = 'medium',
     value: valueProp,
     ...other
@@ -293,7 +313,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     setAnchorEl,
     inputValue,
     groupedOptions,
-  } = useAutocomplete(props);
+  } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
 
   let startAdornment;
 
@@ -345,6 +365,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     );
   };
 
+  const hasClearIcon = !disableClearable && !disabled;
+  const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
+
   return (
     <React.Fragment>
       <div
@@ -353,6 +376,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
           classes.root,
           {
             [classes.focused]: focused,
+            [classes.hasClearIcon]: hasClearIcon,
+            [classes.hasPopupIcon]: hasPopupIcon,
           },
           className,
         )}
@@ -369,7 +394,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
             startAdornment,
             endAdornment: (
               <div className={classes.endAdornment}>
-                {disableClearable || disabled ? null : (
+                {hasClearIcon ? (
                   <IconButton
                     {...getClearProps()}
                     aria-label={clearText}
@@ -380,9 +405,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
                   >
                     {closeIcon}
                   </IconButton>
-                )}
+                ) : null}
 
-                {(!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false ? (
+                {hasPopupIcon ? (
                   <IconButton
                     {...getPopupIndicatorProps()}
                     disabled={disabled}
@@ -524,7 +549,7 @@ Autocomplete.propTypes = {
   /**
    * The default input value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.any,
+  defaultValue: PropTypes.oneOfType([PropTypes.any, PropTypes.array]),
   /**
    * If `true`, the input can't be cleared.
    */
@@ -553,9 +578,9 @@ Autocomplete.propTypes = {
   /**
    * A filter function that determines the options that are eligible.
    *
-   * @param {any[]} options The options to render.
+   * @param {T[]} options The options to render.
    * @param {object} state The state of the component.
-   * @returns {any[]}
+   * @returns {T[]}
    */
   filterOptions: PropTypes.func,
   /**
@@ -588,7 +613,7 @@ Autocomplete.propTypes = {
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
    *
-   * @param {any} options The option to group.
+   * @param {T} options The option to group.
    * @returns {string}
    */
   groupBy: PropTypes.func,
@@ -637,7 +662,7 @@ Autocomplete.propTypes = {
    * Callback fired when the value changes.
    *
    * @param {object} event The event source of the callback.
-   * @param {any} value
+   * @param {T} value
    */
   onChange: PropTypes.func,
   /**
@@ -705,7 +730,7 @@ Autocomplete.propTypes = {
   /**
    * Render the option, use `getOptionLabel` by default.
    *
-   * @param {any} option The option to render.
+   * @param {T} option The option to render.
    * @param {object} state The state of the component.
    * @returns {ReactNode}
    */
@@ -713,11 +738,15 @@ Autocomplete.propTypes = {
   /**
    * Render the selected value.
    *
-   * @param {any} value The `value` provided to the component.
+   * @param {T[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
    * @returns {ReactNode}
    */
   renderTags: PropTypes.func,
+  /**
+   * If `true`, the input's text will be selected on focus.
+   */
+  selectOnFocus: PropTypes.bool,
   /**
    * The size of the autocomplete.
    */
@@ -728,7 +757,7 @@ Autocomplete.propTypes = {
    * The value must have reference equality with the option in order to be selected.
    * You can customize the equality behavior with the `getOptionSelected` prop.
    */
-  value: PropTypes.any,
+  value: PropTypes.oneOfType([PropTypes.any, PropTypes.array]),
 };
 
 export default withStyles(styles, { name: 'MuiAutocomplete' })(Autocomplete);

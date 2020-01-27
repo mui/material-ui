@@ -82,13 +82,16 @@ describe('<Rating />', () => {
 
   it('should select the rating', () => {
     const handleChange = spy();
-    const { getByLabelText } = render(<Rating {...defaultProps} onChange={handleChange} />);
+    const { container, getByLabelText } = render(
+      <Rating {...defaultProps} onChange={handleChange} />,
+    );
 
-    const input = getByLabelText('3 Stars');
-    fireEvent.click(input);
+    fireEvent.click(getByLabelText('3 Stars'));
 
     expect(handleChange.callCount).to.equal(1);
     expect(handleChange.args[0][1]).to.deep.equal(3);
+    const checked = container.querySelector('input[name="rating-test"]:checked');
+    expect(checked.value).to.equal('2');
   });
 
   it('should select the empty input if value is null', () => {
@@ -97,5 +100,18 @@ describe('<Rating />', () => {
     const checked = container.querySelector('input[name="rating-test"]:checked');
     expect(input).to.equal(checked);
     expect(input.value).to.equal('');
+  });
+
+  it('should support a defaultValue', () => {
+    const { container, getByLabelText } = render(
+      <Rating {...defaultProps} value={undefined} defaultValue={3} />,
+    );
+    let checked;
+    checked = container.querySelector('input[name="rating-test"]:checked');
+    expect(checked.value).to.equal('3');
+
+    fireEvent.click(getByLabelText('2 Stars'));
+    checked = container.querySelector('input[name="rating-test"]:checked');
+    expect(checked.value).to.equal('2');
   });
 });

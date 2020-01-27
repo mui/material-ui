@@ -44,6 +44,7 @@ export const styles = theme => ({
 
 const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
   const {
+    children,
     classes,
     className,
     component: Component = 'p',
@@ -81,13 +82,22 @@ const FormHelperText = React.forwardRef(function FormHelperText(props, ref) {
       )}
       ref={ref}
       {...other}
-    />
+    >
+      {children === ' ' ? (
+        // eslint-disable-next-line react/no-danger
+        <span dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+      ) : (
+        children
+      )}
+    </Component>
   );
 });
 
 FormHelperText.propTypes = {
   /**
    * The content of the component.
+   *
+   * If `' '` is provided, the component reserves one line height for displaying a future message.
    */
   children: PropTypes.node,
   /**

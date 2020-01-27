@@ -1,7 +1,7 @@
 /* eslint-disable no-constant-condition */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { setRef, useEventCallback } from '@material-ui/core/utils';
+import { setRef, useEventCallback, useControlled } from '@material-ui/core/utils';
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
 // Give up on IE 11 support for this feature
@@ -107,7 +107,9 @@ export default function useAutocomplete(props) {
     onInputChange,
     open: openProp,
     options = [],
+    selectOnFocus = !props.freeSolo,
     value: valueProp,
+    componentName = 'useAutocomplete',
   } = props;
 
   const [defaultId, setDefaultId] = React.useState();
@@ -180,36 +182,20 @@ export default function useAutocomplete(props) {
       const elementBottom = element.offsetTop + element.offsetHeight;
       if (elementBottom > scrollBottom) {
         listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
-      } else if (element.offsetTop < listboxNode.scrollTop) {
-        listboxNode.scrollTop = element.offsetTop;
+      } else if (
+        element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0) <
+        listboxNode.scrollTop
+      ) {
+        listboxNode.scrollTop = element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0);
       }
     }
   }
 
-  const { current: isControlled } = React.useRef(valueProp !== undefined);
-  const [valueState, setValue] = React.useState(() => {
-    return !isControlled ? defaultValue || (multiple ? [] : null) : null;
+  const [value, setValue] = useControlled({
+    controlled: valueProp,
+    default: defaultValue || (multiple ? [] : null),
+    name: componentName,
   });
-  const value = isControlled ? valueProp : valueState;
-
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (isControlled !== (valueProp !== undefined)) {
-        console.error(
-          [
-            `Material-UI: A component is changing ${
-              isControlled ? 'a ' : 'an un'
-            }controlled useAutocomplete to be ${isControlled ? 'un' : ''}controlled.`,
-            'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled useAutocomplete ' +
-              'element for the lifetime of the component.',
-            'More info: https://fb.me/react-controlled-components',
-          ].join('\n'),
-        );
-      }
-    }, [valueProp, isControlled]);
-  }
 
   const { current: isInputValueControlled } = React.useRef(inputValueProp != null);
   const [inputValueState, setInputValue] = React.useState('');
@@ -234,7 +220,7 @@ export default function useAutocomplete(props) {
               `The component expect a string but received ${typeof optionLabel}.`,
               `For the input option: ${JSON.stringify(
                 newValue,
-              )}, \`getOptionLabel\` returns: ${newInputValue}.`,
+              )}, \`getOptionLabel\` returns: ${optionLabel}.`,
             ].join('\n'),
           );
         }
@@ -444,12 +430,11 @@ export default function useAutocomplete(props) {
     if (onChange) {
       onChange(event, newValue);
     }
-    if (!isControlled) {
-      setValue(newValue);
-    }
+
+    setValue(newValue);
   };
 
-  const selectNewValue = (event, newValue) => {
+  const selectNewValue = (event, newValue, origin = 'option') => {
     if (multiple) {
       const item = newValue;
       newValue = Array.isArray(value) ? [...value] : [];
@@ -458,7 +443,7 @@ export default function useAutocomplete(props) {
 
       if (itemIndex === -1) {
         newValue.push(item);
-      } else {
+      } else if (origin !== 'freeSolo') {
         newValue.splice(itemIndex, 1);
       }
     }
@@ -616,7 +601,7 @@ export default function useAutocomplete(props) {
             // Allow people to add new values before they submit the form.
             event.preventDefault();
           }
-          selectNewValue(event, inputValue);
+          selectNewValue(event, inputValue, 'freeSolo');
         }
         break;
       case 'Escape':
@@ -753,7 +738,7 @@ export default function useAutocomplete(props) {
 
   // Prevent input blur when interacting with the combobox
   const handleMouseDown = event => {
-    if (event.target.nodeName !== 'INPUT') {
+    if (event.target.getAttribute('id') !== id) {
       event.preventDefault();
     }
   };
@@ -765,7 +750,10 @@ export default function useAutocomplete(props) {
       inputRef.current.selectionEnd - inputRef.current.selectionStart === 0
     ) {
       inputRef.current.focus();
-      inputRef.current.select();
+
+      if (selectOnFocus) {
+        inputRef.current.select();
+      }
     }
 
     firstFocus.current = false;
@@ -782,21 +770,33 @@ export default function useAutocomplete(props) {
 
   let groupedOptions = filteredOptions;
   if (groupBy) {
-    groupedOptions = filteredOptions.reduce((acc, option, index) => {
+    const result = [];
+
+    // used to keep track of key and indexes in the result array
+    const indexByKey = new Map();
+    let currentResultIndex = 0;
+
+    filteredOptions.forEach(option => {
       const key = groupBy(option);
-
-      if (acc.length > 0 && acc[acc.length - 1].key === key) {
-        acc[acc.length - 1].options.push(option);
-      } else {
-        acc.push({
+      if (indexByKey.get(key) === undefined) {
+        indexByKey.set(key, currentResultIndex);
+        result.push({
           key,
-          index,
-          options: [option],
+          options: [],
         });
+        currentResultIndex += 1;
       }
+      result[indexByKey.get(key)].options.push(option);
+    });
 
-      return acc;
-    }, []);
+    // now we can add the `index` property based on the options length
+    let indexCounter = 0;
+    result.forEach(option => {
+      option.index = indexCounter;
+      indexCounter += option.options.length;
+    });
+
+    groupedOptions = result;
   }
 
   return {
@@ -919,6 +919,10 @@ useAutocomplete.propTypes = {
    */
   clearOnEscape: PropTypes.bool,
   /**
+   * The component name that is using this hook. Used for warnings.
+   */
+  componentName: PropTypes.string,
+  /**
    * If `true`, the popup will ignore the blur event if the input if filled.
    * You can inspect the popup markup with your browser tools.
    * Consider this option when you need to customize the component.
@@ -1007,9 +1011,9 @@ useAutocomplete.propTypes = {
   /**
    * Callback fired when the text input value changes.
    *
-   * @param {object} event The event source of the callback
-   * @param {string} value The new value of the text input
-   * @param {string} reason One of "input" (user input) or "reset" (programmatic change)
+   * @param {object} event The event source of the callback.
+   * @param {string} value The new value of the text input.
+   * @param {string} reason One of "input" (user input) or "reset" (programmatic change).
    */
   onInputChange: PropTypes.func,
   /**

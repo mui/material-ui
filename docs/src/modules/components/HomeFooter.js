@@ -59,7 +59,7 @@ function HomeFooter(props) {
           <Grid container>
             <Grid item xs={12} sm={3}>
               <div className={classes.logo}>
-                <img src="/static/images/material-ui-logo.svg" alt="" />
+                <img src="/static/logo_raw.svg" alt="" />
                 <Link variant="body1" color="inherit" href="/">
                   Material-UI
                 </Link>

@@ -45,9 +45,9 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name required">open&nbsp;*</span> | <span class="prop-type">bool</span> |  | If `true`, the popover is visible. |
 | <span class="prop-name">PaperProps</span> | <span class="prop-type">{ component?: element type }</span> | <span class="prop-default">{}</span> | Props applied to the [`Paper`](/api/paper/) element. |
 | <span class="prop-name">transformOrigin</span> | <span class="prop-type">{ horizontal: number<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'right', vertical: number<br>&#124;&nbsp;'top'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'bottom' }</span> | <span class="prop-default">{  vertical: 'top',  horizontal: 'left',}</span> | This is the point on the popover which will attach to the anchor's origin.<br>Options: vertical: [top, center, bottom, x(px)]; horizontal: [left, center, right, x(px)]. |
-| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Grow</span> | The component used for the transition. |
+| <span class="prop-name">TransitionComponent</span> | <span class="prop-type">elementType</span> | <span class="prop-default">Grow</span> | The component used for the transition. [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component. |
 | <span class="prop-name">transitionDuration</span> | <span class="prop-type">number<br>&#124;&nbsp;{ enter?: number, exit?: number }<br>&#124;&nbsp;'auto'</span> | <span class="prop-default">'auto'</span> | Set to 'auto' to automatically calculate transition time based on height. |
-| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the `Transition` element. |
+| <span class="prop-name">TransitionProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element. |
 
 The `ref` is forwarded to the root element.
 

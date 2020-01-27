@@ -39,6 +39,14 @@ describe('<Autocomplete />', () => {
       document.activeElement.blur();
       expect(input.value).to.equal('');
     });
+
+    it('should apply the icon classes', () => {
+      const { container } = render(
+        <Autocomplete renderInput={params => <TextField {...params} />} />,
+      );
+      expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasClearIcon);
+      expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
+    });
   });
 
   describe('multiple', () => {
@@ -547,6 +555,33 @@ describe('<Autocomplete />', () => {
         );
         expect(queryByTitle('Clear')).to.be.null;
       });
+
+      it('should not apply the hasClearIcon class', () => {
+        const { container } = render(
+          <Autocomplete
+            disabled
+            options={['one', 'two', 'three']}
+            renderInput={params => <TextField {...params} />}
+          />,
+        );
+        expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.hasClearIcon);
+        expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
+      });
+    });
+
+    describe('prop: disableClearable', () => {
+      it('should not render the clear button', () => {
+        const { queryByTitle, container } = render(
+          <Autocomplete
+            disableClearable
+            options={['one', 'two', 'three']}
+            renderInput={params => <TextField {...params} />}
+          />,
+        );
+        expect(queryByTitle('Clear')).to.be.null;
+        expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
+        expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.hasClearIcon);
+      });
     });
   });
 
@@ -814,6 +849,27 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
       expect(handleChange.callCount).to.equal(1);
     });
+
+    it('should not delete exiting tag when try to add it twice', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      const { container } = render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          onChange={handleChange}
+          freeSolo
+          renderInput={params => <TextField {...params} autoFocus />}
+          multiple
+        />,
+      );
+      fireEvent.change(document.activeElement, { target: { value: 'three' } });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(container.querySelectorAll('[class*="MuiChip-root"]')).to.have.length(3);
+      fireEvent.change(document.activeElement, { target: { value: 'three' } });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter' });
+      expect(container.querySelectorAll('[class*="MuiChip-root"]')).to.have.length(3);
+    });
   });
 
   describe('prop: onInputChange', () => {
@@ -953,6 +1009,33 @@ describe('<Autocomplete />', () => {
 
       const options = getAllByRole('option');
       expect(options).to.have.length(3);
+    });
+  });
+
+  describe('prop: groupBy', () => {
+    it('correctly groups options and preserves option order in each group', () => {
+      const data = [
+        { group: 1, value: 'A' },
+        { group: 2, value: 'D' },
+        { group: 2, value: 'E' },
+        { group: 1, value: 'B' },
+        { group: 3, value: 'G' },
+        { group: 2, value: 'F' },
+        { group: 1, value: 'C' },
+      ];
+      const { getAllByRole } = render(
+        <Autocomplete
+          options={data}
+          getOptionLabel={option => option.value}
+          renderInput={params => <TextField {...params} autoFocus />}
+          open
+          groupBy={option => option.group}
+        />,
+      );
+
+      const options = getAllByRole('option').map(el => el.textContent);
+      expect(options).to.have.length(7);
+      expect(options).to.deep.equal(['A', 'B', 'C', 'D', 'E', 'F', 'G']);
     });
   });
 });

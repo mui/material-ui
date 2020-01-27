@@ -24,7 +24,7 @@
 <Box fontWeight="fontWeightBold">…
 ```
 
-## 字体大小
+## 字体大小 
 
 {{"demo": "pages/system/typography/FontSize.js", "defaultCodeOpen": false}}
 

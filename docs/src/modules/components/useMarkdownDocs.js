@@ -143,7 +143,7 @@ ${headers.components
               key={content}
               demo={demos[name]}
               demoOptions={demoOptions}
-              githubLocation={`${SOURCE_CODE_ROOT_URL}/${name}`}
+              githubLocation={`${SOURCE_CODE_ROOT_URL}/docs/src/${name}`}
             />
           );
         }

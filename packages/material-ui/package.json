@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/core",
-  "version": "4.8.3",
+  "version": "4.9.0",
   "private": false,
   "author": "Material-UI Team",
   "description": "React components that implement Google's Material Design.",
@@ -48,9 +48,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/styles": "^4.8.2",
+    "@material-ui/styles": "^4.9.0",
     "@material-ui/system": "^4.7.1",
-    "@material-ui/types": "^4.1.1",
+    "@material-ui/types": "^5.0.0",
     "@material-ui/utils": "^4.7.1",
     "@types/react-transition-group": "^4.2.0",
     "clsx": "^1.0.2",

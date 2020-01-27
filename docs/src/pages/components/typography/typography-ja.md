@@ -42,7 +42,7 @@ import 'typeface-roboto';
 
 ## テーマ
 
-状況によっては、 `Typography` コンポーネントを使用できない場合があります。 このテーマのe [`typography`](/customization/default-theme/?expand-path=$.typography)キーを活用できることを願っています。
+状況によっては、 `Typography` コンポーネントを使用できない場合があります。 Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expand-path=$.typography) keys of the theme.
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 

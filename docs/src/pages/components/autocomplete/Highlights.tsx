@@ -11,7 +11,7 @@ export default function Highlights() {
       id="highlights-demo"
       style={{ width: 300 }}
       options={top100Films}
-      getOptionLabel={(option: FilmOptionType) => option.title}
+      getOptionLabel={option => option.title}
       renderInput={params => (
         <TextField {...params} label="Highlights" variant="outlined" fullWidth margin="normal" />
       )}
@@ -31,11 +31,6 @@ export default function Highlights() {
       }}
     />
   );
-}
-
-interface FilmOptionType {
-  title: string;
-  year: number;
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top

@@ -32,6 +32,31 @@ export const azAZ = {
   },
 };
 
+export const bgBG = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Предишна страница',
+      labelRowsPerPage: 'Редове на страница:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} от ${count}`,
+      nextIconButtonText: 'Следваща страница',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Звезд${value !== 1 ? 'и' : 'а'}`,
+      emptyLabelText: 'Изчисти',
+    },
+    MuiAutocomplete: {
+      clearText: 'Изчисти',
+      closeText: 'Затвори',
+      loadingText: 'Зареждане…',
+      noOptionsText: 'Няма налични опции',
+      openText: 'Отвори',
+    },
+    MuiAlert: {
+      closeText: 'Затвори',
+    },
+  },
+};
+
 export const csCZ = {
   props: {
     MuiTablePagination: {
@@ -228,8 +253,8 @@ export const itIT = {
       nextIconButtonText: 'Pagina successiva',
     },
     MuiRating: {
-      getLabelText: value => `${value} Stell${value !== 1 ? 'a' : 'e'}`,
-      emptyLabelText: 'Empty',
+      getLabelText: value => `${value} Stell${value !== 1 ? 'e' : 'a'}`,
+      emptyLabelText: 'Vuoto',
     },
     MuiAutocomplete: {
       clearText: 'Svuota',

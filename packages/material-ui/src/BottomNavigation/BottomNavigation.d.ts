@@ -15,8 +15,8 @@ export interface BottomNavigationProps
   /**
    * Callback fired when the value changes.
    *
-   * @param {object} event The event source of the callback
-   * @param {any} value We default to the index of the child
+   * @param {object} event The event source of the callback.
+   * @param {any} value We default to the index of the child.
    */
   onChange?(event: React.ChangeEvent<{}>, value: any): void;
   /**

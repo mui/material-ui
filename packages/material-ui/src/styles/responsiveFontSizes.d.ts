@@ -1,12 +1,12 @@
 import { Theme } from './createMuiTheme';
 import { Breakpoint } from './createBreakpoints';
-import { ThemeStyle } from './createTypography';
+import { Variant } from './createTypography';
 
 export interface ResponsiveFontSizesOptions {
   breakpoints?: Breakpoint[];
   disableAlign?: boolean;
   factor?: number;
-  variants?: ThemeStyle[];
+  variants?: Variant[];
 }
 
 export default function responsiveFontSizes(

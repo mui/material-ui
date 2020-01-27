@@ -4,9 +4,9 @@
 
 Material-UI 旨在为构建动态 UI 提供坚实的基础。 为了项目结构更清晰简单，**我们将 Material-UI 组件中使用的样式解决方案**作为` @material-ui/styles `包单独发布。 @material-ui/styles并不是唯一的选择，Material-UI也可以与其他主流样式解决方案[互动](/guides/interoperability/)。
 
-## Why use Material-UI's styling solution?
+## 为什么要使用 Material-UI 的样式解决方案？
 
-在以前的版本中，Material-UI 曾使用过 LESS，以及而后的自定义内嵌式来编写组件的样式。但是这些方法已被证明了其局限性。 [A *CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style) overcomes many of those limitations, and **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
+在以前的版本中，Material-UI 曾使用过 LESS，以及而后的自定义内嵌式来编写组件的样式。但是这些方法已被证明了其局限性。 [*CSS-in-JS* solution](https://github.com/oliviertassinari/a-journey-toward-better-style) 克服了很多限制，并 **开启了很多强大的功能**（主题嵌套、动态样式、自举等等）。
 
 Material-UI的样式解决方案受到许多其他CSS-in-JS库的启发，例如 [styled-components](https://www.styled-components.com/) 和 [emotion](https://emotion.sh/)。
 
@@ -14,11 +14,11 @@ Material-UI的样式解决方案受到许多其他CSS-in-JS库的启发，例如
 - 🚀[超 ](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-benchmark/README.md#material-uistyles)快 。
 - 🧩可通过[插件](https://github.com/cssinjs/jss/blob/master/docs/plugins.md)API 扩展。
 - ⚡️它使用[ JSS ](https://github.com/cssinjs/jss)作为其核心 -- 一个 [高性能](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript到CSS编译器，它在运行时和服务器端工作。
-- 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles); and no bundle size increase if used alongside Material-UI.
+- 📦 小于 [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles)，且如果与 Material-UI 一起使用，包的大小不会增加。
 
 ## 安装
 
-> `@material-ui/styles` is re-exported as `@material-ui/core/styles` - you only need to install it if you wish to use it independently from Material-UI.
+> `@material-ui/styles` 被重新导出为 `@material-ui/core/styles` - 如果你想要独立于 Material-UI 使用它，只需要安装它。
 
 将 Material-UI 下载并保存到你的 `package.json` 依赖文件里，请运行:
 
@@ -32,7 +32,7 @@ yarn add @material-ui/styles
 
 ## 入门
 
-There are 3 possible APIs you can use to generate and apply styles, however they all share the same underlying logic.
+您可以使用 3 种可能的 API 来生成和应用样式，但是它们都共享相同的底层逻辑。
 
 ### Hook API
 
@@ -61,9 +61,9 @@ export default function Hook() {
 
 {{"demo": "pages/styles/basics/Hook.js"}}
 
-### Styled components API
+### 样式化组件 API
 
-Note: this only applies to the calling syntax – style definitions still use a JSS object. You can also [change this behavior](/styles/advanced/#string-templates), with some limitations.
+注意：这只适用于仍然使用JSS对象的调用语法样式定义（calling syntax – style definitions）。 你还可以带有一些局限性地[改变这种行为](/styles/advanced/#string-templates)。
 
 ```jsx
 import React from 'react';
@@ -121,7 +121,7 @@ export default withStyles(styles)(HigherOrderComponent);
 
 {{"demo": "pages/styles/basics/HigherOrderComponent.js"}}
 
-## Nesting selectors
+## 嵌套选择器
 
 您可以将选择器嵌套到当前类或组件内的目标元素。 以下示例使用Hook API，其他API的工作方式相同。
 
@@ -183,7 +183,7 @@ function MyComponent() {
 
 ### 压力测试
 
-在以下压力测试中，您可以更新*主题颜色*和*背景颜色属性*：
+在以下压力测试中，您可以实时更新*主题颜色*和*背景颜色属性*：
 
 ```js
 const useStyles = makeStyles(theme => ({
@@ -196,13 +196,13 @@ const useStyles = makeStyles(theme => ({
 
 {{"demo": "pages/styles/basics/StressTest.js"}}
 
-## @ material-ui / core / styles 对比 @ material-ui / styles
+## @material-ui/core/styles 对比 @material-ui/styles
 
-Material-UI's styles are powered by the [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) package, (built with JSS). This solution is [isolated](https://bundlephobia.com/result?p=@material-ui/styles). It doesn't have a default theme, and can be used to style React applications that are not using Material-UI components.
+Material-UI 的样式是由 [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) 包驱动的。（由 JSS 构建） 这个解决方案是[独立](https://bundlephobia.com/result?p=@material-ui/styles)的。 它没有一个默认的主题，可以用于对不使用 Material-UI 组件的 React 应用程序设置样式。
 
-To reduce the number of packages to install when using Material-UI, and to simplify the imports, `@material-ui/styles` modules are re-exported from `@material-ui/core/styles`.
+为了减少在使用 Material-UI 时要安装的包的数量和简化导入，`@material-ui/styles` 模块从 `@material-ui/core/styles` 中被重新导出。
 
-To remove the need to systematically supply a theme, the default Material-UI theme is applied to the re-exported `makeStyles`, `styled`, `withTheme`, `useTheme`, and `withStyles` modules.
+为了无需系统地提供一个主题，默认的 Material-UI 主题被应用到重新导出的 `makeStyles`，`styled`，`withTheme`，`useTheme`，和 `withStyles` 模块。
 
 就像这样：
 

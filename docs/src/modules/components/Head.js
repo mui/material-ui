@@ -13,14 +13,11 @@ export default function Head(props) {
   return (
     <NextHead>
       {/* Use minimum-scale=1 to enable GPU rasterization. */}
-      <meta
-        name="viewport"
-        content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-      />
+      <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       <title>{title}</title>
       <meta name="description" content={description} />
       {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@MaterialUI" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />

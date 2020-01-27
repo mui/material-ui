@@ -28,6 +28,7 @@ const theme = createMuiTheme({
 | Locale | BCP 47 language tag | Import name
 |:-------|:---------|:---------|
 | Azerbaijani | az-AZ | `azAZ` |
+| Bulgarian | bg-BG | `bgBG` |
 | Chinese (Simplified) | zh-CN | `zhCN` |
 | Czech | cs-CZ | `csCZ` |
 | Dutch | nl-NL | `nlNL` |

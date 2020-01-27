@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://material-ui.com/" rel="noopener" target="_blank"><img width="150" src="https://material-ui.com/static/images/material-ui-logo.svg" alt="Material-UI logo"></a></p>
+  <a href="https://material-ui.com/" rel="noopener" target="_blank"><img width="150" src="https://material-ui.com/static/logo.svg" alt="Material-UI logo"></a></p>
 </p>
 
 <h1 align="center">Material-UI</h1>
@@ -48,10 +48,7 @@ Please note that `@next` will only point to pre-releases; to get the latest stab
 
 ### Diamond 💎
 
-*3/3 slots available*
-
 Diamond Sponsors are those who have pledged $2,000/month or more to Material-UI.
-Please contact us at diamond@material-ui.com to subscribe to this tier.
 
 ### Gold 🏆
 

@@ -1,4 +1,5 @@
 const bpmr = require('babel-plugin-module-resolver');
+const fse = require('fs-extra');
 
 function resolvePath(sourcePath, currentFile, opts) {
   if (sourcePath === 'markdown') {
@@ -22,8 +23,16 @@ const alias = {
   pages: './pages',
 };
 
+const { version: transformRuntimeVersion } = fse.readJSONSync(
+  require.resolve('@babel/runtime-corejs2/package.json'),
+);
+
 module.exports = {
-  presets: ['next/babel', '@zeit/next-typescript/babel'],
+  presets: [
+    // backport of https://github.com/zeit/next.js/pull/9511
+    ['next/babel', { 'transform-runtime': { corejs: 2, version: transformRuntimeVersion } }],
+    '@zeit/next-typescript/babel',
+  ],
   plugins: [
     'babel-plugin-optimize-clsx',
     // for IE 11 support

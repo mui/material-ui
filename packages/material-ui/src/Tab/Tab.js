@@ -24,7 +24,6 @@ export const styles = theme => ({
     whiteSpace: 'normal',
     textAlign: 'center',
     [theme.breakpoints.up('sm')]: {
-      fontSize: theme.typography.pxToRem(13),
       minWidth: 160,
     },
   },

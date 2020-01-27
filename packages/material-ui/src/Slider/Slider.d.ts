@@ -35,6 +35,7 @@ export interface SliderProps
   onChangeCommitted?: (event: React.ChangeEvent<{}>, value: number | number[]) => void;
   orientation?: 'horizontal' | 'vertical';
   step?: number | null;
+  scale?: (value: number) => number;
   ThumbComponent?: React.ElementType<React.HTMLAttributes<HTMLSpanElement>>;
   track?: 'normal' | false | 'inverted';
   value?: number | number[];
