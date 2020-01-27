@@ -58,16 +58,6 @@ function createDOM() {
       }
     });
 
-  // Not yet supported: https://github.com/jsdom/jsdom/issues/317
-  global.document.createRange = () => ({
-    setStart: () => {},
-    setEnd: () => {},
-    commonAncestorContainer: {
-      nodeName: 'BODY',
-      ownerDocument: document,
-    },
-  });
-
   // required for wait-for-expect
   // not added by jsdom by default
   window.Date = global.Date;
