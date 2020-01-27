@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
-import { withStyles, useTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -90,7 +90,6 @@ const styles = theme => ({
 function HomeSteps(props) {
   const { classes } = props;
   const t = useSelector(state => state.options.t);
-  const theme = useTheme();
 
   return (
     <Container disableGutters maxwidth="lg" className={classes.container}>

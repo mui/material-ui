@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
@@ -81,7 +80,7 @@ const styles = theme => ({
 
 const startIndex = Math.floor(Math.random() * quotes.length);
 const selectedQuotes = [];
-for (let i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i += 1) {
   selectedQuotes.push(quotes[(startIndex + i) % quotes.length]);
 }
 

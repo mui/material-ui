@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function HomeQuote(props) {
-  const { avatar, item, quote, name, userName, ...other } = props;
+  const { avatar, quote, name, userName } = props;
   const classes = useStyles();
 
   return (
@@ -65,7 +65,10 @@ function HomeQuote(props) {
 }
 
 HomeQuote.propTypes = {
-  items: PropTypes.object,
+  avatar: PropTypes.string,
+  name: PropTypes.string,
+  quote: PropTypes.string,
+  userName: PropTypes.string,
 };
 
 export default HomeQuote;

@@ -9,14 +9,6 @@ import Button from '@material-ui/core/Button';
 import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 
-const InstallationLink = React.forwardRef((buttonProps, ref) => (
-  <Link naked prefetch href="/getting-started/installation" ref={ref} {...buttonProps} />
-));
-
-const UsageLink = React.forwardRef((buttonProps, ref) => (
-  <Link naked prefetch href="/getting-started/usage" ref={ref} {...buttonProps} />
-));
-
 const styles = theme => ({
   root: {
     padding: theme.spacing(2),
