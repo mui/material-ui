@@ -269,6 +269,7 @@ function findActivePage(currentPages, pathname) {
 
 function AppWrapper(props) {
   const { children, pageProps } = props;
+
   const router = useRouter();
   const [redux] = React.useState(() => initRedux(pageProps.reduxServerState));
 

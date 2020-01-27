@@ -12,15 +12,13 @@ export default function Page() {
 }
 
 async function getBranches() {
-  let branches = [];
-  try {
-    const result = await fetch('https://api.github.com/repos/mui-org/material-ui-docs/branches');
-    branches = await result.json();
-  } catch (err) {
-    // Swallow the exceptions.
-  }
-
-  branches = branches || [];
+  const result = await fetch('https://api.github.com/repos/mui-org/material-ui-docs/branches', {
+    headers: {
+      Authorization: `Basic ${Buffer.from(process.env.GITHUB_AUTH).toString('base64')}`,
+    },
+  });
+  // console.log('headers', result.headers);
+  const branches = await result.json();
   return branches;
 }
 
