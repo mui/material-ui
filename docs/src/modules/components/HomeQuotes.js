@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import Grid from '@material-ui/core/Grid';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import Avatar from '@material-ui/core/Avatar';
+import TwitterIcon from '@material-ui/icons/Twitter';
 import NoSsr from '@material-ui/core/NoSsr';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import HomeQuote from './HomeQuote';
 
 const quotes = [
   {
@@ -54,7 +57,7 @@ const quotes = [
   },
 ];
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     minHeight: 160,
     paddingTop: theme.spacing(5),
@@ -76,7 +79,70 @@ const styles = theme => ({
   button: {
     margin: theme.spacing(2, 0, 0),
   },
-});
+}));
+
+const useQuoteStyles = makeStyles(theme => ({
+  card: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+  },
+  avatar: {
+    width: 48,
+    height: 48,
+  },
+  twitter: {
+    marginLeft: 'auto',
+    color: theme.palette.primary.light,
+  },
+  name: {
+    fontSize: 16,
+  },
+  quote: {
+    paddingBottom: '16px !important',
+    paddingTop: 0,
+  },
+}));
+
+function HomeQuote(props) {
+  const { avatar, quote, name, userName } = props;
+  const classes = useQuoteStyles();
+
+  return (
+    <Card variant="outlined" className={classes.card}>
+      <CardContent>
+        <Grid container spacing={3}>
+          <Grid item>
+            <Avatar src={avatar} alt={name} className={classes.avatar} />
+          </Grid>
+          <Grid item>
+            <Typography variant="h6" color="textPrimary" className={classes.name}>
+              {name}
+            </Typography>
+            <Typography variant="subtitle2" color="textSecondary">
+              {userName}
+            </Typography>
+          </Grid>
+          <Grid item className={classes.twitter}>
+            <TwitterIcon />
+          </Grid>
+        </Grid>
+      </CardContent>
+      <CardContent className={classes.quote}>
+        <Typography color="textPrimary" variant="body2">
+          {quote}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
+}
+
+HomeQuote.propTypes = {
+  avatar: PropTypes.string,
+  name: PropTypes.string,
+  quote: PropTypes.string,
+  userName: PropTypes.string,
+};
 
 const startIndex = Math.floor(Math.random() * quotes.length);
 const selectedQuotes = [];
@@ -85,7 +151,7 @@ for (let i = 0; i < 3; i += 1) {
 }
 
 function HomeQuotes(props) {
-  const { classes } = props;
+  const classes = useStyles();
   const t = useSelector(state => state.options.t);
 
   return (
@@ -119,8 +185,4 @@ function HomeQuotes(props) {
   );
 }
 
-HomeQuotes.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(HomeQuotes);
+export default HomeQuotes;
