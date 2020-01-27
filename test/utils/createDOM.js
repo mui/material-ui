@@ -57,10 +57,6 @@ function createDOM() {
         global[key] = dom.window[key];
       }
     });
-
-  // required for wait-for-expect
-  // not added by jsdom by default
-  window.Date = global.Date;
 }
 
 module.exports = createDOM;
