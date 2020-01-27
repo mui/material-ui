@@ -78,7 +78,7 @@
     "typescript": "^3.4.4"
   },
   "devDependencies": {
-    "@types/react-redux": "^7.1.1",
+    "@types/react-redux": "^7.1.7",
     "dotenv": "^7.0.0",
     "eslint-plugin-react": "^7.12.4",
     "fs-extra": "^7.0.1",
