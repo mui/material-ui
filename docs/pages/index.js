@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     flex: '1 0 100%',
   },
   hero: {
-    paddingTop: 64,
+    paddingTop: theme.spacing(8),
     color: theme.palette.primary.main,
   },
   content: {
@@ -46,8 +46,8 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(8),
     [theme.breakpoints.up('md')]: {
-      paddingTop: theme.spacing(22),
-      paddingBottom: theme.spacing(22),
+      paddingTop: theme.spacing(16),
+      paddingBottom: theme.spacing(16),
       flexDirection: 'row',
       alignItems: 'flex-start',
       textAlign: 'left',
