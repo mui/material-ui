@@ -58,7 +58,7 @@ const quotes = [
     avatar: 'https://pbs.twimg.com/profile_images/1129370929409056769/Zkwjy9_I_400x400.jpg',
     name: 'Samantha Durrant',
     username: '@SamDurrant_',
-    tweet: '',
+    tweet: 'https://twitter.com/SamDurrant_/status/1214741763455209473',
     quote:
       'Began coding out the front end of my app today. Used MaterialUI for the first time and love how easy it is to make things look nice. It’s also really cool to see all the hard work building out the backend of my app come to life in the front end!',
   },
