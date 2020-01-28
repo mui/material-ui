@@ -610,7 +610,8 @@ export const viVN = {
     MuiTablePagination: {
       backIconButtonText: 'Trang trước',
       labelRowsPerPage: 'Số hàng mỗi trang:',
-      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} trong ${count}`,
+      labelDisplayedRows: ({ from, to, count }) =>
+        `${from}-${to === -1 ? count : to} trong ${count}`,
       nextIconButtonText: 'Trang sau',
     },
     MuiRating: {
