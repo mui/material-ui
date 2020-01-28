@@ -118,7 +118,7 @@ Checkbox.propTypes = {
    */
   color: PropTypes.oneOf(['primary', 'secondary', 'default']),
   /**
-   * If `true`, the switch will be disabled.
+   * If `true`, the checkbox will be disabled.
    */
   disabled: PropTypes.bool,
   /**
