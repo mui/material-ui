@@ -3,6 +3,7 @@ import { addPropertyControls, ControlType } from 'framer';
 // tslint:disable-next-line: ban-ts-ignore
 // @ts-ignore
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { parseColor } from './utils/parseColor';
 
 interface Props {
   paletteType?: 'dark' | 'light';
@@ -24,9 +25,9 @@ export const Theme: React.SFC<Props> = (props: Props) => {
   const theme = createMuiTheme({
     palette: {
       type: paletteType,
-      primary: { main: primary },
-      secondary: { main: secondary },
-      error: { main: error },
+      primary: { main: parseColor(primary) },
+      secondary: { main: parseColor(secondary) },
+      error: { main: parseColor(error) },
     },
   });
 
