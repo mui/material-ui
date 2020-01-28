@@ -4,9 +4,9 @@ title: 9+ Free React Templates
 
 # React 模板
 
-<p class="description">A selection of free react templates to help you get started building your app. The collection contains react dashboard, admin, and more.</p>
+<p class="description">一系列的 基础React 模板可以帮助您开始构建应用程序。该集合中包含 React 仪表板、后台等。</p>
 
-The templates can be combined with one of the [example applications](https://github.com/mui-org/material-ui/tree/master/examples) to form a complete starter.
+模板可以与 [示例应用程序](https://github. com/mui-org/material-ui/tree/master/examples) 组合形成一个完整的启动程序。
 
 Sections of each layout are clearly defined either by comments or use of separate files, making it simple to extract parts of a page (such as a "hero unit", or footer, for example) for reuse in other pages. For multi-part examples, a table in the README at the linked source code location describes the purpose of each file.
 

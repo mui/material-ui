@@ -6,6 +6,7 @@ import MuiTextField from '@material-ui/core/TextField';
 
 interface Props {
   autoFocus?: boolean;
+  color?: 'primary' | 'secondary';
   disabled?: boolean;
   error?: boolean;
   fullWidth?: boolean;
@@ -14,6 +15,7 @@ interface Props {
   multiline?: boolean;
   placeholder?: string;
   required?: boolean;
+  size?: 'small' | 'medium';
   variant?: 'standard' | 'outlined' | 'filled';
   width?: number;
   height?: number;
@@ -21,6 +23,7 @@ interface Props {
 
 const defaultProps: Props = {
   autoFocus: false,
+  color: 'primary',
   disabled: false,
   error: false,
   fullWidth: true,
@@ -46,6 +49,11 @@ addPropertyControls(TextField, {
   autoFocus: {
     type: ControlType.Boolean,
     title: 'Auto focus',
+  },
+  color: {
+    type: ControlType.Enum,
+    title: 'Color',
+    options: ['primary', 'secondary'],
   },
   disabled: {
     type: ControlType.Boolean,
@@ -78,6 +86,11 @@ addPropertyControls(TextField, {
   required: {
     type: ControlType.Boolean,
     title: 'Required',
+  },
+  size: {
+    type: ControlType.Enum,
+    title: 'Size',
+    options: ['small', 'medium'],
   },
   variant: {
     type: ControlType.Enum,

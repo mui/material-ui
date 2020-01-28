@@ -7,7 +7,7 @@ export interface Breakpoints {
   values: BreakpointValues;
   up: (key: Breakpoint | number) => string;
   down: (key: Breakpoint | number) => string;
-  between: (start: Breakpoint, end: Breakpoint) => string;
+  between: (start: Breakpoint | number, end: Breakpoint | number) => string;
   only: (key: Breakpoint) => string;
   width: (key: Breakpoint) => number;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
-import marked from 'marked';
+import marked from 'marked/lib/marked';
 import { withStyles } from '@material-ui/core/styles';
 import textToHash from 'docs/src/modules/utils/textToHash';
 import prism from 'docs/src/modules/components/prism';
@@ -33,7 +33,7 @@ renderer.heading = (text, level) => {
     `<h${level}>`,
     `<a class="anchor-link" id="${hash}"></a>`,
     text,
-    `<a class="anchor-link-style" aria-hidden="true" href="#${hash}">`,
+    `<a class="anchor-link-style" aria-hidden="true" aria-label="anchor" href="#${hash}">`,
     '<svg><use xlink:href="#anchor-link-icon" /></svg>',
     '</a>',
     `</h${level}>`,
@@ -119,6 +119,7 @@ const styles = theme => ({
     fontFamily: theme.typography.fontFamily,
     fontSize: 16,
     color: theme.palette.text.primary,
+    wordBreak: 'break-word',
     '& .anchor-link': {
       marginTop: -96, // Offset for the anchor.
       position: 'absolute',
@@ -180,9 +181,8 @@ const styles = theme => ({
       margin: '32px 0 16px',
     },
     '& p, & ul, & ol': {
-      lineHeight: 1.6,
       marginTop: 0,
-      marginBottom: '16px',
+      marginBottom: 16,
     },
     '& ul': {
       paddingLeft: 30,
@@ -215,6 +215,7 @@ const styles = theme => ({
     '& table': {
       // Trade display table for scroll overflow
       display: 'block',
+      wordBreak: 'normal',
       width: '100%',
       overflowX: 'auto',
       WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
@@ -237,7 +238,7 @@ const styles = theme => ({
       '& .prop-default': {
         fontSize: 13,
         fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
-        borderBottom: `1px dotted ${theme.palette.text.hint}`,
+        borderBottom: `1px dotted ${theme.palette.divider}`,
       },
     },
     '& td': {

@@ -1,7 +1,7 @@
 /* eslint-disable no-constant-condition */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { setRef, useEventCallback } from '@material-ui/core/utils';
+import { setRef, useEventCallback, useControlled } from '@material-ui/core/utils';
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
 // Give up on IE 11 support for this feature
@@ -61,6 +61,17 @@ export function createFilterOptions(config = {}) {
   };
 }
 
+// To replace with .findIndex() once we stop IE 11 support.
+function findIndex(array, comp) {
+  for (let i = 0; i < array.length; i += 1) {
+    if (comp(array[i])) {
+      return i;
+    }
+  }
+
+  return -1;
+}
+
 const defaultFilterOptions = createFilterOptions();
 
 // Number of options to jump in list box when pageup and pagedown keys are used.
@@ -74,7 +85,7 @@ export default function useAutocomplete(props) {
     blurOnSelect = false,
     clearOnEscape = false,
     debug = false,
-    defaultValue,
+    defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
     disableListWrap = false,
@@ -96,7 +107,9 @@ export default function useAutocomplete(props) {
     onInputChange,
     open: openProp,
     options = [],
+    selectOnFocus = !props.freeSolo,
     value: valueProp,
+    componentName = 'useAutocomplete',
   } = props;
 
   const [defaultId, setDefaultId] = React.useState();
@@ -169,17 +182,20 @@ export default function useAutocomplete(props) {
       const elementBottom = element.offsetTop + element.offsetHeight;
       if (elementBottom > scrollBottom) {
         listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
-      } else if (element.offsetTop < listboxNode.scrollTop) {
-        listboxNode.scrollTop = element.offsetTop;
+      } else if (
+        element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0) <
+        listboxNode.scrollTop
+      ) {
+        listboxNode.scrollTop = element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0);
       }
     }
   }
 
-  const { current: isControlled } = React.useRef(valueProp !== undefined);
-  const [valueState, setValue] = React.useState(() => {
-    return !isControlled ? defaultValue || (multiple ? [] : null) : null;
+  const [value, setValue] = useControlled({
+    controlled: valueProp,
+    default: defaultValue,
+    name: componentName,
   });
-  const value = isControlled ? valueProp : valueState;
 
   const { current: isInputValueControlled } = React.useRef(inputValueProp != null);
   const [inputValueState, setInputValue] = React.useState('');
@@ -204,7 +220,7 @@ export default function useAutocomplete(props) {
               `The component expect a string but received ${typeof optionLabel}.`,
               `For the input option: ${JSON.stringify(
                 newValue,
-              )}, \`getOptionLabel\` returns: ${newInputValue}.`,
+              )}, \`getOptionLabel\` returns: ${optionLabel}.`,
             ].join('\n'),
           );
         }
@@ -414,27 +430,20 @@ export default function useAutocomplete(props) {
     if (onChange) {
       onChange(event, newValue);
     }
-    if (!isControlled) {
-      setValue(newValue);
-    }
+
+    setValue(newValue);
   };
 
-  const selectNewValue = (event, newValue) => {
+  const selectNewValue = (event, newValue, origin = 'option') => {
     if (multiple) {
       const item = newValue;
       newValue = Array.isArray(value) ? [...value] : [];
 
-      let itemIndex = -1;
-      // To replace with .findIndex() once we stop IE 11 support.
-      for (let i = 0; i < newValue.length; i += 1) {
-        if (getOptionSelected(item, newValue[i])) {
-          itemIndex = i;
-        }
-      }
+      const itemIndex = findIndex(newValue, valueItem => getOptionSelected(item, valueItem));
 
       if (itemIndex === -1) {
         newValue.push(item);
-      } else {
+      } else if (origin !== 'freeSolo') {
         newValue.splice(itemIndex, 1);
       }
     }
@@ -523,7 +532,7 @@ export default function useAutocomplete(props) {
     handleValue(event, multiple ? [] : null);
   };
 
-  const handleKeyDown = event => {
+  const handleKeyDown = other => event => {
     if (focusedTag !== -1 && ['ArrowLeft', 'ArrowRight'].indexOf(event.key) === -1) {
       setFocusedTag(-1);
       focusTag(-1);
@@ -588,7 +597,11 @@ export default function useAutocomplete(props) {
             );
           }
         } else if (freeSolo && inputValue !== '' && inputValueIsSelectedValue === false) {
-          selectNewValue(event, inputValue);
+          if (multiple) {
+            // Allow people to add new values before they submit the form.
+            event.preventDefault();
+          }
+          selectNewValue(event, inputValue, 'freeSolo');
         }
         break;
       case 'Escape':
@@ -616,6 +629,10 @@ export default function useAutocomplete(props) {
         break;
       default:
     }
+
+    if (other.onKeyDown) {
+      other.onKeyDown(event);
+    }
   };
 
   const handleFocus = event => {
@@ -636,7 +653,9 @@ export default function useAutocomplete(props) {
     }
 
     if (autoSelect && selectedIndexRef.current !== -1) {
-      handleValue(event, filteredOptions[selectedIndexRef.current]);
+      selectNewValue(event, filteredOptions[selectedIndexRef.current]);
+    } else if (autoSelect && freeSolo && inputValue !== '') {
+      selectNewValue(event, inputValue, 'freeSolo');
     } else if (!freeSolo) {
       resetInputValue(event, value);
     }
@@ -721,7 +740,7 @@ export default function useAutocomplete(props) {
 
   // Prevent input blur when interacting with the combobox
   const handleMouseDown = event => {
-    if (event.target.nodeName !== 'INPUT') {
+    if (event.target.getAttribute('id') !== id) {
       event.preventDefault();
     }
   };
@@ -733,7 +752,10 @@ export default function useAutocomplete(props) {
       inputRef.current.selectionEnd - inputRef.current.selectionStart === 0
     ) {
       inputRef.current.focus();
-      inputRef.current.select();
+
+      if (selectOnFocus) {
+        inputRef.current.select();
+      }
     }
 
     firstFocus.current = false;
@@ -750,29 +772,42 @@ export default function useAutocomplete(props) {
 
   let groupedOptions = filteredOptions;
   if (groupBy) {
-    groupedOptions = filteredOptions.reduce((acc, option, index) => {
+    const result = [];
+
+    // used to keep track of key and indexes in the result array
+    const indexByKey = new Map();
+    let currentResultIndex = 0;
+
+    filteredOptions.forEach(option => {
       const key = groupBy(option);
-
-      if (acc.length > 0 && acc[acc.length - 1].key === key) {
-        acc[acc.length - 1].options.push(option);
-      } else {
-        acc.push({
+      if (indexByKey.get(key) === undefined) {
+        indexByKey.set(key, currentResultIndex);
+        result.push({
           key,
-          index,
-          options: [option],
+          options: [],
         });
+        currentResultIndex += 1;
       }
+      result[indexByKey.get(key)].options.push(option);
+    });
 
-      return acc;
-    }, []);
+    // now we can add the `index` property based on the options length
+    let indexCounter = 0;
+    result.forEach(option => {
+      option.index = indexCounter;
+      indexCounter += option.options.length;
+    });
+
+    groupedOptions = result;
   }
 
   return {
-    getRootProps: () => ({
+    getRootProps: (other = {}) => ({
       'aria-owns': popupOpen ? `${id}-popup` : null,
       role: 'combobox',
       'aria-expanded': popupOpen,
-      onKeyDown: handleKeyDown,
+      ...other,
+      onKeyDown: handleKeyDown(other),
       onMouseDown: handleMouseDown,
       onClick: handleClick,
     }),
@@ -886,6 +921,10 @@ useAutocomplete.propTypes = {
    */
   clearOnEscape: PropTypes.bool,
   /**
+   * The component name that is using this hook. Used for warnings.
+   */
+  componentName: PropTypes.string,
+  /**
    * If `true`, the popup will ignore the blur event if the input if filled.
    * You can inspect the popup markup with your browser tools.
    * Consider this option when you need to customize the component.
@@ -974,9 +1013,9 @@ useAutocomplete.propTypes = {
   /**
    * Callback fired when the text input value changes.
    *
-   * @param {object} event The event source of the callback
-   * @param {string} value The new value of the text input
-   * @param {string} reason One of "input" (user input) or "reset" (programmatic change)
+   * @param {object} event The event source of the callback.
+   * @param {string} value The new value of the text input.
+   * @param {string} reason One of "input" (user input) or "reset" (programmatic change).
    */
   onInputChange: PropTypes.func,
   /**

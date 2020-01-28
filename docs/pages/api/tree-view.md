@@ -36,7 +36,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 | <span class="prop-name">expanded</span> | <span class="prop-type">Array&lt;string&gt;</span> |  | Expanded node ids. (Controlled) |
 | <span class="prop-name">multiSelect</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If true `ctrl` and `shift` will trigger multiselect. |
 | <span class="prop-name">onNodeSelect</span> | <span class="prop-type">func</span> |  | Callback fired when tree items are selected/unselected.<br><br>**Signature:**<br>`function(event: object, nodeIds: array) => void`<br>*event:* The event source of the callback<br>*nodeIds:* The ids of the selected nodes. |
-| <span class="prop-name">onNodeToggle</span> | <span class="prop-type">func</span> |  | Callback fired when tree items are expanded/collapsed.<br><br>**Signature:**<br>`function(event: object, nodeIds: array) => void`<br>*event:* The event source of the callback<br>*nodeIds:* The ids of the expanded nodes. |
+| <span class="prop-name">onNodeToggle</span> | <span class="prop-type">func</span> |  | Callback fired when tree items are expanded/collapsed.<br><br>**Signature:**<br>`function(event: object, nodeIds: array) => void`<br>*event:* The event source of the callback.<br>*nodeIds:* The ids of the expanded nodes. |
 | <span class="prop-name">selected</span> | <span class="prop-type">Array&lt;string&gt;</span> |  | Selected node ids. (Controlled) |
 
 The `ref` is forwarded to the root element.

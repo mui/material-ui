@@ -43,7 +43,7 @@ A prominent app bar.
 
 ## 下部アプリバー
 
-{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/BottomAppBar.js", "iframe": true, "maxWidth": 400}}
 
 ## ラベルの配置
 
@@ -93,19 +93,19 @@ function App() {
 
 アプリバーは下にスクロールすると非表示になり、読み込めるスペースが増えます。
 
-{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/HideAppBar.js", "iframe": true}}
 
 ### App Barを固定する
 
 アプリバーはスクロール時に上昇し、ユーザーがページの上部にいないことを伝えます。
 
-{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/ElevateAppBar.js", "iframe": true}}
 
 ### トップへ戻る
 
 スクロール時にフローティングアクションボタンが表示され、ページの上部に簡単に戻ることができます。
 
-{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true, "maxWidth": 500}}
+{{"demo": "pages/components/app-bar/BackToTop.js", "iframe": true}}
 
 ### `useScrollTrigger([options]) => trigger`
 

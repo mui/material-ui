@@ -92,6 +92,10 @@ const additionalProps = component => {
         return props.deletable === false;
       },
     },
+    disabled: {
+      type: { name: 'boolean' },
+      defaultValue: { value: false },
+    },
     elevation: {
       type: { name: 'number', min: 0, max: 24 },
       defaultValue: { value: componentSettings[component].propValues.elevation },

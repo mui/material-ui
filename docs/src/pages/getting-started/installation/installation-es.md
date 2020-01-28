@@ -28,7 +28,7 @@ Material-UI fue diseñado con la fuente [ Roboto ](https://fonts.google.com/spec
 
 ## Fuente de Iconos
 
-In order to use the font `Icon` component, you must first add the [Material icons](https://material.io/tools/icons/) font. Aquí hay [ algunas instrucciones ](/components/icons/#font-icons) sobre cómo hacerlo. Por ejemplo, a través de Google Web Fonts:
+Para poder utilizar la fuente del componente `Icon`, primero debes agregar la fuente [Material icons](https://material.io/tools/icons/). Aquí hay [ algunas instrucciones ](/components/icons/#font-icons) sobre cómo hacerlo. Por ejemplo, a través de Google Web Fonts:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -36,13 +36,13 @@ In order to use the font `Icon` component, you must first add the [Material icon
 
 ## Iconos SVG
 
-In order to use prebuilt SVG Material icons, such as those found in the [icons demos](/components/icons/) you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
+Para poder utilizar los íconos SVG Material precompilados, como los que se encuentran en los [demos de íconos](/components/icons/), primero debes instalar el paquete [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons):
 
 ```sh
-// with npm
+// usando npm
 npm install @material-ui/icons
 
-// with yarn
+// usando yarn
 yarn add @material-ui/icons
 ```
 
@@ -50,13 +50,13 @@ yarn add @material-ui/icons
 
 Puedes comenzar a utilizar Material-UI con una infraestructura mínima de front-end, lo que es excelente para la creación de prototipos.
 
-Two Universal Module Definition (**UMD**) files are provided:
+Se proporcionan dos archivos de Definición Universal de Módulos (**UMD**):
 
 - uno para desarrollo: https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
 - uno para producción: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
 
 Puedes seguir [ este ejemplo sobre CDN ](https://github.com/mui-org/material-ui/tree/master/examples/cdn) para empezar rápidamente.
 
-⚠️ Using this approach in **production** is **discouraged** though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilization.
+⚠️ Sin embargo, utilizar esta estrategia en **producción** **no es aconsejable** - ya que el cliente tiene que descargar la biblioteca completa, sin importar cuales son los componentes que realmente están en uso, afectando al desempeño y la utilización de ancho de banda.
 
-⚠️ The UMD links are using the `latest` tag to point to the latest version of the library. This pointer is **unstable**, it shifts as we release new versions. You should consider pointing to a specific version, such as [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).
+⚠️ Los enlaces UMD están utilizando la etiqueta `latest` para hacer referencia a la última versión de la biblioteca. Dicha referencia es **inestable**, cambia cada vez que lanzamos nuevas versiones. Deberias considerar hacer referencia a alguna versión específica, por ejemplo, [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).

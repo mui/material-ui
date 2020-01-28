@@ -35,11 +35,6 @@ export default class MyDocument extends Document {
     return (
       <html lang={userLanguage}>
         <Head>
-          {/* Use minimum-scale=1 to enable GPU rasterization. */}
-          <meta
-            name="viewport"
-            content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
-          />
           {/*
             manifest.json provides metadata used when your web app is added to the
             homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/

@@ -13,9 +13,9 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       maxWidth: 600,
-    },
-    snackbar: {
-      margin: theme.spacing(1),
+      '& > * + *': {
+        marginTop: theme.spacing(2),
+      },
     },
   }),
 );
@@ -25,21 +25,15 @@ export default function LongTextSnackbar() {
 
   return (
     <div className={classes.root}>
-      <SnackbarContent className={classes.snackbar} message="I love snacks." action={action} />
+      <SnackbarContent message="I love snacks." action={action} />
       <SnackbarContent
-        className={classes.snackbar}
         message={
           'I love candy. I love cookies. I love cupcakes. \
           I love cheesecake. I love chocolate.'
         }
       />
+      <SnackbarContent message="I love candy. I love cookies. I love cupcakes." action={action} />
       <SnackbarContent
-        className={classes.snackbar}
-        message="I love candy. I love cookies. I love cupcakes."
-        action={action}
-      />
-      <SnackbarContent
-        className={classes.snackbar}
         message={
           'I love candy. I love cookies. I love cupcakes. \
           I love cheesecake. I love chocolate.'

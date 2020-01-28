@@ -50,11 +50,6 @@ export default function BackgroundColor() {
           text.disabled
         </Box>
       </Grid>
-      <Grid item xs={12} sm={4}>
-        <Box bgcolor="text.hint" color="background.paper" p={2}>
-          text.hint
-        </Box>
-      </Grid>
     </Grid>
   );
 }

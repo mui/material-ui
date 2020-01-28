@@ -15,6 +15,7 @@ export const styles = theme => ({
     margin: 0,
     padding: 0,
     outline: 0,
+    WebkitTapHighlightColor: 'transparent',
     '&:focus > $content $label': {
       backgroundColor: theme.palette.action.hover,
     },
@@ -80,6 +81,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     onKeyDown,
     onMouseDown,
     TransitionComponent = Collapse,
+    TransitionProps,
     ...other
   } = props;
 
@@ -102,7 +104,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
     isExpanded,
     isFocused,
     isSelected,
-    isTabable,
+    isTabbable,
     multiSelect,
     selectionDisabled,
     getParent,
@@ -114,16 +116,16 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   const nodeRef = React.useRef(null);
   const contentRef = React.useRef(null);
   const handleRef = useForkRef(nodeRef, ref);
-  const theme = useTheme();
 
   let icon = iconProp;
 
   const expandable = Boolean(Array.isArray(children) ? children.length : children);
   const expanded = isExpanded ? isExpanded(nodeId) : false;
   const focused = isFocused ? isFocused(nodeId) : false;
-  const tabable = isTabable ? isTabable(nodeId) : false;
+  const tabbable = isTabbable ? isTabbable(nodeId) : false;
   const selected = isSelected ? isSelected(nodeId) : false;
   const icons = contextIcons || {};
+  const theme = useTheme();
 
   if (!icon) {
     if (expandable) {
@@ -313,7 +315,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
   };
 
   const handleFocus = event => {
-    if (!focused && tabable) {
+    if (!focused && tabbable) {
       focus(nodeId);
     }
 
@@ -362,7 +364,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
       aria-expanded={expandable ? expanded : null}
       aria-selected={!selectionDisabled && isSelected ? isSelected(nodeId) : undefined}
       ref={handleRef}
-      tabIndex={tabable ? 0 : -1}
+      tabIndex={tabbable ? 0 : -1}
       {...other}
     >
       <div
@@ -383,6 +385,7 @@ const TreeItem = React.forwardRef(function TreeItem(props, ref) {
           in={expanded}
           component="ul"
           role="group"
+          {...TransitionProps}
         >
           {children}
         </TransitionComponent>
@@ -451,8 +454,13 @@ TreeItem.propTypes = {
   onMouseDown: PropTypes.func,
   /**
    * The component used for the transition.
+   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */
   TransitionComponent: PropTypes.elementType,
+  /**
+   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
+   */
+  TransitionProps: PropTypes.object,
 };
 
 export default withStyles(styles, { name: 'MuiTreeItem' })(TreeItem);

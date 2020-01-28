@@ -1,4 +1,4 @@
-# La vision de Material-UI
+# Our Vision
 
 <p class="description">Notre vision est de fournir une mise en œuvre élégante de la spécification material design pour React, qui peut être personnalisables pour correspondre parfaitement à votre marque.</p>
 

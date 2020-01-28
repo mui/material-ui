@@ -4,7 +4,7 @@ import grey from '../colors/grey';
 import indigo from '../colors/indigo';
 import pink from '../colors/pink';
 import red from '../colors/red';
-import amber from '../colors/amber';
+import orange from '../colors/orange';
 import blue from '../colors/blue';
 import green from '../colors/green';
 import { darken, getContrastRatio, lighten } from './colorManipulator';
@@ -34,10 +34,11 @@ export const light = {
     // The color of an active action like an icon button.
     active: 'rgba(0, 0, 0, 0.54)',
     // The color of an hovered action.
-    hover: 'rgba(0, 0, 0, 0.08)',
-    hoverOpacity: 0.08,
+    hover: 'rgba(0, 0, 0, 0.04)',
+    hoverOpacity: 0.04,
     // The color of a selected action.
-    selected: 'rgba(0, 0, 0, 0.14)',
+    selected: 'rgba(0, 0, 0, 0.08)',
+    selectedOpacity: 0.08,
     // The color of a disabled action.
     disabled: 'rgba(0, 0, 0, 0.26)',
     // The background color of a disabled action.
@@ -60,9 +61,10 @@ export const dark = {
   },
   action: {
     active: common.white,
-    hover: 'rgba(255, 255, 255, 0.1)',
-    hoverOpacity: 0.1,
-    selected: 'rgba(255, 255, 255, 0.2)',
+    hover: 'rgba(255, 255, 255, 0.08)',
+    hoverOpacity: 0.08,
+    selected: 'rgba(255, 255, 255, 0.16)',
+    selectedOpacity: 0.16,
     disabled: 'rgba(255, 255, 255, 0.3)',
     disabledBackground: 'rgba(255, 255, 255, 0.12)',
   },
@@ -98,9 +100,9 @@ export default function createPalette(palette) {
       dark: red[700],
     },
     warning = {
-      light: amber[300],
-      main: amber[500],
-      dark: amber[700],
+      light: orange[300],
+      main: orange[500],
+      dark: orange[700],
     },
     info = {
       light: blue[300],

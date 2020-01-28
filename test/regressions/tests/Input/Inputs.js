@@ -34,6 +34,7 @@ function Inputs(props) {
         <Input value="Disabled" className={classes.input} disabled />
         <Input error value="Error" className={classes.input} />
         <Input value="Focused" inputRef={inputRef} className={classes.input} />
+        <Input type="search" defaultValue="Hello world" />
       </div>
       <Input value="Large input" className={clsx(classes.input, classes.large)} />
     </div>

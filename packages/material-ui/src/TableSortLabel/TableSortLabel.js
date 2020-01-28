@@ -20,7 +20,7 @@ export const styles = theme => ({
     '&:hover': {
       color: theme.palette.text.secondary,
       '& $icon': {
-        opacity: 1,
+        opacity: 0.5,
       },
     },
     '&$active': {
@@ -36,6 +36,7 @@ export const styles = theme => ({
   active: {},
   /* Styles applied to the icon component. */
   icon: {
+    fontSize: 18,
     marginRight: 4,
     marginLeft: 4,
     opacity: 0,
@@ -63,7 +64,7 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(props, ref) {
     children,
     classes,
     className,
-    direction = 'desc',
+    direction = 'asc',
     hideSortIcon = false,
     IconComponent = ArrowDownwardIcon,
     ...other

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
+import ownerDocument from '../utils/ownerDocument';
 import useEventCallback from '../utils/useEventCallback';
 import { duration } from '../styles/transitions';
 import useTheme from '../styles/useTheme';
@@ -467,14 +468,15 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(props, ref) {
 
   React.useEffect(() => {
     if (variant === 'temporary') {
-      document.body.addEventListener('touchstart', handleBodyTouchStart);
-      document.body.addEventListener('touchmove', handleBodyTouchMove, { passive: false });
-      document.body.addEventListener('touchend', handleBodyTouchEnd);
+      const doc = ownerDocument(paperRef.current);
+      doc.addEventListener('touchstart', handleBodyTouchStart);
+      doc.addEventListener('touchmove', handleBodyTouchMove, { passive: false });
+      doc.addEventListener('touchend', handleBodyTouchEnd);
 
       return () => {
-        document.body.removeEventListener('touchstart', handleBodyTouchStart);
-        document.body.removeEventListener('touchmove', handleBodyTouchMove, { passive: false });
-        document.body.removeEventListener('touchend', handleBodyTouchEnd);
+        doc.removeEventListener('touchstart', handleBodyTouchStart);
+        doc.removeEventListener('touchmove', handleBodyTouchMove, { passive: false });
+        doc.removeEventListener('touchend', handleBodyTouchEnd);
       };
     }
 

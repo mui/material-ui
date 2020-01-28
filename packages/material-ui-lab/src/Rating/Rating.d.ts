@@ -7,6 +7,7 @@ export interface IconContainerProps extends React.HTMLAttributes<HTMLSpanElement
 
 export interface RatingProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, RatingClassKey, 'onChange'> {
+  defaultValue?: number;
   disabled?: boolean;
   emptyIcon?: React.ReactElement;
   getLabelText?: (value: number) => string;
@@ -14,12 +15,12 @@ export interface RatingProps
   IconContainerComponent?: React.ElementType<IconContainerProps>;
   max?: number;
   name?: string;
-  onChange?: (event: React.ChangeEvent<{}>, value: number) => void;
+  onChange?: (event: React.ChangeEvent<{}>, value: number | null) => void;
   onChangeActive?: (event: React.ChangeEvent<{}>, value: number) => void;
   precision?: number;
   readOnly?: boolean;
   size?: 'small' | 'medium' | 'large';
-  value: number | null;
+  value?: number | null;
 }
 
 export type RatingClassKey =

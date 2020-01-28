@@ -30,10 +30,10 @@ import Link from 'docs/src/modules/components/Link';
 import AppDrawer from 'docs/src/modules/components/AppDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
-import usePageTitle from 'docs/src/modules/components/usePageTitle';
 import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
+import PageContext from 'docs/src/modules/components/PageContext';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
@@ -77,6 +77,11 @@ function DeferredAppSearch() {
 }
 
 const styles = theme => ({
+  '@global': {
+    '#main-content': {
+      outline: 0,
+    },
+  },
   root: {
     display: 'flex',
     backgroundColor: theme.palette.background.level1,
@@ -137,11 +142,6 @@ const styles = theme => ({
       display: 'none',
     },
   },
-  '@global': {
-    '#main-content': {
-      outline: 0,
-    },
-  },
 });
 
 function AppFrame(props) {
@@ -183,14 +183,13 @@ function AppFrame(props) {
 
   const router = useRouter();
   const { canonical } = pathnameToLanguage(Router2._rewriteUrlForNextExport(router.asPath));
-  const title = usePageTitle({ t });
+  const { activePage } = React.useContext(PageContext);
 
   let disablePermanent = false;
   let navIconClassName = '';
   let appBarClassName = classes.appBar;
 
-  if (title === null) {
-    // home route, don't shift app bar or dock drawer
+  if (!activePage || activePage.disableDrawer === true) {
     disablePermanent = true;
     appBarClassName += ` ${classes.appBarHome}`;
   } else {
@@ -337,7 +336,7 @@ function AppFrame(props) {
         </Toolbar>
       </AppBar>
       <AppDrawer
-        className={classes.drawer}
+        className={disablePermanent ? '' : classes.drawer}
         disablePermanent={disablePermanent}
         onClose={handleDrawerClose}
         onOpen={handleDrawerOpen}

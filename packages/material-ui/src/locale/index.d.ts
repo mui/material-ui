@@ -1,4 +1,6 @@
 export const azAZ: object;
+export const bgBG: object;
+export const caES: object;
 export const csCZ: object;
 export const deDE: object;
 export const enUS: object;
@@ -19,4 +21,5 @@ export const skSK: object;
 export const svSE: object;
 export const trTR: object;
 export const ukUA: object;
+export const viVN: object;
 export const zhCN: object;

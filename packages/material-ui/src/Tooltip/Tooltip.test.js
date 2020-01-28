@@ -220,10 +220,10 @@ describe('<Tooltip />', () => {
     it('should use hysteresis with the enterDelay', () => {
       const { container } = render(
         <Tooltip
+          {...defaultProps}
           enterDelay={111}
           leaveDelay={5}
           TransitionProps={{ timeout: 6 }}
-          {...defaultProps}
         />,
       );
       const children = container.querySelector('#testChild');
@@ -465,5 +465,21 @@ describe('<Tooltip />', () => {
         'A component is changing an uncontrolled Tooltip to be controlled.',
       );
     });
+  });
+
+  it('should use the same popper.js instance between two renders', () => {
+    const popperRef = React.createRef();
+    const { forceUpdate } = render(
+      <Tooltip
+        {...defaultProps}
+        open
+        PopperProps={{
+          popperRef,
+        }}
+      />,
+    );
+    const firstPopperInstance = popperRef.current;
+    forceUpdate();
+    expect(firstPopperInstance).to.equal(popperRef.current);
   });
 });

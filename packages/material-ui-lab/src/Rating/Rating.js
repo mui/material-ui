@@ -22,6 +22,10 @@ function getDecimalPrecision(num) {
 }
 
 function roundValueToPrecision(value, precision) {
+  if (value == null) {
+    return value;
+  }
+
   const nearest = Math.round(value / precision) * precision;
   return Number(nearest.toFixed(getDecimalPrecision(precision)));
 }
@@ -74,7 +78,7 @@ export const styles = theme => ({
   },
   /* Styles applied to the pristine label. */
   pristine: {
-    'input:focus ~ &': {
+    'input:focus + &': {
       top: 0,
       bottom: 0,
       position: 'absolute',
@@ -92,6 +96,9 @@ export const styles = theme => ({
     transition: theme.transitions.create('transform', {
       duration: theme.transitions.duration.shortest,
     }),
+    // Fix mouseLeave issue.
+    // https://github.com/facebook/react/issues/4492
+    pointerEvents: 'none',
   },
   /* Styles applied to the icon wrapping elements when empty. */
   iconEmpty: {
@@ -132,8 +139,10 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   const {
     classes,
     className,
+    defaultValue = null,
     disabled = false,
     emptyIcon,
+    emptyLabelText = 'Empty',
     getLabelText = defaultLabelText,
     icon = defaultIcon,
     IconContainerComponent = IconContainer,
@@ -146,7 +155,7 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     precision = 1,
     readOnly = false,
     size = 'medium',
-    value: valueProp2 = null,
+    value: valueProp,
     ...other
   } = props;
 
@@ -159,14 +168,37 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     setDefaultName(`mui-rating-${Math.round(Math.random() * 1e5)}`);
   }, []);
 
-  const valueProp = roundValueToPrecision(valueProp2, precision);
+  const { current: isControlled } = React.useRef(valueProp !== undefined);
+  const [valueState, setValueState] = React.useState(defaultValue);
+  const valueDerived = isControlled ? valueProp : valueState;
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (isControlled !== (valueProp !== undefined)) {
+        console.error(
+          [
+            `Material-UI: A component is changing ${
+              isControlled ? 'a ' : 'an un'
+            }controlled Rating to be ${isControlled ? 'un' : ''}controlled.`,
+            'Elements should not switch from uncontrolled to controlled (or vice versa).',
+            'Decide between using a controlled or uncontrolled Rating ' +
+              'element for the lifetime of the component.',
+            'More info: https://fb.me/react-controlled-components',
+          ].join('\n'),
+        );
+      }
+    }, [valueProp, isControlled]);
+  }
+
+  const valueRounded = roundValueToPrecision(valueDerived, precision);
   const theme = useTheme();
   const [{ hover, focus }, setState] = React.useState({
     hover: -1,
     focus: -1,
   });
 
-  let value = valueProp;
+  let value = valueRounded;
   if (hover !== -1) {
     value = hover;
   }
@@ -233,8 +265,35 @@ const Rating = React.forwardRef(function Rating(props, ref) {
   };
 
   const handleChange = event => {
+    const newValue = parseFloat(event.target.value);
+
+    if (!isControlled) {
+      setValueState(newValue);
+    }
+
     if (onChange) {
-      onChange(event, parseFloat(event.target.value));
+      onChange(event, newValue);
+    }
+  };
+
+  const handleClear = event => {
+    // Ignore keyboard events
+    // https://github.com/facebook/react/issues/7407
+    if (event.clientX === 0 && event.clientY === 0) {
+      return;
+    }
+
+    setState({
+      hover: -1,
+      focus: -1,
+    });
+
+    if (!isControlled) {
+      setValueState(null);
+    }
+
+    if (onChange && parseFloat(event.target.value) === valueRounded) {
+      onChange(event, null);
     }
   };
 
@@ -275,11 +334,11 @@ const Rating = React.forwardRef(function Rating(props, ref) {
     }
   };
 
-  const item = (propsItem, state) => {
-    const id = `${name}-${String(propsItem.value).replace('.', '-')}`;
+  const item = (state, labelProps) => {
+    const id = `${name}-${String(state.value).replace('.', '-')}`;
     const container = (
       <IconContainerComponent
-        {...propsItem}
+        value={state.value}
         className={clsx(classes.icon, {
           [classes.iconEmpty]: !state.filled,
           [classes.iconFilled]: state.filled,
@@ -292,21 +351,23 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       </IconContainerComponent>
     );
 
-    if (readOnly || disabled) {
-      return <React.Fragment key={propsItem.value}>{container}</React.Fragment>;
+    if (readOnly) {
+      return <React.Fragment key={state.value}>{container}</React.Fragment>;
     }
 
     return (
-      <React.Fragment key={propsItem.value}>
-        <label className={classes.label} htmlFor={id}>
+      <React.Fragment key={state.value}>
+        <label className={classes.label} htmlFor={id} {...labelProps}>
           {container}
-          <span className={classes.visuallyhidden}>{getLabelText(propsItem.value)}</span>
+          <span className={classes.visuallyhidden}>{getLabelText(state.value)}</span>
         </label>
         <input
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={handleChange}
-          value={propsItem.value}
+          onClick={handleClear}
+          disabled={disabled}
+          value={state.value}
           id={id}
           type="radio"
           name={name}
@@ -336,21 +397,6 @@ const Rating = React.forwardRef(function Rating(props, ref) {
       aria-label={readOnly ? getLabelText(value) : null}
       {...other}
     >
-      {!readOnly && !disabled && value == null && (
-        <React.Fragment>
-          <input
-            value="0"
-            id={`${name}-0`}
-            type="radio"
-            name={name}
-            defaultChecked
-            className={classes.visuallyhidden}
-          />
-          <label htmlFor={`${name}-0`} className={classes.pristine}>
-            <span className={classes.visuallyhidden}>{getLabelText(0)}</span>
-          </label>
-        </React.Fragment>
-      )}
       {Array.from(new Array(max)).map((_, index) => {
         const itemValue = index + 1;
 
@@ -373,6 +419,12 @@ const Rating = React.forwardRef(function Rating(props, ref) {
                 return item(
                   {
                     value: itemDecimalValue,
+                    filled: itemDecimalValue <= value,
+                    hover: itemDecimalValue <= hover,
+                    focus: itemDecimalValue <= focus,
+                    checked: itemDecimalValue === valueRounded,
+                  },
+                  {
                     style:
                       items.length - 1 === indexDecimal
                         ? {}
@@ -386,31 +438,36 @@ const Rating = React.forwardRef(function Rating(props, ref) {
                             position: 'absolute',
                           },
                   },
-                  {
-                    filled: itemDecimalValue <= value,
-                    hover: itemDecimalValue <= hover,
-                    focus: itemDecimalValue <= focus,
-                    checked: itemDecimalValue === valueProp,
-                  },
                 );
               })}
             </span>
           );
         }
 
-        return item(
-          {
-            value: itemValue,
-          },
-          {
-            active: itemValue === value && (hover !== -1 || focus !== -1),
-            filled: itemValue <= value,
-            hover: itemValue <= hover,
-            focus: itemValue <= focus,
-            checked: itemValue === valueProp,
-          },
-        );
+        return item({
+          value: itemValue,
+          active: itemValue === value && (hover !== -1 || focus !== -1),
+          filled: itemValue <= value,
+          hover: itemValue <= hover,
+          focus: itemValue <= focus,
+          checked: itemValue === valueRounded,
+        });
       })}
+      {!readOnly && !disabled && valueRounded == null && (
+        <React.Fragment>
+          <input
+            value=""
+            id={`${name}-empty`}
+            type="radio"
+            name={name}
+            defaultChecked
+            className={classes.visuallyhidden}
+          />
+          <label className={classes.pristine} htmlFor={`${name}-empty`}>
+            <span className={classes.visuallyhidden}>{emptyLabelText}</span>
+          </label>
+        </React.Fragment>
+      )}
     </span>
   );
 });
@@ -426,6 +483,10 @@ Rating.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The default value. Use when the component is not controlled.
+   */
+  defaultValue: PropTypes.number,
+  /**
    * If `true`, the rating will be disabled.
    */
   disabled: PropTypes.bool,
@@ -433,6 +494,10 @@ Rating.propTypes = {
    * The icon to display when empty.
    */
   emptyIcon: PropTypes.node,
+  /**
+   * The label read when the rating input is empty.
+   */
+  emptyLabelText: PropTypes.node,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
    *

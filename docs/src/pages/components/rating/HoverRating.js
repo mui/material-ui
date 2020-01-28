@@ -1,9 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
-import Tooltip from '@material-ui/core/Tooltip';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 const labels = {
@@ -19,21 +16,8 @@ const labels = {
   5: 'Excellent+',
 };
 
-function IconContainer(props) {
-  const { value, ...other } = props;
-  return (
-    <Tooltip title={labels[value] || ''}>
-      <span {...other} />
-    </Tooltip>
-  );
-}
-
-IconContainer.propTypes = {
-  value: PropTypes.number.isRequired,
-};
-
 const useStyles = makeStyles({
-  rating1: {
+  rating: {
     width: 200,
     display: 'flex',
     alignItems: 'center',
@@ -41,35 +25,24 @@ const useStyles = makeStyles({
 });
 
 export default function HoverRating() {
-  const value = 2;
+  const [value, setValue] = React.useState(2);
   const [hover, setHover] = React.useState(-1);
   const classes = useStyles();
 
   return (
-    <div>
-      <Box component="fieldset" mb={3} borderColor="transparent">
-        <Typography component="legend">Side</Typography>
-        <div className={classes.rating1}>
-          <Rating
-            name="hover-side"
-            value={value}
-            precision={0.5}
-            onChangeActive={(event, newHover) => {
-              setHover(newHover);
-            }}
-          />
-          <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
-        </div>
-      </Box>
-      <Box component="fieldset" mb={3} borderColor="transparent">
-        <Typography component="legend">Tooltip</Typography>
-        <Rating
-          name="hover-tooltip"
-          value={value}
-          precision={0.5}
-          IconContainerComponent={IconContainer}
-        />
-      </Box>
+    <div className={classes.rating}>
+      <Rating
+        name="hover-feedback"
+        value={value}
+        precision={0.5}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+        onChangeActive={(event, newHover) => {
+          setHover(newHover);
+        }}
+      />
+      {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
     </div>
   );
 }

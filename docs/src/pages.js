@@ -34,7 +34,9 @@ const pages = [
         subheader: '/components/inputs',
         children: [
           { pathname: '/components/buttons' },
+          { pathname: '/components/button-group' },
           { pathname: '/components/checkboxes' },
+          { pathname: '/components/floating-action-button' },
           { pathname: '/components/pickers', title: 'Date / Time' },
           { pathname: '/components/radio-buttons' },
           { pathname: '/components/selects' },
@@ -114,6 +116,7 @@ const pages = [
         subheader: '/components/lab',
         children: [
           { pathname: '/components/about-the-lab' },
+          { pathname: '/components/alert' },
           { pathname: '/components/autocomplete' },
           { pathname: '/components/rating' },
           { pathname: '/components/skeleton' },
@@ -209,34 +212,13 @@ const pages = [
       { pathname: '/discover-more/team' },
       { pathname: '/discover-more/changelog' },
       { pathname: '/discover-more/languages' },
-      { pathname: '/discover-more/governance' },
-    ],
-  },
-  {
-    pathname: '/blog',
-    children: [
-      { pathname: '/blog/november-2019-update' },
-      { pathname: '/blog/october-2019-update' },
-      { pathname: '/blog/september-2019-update' },
-      { pathname: '/blog/august-2019-update' },
-      { pathname: '/blog/july-2019-update' },
-      { pathname: '/blog/june-2019-update' },
-      { pathname: '/blog/may-2019-update' },
-      {
-        pathname: '/blog/material-ui-v4-is-out',
-        title: 'Material-UI v4 is out',
-      },
-      { pathname: '/blog/april-2019-update' },
-      { pathname: '/blog/march-2019-update' },
-      { pathname: '/blog/2019-developer-survey-results' },
-      {
-        pathname: '/blog/material-ui-v1-is-out',
-        title: 'Material-UI v1 is out',
-      },
     ],
   },
   { pathname: '/versions', displayNav: false },
-  { pathname: '/', displayNav: false, title: false },
+  { pathname: '/', displayNav: false, disableDrawer: true },
+  { pathname: 'https://medium.com/material-ui', title: 'Blog' },
+  { pathname: '/company/about', displayNav: false, disableDrawer: true },
+  { pathname: '/company/contact', displayNav: false, disableDrawer: true },
 ];
 
 export default pages;

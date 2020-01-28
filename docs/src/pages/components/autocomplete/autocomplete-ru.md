@@ -1,9 +1,9 @@
 ---
 title: React-компонент Автозаполнение
-components: TextField, Popper, автозаполнение
+components: TextField, Popper, Autocomplete
 ---
 
-# Автодополнение
+# Autocomplete (Автодополнение)
 
 <p class="description">Автодополнение - это обычный ввод текста, дополненный панелью предлагаемых опций.</p>
 
@@ -46,13 +46,13 @@ components: TextField, Popper, автозаполнение
 
 ## `useAutocomplete`
 
-For advanced customization use cases, we expose a `useAutocomplete()` hook. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
+Для продвинутой кастомизации используйте `useAutocomplete()` хук. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component uses this hook internally.
 
 ```jsx
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
 ```
 
-- 4.5 [1 кБ в сжатом виде](/size-snapshot).
+- 4.5 [4,5 кБ в сжатом виде](/size-snapshot).
 
 {{"demo": "pages/components/autocomplete/UseAutocomplete.js", "defaultCodeOpen": false}}
 
@@ -78,7 +78,7 @@ For this demo, we need to load the [Google Maps JavaScript](https://developers.g
 
 ## Множественные значения
 
-Также известны как теги. Пользователь может ввести более 1 значения.
+Also known as tags, the user is allowed to enter more than one value.
 
 {{"demo": "pages/components/autocomplete/Tags.js"}}
 
@@ -112,7 +112,7 @@ The following demo relies on [autosuggest-highlight](https://github.com/moroshko
 
 {{"demo": "pages/components/autocomplete/Highlights.js"}}
 
-## Custom filter
+## Пользовательский фильтр
 
 The component exposes a factory to create a filter method that can provided to the `filerOption` prop. You can use it to change the default option filter behavior.
 
@@ -155,9 +155,9 @@ const filterOptions = (options, { inputValue }) =>
 <Autocomplete filterOptions={filterOptions} />
 ```
 
-## Virtualization
+## Виртуализация
 
-Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
+Поиск в 10000 случайно сгенерированных опций. Список виртуализирован благодаря [реагирующему окну](https://github.com/bvaughn/react-window).
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 

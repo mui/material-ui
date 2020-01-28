@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import TreeViewContext from './TreeViewContext';
 import { withStyles } from '@material-ui/core/styles';
-import { useStateChangeWarning } from '@material-ui/core/utils';
+import { useControlled } from '@material-ui/core/utils';
 
 export const styles = {
   /* Styles applied to the root element. */
@@ -55,23 +55,26 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     selected: selectedProp,
     ...other
   } = props;
-  const [tabable, setTabable] = React.useState(null);
+  const [tabbable, setTabbable] = React.useState(null);
   const [focused, setFocused] = React.useState(null);
 
   const nodeMap = React.useRef({});
   const firstCharMap = React.useRef({});
   const visibleNodes = React.useRef([]);
 
-  const { current: isControlledExpanded } = React.useRef(expandedProp !== undefined);
-  const [expandedState, setExpandedState] = React.useState(defaultExpanded);
-  const expanded = (isControlledExpanded ? expandedProp : expandedState) || defaultExpandedDefault;
+  const [expandedState, setExpandedState] = useControlled({
+    controlled: expandedProp,
+    default: defaultExpanded,
+    name: 'TreeView',
+  });
+  const [selectedState, setSelectedState] = useControlled({
+    controlled: selectedProp,
+    default: defaultSelected,
+    name: 'TreeView',
+  });
 
-  const { current: isControlledSelected } = React.useRef(selectedProp !== undefined);
-  const [selectedState, setSelectedState] = React.useState(defaultSelected);
-  const selected = (isControlledSelected ? selectedProp : selectedState) || defaultSelectedDefault;
-
-  useStateChangeWarning('TreeView', isControlledExpanded, expandedProp, 'expanded');
-  useStateChangeWarning('TreeView', isControlledSelected, selectedProp, 'selected');
+  const expanded = expandedState || defaultExpandedDefault;
+  const selected = selectedState || defaultSelected;
 
   /*
    * Status Helpers
@@ -82,7 +85,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     [selected],
   );
 
-  const isTabable = id => tabable === id;
+  const isTabbable = id => tabbable === id;
   const isFocused = id => focused === id;
 
   /*
@@ -123,7 +126,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
   const focus = id => {
     if (id) {
-      setTabable(id);
+      setTabbable(id);
       setFocused(id);
     }
   };
@@ -180,12 +183,12 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     let newExpanded;
     if (expanded.indexOf(value) !== -1) {
       newExpanded = expanded.filter(id => id !== value);
-      setTabable(oldTabable => {
-        const map = nodeMap.current[oldTabable];
-        if (oldTabable && (map && map.parent ? map.parent.id : null) === value) {
+      setTabbable(oldTabbable => {
+        const map = nodeMap.current[oldTabbable];
+        if (oldTabbable && (map && map.parent ? map.parent.id : null) === value) {
           return value;
         }
-        return oldTabable;
+        return oldTabbable;
       });
     } else {
       newExpanded = [value, ...expanded];
@@ -195,9 +198,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       onNodeToggle(event, newExpanded);
     }
 
-    if (!isControlledExpanded) {
       setExpandedState(newExpanded);
-    }
   };
 
   const expandAllSiblings = (event, id) => {
@@ -213,9 +214,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
     const newExpanded = [...expanded, ...diff];
 
-    if (!isControlledExpanded) {
-      setExpandedState(newExpanded);
-    }
+    setExpandedState(newExpanded);
 
     if (onNodeToggle) {
       onNodeToggle(event, newExpanded);
@@ -246,9 +245,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       onNodeSelect(event, newSelected);
     }
 
-    if (!isControlledSelected) {
       setSelectedState(newSelected);
-    }
   };
 
   const handleMultipleSelect = (event, value) => {
@@ -263,9 +260,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       onNodeSelect(event, newSelected);
     }
 
-    if (!isControlledSelected) {
       setSelectedState(newSelected);
-    }
   };
 
   const handleSingleSelect = (event, value) => {
@@ -276,9 +271,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       onNodeSelect(event, newSelected);
     }
 
-    if (!isControlledSelected) {
       setSelectedState(newSelected);
-    }
   };
 
   const rangeSelectFirst = (event, start) => handleRangeSelect(event, start, getFirstNode());
@@ -346,7 +339,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
 
       childIds.forEach((id, index) => {
         if (index === 0) {
-          setTabable(id);
+          setTabbable(id);
         }
         nodeMap.current[id] = { parent: null };
       });
@@ -396,7 +389,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         isExpanded,
         isFocused,
         isSelected,
-        isTabable,
+        isTabbable,
         multiSelect,
         selectionDisabled: disableSelection,
         getParent,
@@ -484,7 +477,7 @@ TreeView.propTypes = {
   /**
    * Callback fired when tree items are expanded/collapsed.
    *
-   * @param {object} event The event source of the callback
+   * @param {object} event The event source of the callback.
    * @param {array} nodeIds The ids of the expanded nodes.
    */
   onNodeToggle: PropTypes.func,

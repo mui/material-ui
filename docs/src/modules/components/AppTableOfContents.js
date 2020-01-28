@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import PropTypes from 'prop-types';
-import marked from 'marked';
+import marked from 'marked/lib/marked';
 import throttle from 'lodash/throttle';
 import clsx from 'clsx';
 import Box from '@material-ui/core/Box';
@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import textToHash from 'docs/src/modules/utils/textToHash';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import Link from 'docs/src/modules/components/Link';
+import PageContext from 'docs/src/modules/components/PageContext';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,7 +20,6 @@ const useStyles = makeStyles(theme => ({
     marginTop: 70,
     width: 175,
     flexShrink: 0,
-    order: 2,
     position: 'sticky',
     height: 'calc(100vh - 70px)',
     overflowY: 'auto',
@@ -155,6 +155,7 @@ export default function AppTableOfContents(props) {
     itemsClientRef.current = getItemsClient(itemsServer);
   }, [itemsServer]);
 
+  const { activePage } = React.useContext(PageContext);
   const [activeState, setActiveState] = React.useState(null);
   const clickedRef = React.useRef(false);
   const unsetClickedRef = React.useRef(null);
@@ -233,7 +234,7 @@ export default function AppTableOfContents(props) {
     <Link
       display="block"
       color={activeState === item.hash ? 'textPrimary' : 'textSecondary'}
-      href={`#${item.hash}`}
+      href={`${activePage.pathname}#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
       className={clsx(

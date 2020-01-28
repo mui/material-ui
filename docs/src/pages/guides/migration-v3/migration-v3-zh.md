@@ -79,8 +79,16 @@ yarn add @material-ui/styles
   -const DeepChild = withTheme()(DeepChildRaw);
   +const DeepChild = withTheme(DeepChildRaw);
   ```
--  约束 [keyframes 的 API](https://cssinjs.org/jss-syntax/#keyframes-animation). 您应该在您的代码中做出以下改变。
-  这对分离动画的逻辑有所帮助：
+
+- Rename `convertHexToRGB` to `hexToRgb`.
+
+  ```diff
+  -import { convertHexToRgb } from '@material-ui/core/styles/colorManipulator';
+  +import { hexToRgb } from '@material-ui/core/styles';
+  ```
+
+- Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). You should apply the following changes in your codebase.
+  It helps isolating the animation logic:
 
   ```diff
     rippleVisible: {
@@ -97,7 +105,11 @@ yarn add @material-ui/styles
       },
     },
   ```
-  若想要正确地使用它，您必须使用返回值。
+
+### Theme
+
+- The `theme.palette.augmentColor()` method no longer performs a side effect on its input color.
+  To use it correctly, you have to use the returned value.
 
   ```diff
   -const background = { main: color };
@@ -107,7 +119,7 @@ yarn add @material-ui/styles
   console.log({ background });
   ```
 
-—您可以从主题创建中安全地移除下一个变体：
+- You can safely remove the next variant from the theme creation:
 
   ```diff
   typography: {
@@ -115,24 +127,35 @@ yarn add @material-ui/styles
   },
   ```
 
-—我们已经不再使用`theme.spacing.unit`，请参照新的 API：
+- `theme.spacing.unit` usage is deprecated, you can use the new API:
 
-  您可以在项目中使用 [迁移小帮手](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api)来让您的迁移流程更加顺畅。
+  ```diff
+  label: {
+    [theme.breakpoints.up('sm')]: {
+  -   paddingTop: theme.spacing.unit * 12,
+  +   paddingTop: theme.spacing(12),
+    },
+  }
+  ```
 
-### Layout（布局）
+  *Tip: you can provide more than 1 argument: `theme.spacing(1, 2) // = '8px 16px'`*.
 
-- [Grid] 本着支持任意间距值并且摈弃心理上一直需要在8的基础上计数的目的，我们改变了 spacing 的 API: 
+  You can use [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api) on your project to make this smoother.
+
+### Layout
+
+- [Grid] In order to support arbitrary spacing values and to remove the need to mentally count by 8, we are changing the spacing API:
 
   ```diff
     /**
-     * 在类别为`item` 组件之间定义间距。
-     * 它只能用于类型为 `container` 的组件。
+     * Defines the space between the type `item` component.
+     * It can only be used on a type `container` component.
      */
   -  spacing: PropTypes.oneOf([0, 8, 16, 24, 32, 40]),
   +  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
   ```
-  从今往后，您可以使用主题来实现 [一个自定义的网格间距变换函数](https://material-ui.com/system/spacing/#transformation)。
-- [Container] 从 `@material-ui/lab` 迁移到 `@material-ui/core`。
+  Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
+- [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
 
   ```diff
   -import Container from '@material-ui/lab/Container';
@@ -141,10 +164,10 @@ yarn add @material-ui/styles
 
 ### TypeScript
 
-#### `value` 类型 
+#### `value` type
 
-将 input 组件的 `value` 属性的类型正常化，这样可以使用 `unknown`了。 这会影响
-`InputBase`，`NativeSelect`，`OutlinedInput`，`Radio`，`RadioGroup`，`Select`，`SelectInput`，`TextArea` 和 `TextField`。
+Normalized `value` prop type for input components to use `unknown`. This affects
+`InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`,  and `TextField`.
 
 ```diff
 function MySelect({ children }) {

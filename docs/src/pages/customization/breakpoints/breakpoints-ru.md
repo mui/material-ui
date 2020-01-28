@@ -12,7 +12,7 @@
 - **lg,** large: 1280px
 - **xl,** extra-large: 1920px
 
-Эти [ значения контрольных точек](/customization/default-theme/?expend-path=$.breakpoints.values) используются для определения диапазонов. Диапазон начинается с значения первой точки (включительно) до следующей, но не включая её:
+These [breakpoint values](/customization/default-theme/?expand-path=$.breakpoints.values) are used to determine breakpoint ranges. Диапазон начинается с значения первой точки (включительно) до следующей, но не включая её:
 
 ```js
 значение             |0px     600px    960px    1280px   1920px
@@ -21,7 +21,7 @@
 диапазон             |   xs   |   m   |   md |   lg   |   xl
 ```
 
-Эти значения всегда можно изменить. Вы найдете их в теме, в объекте [`breakpoints.values`](/customization/default-theme/?expend-path=$.breakpoints.values).
+Эти значения всегда можно изменить. You will find them in the theme, in the [`breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values) object.
 
 The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) and [Hidden](/components/hidden/) components.
 
@@ -91,7 +91,7 @@ In the following demo, we change the rendered DOM element (*em*, <u>u</u>, ~~del
 
 #### Возвращает
 
-`media query`: Строка медиа-запроса, готовая для использования с JSS.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than and including the screen size given by the breakpoint key.
 
 #### Примеры
 
@@ -116,7 +116,7 @@ const styles = theme => ({
 
 #### Возвращает
 
-`media query`: A media query string ready to be used with JSS, which matches screen widths less than and including the screen size given by the breakpoint key.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths less than and including the screen size given by the breakpoint key.
 
 #### Примеры
 
@@ -142,7 +142,7 @@ const styles = theme => ({
 
 #### Возвращает
 
-`media query`: A media query string ready to be used with JSS, which matches screen widths greater than and including the screen size given by the breakpoint key.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths including the screen size given by the breakpoint key.
 
 #### Примеры
 
@@ -164,12 +164,12 @@ const styles = theme => ({
 
 #### Аргументы
 
-1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.).
-2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.).
+1. `start` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
+2. `end` (*String*): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in pixels.
 
 #### Возвращает
 
-`media query`: A media query string ready to be used with JSS, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
+`media query`: A media query string ready to be used with most styling solutions, which matches screen widths greater than the screen size given by the breakpoint key in the first argument and less than the the screen size given by the breakpoint key in the second argument.
 
 #### Примеры
 
@@ -242,4 +242,4 @@ export default withWidth()(MyComponent);
 
 ## Default values
 
-You can explore the default values of the breakpoints using [the theme explorer](/customization/default-theme/?expend-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).
+You can explore the default values of the breakpoints using [the theme explorer](/customization/default-theme/?expand-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).

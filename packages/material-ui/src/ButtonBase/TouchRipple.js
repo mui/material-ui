@@ -207,17 +207,22 @@ const TouchRipple = React.forwardRef(function TouchRipple(props, ref) {
 
       // Touche devices
       if (event.touches) {
-        // Prepare the ripple effect.
-        startTimerCommit.current = () => {
-          startCommit({ pulsate, rippleX, rippleY, rippleSize, cb });
-        };
-        // Delay the execution of the ripple effect.
-        startTimer.current = setTimeout(() => {
-          if (startTimerCommit.current) {
-            startTimerCommit.current();
-            startTimerCommit.current = null;
-          }
-        }, DELAY_RIPPLE); // We have to make a tradeoff with this value.
+        // check that this isn't another touchstart due to multitouch
+        // otherwise we will only clear a single timer when unmounting while two
+        // are running
+        if (startTimerCommit.current === null) {
+          // Prepare the ripple effect.
+          startTimerCommit.current = () => {
+            startCommit({ pulsate, rippleX, rippleY, rippleSize, cb });
+          };
+          // Delay the execution of the ripple effect.
+          startTimer.current = setTimeout(() => {
+            if (startTimerCommit.current) {
+              startTimerCommit.current();
+              startTimerCommit.current = null;
+            }
+          }, DELAY_RIPPLE); // We have to make a tradeoff with this value.
+        }
       } else {
         startCommit({ pulsate, rippleX, rippleY, rippleSize, cb });
       }

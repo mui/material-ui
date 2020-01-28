@@ -1,5 +1,5 @@
 ---
-title: Box React component
+title: React-компонент Box
 ---
 
 # Box
@@ -36,13 +36,13 @@ Box компонент оборачивает ваш компонент. Соз�
 </Box>
 ```
 
-2. Use render props
+2. Используйте render свойства
 
 The Box children accepts a render props function. You can pull out the `className`.
 
 ```jsx
 <Box color="text.primary">
-  {props => <Button {...props} />}
+  {props => <Button {...props} />}
 </Box>
 ```
 
@@ -54,7 +54,7 @@ The Box children accepts a render props function. You can pull out the `classNam
 import Box from '@material-ui/core/Box';
 ```
 
-| Name                                                    | Type                                                                                                              | Default                                 | Description                                                                                           |
+| Имя                                                     | Тип                                                                                                               | По-умолчанию                            | Описание                                                                                              |
 |:------------------------------------------------------- |:----------------------------------------------------------------------------------------------------------------- |:--------------------------------------- |:----------------------------------------------------------------------------------------------------- |
 | <span class="prop-name required">children&nbsp;*</span> | <span class="prop-type">union:&nbsp;node&nbsp;&#124;<br />&nbsp;func<br /></span>                                 |                                         | Box render function or node.                                                                          |
 | <span class="prop-name">clone</span>                    | <span class="prop-type">bool</span>                                                                               | <span class="prop-default">false</span> | If `true`, the box will recycle its children DOM element. It's using `React.cloneElement` internally. |

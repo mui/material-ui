@@ -21,7 +21,7 @@ Here are some examples of customizing the component. You can learn more about th
 ## Hover feedback
 
 You can display a label on hover to help users pick the correct rating value.
-The first demo uses the `onChangeActive` prop while the last one uses the `IconContainerComponent` prop.
+The demo uses the `onChangeActive` prop.
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 
@@ -47,4 +47,3 @@ The accessibility of this component relies on:
 - A radio group is used with its fields visually hidden.
 It contains six radio buttons, one for each star and another for 0 stars, which is checked by default. Make sure you are providing a `name` prop that is unique to the parent form.
 - The labels for the radio buttons contain actual text (“1 Star”, “2 Stars”, …), make sure you provide a `getLabelText` prop when the page language is not English.
-

@@ -6,9 +6,11 @@ import withStyles from '../styles/withStyles';
 import useTheme from '../styles/useTheme';
 import { fade, lighten, darken } from '../styles/colorManipulator';
 import { useIsFocusVisible } from '../utils/focusVisible';
+import ownerDocument from '../utils/ownerDocument';
 import useEventCallback from '../utils/useEventCallback';
 import useForkRef from '../utils/useForkRef';
 import capitalize from '../utils/capitalize';
+import useControlled from '../utils/useControlled';
 import ValueLabel from './ValueLabel';
 
 function asc(a, b) {
@@ -121,7 +123,6 @@ const axisProps = {
   },
 };
 
-const defaultMarks = [];
 const Identity = x => x;
 
 export const styles = theme => ({
@@ -345,7 +346,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     disabled = false,
     getAriaLabel,
     getAriaValueText,
-    marks: marksProp = defaultMarks,
+    marks: marksProp = false,
     max = 100,
     min = 0,
     name,
@@ -353,6 +354,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     onChangeCommitted,
     onMouseDown,
     orientation = 'horizontal',
+    scale = Identity,
     step = 1,
     ThumbComponent = 'span',
     track = 'normal',
@@ -370,28 +372,11 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const [active, setActive] = React.useState(-1);
   const [open, setOpen] = React.useState(-1);
 
-  const { current: isControlled } = React.useRef(valueProp != null);
-  const [valueState, setValueState] = React.useState(defaultValue);
-  const valueDerived = isControlled ? valueProp : valueState;
-
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (isControlled !== (valueProp != null)) {
-        console.error(
-          [
-            `Material-UI: A component is changing ${
-              isControlled ? 'a ' : 'an un'
-            }controlled Slider to be ${isControlled ? 'un' : ''}controlled.`,
-            'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled Slider ' +
-              'element for the lifetime of the component.',
-            'More info: https://fb.me/react-controlled-components',
-          ].join('\n'),
-        );
-      }
-    }, [valueProp, isControlled]);
-  }
+  const [valueDerived, setValueState] = useControlled({
+    controlled: valueProp,
+    default: defaultValue,
+    name: 'Slider',
+  });
 
   const range = Array.isArray(valueDerived);
   const instanceRef = React.useRef();
@@ -402,7 +387,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
           value: min + step * index,
         }))
-      : marksProp;
+      : marksProp || [];
 
   instanceRef.current = {
     source: valueDerived, // Keep track of the input value to leverage immutable state comparison.
@@ -502,10 +487,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       focusThumb({ sliderRef, activeIndex: newValue.indexOf(previousValue) });
     }
 
-    if (!isControlled) {
-      setValueState(newValue);
-    }
-
+    setValueState(newValue);
     setFocusVisible(index);
 
     if (onChange) {
@@ -522,57 +504,54 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     axis += '-reverse';
   }
 
-  const getFingerNewValue = React.useCallback(
-    ({ finger, move = false, values: values2, source }) => {
-      const { current: slider } = sliderRef;
-      const { width, height, bottom, left } = slider.getBoundingClientRect();
-      let percent;
+  const getFingerNewValue = ({ finger, move = false, values: values2, source }) => {
+    const { current: slider } = sliderRef;
+    const { width, height, bottom, left } = slider.getBoundingClientRect();
+    let percent;
 
-      if (axis.indexOf('vertical') === 0) {
-        percent = (bottom - finger.y) / height;
+    if (axis.indexOf('vertical') === 0) {
+      percent = (bottom - finger.y) / height;
+    } else {
+      percent = (finger.x - left) / width;
+    }
+
+    if (axis.indexOf('-reverse') !== -1) {
+      percent = 1 - percent;
+    }
+
+    let newValue;
+    newValue = percentToValue(percent, min, max);
+    if (step) {
+      newValue = roundValueToStep(newValue, step, min);
+    } else {
+      const marksValues = marks.map(mark => mark.value);
+      const closestIndex = findClosest(marksValues, newValue);
+      newValue = marksValues[closestIndex];
+    }
+
+    newValue = clamp(newValue, min, max);
+    let activeIndex = 0;
+
+    if (range) {
+      if (!move) {
+        activeIndex = findClosest(values2, newValue);
       } else {
-        percent = (finger.x - left) / width;
+        activeIndex = previousIndex.current;
       }
 
-      if (axis.indexOf('-reverse') !== -1) {
-        percent = 1 - percent;
-      }
+      const previousValue = newValue;
+      newValue = setValueIndex({
+        values: values2,
+        source,
+        newValue,
+        index: activeIndex,
+      }).sort(asc);
+      activeIndex = newValue.indexOf(previousValue);
+      previousIndex.current = activeIndex;
+    }
 
-      let newValue;
-      newValue = percentToValue(percent, min, max);
-      if (step) {
-        newValue = roundValueToStep(newValue, step, min);
-      } else {
-        const marksValues = marks.map(mark => mark.value);
-        const closestIndex = findClosest(marksValues, newValue);
-        newValue = marksValues[closestIndex];
-      }
-
-      newValue = clamp(newValue, min, max);
-      let activeIndex = 0;
-
-      if (range) {
-        if (!move) {
-          activeIndex = findClosest(values2, newValue);
-        } else {
-          activeIndex = previousIndex.current;
-        }
-
-        const previousValue = newValue;
-        newValue = setValueIndex({
-          values: values2,
-          source,
-          newValue,
-          index: activeIndex,
-        }).sort(asc);
-        activeIndex = newValue.indexOf(previousValue);
-        previousIndex.current = activeIndex;
-      }
-
-      return { newValue, activeIndex };
-    },
-    [max, min, axis, range, step, marks],
-  );
+    return { newValue, activeIndex };
+  };
 
   const handleTouchMove = useEventCallback(event => {
     const finger = trackFinger(event, touchId);
@@ -589,9 +568,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     });
 
     focusThumb({ sliderRef, activeIndex, setActive });
-    if (!isControlled) {
-      setValueState(newValue);
-    }
+    setValueState(newValue);
+
     if (onChange) {
       onChange(event, newValue);
     }
@@ -616,20 +594,12 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     }
 
     touchId.current = undefined;
-    document.body.removeEventListener('mousemove', handleTouchMove);
-    document.body.removeEventListener('mouseup', handleTouchEnd);
-    // eslint-disable-next-line no-use-before-define
-    document.body.removeEventListener('mouseenter', handleMouseEnter);
-    document.body.removeEventListener('touchmove', handleTouchMove);
-    document.body.removeEventListener('touchend', handleTouchEnd);
-  });
 
-  const handleMouseEnter = useEventCallback(event => {
-    // If the slider was being interacted with but the mouse went off the window
-    // and then re-entered while unclicked then end the interaction.
-    if (event.buttons === 0) {
-      handleTouchEnd(event);
-    }
+    const doc = ownerDocument(sliderRef.current);
+    doc.removeEventListener('mousemove', handleTouchMove);
+    doc.removeEventListener('mouseup', handleTouchEnd);
+    doc.removeEventListener('touchmove', handleTouchMove);
+    doc.removeEventListener('touchend', handleTouchEnd);
   });
 
   const handleTouchStart = useEventCallback(event => {
@@ -644,49 +614,30 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
 
-    if (!isControlled) {
-      setValueState(newValue);
-    }
+    setValueState(newValue);
+
     if (onChange) {
       onChange(event, newValue);
     }
 
-    document.body.addEventListener('touchmove', handleTouchMove);
-    document.body.addEventListener('touchend', handleTouchEnd);
+    const doc = ownerDocument(sliderRef.current);
+    doc.addEventListener('touchmove', handleTouchMove);
+    doc.addEventListener('touchend', handleTouchEnd);
   });
 
   React.useEffect(() => {
     const { current: slider } = sliderRef;
     slider.addEventListener('touchstart', handleTouchStart);
+    const doc = ownerDocument(slider);
 
     return () => {
       slider.removeEventListener('touchstart', handleTouchStart);
-      document.body.removeEventListener('mousemove', handleTouchMove);
-      document.body.removeEventListener('mouseup', handleTouchEnd);
-      document.body.removeEventListener('mouseenter', handleMouseEnter);
-      document.body.removeEventListener('touchmove', handleTouchMove);
-      document.body.removeEventListener('touchend', handleTouchEnd);
+      doc.removeEventListener('mousemove', handleTouchMove);
+      doc.removeEventListener('mouseup', handleTouchEnd);
+      doc.removeEventListener('touchmove', handleTouchMove);
+      doc.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [handleMouseEnter, handleTouchEnd, handleTouchMove, handleTouchStart]);
-
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (isControlled !== (valueProp != null)) {
-        console.error(
-          [
-            `Material-UI: A component is changing ${
-              isControlled ? 'a ' : 'an un'
-            }controlled Slider to be ${isControlled ? 'un' : ''}controlled.`,
-            'Elements should not switch from uncontrolled to controlled (or vice versa).',
-            'Decide between using a controlled or uncontrolled Slider ' +
-              'element for the lifetime of the component.',
-            'More info: https://fb.me/react-controlled-components',
-          ].join('\n'),
-        );
-      }
-    }, [valueProp, isControlled]);
-  }
+  }, [handleTouchEnd, handleTouchMove, handleTouchStart]);
 
   const handleMouseDown = useEventCallback(event => {
     if (onMouseDown) {
@@ -698,16 +649,15 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
 
-    if (!isControlled) {
-      setValueState(newValue);
-    }
+    setValueState(newValue);
+
     if (onChange) {
       onChange(event, newValue);
     }
 
-    document.body.addEventListener('mousemove', handleTouchMove);
-    document.body.addEventListener('mouseenter', handleMouseEnter);
-    document.body.addEventListener('mouseup', handleTouchEnd);
+    const doc = ownerDocument(sliderRef.current);
+    doc.addEventListener('mousemove', handleTouchMove);
+    doc.addEventListener('mouseup', handleTouchEnd);
   });
 
   const trackOffset = valueToPercent(range ? values[0] : min, min, max);
@@ -789,7 +739,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
             className={classes.valueLabel}
             value={
               typeof valueLabelFormat === 'function'
-                ? valueLabelFormat(value, index)
+                ? valueLabelFormat(scale(value), index)
                 : valueLabelFormat
             }
             index={index}
@@ -809,10 +759,12 @@ const Slider = React.forwardRef(function Slider(props, ref) {
               aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
               aria-labelledby={ariaLabelledby}
               aria-orientation={orientation}
-              aria-valuemax={max}
-              aria-valuemin={min}
-              aria-valuenow={value}
-              aria-valuetext={getAriaValueText ? getAriaValueText(value, index) : ariaValuetext}
+              aria-valuemax={scale(max)}
+              aria-valuemin={scale(min)}
+              aria-valuenow={scale(value)}
+              aria-valuetext={
+                getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
+              }
               onKeyDown={handleKeyDown}
               onFocus={handleFocus}
               onBlur={handleBlur}
@@ -942,6 +894,10 @@ Slider.propTypes = {
    * The slider orientation.
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * A transformation function, to change the scale of the slider.
+   */
+  scale: PropTypes.func,
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.

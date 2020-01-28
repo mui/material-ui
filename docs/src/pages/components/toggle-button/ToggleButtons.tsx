@@ -67,7 +67,7 @@ export default function ToggleButtons() {
       </Grid>
       <Grid item sm={12} md={6}>
         <div className={classes.toggleContainer}>
-          <ToggleButtonGroup value={formats} onChange={handleFormat} arial-label="text formatting">
+          <ToggleButtonGroup value={formats} onChange={handleFormat} aria-label="text formatting">
             <ToggleButton value="bold" aria-label="bold">
               <FormatBoldIcon />
             </ToggleButton>

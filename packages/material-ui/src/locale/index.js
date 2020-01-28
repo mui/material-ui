@@ -17,6 +17,7 @@ export const azAZ = {
 
         return `${value} ${pluralForm}`;
       },
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Silmək',
@@ -24,6 +25,59 @@ export const azAZ = {
       loadingText: 'Yüklənir…',
       noOptionsText: 'Seçimlər mövcud deyil',
       openText: 'Открыть',
+    },
+    MuiAlert: {
+      closeText: 'Bağlamaq',
+    },
+  },
+};
+
+export const bgBG = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Предишна страница',
+      labelRowsPerPage: 'Редове на страница:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} от ${count}`,
+      nextIconButtonText: 'Следваща страница',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Звезд${value !== 1 ? 'и' : 'а'}`,
+      emptyLabelText: 'Изчисти',
+    },
+    MuiAutocomplete: {
+      clearText: 'Изчисти',
+      closeText: 'Затвори',
+      loadingText: 'Зареждане…',
+      noOptionsText: 'Няма налични опции',
+      openText: 'Отвори',
+    },
+    MuiAlert: {
+      closeText: 'Затвори',
+    },
+  },
+};
+
+export const caES = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Pàgina anterior',
+      labelRowsPerPage: 'Files per pàgina:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} de ${count}`,
+      nextIconButtonText: 'Següent pàgina',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} ${value !== 1 ? 'Estrelles' : 'Estrella'}`,
+      emptyLabelText: 'Buit',
+    },
+    MuiAutocomplete: {
+      clearText: 'Netejar',
+      closeText: 'Tancar',
+      loadingText: 'Carregant…',
+      noOptionsText: 'Sense opcions',
+      openText: 'Obert',
+    },
+    MuiAlert: {
+      closeText: 'Tancat',
     },
   },
 };
@@ -46,6 +100,7 @@ export const csCZ = {
         }
         return `${value} hvězdiček`;
       },
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Vymazat',
@@ -53,6 +108,9 @@ export const csCZ = {
       loadingText: 'Načítání…',
       noOptionsText: 'Žádné možnosti',
       openText: 'Otevřít',
+    },
+    MuiAlert: {
+      closeText: 'Zavřít',
     },
   },
 };
@@ -67,6 +125,7 @@ export const deDE = {
     },
     MuiRating: {
       getLabelText: value => `${value} ${value !== 1 ? 'Sterne' : 'Stern'}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Leeren',
@@ -75,13 +134,15 @@ export const deDE = {
       noOptionsText: 'Keine Optionen',
       openText: 'Öffnen',
     },
+    MuiAlert: {
+      closeText: 'Schließen',
+    },
   },
 };
 
 // default
-export const enUS = {};
-
-/**
+export const enUS = {
+  /**
   props: {
     MuiTablePagination: {
       backIconButtonText: 'Previous page',
@@ -91,6 +152,7 @@ export const enUS = {};
     },
     MuiRating: {
       getLabelText: value => `${value} Star${value !== 1 ? 's' : ''}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Clear',
@@ -99,8 +161,12 @@ export const enUS = {};
       noOptionsText: 'No options',
       openText: 'Open',
     },
+    MuiAlert: {
+      closeText: 'Close',
+    },
   },
 */
+};
 
 export const esES = {
   props: {
@@ -112,6 +178,7 @@ export const esES = {
     },
     MuiRating: {
       getLabelText: value => `${value} Estrella${value !== 1 ? 's' : ''}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Limpiar',
@@ -119,6 +186,9 @@ export const esES = {
       loadingText: 'Cargando…',
       noOptionsText: 'Sin opciones',
       openText: 'Abierto',
+    },
+    MuiAlert: {
+      closeText: 'Cerrar',
     },
   },
 };
@@ -133,6 +203,7 @@ export const faIR = {
     },
     MuiRating: {
       getLabelText: value => `${value} ستاره`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'پاک‌کردن',
@@ -140,6 +211,9 @@ export const faIR = {
       loadingText: 'در حال بارگذاری…',
       noOptionsText: 'بی‌نتیجه',
       openText: 'بازکردن',
+    },
+    MuiAlert: {
+      closeText: 'بستن',
     },
   },
 };
@@ -154,6 +228,7 @@ export const frFR = {
     },
     MuiRating: {
       getLabelText: value => `${value} Etoile${value !== 1 ? 's' : ''}`,
+      emptyLabelText: 'Vide',
     },
     MuiAutocomplete: {
       clearText: 'Vider',
@@ -161,6 +236,9 @@ export const frFR = {
       loadingText: 'Chargement…',
       noOptionsText: 'Pas de résultats',
       openText: 'Ouvrir',
+    },
+    MuiAlert: {
+      closeText: 'Fermer',
     },
   },
 };
@@ -176,6 +254,7 @@ export const idID = {
     },
     MuiRating: {
       getLabelText: value => `${value} Bintang`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Hapus',
@@ -183,6 +262,9 @@ export const idID = {
       loadingText: 'Memuat…',
       noOptionsText: 'Tidak ada opsi',
       openText: 'Buka',
+    },
+    MuiAlert: {
+      closeText: 'Tutup',
     },
   },
 };
@@ -196,7 +278,8 @@ export const itIT = {
       nextIconButtonText: 'Pagina successiva',
     },
     MuiRating: {
-      getLabelText: value => `${value} Stell${value !== 1 ? 'a' : 'e'}`,
+      getLabelText: value => `${value} Stell${value !== 1 ? 'e' : 'a'}`,
+      emptyLabelText: 'Vuoto',
     },
     MuiAutocomplete: {
       clearText: 'Svuota',
@@ -204,6 +287,9 @@ export const itIT = {
       loadingText: 'Caricamento in corso…',
       noOptionsText: 'Nessuna opzione',
       openText: 'Apri',
+    },
+    MuiAlert: {
+      closeText: 'Chiudi',
     },
   },
 };
@@ -218,6 +304,7 @@ export const jaJP = {
     },
     MuiRating: {
       getLabelText: value => `${value} ${value !== 1 ? '出演者' : '星'}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'クリア',
@@ -225,6 +312,9 @@ export const jaJP = {
       loadingText: '積み込み…',
       noOptionsText: '結果がありません',
       openText: '開いた',
+    },
+    MuiAlert: {
+      closeText: '閉じる',
     },
   },
 };
@@ -239,6 +329,7 @@ export const koKR = {
     },
     MuiRating: {
       getLabelText: value => `${value} 점`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: '지우기',
@@ -260,6 +351,7 @@ export const nlNL = {
     },
     MuiRating: {
       getLabelText: value => `${value} Ster${value !== 1 ? 'ren' : ''}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Wissen',
@@ -267,6 +359,9 @@ export const nlNL = {
       loadingText: 'Laden…',
       noOptionsText: 'Geen opties',
       openText: 'Openen',
+    },
+    MuiAlert: {
+      closeText: 'Sluiten',
     },
   },
 };
@@ -292,6 +387,7 @@ export const plPL = {
 
         return `${value} ${pluralForm}`;
       },
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Wyczyść',
@@ -299,6 +395,9 @@ export const plPL = {
       loadingText: 'Ładowanie…',
       noOptionsText: 'Brak opcji',
       openText: 'Otwórz',
+    },
+    MuiAlert: {
+      closeText: 'Zamknij',
     },
   },
 };
@@ -313,6 +412,7 @@ export const ptBR = {
     },
     MuiRating: {
       getLabelText: value => `${value} Estrela${value !== 1 ? 's' : ''}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Limpar',
@@ -320,6 +420,9 @@ export const ptBR = {
       loadingText: 'Carregando…',
       noOptionsText: 'Sem opções',
       openText: 'Abrir',
+    },
+    MuiAlert: {
+      closeText: 'Fechar',
     },
   },
 };
@@ -334,6 +437,7 @@ export const ptPT = {
     },
     MuiRating: {
       getLabelText: value => `${value} Estrela${value !== 1 ? 's' : ''}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Limpar',
@@ -355,6 +459,7 @@ export const roRO = {
     },
     MuiRating: {
       getLabelText: value => `${value} St${value !== 1 ? 'ele' : 'ea'}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Șterge',
@@ -362,6 +467,9 @@ export const roRO = {
       loadingText: 'Se încarcă…',
       noOptionsText: 'Nicio opțiune',
       openText: 'Deschide',
+    },
+    MuiAlert: {
+      closeText: 'Închide',
     },
   },
 };
@@ -387,6 +495,7 @@ export const ruRU = {
 
         return `${value} ${pluralForm}`;
       },
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Очистить',
@@ -394,6 +503,9 @@ export const ruRU = {
       loadingText: 'Загрузка…',
       noOptionsText: 'Нет доступных вариантов',
       openText: 'Открыть',
+    },
+    MuiAlert: {
+      closeText: 'Закрыть',
     },
   },
 };
@@ -416,6 +528,7 @@ export const skSK = {
         }
         return `${value} hviezdičiek`;
       },
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Vymazať',
@@ -423,6 +536,9 @@ export const skSK = {
       loadingText: 'Načítanie…',
       noOptionsText: 'Žiadne možnosti',
       openText: 'Otvoriť',
+    },
+    MuiAlert: {
+      closeText: 'Zavrieť',
     },
   },
 };
@@ -437,6 +553,7 @@ export const svSE = {
     },
     MuiRating: {
       getLabelText: value => `${value} ${value !== 1 ? 'Stjärnor' : 'Stjärna'}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Rensa',
@@ -444,6 +561,9 @@ export const svSE = {
       loadingText: 'Laddar…',
       noOptionsText: 'Inga alternativ',
       openText: 'Öppen',
+    },
+    MuiAlert: {
+      closeText: 'Stäng',
     },
   },
 };
@@ -459,6 +579,7 @@ export const trTR = {
     },
     MuiRating: {
       getLabelText: value => `${value} Yıldız`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Temizle',
@@ -466,6 +587,9 @@ export const trTR = {
       loadingText: 'Yükleniyor…',
       noOptionsText: 'Seçenek yok',
       openText: 'Aç',
+    },
+    MuiAlert: {
+      closeText: 'Kapat',
     },
   },
 };
@@ -491,6 +615,7 @@ export const ukUA = {
 
         return `${value} ${pluralForm}`;
       },
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: 'Очистити',
@@ -498,6 +623,35 @@ export const ukUA = {
       loadingText: 'Завантаження…',
       noOptionsText: 'Немає варіантів',
       openText: 'Розгорнути',
+    },
+    MuiAlert: {
+      closeText: 'Згорнути',
+    },
+  },
+};
+
+export const viVN = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Trang trước',
+      labelRowsPerPage: 'Số hàng mỗi trang:',
+      labelDisplayedRows: ({ from, to, count }) =>
+        `${from}-${to === -1 ? count : to} trong ${count}`,
+      nextIconButtonText: 'Trang sau',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} sao`,
+      emptyLabelText: 'Trống',
+    },
+    MuiAutocomplete: {
+      clearText: 'Xóa',
+      closeText: 'Đóng',
+      loadingText: 'Đang tải…',
+      noOptionsText: 'Không có lựa chọn',
+      openText: 'Mở',
+    },
+    MuiAlert: {
+      closeText: 'Đóng',
     },
   },
 };
@@ -512,6 +666,7 @@ export const zhCN = {
     },
     MuiRating: {
       getLabelText: value => `${value} 星${value !== 1 ? '星' : ''}`,
+      emptyLabelText: 'Empty',
     },
     MuiAutocomplete: {
       clearText: '明确',
@@ -519,6 +674,9 @@ export const zhCN = {
       loadingText: '载入中…',
       noOptionsText: '没有选择',
       openText: '打开',
+    },
+    MuiAlert: {
+      closeText: '关',
     },
   },
 };

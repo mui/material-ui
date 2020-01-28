@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/types",
-  "version": "4.1.1",
+  "version": "5.0.0",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Types - Utility types for Material-UI.",
@@ -34,7 +34,12 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@types/react": "*"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
   }
 }

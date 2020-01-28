@@ -19,18 +19,18 @@ and the un-prefixed shades for the other intentions.
 
 If you want to learn more about color, you can check out [the color section](/customization/color/).
 
-{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline"}}
+{{"demo": "pages/customization/palette/Intentions.js", "bg": "inline", "hideHeader": true}}
 
 ### Customization
 
 You may override the default palette values by including a palette object as part of your theme.
 
-If any of the [`palette.primary`](/customization/default-theme/?expend-path=$.palette.primary),
-[`palette.secondary`](/customization/default-theme/?expend-path=$.palette.secondary),
-[`palette.error`](/customization/default-theme/?expend-path=$.palette.error),
-[`palette.warning`](/customization/default-theme/?expend-path=$.palette.warning),
-[`palette.info`](/customization/default-theme/?expend-path=$.palette.info) or
-[`palette.successs`](/customization/default-theme/?expend-path=$.palette.successs)
+If any of the [`palette.primary`](/customization/default-theme/?expand-path=$.palette.primary),
+[`palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary),
+[`palette.error`](/customization/default-theme/?expand-path=$.palette.error),
+[`palette.warning`](/customization/default-theme/?expand-path=$.palette.warning),
+[`palette.info`](/customization/default-theme/?expand-path=$.palette.info) or
+[`palette.successs`](/customization/default-theme/?expand-path=$.palette.successs)
 'intention' objects are provided, they will replace the defaults.
 
 The intention value can either be a [color](/customization/color/) object, or an object with one or more of the keys specified by the following TypeScript interface:
@@ -41,7 +41,7 @@ interface PaletteIntention {
   main: string;
   dark?: string;
   contrastText?: string;
-};
+}
 ```
 
 **Using a color object**
@@ -84,7 +84,7 @@ const theme = createMuiTheme({
     },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
-    contrastThreshold = 3,
+    contrastThreshold: 3,
     // Used by the functions below to shift a color's luminance by approximately
     // two indexes within its tonal palette.
     // E.g., shift from Red 500 to Red 300 or Red 700.
@@ -97,9 +97,9 @@ As in the example above, if the intention object contains custom colors using an
 "main", "light", "dark" or "contrastText" keys, these map as follows:
 
 - If the "dark" and / or "light" keys are omitted, their value(s) will be calculated from "main",
-according to the "tonalOffset" value.
+  according to the "tonalOffset" value.
 - If "contrastText" is omitted, its value will be calculated to contrast with "main",
-according to the"contrastThreshold" value.
+  according to the "contrastThreshold" value.
 
 Both the "tonalOffset" and "contrastThreshold" values may be customized as needed.
 A higher value for "tonalOffset" will make calculated values for "light" lighter, and "dark" darker.
@@ -130,7 +130,9 @@ const darkTheme = createMuiTheme({
 });
 ```
 
-{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "defaultCodeOpen": false}}
+The colors modified by the palette type are the following:
+
+{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideHeader": true}}
 
 ### User preference
 
@@ -169,4 +171,4 @@ function App() {
 
 ## Default values
 
-You can explore the default values of the palette using [the theme explorer](/customization/default-theme/?expend-path=$.palette) or by opening the dev tools console on this page (`window.theme.palette`).
+You can explore the default values of the palette using [the theme explorer](/customization/default-theme/?expand-path=$.palette) or by opening the dev tools console on this page (`window.theme.palette`).

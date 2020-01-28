@@ -12,7 +12,6 @@ There are examples for the following styling solutions:
 - [CSS Modules](#css-modules)
 - [Emotion](#emotion)
 - [React JSS](#react-jss)
-- [Glamor](#glamor)
 
 ## Plain CSS
 

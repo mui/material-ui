@@ -17,13 +17,10 @@ export default function DotBadge() {
 
   return (
     <div className={classes.root}>
-      <Badge color="primary" variant="dot">
-        <MailIcon />
-      </Badge>
       <Badge color="secondary" variant="dot">
         <MailIcon />
       </Badge>
-      <Badge color="error" variant="dot">
+      <Badge color="secondary" variant="dot">
         <Typography>Typography</Typography>
       </Badge>
     </div>

@@ -38,15 +38,20 @@ export default function createBreakpoints(breakpoints) {
   }
 
   function between(start, end) {
-    const endIndex = keys.indexOf(end) + 1;
+    const endIndex = keys.indexOf(end);
 
-    if (endIndex === keys.length) {
+    if (endIndex === keys.length - 1) {
       return up(start);
     }
 
     return (
-      `@media (min-width:${values[start]}${unit}) and ` +
-      `(max-width:${values[keys[endIndex]] - step / 100}${unit})`
+      `@media (min-width:${
+        typeof values[start] === 'number' ? values[start] : start
+      }${unit}) and ` +
+      `(max-width:${(endIndex !== -1 && typeof values[keys[endIndex + 1]] === 'number'
+        ? values[keys[endIndex + 1]]
+        : end) -
+        step / 100}${unit})`
     );
   }
 

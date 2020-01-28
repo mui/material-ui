@@ -99,7 +99,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
   const {
     action,
     anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'center' },
-    autoHideDuration,
+    autoHideDuration = null,
     children,
     classes,
     className,
@@ -253,7 +253,7 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
 
 Snackbar.propTypes = {
   /**
-   * The action to display.
+   * The action to display. It renders after the message, at the end of the snackbar.
    */
   action: PropTypes.node,
   /**
@@ -362,6 +362,7 @@ Snackbar.propTypes = {
   resumeHideDuration: PropTypes.number,
   /**
    * The component used for the transition.
+   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    */
   TransitionComponent: PropTypes.elementType,
   /**
@@ -373,7 +374,7 @@ Snackbar.propTypes = {
     PropTypes.shape({ enter: PropTypes.number, exit: PropTypes.number }),
   ]),
   /**
-   * Props applied to the `Transition` element.
+   * Props applied to the [`Transition`](http://reactcommunity.org/react-transition-group/transition#Transition-props) element.
    */
   TransitionProps: PropTypes.object,
 };

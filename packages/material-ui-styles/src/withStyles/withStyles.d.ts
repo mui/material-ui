@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PropInjector, CoerceEmptyInterface, IsEmptyInterface } from '@material-ui/types';
+import { PropInjector } from '@material-ui/types';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
 import { DefaultTheme } from '../defaultTheme';
@@ -18,7 +18,14 @@ export interface BaseCSSProperties extends CSS.Properties<number | string> {
 
 export interface CSSProperties extends BaseCSSProperties {
   // Allow pseudo selectors and media queries
-  [k: string]: BaseCSSProperties[keyof BaseCSSProperties] | CSSProperties;
+  // `unknown` is used since TS does not allow assigning an interface without
+  // an index signature to one with an index signature. This is to allow type safe
+  // module augmentation.
+  // Technically we want any key not typed in `BaseCSSProperties` to be of type
+  // `CSSProperties` but this doesn't work. The index signature needs to cover
+  // BaseCSSProperties as well. Usually you would use `BaseCSSProperties[keyof BaseCSSProperties]`
+  // but this would not allow assigning React.CSSProperties to CSSProperties
+  [k: string]: unknown | CSSProperties;
 }
 
 export type BaseCreateCSSProperties<Props extends object = {}> = {
@@ -43,9 +50,12 @@ export interface CreateCSSProperties<Props extends object = {}>
  */
 export type StyleRules<Props extends object = {}, ClassKey extends string = string> = Record<
   ClassKey,
-  IsEmptyInterface<Props> extends true
-    ? CSSProperties | (() => CSSProperties)
-    : CreateCSSProperties<Props> | ((props: Props) => CreateCSSProperties<Props>)
+  // JSS property bag
+  | CSSProperties
+  // JSS property bag where values are based on props
+  | CreateCSSProperties<Props>
+  // JSS property bag based on props
+  | ((props: Props) => CreateCSSProperties<Props>)
 >;
 
 /**
@@ -83,9 +93,7 @@ export type ClassKeyOfStyles<StylesOrClassKey> = StylesOrClassKey extends string
 /**
  * infers the type of the props used in the styles
  */
-export type PropsOfStyles<StylesType> = StylesType extends Styles<any, infer Props>
-  ? CoerceEmptyInterface<Props>
-  : {};
+export type PropsOfStyles<StylesType> = StylesType extends Styles<any, infer Props> ? Props : {};
 
 /**
  * infers the type of the theme used in the styles

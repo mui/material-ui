@@ -78,7 +78,7 @@ For this demo, we need to load the [Google Maps JavaScript](https://developers.g
 
 ## Multiple values
 
-Also knowned as tags, the user is allowed to enter more than 1 value.
+Also known as tags, the user is allowed to enter more than one value.
 
 {{"demo": "pages/components/autocomplete/Tags.js"}}
 
@@ -98,7 +98,7 @@ Fancy smaller inputs? Use the `size` prop.
 
 {{"demo": "pages/components/autocomplete/Sizes.js"}}
 
-## Customized Autocomplete
+## 定制的自动完成组件
 
 This demo reproduces the GitHub's label picker:
 
@@ -106,7 +106,7 @@ This demo reproduces the GitHub's label picker:
 
 Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
 
-## Highlights
+## 高亮
 
 The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
 

@@ -22,9 +22,15 @@ For instance:
 
 ## Variants
 
-The component supports 3 variants.
+The component supports 3 shape variants.
 
 {{"demo": "pages/components/skeleton/Variants.js"}}
+
+## Animations
+
+By default, the skeleton pulsate, but you can change the animation for a wave or disable it entirely.
+
+{{"demo": "pages/components/skeleton/Animations.js"}}
 
 ## YouTube example
 

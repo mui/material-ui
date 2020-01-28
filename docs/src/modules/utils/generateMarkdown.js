@@ -3,9 +3,8 @@ import * as recast from 'recast';
 import { parse as docgenParse } from 'react-docgen';
 import { Router as Router2 } from 'next/router';
 import { pageToTitle } from './helpers';
-import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
+import { SOURCE_CODE_ROOT_URL, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
 
-const SOURCE_CODE_ROOT_URL = 'https://github.com/mui-org/material-ui/blob/master';
 const PATH_REPLACE_REGEX = /\\/g;
 const PATH_SEPARATOR = '/';
 const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map(language => `-${language}.md`);
@@ -334,24 +333,22 @@ function generateClasses(reactAPI) {
   }
 
   let text = '';
-  if (Object.keys(reactAPI.styles.descriptions).length) {
-    text = `| Rule name | Global class | Description |
+
+  text = `| Rule name | Global class | Description |
 |:-----|:-------------|:------------|\n`;
-    text += reactAPI.styles.classes
-      .map(
-        styleRule =>
-          `| <span class="prop-name">${styleRule}</span> | <span class="prop-name">.${
-            reactAPI.styles.globalClasses[styleRule]
-          }</span> | ${
-            reactAPI.styles.descriptions[styleRule]
-              ? escapeCell(reactAPI.styles.descriptions[styleRule])
-              : ''
-          }`,
-      )
-      .join('\n');
-  } else {
-    text = reactAPI.styles.classes.map(styleRule => `- \`${styleRule}\``).join('\n');
-  }
+  text += reactAPI.styles.classes
+    .map(styleRule => {
+      const description = reactAPI.styles.descriptions[styleRule];
+
+      if (typeof description === 'undefined' && ['Grid', 'Paper'].indexOf(reactAPI.name) === -1) {
+        throw new Error(`The "${styleRule}" style rule is missing a description`);
+      }
+
+      return `| <span class="prop-name">${styleRule}</span> | <span class="prop-name">.${
+        reactAPI.styles.globalClasses[styleRule]
+      }</span> | ${description ? escapeCell(description) : ''}`;
+    })
+    .join('\n');
 
   return `## CSS
 

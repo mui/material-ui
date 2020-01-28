@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   chip: {
-    marginRight: theme.spacing(1),
+    margin: theme.spacing(0.5),
   },
   section1: {
     margin: theme.spacing(3, 2),

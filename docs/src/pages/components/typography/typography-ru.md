@@ -42,7 +42,7 @@ For more info check out the [typeface](https://github.com/KyleAMathews/typefaces
 
 ## Theme
 
-В некоторых ситуациях вы не сможете использовать компонент `Typography`. Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expend-path=$.typography) keys of the theme.
+В некоторых ситуациях вы не сможете использовать компонент `Typography`. Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expand-path=$.typography) keys of the theme.
 
 {{"demo": "pages/components/typography/TypographyTheme.js"}}
 
