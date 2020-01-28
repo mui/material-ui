@@ -91,6 +91,29 @@ describe('<Select> integration', () => {
       expect(trigger).to.have.focus;
       expect(trigger).to.have.text('Twenty');
     });
+
+    it('open only with left mouse button click', () => {
+      // test for https://github.com/mui-org/material-ui/issues/19250#issuecomment-578620934
+      // right/middle mouse click shouldn't open select
+      const { getByRole, queryByRole, getByTestId } = render(<SelectAndDialog />);
+
+      const trigger = getByRole('button');
+
+      // Click by the left mouse button. Options list should be present
+      fireEvent.mouseDown(trigger);
+      expect(queryByRole('listbox')).to.not.be.null;
+
+      // Not close the options list.
+      getByTestId('select-backdrop').click();
+      clock.tick(0);
+
+      // If clicked by the right/middle mouse button, no options list should be opened
+      fireEvent.mouseDown(trigger, { button: 1 });
+      expect(queryByRole('listbox')).to.be.null;
+
+      fireEvent.mouseDown(trigger, { button: 2 });
+      expect(queryByRole('listbox')).to.be.null;
+    });
   });
 
   describe('with label', () => {

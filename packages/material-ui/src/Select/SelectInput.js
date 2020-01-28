@@ -105,6 +105,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   const handleMouseDown = event => {
+    if (event.button !== 0)
+      // ignore everything but left-click
+      return;
     // Hijack the default focus behavior.
     event.preventDefault();
     displayNode.focus();
@@ -318,6 +321,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         aria-haspopup="listbox"
         onKeyDown={handleKeyDown}
         onMouseDown={disabled || readOnly ? null : handleMouseDown}
+        onClick={disabled || readOnly ? null : handleMouseDown}
         onBlur={handleBlur}
         onFocus={onFocus}
         {...SelectDisplayProps}
