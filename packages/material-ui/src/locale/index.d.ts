@@ -21,3 +21,4 @@ export const svSE: object;
 export const trTR: object;
 export const ukUA: object;
 export const zhCN: object;
+export const viVN: object;
