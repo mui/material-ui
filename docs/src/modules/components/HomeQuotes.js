@@ -43,6 +43,7 @@ const quotes = [
     avatar: 'https://pbs.twimg.com/profile_images/1144184864754851840/WIVBqpWM_400x400.jpg',
     name: 'Matthias Margot',
     username: '@matthiasmargot',
+    tweet: 'https://twitter.com/matthiasmargot/status/1215482285681795072',
     quote:
       'The DX on Material-UI is absolutely insane and that package has shaped my approach to Component API Design / Composition Design & Style System Design. I think those guys got it idiomatically right, wonderful product.',
   },
