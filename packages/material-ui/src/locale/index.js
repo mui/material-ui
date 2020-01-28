@@ -57,6 +57,31 @@ export const bgBG = {
   },
 };
 
+export const caES = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Pàgina anterior',
+      labelRowsPerPage: 'Files per pàgina:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} de ${count}`,
+      nextIconButtonText: 'Següent pàgina',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} ${value !== 1 ? 'Estrelles' : 'Estrella'}`,
+      emptyLabelText: 'Buit',
+    },
+    MuiAutocomplete: {
+      clearText: 'Netejar',
+      closeText: 'Tancar',
+      loadingText: 'Carregant…',
+      noOptionsText: 'Sense opcions',
+      openText: 'Obert',
+    },
+    MuiAlert: {
+      closeText: 'Tancat',
+    },
+  },
+};
+
 export const csCZ = {
   props: {
     MuiTablePagination: {
