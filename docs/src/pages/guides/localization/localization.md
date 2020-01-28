@@ -51,6 +51,7 @@ const theme = createMuiTheme({
 | Swedish | sv-SE | `svSE` |
 | Turkish | tr-TR | `trTR` |
 | Ukrainian | uk-UA | `ukUA` |
+| Vietnamese | vi-VN | `viVN` |
 
 You can [find the source](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/locale/index.js) in the GitHub repository.
 

@@ -630,6 +630,32 @@ export const ukUA = {
   },
 };
 
+export const viVN = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Trang trước',
+      labelRowsPerPage: 'Số hàng mỗi trang:',
+      labelDisplayedRows: ({ from, to, count }) =>
+        `${from}-${to === -1 ? count : to} trong ${count}`,
+      nextIconButtonText: 'Trang sau',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} sao`,
+      emptyLabelText: 'Trống',
+    },
+    MuiAutocomplete: {
+      clearText: 'Xóa',
+      closeText: 'Đóng',
+      loadingText: 'Đang tải…',
+      noOptionsText: 'Không có lựa chọn',
+      openText: 'Mở',
+    },
+    MuiAlert: {
+      closeText: 'Đóng',
+    },
+  },
+};
+
 export const zhCN = {
   props: {
     MuiTablePagination: {
