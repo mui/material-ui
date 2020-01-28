@@ -247,7 +247,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(props, ref) {
     closeIcon = <CloseIcon fontSize="small" />,
     closeText = 'Close',
     debug = false,
-    defaultValue,
+    defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
     disabled = false,
