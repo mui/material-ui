@@ -321,7 +321,6 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         aria-haspopup="listbox"
         onKeyDown={handleKeyDown}
         onMouseDown={disabled || readOnly ? null : handleMouseDown}
-        onClick={disabled || readOnly ? null : handleMouseDown}
         onBlur={handleBlur}
         onFocus={onFocus}
         {...SelectDisplayProps}
