@@ -178,7 +178,7 @@ for (let i = 0; i < 3; i += 1) {
   selectedQuotes.push(quotes[(startIndex + i) % quotes.length]);
 }
 
-function HomeQuotes(props) {
+function HomeQuotes() {
   const classes = useStyles();
   const t = useSelector(state => state.options.t);
 
