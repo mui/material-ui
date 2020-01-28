@@ -6,6 +6,8 @@ import ListItem from '@material-ui/core/ListItem';
 import Button from '@material-ui/core/Button';
 import Collapse from '@material-ui/core/Collapse';
 import Link from 'docs/src/modules/components/Link';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles(theme => ({
   item: {
@@ -20,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     letterSpacing: 0,
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     textTransform: 'none',
     width: '100%',
   },
@@ -94,6 +96,7 @@ function AppDrawerNavItem(props) {
         style={style}
       >
         {title}
+        {open ? <ExpandLess /> : <ExpandMore />}
       </Button>
       <Collapse in={open} timeout="auto" unmountOnExit>
         {children}
