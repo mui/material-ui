@@ -605,31 +605,6 @@ export const ukUA = {
   },
 };
 
-export const zhCN = {
-  props: {
-    MuiTablePagination: {
-      backIconButtonText: '上一页',
-      labelRowsPerPage: '每页行数:',
-      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} 的 ${count}`,
-      nextIconButtonText: '下一页',
-    },
-    MuiRating: {
-      getLabelText: value => `${value} 星${value !== 1 ? '星' : ''}`,
-      emptyLabelText: 'Empty',
-    },
-    MuiAutocomplete: {
-      clearText: '明确',
-      closeText: '关',
-      loadingText: '载入中…',
-      noOptionsText: '没有选择',
-      openText: '打开',
-    },
-    MuiAlert: {
-      closeText: '关',
-    },
-  },
-};
-
 export const viVN = {
   props: {
     MuiTablePagination: {
@@ -651,6 +626,31 @@ export const viVN = {
     },
     MuiAlert: {
       closeText: 'Đóng',
+    },
+  },
+};
+
+export const zhCN = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: '上一页',
+      labelRowsPerPage: '每页行数:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} 的 ${count}`,
+      nextIconButtonText: '下一页',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} 星${value !== 1 ? '星' : ''}`,
+      emptyLabelText: 'Empty',
+    },
+    MuiAutocomplete: {
+      clearText: '明确',
+      closeText: '关',
+      loadingText: '载入中…',
+      noOptionsText: '没有选择',
+      openText: '打开',
+    },
+    MuiAlert: {
+      closeText: '关',
     },
   },
 };
