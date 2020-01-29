@@ -198,7 +198,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       onNodeToggle(event, newExpanded);
     }
 
-      setExpandedState(newExpanded);
+    setExpandedState(newExpanded);
   };
 
   const expandAllSiblings = (event, id) => {
@@ -245,7 +245,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       onNodeSelect(event, newSelected);
     }
 
-      setSelectedState(newSelected);
+    setSelectedState(newSelected);
   };
 
   const handleMultipleSelect = (event, value) => {
@@ -260,7 +260,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       onNodeSelect(event, newSelected);
     }
 
-      setSelectedState(newSelected);
+    setSelectedState(newSelected);
   };
 
   const handleSingleSelect = (event, value) => {
@@ -271,7 +271,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
       onNodeSelect(event, newSelected);
     }
 
-      setSelectedState(newSelected);
+    setSelectedState(newSelected);
   };
 
   const rangeSelectFirst = (event, start) => handleRangeSelect(event, start, getFirstNode());
