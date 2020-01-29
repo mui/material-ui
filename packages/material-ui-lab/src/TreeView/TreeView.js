@@ -66,11 +66,13 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     controlled: expandedProp,
     default: defaultExpanded,
     name: 'TreeView',
+    propHint: 'expanded',
   });
   const [selectedState, setSelectedState] = useControlled({
     controlled: selectedProp,
     default: defaultSelected,
     name: 'TreeView',
+    propHint: 'selected',
   });
 
   const expanded = expandedState || defaultExpandedDefault;
