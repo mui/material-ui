@@ -218,6 +218,31 @@ export const faIR = {
   },
 };
 
+export const fiFI = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Edellinen sivu',
+      labelRowsPerPage: 'Rivejä per sivu:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} / ${count}`,
+      nextIconButtonText: 'Seuraava sivu',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Täht${value !== 1 ? 'eä' : 'i'}`,
+      emptyLabelText: 'Tyhjä',
+    },
+    MuiAutocomplete: {
+      clearText: 'Tyhjennä',
+      closeText: 'Sulje',
+      loadingText: 'Ladataan…',
+      noOptionsText: 'Ei valintoja',
+      openText: 'Avaa',
+    },
+    MuiAlert: {
+      closeText: 'Sulje',
+    },
+  },
+};
+
 export const frFR = {
   props: {
     MuiTablePagination: {
