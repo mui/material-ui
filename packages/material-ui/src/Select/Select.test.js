@@ -675,14 +675,8 @@ describe('<Select />', () => {
     it('open only with the left mouse button click', () => {
       // Test for https://github.com/mui-org/material-ui/issues/19250#issuecomment-578620934
       // Right/middle mouse click shouldn't open the select
-      const { getByRole, queryByRole, getByTestId } = render(
-        <Select
-          MenuProps={{
-            transitionDuration: 0,
-            BackdropProps: { 'data-testid': 'select-backdrop' },
-          }}
-          value=""
-        >
+      const { getByRole, queryByRole } = render(
+        <Select value="">
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
