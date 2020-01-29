@@ -110,7 +110,8 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     }
   }
 
-  const [mounted, setMounted] = React.useState(false);
+  // const [mounted, setMounted] = React.useState(false);
+  const mounted = useRef(false);
   const [indicatorStyle, setIndicatorStyle] = React.useState({});
   const [displayScroll, setDisplayScroll] = React.useState({
     start: false,
@@ -317,6 +318,14 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
   });
 
   React.useEffect(() => {
+    mounted.current = true
+
+    return () => {
+      mounted.current = false
+    }
+  }, [])
+
+  React.useEffect(() => {
     const handleResize = debounce(() => {
       updateIndicatorState();
       updateScrollButtonState();
@@ -341,10 +350,6 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
       handleTabsScroll.clear();
     };
   }, [handleTabsScroll]);
-
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
 
   React.useEffect(() => {
     updateIndicatorState();
@@ -401,7 +406,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
     childIndex += 1;
     return React.cloneElement(child, {
       fullWidth: variant === 'fullWidth',
-      indicator: selected && !mounted && indicator,
+      indicator: selected && !mounted.current && indicator,
       selected,
       onChange,
       textColor,
@@ -444,7 +449,7 @@ const Tabs = React.forwardRef(function Tabs(props, ref) {
         >
           {children}
         </div>
-        {mounted && indicator}
+        {indicator}
       </div>
       {conditionalElements.scrollButtonEnd}
     </Component>
