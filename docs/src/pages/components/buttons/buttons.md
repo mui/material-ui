@@ -1,6 +1,6 @@
 ---
 title: Button React component
-components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
+components: Button, IconButton, ButtonBase
 ---
 
 # Button
@@ -20,8 +20,6 @@ components: Button, ButtonGroup, Fab, IconButton, ButtonBase, Zoom
 [Contained buttons](https://material.io/design/components/buttons.html#contained-button)
 are high-emphasis, distinguished by their use of elevation and fill.
 They contain actions that are primary to your app.
-
-The last example of this demo show how to use an upload button.
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
@@ -51,50 +49,6 @@ Outlined buttons are also a lower emphasis alternative to contained buttons,
 or a higher emphasis alternative to text buttons.
 
 {{"demo": "pages/components/buttons/OutlinedButtons.js"}}
-
-## Grouped Buttons
-
-The `ButtonGroup` component can be used to group buttons.
-
-{{"demo": "pages/components/buttons/GroupedButtons.js"}}
-
-### Group sizes and colors
-
-{{"demo": "pages/components/buttons/GroupSizesColors.js"}}
-
-### Group orientation
-
-{{"demo": "pages/components/buttons/GroupOrientation.js"}}
-
-### Split Button
-
-ButtonGroup can also be used to create a split button. The dropdown can change the button action (as in this example), or be used to immediately trigger a related action.
-
-{{"demo": "pages/components/buttons/SplitButton.js"}}
-
-## Floating Action Buttons
-
-A [floating action button](https://material.io/design/components/buttons-floating-action-button.html)
-(FAB) performs the primary, or most common, action on a screen.
-It appears in front of all screen content, typically as a circular shape with an icon in its center.
-FABs come in two types: regular, and extended.
-
-Only use a FAB if it is the most suitable way to present a screen’s primary action.
-
-Only one floating action button is recommended per screen to represent the most common action.
-
-{{"demo": "pages/components/buttons/FloatingActionButtons.js"}}
-
-The floating action button animates onto the screen as an expanding piece of material, by default.
-
-A floating action button that spans multiple lateral screens (such as tabbed screens) should briefly disappear,
-then reappear if its action changes.
-
-The Zoom transition can be used to achieve this. Note that since both the exiting and entering
-animations are triggered at the same time, we use `enterDelay` to allow the outgoing Floating Action Button's
-animation to finish before the new one enters.
-
-{{"demo": "pages/components/buttons/FloatingActionButtonZoom.js", "bg": true}}
 
 ## Upload button
 
@@ -135,7 +89,7 @@ Here are some examples of customizing the component. You can learn more about th
 The Text Buttons, Contained Buttons, Floating Action Buttons and Icon Buttons are built on top of the same component: the `ButtonBase`.
 You can take advantage of this lower level component to build custom interactions.
 
-{{"demo": "pages/components/buttons/ButtonBases.js"}}
+{{"demo": "pages/components/buttons/ButtonBase.js"}}
 
 ## Third-party routing library
 

@@ -95,5 +95,6 @@ You can take advantage of this behavior to [target nested components](/guides/ap
 
 ## Demos
 
+- [Button Group](/components/button-group/)
 - [Buttons](/components/buttons/)
 
