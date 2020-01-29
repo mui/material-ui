@@ -92,7 +92,7 @@ const inHouseAds = [
       'https://themes.material-ui.com/themes/sketch-react/?utm_source=material_ui&utm_medium=referral&utm_campaign=in-house-sketch',
     img: '/static/in-house/sketch.png',
     description:
-      "<b>Sketch</b><br />A large UI kit with over 1,500 handcrafted Material-UI's symbols 💎.",
+      "<b>Sketch</b><br />A large UI kit with over 1,500 handcrafted Material-UI symbols 💎.",
   },
 ];
 
