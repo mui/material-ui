@@ -117,10 +117,6 @@ const additionalProps = component => {
       },
       defaultValue: { value: "'Filled'" },
     },
-    error: {
-      type: { name: 'color' },
-      defaultValue: { value: componentSettings[component].propValues.error },
-    },
     fullWidth: {
       type: { name: 'boolean' },
       description: 'TextField - fullWidth',
@@ -208,10 +204,6 @@ const additionalProps = component => {
       description: 'Theme palette type',
       defaultValue: { value: "'light'" },
     },
-    primary: {
-      type: { name: 'color' },
-      defaultValue: { value: componentSettings[component].propValues.primary },
-    },
     primaryAction: {
       type: {
         name: 'enum',
@@ -245,10 +237,6 @@ const additionalProps = component => {
         },
       },
       defaultValue: { value: componentSettings[component].propValues.progressValue },
-    },
-    secondary: {
-      type: { name: 'color' },
-      defaultValue: { value: componentSettings[component].propValues.secondary },
     },
     secondaryAction: {
       type: {
