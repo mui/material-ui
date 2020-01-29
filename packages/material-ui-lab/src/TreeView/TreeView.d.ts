@@ -45,9 +45,10 @@ export interface TreeViewProps
    * Callback fired when tree items are selected/unselected.
    *
    * @param {object} event The event source of the callback
-   * @param {array} nodeIds The ids of the selected nodes.
+   * @param {(array|string)} value of the selected nodes. When `multiSelect` is true
+   * this is an array of strings; when false (default) a string.
    */
-  onNodeSelect?: (event: React.ChangeEvent<{}>, nodeIds: string[]) => void;
+  onNodeSelect?: (event: React.ChangeEvent<{}>, nodeIds: string[] | string) => void;
   /**
    * Callback fired when tree items are expanded/collapsed.
    *
@@ -57,8 +58,9 @@ export interface TreeViewProps
   onNodeToggle?: (event: React.ChangeEvent<{}>, nodeIds: string[]) => void;
   /**
    * Selected node ids. (Controlled)
+   * When `multiSelect` is true this takes an array of strings; when false (default) a string.
    */
-  selected?: string[];
+  selected?: string[] | string;
 }
 
 export type TreeViewClassKey = 'root';

@@ -68,6 +68,7 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     name: 'TreeView',
     propHint: 'expanded',
   });
+
   const [selectedState, setSelectedState] = useControlled({
     controlled: selectedProp,
     default: defaultSelected,
@@ -473,7 +474,8 @@ TreeView.propTypes = {
    * Callback fired when tree items are selected/unselected.
    *
    * @param {object} event The event source of the callback
-   * @param {array} nodeIds The ids of the selected nodes.
+   * @param {(array|string)} value of the selected nodes. When `multiSelect` is true
+   * this is an array of strings; when false (default) a string.
    */
   onNodeSelect: PropTypes.func,
   /**
@@ -485,8 +487,9 @@ TreeView.propTypes = {
   onNodeToggle: PropTypes.func,
   /**
    * Selected node ids. (Controlled)
+   * When `multiSelect` is true this takes an array of strings; when false (default) a string.
    */
-  selected: PropTypes.arrayOf(PropTypes.string),
+  selected: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.string), PropTypes.string]),
 };
 
 export default withStyles(styles, { name: 'MuiTreeView' })(TreeView);

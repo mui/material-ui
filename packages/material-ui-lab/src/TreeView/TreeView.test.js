@@ -66,7 +66,7 @@ describe('<TreeView />', () => {
     });
   });
 
-  it('should be able to be controlled', () => {
+  it('should be able to be controlled with the expanded prop', () => {
     function MyComponent() {
       const [expandedState, setExpandedState] = React.useState([]);
       const handleNodeToggle = (event, nodes) => {
@@ -90,6 +90,58 @@ describe('<TreeView />', () => {
     expect(getByTestId('one')).to.have.attribute('aria-expanded', 'false');
     fireEvent.keyDown(document.activeElement, { key: '*' });
     expect(getByTestId('one')).to.have.attribute('aria-expanded', 'true');
+  });
+
+  it('should be able to be controlled with the selected prop and singleSelect', () => {
+    function MyComponent() {
+      const [selectedState, setSelectedState] = React.useState(null);
+      const handleNodeSelect = (event, nodes) => {
+        setSelectedState(nodes);
+      };
+      return (
+        <TreeView selected={selectedState} onNodeSelect={handleNodeSelect}>
+          <TreeItem nodeId="1" label="one" data-testid="one" />
+          <TreeItem nodeId="2" label="two" data-testid="two" />
+        </TreeView>
+      );
+    }
+
+    const { getByTestId, getByText } = render(<MyComponent />);
+
+    expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
+    expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+    fireEvent.click(getByText('one'));
+    expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+    expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+    fireEvent.click(getByText('two'));
+    expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
+    expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+  });
+
+  it('should be able to be controlled with the selected prop and multiSelect', () => {
+    function MyComponent() {
+      const [selectedState, setSelectedState] = React.useState([]);
+      const handleNodeSelect = (event, nodes) => {
+        setSelectedState(nodes);
+      };
+      return (
+        <TreeView selected={selectedState} onNodeSelect={handleNodeSelect} multiSelect>
+          <TreeItem nodeId="1" label="one" data-testid="one" />
+          <TreeItem nodeId="2" label="two" data-testid="two" />
+        </TreeView>
+      );
+    }
+
+    const { getByTestId, getByText } = render(<MyComponent />);
+
+    expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
+    expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+    fireEvent.click(getByText('one'));
+    expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+    expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+    fireEvent.click(getByText('two'), { ctrlKey: true });
+    expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+    expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
   });
 
   it('should not error when component state changes', () => {
