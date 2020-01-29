@@ -15,7 +15,7 @@ There are examples for the following styling solutions:
 
 ## Plain CSS
 
-Nothing fancy, plain old CSS.
+Nothing fancy, just plain CSS.
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideHeader": true}}
 
