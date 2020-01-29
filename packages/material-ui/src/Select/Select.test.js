@@ -694,14 +694,6 @@ describe('<Select />', () => {
 
       const trigger = getByRole('button');
 
-      // Click by the left mouse button. Options list should be present
-      fireEvent.mouseDown(trigger);
-      expect(queryByRole('listbox')).to.be.ok;
-
-      // Now close the options list.
-      getByTestId('select-backdrop').click();
-      clock.tick(0);
-
       // If clicked by the right/middle mouse button, no options list should be opened
       fireEvent.mouseDown(trigger, { button: 1 });
       expect(queryByRole('listbox')).to.not.exist;
