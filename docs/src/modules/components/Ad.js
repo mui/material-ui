@@ -56,7 +56,7 @@ const inHouseAds = [
     description: '<b>Scaffold</b><br />Automate building your full-stack Material-UI web-app.',
   },
   {
-    name: 'themes',
+    name: 'themes-2',
     link:
       'https://themes.material-ui.com/?utm_source=material_ui&utm_medium=referral&utm_campaign=in-house-2',
     img: '/static/in-house/themes-2.jpg',
@@ -92,7 +92,7 @@ const inHouseAds = [
       'https://themes.material-ui.com/themes/sketch-react/?utm_source=material_ui&utm_medium=referral&utm_campaign=in-house-sketch',
     img: '/static/in-house/sketch.png',
     description:
-      "<b>Sketch</b><br />A large UI kit with over 1,500 handcrafted Material-UI symbols 💎.",
+      '<b>Sketch</b><br />A large UI kit with over 1,500 handcrafted Material-UI symbols 💎.',
   },
 ];
 
