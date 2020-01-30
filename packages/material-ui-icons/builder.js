@@ -97,6 +97,7 @@ const noises = [
   ],
   ['<path fill="none" d="M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z" />', ''],
   ['<path fill="none" d="M0 0h24v24H0V0zm0 0h24v24H0V0z" />', ''],
+  ['<path fill="none" d="M0 0h24v24H0zm0 0h24v24H0z" />', ''],
   ['<path fill="none" d="M0 0h24v24H0V0z" />', ''],
   ['<path fill="none" d="M0 0h24v24H0z" />', ''],
   ['="M0 0h24v24H0V0zm0 0h24v24H0V0z', '="'],
