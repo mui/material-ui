@@ -671,6 +671,30 @@ describe('<Select />', () => {
 
       expect(getByRole('listbox')).to.be.ok;
     });
+
+    it('open only with the left mouse button click', () => {
+      // Test for https://github.com/mui-org/material-ui/issues/19250#issuecomment-578620934
+      // Right/middle mouse click shouldn't open the Select
+      const { getByRole, queryByRole } = render(
+        <Select value="">
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>,
+      );
+
+      const trigger = getByRole('button');
+
+      // If clicked by the right/middle mouse button, no options list should be opened
+      fireEvent.mouseDown(trigger, { button: 1 });
+      expect(queryByRole('listbox')).to.not.exist;
+
+      fireEvent.mouseDown(trigger, { button: 2 });
+      expect(queryByRole('listbox')).to.not.exist;
+    });
   });
 
   describe('prop: autoWidth', () => {
