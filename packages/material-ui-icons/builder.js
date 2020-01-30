@@ -90,6 +90,11 @@ async function generateIndex(options) {
 
 // Noise introduced by Google by mistake
 const noises = [
+  ['<g fill="none"><path d="M0 0h24v24H0z" /><path d="M0 0h24v24H0z" /></g>', ''],
+  [
+    '<g fill="none"><path d="M0 0h24v24H0z" /><path d="M0 0h24v24H0z" /><path d="M0 0h24v24H0z" /></g>',
+    '',
+  ],
   ['<path fill="none" d="M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z" />', ''],
   ['<path fill="none" d="M0 0h24v24H0V0zm0 0h24v24H0V0z" />', ''],
   ['<path fill="none" d="M0 0h24v24H0V0z" />', ''],
