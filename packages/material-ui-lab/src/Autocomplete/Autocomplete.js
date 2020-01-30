@@ -677,7 +677,7 @@ Autocomplete.propTypes = {
    *
    * @param {object} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: "input" (user input), "reset" (programmatic change), `"clear"`.
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
    */
   onInputChange: PropTypes.func,
   /**

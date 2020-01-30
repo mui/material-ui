@@ -21,6 +21,9 @@ import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
+  root: {
+    width: '100%',
+  },
   container: {
     position: 'relative',
   },
@@ -132,7 +135,7 @@ function MarkdownDocs(props) {
         </Portal>
       )}
       <div
-        className={clsx({
+        className={clsx(classes.root, {
           [classes.ad]: !disableAd,
           [classes.toc]: !disableToc,
         })}

@@ -3,7 +3,7 @@ import { SheetsRegistry } from 'jss';
 import StylesProvider from '../StylesProvider';
 import createGenerateClassName from '../createGenerateClassName';
 
-class ServerStyleSheets {
+export default class ServerStyleSheets {
   constructor(options = {}) {
     this.options = options;
   }
@@ -46,5 +46,3 @@ class ServerStyleSheets {
     );
   }
 }
-
-export default ServerStyleSheets;

@@ -116,8 +116,7 @@ const markedOptions = {
 
 const styles = theme => ({
   root: {
-    fontFamily: theme.typography.fontFamily,
-    fontSize: 16,
+    ...theme.typography.body1,
     color: theme.palette.text.primary,
     wordBreak: 'break-word',
     '& .anchor-link': {
@@ -147,6 +146,8 @@ const styles = theme => ({
     '& code[class*="language-"]': {
       backgroundColor: '#272c34',
       color: '#fff',
+      // Avoid layout jump after hydration (style injected by prism)
+      lineHeight: 1.5,
     },
     '& p code, & ul code, & pre code': {
       fontSize: 14,

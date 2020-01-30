@@ -34,7 +34,7 @@ const styles = theme => ({
     },
     '& ul': {
       margin: 0,
-      paddingLeft: 0,
+      padding: 0,
       listStyle: 'none',
     },
     '& li': {

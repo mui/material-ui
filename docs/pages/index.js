@@ -174,7 +174,7 @@ export default function HomePage() {
   "@type": "Organization",
   "name": "Material-UI",
   "url": "https://material-ui.com/",
-  "logo": "https://material-ui.com/static/brand.png",
+  "logo": "https://material-ui.com/static/logo.png",
   "sameAs": [
     "https://twitter.com/materialUI",
     "https://github.com/mui-org/material-ui",

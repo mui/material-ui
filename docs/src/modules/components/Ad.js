@@ -53,7 +53,15 @@ const inHouseAds = [
     name: 'scaffoldhub',
     link: 'https://scaffoldhub.io/?partner=1',
     img: '/static/in-house/scaffoldhub.png',
-    description: '<b>ScaffoldHub</b> - Automate building your full-stack Material-UI web-app.',
+    description: '<b>Scaffold</b><br />Automate building your full-stack Material-UI web-app.',
+  },
+  {
+    name: 'themes-2',
+    link:
+      'https://themes.material-ui.com/?utm_source=material_ui&utm_medium=referral&utm_campaign=in-house-2',
+    img: '/static/in-house/themes-2.jpg',
+    description:
+      '<b>Premium Templates</b><br />Sart your project with the best themes for admins, dashboards and more.',
   },
   {
     name: 'themes',
@@ -69,20 +77,22 @@ const inHouseAds = [
       'https://tidelift.com/subscription/managed-open-source-survey?utm_source=material_ui&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
     img: '/static/in-house/tidelift.png',
     description:
-      '<b>Material-UI for enterprise</b><br />Available in the Tidelift Subscription. Reduce risk, and improve code health.',
-  },
-  {
-    name: 'monday',
-    link: 'https://monday.com/partners/status-video?&utm_source=Partner&utm_campaign=MaterialUI',
-    img: '/static/in-house/monday.jpg',
-    description: 'Why use multiple tools to manage your projects? Meet monday.com',
+      '<b>Material-UI for enterprise</b><br />Save time and reduce risk. Managed open source — backed by maintainers.',
   },
   {
     name: 'bonsaiilabs',
     link: 'https://bonsaiilabs.com/courseDetail/material-ui-with-react',
     img: '/static/in-house/bonsaiilabs.png',
     description:
-      'A course to learn Material‑UI while developing a mobile flight search and booking app.',
+      '<b>Learn Material‑UI</b><br />A course to learn Material-UI while developing a flight search/booking app.',
+  },
+  {
+    name: 'sketch',
+    link:
+      'https://themes.material-ui.com/themes/sketch-react/?utm_source=material_ui&utm_medium=referral&utm_campaign=in-house-sketch',
+    img: '/static/in-house/sketch.png',
+    description:
+      '<b>Sketch</b><br />A large UI kit with over 1,500 handcrafted Material-UI symbols 💎.',
   },
 ];
 
@@ -214,7 +224,7 @@ function Ad(props) {
         eventLabel: type,
       });
 
-      if (type === 'in-house') {
+      if (type.indexOf('in-house') === 0) {
         window.ga('send', {
           hitType: 'event',
           eventCategory: 'in-house-ad',

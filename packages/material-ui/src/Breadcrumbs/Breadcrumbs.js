@@ -16,11 +16,10 @@ export const styles = {
     alignItems: 'center',
     padding: 0, // Reset
     margin: 0, // Reset
-  },
-  /* Styles applied to the li element. */
-  li: {
     listStyle: 'none',
   },
+  /* Styles applied to the li element. */
+  li: {},
   /* Styles applied to the separator element. */
   separator: {
     display: 'flex',

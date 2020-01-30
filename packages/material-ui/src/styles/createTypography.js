@@ -78,7 +78,7 @@ export default function createTypography(palette, typography) {
     {
       htmlFontSize,
       pxToRem,
-      round, // TODO To remove in v5?
+      round, // TODO v5: remove
       fontFamily,
       fontSize,
       fontWeightLight,

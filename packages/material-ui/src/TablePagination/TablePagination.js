@@ -48,10 +48,9 @@ export const styles = theme => ({
     textAlign: 'right',
     textAlignLast: 'right', // Align <select> on Chrome.
   },
+  // TODO v5: remove
   /* Styles applied to the Select component `icon` class. */
-  selectIcon: {
-    top: 1,
-  },
+  selectIcon: {},
   /* Styles applied to the `InputBase` component. */
   input: {
     color: 'inherit',
