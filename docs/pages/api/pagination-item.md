@@ -26,7 +26,7 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">color</span> | <span class="prop-type">'standard'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'</span> | <span class="prop-default">'standard'</span> | The active color. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> |  | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">'false'</span> | If `true`, the item will be disabled. |
+| <span class="prop-name">disabled</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the item will be disabled. |
 | <span class="prop-name">getAriaLabel</span> | <span class="prop-type">func</span> |  | Accepts a function which returns a string value that provides a user-friendly name for the current page.<br><br>**Signature:**<br>`function(type?: string, page: number, selected: bool) => string`<br>*type:* The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous').<br>*page:* The page number to format.<br>*selected:* If true, the current page is selected. |
 | <span class="prop-name">onClick</span> | <span class="prop-type">func</span> |  | Callback fired when the page is changed.<br><br>**Signature:**<br>`function(event: object, page: number) => void`<br>*event:* The event source of the callback.<br>*page:* The page selected. |
 | <span class="prop-name">page</span> | <span class="prop-type">number</span> |  | The current page number. |
