@@ -27,8 +27,9 @@ export interface TreeViewProps
   defaultParentIcon?: React.ReactNode;
   /**
    * Selected node ids. (Uncontrolled)
+   * When `multiSelect` is true this takes an array of strings; when false (default) a string.
    */
-  defaultSelected?: string[];
+  defaultSelected?: string[] | string;
   /**
    * If `true` selection is disabled.
    */

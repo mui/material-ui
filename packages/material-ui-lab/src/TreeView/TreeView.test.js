@@ -201,5 +201,17 @@ describe('<TreeView />', () => {
 
       expect(getByRole('tree')).to.be.ok;
     });
+
+    it('(TreeView) should have the attribute `aria-multiselectable=false if using single select`', () => {
+      const { getByRole } = render(<TreeView />);
+
+      expect(getByRole('tree')).to.have.attribute('aria-multiselectable', 'false');
+    });
+
+    it('(TreeView) should have the attribute `aria-multiselectable=true if using multi select`', () => {
+      const { getByRole } = render(<TreeView multiSelect />);
+
+      expect(getByRole('tree')).to.have.attribute('aria-multiselectable', 'true');
+    });
   });
 });
