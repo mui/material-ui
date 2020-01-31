@@ -910,6 +910,24 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(document.activeElement, { key: 'Enter' });
       expect(container.querySelectorAll('[class*="MuiChip-root"]')).to.have.length(3);
     });
+
+    it('should not fire change event until the IME is confirmed', () => {
+      const handleChange = spy();
+      render(
+        <Autocomplete
+          freeSolo
+          onChange={handleChange}
+          renderInput={params => <TextField {...params} autoFocus />}
+        />,
+      );
+      // Actual behavior when "あ" (Japanese) is entered on macOS/Safari with IME
+      fireEvent.change(document.activeElement, { target: { value: 'あ' } });
+      fireEvent.keyDown(document.activeElement, { key: 'Enter', keyCode: 229 });
+      expect(handleChange.callCount).to.equal(0);
+      fireEvent.keyDown(document.activeElement, { key: 'Enter', keyCode: 13 });
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('あ');
+    });
   });
 
   describe('prop: onInputChange', () => {
