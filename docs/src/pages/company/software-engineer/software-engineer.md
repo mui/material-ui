@@ -68,7 +68,7 @@ On the premium side:
 
 - **You’ll be at the cutting edge of application development** — working on one of the fastest-growing UI frameworks on the market.
 - **You’ll be part of an active, open, friendly community** of developers that are really excited about building awesome applications.
-- **Your role will be key to making Material-UI the go to UI framework solution** for building applications and design systems with React.
+- **Your role will be key to making Material-UI the go to UI framework** for building applications and design systems with React.
 
 ## The worst parts of this job
 
