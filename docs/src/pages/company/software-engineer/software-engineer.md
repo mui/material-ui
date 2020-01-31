@@ -52,7 +52,7 @@ On the premium side:
 - **Expertise in the modern JavaScript ecosystem**. Material-UI is built on the shoulders of giants, making use of technologies such as ES2015+, TypeScript, Node.js, React, Next.js, webpack, and Babel.
 - **A track record of demonstrating an eye for design and solving real world user problems**. If you have a knack for shipping beautiful, intuitive software, we want you on our team.
 - **Experience building and shipping production code in a team setting** with a passion for writing tested, performant, and high-quality code.
-- **Strong written and verbal communication skills**. As part of our open source team, you’d interface both directly and indirectly with community members, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
+- **Strong written and verbal communication skills**. As part of the team, you’ll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
 - **Ability to dive into complex problems**. You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
 - **Ready and willing to ask and answer questions**. If you’re comfortable saying you’re unsure, asking for help; but equally reaching out to assist others, you’ll be an incredible addition to our team. We thrive because of continuous learning. First time mistakes should be celebrated, not blamed.
 - **Avoid monolithic deliverables**. You scope and stage your work into well-defined milestones to ship.
