@@ -637,7 +637,7 @@ const appList = [
   {
     title: 'CinemaPlus',
     description: 'Cinema Plus is an online Movie Ticket Booking web app with MERN Stack.',
-    image: 'cinemaplus.png',
+    image: 'cinemaplus.jpg',
     link: 'https://elcinema.herokuapp.com/',
     similarWebVisits: 100,
     source: 'https://github.com/georgesimos/cinema-plus',
