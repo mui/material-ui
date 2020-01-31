@@ -60,7 +60,7 @@ On the premium side:
 
 ## Experience it would be nice if you had, but isn’t required
 
-- **You’ve maintained an active repository before**. Maybe you’ve helped maintain a popular open source repo, or maybe you’ve worked on internal repos that saw contributions from multiple teams. Previous experience with highly active repo workflows is a definite plus for this role.
+- **You’ve maintained an active repository before**. Maybe you’ve helped maintain a popular open source repo, or perhaps you’ve worked on internal repos that saw contributions from multiple teams. Previous experience with highly active repo workflows is a definite plus for this role.
 - **You have used Material-UI before**. You have built a non trivial application with Material-UI in the past. You know the limitations of the library, you know a few areas that could be improved.
 - **You have contributed code to Material-UI before**. A history of contributing to Material-UI would be a definite plus.
 
