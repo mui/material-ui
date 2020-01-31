@@ -36,7 +36,7 @@ Depending on the day, you’ll:
 
 On the open source side:
 
-- **Help guide architectural decisions**. From modernizing the way we handle styles to build new components, the future of Material-UI is discussed and planned in our public RFCs and issues. You’ll be helping drive these conversations and guiding Material-UI toward the best possible solutions.
+- **Help guide architectural decisions**. From modernizing the way we handle styles to building new components, the future of Material-UI is discussed and planned in our public RFCs and issues. You’ll be helping drive these conversations and guiding Material-UI toward the best possible solutions.
 - **Contribute to deep, meaningful refactors and feature releases**. Material-UI is a complex codebase. Meaningful features we’ve shipped recently, like a Tree View component, Slider component, they have often required a couple weeks to a month of dedicated, careful work.
 - **Reduce friction**. A large amount of the work of Material-UI is reducing friction and making it easier to use. This might involve careful API design, identifying and fixing top bugs, creating easier-to-use error messages, and writing documentation and blog posts about features you ship.
 - **Collaborate with the community**. Many small as well as meaningful fixes and features have been contributed by the community. Your role as a core team maintainer is to draw the best out of the community — to inspire those across the world to create and contribute through your reviews of their issues and pull requests.
