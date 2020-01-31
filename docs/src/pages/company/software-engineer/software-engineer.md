@@ -8,7 +8,7 @@ Material-UI is a community and developer focused team that makes it easy to buil
 
 Our core values include transparency (our work is public most of the time); creating a safe, high-trust team; building incredible developer experiences; maintaining a healthy working environment; and helping to deliver web experiences that feel amazing to use on every device and connection type.
 
-Material-UI started back in 2015 to unify React and Material Design. Today, Material-UI has grown to become one of the world's most popular React UI libraries – backed by a vibrant community of more than 1M developers in over 180 countries.
+Material-UI started back in 2014 to unify React and Material Design. Today, Material-UI has grown to become one of the world's most popular React UI libraries, backed by a vibrant community of more than 1M developers in over 180 countries.
 
 ## Details of the Role
 
