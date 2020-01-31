@@ -54,7 +54,7 @@ On the premium side:
 - **Experience building and shipping production code in a team setting** with a passion for writing tested, performant, and high-quality code.
 - **Strong written and verbal communication skills**. As part of our open source team, you’d interface both directly and indirectly with community members, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
 - **Ability to dive into complex problems**. You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
-- **Ready and willing to ask and answer questions**. If you’re comfortable saying you’re unsure, asking for help, and reaching out to assist others, you’ll be an incredible addition to our team. Our team thrives because of continuous learning. First time mistakes should be celebrated, not blamed.
+- **Ready and willing to ask and answer questions**. If you’re comfortable saying you’re unsure, asking for help; but equally reaching out to assist others, you’ll be an incredible addition to our team. We thrive because of continuous learning. First time mistakes should be celebrated, not blamed.
 - **Avoid monolithic deliverables**. You scope and stage your work into well-defined milestones to ship.
 - **Past work with frontend infrastructure**. Perhaps you’ve created your company’s design system, written a babel plugin, or written complex React components. It would be great if you could address this in your cover letter!
 
