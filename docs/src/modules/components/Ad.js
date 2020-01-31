@@ -61,7 +61,7 @@ const inHouseAds = [
       'https://themes.material-ui.com/?utm_source=material_ui&utm_medium=referral&utm_campaign=in-house-2',
     img: '/static/in-house/themes-2.jpg',
     description:
-      '<b>Premium Templates</b><br />Sart your project with the best themes for admins, dashboards and more.',
+      '<b>Premium Templates</b><br />Start your project with the best themes for admins, dashboards and more.',
   },
   {
     name: 'themes',
