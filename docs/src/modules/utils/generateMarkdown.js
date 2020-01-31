@@ -337,6 +337,7 @@ function generateClasses(reactAPI) {
   text = `| Rule name | Global class | Description |
 |:-----|:-------------|:------------|\n`;
   text += reactAPI.styles.classes
+    .filter(cls => cls !== '@global')
     .map(styleRule => {
       const description = reactAPI.styles.descriptions[styleRule];
 
