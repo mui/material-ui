@@ -42,7 +42,7 @@ On the open source side:
 - **Collaborate with the community**. Many small as well as meaningful fixes and features have been contributed by the community. Your role as a core team maintainer is to draw the best out of the community — to inspire those across the world to create and contribute through your reviews of their issues and pull requests.
 - **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration by adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you’ll find a welcome home on the team.
 
-On the premium side:
+Premium components:
 
 - **Take ownership of features from idea/mockup to live deployment**. You’ll shape and guide the direction of crucial new features, including new components.
 - **Ship. Early and often**. You’ll iterate and ship frequently. You’ll have a real impact on the end-user experience and you’ll love working on a team that builds stunning UIs and prioritizes delivering real user value as often as possible.
@@ -81,7 +81,7 @@ The work you would be doing is somewhat unique and idiosyncratic. You probably h
 ## Benefits for you
 
 - A competitive compensation.
-- Flexible workplace, hours, holidays.
+- Flexible workplace & hours.
 
 ## Apply
 
