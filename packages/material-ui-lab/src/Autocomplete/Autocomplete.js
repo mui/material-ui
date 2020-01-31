@@ -130,22 +130,22 @@ export const styles = theme => ({
     right: 0,
     top: 'calc(50% - 14px)', // Center vertically
   },
-  /* Styles applied to the clear indictator. */
+  /* Styles applied to the clear indicator. */
   clearIndicator: {
     marginRight: -2,
     padding: 4,
     color: theme.palette.action.active,
     visibility: 'hidden',
   },
-  /* Styles applied to the clear indictator if the input is dirty. */
+  /* Styles applied to the clear indicator if the input is dirty. */
   clearIndicatorDirty: {},
-  /* Styles applied to the popup indictator. */
+  /* Styles applied to the popup indicator. */
   popupIndicator: {
     padding: 2,
     marginRight: -2,
     color: theme.palette.action.active,
   },
-  /* Styles applied to the popup indictator if the popup is open. */
+  /* Styles applied to the popup indicator if the popup is open. */
   popupIndicatorOpen: {
     transform: 'rotate(180deg)',
   },
