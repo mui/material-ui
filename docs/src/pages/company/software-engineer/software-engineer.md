@@ -14,7 +14,7 @@ Material-UI started back in 2014 to unify React and Material Design. Today, Mate
 
 - Type of work: Contractor (long mission, full-time, convertible to an employee position)
 - Start date: Immediately
-- Location: Remote (preference for UTC-5 to UTC+4) or Paris
+- Location: Remote (preference for UTC-5 to UTC+4), or Paris
 
 ## Why we’re hiring
 
