@@ -18,7 +18,7 @@ Material-UI started back in 2014 to unify React and Material Design. Today, Mate
 
 ## Why we’re hiring
 
-Both our open source products / community and our premium products are [growing fast](https://www.rank2traffic.com/material-ui.com) and we need talented engineers to keep that going!
+Both our open source products and community, and our premium products are [growing fast](https://www.rank2traffic.com/material-ui.com) and we need talented engineers to keep that going!
 
 We need help improving the health of Material-UI open source: make the library easier to use, make it support more use cases, improve performance, make it more accessible, make it easier to customize. We also need help keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open source community.
 
