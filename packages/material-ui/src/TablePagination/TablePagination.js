@@ -67,7 +67,7 @@ export const styles = theme => ({
 });
 
 const defaultLabelDisplayedRows = ({ from, to, count }) =>
-  `${from}-${to === -1 ? count : to} of ${count}`;
+  `${from}-${to === -1 ? count : to} of ${count !== -1 ? count : `more than ${to}`}`;
 const defaultRowsPerPageOptions = [10, 25, 50, 100];
 
 /**
@@ -138,7 +138,7 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
         <Typography color="inherit" variant="body2" className={classes.caption}>
           {labelDisplayedRows({
             from: count === 0 ? 0 : page * rowsPerPage + 1,
-            to: Math.min(count, (page + 1) * rowsPerPage),
+            to: count !== -1 ? Math.min(count, (page + 1) * rowsPerPage) : (page + 1) * rowsPerPage,
             count,
             page,
           })}
@@ -201,6 +201,8 @@ TablePagination.propTypes = {
   component: PropTypes.elementType,
   /**
    * The total number of rows.
+   *
+   * To enable server side pagination for an unknown number of items, provide -1.
    */
   count: PropTypes.number.isRequired,
   /**
