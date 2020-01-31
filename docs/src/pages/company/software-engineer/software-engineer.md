@@ -81,6 +81,7 @@ The work you would be doing is somewhat unique and idiosyncratic. You probably h
 ## Benefits for you
 
 - A competitive compensation.
+- Flexible workplace, hours, holidays.
 
 ## Apply
 
