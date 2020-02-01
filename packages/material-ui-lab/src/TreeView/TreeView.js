@@ -231,6 +231,33 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const lastSelectedNode = React.useRef(null);
   const lastSelectionMode = React.useRef(null);
   const lastRangeSelection = React.useRef([]);
+  const previousArrowSelection = React.useRef([]);
+
+  const handleRangeArrowSelect = (event, start, value) => {
+    let base = selected;
+
+    if (value === start) {
+      return;
+    }
+
+    if (lastSelectionMode.current === 'RANGE-ARROW') {
+      if (isSelected(value)) {
+        base = base.filter(id => id !== value && id !== previousArrowSelection.current);
+      } else {
+        base.push(value);
+      }
+    } else {
+      base.push(value);
+    }
+
+    previousArrowSelection.current = value;
+
+    if (onNodeSelect) {
+      onNodeSelect(event, base);
+    }
+
+    setSelectedState(base);
+  };
 
   const handleRangeSelect = (event, start, end) => {
     let base = selected;
@@ -277,9 +304,6 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     setSelectedState(newSelected);
   };
 
-  const rangeSelectFirst = (event, start) => handleRangeSelect(event, start, getFirstNode());
-  const rangeSelectLast = (event, start) => handleRangeSelect(event, start, getLastNode());
-
   const select = (event, value, selectionMode = 'NODE') => {
     if (value) {
       if (selectionMode === 'NONE') {
@@ -288,6 +312,8 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
         handleMultipleSelect(event, value);
       } else if (selectionMode === 'RANGE' && lastSelectedNode.current) {
         handleRangeSelect(event, lastSelectedNode.current, value);
+      } else if (selectionMode === 'RANGE-ARROW') {
+        handleRangeArrowSelect(event, lastSelectedNode.current, value);
       }
       if (selectionMode === 'MULTIPLE' || selectionMode === 'NONE') {
         lastSelectedNode.current = value;
@@ -296,9 +322,12 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
     }
   };
 
-  const selectNextNode = (event, id) => select(event, getNextNode(id), 'MULTIPLE');
-  const selectPreviousNode = (event, id) => select(event, getPreviousNode(id), 'MULTIPLE');
-  const selectAllNodes = event => rangeSelectLast(event, visibleNodes.current[0]);
+  const rangeSelectFirst = event => select(event, getFirstNode(), 'RANGE');
+  const rangeSelectLast = event => select(event, getLastNode(), 'RANGE');
+
+  const selectNextNode = (event, id) => select(event, getNextNode(id), 'RANGE-ARROW');
+  const selectPreviousNode = (event, id) => select(event, getPreviousNode(id), 'RANGE-ARROW');
+  const selectAllNodes = event => handleRangeSelect(event, getFirstNode(), getLastNode());
 
   /*
    * Mapping Helpers

@@ -717,7 +717,148 @@ describe('<TreeItem />', () => {
     });
 
     describe('Multi Selection', () => {
-      describe('range selection', () => {});
+      describe('range selection', () => {
+        specify('keyboard arrow', () => {
+          const { getByTestId, getByText } = render(
+            <TreeView multiSelect defaultExpanded={['two']}>
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+              <TreeItem nodeId="three" label="three" data-testid="three" />
+              <TreeItem nodeId="four" label="four" data-testid="four" />
+              <TreeItem nodeId="five" label="five" data-testid="five" />
+            </TreeView>,
+          );
+
+          fireEvent.click(getByText('three'));
+          expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
+          fireEvent.keyDown(document.activeElement, { key: 'ArrowDown', shiftKey: true });
+          expect(getByTestId('four')).to.have.focus;
+          fireEvent.keyDown(document.activeElement, { key: 'ArrowDown', shiftKey: true });
+          expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('four')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('five')).to.have.attribute('aria-selected', 'true');
+          fireEvent.keyDown(document.activeElement, { key: 'ArrowUp', shiftKey: true });
+          expect(getByTestId('four')).to.have.focus;
+          fireEvent.keyDown(document.activeElement, { key: 'ArrowUp', shiftKey: true });
+          fireEvent.keyDown(document.activeElement, { key: 'ArrowUp', shiftKey: true });
+          fireEvent.keyDown(document.activeElement, { key: 'ArrowUp', shiftKey: true });
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('four')).to.have.attribute('aria-selected', 'false');
+          expect(getByTestId('five')).to.have.attribute('aria-selected', 'false');
+        });
+
+        specify('keyboard space', () => {
+          const { getByTestId, getByText } = render(
+            <TreeView multiSelect defaultExpanded={['two']}>
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+              <TreeItem nodeId="two" label="two" data-testid="two">
+                <TreeItem nodeId="three" label="three" data-testid="three" />
+                <TreeItem nodeId="four" label="four" data-testid="four" />
+              </TreeItem>
+              <TreeItem nodeId="five" label="five" data-testid="five">
+                <TreeItem nodeId="six" label="six" data-testid="six" />
+                <TreeItem nodeId="seven" label="seven" data-testid="seven" />
+              </TreeItem>
+              <TreeItem nodeId="eight" label="eight" data-testid="eight" />
+              <TreeItem nodeId="nine" label="nine" data-testid="nine" />
+            </TreeView>,
+          );
+
+          fireEvent.click(getByText('five'));
+          for (let i = 0; i < 5; i += 1) {
+            fireEvent.keyDown(document.activeElement, { key: 'ArrowDown' });
+          }
+          fireEvent.keyDown(document.activeElement, { key: ' ', shiftKey: true });
+          expect(getByTestId('five')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('six')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('seven')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('eight')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('nine')).to.have.attribute('aria-selected', 'true');
+          for (let i = 0; i < 9; i += 1) {
+            fireEvent.keyDown(document.activeElement, { key: 'ArrowUp' });
+          }
+          fireEvent.keyDown(document.activeElement, { key: ' ', shiftKey: true });
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('four')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('five')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('six')).to.have.attribute('aria-selected', 'false');
+          expect(getByTestId('seven')).to.have.attribute('aria-selected', 'false');
+          expect(getByTestId('eight')).to.have.attribute('aria-selected', 'false');
+          expect(getByTestId('nine')).to.have.attribute('aria-selected', 'false');
+        });
+
+        specify('keyboard home and end', () => {
+          const { getByTestId, getByText } = render(
+            <TreeView multiSelect defaultExpanded={['two']}>
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+              <TreeItem nodeId="two" label="two" data-testid="two">
+                <TreeItem nodeId="three" label="three" data-testid="three" />
+                <TreeItem nodeId="four" label="four" data-testid="four" />
+              </TreeItem>
+              <TreeItem nodeId="five" label="five" data-testid="five">
+                <TreeItem nodeId="six" label="six" data-testid="six" />
+                <TreeItem nodeId="seven" label="seven" data-testid="seven" />
+              </TreeItem>
+              <TreeItem nodeId="eight" label="eight" data-testid="eight" />
+              <TreeItem nodeId="nine" label="nine" data-testid="nine" />
+            </TreeView>,
+          );
+
+          fireEvent.click(getByText('five'));
+          fireEvent.keyDown(document.activeElement, { key: 'End', shiftKey: true, ctrlKey: true });
+          expect(getByTestId('five')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('six')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('seven')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('eight')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('nine')).to.have.attribute('aria-selected', 'true');
+          fireEvent.keyDown(document.activeElement, { key: 'Home', shiftKey: true, ctrlKey: true });
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('four')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('five')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('six')).to.have.attribute('aria-selected', 'false');
+          expect(getByTestId('seven')).to.have.attribute('aria-selected', 'false');
+          expect(getByTestId('eight')).to.have.attribute('aria-selected', 'false');
+          expect(getByTestId('nine')).to.have.attribute('aria-selected', 'false');
+        });
+
+        specify('mouse', () => {
+          const { getByTestId, getByText } = render(
+            <TreeView multiSelect defaultExpanded={['two']}>
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+              <TreeItem nodeId="two" label="two" data-testid="two">
+                <TreeItem nodeId="three" label="three" data-testid="three" />
+                <TreeItem nodeId="four" label="four" data-testid="four" />
+              </TreeItem>
+              <TreeItem nodeId="five" label="five" data-testid="five">
+                <TreeItem nodeId="six" label="six" data-testid="six" />
+                <TreeItem nodeId="seven" label="seven" data-testid="seven" />
+              </TreeItem>
+              <TreeItem nodeId="eight" label="eight" data-testid="eight" />
+              <TreeItem nodeId="nine" label="nine" data-testid="nine" />
+            </TreeView>,
+          );
+
+          fireEvent.click(getByText('five'));
+          fireEvent.click(getByText('nine'), { shiftKey: true });
+          expect(getByTestId('five')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('six')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('seven')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('eight')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('nine')).to.have.attribute('aria-selected', 'true');
+          fireEvent.click(getByText('one'), { shiftKey: true });
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('four')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('five')).to.have.attribute('aria-selected', 'true');
+        });
+      });
 
       describe('multi selection', () => {
         specify('keyboard', () => {
@@ -740,7 +881,7 @@ describe('<TreeItem />', () => {
           expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
         });
 
-        specify('mouse', () => {
+        specify('mouse using ctrl', () => {
           const { getByTestId, getByText } = render(
             <TreeView multiSelect>
               <TreeItem nodeId="one" label="one" data-testid="one" />
@@ -757,6 +898,40 @@ describe('<TreeItem />', () => {
           expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
           expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
         });
+
+        specify('mouse using meta', () => {
+          const { getByTestId, getByText } = render(
+            <TreeView multiSelect>
+              <TreeItem nodeId="one" label="one" data-testid="one" />
+              <TreeItem nodeId="two" label="two" data-testid="two" />
+            </TreeView>,
+          );
+
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'false');
+          expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+          fireEvent.click(getByText('one'));
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('two')).to.have.attribute('aria-selected', 'false');
+          fireEvent.click(getByText('two'), { metaKey: true });
+          expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
+          expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
+        });
+      });
+
+      specify('ctrl + a selects all', () => {
+        const { getByTestId, container } = render(
+          <TreeView multiSelect>
+            <TreeItem nodeId="one" label="one" data-testid="one" />
+            <TreeItem nodeId="two" label="two" data-testid="two" />
+            <TreeItem nodeId="three" label="three" data-testid="three" />
+            <TreeItem nodeId="four" label="four" data-testid="four" />
+            <TreeItem nodeId="five" label="five" data-testid="five" />
+          </TreeView>,
+        );
+
+        getByTestId('one').focus();
+        fireEvent.keyDown(document.activeElement, { key: 'a', ctrlKey: true });
+        expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(5);
       });
     });
   });
