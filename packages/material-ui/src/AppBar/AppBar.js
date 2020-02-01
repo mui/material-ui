@@ -71,7 +71,11 @@ export const styles = theme => {
     },
     /* Styles applied to the root element if `color="inherit"`. */
     colorInherit: {
-      backgroundColor: 'inherit',
+      color: 'inherit',
+    },
+    /* Styles applied to the root element if `color="transparent"`. */
+    colorTransparent: {
+      backgroundColor: 'transparent',
       color: 'inherit',
     },
   };
@@ -121,7 +125,7 @@ AppBar.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'transparent']),
   /**
    * The positioning type. The behavior of the different options is described
    * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
