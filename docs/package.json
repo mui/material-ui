@@ -40,6 +40,7 @@
     "@types/react-dom": "^16.9.1",
     "@types/react-router-dom": "^5.1.0",
     "@types/react-swipeable-views": "^0.13.0",
+    "@types/react-swipeable-views-utils": "^0.13.0",
     "@types/react-text-mask": "^5.4.6",
     "@types/react-virtualized": "^9.21.4",
     "@types/react-window": "^1.7.0",
