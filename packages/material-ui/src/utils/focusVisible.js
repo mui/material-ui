@@ -139,5 +139,10 @@ export function useIsFocusVisible() {
     }
   }, []);
 
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useDebugValue(isFocusVisible);
+  }
+
   return { isFocusVisible, onBlurVisible: handleBlurVisible, ref };
 }
