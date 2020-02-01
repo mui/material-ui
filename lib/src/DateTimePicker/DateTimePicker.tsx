@@ -30,13 +30,15 @@ export type DateTimePickerProps = WithDateInputProps &
   WithViewsProps<'year' | 'date' | 'month' | 'hours' | 'minutes'>;
 
 function useDefaultProps({
-  ampm = false,
+  ampm,
   format,
+  mask,
   orientation = 'portrait',
   openTo = 'date',
   views = ['year', 'date', 'hours', 'minutes'],
 }: DateTimePickerProps) {
   const utils = useUtils();
+  const willUseAmPm = ampm ?? utils.is12HourCycleInCurrentLocale();
 
   if (orientation !== 'portrait') {
     throw new Error('We are not supporting custom orientation for DateTimePicker yet :(');
@@ -46,12 +48,15 @@ function useDefaultProps({
     ...dateTimePickerDefaultProps,
     openTo,
     views,
+    ampm: willUseAmPm,
     wider: true,
     ampmInClock: true,
     orientation,
     showToolbar: true,
-    refuse: ampm ? /[^\dap]+/gi : /[^\d]+/gi,
+    acceptRegex: willUseAmPm ? /[\dap]/gi : /\d/gi,
+    mask: mask || willUseAmPm ? '__/__/____ __:__ _M' : '__/__/____ __:__',
     format: pick12hOr24hFormat(format, ampm, {
+      localized: utils.formats.keyboardDateTime,
       '12h': utils.formats.keyboardDateTime12h,
       '24h': utils.formats.keyboardDateTime24h,
     }),

@@ -51,10 +51,10 @@ export interface DateInputProps
    */
   maskChar?: string;
   /**
-   * Refuse values regexp
-   * @default /[^\d]+/gi
+   *Regular expression to detect "accepted" symbols
+   * @default /\dap/gi
    */
-  refuse?: RegExp;
+  acceptRegex?: RegExp;
   /**
    * Props to pass to keyboard input adornment
    * @type {Partial<InputAdornmentProps>}
@@ -72,6 +72,11 @@ export interface DateInputProps
    * @default false
    */
   hideOpenPickerButton?: boolean;
+  /**
+   * Disable mask on the keyboard, this should be used rarely. Consider passing proper mask for your format
+   * @default false
+   */
+  disableMaskedInput?: boolean;
   // ?? TODO when it will be possible to display "empty" date in datepicker use it instead of ignoring invalid inputs
   ignoreInvalidInputs?: boolean;
 }
@@ -82,7 +87,7 @@ export const PureDateInput: React.FC<DateInputProps> = ({
   onChange,
   format,
   rifmFormatter,
-  refuse,
+  acceptRegex: refuse,
   mask,
   rawValue,
   maskChar,

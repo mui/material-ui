@@ -23,14 +23,16 @@ function DateTimePickerDemo(props) {
       />
 
       <DateTimePicker
+        ampm={false}
+        disablePast
         value={selectedDate}
         onChange={handleDateChange}
         onError={console.log}
-        disablePast
         format={props.__willBeReplacedGetFormatString({
           moment: 'YYYY/MM/DD HH:mm',
           dateFns: 'yyyy/MM/dd HH:mm',
         })}
+        mask="___/__/__ __:__"
       />
     </>
   );

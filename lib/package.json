@@ -44,17 +44,15 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.6.0",
+    "@date-io/date-fns": "^2.1.0",
+    "@date-io/dayjs": "^2.1.0",
+    "@date-io/luxon": "^2.1.0",
+    "@date-io/moment": "^2.1.0",
     "clsx": "^1.0.2",
     "prop-types": "^15.7.2",
     "react-transition-group": "^4.0.0",
-    "rifm": "^0.7.0"
+    "rifm": "^0.10.1"
   },
-  "size-limit": [
-    {
-      "path": "build/dist/@material-ui/pickers.esm.js",
-      "limit": "30 KB"
-    }
-  ],
   "scripts": {
     "test": "jest",
     "test:date-fns": "UTILS=date-fns yarn test",
@@ -79,10 +77,6 @@
     "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
     "@cypress/webpack-preprocessor": "^4.1.1",
-    "@date-io/core": "^2.0.0",
-    "@date-io/date-fns": "^2.0.0",
-    "@date-io/luxon": "^2.0.0",
-    "@date-io/moment": "^2.0.0",
     "@material-ui/core": "^4.5.1",
     "@material-ui/icons": "^3.0.2",
     "@material-ui/styles": "^4.8.2",
@@ -124,7 +118,6 @@
     "rollup-plugin-terser": "^5.1.1",
     "rollup-plugin-typescript": "^1.0.0",
     "ts-jest": "^24.0.1",
-    "ts-lib": "0.0.5",
     "typescript": "^3.3.3"
   },
   "jest": {

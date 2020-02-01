@@ -2,9 +2,9 @@ import format from 'date-fns/format';
 import frLocale from 'date-fns/locale/fr';
 import ruLocale from 'date-fns/locale/ru';
 import enLocale from 'date-fns/locale/en-US';
-import DateFnsUtils from '@date-io/date-fns';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import React, { useState, useCallback } from 'react';
+import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
 import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 
@@ -14,7 +14,7 @@ const localeMap = {
   ru: ruLocale,
 };
 
-class RuLocalizedUtils extends DateFnsUtils {
+class RuLocalizedUtils extends DateFnsAdapter {
   getCalendarHeaderText(date) {
     return format(date, 'LLLL', { locale: this.locale });
   }
@@ -24,14 +24,14 @@ class RuLocalizedUtils extends DateFnsUtils {
   }
 }
 
-class FrLocalizedUtils extends DateFnsUtils {
+class FrLocalizedUtils extends DateFnsAdapter {
   getDatePickerHeaderText(date) {
     return format(date, 'd MMM yyyy', { locale: this.locale });
   }
 }
 
 const localeUtilsMap = {
-  en: DateFnsUtils,
+  en: DateFnsAdapter,
   fr: FrLocalizedUtils,
   ru: RuLocalizedUtils,
 };

@@ -41,6 +41,12 @@ function Regression() {
           {...sharedProps}
           format="MM/dd/yyyy"
         />
+        <DesktopDatePicker
+          autoOk
+          id="keyboard-invalid-mask-datepicker"
+          {...sharedProps}
+          mask="__"
+        />
         <MobileDatePicker disabled id="disabled" {...sharedProps} />
         <MobileDatePicker readOnly id="readonly" {...sharedProps} />
       </Grid>

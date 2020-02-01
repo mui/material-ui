@@ -1,7 +1,7 @@
-import LuxonUtils from '@date-io/luxon';
-import DayJsUtils from '@date-io/dayjs';
-import MomentUtils from '@date-io/moment';
-import DateFnsUtils from '@date-io/date-fns';
+import LuxonUtils from '@material-ui/pickers/adapter/luxon';
+import DayJsUtils from '@material-ui/pickers/adapter/dayjs';
+import MomentUtils from '@material-ui/pickers/adapter/moment';
+import DateFnsUtils from '@material-ui/pickers/adapter/date-fns';
 
 export const utilsMap = {
   moment: MomentUtils,

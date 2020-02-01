@@ -6,16 +6,10 @@ function BasicTimePicker() {
 
   return (
     <Fragment>
-      <TimePicker
-        ampm
-        mask="__:__ _M"
-        label="12 hours"
-        value={selectedDate}
-        onChange={date => handleDateChange(date)}
-      />
+      <TimePicker label="12 hours" value={selectedDate} onChange={date => handleDateChange(date)} />
 
       <TimePicker
-        mask="__:__"
+        ampm={false} // This is not needed if you are using localization
         label="24 hours"
         value={selectedDate}
         onChange={date => handleDateChange(date)}

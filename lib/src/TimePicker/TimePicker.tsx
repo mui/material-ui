@@ -17,19 +17,24 @@ export interface TimePickerProps
     WithDateInputProps {}
 
 function useDefaultProps({
-  ampm = false,
+  ampm,
   format,
+  mask,
   openTo = 'hours',
   views = ['hours', 'minutes'],
 }: TimePickerProps) {
   const utils = useUtils();
+  const willUseAmPm = ampm ?? utils.is12HourCycleInCurrentLocale();
 
   return {
     ...timePickerDefaultProps,
     views,
     openTo,
-    refuse: ampm ? /[^\dap]+/gi : /[^\d]+/gi,
+    ampm: willUseAmPm,
+    acceptRegex: willUseAmPm ? /[\dapAP]/gi : /\d/gi,
+    mask: mask || willUseAmPm ? '__:__ _M' : '__:__',
     format: pick12hOr24hFormat(format, ampm, {
+      localized: utils.formats.fullTime,
       '12h': utils.formats.fullTime12h,
       '24h': utils.formats.fullTime24h,
     }),

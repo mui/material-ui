@@ -17,7 +17,6 @@ export const DomainPropTypes = { date, datePickerView };
 
 /* eslint-disable @typescript-eslint/no-object-literal-type-assertion */
 export const timePickerDefaultProps = {
-  ampm: false,
   invalidDateMessage: 'Invalid Time Format',
 } as BaseClockViewProps;
 

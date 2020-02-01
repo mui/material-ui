@@ -45,6 +45,7 @@ function CustomDateTimePicker(props) {
           moment: 'YYYY/MM/DD hh:mm A',
           dateFns: 'yyyy/MM/dd hh:mm a',
         })}
+        mask="___/__/__ __:__ _M"
       />
 
       <DateTimePicker

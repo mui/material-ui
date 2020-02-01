@@ -1,11 +1,11 @@
 import format from 'date-fns/format';
 import React, { useState } from 'react';
 import frLocale from 'date-fns/locale/fr';
-import DateFnsUtils from '@date-io/date-fns';
+import DateFnsAdapter from '@material-ui/pickers/adapter/date-fns';
 import { DatePicker } from '@material-ui/pickers';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 
-class LocalizedUtils extends DateFnsUtils {
+class LocalizedUtils extends DateFnsAdapter {
   getDatePickerHeaderText(date) {
     return format(date, 'd MMM yyyy', { locale: this.locale });
   }

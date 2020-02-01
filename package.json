@@ -30,9 +30,13 @@
     "url": "git+https://github.com/mui-org/material-ui-pickers.git"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
     "@babel/runtime": "^7.7.5",
+    "@cypress/webpack-preprocessor": "^4.1.0",
+    "@percy/cypress": "^1.0.9",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
+    "cypress": "^3.2.0",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-pretty-imports": "^1.0.2",
@@ -41,9 +45,6 @@
     "husky": "^1.1.2",
     "lint-staged": "^7.3.0",
     "prettier": "^1.14.3",
-    "@cypress/webpack-preprocessor": "^4.1.0",
-    "@percy/cypress": "^1.0.9",
-    "cypress": "^3.2.0",
     "wait-on": "^3.2.0"
   },
   "husky": {
