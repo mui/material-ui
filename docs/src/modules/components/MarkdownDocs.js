@@ -43,7 +43,7 @@ const styles = theme => ({
     },
   },
   toc: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('sm')]: {
       width: 'calc(100% - 175px)',
     },
     [theme.breakpoints.up('lg')]: {
