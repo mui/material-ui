@@ -22,11 +22,12 @@ Both our open source products and community, and our premium products are [growi
 
 We need help to continue to improve the health of Material-UI open source: make the library easier to use, make it support more use cases, improve performance, make it more accessible, and make it easier to customize. We also need help keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open source community.
 
-We also need to develop our premium content. We have a premium themes and templates marketplace, and soon premium components bundled under a Material-UI Pro offering.
+We also need to develop our premium content. We have a premium store, and soon an enterprise class offering, starting with the data grid.
+Enterprise features will build on the open source version of the components.
 
 ## Why this is interesting
 
-Our solution is empowering React developers to build awesome applications. It should be easy, it shouldn’t require any advanced technical skills. Hundreds of thousands of developers use Material-UI every month. Let’s reach the full potential.
+Our solution is empowering React developers to build awesome applications. It should be easy, it shouldn’t require any advanced technical skills. Hundreds of thousands of developers use Material-UI every month. Let’s reach the full potential :D!
 
 Our premium products portfolio is still small, with a million interesting and challenging problems to solve.
 
