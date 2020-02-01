@@ -282,4 +282,33 @@ describe('<TablePagination />', () => {
       );
     });
   });
+
+  it('should display the "of more than" text and keep the nextButton enabled, if count is -1 ', () => {
+    const wrapper = mount(
+      <table>
+        <TableFooter>
+          <TableRow>
+            <TablePagination
+              page={0}
+              rowsPerPage={5}
+              rowsPerPageOptions={[5]}
+              onChangePage={noop}
+              onChangeRowsPerPage={noop}
+              count={-1}
+            />
+          </TableRow>
+        </TableFooter>
+      </table>,
+    );
+
+    assert.strictEqual(
+      wrapper
+        .find(Typography)
+        .at(0)
+        .text(),
+      '1-5 of more than 5',
+    );
+    const nextButton = wrapper.find(IconButton).at(1);
+    assert.strictEqual(nextButton.props().disabled, false);
+  });
 });
