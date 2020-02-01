@@ -39,7 +39,12 @@ const svgo = new SVGO({
     { convertTransform: true },
     { removeUnknownsAndDefaults: true },
     { removeNonInheritableGroupAttrs: true },
-    { removeUselessStrokeAndFill: true },
+    {
+      removeUselessStrokeAndFill: {
+        // https://github.com/svg/svgo/issues/727#issuecomment-303115276
+        removeNone: true,
+      },
+    },
     { removeUnusedNS: true },
     { cleanupIDs: true },
     { cleanupNumericValues: true },
@@ -90,11 +95,6 @@ async function generateIndex(options) {
 
 // Noise introduced by Google by mistake
 const noises = [
-  ['<g fill="none"><path d="M0 0h24v24H0z" /><path d="M0 0h24v24H0z" /></g>', ''],
-  [
-    '<g fill="none"><path d="M0 0h24v24H0z" /><path d="M0 0h24v24H0z" /><path d="M0 0h24v24H0z" /></g>',
-    '',
-  ],
   ['="M0 0h24v24H0V0zm0 0h24v24H0V0z', '="'],
   ['="M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z', '="'],
 ];
@@ -105,8 +105,6 @@ function removeNoise(input, prevInput = null) {
   }
 
   let output = input;
-
-  output = output.replace(/(<path fill="none" d="[^>]+?) \/>/g, '');
 
   noises.forEach(([search, replace]) => {
     if (output.indexOf(search) !== -1) {
