@@ -16,14 +16,15 @@ Feel free to submit a pull request to add another project; it will be accepted i
 
 You didn't find the design assets your team is looking for? Let us know!
 
-## IDE Tools
-
-- [Material-UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs) VSCode extension providing codemod commands for everyday work with Material-UI ✨
-
 ## Images and illustrations
 
 - [Unsplash](https://unsplash.com): 📷 A great resource for finding beautiful, high-resolution, free photos that you can use in your projects.
 - [unDraw](https://undraw.co/): 📐 Like Unsplash but for amazing vector illustrations.
+
+## IDE Tools
+
+- [Material-UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets) VSCode extension providing snippets.
+- [Material-UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs) VSCode extension providing codemods.
 
 ## Components
 
