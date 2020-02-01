@@ -96,7 +96,7 @@ export const grid: SimpleStyleFunction<
   | 'gridTemplateRows'
   | 'gridTemplateAreas'
   | 'gridArea'
-  >;
+>;
 export type GridProps = PropsFor<typeof grid>;
 
 // palette.js
