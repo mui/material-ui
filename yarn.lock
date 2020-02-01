@@ -1807,7 +1807,7 @@
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-"@material-ui/types@^4.1.1":
+"@material-ui/types@^4.0.0", "@material-ui/types@^4.1.1":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@material-ui/types/-/types-4.1.1.tgz#b65e002d926089970a3271213a3ad7a21b17f02b"
   integrity sha512-AN+GZNXytX9yxGi0JOfxHrRTbhFybjUJ05rnsBVjcB+16e466Z0Xe5IxawuOayVZgTBNDxmPKo5j4V6OnMtaSQ==
@@ -2234,7 +2234,16 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react-swipeable-views@^0.13.0":
+"@types/react-swipeable-views-utils@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@types/react-swipeable-views-utils/-/react-swipeable-views-utils-0.13.0.tgz#d65650e177d25df3b9c1d5c059b5252525b04e6e"
+  integrity sha512-NhMLpJLCrZ61Ybdk4K3mDi0me6lrYtriu1o+J7N+mSc5pxbtZX1cqm2J2CLdz0WnGbJ4WeW2U/w6CLXBxg8VHw==
+  dependencies:
+    "@material-ui/types" "^4.0.0"
+    "@types/react" "*"
+    "@types/react-swipeable-views" "*"
+
+"@types/react-swipeable-views@*", "@types/react-swipeable-views@^0.13.0":
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/@types/react-swipeable-views/-/react-swipeable-views-0.13.0.tgz#9e5f2efa51380886f3f73014ac8b15546d337210"
   integrity sha512-orrreCcXev6IUXDuHf07RDDCAoIZRMSr95eyWmYNRfjic7w/O+68iPu0NCysVls+UygRNvoqZMuXI72N/58E1w==
