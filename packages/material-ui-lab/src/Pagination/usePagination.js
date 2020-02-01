@@ -9,7 +9,7 @@ export default function usePagination(props = {}) {
     disabled = false,
     hideNextButton = false,
     hidePrevButton = false,
-    onChange: handleChangeProp,
+    onChange: handleChange,
     page: pageProp,
     showFirstButton = false,
     showLastButton = false,
@@ -28,8 +28,8 @@ export default function usePagination(props = {}) {
       if (!pageProp) {
         setPageState(value);
       }
-      if (handleChangeProp) {
-        handleChangeProp(event, value);
+      if (handleChange) {
+        handleChange(event, value);
       }
     }, 240);
   };
