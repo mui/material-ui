@@ -63,11 +63,17 @@ The track can be inverted with `track="inverted"`.
 
 {{"demo": "pages/components/slider/TrackInvertedSlider.js"}}
 
+## Non-linear scale
+
+You can use the `scale` prop to represent the `value` on a different scale. For instance, in the following demo, the value *x* represents the power of *10^x*.
+
+{{"demo": "pages/components/slider/NonLinearSlider.js"}}
+
 ## Acessibilidade
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
 
-O componente lida com a maior parte do trabalho necessário para torná-lo acessível. No entanto, você precisa se certificar de que:
+The component handles most of the work necessary to make it accessible. However, you need to make sure that:
 
 - Cada miniatura possui propriedades de rótulo amigável para o usuário (`aria-label`, `aria-labelledby` ou `getAriaLabel`).
 - Cada marcador tem um texto amigável para o seu valor atual. Isso não é necessário se o valor corresponder ao rótulo exibido no slider. Você pode alterar o nome com as propriedades `getAriaValueText` ou `aria-valuetext`.

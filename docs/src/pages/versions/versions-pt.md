@@ -1,10 +1,10 @@
-# Versões de Material-UI
+# Versões do Material-UI
 
-<p class="description">Pode, em qualquer altura, voltar a esta pagina e selecionar outra versāo da documentaçāo que esta lendo.</p>
+<p class="description">Você pode voltar a esta página e mudar a qualquer momento a versão da documentação que você está lendo.</p>
 
-## Versão estavél
+## Versão estável
 
-É recomendado usar a versāo mais recente em ambiente de produção.
+É recomendado usar a versão mais recente em ambiente de produção.
 
 {{"demo": "pages/versions/StableVersions.js", "hideHeader": true, "bg": "inline"}}
 
@@ -18,9 +18,9 @@ Aqui pode encontrar a versão em desenvolvimento e sua documentação. Poderá u
 
 A estabilidade garante que componentes e bibliotecas reutilizáveis, tutoriais, ferramentas e práticas aprendidas não se tornem obsoletos inesperadamente. A estabilidade é essencial para que o ecossistema em torno da Material-UI prospere.
 
-This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced in a predictable way.
+Este documento contém as práticas que são seguidas para fornecer uma biblioteca de ponta para interface do usuário, equilibrada com a estabilidade e garantindo que mudanças futuras sejam sempre introduzidas de maneira previsível.
 
-Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Os números de versão do material-UI têm três partes: ` major.minor.patch `. O número da versão é incrementado com base no nível de alteração incluído na nova versão.
+Material-UI segue o [Controle de Versão Semântico 2.0.0](https://semver.org/). Os números de versão do material-UI têm três partes: ` major.minor.patch `. O número da versão é incrementado com base no nível de alteração incluído na nova versão.
 
 - ** versões principais ** contém novos recursos significativos, alguma assistência, mas mínima, do desenvolvedor é esperada durante a atualização. Ao atualizar para uma nova versão principal, talvez seja necessário executar scripts de atualização, refatorar códigos, executar testes adicionais e aprender novas APIs.
 - **versões Menores** contém novos recursos importantes. Versões menores são totalmente compatíveis com versões anteriores; nenhuma assistência do desenvolvedor é esperada durante a atualização, mas você pode opcionalmente modificar seus aplicativos e bibliotecas para começar a usar novas APIs, recursos e recursos que foram adicionados na versão.
@@ -38,17 +38,17 @@ Em geral, você pode esperar o seguinte ciclo de lançamento:
 
 ## Cronograma de lançamento
 
-| Data             | Versão | Situação |
-|:---------------- |:------ |:-------- |
-| Maio de 2018     | v1.0.0 | Liberada |
-| Setembro de 2018 | v3.0.0 | Liberada |
-| Maio de 2019     | v4.0.0 | Liberada |
-| Q3 2020          | v5.0.0 | ⏳        |
+| Data                       | Versão | Situação |
+|:-------------------------- |:------ |:-------- |
+| Maio de 2018               | v1.0.0 | Liberada |
+| September 2018             | v3.0.0 | Liberada |
+| Maio de 2019               | v4.0.0 | Liberada |
+| Terceiro trimestre de 2020 | v5.0.0 | ⏳        |
 
 
-You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
+Você pode seguir os [ milestones ](https://github.com/mui-org/material-ui/milestones) para uma visão geral mais detalhada.
 
-> ⚠️ **Disclaimer**: We operate in a dynamic environment, and things are subject to change. The information provided is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.
+> ⚠️ ** Isenção de responsabilidade **: Operamos em um ambiente dinâmico e as coisas estão sujeitas a alterações. The information provided is intended to outline the general framework direction. It's intended for informational purposes only. We may decide to add/remove new items at any time depending on our capability to deliver while meeting our quality standards. The development, releases and timing of any features or functionality of Material-UI remains at the sole discretion of Material-UI. The roadmap does not represent a commitment, obligation or promise to deliver at any time.
 
 ## Política de suporte
 
