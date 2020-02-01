@@ -19,7 +19,7 @@ Ein `Schalter` kann dank der `FormControlLabel` Komponente auch mit einer Etiket
 
 ## Schalter mit FormGroup
 
-`FormGroup` ist ein hilfreicher Wrapper zum Gruppieren von Auswahlsteuerungskomponenten, welcher eine einfachere API bietet. Wir empfehlen Ihnen jedoch, stattdessen ein [Kontrollkästchen](#checkboxes) zu verwenden.
+`FormGroup` ist ein hilfreicher Wrapper zum Gruppieren von Auswahlsteuerungskomponenten, welcher eine einfachere API bietet. However, we encourage you to use a [Checkbox](/components/checkboxes/) instead.
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
@@ -31,7 +31,7 @@ Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf de
 
 ## Größen
 
-Fancy smaller switches? Use the `size` property.
+Fancy smaller switches? Verwende die Eigenschaft `size`.
 
 {{"demo": "pages/components/switches/SwitchesSize.js"}}
 

@@ -1,57 +1,59 @@
 ---
-title: Alert React component
-components: Alert
+title: 提醒组件
+components: 提醒
 ---
 
-# Alert
+# 提醒
 
-<p class="description">An alert displays a short, important message in a way that attracts the user's attention without interrupting the user's task.</p>
+<p class="description">「提醒」是简短且重要的信息，在不影响用户操作的同时能够吸引用户的注意力。</p>
 
-## Simple alerts
+**注意：**这个组件不在[《Material Design 指南》](https://material.io/)中，但它是被 Material-UI 支持的。
 
-The alert offers four severity levels that set a distinctive icon and color.
+## 简单的提醒
+
+一共有四种不同程度的「提醒」，每种都有自己独特的颜色和图标。
 
 {{"demo": "pages/components/alert/SimpleAlerts.js"}}
 
 ## 描述
 
-You can use the `AlertTitle` component to display a formatted title above the content.
+在提醒内容的上面使用 `AlertTitle` 可以实现标题的格式化。
 
 {{"demo": "pages/components/alert/DescriptionAlerts.js"}}
 
-## Actions
+## Actions（行为）
 
-An alert can have an action, such as a close or undo button. It is rendered after the message, at the end of the alert.
+一个「提醒」可以有一个行为，例如「关闭」或「撤销」按钮。 它在消息之后，「提醒」结束时被渲染。
 
-If an `onClose` callback is provided and no `action` prop is set, a close icon is displayed. The `action` prop can be used to provide an alternative action, for example using a Button or IconButton.
+如果提供了 `onClose` 回调且没有设置 `action` 属性的话，「关闭」图标就会显示。 这个 `action` 行为可以用其他形式来完成，例如使用一个按钮或者图标按钮。
 
 {{"demo": "pages/components/alert/ActionAlerts.js"}}
 
-### Transition
+### 过渡效果
 
-You can use a [transition component](/components/transitions/) such as `Collapse` to transition the appearance of the alert.
+可以使用 [过渡组件](/components/transitions) ，如 `Collapse（展开）` 来实现「提醒」出现时的过渡效果。
 
 {{"demo": "pages/components/alert/TransitionAlerts.js"}}
 
 ## Icons（图标）
 
-The `icon` prop allows you to add an icon to the beginning of the alert component. This will override the default icon for the specified severity.
+`icon`是指可以在「提醒」组件的开始的地方加一个图标。 以此来改变不同程度「提醒」的默认图标。
 
-You can change the default severity to icon mapping with the `iconMapping` prop. This can be defined globally using [theme customization](/customization/globals/#default-props).
+通过使用 `iconMapping` 这种映射方法，可以改变不同程度的默认图标。 在[自定义主题](/customization/globals/#default-props)中可以进行全局设置。
 
-Setting the icon prop to false will remove the icon altogether.
+把图标属性设置为 false 将会把图标都移除了。
 
 {{"demo": "pages/components/alert/IconAlerts.js"}}
 
 ## 变种(Variants)
 
-Two additional variants are available – outlined, and filled:
+还可以实现「边框」和「填充」这两种变体。
 
-### Outlined
+### 边框
 
 {{"demo": "pages/components/alert/OutlinedAlerts.js"}}
 
-### Filled
+### 填充
 
 {{"demo": "pages/components/alert/FilledAlerts.js"}}
 
@@ -61,7 +63,7 @@ You can use the Snackbar to [display a toast](/components/snackbars/#customized-
 
 ## 颜色
 
-The `color` prop will override the default color for the specified severity.
+`color` 属性用来改变不同程度「提醒」的默认颜色。
 
 {{"demo": "pages/components/alert/ColorAlerts.js"}}
 
@@ -69,7 +71,7 @@ The `color` prop will override the default color for the specified severity.
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#alert)
 
-When the component is dynamically displayed, the content is automatically announced by most screen readers. At this time, screen readers do not inform users of alerts that are present when the page loads.
+动态显示组件时，大部分屏幕都会自动显示其内容。 此时，屏幕不会将页面加载时出现的提醒通知给用户。
 
 Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (for example the visible text), or is included through alternative means, such as additional hidden text.
 

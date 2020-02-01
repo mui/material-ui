@@ -28,7 +28,7 @@ Material-UI follows [Semantic Versioning 2.0.0](https://semver.org/). Die Versio
 
 ## Release-Frequenz
 
-A regular schedule of releases helps you plan and coordinate your updates with the continuing evolution of Material-UI.
+Ein regelmäßiger Release-Zeitplan hilft Ihnen, Ihre Updates mit der Weiterentwicklung von Material-UI zu planen und zu koordinieren.
 
 Im Allgemeinen können Sie den folgenden Release-Zyklus erwarten:
 
@@ -38,12 +38,12 @@ Im Allgemeinen können Sie den folgenden Release-Zyklus erwarten:
 
 ## Release Zeitplan
 
-| Datum          | Version | Status   |
-|:-------------- |:------- |:-------- |
-| May 2018       | v1.0.0  | Released |
-| Septembre 2018 | v3.0.0  | Released |
-| May 2019       | v4.0.0  | Released |
-| Q3 2020        | v5.0.0  | ⏳        |
+| Datum          | Version | Status         |
+|:-------------- |:------- |:-------------- |
+| May 2018       | v1.0.0  | Veröffentlicht |
+| September 2018 | v3.0.0  | Veröffentlicht |
+| May 2019       | v4.0.0  | Veröffentlicht |
+| Q3 2020        | v5.0.0  | ⏳              |
 
 
 You can follow the [milestones](https://github.com/mui-org/material-ui/milestones) for a more detailed overview.
@@ -58,7 +58,7 @@ Find details on the [supported versions](/getting-started/support/#supported-ver
 
 Manchmal sind **"breaking changes"** wie das Entfernen der Unterstützung für ausgewählte APIs und Features erforderlich.
 
-To make these transitions as easy as possible:
+Um diese Übergänge so einfach wie möglich zu machen:
 
 - The number of breaking changes is minimized, and migration tools provided when possible.
 - The deprecation policy described below is followed, so that you have time to update your apps to the latest APIs and best practices.

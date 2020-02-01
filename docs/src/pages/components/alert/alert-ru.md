@@ -1,27 +1,29 @@
 ---
-title: Alert React component
+title: Компонент Alert
 components: Alert
 ---
 
 # Alert
 
-<p class="description">An alert displays a short, important message in a way that attracts the user's attention without interrupting the user's task.</p>
+<p class="description">Alert показывает короткое и важное сообщение для того, чтобы привлечь внимание пользователя, не отвлекая его от задачи.</p>
 
-## Simple alerts
+**Примечание:** Этот компонент не задокументирован в [гайдлайнах Material Design](https://material.io/), но Material-UI поддерживает его.
 
-The alert offers four severity levels that set a distinctive icon and color.
+## Простейшие предупреждения
+
+Alert предлагает 4 уровня предупреждения с уникальным цветом и значком.
 
 {{"demo": "pages/components/alert/SimpleAlerts.js"}}
 
 ## Описание
 
-You can use the `AlertTitle` component to display a formatted title above the content.
+Вы можете использовать `AlertTitle`, чтобы отобразить заголовок над содержимым.
 
 {{"demo": "pages/components/alert/DescriptionAlerts.js"}}
 
-## Actions
+## Действия
 
-An alert can have an action, such as a close or undo button. It is rendered after the message, at the end of the alert.
+Alert может иметь действие, например кнопку закрытия или отмены. Действие рендерится после сообщения, в конце Alert.
 
 If an `onClose` callback is provided and no `action` prop is set, a close icon is displayed. The `action` prop can be used to provide an alternative action, for example using a Button or IconButton.
 

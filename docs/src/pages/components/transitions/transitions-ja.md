@@ -55,7 +55,7 @@ export default Main() {
 
 画面の端からスライドします。 `direction` プロパティは、画面のどの端からトランジションを開始するかを制御します。
 
-トランジションコンポーネントの `mountOnEnter`プロパティーにより、 `in`が`true`になるまで。子コンポーネントがマウントされないようにします これにより、相対的に配置されたコンポーネントが画面外の位置からビューにスクロールするのを防ぐことができます。 同様に、 `unmountOnExit` プロパティは、画面外に遷移した後、DOMからコンポーネント を削除します。
+The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. これにより、相対的に配置されたコンポーネントが画面外の位置からビューにスクロールするのを防ぐことができます。 同様に、 `unmountOnExit` プロパティは、画面外に遷移した後、DOMからコンポーネント を削除します。
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
@@ -66,3 +66,11 @@ export default Main() {
 この例は、入力遷移を遅らせる方法も示しています。
 
 {{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}
+
+## TransitionComponent prop
+
+The components accept a `TransitionComponent` prop to customize the default transitions. You can use any of the above components or your own. It should respect the following conditions:
+
+- Accepts an `in` prop. This corresponds to the open/close state.
+- Call the `onEnter` callback prop when the enter transition starts.
+- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow to unmount the children when in a closed state and fully transitioned.

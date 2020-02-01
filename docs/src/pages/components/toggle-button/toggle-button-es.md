@@ -5,11 +5,11 @@ components: ToggleButton, ToggleButtonGroup
 
 # Toggle Buttons
 
-<p class="description">Toggle buttons can be used to group related options.</p>
+<p class="description">Los botones de alternancia se pueden utilizar para agrupar opciones relacionadas.</p>
 
-To emphasize groups of related [Toggle buttons](https://material.io/design/components/buttons.html#toggle-button), a group should share a common container.
+Para enfatizar los grupos de botones Toggle relacionados, un grupo debe compartir un contenedor común.
 
-The `ToggleButtonGroup` will control the selected state of its child buttons when given its own `value` prop.
+El `ToggleButtonGroup` controlará el estado seleccionado de sus botones hijos cuando se le dé su propio `valor` prop.
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 
@@ -19,11 +19,11 @@ Botones más grandes o más pequeños? Usa la propiedad `size`.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
 
-## Standalone toggle button
+## Botón de conmutación independiente
 
 {{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}
 
-## Customized toggle button
+## Botón de conmutación personalizado
 
 Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
 

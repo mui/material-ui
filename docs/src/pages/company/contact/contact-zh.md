@@ -1,9 +1,9 @@
-# Contact Us
+# 联系我们
 
-<p class="description">We’re all ears.</p>
+<p class="description">我们正在洗耳恭听</p>
 
-Please choose a topic below related to your inquiry:
+请在下面选择与您的咨询有关的主题：
 
-- [Help & Support](/getting-started/support/)
-- Email enquiries: [contact@material-ui.com](mailto:contact@material-ui.com)
-- Our address:<br /><br /> **Material-UI SAS**<br /> 128 rue de la boetie<br /> 75008 Paris<br /> France
+- [帮助 & 支持](/getting-started/support/)
+- 邮件咨询[contact@material-ui.com](mailto:contact@material-ui.com)
+- 我们的地址：<br /><br /> **Material-UI SAS**<br /> 罗琪博埃蒂街 128 号<br /> 75008 巴黎<br /> 法国

@@ -11,9 +11,9 @@ components: Breadcrumbs, Link, Typography
 
 {{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
 
-## Active last breadcrumb
+## 最后活跃的面包屑
 
-Keep the last breadcrumb interactive.
+保持最后一个面包屑的互动性
 
 {{"demo": "pages/components/breadcrumbs/ActiveLastBreadcrumb.js"}}
 

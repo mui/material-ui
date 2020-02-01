@@ -32,12 +32,13 @@ Create React App 是一个很棒的学习 React 的项目。 请看一下这些[
   - 使用 React Router 进行路由，包括错误处理（404）和延迟加载
   - All PWA features included (SW, Notifications, deferred installation prompt and more)
   - Optimized and scalable performance (all ~100 points on Lighthouse)
-- [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase)
+- [RMUIF](https://github.com/phoqe/rmuif):
     
-  - 使用Create React App创建，开箱即用
-  - Built on top of Firebase with Authentication, Cloud Firestore, Cloud Functions, Storage, and Performance Monitoring working from the start
-  - 使用 React Router 进行可靠的路由，包括错误处理
+  - Bootstrapped with Create React App, the same tooling works from the get-go
+  - Built on top of Firebase with all their products for the web included
+  - Robust routing with React Router including protected routes and error handling
   - 全面的移动支持，带有全屏对话框和选项卡的可轻扫视图
+  - Cross-platform application monitoring with a focus on error reporting with Sentry
 - [Material Sense](https://github.com/alexanmtz/material-sense):
     
   - 使用 recharts 的图表

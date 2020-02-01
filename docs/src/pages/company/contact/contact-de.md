@@ -1,9 +1,9 @@
-# Contact Us
+# Kontaktieren Sie uns
 
-<p class="description">We’re all ears.</p>
+<p class="description">Wir sind ganz Ohr.</p>
 
-Please choose a topic below related to your inquiry:
+Bitte wählen Sie ein Thema im Zusammenhang mit Ihrer Anfrage:
 
-- [Help & Support](/getting-started/support/)
-- Email enquiries: [contact@material-ui.com](mailto:contact@material-ui.com)
-- Our address:<br /><br /> **Material-UI SAS**<br /> 128 rue de la boetie<br /> 75008 Paris<br /> France
+- [Hilfe & Unterstützung](/getting-started/support/)
+- E-Mail-Anfragen: [contact@material-ui.com](mailto:contact@material-ui.com)
+- Unsere Adresse:<br /><br /> **Material-UI-SAS**<br /> 128 rue de la boetie<br /> 75008 Paris<br /> Frankreich

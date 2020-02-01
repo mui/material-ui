@@ -55,7 +55,7 @@ O segundo exemplo demonstra como alterar `transform-origin` e condicionalmente a
 
 Deslize a partir da borda da tela. A propriedade `direction` controla em qual borda da tela a transição começa.
 
-A propriedade de transição do componente `mountOnEnter` impede que o componente filho seja montado até que `in` seja `true`. Isso evita que o componente relativamente posicionado role para a visão a partir da posição fora da tela. Da mesma forma, a propriedade `unmountOnExit` remove o componente do DOM após a transição ter sido exibida (`in` = `false`).
+The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. Isso evita que o componente relativamente posicionado role para a visão a partir da posição fora da tela. Da mesma forma, a propriedade `unmountOnExit` remove o componente do DOM após a transição ter sido exibida (`in` = `false`).
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
@@ -66,3 +66,11 @@ Expandir para fora partindo do centro do elemento filho.
 Este exemplo também demonstra como atrasar a transição de entrada.
 
 {{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}
+
+## TransitionComponent prop
+
+The components accept a `TransitionComponent` prop to customize the default transitions. You can use any of the above components or your own. It should respect the following conditions:
+
+- Accepts an `in` prop. This corresponds to the open/close state.
+- Chamar a propriedade de callback `onEnter` quando a transição de entrada iniciar.
+- Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. These two callbacks allow to unmount the children when in a closed state and fully transitioned.

@@ -6,7 +6,7 @@ title: Box React component
 
 <p class="description">El componente Box sirve como una envoltura para la mayoría de las necesidades CSS.</p>
 
-El componente Box empaqua [todas las funciones de estilo](/system/basics/#all-inclusive) que están expuesta en `@material-ui/system`. It's created using the [`styled()`](/styles/api/#styled-style-function-component) function of `@material-ui/core/styles`.
+El componente Box empaqua [todas las funciones de estilo](/system/basics/#all-inclusive) que están expuesta en `@material-ui/system`. Es creado usando la función [`styled()`](/styles/api/#styled-style-function-component) de `@material-ui/core/styles`.
 
 ## Ejemplo
 
@@ -38,7 +38,7 @@ El componente Box tiene una propiedad `clone` para permitir el uso del método d
 
 2. Use props de render
 
-The Box children accepts a render props function. Puede extraer el `className`.
+Los elementos hijo de Box aceptan una función props de render. Puede extraer el `className`.
 
 ```jsx
 <Box color="text.primary">

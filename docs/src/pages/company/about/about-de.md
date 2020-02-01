@@ -1,21 +1,21 @@
-# About Us
+# Über uns
 
-<p class="description">We’re on a mission to make building UIs with React fun.</p>
+<p class="description">Wir sind auf einer Mission, das Erstellen von UIs mit React spaßig zu machen.</p>
 
-## Our Mission
+## Unsere Mission
 
-Our company is focused on making React UIs development easier, better, and accessible to more people. We build open source and commercial tools used by many hundreds of thousands of developers in production. We're proud not only of the products we make, but also the community and partnerships we've cultivated with other developers and companies.
+Unser Unternehmen konzentriert sich darauf, die Entwicklung von React UIs einfacher, besser und für mehr Menschen zugänglich zu machen. Wir bauen Open Source und kommerzielle Werkzeuge, die von Hunderttausenden von Entwicklern in der Produktion verwendet werden. Wir sind nicht nur stolz auf die Produkte, die wir herstellen, sondern auch auf die Community und die Partnerschaften, die wir mit anderen Entwicklern und Unternehmen aufgebaut haben.
 
-## Our Vision
+## Unsere Vision
 
-Our vision is to provide React components for faster and easier web development. [Read more](/discover-more/vision/).
+Unsere Vision ist die Bereitstellung von React Komponenten für eine schnellere und einfachere Web-Entwicklung. [Mehr lesen](/discover-more/vision/).
 
-## Our Values
+## Unsere Werte
 
-Our core values include transparency (our work is public most of the time); creating a safe, high-trust team; building incredible developer experiences; maintaining a healthy working environment; and helping to deliver web experiences that feel amazing to use on every device and connection type.
+Zu unseren Kernwerten gehören Transparenz (unsere Arbeit ist meist öffentlich zugänglich), die Schaffung eines sicheren, vertrauensvollen Teams; das Schaffen unglaublicher Entwicklererfahrungen; ein gesundes Arbeitsumfeld zu bewahren; und dabei zu helfen, Web-Erfahrungen zu liefern, die sich auf jedem Gerät und jedem Verbindungstyp wunderbar bedienen lassen.
 
-## Our Story
+## Unsere Geschichte
 
-Material-UI started back in 2014 to unify React and Material Design.
+Material-UI startete im Jahr 2014 um React und Material-Design zu vereinheitlichen.
 
-Today, Material-UI has grown to become one of the world's most popular React UI libraries – backed by a vibrant community of more than 1M developers in over 180 countries.
+Heute ist Material-UI zu einer der weltweit beliebtesten React UI-Bibliotheken geworden – unterstützt von einer lebendigen Gemeinschaft von mehr als 1M Entwicklern in über 180 Ländern.
