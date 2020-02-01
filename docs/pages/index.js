@@ -5,9 +5,11 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import HomeSteps from 'docs/src/modules/components/HomeSteps';
+import HomeThemes from 'docs/src/modules/components/HomeThemes';
 import HomeQuickWord from 'docs/src/modules/components/HomeQuickWord';
-import HomeBackers from 'docs/src/modules/components/HomeBackers';
+import HomeSponsors from 'docs/src/modules/components/HomeSponsors';
 import HomeUsers from 'docs/src/modules/components/HomeUsers';
+import HomeQuotes from 'docs/src/modules/components/HomeQuotes';
 import HomePro from 'docs/src/modules/components/HomePro';
 import AppFooter from 'docs/src/modules/components/AppFooter';
 import AppFrame from 'docs/src/modules/components/AppFrame';
@@ -33,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     flex: '1 0 100%',
   },
   hero: {
-    paddingTop: 64,
+    paddingTop: theme.spacing(8),
     color: theme.palette.primary.main,
   },
   content: {
@@ -44,8 +46,8 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(8),
     [theme.breakpoints.up('md')]: {
-      paddingTop: theme.spacing(22),
-      paddingBottom: theme.spacing(22),
+      paddingTop: theme.spacing(16),
+      paddingBottom: theme.spacing(16),
       flexDirection: 'row',
       alignItems: 'flex-start',
       textAlign: 'left',
@@ -159,7 +161,9 @@ export default function HomePage() {
           <HomePro />
           <HomeQuickWord />
           <HomeSteps />
-          <HomeBackers />
+          <HomeThemes />
+          <HomeSponsors />
+          <HomeQuotes />
           <HomeUsers />
         </main>
         <AppFooter />

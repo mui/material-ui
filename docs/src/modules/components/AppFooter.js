@@ -11,6 +11,9 @@ import Divider from '@material-ui/core/Divider';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
+  root: {
+    marginTop: theme.spacing(6),
+  },
   footer: {
     padding: theme.spacing(3, 0),
     [theme.breakpoints.up('sm')]: {
@@ -52,7 +55,7 @@ function AppFooter(props) {
   const t = useSelector(state => state.options.t);
 
   return (
-    <React.Fragment>
+    <div className={classes.root}>
       <Divider />
       <Container maxWidth="md">
         <footer className={classes.footer}>
@@ -170,7 +173,7 @@ function AppFooter(props) {
           </Typography>
         </footer>
       </Container>
-    </React.Fragment>
+    </div>
   );
 }
 

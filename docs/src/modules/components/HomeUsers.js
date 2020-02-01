@@ -19,8 +19,8 @@ const users = [
   },
   {
     logo: 'walmart-labs.svg',
-    logoWidth: 253,
-    logoHeight: 48,
+    logoWidth: 274,
+    logoHeight: 52,
     caption: 'Walmart Labs',
     class: 'walmart',
   },
@@ -54,6 +54,33 @@ const users = [
     logoWidth: 205,
     logoHeight: 29,
   },
+  {
+    logo: 'netflix.svg',
+    logoWidth: 111,
+    logoHeight: 29,
+    caption: 'Netflix',
+  },
+  {
+    logo: 'coursera.svg',
+    logoWidth: 169,
+    logoHeight: 23,
+    caption: 'Coursera',
+    class: 'coursera',
+  },
+  {
+    logo: 'amazon.svg',
+    logoWidth: 119,
+    logoHeight: 36,
+    caption: 'Amazon',
+    class: 'amazon',
+  },
+  {
+    logo: 'unity.svg',
+    logoWidth: 138,
+    logoHeight: 50,
+    caption: 'Unity',
+    class: 'unity',
+  },
 ];
 
 const styles = theme => ({
@@ -63,8 +90,10 @@ const styles = theme => ({
     paddingTop: theme.spacing(5),
   },
   container: {
-    paddingTop: theme.spacing(14),
-    paddingBottom: theme.spacing(14),
+    marginBottom: theme.spacing(4),
+  },
+  users: {
+    padding: theme.spacing(10, 4, 0),
   },
   grid: {
     marginTop: theme.spacing(5),
@@ -73,8 +102,20 @@ const styles = theme => ({
   img: {
     margin: theme.spacing(1.5, 3),
   },
+  amazon: {
+    margin: theme.spacing(2.4, 3, 1.5),
+  },
+  coursera: {
+    margin: theme.spacing(2.3, 3, 1.5),
+  },
+  unity: {
+    margin: theme.spacing(0.5, 3, 1.5),
+  },
   walmart: {
-    margin: theme.spacing(1.1, 3, 1.5),
+    margin: theme.spacing(0.9, 3, 1.5),
+  },
+  button: {
+    margin: theme.spacing(2, 0, 0),
   },
 });
 
@@ -84,41 +125,44 @@ function HomeUsers(props) {
 
   return (
     <div className={classes.root}>
-      <Divider />
       <NoSsr>
-        <Container maxWidth="md" className={classes.container}>
-          <Typography variant="h4" component="h2" align="center" gutterBottom>
-            {t('whosUsing')}
-          </Typography>
-          <Typography variant="body1" align="center" gutterBottom>
-            {t('joinThese')}
-          </Typography>
-          <Grid container justify="center" className={classes.grid}>
-            {users.map(user => (
-              <img
-                key={user.caption}
-                src={`/static/images/users/${user.logo}`}
-                alt={user.caption}
-                className={clsx(classes.img, classes[user.class])}
-                loading="lazy"
-                width={user.logoWidth}
-                height={user.logoHeight}
-              />
-            ))}
-          </Grid>
-          <Typography variant="body1" align="center" gutterBottom>
-            {t('usingMui')}
-          </Typography>
-          <Grid container justify="center">
-            <Button
-              variant="outlined"
-              href="https://spectrum.chat/material-ui/general/whos-using-material-ui~00e6687a-9b2d-454f-97a6-950d9fde71cf"
-              rel="noopener nofollow"
-              target="_blank"
-            >
-              {t('letUsKnow')}
-            </Button>
-          </Grid>
+        <Container maxWidth="md" className={classes.container} disableGutters>
+          <Divider />
+          <div className={classes.users}>
+            <Typography variant="h4" component="h2" align="center" gutterBottom>
+              {t('whosUsing')}
+            </Typography>
+            <Typography variant="body1" align="center" gutterBottom>
+              {t('joinThese')}
+            </Typography>
+            <Grid container justify="center" className={classes.grid}>
+              {users.map(user => (
+                <img
+                  key={user.caption}
+                  src={`/static/images/users/${user.logo}`}
+                  alt={user.caption}
+                  className={clsx(classes.img, classes[user.class])}
+                  loading="lazy"
+                  width={user.logoWidth}
+                  height={user.logoHeight}
+                />
+              ))}
+            </Grid>
+            <Typography variant="body1" align="center" gutterBottom>
+              {t('usingMui')}
+            </Typography>
+            <Grid container justify="center">
+              <Button
+                variant="outlined"
+                href="https://spectrum.chat/material-ui/general/whos-using-material-ui~00e6687a-9b2d-454f-97a6-950d9fde71cf"
+                rel="noopener nofollow"
+                target="_blank"
+                className={classes.button}
+              >
+                {t('letUsKnow')}
+              </Button>
+            </Grid>
+          </div>
         </Container>
       </NoSsr>
     </div>
