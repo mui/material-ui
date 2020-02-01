@@ -6,6 +6,7 @@ import rimraf from 'rimraf';
 import Mustache from 'mustache';
 import Queue from 'modules/waterfall/Queue';
 import util from 'util';
+import intersection from 'lodash/intersection';
 import glob from 'glob';
 import SVGO from 'svgo';
 
@@ -237,6 +238,16 @@ export async function main(options) {
 
     queue.push(svgPaths);
     await queue.wait({ empty: true });
+
+    let legacyFiles = await globAsync(path.join(__dirname, '/legacy', '*.js'));
+    legacyFiles = legacyFiles.map(file => path.basename(file));
+    let generatedFiles = await globAsync(path.join(options.outputDir, '*.js'));
+    generatedFiles = generatedFiles.map(file => path.basename(file));
+
+    if (intersection(legacyFiles, generatedFiles).length > 0) {
+      console.warn(intersection(legacyFiles, generatedFiles));
+      throw new Error('Duplicated icons in legacy folder');
+    }
 
     await fse.copy(path.join(__dirname, '/legacy'), options.outputDir);
     await fse.copy(path.join(__dirname, '/custom'), options.outputDir);
