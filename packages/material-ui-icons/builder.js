@@ -95,14 +95,27 @@ const noises = [
     '<g fill="none"><path d="M0 0h24v24H0z" /><path d="M0 0h24v24H0z" /><path d="M0 0h24v24H0z" /></g>',
     '',
   ],
-  ['<path fill="none" d="M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z" />', ''],
-  ['<path fill="none" d="M0 0h24v24H0V0zm0 0h24v24H0V0z" />', ''],
-  ['<path fill="none" d="M0 0h24v24H0zm0 0h24v24H0z" />', ''],
-  ['<path fill="none" d="M0 0h24v24H0V0z" />', ''],
-  ['<path fill="none" d="M0 0h24v24H0z" />', ''],
   ['="M0 0h24v24H0V0zm0 0h24v24H0V0z', '="'],
   ['="M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z', '="'],
 ];
+
+function removeNoise(input, prevInput = null) {
+  if (input === prevInput) {
+    return input;
+  }
+
+  let output = input;
+
+  output = output.replace(/(<path fill="none" d="[^>]+?) \/>/g, '');
+
+  noises.forEach(([search, replace]) => {
+    if (output.indexOf(search) !== -1) {
+      output = output.replace(search, replace);
+    }
+  });
+
+  return removeNoise(output, input);
+}
 
 export async function cleanPaths({ svgPath, data }) {
   // Remove hardcoded color fill before optimizing so that empty groups are removed
@@ -135,11 +148,7 @@ export async function cleanPaths({ svgPath, data }) {
     paths = paths.replace(/<path /g, `<path transform="scale(${scale}, ${scale})" `);
   }
 
-  noises.forEach(([search, replace]) => {
-    if (paths.indexOf(search) !== -1) {
-      paths = paths.replace(search, replace);
-    }
-  });
+  paths = removeNoise(paths);
 
   // Add a fragment when necessary.
   if ((paths.match(/\/>/g) || []).length > 1) {
