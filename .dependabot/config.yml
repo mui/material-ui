@@ -22,6 +22,9 @@ update_configs:
           # https://github.com/mui-org/material-ui/pull/17604#issuecomment-536262291
           dependency_name: 'core-js'
       - match:
+          # These should be grouped once a PR for `jss` is opened
+          dependency_name: 'jss-*'
+      - match:
           # breaks /api routes
           # can be upgraded once https://github.com/zeit/next.js/issues/8123 is resolved
           dependency_name: 'next'
