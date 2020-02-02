@@ -11,139 +11,132 @@ import CloseIcon from '../internal/svg-icons/Close';
 import IconButton from '@material-ui/core/IconButton';
 import { capitalize } from '@material-ui/core/utils';
 
-export const styles = theme => ({
-  /* Styles applied to the root element. */
-  root: {
-    ...theme.typography.body2,
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: 'transparent',
-    display: 'flex',
-    padding: '6px 16px',
-  },
-  /* Styles applied to the root element if `variant="standard"` and `color="success"`. */
-  standardSuccess: {
-    color: darken(theme.palette.success.main, 0.6),
-    backgroundColor: lighten(theme.palette.success.main, 0.9),
-    '& $icon': {
-      color: theme.palette.success.main,
+export const styles = theme => {
+  const getColor = theme.palette.type === 'light' ? darken : lighten;
+  const getBackgroundColor = theme.palette.type === 'light' ? lighten : darken;
+
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      ...theme.typography.body2,
+      borderRadius: theme.shape.borderRadius,
+      backgroundColor: 'transparent',
+      display: 'flex',
+      padding: '6px 16px',
     },
-  },
-  /* Styles applied to the root element if `variant="standard"` and `color="info"`. */
-  standardInfo: {
-    color: darken(theme.palette.info.main, 0.6),
-    backgroundColor: lighten(theme.palette.info.main, 0.9),
-    '& $icon': {
-      color: theme.palette.info.main,
+    /* Styles applied to the root element if `variant="standard"` and `color="success"`. */
+    standardSuccess: {
+      color: getColor(theme.palette.success.main, 0.6),
+      backgroundColor: getBackgroundColor(theme.palette.success.main, 0.9),
+      '& $icon': {
+        color: theme.palette.success.main,
+      },
     },
-  },
-  /* Styles applied to the root element if `variant="standard"` and `color="warning"`. */
-  standardWarning: {
-    color: darken(theme.palette.warning.main, 0.6),
-    backgroundColor: lighten(theme.palette.warning.main, 0.9),
-    '& $icon': {
-      color: theme.palette.warning.main,
+    /* Styles applied to the root element if `variant="standard"` and `color="info"`. */
+    standardInfo: {
+      color: getColor(theme.palette.info.main, 0.6),
+      backgroundColor: getBackgroundColor(theme.palette.info.main, 0.9),
+      '& $icon': {
+        color: theme.palette.info.main,
+      },
     },
-  },
-  /* Styles applied to the root element if `variant="standard"` and `color="error"`. */
-  standardError: {
-    color: darken(theme.palette.error.main, 0.6),
-    backgroundColor: lighten(theme.palette.error.main, 0.9),
-    '& $icon': {
-      color: theme.palette.error.main,
+    /* Styles applied to the root element if `variant="standard"` and `color="warning"`. */
+    standardWarning: {
+      color: getColor(theme.palette.warning.main, 0.6),
+      backgroundColor: getBackgroundColor(theme.palette.warning.main, 0.9),
+      '& $icon': {
+        color: theme.palette.warning.main,
+      },
     },
-  },
-  /* Styles applied to the root element if `variant="outlined"` and `color="success"`. */
-  outlinedSuccess: {
-    color:
-      theme.palette.type === 'light'
-        ? darken(theme.palette.success.main, 0.6)
-        : lighten(theme.palette.success.main, 0.6),
-    border: `1px solid ${theme.palette.success.main}`,
-    '& $icon': {
-      color: theme.palette.success.main,
+    /* Styles applied to the root element if `variant="standard"` and `color="error"`. */
+    standardError: {
+      color: getColor(theme.palette.error.main, 0.6),
+      backgroundColor: getBackgroundColor(theme.palette.error.main, 0.9),
+      '& $icon': {
+        color: theme.palette.error.main,
+      },
     },
-  },
-  /* Styles applied to the root element if `variant="outlined"` and `color="info"`. */
-  outlinedInfo: {
-    color:
-      theme.palette.type === 'light'
-        ? darken(theme.palette.info.main, 0.6)
-        : lighten(theme.palette.info.main, 0.6),
-    border: `1px solid ${theme.palette.info.main}`,
-    '& $icon': {
-      color: theme.palette.info.main,
+    /* Styles applied to the root element if `variant="outlined"` and `color="success"`. */
+    outlinedSuccess: {
+      color: getColor(theme.palette.success.main, 0.6),
+      border: `1px solid ${theme.palette.success.main}`,
+      '& $icon': {
+        color: theme.palette.success.main,
+      },
     },
-  },
-  /* Styles applied to the root element if `variant="outlined"` and `color="warning"`. */
-  outlinedWarning: {
-    color:
-      theme.palette.type === 'light'
-        ? darken(theme.palette.warning.main, 0.6)
-        : lighten(theme.palette.warning.main, 0.6),
-    border: `1px solid ${theme.palette.warning.main}`,
-    '& $icon': {
-      color: theme.palette.warning.main,
+    /* Styles applied to the root element if `variant="outlined"` and `color="info"`. */
+    outlinedInfo: {
+      color: getColor(theme.palette.info.main, 0.6),
+      border: `1px solid ${theme.palette.info.main}`,
+      '& $icon': {
+        color: theme.palette.info.main,
+      },
     },
-  },
-  /* Styles applied to the root element if `variant="outlined"` and `color="error"`. */
-  outlinedError: {
-    color:
-      theme.palette.type === 'light'
-        ? darken(theme.palette.error.main, 0.6)
-        : lighten(theme.palette.error.main, 0.6),
-    border: `1px solid ${theme.palette.error.main}`,
-    '& $icon': {
-      color: theme.palette.error.main,
+    /* Styles applied to the root element if `variant="outlined"` and `color="warning"`. */
+    outlinedWarning: {
+      color: getColor(theme.palette.warning.main, 0.6),
+      border: `1px solid ${theme.palette.warning.main}`,
+      '& $icon': {
+        color: theme.palette.warning.main,
+      },
     },
-  },
-  /* Styles applied to the root element if `variant="filled"` and `color="success"`. */
-  filledSuccess: {
-    color: '#fff',
-    fontWeight: theme.typography.fontWeightMedium,
-    backgroundColor: theme.palette.success.main,
-  },
-  /* Styles applied to the root element if `variant="filled"` and `color="info"`. */
-  filledInfo: {
-    color: '#fff',
-    fontWeight: theme.typography.fontWeightMedium,
-    backgroundColor: theme.palette.info.main,
-  },
-  /* Styles applied to the root element if `variant="filled"` and `color="warning"`. */
-  filledWarning: {
-    color: '#fff',
-    fontWeight: theme.typography.fontWeightMedium,
-    backgroundColor: theme.palette.warning.main,
-  },
-  /* Styles applied to the root element if `variant="filled"` and `color="error"`. */
-  filledError: {
-    color: '#fff',
-    fontWeight: theme.typography.fontWeightMedium,
-    backgroundColor: theme.palette.error.main,
-  },
-  /* Styles applied to the icon wrapper element. */
-  icon: {
-    marginRight: 12,
-    padding: '7px 0',
-    display: 'flex',
-    fontSize: 22,
-    opacity: 0.9,
-  },
-  /* Styles applied to the message wrapper element. */
-  message: {
-    padding: '8px 0',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-  },
-  /* Styles applied to the action wrapper element if `action` is provided. */
-  action: {
-    display: 'flex',
-    alignItems: 'center',
-    marginLeft: 'auto',
-    paddingLeft: 16,
-    marginRight: -8,
-  },
-});
+    /* Styles applied to the root element if `variant="outlined"` and `color="error"`. */
+    outlinedError: {
+      color: getColor(theme.palette.error.main, 0.6),
+      border: `1px solid ${theme.palette.error.main}`,
+      '& $icon': {
+        color: theme.palette.error.main,
+      },
+    },
+    /* Styles applied to the root element if `variant="filled"` and `color="success"`. */
+    filledSuccess: {
+      color: '#fff',
+      fontWeight: theme.typography.fontWeightMedium,
+      backgroundColor: theme.palette.success.main,
+    },
+    /* Styles applied to the root element if `variant="filled"` and `color="info"`. */
+    filledInfo: {
+      color: '#fff',
+      fontWeight: theme.typography.fontWeightMedium,
+      backgroundColor: theme.palette.info.main,
+    },
+    /* Styles applied to the root element if `variant="filled"` and `color="warning"`. */
+    filledWarning: {
+      color: '#fff',
+      fontWeight: theme.typography.fontWeightMedium,
+      backgroundColor: theme.palette.warning.main,
+    },
+    /* Styles applied to the root element if `variant="filled"` and `color="error"`. */
+    filledError: {
+      color: '#fff',
+      fontWeight: theme.typography.fontWeightMedium,
+      backgroundColor: theme.palette.error.main,
+    },
+    /* Styles applied to the icon wrapper element. */
+    icon: {
+      marginRight: 12,
+      padding: '7px 0',
+      display: 'flex',
+      fontSize: 22,
+      opacity: 0.9,
+    },
+    /* Styles applied to the message wrapper element. */
+    message: {
+      padding: '8px 0',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+    },
+    /* Styles applied to the action wrapper element if `action` is provided. */
+    action: {
+      display: 'flex',
+      alignItems: 'center',
+      marginLeft: 'auto',
+      paddingLeft: 16,
+      marginRight: -8,
+    },
+  };
+};
 
 const defaultIconMapping = {
   success: <SuccessOutlinedIcon fontSize="inherit" />,
