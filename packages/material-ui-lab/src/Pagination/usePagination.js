@@ -13,7 +13,7 @@ export default function usePagination(props = {}) {
     page: pageProp,
     showFirstButton = false,
     showLastButton = false,
-    siblingRange = 1,
+    siblingCount = 1,
     ...other
   } = props;
 
@@ -48,9 +48,9 @@ export default function usePagination(props = {}) {
   const siblingsStart = Math.max(
     Math.min(
       // Natural start
-      page - siblingRange,
+      page - siblingCount,
       // Lower boundary when page is high
-      count - boundaryCount - siblingRange * 2 - 2,
+      count - boundaryCount - siblingCount * 2 - 2,
     ),
     // Greater than startPages
     boundaryCount + 3,
@@ -59,9 +59,9 @@ export default function usePagination(props = {}) {
   const siblingsEnd = Math.min(
     Math.max(
       // Natural end
-      page + siblingRange,
+      page + siblingCount,
       // Upper boundary when page is low
-      boundaryCount + siblingRange * 2 + 3,
+      boundaryCount + siblingCount * 2 + 3,
     ),
     // Less than endPages
     endPages[0] - 2,
