@@ -2,19 +2,21 @@ import { assert } from 'chai';
 import animate from './animate';
 
 describe('animate', () => {
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-  // The test fails on Safari with just:
-  //
-  // container.scrollLeft = 200;
-  // assert.strictEqual(container.scrollLeft, 200); 💥
-  if (isSafari) {
-    return;
-  }
-
   let container;
 
-  before(() => {
+  before(function beforeHook() {
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    const isJSDOM = navigator.userAgent === 'node.js';
+    if (isJSDOM || isSafari) {
+      // The test fails on Safari with just:
+      //
+      // container.scrollLeft = 200;
+      // assert.strictEqual(container.scrollLeft, 200); 💥
+
+      // in JSDOM the test prevents mocha from exiting
+      this.skip();
+    }
+
     container = document.createElement('div');
     container.style.cssText = [
       'height: 100px',
@@ -29,7 +31,9 @@ describe('animate', () => {
   });
 
   after(() => {
-    document.body.removeChild(container);
+    if (container !== undefined) {
+      document.body.removeChild(container);
+    }
   });
 
   it('should work', done => {
