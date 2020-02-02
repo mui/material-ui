@@ -37,6 +37,7 @@ const theme = createMuiTheme({
 | Finnish | fi-FI | `fiFI` |
 | French | fr-FR | `frFR` |
 | German | de-DE |  `deDE` |
+| Icelandic | is-IS | `isIS` |
 | Indonesian | id-ID | `idID` |
 | Italian | it-IT | `itIT` |
 | Japanese | ja-JP | `jaJP` |
