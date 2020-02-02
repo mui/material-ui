@@ -134,6 +134,7 @@ It supports the following options:
   - `config.matchFrom` (*'any' | 'start'* [optional]): Defaults to `'any'`.
   - `config.stringify` (*Func* [optional]): Defaults to `JSON.stringify`.
   - `config.trim` (*Boolean* [optional]): Defaults to `false`. Remove trailing spaces.
+  - `config.limit` (*Number* [optional]): Limit the number of suggested options to be shown. For example, if `config.limit` is `10`, only the first `10` matching options are shown. If not set, no limit is applied (This is the default behavior).
 
 In the following demo, the options need to start with the query prefix:
 

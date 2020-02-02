@@ -36,6 +36,7 @@ export function createFilterOptions(config = {}) {
     matchFrom = 'any',
     stringify = defaultStringify,
     trim = false,
+    limit,
   } = config;
 
   return (options, { inputValue }) => {
@@ -46,8 +47,7 @@ export function createFilterOptions(config = {}) {
     if (ignoreAccents) {
       input = stripDiacritics(input);
     }
-
-    return options.filter(option => {
+    const filteredOptions = options.filter(option => {
       let candidate = stringify(option);
       if (ignoreCase) {
         candidate = candidate.toLowerCase();
@@ -58,6 +58,8 @@ export function createFilterOptions(config = {}) {
 
       return matchFrom === 'start' ? candidate.indexOf(input) === 0 : candidate.indexOf(input) > -1;
     });
+
+    return typeof limit === 'number' ? filteredOptions.slice(0, limit) : filteredOptions;
   };
 }
 
