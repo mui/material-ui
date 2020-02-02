@@ -2,7 +2,7 @@ import { useControlled } from '@material-ui/core/utils';
 
 export default function usePagination(props = {}) {
   const {
-    boundaryRange = 0,
+    boundaryCount: boundaryCountProp = 1,
     componentName = 'usePagination',
     count = 1,
     defaultPage = 1,
@@ -16,6 +16,9 @@ export default function usePagination(props = {}) {
     siblingRange = 1,
     ...other
   } = props;
+
+  // TODO: Update all formulae to remove this adjustment
+  const boundaryCount = boundaryCountProp - 1;
 
   const [page, setPageState] = useControlled({
     controlled: pageProp,
@@ -39,18 +42,18 @@ export default function usePagination(props = {}) {
     return Array.from({ length }, (_, i) => start + i);
   };
 
-  const startPages = range(1, Math.min(boundaryRange + 1, count));
-  const endPages = range(Math.max(count - boundaryRange, boundaryRange + 2), count);
+  const startPages = range(1, Math.min(boundaryCount + 1, count));
+  const endPages = range(Math.max(count - boundaryCount, boundaryCount + 2), count);
 
   const siblingsStart = Math.max(
     Math.min(
       // Natural start
       page - siblingRange,
       // Lower boundary when page is high
-      count - boundaryRange - siblingRange * 2 - 2,
+      count - boundaryCount - siblingRange * 2 - 2,
     ),
     // Greater than startPages
-    boundaryRange + 3,
+    boundaryCount + 3,
   );
 
   const siblingsEnd = Math.min(
@@ -58,14 +61,14 @@ export default function usePagination(props = {}) {
       // Natural end
       page + siblingRange,
       // Upper boundary when page is low
-      boundaryRange + siblingRange * 2 + 3,
+      boundaryCount + siblingRange * 2 + 3,
     ),
     // Less than endPages
     endPages[0] - 2,
   );
 
   // Basic list of items to render
-  // itemList = ['first', 'previous', 1, 'ellipsis', 4, 5, 6, 'ellipsis', 10, 'next', 'last']
+  // e.g. itemList = ['first', 'previous', 1, 'ellipsis', 4, 5, 6, 'ellipsis', 10, 'next', 'last']
   const itemList = [
     ...(showFirstButton ? ['first'] : []),
     ...(hidePrevButton ? [] : ['previous']),
@@ -73,10 +76,10 @@ export default function usePagination(props = {}) {
 
     // Start ellipsis
     // eslint-disable-next-line no-nested-ternary
-    ...(siblingsStart > boundaryRange + 3
+    ...(siblingsStart > boundaryCount + 3
       ? ['start-ellipsis']
-      : 2 + boundaryRange < count - boundaryRange - 1
-      ? [2 + boundaryRange]
+      : 2 + boundaryCount < count - boundaryCount - 1
+      ? [2 + boundaryCount]
       : []),
 
     // Sibling pages
@@ -84,10 +87,10 @@ export default function usePagination(props = {}) {
 
     // End ellipsis
     // eslint-disable-next-line no-nested-ternary
-    ...(siblingsEnd < count - boundaryRange - 2
+    ...(siblingsEnd < count - boundaryCount - 2
       ? ['end-ellipsis']
-      : count - boundaryRange - 1 > boundaryRange + 1
-      ? [count - boundaryRange - 1]
+      : count - boundaryCount - 1 > boundaryCount + 1
+      ? [count - boundaryCount - 1]
       : []),
 
     ...endPages,

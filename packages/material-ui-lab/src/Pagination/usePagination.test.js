@@ -113,9 +113,9 @@ describe('usePagination', () => {
     assert.strictEqual(items[7].page, 8);
     assert.strictEqual(items[8].type, 'end-ellipsis');
   });
-  it('can have an increased boundaryRange', () => {
+  it('can have an increased boundaryCount', () => {
     const { items } = renderHook(() =>
-      usePagination({ count: 11, page: 6, boundaryRange: 1 }),
+      usePagination({ count: 11, page: 6, boundaryCount: 2 }),
     ).result.current;
     assert.strictEqual(items.length, 11);
     assert.strictEqual(items[1].page, 1);

@@ -54,7 +54,7 @@ Pagination.propTypes = {
   /**
    * Number of always visible pages at the beginning and end.
    */
-  boundaryRange: PropTypes.number,
+  boundaryCount: PropTypes.number,
   /**
    * Pagination items.
    */
