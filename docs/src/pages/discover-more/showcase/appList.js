@@ -13,6 +13,15 @@
  */
 const appList = [
   {
+    title: 'Fluxguard',
+    description:
+      'Fluxguard monitors website changes.'
+    image: 'fluxguard.png',
+    link: 'https://fluxguard.com/',
+    similarWebVisits: 3000,
+    dateAdded: '2020-02-02',
+  },
+  {
     title: 'QuintoAndar',
     description:
       'QuintoAndar is a company that uses technology and ' +
