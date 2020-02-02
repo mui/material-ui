@@ -9,7 +9,6 @@ const TestComponent = ({ value: valueProp, defaultValue, children }) => {
     controlled: valueProp,
     default: defaultValue,
     name: 'TestComponent',
-    propHint: 'testProp',
   });
   return children({ value, setValue });
 };
@@ -61,7 +60,7 @@ describe('useControlled', () => {
     setProps({ value: 'foobar' });
     expect(consoleErrorMock.callCount()).to.equal(1);
     expect(consoleErrorMock.args()[0][0]).to.contains(
-      "A component is changing an uncontrolled TestComponent to be controlled using the 'testProp' prop",
+      'A component is changing an uncontrolled TestComponent to be controlled.',
     );
   });
 
@@ -71,7 +70,7 @@ describe('useControlled', () => {
     setProps({ value: undefined });
     expect(consoleErrorMock.callCount()).to.equal(1);
     expect(consoleErrorMock.args()[0][0]).to.contains(
-      "A component is changing a controlled TestComponent to be uncontrolled using the 'testProp' prop",
+      'A component is changing a controlled TestComponent to be uncontrolled.',
     );
   });
 
@@ -81,7 +80,7 @@ describe('useControlled', () => {
     setProps({ defaultValue: 1 });
     expect(consoleErrorMock.callCount()).to.equal(1);
     expect(consoleErrorMock.args()[0][0]).to.contains(
-      "A component is changing the default 'testProp' value of an uncontrolled TestComponent after being initialized. ",
+      'A component is changing the default value of an uncontrolled TestComponent after being initialized. ',
     );
   });
 });
