@@ -83,7 +83,7 @@
     "confusing-browser-globals": "^1.0.9",
     "cross-env": "^7.0.0",
     "danger": "^9.1.8",
-    "dom-accessibility-api": "^0.2.0",
+    "dom-accessibility-api": "^0.3.0",
     "dtslint": "^2.0.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.14.0",
