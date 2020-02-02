@@ -21,6 +21,7 @@ describe('<Pagination />', () => {
     mount,
     refInstanceof: window.HTMLUListElement,
     after: () => mount.cleanUp(),
+    skip: ['componentProp'],
   }));
 
   it('should render', () => {

@@ -23,7 +23,6 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
     classes,
     className,
     color = 'standard',
-    component: Component = 'ul',
     getItemAriaLabel: getAriaLabel,
     items,
     renderItem = item => <PaginationItem {...item} />,
@@ -36,7 +35,7 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
   const itemProps = { color, getAriaLabel, shape, size, variant };
 
   return (
-    <Component
+    <ul
       role="navigation"
       aria-label="Pagination navigation"
       className={clsx(classes.root, className)}
@@ -47,7 +46,7 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
         items.map(item => (
           <li key={item.type || item.page.toString()}>{renderItem({ ...item, ...itemProps })}</li>
         ))}
-    </Component>
+    </ul>
   );
 });
 
@@ -73,11 +72,6 @@ Pagination.propTypes = {
    * The active color.
    */
   color: PropTypes.oneOf(['default', 'primary', 'secondary']),
-  /**
-   * The component used for the root node.
-   * Either a string to use a DOM element or a component.
-   */
-  component: PropTypes.elementType,
   /**
    * The total number of pages.
    */
