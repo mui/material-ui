@@ -11,6 +11,9 @@ import Divider from '@material-ui/core/Divider';
 import Link from 'docs/src/modules/components/Link';
 
 const styles = theme => ({
+  root: {
+    marginTop: theme.spacing(6),
+  },
   footer: {
     padding: theme.spacing(3, 0),
     [theme.breakpoints.up('sm')]: {
@@ -34,7 +37,7 @@ const styles = theme => ({
     },
     '& ul': {
       margin: 0,
-      paddingLeft: 0,
+      padding: 0,
       listStyle: 'none',
     },
     '& li': {
@@ -47,12 +50,12 @@ const styles = theme => ({
   },
 });
 
-function HomeFooter(props) {
+function AppFooter(props) {
   const { classes } = props;
   const t = useSelector(state => state.options.t);
 
   return (
-    <React.Fragment>
+    <div className={classes.root}>
       <Divider />
       <Container maxWidth="md">
         <footer className={classes.footer}>
@@ -137,6 +140,11 @@ function HomeFooter(props) {
                     Contact Us
                   </Link>
                 </li>
+                <li>
+                  <Link color="inherit" variant="body2" href="/company/jobs/">
+                    Jobs
+                  </Link>
+                </li>
               </ul>
             </Grid>
           </Grid>
@@ -170,12 +178,12 @@ function HomeFooter(props) {
           </Typography>
         </footer>
       </Container>
-    </React.Fragment>
+    </div>
   );
 }
 
-HomeFooter.propTypes = {
+AppFooter.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(HomeFooter);
+export default withStyles(styles)(AppFooter);

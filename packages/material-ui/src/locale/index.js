@@ -57,6 +57,31 @@ export const bgBG = {
   },
 };
 
+export const caES = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Pàgina anterior',
+      labelRowsPerPage: 'Files per pàgina:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} de ${count}`,
+      nextIconButtonText: 'Següent pàgina',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} ${value !== 1 ? 'Estrelles' : 'Estrella'}`,
+      emptyLabelText: 'Buit',
+    },
+    MuiAutocomplete: {
+      clearText: 'Netejar',
+      closeText: 'Tancar',
+      loadingText: 'Carregant…',
+      noOptionsText: 'Sense opcions',
+      openText: 'Obert',
+    },
+    MuiAlert: {
+      closeText: 'Tancat',
+    },
+  },
+};
+
 export const csCZ = {
   props: {
     MuiTablePagination: {
@@ -189,6 +214,31 @@ export const faIR = {
     },
     MuiAlert: {
       closeText: 'بستن',
+    },
+  },
+};
+
+export const fiFI = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Edellinen sivu',
+      labelRowsPerPage: 'Rivejä per sivu:',
+      labelDisplayedRows: ({ from, to, count }) => `${from}-${to === -1 ? count : to} / ${count}`,
+      nextIconButtonText: 'Seuraava sivu',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} Täht${value !== 1 ? 'eä' : 'i'}`,
+      emptyLabelText: 'Tyhjä',
+    },
+    MuiAutocomplete: {
+      clearText: 'Tyhjennä',
+      closeText: 'Sulje',
+      loadingText: 'Ladataan…',
+      noOptionsText: 'Ei valintoja',
+      openText: 'Avaa',
+    },
+    MuiAlert: {
+      closeText: 'Sulje',
     },
   },
 };
@@ -601,6 +651,32 @@ export const ukUA = {
     },
     MuiAlert: {
       closeText: 'Згорнути',
+    },
+  },
+};
+
+export const viVN = {
+  props: {
+    MuiTablePagination: {
+      backIconButtonText: 'Trang trước',
+      labelRowsPerPage: 'Số hàng mỗi trang:',
+      labelDisplayedRows: ({ from, to, count }) =>
+        `${from}-${to === -1 ? count : to} trong ${count}`,
+      nextIconButtonText: 'Trang sau',
+    },
+    MuiRating: {
+      getLabelText: value => `${value} sao`,
+      emptyLabelText: 'Trống',
+    },
+    MuiAutocomplete: {
+      clearText: 'Xóa',
+      closeText: 'Đóng',
+      loadingText: 'Đang tải…',
+      noOptionsText: 'Không có lựa chọn',
+      openText: 'Mở',
+    },
+    MuiAlert: {
+      closeText: 'Đóng',
     },
   },
 };

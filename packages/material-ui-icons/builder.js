@@ -7,7 +7,6 @@ import Mustache from 'mustache';
 import Queue from 'modules/waterfall/Queue';
 import util from 'util';
 import glob from 'glob';
-import mkdirp from 'mkdirp';
 import SVGO from 'svgo';
 
 const globAsync = util.promisify(glob);
@@ -91,6 +90,11 @@ async function generateIndex(options) {
 
 // Noise introduced by Google by mistake
 const noises = [
+  ['<g fill="none"><path d="M0 0h24v24H0z" /><path d="M0 0h24v24H0z" /></g>', ''],
+  [
+    '<g fill="none"><path d="M0 0h24v24H0z" /><path d="M0 0h24v24H0z" /><path d="M0 0h24v24H0z" /></g>',
+    '',
+  ],
   ['<path fill="none" d="M0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0zm0 0h24v24H0V0z" />', ''],
   ['<path fill="none" d="M0 0h24v24H0V0zm0 0h24v24H0V0z" />', ''],
   ['<path fill="none" d="M0 0h24v24H0V0z" />', ''],
@@ -160,7 +164,7 @@ async function worker({ svgPath, options, renameFilter, template }) {
 
   if (!exists2) {
     console.log(`Making dir: ${outputFileDir}`);
-    mkdirp.sync(outputFileDir);
+    fse.mkdirpSync(outputFileDir);
   }
 
   const data = await fse.readFile(svgPath, { encoding: 'utf8' });

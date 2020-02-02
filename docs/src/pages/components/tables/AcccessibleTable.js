@@ -30,7 +30,7 @@ export default function AcccessibleTable() {
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="caption table">
-        <caption>A barbone structure table example with a caption</caption>
+        <caption>A basic table example with a caption</caption>
         <TableHead>
           <TableRow>
             <TableCell>Dessert (100g serving)</TableCell>

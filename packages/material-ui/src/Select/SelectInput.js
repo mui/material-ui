@@ -105,6 +105,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   };
 
   const handleMouseDown = event => {
+    if (event.button !== 0)
+      // ignore everything but left-click
+      return;
     // Hijack the default focus behavior.
     event.preventDefault();
     displayNode.focus();
@@ -417,7 +420,7 @@ SelectInput.propTypes = {
    */
   inputRef: refType,
   /**
-   * The idea of an element that acts as an additional label. The Select will
+   * The ID of an element that acts as an additional label. The Select will
    * be labelled by the additional label and the selected value.
    */
   labelId: PropTypes.string,

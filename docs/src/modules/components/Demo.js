@@ -11,7 +11,8 @@ import Collapse from '@material-ui/core/Collapse';
 import NoSsr from '@material-ui/core/NoSsr';
 import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
-import GitHubIcon from '@material-ui/icons/GitHub';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
+import Snackbar from '@material-ui/core/Snackbar';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -168,6 +169,13 @@ function Demo(props) {
     setDemoHovered(event.type === 'mouseenter');
   };
 
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  const [snackbarMessage, setSnackbarMessage] = React.useState(undefined);
+
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
+
   const handleCodeLanguageClick = (event, clickedCodeVariant) => {
     if (codeVariant !== clickedCodeVariant) {
       dispatch({
@@ -179,7 +187,7 @@ function Demo(props) {
     }
   };
 
-  const handleClickCodeSandbox = () => {
+  const handleCodeSandboxClick = () => {
     const demoConfig = getDemoConfig(demoData);
     const parameters = compress({
       files: {
@@ -214,23 +222,25 @@ function Demo(props) {
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleClickMore = event => {
+  const handleMoreClick = event => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleCloseMore = () => {
+  const handleMoreClose = () => {
     setAnchorEl(null);
   };
 
-  const handleClickCopy = async () => {
+  const handleCopyClick = async () => {
     try {
       await copy(demoData.raw);
+      setSnackbarMessage(t('copiedSource'));
+      setSnackbarOpen(true);
     } finally {
-      handleCloseMore();
+      handleMoreClose();
     }
   };
 
-  const handleClickStackBlitz = () => {
+  const handleStackBlitzClick = () => {
     const demoConfig = getDemoConfig(demoData);
     const form = document.createElement('form');
     form.method = 'POST';
@@ -248,7 +258,7 @@ function Demo(props) {
     document.body.appendChild(form);
     form.submit();
     document.body.removeChild(form);
-    handleCloseMore();
+    handleMoreClose();
   };
 
   const showSourceHint = demoHovered && !sourceHintSeen;
@@ -273,8 +283,10 @@ function Demo(props) {
   const createHandleCodeSourceLink = anchor => async () => {
     try {
       await copy(`${window.location.href.split('#')[0]}#${anchor}`);
+      setSnackbarMessage(t('copiedSourceLink'));
+      setSnackbarOpen(true);
     } finally {
-      handleCloseMore();
+      handleMoreClose();
     }
   };
 
@@ -287,7 +299,7 @@ function Demo(props) {
     }
   }, [demoName]);
 
-  const handleClickCodeOpen = () => {
+  const handleCodeOpenClick = () => {
     document.cookie = `sourceHintSeen=true;path=/;max-age=31536000`;
     setCodeOpen(open => !open);
     setSourceHintSeen(setSourceHintSeen(true));
@@ -355,7 +367,7 @@ function Demo(props) {
                   data-ga-event-category="demo"
                   data-ga-event-label={demoOptions.demo}
                   data-ga-event-action="expand"
-                  onClick={handleClickCodeOpen}
+                  onClick={handleCodeOpenClick}
                   color={demoHovered ? 'primary' : 'default'}
                 >
                   <CodeIcon fontSize="small" />
@@ -372,7 +384,7 @@ function Demo(props) {
                     data-ga-event-category="demo"
                     data-ga-event-label={demoOptions.demo}
                     data-ga-event-action="codesandbox"
-                    onClick={handleClickCodeSandbox}
+                    onClick={handleCodeSandboxClick}
                   >
                     <EditIcon fontSize="small" />
                   </IconButton>
@@ -380,23 +392,21 @@ function Demo(props) {
               )}
               <Tooltip
                 classes={{ popper: classes.tooltip }}
-                title={t('viewGitHub')}
+                title={t('copySource')}
                 placement="top"
               >
                 <IconButton
-                  aria-label={t('viewGitHub')}
+                  aria-label={t('copySource')}
                   data-ga-event-category="demo"
                   data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="github"
-                  href={demoData.githubLocation}
-                  target="_blank"
-                  rel="noopener nofollow"
+                  data-ga-event-action="copy"
+                  onClick={handleCopyClick}
                 >
-                  <GitHubIcon fontSize="small" />
+                  <FileCopyIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
               <IconButton
-                onClick={handleClickMore}
+                onClick={handleMoreClick}
                 aria-owns={anchorEl ? 'demo-menu-more' : undefined}
                 aria-haspopup="true"
                 aria-label={t('seeMore')}
@@ -407,7 +417,7 @@ function Demo(props) {
                 id="demo-menu-more"
                 anchorEl={anchorEl}
                 open={Boolean(anchorEl)}
-                onClose={handleCloseMore}
+                onClose={handleMoreClose}
                 getContentAnchorEl={null}
                 anchorOrigin={{
                   vertical: 'top',
@@ -421,17 +431,21 @@ function Demo(props) {
                 <MenuItem
                   data-ga-event-category="demo"
                   data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="copy"
-                  onClick={handleClickCopy}
+                  data-ga-event-action="github"
+                  component="a"
+                  href={demoData.githubLocation}
+                  target="_blank"
+                  rel="noopener nofollow"
+                  onClick={handleMoreClose}
                 >
-                  {t('copySource')}
+                  {t('viewGitHub')}
                 </MenuItem>
                 {demoOptions.hideEditButton ? null : (
                   <MenuItem
                     data-ga-event-category="demo"
                     data-ga-event-label={demoOptions.demo}
                     data-ga-event-action="stackblitz"
-                    onClick={handleClickStackBlitz}
+                    onClick={handleStackBlitzClick}
                   >
                     {t('stackblitz')}
                   </MenuItem>
@@ -463,6 +477,12 @@ function Demo(props) {
           text={`\`\`\`${demoData.sourceLanguage}\n${codeOpen ? demoData.raw : jsx}\n\`\`\``}
         />
       </Collapse>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={handleSnackbarClose}
+        message={snackbarMessage}
+      />
     </div>
   );
 }

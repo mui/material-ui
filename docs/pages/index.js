@@ -5,11 +5,13 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import HomeSteps from 'docs/src/modules/components/HomeSteps';
+import HomeThemes from 'docs/src/modules/components/HomeThemes';
 import HomeQuickWord from 'docs/src/modules/components/HomeQuickWord';
-import HomeBackers from 'docs/src/modules/components/HomeBackers';
+import HomeSponsors from 'docs/src/modules/components/HomeSponsors';
 import HomeUsers from 'docs/src/modules/components/HomeUsers';
+import HomeQuotes from 'docs/src/modules/components/HomeQuotes';
 import HomePro from 'docs/src/modules/components/HomePro';
-import HomeFooter from 'docs/src/modules/components/HomeFooter';
+import AppFooter from 'docs/src/modules/components/AppFooter';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import Link from 'docs/src/modules/components/Link';
 import Head from 'docs/src/modules/components/Head';
@@ -31,12 +33,9 @@ function loadDependencies() {
 const useStyles = makeStyles(theme => ({
   root: {
     flex: '1 0 100%',
-    '& #main-content': {
-      outline: 0,
-    },
   },
   hero: {
-    paddingTop: 64,
+    paddingTop: theme.spacing(8),
     color: theme.palette.primary.main,
   },
   content: {
@@ -47,8 +46,8 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(8),
     [theme.breakpoints.up('md')]: {
-      paddingTop: theme.spacing(22),
-      paddingBottom: theme.spacing(22),
+      paddingTop: theme.spacing(16),
+      paddingBottom: theme.spacing(16),
       flexDirection: 'row',
       alignItems: 'flex-start',
       textAlign: 'left',
@@ -162,10 +161,12 @@ export default function HomePage() {
           <HomePro />
           <HomeQuickWord />
           <HomeSteps />
-          <HomeBackers />
+          <HomeThemes />
+          <HomeSponsors />
+          <HomeQuotes />
           <HomeUsers />
         </main>
-        <HomeFooter />
+        <AppFooter />
       </div>
       <script
         type="application/ld+json"
@@ -177,7 +178,7 @@ export default function HomePage() {
   "@type": "Organization",
   "name": "Material-UI",
   "url": "https://material-ui.com/",
-  "logo": "https://material-ui.com/static/brand.png",
+  "logo": "https://material-ui.com/static/logo.png",
   "sameAs": [
     "https://twitter.com/materialUI",
     "https://github.com/mui-org/material-ui",

@@ -8,7 +8,7 @@ Feel free to submit a pull request to add another project; it will be accepted i
 
 ## Design resources
 
-- **Sketch**: [Material Theme Editor](https://material.io/resources/theme-editor/) for Material Design made by Google.
+- **Sketch**: [Sketch for Material-UI](https://themes.material-ui.com/themes/sketch-react/) — A large UI kit with over 1,500 handcrafted Material-UI's symbols 💎.
 - **Figma**:
   - https://material.5ly.co/ for Material-UI made by Fively Team.
   - https://ui-kit.co/ a starter kit for your Material Design 2 project.
@@ -24,6 +24,10 @@ You didn't find the design assets your team is looking for? Let us know!
 ## Components
 
 This is a collection of third-party projects that extend Material-UI.
+
+### Layout
+
+- [@mui-treasury/layout](https://mui-treasury.com/layout): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs).
 
 ### Tables
 

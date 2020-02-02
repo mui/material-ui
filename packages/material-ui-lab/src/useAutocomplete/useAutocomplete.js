@@ -85,7 +85,7 @@ export default function useAutocomplete(props) {
     blurOnSelect = false,
     clearOnEscape = false,
     debug = false,
-    defaultValue,
+    defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
     disableListWrap = false,
@@ -107,6 +107,7 @@ export default function useAutocomplete(props) {
     onInputChange,
     open: openProp,
     options = [],
+    selectOnFocus = !props.freeSolo,
     value: valueProp,
     componentName = 'useAutocomplete',
   } = props;
@@ -181,15 +182,18 @@ export default function useAutocomplete(props) {
       const elementBottom = element.offsetTop + element.offsetHeight;
       if (elementBottom > scrollBottom) {
         listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
-      } else if (element.offsetTop < listboxNode.scrollTop) {
-        listboxNode.scrollTop = element.offsetTop;
+      } else if (
+        element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0) <
+        listboxNode.scrollTop
+      ) {
+        listboxNode.scrollTop = element.offsetTop - element.offsetHeight * (groupBy ? 1.3 : 0);
       }
     }
   }
 
   const [value, setValue] = useControlled({
     controlled: valueProp,
-    default: defaultValue || (multiple ? [] : null),
+    default: defaultValue,
     name: componentName,
   });
 
@@ -580,6 +584,10 @@ export default function useAutocomplete(props) {
         handleFocusTag(event, 'next');
         break;
       case 'Enter':
+        // Wait until IME is settled.
+        if (event.which === 229) {
+          break;
+        }
         if (highlightedIndexRef.current !== -1 && popupOpen) {
           // We don't want to validate the form.
           event.preventDefault();
@@ -649,7 +657,9 @@ export default function useAutocomplete(props) {
     }
 
     if (autoSelect && selectedIndexRef.current !== -1) {
-      handleValue(event, filteredOptions[selectedIndexRef.current]);
+      selectNewValue(event, filteredOptions[selectedIndexRef.current]);
+    } else if (autoSelect && freeSolo && inputValue !== '') {
+      selectNewValue(event, inputValue, 'freeSolo');
     } else if (!freeSolo) {
       resetInputValue(event, value);
     }
@@ -746,7 +756,10 @@ export default function useAutocomplete(props) {
       inputRef.current.selectionEnd - inputRef.current.selectionStart === 0
     ) {
       inputRef.current.focus();
-      inputRef.current.select();
+
+      if (selectOnFocus) {
+        inputRef.current.select();
+      }
     }
 
     firstFocus.current = false;

@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function GroupedButtons() {
+export default function BasicButtonGroup() {
   const classes = useStyles();
 
   return (

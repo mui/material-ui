@@ -4,7 +4,7 @@ description: Material-UI v1 is out 🎉
 
 # Material-UI v1 is out 🎉
 
-*May 18, 2018*
+The core team. May 18, 2018.
 
 > React components that implement Google’s Material Design.
 

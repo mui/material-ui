@@ -135,9 +135,13 @@ export interface UseAutocompleteCommonProps<T> {
    *
    * @param {object} event The event source of the callback.
    * @param {string} value The new value of the text input.
-   * @param {string} reason Can be: "input" (user input), "reset" (programmatic change), `"clear"`.
+   * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
    */
-  onInputChange?: (event: React.ChangeEvent<{}>, value: string, reason: 'input' | 'reset') => void;
+  onInputChange?: (
+    event: React.ChangeEvent<{}>,
+    value: string,
+    reason: 'input' | 'reset' | 'clear',
+  ) => void;
   /**
    * Callback fired when the popup requests to be opened.
    * Use in controlled mode (see open).
@@ -153,6 +157,10 @@ export interface UseAutocompleteCommonProps<T> {
    * Array of options.
    */
   options?: T[];
+  /**
+   * If `true`, the input's text will be selected on focus.
+   */
+  selectOnFocus?: boolean;
 }
 
 export interface UseAutocompleteMultipleProps<T> extends UseAutocompleteCommonProps<T> {

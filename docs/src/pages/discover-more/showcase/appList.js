@@ -626,6 +626,24 @@ const appList = [
     link: 'https://www.hifivework.com/#/',
     dateAdded: '2020-01-08',
   },
+  {
+    title: 'TradeNBA',
+    description: 'NBA trade machine and social analysis tools for the basketball community.',
+    image: 'tradenba.jpg',
+    link: 'https://tradenba.com/',
+    similarWebVisits: 145,
+    dateAdded: '2020-01-20',
+  },
+  {
+    title: 'CinemaPlus',
+    description: 'Cinema Plus is an online Movie Ticket Booking web app with MERN Stack.',
+    image: 'cinemaplus.jpg',
+    link: 'https://elcinema.herokuapp.com/',
+    similarWebVisits: 100,
+    source: 'https://github.com/georgesimos/cinema-plus',
+    stars: 4,
+    dateAdded: '2020-01-31',
+  },
 ];
 
 export default appList;

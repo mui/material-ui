@@ -455,14 +455,14 @@ function forwardRefTest() {
   // If there are no props, use the definition that doesn't accept them
   // https://github.com/mui-org/material-ui/issues/16198
 
-  // $ExpectType Record<"root", CSSProperties | (() => CSSProperties)>
+  // $ExpectType Record<"root", CSSProperties | CreateCSSProperties<{}> | ((props: {}) => CreateCSSProperties<{}>)>
   const styles = createStyles({
     root: {
       width: 1,
     },
   });
 
-  // $ExpectType Record<"root", CSSProperties | (() => CSSProperties)>
+  // $ExpectType Record<"root", CSSProperties | CreateCSSProperties<{}> | ((props: {}) => CreateCSSProperties<{}>)>
   const styles2 = createStyles({
     root: () => ({
       width: 1,
@@ -473,7 +473,7 @@ function forwardRefTest() {
     foo: boolean;
   }
 
-  // $ExpectType Record<"root", CreateCSSProperties<testProps> | ((props: testProps) => CreateCSSProperties<testProps>)>
+  // $ExpectType Record<"root", CSSProperties | CreateCSSProperties<testProps> | ((props: testProps) => CreateCSSProperties<testProps>)>
   const styles3 = createStyles({
     root: (props: testProps) => ({
       width: 1,
