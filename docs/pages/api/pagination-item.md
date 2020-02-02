@@ -47,19 +47,19 @@ Any other props supplied will be provided to the root element (native element).
 
 | Rule name | Global class | Description |
 |:-----|:-------------|:------------|
-| <span class="prop-name">root</span> | <span class="prop-name">.root-42</span> | Styles applied to the root element.
-| <span class="prop-name">outlined</span> | <span class="prop-name">.outlined-43</span> | Styles applied to the button element if `outlined="true"`.
-| <span class="prop-name">textPrimary</span> | <span class="prop-name">.textPrimary-44</span> | Styles applied to the button element if `variant="text"` and `color="primary"`.
-| <span class="prop-name">textSecondary</span> | <span class="prop-name">.textSecondary-45</span> | Styles applied to the button element if `variant="text"` and `color="secondary"`.
-| <span class="prop-name">outlinedPrimary</span> | <span class="prop-name">.outlinedPrimary-46</span> | Styles applied to the button element if `variant="outlined"` and `color="primary"`.
-| <span class="prop-name">outlinedSecondary</span> | <span class="prop-name">.outlinedSecondary-47</span> | Styles applied to the button element if `variant="outlined"` and `color="secondary"`.
-| <span class="prop-name">rounded</span> | <span class="prop-name">.rounded-48</span> | Styles applied to the button element if `rounded="true"`.
-| <span class="prop-name">ellipsis</span> | <span class="prop-name">.ellipsis-49</span> | Styles applied to the ellipsis element.
-| <span class="prop-name">icon</span> | <span class="prop-name">.icon-50</span> | Styles applied to the icon element.
-| <span class="prop-name">sizeSmall</span> | <span class="prop-name">.sizeSmall-51</span> | Pseudo-class applied to the root element if `size="small"`.
-| <span class="prop-name">sizeLarge</span> | <span class="prop-name">.sizeLarge-52</span> | Pseudo-class applied to the root element if `size="large"`.
-| <span class="prop-name">disabled</span> | <span class="prop-name">.disabled-53</span> | Pseudo-class applied to the root element if `disabled={true}`.
-| <span class="prop-name">selected</span> | <span class="prop-name">.selected-54</span> | Pseudo-class applied to the root element if `selected={true}`.
+| <span class="prop-name">root</span> | <span class="prop-name">.root-44</span> | Styles applied to the root element.
+| <span class="prop-name">outlined</span> | <span class="prop-name">.outlined-45</span> | Styles applied to the button element if `outlined="true"`.
+| <span class="prop-name">textPrimary</span> | <span class="prop-name">.textPrimary-46</span> | Styles applied to the button element if `variant="text"` and `color="primary"`.
+| <span class="prop-name">textSecondary</span> | <span class="prop-name">.textSecondary-47</span> | Styles applied to the button element if `variant="text"` and `color="secondary"`.
+| <span class="prop-name">outlinedPrimary</span> | <span class="prop-name">.outlinedPrimary-48</span> | Styles applied to the button element if `variant="outlined"` and `color="primary"`.
+| <span class="prop-name">outlinedSecondary</span> | <span class="prop-name">.outlinedSecondary-49</span> | Styles applied to the button element if `variant="outlined"` and `color="secondary"`.
+| <span class="prop-name">rounded</span> | <span class="prop-name">.rounded-50</span> | Styles applied to the button element if `rounded="true"`.
+| <span class="prop-name">ellipsis</span> | <span class="prop-name">.ellipsis-51</span> | Styles applied to the ellipsis element.
+| <span class="prop-name">icon</span> | <span class="prop-name">.icon-52</span> | Styles applied to the icon element.
+| <span class="prop-name">sizeSmall</span> | <span class="prop-name">.sizeSmall-53</span> | Pseudo-class applied to the root element if `size="small"`.
+| <span class="prop-name">sizeLarge</span> | <span class="prop-name">.sizeLarge-54</span> | Pseudo-class applied to the root element if `size="large"`.
+| <span class="prop-name">disabled</span> | <span class="prop-name">.disabled-55</span> | Pseudo-class applied to the root element if `disabled={true}`.
+| <span class="prop-name">selected</span> | <span class="prop-name">.selected-56</span> | Pseudo-class applied to the root element if `selected={true}`.
 
 You can override the style of the component thanks to one of these customization points:
 
