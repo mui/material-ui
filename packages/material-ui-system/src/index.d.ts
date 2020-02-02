@@ -64,6 +64,7 @@ export const display: SimpleStyleFunction<
 
 export type DisplayProps = PropsFor<typeof display>;
 
+// flexbox.js
 export const flexbox: SimpleStyleFunction<
   | 'flexBasis'
   | 'flexDirection'
@@ -80,6 +81,23 @@ export const flexbox: SimpleStyleFunction<
   | 'justifySelf'
 >;
 export type FlexboxProps = PropsFor<typeof flexbox>;
+
+// grid.js
+export const grid: SimpleStyleFunction<
+  | 'gridGap'
+  | 'gridColumnGap'
+  | 'gridRowGap'
+  | 'gridColumn'
+  | 'gridRow'
+  | 'gridAutoFlow'
+  | 'gridAutoColumns'
+  | 'gridAutoRows'
+  | 'gridTemplateColumns'
+  | 'gridTemplateRows'
+  | 'gridTemplateAreas'
+  | 'gridArea'
+>;
+export type GridProps = PropsFor<typeof grid>;
 
 // palette.js
 export const color: SimpleStyleFunction<'color'>;
