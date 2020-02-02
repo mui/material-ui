@@ -16,7 +16,7 @@ export default function useControlled({ controlled, default: defaultProp, name }
             }controlled ${name} to be ${isControlled ? 'un' : ''}controlled.`,
             'Elements should not switch from uncontrolled to controlled (or vice versa).',
             `Decide between using a controlled or uncontrolled ${name} ` +
-            'element for the lifetime of the component.',
+              'element for the lifetime of the component.',
             'More info: https://fb.me/react-controlled-components',
           ].join('\n'),
         );
@@ -30,7 +30,7 @@ export default function useControlled({ controlled, default: defaultProp, name }
         console.error(
           [
             `Material-UI: A component is changing the default value of an uncontrolled ${name} after being initialized. ` +
-            `To suppress this warning opt to use a controlled ${name}.`,
+              `To suppress this warning opt to use a controlled ${name}.`,
           ].join('\n'),
         );
       }
