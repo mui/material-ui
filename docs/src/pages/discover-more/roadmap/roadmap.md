@@ -88,7 +88,7 @@ Here are the components we will work on being supported in the Material-UI ecosy
 | Color Picker | ⏳⭐️ |
 | Gantt Chart | ⏳⭐️ |
 | Gauge | ⏳⭐️ |
-| Masonary | ⏳⭐️ |
+| Masonry | ⏳⭐️ |
 | Pivot Grid | ⏳⭐️ |
 | Rich Text Editor | ⏳⭐️ |
 | Scheduler | ⏳⭐️ |
