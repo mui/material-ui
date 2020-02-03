@@ -22,23 +22,23 @@ export const styles = theme => ({
       duration: theme.transitions.duration.short,
     }),
     '&:hover, &:focus': {
-      backgroundColor: fade(theme.palette.action.active, theme.palette.action.hoverOpacity),
+      backgroundColor: theme.palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
     },
     '&$selected': {
-      backgroundColor: fade(theme.palette.action.active, 0.09),
+      backgroundColor: theme.palette.action.selected,
       '&:hover, &:focus': {
-        backgroundColor: fade(theme.palette.action.active, 0.15),
+        backgroundColor: theme.palette.action.disabledBackground,
       },
       '&$disabled': {
-        backgroundColor: fade(theme.palette.action.disabled, 0.07),
+        backgroundColor: theme.palette.action.disabledBackground,
       },
     },
     '&$disabled': {
-      color: fade(theme.palette.text.primary, 0.5),
+      color: theme.palette.action.disabled,
       backgroundColor: 'transparent',
       pointerEvents: 'none',
     },
