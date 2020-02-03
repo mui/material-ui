@@ -8184,10 +8184,10 @@ moment-hijri@^2.1.2:
   dependencies:
     moment "^2.24.0"
 
-moment-jalaali@^0.8.3:
-  version "0.8.3"
-  resolved "https://registry.yarnpkg.com/moment-jalaali/-/moment-jalaali-0.8.3.tgz#93d5de9c274be0221fabd3c3f2b7efc3c51e9016"
-  integrity sha512-FjFjbqHnm9JB5AbcBqPtJ82I1WgjUupbjhKhd513ZkWBcbyQuq0IcEPYSdZ7EMgCYFFrE/W24vs1C2IpSqWuyg==
+moment-jalaali@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/moment-jalaali/-/moment-jalaali-0.9.1.tgz#51816d4dc2c343708bcdc075bdb188a901b43913"
+  integrity sha512-QuqhbSgGKb2Bye3SjJ74TMnNipkpjELas1r5Z8LPjTRIqEpKYJIHBT88MBeDXfWwVnmqe8NT299h9SzpGYrMMw==
   dependencies:
     jalaali-js "^1.1.0"
     moment "^2.22.2"

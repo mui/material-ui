@@ -49,7 +49,7 @@
     "material-ui-search-bar": "^1.0.0-beta.13",
     "moment": "^2.24.0",
     "moment-hijri": "^2.1.2",
-    "moment-jalaali": "^0.8.3",
+    "moment-jalaali": "^0.9.1",
     "next": "8.0.4",
     "next-cookies": "1.1.0",
     "next-images": "^1.0.4",
