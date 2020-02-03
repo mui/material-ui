@@ -50,7 +50,7 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: autoSelect', () => {
-    it('should ', () => {
+    it('should not clear on blur when value does not match any option', () => {
       const handleChange = spy();
       const options = ['one', 'two'];
       const value = 'oo';
