@@ -45,7 +45,7 @@
     "husky": "^1.1.2",
     "lint-staged": "^7.3.0",
     "prettier": "^1.14.3",
-    "wait-on": "^3.2.0"
+    "wait-on": "^4.0.0"
   },
   "husky": {
     "hooks": {
