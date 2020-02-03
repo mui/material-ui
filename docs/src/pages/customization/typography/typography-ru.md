@@ -46,13 +46,14 @@ const raleway = {
     local('Raleway-Regular'),
     url(${RalewayWoff2}) format('woff2')
   `,
-  unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+  unicodeRange:
+    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
 };
 ```
 
 Next, you need to change the theme to use this new font. In order to globally define Raleway as a font face, the [`CssBaseline`](/components/css-baseline/) component can be used (or any other CSS solution of your choice).
 
-```js
+```jsx
 const theme = createMuiTheme({
   typography: {
     fontFamily: 'Raleway, Arial',
@@ -65,6 +66,14 @@ const theme = createMuiTheme({
     },
   },
 });
+
+// ...
+return (
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    {children}
+  </ThemeProvider>
+);
 ```
 
 ## Font size
@@ -85,7 +94,9 @@ const theme = createMuiTheme({
 
 The computed font size by the browser follows this mathematical equation:
 
-![font-size](/static/images/font-size.gif) <!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
+![font-size](/static/images/font-size.gif)
+
+<!-- https://latex.codecogs.com/gif.latex?computed&space;=&space;specification&space;\frac{typography.fontSize}{14}&space;\frac{html&space;font&space;size}{typography.htmlFontSize} -->
 
 ### HTML font size
 
@@ -117,16 +128,18 @@ The typography variants properties map directly to the generated CSS. You can us
 ```js
 const theme = createMuiTheme();
 
-theme.typography.h1 = {
-  fontSize: '3rem',
+theme.typography.h3 = {
+  fontSize: '1.2rem',
   '@media (min-width:600px)': {
-    fontSize: '4.5rem',
+    fontSize: '1.5rem',
   },
   [theme.breakpoints.up('md')]: {
-    fontSize: '6rem',
+    fontSize: '2.4rem',
   },
 };
 ```
+
+{{"demo": "pages/customization/typography/CustomResponsiveFontSizes.js"}}
 
 To automate this setup, you can use the [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
 

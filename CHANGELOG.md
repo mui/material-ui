@@ -1,5 +1,90 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.9.1
+###### *Feb 2, 2020*
+
+Big thanks to the 39 contributors who made this release possible.
+
+Here are some highlights ✨:
+
+- 🐛 Clean and synchronize the material icons with Google (#19483, #19485) @timmydoza.
+- 🐛 Fix outline input regressions (#19389, #19409, #19495) @Alexeyun1k, @kusmierz, @cadrimiranda.
+- 🐛 Fix IME support of the Autocomplete, important for Chinese, Japanese, and Korean (#19499) @teramotodaiki.
+- 📚 Improve the Style Library Interoperability docs section (#19457) @oliviertassinari.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@v4.9.1`
+
+- [Container] Fix mismatch between Container and Toolbar gutters (#19505) @koistya
+- [FormControl] Add `fullWidth` prop to `FormControl` context (#19369) @EsoterikStare
+- [l10n] Add Catalan (ca-ES) locale (#19428) @yyuri
+- [l10n] Add Finnish (fi-FI) locale (#19471) @SampsaKaskela
+- [l10n] Add Vietnamese (vi-VN) locale (#19439) @imcvampire
+- [ListItemAvatar] Add "children" prop (#19509) @srghma
+- [Select] Right click opens select menu (#19434) @fyodore82
+- [Slider] Support marks={false} (#19350) @embeddedt
+- [SwitchBase] Fix ignoring disabled from FormControl (#19319) @rostislavbobo
+- [TablePagination] Support unknown total count (#19494) @Domino987
+- [TextField] Declare global mui-auto-fill(-cancel) keyframes (#19497) @martinjlowm
+- [TextField] Fix label notch for custom htmlFontSize (#19409) @kusmierz
+- [TextField] Handle leaky global styles of Bootstrap (#19495) @cadrimiranda
+- [TextField] Prevent overriding legend display styles (#19389) @Alexeyun1k
+- [TextField] Reduce helper text height to match spec (#19390) @suliskh
+
+### `@material-ui/icons@v4.9.1`
+
+- [icons] Remove extraneous path (#19483) @timmydoza
+- [icons] Synchronize components with Google (#19485) @oliviertassinari
+
+### `@material-ui/system@v4.9.1`
+
+- [system] Add grid support (#17326) @Lavoaster
+
+### `@material-ui/lab@v4.0.0-alpha.41`
+
+- [Alert] Improve dark theme coloring (#19105) @ahtcx
+- [Autocomplete] Fix autoSelect logic (#19384) @SerhiiBilyk
+- [Autocomplete] Should not fire change until IME is confirmed (#19499) @teramotodaiki
+- [Autocomplete] Update docs for defaultValue prop (#19431) @willwill96
+- [Rating] Fix readOnly + precision combination (#19414) @TommyJackson85
+
+### Framer
+
+- [framer] Support Framer color tokens for ThemeProvider (#19451) @iKettles
+
+### Docs
+
+- [example] Add @types/node dependency (#19383) @AlexanderVishnevsky
+- [blog] 2019 in review and beyond (#19478) @oliviertassinari
+- [blog] Improve the layout (#19385) @oliviertassinari
+- [docs] Add SwipeableTextMobileStepper demo (#18503) @eps1lon
+- [docs] Add cinemaPlus to showcase (#19502) @georgesimos
+- [docs] Fix /versions GitHub API rate limitation (#19223) @hiteshkundal
+- [docs] Fix a small typo ("idea" ==> "ID") (#19366) @markdoliner
+- [docs] Fix some typos and correct a grammar mistake (#19324) @konekoya
+- [docs] Fix typo (#19492) @Blechkelle
+- [docs] Fix typo in Autocomplete CSS API (#19503) @DenrizSusam
+- [docs] Improve Style Library Interoperability (#19457) @oliviertassinari
+- [docs] Include more info on RMUIF v2.2.0 (#19410) @phoqe
+- [docs] Increase button variant demos consistency (#19392) @theswerd
+- [docs] Refresh the home page (#19430) @mbrookes
+- [docs] Remove `@ts-ignore` usage (#19504) @eps1lon
+- [docs] Replace switch with checkbox and radio (#19440) @rostislavbobo
+- [docs] Separate ButtonGroup and Fab pages from Button page (#19381) @mbrookes
+- [docs] Update the translations (#19514) @mbrookes
+- [docs] makeStyles doesn't have access to the component's name (#19474) @hesto2
+
+### Core
+
+- [test] Check exhaustive deps of useEnhancedEffect (#19417) @eps1lon
+- [test] Misc polish (#19425) @eps1lon
+- [test] Test type libs in docs (#19375) @eps1lon
+- [test] Exclude inaccessible elements by default in browser tests (#19380) @eps1lon
+- [core] Batch small changes (#19416) @oliviertassinari
+- [core] cross-os jsonlint (#19377) @eps1lon
+- [core] Fix mixins not being assignable as JSS styles (#19491) @ririvas
+- [core] Misc dependency fixes (#19412) @eps1lon
+
 ## 4.9.0
 ###### *Jan 22, 2020*
 
@@ -12,6 +97,7 @@ Here are some highlights ✨:
 - 📚 Simplify the usage of "copy demo" action (#19291) @theswerd.
 - 📚 Warn when defaultValue changes (#19070) @m4theushw.
 - 💅 Slight updates to better match the Material Design spec (#19277, #19342) @elmeerr.
+- And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.9.0`
 
@@ -113,6 +199,7 @@ Here are some highlights since 4.8.0 ✨:
 - 💄 Improve skeleton animation, add wave support (#18913, #19014) @bowann, @oliviertassinari.
 - 🔍 13 patches on the Autocomplete component.
 - 🌎 Add 6 new locales (ko-KR, az-AZ, cs-CZ, sk-SK, uk-UA, pt-PT).
+- And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@v4.8.3`
 

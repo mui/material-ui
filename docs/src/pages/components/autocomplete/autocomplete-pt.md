@@ -32,7 +32,9 @@ Choose one country between 248.
 
 ## Free solo
 
-Set `freeSolo` to true so the textbox can contain any arbitrary value.
+Set `freeSolo` to true so the textbox can contain any arbitrary value. The prop is designed to cover the primary use case of a search box with suggestions, e.g. Google search.
+
+However, if you intend to use it for a [combo box](#combo-box) like experience (an enhanced version of a select element) we recommend setting `selectOnFocus`.
 
 {{"demo": "pages/components/autocomplete/FreeSolo.js"}}
 
@@ -163,9 +165,32 @@ Search within 10,000 randomly generated options. The list is virtualized thanks 
 
 ## Limitações
 
+### autocomplete/autofill
+
+The browsers have heuristics to help the users fill the form inputs. However, it can harm the UX of the component.
+
+By default, the component disable the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
+
+However, in addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). In the event you want the avoid autofill, you can try the following:
+
+- Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
+- Set `autoComplete="new-password"`: 
+        jsx
+        <TextField
+        {...params}
+        inputProps={{
+          ...params.inputProps,
+          autoComplete: 'new-password',
+        }}
+        />
+
 ### iOS VoiceOver
 
 VoiceOver on iOS Safari doesn't support the `aria-owns` attribute very well. You can work around the issue with the `disablePortal` prop.
+
+### TypeScript
+
+To fully take advantage of type inference, you need to set the `multiple` prop to `undefined`, `false` or `true`. See [this discussion](https://github.com/mui-org/material-ui/pull/18854#discussion_r364215153) for more details. TypeScript might solve this bug in the future.
 
 ## Acessibilidade
 

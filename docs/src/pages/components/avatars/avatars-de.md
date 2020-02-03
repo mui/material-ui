@@ -9,7 +9,7 @@ components: Avatar, AvatarGroup, Badge
 
 ## Bild Avatare
 
-Image avatars can be created by passing standard `img` props `src` or `srcSet` to the component.
+Bild-Avatare können erstellt werden, indem reguläre `img` props `src` oder `srcSet` an die Komponente übergeben werden.
 
 {{"demo": "pages/components/avatars/ImageAvatars.js"}}
 
@@ -43,7 +43,7 @@ If there is an error loading the avatar image, the component falls back to an al
 
 - the provided children
 - the first letter of tha `alt` text
-- a generic avatar icon
+- ein generisches Avatar-Symbol
 
 {{"demo": "pages/components/avatars/FallbackAvatars.js"}}
 

@@ -41,7 +41,7 @@ Material-UI 是先在移动设备上开发的，我们采用了首先为移动�
 ```html
 <meta
   name="viewport"
-  content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+  content="minimum-scale=1, initial-scale=1, width=device-width"
 />
 ```
 

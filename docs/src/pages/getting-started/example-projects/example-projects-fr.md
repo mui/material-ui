@@ -1,10 +1,10 @@
 # Exemples de Projets
 
-<p class="description">A selection of example projects to get started with.</p>
+<p class="description">Une sélection d'exemple de projet pour démarrer.</p>
 
-## Official examples
+## Exemples officiels
 
-You can find some example projects in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) folder:
+Vous pouvez trouver des exemples de projets dans le [dépôt GitHub](https://github.com/mui-org/material-ui) sous le dossier [`/examples`](https://github.com/mui-org/material-ui/tree/master/examples) :
 
 - [Create React App](https://github.com/mui-org/material-ui/tree/master/examples/create-react-app)
 - [Gatsby](https://github.com/mui-org/material-ui/tree/master/examples/gatsby)
@@ -32,12 +32,13 @@ If you want to start with a more complete and real-world example, you could take
   - Routing with React Router including error handling (404) and lazy loading
   - All PWA features included (SW, Notifications, deferred installation prompt and more)
   - Optimized and scalable performance (all ~100 points on Lighthouse)
-- [React + Material-UI + Firebase](https://github.com/Phoqe/react-material-ui-firebase):
+- [RMUIF](https://github.com/phoqe/rmuif):
     
-  - Bootstrapped with Create React App, the same tooling works out of the box
-  - Built on top of Firebase with Authentication, Cloud Firestore, Cloud Functions, Storage, and Performance Monitoring working from the start
-  - Robust routing with React Router including error handling
+  - Bootstrapped with Create React App, the same tooling works from the get-go
+  - Built on top of Firebase with all their products for the web included
+  - Robust routing with React Router including protected routes and error handling
   - Extensive mobile support with full-screen dialogs and react-swipeable-views for tabs
+  - Cross-platform application monitoring with a focus on error reporting with Sentry
 - [Material Sense](https://github.com/alexanmtz/material-sense):
     
   - Graph using recharts

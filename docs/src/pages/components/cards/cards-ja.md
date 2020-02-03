@@ -19,7 +19,7 @@ Cardは複数のアクション、UIコントロール、およびオーバー�
 
 ### Outlined Card
 
-Set `variant="outlined` to render an outlined card.
+Set `variant="outlined"` to render an outlined card.
 
 {{"demo": "pages/components/cards/OutlinedCard.js", "bg": true}}
 
@@ -48,3 +48,7 @@ Card内の補足的なアクションは、通常はカードの下部に配置�
 これはメディアコントロール付きCardの例です。
 
 {{"demo": "pages/components/cards/MediaControlCard.js", "bg": true}}
+
+## カスタマイズ
+
+👑 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).

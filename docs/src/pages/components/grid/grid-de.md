@@ -31,7 +31,7 @@ Diese Ausgabetransformationsfunktion kann durch [Verwendung des Themes](/customi
 
 ## Fluides Raster
 
-Fluid grids use columns that scale and resize content. A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
+Flüssige Raster verwenden Spalten, die den Inhalt skalieren und verkleinern. A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
 
 ### Grundraster
 
@@ -65,7 +65,7 @@ Die folgende Demo folgt nicht der Material Design-Spezifikation, sondern zeigt, 
 
 ## Verschachteltes Raster
 
-The `container` and `item` properties are two independent booleans. They can be combined.
+The `container` and `item` properties are two independent booleans. Sie können kombiniert werden.
 
 > Ein Flex **container** ist die Box, die von einem Element mit einer berechneten Anzeige von `flex` oder `Iinline-flex`. In-Flow-Kinder eines Flex-Containers heißen Flex **Elemente** und werden mit dem Flex-Layout-Modell angeordnet.
 

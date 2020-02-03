@@ -4,10 +4,10 @@
 
 ## Explorar
 
-Explore a documentação do objeto tema:
+Explore the default theme object:
 
-{{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideHeader": true}}
+{{"demo": "pages/customization/default-theme/DefaultTheme.js", "hideHeader": true, "bg": "inline"}}
 
-> Dica: você pode brincar com o objeto de tema da documentação **no console**, pois a variável `theme` é exposta em todas as páginas da documentação. Por favor, note que o site de documentação está usando um tema personalizado.
+> Tip: you can play with the documentation theme object in your browser console, as the `theme` variable is exposed on all the documentation pages. Please note that **the documentation site is using a custom theme**.
 
 Se você quiser aprender mais sobre como o tema é montado, dê uma olhada em [`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/styles/createMuiTheme.js), e as importações relacionadas que `createMuiTheme` usa.

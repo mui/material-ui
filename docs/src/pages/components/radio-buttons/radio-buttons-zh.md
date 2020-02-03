@@ -3,7 +3,7 @@ title: React Radio buttons（单选按钮）组件
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 ---
 
-# Radio
+# Radio（单选框）
 
 <p class="description">用户可以通过单选按钮从一组中选择一个选项。</p>
 
@@ -27,7 +27,7 @@ components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 
 {{"demo": "pages/components/radio-buttons/FormControlLabelPosition.js"}}
 
-## Customized radios
+## 自定义单选框
 
 以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
 

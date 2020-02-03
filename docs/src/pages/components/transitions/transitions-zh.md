@@ -55,7 +55,7 @@ Expand vertically from the top of the child element. The `collapsedHeight` prope
 
 Slide in from the edge of the screen. The `direction` property controls which edge of the screen the transition starts from.
 
-过渡(Transition) 组件的 `mountOnEnter` 属性保证了只有 `in` 是`true`时，子组件才会被渲染。 这可以保证相对上定位好的组件不会从屏幕外面的位置滚动到视图中。 同样的， 在组件从屏幕中过渡完后，`unmountOnExit` 属性将次组件从 DOM 中移除。
+The Transition component's `mountOnEnter` property prevents the child component from being mounted until `in` is `true`. 这可以保证相对上定位好的组件不会从屏幕外面的位置滚动到视图中。 同样的， 在组件从屏幕中过渡完后，`unmountOnExit` 属性将次组件从 DOM 中移除。
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
@@ -66,3 +66,11 @@ Slide in from the edge of the screen. The `direction` property controls which ed
 此示例还演示了如何延迟过渡的开始。
 
 {{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}
+
+## TransitionComponent prop
+
+The components accept a `TransitionComponent` prop to customize the default transitions. You can use any of the above components or your own. It should respect the following conditions:
+
+- Accepts an `in` prop. This corresponds to the open/close state.
+- Call the `onEnter` callback prop when the enter transition starts.
+- Call the `onExited` callback prop when the exit transition is completed. These two callbacks allow to unmount the children when in a closed state and fully transitioned.
