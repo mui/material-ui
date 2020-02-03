@@ -50,6 +50,26 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: autoSelect', () => {
+    it('should ', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      const value = 'oo';
+
+      render(
+        <Autocomplete
+          freeSolo
+          autoHighlight
+          autoSelect
+          options={options}
+          onChange={handleChange}
+          renderInput={params => <TextField autoFocus {...params} />}
+        />,
+      );
+      fireEvent.change(document.activeElement, { target: { value } });
+      document.activeElement.blur();
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal(value);
+    });
     it('should add new value when autoSelect & multiple on blur', () => {
       const handleChange = spy();
       const options = ['one', 'two'];
