@@ -452,7 +452,6 @@ export default function useAutocomplete(props) {
     if (!disableCloseOnSelect) {
       handleClose(event);
     }
-
   };
 
   function validTagIndex(index, direction) {
