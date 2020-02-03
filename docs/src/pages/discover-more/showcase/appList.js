@@ -13,12 +13,19 @@
  */
 const appList = [
   {
+    title: 'Deep Dive Duck Election 2020 Campaign Monitor',
+    description:
+      'Key changes to US 2020 Presidential candidate web sites.',
+    image: 'deepdiveduck.png',
+    link: 'https://deepdiveduck.com/campaignmonitor/',
+    dateAdded: '2020-02-02',
+  },
+  {
     title: 'Fluxguard',
     description:
       'Fluxguard monitors website changes.'
     image: 'fluxguard.png',
     link: 'https://fluxguard.com/',
-    similarWebVisits: 3000,
     dateAdded: '2020-02-02',
   },
   {
