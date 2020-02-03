@@ -580,10 +580,6 @@ export default function useAutocomplete(props) {
         handleFocusTag(event, 'next');
         break;
       case 'Enter':
-        // Wait until IME is settled.
-        if (event.which === 229) {
-          break;
-        }
         if (highlightedIndexRef.current !== -1 && popupOpen) {
           // We don't want to validate the form.
           event.preventDefault();
