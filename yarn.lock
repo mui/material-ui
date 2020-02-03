@@ -1274,11 +1274,6 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@date-io/core@^1.3.13":
-  version "1.3.13"
-  resolved "https://registry.yarnpkg.com/@date-io/core/-/core-1.3.13.tgz#90c71da493f20204b7a972929cc5c482d078b3fa"
-  integrity sha512-AlEKV7TxjeK+jxWVKcCFrfYAk8spX9aCyiToFIiLPtfQbsjmRGLIhb5VZgptQcJdHtLXo7+m0DuurwFgUToQuA==
-
 "@date-io/core@^2.2.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@date-io/core/-/core-2.2.0.tgz#cb351cefa3544460f183ebf26b52f3b5781c28fa"
@@ -1298,12 +1293,12 @@
   dependencies:
     "@date-io/core" "^2.2.0"
 
-"@date-io/hijri@^1.3.8":
-  version "1.3.13"
-  resolved "https://registry.yarnpkg.com/@date-io/hijri/-/hijri-1.3.13.tgz#e51df5bea6096cf212e285ecec8e6ca47c8bd4fa"
-  integrity sha512-K74GzB+6QTibJpbVE1Wjoa+aOOIQGcMpM4lS6C7n325YzUXRN5/nmJ6buRzXUua7c8h84dDI08Kv/ZbqY1OMcA==
+"@date-io/hijri@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@date-io/hijri/-/hijri-2.2.0.tgz#4a4e449e3a860ed9901c6d2270b2742d5b650646"
+  integrity sha512-a7CXbeEENFRz057ljDaBEYRWVN9M/1HiHVCwQpPEs7OjQLNGaullTpiMP+J/K2QQOo4r9sWP1SLZ9hMP64Mvqw==
   dependencies:
-    "@date-io/moment" "^1.3.13"
+    "@date-io/moment" "^2.2.0"
 
 "@date-io/jalaali@^2.0.0":
   version "2.2.0"
@@ -1318,13 +1313,6 @@
   integrity sha512-mRLEm08a2uvsxze9PwMyi7RAiQJF/UHjJXRHbc5FnuYSBHsKKzoyicafCntJxvGX0tKePdzDnusXrukW3JrBdA==
   dependencies:
     "@date-io/core" "^2.2.0"
-
-"@date-io/moment@^1.3.13":
-  version "1.3.13"
-  resolved "https://registry.yarnpkg.com/@date-io/moment/-/moment-1.3.13.tgz#56c2772bc4f6675fc6970257e6033e7a7c2960f0"
-  integrity sha512-3kJYusJtQuOIxq6byZlzAHoW/18iExJer9qfRF5DyyzdAk074seTuJfdofjz4RFfTd/Idk8WylOQpWtERqvFuQ==
-  dependencies:
-    "@date-io/core" "^1.3.13"
 
 "@date-io/moment@^2.1.0", "@date-io/moment@^2.2.0":
   version "2.2.0"
