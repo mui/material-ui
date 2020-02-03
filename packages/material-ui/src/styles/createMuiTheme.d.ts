@@ -16,6 +16,7 @@ export interface ThemeOptions {
   shape?: ShapeOptions;
   breakpoints?: BreakpointsOptions;
   direction?: Direction;
+  dateIOAdapter?: any;
   mixins?: MixinsOptions;
   overrides?: Overrides;
   palette?: PaletteOptions;
@@ -31,6 +32,7 @@ export interface Theme {
   shape: Shape;
   breakpoints: Breakpoints;
   direction: Direction;
+  dateIOAdapter?: any;
   mixins: Mixins;
   overrides?: Overrides;
   palette: Palette;
