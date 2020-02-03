@@ -719,7 +719,7 @@ describe('<TreeItem />', () => {
     describe('Multi Selection', () => {
       describe('range selection', () => {
         specify('keyboard arrow', () => {
-          const { getByTestId, getByText } = render(
+          const { getByTestId, getByText, container } = render(
             <TreeView multiSelect defaultExpanded={['two']}>
               <TreeItem nodeId="one" label="one" data-testid="one" />
               <TreeItem nodeId="two" label="two" data-testid="two" />
@@ -733,20 +733,26 @@ describe('<TreeItem />', () => {
           expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
           fireEvent.keyDown(document.activeElement, { key: 'ArrowDown', shiftKey: true });
           expect(getByTestId('four')).to.have.focus;
+          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(2);
           fireEvent.keyDown(document.activeElement, { key: 'ArrowDown', shiftKey: true });
           expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
           expect(getByTestId('four')).to.have.attribute('aria-selected', 'true');
           expect(getByTestId('five')).to.have.attribute('aria-selected', 'true');
+          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(3);
           fireEvent.keyDown(document.activeElement, { key: 'ArrowUp', shiftKey: true });
           expect(getByTestId('four')).to.have.focus;
+          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(2);
           fireEvent.keyDown(document.activeElement, { key: 'ArrowUp', shiftKey: true });
+          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(1);
           fireEvent.keyDown(document.activeElement, { key: 'ArrowUp', shiftKey: true });
+          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(2);
           fireEvent.keyDown(document.activeElement, { key: 'ArrowUp', shiftKey: true });
           expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
           expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
           expect(getByTestId('three')).to.have.attribute('aria-selected', 'true');
           expect(getByTestId('four')).to.have.attribute('aria-selected', 'false');
           expect(getByTestId('five')).to.have.attribute('aria-selected', 'false');
+          expect(container.querySelectorAll('[aria-selected=true]').length).to.equal(3);
         });
 
         specify('keyboard space', () => {

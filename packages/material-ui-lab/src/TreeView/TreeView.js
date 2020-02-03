@@ -234,13 +234,9 @@ const TreeView = React.forwardRef(function TreeView(props, ref) {
   const handleRangeArrowSelect = (event, start, value) => {
     let base = selected;
 
-    if (value === start) {
-      return;
-    }
-
     if (lastSelectionMode.current === 'RANGE-ARROW') {
       if (isSelected(value)) {
-        base = base.filter(id => id !== value && id !== previousArrowSelection.current);
+        base = base.filter(id => id === start || id !== previousArrowSelection.current);
       } else {
         base.push(value);
       }
