@@ -297,7 +297,9 @@ function GenericCustomComponent<C extends React.ElementType>(
 Now if the `GenericCustomComponent` will be used with a `component` prop provided, it should also have any props required by the provided component.
 
 ```ts
-const ThirdPartyComponent: FC<{ prop1: string }> = props => <div />;
+function ThirdPartyComponent({ prop1: string }) {
+  return <div />
+}
 // ...
 <GenericCustomComponent component={ThirdPartyComponent} prop1="some value" />;
 ```
