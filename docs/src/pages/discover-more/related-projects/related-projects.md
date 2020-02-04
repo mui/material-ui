@@ -76,6 +76,10 @@ They support many different use cases (editable, filtering, grouping, sorting, s
 
 - [material-ui-confirm](https://github.com/jonatanklosko/material-ui-confirm): Provides easy to use confirmation dialogs to simplify confirming user actions without writing boilerplate code.
 
+## Blocks
+
+- [components-extra](https://github.com/alexandre-lelain/components-extra): Provides a set of "molecule" components built on top of Material-UI like a Footer, a CookiesBanner, a BackToTop button and other complex elements highly customizable to help devs build the macro parts of their UI very quickly. Those components are often duplicated across sites - this library solves this exact problem.
+
 ## Theming
 
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/): An online tool for creating Material-UI themes via Material Design Color Tool.
